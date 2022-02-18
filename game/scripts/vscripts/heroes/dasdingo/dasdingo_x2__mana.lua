@@ -61,6 +61,34 @@ LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modif
         self:PlayEfxStart(target)
     end
 
+    function dasdingo_x2__mana:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+
+        if caster == hTarget then
+            return UF_FAIL_CUSTOM
+        end
+
+        local result = UnitFilter(
+            hTarget,	-- Target Filter
+            DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- Team Filter
+            DOTA_UNIT_TARGET_HERO,	-- Unit Filter
+            0,	-- Unit Flag
+            caster:GetTeamNumber()	-- Team reference
+        )
+        
+        if result ~= UF_SUCCESS then
+            return result
+        end
+
+        return UF_SUCCESS
+    end
+
+    function dasdingo_x2__mana:GetCustomCastErrorTarget( hTarget )
+        if self:GetCaster() == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
+    end
+
 -- EFFECTS
 
     function dasdingo_x2__mana:PlayEfxStart(target)
