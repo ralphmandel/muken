@@ -256,3 +256,28 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function crusader__attributes:Precache(context)
+		PrecacheResource( "particle", "particles/crusader/crusader_aura.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_reincarn.vpcf", context )
+		PrecacheResource( "particle", "particles/crusader/crusader_resist.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_rubick/rubick_spell_steal.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_fear_debuff.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_hit.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/pugna/pugna_ti9_immortal/pugna_ti9_immortal_netherblast.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_ti8_immortal_pitofmalice_stun_light.vpcf", context )
+		PrecacheResource( "particle", "particles/status_fx/status_effect_wraithking_ghosts.vpcf", context )
+		PrecacheResource( "particle", "particles/crusader/crusader_trigger.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_dagger_debuff_arcana_combined.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf", context )
+		PrecacheResource( "particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context )
+		PrecacheResource( "particle", "particles/crusader/crusader_aura_buff_caster.vpcf", context )
+		PrecacheResource( "particle", "particles/crusader/crusader_aura_buff.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf", context )
+	end

@@ -91,6 +91,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local target = self:GetCursorTarget()
         local duration = self:GetSpecialValueFor("duration")
 
+        if target:TriggerSpellAbsorb(self) then return end
+
         caster:RemoveModifierByName("bloodstained_3_modifier_curse")
 
         caster:AddNewModifier(caster, self, "bloodstained_3_modifier_curse", {

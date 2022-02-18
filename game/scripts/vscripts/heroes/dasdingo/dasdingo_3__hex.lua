@@ -108,6 +108,12 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         if target:TriggerSpellAbsorb(self) then return end
 
+        if target:HasModifier("strider_1_modifier_spirit") == false
+        and target:HasModifier("bloodstained_u_modifier_copy") == false
+        and target:IsIllusion() then
+            target:Kill(self, caster)
+        end
+
         -- UP 3.3
         if self:GetRank(3) then
             local damageTable = {

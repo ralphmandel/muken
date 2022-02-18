@@ -9,7 +9,7 @@ function dasdingo_3_modifier_hex:IsDebuff()
 end
 
 function dasdingo_3_modifier_hex:IsPurgable()
-	return false
+	return true
 end
 
 --------------------------------------------------------------------------------

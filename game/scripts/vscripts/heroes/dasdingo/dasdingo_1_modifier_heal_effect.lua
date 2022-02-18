@@ -47,6 +47,7 @@ function dasdingo_1_modifier_heal_effect:OnRefresh(kv)
 end
 
 function dasdingo_1_modifier_heal_effect:OnRemoved(kv)
+	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
 end
 
 -----------------------------------------------------------
@@ -127,6 +128,8 @@ function dasdingo_1_modifier_heal_effect:PlayEfxHeal()
 end
 
 function dasdingo_1_modifier_heal_effect:PlayEfxRegen()
+	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
+
 	local particle = "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
 	self.particle_regen = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 end

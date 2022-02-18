@@ -256,3 +256,8 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function template__attributes:Precache(context)
+		
+	end

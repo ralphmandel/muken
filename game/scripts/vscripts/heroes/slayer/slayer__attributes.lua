@@ -256,3 +256,8 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function slayer__attributes:Precache(context)
+			
+	end

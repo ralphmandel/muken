@@ -256,3 +256,8 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function strider__attributes:Precache(context)
+			
+	end

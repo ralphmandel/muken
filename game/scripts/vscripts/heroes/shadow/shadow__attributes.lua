@@ -257,3 +257,29 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function shadow__attributes:Precache(context)
+		PrecacheResource( "particle", "particles/status_fx/status_effect_phantom_assassin_fall20_active_blur.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_spectre/spectre_ambient.vpcf", context )
+		PrecacheResource( "particle", "particles/status_fx/status_effect_maledict.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/events/ti9/blink_dagger_ti9_start_lvl2_splash.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_witchdoctor/witchdoctor_shard_switcheroo_cast.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_pangolier/pangolier_heartpiercer_delay.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_drain.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_deaddly_potion.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_poison_hit.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_lifetseal.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/events/ti9/blink_dagger_ti9_start_lvl2.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/events/ti9/blink_dagger_ti9_lvl2_end.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_dmg.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/spectre/spectre_transversant_soul/spectre_transversant_spectral_dagger_path_owner.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/grimstroke/gs_fall20_immortal/gs_fall20_immortal_soul_marker.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_knives.vpcf", context )
+		PrecacheResource( "particle", "particles/bioshadow/bioshadow_heart.vpcf", context )
+	end

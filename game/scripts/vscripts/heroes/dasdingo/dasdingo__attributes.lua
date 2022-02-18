@@ -256,3 +256,20 @@ require("talent_tree")
 			end
 		end
 	end
+
+--PRECACHE
+	function dasdingo__attributes:Precache(context)
+		PrecacheResource( "particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti10_immortal_weapon_gold/wd_ti10_immortal_voodoo_gold.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healing_ward_fortunes_tout_ward_gold_flame.vpcf", context )
+		PrecacheResource( "particle", "particles/dasdingo/dasdingo_aura.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", context )
+		PrecacheResource( "particle", "particles/dasdingo/dasdingo_aoe_hex.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti8_immortal_head/wd_ti8_immortal_maledict.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_ti6_knockback_debuff.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_2021_cache/wd_2021_cache_death_ward.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_hero_heal.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf", context )
+		PrecacheResource( "particle", "particles/msg_fx/msg_mana_add.vpcf", context )
+	end
