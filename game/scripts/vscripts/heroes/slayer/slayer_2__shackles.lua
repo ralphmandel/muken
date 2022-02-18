@@ -1,5 +1,6 @@
 slayer_2__shackles = class({})
-LinkLuaModifier("slayer_2_modifier_shackles", "heroes/slayer/slayer_2_modifier_shackles", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("slayer_2_modifier_buff", "heroes/slayer/slayer_2_modifier_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("slayer_2_modifier_debuff", "heroes/slayer/slayer_2_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -80,6 +81,76 @@ LinkLuaModifier("slayer_2_modifier_shackles", "heroes/slayer/slayer_2_modifier_s
 
     function slayer_2__shackles:OnSpellStart()
         local caster = self:GetCaster()
+        local origin = caster:GetOrigin()
+        local point = self:GetCursorPosition()
+
+        local projectile_name = "particles/units/heroes/hero_clinkz/clinkz_searing_arrow_linear_proj.vpcf"
+        local projectile_speed = self:GetSpecialValueFor("chain_speed")
+        local projectile_distance = self:GetSpecialValueFor("chain_range")
+        local projectile_start_radius = self:GetSpecialValueFor("chain_width")
+        local projectile_end_radius = self:GetSpecialValueFor("chain_width")
+        local projectile_vision = self:GetSpecialValueFor("chain_vision")
+        local max_distance = self:GetSpecialValueFor( "chain_range" )
+
+        local projectile_direction = (Vector( point.x-origin.x, point.y-origin.y, 0 )):Normalized()
+
+        local info = {
+            Source = caster,
+            Ability = self,
+            vSpawnOrigin = caster:GetOrigin(),
+            
+            bDeleteOnHit = true,
+            
+            iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+            iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            
+            EffectName = projectile_name,
+            fDistance = projectile_distance,
+            fStartRadius = projectile_start_radius,
+            fEndRadius =projectile_end_radius,
+            vVelocity = projectile_direction * projectile_speed,
+        
+            bHasFrontalCone = true,
+            bReplaceExisting = true,
+            fExpireTime = GameRules:GetGameTime() + 10.0,
+            
+            bProvidesVision = true,
+            iVisionRadius = projectile_vision,
+            iVisionTeamNumber = caster:GetTeamNumber(),
+
+            ExtraData = {
+                originX = origin.x,
+                originY = origin.y,
+                originZ = origin.z,
+
+                max_distance = max_distance,
+                --min_stun = min_stun,
+                --max_stun = max_stun,
+
+                --min_damage = min_damage,
+                --bonus_damage = bonus_damage,
+            }
+        }
+        ProjectileManager:CreateLinearProjectile(info)
+
+        if IsServer() then caster:EmitSound("soundname") end
+    end
+
+    function slayer_2__shackles:OnProjectileHit_ExtraData(hTarget, vLocation, extraData)
+        if hTarget == nil then return end
+
+        local caster = self:GetCaster()
+        local shackle_duration = self:GetSpecialValueFor("shackle_duration")
+    
+        hTarget:AddNewModifier(caster, self, "slayer_2_modifier_debuff", {
+            duration = self:CalcStatus(shackle_duration, caster, hTarget)
+        })
+    
+        AddFOWViewer(caster:GetTeamNumber(), vLocation, 250, 1, false)
+        if IsServer() then hTarget:EmitSound("soundname") end
+    
+        return true
     end
 
 -- EFFECTS
