@@ -1,0 +1,213 @@
+.TalentTreeRoot
+{
+    width: 100%;
+    height: 100%;
+}
+
+#TalentsWindowContainer
+{
+    margin-top: 150px;
+    horizontal-align:right;
+    width: fit-children;
+    height: fit-children;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #192229 ), to( #001017 ) );
+    flow-children: down;
+}
+
+.WindowOut
+{
+    transform: translatex( 0px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
+.WindowIn
+{
+    transform: translatex( 750px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
+
+#TalentTreeColumnsContainer
+{
+    width: fit-children;
+    height: fit-children;
+    flow-children: right;
+    margin: 5px;
+}
+
+.TalentTreeColumn
+{
+    width: fit-children;
+    height: fit-children;
+    flow-children: up;
+    margin-right: 20px;
+}
+
+.TalentTreeColumn.last
+{
+    margin-right: 0px;
+}
+
+.TalentTreeRow
+{
+    flow-children: right;
+    margin-bottom: 10px;
+}
+
+.TalentTreeRow .TitleLabel
+{
+    color: white;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.TalentContainer {
+    width: 64px;
+    height: 64px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid dimgray;
+    border-radius: 20%;
+}
+
+.TalentEmpty {
+    width: 0px;
+    height: 0px;
+    margin-left: 37px;
+    margin-right: 37px;
+    margin-top: 64px;
+    border: 1px solid dimgray;
+    border-radius: 20%;
+}
+
+.TalentContainer:hover {
+    border: 1px solid white;
+}
+
+.TalentContainer.upgraded {
+    border: 1px solid rgb(206, 203, 0);
+}
+
+.TalentContainer.disabled {
+    wash-color: gray;
+}
+
+.TalentContainer #TalentImage {
+    width: fill-parent-flow(1.0);
+    height: fill-parent-flow(1.0);
+}
+
+.TalentContainer #TalentLevel {
+    width: fill-parent-flow(1.0);
+    font-size: 16px;
+    color: white;
+    background-color: #000000F0;
+    text-align: center;
+    text-overflow: shrink;
+    vertical-align: bottom;
+}
+
+.Button
+{
+    width: fit-children;
+    height: fit-children;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #4c5561 ), to( #6c7d88 ) );
+    wash-color: #74EAFE66;
+    horizontal-align:center;
+    vertical-align: center;
+    margin: 10px;
+}
+
+.Button:hover
+{
+    wash-color: #ffffff;
+}
+
+.Button Label
+{
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+#CurrentTalentPoints {
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 16px;
+    horizontal-align:center;
+}
+
+#TalentTreeWindowButton {
+
+
+    horizontal-align: right;
+    vertical-align: top;
+    margin-bottom: 	5px;
+
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 24px;
+	color: white;
+
+    width: 200px;
+	height: 50px;
+
+
+
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+
+	margin-top: 50px;
+
+}
+#TalentTreeWindowButton Label
+{
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 24px;
+	color: white;
+    text-align: center;
+    vertical-align: middle;
+    horizontal-align: middle;
+}
+#TalentTreeWindowButton:hover
+{
+    wash-color: #ffffff;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) );
+}
+
+.Animate
+{
+	animation-name: light;
+	animation-duration: 0.7s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+}
+@keyframes 'light'
+{
+	0% 		
+	{ 
+		opacity: 1.2; 
+	}
+	100%	
+	{ 
+		opacity: 0.1; 
+	}
+}
+
+.hide
+{
+	visibility: collapse;
+}
+
+#TalentTreeWindowButtonActiveImage
+{
+	width: 100%;
+	height: 100%;
+	
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #aca91196 ), to( #c4c70ab2 ) );
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}

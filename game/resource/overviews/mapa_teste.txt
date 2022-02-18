@@ -1,0 +1,8 @@
+mapa_teste
+{
+	material materials/overviews/mapa_teste.vmat
+	pos_x -2048
+	pos_y 2048
+	scale 4.000
+}
+

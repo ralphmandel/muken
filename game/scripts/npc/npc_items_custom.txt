@@ -1,0 +1,60 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+	//Teleport Scroll
+	//=================================================================================================================
+	"item_tp"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_tp"
+		"AbilityTextureName"			"item_tpscroll"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET| DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+		"Model"							"models/props_gameplay/tpscroll01.vmdl"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCooldown"				"60.0"
+		//"AbilitySharedCooldown"			"teleport"
+		"AbilityChannelTime"			"5.0"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		"ItemCost"						"0"
+		//"ItemShopTags"				"consumable;tutorial"
+		//"ItemQuality"					"consumable"
+		"ItemAliases"					"tp"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"1"
+        "ItemDroppable"                 "0"
+        "ItemSellable"                  "0"
+		"ItemInitial"			        "1"
+		"SideShop"						"0"
+        "AllowedInBackpack"             "0"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"						"particles/items2_fx/teleport_start.vpcf"
+			"particle"						"particles/items2_fx/teleport_end.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tooltip_channel_time"	"0"
+			}
+		}
+	}
+}

@@ -1,0 +1,326 @@
+// Dota Ability inquisitor
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"bocuse__attributes"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/bocuse/bocuse__attributes"
+
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"30"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+		"AbilityCastPoint"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_STR"				"8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_AGI"				"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_INT"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_CON"				"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"STR"					"0.6"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"AGI"					"0.4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"INT"					"0.4"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"CON"					"0.6"
+			}
+		}
+	}
+
+	"bocuse_1__julienne"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_1__julienne"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"     		"bocuse_julienne"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"9"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		// Stats
+		"AbilityManaCost"         		"80 88 96 104 112 120 128 136 144"
+		"AbilityCastRange"				"300"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage"			"28 28.5 29 29.5 30 30.5 31 31.5 32"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"intervals"			"0.3"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"degen"				"50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow"				"12"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bleed_dps"			"12 12.5 13 13.5 14 14.5 15 15.5 16"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bleed_duration"	"3"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"1.2"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_distance"		"600"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"range_tooltip"		"300"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"charges"			"3"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"hits"				"4"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8"
+			}
+		}
+	}
+
+	"bocuse_2__flambee"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_2__flambee"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"     		"bocuse_flambee"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"11"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.1"
+
+		// Stats
+		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260"
+		"AbilityCooldown"				"24"
+		"AbilityCastRange"				"900"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"range_tooltip"		"700 750 800 850 900 950 1000 1050 1100 1150 1200"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"projectile_speed"	"700 720 740 760 780 800 820 640 860 880 900"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"225"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"10"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"intervals"			"0.8"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"percent_per_sec"	"1.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"blind"				"15"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"ms"				"15"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+
+	"bocuse_3__sauce"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_3__sauce"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"bocuse_sauce"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"13"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration_init"		"10"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration_stack"	"1.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"incoming_damage"	"6"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max"				"5"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"chance"			"50"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12"
+			}
+		}
+	}
+
+
+	"bocuse_u__mise"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_u__mise"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"     		"bocuse_mise"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"13"
+		"RequiredLevel"         	 	"7"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityManaCost"         		"140 154 168 182 196 210 224 238 252 266 280 294 308"
+		"AbilityCooldown"				"36 35 34 33 32 31 30 29 28 27 26 25 24"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"angle"				"60"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_min"		"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_max"		"35"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_chance"		"50"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"6"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"heal"				"20"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12"
+			}
+		}
+	}
+}

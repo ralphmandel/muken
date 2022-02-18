@@ -1,0 +1,31 @@
+"AddonInfo"
+{
+    //"TeamCount" "10"
+    "maps"      "arena_temple_sm arena_jungle_sm arena_winter_sm"
+    "IsPlayable"  "1"
+    
+    "arena_temple_sm"
+    {
+        "MaxPlayers"    "6"
+    }
+
+    "arena_jungle_sm"
+    {
+        "MaxPlayers"    "6"
+    }
+
+    "arena_winter_sm"
+    {
+        "MaxPlayers"    "6"
+    }
+    
+    // "Default_Keys"
+    // {
+    //     "01"
+    //     {
+    //         "Key"       "z"
+    //         "Command"   "CustomGameExecuteAbility1"
+    //         "Name"      "Execute Ability 1"
+    //     }
+    // }
+}

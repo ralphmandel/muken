@@ -1,0 +1,99 @@
+"TalentTree_strider"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_void_spirit"
+	{
+		"rank_1"
+		{
+			"0"
+			{
+				"1"   "strider_1__push_rank_1_1"
+				"2"   "strider_1__push_rank_1_2"
+			}
+			"1"
+			{
+				"1"   "strider_2__dash_rank_1_1"
+			}
+			"2"
+			{
+				"1"   "strider_3__wall_rank_1_1"
+				"2"   "strider_3__wall_rank_1_2"
+				"3"   "strider_3__wall_rank_1_3"
+			}
+			"3"
+			{
+				"1"   "strider_u__spirit_rank_1_1"
+				"2"   "strider_u__spirit_rank_1_2"
+			}
+			"4"
+			{
+				"1"   "_up_stats"
+			}
+		}
+		"rank_2"
+		{
+			"0"
+			{
+				"1"   "strider_1__push_rank_2_1"
+				"2"   "strider_1__push_rank_2_2"
+				"3"   "strider_1__push_rank_2_3"
+			}
+			"1"
+			{
+				"1"   "strider_2__dash_rank_2_1"
+				"2"   "strider_2__dash_rank_2_2"
+			}
+			"2"
+			{
+				"1"   "strider_3__wall_rank_2_1"
+				"2"   "strider_3__wall_rank_2_2"
+			}
+			"3"
+			{
+				"1"   "strider_u__spirit_rank_2_1"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"rank_3"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "strider_2__dash_rank_3_1"
+				"2"   "strider_2__dash_rank_3_2"
+				"3"   "strider_2__dash_rank_3_3"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "strider_u__spirit_rank_3_1"
+				"2"   "strider_u__spirit_rank_3_2"
+				"3"   "strider_u__spirit_rank_3_3"
+			}
+			"4"
+			{
+				"1"   "strider_x1__seal"
+				"2"   "strider_x2__swap"			
+			}
+		}
+	}	
+}

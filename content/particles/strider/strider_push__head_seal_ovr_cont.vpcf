@@ -1,0 +1,51 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_lightning_left.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_cont_dark.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_cont_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_cont_moon_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_cont_moon.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_cont_halo.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_end.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push__head_seal_ovr_start.vpcf"
+		},
+	]
+}

@@ -1,0 +1,109 @@
+crusader_u__aura = class({})
+LinkLuaModifier("crusader_u_modifier_aura", "heroes/crusader/crusader_u_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("crusader_u_modifier_aura_effect", "heroes/crusader/crusader_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("crusader_u_modifier_ban", "heroes/crusader/crusader_u_modifier_ban", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("crusader_u_modifier_reborn", "heroes/crusader/crusader_u_modifier_reborn", LUA_MODIFIER_MOTION_NONE)
+
+-- INIT
+
+    function crusader_u__aura:CalcStatus(duration, caster, target)
+        local time = duration
+        if caster == nil then return time end
+        local caster_int = caster:FindModifierByName("_1_INT_modifier")
+        local caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+
+        if target == nil then
+            if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+        else
+            if caster:GetTeamNumber() == target:GetTeamNumber() then
+                if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+            else
+                local target_res = target:FindModifierByName("_2_RES_modifier")
+                if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
+                if target_res then time = time * (1 - target_res:GetStatus()) end
+            end
+        end
+
+        if time < 0 then time = 0 end
+        return time
+    end
+
+    function crusader_u__aura:AddBonus(string, target, const, percent, time)
+        local att = target:FindAbilityByName(string)
+        if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
+    end
+
+    function crusader_u__aura:RemoveBonus(string, target)
+        local stringFormat = string.format("%s_modifier_stack", string)
+        local mod = target:FindAllModifiersByName(stringFormat)
+        for _,modifier in pairs(mod) do
+            if modifier:GetAbility() == self then modifier:Destroy() end
+        end
+    end
+
+    function crusader_u__aura:GetRank(upgrade)
+        local caster = self:GetCaster()
+        if caster:IsIllusion() then return end
+        local att = caster:FindAbilityByName("crusader__attributes")
+        if not att then return end
+        if not att:IsTrained() then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_abaddon" then return end
+
+        return att.talents[4][upgrade]
+    end
+
+    function crusader_u__aura:OnUpgrade()
+        local caster = self:GetCaster()
+        if caster:IsIllusion() then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_abaddon" then return end
+
+        local att = caster:FindAbilityByName("crusader__attributes")
+        if att then
+            if att:IsTrained() then
+                att.talents[4][0] = true
+            end
+        end
+        
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_RES"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+
+        local charges = 1
+
+        -- UP 4.1
+        self.radius = self:GetSpecialValueFor("radius")
+        if self:GetRank(1) then
+            charges = charges * 2
+            self.radius = self.radius + 100
+            local aura = caster:FindModifierByName("crusader_u_modifier_aura_effect")
+            if aura then aura:PlayEfxAura() end
+        end
+
+        self:SetCurrentAbilityCharges(charges)
+    end
+
+    function crusader_u__aura:Spawn()
+        self:SetCurrentAbilityCharges(0)
+        self.radius = self:GetSpecialValueFor("radius")
+    end
+
+-- SPELL START
+
+    function crusader_u__aura:GetIntrinsicModifierName()
+        return "crusader_u_modifier_aura"
+    end
+
+    function crusader_u__aura:GetRadius()
+        return self.radius
+    end
+
+    function crusader_u__aura:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return 550 end
+        if self:GetCurrentAbilityCharges() == 1 then return 550 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 650 end
+    end
+
+-- EFFECTS

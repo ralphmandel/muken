@@ -1,0 +1,134 @@
+"Bloodstained.rage"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/ambient/soundscapes/diretide/dt_blood_river_lp.vsnd"
+						}
+					}
+					"volume"            
+					{   
+						"value"     "0.60000"  
+					}
+					"memory_type"
+					{
+						"value"			"0"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Bloodstained.fury"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/bloodstained_rage.vsnd"
+						}
+					}
+					"volume"            
+					{   
+						"value"     "3.50000"  
+					}
+					"memory_type"
+					{
+						"value"			"0"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Bloodstained.seal"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/bloodstained_seal.vsnd"
+						}
+					}
+					"volume"            
+					{   
+						"value"     "2.50000"  
+					}
+					"volume_fade_out"
+					{
+						"value"		"2.5"
+					}
+					"memory_type"
+					{
+						"value"			"0"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Hero_Bloodstained.Bleed"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/weapons/hero/bloodseeker/rupture_cast.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "0.5"	}
+				}
+			}
+		}
+	}
+}

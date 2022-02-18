@@ -1,0 +1,13 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/next_up.css"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/next_up.js"/>
+    </scripts>
+    <Panel class="NextUp" hittest="false">
+    <Panel id="NextUp_panel" class="NextUp2">
+        <Label id="NextUp_label" text="#next_up_label"/>
+    </Panel>
+    </Panel>
+</root>

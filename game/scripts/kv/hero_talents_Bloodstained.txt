@@ -1,0 +1,98 @@
+"TalentTree_bloodstained"
+{
+	"Points" // points for level up
+	{
+		"min_level" "2" 	// min level for giving points
+		"max_level" "25" 	// max level for giving points
+		"amount"	"1" 	// points per level
+		"special_levels" 	// special cases of giving points (still respects min_level and max_level)
+		{
+			"3"	"35"
+		}
+	}
+	
+	// heroes talents
+	"npc_dota_hero_shadow_demon"  //hero
+	{
+		"rank_1" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "bloodstained_1__rage_rank_1_1" //talent
+				"2"   "bloodstained_1__rage_rank_1_2" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "bloodstained_2__bloodsteal_rank_1_1" //talent
+				"2"   "bloodstained_2__bloodsteal_rank_1_2" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "bloodstained_3__curse_rank_1_1" //talent
+				"2"   "bloodstained_3__curse_rank_1_2" //talent
+				"3"   "bloodstained_3__curse_rank_1_3" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "bloodstained_u__seal_rank_1_1" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "_up_stats" //talent
+			}
+		}
+		"rank_2" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "bloodstained_1__rage_rank_2_1" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "bloodstained_2__bloodsteal_rank_2_1" //talent
+				"2"   "bloodstained_2__bloodsteal_rank_2_2" //talent
+				"3"   "bloodstained_2__bloodsteal_rank_2_3" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "bloodstained_3__curse_rank_2_1" //talent
+				"2"   "bloodstained_3__curse_rank_2_2" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "bloodstained_u__seal_rank_2_1" //talent
+				"2"   "bloodstained_u__seal_rank_2_2" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "empty" //talent
+			}
+		}
+		"rank_3" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "bloodstained_1__rage_rank_3_1" //talent
+				"2"   "bloodstained_1__rage_rank_3_2" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "bloodstained_2__bloodsteal_rank_3_1" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "bloodstained_3__curse_rank_3_1" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "bloodstained_u__seal_rank_3_1" //talent
+				"2"   "bloodstained_u__seal_rank_3_2" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "bloodstained_x1__mirror" //talent
+				"2"   "bloodstained_x2__soulsteal" //talent				
+			}
+		}
+	}	
+}

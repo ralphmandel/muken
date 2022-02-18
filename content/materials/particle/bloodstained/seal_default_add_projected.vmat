@@ -1,0 +1,18 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "projected_dota.vfx"
+
+	//---- Additive blending ----
+	F_ADDITIVE_BLENDING 1
+
+	//---- Color ----
+	TextureColor "materials/particle/bloodstained/seal_default_color_psd_29ad9ecd.png"
+
+	//---- Overbright ----
+	g_flOverbrightFactor "100.000"
+
+	//---- Translucency ----
+	TextureTranslucency "materials/particle/bloodstained/seal_img.png"
+}

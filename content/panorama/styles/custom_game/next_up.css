@@ -1,0 +1,30 @@
+.NextUp
+{
+    width: 100%;
+    height: 100%;
+
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+.NextUp2
+{
+	width: 160px;
+	height: 28px;
+
+	vertical-align: top;
+	horizontal-align:right;
+
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #0000 ), color-stop( .5, #000000ab ), to( #00000000 ) );
+
+	margin-top: 110px;
+	padding: 5px 15px;
+}
+
+.NextUp Label
+{
+	vertical-align: middle;
+	horizontal-align: center;
+	font-size: 16px;
+	color: #C6DAFF;
+	text-shadow: 1px 1px 1px black;
+}

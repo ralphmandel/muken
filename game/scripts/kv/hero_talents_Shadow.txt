@@ -1,0 +1,98 @@
+"TalentTree_shadow"
+{
+	"Points" // points for level up
+	{
+		"min_level" "2" 	// min level for giving points
+		"max_level" "25" 	// max level for giving points
+		"amount"	"1" 	// points per level
+		"special_levels" 	// special cases of giving points (still respects min_level and max_level)
+		{
+			"3"	"35"
+		}
+	}
+	
+	// heroes talents
+	"npc_dota_hero_phantom_assassin"  //hero
+	{
+		"rank_1" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "shadow_1__weapon_rank_1_1" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "shadow_2__smoke_rank_1_1" //talent
+				"2"   "shadow_2__smoke_rank_1_2" //talent
+				"3"   "shadow_2__smoke_rank_1_3" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "shadow_3__walk_rank_1_1" //talent
+				"2"   "shadow_3__walk_rank_1_2" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "shadow_u__dagger_rank_1_1" //talent
+				"2"   "shadow_u__dagger_rank_1_2" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "_up_stats" //talent
+			}
+		}
+		"rank_2" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "shadow_1__weapon_rank_2_1" //talent
+				"2"   "shadow_1__weapon_rank_2_2" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "shadow_2__smoke_rank_2_1" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "shadow_3__walk_rank_2_1" //talent
+				"2"   "shadow_3__walk_rank_2_2" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "shadow_u__dagger_rank_2_1" //talent
+				"2"   "shadow_u__dagger_rank_2_2" //talent
+				"3"   "shadow_u__dagger_rank_2_3" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "empty" //talent
+			}
+		}
+		"rank_3" //tabName column
+		{ //tabData
+			"0"	//nlvl
+			{ //talents
+				"1"   "shadow_1__weapon_rank_3_1" //talent
+			}
+			"1"	//nlvl
+			{ //talents
+				"1"   "shadow_2__smoke_rank_3_1" //talent
+			}
+			"2"	//nlvl
+			{ //talents
+				"1"   "shadow_3__walk_rank_3_1" //talent
+				"2"   "shadow_3__walk_rank_3_2" //talent
+				"3"   "shadow_3__second_shadow" //talent
+			}
+			"3"	//nlvl
+			{ //talents
+				"1"   "shadow_u__dagger_rank_3_1" //talent
+			}
+			"4"	//nlvl
+			{ //talents
+				"1"   "shadow_x1__heart" //talent
+				"2"   "shadow_x2__sick" //talent				
+			}
+		}
+	}	
+}

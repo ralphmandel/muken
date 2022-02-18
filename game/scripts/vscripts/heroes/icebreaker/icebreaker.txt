@@ -1,0 +1,327 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+
+	// BASICS //
+
+	"icebreaker__attributes"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/icebreaker/icebreaker__attributes"
+
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"30"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+		"AbilityCastPoint"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_STR"				"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_AGI"				"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_INT"				"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_CON"				"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"STR"					"0.3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"AGI"					"0.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"INT"					"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"CON"					"0.2"
+			}
+		}
+	}
+
+	"icebreaker_u__shard"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/icebreaker/icebreaker_u__shard"
+        "AbilityTextureName"    		"icebreaker_zero"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"icebreaker_0__slow"
+	{
+		"BaseClass"             "ability_lua"
+		"ScriptFile"            "heroes/icebreaker/icebreaker_0__slow"
+		"AbilityTextureName"    "icebreaker_instance"
+
+		"AbilityType"				"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"  	"DAMAGE_TYPE_MAGICAL"
+		"RequiredLevel"         	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow"				"10"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow_duration"		"10"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"break_damage"		"120"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"freeze_duration"	"5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_stack"			"10"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack"				"1"
+			}
+		}
+	}
+
+	"icebreaker_1__frost"
+	{
+		"BaseClass"             "ability_lua"
+		"ScriptFile"            "heroes/icebreaker/icebreaker_1__frost"
+		"AbilityTextureName"    "icebreaker_instance"
+
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"RequiredLevel"         "0"
+		"LevelsBetweenUpgrades"	"25"
+		"MaxLevel"              "11"
+
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack"				"1"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"chance"			"50"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	// ~ ~ frozen_discus ~ ~  //
+
+	"icebreaker_2__discus"
+	{
+		"BaseClass"             "ability_lua"
+		"ScriptFile"            "heroes/icebreaker/icebreaker_2__discus"
+		"AbilityTextureName"	"icebreaker_flake"
+
+		"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+
+		"RequiredLevel"        	"0"
+		"LevelsBetweenUpgrades"	"25"
+		"MaxLevel"              "11"
+		
+		"AbilityManaCost"		"100 110 120 130 140 150 160 170 180 190 200"
+		"AbilityCastRange"		"750 825 900 975 1050 1125 1200 1275 1350 1425 1500"
+        "AbilityCooldown"      	"0"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCastAnimation"  "ACT_DOTA_CAST_ABILITY_5"
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack"				"3"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"refresh_hits"		"12"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"250"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"vision_radius"		"300"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"distance"			"750 825 900 975 1050 1125 1200 1275 1350 1425 1500"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	// ~ ~ blink and break ~ ~ ~ //
+
+	"icebreaker_3__blink"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/icebreaker/icebreaker_3__blink"
+		"AbilityTextureName"			"icebreaker_blink"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		
+		"RequiredLevel"         		"0"
+		"LevelsBetweenUpgrades"			"25"
+		"MaxLevel"              		"11"
+
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastRange"				"400 450 500 550 600 650 700 750 800 850 900"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"60 66 72 78 84 90 96 102 108 114 120"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"break_damage_tooltip"	"120"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_tooltip"			"400 450 500 550 600 650 700 750 800 850 900"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rank"					"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+
+	}
+	
+	// ~ ~ absolute zero ~ ~ ~ //
+
+	"icebreaker_u__zero"
+	{
+		
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/icebreaker/icebreaker_u__zero"
+		"AbilityTextureName"			"icebreaker_zero"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		
+		"RequiredLevel"         		"7"
+		"LevelsBetweenUpgrades"			"25"
+		"MaxLevel"              		"13"
+
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"170 187 204 221 238 255 272 289 306 323 340 357 374"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"300"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack"					"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dex"					"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"out_range"				"250"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hits"					"6 7 8 9 10 11 12 13 14 15 16 17 18"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rank"					"0 1 2 3 4 5 6 7 8 9 10 11 12"
+			}
+		}
+	}
+}

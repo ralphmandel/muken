@@ -1,0 +1,96 @@
+"TalentTree_inquisitor"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_dawnbreaker"
+	{
+		"rank_1"
+		{
+			"0"
+			{
+				"1"   "inquisitor_1__shield_rank_1_1"
+				"2"   "inquisitor_1__shield_rank_1_2"
+			}
+			"1"
+			{
+				"1"   "inquisitor_2__portal_rank_1_1"
+				"2"   "inquisitor_2__portal_rank_1_2"
+				"3"   "inquisitor_2__portal_rank_1_3"
+			}
+			"2"
+			{
+				"1"   "inquisitor_3__blow_rank_1_1"
+				"2"   "inquisitor_3__blow_rank_1_2"
+			}
+			"3"
+			{
+				"1"   "inquisitor_u__autocast_rank_1_1"
+			}
+			"4"
+			{
+				"1"   "_up_stats"
+			}
+		}
+		"rank_2"
+		{
+			"0"
+			{
+				"1"   "inquisitor_1__shield_rank_2_1"
+				"2"   "inquisitor_1__shield_rank_2_2"
+			}
+			"1"
+			{
+				"1"   "inquisitor_2__portal_rank_2_1"
+				"2"   "inquisitor_2__portal_rank_2_2"
+				"3"   "inquisitor_2__portal_rank_2_3"
+			}
+			"2"
+			{
+				"1"   "inquisitor_3__blow_rank_2_1"
+			}
+			"3"
+			{
+				"1"   "inquisitor_u__autocast_rank_2_1"
+				"2"   "inquisitor_u__autocast_rank_2_2"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"rank_3"
+		{
+			"0"
+			{
+				"1"   "inquisitor_1__shield_rank_3_1"
+				"2"   "inquisitor_1__shield_rank_3_2"
+			}
+			"1"
+			{
+				"1"   "inquisitor_2__portal_rank_3_1"
+			}
+			"2"
+			{
+				"1"   "inquisitor_3__blow_rank_3_1"
+				"2"   "inquisitor_3__blow_rank_3_2"
+			}
+			"3"
+			{
+				"1"   "inquisitor_u__autocast_rank_3_1"
+			}
+			"4"
+			{
+				"1"   "inquisitor_x1__hammer"			
+			}
+		}
+	}	
+}

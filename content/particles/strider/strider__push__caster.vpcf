@@ -1,0 +1,64 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_bDestroyImmediately = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_NormalAlignToCP"
+			m_nControlPointNumber = 5
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_impact_elec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_impact_detail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_target_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_caster_impact_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_bubble_model.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_buff_rope2.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_push_hit_mist.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/strider/strider_caster_impact_flash.vpcf"
+		},
+	]
+}

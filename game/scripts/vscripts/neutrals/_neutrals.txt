@@ -1,0 +1,399 @@
+// Dota Ability Template
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"name"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/name"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"     		"spellicon"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"15"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.0"
+		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"  		"1"
+		"AnimationIgnoresModelScale"	"1"
+
+		"AbilityDamage"           				"0 0 0 0"
+		"AbilityManaCost"         				"0 0 0 0"
+		"AbilityCooldown"						"0.0 0.0 0.0 0.0"
+		"AbilityCastRange"    		   			"0"
+		"AbilityCastRangeBuffer" 				"250"
+		"AbilityChannelTime"     				"0.0 0.0 0.0 0.0"
+		"AbilityChannelledManaCostPerSecond"	"30 35 40 45"
+		"AbilityDuration"    				    "0.0 0.0 0.0 0.0"
+		"AoERadius"               				"250"
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"500"
+			}
+		}
+	}
+
+	"fountain"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/fountain"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"400"
+			}
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hp_percent"	"5"
+			}
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"mp_percent"	"4"
+			}
+		}
+	}
+
+	"_neutral__ai"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/_neutral__ai"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"_neutral_lamp"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/_neutral_lamp"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"_neutral_spider"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/_neutral_spider"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"_neutral_skydragon"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/_neutral_skydragon"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"_neutral_dragon"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/_neutral_dragon"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"spellicon"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"lifesteal"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/lifesteal"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"neutrals/lifesteal"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"percent"		"15"
+			}
+		}
+	}
+
+	"stun_hits"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/stun_hits"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"neutrals/stun_hits"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_crit"			"250"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"hits"				"4"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.75"
+			}
+		}
+	}
+
+	"summon_spiders"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/summon_spiders"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"     		"neutrals/summon_spiders"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilityCastPoint"       		"0.5"
+		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+		"AbilityManaCost"         		"50"
+		"AbilityCooldown"				"20"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spiders_number"		"5"
+			}
+		}
+	}
+
+	"venom_aoe"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/venom_aoe"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"     		"neutrals/venom_aoe"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilityCastPoint"       		"0.5"
+		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+		"AbilityManaCost"         		"80"
+		"AbilityCooldown"				"10"
+		"AbilityCastRange"    		   	"300"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"6"
+			}
+		}
+	}
+
+	"fireball"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/fireball"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"     		"neutrals/fireball"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilityCastPoint"       		"0.5"
+		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+		"AbilityManaCost"         		"60"
+		"AbilityCooldown"				"8"
+		"AbilityCastRange"    		   	"550"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fireball_damage"		"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"flame_duration"		"7"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"flame_damage"			"20"
+			}
+		}
+	}
+
+	"immunity"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/immunity"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"     		"neutrals/immunity"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+		"AbilityManaCost"         		"75"
+		"AbilityCooldown"				"20"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"500"
+			}
+		}
+	}
+
+
+	//UNUSED ABILITIES
+
+	"rage"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/rage"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"neutrals/rage"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_bonus"		"20"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_duration"	"5 6 7 8"
+			}
+		}
+	}
+
+	"critical"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/critical"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"neutrals/critical"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"crit_chance"	"20 25 30 35"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"crit_bonus"	"225 250 275 300"
+			}
+		}
+	}
+
+}

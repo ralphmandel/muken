@@ -1,0 +1,247 @@
+// Dota Ability dasdingo
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"dasdingo__attributes"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/dasdingo/dasdingo__attributes"
+
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"30"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+		"AbilityCastPoint"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_STR"				"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_AGI"				"6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_INT"				"9"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_CON"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"STR"					"0.2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"AGI"					"0.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"INT"					"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"CON"					"0.3"
+			}
+		}
+	}
+
+	"dasdingo_1__heal"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_1__heal"
+		"AbilityTextureName"     		"dasdingo_heal"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"13"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.4"
+
+		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240 252 264"
+		"AbilityCooldown"				"10"
+		"AbilityCastRange"      		"700"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"15"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"250"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"intervals"		"1.5"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal"			"20"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal_amp"		"20 21 22 23 24 25 26 27 28 29 30 31 32"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"0 1 2 3 4 5 6 7 8 9 10 11 12"
+			}
+		}
+	}
+
+	"dasdingo_2__aura"
+	{  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_2__aura"
+		"AbilityTextureName"     		"dasdingo_aura"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"8"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"550"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"defense"		"30"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"0 1 2 3 4 5 6 7"
+			}
+		}
+	}
+
+	"dasdingo_3__hex"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_3__hex"
+		"AbilityTextureName"     		"dasdingo_hex"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"14"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.1"
+
+		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260 273 286 299"
+		"AbilityCooldown"				"14"
+		"AbilityCastRange"      		"325 340 355 370 385 400 415 430 445 460 475 490 505 520"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms_limit"		"150"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"range_tooltip"	"325 340 355 370 385 400 415 430 445 460 475 490 505 520"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"0 1 2 3 4 5 6 7 8 9 10 11 12 13"
+			}
+		}
+	}
+
+	"dasdingo_u__maledict"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_u__maledict"
+		"AbilityTextureName"     		"dasdingo_maledict"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"11"
+		"RequiredLevel"         	 	"7"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilityManaCost"         		"160 176 192 208 224 240 256 272 288 304 320"
+		"AbilityCooldown"				"60"
+		"AbilityCastRange"      		"550"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"initial_damage"	"150 155 160 165 170 175 180 185 190 195 200"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"375"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"amplification"		"12"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"tick_intervals"	"2.5"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"tick_max"			"5"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+}

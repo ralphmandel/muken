@@ -1,0 +1,276 @@
+// Dota Ability bloodstained
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	//------------------------------------------------------------------------------------
+	// BASICS ////////////////////////////////////////////////////////////////////////////
+	//------------------------------------------------------------------------------------
+
+	"bloodstained__attributes"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/bloodstained/bloodstained__attributes"
+
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"30"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+		"AbilityCastPoint"				"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_STR"				"7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_AGI"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_INT"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_CON"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"STR"					"0.7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"AGI"					"0.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"INT"					"0.3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"CON"					"0.5"
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------
+	// ABILITIES /////////////////////////////////////////////////////////////////////////
+	//------------------------------------------------------------------------------------
+
+	// SKILL 1 ////////////////////////////////////////////////////////////////
+
+	"bloodstained_1__rage"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bloodstained/bloodstained_1__rage"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"     		"bloodstained_rage"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"11"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+
+		// Stats
+		"AbilityManaCost"         		"90 99 108 117 126 135 144 153 162 171 180"
+		"AbilityCooldown"				"7.5"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"10"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"gain"				"2.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"consume"			"20 22 24 26 28 30 32 34 36 38 40"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"agi"				"12"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+	
+
+	// SKILL 2 ////////////////////////////////////////////////////////////////
+
+	"bloodstained_2__bloodsteal"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bloodstained/bloodstained_2__bloodsteal"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"bloodstained_bloodsteal"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"12"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"lifesteal_base"	"4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"lifesteal_bonus"	"20"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11"
+			}
+		}
+	}
+
+	// SKILL 3 ////////////////////////////////////////////////////////////////
+
+	"bloodstained_3__curse"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bloodstained/bloodstained_3__curse"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"     		"bloodstained_curse"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"11"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+
+		// Stats
+		"AbilityManaCost"				"110 121 132 143 154 165 176 187 198 209 220"
+		"AbilityCooldown"				"20"
+		"AbilityCastRange"				"400 420 440 460 480 500 520 540 560 580 600"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"12"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"tooltip_range"	"400 420 440 460 480 500 520 540 560 580 600"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max_range"		"700 720 740 760 780 800 820 840 860 880 900"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"shared_damage"	"50"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"0 1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	// ULTIMATE ////////////////////////////////////////////////////////////////
+
+	"bloodstained_u__seal"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bloodstained/bloodstained_u__seal"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"     		"bloodstained_seal"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"12"
+		"RequiredLevel"         	 	"7"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AnimationPlaybackRate"  		"1"
+		"AnimationIgnoresModelScale"	"1"
+
+		// Stats
+		"AbilityManaCost"				"160 176 192 208 224 240 256 272 288 304 320 336"
+		"AbilityCooldown"				"175 170 165 160 155 150 145 140 135 130 125 120"
+		"AbilityCastRange"    	   		"450"
+		"AoERadius"               		"500"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"500"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"12"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow"				"20"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"blood_extraction"	"15"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"illusion_duration"	"10"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11"
+			}
+		}
+	}
+}

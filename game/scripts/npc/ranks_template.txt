@@ -1,0 +1,1085 @@
+//NAME
+    //NAME 1
+        "name_1__sk1_rank_1_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_1_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_1_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_2_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_2_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_2_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_3_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_3_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_1__sk1_rank_3_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon1"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //NAME 2
+        "name_2__sk2_rank_1_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_1_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_1_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_2_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_2_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_2_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_3_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_3_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_2__sk2_rank_3_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon2"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //NAME 3
+        "name_3__sk3_rank_1_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_1_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_1_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_2_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_2_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_2_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_3_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_3_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_3__sk3_rank_3_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon3"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //NAME U
+        "name_u__sk4_rank_1_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_1_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_1_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_2_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_2_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_2_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_3_1"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_3_2"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "name_u__sk4_rank_3_3"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"modifiers/_talents"
+            "AbilityTextureName"    		"spellicon4"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"1"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+        
