@@ -1,0 +1,26 @@
+Vision: Blood Mage sacrifices survivability for potency.
+		The more he sacrifices, the more powerful he becomes.
+		Blood Mage is dark and aggressive.
+		Blood Mage's spells should reflect his dark nature.
+		Even Blood Mage's support and defense seplls should be dark in nature.
+ 
+
+
+Basic Skills:
+	1. Sacrifice: Give up 10% of current/maximum max hp. Gain 1 blood point (bp) for each max hp lost.
+	2. Book of Power: A book that contains Blood Mage's offensive spells.
+		1.
+		2.
+		3.
+	3. Book of Defense (Name in Progress)
+		1.
+		2.
+	4. Book of Support (Name in Progress)
+		1.
+		2.
+	5. Ulitmate - Bloody Gamble: When activated, if Blood Mage kills a hero, Blood Mage gains (number start with 20) max hp.
+								 If Blood Mage dies while activated, Blood Mage loses (number: start with 20) max hp forever.
+
+
+
+
