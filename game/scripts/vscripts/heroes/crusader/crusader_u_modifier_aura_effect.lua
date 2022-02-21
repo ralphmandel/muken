@@ -15,6 +15,7 @@ function crusader_u_modifier_aura_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.regen = self.ability:GetSpecialValueFor("regen")
 	self.amplify = self.ability:GetSpecialValueFor("amplify")
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.min_health = 0
@@ -26,7 +27,7 @@ function crusader_u_modifier_aura_effect:OnCreated(kv)
 
 	-- UP 4.6
 	if self.ability:GetRank(6) then
-		self.amplify = self.ability:GetSpecialValueFor("amplify") + 7.5
+		self.regen = self.ability:GetSpecialValueFor("regen") + 2.5
 	end
 
 	if IsServer() then
@@ -52,7 +53,7 @@ function crusader_u_modifier_aura_effect:OnRefresh(kv)
 	
 	-- UP 4.6
 	if self.ability:GetRank(6) then
-		self.amplify = self.ability:GetSpecialValueFor("amplify") + 7.5
+		self.regen = self.ability:GetSpecialValueFor("regen") + 2.5
 	end
 end
 
@@ -69,7 +70,8 @@ function crusader_u_modifier_aura_effect:DeclareFunctions()
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
 	}
 
 	return funcs
@@ -126,6 +128,11 @@ function crusader_u_modifier_aura_effect:OnTakeDamage(keys)
 
 		self.min_health = 0
 	end
+end
+
+function crusader_u_modifier_aura_effect:GetModifierConstantHealthRegen()
+	if self.caster ~= self.parent then return 0 end
+	return self:GetStackCount() * self.regen
 end
 
 function crusader_u_modifier_aura_effect:GetModifierHPRegenAmplify_Percentage(keys)

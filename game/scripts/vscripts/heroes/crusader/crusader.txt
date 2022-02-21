@@ -240,6 +240,11 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
+				"regen"				"2.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
 				"amplify"			"10"
 			}
 			"15"
