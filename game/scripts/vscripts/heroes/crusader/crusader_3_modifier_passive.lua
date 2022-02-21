@@ -98,14 +98,13 @@ function crusader_3_modifier_passive:OnAttackLanded(keys)
 				-- 	damage_type = DAMAGE_TYPE_PHYSICAL,
 				-- 	ability = self.ability
 				-- }
-
-				-- -- UP 3.3
-				-- if self.ability:GetRank(3) then
-				-- 	local str = self.parent:FindModifierByName("_1_STR_modifier")
-				-- 	if str then str:EnableForceSpellCrit(250) end	
-				-- end
-
 				-- ApplyDamage(damageTable)
+
+				-- UP 3.3
+				if self.ability:GetRank(3) then
+					local str = self.parent:FindModifierByName("_1_STR_modifier")
+					if str then str:EnableForceCrit(250) end	
+				end
 
 				self.parent:PerformAttack(target, false, true, true, true, false, false, true)
 

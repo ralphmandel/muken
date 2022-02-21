@@ -20,13 +20,12 @@ function _1_STR_modifier:OnCreated(kv)
         self.parent = self:GetParent()
         self.ability = self:GetAbility()
 
-        self.critical_damage_bonus = 0
-        self.critical_damage = 0
+        self.critical_damage = 0        
+        self.spell_critical = false
         self.spell_crit_damage = 0
         self.force_spell_crit = false
-        self.spell_critical = false
+        self.force_crit = false
         self.pierce_proc = false
-        self.crit_on = true
         self.range = 0
 
         self.block_chance = self.ability:GetSpecialValueFor("block_chance")
@@ -43,7 +42,7 @@ end
 function _1_STR_modifier:CheckState()
 	local state = {}
 	
-	if self.critical_damage > 0 and self.pierce_proc and self.crit_on == true then
+	if self.critical_damage > 0 and self.pierce_proc then
 		state = {[MODIFIER_STATE_CANNOT_MISS] = true}
 	end
 
@@ -120,37 +119,24 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
     end
 end
 
-function _1_STR_modifier:EnableForceSpellCrit(value)
-    if value > 0 then self.spell_crit_damage = value end
-    self.force_spell_crit = true
-end
-
-function _1_STR_modifier:GetModifierBaseAttack_BonusDamage()
-    return self:GetStackCount() * self.damage
-end
-
-function _1_STR_modifier:GetModifierAttackRangeBonus()
-    if self.parent:GetAttackCapability() == 2 then
-        return self.range
-    end
-end
-
 function _1_STR_modifier:GetModifierProcAttack_Feedback( params )
     --Critical Attack
     if self.record then
         self.record = nil
-        if self.critical_damage > 0 and self.crit_on == true then
+        if self.critical_damage > 0 then
             if IsServer() then self.parent:EmitSound("Item_Desolator.Target") end
         end
+
+        self.critical_damage = self.ability:GetSpecialValueFor("critical_damage")
     end
 end
 
 function _1_STR_modifier:GetModifierPreAttack_CriticalStrike(keys)
-    if self.pierce_proc == true then
+    if self.pierce_proc == true or self.force_crit == true then
         self.pierce_proc = false
+        self.force_crit = false
 
-        if not self.parent:IsIllusion() and not keys.target:IsBuilding()
-        and self.crit_on == true then
+        if not self.parent:IsIllusion() and not keys.target:IsBuilding() then
             self.record = keys.record
             self.has_crit = true
             return self.critical_damage
@@ -178,21 +164,28 @@ function _1_STR_modifier:Base_STR(value)
     self.range = self.ability:GetSpecialValueFor("range") * value
 end
 
+function _1_STR_modifier:GetModifierAttackRangeBonus()
+    if self.parent:GetAttackCapability() == 2 then
+        return self.range
+    end
+end
+
 function _1_STR_modifier:GetBaseRange()
     return 350 + self.range
 end
 
+function _1_STR_modifier:EnableForceSpellCrit(value)
+    if value > 0 then self.spell_crit_damage = value end
+    self.force_spell_crit = true
+end
+
+function _1_STR_modifier:EnableForceCrit(value)
+    if value > 0 then self.critical_damage = value end
+    self.force_crit = true
+end
+
 function _1_STR_modifier:GetCriticalDamage()
     return self.critical_damage * 0.01
-end
-
-function _1_STR_modifier:AddCriticalDamage(value)
-    self.critical_damage_bonus = self.critical_damage_bonus + value
-    self.critical_damage = self.ability:GetSpecialValueFor("critical_damage") + self.critical_damage_bonus
-end
-
-function _1_STR_modifier:EnableCritical(value)
-    self.crit_on = value
 end
 
 function _1_STR_modifier:HasCritical()
