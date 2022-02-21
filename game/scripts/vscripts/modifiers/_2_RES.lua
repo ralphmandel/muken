@@ -57,7 +57,7 @@ function _2_RES:CheckLevelUp(trained)
 		return
 	end
 	
-	if self:GetLevel() < 50 then
+	if self:GetLevel() < ((caster:GetLevel() + 1) * 2) then
 		self:SetCurrentAbilityCharges(2)
 	else
 		self:SetCurrentAbilityCharges(1)

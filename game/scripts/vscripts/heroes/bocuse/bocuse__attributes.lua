@@ -16,18 +16,18 @@ require("talent_tree")
 
 		if skill == 5 then
 			if id == 0 then
-				self.stats_bonus = self.stats_bonus + 0.2
+				self.stats_bonus = self.stats_bonus + 1
 				
-				local base_str = self:GetSpecialValueFor("base_STR") * self.stats_bonus
+				local base_str = self:GetSpecialValueFor("base_STR") + self.stats_bonus
 				local skill_str = caster:FindAbilityByName("_1_STR"):SetBasePts(base_str)
 		
-				local base_agi = self:GetSpecialValueFor("base_AGI") * self.stats_bonus
+				local base_agi = self:GetSpecialValueFor("base_AGI") + self.stats_bonus
 				local skill_agi = caster:FindAbilityByName("_1_AGI"):SetBasePts(base_agi)
 				
-				local base_int = self:GetSpecialValueFor("base_INT") * self.stats_bonus
+				local base_int = self:GetSpecialValueFor("base_INT") + self.stats_bonus
 				local skill_int = caster:FindAbilityByName("_1_INT"):SetBasePts(base_int)
 
-				local base_con = self:GetSpecialValueFor("base_CON") * self.stats_bonus
+				local base_con = self:GetSpecialValueFor("base_CON") + self.stats_bonus
 				local skill_con = caster:FindAbilityByName("_1_CON"):SetBasePts(base_con)
 
 				local void = caster:FindAbilityByName("_void")
@@ -111,7 +111,7 @@ require("talent_tree")
 		
 		self:SetHidden(false)
 		self.extras_unlocked = 0
-		self.stats_bonus = 1
+		self.stats_bonus = 0
 		self.base_upgrade = false
 		
 		self.str = 0
