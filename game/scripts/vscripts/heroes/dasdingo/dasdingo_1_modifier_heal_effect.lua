@@ -55,33 +55,33 @@ end
 function dasdingo_1_modifier_heal_effect:DeclareFunctions()
 
     local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
     }
     return funcs
 end
 
-function dasdingo_1_modifier_heal_effect:OnAttackLanded(keys)
-	if keys.target ~= self.parent then return end
-	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
+	if keys.unit ~= self.parent then return end
 
-	if RandomInt(1, 100) <= 30 then
-		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-			duration = self.ability:CalcStatus(1, self.caster, keys.target),
+	local chance = 30
+	if keys.attacker:IsHero() == false then chance = 20 end
+
+	if RandomInt(1, 100) <= chance
+	and keys.unit:IsMagicImmune() == false
+	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
+	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+		keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_root", {
+			duration = self.ability:CalcStatus(1, self.caster, keys.unit),
 			effect = 4
 		})
 	end
-end
 
-function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
-	if keys.unit ~= self.parent then return end
-	if self.reset == nil then return end
-
-	self.reset = 0
-	self.regen = 0
-
-	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
+	if self.reset then
+		self.reset = 0
+		self.regen = 0
+		if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
+	end
 end
 
 function dasdingo_1_modifier_heal_effect:GetModifierConstantHealthRegen()
