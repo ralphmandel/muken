@@ -16,8 +16,9 @@ function bloodstained_1_modifier_berserk:OnCreated( kv )
     self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.origin = self.caster:GetOrigin()
 
-	if IsServer() then self:StartIntervalThink(2) end
+	if IsServer() then self:StartIntervalThink(0.2) end
 end
 
 function bloodstained_1_modifier_berserk:OnRefresh( kv )
@@ -37,31 +38,11 @@ function bloodstained_1_modifier_berserk:CheckState()
 	return state
 end
 
-function bloodstained_1_modifier_berserk:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_EVENT_ON_ATTACK_FAIL
-	}
-	
-	return funcs
-end
-
-function bloodstained_1_modifier_berserk:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-	if keys.target ~= self.caster then return end
-
-	if IsServer() then self:StartIntervalThink(2) end
-end
-
-function bloodstained_1_modifier_berserk:OnAttackFail(keys)
-	if keys.attacker ~= self.parent then return end
-	if keys.target ~= self.caster then return end
-
-	if IsServer() then self:StartIntervalThink(2) end
-end
-
 function bloodstained_1_modifier_berserk:OnIntervalThink()
-	self:Destroy()
+	if self.origin == nil then self:Destroy() return end
+
+	local distance = (self.origin - self.caster:GetOrigin()):Length2D()
+	if distance > self.ability:GetCastRange(self.caster:GetOrigin(), nil) then self:Destroy() end
 end
 
 --------------------------------------------------------------------------------
