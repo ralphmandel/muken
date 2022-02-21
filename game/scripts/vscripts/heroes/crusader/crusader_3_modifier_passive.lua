@@ -71,6 +71,11 @@ function crusader_3_modifier_passive:OnAttackLanded(keys)
 	local amount = 100
 	local dex = self.parent:FindModifierByName("_2_DEX_modifier")
 	if dex then amount = amount + dex:GetStackCount() end
+	if keys.attacker:IsIllusion()
+	or keys.attacker:IsHero() == false then
+		amount = amount * 0.5
+	end
+
 	local counter_mult = self.ability:GetSpecialValueFor("counter_mult")
 	local value = amount * counter_mult
     local counter_chance = (value * 6) / (1 +  (value * 0.06))
@@ -86,21 +91,24 @@ function crusader_3_modifier_passive:OnAttackLanded(keys)
 		if target then
 			if target:IsIllusion() then return end
 			if target:IsAlive() then
-				local damageTable = {
-					victim = target,
-					attacker = self.parent,
-					damage = self.parent:GetAttackDamage(),
-					damage_type = DAMAGE_TYPE_PHYSICAL,
-					ability = self.ability
-				}
+				-- local damageTable = {
+				-- 	victim = target,
+				-- 	attacker = self.parent,
+				-- 	damage = self.parent:GetAttackDamage(),
+				-- 	damage_type = DAMAGE_TYPE_PHYSICAL,
+				-- 	ability = self.ability
+				-- }
 
-				-- UP 3.3
-				if self.ability:GetRank(3) then
-					local str = self.parent:FindModifierByName("_1_STR_modifier")
-					if str then str:EnableForceSpellCrit(250) end	
-				end
+				-- -- UP 3.3
+				-- if self.ability:GetRank(3) then
+				-- 	local str = self.parent:FindModifierByName("_1_STR_modifier")
+				-- 	if str then str:EnableForceSpellCrit(250) end	
+				-- end
 
-				ApplyDamage(damageTable)
+				-- ApplyDamage(damageTable)
+
+				self.parent:PerformAttack(target, false, true, true, true, false, false, true)
+
 				self:PlayEfxCounter(target)
 				self.parent:FaceTowards(target:GetOrigin())
 				self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {duration = 0.25})
