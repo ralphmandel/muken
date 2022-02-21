@@ -124,11 +124,17 @@ end
 
 function _modifier__ai:DeclareFunctions()
 	local funcs = {
+        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 
 	return funcs
+end
+
+function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
+    if keys.attacker:IsHero() == false then return end
+    return -50
 end
 
 function _modifier__ai:OnAttackLanded(keys)
