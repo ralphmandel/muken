@@ -297,7 +297,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mp_regen"				"0.2"
+				"mp_regen"				"0.3"
 			}
 			"02"
 			{

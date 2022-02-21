@@ -71,7 +71,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"shadowmancer"
@@ -143,7 +143,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"inquisitor"
@@ -215,7 +215,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"bloodstained"
@@ -288,7 +288,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"crusader"
@@ -360,7 +360,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"bocuse"
@@ -432,7 +432,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"strider"
@@ -504,7 +504,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"dasdingo"
@@ -577,7 +577,7 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 
 	"slayer"
@@ -650,6 +650,6 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"750"
-			"StatusManaRegen"          	"2"
+			"StatusManaRegen"          	"6"
 	}
 }
