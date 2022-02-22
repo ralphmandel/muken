@@ -8,6 +8,10 @@ function dasdingo_3_modifier_hex:IsDebuff()
 	return true
 end
 
+function dasdingo_3_modifier_hex:IsHexDebuff()
+	return true
+end
+
 function dasdingo_3_modifier_hex:IsPurgable()
 	return true
 end

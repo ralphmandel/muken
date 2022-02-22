@@ -168,6 +168,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
 
         if caster:IsStunned() == false
+        and caster:IsHexed() == false
         and caster:IsOutOfGame() == false
         and caster:IsNightmared() == false
         and distance <= max_distance
