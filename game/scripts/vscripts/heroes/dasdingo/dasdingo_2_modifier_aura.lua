@@ -30,5 +30,5 @@ function dasdingo_2_modifier_aura:GetAuraSearchTeam()
 end
 
 function dasdingo_2_modifier_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
