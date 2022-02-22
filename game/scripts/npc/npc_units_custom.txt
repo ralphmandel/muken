@@ -1822,7 +1822,7 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"1"			// Physical protection.
+			"ArmorPhysical"				"10"			// Physical protection.
 
 			// Attack
 			//----------------------------------------------------------------
@@ -1854,8 +1854,8 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"7"		// Base health.
-			"StatusHealthRegen"			"0"		// Health regeneration rate.
+			"StatusHealth"				"150"		// Base health.
+			"StatusHealthRegen"			"5"		// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 			
@@ -1876,9 +1876,9 @@
 			"Creature"
 			{
 				//Level Up
-				"HPGain"					"0"
+				"HPGain"					"2"
 				"DamageGain"				"1"
-				"ArmorGain"					"0"
+				"ArmorGain"					"0.2"
 				"MagicResistGain"			"0"
 				"MoveSpeedGain"				"0"
 				"BountyGain"				"0"

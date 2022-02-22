@@ -47,11 +47,8 @@ end
 function dasdingo_x1_modifier_tribal:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
-		MODIFIER_PROPERTY_AVOID_DAMAGE,
-		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
@@ -59,14 +56,6 @@ end
 
 function dasdingo_x1_modifier_tribal:GetModifierAttackSpeedPercentage()
 	return 75
-end
-
-function dasdingo_x1_modifier_tribal:GetModifierAvoidDamage()
-	return 1
-end
-
-function dasdingo_x1_modifier_tribal:GetDisableHealing()
-	return 1
 end
 
 function dasdingo_x1_modifier_tribal:OnAttack(keys)
@@ -78,13 +67,6 @@ end
 function dasdingo_x1_modifier_tribal:OnAttackLanded(keys)
 	if keys.attacker == self.parent then
 		if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
-	end
-end
-
-function dasdingo_x1_modifier_tribal:GetModifierIncomingDamage_Percentage(keys)
-	if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-		local value = self.parent:GetHealth() - 1
-		self.parent:ModifyHealth(value, self.ability, true, 0)		
 	end
 end
 

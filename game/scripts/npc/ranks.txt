@@ -5479,7 +5479,7 @@
 			// Stats
 			"AbilityManaCost"         		"125"
 			"AbilityCooldown"				"15"
-			"AbilityCastRange"    		   	"200"
+			"AbilityCastRange"    		   	"275"
 
 			"AbilitySpecial"
 			{

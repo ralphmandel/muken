@@ -306,7 +306,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         return UF_SUCCESS
     end
 
-    function bocuse_1__julienne:GetCustomCastErrorTarget( hTarget )
+    function bocuse_1__julienne:GetCustomCastErrorTarget(hTarget)
         if self:GetCaster() == hTarget then
             return "#dota_hud_error_cant_cast_on_self"
         end
