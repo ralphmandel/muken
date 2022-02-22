@@ -30,10 +30,13 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	end
 
 	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
+	self.def = defense
+	self.res = 0
 
 	-- UP 2.3
 	if self.ability:GetRank(3) then
 		self.ability:AddBonus("_2_RES", self.parent, resistance, 0, nil)
+		self.res = resistance
 	end
 
 	self:PlayEfxStart()
@@ -52,7 +55,9 @@ end
 function dasdingo_2_modifier_aura_effect:DeclareFunctions()
 
     local funcs = {
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
     }
     return funcs
 end
@@ -74,6 +79,20 @@ function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(ke
 			ApplyDamage(damageTable)
 		end
 	end
+end
+
+function dasdingo_2_modifier_aura_effect:GetModifierPhysicalArmorBonus()
+	if self:GetParent():IsHero() == false then
+		return self.def * 0.4
+	end
+	return 0
+end
+
+function dasdingo_2_modifier_aura_effect:GetModifierMagicalResistanceBonus()
+	if self:GetParent():IsHero() == false then
+		return self.res
+	end
+	return 0
 end
 
 -----------------------------------------------------------

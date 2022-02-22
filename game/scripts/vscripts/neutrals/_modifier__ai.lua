@@ -133,7 +133,7 @@ function _modifier__ai:DeclareFunctions()
 end
 
 function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
-    if keys.attacker:IsHero() == false then return end
+    if keys.attacker:IsHero() then return 0 end
     return -50
 end
 
