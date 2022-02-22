@@ -1876,7 +1876,7 @@
 			"Creature"
 			{
 				//Level Up
-				"HPGain"					"1"
+				"HPGain"					"2"
 				"DamageGain"				"1"
 				"ArmorGain"					"0"
 				"MagicResistGain"			"0"

@@ -49,6 +49,7 @@ function dasdingo_x1_modifier_tribal:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
@@ -68,6 +69,10 @@ function dasdingo_x1_modifier_tribal:OnAttackLanded(keys)
 	if keys.attacker == self.parent then
 		if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
 	end
+end
+
+function dasdingo_x1_modifier_tribal:GetDisableHealing(keys)
+	return 1
 end
 
 function dasdingo_x1_modifier_tribal:GetAttackSound(keys)

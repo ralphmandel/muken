@@ -16,7 +16,7 @@ function GameSetup:init()
     if IsInToolsMode() then -- debug build
         GameRules:SetStartingGold(99999)
     else
-        GameRules:SetStartingGold(55)
+        GameRules:SetStartingGold(100)
     end
     -- skip all the starting game mode stages e.g picking screen, showcase, etc
     --GameRules:EnableCustomGameSetupAutoLaunch(true)
