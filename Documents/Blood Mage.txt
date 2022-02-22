@@ -9,7 +9,10 @@ Vision: Blood Mage sacrifices survivability for potency.
 Basic Skills:
 	1. Sacrifice: Give up 10% of current/maximum max hp. Gain 1 blood point (bp) for each max hp lost.
 	2. Book of Power: A book that contains Blood Mage's offensive spells.
-		1.
+		1. Vanishing Strike: Blink to enemy use 50% of all bp. Deal .75 damage per bp spent. After .25 seconds, blinks back to original location.
+				rank 1.
+				rank 2.
+				rank 3.
 		2.
 		3.
 	3. Book of Defense (Name in Progress)
