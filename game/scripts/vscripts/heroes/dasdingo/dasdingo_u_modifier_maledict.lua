@@ -42,13 +42,14 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	-- UP 4.6
 	if self.ability:GetRank(6) then
+		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
 	end
 	
 	if IsServer() then
 		self:SetStackCount(tick_max)
 		self:PlayEfxStart(true)
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(self.tick_intervals * 0.1)
 	end
 end
 
@@ -76,13 +77,14 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	-- UP 4.6
 	if self.ability:GetRank(6) then
+		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
 	end
 	
 	if IsServer() then
 		self:SetStackCount(tick_max)
 		self:PlayEfxStart(true)
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(self.tick_intervals * 0.1)
 	end
 end
 
@@ -120,7 +122,7 @@ function dasdingo_u_modifier_maledict:OnIntervalThink()
 
 	if not self.time then self.time = 0 end
 	self.time = self.time + 1
-	if self.time < (self.tick_intervals / 0.25) then return end
+	if self.time < (self.tick_intervals / (self.tick_intervals * 0.1)) then return end
 	self.time = 0
 
 	-- UP 4.2
