@@ -1,0 +1,7 @@
+
+ATTRIBUTTE | 1 PT VALUE
+HP MAX     | 26
+HP REGEN   | 0.4
+LIFESTEAL  | 0.5%
+DAMAGE     | 0.8
+ARMOR      | 0.32
