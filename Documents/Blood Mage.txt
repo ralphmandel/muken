@@ -7,7 +7,9 @@ Vision: Blood Mage sacrifices survivability for potency.
 
 
 Basic Skills:
-	1. Sacrifice: Give up 10% of current/maximum max hp. Gain 1 blood point (bp) for each max hp lost.
+	1. Sacrifice: Give up 15% of current max HP. Gain 1 blood point (BP) for each max HP lost.
+			Rank: Reduce Sacrifice's base cooldown from 3 to 2. When Sacrifice is used around eneimes, damage them and heal Blood Mage.
+				Cost: 3 Rank Points
 	2. Book of Power: A book that contains Blood Mage's offensive spells.
 		1. Vanishing Strike: Blink to enemy use 50% of all bp. Deal .75 damage per bp spent. After .25 seconds, blinks back to original location.
 				rank 1.
@@ -16,14 +18,27 @@ Basic Skills:
 		2.
 		3.
 	3. Book of Defense (Name in Progress)
-		1.
-		2.
+		1. Bloodlust: Gives 15% lifetsteal. Increases Maximum HP to Blood Point Conversion of Sacrifice from 15% to 20%.
+			Requires: 50 BP to initiate
+			Consumes: 5 BP per second
+		2. Blood and Gore: Gives bonus damage based on current BP. (+1 ATK for every 5 BP)
+			Requires: 100 BP to initiate
+			Consumes: 2% of current BP per second
+			Deactivates: When current BP is less than 50
+		3. Bloodforce : Increases Health Regeneration based on the Current BP (+0.1 for every BP)
+			Requires: 200 BP to initiate
+			Consumes: 1% of current BP per second
+			Deactivates: When current BP is less than 100
 	4. Book of Support (Name in Progress)
 		1.
 		2.
-	5. Ulitmate - Bloody Gamble: When activated, if Blood Mage kills a hero, Blood Mage gains (number start with 20) max hp.
-								 If Blood Mage dies while activated, Blood Mage loses (number: start with 20) max hp forever.
-
-
+	5. Ulitmate - Bloody Gamble: When activated, if Blood Mage kills a hero, Blood Mage gains (number start with 40) max hp.
+								 If Blood Mage dies while activated, Blood Mage loses (number: start with 40) max hp forever.
+								 
+	Rank Abilities:
+	1. Cleanse: Use all BP and gain that amount of HP. Cannot used Sacrifice for a time based on BP used. (+0.1 seconds per BP spent)
+	2. Summon Demon: Sacrifice 15% maximum hp of all allied players including yourself.
+					 A controllable demon with power based upon HP sacrificed appears for an amount of time based on HP sacrificed.
+					 Once Demon despawns or is killed, the sacrificed Maximum HP returns to each player.
 
 
