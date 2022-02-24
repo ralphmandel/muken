@@ -446,7 +446,7 @@
 						"value"			"0"
 					}
 					"mixgroup"			{ "value"	"BaseAttacks"	}
-					"volume"            { "value"   "1"	}
+					"volume"            { "value"   "0.8"	}
 				}
 			}
 		}
@@ -481,8 +481,8 @@
 					{
 						"value"			"0"
 					}
-					"mixgroup"			{ "value"	"Weapons"	}
-					"volume"            { "value"   "1"	}
+					"mixgroup"			{ "value"	"BaseAttacks"	}
+					"volume"            { "value"   "0.8"	}
 				}
 			}
 		}
@@ -515,6 +515,40 @@
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
 					"volume"            { "value"   "1"	}
+				}
+			}
+		}
+	}
+}
+
+"Hero_Slayer.Chain_Hit"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/weapons/hero/axe/attack01.vsnd"
+							"value1"	"sounds/weapons/hero/axe/attack02.vsnd"
+							"value2"	"sounds/weapons/hero/axe/attack03.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "0.75"	}
 				}
 			}
 		}

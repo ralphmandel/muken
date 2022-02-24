@@ -36,7 +36,7 @@ function slayer__modifier_effect:DeclareFunctions()
 end
 
 function slayer__modifier_effect:GetModifierPreAttack(keys)
-	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain") end
+	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain2") end
 end
 
 function slayer__modifier_effect:OnAttack(keys)
@@ -48,7 +48,7 @@ end
 function slayer__modifier_effect:OnAttackLanded(keys)
 	if keys.attacker == self.parent then
 		if IsServer() then
-			self.parent:EmitSound("Hero_Centaur.Attack")
+			self.parent:EmitSound("Hero_Juggernaut.Attack")
 		end
 	end
 end

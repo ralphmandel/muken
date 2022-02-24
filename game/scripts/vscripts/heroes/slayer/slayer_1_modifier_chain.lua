@@ -66,6 +66,8 @@ function slayer_1_modifier_chain:OnIntervalThink()
 	for _,enemy in pairs(enemies) do
 		self.damageTable.victim = enemy
 		ApplyDamage(self.damageTable)
+
+		self:PlayEfxHit()
 	end
 end
 
@@ -73,4 +75,8 @@ end
 
 function slayer_1_modifier_chain:PlayEfxStart()
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_INTRO, 1.2)
+end
+
+function slayer_1_modifier_chain:PlayEfxHit()
+	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain_Hit") end
 end
