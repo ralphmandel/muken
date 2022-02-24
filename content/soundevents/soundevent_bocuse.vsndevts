@@ -417,3 +417,106 @@
 		}
 	}
 }
+
+"Hero_Slayer.Chain"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/physics/movement/hero/pudge/chain_movement1.vsnd"
+							"value1"	"sounds/physics/movement/hero/pudge/chain_movement2.vsnd"
+							"value2"	"sounds/physics/movement/hero/pudge/chain_movement3.vsnd"
+							"value3"	"sounds/physics/movement/hero/pudge/chain_movement4.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"BaseAttacks"	}
+					"volume"            { "value"   "1"	}
+				}
+			}
+		}
+	}
+}
+
+"Hero_Slayer.Chain2"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/physics/movement/hero/pudge/arc_chain_move01.vsnd"
+							"value1"	"sounds/physics/movement/hero/pudge/arc_chain_move02.vsnd"
+							"value2"	"sounds/physics/movement/hero/pudge/arc_chain_move03.vsnd"
+							"value3"	"sounds/physics/movement/hero/pudge/arc_chain_move04.vsnd"
+							"value4"	"sounds/physics/movement/hero/pudge/arc_chain_move05.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1"	}
+				}
+			}
+		}
+	}
+}
+
+"Hero_Slayer.Laught"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/slayer_laught.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1"	}
+				}
+			}
+		}
+	}
+}

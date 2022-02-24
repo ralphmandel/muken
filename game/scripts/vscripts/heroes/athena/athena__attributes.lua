@@ -1,16 +1,16 @@
-slayer__attributes = class ({})
-LinkLuaModifier("slayer__modifier_effect", "heroes/slayer/slayer__modifier_effect", LUA_MODIFIER_MOTION_NONE)
+athena__attributes = class ({})
+LinkLuaModifier("athena__modifier_effect", "heroes/athena/athena__modifier_effect", LUA_MODIFIER_MOTION_NONE)
 require("talent_tree")
 
 --TALENT FUNCTIONS
-	slayer__attributes.talents = {
+	athena__attributes.talents = {
 		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
 		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
 		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
 		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
 	}
 
-	function slayer__attributes:UpgradeRank(skill, id, level)
+	function athena__attributes:UpgradeRank(skill, id, level)
 		local caster = self:GetCaster()
 		self:CheckNewAbility(skill, id, level)
 
@@ -42,10 +42,10 @@ require("talent_tree")
 		end
 
 		local ability = nil
-		if skill == 1 then ability = caster:FindAbilityByName("slayer_1__chain") end
-		if skill == 2 then ability = caster:FindAbilityByName("slayer_2__shackles") end
-		if skill == 3 then ability = caster:FindAbilityByName("slayer_3__vest") end
-		if skill == 4 then ability = caster:FindAbilityByName("slayer_u__judge") end
+		if skill == 1 then ability = caster:FindAbilityByName("athena_1__chain") end
+		if skill == 2 then ability = caster:FindAbilityByName("athena_2__thunder") end
+		if skill == 3 then ability = caster:FindAbilityByName("athena_3__barrier") end
+		if skill == 4 then ability = caster:FindAbilityByName("athena_u__nova") end
 
 		self.talents[skill][id] = true
 
@@ -55,19 +55,19 @@ require("talent_tree")
 		caster:AddExperience(level * 20, 0, false, false)
 	end
 
-	function slayer__attributes:CheckNewAbility(skill, id, level)
+	function athena__attributes:CheckNewAbility(skill, id, level)
 		local caster = self:GetCaster()
 
-		if skill == 5 and id == 1 then caster:FindAbilityByName("slayer_x1__extra1"):SetLevel(level) end
-		if skill == 5 and id == 2 then caster:FindAbilityByName("slayer_x2__extra2"):SetLevel(level) end
+		if skill == 5 and id == 1 then caster:FindAbilityByName("athena_x1__extra1"):SetLevel(level) end
+		if skill == 5 and id == 2 then caster:FindAbilityByName("athena_x2__extra2"):SetLevel(level) end
 	end
 
 --SHOW ATTRIBUTES FUNCTIONS
-	function slayer__attributes:GetIntrinsicModifierName()
-		return "slayer__modifier_effect"
+	function athena__attributes:GetIntrinsicModifierName()
+		return "athena__modifier_effect"
 	end
 
-	function slayer__attributes:GetAbilityTextureName()
+	function athena__attributes:GetAbilityTextureName()
 		if self:GetToggleState() then
 			return "attributes_off"
 		else
@@ -75,7 +75,7 @@ require("talent_tree")
 		end
 	end
 
-	function slayer__attributes:OnToggle()
+	function athena__attributes:OnToggle()
 		local caster = self:GetCaster()
 		local ATTs = {
 			[1] = caster:FindAbilityByName("_2_DEX"),
@@ -98,7 +98,7 @@ require("talent_tree")
 	end
 
 --LEVELUP ATTRIBUTES FUNCTIONS
-	function slayer__attributes:Spawn()
+	function athena__attributes:Spawn()
 		local caster = self:GetCaster()
 		caster:SetAbilityPoints(1)
 		
@@ -128,7 +128,7 @@ require("talent_tree")
 		if self:IsTrained() == false then self:UpgradeAbility(true) end
 	end
 
-	function slayer__attributes:OnHeroLevelUp()
+	function athena__attributes:OnHeroLevelUp()
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
@@ -148,7 +148,7 @@ require("talent_tree")
 		end
 	end
 
-	function slayer__attributes:OnUpgrade()
+	function athena__attributes:OnUpgrade()
 		local caster = self:GetCaster()
 
 		local skill_str = caster:FindAbilityByName("_1_STR")
@@ -246,7 +246,7 @@ require("talent_tree")
 		self.basic_fraction_lck = self.basic_fraction_lck % 2
 	end
 
-	function slayer__attributes:SetBasicFraction(secondary_att, fraction)
+	function athena__attributes:SetBasicFraction(secondary_att, fraction)
 		local caster = self:GetCaster()
 		local sub = caster:FindAbilityByName(secondary_att)
 		if sub == nil then return end
@@ -261,6 +261,6 @@ require("talent_tree")
 	end
 
 --PRECACHE
-	function slayer__attributes:Precache(context)
-			
+	function athena__attributes:Precache(context)
+		
 	end

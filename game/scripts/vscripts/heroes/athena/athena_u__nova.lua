@@ -1,9 +1,9 @@
-slayer_1__chain = class({})
-LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chain", LUA_MODIFIER_MOTION_NONE)
+athena_u__nova = class({})
+LinkLuaModifier("athena_u_modifier_nova", "heroes/athena/athena_u_modifier_nova", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function slayer_1__chain:CalcStatus(duration, caster, target)
+    function athena_u__nova:CalcStatus(duration, caster, target)
         local time = duration
         if caster == nil then return time end
         local caster_int = caster:FindModifierByName("_1_INT_modifier")
@@ -25,12 +25,12 @@ LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chai
         return time
     end
 
-    function slayer_1__chain:AddBonus(string, target, const, percent, time)
+    function athena_u__nova:AddBonus(string, target, const, percent, time)
         local att = target:FindAbilityByName(string)
         if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
     end
 
-    function slayer_1__chain:RemoveBonus(string, target)
+    function athena_u__nova:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -38,26 +38,26 @@ LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chai
         end
     end
 
-    function slayer_1__chain:GetRank(upgrade)
+    function athena_u__nova:GetRank(upgrade)
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("slayer__attributes")
+        local att = caster:FindAbilityByName("athena__attributes")
         if not att then return end
         if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_razor" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_lina" then return end
 
-        return att.talents[1][upgrade]
+        return att.talents[4][upgrade]
     end
 
-    function slayer_1__chain:OnUpgrade()
+    function athena_u__nova:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_razor" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_lina" then return end
 
-        local att = caster:FindAbilityByName("slayer__attributes")
+        local att = caster:FindAbilityByName("athena__attributes")
         if att then
             if att:IsTrained() then
-                att.talents[1][0] = true
+                att.talents[4][0] = true
             end
         end
         
@@ -72,17 +72,14 @@ LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chai
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function slayer_1__chain:Spawn()
+    function athena_u__nova:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function slayer_1__chain:OnSpellStart()
+    function athena_u__nova:OnSpellStart()
         local caster = self:GetCaster()
-        local duration = self:GetSpecialValueFor("duration")
-
-        caster:AddNewModifier(caster, self, "slayer_1_modifier_chain", {duration = duration})
     end
 
 -- EFFECTS

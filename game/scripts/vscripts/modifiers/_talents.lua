@@ -382,15 +382,15 @@
         slayer_2__shackles_rank_3_3 = class ({})
 
     -- SLAYER 3
-        slayer_3__fire_rank_1_1 = class ({})
-        slayer_3__fire_rank_1_2 = class ({})
-        slayer_3__fire_rank_1_3 = class ({})
-        slayer_3__fire_rank_2_1 = class ({})
-        slayer_3__fire_rank_2_2 = class ({})
-        slayer_3__fire_rank_2_3 = class ({})
-        slayer_3__fire_rank_3_1 = class ({})
-        slayer_3__fire_rank_3_2 = class ({})
-        slayer_3__fire_rank_3_3 = class ({})
+        slayer_3__vest_rank_1_1 = class ({})
+        slayer_3__vest_rank_1_2 = class ({})
+        slayer_3__vest_rank_1_3 = class ({})
+        slayer_3__vest_rank_2_1 = class ({})
+        slayer_3__vest_rank_2_2 = class ({})
+        slayer_3__vest_rank_2_3 = class ({})
+        slayer_3__vest_rank_3_1 = class ({})
+        slayer_3__vest_rank_3_2 = class ({})
+        slayer_3__vest_rank_3_3 = class ({})
 
     -- SLAYER U
         slayer_u__judge_rank_1_1 = class ({})
@@ -402,3 +402,48 @@
         slayer_u__judge_rank_3_1 = class ({})
         slayer_u__judge_rank_3_2 = class ({})
         slayer_u__judge_rank_3_3 = class ({})
+
+-- ATHENA
+    -- ATHENA 1
+        athena_1__chain_rank_1_1 = class ({})
+        athena_1__chain_rank_1_2 = class ({})
+        athena_1__chain_rank_1_3 = class ({})
+        athena_1__chain_rank_2_1 = class ({})
+        athena_1__chain_rank_2_2 = class ({})
+        athena_1__chain_rank_2_3 = class ({})
+        athena_1__chain_rank_3_1 = class ({})
+        athena_1__chain_rank_3_2 = class ({})
+        athena_1__chain_rank_3_3 = class ({})
+
+    -- ATHENA 2
+        athena_2__thunder_rank_1_1 = class ({})
+        athena_2__thunder_rank_1_2 = class ({})
+        athena_2__thunder_rank_1_3 = class ({})
+        athena_2__thunder_rank_2_1 = class ({})
+        athena_2__thunder_rank_2_2 = class ({})
+        athena_2__thunder_rank_2_3 = class ({})
+        athena_2__thunder_rank_3_1 = class ({})
+        athena_2__thunder_rank_3_2 = class ({})
+        athena_2__thunder_rank_3_3 = class ({})
+
+    -- ATHENA 3
+        athena_3__barrier_rank_1_1 = class ({})
+        athena_3__barrier_rank_1_2 = class ({})
+        athena_3__barrier_rank_1_3 = class ({})
+        athena_3__barrier_rank_2_1 = class ({})
+        athena_3__barrier_rank_2_2 = class ({})
+        athena_3__barrier_rank_2_3 = class ({})
+        athena_3__barrier_rank_3_1 = class ({})
+        athena_3__barrier_rank_3_2 = class ({})
+        athena_3__barrier_rank_3_3 = class ({})
+
+    -- ATHENA U
+        athena_u__nova_rank_1_1 = class ({})
+        athena_u__nova_rank_1_2 = class ({})
+        athena_u__nova_rank_1_3 = class ({})
+        athena_u__nova_rank_2_1 = class ({})
+        athena_u__nova_rank_2_2 = class ({})
+        athena_u__nova_rank_2_3 = class ({})
+        athena_u__nova_rank_3_1 = class ({})
+        athena_u__nova_rank_3_2 = class ({})
+        athena_u__nova_rank_3_3 = class ({})

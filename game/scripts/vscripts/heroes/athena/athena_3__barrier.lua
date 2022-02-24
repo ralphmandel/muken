@@ -1,9 +1,9 @@
-slayer_3__fire = class({})
-LinkLuaModifier("slayer_3_modifier_fire", "heroes/slayer/slayer_3_modifier_fire", LUA_MODIFIER_MOTION_NONE)
+athena_3__barrier = class({})
+LinkLuaModifier("athena_3_modifier_barrier", "heroes/athena/athena_3_modifier_barrier", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function slayer_3__fire:CalcStatus(duration, caster, target)
+    function athena_3__barrier:CalcStatus(duration, caster, target)
         local time = duration
         if caster == nil then return time end
         local caster_int = caster:FindModifierByName("_1_INT_modifier")
@@ -25,12 +25,12 @@ LinkLuaModifier("slayer_3_modifier_fire", "heroes/slayer/slayer_3_modifier_fire"
         return time
     end
 
-    function slayer_3__fire:AddBonus(string, target, const, percent, time)
+    function athena_3__barrier:AddBonus(string, target, const, percent, time)
         local att = target:FindAbilityByName(string)
         if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
     end
 
-    function slayer_3__fire:RemoveBonus(string, target)
+    function athena_3__barrier:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -38,23 +38,23 @@ LinkLuaModifier("slayer_3_modifier_fire", "heroes/slayer/slayer_3_modifier_fire"
         end
     end
 
-    function slayer_3__fire:GetRank(upgrade)
+    function athena_3__barrier:GetRank(upgrade)
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("slayer__attributes")
+        local att = caster:FindAbilityByName("athena__attributes")
         if not att then return end
         if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_razor" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_lina" then return end
 
         return att.talents[3][upgrade]
     end
 
-    function slayer_3__fire:OnUpgrade()
+    function athena_3__barrier:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_razor" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_lina" then return end
 
-        local att = caster:FindAbilityByName("slayer__attributes")
+        local att = caster:FindAbilityByName("athena__attributes")
         if att then
             if att:IsTrained() then
                 att.talents[3][0] = true
@@ -72,13 +72,13 @@ LinkLuaModifier("slayer_3_modifier_fire", "heroes/slayer/slayer_3_modifier_fire"
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function slayer_3__fire:Spawn()
+    function athena_3__barrier:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function slayer_3__fire:OnSpellStart()
+    function athena_3__barrier:OnSpellStart()
         local caster = self:GetCaster()
     end
 

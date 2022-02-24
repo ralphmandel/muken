@@ -11,7 +11,7 @@
 		}
 	}
 	
-	"npc_dota_hero_"
+	"npc_dota_hero_razor"
 	{
 		"rank_1"
 		{
@@ -29,9 +29,9 @@
 			}
 			"2"
 			{
-				"1"   "slayer_3__fire_rank_1_1"
-				"2"   "slayer_3__fire_rank_1_2"
-				"3"   "slayer_3__fire_rank_1_3"
+				"1"   "slayer_3__vest_rank_1_1"
+				"2"   "slayer_3__vest_rank_1_2"
+				"3"   "slayer_3__vest_rank_1_3"
 			}
 			"3"
 			{
@@ -60,9 +60,9 @@
 			}
 			"2"
 			{
-				"1"   "slayer_3__fire_rank_2_1"
-				"2"   "slayer_3__fire_rank_2_2"
-				"3"   "slayer_3__fire_rank_2_3"
+				"1"   "slayer_3__vest_rank_2_1"
+				"2"   "slayer_3__vest_rank_2_2"
+				"3"   "slayer_3__vest_rank_2_3"
 			}
 			"3"
 			{
@@ -91,9 +91,9 @@
 			}
 			"2"
 			{
-				"1"   "slayer_3__fire_rank_3_1"
-				"2"   "slayer_3__fire_rank_3_2"
-				"3"   "slayer_3__fire_rank_3_3"
+				"1"   "slayer_3__vest_rank_3_1"
+				"2"   "slayer_3__vest_rank_3_2"
+				"3"   "slayer_3__vest_rank_3_3"
 			}
 			"3"
 			{

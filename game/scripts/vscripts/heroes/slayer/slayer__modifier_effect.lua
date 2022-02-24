@@ -26,16 +26,31 @@ end
 
 function slayer__modifier_effect:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_PRE_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 
 	return funcs
 end
 
+function slayer__modifier_effect:GetModifierPreAttack(keys)
+	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain") end
+end
+
+function slayer__modifier_effect:OnAttack(keys)
+	if keys.attacker == self.parent then
+		if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain") end
+	end
+end
+
 function slayer__modifier_effect:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-	if IsServer() then self.parent:EmitSound("Hero_Rattletrap.Attack") end
+	if keys.attacker == self.parent then
+		if IsServer() then
+			self.parent:EmitSound("Hero_Centaur.Attack")
+		end
+	end
 end
 
 function slayer__modifier_effect:GetAttackSound(keys)
