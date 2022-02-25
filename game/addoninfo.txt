@@ -6,17 +6,17 @@
     
     "arena_temple_sm"
     {
-        "MaxPlayers"    "6"
+        "MaxPlayers"    "8"
     }
 
     "arena_jungle_sm"
     {
-        "MaxPlayers"    "6"
+        "MaxPlayers"    "8"
     }
 
     "arena_winter_sm"
     {
-        "MaxPlayers"    "6"
+        "MaxPlayers"    "8"
     }
     
     // "Default_Keys"
