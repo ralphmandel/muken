@@ -1,0 +1,85 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/items/spectre/spectre_arcana/spectre_arcana_head.vmdl"
+				m_nModSpecificData = 9662
+				m_sequenceName = "spct_arc_idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flColorWarpIntensity = 1.0
+			m_flRimLightScale = 1.0
+			m_flSpecularScale = 1.0
+			m_flSpecularExponent = 1.0
+			m_specularColor = [ 76, 191, 234 ]
+			m_rimLightColor = [ 104, 145, 206 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flColorWarpIntensity = 1.0
+			m_specularColor = [ 161, 53, 53 ]
+			m_flSpecularScale = 1.0
+			m_flSpecularExponent = 10.0
+			m_rimLightColor = [ 176, 0, 0 ]
+			m_flRimLightScale = 1.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_gods_strength.vtex"
+			m_pTextureDetail2 = resource:"materials/models/heroes/statuseffects/burning.vtex"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/demonslayer/demonslayer_skill1_buff_chain.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/demonslayer/demonslayer_skill1_buff_chain_2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/demonslayer/demonslayer_skill1_buff_chain_3.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/demonslayer/demonslayer_skill1_buff_chain_4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/demonslayer/demonslayer_skill1_buff_chain_5.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}
