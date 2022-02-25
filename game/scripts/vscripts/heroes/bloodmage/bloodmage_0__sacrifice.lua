@@ -45,8 +45,31 @@ LinkLuaModifier("bloodmage_0_modifier_sacrifice", "heroes/bloodmage/bloodmage_0_
 
 -- SPELL START
 
+    function bloodmage_0__sacrifice:GetIntrinsicModifierName()
+        return "bloodmage_0_modifier_sacrifice"
+    end
+
     function bloodmage_0__sacrifice:OnSpellStart()
         local caster = self:GetCaster()
+
+        local mod_sacrifice = caster:FindModifierByName("bloodmage_0_modifier_sacrifice")
+        if mod_sacrifice then
+            mod_sacrifice:IncrementBP()
+        end
+    end
+
+    function bloodmage_0__sacrifice:OnOwnerSpawned()
+        local caster = self:GetCaster()
+        caster:SetMana(0)
+    end
+
+    function bloodmage_0__sacrifice:OnOwnerDied()
+        local caster = self:GetCaster()
+
+        local mod_sacrifice = caster:FindModifierByName("bloodmage_0_modifier_sacrifice")
+        if mod_sacrifice then
+            mod_sacrifice:DecrementBP(caster:GetMana())
+        end
     end
 
 -- EFFECTS

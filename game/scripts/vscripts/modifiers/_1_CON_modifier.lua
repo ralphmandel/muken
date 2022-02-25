@@ -22,6 +22,8 @@ function _1_CON_modifier:OnCreated(kv)
 
         self.hp = self.ability:GetSpecialValueFor("hp")
         self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
+        self.heal_amp = 0
+        
         self.ability:CalculateAttributes(0, 0)
     end
 end

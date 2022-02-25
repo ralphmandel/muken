@@ -22,42 +22,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"5"
+				"base_STR"				"3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"5"
+				"base_AGI"				"4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"5"
+				"base_INT"				"10"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"5"
+				"base_CON"				"3"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.5"
+				"STR"					"0.3"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.5"
+				"AGI"					"0.3"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.5"
+				"INT"					"0.6"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.5"
+				"CON"					"0.8"
 			}
 		}
 	}
@@ -68,28 +68,29 @@
 		"ScriptFile"            		"heroes/bloodmage/bloodmage_0__sacrifice"
 		"AbilityTextureName"     		"bloodmage_sacrifice"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"4"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.5"
+		"AnimationPlaybackRate"  		"1.2"
 
 		"AbilityManaCost"         		"0"
 		"AbilityCooldown"				"3"
 
 		"AbilitySpecial"
 		{
-			"01"
+			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"hp_percent"	"15"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0 1 2 3 4 5 6 7 8"
+				"rank"			"0 1 2 3"
 			}
 		}
 	}

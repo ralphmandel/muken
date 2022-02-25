@@ -22,6 +22,8 @@ function _1_INT_modifier:OnCreated(kv)
 
         self.spell_amp = self.ability:GetSpecialValueFor("spell_amp")
         self.buff_amp = self.ability:GetSpecialValueFor("buff_amp")
+        self.mana = 0
+        
         self.ability:CalculateAttributes(0, 0)
     end
 end

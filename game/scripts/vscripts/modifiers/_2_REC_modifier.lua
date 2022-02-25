@@ -39,9 +39,15 @@ function _2_REC_modifier:DeclareFunctions()
 end
 
 function _2_REC_modifier:GetModifierConstantManaRegen()
+    if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" then
+        return 0
+    end
     return self:GetStackCount() * self.mp_regen
 end
 
 function _2_REC_modifier:GetModifierPercentageCooldown()
+    if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" then
+        return self:GetStackCount() * 1
+    end
     return self:GetStackCount() * self.cooldown
 end

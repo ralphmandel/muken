@@ -20,13 +20,14 @@ function _1_STR_modifier:OnCreated(kv)
         self.parent = self:GetParent()
         self.ability = self:GetAbility()
 
-        self.critical_damage = 0        
+        self.critical_damage = 0
+        self.block_damage = 0
+        self.range = 0
         self.spell_critical = false
         self.spell_crit_damage = 0
         self.force_spell_crit = false
         self.force_crit = false
         self.pierce_proc = false
-        self.range = 0
 
         self.block_chance = self.ability:GetSpecialValueFor("block_chance")
         self.damage = self.ability:GetSpecialValueFor("damage")
