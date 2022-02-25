@@ -71,6 +71,9 @@ function TalentTree:ResetData(hero)
     elseif hero:GetUnitName() == "npc_dota_hero_lina" then
         data = LoadKeyValues("scripts/kv/hero_talents_Athena.txt")
         hero.att = "athena__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
+        data = LoadKeyValues("scripts/kv/hero_talents_Bloodmage.txt")
+        hero.att = "bloodmage__attributes"
     end
 
     hero.talentsData = {}

@@ -7726,7 +7726,1189 @@
                     }
                 }
             }
-            
+
+    //BLOODMAGE
+        //BLOODMAGE 1
+            "bloodmage_1__book_offensive_rank_1_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"1"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_1_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"2"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_1_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"3"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_2_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"4"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_2_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"5"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_2_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"6"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_3_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"7"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_3_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"8"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_1__book_offensive_rank_3_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_offensive"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"9"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+        //BLOODMAGE 2
+            "bloodmage_2__book_buff_rank_1_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"1"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_1_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"2"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_1_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"3"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_2_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"4"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_2_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"5"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_2_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"6"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_3_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"7"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_3_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"8"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_2__book_buff_rank_3_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_buff"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"2"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"9"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+        //BLOODMAGE 3
+            "bloodmage_3__book_aura_rank_1_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"1"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_1_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"2"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_1_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"3"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_2_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"4"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_2_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"5"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_2_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"6"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_3_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"7"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_3_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"8"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_3__book_aura_rank_3_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_book_aura"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"3"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"9"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+        //BLOODMAGE 0
+            "bloodmage_0__sacrifice_rank_1_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"1"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_1_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"2"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_1_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"3"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_2_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"4"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_2_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"5"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_2_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"6"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_3_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"7"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_3_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"8"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "bloodmage_0__sacrifice_rank_3_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"modifiers/_talents"
+                "AbilityTextureName"    		"bloodmage_sacrifice"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"9"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+		"bloodmage_x1__ritual"
+		{
+			// General  
+			"BaseClass"              		"ability_lua"
+			"ScriptFile"            		"heroes/dasdingo/dasdingo_x1__ward"
+			"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+			"AbilityTextureName"     		"bloodmage_ritual"
+
+			"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+			"MaxLevel"               		"3"
+			"RequiredLevel"         	 	"0"
+
+			"AbilityCastPoint"       		"0.2"
+			"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+
+			// Stats
+			"AbilityManaCost"         		"125"
+			"AbilityCooldown"				"15"
+			"AbilityCastRange"    		   	"275"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"hp_tooltip"		"7"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"duration"			"30"
+				}
+				"13"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"skill"				"5"
+				}
+				"14"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"id"				"1"
+				}
+				"15"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"permanent"			"1"
+				}
+			}
+		}
+
+		"bloodmage_x2__cleanse"
+		{
+			// General  
+			"BaseClass"              		"ability_lua"
+			"ScriptFile"            		"heroes/dasdingo/dasdingo_x2__mana"
+			"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+			"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+			"AbilityTextureName"     		"bloodmage_cleanse"
+
+			"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+			"MaxLevel"               		"3"
+			"RequiredLevel"         	 	"0"
+
+			"AbilityCastPoint"       		"0.3"
+			"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+
+			// Stats
+			"AbilityCooldown"				"5"
+			"AbilityManaCost"         		"100"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"mana"			"100"
+				}
+				"13"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"skill"			"5"
+				}
+				"14"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"id"			"2"
+				}
+				"15"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"permanent"		"1"
+				}
+			}
+		}			  
+
+
     //STRIDER
         //STRIDER 1
             "strider_1__push_rank_1_1"{

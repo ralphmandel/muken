@@ -447,3 +447,48 @@
         athena_u__nova_rank_3_1 = class ({})
         athena_u__nova_rank_3_2 = class ({})
         athena_u__nova_rank_3_3 = class ({})
+
+-- BLOODMAGE
+    -- BLOODMAGE 1
+        bloodmage_1__book_offensive_rank_1_1 = class ({})
+        bloodmage_1__book_offensive_rank_1_2 = class ({})
+        bloodmage_1__book_offensive_rank_1_3 = class ({})
+        bloodmage_1__book_offensive_rank_2_1 = class ({})
+        bloodmage_1__book_offensive_rank_2_2 = class ({})
+        bloodmage_1__book_offensive_rank_2_3 = class ({})
+        bloodmage_1__book_offensive_rank_3_1 = class ({})
+        bloodmage_1__book_offensive_rank_3_2 = class ({})
+        bloodmage_1__book_offensive_rank_3_3 = class ({})
+
+    -- BLOODMAGE 2
+        bloodmage_2__book_buff_rank_1_1 = class ({})
+        bloodmage_2__book_buff_rank_1_2 = class ({})
+        bloodmage_2__book_buff_rank_1_3 = class ({})
+        bloodmage_2__book_buff_rank_2_1 = class ({})
+        bloodmage_2__book_buff_rank_2_2 = class ({})
+        bloodmage_2__book_buff_rank_2_3 = class ({})
+        bloodmage_2__book_buff_rank_3_1 = class ({})
+        bloodmage_2__book_buff_rank_3_2 = class ({})
+        bloodmage_2__book_buff_rank_3_3 = class ({})
+
+    -- BLOODMAGE 3
+        bloodmage_3__book_aura_rank_1_1 = class ({})
+        bloodmage_3__book_aura_rank_1_2 = class ({})
+        bloodmage_3__book_aura_rank_1_3 = class ({})
+        bloodmage_3__book_aura_rank_2_1 = class ({})
+        bloodmage_3__book_aura_rank_2_2 = class ({})
+        bloodmage_3__book_aura_rank_2_3 = class ({})
+        bloodmage_3__book_aura_rank_3_1 = class ({})
+        bloodmage_3__book_aura_rank_3_2 = class ({})
+        bloodmage_3__book_aura_rank_3_3 = class ({})
+
+    -- BLOODMAGE 0
+        bloodmage_0__sacrifice_rank_1_1 = class ({})
+        bloodmage_0__sacrifice_rank_1_2 = class ({})
+        bloodmage_0__sacrifice_rank_1_3 = class ({})
+        bloodmage_0__sacrifice_rank_2_1 = class ({})
+        bloodmage_0__sacrifice_rank_2_2 = class ({})
+        bloodmage_0__sacrifice_rank_2_3 = class ({})
+        bloodmage_0__sacrifice_rank_3_1 = class ({})
+        bloodmage_0__sacrifice_rank_3_2 = class ({})
+        bloodmage_0__sacrifice_rank_3_3 = class ({})

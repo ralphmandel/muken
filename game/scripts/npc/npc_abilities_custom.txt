@@ -426,5 +426,7 @@
 #base "../vscripts/heroes/strider/strider.txt"
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
 #base "../vscripts/heroes/slayer/slayer.txt"
+#base "../vscripts/heroes/athena/athena.txt"
+#base "../vscripts/heroes/bloodmage/bloodmage.txt"
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "ranks.txt"

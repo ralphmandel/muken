@@ -725,4 +725,76 @@
 			"StatusMana"              	"750"
 			"StatusManaRegen"          	"6"
 	}
+
+	"bloodmage"
+	{
+		"override_hero"					"npc_dota_hero_bloodseeker"
+
+		//ABILITIES
+			"Ability1"						"bloodmage_0__sacrifice"
+			"Ability2"						"bloodmage_1__book_offensive"
+			"Ability3"						"bloodmage_2__book_buff"
+			"Ability4"						"bloodmage_3__book_aura"
+			"Ability5"						"null"
+			"Ability6"						"bloodmage_u__gamble"
+			"Ability7"						"null"
+			"Ability8"						"null"
+			"Ability9"						"null"
+			"Ability10"						"null"
+			"Ability11"						"null"
+			"Ability12"						"null"
+			"Ability13"						"null"
+			"Ability14"						"bloodmage_x1__ritual"
+			"Ability15"						"bloodmage_x2__cleanse"
+			"Ability16"						"null"
+			"Ability17"						"null"
+			"Ability18"						"null"
+			"Ability19"						"null"
+			"Ability20"						"_void"
+			"Ability21"						"_1_STR"
+			"Ability22"						"_1_AGI"
+			"Ability23"						"_1_INT"
+			"Ability24"						"_1_CON"
+			"Ability25"						"_2_REC"
+			"Ability26"						"_2_RES"
+			"Ability27"						"_2_MND"		
+			"Ability28"						"_2_LCK"		
+			"Ability29"						"_2_DEX"		
+			"Ability30"						"_2_DEF"
+			"Ability31"						"bloodmage__attributes"
+			"Ability32"						"null"
+
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"0"            // Base strength
+		"AttributeStrengthGain"			"0"            // Strength bonus per level.
+		"AttributeBaseAgility"			"0"            // Base agility
+		"AttributeAgilityGain"			"0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"		"0"            // Base intelligence
+		"AttributeIntelligenceGain"		"0"            // Intelligence bonus per level.
+		"Level"							"0"
+
+		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
+		"AttackRange"                   "100"     // Range within a target can be attacked.
+		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
+
+		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
+
+		//STRENGHT
+			"AttackDamageMax"			"45"
+			"AttackDamageMin"         	"35"
+			"ArmorPhysical"           	"0"
+		//AGILITY
+			"BaseAttackSpeed"			"70"
+			"AttackRate"              	"1"
+			"MovementTurnRate"          "0.5"
+			"MovementSpeed"           	"50"
+		//VITALITY
+			"StatusHealth"            	"1000"
+			"StatusHealthRegen"        	"5"
+		//INTELLIGENCE
+			"MagicalResistance"        	"0"
+			"StatusMana"              	"1000"
+			"StatusManaRegen"          	"0"
+	}
 }
