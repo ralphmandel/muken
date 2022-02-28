@@ -14,6 +14,9 @@ function slayer__modifier_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	self.delay_sound = 0
+	self:StartIntervalThink(0.2)
 end
 
 function slayer__modifier_effect:OnRefresh(kv)
@@ -36,7 +39,7 @@ function slayer__modifier_effect:DeclareFunctions()
 end
 
 function slayer__modifier_effect:GetModifierPreAttack(keys)
-	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain2") end
+	if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain") end
 end
 
 function slayer__modifier_effect:OnAttack(keys)
@@ -55,4 +58,17 @@ end
 
 function slayer__modifier_effect:GetAttackSound(keys)
     return ""
+end
+
+function slayer__modifier_effect:OnIntervalThink()
+    if self.delay_sound > 0 then
+		self.delay_sound = self.delay_sound - 1
+		return
+	end
+
+	if RandomInt(1, 100) <= 10 
+	and self.parent:IsMoving() then
+		if IsServer() then self.parent:EmitSound("Hero_Slayer.Chain2") end
+		self.delay_sound = 5
+	end
 end

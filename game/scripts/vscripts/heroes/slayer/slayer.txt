@@ -68,7 +68,7 @@
 		"ScriptFile"            		"heroes/slayer/slayer_1__chain"
 		"AbilityTextureName"     		"slayer_chain"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -76,8 +76,8 @@
 		//"AbilityCastAnimation"   		"ACT_DOTA_GENERIC_CHANNEL_1"
 		//"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"130"
-		"AbilityCooldown"				"17"
+		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240"
+		"AbilityCooldown"				"20"
 		"AbilityCastRange"      		"350"
 
 		"AbilitySpecial"
@@ -85,19 +85,19 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"3.5"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"dps"			"75"
+				"spin"			"30 31 32 33 34 35 36 37 38 39 40"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"intervals"		"0.4"
+				"dps"			"50"
 			}
 			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"intervals"		"0.175"
+			}
+			"05"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"radius"		"350"
@@ -105,7 +105,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0"
+				"rank"			"0 1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 slayer_1__chain = class({})
 LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chain", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("slayer_1_modifier_effect", "heroes/slayer/slayer_1_modifier_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -80,9 +81,8 @@ LinkLuaModifier("slayer_1_modifier_chain", "heroes/slayer/slayer_1_modifier_chai
 
     function slayer_1__chain:OnSpellStart()
         local caster = self:GetCaster()
-        local duration = self:GetSpecialValueFor("duration")
 
-        caster:AddNewModifier(caster, self, "slayer_1_modifier_chain", {duration = duration})
+        caster:AddNewModifier(caster, self, "slayer_1_modifier_chain", {})
     end
 
 -- EFFECTS

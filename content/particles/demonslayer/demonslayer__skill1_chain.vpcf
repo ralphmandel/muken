@@ -16,11 +16,6 @@
 					m_entityName = "self"
 				},
 				{
-					m_iControlPoint = 1
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_entityName = "self"
-				},
-				{
 					m_iControlPoint = 3
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
@@ -627,6 +622,8 @@
 			{
 				m_nStartControlPointNumber = 3
 				m_vMidPointOffset = [ 0.0, 100.0, 0.0 ]
+				m_vStartPointOffset = [ 0.0, 0.0, 125.0 ]
+				m_vEndOffset = [ 0.0, 0.0, 125.0 ]
 			}
 		},
 		{
