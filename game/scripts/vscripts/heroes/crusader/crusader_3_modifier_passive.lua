@@ -67,6 +67,7 @@ function crusader_3_modifier_passive:OnAttackLanded(keys)
 
 	if keys.target ~= self.parent then return end
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsOutOfGame() then return end
 
 	local amount = 100
 	local dex = self.parent:FindModifierByName("_2_DEX_modifier")
