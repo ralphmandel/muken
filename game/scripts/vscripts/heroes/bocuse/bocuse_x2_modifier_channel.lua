@@ -52,6 +52,7 @@ end
 
 function bocuse_x2_modifier_channel:OnTakeDamage(keys)
 	-- if not (keys.unit == self.parent) then return end
+	--if keys.attacker:IsBaseNPC() == false then return end
 	-- if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
 	-- self.parent:InterruptChannel()

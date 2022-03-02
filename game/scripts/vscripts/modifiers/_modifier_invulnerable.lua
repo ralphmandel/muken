@@ -30,7 +30,7 @@ end
 
 function _modifier_invulnerable:CheckState()
 	local state = {
-	[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
 
 	return state

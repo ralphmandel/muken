@@ -84,36 +84,31 @@
 		"AbilityTextureName"     		"shadow_weapon"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityManaCost"         		"70 77 84 91 98 105 112 119 126"
-		"AbilityCooldown"				"12"
+		"AbilityManaCost"         		"70 77 84 91 98 105 112 119 126 133 140"
+		"AbilityCooldown"				"10"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"chance"			"30 31 32 33 34 35 36 37 38"
+				"chance"			"40 42 44 46 48 50 52 54 56 58 60"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"12"
+				"duration"			"10"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"agi"				"8"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"heal"				"75"
+				"damage_reduction"	"12"
 			}
 			"04"
 			{
@@ -123,7 +118,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}

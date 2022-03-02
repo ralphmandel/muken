@@ -82,7 +82,8 @@ function _1_STR_modifier:GetModifierMagical_ConstantBlock(keys)
 end
 
 function _1_STR_modifier:OnTakeDamage(keys)
-    if keys.attacker ~= self.parent then return end
+    if keys.attacker == nil then return end
+    if keys.attacker:IsBaseNPC() == false then return end
     if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
     if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
     if self.spell_critical == false then return end

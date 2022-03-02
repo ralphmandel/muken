@@ -16,21 +16,22 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 	self.ability = self:GetAbility()
 
 	self.effect_radius = 0
+	self.phase = false
 
-	if self.parent:IsIllusion() == false then
-		local agi = self.ability:GetSpecialValueFor("agi")
-
-		-- UP 1.2
-		if self.ability:GetRank(2) then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 15})
-			agi = agi + 7
-		end
-
-		self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	-- UP 1.2
+	if self.ability:GetRank(2) then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 15})
+		self.phase = true
 	end
 
 	-- UP 1.4
-	if self.ability:GetRank(4) then
+	if self.ability:GetRank(4)
+	and self.parent:IsIllusion() == false then
+		self.ability:AddBonus("_1_AGI", self.parent, 15, 0, nil)
+	end
+
+	-- UP 1.5
+	if self.ability:GetRank(5) then
 		self.effect_radius = 200
 	end
 
@@ -59,7 +60,9 @@ function shadow_1_modifier_weapon:OnRemoved()
 	)
 
 	for _,shadow in pairs(shadows) do
-		shadow:RemoveModifierByName("shadow_1_modifier_weapon")
+		if shadow:HasModifier("shadow_3_modifier_illusion") then
+			shadow:RemoveModifierByName("shadow_1_modifier_weapon")
+		end
 	end
 	
 	self.ability:SetActivated(true)
@@ -74,24 +77,53 @@ end
 
 -------------------------------------------------------------------
 
+function shadow_1_modifier_weapon:CheckState()
+	local state = {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = self.phase,
+	}
+
+	return state
+end
+
 function shadow_1_modifier_weapon:DeclareFunctions()
 
     local funcs = {
-        MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+        MODIFIER_PROPERTY_PROCATTACK_FEEDBACK
     }
  
     return funcs
 end
 
+function shadow_1_modifier_weapon:GetModifierIncomingDamage_Percentage(keys)
+	local damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
+    local mod = keys.attacker:FindModifierByName("shadow_0_modifier_poison")
+	if mod == nil then return  0 end
+
+	-- UP 1.3
+	if self.ability:GetRank(3) then
+		damage_reduction = damage_reduction + 3
+	end
+	
+	local percent = 0
+	local total = 1
+	local stacks = mod:GetStackCount()
+	for i = 1, stacks, 1 do
+		local percent = percent + (total * damage_reduction)
+		local total = total - (total * damage_reduction * 0.01)
+	end
+
+	print(percent)
+	return percent
+end
+
 function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
 	if keys.attacker ~= self.parent then return end
 	local chance = self.ability:GetSpecialValueFor("chance")
-	local heal = self.ability:GetSpecialValueFor("heal")
 	local radius = 100
 
 	if RandomInt(1, 100) <= chance
-	and keys.target:IsMagicImmune() == false
-	and self.parent:IsIllusion() == false then
+	and keys.target:IsMagicImmune() == false then
 		-- UP 1.1
 		if self.ability:GetRank(1) then
 			radius = 250
@@ -112,16 +144,14 @@ function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
 		self:StartIntervalThink(1)
 	end
 
-	-- UP 1.3
-	if self.ability:GetRank(3) then
-		heal = heal + 50
-	end
-
-	local mod_poison = keys.target:FindModifierByName("shadow_0_modifier_poison")
-	if mod_poison then
-		local lifesteal = mod_poison:GetPoisonDamage() * heal * 0.01
-		if lifesteal > 0 then keys.attacker:Heal(lifesteal, nil) end
-		self:PlayEfxLifesteal(keys.attacker)
+	-- UP 1.4
+	if self.ability:GetRank(4) then
+		local mod_poison = keys.target:FindModifierByName("shadow_0_modifier_poison")
+		if mod_poison then
+			local lifesteal = mod_poison:GetPoisonDamage() * 0.5
+			if lifesteal > 0 then keys.attacker:Heal(lifesteal, nil) end
+			self:PlayEfxLifesteal(keys.attacker)
+		end
 	end
 end
 
@@ -130,8 +160,8 @@ function shadow_1_modifier_weapon:OnIntervalThink()
 	local total = self.parent:GetHealth() - (self.parent:GetMaxHealth() * hp_loss * self.intervals)
 	self.parent:ModifyHealth(total, self.ability, false, 0)
 
-	-- UP 1.4
-	if self.ability:GetRank(4) and self.parent:IsIllusion() == false then
+	-- UP 1.5
+	if self.ability:GetRank(5) then
 		local enemies = FindUnitsInRadius(
 			self.caster:GetTeamNumber(),	-- int, your team number
 			self.parent:GetOrigin(),	-- point, center point

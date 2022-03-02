@@ -22,13 +22,16 @@ end
 -- Initializations
 function _modifier_invisible:OnCreated( kv )
 
+	self.delay = false
     self.hidden = false
 
-	if kv.delay == 0 then
-		self.hidden = true
-	else
-		self:PlayEffects()
-		self:StartIntervalThink( kv.delay )
+	if IsServer() then
+		print("delay", kv.delay)
+		if kv.delay == 0 then
+			self.hidden = true
+		else
+			self:StartIntervalThink( kv.delay )
+		end		
 	end
 end
 
@@ -64,7 +67,7 @@ function _modifier_invisible:GetModifierProcAttack_Feedback(keys)
 end
 
 function _modifier_invisible:OnAbilityFullyCast(keys)
-	if keys.unit == self.parent then self:Destroy() end
+	if keys.unit == self:GetParent() then self:Destroy() end
 end
 
 function _modifier_invisible:CheckState()
@@ -78,7 +81,14 @@ end
 --------------------------------------------------------------------------------
 -- Interval Effects
 function _modifier_invisible:OnIntervalThink()
-	self.hidden = true
+	if self.delay == false then
+		self.delay = true
+		self:PlayEffects()
+		self:StartIntervalThink(0.2)
+	else
+		self.hidden = true
+		self:StartIntervalThink(-1)
+	end
 end
 
 --------------------------------------------------------------------------------

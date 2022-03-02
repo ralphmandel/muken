@@ -49,7 +49,8 @@ function dasdingo_x1_modifier_tribal:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
+		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
@@ -71,9 +72,18 @@ function dasdingo_x1_modifier_tribal:OnAttackLanded(keys)
 	end
 end
 
-function dasdingo_x1_modifier_tribal:GetDisableHealing(keys)
-	return 1
+function dasdingo_x1_modifier_tribal:GetModifierHealAmplify_PercentageTarget(keys)
+	return -50
 end
+
+function dasdingo_x1_modifier_tribal:OnHealReceived(keys)
+    if keys.gain <= 0 then return end
+
+    if keys.inflictor ~= nil and keys.unit == self:GetParent() then
+        self:Popup(keys.unit, math.floor(keys.gain))
+    end
+end
+
 
 function dasdingo_x1_modifier_tribal:GetAttackSound(keys)
     return ""
@@ -95,4 +105,33 @@ function dasdingo_x1_modifier_tribal:PlayEfxRegen()
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
     ParticleManager:SetParticleControl(effect_cast, 2, self.parent:GetOrigin())
 	self:AddParticle(effect_cast, false, false, -1, false, false)
+end
+
+function dasdingo_x1_modifier_tribal:Popup(target, amount)
+    self:PopupNumbers(target, "heal", Vector(0, 255, 0), 2.0, amount, 10, 0)
+end
+
+function dasdingo_x1_modifier_tribal:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
+    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
+    local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
+    
+     
+    local digits = 0
+    if number ~= nil then
+        digits = #tostring(number)
+    end
+    if presymbol ~= nil then
+        digits = digits + 1
+    end
+    if postsymbol ~= nil then
+        digits = digits + 1
+    end
+
+    if number < 10 then digits = 2 end
+    if number > 9 and number < 100 then digits = 3 end
+    if number > 99 then digits = 4 end
+
+    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))
+    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
+    ParticleManager:SetParticleControl(pidx, 3, color)
 end

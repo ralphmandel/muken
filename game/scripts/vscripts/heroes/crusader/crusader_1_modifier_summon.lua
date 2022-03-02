@@ -59,6 +59,7 @@ end
 
 function crusader_1_modifier_summon:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -71,11 +72,15 @@ function crusader_1_modifier_summon:DeclareFunctions()
 	return funcs
 end
 
-function crusader_1_modifier_summon:OnHealReceived(params)
-    if params.gain <= 0 then return end
+function crusader_1_modifier_summon:GetModifierHealAmplify_PercentageTarget(keys)
+	return -50
+end
 
-    if params.inflictor ~= nil and params.unit == self:GetParent() then
-        self:Popup(params.unit, math.floor(params.gain))
+function crusader_1_modifier_summon:OnHealReceived(keys)
+    if keys.gain <= 0 then return end
+
+    if keys.inflictor ~= nil and keys.unit == self:GetParent() then
+        self:Popup(keys.unit, math.floor(keys.gain))
     end
 end
 

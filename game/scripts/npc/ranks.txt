@@ -69,16 +69,16 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_2_1"
+			"shadow_1__weapon_rank_1_2"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"shadow_weapon"
 				"FightRecapLevel"				"1"
-				"MaxLevel"						"2"	
+				"MaxLevel"						"1"	
 				
 				"AbilityType"					"ABILITY_TYPE_BASIC"
-				"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN   | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+				"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 
 				"AbilitySpecial"
 				{
@@ -100,7 +100,7 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_2_2"
+			"shadow_1__weapon_rank_2_1"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -153,6 +153,37 @@
 					{
 						"var_type"				"FIELD_FLOAT"
 						"id"					"4"
+					}
+					"03"
+					{
+						"var_type"				"FIELD_FLOAT"
+						"permanent"				"0"
+					}
+				}
+			}
+
+			"shadow_1__weapon_rank_3_2"
+			{
+				"BaseClass"						"ability_lua"
+				"ScriptFile"					"modifiers/_talents"
+				"AbilityTextureName"    		"shadow_weapon"
+				"FightRecapLevel"				"1"
+				"MaxLevel"						"3"	
+				
+				"AbilityType"					"ABILITY_TYPE_BASIC"
+				"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN   | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+				"AbilitySpecial"
+				{
+					"01"
+					{
+						"var_type"				"FIELD_FLOAT"
+						"skill"					"1"
+					}
+					"02"
+					{
+						"var_type"				"FIELD_FLOAT"
+						"id"					"5"
 					}
 					"03"
 					{

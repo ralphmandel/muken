@@ -221,7 +221,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         ParticleManager:SetParticleControl(pidx, 1, Vector(0, math.floor(damage), 0))
         ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-        ParticleManager:SetParticleControl(pidx, 3, Vector(225, 175, 255))
+        ParticleManager:SetParticleControl(pidx, 3, Vector(235, 200, 255))
 
         if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
     end

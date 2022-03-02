@@ -69,7 +69,9 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 
 	local chance = 30
-	if keys.attacker:IsHero() == false then chance = 20 end
+	if keys.attacker:IsBaseNPC() then
+		if keys.attacker:IsHero() == false then chance = 20 end
+	end
 
 	if RandomInt(1, 100) <= chance
 	and keys.unit:IsMagicImmune() == false
@@ -94,7 +96,8 @@ end
 
 function dasdingo_1_modifier_heal_effect:OnIntervalThink()
 	-- UP 1.1
-	if self.ability:GetRank(1) then
+	if self.ability:GetRank(1)
+	and self.parent:IsHero() then
 		local invi_bool = false
 		local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
 		for _,modifier in pairs(mod) do

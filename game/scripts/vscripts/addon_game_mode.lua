@@ -654,6 +654,7 @@ function BattleArena:OnUnitKilled( args )
 	local unit = EntIndexToHScript(args.entindex_killed)
 	local killer = EntIndexToHScript(args.entindex_attacker)
 	if unit == nil or killer == nil then return end
+	if killer:IsBaseNPC() == false then return end
 	if unit:IsReincarnating() then return end
 
 	if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
