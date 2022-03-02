@@ -135,7 +135,7 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 	-- UP 1.2
 	if self.ability:GetRank(2) then
 		local cleaveatk = DoCleaveAttack(
-			self.parent, keys.target, self.ability, keys.damage * 0.3, 100, 400, 500,
+			self.parent, keys.target, self.ability, keys.damage * 0.35, 100, 400, 500,
 			"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
 		)
 	end

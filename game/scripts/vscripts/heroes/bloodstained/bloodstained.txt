@@ -102,17 +102,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"gain"				"3"
+				"gain"				"1.5"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"consume"			"20 21 22 23 24 25 26 27 28 29 30"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"agi"				"10"
 			}
 			"15"
 			{
