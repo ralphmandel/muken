@@ -13,6 +13,7 @@ function bloodstained_2_modifier_bloodsteal:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.extra_life = 0
+	self.hp_amp = 0
 
     self.lifesteal_base = self:GetAbility():GetSpecialValueFor("lifesteal_base") * 0.01
     self.lifesteal_bonus = self:GetAbility():GetSpecialValueFor("lifesteal_bonus") * 0.01
@@ -31,18 +32,25 @@ function bloodstained_2_modifier_bloodsteal:OnRefresh( kv )
 		self.lifesteal_base = (self:GetAbility():GetSpecialValueFor("lifesteal_base") + 5) * 0.01
 		self.lifesteal_bonus = (self:GetAbility():GetSpecialValueFor("lifesteal_bonus") - 5) * 0.01
 	end
+
+	-- UP 2.5
+	if self.ability:GetRank(5) then
+		self.hp_amp = -500
+	end
 end
 
 function bloodstained_2_modifier_bloodsteal:OnRemoved()
+	self.ability:RemoveBonus("_1_AGI", self.parent)
 end
 
 --------------------------------------------------------------------------------------------------------------------------
 
 function bloodstained_2_modifier_bloodsteal:DeclareFunctions()
     local funcs = {
-		MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_DEATH
@@ -50,18 +58,8 @@ function bloodstained_2_modifier_bloodsteal:DeclareFunctions()
     return funcs
 end
 
-function bloodstained_2_modifier_bloodsteal:OnStateChanged(keys)
-	if keys.unit ~= self.parent then return end
-
-	-- UP 2.5
-	if self.ability:GetRank(5) then
-		if self.parent:PassivesDisabled() then
-			self.ability:RemoveBonus("_2_LCK", self.parent)
-		else
-			self.ability:RemoveBonus("_2_LCK", self.parent)
-			self.ability:AddBonus("_2_LCK", self.parent, 7, 0, nil)
-		end
-	end
+function bloodstained_2_modifier_bloodsteal:GetModifierHPRegenAmplify_Percentage()
+	return self.hp_amp
 end
 
 function bloodstained_2_modifier_bloodsteal:GetModifierHealthBonus()
@@ -85,6 +83,18 @@ function bloodstained_2_modifier_bloodsteal:OnTakeDamage(keys)
 	end
 end
 
+function bloodstained_2_modifier_bloodsteal:GetModifierPreAttack(keys)
+	if self.parent:PassivesDisabled() then return end
+	self.ability:RemoveBonus("_1_AGI", self.parent)
+
+	local agi_bonus = self.ability:GetSpecialValueFor("agi_bonus")
+	local agi_total = math.ceil(agi_bonus * (100 - self.parent:GetHealthPercent()) * 0.01)
+
+	if agi_total > 0 then
+		self.ability:AddBonus("_1_AGI", self.parent, agi_total, 0, nil)
+	end		
+end
+
 function bloodstained_2_modifier_bloodsteal:OnAttacked(keys)
 	if keys.attacker:IsIllusion() then return end
 	if keys.attacker:IsHero() == false then return end
@@ -98,15 +108,9 @@ function bloodstained_2_modifier_bloodsteal:OnAttacked(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
 	-- UP 2.5
-	if self.ability:GetRank(5)
-	and self.parent:PassivesDisabled() == false then
-		local str_mod = self.parent:FindModifierByName("_1_STR_modifier")
-		if str_mod then
-			if str_mod:HasCritical() then
-				local heal = keys.target:GetMaxHealth() * 0.02
-				if heal > 0 then keys.attacker:Heal(heal, self.ability) end
-			end
-		end
+	if self.ability:GetRank(5) then
+		local heal = keys.attacker:GetMaxHealth() * 0.01
+		if heal > 0 then keys.attacker:Heal(heal, self.ability) end
 	end
 
 	-- UP 2.4
@@ -176,8 +180,6 @@ function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	if self.parent:PassivesDisabled() then return end
-
 	-- UP 2.2
 	if self.ability:GetRank(2) then
 		local enemies = FindUnitsInRadius(
@@ -195,7 +197,8 @@ function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
 	end
 
 	-- UP 2.3
-	if self.ability:GetRank(3) then
+	if self.ability:GetRank(3)
+	and self.parent:PassivesDisabled() == false then
 		local percent = (100 - self.parent:GetHealthPercent()) * 0.5
 		if percent > 0 then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {

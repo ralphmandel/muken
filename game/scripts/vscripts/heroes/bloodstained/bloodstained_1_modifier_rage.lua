@@ -22,9 +22,6 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 
 	self.gain = self.ability:GetSpecialValueFor("gain")
 	local consume = self.ability:GetSpecialValueFor("consume") * 0.01
-	local agi = self.ability:GetSpecialValueFor("agi")
-
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
 
 	-- UP 1.1
 	if self.ability:GetRank(1) then
@@ -58,11 +55,8 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 
     self.gain = self.ability:GetSpecialValueFor("gain")
 	local consume = self.ability:GetSpecialValueFor("consume") * 0.01
-	local agi = self.ability:GetSpecialValueFor("agi")
 
 	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
 
 	-- UP 1.1
 	if self.ability:GetRank(1) then
@@ -93,9 +87,7 @@ end
 function bloodstained_1_modifier_rage:OnRemoved( kv )
 	if IsServer() then self.parent:StopSound("Bloodstained.rage") end
 	if self.efx_bkb then ParticleManager:DestroyParticle(self.efx_bkb, false) end
-
 	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
 
 	self.ability:SetActivated(true)
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

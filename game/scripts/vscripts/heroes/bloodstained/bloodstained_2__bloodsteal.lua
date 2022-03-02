@@ -71,13 +71,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 
-        -- UP 2.5
-        if self:GetRank(5)
-        and caster:PassivesDisabled() == false then
-            self:RemoveBonus("_2_LCK", caster)
-            self:AddBonus("_2_LCK", caster, 7, 0, nil)
-        end
-
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
     end
@@ -90,17 +83,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function bloodstained_2__bloodsteal:GetIntrinsicModifierName()
         return "bloodstained_2_modifier_bloodsteal"
-    end
-
-    function bloodstained_2__bloodsteal:OnOwnerSpawned()
-        local caster = self:GetCaster()
-
-        -- UP 2.5
-        if self:GetRank(5)
-        and caster:PassivesDisabled() == false then
-            self:RemoveBonus("_2_LCK", caster)
-            self:AddBonus("_2_LCK", caster, 7, 0, nil)
-        end
     end
 
 -- EFFECTS

@@ -138,12 +138,17 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"lifesteal_base"	"4"
+				"lifesteal_base"	"5"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"lifesteal_bonus"	"20"
+				"lifesteal_bonus"	"25"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"agi_bonus"			"25"
 			}
 			"15"
 			{
