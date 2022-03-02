@@ -32,9 +32,8 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 		self.reset = 0
 	end
 
-	-- UP 1.6
-	if self.ability:GetRank(6) then
-		self.heal = self.heal + 5
+	-- UP 1.4
+	if self.ability:GetRank(4) then
 		self.intervals = self.intervals - 1
 	end
 
@@ -48,6 +47,11 @@ end
 
 function dasdingo_1_modifier_heal_effect:OnRemoved(kv)
 	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -----------------------------------------------------------
@@ -72,7 +76,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
 	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 		keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-			duration = self.ability:CalcStatus(1, self.caster, keys.unit),
+			duration = self.ability:CalcStatus(1.5, self.caster, keys.unit),
 			effect = 4
 		})
 	end
@@ -89,6 +93,19 @@ function dasdingo_1_modifier_heal_effect:GetModifierConstantHealthRegen()
 end
 
 function dasdingo_1_modifier_heal_effect:OnIntervalThink()
+	-- UP 1.1
+	if self.ability:GetRank(1) then
+		local invi_bool = false
+		local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then invi_bool = true end
+		end
+
+		if invi_bool == false then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_invisible", {delay = 3})
+		end
+	end
+
 	if self.reset then
 		self.reset = self.reset + 1
 		if self.reset > 11 then
@@ -110,8 +127,8 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
         self:PlayEfxHeal()
     end
 
-	-- UP 1.1
-	if self.ability:GetRank(1) then
+	-- UP 1.3
+	if self.ability:GetRank(3) then
 		self.parent:Purge(false, true, false, false, false)
 	end
 end

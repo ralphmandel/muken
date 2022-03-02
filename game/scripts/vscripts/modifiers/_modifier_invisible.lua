@@ -45,6 +45,7 @@ function _modifier_invisible:DeclareFunctions()
 	local funcs = {
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
 	}
 
 	return funcs
@@ -54,12 +55,16 @@ function _modifier_invisible:GetModifierInvisibilityLevel()
 	return 1
 end
 
-function _modifier_invisible:GetModifierProcAttack_Feedback( params )
+function _modifier_invisible:GetModifierProcAttack_Feedback(keys)
     if IsServer() then
-        if params.attacker == self:GetParent() then
+        if keys.attacker == self:GetParent() then
 			self:Destroy()
         end
     end
+end
+
+function _modifier_invisible:OnAbilityFullyCast(keys)
+	if keys.unit == self.parent then self:Destroy() end
 end
 
 function _modifier_invisible:CheckState()

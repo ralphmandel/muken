@@ -16,12 +16,12 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local defense = self.ability:GetSpecialValueFor("defense")
-	local resistance = 10
+	local resistance = 8
 	local special = 0
 
 	-- UP 2.2
 	if self.ability:GetRank(2) then
-		defense = defense + 10
+		defense = defense + 8
 	end
 
 	if self.caster ~= self.parent then

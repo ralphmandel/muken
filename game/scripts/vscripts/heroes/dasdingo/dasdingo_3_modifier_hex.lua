@@ -94,7 +94,7 @@ function dasdingo_3_modifier_hex:GetPriority()
 end
 
 function dasdingo_3_modifier_hex:OnIntervalThink()
-	if self.parent:IsMoving() then self.parent:ReduceMana(7) end
+	if self.parent:IsMoving() then self.parent:ReduceMana(6) end
 end
 
 --------------------------------------------------------------------------------

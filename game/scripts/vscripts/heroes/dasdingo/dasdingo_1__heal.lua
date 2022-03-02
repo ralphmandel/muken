@@ -2,6 +2,7 @@ dasdingo_1__heal = class({})
 LinkLuaModifier("dasdingo_1_modifier_passive", "heroes/dasdingo/dasdingo_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_heal", "heroes/dasdingo/dasdingo_1_modifier_heal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_heal_effect", "heroes/dasdingo/dasdingo_1_modifier_heal_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -73,13 +74,13 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 1.4
-        if self:GetRank(4) then
+        -- UP 1.5
+        if self:GetRank(5) then
             charges = charges * 2
         end
 
-        -- UP 1.5
-        if self:GetRank(5) then
+        -- UP 1.6
+        if self:GetRank(6) then
             charges = charges * 3
         end
 
@@ -95,23 +96,14 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function dasdingo_1__heal:GetAOERadius()
         if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
 		if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-		if self:GetCurrentAbilityCharges() % 3 == 0 then return self:GetSpecialValueFor("radius") + 100 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 100 end
         return self:GetSpecialValueFor("radius")
-    end
-
-    function dasdingo_1__heal:GetIntrinsicModifierName()
-        return "dasdingo_1_modifier_passive"
     end
 
     function dasdingo_1__heal:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
-
-        -- UP 1.3
-        if self:GetRank(3) then
-            duration = duration + 10
-        end
 
         CreateModifierThinker(caster, self, "dasdingo_1_modifier_heal", {duration = duration}, point, caster:GetTeamNumber(), false)
     end

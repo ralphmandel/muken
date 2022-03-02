@@ -20,14 +20,14 @@ end
 function dasdingo_1_modifier_heal:GetAuraRadius()
 	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return self:GetAbility():GetSpecialValueFor("radius") end
 	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return self:GetAbility():GetSpecialValueFor("radius") end
-	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then return self:GetAbility():GetSpecialValueFor("radius") + 100 end
+	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return self:GetAbility():GetSpecialValueFor("radius") + 100 end
 	return self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function dasdingo_1_modifier_heal:GetAuraSearchTeam()
 	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
 	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return DOTA_UNIT_TARGET_TEAM_BOTH end
+	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then return DOTA_UNIT_TARGET_TEAM_BOTH end
 	return DOTA_UNIT_TARGET_TEAM_FRIENDLY 
 end
 
