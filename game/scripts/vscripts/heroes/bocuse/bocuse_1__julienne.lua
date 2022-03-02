@@ -246,9 +246,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local stun_duration = self:GetSpecialValueFor("stun_duration")
         local bleed_duration = self:GetSpecialValueFor("bleed_duration")
 
-        -- UP 1.2
-        if self:GetRank(2) then
-            bleed_duration = bleed_duration + 2
+        -- UP 1.4
+        if self:GetRank(4) then
+            bleed_duration = bleed_duration * 2
         end
 
         -- UP 1.5
@@ -258,10 +258,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local max_cut = self.cut[charges]
 
-        -- UP 1.4
-        if self:GetRank(4) and original == true then
-            if RandomInt(1, 2) == 2 and particle == max_cut then damage = 40 end
-            stun_duration = damage * 0.06
+        -- UP 1.2
+        if self:GetRank(2) and original == true then
+            stun_duration = stun_duration + 1
         end
 
         local damageTable = {

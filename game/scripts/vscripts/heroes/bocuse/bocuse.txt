@@ -86,7 +86,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"			"28 28.5 29 29.5 30 30.5 31 31.5 32"
+				"damage"			"32 33 34 35 36 37 38 39 40"
 			}
 			"02"
 			{
@@ -106,7 +106,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bleed_dps"			"12 12.5 13 13.5 14 14.5 15 15.5 16"
+				"bleed_dps"			"16"
 			}
 			"05"
 			{
@@ -116,7 +116,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.2"
+				"stun_duration"		"1.25"
 			}
 			"07"
 			{
