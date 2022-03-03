@@ -381,13 +381,13 @@
 				}
 			}
 
-			"shadow_3__walk_rank_1_2"
+			"shadow_3__walk_rank_2_1"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"shadow_walk"
 				"FightRecapLevel"				"1"
-				"MaxLevel"						"1"	
+				"MaxLevel"						"2"	
 				
 				"AbilityType"					"ABILITY_TYPE_BASIC"
 				"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN   | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -412,7 +412,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_2_1"
+			"shadow_3__walk_rank_2_2"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -443,7 +443,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_2_2"
+			"shadow_3__walk_rank_2_3"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -505,37 +505,6 @@
 				}
 			}
 
-			"shadow_3__walk_rank_3_2"
-			{
-				"BaseClass"						"ability_lua"
-				"ScriptFile"					"modifiers/_talents"
-				"AbilityTextureName"    		"shadow_walk"
-				"FightRecapLevel"				"1"
-				"MaxLevel"						"3"	
-				
-				"AbilityType"					"ABILITY_TYPE_BASIC"
-				"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-				"AbilitySpecial"
-				{
-					"01"
-					{
-						"var_type"				"FIELD_FLOAT"
-						"skill"					"3"
-					}
-					"02"
-					{
-						"var_type"				"FIELD_FLOAT"
-						"id"					"6"
-					}
-					"03"
-					{
-						"var_type"				"FIELD_FLOAT"
-						"permanent"				"0"
-					}
-				}
-			}
-
 			"shadow_3__second_shadow"
 			{
 				// General  
@@ -571,7 +540,7 @@
 					"04"
 					{
 						"var_type"				"FIELD_FLOAT"
-						"id"					"7"
+						"id"					"6"
 					}
 					"05"
 					{
@@ -845,7 +814,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"assault_duration"		"8"
+					"assault_duration"		"5"
 				}
 				"02"
 				{

@@ -25,14 +25,15 @@ function shadow_2_modifier_smoke:OnCreated( kv )
 	self.radius = kv.radius
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
 	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.time = 0.5
+	self.time = 0
 
 	self.delay = 0.3
 
     -- UP 2.5
     if self.ability:GetRank(5) then
-		self.time = 0
+		--self.time = 0
 		self.intervals = self.intervals - 0.25
+		self.duration = self.duration + 1
     end
 	
 	self:StartIntervalThink(self.delay)
@@ -113,7 +114,6 @@ end
 --------------------------------------------------------------------------------
 
 function shadow_2_modifier_smoke:PlayEffects()
-
 	local particle_cast = "particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_dmg.vpcf"
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())

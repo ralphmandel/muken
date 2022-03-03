@@ -272,7 +272,7 @@ function shadow_0_modifier_poison:OnAttackLanded(keys)
 
 		if keys.attacker:IsIllusion()
 		and self.caster:HasModifier("shadow_x2_modifier_sick") == false then
-			total_damage = total_damage * 0.5 -- DAMAGE REDUCTION SPECIAL FOR SHADOWS
+			total_damage = total_damage * 0.25 -- DAMAGE REDUCTION SPECIAL FOR SHADOWS
 		end
 		
 		self.damageTable.damage = total_damage

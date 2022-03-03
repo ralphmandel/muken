@@ -144,12 +144,7 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 		if hTarget:HasModifier("shadow_0_modifier_poison") == false then return end
 
 		local multiplier = self:GetSpecialValueFor("multiplier")
-		local base_damage = self:GetSpecialValueFor("base_damage")
-
-		-- UP 4.1
-		if self:GetRank(1) then
-			base_damage = 0
-		end
+		local heal = self:GetSpecialValueFor("heal")
 
 		-- UP 4.6
 		if self:GetRank(6) then
@@ -161,7 +156,7 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 
 		self.respawn = hTarget:GetHealthPercent()
 		self.damage = hTarget:FindModifierByName("shadow_0_modifier_poison"):GetTotalPoisonDamage() * multiplier * 0.01
-		self.damage = self.damage + base_damage
+		local hp_target = hTarget:GetHealth()
 
 		local damageTable = {
 			victim = hTarget,
@@ -171,12 +166,19 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 			ability = self
 		}
 		
-		self.heal = 0.5
 		local total = math.floor(ApplyDamage( damageTable ))
 		self:PopupDamageOverTime(hTarget, total)
 		self:PlayEffects(hTarget)
 
-		hTarget:RemoveModifierByName("shadow_0_modifier_poison")
+		if hTarget:IsAlive() then
+			caster:Heal(total * heal * 0.01, self) 
+			hTarget:RemoveModifierByName("shadow_0_modifier_poison")
+		else
+			heal = heal * 1.5
+			caster:Heal(hp_target * heal * 0.01, self)
+			self:EndCooldown()
+		end
+
 		self.target_hero = nil
 	end
 
@@ -186,13 +188,9 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 
 	function shadow_u__dagger:OnHeroDiedNearby(hVictim, hKiller, kv)
 		if hVictim == nil or hKiller == nil or self.target_hero == nil then return end
-
 		local caster = self:GetCaster()
 
 		if hVictim:HasModifier("shadow_0_modifier_poison") and self.target_hero == hVictim then
-
-			self:EndCooldown()
-			self.heal = 1
 
 			-- UP 4.5
 			if self:GetRank(5) then
@@ -205,7 +203,6 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 	end
 
 	function shadow_u__dagger:CastFilterResultTarget( hTarget )
-
 		local caster = self:GetCaster()
 		local flag = 0
 
@@ -241,9 +238,9 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 
 	function shadow_u__dagger:GetManaCost(iLevel)
 		if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return 90 + (9 * (self:GetLevel() - 1)) end
+        if self:GetCurrentAbilityCharges() == 1 then return 100 end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
-		return 90 + (9 * (self:GetLevel() - 1))
+		return 100
 	end
 
 -- EFFECTS

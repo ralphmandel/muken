@@ -9,7 +9,6 @@
 
 	"shadow__attributes"
 	{
-
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/shadow/shadow__attributes"
 
@@ -36,12 +35,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"4"
+				"base_INT"				"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"4"
+				"base_CON"				"3"
 			}
 			"05"
 			{
@@ -77,10 +76,7 @@
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/shadow/shadow_1__weapon"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"     		"shadow_weapon"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -90,8 +86,8 @@
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityManaCost"         		"70 77 84 91 98 105 112 119 126 133 140"
-		"AbilityCooldown"				"10"
+		"AbilityManaCost"         		"80 88 96 103 112 120 128 136 144 152 160"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
@@ -103,17 +99,17 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"10"
+				"shadow_chance"		"10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_reduction"	"12"
+				"damage_reduction"	"7.5"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_loss"			"5"
+				"hp_loss"			"2"
 			}
 			"15"
 			{
@@ -141,7 +137,7 @@
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234"
-		"AbilityCooldown"				"21"
+		"AbilityCooldown"				"18"
 		"AbilityCastRange"      		"600"
 		"AoERadius"               		"320 330 340 350 360 370 380 390 400"
 
@@ -150,12 +146,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"intervals"			"1"
+				"intervals"			"1.25"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"4.5"
+				"duration"			"5"
 			}
 			"07"
 			{
@@ -182,14 +178,14 @@
 		"AbilityTextureName"     		"shadow_walk"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"16"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"       		"0.1"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityManaCost"         		"50 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125"
-		"AbilityCooldown"				"10"
+		"AbilityManaCost"         		"50 55 60 65 70 75 80 85 90 95 100 105 110 115"
+		"AbilityCooldown"				"7.5 7.2 6.9 6.6 6.3 6 5.7 5.4 5.1 4.8 4.5 4.2 3.9 3.6"
 
 		"AbilitySpecial"
 		{
@@ -203,15 +199,10 @@
 				"var_type"			"FIELD_FLOAT"
 				"shadow_duration"	"12"
 			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"avoid_chance"		"17.5 18 18.5 19 19.5 20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25"
-			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
 		}
 	}
@@ -236,9 +227,9 @@
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180 190 200 210"
-		"AbilityCooldown"				"30"
-		"AbilityCastRange"				"750 800 850 900 950 1000 1050 1100 1150 1200 1250 1300"
+		"AbilityManaCost"         		"100"
+		"AbilityCooldown"				"20 25 30 35 40 45 50 55 60 65 70 75"
+		"AbilityCastRange"				"700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800"
 
 		"AbilitySpecial"
 		{
@@ -255,12 +246,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"base_damage"		"50 55 60 65 70 75 80 85 90 95 100 105"
+				"heal"				"75"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"tooltip_range"		"750 800 850 900 950 1000 1050 1100 1150 1200 1250 1300"
+				"tooltip_range"		"700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800"
 			}
 			"15"
 			{

@@ -84,28 +84,16 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 -- SPELL START
 
-    function shadow_1__weapon:OnSpellStart()
+    function shadow_1__weapon:OnToggle()
         local caster = self:GetCaster()
-        local duration = self:GetSpecialValueFor("duration")
 
-        caster:AddNewModifier(caster, self, "shadow_1_modifier_weapon", {
-            duration = self:CalcStatus(duration, caster, caster)
-        })
-
-		local shadows = FindUnitsInRadius(
-			caster:GetTeamNumber(), caster:GetOrigin(), nil,
-			FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-            DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false
-		)
-
-        for _,shadow in pairs(shadows) do
-            if shadow:HasModifier("shadow_3_modifier_illusion") then
-                shadow:AddNewModifier(caster, self, "shadow_1_modifier_weapon", {})
-            end
-		end
-
-        if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
-
-        self:EndCooldown()
-        self:SetActivated(false)
+        if self:GetToggleState() then
+            caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
+            caster:AddNewModifier(caster, self, "shadow_1_modifier_weapon", {})
+            self:SetActivated(false)
+            if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
+        else
+            caster:RemoveModifierByName("shadow_1_modifier_weapon")
+            self:SetActivated(true)
+        end
     end

@@ -39,6 +39,23 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 	if effect then effect:StopEfxStart() end
 	self:PlayEfxStart()
 
+	if self.parent:IsIllusion() == false then
+		if IsServer() then
+			local shadows = FindUnitsInRadius(
+				self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
+				FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false
+			)
+
+			for _,shadow in pairs(shadows) do
+				if shadow:HasModifier("shadow_3_modifier_illusion") then
+					shadow:AddNewModifier(self.caster, self.ability, "shadow_1_modifier_weapon", {})
+				end
+			end
+		end
+	end
+
+	self.delay_enable = 2
 	self.intervals = 0.5
 	self:StartIntervalThink(self.intervals)
 end
@@ -64,9 +81,14 @@ function shadow_1_modifier_weapon:OnRemoved()
 			shadow:RemoveModifierByName("shadow_1_modifier_weapon")
 		end
 	end
+
+	local disable = self.caster:FindAbilityByName("shadow_1__disable")
+	if disable then
+		if disable:IsTrained() then
+			disable:SetHidden(true)
+		end
+	end
 	
-	self.ability:SetActivated(true)
-    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
@@ -98,31 +120,32 @@ end
 function shadow_1_modifier_weapon:GetModifierIncomingDamage_Percentage(keys)
 	local damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
     local mod = keys.attacker:FindModifierByName("shadow_0_modifier_poison")
-	if mod == nil then return  0 end
+	if mod == nil then return 0 end
 
 	-- UP 1.3
 	if self.ability:GetRank(3) then
-		damage_reduction = damage_reduction + 3
+		damage_reduction = damage_reduction + 2.5
 	end
 	
 	local percent = 0
 	local total = 1
 	local stacks = mod:GetStackCount()
 	for i = 1, stacks, 1 do
-		local percent = percent + (total * damage_reduction)
-		local total = total - (total * damage_reduction * 0.01)
+		percent = percent + (total * damage_reduction)
+		total = total - (total * damage_reduction * 0.01)
 	end
 
-	print(percent)
-	return percent
+	return -percent
 end
 
 function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
 	if keys.attacker ~= self.parent then return end
-	local chance = self.ability:GetSpecialValueFor("chance")
+	local chance = self.ability:GetSpecialValueFor("chance") * 10
 	local radius = 100
 
-	if RandomInt(1, 100) <= chance
+	if self.parent:IsIllusion() then chance = self.ability:GetSpecialValueFor("shadow_chance") * 10 end
+
+	if RandomInt(1, 1000) <= chance
 	and keys.target:IsMagicImmune() == false then
 		-- UP 1.1
 		if self.ability:GetRank(1) then
@@ -156,6 +179,14 @@ function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
 end
 
 function shadow_1_modifier_weapon:OnIntervalThink()
+	if self.parent:IsIllusion() == false then
+		if self.delay_enable > 0 then
+			self.delay_enable = self.delay_enable - 1
+		else
+			self.ability:SetActivated(true)
+		end
+	end
+
 	local hp_loss = self.ability:GetSpecialValueFor("hp_loss") * 0.01
 	local total = self.parent:GetHealth() - (self.parent:GetMaxHealth() * hp_loss * self.intervals)
 	self.parent:ModifyHealth(total, self.ability, false, 0)

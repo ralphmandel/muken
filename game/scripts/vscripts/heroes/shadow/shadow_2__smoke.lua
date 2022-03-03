@@ -91,7 +91,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 -- SPELL STAR
 
 	function shadow_2__smoke:GetAOERadius()
-		return (320 + ((self:GetLevel() - 1) * 1))
+		return (320 + ((self:GetLevel() - 1) * 10))
 	end
 
 	function shadow_2__smoke:OnSpellStart()

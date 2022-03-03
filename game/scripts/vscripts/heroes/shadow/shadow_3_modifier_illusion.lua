@@ -106,7 +106,6 @@ end
 
 function shadow_3_modifier_illusion:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_FIXED_ATTACK_RATE
@@ -125,20 +124,6 @@ end
 
 function shadow_3_modifier_illusion:GetModifierFixedAttackRate()
 	return self.aspd * 0.01
-end
-
-function shadow_3_modifier_illusion:GetModifierProcAttack_Feedback(keys)
-	if keys.attacker ~= self.parent then return end
-	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-	if keys.target:IsMagicImmune() then return end
-	if keys.target:HasModifier("shadow_0_modifier_poison") then return end
-	if self.parent:PassivesDisabled() then return end
-
-	-- UP 3.3
-	if self.ability:GetRank(3) then
-		keys.target:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_poison", {})
-		self:PlayEfxHit(keys.target)
-	end
 end
 
 --------------------------------------------------------------------------------

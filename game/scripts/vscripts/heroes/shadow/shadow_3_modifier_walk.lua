@@ -27,9 +27,9 @@ end
 function shadow_3_modifier_walk:OnRefresh(kv)
 	if self.parent:IsIllusion() then return end
 
-	-- UP 3.1
-	if self.ability:GetRank(1) then
-		self.distance = self.ability:GetSpecialValueFor("distance") - 100
+	-- UP 3.3
+	if self.ability:GetRank(3) then
+		self.distance = self.ability:GetSpecialValueFor("distance") - 150
 	end
 end
 
@@ -39,29 +39,22 @@ end
 -------------------------------------------------------------------
 
 function shadow_3_modifier_walk:DeclareFunctions()
-
     local funcs = {
-		MODIFIER_PROPERTY_AVOID_DAMAGE
+		MODIFIER_EVENT_ON_ATTACK_LANDED
     }
  
     return funcs
 end
 
-function shadow_3_modifier_walk:GetModifierAvoidDamage(keys)
+function shadow_3_modifier_walk:OnAttackLanded(keys)
+	if keys.target ~= self.parent then return end
 	if self.parent:IsIllusion() then return end
-	local avoid_chance = self.ability:GetSpecialValueFor("avoid_chance") * 10
+	if self.parent:PassivesDisabled() then return end
 
-	if RandomInt(1, 1000) <= avoid_chance
-	and self.parent:PassivesDisabled() == false
-	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-
-		-- UP 3.6
-		if self.ability:GetRank(6)
-		and keys.attacker:HasModifier("shadow_0_modifier_poison") then
-			self:CreateShadow(keys.attacker, true, 5)
-		end
-
-		return 1
+	-- UP 3.4
+	if self.ability:GetRank(4)
+	and RandomInt(1, 100) <= 5 then
+		self:CreateShadow(keys.attacker, true, 5)
 	end
 end
 

@@ -5,6 +5,8 @@ LinkLuaModifier("shadow_3_modifier_walk", "heroes/shadow/shadow_3_modifier_walk"
 LinkLuaModifier("shadow_3_modifier_invisible", "heroes/shadow/shadow_3_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_3_modifier_illusion", "heroes/shadow/shadow_3_modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_3_modifier_night", "heroes/shadow/shadow_3_modifier_night", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadow_3_modifier_stun", "heroes/shadow/shadow_3_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -73,18 +75,12 @@ LinkLuaModifier("shadow_3_modifier_night", "heroes/shadow/shadow_3_modifier_nigh
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 
-        -- UP 3.2
-        if self:GetRank(2) then
+        -- UP 3.1
+        if self:GetRank(1) then
             caster:AddNewModifier(caster, self, "shadow_3_modifier_night", {})
         end
 
         local charges = 1
-
-        -- UP 3.4
-        if self:GetRank(4) then
-            charges = charges * 2
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -128,6 +124,14 @@ LinkLuaModifier("shadow_3_modifier_night", "heroes/shadow/shadow_3_modifier_nigh
         local cooldown = self:GetEffectiveCooldown(self:GetLevel()) * (1 + (distance_traveled * 0.001))
         self:EndCooldown()
         self:StartCooldown(cooldown)
+
+        -- UP 3.2
+        if self:GetRank(2) then
+            caster:AddNewModifier(caster, self, "shadow_3_modifier_stun", {
+                duration = 3,
+                distance = distance_traveled
+            })
+        end
     
         -- Kill Illusion
         target:ForceKill(false)
@@ -136,8 +140,8 @@ LinkLuaModifier("shadow_3_modifier_night", "heroes/shadow/shadow_3_modifier_nigh
     function shadow_3__walk:OnOwnerSpawned()
         local caster = self:GetCaster()
 
-        -- UP 3.2
-        if self:GetRank(2) then
+        -- UP 3.1
+        if self:GetRank(1) then
             caster:AddNewModifier(caster, self, "shadow_3_modifier_night", {})
         end
     end
@@ -187,12 +191,6 @@ LinkLuaModifier("shadow_3_modifier_night", "heroes/shadow/shadow_3_modifier_nigh
             return "INVALID TARGET"
         end
     end
-
-    function shadow_3__walk:GetCooldown(iLevel)
-		if self:GetCurrentAbilityCharges() == 0 then return 10 end
-		if self:GetCurrentAbilityCharges() == 1 then return 10 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 5 end
-	end
 
 -- EFFECTS
 
