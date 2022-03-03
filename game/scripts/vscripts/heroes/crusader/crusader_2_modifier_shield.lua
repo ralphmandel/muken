@@ -168,14 +168,21 @@ end
 
 function crusader_2_modifier_shield:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_AVOID_DAMAGE,
+        MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT
         --MODIFIER_PROPERTY_ABSORB_SPELL,
     }
     return funcs
 end
 
-function crusader_2_modifier_shield:GetModifierAvoidDamage(keys)
-    local heal = keys.damage * self.converted_damage * 0.01
+function crusader_2_modifier_shield:GetModifierIncomingSpellDamageConstant(keys)
+    local damage_taken = -keys.original_damage
+    local avoid_damage = keys.original_damage
+    if keys.original_damage > self:GetStackCount() then
+        damage_taken = keys.original_damage - self:GetStackCount()
+        avoid_damage = avoid_damage - damage_taken
+    end
+
+    local heal = avoid_damage * self.converted_damage * 0.01
     local mnd = self.caster:FindModifierByName("_2_MND_modifier")
 	if mnd then heal = heal * mnd:GetHealPower() end
     if heal > 0 then
@@ -183,15 +190,15 @@ function crusader_2_modifier_shield:GetModifierAvoidDamage(keys)
         self:PlayEfxLifesteal()
     end
 
-    self:PlayEfxDamage(keys.damage)
-    self:SetStackCount(self:GetStackCount() - keys.damage)
+    self:PlayEfxDamage(avoid_damage)
+    self:SetStackCount(self:GetStackCount() - keys.original_damage)
 
     if self:GetStackCount() < 1 then
         self:SetStackCount(0)
         self:Destroy()
     end
 
-    return 1
+    return damage_taken
 end
 
 function crusader_2_modifier_shield:OnIntervalThink()
