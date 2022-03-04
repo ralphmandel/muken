@@ -8,6 +8,6 @@
     "npc_dota_hero_pudge"               "1"
     "npc_dota_hero_shadow_shaman"       "1"
     //"npc_dota_hero_razor"               "1"    
-    //"npc_dota_hero_bloodseeker"         "1"    
+    "npc_dota_hero_bloodseeker"         "1"    
     //"npc_dota_hero_void_spirit"         "1"
 }

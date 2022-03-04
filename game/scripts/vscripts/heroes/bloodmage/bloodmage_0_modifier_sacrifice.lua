@@ -1,4 +1,5 @@
 bloodmage_0_modifier_sacrifice = class ({})
+local tempTable = require("libraries/tempTable")
 
 function bloodmage_0_modifier_sacrifice:IsHidden()
     return false
@@ -16,7 +17,11 @@ function bloodmage_0_modifier_sacrifice:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.hp_percent = self.ability:GetSpecialValueFor("hp_percent") * 0.01
+	self.stack_percent = self.ability:GetSpecialValueFor("stack_percent") * 0.01
 	self.converted_health = 0
+	if IsServer() then
+		self:SetStackCount(0)
+	end
 
 	Timers:CreateTimer((0.2), function()
 		self.parent:SetMana(0)
@@ -25,6 +30,7 @@ end
 
 function bloodmage_0_modifier_sacrifice:OnRefresh(kv)
 	self.hp_percent = self.ability:GetSpecialValueFor("hp_percent") * 0.01
+	self.stack_percent = self.ability:GetSpecialValueFor("stack_percent") * 0.01
 end
 
 function bloodmage_0_modifier_sacrifice:OnRemoved(kv)
@@ -52,12 +58,30 @@ function bloodmage_0_modifier_sacrifice:OnManaGained(keys)
 	end
 end
 
+function bloodmage_0_modifier_sacrifice:AddStack()
+	local stack_duration = self.ability:GetSpecialValueFor("stack_duration")
+	if IsServer() then
+        -- add stack modifier
+		local this = tempTable:AddATValue( self )
+		self.parent:AddNewModifier(
+			self.caster, -- player source
+			self.ability, -- ability source
+			"bloodmage_0_modifier_sacrifice_stack", -- modifier name
+			{
+				duration = self.ability:CalcStatus(stack_duration, self.caster, self.parent),
+				modifier = this,
+			} -- kv
+		)
+		self:IncrementStackCount()
+	end
+end
+
 function bloodmage_0_modifier_sacrifice:IncrementBP()
 	local current_bp = self.parent:GetMana()
 	local max_bp = self.parent:GetMaxMana()
     local current_max_hp = self.parent:GetMaxHealth()
-
-	local converted_amount = math.floor(current_max_hp * self.hp_percent)
+	local total_percent = self.hp_percent + (self.stack_percent * self:GetStackCount())
+	local converted_amount = math.floor(current_max_hp * total_percent)
 	if converted_amount < 1 then return end
 	if converted_amount + current_bp > max_bp then converted_amount = max_bp - current_bp end
 

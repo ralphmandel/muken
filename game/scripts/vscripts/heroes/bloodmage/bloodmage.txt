@@ -82,10 +82,20 @@
 
 		"AbilitySpecial"
 		{
-			"15"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"hp_percent"	"15"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stack_percent"	"2"		
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stack_duration""15"
 			}
 			"15"
 			{

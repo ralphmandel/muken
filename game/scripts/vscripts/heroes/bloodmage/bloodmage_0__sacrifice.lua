@@ -1,5 +1,7 @@
 bloodmage_0__sacrifice = class({})
 LinkLuaModifier("bloodmage_0_modifier_sacrifice", "heroes/bloodmage/bloodmage_0_modifier_sacrifice", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodmage_0_modifier_sacrifice_stack", "heroes/bloodmage/bloodmage_0_modifier_sacrifice_stack", LUA_MODIFIER_MOTION_NONE)
+
 
 -- INIT
 
@@ -55,6 +57,7 @@ LinkLuaModifier("bloodmage_0_modifier_sacrifice", "heroes/bloodmage/bloodmage_0_
         local mod_sacrifice = caster:FindModifierByName("bloodmage_0_modifier_sacrifice")
         if mod_sacrifice then
             mod_sacrifice:IncrementBP()
+            mod_sacrifice:AddStack()
         end
     end
 
