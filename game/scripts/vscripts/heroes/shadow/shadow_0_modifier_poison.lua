@@ -29,7 +29,7 @@ function shadow_0_modifier_poison:OnCreated( kv )
 	self.total = kv.total or 0
 	self.total_stack = self.total
 	self.poison_heal = 0
-	self.poison_damage = 10
+	self.poison_damage = 9
 	self.ticks = 15
 	self.purge = true
 	self.tracking = 0

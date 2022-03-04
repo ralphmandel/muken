@@ -68,7 +68,7 @@ LinkLuaModifier("_modifier_no_bar", "modifiers/_modifier_no_bar", LUA_MODIFIER_M
         end
 
         caster:AddNewModifier(caster, self, "shadow_x2_modifier_sick", {duration = duration})
-        if IsServer() then self.parent:EmitSoundParams("Hero_Spectre.Reality", 1, 1, 0) end
+        if IsServer() then caster:EmitSoundParams("Hero_Spectre.Reality", 1, 1, 0) end
     end
 
     function shadow_x2__sick:CreateShadow(target, duration)

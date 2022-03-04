@@ -125,7 +125,7 @@ function shadow_1_modifier_weapon:GetModifierIncomingDamage_Percentage(keys)
 
 	-- UP 1.3
 	if self.ability:GetRank(3) then
-		damage_reduction = damage_reduction + 2.5
+		damage_reduction = damage_reduction + 2
 	end
 	
 	local percent = 0
