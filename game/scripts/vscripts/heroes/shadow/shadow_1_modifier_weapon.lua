@@ -1,7 +1,7 @@
 shadow_1_modifier_weapon = class({})
 
 function shadow_1_modifier_weapon:IsPurgable()
-	return true
+	return false
 end
 
 function shadow_1_modifier_weapon:IsHidden()
@@ -15,6 +15,7 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.hp_loss = self.ability:GetSpecialValueFor("hp_loss") * 0.01
 	self.effect_radius = 0
 	self.phase = false
 
@@ -39,8 +40,8 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 	if effect then effect:StopEfxStart() end
 	self:PlayEfxStart()
 
-	if self.parent:IsIllusion() == false then
-		if IsServer() then
+	if IsServer() then
+		if self.parent:IsIllusion() == false then
 			local shadows = FindUnitsInRadius(
 				self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
 				FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY,
@@ -53,11 +54,11 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 				end
 			end
 		end
-	end
 
-	self.delay_enable = 2
-	self.intervals = 0.5
-	self:StartIntervalThink(self.intervals)
+		self.delay_enable = 2
+		self.intervals = 0.5
+		self:StartIntervalThink(self.intervals)
+	end
 end
 
 function shadow_1_modifier_weapon:OnRefresh(kv)
@@ -187,8 +188,7 @@ function shadow_1_modifier_weapon:OnIntervalThink()
 		end
 	end
 
-	local hp_loss = self.ability:GetSpecialValueFor("hp_loss") * 0.01
-	local total = self.parent:GetHealth() - (self.parent:GetMaxHealth() * hp_loss * self.intervals)
+	local total = self.parent:GetHealth() - (self.parent:GetMaxHealth() * self.hp_loss * self.intervals)
 	self.parent:ModifyHealth(total, self.ability, false, 0)
 
 	-- UP 1.5
@@ -209,6 +209,9 @@ function shadow_1_modifier_weapon:OnIntervalThink()
 			enemy:AddNewModifier(self.caster, self.ability, "shadow_1_modifier_faster", {duration = 1})
 		end
 	end
+
+	self:StartIntervalThink(-1)
+	self:StartIntervalThink(self.intervals)
 end
 
 --------------------------------------------------------------------------------

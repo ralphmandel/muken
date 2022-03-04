@@ -80,11 +80,11 @@ function shadow_0_modifier_poison:OnCreated( kv )
 		self.total = math.floor(ApplyDamage( self.damageTable ))
 		self.total_stack = self.total_stack + self.total
 		if self.total > 0 then self:PopupDamageOverTime(self.parent, self.total) end
-    end
 
-	self:PlaySoundsEfx()
-	self:PlayEffects(self.parent)
-	self:StartIntervalThink(0.1) 
+		self:PlaySoundsEfx()
+		self:PlayEffects(self.parent)
+		self:StartIntervalThink(0.1) 
+    end
 end
 
 function shadow_0_modifier_poison:OnRefresh( kv )
