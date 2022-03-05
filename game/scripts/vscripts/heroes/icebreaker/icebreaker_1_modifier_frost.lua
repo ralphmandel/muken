@@ -73,7 +73,7 @@ function icebreaker_1_modifier_frost:GetModifierDamageOutgoing_Percentage(keys)
 
 	-- UP 1.4
 	if self.ability:GetRank(4) then
-		return -75
+		return -50
 	end
 end
 
@@ -109,7 +109,7 @@ function icebreaker_1_modifier_frost:OnAttack(keys)
 		local damageTable = {
 			victim = keys.target,
 			attacker = self.parent,
-			damage = slow_mod:GetStackCount() * 4,
+			damage = slow_mod:GetStackCount() * 2,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self.ability
 		}

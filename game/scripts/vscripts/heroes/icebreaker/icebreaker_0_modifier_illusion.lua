@@ -30,6 +30,10 @@ end
 
 --------------------------------------------------------------------------------
 
+function icebreaker_0_modifier_illusion:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
 function icebreaker_0_modifier_illusion:CheckState()
 	local state = {
         [MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS] = true,
@@ -42,7 +46,8 @@ function icebreaker_0_modifier_illusion:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 	
 	return funcs
@@ -54,6 +59,10 @@ end
 
 function icebreaker_0_modifier_illusion:GetModifierFixedAttackRate()
 	return 1.5
+end
+
+function icebreaker_0_modifier_illusion:GetModifierBaseAttackTimeConstant()
+    return 1.2
 end
 
 function icebreaker_0_modifier_illusion:OnAttackLanded(keys)
