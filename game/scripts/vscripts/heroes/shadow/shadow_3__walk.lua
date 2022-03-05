@@ -121,7 +121,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     
         -- Define Cooldown
         local distance_traveled = (blinkPosition - origin):Length2D()
-        local cooldown = self:GetEffectiveCooldown(self:GetLevel()) * (1 + (distance_traveled * 0.001))
+        local cooldown = self:GetEffectiveCooldown(self:GetLevel()) * (0 + (distance_traveled * 0.001))
         self:EndCooldown()
         self:StartCooldown(cooldown)
 

@@ -72,11 +72,27 @@
 
 	// SKILL 1 ////////////////////////////////////////////////////////////////
 
+	"shadow_1__disable"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/shadow/shadow_1__disable"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"     		"shadow_disable"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityManaCost"         		"50"
+	}
+
 	"shadow_1__weapon"
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/shadow/shadow_1__weapon"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"     		"shadow_weapon"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -87,7 +103,7 @@
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityManaCost"         		"80 88 96 103 112 120 128 136 144 152 160"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"10"
 
 		"AbilitySpecial"
 		{
@@ -104,7 +120,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_reduction"	"6"
+				"duration"			"10"
 			}
 			"04"
 			{
@@ -185,7 +201,7 @@
 		"AbilityCastPoint"       		"0.1"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityManaCost"         		"50 55 60 65 70 75 80 85 90 95 100 105 110 115"
-		"AbilityCooldown"				"7.5 7.2 6.9 6.6 6.3 6 5.7 5.4 5.1 4.8 4.5 4.2 3.9 3.6"
+		"AbilityCooldown"				"12 11.8 11.6 11.4 11.2 11 10.8 10.6 10.4 10.2 10 9.8 9.6 9.4"
 
 		"AbilitySpecial"
 		{
@@ -246,7 +262,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"heal"				"75"
+				"heal"				"100"
 			}
 			"04"
 			{

@@ -133,7 +133,7 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 		if hTarget:TriggerSpellAbsorb( self ) then return end
 
 		-- UP 4.2
-		if self:GetRank(5) == false and hTarget:IsMagicImmune() then
+		if self:GetRank(2) == false and hTarget:IsMagicImmune() then
 			return
 		end
 

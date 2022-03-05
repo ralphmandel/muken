@@ -28,12 +28,13 @@ function shadow_1_modifier_weapon:OnCreated(kv)
 	-- UP 1.4
 	if self.ability:GetRank(4)
 	and self.parent:IsIllusion() == false then
-		self.ability:AddBonus("_1_AGI", self.parent, 15, 0, nil)
+		self.ability:AddBonus("_1_AGI", self.parent, 20, 0, nil)
+		self.hp_loss = (self.ability:GetSpecialValueFor("hp_loss") + 1) * 0.01
 	end
 
 	-- UP 1.5
 	if self.ability:GetRank(5) then
-		self.effect_radius = 200
+		self.effect_radius = 150
 	end
 
 	local effect = self.parent:FindModifierByName("shadow__modifier_effect")
@@ -87,6 +88,8 @@ function shadow_1_modifier_weapon:OnRemoved()
 	if disable then
 		if disable:IsTrained() then
 			disable:SetHidden(true)
+			self.ability:SetHidden(false)
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 		end
 	end
 	
@@ -102,7 +105,8 @@ end
 
 function shadow_1_modifier_weapon:CheckState()
 	local state = {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = self.phase,
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = self.phase
 	}
 
 	return state
@@ -119,24 +123,12 @@ function shadow_1_modifier_weapon:DeclareFunctions()
 end
 
 function shadow_1_modifier_weapon:GetModifierIncomingDamage_Percentage(keys)
-	local damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
-    local mod = keys.attacker:FindModifierByName("shadow_0_modifier_poison")
-	if mod == nil then return 0 end
-
 	-- UP 1.3
 	if self.ability:GetRank(3) then
-		damage_reduction = damage_reduction + 2
-	end
-	
-	local percent = 0
-	local total = 1
-	local stacks = mod:GetStackCount()
-	for i = 1, stacks, 1 do
-		percent = percent + (total * damage_reduction)
-		total = total - (total * damage_reduction * 0.01)
+		return -20
 	end
 
-	return -percent
+	return 0
 end
 
 function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
@@ -150,7 +142,7 @@ function shadow_1_modifier_weapon:GetModifierProcAttack_Feedback(keys)
 	and keys.target:IsMagicImmune() == false then
 		-- UP 1.1
 		if self.ability:GetRank(1) then
-			radius = 250
+			radius = 200
 			local enemies = FindUnitsInRadius(
 				self.caster:GetTeamNumber(), keys.target:GetOrigin(), nil, radius,
 				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,

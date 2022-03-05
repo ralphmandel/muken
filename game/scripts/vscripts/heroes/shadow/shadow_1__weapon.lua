@@ -84,16 +84,22 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 -- SPELL START
 
-    function shadow_1__weapon:OnToggle()
+    function shadow_1__weapon:OnSpellStart()
         local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
 
-        if self:GetToggleState() then
-            caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
-            caster:AddNewModifier(caster, self, "shadow_1_modifier_weapon", {})
-            self:SetActivated(false)
-            if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
-        else
-            caster:RemoveModifierByName("shadow_1_modifier_weapon")
-            self:SetActivated(true)
+        caster:AddNewModifier(caster, self, "shadow_1_modifier_weapon", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
+
+        if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
+
+        local disable = caster:FindAbilityByName("shadow_1__disable")
+        if disable then
+            if disable:IsTrained() then
+                disable:SetHidden(false)
+                self:SetHidden(true)
+                self:EndCooldown()
+            end
         end
     end

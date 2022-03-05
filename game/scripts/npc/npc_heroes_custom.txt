@@ -80,9 +80,9 @@
 
 		//ABILITIES
 			"Ability1"						"shadow_1__weapon"
-			"Ability2"						"shadow_2__smoke"
-			"Ability3"						"shadow_3__walk"
-			"Ability4"						"null"
+			"Ability2"						"shadow_1__disable"
+			"Ability3"						"shadow_2__smoke"
+			"Ability4"						"shadow_3__walk"
 			"Ability5"						"null"
 			"Ability6"						"shadow_u__dagger"
 			"Ability7"						"shadow_3__second_shadow"
