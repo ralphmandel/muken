@@ -23,7 +23,7 @@
 
 .WindowIn
 {
-    transform: translatex( 750px );
+    transform: translatex( 1200px );
     transition-property: transform;
     transition-duration: 0.2s;
 }

@@ -11,95 +11,145 @@
 		}
 	}
 	
-	"npc_dota_hero_"
+	"npc_dota_hero_id"
 	{
-		"rank_1"
+		"template_1__sk1"
 		{
 			"0"
 			{
-				"1"   "name_1__sk1_rank_1_1"
-				"2"   "name_1__sk1_rank_1_2"
-				"3"   "name_1__sk1_rank_1_3"
+				"1"   "template_1__sk1_rank_1_1"
+				"2"   "template_1__sk1_rank_1_2"
+				"3"   "template_1__sk1_rank_1_3"
 			}
 			"1"
 			{
-				"1"   "name_2__sk2_rank_1_1"
-				"2"   "name_2__sk2_rank_1_2"
-				"3"   "name_2__sk2_rank_1_3"
+				"1"   "template_1__sk1_rank_2_1"
+				"2"   "template_1__sk1_rank_2_2"
+				"3"   "template_1__sk1_rank_2_3"
 			}
 			"2"
 			{
-				"1"   "name_3__sk3_rank_1_1"
-				"2"   "name_3__sk3_rank_1_2"
-				"3"   "name_3__sk3_rank_1_3"
+				"1"   "template_1__sk1_rank_3_1"
+				"2"   "template_1__sk1_rank_3_2"
+				"3"   "template_1__sk1_rank_3_3"
 			}
 			"3"
 			{
-				"1"   "name_u__sk4_rank_1_1"
-				"2"   "name_u__sk4_rank_1_2"
-				"3"   "name_u__sk4_rank_1_3"
-			}
-			"4"
-			{
-				"1"   "_up_stats"
-			}
-		}
-		"rank_2"
-		{
-			"0"
-			{
-				"1"   "name_1__sk1_rank_2_1"
-				"2"   "name_1__sk1_rank_2_2"
-				"3"   "name_1__sk1_rank_2_3"
-			}
-			"1"
-			{
-				"1"   "name_2__sk2_rank_2_1"
-				"2"   "name_2__sk2_rank_2_2"
-				"3"   "name_2__sk2_rank_2_3"
-			}
-			"2"
-			{
-				"1"   "name_3__sk3_rank_2_1"
-				"2"   "name_3__sk3_rank_2_2"
-				"3"   "name_3__sk3_rank_2_3"
-			}
-			"3"
-			{
-				"1"   "name_u__sk4_rank_2_1"
-				"2"   "name_u__sk4_rank_2_2"
-				"3"   "name_u__sk4_rank_2_3"
+				"1"   "template_1__sk1_rank_4_1"
+				"2"   "template_1__sk1_rank_4_2"
 			}
 			"4"
 			{
 				"1"   "empty"
 			}
 		}
-		"rank_3"
+		"template_2__sk2"
 		{
 			"0"
 			{
-				"1"   "name_1__sk1_rank_3_1"
-				"2"   "name_1__sk1_rank_3_2"
-				"3"   "name_1__sk1_rank_3_3"
+				"1"   "template_2__sk2_rank_1_1"
+				"2"   "template_2__sk2_rank_1_2"
+				"3"   "template_2__sk2_rank_1_3"
 			}
 			"1"
 			{
-				"1"   "name_2__sk2_rank_3_1"
-				"2"   "name_2__sk2_rank_3_2"
-				"3"   "name_2__sk2_rank_3_3"
+				"1"   "template_2__sk2_rank_2_1"
+				"2"   "template_2__sk2_rank_2_2"
+				"3"   "template_2__sk2_rank_2_3"
 			}
 			"2"
 			{
-				"1"   "name_3__sk3_rank_3_1"
-				"2"   "name_3__sk3_rank_3_2"
-				"3"   "name_3__sk3_rank_3_3"
+				"1"   "template_2__sk2_rank_3_1"
+				"2"   "template_2__sk2_rank_3_2"
+				"3"   "template_2__sk2_rank_3_3"
 			}
 			"3"
 			{
-				"1"   "name_u__sk4_rank_3_1"
-				"2"   "name_u__sk4_rank_3_2"
-				"3"   "name_u__sk4_rank_3_3"
+				"1"   "template_2__sk2_rank_4_1"
+				"2"   "template_2__sk2_rank_4_2"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"template_3__sk3"
+		{
+			"0"
+			{
+				"1"   "template_3__sk3_rank_1_1"
+				"2"   "template_3__sk3_rank_1_2"
+				"3"   "template_3__sk3_rank_1_3"
+			}
+			"1"
+			{
+				"1"   "template_3__sk3_rank_2_1"
+				"2"   "template_3__sk3_rank_2_2"
+				"3"   "template_3__sk3_rank_2_3"
+			}
+			"2"
+			{
+				"1"   "template_3__sk3_rank_3_1"
+				"2"   "template_3__sk3_rank_3_2"
+				"3"   "template_3__sk3_rank_3_3"
+			}
+			"3"
+			{
+				"1"   "template_3__sk3_rank_4_1"
+				"2"   "template_3__sk3_rank_4_2"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"template_u__sk4"
+		{
+			"0"
+			{
+				"1"   "template_u__sk4_rank_1_1"
+				"2"   "template_u__sk4_rank_1_2"
+				"3"   "template_u__sk4_rank_1_3"
+			}
+			"1"
+			{
+				"1"   "template_u__sk4_rank_2_1"
+				"2"   "template_u__sk4_rank_2_2"
+				"3"   "template_u__sk4_rank_2_3"
+			}
+			"2"
+			{
+				"1"   "template_u__sk4_rank_3_1"
+				"2"   "template_u__sk4_rank_3_2"
+				"3"   "template_u__sk4_rank_3_3"
+			}
+			"3"
+			{
+				"1"   "template_u__sk4_rank_4_1"
+				"2"   "template_u__sk4_rank_4_2"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
 			}
 			"4"
 			{

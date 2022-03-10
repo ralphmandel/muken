@@ -13,7 +13,7 @@
 	
 	"npc_dota_hero_pudge"
 	{
-		"rank_1"
+		"bocuse_1__julienne"
 		{
 			"0"
 			{
@@ -22,71 +22,115 @@
 			}
 			"1"
 			{
+				"1"   "bocuse_1__julienne_rank_2_1"
+				"2"   "bocuse_1__julienne_rank_2_2"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "bocuse_1__julienne_rank_4_1"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"bocuse_2__flambee"
+		{
+			"0"
+			{
 				"1"   "bocuse_2__flambee_rank_1_1"
 				"2"   "bocuse_2__flambee_rank_1_2"
 				"3"   "bocuse_2__flambee_rank_1_3"
 			}
-			"2"
-			{
-				"1"   "bocuse_3__sauce_rank_1_1"
-			}
-			"3"
-			{
-				"1"   "bocuse_u__mise_rank_1_1"
-				"2"   "bocuse_u__mise_rank_1_2"
-			}
-			"4"
-			{
-				"1"   "_up_stats"
-			}
-		}
-		"rank_2"
-		{
-			"0"
-			{
-				"1"   "bocuse_1__julienne_rank_2_1"
-				"2"   "bocuse_1__julienne_rank_2_2"
-				"3"   "bocuse_1__julienne_rank_2_3"
-			}
 			"1"
 			{
 				"1"   "bocuse_2__flambee_rank_2_1"
-				"2"   "bocuse_2__flambee_rank_2_2"
 			}
 			"2"
 			{
-				"1"   "bocuse_3__sauce_rank_2_1"
+				"1"   "bocuse_2__flambee_rank_3_1"
+				"2"   "bocuse_2__flambee_rank_3_2"
 			}
 			"3"
 			{
-				"1"   "bocuse_u__mise_rank_2_1"
-				"2"   "bocuse_u__mise_rank_2_2"
+				"1"   "empty"
 			}
 			"4"
 			{
 				"1"   "empty"
 			}
 		}
-		"rank_3"
+		"bocuse_3__sauce"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "bocuse_3__sauce_rank_1_1"
 			}
 			"1"
 			{
-				"1"   "bocuse_2__flambee_rank_3_1"
+				"1"   "bocuse_3__sauce_rank_2_1"
 			}
 			"2"
 			{
 				"1"   "bocuse_3__sauce_rank_3_1"
 				"2"   "bocuse_3__sauce_rank_3_2"
-				"3"   "bocuse_3__sauce_rank_3_3"
 			}
 			"3"
 			{
+				"1"   "bocuse_3__sauce_rank_4_1"
+			}
+			"4"
+			{
+				"1"   "empty"			
+			}
+		}
+		"bocuse_u__mise"
+		{
+			"0"
+			{
+				"1"   "bocuse_u__mise_rank_1_1"
+
+			}
+			"1"
+			{
+				"1"   "bocuse_u__mise_rank_2_1"
+				"2"   "bocuse_u__mise_rank_2_2"
+			}
+			"2"
+			{
 				"1"   "bocuse_u__mise_rank_3_1"
-				"2"   "bocuse_u__mise_rank_3_2"
+			}
+			"3"
+			{
+				"1"   "bocuse_u__mise_rank_4_1"
+				"2"   "bocuse_u__mise_rank_4_2"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
 			}
 			"4"
 			{

@@ -15,12 +15,10 @@ function Precache( context )
 	]]
 
 	XP_PER_LEVEL_TABLE = {
-		20, 40, 60, 80,
-		100, 120, 140, 160,
-		190, 220, 250, 280,
-		310, 340, 370, 400,
-		440, 480, 520, 560,
-		600, 640, 680, 720
+		30, 40, 50, 60, 70,
+		83, 96, 109, 122, 135,
+		152, 169, 186, 203, 220,
+		242, 264, 286, 308, 330
 	}
 
 	LinkLuaModifier("modifier_wearable", "components/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE )

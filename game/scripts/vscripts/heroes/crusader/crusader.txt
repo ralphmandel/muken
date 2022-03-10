@@ -42,7 +42,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.5"
+				"STR"					"0.6"
 			}
 			"06"
 			{
@@ -52,7 +52,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.6"
+				"INT"					"0.5"
 			}
 			"08"
 			{
@@ -204,7 +204,7 @@
 		"AbilityTextureName"     		"crusader_aura"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"11"
-		"RequiredLevel"         	 	"7"
+		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"

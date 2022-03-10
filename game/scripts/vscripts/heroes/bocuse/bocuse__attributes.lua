@@ -4,10 +4,10 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	bocuse__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_1__julienne"},
+		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_2__flambee"},
+		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_3__sauce"},
+		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_u__mise"}
 	}
 
 	function bocuse__attributes:UpgradeRank(skill, id, level)
@@ -33,11 +33,11 @@ require("talent_tree")
 				local void = caster:FindAbilityByName("_void")
 				if void then void:SetLevel(1) end
 
-				caster:AddExperience(20, 0, false, false)
+				caster:AddExperience(10, 0, false, false)
 				return
 			end
 			self.extras_unlocked = self.extras_unlocked + 1
-			caster:AddExperience(level * 20, 0, false, false)
+			caster:AddExperience(level * 10, 0, false, false)
 			return
 		end
 
@@ -52,7 +52,7 @@ require("talent_tree")
 		if not ability then return end
 		if not ability:IsTrained() then return end
 		ability:SetLevel(ability:GetLevel() + level)
-		caster:AddExperience(level * 20, 0, false, false)
+		caster:AddExperience(level * 10, 0, false, false)
 	end
 
 	function bocuse__attributes:CheckNewAbility(skill, id, level)
@@ -134,9 +134,12 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		local gain = 0
-		if level ~= 2 and level ~= 4 and level ~= 7 then gain = -1 end
-		if level > 7 then gain = gain + 3 end
-		if level > 15 then gain = gain + 1 end
+		if level ~= 2 and level ~= 5 and level ~= 8 then gain = -1 end
+		if level > 0 then gain = gain + 1 end
+		if level > 4 then gain = gain + 1 end
+		if level > 8 then gain = gain + 1 end
+		if level > 12 then gain = gain + 1 end
+		if level > 16 then gain = gain + 1 end
 		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
 
 		self:UpgradeAbility(true)
@@ -268,6 +271,8 @@ require("talent_tree")
 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_3.vpcf", context )
 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_1.vpcf", context )
 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_2.vpcf", context )
+		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_3.vpcf", context )
+		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_4.vpcf", context )
 		PrecacheResource( "particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", context )
 		PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf", context )
 		PrecacheResource( "particle", "particles/items3_fx/star_emblem.vpcf", context )

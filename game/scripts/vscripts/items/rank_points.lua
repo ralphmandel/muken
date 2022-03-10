@@ -16,11 +16,11 @@ function rank_points:OnCreated( kv )
 	self.ability = self:GetAbility()
 	if self.parent:IsIllusion() then return end
 
-	self.gold_init = 36
-	self.gold_mult = 3
+	self.gold_init = 40
+	self.gold_mult = 4
 
 	self.level = 0
-	self.max_level = 36
+	self.max_level = 33
 	
 	if IsServer() then
 		self:SetStackCount(0)

@@ -4,10 +4,10 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	template__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "template_1__sk1"},
+		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "template_2__sk2"},
+		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "template_3__sk3"},
+		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "template_u__sk4"}
 	}
 
 	function template__attributes:UpgradeRank(skill, id, level)
@@ -33,11 +33,11 @@ require("talent_tree")
 				local void = caster:FindAbilityByName("_void")
 				if void then void:SetLevel(1) end
 
-				caster:AddExperience(20, 0, false, false)
+				caster:AddExperience(10, 0, false, false)
 				return
 			end
 			self.extras_unlocked = self.extras_unlocked + 1
-			caster:AddExperience(level * 20, 0, false, false)
+			caster:AddExperience(level * 10, 0, false, false)
 			return
 		end
 
@@ -52,7 +52,7 @@ require("talent_tree")
 		if not ability then return end
 		if not ability:IsTrained() then return end
 		ability:SetLevel(ability:GetLevel() + level)
-		caster:AddExperience(level * 20, 0, false, false)
+		caster:AddExperience(level * 10, 0, false, false)
 	end
 
 	function template__attributes:CheckNewAbility(skill, id, level)
@@ -134,9 +134,12 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		local gain = 0
-		if level ~= 2 and level ~= 4 and level ~= 7 then gain = -1 end
-		if level > 7 then gain = gain + 3 end
-		if level > 15 then gain = gain + 1 end
+		if level ~= 2 and level ~= 5 and level ~= 8 then gain = -1 end
+		if level > 0 then gain = gain + 1 end
+		if level > 4 then gain = gain + 1 end
+		if level > 8 then gain = gain + 1 end
+		if level > 12 then gain = gain + 1 end
+		if level > 16 then gain = gain + 1 end
 		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
 
 		self:UpgradeAbility(true)

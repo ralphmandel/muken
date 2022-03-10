@@ -31,7 +31,7 @@ function bocuse_2_modifier_flambee_buff:OnCreated(kv)
 
 	-- UP 2.5
 	if self.ability:GetRank(5) then
-		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1) * intervals
+		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
@@ -61,7 +61,7 @@ function bocuse_2_modifier_flambee_buff:OnRefresh(kv)
 	-- UP 2.5
 	if self.ability:GetRank(5) then
 		local intervals = self.ability:GetSpecialValueFor("intervals")
-		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1) * intervals
+		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end
 end
 

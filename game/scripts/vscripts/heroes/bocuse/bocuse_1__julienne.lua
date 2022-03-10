@@ -99,7 +99,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             [2] = "particles/bocuse/bocuse_strike_blur_2.vpcf",
             [3] = "particles/bocuse/bocuse_strike_blur_3.vpcf",
             [4] = "particles/bocuse/bocuse_strike_blur_extra_1.vpcf",
-            [5] = "particles/bocuse/bocuse_strike_blur_extra_2.vpcf"
+            [5] = "particles/bocuse/bocuse_strike_blur_extra_2.vpcf",
+            [6] = "particles/bocuse/bocuse_strike_blur_extra_3.vpcf",
+            [7] = "particles/bocuse/bocuse_strike_blur_extra_4.vpcf"
         }
     end
 
@@ -204,7 +206,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
                         if unit:HasModifier("strider_1_modifier_spirit") == false 
                         and unit:HasModifier("bloodstained_u_modifier_copy") == false then
-                            self:ApplyCut(unit, particle, false)
+                            self:ApplyCut(unit, particle, false, index)
                         end
                     end
                 end
@@ -212,7 +214,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
             self:PlayEfxStart(target, particle)
             self:PlayEfxCut(target)
-            self:ApplyCut(target, particle, true)
+            self:ApplyCut(target, particle, true, index)
         else
             self.cancel = true
         end
@@ -235,7 +237,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
-    function bocuse_1__julienne:ApplyCut(target, particle, original)
+    function bocuse_1__julienne:ApplyCut(target, particle, original, index)
         if target:HasModifier("strider_1_modifier_spirit") == false
         and target:HasModifier("bloodstained_u_modifier_copy") == false
         and target:IsIllusion() then return end
@@ -253,10 +255,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         -- UP 1.5
         if self:GetRank(5) then
-            charges = charges + 2
+            charges = charges + 4
         end
 
-        local max_cut = self.cut[charges]
+        --local max_cut = self.cut[charges]
 
         -- UP 1.2
         if self:GetRank(2) and original == true then
@@ -275,8 +277,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if apply_damage > 0 then self:PopupCut(target, apply_damage) end
         if target:IsAlive() == false and original == true then self.cancel = true end
 
-        if particle == max_cut then
-            if target:IsMagicImmune() == false and original == true then
+        if index > 2 and self.cancel == true then
+            if target:IsAlive() and target:IsMagicImmune() == false and original == true then
                 target:AddNewModifier(caster, self, "_modifier_stun", {duration = self:CalcStatus(stun_duration, caster, target)})
             end
         else

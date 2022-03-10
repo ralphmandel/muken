@@ -36,8 +36,8 @@ function bocuse_u_modifier_mise:OnCreated(kv)
         end
     end
 
-    -- UP 4.4
-	if self.ability:GetRank(4) then
+    -- UP 4.2
+	if self.ability:GetRank(2) then
 		self.ability:AddBonus("_1_CON", self.parent, 25, 0, nil)
 	end
 
@@ -214,9 +214,9 @@ function bocuse_u_modifier_mise:OnIntervalThink()
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
                 end
 
-                -- UP 4.1
-                if self.ability:GetRank(1) then
-                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_break", {duration = 0.5})
+                -- UP 4.3
+                if self.ability:GetRank(3) then
+                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_break", {duration = 1})
                 end
             end
         end

@@ -47,7 +47,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.3"
+				"AGI"					"0.4"
 			}
 			"07"
 			{
@@ -57,7 +57,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.8"
+				"CON"					"0.7"
 			}
 		}
 	}
@@ -223,7 +223,7 @@
 		"AbilityTextureName"     		"bloodmage_gamble"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"9"
-		"RequiredLevel"         	 	"0"
+		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"

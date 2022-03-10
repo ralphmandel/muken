@@ -225,7 +225,7 @@
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"12"
-		"RequiredLevel"         	 	"7"
+		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"       		"0.3"

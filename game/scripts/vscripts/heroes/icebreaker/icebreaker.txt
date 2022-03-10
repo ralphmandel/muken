@@ -275,7 +275,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
 		
-		"RequiredLevel"         		"7"
+		"RequiredLevel"         		"8"
 		"LevelsBetweenUpgrades"			"25"
 		"MaxLevel"              		"13"
 

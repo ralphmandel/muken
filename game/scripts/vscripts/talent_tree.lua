@@ -74,6 +74,9 @@ function TalentTree:ResetData(hero)
     elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
         data = LoadKeyValues("scripts/kv/hero_talents_Bloodmage.txt")
         hero.att = "bloodmage__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_furion" then
+        data = LoadKeyValues("scripts/kv/hero_talents_Druid.txt")
+        hero.att = "druid__attributes"
     end
 
     hero.talentsData = {}
@@ -82,23 +85,41 @@ function TalentTree:ResetData(hero)
 	
 	for _,unit in pairs(data) do
 		if not unit["min_level"] then
-            for tabName, tabData in pairs(unit) do
-                table.insert(hero.tabs, tabName)
-                for nlvl, talents in pairs(tabData) do
-                    table.insert(hero.rows, tonumber(nlvl))
-                    for _, talent in pairs(talents) do
-                        local talentData = {
-                            Ability = talent,
-                            Tab = #hero.tabs,
-                            NeedLevel = tonumber(nlvl)
-                        }
-                        if self.abilitiesData[talent] then
-                            talentData.MaxLevel = self.abilitiesData[talent]["MaxLevel"] or 1
-                        else
-                            talentData.MaxLevel = 1
+            local att = hero:FindAbilityByName(hero.att)
+            if (not att) then return false end
+            for i = 1, 5, 1 do
+                for tabName, tabData in pairs(unit) do
+                    local isTab = false
+                    if i == 5 then
+                        if tabName == "extras" then
+                            isTab = true
                         end
-                        table.insert(hero.talentsData, talentData)
+                    else
+                        if tabName == att.talents[i][8] then
+                            isTab = true
+                        end
                     end
+
+                    if isTab == true then
+                        table.insert(hero.tabs, tabName)
+                        for nlvl, talents in pairs(tabData) do
+                            table.insert(hero.rows, tonumber(nlvl))
+                            for _, talent in pairs(talents) do
+        
+                                local talentData = {
+                                    Ability = talent,
+                                    Tab = tabName,
+                                    NeedLevel = tonumber(nlvl)
+                                }
+                                if self.abilitiesData[talent] then
+                                    talentData.MaxLevel = self.abilitiesData[talent]["MaxLevel"] or 1
+                                else
+                                    talentData.MaxLevel = 1
+                                end
+                                table.insert(hero.talentsData, talentData)
+                            end
+                        end
+                    end 
                 end
             end
 		end
@@ -113,8 +134,8 @@ function TalentTree:ResetData(hero)
             loclenght = loclenght + 1
         end
     end
-	
     hero.rows = locarr
+
     self.talentData = data
 end
 
@@ -301,48 +322,44 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
         return false
     end
 
-    if (TalentTree:GetTalentMaxLevel(hero, talentId) == 5) then
-        local xp = 5
-        if hero:GetCurrentXP() >= 140 then xp = xp - 1 end
-        if hero:GetCurrentXP() >= 280 then xp = xp - 1 end
-        if hero:GetCurrentXP() >= 420 then xp = xp - 1 end
-        if hero:GetCurrentXP() >= 560 then xp = xp - 1 end
-        if hero:GetCurrentXP() >= 700 then xp = xp - 1 end
-        local max = TalentTree:GetTalentMaxLevel(hero, talentId) - xp
-        if (TalentTree:GetHeroTalentLevel(hero, talentId) >= max) then
-            return false
-        end
-        if (TalentTree:GetHeroCurrentTalentPoints(hero) <= 0) then
-            return false
-        end
-        return true
-    end
+    -- STATS DISABLED |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    -- if (TalentTree:GetTalentMaxLevel(hero, talentId) == 6) then
+    --     local xp = 5
+    --     if hero:GetCurrentXP() >= 140 then xp = xp - 1 end
+    --     if hero:GetCurrentXP() >= 280 then xp = xp - 1 end
+    --     if hero:GetCurrentXP() >= 420 then xp = xp - 1 end
+    --     if hero:GetCurrentXP() >= 560 then xp = xp - 1 end
+    --     if hero:GetCurrentXP() >= 700 then xp = xp - 1 end
+    --     local max = TalentTree:GetTalentMaxLevel(hero, talentId) - xp
+    --     if (TalentTree:GetHeroTalentLevel(hero, talentId) >= max) then
+    --         return false
+    --     end
+    --     if (TalentTree:GetHeroCurrentTalentPoints(hero) <= 0) then
+    --         return false
+    --     end
+    --     return true
+    -- end
 
     local att = hero:FindAbilityByName(hero.att)
     if (not att) then return false end
 
-    if hero.talentsData[talentId].NeedLevel == 0 and (not att.talents[1][0]) then
-        return false
+    for i = 1, 4, 1 do
+        if hero.talentsData[talentId].Tab == att.talents[i][8]
+        and (not att.talents[i][0]) then
+            return false
+        end
     end
-    if hero.talentsData[talentId].NeedLevel == 1 and (not att.talents[2][0]) then
-        return false
-    end
-    if hero.talentsData[talentId].NeedLevel == 2 and (not att.talents[3][0]) then
-        return false
-    end
-    if hero.talentsData[talentId].NeedLevel == 3 and (not att.talents[4][0]) then
-        return false
-    end
-    if hero.talentsData[talentId].NeedLevel == 4 then
+
+    if hero.talentsData[talentId].Tab == "extras" then
         if (not att.talents[1][0]) or (not att.talents[2][0]) or (not att.talents[3][0]) or (not att.talents[4][0]) then
             return false
         else
             if att.extras_unlocked > 0 then
-                if hero:GetLevel() < 16 then
+                if hero:GetLevel() < 15 then
                     return false
                 end
             else
-                if hero:GetLevel() < 8 then
+                if hero:GetLevel() < 10 then
                     return false
                 end
             end
@@ -411,7 +428,7 @@ function TalentTree:OnTalentTreeLevelUpRequest(event)
     if TalentTree:IsHeroCanLevelUpTalent(hero, talentId) then--(TalentTree:IsHeroSpendEnoughPointsInColumnForTalent(hero, talentId) and TalentTree:IsHeroCanLevelUpTalent(hero, talentId)) then
         local MaxTalentLvl = TalentTree:GetTalentMaxLevel(hero, talentId)
         local talentLvl = TalentTree:GetHeroTalentLevel(hero, talentId)
-        if MaxTalentLvl == 5 then
+        if MaxTalentLvl == 6 then
             TalentTree:AddTalentPointsToHero(hero, -1)
             TalentTree:SetHeroTalentLevel(hero, talentId, talentLvl + 1)
         else

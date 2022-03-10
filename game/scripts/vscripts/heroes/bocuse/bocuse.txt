@@ -73,12 +73,12 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		// Stats
-		"AbilityManaCost"         		"80 88 96 104 112 120 128 136 144"
+		"AbilityManaCost"         		"80 88 96 104 112 120 128 136 144 152 160"
 		"AbilityCastRange"				"300"
 
 		"AbilitySpecial"
@@ -86,7 +86,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"			"32 33 34 35 36 37 38 39 40"
+				"damage"			"30 31 32 33 34 35 36 37 38 39 40"
 			}
 			"02"
 			{
@@ -141,7 +141,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -157,14 +157,14 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"       		"0.1"
 
 		// Stats
-		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260"
+		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260 273"
 		"AbilityCooldown"				"24"
 		"AbilityCastRange"				"900"
 
@@ -173,12 +173,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"range_tooltip"		"700 750 800 850 900 950 1000 1050 1100 1150 1200"
+				"range_tooltip"		"700 750 800 850 900 950 1000 1050 1100 1150 1200 1250"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"projectile_speed"	"700 720 740 760 780 800 820 640 860 880 900"
+				"projectile_speed"	"700 725 750 775 800 825 850 875 900 925 950 975"
 			}
 			"03"
 			{
@@ -213,7 +213,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -228,7 +228,7 @@
 		"AbilityTextureName"     		"bocuse_sauce"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -262,7 +262,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
 			}
 		}
 	}
@@ -277,12 +277,12 @@
 		"AbilityTextureName"     		"bocuse_mise"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"13"
-		"RequiredLevel"         	 	"7"
+		"MaxLevel"               		"17"
+		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityManaCost"         		"140 154 168 182 196 210 224 238 252 266 280 294 308"
-		"AbilityCooldown"				"36 35 34 33 32 31 30 29 28 27 26 25 24"
+		"AbilityManaCost"         		"140 154 168 182 196 210 224 238 252 266 280 294 308 322 336 350 364"
+		"AbilityCooldown"				"40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24"
 
 		"AbilitySpecial"
 		{
@@ -319,7 +319,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11 12"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25"
 			}
 		}
 	}

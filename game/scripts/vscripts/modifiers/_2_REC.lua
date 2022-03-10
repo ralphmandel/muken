@@ -57,7 +57,7 @@ function _2_REC:CheckLevelUp(trained)
 		return
 	end
 	
-	if self:GetLevel() < ((caster:GetLevel() + 1) * 2) then
+	if self:GetLevel() < (caster:GetLevel() * 2.5) then
 		self:SetCurrentAbilityCharges(2)
 	else
 		self:SetCurrentAbilityCharges(1)

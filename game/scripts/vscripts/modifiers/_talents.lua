@@ -99,6 +99,8 @@
         bocuse_1__julienne_rank_3_1 = class ({})
         bocuse_1__julienne_rank_3_2 = class ({})
         bocuse_1__julienne_rank_3_3 = class ({})
+        bocuse_1__julienne_rank_4_1 = class ({})
+        bocuse_1__julienne_rank_4_2 = class ({})
 
     -- BOCUSE 2
         bocuse_2__flambee_rank_1_1 = class ({})
@@ -110,6 +112,8 @@
         bocuse_2__flambee_rank_3_1 = class ({})
         bocuse_2__flambee_rank_3_2 = class ({})
         bocuse_2__flambee_rank_3_3 = class ({})
+        bocuse_2__flambee_rank_4_1 = class ({})
+        bocuse_2__flambee_rank_4_2 = class ({})
 
     -- BOCUSE 3
         bocuse_3__sauce_rank_1_1 = class ({})
@@ -121,6 +125,8 @@
         bocuse_3__sauce_rank_3_1 = class ({})
         bocuse_3__sauce_rank_3_2 = class ({})
         bocuse_3__sauce_rank_3_3 = class ({})
+        bocuse_3__sauce_rank_4_1 = class ({})
+        bocuse_3__sauce_rank_4_2 = class ({})
 
     -- BOCUSE U
         bocuse_u__mise_rank_1_1 = class ({})
@@ -132,6 +138,8 @@
         bocuse_u__mise_rank_3_1 = class ({})
         bocuse_u__mise_rank_3_2 = class ({})
         bocuse_u__mise_rank_3_3 = class ({})
+        bocuse_u__mise_rank_4_1 = class ({})
+        bocuse_u__mise_rank_4_2 = class ({})
 
 -- INQUISITOR
     -- INQUISITOR 1
@@ -312,6 +320,59 @@
         dasdingo_u__maledict_rank_3_1 = class ({})
         dasdingo_u__maledict_rank_3_2 = class ({})
         dasdingo_u__maledict_rank_3_3 = class ({})
+
+-- DRUID
+    -- DRUID 1
+        druid_1__conversion_rank_1_1 = class ({})
+        druid_1__conversion_rank_1_2 = class ({})
+        druid_1__conversion_rank_1_3 = class ({})
+        druid_1__conversion_rank_2_1 = class ({})
+        druid_1__conversion_rank_2_2 = class ({})
+        druid_1__conversion_rank_2_3 = class ({})
+        druid_1__conversion_rank_3_1 = class ({})
+        druid_1__conversion_rank_3_2 = class ({})
+        druid_1__conversion_rank_3_3 = class ({})
+        druid_1__conversion_rank_4_1 = class ({})
+        druid_1__conversion_rank_4_2 = class ({})
+
+    -- DRUID 2
+        druid_2__root_rank_1_1 = class ({})
+        druid_2__root_rank_1_2 = class ({})
+        druid_2__root_rank_1_3 = class ({})
+        druid_2__root_rank_2_1 = class ({})
+        druid_2__root_rank_2_2 = class ({})
+        druid_2__root_rank_2_3 = class ({})
+        druid_2__root_rank_3_1 = class ({})
+        druid_2__root_rank_3_2 = class ({})
+        druid_2__root_rank_4_1 = class ({})
+        druid_2__root_rank_4_2 = class ({})
+
+    -- DRUID 3
+        druid_3__totem_rank_1_1 = class ({})
+        druid_3__totem_rank_1_2 = class ({})
+        druid_3__totem_rank_1_3 = class ({})
+        druid_3__totem_rank_2_1 = class ({})
+        druid_3__totem_rank_2_2 = class ({})
+        druid_3__totem_rank_2_3 = class ({})
+        druid_3__totem_rank_3_1 = class ({})
+        druid_3__totem_rank_3_2 = class ({})
+        druid_3__totem_rank_3_3 = class ({})
+        druid_3__totem_rank_4_1 = class ({})
+        druid_3__totem_rank_4_2 = class ({})
+
+
+    -- DRUID U
+        druid_u__seed_rank_1_1 = class ({})
+        druid_u__seed_rank_1_2 = class ({})
+        druid_u__seed_rank_1_3 = class ({})
+        druid_u__seed_rank_2_1 = class ({})
+        druid_u__seed_rank_2_2 = class ({})
+        druid_u__seed_rank_2_3 = class ({})
+        druid_u__seed_rank_3_1 = class ({})
+        druid_u__seed_rank_3_2 = class ({})
+        druid_u__seed_rank_3_3 = class ({})
+        druid_u__seed_rank_4_1 = class ({})
+        druid_u__seed_rank_4_2 = class ({})
 
 -- STRIDER
     -- STRIDER 1

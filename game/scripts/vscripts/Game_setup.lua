@@ -14,9 +14,9 @@ require('libraries/wearables')
 
 function GameSetup:init()
     if IsInToolsMode() then -- debug build
-        GameRules:SetStartingGold(99999)
+        GameRules:SetStartingGold(134)
     else
-        GameRules:SetStartingGold(100)
+        GameRules:SetStartingGold(134)
     end
     -- skip all the starting game mode stages e.g picking screen, showcase, etc
     --GameRules:EnableCustomGameSetupAutoLaunch(true)
@@ -51,8 +51,12 @@ function GameSetup:init()
     GameMode:SetBuybackEnabled(false)
     GameMode:SetDaynightCycleAdvanceRate(1)
     GameMode:SetDaynightCycleDisabled(false)
-    XP_PER_LEVEL_TABLE = {20, 40, 60, 80, 100, 120, 140, 160, 190, 220, 250, 280, 310, 340, 370, 400, 440, 480, 520,
-                            560, 600, 640, 680, 720}
+	XP_PER_LEVEL_TABLE = {
+		30, 40, 50, 60, 70,
+		83, 96, 109, 122, 135,
+		152, 169, 186, 203, 220,
+		242, 264, 286, 308, 330
+	}
     GameMode:SetCustomXPRequiredToReachNextLevel(XP_PER_LEVEL_TABLE)
     GameMode:SetUseCustomHeroLevels(true)
     GameMode:SetFixedRespawnTime(30)
