@@ -1,0 +1,42 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP2Pos = [ 10.0, -40.0, 60.0 ]
+			m_vecCP1Pos = [ 10.0, 40.0, 60.0 ]
+			m_bDisableOperator = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 3
+			m_nFieldOutput = 5
+			m_flInputMin = 100.0
+			m_flInputMax = 0.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/druid/druid_skill3_totem_handflame_l_dc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/druid/druid_skill3_totem_handflame_r_dc.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}
