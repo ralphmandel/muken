@@ -86,7 +86,7 @@ function fireball:OnOwnerDied()
 	self.caster = nil
 
 	local enemies = FindUnitsInRadius(
-		DOTA_TEAM_NEUTRALS,	-- int, your team number
+		caster:GetTeamNumber(),	-- int, your team number
 		caster:GetOrigin(),	-- point, center point
 		nil,	-- handle, cacheUnit. (not known)
 		FIND_UNITS_EVERYWHERE,	-- float, radius. or use FIND_UNITS_EVERYWHERE

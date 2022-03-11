@@ -24,7 +24,6 @@ function venom_aoe_modifier:OnCreated( kv )
 	local damage = self.ability:GetSpecialValueFor("damage")
 
 	self.thinker = kv.isProvidedByAura~=1
-
 	if not self.thinker then return end
 
 	self.damageTable = {
@@ -69,7 +68,7 @@ end
 function venom_aoe_modifier:OnIntervalThink()
 	
 	local enemies = FindUnitsInRadius(
-		DOTA_TEAM_NEUTRALS,	-- int, your team number
+		self.caster:GetTeamNumber(),	-- int, your team number
 		self.parent:GetOrigin(),	-- point, center point
 		nil,	-- handle, cacheUnit. (not known)
 		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE

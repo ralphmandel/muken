@@ -51,6 +51,7 @@ function _modifier_neutral_spider:OnIntervalThink()
 	if target == nil then return end
 	if self.parent:IsSilenced() then return end
 	if self.parent:IsStunned() then return end
+	if self.parent:IsDominated() then return end
 
 	if RandomInt(1, 100) <= 25 then
 		self:TryCast_Skill_1(target)
@@ -70,7 +71,7 @@ function _modifier_neutral_spider:TryCast_Skill_1(target)
 	if ability:IsCooldownReady() == false then return end
 	if ability:IsOwnersManaEnough() == false then return end
 
-	self.parent:SetCursorPosition(target:GetOrigin())
+	self.parent:SetCursorCastTarget(target)
 	ability:CastAbility()
 end
 

@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"15"
+				"percent"		"20"
 			}
 		}
 	}
@@ -195,7 +195,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0.75"
+				"stun_duration"		"1"
 			}
 		}
 	}
@@ -204,7 +204,9 @@
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"neutrals/summon_spiders"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"     		"neutrals/summon_spiders"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -258,12 +260,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"15"
+				"damage"				"20"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"6"
+				"armor_reduction"		"10"
 			}
 		}
 	}
@@ -297,7 +299,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fireball_damage"		"100"
+				"fireball_damage"		"150"
 			}
 			"03"
 			{
@@ -307,7 +309,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"flame_damage"			"20"
+				"flame_damage"			"25"
 			}
 		}
 	}
@@ -333,7 +335,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
+				"duration"				"12"
 			}
 			"02"
 			{

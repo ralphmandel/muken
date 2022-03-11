@@ -38,6 +38,7 @@ function _modifier_neutral_dragon:OnIntervalThink()
 	if target == nil then return end
 	if self.parent:IsSilenced() then return end
 	if self.parent:IsStunned() then return end
+	if self.parent:IsDominated() then return end
 
 	if RandomInt(1, 100) <= 35 then
 		self:TryCast_Skill_1(target)

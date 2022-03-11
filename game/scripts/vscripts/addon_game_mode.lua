@@ -420,8 +420,10 @@ function BattleArena:CreateSpot(number)
 	local new = true
 	for _,unit in pairs(self.spots[number][1]) do
 		if unit ~= nil then
-			if unit:IsAlive() then
-				new = false
+			if IsValidEntity(unit) then
+				if unit:IsAlive() then
+					new = false
+				end
 			end
 		end
 	end
@@ -707,7 +709,8 @@ function BattleArena:OnUnitKilled( args )
 	local assigned_hero = player_owner:GetAssignedHero()
 	if assigned_hero == nil then return end
 
-	if unit:IsHero() and unit:IsIllusion() == false
+	if unit:IsHero()
+	and unit:IsIllusion() == false
 	and assigned_hero:GetTeamNumber() ~= unit:GetTeamNumber() then
 
 		local allies = FindUnitsInRadius(
@@ -742,8 +745,11 @@ function BattleArena:OnUnitKilled( args )
 		return
 	end
 
-	if unit:IsCreature() and unit:GetUnitName() ~= "crusader" and unit:IsIllusion() == false
+	if unit:IsCreature()
+	and unit:IsDominated() == false
+	and unit:IsIllusion() == false
 	and assigned_hero:GetTeamNumber() ~= unit:GetTeamNumber() then
+		number = 0
 
 		local allies = FindUnitsInRadius(
 			assigned_hero:GetTeamNumber(),	-- int, your team number
@@ -757,21 +763,19 @@ function BattleArena:OnUnitKilled( args )
 			false	-- bool, can grow cache
 		)
 		for _,unit in pairs(allies) do
-			if unit ~= assigned_hero then
+			--if unit ~= assigned_hero then
 				number = number + 1
-			end
+			--end
 		end
 
 		local average_gold_bounty = RandomInt(unit:GetMinimumGoldBounty(), unit:GetMaximumGoldBounty())
 		gold = average_gold_bounty / number
 
-		if math.floor(gold) > 0 then
-			assigned_hero:ModifyGold(math.floor(gold), false, 18)
-
+		if math.floor(gold) > 0 and number > 0 then
 			for _,unit in pairs(allies) do
-				if unit ~= assigned_hero then
+				--if unit ~= assigned_hero then
 					unit:ModifyGold(math.floor(gold), false, 18)
-				end
+				--end
 			end
 		end
 	end

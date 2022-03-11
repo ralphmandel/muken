@@ -63,10 +63,10 @@ end
 
 function dasdingo_3_modifier_hex:CheckState()
 	local state = {
-	[MODIFIER_STATE_HEXED] = true,
-	[MODIFIER_STATE_DISARMED] = true,
-	[MODIFIER_STATE_SILENCED] = true,
-	[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+		[MODIFIER_STATE_HEXED] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true
 	}
 
 	return state

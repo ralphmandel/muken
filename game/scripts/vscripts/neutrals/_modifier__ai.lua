@@ -37,6 +37,7 @@ end
 
 function _modifier__ai:OnIntervalThink()
     -- Execute action corresponding to the current state
+    if self.unit:IsDominated() then return end
     self.stateActions[self.state](self)    
 end
 

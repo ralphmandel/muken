@@ -78,8 +78,65 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
 
 -- SPELL START
 
+    function druid_1__conversion:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
+    end
+
     function druid_1__conversion:OnSpellStart()
         local caster = self:GetCaster()
+        self.point = self:GetCursorPosition()
+    end
+
+    function druid_1__conversion:OnChannelFinish(bInterrupted)
+        local caster = self:GetCaster()
+        local radius = self:GetSpecialValueFor("radius")
+        local duration = self:GetSpecialValueFor("duration")
+
+        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
+
+        if bInterrupted == false then
+            local damageTable = {
+                attacker = caster,
+                damage_type = DAMAGE_TYPE_MAGICAL,
+                ability = self
+            }
+
+            local neutrals = FindUnitsInRadius(
+                caster:GetTeamNumber(), self.point, nil, radius,
+                DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
+                0, 0, false
+            )
+    
+            for _,neutral in pairs(neutrals) do
+                local chance = self:CalcChance(neutral:GetLevel())
+                if neutral:GetUnitName() ~= "summon_spiders"
+                and neutral:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+                    if RandomInt(1, 10000) <= chance * 100 then
+                        neutral:Purge( false, true, false, false, false )
+                        neutral:Heal(9999, self)
+                        neutral:AddNewModifier(caster, self, "druid_1_modifier_conversion", {
+                            duration = self:CalcStatus(duration, caster, neutral)
+                        })
+                    else
+                        damageTable.victim = neutral
+                        damageTable.damage = neutral:GetMaxHealth() * chance * 0.01
+                        ApplyDamage(damageTable)
+                    end
+                end
+            end
+        end
+    end
+
+    function druid_1__conversion:CalcChance(level)
+        level = level - 1
+        local chance = self:GetSpecialValueFor("chance")
+        local chance_lvl = self:GetSpecialValueFor("chance_lvl")
+        local chance_bonus = self:GetSpecialValueFor("chance_bonus")
+        local chance_bonus_lvl = self:GetSpecialValueFor("chance_bonus_lvl")
+        local calc = chance + (chance_lvl * level)
+        local calc_bonus = chance_bonus + (chance_bonus_lvl * level)
+
+        return (calc + calc_bonus)
     end
 
 -- EFFECTS

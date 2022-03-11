@@ -4718,6 +4718,11 @@
 					"var_type"		"FIELD_FLOAT"
 					"slow"			"100"
 				}
+                "12"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"rank"			"1 2 3 4 5 10"
+				}
 				"13"
 				{
 					"var_type"				"FIELD_FLOAT"
@@ -4754,7 +4759,7 @@
 			// Stats
 			"AbilityCooldown"				"60"
 			"AbilityManaCost"         		"50"
-			"AbilityChannelTime"    		"3"
+			"AbilityChannelTime"    		"4"
 
 			"AbilitySpecial"
 			{
@@ -4778,7 +4783,12 @@
 					"var_type"			"FIELD_FLOAT"
 					"init_model_scale"	"1.35"
 				}
-				"13"
+				"12"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"rank"			"1 2 3 4 5 10"
+				}
+                "13"
 				{
 					"var_type"		"FIELD_FLOAT"
 					"skill"			"5"

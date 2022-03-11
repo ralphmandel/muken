@@ -68,33 +68,61 @@
 		"ScriptFile"            		"heroes/druid/druid_1__conversion"
 		"AbilityTextureName"     		"druid_conversion"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastPoint"       		"0.5"
+		"AnimationPlaybackRate"  		"0.8"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240"
+		"AbilityCooldown"				"20"
+		"AbilityCastRange"      		"150"
+		"AbilityChannelTime"    		"3.25"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"40"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_damage"		"25"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"chance"			"70"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"chance_lvl"		"-10"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"chance_bonus"		"0 3 6 9 12 15 18 21 24 27 30"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"chance_bonus_lvl"	"0 -0.25 -0.5 -0.75 -1 -1.25 -1.5 -1.75 -2 -2.25 -2.5"
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"0 1 2 3 4 5 6 7 8"
+				"var_type"			"FIELD_FLOAT"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -110,7 +138,7 @@
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
@@ -147,7 +175,7 @@
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
@@ -183,17 +211,7 @@
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
-
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{

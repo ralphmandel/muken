@@ -23,6 +23,10 @@ function venom_aoe:CalcStatus(duration, caster, target)
     return time
 end
 
+function venom_aoe:GetAOERadius()
+    return self:GetSpecialValueFor("radius")
+end
+
 function venom_aoe:OnSpellStart()
     local caster = self:GetCaster()
     local point = caster:GetCursorPosition()

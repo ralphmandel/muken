@@ -56,3 +56,7 @@ end
 function _1_INT_modifier:GetDebuffTime()
     return self:GetStackCount() * self.buff_amp * 0.01
 end
+
+function _1_INT_modifier:GetSpellAmp()
+    return self:GetStackCount() * self.spell_amp * 0.01
+end

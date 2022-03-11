@@ -25,7 +25,8 @@ end
 
 function summon_spiders:OnSpellStart()
     local caster = self:GetCaster()
-    local point = caster:GetCursorPosition()
+    local target = self:GetCursorTarget()
+    local point = target:GetOrigin()
 
 	local units = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
@@ -45,7 +46,8 @@ function summon_spiders:OnSpellStart()
 
     local spiders_number = self:GetSpecialValueFor("spiders_number")
     for i = 1, spiders_number, 1 do
-        local spider = CreateUnitByName("summoner_spider", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+        local spider = CreateUnitByName("summoner_spider", point, true, nil, nil, caster:GetTeamNumber())
         spider:AddNewModifier(caster, self, "summon_spiders_modifier", {duration = 20})
+        spider:SetForceAttackTarget(target)
     end
 end
