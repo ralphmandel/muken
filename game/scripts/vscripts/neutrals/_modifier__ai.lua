@@ -14,7 +14,7 @@ function _modifier__ai:OnCreated(params)
 
         -- Store parameters from AI creation:
         -- unit:AddNewModifier(caster, ability, "_modifier__ai", { aggroRange = X, leashRange = Y })
-        self.aggroRange = 300
+        self.aggroRange = 400
         self.leashRange = 700
 
         -- Store unit handle so we don't have to call self:GetParent() every time
@@ -134,6 +134,7 @@ function _modifier__ai:DeclareFunctions()
 end
 
 function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
+    if self.unit:IsDominated() then return 50 end
     if keys.attacker:IsHero() then return 0 end
     return -50
 end

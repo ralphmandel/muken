@@ -19,12 +19,15 @@ function druid_1_modifier_conversion:OnCreated(kv)
 	self.parent:SetOwner(self.caster)
 	self.parent:SetControllableByPlayer(self.caster:GetPlayerOwnerID(), true)
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	local caster_int = self.caster:FindModifierByName("_1_INT_modifier")
+	-- self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	-- local caster_int = self.caster:FindModifierByName("_1_INT_modifier")
 
-	if caster_int then
-		self.bonus_damage = math.floor(self.bonus_damage * (1 + caster_int:GetSpellAmp()))
-	end
+	-- if caster_int then
+	-- 	self.bonus_damage = math.floor(self.bonus_damage * (1 + caster_int:GetSpellAmp()))
+	-- end
+
+    self.parent:Heal(9999, self.ability)
+    self:PlayEfxStart()
 end
 
 function druid_1_modifier_conversion:OnRefresh(kv)
@@ -32,6 +35,7 @@ end
 
 function druid_1_modifier_conversion:OnRemoved(kv)
 	if IsValidEntity(self.parent) then
+        if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, false) end
 		if self.parent:IsAlive() then
 			self.parent:ForceKill(false)
 		end
@@ -50,16 +54,16 @@ end
 
 function druid_1_modifier_conversion:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		--MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_EVENT_ON_HEAL_RECEIVED
 	}
 
 	return funcs
 end
 
-function druid_1_modifier_conversion:GetModifierPreAttack_BonusDamage(keys)
-	return self.bonus_damage
-end
+-- function druid_1_modifier_conversion:GetModifierPreAttack_BonusDamage(keys)
+-- 	return self.bonus_damage
+-- end
 
 function druid_1_modifier_conversion:OnHealReceived(keys)
     if keys.gain <= 0 then return end
@@ -70,6 +74,13 @@ function druid_1_modifier_conversion:OnHealReceived(keys)
 end
 
 --------------------------------------------------------------------------------
+
+function druid_1_modifier_conversion:PlayEfxStart()
+	self.effect_cast = ParticleManager:CreateParticle("particles/druid/druid_skill1_convert.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
+	self:AddParticle(self.effect_cast, false, false, -1, false, false)
+end
+
 
 function druid_1_modifier_conversion:Popup(target, amount)
     self:PopupNumbers(target, "heal", Vector(0, 255, 0), 2.0, amount, 10, 0)
