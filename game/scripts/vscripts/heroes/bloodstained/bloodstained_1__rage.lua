@@ -76,11 +76,6 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk", "heroes/bloodstained/bloodst
             charges = charges * 2
         end
 
-        -- UP 1.4
-        if self:GetRank(4) then
-            charges = charges * 3
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -128,13 +123,6 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk", "heroes/bloodstained/bloodst
         if self:GetCurrentAbilityCharges() % 2 == 0 then return 400 end
         return 0
     end
-
-    function bloodstained_1__rage:GetCooldown(iLevel)
-		if self:GetCurrentAbilityCharges() == 0 then return 7.5 end
-		if self:GetCurrentAbilityCharges() == 1 then return 7.5 end
-		if self:GetCurrentAbilityCharges() % 3 == 0 then return 15 end
-        return 7.5
-	end
 
 -- EFFECTS
 

@@ -40,42 +40,53 @@ function TalentTree:ResetData(hero)
     end
 
     local data
-    self.abilitiesData = LoadKeyValues("scripts/npc/ranks.txt")
     if hero:GetUnitName() == "npc_dota_hero_riki" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Icebreaker.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/icebreaker/icebreaker.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/icebreaker/icebreaker-ranks.txt")
         hero.att = "icebreaker__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_shadow_demon" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Bloodstained.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodstained/bloodstained.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/bloodstained/bloodstained-ranks.txt")
         hero.att = "bloodstained__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_phantom_assassin" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Shadow.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow-ranks.txt")
         hero.att = "shadow__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_dawnbreaker" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Inquisitor.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/inquisitor/inquisitor.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/inquisitor/inquisitor-ranks.txt")
         hero.att = "inquisitor__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_abaddon" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Crusader.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/crusader/crusader.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/crusader/crusader-ranks.txt")
         hero.att = "crusader__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_pudge" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Bocuse.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse-ranks.txt")
         hero.att = "bocuse__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_void_spirit" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Strider.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/strider/strider.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/strider/strider-ranks.txt")
         hero.att = "strider__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_shadow_shaman" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Dasdingo.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo-ranks.txt")
         hero.att = "dasdingo__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_razor" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Slayer.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer-ranks.txt")
         hero.att = "slayer__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_lina" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Athena.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/athena/athena.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/athena/athena-ranks.txt")
         hero.att = "athena__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Bloodmage.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage-ranks.txt")
         hero.att = "bloodmage__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_furion" then
-        data = LoadKeyValues("scripts/kv/hero_talents_Druid.txt")
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/druid/druid.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/druid/druid-ranks.txt")
         hero.att = "druid__attributes"
     end
 

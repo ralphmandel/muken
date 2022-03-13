@@ -413,6 +413,42 @@
 		"AbilityType"					"ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
+	
+	"_up_stats"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"modifiers/_up_stats"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"level"					"1 2 3 4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"skill"					"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"id"					"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"permanent"				"1"
+			}
+		}
+	}
 }
 
 #base "../vscripts/heroes/icebreaker/icebreaker.txt"
@@ -430,4 +466,3 @@
 #base "../vscripts/heroes/athena/athena.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
 #base "../vscripts/neutrals/_neutrals.txt"
-#base "ranks.txt"

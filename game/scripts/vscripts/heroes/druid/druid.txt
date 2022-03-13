@@ -222,4 +222,1413 @@
 			}
 		}
 	}
+
+	"druid_x1__tree"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/druid/druid_x1__tree"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"     		"druid_tree"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"5"
+		"RequiredLevel"         	 	"0"
+
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+
+		// Stats
+		"AbilityManaCost"         		"125"
+		"AbilityCooldown"				"15"
+		"AbilityCastRange"    		   	"275"
+
+		"AbilitySpecial"
+		{
+			"13"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"skill"				"5"
+			}
+			"14"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"id"				"1"
+			}
+			"15"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"permanent"			"1"
+			}
+		}
+	}
+
+	"druid_x2__form"
+	{
+		// General  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/druid/druid_x2__form"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"     		"druid_inner"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"5"
+		"RequiredLevel"         	 	"0"
+
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+
+		// Stats
+		"AbilityManaCost"         		"125"
+		"AbilityCooldown"				"15"
+		"AbilityCastRange"    		   	"275"
+
+		"AbilitySpecial"
+		{
+			"13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"skill"			"5"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"id"			"2"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"permanent"		"1"
+			}
+		}
+	}
+
+	//RANKS 1
+		"druid_1__conversion_rank_1_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"1"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_1_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"2"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_1_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"3"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_2_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"4"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_2_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"5"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_2_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"6"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_3_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"7"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_3_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"8"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_3_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"9"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_4_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"10"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_1__conversion_rank_4_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_conversion"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"11"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+	//RANKS 2
+		"druid_2__root_rank_1_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"1"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_1_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"2"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_1_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"3"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_2_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"4"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_2_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"5"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_2_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"6"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_3_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"7"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_3_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"8"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_3_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"2"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"9"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_4_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"10"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_2__root_rank_4_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_root"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"11"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+	//RANKS 3
+		"druid_3__totem_rank_1_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"1"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_1_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"2"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_1_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"1"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"3"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_2_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"4"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_2_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"5"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_2_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"2"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"6"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_3_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"7"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_3_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"8"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_3_3"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"3"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"3"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"9"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_4_1"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"10"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+		"druid_3__totem_rank_4_2"{
+			"BaseClass"						"ability_lua"
+			"ScriptFile"					"heroes/druid/druid-ranks_lua"
+			"AbilityTextureName"    		"druid_totem"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"	
+			
+			"AbilityType"					"ABILITY_TYPE_BASIC"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"skill"					"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"id"					"11"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"permanent"				"0"
+				}
+			}
+		}
+
+	//RANKS U
+            "druid_u__seed_rank_1_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"1"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_1_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"2"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_1_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"1"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"3"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_2_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"4"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_2_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"5"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_2_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"2"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"6"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_3_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"7"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_3_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"8"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_3_3"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"3"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"4"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"9"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+            
+            "druid_u__seed_rank_4_1"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"4"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"10"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }
+
+            "druid_u__seed_rank_4_2"{
+                "BaseClass"						"ability_lua"
+                "ScriptFile"					"heroes/druid/druid-ranks_lua"
+                "AbilityTextureName"    		"druid_seed"
+                "FightRecapLevel"				"1"
+                "MaxLevel"						"4"	
+                
+                "AbilityType"					"ABILITY_TYPE_BASIC"
+                "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+                "AbilitySpecial"
+                {
+                    "01"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "skill"					"1"
+                    }
+                    "02"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "id"					"11"
+                    }
+                    "03"
+                    {
+                        "var_type"				"FIELD_FLOAT"
+                        "permanent"				"0"
+                    }
+                }
+            }            
+
 }

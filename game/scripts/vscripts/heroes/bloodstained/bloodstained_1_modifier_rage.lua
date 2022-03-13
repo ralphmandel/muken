@@ -30,13 +30,13 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 
 	-- UP 1.4
 	if self.ability:GetRank(4) then
-		self.min_health = 1
+		self.magic_immunity = true
+		self:PlayEfxBKB()
 	end
 
 	-- UP 1.5
 	if self.ability:GetRank(5) then
-		self.magic_immunity = true
-		self:PlayEfxBKB()
+		self.min_health = 1
 	end
 
 	if IsServer() then
@@ -65,13 +65,13 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 
 	-- UP 1.4
 	if self.ability:GetRank(4) then
-		self.min_health = 1
+		self.magic_immunity = true
+		self:PlayEfxBKB()
 	end
 
 	-- UP 1.5
 	if self.ability:GetRank(5) then
-		self.magic_immunity = true
-		self:PlayEfxBKB()
+		self.min_health = 1
 	end
 
 	if IsServer() then
@@ -137,8 +137,8 @@ function bloodstained_1_modifier_rage:OnHeroKilled(keys)
 	if keys.attacker ~= self.parent then return	end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 1.4
-	if self.ability:GetRank(4) then
+	-- UP 1.5
+	if self.ability:GetRank(5) then
 		local add_time = self:GetRemainingTime() + (self.ability:GetSpecialValueFor("duration") * 0.25)
 		self:SetDuration(self.ability:CalcStatus(add_time, self.caster, self.parent), true)
 	end
