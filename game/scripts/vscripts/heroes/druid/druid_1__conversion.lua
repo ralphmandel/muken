@@ -84,8 +84,10 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
 
     function druid_1__conversion:OnSpellStart()
         local caster = self:GetCaster()
+        local radius = self:GetSpecialValueFor("radius")
         self.point = self:GetCursorPosition()
-        self:PlayEfxStart()
+
+        self:PlayEfxStart(radius)
     end
 
     function druid_1__conversion:OnChannelFinish(bInterrupted)
@@ -95,6 +97,7 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
 
         caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
         if self.efx_channel then ParticleManager:DestroyParticle(self.efx_channel, false) end
+        if self.efx_channel2 then ParticleManager:DestroyParticle(self.efx_channel2, false) end
 
         if bInterrupted == false then
             self:PlayEfxEnd(radius)
@@ -144,14 +147,18 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
 
 -- EFFECTS
 
-    function druid_1__conversion:PlayEfxStart()
+    function druid_1__conversion:PlayEfxStart(radius)
         local caster = self:GetCaster()
         self.efx_channel = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, caster)
         ParticleManager:SetParticleControl(self.efx_channel, 0, caster:GetOrigin())
+
+        self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_WORLDORIGIN, nil)
+        ParticleManager:SetParticleControl(self.efx_channel2, 0, self.point)
+        ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(radius * 0.1), 0, 0))
     end
 
     function druid_1__conversion:PlayEfxEnd(radius)
-        local efx = ParticleManager:CreateParticle("particles/druid/druid_skill1_convert_leaves_cast.vpcf", PATTACH_WORLDORIGIN, nil)
+        local efx = ParticleManager:CreateParticle("particles/druid/druid_skill1_cast_circle_leaf.vpcf", PATTACH_WORLDORIGIN, nil)
         ParticleManager:SetParticleControl(efx, 0, self.point)
         ParticleManager:SetParticleControl(efx, 1, Vector(radius, 0, 0))
     end
