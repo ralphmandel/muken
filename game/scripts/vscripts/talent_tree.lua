@@ -64,10 +64,6 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse-ranks.txt")
         hero.att = "bocuse__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_void_spirit" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/strider/strider.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/strider/strider-ranks.txt")
-        hero.att = "strider__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_shadow_shaman" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo-ranks.txt")
@@ -76,10 +72,6 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer-ranks.txt")
         hero.att = "slayer__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_lina" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/athena/athena.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/athena/athena-ranks.txt")
-        hero.att = "athena__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage-ranks.txt")
