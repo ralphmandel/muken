@@ -22,12 +22,12 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
 
     -- UP 3.4
 	if self.ability:GetRank(4) then
-		self.shared_damage = (self.ability:GetSpecialValueFor("shared_damage") + 25) * 0.01
+		self.purge = false
 	end
 
-    -- UP 3.5
-	if self.ability:GetRank(5) then
-		self.purge = false
+    -- UP 3.7
+	if self.ability:GetRank(7) then
+		self.shared_damage = (self.ability:GetSpecialValueFor("shared_damage") + 25) * 0.01
 	end
 
     -- UP 3.3
@@ -128,8 +128,8 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 
 	self.time = self.time + 1
 
-    -- UP 3.6
-	if self.ability:GetRank(6)
+    -- UP 3.8
+	if self.ability:GetRank(8)
 	and self.time % 20 == 0 then
 		local leech = self.parent:GetMaxHealth() * 0.05
 		if self.parent:IsMagicImmune() == false then

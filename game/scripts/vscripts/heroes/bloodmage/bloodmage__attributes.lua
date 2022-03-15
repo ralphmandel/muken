@@ -4,10 +4,29 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	bloodmage__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	bloodmage__attributes.skills = {
+		[1] = "bloodmage_1__book_offensive",
+		[2] = "bloodmage_2__book_buff",
+		[3] = "bloodmage_3__book_aura",
+		[4] = "bloodmage_u__gamble"
 	}
 
 	function bloodmage__attributes:UpgradeRank(skill, id, level)

@@ -4,10 +4,29 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	bocuse__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_1__julienne"},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_2__flambee"},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_3__sauce"},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bocuse_u__mise"}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	bocuse__attributes.skills = {
+		[1] = "bocuse_1__julienne",
+		[2] = "bocuse_2__flambee",
+		[3] = "bocuse_3__sauce",
+		[4] = "bocuse_u__mise"
 	}
 
 	function bocuse__attributes:UpgradeRank(skill, id, level)

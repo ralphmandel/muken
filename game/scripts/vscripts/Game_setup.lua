@@ -14,7 +14,7 @@ require('libraries/wearables')
 
 function GameSetup:init()
     if IsInToolsMode() then -- debug build
-        GameRules:SetStartingGold(134)
+        GameRules:SetStartingGold(9999)
     else
         GameRules:SetStartingGold(134)
     end

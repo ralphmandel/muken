@@ -39,8 +39,8 @@ function bocuse_3_modifier_sauce:OnTakeDamage(keys)
 
     local chance = self.ability:GetSpecialValueFor("chance")
 
-	-- UP 3.3
-	if self.ability:GetRank(3) then
+	-- UP 3.7
+	if self.ability:GetRank(7) then
         chance = chance + 10
 	end
 

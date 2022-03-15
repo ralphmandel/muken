@@ -4,10 +4,29 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	inquisitor__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	inquisitor__attributes.skills = {
+		[1] = "inquisitor_1__shield",
+		[2] = "inquisitor_2__portal",
+		[3] = "inquisitor_3__blow",
+		[4] = "inquisitor_u__autocast"
 	}
 
 	function inquisitor__attributes:UpgradeRank(skill, id, level)

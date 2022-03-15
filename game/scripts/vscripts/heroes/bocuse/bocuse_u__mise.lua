@@ -93,8 +93,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             caster:AddNewModifier(caster, self, "bocuse_u_modifier_jump", {duration = 0.5})
         end
 
-        -- UP 4.6
-        if self:GetRank(6) then
+        -- UP 4.11
+        if self:GetRank(11) then
             duration = duration + 2
         end
 

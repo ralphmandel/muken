@@ -4,10 +4,29 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	dasdingo__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	dasdingo__attributes.skills = {
+		[1] = "dasdingo_1__heal",
+		[2] = "dasdingo_2__aura",
+		[3] = "dasdingo_3__hex",
+		[4] = "dasdingo_u__maledict"
 	}
 
 	function dasdingo__attributes:UpgradeRank(skill, id, level)

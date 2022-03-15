@@ -72,8 +72,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local charges = 1
 
-        -- UP 3.5
-        if self:GetRank(5) then
+        -- UP 3.4
+        if self:GetRank(4) then
             charges = charges * 2
         end
 
@@ -110,7 +110,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             return UF_FAIL_CUSTOM
         end
 
-        -- UP 3.5
+        -- UP 3.4
         if self:GetCurrentAbilityCharges() % 2 == 0 then
             flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end

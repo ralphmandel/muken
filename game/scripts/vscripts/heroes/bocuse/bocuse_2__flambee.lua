@@ -137,8 +137,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				self:PlayEfxCast()
 			end
 
-			-- UP 2.6
-			if self:GetRank(6) then
+			-- UP 2.8
+			if self:GetRank(8) then
 				if caster:GetMana() < self:GetManaCost(-1) then return end
 				local reverse_target = nil
 				local team = DOTA_UNIT_TARGET_TEAM_FRIENDLY

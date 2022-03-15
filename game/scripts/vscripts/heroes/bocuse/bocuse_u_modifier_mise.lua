@@ -36,8 +36,8 @@ function bocuse_u_modifier_mise:OnCreated(kv)
         end
     end
 
-    -- UP 4.2
-	if self.ability:GetRank(2) then
+    -- UP 4.4
+	if self.ability:GetRank(4) then
 		self.ability:AddBonus("_1_CON", self.parent, 25, 0, nil)
 	end
 
@@ -49,8 +49,8 @@ function bocuse_u_modifier_mise:OnCreated(kv)
         [4] = {[1] = 4, [2] = 0.3}
     }
 
-    -- UP 4.5
-    if self.ability:GetRank(5) then
+    -- UP 4.10
+    if self.ability:GetRank(10) then
         self.speed = 2.25
         self.stun_chance = self.stun_chance - 20
         self.hits = {
@@ -150,8 +150,8 @@ function bocuse_u_modifier_mise:OnHeroKilled(keys)
 
     local heal = self.ability:GetSpecialValueFor("heal")
 
-    -- UP 4.6
-    if self.ability:GetRank(6) then
+    -- UP 4.11
+    if self.ability:GetRank(11) then
         self.extra_damage = self.extra_damage + 15
         heal = heal + 10
     end
@@ -214,8 +214,8 @@ function bocuse_u_modifier_mise:OnIntervalThink()
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
                 end
 
-                -- UP 4.3
-                if self.ability:GetRank(3) then
+                -- UP 4.5
+                if self.ability:GetRank(5) then
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_break", {duration = 1})
                 end
             end

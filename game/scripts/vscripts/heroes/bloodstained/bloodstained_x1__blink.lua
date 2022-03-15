@@ -39,7 +39,6 @@ bloodstained_x1__blink = class({})
 
 	function bloodstained_x1__blink:OnUpgrade()
 		self:SetHidden(false)
-		self:SetActivated(false)
 	end
 
 	function bloodstained_x1__blink:Spawn()
@@ -68,8 +67,6 @@ bloodstained_x1__blink = class({})
 		FindClearSpaceForUnit(caster, blinkPosition, true)
 
 		if IsServer() then caster:EmitSound("Hero_Antimage.Blink_in.Persona") end
-
-		self:SetActivated(false)
 	end
 
 	function bloodstained_x1__blink:OnHeroDiedNearby(unit, attacker, keys)
@@ -81,7 +78,7 @@ bloodstained_x1__blink = class({})
 		if unit:GetTeamNumber() == caster:GetTeamNumber() then return end
 		if CalcDistanceBetweenEntityOBB(unit, caster) > distance then return end
 
-		self:SetActivated(true)
+		self:EndCooldown()
 	end
 
 	function bloodstained_x1__blink:CastFilterResultTarget(hTarget)

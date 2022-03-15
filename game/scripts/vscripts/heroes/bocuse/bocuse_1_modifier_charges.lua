@@ -49,8 +49,8 @@ end
 function bocuse_1_modifier_charges:GetModifierProcAttack_Feedback( params )
 	local charges = self.ability:GetSpecialValueFor("charges")
 
-	-- UP 1.5
-    if self.ability:GetRank(5) then
+	-- UP 1.10
+    if self.ability:GetRank(10) then
 		charges = charges + 4
 	end
 
@@ -75,8 +75,8 @@ function bocuse_1_modifier_charges:OnIntervalThink()
     if self.ability:GetRank(1) then
 		local charges = self.ability:GetSpecialValueFor("charges")
 
-		-- UP 1.5
-		if self.ability:GetRank(5) then
+		-- UP 1.10
+		if self.ability:GetRank(10) then
 			charges = charges + 4
 		end
 

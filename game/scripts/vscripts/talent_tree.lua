@@ -98,7 +98,7 @@ function TalentTree:ResetData(hero)
                             isTab = true
                         end
                     else
-                        if tabName == att.talents[i][8] then
+                        if tabName == att.skills[i] then
                             isTab = true
                         end
                     end
@@ -347,7 +347,7 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
     if (not att) then return false end
 
     for i = 1, 4, 1 do
-        if hero.talentsData[talentId].Tab == att.talents[i][8]
+        if hero.talentsData[talentId].Tab == att.skills[i]
         and (not att.talents[i][0]) then
             return false
         end

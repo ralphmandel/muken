@@ -4,10 +4,29 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	shadow__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	shadow__attributes.skills = {
+		[1] = "shadow_1__weapon",
+		[2] = "shadow_2__smoke",
+		[3] = "shadow_3__walk",
+		[4] = "shadow_u__dagger"
 	}
 
 	function shadow__attributes:UpgradeRank(skill, id, level)

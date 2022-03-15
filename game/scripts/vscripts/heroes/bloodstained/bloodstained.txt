@@ -71,7 +71,7 @@
 		"AbilityTextureName"     		"bloodstained_rage"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"16"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -79,7 +79,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 
 		// Stats
-		"AbilityManaCost"         		"90 99 108 117 126 135 144 153 162 171 180 189 198"
+		"AbilityManaCost"         		"90 99 108 117 126 135 144 153 162 171 180 189 198 207 216 225"
 		"AbilityCooldown"				"8"
 
 		"AbilitySpecial"
@@ -97,12 +97,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"consume"			"24 25 26 27 28 29 30 31 32 33 34 35 36"
+				"consume"			"25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"6 7 8 9 10 11 12 13 14 15 16 17 18"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"
 			}
 		}
 	}
@@ -116,7 +116,7 @@
 		"AbilityTextureName"     		"bloodstained_bloodsteal"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"12"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -140,7 +140,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11"
+				"rank"				"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
 			}
 		}
 	}
@@ -156,7 +156,7 @@
 		"AbilityTextureName"     		"bloodstained_curse"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -164,9 +164,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats
-		"AbilityManaCost"				"110 121 132 143 154 165 176 187 198 209 220"
+		"AbilityManaCost"				"110 121 132 143 154 165 176 187 198 209 220 231"
 		"AbilityCooldown"				"20"
-		"AbilityCastRange"				"400 420 440 460 480 500 520 540 560 580 600"
+		"AbilityCastRange"				"375 400 425 450 475 500 525 550 575 600 625 650"
 
 		"AbilitySpecial"
 		{
@@ -178,12 +178,12 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"tooltip_range"	"400 420 440 460 480 500 520 540 560 580 600"
+				"tooltip_range"	"375 400 425 450 475 500 525 550 575 600 625 650"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_range"		"700 720 740 760 780 800 820 840 860 880 900"
+				"max_range"		"625 650 675 700 725 750 775 800 825 850 875 900"
 			}
 			"04"
 			{
@@ -193,7 +193,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0 1 2 3 4 5 6 7 8 9 10"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -252,7 +252,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"0 1 2 3 4 5 6 7 8 9 10 11"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -268,7 +268,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"3"
+		"MaxLevel"               		"5"
 		"RequiredLevel"         	 	"0"
 
 		"AbilityCastPoint"       		"0.3"
@@ -276,11 +276,16 @@
 
 		// Stats
 		"AbilityManaCost"         		"125"
-		"AbilityCooldown"				"27"
-		"AbilityCastRange"    		   	"750"
+		"AbilityCooldown"				"17"
+		"AbilityCastRange"    		   	"1000"
 
 		"AbilitySpecial"
 		{
+            "12"
+			{
+				"var_type"	        	"FIELD_FLOAT"
+				"rank"		        	"5"
+			}
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
@@ -308,7 +313,7 @@
 		"AbilityTextureName"     		"bloodstained_x1_blink"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-		"AbilityCastRange"    		   	"1500"
+		"AbilityCastRange"    		   	"0"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"1"
@@ -319,6 +324,8 @@
 
 		// Stats
 		"AbilityManaCost"         		"75"
+        "AbilityCooldown"				"60"
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -337,14 +344,14 @@
 		"AbilityTextureName"     		"bloodstained_x2_BloodyTears"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"3"
+		"MaxLevel"               		"5"
 		"RequiredLevel"         	 	"0"
 
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 
-		"AbilityManaCost"         		"140"
-		"AbilityCooldown"				"35"
+		"AbilityManaCost"         		"0"
+		"AbilityCooldown"				"1"
 
 		"AbilitySpecial"
 		{
@@ -357,6 +364,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"blood_duration"	"90"
+			}
+            "12"
+			{
+				"var_type"	        	"FIELD_FLOAT"
+				"rank"		        	"5"
 			}
 			"13"
 			{
@@ -993,7 +1005,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"2"
                 }
                 "02"
                 {
@@ -1023,7 +1035,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"2"
                 }
                 "02"
                 {
@@ -1324,7 +1336,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"3"
                 }
                 "02"
                 {
@@ -1354,7 +1366,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"3"
                 }
                 "02"
                 {
@@ -1655,7 +1667,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"4"
                 }
                 "02"
                 {
@@ -1685,7 +1697,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"4"
                 }
                 "02"
                 {

@@ -13,7 +13,6 @@ function bloodstained_2_modifier_bloodsteal:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.extra_life = 0
-	self.hp_amp = 0
 
     self.lifesteal_base = self:GetAbility():GetSpecialValueFor("lifesteal_base") * 0.01
     self.lifesteal_bonus = self:GetAbility():GetSpecialValueFor("lifesteal_bonus") * 0.01
@@ -32,22 +31,17 @@ function bloodstained_2_modifier_bloodsteal:OnRefresh( kv )
 		self.lifesteal_base = (self:GetAbility():GetSpecialValueFor("lifesteal_base") + 5) * 0.01
 		self.lifesteal_bonus = (self:GetAbility():GetSpecialValueFor("lifesteal_bonus") - 5) * 0.01
 	end
-
-	-- UP 2.5
-	if self.ability:GetRank(5) then
-		self.hp_amp = -500
-	end
 end
 
 function bloodstained_2_modifier_bloodsteal:OnRemoved()
 	self.ability:RemoveBonus("_1_AGI", self.parent)
+	self.ability:RemoveBonus("_2_LCK", self.parent)
 end
 
 --------------------------------------------------------------------------------------------------------------------------
 
 function bloodstained_2_modifier_bloodsteal:DeclareFunctions()
     local funcs = {
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_PROPERTY_PRE_ATTACK,
@@ -56,10 +50,6 @@ function bloodstained_2_modifier_bloodsteal:DeclareFunctions()
 		MODIFIER_EVENT_ON_DEATH
     }    
     return funcs
-end
-
-function bloodstained_2_modifier_bloodsteal:GetModifierHPRegenAmplify_Percentage()
-	return self.hp_amp
 end
 
 function bloodstained_2_modifier_bloodsteal:GetModifierHealthBonus()
@@ -107,10 +97,16 @@ function bloodstained_2_modifier_bloodsteal:OnAttacked(keys)
 
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 2.5
-	if self.ability:GetRank(5) then
-		local heal = keys.attacker:GetMaxHealth() * 0.01
-		if heal > 0 then keys.attacker:Heal(heal, self.ability) end
+	-- UP 2.10
+	if self.ability:GetRank(10)
+	and keys.attacker == self.parent then
+		local str_mod = keys.attacker:FindModifierByName("_1_STR_modifier")
+		if str_mod then
+			if str_mod:HasCritical() then
+				local heal = keys.attacker:GetMaxHealth() * 0.01
+				if heal > 0 then keys.attacker:Heal(heal, self.ability) end				
+			end
+		end
 	end
 
 	-- UP 2.4
@@ -149,11 +145,11 @@ function bloodstained_2_modifier_bloodsteal:OnAttackLanded(keys)
 	if keys.target:IsMagicImmune() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	-- UP 2.6
-	if self.ability:GetRank(6) then
-		if RandomInt(1, 100) <= 12 then
+	-- UP 2.11
+	if self.ability:GetRank(11) then
+		if RandomInt(1, 100) <= 17 then
 			keys.target:AddNewModifier(self.caster, self.ability, "bloodstained_0_modifier_bleeding", {
-				duration = self.ability:CalcStatus(7, self.caster, keys.target)
+				duration = self.ability:CalcStatus(5, self.caster, keys.target)
 			})
 		end
 	end
@@ -175,11 +171,6 @@ function bloodstained_2_modifier_bloodsteal:OnDeath(keys)
 end
 
 function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
 	-- UP 2.2
 	if self.ability:GetRank(2) then
 		local enemies = FindUnitsInRadius(
@@ -196,14 +187,30 @@ function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
 		end
 	end
 
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
 	-- UP 2.3
 	if self.ability:GetRank(3)
 	and self.parent:PassivesDisabled() == false then
-		local percent = (100 - self.parent:GetHealthPercent()) * 0.5
+		local percent = math.ceil((100 - self.parent:GetHealthPercent()) * 0.5)
 		if percent > 0 then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 				percent = percent
 			})
+		end
+	end
+
+	self.ability:RemoveBonus("_2_LCK", self.parent)
+
+	-- UP 2.10
+	if self.ability:GetRank(10)
+	and self.parent:PassivesDisabled() == false then
+		local luck = math.ceil((100 - self.parent:GetHealthPercent()) * 0.25)
+		if luck > 0 then
+			self.ability:AddBonus("_2_LCK", self.parent, luck, 0, nil)
 		end
 	end
 end

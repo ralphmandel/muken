@@ -234,6 +234,11 @@
 
         "AbilitySpecial"
         {
+            "12"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"5"
+			}
             "13"
             {
                 "var_type"			"FIELD_FLOAT"
@@ -276,6 +281,11 @@
 
         "AbilitySpecial"
         {
+            "12"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"5"
+			}
             "13"
             {
                 "var_type"		"FIELD_FLOAT"
@@ -911,7 +921,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"2"
                 }
                 "02"
                 {
@@ -941,7 +951,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"2"
                 }
                 "02"
                 {
@@ -1242,7 +1252,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"3"
                 }
                 "02"
                 {
@@ -1272,7 +1282,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"3"
                 }
                 "02"
                 {
@@ -1573,7 +1583,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"4"
                 }
                 "02"
                 {
@@ -1603,7 +1613,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
+                    "skill"					"4"
                 }
                 "02"
                 {

@@ -41,8 +41,8 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
         blind = blind + 10
 	end
 
-	-- UP 2.5
-	if self.ability:GetRank(5) then
+	-- UP 2.7
+	if self.ability:GetRank(7) then
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end
 
@@ -68,8 +68,8 @@ function bocuse_2_modifier_flambee_debuff:OnRefresh(kv)
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind * 2, miss_chance = blind})
 	end
 
-	-- UP 2.5
-	if self.ability:GetRank(5) then
+	-- UP 2.7
+	if self.ability:GetRank(7) then
 		local intervals = self.ability:GetSpecialValueFor("intervals")
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end

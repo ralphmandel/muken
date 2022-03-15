@@ -71,8 +71,8 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk", "heroes/bloodstained/bloodst
 
         local charges = 1
 
-        -- UP 1.3
-        if self:GetRank(3) then
+        -- UP 1.5
+        if self:GetRank(5) then
             charges = charges * 2
         end
 
@@ -96,8 +96,8 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk", "heroes/bloodstained/bloodst
         self:EndCooldown()
         self:SetActivated(false)
 
-        -- UP 1.3
-        if self:GetRank(3) then
+        -- UP 1.5
+        if self:GetRank(5) then
             local radius = self:GetCastRange(caster:GetOrigin(), nil)
             self:PlayEfxBerserk(radius)
 

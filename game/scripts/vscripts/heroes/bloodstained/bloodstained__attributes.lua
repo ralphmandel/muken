@@ -4,13 +4,35 @@ require("talent_tree")
 
 --TALENT FUNCTIONS
 	bloodstained__attributes.talents = {
-		[1] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bloodstained_1__rage"},
-		[2] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bloodstained_2__bloodsteal"},
-		[3] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bloodstained_3__curse"},
-		[4] = {[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false, [6] = false, [7] = false, [8] = "bloodstained_u__seal"}
+		[1] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[2] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[3] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		},
+		[4] = {
+			[0] = false, [1] = false, [2] = false, [3] = false, [4] = false, [5] = false,
+			[6] = false, [7] = false, [8] = false, [9] = false, [10] = false, [11] = false
+		}
+	}
+
+	bloodstained__attributes.skills = {
+		[1] = "bloodstained_1__rage",
+		[2] = "bloodstained_2__bloodsteal",
+		[3] = "bloodstained_3__curse",
+		[4] = "bloodstained_u__seal"
 	}
 
 	function bloodstained__attributes:UpgradeRank(skill, id, level)
+		print("skill", skill)
+		print("id", id)
+		print("level", level)
 		local caster = self:GetCaster()
 		self:CheckNewAbility(skill, id, level)
 

@@ -84,8 +84,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local charges = 1
 
-        -- UP 1.3
-        if self:GetRank(3) then
+        -- UP 1.4
+        if self:GetRank(4) then
             charges = charges * 2
         end
 
@@ -144,8 +144,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local distance = CalcDistanceBetweenEntityOBB(caster, target)
         self.cancel = true
 
-        -- UP 1.3
-        if self:GetRank(3) then
+        -- UP 1.4
+        if self:GetRank(4) then
             max_distance = max_distance + 200
         end
 
@@ -183,8 +183,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 self.cancel = true
             end
 
-            -- UP 1.3
-            if self:GetRank(3) then
+            -- UP 1.4
+            if self:GetRank(4) then
                 local forward = caster:GetForwardVector():Normalized()
                 local point = target:GetOrigin() - (forward * 50)
 
@@ -248,13 +248,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local stun_duration = self:GetSpecialValueFor("stun_duration")
         local bleed_duration = self:GetSpecialValueFor("bleed_duration")
 
-        -- UP 1.4
-        if self:GetRank(4) then
+        -- UP 1.5
+        if self:GetRank(5) then
             bleed_duration = bleed_duration * 2
         end
 
-        -- UP 1.5
-        if self:GetRank(5) then
+        -- UP 1.10
+        if self:GetRank(10) then
             charges = charges + 4
         end
 

@@ -17,13 +17,13 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_1__julienne_rank_1_1"
-				"2"   "bocuse_1__julienne_rank_1_2"
+				"1"   "bocuse_1__julienne_rank_1_1" //1
+				"2"   "bocuse_1__julienne_rank_1_2" //2
 			}
 			"1"
 			{
-				"1"   "bocuse_1__julienne_rank_2_1"
-				"2"   "bocuse_1__julienne_rank_2_2"
+				"1"   "bocuse_1__julienne_rank_2_1" //4
+				"2"   "bocuse_1__julienne_rank_2_2" //5
 			}
 			"2"
 			{
@@ -31,7 +31,7 @@
 			}
 			"3"
 			{
-				"1"   "bocuse_1__julienne_rank_4_1"
+				"1"   "bocuse_1__julienne_rank_4_1"//10
 			}
 			"4"
 			{
@@ -42,18 +42,18 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_2__flambee_rank_1_1"
-				"2"   "bocuse_2__flambee_rank_1_2"
-				"3"   "bocuse_2__flambee_rank_1_3"
+				"1"   "bocuse_2__flambee_rank_1_1" //1
+				"2"   "bocuse_2__flambee_rank_1_2" //2
+				"3"   "bocuse_2__flambee_rank_1_3" //3
 			}
 			"1"
 			{
-				"1"   "bocuse_2__flambee_rank_2_1"
+				"1"   "bocuse_2__flambee_rank_2_1" //4
 			}
 			"2"
 			{
-				"1"   "bocuse_2__flambee_rank_3_1"
-				"2"   "bocuse_2__flambee_rank_3_2"
+				"1"   "bocuse_2__flambee_rank_3_1" //7
+				"2"   "bocuse_2__flambee_rank_3_2" //8
 			}
 			"3"
 			{
@@ -68,20 +68,20 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_3__sauce_rank_1_1"
+				"1"   "bocuse_3__sauce_rank_1_1" //1
 			}
 			"1"
 			{
-				"1"   "bocuse_3__sauce_rank_2_1"
+				"1"   "bocuse_3__sauce_rank_2_1" //4
 			}
 			"2"
 			{
-				"1"   "bocuse_3__sauce_rank_3_1"
-				"2"   "bocuse_3__sauce_rank_3_2"
+				"1"   "bocuse_3__sauce_rank_3_1" //7
+				"2"   "bocuse_3__sauce_rank_3_2" //8
 			}
 			"3"
 			{
-				"1"   "bocuse_3__sauce_rank_4_1"
+				"1"   "bocuse_3__sauce_rank_4_1" //10
 			}
 			"4"
 			{
@@ -92,22 +92,22 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_u__mise_rank_1_1"
+				"1"   "bocuse_u__mise_rank_1_1" //1
 
 			}
 			"1"
 			{
-				"1"   "bocuse_u__mise_rank_2_1"
-				"2"   "bocuse_u__mise_rank_2_2"
+				"1"   "bocuse_u__mise_rank_2_1" //4
+				"2"   "bocuse_u__mise_rank_2_2" //5
 			}
 			"2"
 			{
-				"1"   "bocuse_u__mise_rank_3_1"
+				"1"   "bocuse_u__mise_rank_3_1" //7
 			}
 			"3"
 			{
-				"1"   "bocuse_u__mise_rank_4_1"
-				"2"   "bocuse_u__mise_rank_4_2"
+				"1"   "bocuse_u__mise_rank_4_1" //10
+				"2"   "bocuse_u__mise_rank_4_2" //11
 			}
 			"4"
 			{

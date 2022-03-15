@@ -34,15 +34,20 @@ end
 --------------------------------------------------------------------------------
 
 function bloodstained_2_modifier_track:DeclareFunctions()
-	local funcs = {
+
+    local funcs = {
+        MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
-	}
-	
-	return funcs
+    }
+    return funcs
 end
 
-function bloodstained_2_modifier_track:GetModifierHPRegenAmplify_Percentage()
-	return -500
+function bloodstained_2_modifier_track:GetModifierHealAmplify_PercentageTarget()
+    return -75
+end
+
+function bloodstained_2_modifier_track:GetModifierHPRegenAmplify_Percentage(keys)
+    return -75
 end
 
 function bloodstained_2_modifier_track:OnIntervalThink()

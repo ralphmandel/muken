@@ -1,6 +1,7 @@
 "AddonInfo"
 {
     //"TeamCount" "10"
+    "PenaltiesEnabled"				"0"
     "maps"      "arena_temple_sm arena_jungle_sm arena_winter_sm"
     "IsPlayable"  "1"
     
