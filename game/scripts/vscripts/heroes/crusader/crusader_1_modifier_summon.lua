@@ -80,7 +80,7 @@ function crusader_1_modifier_summon:OnHealReceived(keys)
     if keys.gain <= 0 then return end
 
     if keys.inflictor ~= nil and keys.unit == self:GetParent() then
-        self:Popup(keys.unit, math.floor(keys.gain))
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, math.floor(keys.gain), keys.unit)
     end
 end
 
@@ -164,33 +164,4 @@ function crusader_1_modifier_summon:PlayEfxResist()
 	ParticleManager:SetParticleControl(self.effect, 0, self.parent:GetOrigin())
 	--ParticleManager:SetParticleControl(self.effect, 2, self.parent:GetOrigin())
 	self:AddParticle(self.effect, false, false, -1, false, false)
-end
-
-function crusader_1_modifier_summon:Popup(target, amount)
-    self:PopupNumbers(target, "heal", Vector(0, 255, 0), 2.0, amount, 10, 0)
-end
-
-function crusader_1_modifier_summon:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
-    local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-    
-     
-    local digits = 0
-    if number ~= nil then
-        digits = #tostring(number)
-    end
-    if presymbol ~= nil then
-        digits = digits + 1
-    end
-    if postsymbol ~= nil then
-        digits = digits + 1
-    end
-
-    if number < 10 then digits = 2 end
-    if number > 9 and number < 100 then digits = 3 end
-    if number > 99 then digits = 4 end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, color)
 end

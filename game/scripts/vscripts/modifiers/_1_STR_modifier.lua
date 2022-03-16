@@ -106,6 +106,8 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
             self.spell_crit_damage = 0
         end
 
+        self.critical_damage = self:CalcCritDamage()
+
         local critical_chance = 0
         local luck = self.parent:FindModifierByName("_2_LCK_modifier")
         if luck then critical_chance = luck:GetCriticalChance() end
@@ -129,7 +131,7 @@ function _1_STR_modifier:GetModifierProcAttack_Feedback( params )
             if IsServer() then self.parent:EmitSound("Item_Desolator.Target") end
         end
 
-        self.critical_damage = self.ability:GetSpecialValueFor("critical_damage")
+        self.critical_damage = self:CalcCritDamage()
     end
 end
 
@@ -161,7 +163,7 @@ function _1_STR_modifier:GetModifierPreAttack(keys)
 end
 
 function _1_STR_modifier:Base_STR(value)
-    self.critical_damage = self.ability:GetSpecialValueFor("critical_damage")
+    self.critical_damage = self:CalcCritDamage()
     self.block_damage = self.ability:GetSpecialValueFor("base_block") + (self.ability:GetSpecialValueFor("block") * value)
     self.range = self.ability:GetSpecialValueFor("range") * value
 end
@@ -188,6 +190,16 @@ end
 
 function _1_STR_modifier:GetCriticalDamage()
     return self.critical_damage * 0.01
+end
+
+function _1_STR_modifier:CalcCritDamage()
+    local bonus_value = 0
+    local mods = self.parent:FindAllModifiersByName("_1_STR_modifier_crit_bonus")
+    for _,mod in pairs(mods) do
+        bonus_value = bonus_value + mod:GetStackCount()
+    end
+
+    return self.ability:GetSpecialValueFor("critical_damage") + bonus_value
 end
 
 function _1_STR_modifier:HasCritical()

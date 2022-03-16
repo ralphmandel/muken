@@ -1,6 +1,7 @@
 _1_STR = class ({})
 LinkLuaModifier( "_1_STR_modifier", "modifiers/_1_STR_modifier", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_1_STR_modifier_stack", "modifiers/_1_STR_modifier_stack", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "_1_STR_modifier_crit_bonus", "modifiers/_1_STR_modifier_crit_bonus", LUA_MODIFIER_MOTION_NONE )
 
 function _1_STR:GetIntrinsicModifierName()
 	return "_1_STR_modifier"

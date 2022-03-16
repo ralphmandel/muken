@@ -54,11 +54,12 @@ end
 --     return self.heal_amp
 -- end
 
-function _1_CON_modifier:OnHealReceived(params)
-    if params.gain <= 0 then return end
+function _1_CON_modifier:OnHealReceived(keys)
+    if keys.gain < 1 then return end
 
-    if params.inflictor ~= nil and params.unit == self:GetParent() then
-        self:Popup(params.unit, math.floor(params.gain))
+    if keys.inflictor ~= nil and keys.unit == self:GetParent() then
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, math.floor(keys.gain), keys.unit)
+        --self:Popup(params.unit, math.floor(params.gain))
     end
 end
 

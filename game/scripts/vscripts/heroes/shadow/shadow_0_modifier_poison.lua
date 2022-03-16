@@ -79,7 +79,10 @@ function shadow_0_modifier_poison:OnCreated( kv )
 		self.damageTable.damage = total_damage
 		self.total = math.floor(ApplyDamage( self.damageTable ))
 		self.total_stack = self.total_stack + self.total
-		if self.total > 0 then self:PopupDamageOverTime(self.parent, self.total) end
+		if self.total > 0 then
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, self.parent, self.total, self.caster)
+			--self:PopupDamageOverTime(self.parent, self.total)
+		end
 
 		self:PlaySoundsEfx()
 		self:PlayEffects(self.parent)
@@ -195,7 +198,10 @@ function shadow_0_modifier_poison:OnIntervalThink()
 			self.damageTable.damage = total_damage
 			self.total = math.floor(ApplyDamage( self.damageTable ))
 			self.total_stack = self.total_stack + self.total
-			if self.total > 0 then self:PopupDamageOverTime(self.parent, self.total) end
+			if self.total > 0 then
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, self.parent, self.total, self.caster)
+				--self:PopupDamageOverTime(self.parent, self.total)
+			end
 		end
 
 		self:PlayEffects(self.parent)
@@ -278,7 +284,10 @@ function shadow_0_modifier_poison:OnAttackLanded(keys)
 		self.damageTable.damage = total_damage
 		self.total = math.floor(ApplyDamage( self.damageTable ))
 		self.total_stack = self.total_stack + self.total
-		if self.total > 0 then self:PopupDamageOverTime(self.parent, self.total) end
+		if self.total > 0 then
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, self.parent, self.total, self.caster)
+			--self:PopupDamageOverTime(self.parent, self.total)
+		end
 		self:PlayEffects(self.parent)
 	end
 end
