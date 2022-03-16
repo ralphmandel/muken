@@ -166,7 +166,7 @@
 		// Stats
 		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260 273"
 		"AbilityCooldown"				"24"
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"700 750 800 850 900 950 1000 1050 1100 1150 1200 1250"
 
 		"AbilitySpecial"
 		{

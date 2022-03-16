@@ -734,10 +734,12 @@ function BattleArena:OnUnitKilled( args )
 
 		if math.floor(gold) > 0 then
 			assigned_hero:ModifyGold(math.floor(gold), false, 18)
+			SendOverheadEventMessage(player_owner, OVERHEAD_ALERT_GOLD, assigned_hero, gold, assigned_hero)
 
 			for _,unit in pairs(allies) do
 				if unit ~= assigned_hero then
 					unit:ModifyGold(math.floor(gold), false, 18)
+					SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
 				end
 			end
 		end
@@ -763,9 +765,7 @@ function BattleArena:OnUnitKilled( args )
 			false	-- bool, can grow cache
 		)
 		for _,unit in pairs(allies) do
-			--if unit ~= assigned_hero then
-				number = number + 1
-			--end
+			number = number + 1
 		end
 
 		local average_gold_bounty = RandomInt(unit:GetMinimumGoldBounty(), unit:GetMaximumGoldBounty())
@@ -773,9 +773,8 @@ function BattleArena:OnUnitKilled( args )
 
 		if math.floor(gold) > 0 and number > 0 then
 			for _,unit in pairs(allies) do
-				--if unit ~= assigned_hero then
-					unit:ModifyGold(math.floor(gold), false, 18)
-				--end
+				unit:ModifyGold(math.floor(gold), false, 18)
+				SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
 			end
 		end
 	end

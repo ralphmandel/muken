@@ -55,7 +55,6 @@ end
 function druid_1_modifier_conversion:DeclareFunctions()
 	local funcs = {
 		--MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_EVENT_ON_HEAL_RECEIVED
 	}
 
 	return funcs
@@ -64,14 +63,6 @@ end
 -- function druid_1_modifier_conversion:GetModifierPreAttack_BonusDamage(keys)
 -- 	return self.bonus_damage
 -- end
-
-function druid_1_modifier_conversion:OnHealReceived(keys)
-    if keys.gain <= 0 then return end
-
-    if keys.inflictor ~= nil and keys.unit == self.parent then
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, math.floor(keys.gain), keys.unit)
-    end
-end
 
 --------------------------------------------------------------------------------
 

@@ -89,7 +89,7 @@ end
 function bocuse_2_modifier_flambee_debuff:OnIntervalThink()
     local amount = self.parent:GetMaxHealth() * self.percent * 0.01
     self.damageTable.damage = amount
-    local damage = math.floor(ApplyDamage(self.damageTable))
+    local damage = ApplyDamage(self.damageTable)
 
 	self:PlayEfxDamage()
 end

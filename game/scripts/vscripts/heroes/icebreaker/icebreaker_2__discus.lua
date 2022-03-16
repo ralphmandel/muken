@@ -167,11 +167,11 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             local burned_mana = target:GetMaxMana() * 0.1
             if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
             target:ReduceMana(burned_mana)
-            self:PopupManaburn(target, math.floor(burned_mana))
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, -burned_mana, caster)
 
             self.damageTable.victim = target
             self.damageTable.damage = burned_mana
-            self:PopupDamageOverTime(target, math.floor(ApplyDamage(self.damageTable)))
+            ApplyDamage(self.damageTable)
         end
 
         -- UP 2.5
@@ -228,42 +228,3 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
     end
 
 -- EFFECTS
-
-    function icebreaker_2__discus:PopupManaburn(target, damage)
-        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-        local digits = 1
-        if damage < 10 then digits = 2 end
-        if damage > 9 and damage < 100 then digits = 3 end
-        if damage > 99 and damage < 1000 then digits = 4 end
-        if damage > 999 then digits = 5 end
-
-        ParticleManager:SetParticleControl(pidx, 1, Vector(1, damage, 0))
-        ParticleManager:SetParticleControl(pidx, 2, Vector(2, digits, 0))
-        ParticleManager:SetParticleControl(pidx, 3, Vector(150, 50, 255))
-    end
-
-    function icebreaker_2__discus:PopupDamageOverTime(target, amount)
-        if amount < 1 then return end
-        self:PopupNumbers(target, "crit", Vector(125, 200, 225), 3.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
-    end
-
-    function icebreaker_2__discus:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-        local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
-        local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-        postsymbol = 6
-        
-        local digits = 0
-        if number ~= nil then
-            digits = #tostring(number)
-        end
-        if presymbol ~= nil then
-            digits = digits + 1
-        end
-        if postsymbol ~= nil then
-            digits = digits + 1
-        end
-
-        ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(nil), tonumber(number), tonumber(postsymbol)))
-        ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
-        ParticleManager:SetParticleControl(pidx, 3, color)
-    end

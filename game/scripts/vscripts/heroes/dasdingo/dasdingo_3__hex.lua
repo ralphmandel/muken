@@ -124,8 +124,8 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
                 ability = self
             }
         
-            local damage = ApplyDamage(damageTable)
-            if damage >= 1 then self:PopupPure(target, damage) end
+            ApplyDamage(damageTable)
+            if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
         end
 
         -- UP 3.4
@@ -209,21 +209,6 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
         if IsServer() then target:EmitSound("Hero_Lion.Voodoo") end
-    end
-
-    function dasdingo_3__hex:PopupPure(target, damage)
-        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-        local digits = 0
-        if damage < 10 then digits = 1 end
-        if damage > 9 and damage < 100 then digits = 2 end
-        if damage > 99 and damage < 1000 then digits = 3 end
-        if damage > 999 then digits = 4 end
-
-        ParticleManager:SetParticleControl(pidx, 1, Vector(0, math.floor(damage), 0))
-        ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-        ParticleManager:SetParticleControl(pidx, 3, Vector(235, 200, 255))
-
-        if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
     end
 
     function dasdingo_3__hex:PlayEfxAoe(target, radius)

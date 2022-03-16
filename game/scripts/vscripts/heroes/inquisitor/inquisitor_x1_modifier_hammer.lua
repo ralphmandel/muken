@@ -66,8 +66,7 @@ function inquisitor_x1_modifier_hammer:OnRemoved()
     and self.parent:HasModifier("bloodstained_u_modifier_copy") == false then
         self.parent:ForceKill(false)
     else
-        local total = math.floor(ApplyDamage(damage))
-        self:PopupPure(self.parent, total)
+        ApplyDamage(damage)
     end
 
     local enemies = FindUnitsInRadius(
@@ -143,17 +142,4 @@ function inquisitor_x1_modifier_hammer:PlayEfxEnd(parent, level)
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( level, 1, level ) )
 
     if IsServer() then parent:EmitSound("Hero_Nevermore.Shadowraze") end
-end
-
-function inquisitor_x1_modifier_hammer:PopupPure(target, damage)
-	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-    local digits = 0
-	if damage < 10 then digits = 1 end
-    if damage > 9 and damage < 100 then digits = 2 end
-    if damage > 99 and damage < 1000 then digits = 3 end
-    if damage > 999 then digits = 4 end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 0))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(5, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, Vector(255, 225, 175))
 end

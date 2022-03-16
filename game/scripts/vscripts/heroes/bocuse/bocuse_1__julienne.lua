@@ -78,7 +78,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             if not self.rank_1 then self.rank_1 = false end
             if self:GetRank(1) and self.rank_1 == false then
                 self.rank_1 = true
-                mod:StartIntervalThink(5)
+                mod:StartIntervalThink(10)
             end
         end
 
@@ -274,7 +274,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         }
 
         local apply_damage = math.floor(ApplyDamage(damageTable))
-        if apply_damage > 0 then self:PopupCut(target, apply_damage) end
+        --if apply_damage > 0 then self:PopupCut(target, apply_damage) end
         if target:IsAlive() == false and original == true then self.cancel = true end
 
         if index > 2 and self.cancel == true then
@@ -356,27 +356,27 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
-    function bocuse_1__julienne:PopupCut(target, amount)
-        self:PopupNumbers(target, "crit", Vector(100, 25, 40), 1.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
-    end
+    -- function bocuse_1__julienne:PopupCut(target, amount)
+    --     self:PopupNumbers(target, "crit", Vector(100, 25, 40), 1.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
+    -- end
 
-    function bocuse_1__julienne:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-        local pfxPath = string.format("particles/bocuse/bocuse_msg.vpcf", pfx)
-        local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, target) -- target:GetOwner()
-        postsymbol = 3
+    -- function bocuse_1__julienne:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
+    --     local pfxPath = string.format("particles/bocuse/bocuse_msg.vpcf", pfx)
+    --     local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, target) -- target:GetOwner()
+    --     postsymbol = 3
         
-        local digits = 0
-        if number ~= nil then
-            digits = #tostring(number)
-        end
-        if presymbol ~= nil then
-            digits = digits + 1
-        end
-        if postsymbol ~= nil then
-            digits = digits + 1
-        end
+    --     local digits = 0
+    --     if number ~= nil then
+    --         digits = #tostring(number)
+    --     end
+    --     if presymbol ~= nil then
+    --         digits = digits + 1
+    --     end
+    --     if postsymbol ~= nil then
+    --         digits = digits + 1
+    --     end
 
-        ParticleManager:SetParticleControl(pidx, 3, Vector(tonumber(nil), tonumber(number), tonumber(postsymbol)))
-        ParticleManager:SetParticleControl(pidx, 4, Vector(5, digits, 0))
-        --ParticleManager:SetParticleControl(pidx, 3, color)
-    end
+    --     ParticleManager:SetParticleControl(pidx, 3, Vector(tonumber(nil), tonumber(number), tonumber(postsymbol)))
+    --     ParticleManager:SetParticleControl(pidx, 4, Vector(5, digits, 0))
+    --     --ParticleManager:SetParticleControl(pidx, 3, color)
+    -- end

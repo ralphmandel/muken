@@ -36,6 +36,7 @@ function _1_INT_modifier:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MANA_BONUS,
         MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+        MODIFIER_EVENT_ON_TAKEDAMAGE
     }
     return funcs
 end

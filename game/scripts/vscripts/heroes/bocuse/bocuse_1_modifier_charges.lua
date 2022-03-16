@@ -63,9 +63,8 @@ function bocuse_1_modifier_charges:GetModifierProcAttack_Feedback( params )
 		self:IncrementStackCount()
 		self:ResetHits()
 		self:CheckCharges()
+		self:StartIntervalThink(10)
 	end
-
-	self:StartIntervalThink(5)
 end
 
 function bocuse_1_modifier_charges:OnIntervalThink()

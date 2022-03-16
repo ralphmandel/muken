@@ -166,8 +166,7 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 			ability = self
 		}
 		
-		local total = math.floor(ApplyDamage( damageTable ))
-		self:PopupDamageOverTime(hTarget, total)
+		local total = ApplyDamage(damageTable)
 		self:PlayEffects(hTarget)
 
 		if hTarget:IsAlive() then
@@ -252,31 +251,6 @@ LinkLuaModifier( "shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_da
 		ParticleManager:SetParticleControl( effect_cast, 0, target:GetOrigin() )
 
 		if IsServer() then target:EmitSound("Hero_QueenOfPain.ShadowStrike") end
-	end
-
-	function shadow_u__dagger:PopupDamageOverTime(target, amount)
-		self:PopupNumbers(target, "crit", Vector(255, 0, 0), 1.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
-	end
-
-	function shadow_u__dagger:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-		local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
-		local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-		postsymbol = 3
-		
-		local digits = 0
-		if number ~= nil then
-			digits = #tostring(number)
-		end
-		if presymbol ~= nil then
-			digits = digits + 1
-		end
-		if postsymbol ~= nil then
-			digits = digits + 1
-		end
-
-		ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(nil), tonumber(number), tonumber(postsymbol)))
-		ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-		ParticleManager:SetParticleControl(pidx, 3, color)
 	end
 
 	function shadow_u__dagger:PlayEfxCrit(direction, origin, target)

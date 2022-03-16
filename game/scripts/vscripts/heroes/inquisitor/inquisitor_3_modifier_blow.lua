@@ -209,8 +209,8 @@ function inquisitor_3_modifier_blow:CastAftershake(target)
 
     for _,enemy in pairs(enemies) do
 		damageTable.victim = enemy
-		local total = math.floor(ApplyDamage(damageTable))
-		if total > 0 then self:PopupPure(enemy, total) end
+		ApplyDamage(damageTable)
+		if IsServer() then enemy:EmitSound("Hero_Juggernaut.BladeDance") end
     end
 
     GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)
@@ -241,21 +241,6 @@ function inquisitor_3_modifier_blow:PlayEfxLifesteal()
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast)
-end
-
-function inquisitor_3_modifier_blow:PopupPure(target, damage)
-	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-    local digits = 0
-	if damage < 10 then digits = 1 end
-    if damage > 9 and damage < 100 then digits = 2 end
-    if damage > 99 and damage < 1000 then digits = 3 end
-    if damage > 999 then digits = 4 end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 0))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, Vector(255, 225, 175))
-
-	if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
 end
 
 function inquisitor_3_modifier_blow:PlayEfxInvulnerable()

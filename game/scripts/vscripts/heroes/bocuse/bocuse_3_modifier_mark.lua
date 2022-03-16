@@ -168,19 +168,6 @@ function bocuse_3_modifier_mark:PopupSauce(immediate)
     ParticleManager:SetParticleControl(self.pidx, 2, Vector(self:GetStackCount(), 0, 0))
 end
 
-function bocuse_3_modifier_mark:PopupPure(target, damage)
-	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-    local digits = 0
-	if damage < 10 then digits = 1 end
-    if damage > 9 and damage < 100 then digits = 2 end
-    if damage > 99 and damage < 1000 then digits = 3 end
-    if damage > 999 then digits = 4 end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 0))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, Vector(255, 225, 175))
-end
-
 function bocuse_3_modifier_mark:PlayEfxLifesteal()
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.caster)

@@ -60,6 +60,7 @@ require("talent_tree")
 			end
 			self.extras_unlocked = self.extras_unlocked + 1
 			caster:AddExperience(level * 10, 0, false, false)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 			return
 		end
 
@@ -75,6 +76,7 @@ require("talent_tree")
 		if not ability:IsTrained() then return end
 		ability:SetLevel(ability:GetLevel() + level)
 		caster:AddExperience(level * 10, 0, false, false)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 	end
 
 	function bloodstained__attributes:CheckNewAbility(skill, id, level)

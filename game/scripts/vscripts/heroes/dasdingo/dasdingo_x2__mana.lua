@@ -56,8 +56,8 @@ LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modif
         local mnd = caster:FindModifierByName("_2_MND_modifier")
         if mnd then mana = mana * mnd:GetHealPower() end
         target:GiveMana(mana)
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, mana, caster)
 
-        self:PopupMana(target, mana)
         self:PlayEfxStart(target)
     end
 
@@ -99,17 +99,4 @@ LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modif
         ParticleManager:ReleaseParticleIndex(effect)
 
         if IsServer() then target:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target") end
-    end
-
-    function dasdingo_x2__mana:PopupMana(target, value)
-        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_add.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-        local digits = 3
-        if value < 10 then digits = digits + 1 end
-        if value > 9 and value < 100 then digits = digits + 1 end
-        if value > 99 and value < 1000 then digits = digits + 1 end
-        if value > 999 then digits = digits + 1 end
-
-        ParticleManager:SetParticleControl(pidx, 1, Vector(0, math.floor(value), 0))
-        ParticleManager:SetParticleControl(pidx, 2, Vector(2, digits, 0))
-        ParticleManager:SetParticleControl(pidx, 3, Vector(0, 0, 255))
     end

@@ -94,7 +94,10 @@ function dasdingo_3_modifier_hex:GetPriority()
 end
 
 function dasdingo_3_modifier_hex:OnIntervalThink()
-	if self.parent:IsMoving() then self.parent:ReduceMana(6) end
+	if self.parent:IsMoving() then
+		self.parent:ReduceMana(6)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, -6, self.caster)
+	end
 end
 
 --------------------------------------------------------------------------------

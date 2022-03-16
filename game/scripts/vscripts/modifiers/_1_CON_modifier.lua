@@ -36,8 +36,8 @@ function _1_CON_modifier:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_HEALTH_BONUS,
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-        --MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-        MODIFIER_EVENT_ON_HEAL_RECEIVED
+        MODIFIER_EVENT_ON_HEAL_RECEIVED,
+        MODIFIER_EVENT_ON_TAKEDAMAGE
     }
     return funcs
 end
@@ -50,50 +50,50 @@ function _1_CON_modifier:GetModifierConstantHealthRegen()
     return (self:GetStackCount() * self.hp_regen) + self.heal_amp
 end
 
--- function _1_CON_modifier:GetModifierHealAmplify_PercentageTarget()
---     return self.heal_amp
--- end
-
-function _1_CON_modifier:OnHealReceived(keys)
-    if keys.gain < 1 then return end
-
-    if keys.inflictor ~= nil and keys.unit == self:GetParent() then
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, math.floor(keys.gain), keys.unit)
-        --self:Popup(params.unit, math.floor(params.gain))
-    end
-end
-
 function _1_CON_modifier:Base_CON(value)
     self.heal_amp = self.ability:GetSpecialValueFor("heal_amp") * value
 end
 
------------------------------------------------------------------
+function _1_CON_modifier:OnHealReceived(keys)
+    if keys.unit ~= self.parent then return end
+    if keys.inflictor == nil then return end
+    if keys.gain < 1 then return end
 
-function _1_CON_modifier:Popup(target, amount)
-    self:PopupNumbers(target, "heal", Vector(0, 255, 0), 2.0, amount, 10, 0)
+    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
 end
 
-function _1_CON_modifier:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
-    local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-    
-     
-    local digits = 0
-    if number ~= nil then
-        digits = #tostring(number)
-    end
-    if presymbol ~= nil then
-        digits = digits + 1
-    end
-    if postsymbol ~= nil then
-        digits = digits + 1
+function _1_CON_modifier:OnTakeDamage(keys)
+    if keys.unit ~= self.parent then return end
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
+
+    local efx = nil
+    --if keys.damage_type == DAMAGE_TYPE_PHYSICAL then efx = OVERHEAD_ALERT_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
+
+    if keys.inflictor ~= nil then
+        if keys.inflictor == "shadow_1__weapon"
+        or keys.inflictor == "shadow_2__smoke" then
+            efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
+        end
     end
 
-    if number < 10 then digits = 2 end
-    if number > 9 and number < 100 then digits = 3 end
-    if number > 99 then digits = 4 end
+    if efx == nil then return end
+    SendOverheadEventMessage(nil, efx, self.parent, keys.damage, self.parent)
+end
 
-    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
+function _1_CON_modifier:PopupCustom(damage, color)
+	local pidx = ParticleManager:CereateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent) -- target:GetOwner()
+    local digits = 1
+	if damage < 10 then digits = 1 end
+    if damage > 9 and damage < 100 then digits = 2 end
+    if damage > 99 and damage < 1000 then digits = 3 end
+    if damage > 999 then digits = 4 end
+
+    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
+    ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
     ParticleManager:SetParticleControl(pidx, 3, color)
+    --ParticleManager:SetParticleControl(pidx, 3, Vector(155, 225, 175)) -- GREEN
+    --ParticleManager:SetParticleControl(pidx, 3, Vector(125, 190, 175)) -- GREEN 2
+    --ParticleManager:SetParticleControl(pidx, 3, Vector(125, 200, 225)) -- CYAN
 end

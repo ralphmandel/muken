@@ -79,7 +79,7 @@
 
 		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240"
 		"AbilityCooldown"				"20"
-		"AbilityCastRange"      		"200"
+		"AbilityCastRange"      		"350"
 		"AbilityChannelTime"    		"3.25"
 
 		"AbilitySpecial"
@@ -92,7 +92,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"radius"			"175"
+				"radius"			"250"
 			}
 			"05"
 			{

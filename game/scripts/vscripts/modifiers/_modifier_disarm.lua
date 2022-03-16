@@ -30,7 +30,7 @@ end
 
 function _modifier_disarm:CheckState()
 	local state = {
-	[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_DISARMED] = true,
 	}
 
 	return state

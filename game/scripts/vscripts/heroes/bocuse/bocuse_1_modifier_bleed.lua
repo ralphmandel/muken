@@ -81,7 +81,7 @@ end
 
 function bocuse_1_modifier_bleed:OnIntervalThink()
 	local apply_damage = math.floor(ApplyDamage(self.damageTable))
-	if apply_damage > 0 then self:PopupBleed(apply_damage) end
+	--if apply_damage > 0 then self:PopupBleed(apply_damage) end
 end
 
 --------------------------------------------------------------------------------
@@ -94,19 +94,19 @@ function bocuse_1_modifier_bleed:GetEffectAttachType()
 	return PATTACH_POINT_FOLLOW
 end
 
-function bocuse_1_modifier_bleed:PopupBleed(amount)
-    local pfxPath = "particles/bocuse/bocuse_msg.vpcf"
-	local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, self.parent)
+-- function bocuse_1_modifier_bleed:PopupBleed(amount)
+--     local pfxPath = "particles/bocuse/bocuse_msg.vpcf"
+-- 	local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, self.parent)
     
-    local digits = 1
-    if amount ~= nil then
-        digits = digits + #tostring(amount)
-    end
+--     local digits = 1
+--     if amount ~= nil then
+--         digits = digits + #tostring(amount)
+--     end
 
-    ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
-    ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
-    --ParticleManager:SetParticleControl(pidx, 3, Vector(100, 25, 40))
-end
+--     ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
+--     ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
+--     --ParticleManager:SetParticleControl(pidx, 3, Vector(100, 25, 40))
+-- end
 
 function bocuse_1_modifier_bleed:PlayEfxStart()
 	if IsServer() then self.parent:EmitSound("Hero_LifeStealer.OpenWounds") end

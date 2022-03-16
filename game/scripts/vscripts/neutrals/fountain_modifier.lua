@@ -17,7 +17,7 @@ function fountain_modifier:OnCreated( kv )
     self.mp_percent = self.ability:GetSpecialValueFor("mp_percent") * 0.01
     self.radius = self.ability:GetSpecialValueFor("radius")
 
-	self:StartIntervalThink(0.2)
+	self:StartIntervalThink(0.25)
 	--self:PlayEfxStart()
 end
 
@@ -47,11 +47,12 @@ function fountain_modifier:OnIntervalThink()
 			false	-- bool, can grow cache
 		)
 		for _,unit in pairs(units) do
-			local heal = self.hp_percent * unit:GetMaxHealth() * 0.2
-			local recovery = self.mp_percent * unit:GetMaxMana() * 0.2
+			local heal = self.hp_percent * unit:GetMaxHealth() * 0.25
+			local recovery = self.mp_percent * unit:GetMaxMana() * 0.25
 			
-			unit:Heal(heal, nil)
+			unit:Heal(heal, self.ability)
 			unit:GiveMana(recovery)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, unit, recovery, unit)
 			unit:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {duration = 0.3})
 	
 			self:PlayEfxHeal(unit)

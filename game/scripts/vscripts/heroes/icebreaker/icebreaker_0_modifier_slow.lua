@@ -203,28 +203,3 @@ function icebreaker_0_modifier_slow:PopupIce(immediate)
 		if IsServer() then self.parent:EmitSound("Hero_Icebreaker.Frost") end
 	end
 end
-
-function icebreaker_0_modifier_slow:PopupDamageOverTime(target, amount)
-    self:PopupNumbers(target, "crit", Vector(125, 200, 225), 3.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
-end
-
-function icebreaker_0_modifier_slow:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
-	local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_ABSORIGIN_FOLLOW, target) -- target:GetOwner()
-	postsymbol = 6
-    
-    local digits = 0
-    if number ~= nil then
-        digits = #tostring(number)
-    end
-    if presymbol ~= nil then
-        digits = digits + 1
-    end
-    if postsymbol ~= nil then
-        digits = digits + 1
-    end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(nil), tonumber(number), tonumber(postsymbol)))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, color)
-end

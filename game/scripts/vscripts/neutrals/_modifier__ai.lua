@@ -71,7 +71,7 @@ function _modifier__ai:IdleThink()
         return
     end
 
-    self.unit:Heal(self.unit:GetMaxHealth() * 0.025, self:GetAbility())
+    self.unit:Heal(self.unit:GetMaxHealth() * 0.025, nil)
     -- Nothing else to do in Idle state
 end
 
@@ -123,11 +123,23 @@ end
 
 -----------------------------------------------------------
 
+function _modifier__ai:CheckState()
+	local state = {}
+
+    if self.state == AI_STATE_IDLE then
+        state = {[MODIFIER_STATE_MAGIC_IMMUNE] = true}
+    end
+
+	return state
+end
+
 function _modifier__ai:DeclareFunctions()
 	local funcs = {
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+        MODIFIER_EVENT_ON_HEAL_RECEIVED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
@@ -160,4 +172,45 @@ end
 
 function _modifier__ai:GetAttackSound(keys)
     return ""
+end
+
+function _modifier__ai:OnHealReceived(keys)
+    if keys.unit ~= self:GetParent() then return end
+    if keys.inflictor == nil then return end
+    if keys.gain < 1 then return end
+
+    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
+end
+
+function _modifier__ai:OnTakeDamage(keys)
+    if keys.unit ~= self:GetParent() then return end
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
+
+    local efx = nil
+    --if keys.damage_type == DAMAGE_TYPE_PHYSICAL then efx = OVERHEAD_ALERT_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
+
+    if keys.inflictor ~= nil then
+        if keys.inflictor == "shadow_1__weapon"
+        or keys.inflictor == "shadow_2__smoke" then
+            efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
+        end
+    end
+
+    if efx == nil then return end
+    SendOverheadEventMessage(nil, efx, self:GetParent(), keys.damage, self:GetParent())
+end
+
+function _modifier__ai:PopupCustom(damage, color)
+	local pidx = ParticleManager:CereateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+    local digits = 1
+	if damage < 10 then digits = 1 end
+    if damage > 9 and damage < 100 then digits = 2 end
+    if damage > 99 and damage < 1000 then digits = 3 end
+    if damage > 999 then digits = 4 end
+
+    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
+    ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
+    ParticleManager:SetParticleControl(pidx, 3, color)
 end
