@@ -16,8 +16,8 @@ function icebreaker_0_modifier_illusion:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.attack = false
 	self.stop = false
+	self.min_health = 1
 
 	self:StartIntervalThink(0.1)
 end
@@ -44,6 +44,7 @@ end
 
 function icebreaker_0_modifier_illusion:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
@@ -53,29 +54,32 @@ function icebreaker_0_modifier_illusion:DeclareFunctions()
 	return funcs
 end
 
+function icebreaker_0_modifier_illusion:GetMinHealth()
+	return self.min_health
+end
+
 function icebreaker_0_modifier_illusion:GetModifierMoveSpeedBonus_Percentage()
 	return 50
 end
+
 
 function icebreaker_0_modifier_illusion:GetModifierFixedAttackRate()
 	return 1.5
 end
 
 function icebreaker_0_modifier_illusion:GetModifierBaseAttackTimeConstant()
-    return 1.2
+    return 1
 end
 
 function icebreaker_0_modifier_illusion:OnAttackLanded(keys)
 	if keys.target == self.parent then
+		self.min_health = 0
 		self.parent:ForceKill(false)
 		return
 	end
 
 	if keys.attacker == self.parent then
 		if keys.target:IsMagicImmune() then return end
-		if keys.target:HasModifier("icebreaker_0_modifier_slow") then
-			self.attack = true
-		end
 
 		local ability_slow = self.caster:FindAbilityByName("icebreaker_0__slow")
 		if ability_slow then

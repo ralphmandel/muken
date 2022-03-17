@@ -68,6 +68,12 @@ icebreaker_3__blink = class({})
 		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 		
 		local charges = 1
+
+	    -- UP 3.4
+        if self:GetRank(4) then
+            charges = charges * 2           
+        end
+
 		self:SetCurrentAbilityCharges(charges)
 	end
 
@@ -76,6 +82,13 @@ icebreaker_3__blink = class({})
 	end
 
 -- SPELL START
+
+	function icebreaker_3__blink:GetAOERadius()
+		if self:GetCurrentAbilityCharges() == 0 then return 0 end
+		if self:GetCurrentAbilityCharges() == 1 then return 0 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return 300 end
+		return 0
+	end
 
 	function icebreaker_3__blink:OnSpellStart()
 		local caster = self:GetCaster()
@@ -157,6 +170,13 @@ icebreaker_3__blink = class({})
 
 		return "No Range"
 	end
+
+    function icebreaker_3__blink:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
+        if self:GetCurrentAbilityCharges() == 1 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES + DOTA_ABILITY_BEHAVIOR_AOE end
+        return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+    end
 
 -- EFFECTS
 

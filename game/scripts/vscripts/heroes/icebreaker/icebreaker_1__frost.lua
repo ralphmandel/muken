@@ -68,11 +68,20 @@ LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+
+        local charges = 1
+
+        -- UP 1.1
+        if self:GetRank(1) then
+            charges = charges * 2
+        end
+
+        self:SetCurrentAbilityCharges(charges)
     end
 
     function icebreaker_1__frost:Spawn()
+        self:SetCurrentAbilityCharges(0)
         self.kills = 0
-        self.double = true
     end
 
 -- SPELL START
@@ -93,8 +102,10 @@ LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_
         ParticleManager:ReleaseParticleIndex( nFXIndex )
     end
 
-    function icebreaker_1__frost:ResetDouble()
-        self.double = true
-    end
+    function icebreaker_1__frost:GetCooldown(iLevel)
+		if self:GetCurrentAbilityCharges() == 0 then return 0 end
+		if self:GetCurrentAbilityCharges() == 1 then return 0 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return 5 end
+	end
 
 -- EFFECTS

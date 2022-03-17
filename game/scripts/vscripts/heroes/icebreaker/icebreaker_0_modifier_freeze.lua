@@ -23,6 +23,7 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability_break = self:GetAbility()
 
 	self.break_damage = self.ability:GetSpecialValueFor("break_damage")
 
@@ -38,14 +39,14 @@ end
 function icebreaker_0_modifier_freeze:OnRemoved( kv )
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 		local heal = self:GetStackCount() * 0.5
-		if heal > 0 then self.parent:Heal(heal, self.ability) end
+		if heal > 0 then self.parent:Heal(heal, self.ability_break) end
 	else
 		local damageTable = {
 			victim = self.parent,
 			attacker = self.caster,
 			damage = self:GetStackCount(),
-			damage_type = self.ability:GetAbilityDamageType(),
-			ability = self.ability
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self.ability_break
 		}
 		local value = ApplyDamage(damageTable)
 
@@ -53,9 +54,9 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 			self:PlayEfxDestroy()
 		end
 
-		if self.ability:GetAbilityName() == "icebreaker_3__blink" then
+		if self.ability_break:GetAbilityName() == "icebreaker_3__blink" then
 			-- UP 3.1
-			if self.ability:GetRank(1) and self.parent:IsAlive() then
+			if self.ability_break:GetRank(1) and self.parent:IsAlive() then
 				local knockbackProperties =
 				{
 					duration = 0.5,
@@ -72,8 +73,38 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 			end
 
 			-- UP 3.2
-			if self.ability:GetRank(2) then
-				if value > 0 then self.caster:Heal(value, self.ability) end
+			if self.ability_break:GetRank(2) then
+				if value > 0 then self.caster:Heal(value, self.ability_break) end
+			end
+
+			-- UP 3.4
+			if self.ability_break:GetRank(4) then
+				self:PlayEfxSpread()
+				local units = FindUnitsInRadius(
+					self.caster:GetTeamNumber(), self.parent:GetOrigin(),
+					nil, 300,
+					DOTA_UNIT_TARGET_TEAM_ENEMY,
+					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+					0, 0, false
+				)
+			
+				for _,unit in pairs(units) do
+					if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+
+					local damageTable = {
+						victim = unit,
+						attacker = self.caster,
+						damage = self.ability:GetSpecialValueFor("break_damage") * 0.5,
+						damage_type = DAMAGE_TYPE_MAGICAL,
+						ability = self.ability_break
+					}
+					ApplyDamage(damageTable)
+
+					if unit:IsAlive() then
+						unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.6})
+						self.ability:AddSlow(unit, self.ability)
+					end
+				end
 			end
 		end
 	end
@@ -125,15 +156,16 @@ end
 
 function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
-	self.ability = keys.ability
+	if keys.ability == nil then return end
+	if keys.ability:GetAbilityName() ~= "icebreaker_3__blink" then return end
+	self.ability_break = keys.ability
 	
 	if keys.unit == self.caster
-	and keys.target == self.parent
-	and self.ability:GetAbilityName() == "icebreaker_3__blink" then
+	and keys.target == self.parent then
 		Timers:CreateTimer((0.1), function()
-			if self.ability ~= nil then
-				if IsValidEntity(self.ability) then
-					self.ability:EndCooldown()
+			if self.ability_break ~= nil then
+				if IsValidEntity(self.ability_break) then
+					self.ability_break:EndCooldown()
 				end
 			end
 		end)
@@ -141,46 +173,14 @@ function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
 		local frost = keys.unit:FindAbilityByName("icebreaker_1__frost")
 		if frost then
 			if frost:IsTrained() then
-				frost:ResetDouble()
-			end
-		end
-
-		-- UP 3.4
-		if self.ability:GetRank(4) then
-			self:PlayEfxSpread()
-			local units = FindUnitsInRadius(
-				self.caster:GetTeamNumber(), self.parent:GetOrigin(),
-				nil, 300,
-				DOTA_UNIT_TARGET_TEAM_ENEMY,
-				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-				0, 0, false
-			)
-		
-			for _,unit in pairs(units) do
-				if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-
-				local ability_slow = self.caster:FindAbilityByName("icebreaker_0__slow")
-				if ability_slow then
-					if ability_slow:IsTrained() then
-						ability_slow:AddSlow(unit, ability_slow)
-					end
-				end
-
-				local damageTable = {
-					victim = unit,
-					attacker = self.caster,
-					damage = 40,
-					damage_type = DAMAGE_TYPE_MAGICAL,
-					ability = self.ability
-				}
-				ApplyDamage(damageTable)
+				frost:EndCooldown()
 			end
 		end
 
 		-- UP 3.5
 		local damage = self.break_damage
-		if self.ability:GetRank(5) then
-			damage = damage + 30
+		if self.ability_break:GetRank(5) then
+			damage = damage + 60
 		end
 
 		self:SetStackCount(damage)

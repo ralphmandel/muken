@@ -103,7 +103,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"break_damage"		"120"
+				"break_damage"		"135"
 			}
 			"06"
 			{
@@ -247,7 +247,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"break_damage_tooltip"	"120"
+				"break_damage_tooltip"	"135"
 			}
 			"02"
 			{

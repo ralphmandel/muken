@@ -206,10 +206,10 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
                     caster, caster,
                     {
                         outgoing_damage = -100,
-                        incoming_damage = -100,
+                        incoming_damage = 0,
                         bounty_base = 0,
                         bounty_growth = 0,
-                        duration = self:CalcStatus(5, caster, nil),
+                        duration = self:CalcStatus(7, caster, nil),
                     },
                     1, 64, false, true
                 )

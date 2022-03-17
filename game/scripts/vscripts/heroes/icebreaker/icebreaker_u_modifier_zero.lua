@@ -180,7 +180,7 @@ end
 
 function icebreaker_u_modifier_zero:StartExplosionThink()
 	local point = self.parent:GetOrigin()
-	local explosion_damage = 45
+	local explosion_damage = 50
 	local explosion_radius = (self.radius * 0.2)
 
 	local random_x

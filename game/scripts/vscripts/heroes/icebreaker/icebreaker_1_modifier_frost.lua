@@ -77,11 +77,6 @@ function icebreaker_1_modifier_frost:GetModifierDamageOutgoing_Percentage(keys)
 	end
 end
 
-function icebreaker_1_modifier_frost:OnIntervalThink()
-	self.ability:ResetDouble()
-	self:StartIntervalThink(-1)
-end
-
 function icebreaker_1_modifier_frost:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
@@ -89,10 +84,11 @@ function icebreaker_1_modifier_frost:OnAttack(keys)
 
     -- UP 1.1
     if self.ability:GetRank(1) then
-		if self.ability.double == true
-		and self.parent:PassivesDisabled() == false then
+		if self.parent:PassivesDisabled() == false
+		and self.ability:IsCooldownReady() then
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+			self.ability:RemoveBonus("_1_AGI", self.parent)
 			self.ability:AddBonus("_1_AGI", self.parent, 99, 0, 2)
-			self.ability.double = false
 			self.hits = 1
 		end
 
@@ -126,7 +122,7 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 
 	-- UP 1.2
 	if self.ability:GetRank(2) then
-		chance = chance + 10
+		chance = 100
 	else
 		if keys.target:IsMagicImmune() then
 			chance = 0
@@ -144,18 +140,16 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 	end
 
 	-- UP 1.5
-	if self.ability:GetRank(5)
-	and self.ability:IsCooldownReady() then
-		self.ability:StartCooldown(RandomInt(3, 5))
-
+	if self.ability:GetRank(5) 
+	and RandomInt(1, 100) <= 15 then
 		local illu = CreateIllusions(
 			self.caster, self.caster,
 			{
 				outgoing_damage = -100,
-				incoming_damage = -100,
+				incoming_damage = 0,
 				bounty_base = 0,
 				bounty_growth = 0,
-				duration = self.ability:CalcStatus(5, self.caster, nil),
+				duration = self.ability:CalcStatus(7, self.caster, nil),
 			},
 			1, 64, false, true
 		)
