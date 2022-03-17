@@ -20,18 +20,18 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
 	self.max_range = self.ability:GetSpecialValueFor("max_range")
 	self.shared_damage = self.ability:GetSpecialValueFor("shared_damage") * 0.01
 
-    -- UP 3.4
-	if self.ability:GetRank(4) then
+    -- UP 3.21
+	if self.ability:GetRank(21) then
 		self.purge = false
 	end
 
-    -- UP 3.7
-	if self.ability:GetRank(7) then
+    -- UP 3.31
+	if self.ability:GetRank(31) then
 		self.shared_damage = (self.ability:GetSpecialValueFor("shared_damage") + 25) * 0.01
 	end
 
-    -- UP 3.3
-	if self.ability:GetRank(3)
+    -- UP 3.13
+	if self.ability:GetRank(13)
 	and self.caster ~= self.parent then
 		self.truesight = true
 	end
@@ -68,8 +68,8 @@ function bloodstained_3_modifier_curse:OnRemoved()
 			end
 		end
 	else
-		-- UP 3.2
-		if self.ability:GetRank(2) then
+		-- UP 3.12
+		if self.ability:GetRank(12) then
 			if self.parent:IsAlive() == false then self.ability:EndCooldown() end
 		end
 		
@@ -128,8 +128,8 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 
 	self.time = self.time + 1
 
-    -- UP 3.8
-	if self.ability:GetRank(8)
+    -- UP 3.32
+	if self.ability:GetRank(32)
 	and self.time % 20 == 0 then
 		local leech = self.parent:GetMaxHealth() * 0.05
 		if self.parent:IsMagicImmune() == false then
@@ -139,8 +139,8 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 		end
 	end
 
-    -- UP 3.1
-	if self.ability:GetRank(1) == false then
+    -- UP 3.11
+	if self.ability:GetRank(11) == false then
 		local distance = CalcDistanceBetweenEntityOBB(self.parent, self.caster)
 		if self.max_range < distance then
 			self:Destroy()

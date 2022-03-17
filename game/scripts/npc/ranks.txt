@@ -3,7 +3,7 @@
 
 	//SHADOW
 		//SHADOW 1
-			"shadow_1__weapon_rank_1_1"
+			"shadow_1__weapon_rank_11"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -34,7 +34,7 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_1_2"
+			"shadow_1__weapon_rank_12"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -65,7 +65,7 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_2_1"
+			"shadow_1__weapon_rank_21"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -96,7 +96,7 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_3_1"
+			"shadow_1__weapon_rank_31"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -127,7 +127,7 @@
 				}
 			}
 
-			"shadow_1__weapon_rank_3_2"
+			"shadow_1__weapon_rank_32"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -159,7 +159,7 @@
 			}
 
 		//SHADOW 2
-			"shadow_2__smoke_rank_1_1"
+			"shadow_2__smoke_rank_11"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -190,7 +190,7 @@
 				}
 			}
 
-			"shadow_2__smoke_rank_1_2"
+			"shadow_2__smoke_rank_12"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -221,7 +221,7 @@
 				}
 			}
 
-			"shadow_2__smoke_rank_1_3"
+			"shadow_2__smoke_rank_13"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -252,7 +252,7 @@
 				}
 			}
 
-			"shadow_2__smoke_rank_2_1"
+			"shadow_2__smoke_rank_21"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -283,7 +283,7 @@
 				}
 			}
 
-			"shadow_2__smoke_rank_3_1"
+			"shadow_2__smoke_rank_31"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -315,7 +315,7 @@
 			}
 
 		//SHADOW 3
-			"shadow_3__walk_rank_1_1"
+			"shadow_3__walk_rank_11"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -346,7 +346,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_2_1"
+			"shadow_3__walk_rank_21"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -377,7 +377,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_2_2"
+			"shadow_3__walk_rank_22"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -408,7 +408,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_2_3"
+			"shadow_3__walk_rank_23"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -439,7 +439,7 @@
 				}
 			}
 
-			"shadow_3__walk_rank_3_1"
+			"shadow_3__walk_rank_31"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -516,7 +516,7 @@
 			}
 
 		//SHADOW U
-			"shadow_u__dagger_rank_1_1"
+			"shadow_u__dagger_rank_11"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -547,7 +547,7 @@
 				}
 			}
 
-			"shadow_u__dagger_rank_1_2"
+			"shadow_u__dagger_rank_12"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -578,7 +578,7 @@
 				}
 			}
 
-			"shadow_u__dagger_rank_2_1"
+			"shadow_u__dagger_rank_21"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -609,7 +609,7 @@
 				}
 			}
 
-			"shadow_u__dagger_rank_2_2"
+			"shadow_u__dagger_rank_22"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -640,7 +640,7 @@
 				}
 			}
 
-			"shadow_u__dagger_rank_2_3"
+			"shadow_u__dagger_rank_23"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -671,7 +671,7 @@
 				}
 			}
 
-			"shadow_u__dagger_rank_3_1"
+			"shadow_u__dagger_rank_31"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -810,7 +810,7 @@
 		}
 	
 
-			"bloodstained_u__seal_rank_1_1"
+			"bloodstained_u__seal_rank_11"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -841,7 +841,7 @@
 				}
 			}
 
-			"bloodstained_u__seal_rank_2_1"
+			"bloodstained_u__seal_rank_21"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -872,7 +872,7 @@
 				}
 			}
 
-			"bloodstained_u__seal_rank_2_2"
+			"bloodstained_u__seal_rank_22"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -903,7 +903,7 @@
 				}
 			}
 
-			"bloodstained_u__seal_rank_3_1"
+			"bloodstained_u__seal_rank_31"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -934,7 +934,7 @@
 				}
 			}
 
-			"bloodstained_u__seal_rank_3_2"
+			"bloodstained_u__seal_rank_32"
 			{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
@@ -967,7 +967,7 @@
 
 	//ICEBREAKER
 		//ICEBREAKER 1
-			"icebreaker_1__frost_rank_1_1"{
+			"icebreaker_1__frost_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_instance"
@@ -997,7 +997,7 @@
 				}
 			}
 
-			"icebreaker_1__frost_rank_1_2"{
+			"icebreaker_1__frost_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_instance"
@@ -1027,7 +1027,7 @@
 				}
 			}
 
-			"icebreaker_1__frost_rank_2_1"{
+			"icebreaker_1__frost_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_instance"
@@ -1057,7 +1057,7 @@
 				}
 			}
 
-			"icebreaker_1__frost_rank_3_1"{
+			"icebreaker_1__frost_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_instance"
@@ -1087,7 +1087,7 @@
 				}
 			}
 
-			"icebreaker_1__frost_rank_3_2"{
+			"icebreaker_1__frost_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_instance"
@@ -1118,7 +1118,7 @@
 			}
 
 		//ICEBREAKER 2
-			"icebreaker_2__discus_rank_1_1"{
+			"icebreaker_2__discus_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1148,7 +1148,7 @@
 				}
 			}
 
-			"icebreaker_2__discus_rank_1_2"{
+			"icebreaker_2__discus_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1178,7 +1178,7 @@
 				}
 			}
 
-			"icebreaker_2__discus_rank_1_3"{
+			"icebreaker_2__discus_rank_13"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1208,7 +1208,7 @@
 				}
 			}
 
-			"icebreaker_2__discus_rank_2_1"{
+			"icebreaker_2__discus_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1238,7 +1238,7 @@
 				}
 			}
 
-			"icebreaker_2__discus_rank_2_2"{
+			"icebreaker_2__discus_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1268,7 +1268,7 @@
 				}
 			}
 
-			"icebreaker_2__discus_rank_3_1"{
+			"icebreaker_2__discus_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_flake"
@@ -1299,7 +1299,7 @@
 			}
 
 		//ICEBREAKER 3
-			"icebreaker_3__blink_rank_1_1"{
+			"icebreaker_3__blink_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_blink"
@@ -1329,7 +1329,7 @@
 				}
 			}
 
-			"icebreaker_3__blink_rank_2_1"{
+			"icebreaker_3__blink_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_blink"
@@ -1359,7 +1359,7 @@
 				}
 			}
 
-			"icebreaker_3__blink_rank_2_2"{
+			"icebreaker_3__blink_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_blink"
@@ -1389,7 +1389,7 @@
 				}
 			}
 
-			"icebreaker_3__blink_rank_2_3"{
+			"icebreaker_3__blink_rank_23"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_blink"
@@ -1419,7 +1419,7 @@
 				}
 			}
 
-			"icebreaker_3__blink_rank_3_1"{
+			"icebreaker_3__blink_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_blink"
@@ -1450,7 +1450,7 @@
 			}
 
 		//ICEBREAKER U
-			"icebreaker_u__zero_rank_1_1"{
+			"icebreaker_u__zero_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1480,7 +1480,7 @@
 				}
 			}
 
-			"icebreaker_u__zero_rank_1_2"{
+			"icebreaker_u__zero_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1510,7 +1510,7 @@
 				}
 			}
 
-			"icebreaker_u__zero_rank_2_1"{
+			"icebreaker_u__zero_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1540,7 +1540,7 @@
 				}
 			}
 
-			"icebreaker_u__zero_rank_2_2"{
+			"icebreaker_u__zero_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1570,7 +1570,7 @@
 				}
 			}
 
-			"icebreaker_u__zero_rank_3_1"{
+			"icebreaker_u__zero_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1600,7 +1600,7 @@
 				}
 			}
 
-			"icebreaker_u__zero_rank_3_2"{
+			"icebreaker_u__zero_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"icebreaker_zero"
@@ -1630,107 +1630,11 @@
 				}
 			}
 
-		"icebreaker_x1__skin"
-		{
-			"BaseClass"             "ability_lua"
-			"ScriptFile"            "heroes/icebreaker/icebreaker_x1__skin"
-			"AbilityTextureName"    "icebreaker_skin"
 
-
-			"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
-			"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-			
-			"MaxLevel"            	"5"
-			"RequiredLevel"         "0"
-
-			"AbilityCooldown"		"15"
-			"AbilityManaCost"		"120"
-			"AbilityCastPoint"		"0.8"
-			"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
-			"AnimationPlaybackRate" "0.5"
-
-
-			"AbilitySpecial"
-			{
-				"01"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"duration"				"5"
-				}
-				"02"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"regen"					"5"
-				}
-				"03"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"reduction"				"80"
-				}
-                "12"
-                {
-                    "var_type"		"FIELD_FLOAT"
-                    "rank"			"5"
-                }
-				"13"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"skill"					"5"
-				}
-				"14"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"id"					"1"
-				}
-				"15"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"permanent"				"1"
-				}
-			}
-		}
-
-		"icebreaker_x2__sight"
-		{
-			"BaseClass"             "ability_lua"
-			"ScriptFile"            "heroes/icebreaker/icebreaker_x2__sight"
-			"AbilityTextureName"    "icebreaker_sight"
-
-			"AbilityType"			"DOTA_ABILITY_TYPE_BASIC"
-			"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-			"SpellImmunityType"		"SPELL_IMMUNITY_ENEMIES_YES"
-
-			"MaxLevel"             	"5"
-			"RequiredLevel"         "0"
-
-			"AbilitySpecial"
-			{
-                "12"
-                {
-                    "var_type"		"FIELD_FLOAT"
-                    "rank"			"5"
-                }
-				"13"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"skill"					"5"
-				}
-				"14"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"id"					"2"
-				}
-				"15"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"permanent"				"1"
-				}
-			}
-		}
 
 	//INQUISITOR
 		//INQUISITOR 1
-			"inquisitor_1__shield_rank_1_1"{
+			"inquisitor_1__shield_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1760,7 +1664,7 @@
 				}
 			}
 
-			"inquisitor_1__shield_rank_1_2"{
+			"inquisitor_1__shield_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1790,7 +1694,7 @@
 				}
 			}
 
-			"inquisitor_1__shield_rank_2_1"{
+			"inquisitor_1__shield_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1820,7 +1724,7 @@
 				}
 			}
 
-			"inquisitor_1__shield_rank_2_2"{
+			"inquisitor_1__shield_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1850,7 +1754,7 @@
 				}
 			}
 
-			"inquisitor_1__shield_rank_3_1"{
+			"inquisitor_1__shield_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1880,7 +1784,7 @@
 				}
 			}
 
-			"inquisitor_1__shield_rank_3_2"{
+			"inquisitor_1__shield_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_shield"
@@ -1911,7 +1815,7 @@
 			}
 
 		//INQUISITOR 2
-			"inquisitor_2__portal_rank_1_1"{
+			"inquisitor_2__portal_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -1941,7 +1845,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_1_2"{
+			"inquisitor_2__portal_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -1971,7 +1875,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_1_3"{
+			"inquisitor_2__portal_rank_13"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -2001,7 +1905,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_2_1"{
+			"inquisitor_2__portal_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -2031,7 +1935,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_2_2"{
+			"inquisitor_2__portal_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -2061,7 +1965,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_2_3"{
+			"inquisitor_2__portal_rank_23"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -2091,7 +1995,7 @@
 				}
 			}
 
-			"inquisitor_2__portal_rank_3_1"{
+			"inquisitor_2__portal_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_portal"
@@ -2122,7 +2026,7 @@
 			}
 
 		//INQUISITOR 3
-			"inquisitor_3__blow_rank_1_1"{
+			"inquisitor_3__blow_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_blow"
@@ -2152,7 +2056,7 @@
 				}
 			}
 
-			"inquisitor_3__blow_rank_1_2"{
+			"inquisitor_3__blow_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_blow"
@@ -2182,7 +2086,7 @@
 				}
 			}
 
-			"inquisitor_3__blow_rank_2_1"{
+			"inquisitor_3__blow_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_blow"
@@ -2212,7 +2116,7 @@
 				}
 			}
 
-			"inquisitor_3__blow_rank_3_1"{
+			"inquisitor_3__blow_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_blow"
@@ -2242,7 +2146,7 @@
 				}
 			}
 
-			"inquisitor_3__blow_rank_3_2"{
+			"inquisitor_3__blow_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_blow"
@@ -2273,7 +2177,7 @@
 			}
 
 		//INQUISITOR U
-			"inquisitor_u__autocast_rank_1_1"{
+			"inquisitor_u__autocast_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_autocast"
@@ -2303,7 +2207,7 @@
 				}
 			}
 
-			"inquisitor_u__autocast_rank_2_1"{
+			"inquisitor_u__autocast_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_autocast"
@@ -2333,7 +2237,7 @@
 				}
 			}
 
-			"inquisitor_u__autocast_rank_2_2"{
+			"inquisitor_u__autocast_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_autocast"
@@ -2363,7 +2267,7 @@
 				}
 			}
 
-			"inquisitor_u__autocast_rank_3_1"{
+			"inquisitor_u__autocast_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"inquisitor_autocast"
@@ -2516,7 +2420,7 @@
 
 	//CRUSADER
 		//CRUSADER 1
-			"crusader_1__summon_rank_1_1"{
+			"crusader_1__summon_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_summon"
@@ -2546,7 +2450,7 @@
 				}
 			}
 
-			"crusader_1__summon_rank_2_1"{
+			"crusader_1__summon_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_summon"
@@ -2576,7 +2480,7 @@
 				}
 			}
 
-			"crusader_1__summon_rank_2_2"{
+			"crusader_1__summon_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_summon"
@@ -2606,7 +2510,7 @@
 				}
 			}
 
-			"crusader_1__summon_rank_2_3"{
+			"crusader_1__summon_rank_23"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_summon"
@@ -2636,7 +2540,7 @@
 				}
 			}
 
-			"crusader_1__summon_rank_3_1"{
+			"crusader_1__summon_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_summon"
@@ -2667,7 +2571,7 @@
 			}
 
 		//CRUSADER 2
-			"crusader_2__shield_rank_1_1"{
+			"crusader_2__shield_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2697,7 +2601,7 @@
 				}
 			}
 
-			"crusader_2__shield_rank_1_2"{
+			"crusader_2__shield_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2727,7 +2631,7 @@
 				}
 			}
 
-			"crusader_2__shield_rank_2_1"{
+			"crusader_2__shield_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2757,7 +2661,7 @@
 				}
 			}
 
-			"crusader_2__shield_rank_2_2"{
+			"crusader_2__shield_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2787,7 +2691,7 @@
 				}
 			}
 
-			"crusader_2__shield_rank_3_1"{
+			"crusader_2__shield_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2817,7 +2721,7 @@
 				}
 			}
 
-			"crusader_2__shield_rank_3_2"{
+			"crusader_2__shield_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_shield"
@@ -2848,7 +2752,7 @@
 			}
 
 		//CRUSADER 3
-			"crusader_3__counter_rank_1_1"{
+			"crusader_3__counter_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_counter"
@@ -2878,7 +2782,7 @@
 				}
 			}
 
-			"crusader_3__counter_rank_1_2"{
+			"crusader_3__counter_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_counter"
@@ -2908,7 +2812,7 @@
 				}
 			}
 
-			"crusader_3__counter_rank_2_1"{
+			"crusader_3__counter_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_counter"
@@ -2938,7 +2842,7 @@
 				}
 			}
 
-			"crusader_3__counter_rank_3_1"{
+			"crusader_3__counter_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_counter"
@@ -2968,7 +2872,7 @@
 				}
 			}
 
-			"crusader_3__counter_rank_3_2"{
+			"crusader_3__counter_rank_32"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_counter"
@@ -2999,7 +2903,7 @@
 			}
 
 		//CRUSADER U
-			"crusader_u__aura_rank_1_1"{
+			"crusader_u__aura_rank_11"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3029,7 +2933,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_1_2"{
+			"crusader_u__aura_rank_12"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3059,7 +2963,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_1_3"{
+			"crusader_u__aura_rank_13"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3089,7 +2993,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_2_1"{
+			"crusader_u__aura_rank_21"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3119,7 +3023,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_2_2"{
+			"crusader_u__aura_rank_22"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3149,7 +3053,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_3_1"{
+			"crusader_u__aura_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3179,7 +3083,7 @@
 				}
 			}
 
-			"crusader_u__aura_rank_3_1"{
+			"crusader_u__aura_rank_31"{
 				"BaseClass"						"ability_lua"
 				"ScriptFile"					"modifiers/_talents"
 				"AbilityTextureName"    		"crusader_aura"
@@ -3319,7 +3223,7 @@
 
     //DASDINGO
         //DASDINGO 1
-            "dasdingo_1__heal_rank_1_1"{
+            "dasdingo_1__heal_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3349,7 +3253,7 @@
                 }
             }
 
-            "dasdingo_1__heal_rank_1_2"{
+            "dasdingo_1__heal_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3379,7 +3283,7 @@
                 }
             }
 
-            "dasdingo_1__heal_rank_2_1"{
+            "dasdingo_1__heal_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3409,7 +3313,7 @@
                 }
             }
 
-            "dasdingo_1__heal_rank_2_2"{
+            "dasdingo_1__heal_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3439,7 +3343,7 @@
                 }
             }
 
-            "dasdingo_1__heal_rank_3_1"{
+            "dasdingo_1__heal_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3469,7 +3373,7 @@
                 }
             }
 
-            "dasdingo_1__heal_rank_3_2"{
+            "dasdingo_1__heal_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_heal"
@@ -3500,7 +3404,7 @@
             }
 
         //DASDINGO 2
-            "dasdingo_2__aura_rank_1_1"{
+            "dasdingo_2__aura_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_aura"
@@ -3530,7 +3434,7 @@
                 }
             }
 
-            "dasdingo_2__aura_rank_2_1"{
+            "dasdingo_2__aura_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_aura"
@@ -3560,7 +3464,7 @@
                 }
             }
 
-            "dasdingo_2__aura_rank_2_2"{
+            "dasdingo_2__aura_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_aura"
@@ -3590,7 +3494,7 @@
                 }
             }
 
-            "dasdingo_2__aura_rank_2_3"{
+            "dasdingo_2__aura_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_aura"
@@ -3621,7 +3525,7 @@
             }
 
         //DASDINGO 3
-            "dasdingo_3__hex_rank_1_1"{
+            "dasdingo_3__hex_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3651,7 +3555,7 @@
                 }
             }
 
-            "dasdingo_3__hex_rank_1_2"{
+            "dasdingo_3__hex_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3681,7 +3585,7 @@
                 }
             }
 
-            "dasdingo_3__hex_rank_2_1"{
+            "dasdingo_3__hex_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3711,7 +3615,7 @@
                 }
             }
 
-            "dasdingo_3__hex_rank_3_1"{
+            "dasdingo_3__hex_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3741,7 +3645,7 @@
                 }
             }
 
-            "dasdingo_3__hex_rank_3_2"{
+            "dasdingo_3__hex_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3771,7 +3675,7 @@
                 }
             }
 
-            "dasdingo_3__hex_rank_3_3"{
+            "dasdingo_3__hex_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_hex"
@@ -3802,7 +3706,7 @@
             }
 
         //DASDINGO U
-            "dasdingo_u__maledict_rank_1_1"{
+            "dasdingo_u__maledict_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -3832,7 +3736,7 @@
                 }
             }
 
-            "dasdingo_u__maledict_rank_1_2"{
+            "dasdingo_u__maledict_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -3862,7 +3766,7 @@
                 }
             }
 
-            "dasdingo_u__maledict_rank_1_3"{
+            "dasdingo_u__maledict_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -3892,7 +3796,7 @@
                 }
             }
 
-            "dasdingo_u__maledict_rank_2_1"{
+            "dasdingo_u__maledict_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -3922,7 +3826,7 @@
                 }
             }
 
-            "dasdingo_u__maledict_rank_2_2"{
+            "dasdingo_u__maledict_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -3952,7 +3856,7 @@
                 }
             }
 
-            "dasdingo_u__maledict_rank_3_1"{
+            "dasdingo_u__maledict_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"dasdingo_maledict"
@@ -4089,7 +3993,7 @@
 		}
 
 
-            "athena_u__nova_rank_1_1"{
+            "athena_u__nova_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4119,7 +4023,7 @@
                 }
             }
 
-            "athena_u__nova_rank_1_2"{
+            "athena_u__nova_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4149,7 +4053,7 @@
                 }
             }
 
-            "athena_u__nova_rank_1_3"{
+            "athena_u__nova_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4179,7 +4083,7 @@
                 }
             }
 
-            "athena_u__nova_rank_2_1"{
+            "athena_u__nova_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4209,7 +4113,7 @@
                 }
             }
 
-            "athena_u__nova_rank_2_2"{
+            "athena_u__nova_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4239,7 +4143,7 @@
                 }
             }
 
-            "athena_u__nova_rank_2_3"{
+            "athena_u__nova_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4269,7 +4173,7 @@
                 }
             }
 
-            "athena_u__nova_rank_3_1"{
+            "athena_u__nova_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4299,7 +4203,7 @@
                 }
             }
 
-            "athena_u__nova_rank_3_2"{
+            "athena_u__nova_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4329,7 +4233,7 @@
                 }
             }
 
-            "athena_u__nova_rank_3_3"{
+            "athena_u__nova_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"athena_nova"
@@ -4360,7 +4264,7 @@
             }       
 
 
-            "slayer_u__judge_rank_1_1"{
+            "slayer_u__judge_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4390,7 +4294,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_1_2"{
+            "slayer_u__judge_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4420,7 +4324,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_1_3"{
+            "slayer_u__judge_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4450,7 +4354,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_2_1"{
+            "slayer_u__judge_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4480,7 +4384,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_2_2"{
+            "slayer_u__judge_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4510,7 +4414,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_2_3"{
+            "slayer_u__judge_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4540,7 +4444,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_3_1"{
+            "slayer_u__judge_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4570,7 +4474,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_3_2"{
+            "slayer_u__judge_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4600,7 +4504,7 @@
                 }
             }
 
-            "slayer_u__judge_rank_3_3"{
+            "slayer_u__judge_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"slayer_judge"
@@ -4632,7 +4536,7 @@
 
     //BLOODMAGE
         //BLOODMAGE 1
-            "bloodmage_1__book_offensive_rank_1_1"{
+            "bloodmage_1__book_offensive_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4662,7 +4566,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_1_2"{
+            "bloodmage_1__book_offensive_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4692,7 +4596,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_1_3"{
+            "bloodmage_1__book_offensive_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4722,7 +4626,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_2_1"{
+            "bloodmage_1__book_offensive_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4752,7 +4656,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_2_2"{
+            "bloodmage_1__book_offensive_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4782,7 +4686,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_2_3"{
+            "bloodmage_1__book_offensive_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4812,7 +4716,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_3_1"{
+            "bloodmage_1__book_offensive_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4842,7 +4746,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_3_2"{
+            "bloodmage_1__book_offensive_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4872,7 +4776,7 @@
                 }
             }
 
-            "bloodmage_1__book_offensive_rank_3_3"{
+            "bloodmage_1__book_offensive_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_offensive"
@@ -4903,7 +4807,7 @@
             }
 
         //BLOODMAGE 2
-            "bloodmage_2__book_buff_rank_1_1"{
+            "bloodmage_2__book_buff_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -4933,7 +4837,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_1_2"{
+            "bloodmage_2__book_buff_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -4963,7 +4867,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_1_3"{
+            "bloodmage_2__book_buff_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -4993,7 +4897,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_2_1"{
+            "bloodmage_2__book_buff_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5023,7 +4927,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_2_2"{
+            "bloodmage_2__book_buff_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5053,7 +4957,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_2_3"{
+            "bloodmage_2__book_buff_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5083,7 +4987,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_3_1"{
+            "bloodmage_2__book_buff_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5113,7 +5017,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_3_2"{
+            "bloodmage_2__book_buff_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5143,7 +5047,7 @@
                 }
             }
 
-            "bloodmage_2__book_buff_rank_3_3"{
+            "bloodmage_2__book_buff_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_buff"
@@ -5174,7 +5078,7 @@
             }
 
         //BLOODMAGE 3
-            "bloodmage_3__book_aura_rank_1_1"{
+            "bloodmage_3__book_aura_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5204,7 +5108,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_1_2"{
+            "bloodmage_3__book_aura_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5234,7 +5138,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_1_3"{
+            "bloodmage_3__book_aura_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5264,7 +5168,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_2_1"{
+            "bloodmage_3__book_aura_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5294,7 +5198,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_2_2"{
+            "bloodmage_3__book_aura_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5324,7 +5228,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_2_3"{
+            "bloodmage_3__book_aura_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5354,7 +5258,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_3_1"{
+            "bloodmage_3__book_aura_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5384,7 +5288,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_3_2"{
+            "bloodmage_3__book_aura_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5414,7 +5318,7 @@
                 }
             }
 
-            "bloodmage_3__book_aura_rank_3_3"{
+            "bloodmage_3__book_aura_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_book_aura"
@@ -5445,7 +5349,7 @@
             }
 
         //BLOODMAGE 0
-            "bloodmage_0__sacrifice_rank_1_1"{
+            "bloodmage_0__sacrifice_rank_11"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5475,7 +5379,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_1_2"{
+            "bloodmage_0__sacrifice_rank_12"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5505,7 +5409,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_1_3"{
+            "bloodmage_0__sacrifice_rank_13"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5535,7 +5439,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_2_1"{
+            "bloodmage_0__sacrifice_rank_21"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5565,7 +5469,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_2_2"{
+            "bloodmage_0__sacrifice_rank_22"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5595,7 +5499,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_2_3"{
+            "bloodmage_0__sacrifice_rank_23"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5625,7 +5529,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_3_1"{
+            "bloodmage_0__sacrifice_rank_31"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5655,7 +5559,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_3_2"{
+            "bloodmage_0__sacrifice_rank_32"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"
@@ -5685,7 +5589,7 @@
                 }
             }
 
-            "bloodmage_0__sacrifice_rank_3_3"{
+            "bloodmage_0__sacrifice_rank_33"{
                 "BaseClass"						"ability_lua"
                 "ScriptFile"					"modifiers/_talents"
                 "AbilityTextureName"    		"bloodmage_sacrifice"

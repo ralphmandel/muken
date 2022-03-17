@@ -64,11 +64,11 @@ end
 
 
 function icebreaker_0_modifier_illusion:GetModifierFixedAttackRate()
-	return 1.5
+	return 1.2
 end
 
 function icebreaker_0_modifier_illusion:GetModifierBaseAttackTimeConstant()
-    return 1
+    return 1.2
 end
 
 function icebreaker_0_modifier_illusion:OnAttackLanded(keys)

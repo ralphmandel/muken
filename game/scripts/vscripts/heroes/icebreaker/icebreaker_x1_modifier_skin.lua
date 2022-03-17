@@ -18,7 +18,7 @@ function icebreaker_x1_modifier_skin:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.regen = self.ability:GetSpecialValueFor("regen")
+
 	self.reduction = self.ability:GetSpecialValueFor("reduction")
 
 	self:PlayEfxStart()
@@ -36,6 +36,7 @@ end
 function icebreaker_x1_modifier_skin:CheckState()
 	local state = {
 		[MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS] = true,
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 		[MODIFIER_STATE_FROZEN] = true,
 	}
 
@@ -45,15 +46,15 @@ end
 function icebreaker_x1_modifier_skin:DeclareFunctions()
 
 	local funcs = {
-        MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
         MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ORDER,
 	}
 	return funcs
 end
 
-function icebreaker_x1_modifier_skin:GetModifierHealthRegenPercentage()
-	return self.regen
+function icebreaker_x1_modifier_skin:GetModifierHPRegenAmplify_Percentage()
+	return 100
 end
 
 function icebreaker_x1_modifier_skin:GetModifierIncomingPhysicalDamage_Percentage()

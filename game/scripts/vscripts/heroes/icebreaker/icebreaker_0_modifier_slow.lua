@@ -48,8 +48,8 @@ function icebreaker_0_modifier_slow:OnCreated( kv )
 	local frost = self.caster:FindAbilityByName("icebreaker_1__frost")
 	if frost then
 		if frost:IsTrained() then
-			-- UP 1.3
-			if frost:GetRank(3) then
+			-- UP 1.21
+			if frost:GetRank(21) then
 				as_slow = 0.3
 			end			
 		end
@@ -87,8 +87,8 @@ function icebreaker_0_modifier_slow:OnRefresh( kv )
 	local frost = self.caster:FindAbilityByName("icebreaker_1__frost")
 	if frost then
 		if frost:IsTrained() then
-			-- UP 1.3
-			if frost:GetRank(3) then
+			-- UP 1.21
+			if frost:GetRank(21) then
 				as_slow = 0.3
 			end			
 		end
@@ -153,8 +153,8 @@ function icebreaker_0_modifier_slow:OnIntervalThink()
 	if zero:IsTrained() == false then return end
 	local stack = zero:GetSpecialValueFor("stack")
 
-	-- UP 4.4
-	if zero:GetRank(4) then
+	-- UP 4.21
+	if zero:GetRank(21) then
 		stack = stack + 1
 	end
 

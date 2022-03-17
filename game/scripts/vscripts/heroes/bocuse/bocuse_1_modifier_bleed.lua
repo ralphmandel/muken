@@ -32,8 +32,8 @@ function bocuse_1_modifier_bleed:OnCreated(kv)
 
 	self:PlayEfxStart()
 
-    -- UP 1.5
-    if self.ability:GetRank(5) then
+    -- UP 1.22
+    if self.ability:GetRank(22) then
         self.degen = self.degen + 25
     end
 

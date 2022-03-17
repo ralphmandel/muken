@@ -26,6 +26,7 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	self.ability_break = self:GetAbility()
 
 	self.break_damage = self.ability:GetSpecialValueFor("break_damage")
+	self.heal = 0
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -38,7 +39,9 @@ end
 
 function icebreaker_0_modifier_freeze:OnRemoved( kv )
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		local heal = self:GetStackCount() * 0.5
+		local heal = self.heal * 0.5
+		local mnd = self.caster:FindModifierByName("_2_MND_modifier")
+		if mnd then heal = heal * mnd:GetHealPower() end
 		if heal > 0 then self.parent:Heal(heal, self.ability_break) end
 	else
 		local damageTable = {
@@ -55,8 +58,8 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 		end
 
 		if self.ability_break:GetAbilityName() == "icebreaker_3__blink" then
-			-- UP 3.1
-			if self.ability_break:GetRank(1) and self.parent:IsAlive() then
+			-- UP 3.11
+			if self.ability_break:GetRank(11) and self.parent:IsAlive() then
 				local knockbackProperties =
 				{
 					duration = 0.5,
@@ -72,37 +75,44 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 				if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
 			end
 
-			-- UP 3.2
-			if self.ability_break:GetRank(2) then
-				if value > 0 then self.caster:Heal(value, self.ability_break) end
+			-- UP 3.21
+			if self.ability_break:GetRank(21) then
+				local heal = self.heal
+				local mnd = self.caster:FindModifierByName("_2_MND_modifier")
+				if mnd then heal = heal * mnd:GetHealPower() end
+				if heal > 0 then self.caster:Heal(heal, self.ability_break) end
 			end
 
-			-- UP 3.4
-			if self.ability_break:GetRank(4) then
+			-- UP 3.31
+			if self.ability_break:GetRank(31) then
 				self:PlayEfxSpread()
+
+				local damageTable = {
+					attacker = self.caster,
+					damage = self.ability:GetSpecialValueFor("break_damage"),
+					damage_type = DAMAGE_TYPE_MAGICAL,
+					ability = self.ability_break
+				}
+
 				local units = FindUnitsInRadius(
 					self.caster:GetTeamNumber(), self.parent:GetOrigin(),
-					nil, 300,
+					nil, 275,
 					DOTA_UNIT_TARGET_TEAM_ENEMY,
 					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
 					0, 0, false
 				)
 			
 				for _,unit in pairs(units) do
-					if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+					if unit ~= self.parent then
+						if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
-					local damageTable = {
-						victim = unit,
-						attacker = self.caster,
-						damage = self.ability:GetSpecialValueFor("break_damage") * 0.5,
-						damage_type = DAMAGE_TYPE_MAGICAL,
-						ability = self.ability_break
-					}
-					ApplyDamage(damageTable)
+						damageTable.victim = unit
+						ApplyDamage(damageTable)
 
-					if unit:IsAlive() then
-						unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.6})
-						self.ability:AddSlow(unit, self.ability)
+						if unit:IsAlive() then
+							unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.6})
+							self.ability:AddSlow(unit, self.ability)
+						end
 					end
 				end
 			end
@@ -145,9 +155,11 @@ function icebreaker_0_modifier_freeze:GetModifierAvoidDamage(keys)
 		local stack = self:GetStackCount() + keys.damage
 		if stack >= self.break_damage then
 			self:SetStackCount(self.break_damage)
+			self.heal = self.break_damage
 			self:Destroy()
 		else
 			self:SetStackCount(stack)
+			self.heal = stack
 		end
 	end
 
@@ -177,12 +189,13 @@ function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
 			end
 		end
 
-		-- UP 3.5
+		-- UP 3.41
 		local damage = self.break_damage
-		if self.ability_break:GetRank(5) then
+		if self.ability_break:GetRank(41) then
 			damage = damage + 60
 		end
 
+		self.heal = self.break_damage
 		self:SetStackCount(damage)
 		self:PlayEfxBlink((keys.target:GetOrigin() - keys.unit:GetOrigin()), keys.unit:GetOrigin(), keys.target)
 		self:Destroy()

@@ -21,17 +21,17 @@
 			}
 			"1"
 			{
-				"1"   "bloodstained_1__rage_rank_2_1"
-				"2"   "bloodstained_1__rage_rank_2_2"
+				"1"   "bloodstained_1__rage_rank_21"
+				"2"   "bloodstained_1__rage_rank_22"
 			}
 			"2"
 			{
-				"1"   "bloodstained_1__rage_rank_3_1"
+				"1"   "bloodstained_1__rage_rank_31"
 			}
 			"3"
 			{
-				"1"   "bloodstained_1__rage_rank_4_1"
-				"2"   "bloodstained_1__rage_rank_4_2"
+				"1"   "bloodstained_1__rage_rank_41"
+				"2"   "bloodstained_1__rage_rank_42"
 			}
 			"4"
 			{
@@ -42,13 +42,13 @@
 		{
 			"0"
 			{
-				"1"   "bloodstained_2__bloodsteal_rank_1_1"
-				"2"   "bloodstained_2__bloodsteal_rank_1_2"
-				"3"   "bloodstained_2__bloodsteal_rank_1_3"
+				"1"   "bloodstained_2__bloodsteal_rank_11"
+				"2"   "bloodstained_2__bloodsteal_rank_12"
+				"3"   "bloodstained_2__bloodsteal_rank_13"
 			}
 			"1"
 			{
-				"1"   "bloodstained_2__bloodsteal_rank_2_1"
+				"1"   "bloodstained_2__bloodsteal_rank_21"
 			}
 			"2"
 			{
@@ -56,8 +56,8 @@
 			}
 			"3"
 			{
-				"1"   "bloodstained_2__bloodsteal_rank_4_1"
-				"2"   "bloodstained_2__bloodsteal_rank_4_2"
+				"1"   "bloodstained_2__bloodsteal_rank_41"
+				"2"   "bloodstained_2__bloodsteal_rank_42"
 			}
 			"4"
 			{
@@ -68,18 +68,18 @@
 		{
 			"0"
 			{
-				"1"   "bloodstained_3__curse_rank_1_1"
-				"2"   "bloodstained_3__curse_rank_1_2"
-				"3"   "bloodstained_3__curse_rank_1_3"
+				"1"   "bloodstained_3__curse_rank_11"
+				"2"   "bloodstained_3__curse_rank_12"
+				"3"   "bloodstained_3__curse_rank_13"
 			}
 			"1"
 			{
-				"1"   "bloodstained_3__curse_rank_2_1"
+				"1"   "bloodstained_3__curse_rank_21"
 			}
 			"2"
 			{
-				"1"   "bloodstained_3__curse_rank_3_1"
-				"2"   "bloodstained_3__curse_rank_3_2"
+				"1"   "bloodstained_3__curse_rank_31"
+				"2"   "bloodstained_3__curse_rank_32"
 			}
 			"3"
 			{
@@ -94,17 +94,17 @@
 		{
 			"0"
 			{
-				"1"   "bloodstained_u__seal_rank_1_1"
+				"1"   "bloodstained_u__seal_rank_11"
 			}
 			"1"
 			{
-				"1"   "bloodstained_u__seal_rank_2_1"
-				"2"   "bloodstained_u__seal_rank_2_2"
+				"1"   "bloodstained_u__seal_rank_21"
+				"2"   "bloodstained_u__seal_rank_22"
 			}
 			"2"
 			{
-				"1"   "bloodstained_u__seal_rank_3_1"
-				"2"   "bloodstained_u__seal_rank_3_2"
+				"1"   "bloodstained_u__seal_rank_31"
+				"2"   "bloodstained_u__seal_rank_32"
 			}
 			"3"
 			{

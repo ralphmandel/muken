@@ -17,26 +17,26 @@
 		{
 			"0"
 			{
-				"1"   "template_1__sk1_rank_1_1" //1.1
-				"2"   "template_1__sk1_rank_1_2" //1.2
-				"3"   "template_1__sk1_rank_1_3" //1.3
+				"1"   "template_1__sk1_rank_11"
+				"2"   "template_1__sk1_rank_12"
+				"3"   "template_1__sk1_rank_13"
 			}
 			"1"
 			{
-				"1"   "template_1__sk1_rank_2_1" //1.4
-				"2"   "template_1__sk1_rank_2_2" //1.5
-				"3"   "template_1__sk1_rank_2_3" //1.6
+				"1"   "template_1__sk1_rank_21"
+				"2"   "template_1__sk1_rank_22"
+				"3"   "template_1__sk1_rank_23"
 			}
 			"2"
 			{
-				"1"   "template_1__sk1_rank_3_1" //1.7
-				"2"   "template_1__sk1_rank_3_2" //1.8
-				"3"   "template_1__sk1_rank_3_3" //1.9
+				"1"   "template_1__sk1_rank_31"
+				"2"   "template_1__sk1_rank_32"
+				"3"   "template_1__sk1_rank_33"
 			}
 			"3"
 			{
-				"1"   "template_1__sk1_rank_4_1" //1.10
-				"2"   "template_1__sk1_rank_4_2" //1.11
+				"1"   "template_1__sk1_rank_41"
+				"2"   "template_1__sk1_rank_42"
 			}
 			"4"
 			{
@@ -47,26 +47,26 @@
 		{
 			"0"
 			{
-				"1"   "template_2__sk2_rank_1_1" //2.1
-				"2"   "template_2__sk2_rank_1_2" //2.2
-				"3"   "template_2__sk2_rank_1_3" //2.3
+				"1"   "template_2__sk2_rank_11"
+				"2"   "template_2__sk2_rank_12"
+				"3"   "template_2__sk2_rank_13"
 			}
 			"1"
 			{
-				"1"   "template_2__sk2_rank_2_1" //2.4
-				"2"   "template_2__sk2_rank_2_2" //2.5
-				"3"   "template_2__sk2_rank_2_3" //2.6
+				"1"   "template_2__sk2_rank_21"
+				"2"   "template_2__sk2_rank_22"
+				"3"   "template_2__sk2_rank_23"
 			}
 			"2"
 			{
-				"1"   "template_2__sk2_rank_3_1" //2.7
-				"2"   "template_2__sk2_rank_3_2" //2.8
-				"3"   "template_2__sk2_rank_3_3" //2.9
+				"1"   "template_2__sk2_rank_31"
+				"2"   "template_2__sk2_rank_32"
+				"3"   "template_2__sk2_rank_33"
 			}
 			"3"
 			{
-				"1"   "template_2__sk2_rank_4_1" //2.10
-				"2"   "template_2__sk2_rank_4_2" //2.11
+				"1"   "template_2__sk2_rank_41"
+				"2"   "template_2__sk2_rank_42"
 			}
 			"4"
 			{
@@ -77,26 +77,26 @@
 		{
 			"0"
 			{
-				"1"   "template_3__sk3_rank_1_1" //3.1
-				"2"   "template_3__sk3_rank_1_2" //3.2
-				"3"   "template_3__sk3_rank_1_3" //3.3
+				"1"   "template_3__sk3_rank_11"
+				"2"   "template_3__sk3_rank_12"
+				"3"   "template_3__sk3_rank_13"
 			}
 			"1"
 			{
-				"1"   "template_3__sk3_rank_2_1" //3.4
-				"2"   "template_3__sk3_rank_2_2" //3.5
-				"3"   "template_3__sk3_rank_2_3" //3.6
+				"1"   "template_3__sk3_rank_21"
+				"2"   "template_3__sk3_rank_22"
+				"3"   "template_3__sk3_rank_23"
 			}
 			"2"
 			{
-				"1"   "template_3__sk3_rank_3_1" //3.7
-				"2"   "template_3__sk3_rank_3_2" //3.8
-				"3"   "template_3__sk3_rank_3_3" //3.9
+				"1"   "template_3__sk3_rank_31"
+				"2"   "template_3__sk3_rank_32"
+				"3"   "template_3__sk3_rank_33"
 			}
 			"3"
 			{
-				"1"   "template_3__sk3_rank_4_1" //3.10
-				"2"   "template_3__sk3_rank_4_2" //3.11
+				"1"   "template_3__sk3_rank_41"
+				"2"   "template_3__sk3_rank_42"
 			}
 			"4"
 			{
@@ -107,26 +107,26 @@
 		{
 			"0"
 			{
-				"1"   "template_u__sk4_rank_1_1" //4.1
-				"2"   "template_u__sk4_rank_1_2" //4.2
-				"3"   "template_u__sk4_rank_1_3" //4.3
+				"1"   "template_u__sk4_rank_11"
+				"2"   "template_u__sk4_rank_12"
+				"3"   "template_u__sk4_rank_13"
 			}
 			"1"
 			{
-				"1"   "template_u__sk4_rank_2_1" //4.4
-				"2"   "template_u__sk4_rank_2_2" //4.5
-				"3"   "template_u__sk4_rank_2_3" //4.6
+				"1"   "template_u__sk4_rank_21"
+				"2"   "template_u__sk4_rank_22"
+				"3"   "template_u__sk4_rank_23"
 			}
 			"2"
 			{
-				"1"   "template_u__sk4_rank_3_1" //4.7
-				"2"   "template_u__sk4_rank_3_2" //4.8
-				"3"   "template_u__sk4_rank_3_3" //4.9
+				"1"   "template_u__sk4_rank_31"
+				"2"   "template_u__sk4_rank_32"
+				"3"   "template_u__sk4_rank_33"
 			}
 			"3"
 			{
-				"1"   "template_u__sk4_rank_4_1" //4.10
-				"2"   "template_u__sk4_rank_4_2" //4.11
+				"1"   "template_u__sk4_rank_41"
+				"2"   "template_u__sk4_rank_42"
 			}
 			"4"
 			{

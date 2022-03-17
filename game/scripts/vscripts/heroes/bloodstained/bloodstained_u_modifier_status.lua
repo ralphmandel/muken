@@ -18,15 +18,15 @@ function bloodstained_u_modifier_status:OnCreated( kv )
 
     self.range = self.ability:GetSpecialValueFor("radius") + 50
 
-    -- UP 4.5
-	if self.ability:GetRank(5) then
+    -- UP 4.22
+	if self.ability:GetRank(22) then
 		if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 			self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_0_modifier_bleeding", {})
 		end
 	end
 
-    -- UP 4.8
-	if self.ability:GetRank(8) then
+    -- UP 4.32
+	if self.ability:GetRank(32) then
 		if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {})
 		end

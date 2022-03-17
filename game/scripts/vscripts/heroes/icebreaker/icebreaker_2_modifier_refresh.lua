@@ -20,8 +20,8 @@ function icebreaker_2_modifier_refresh:OnCreated( kv )
 	self.ability = self:GetAbility()
 	self.hits = self.ability:GetSpecialValueFor("refresh_hits")
 
-	-- UP 2.1
-	if self.ability:GetRank(1) then
+	-- UP 2.11
+	if self.ability:GetRank(11) then
 		self.hits = self.hits - 2
 	end
 

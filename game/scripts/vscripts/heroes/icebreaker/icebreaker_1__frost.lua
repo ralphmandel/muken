@@ -71,8 +71,8 @@ LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_
 
         local charges = 1
 
-        -- UP 1.1
-        if self:GetRank(1) then
+        -- UP 1.11
+        if self:GetRank(11) then
             charges = charges * 2
         end
 

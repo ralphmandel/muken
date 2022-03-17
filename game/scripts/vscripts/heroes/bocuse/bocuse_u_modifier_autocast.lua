@@ -35,8 +35,8 @@ function bocuse_u_modifier_autocast:OnAttackLanded(keys)
     if self.parent:PassivesDisabled() then return end
     if RandomInt(1, 100) > 12 then return end
 
-    -- UP 4.7
-    if self.ability:GetRank(7) then
+    -- UP 4.31
+    if self.ability:GetRank(31) then
         self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_mise", {number_of_hits = 7})
     end
 end

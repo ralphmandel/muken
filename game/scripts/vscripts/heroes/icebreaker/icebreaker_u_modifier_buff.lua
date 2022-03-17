@@ -15,16 +15,15 @@ function icebreaker_u_modifier_buff:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local dex = self.ability:GetSpecialValueFor("dex")
-	self.out_range = self.ability:GetSpecialValueFor("out_range")
+	self.regen = self.ability:GetSpecialValueFor("regen")
+	self.active_regen = 0
 	self.out = true
 
 	self.parent:Purge(false, true, false, false, false)
 	self.parent:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_blur", {})
-	self.ability:AddBonus("_2_DEX", self.parent, dex, 0, nil)
 
-	-- UP 4.2
-	if self.ability:GetRank(2) then
+	-- UP 4.12
+	if self.ability:GetRank(12) then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 50})
 	end
 
@@ -36,7 +35,6 @@ end
 
 function icebreaker_u_modifier_buff:OnRemoved()
 	self.parent:RemoveModifierByName("icebreaker_u_modifier_blur")
-	self.ability:RemoveBonus("_2_DEX", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do
@@ -45,7 +43,6 @@ function icebreaker_u_modifier_buff:OnRemoved()
 end
 
 -----------------------------------------------------------
-
 
 function icebreaker_u_modifier_buff:CheckState()
 	local state = {
@@ -57,18 +54,32 @@ function icebreaker_u_modifier_buff:CheckState()
 	return state
 end
 
+function icebreaker_u_modifier_buff:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+    }
+    return funcs
+end
+
+function icebreaker_u_modifier_buff:GetModifierConstantHealthRegen()
+    return self.active_regen
+end
+
+
 function icebreaker_u_modifier_buff:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.out_range,
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.parent:Script_GetAttackRange() + 80,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		80,	0, false
 	)
 
 	for _,enemy in pairs(enemies) do
+		self.active_regen = 0
 		self.out = false
 		return
 	end
 
+	self.active_regen = self.regen
 	self.out = true
 end
 

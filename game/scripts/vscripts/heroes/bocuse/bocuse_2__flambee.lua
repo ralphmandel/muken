@@ -75,8 +75,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 		local charges = 1
 
-		-- UP 2.2
-		if self:GetRank(2) then
+		-- UP 2.12
+		if self:GetRank(12) then
 			charges = charges * 2
 		end
 
@@ -137,8 +137,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				self:PlayEfxCast()
 			end
 
-			-- UP 2.8
-			if self:GetRank(8) then
+			-- UP 2.32
+			if self:GetRank(32) then
 				if caster:GetMana() < self:GetManaCost(-1) then return end
 				local reverse_target = nil
 				local team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
@@ -232,14 +232,14 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 		for _,unit in pairs(units) do
 			if team == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
-				-- UP 2.1
-				if self:GetRank(1) then
+				-- UP 2.11
+				if self:GetRank(11) then
 					unit:Purge(false, true, false, true, false)
 				end
 				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_buff", {duration = self:CalcStatus(duration, caster, unit)})
 			else
-				-- UP 2.1
-				if self:GetRank(1) then
+				-- UP 2.11
+				if self:GetRank(11) then
 					damageTable.victim = unit
 					ApplyDamage(damageTable)
 				end

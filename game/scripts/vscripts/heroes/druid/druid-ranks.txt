@@ -17,26 +17,26 @@
 		{
 			"0"
 			{
-				"1"   "druid_1__conversion_rank_1_1"
-				"2"   "druid_1__conversion_rank_1_2"
-				"3"   "druid_1__conversion_rank_1_3"
+				"1"   "druid_1__conversion_rank_11"
+				"2"   "druid_1__conversion_rank_12"
+				"3"   "druid_1__conversion_rank_13"
 			}
 			"1"
 			{
-				"1"   "druid_1__conversion_rank_2_1"
-				"2"   "druid_1__conversion_rank_2_2"
-				"3"   "druid_1__conversion_rank_2_3"
+				"1"   "druid_1__conversion_rank_21"
+				"2"   "druid_1__conversion_rank_22"
+				"3"   "druid_1__conversion_rank_23"
 			}
 			"2"
 			{
-				"1"   "druid_1__conversion_rank_3_1"
-				"2"   "druid_1__conversion_rank_3_2"
-				"3"   "druid_1__conversion_rank_3_3"
+				"1"   "druid_1__conversion_rank_31"
+				"2"   "druid_1__conversion_rank_32"
+				"3"   "druid_1__conversion_rank_33"
 			}
 			"3"
 			{
-				"1"   "druid_1__conversion_rank_4_1"
-				"2"   "druid_1__conversion_rank_4_2"
+				"1"   "druid_1__conversion_rank_41"
+				"2"   "druid_1__conversion_rank_42"
 			}
 			"4"
 			{
@@ -47,26 +47,26 @@
 		{
 			"0"
 			{
-				"1"   "druid_2__root_rank_1_1"
-				"2"   "druid_2__root_rank_1_2"
-				"3"   "druid_2__root_rank_1_3"
+				"1"   "druid_2__root_rank_11"
+				"2"   "druid_2__root_rank_12"
+				"3"   "druid_2__root_rank_13"
 			}
 			"1"
 			{
-				"1"   "druid_2__root_rank_2_1"
-				"2"   "druid_2__root_rank_2_2"
-				"3"   "druid_2__root_rank_2_3"
+				"1"   "druid_2__root_rank_21"
+				"2"   "druid_2__root_rank_22"
+				"3"   "druid_2__root_rank_23"
 			}
 			"2"
 			{
-				"1"   "druid_2__root_rank_3_1"
-				"2"   "druid_2__root_rank_3_2"
-				"3"   "druid_2__root_rank_3_3"
+				"1"   "druid_2__root_rank_31"
+				"2"   "druid_2__root_rank_32"
+				"3"   "druid_2__root_rank_33"
 			}
 			"3"
 			{
-				"1"   "druid_2__root_rank_4_1"
-				"2"   "druid_2__root_rank_4_2"
+				"1"   "druid_2__root_rank_41"
+				"2"   "druid_2__root_rank_42"
 			}
 			"4"
 			{
@@ -77,26 +77,26 @@
 		{
 			"0"
 			{
-				"1"   "druid_3__totem_rank_1_1"
-				"2"   "druid_3__totem_rank_1_2"
-				"3"   "druid_3__totem_rank_1_3"
+				"1"   "druid_3__totem_rank_11"
+				"2"   "druid_3__totem_rank_12"
+				"3"   "druid_3__totem_rank_13"
 			}
 			"1"
 			{
-				"1"   "druid_3__totem_rank_2_1"
-				"2"   "druid_3__totem_rank_2_2"
-				"3"   "druid_3__totem_rank_2_3"
+				"1"   "druid_3__totem_rank_21"
+				"2"   "druid_3__totem_rank_22"
+				"3"   "druid_3__totem_rank_23"
 			}
 			"2"
 			{
-				"1"   "druid_3__totem_rank_3_1"
-				"2"   "druid_3__totem_rank_3_2"
-				"3"   "druid_3__totem_rank_3_3"
+				"1"   "druid_3__totem_rank_31"
+				"2"   "druid_3__totem_rank_32"
+				"3"   "druid_3__totem_rank_33"
 			}
 			"3"
 			{
-				"1"   "druid_3__totem_rank_4_1"
-				"2"   "druid_3__totem_rank_4_2"
+				"1"   "druid_3__totem_rank_41"
+				"2"   "druid_3__totem_rank_42"
 			}
 			"4"
 			{
@@ -107,26 +107,26 @@
 		{
 			"0"
 			{
-				"1"   "druid_u__seed_rank_1_1"
-				"2"   "druid_u__seed_rank_1_2"
-				"3"   "druid_u__seed_rank_1_3"
+				"1"   "druid_u__seed_rank_11"
+				"2"   "druid_u__seed_rank_12"
+				"3"   "druid_u__seed_rank_13"
 			}
 			"1"
 			{
-				"1"   "druid_u__seed_rank_2_1"
-				"2"   "druid_u__seed_rank_2_2"
-				"3"   "druid_u__seed_rank_2_3"
+				"1"   "druid_u__seed_rank_21"
+				"2"   "druid_u__seed_rank_22"
+				"3"   "druid_u__seed_rank_23"
 			}
 			"2"
 			{
-				"1"   "druid_u__seed_rank_3_1"
-				"2"   "druid_u__seed_rank_3_2"
-				"3"   "druid_u__seed_rank_3_3"
+				"1"   "druid_u__seed_rank_31"
+				"2"   "druid_u__seed_rank_32"
+				"3"   "druid_u__seed_rank_33"
 			}
 			"3"
 			{
-				"1"   "druid_u__seed_rank_4_1"
-				"2"   "druid_u__seed_rank_4_2"
+				"1"   "druid_u__seed_rank_41"
+				"2"   "druid_u__seed_rank_42"
 			}
 			"4"
 			{

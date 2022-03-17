@@ -128,8 +128,8 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             ability = self
         }
 
-        -- UP 2.5
-        if self:GetRank(5) then
+        -- UP 2.22
+        if self:GetRank(22) then
             CreateModifierThinker(caster, self, "icebreaker_2_modifier_path", {
                 x = direction.x,
                 y = direction.y,
@@ -162,8 +162,8 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             self.first_hit = true
         end
 
-        -- UP 2.3
-        if self:GetRank(3) then
+        -- UP 2.13
+        if self:GetRank(13) then
             local burned_mana = target:GetMaxMana() * 0.1
             if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
             target:ReduceMana(burned_mana)
@@ -174,8 +174,8 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             ApplyDamage(self.damageTable)
         end
 
-        -- UP 2.5
-        if self:GetRank(5) then
+        -- UP 2.22
+        if self:GetRank(22) then
             local distance = self:GetSpecialValueFor("distance") / 3
             self.knockbackProperties.duration = 0.25
             self.knockbackProperties.knockback_duration = 0.25
@@ -193,15 +193,15 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         end
 
         if target:HasModifier("icebreaker_0_modifier_slow") then
-            -- UP 2.2
-            if self:GetRank(2) then
+            -- UP 2.12
+            if self:GetRank(12) then
                 target:AddNewModifier(caster, self, "_modifier_silence", {
                     duration = self:CalcStatus(2.5, caster, target)
                 })
             end
 
-            -- UP 2.6
-            if self:GetRank(6) then
+            -- UP 2.41
+            if self:GetRank(41) then
                 local illu = CreateIllusions(
                     caster, caster,
                     {

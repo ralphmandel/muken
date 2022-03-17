@@ -63,9 +63,9 @@ LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MO
             slow_duration = slow_duration * 2
         end
 
-        -- UP 2.4
+        -- UP 2.21
         if ability:GetAbilityName() == "icebreaker_2__discus" then
-            if ability:GetRank(4) then
+            if ability:GetRank(21) then
                 local rand = RandomInt(1, 12)
                 if rand > 3 then
                     if rand > 7 then
@@ -78,8 +78,8 @@ LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MO
         end
 
         if ability:GetAbilityName() == "icebreaker_u__zero" then
-            -- UP 4.4
-            if ability:GetRank(4) then
+            -- UP 4.21
+            if ability:GetRank(21) then
                 stack = stack + 1
             end
 

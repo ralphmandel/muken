@@ -83,12 +83,12 @@ function _1_CON_modifier:OnTakeDamage(keys)
 end
 
 function _1_CON_modifier:PopupCustom(damage, color)
-	local pidx = ParticleManager:CereateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent) -- target:GetOwner()
+	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent) -- target:GetOwner()
     local digits = 1
-	if damage < 10 then digits = 1 end
-    if damage > 9 and damage < 100 then digits = 2 end
-    if damage > 99 and damage < 1000 then digits = 3 end
-    if damage > 999 then digits = 4 end
+	if damage < 10 then digits = 2 end
+    if damage > 9 and damage < 100 then digits = 3 end
+    if damage > 99 and damage < 1000 then digits = 4 end
+    if damage > 999 then digits = 5 end
 
     ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
     ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))

@@ -17,27 +17,27 @@
 		{
 			"0"
 			{
-				"1"   "bloodmage_1__book_offensive_rank_1_1"
-				"2"   "bloodmage_1__book_offensive_rank_1_2"
-				"3"   "bloodmage_1__book_offensive_rank_1_3"
+				"1"   "bloodmage_1__book_offensive_rank_11"
+				"2"   "bloodmage_1__book_offensive_rank_12"
+				"3"   "bloodmage_1__book_offensive_rank_13"
 			}
 			"1"
 			{
-				"1"   "bloodmage_2__book_buff_rank_1_1"
-				"2"   "bloodmage_2__book_buff_rank_1_2"
-				"3"   "bloodmage_2__book_buff_rank_1_3"
+				"1"   "bloodmage_2__book_buff_rank_11"
+				"2"   "bloodmage_2__book_buff_rank_12"
+				"3"   "bloodmage_2__book_buff_rank_13"
 			}
 			"2"
 			{
-				"1"   "bloodmage_3__book_aura_rank_1_1"
-				"2"   "bloodmage_3__book_aura_rank_1_2"
-				"3"   "bloodmage_3__book_aura_rank_1_3"
+				"1"   "bloodmage_3__book_aura_rank_11"
+				"2"   "bloodmage_3__book_aura_rank_12"
+				"3"   "bloodmage_3__book_aura_rank_13"
 			}
 			"3"
 			{
-				"1"   "bloodmage_0__sacrifice_rank_1_1"
-				"2"   "bloodmage_0__sacrifice_rank_1_2"
-				"3"   "bloodmage_0__sacrifice_rank_1_3"
+				"1"   "bloodmage_0__sacrifice_rank_11"
+				"2"   "bloodmage_0__sacrifice_rank_12"
+				"3"   "bloodmage_0__sacrifice_rank_13"
 			}
 			"4"
 			{
@@ -48,27 +48,27 @@
 		{
 			"0"
 			{
-				"1"   "bloodmage_1__book_offensive_rank_2_1"
-				"2"   "bloodmage_1__book_offensive_rank_2_2"
-				"3"   "bloodmage_1__book_offensive_rank_2_3"
+				"1"   "bloodmage_1__book_offensive_rank_21"
+				"2"   "bloodmage_1__book_offensive_rank_22"
+				"3"   "bloodmage_1__book_offensive_rank_23"
 			}
 			"1"
 			{
-				"1"   "bloodmage_2__book_buff_rank_2_1"
-				"2"   "bloodmage_2__book_buff_rank_2_2"
-				"3"   "bloodmage_2__book_buff_rank_2_3"
+				"1"   "bloodmage_2__book_buff_rank_21"
+				"2"   "bloodmage_2__book_buff_rank_22"
+				"3"   "bloodmage_2__book_buff_rank_23"
 			}
 			"2"
 			{
-				"1"   "bloodmage_3__book_aura_rank_2_1"
-				"2"   "bloodmage_3__book_aura_rank_2_2"
-				"3"   "bloodmage_3__book_aura_rank_2_3"
+				"1"   "bloodmage_3__book_aura_rank_21"
+				"2"   "bloodmage_3__book_aura_rank_22"
+				"3"   "bloodmage_3__book_aura_rank_23"
 			}
 			"3"
 			{
-				"1"   "bloodmage_0__sacrifice_rank_2_1"
-				"2"   "bloodmage_0__sacrifice_rank_2_2"
-				"3"   "bloodmage_0__sacrifice_rank_2_3"
+				"1"   "bloodmage_0__sacrifice_rank_21"
+				"2"   "bloodmage_0__sacrifice_rank_22"
+				"3"   "bloodmage_0__sacrifice_rank_23"
 			}
 			"4"
 			{
@@ -79,27 +79,27 @@
 		{
 			"0"
 			{
-				"1"   "bloodmage_1__book_offensive_rank_3_1"
-				"2"   "bloodmage_1__book_offensive_rank_3_2"
-				"3"   "bloodmage_1__book_offensive_rank_3_3"
+				"1"   "bloodmage_1__book_offensive_rank_31"
+				"2"   "bloodmage_1__book_offensive_rank_32"
+				"3"   "bloodmage_1__book_offensive_rank_33"
 			}
 			"1"
 			{
-				"1"   "bloodmage_2__book_buff_rank_3_1"
-				"2"   "bloodmage_2__book_buff_rank_3_2"
-				"3"   "bloodmage_2__book_buff_rank_3_3"
+				"1"   "bloodmage_2__book_buff_rank_31"
+				"2"   "bloodmage_2__book_buff_rank_32"
+				"3"   "bloodmage_2__book_buff_rank_33"
 			}
 			"2"
 			{
-				"1"   "bloodmage_3__book_aura_rank_3_1"
-				"2"   "bloodmage_3__book_aura_rank_3_2"
-				"3"   "bloodmage_3__book_aura_rank_3_3"
+				"1"   "bloodmage_3__book_aura_rank_31"
+				"2"   "bloodmage_3__book_aura_rank_32"
+				"3"   "bloodmage_3__book_aura_rank_33"
 			}
 			"3"
 			{
-				"1"   "bloodmage_0__sacrifice_rank_3_1"
-				"2"   "bloodmage_0__sacrifice_rank_3_2"
-				"3"   "bloodmage_0__sacrifice_rank_3_3"
+				"1"   "bloodmage_0__sacrifice_rank_31"
+				"2"   "bloodmage_0__sacrifice_rank_32"
+				"3"   "bloodmage_0__sacrifice_rank_33"
 			}
 			"4"
 			{

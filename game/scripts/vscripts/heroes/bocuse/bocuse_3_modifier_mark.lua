@@ -24,13 +24,13 @@ function bocuse_3_modifier_mark:OnCreated(kv)
     self.silenced = false
     self.truesight = false
 
-	-- UP 3.7
-	if self.ability:GetRank(7) then
+	-- UP 3.31
+	if self.ability:GetRank(31) then
         self.max = self.max + 1
 	end
 
-	-- UP 3.4
-	if self.ability:GetRank(4) then
+	-- UP 3.21
+	if self.ability:GetRank(21) then
         self.incoming_damage =  self.incoming_damage + 2
 	end
 
@@ -43,8 +43,8 @@ function bocuse_3_modifier_mark:OnCreated(kv)
         self:PlaySoundEfx()
     end
 
-	-- UP 3.1
-	if self.ability:GetRank(1) then
+	-- UP 3.11
+	if self.ability:GetRank(11) then
         self.truesight = true
         self:StartIntervalThink(FrameTime())
 	end
@@ -62,8 +62,8 @@ function bocuse_3_modifier_mark:OnRefresh(kv)
         if self:GetStackCount() >= self.max and self.silenced == false then
             self.silenced = true
 
-            -- UP 3.10
-            if self.ability:GetRank(10) then
+            -- UP 3.41
+            if self.ability:GetRank(41) then
                 self.parent:AddNewModifier(self.caster, self.ability, "_modifier_restrict", {duration = self:GetRemainingTime()})
             end
 
@@ -84,8 +84,8 @@ function bocuse_3_modifier_mark:RefreshDuration()
     local duration_init = self.ability:GetSpecialValueFor("duration_init")
     local duration_stack = self.ability:GetSpecialValueFor("duration_stack")
 
-	-- UP 3.7
-	if self.ability:GetRank(7) then
+	-- UP 3.31
+	if self.ability:GetRank(31) then
         duration_init = duration_init + 1.5
 	end
 
@@ -124,8 +124,8 @@ function bocuse_3_modifier_mark:GetModifierIncomingDamage_Percentage(keys)
     if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return 0 end
     if self.parent:IsIllusion() then return end
 
-    -- UP 3.8
-	if self.ability:GetRank(8) and keys.damage_flags ~= 40 then
+    -- UP 3.32
+	if self.ability:GetRank(32) and keys.damage_flags ~= 40 then
         local heal = keys.original_damage * (1 + (self.incoming_damage * self:GetStackCount() * 0.01))
         heal = heal * 0.12
         if heal > 0 then

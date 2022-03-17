@@ -318,7 +318,7 @@
 	}
 
 	//RANKS 1
-		"druid_1__conversion_rank_1_1"{
+		"druid_1__conversion_rank_11"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -348,7 +348,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_1_2"{
+		"druid_1__conversion_rank_12"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -378,7 +378,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_1_3"{
+		"druid_1__conversion_rank_13"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -408,7 +408,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_2_1"{
+		"druid_1__conversion_rank_21"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -438,7 +438,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_2_2"{
+		"druid_1__conversion_rank_22"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -468,7 +468,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_2_3"{
+		"druid_1__conversion_rank_23"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -498,7 +498,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_3_1"{
+		"druid_1__conversion_rank_31"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -528,7 +528,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_3_2"{
+		"druid_1__conversion_rank_32"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -558,7 +558,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_3_3"{
+		"druid_1__conversion_rank_33"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -588,7 +588,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_4_1"{
+		"druid_1__conversion_rank_41"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -618,7 +618,7 @@
 			}
 		}
 
-		"druid_1__conversion_rank_4_2"{
+		"druid_1__conversion_rank_42"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_conversion"
@@ -649,7 +649,7 @@
 		}
 
 	//RANKS 2
-		"druid_2__root_rank_1_1"{
+		"druid_2__root_rank_11"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -679,7 +679,7 @@
 			}
 		}
 
-		"druid_2__root_rank_1_2"{
+		"druid_2__root_rank_12"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -709,7 +709,7 @@
 			}
 		}
 
-		"druid_2__root_rank_1_3"{
+		"druid_2__root_rank_13"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -739,7 +739,7 @@
 			}
 		}
 
-		"druid_2__root_rank_2_1"{
+		"druid_2__root_rank_21"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -769,7 +769,7 @@
 			}
 		}
 
-		"druid_2__root_rank_2_2"{
+		"druid_2__root_rank_22"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -799,7 +799,7 @@
 			}
 		}
 
-		"druid_2__root_rank_2_3"{
+		"druid_2__root_rank_23"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -829,7 +829,7 @@
 			}
 		}
 
-		"druid_2__root_rank_3_1"{
+		"druid_2__root_rank_31"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -859,7 +859,7 @@
 			}
 		}
 
-		"druid_2__root_rank_3_2"{
+		"druid_2__root_rank_32"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -889,7 +889,7 @@
 			}
 		}
 
-		"druid_2__root_rank_3_3"{
+		"druid_2__root_rank_33"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -919,7 +919,7 @@
 			}
 		}
 
-		"druid_2__root_rank_4_1"{
+		"druid_2__root_rank_41"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -949,7 +949,7 @@
 			}
 		}
 
-		"druid_2__root_rank_4_2"{
+		"druid_2__root_rank_42"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_root"
@@ -980,7 +980,7 @@
 		}
 
 	//RANKS 3
-		"druid_3__totem_rank_1_1"{
+		"druid_3__totem_rank_11"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1010,7 +1010,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_1_2"{
+		"druid_3__totem_rank_12"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1040,7 +1040,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_1_3"{
+		"druid_3__totem_rank_13"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1070,7 +1070,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_2_1"{
+		"druid_3__totem_rank_21"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1100,7 +1100,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_2_2"{
+		"druid_3__totem_rank_22"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1130,7 +1130,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_2_3"{
+		"druid_3__totem_rank_23"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1160,7 +1160,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_3_1"{
+		"druid_3__totem_rank_31"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1190,7 +1190,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_3_2"{
+		"druid_3__totem_rank_32"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1220,7 +1220,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_3_3"{
+		"druid_3__totem_rank_33"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1250,7 +1250,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_4_1"{
+		"druid_3__totem_rank_41"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1280,7 +1280,7 @@
 			}
 		}
 
-		"druid_3__totem_rank_4_2"{
+		"druid_3__totem_rank_42"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_totem"
@@ -1311,7 +1311,7 @@
 		}
 
 	//RANKS U
-		"druid_u__seed_rank_1_1"{
+		"druid_u__seed_rank_11"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1341,7 +1341,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_1_2"{
+		"druid_u__seed_rank_12"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1371,7 +1371,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_1_3"{
+		"druid_u__seed_rank_13"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1401,7 +1401,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_2_1"{
+		"druid_u__seed_rank_21"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1431,7 +1431,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_2_2"{
+		"druid_u__seed_rank_22"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1461,7 +1461,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_2_3"{
+		"druid_u__seed_rank_23"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1491,7 +1491,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_3_1"{
+		"druid_u__seed_rank_31"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1521,7 +1521,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_3_2"{
+		"druid_u__seed_rank_32"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1551,7 +1551,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_3_3"{
+		"druid_u__seed_rank_33"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1581,7 +1581,7 @@
 			}
 		}
 		
-		"druid_u__seed_rank_4_1"{
+		"druid_u__seed_rank_41"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"
@@ -1611,7 +1611,7 @@
 			}
 		}
 
-		"druid_u__seed_rank_4_2"{
+		"druid_u__seed_rank_42"{
 			"BaseClass"						"ability_lua"
 			"ScriptFile"					"heroes/druid/druid-ranks_lua"
 			"AbilityTextureName"    		"druid_seed"

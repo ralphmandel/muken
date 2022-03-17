@@ -2,7 +2,7 @@ icebreaker_u__zero = class({})
 LinkLuaModifier( "icebreaker_u_modifier_zero", "heroes/icebreaker/icebreaker_u_modifier_zero", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_buff", "heroes/icebreaker/icebreaker_u_modifier_buff", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_blur", "heroes/icebreaker/icebreaker_u_modifier_blur", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_u_modifier_degen", "heroes/icebreaker/icebreaker_u_modifier_degen", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_u_modifier_resistance", "heroes/icebreaker/icebreaker_u_modifier_resistance", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_modifier_no_bar", "modifiers/_modifier_no_bar", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
@@ -76,8 +76,8 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
 
         local charges = 1
 
-        -- UP 4.1
-        if self:GetRank(1) then
+        -- UP 4.11
+        if self:GetRank(11) then
             charges = charges * 2
         end
 

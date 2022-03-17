@@ -71,8 +71,8 @@ end
 function icebreaker_1_modifier_frost:GetModifierDamageOutgoing_Percentage(keys)
 	if keys.attacker ~= self.parent then return end
 
-	-- UP 1.4
-	if self.ability:GetRank(4) then
+	-- UP 1.32
+	if self.ability:GetRank(32) then
 		return -50
 	end
 end
@@ -82,8 +82,8 @@ function icebreaker_1_modifier_frost:OnAttack(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	self:StartIntervalThink(5)
 
-    -- UP 1.1
-    if self.ability:GetRank(1) then
+    -- UP 1.11
+    if self.ability:GetRank(11) then
 		if self.parent:PassivesDisabled() == false
 		and self.ability:IsCooldownReady() then
 			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
@@ -99,9 +99,9 @@ function icebreaker_1_modifier_frost:OnAttack(keys)
 		end
 	end
 
-	-- UP 1.4
+	-- UP 1.32
 	local slow_mod = keys.target:FindModifierByName("icebreaker_0_modifier_slow")
-	if self.ability:GetRank(4) and slow_mod then
+	if self.ability:GetRank(32) and slow_mod then
 		local damageTable = {
 			victim = keys.target,
 			attacker = self.parent,
@@ -120,8 +120,8 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	local chance = self.ability:GetSpecialValueFor("chance")
 
-	-- UP 1.2
-	if self.ability:GetRank(2) then
+	-- UP 1.31
+	if self.ability:GetRank(31) then
 		chance = 100
 	else
 		if keys.target:IsMagicImmune() then
@@ -139,8 +139,8 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 		ability_slow:AddSlow(keys.target, self.ability)
 	end
 
-	-- UP 1.5
-	if self.ability:GetRank(5) 
+	-- UP 1.41
+	if self.ability:GetRank(41) 
 	and RandomInt(1, 100) <= 15 then
 		local illu = CreateIllusions(
 			self.caster, self.caster,

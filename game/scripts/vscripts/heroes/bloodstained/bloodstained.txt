@@ -389,312 +389,12 @@
 	}
 
     //RANKS 1
-        "bloodstained_1__rage_rank_1_1"{
+        "bloodstained_1__rage_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"1"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_1_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"2"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_1_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"3"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_2_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"4"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_2_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"5"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_2_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"6"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_3_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"7"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_3_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"8"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_3_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"9"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_4_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"1"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"10"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_1__rage_rank_4_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_rage"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
             
             "AbilityType"					"ABILITY_TYPE_BASIC"
             "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -710,6 +410,306 @@
                 {
                     "var_type"				"FIELD_FLOAT"
                     "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_13"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"13"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_23"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"23"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_33"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"33"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_1__rage_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_rage"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
                 }
                 "03"
                 {
@@ -720,312 +720,12 @@
         }
 
     //RANKS 2
-        "bloodstained_2__bloodsteal_rank_1_1"{
+        "bloodstained_2__bloodsteal_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_bloodsteal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"1"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_1_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"2"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_1_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"3"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_2_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"4"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_2_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"5"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_2_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"6"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_3_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"7"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_3_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"8"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_3_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"9"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_4_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"2"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"10"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_2__bloodsteal_rank_4_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_bloodsteal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
             
             "AbilityType"					"ABILITY_TYPE_BASIC"
             "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -1041,6 +741,306 @@
                 {
                     "var_type"				"FIELD_FLOAT"
                     "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_13"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"13"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_23"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"23"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_33"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"33"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_2__bloodsteal_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_bloodsteal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
                 }
                 "03"
                 {
@@ -1051,312 +1051,12 @@
         }
 
     //RANKS 3
-        "bloodstained_3__curse_rank_1_1"{
+        "bloodstained_3__curse_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_curse"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"1"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_1_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"2"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_1_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"3"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_2_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"4"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_2_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"5"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_2_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"6"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_3_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"7"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_3_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"8"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_3_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"9"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_4_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"3"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"10"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_3__curse_rank_4_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_curse"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
             
             "AbilityType"					"ABILITY_TYPE_BASIC"
             "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -1372,6 +1072,306 @@
                 {
                     "var_type"				"FIELD_FLOAT"
                     "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_13"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"13"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_23"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"23"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_33"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"33"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_3__curse_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_curse"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
                 }
                 "03"
                 {
@@ -1382,312 +1382,12 @@
         }
 
     //RANKS U
-        "bloodstained_u__seal_rank_1_1"{
+        "bloodstained_u__seal_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_seal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"1"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_1_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"2"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_1_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"3"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_2_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"4"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_2_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"5"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_2_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"6"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_3_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"7"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_3_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"8"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_3_3"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"9"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-        
-        "bloodstained_u__seal_rank_4_1"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"10"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bloodstained_u__seal_rank_4_2"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
-            "AbilityTextureName"    		"bloodstained_seal"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
             
             "AbilityType"					"ABILITY_TYPE_BASIC"
             "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -1711,5 +1411,304 @@
                 }
             }
         }
+
+        "bloodstained_u__seal_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_13"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"13"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_23"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"23"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_33"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"33"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
         
+        "bloodstained_u__seal_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "bloodstained_u__seal_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+            "AbilityTextureName"    		"bloodstained_seal"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }       
 }

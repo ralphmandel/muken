@@ -74,9 +74,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local mod = caster:FindModifierByName("bocuse_1_modifier_charges")
         if mod then
-            -- UP 1.1
+            -- UP 1.11
             if not self.rank_1 then self.rank_1 = false end
-            if self:GetRank(1) and self.rank_1 == false then
+            if self:GetRank(11) and self.rank_1 == false then
                 self.rank_1 = true
                 mod:StartIntervalThink(10)
             end
@@ -84,8 +84,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local charges = 1
 
-        -- UP 1.4
-        if self:GetRank(4) then
+        -- UP 1.21
+        if self:GetRank(21) then
             charges = charges * 2
         end
 
@@ -144,8 +144,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local distance = CalcDistanceBetweenEntityOBB(caster, target)
         self.cancel = true
 
-        -- UP 1.4
-        if self:GetRank(4) then
+        -- UP 1.21
+        if self:GetRank(21) then
             max_distance = max_distance + 200
         end
 
@@ -183,8 +183,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 self.cancel = true
             end
 
-            -- UP 1.4
-            if self:GetRank(4) then
+            -- UP 1.21
+            if self:GetRank(21) then
                 local forward = caster:GetForwardVector():Normalized()
                 local point = target:GetOrigin() - (forward * 50)
 
@@ -248,20 +248,20 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local stun_duration = self:GetSpecialValueFor("stun_duration")
         local bleed_duration = self:GetSpecialValueFor("bleed_duration")
 
-        -- UP 1.5
-        if self:GetRank(5) then
+        -- UP 1.22
+        if self:GetRank(22) then
             bleed_duration = bleed_duration * 2
         end
 
-        -- UP 1.10
-        if self:GetRank(10) then
+        -- up 1.41
+        if self:GetRank(41) then
             charges = charges + 4
         end
 
         --local max_cut = self.cut[charges]
 
-        -- UP 1.2
-        if self:GetRank(2) and original == true then
+        -- UP 1.12
+        if self:GetRank(12) and original == true then
             stun_duration = stun_duration + 1
         end
 

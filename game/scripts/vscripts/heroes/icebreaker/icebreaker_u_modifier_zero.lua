@@ -24,8 +24,8 @@ function icebreaker_u_modifier_zero:OnCreated( kv )
 
 	self.caster:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_buff", {})
 
-	-- UP 4.6
-	if self.ability:GetRank(6) then
+	-- UP 4.32
+	if self.ability:GetRank(32) then
 		self.true_vision = true
 		self.radius = 1500
 		vision_bonus = 100
@@ -35,7 +35,7 @@ function icebreaker_u_modifier_zero:OnCreated( kv )
 		self:SetStackCount(vision_bonus)
 	end
 
-	self:SetDuration(self.ability:CalcStatus(duration, self.caster, nil), true)
+	self:SetDuration(duration, true)
 	self:StartIntervalThink(0.1)
 	self:PlayEffects2()
 end
@@ -119,60 +119,48 @@ function icebreaker_u_modifier_zero:OnIntervalThink()
 		return
 	end
 
-	-- inflicts frost stacks
-	self.enemies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(),	-- int, your team number
-		self.parent:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		16,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
+		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		16, 0, false
 	)
 
-	for _,enemy in pairs(self.enemies) do
-		-- UP 4.4
-		if self.ability:GetRank(4)
-		or enemy:IsMagicImmune() == false then
-			local ability_slow = self.caster:FindAbilityByName("icebreaker_0__slow")
-			if ability_slow then
-				if ability_slow:IsTrained() then
-					ability_slow:AddSlow(enemy, self.ability)
+	for _,unit in pairs(units) do
+		if unit:GetTeamNumber() == self.caster:GetTeamNumber() then
+			if unit:IsHero() then
+				if (unit:HasModifier("icebreaker_0_modifier_illusion") or unit == self.caster) then
+					unit:AddNewModifier(self.caster, self.ability, "_modifier_no_bar", {duration = 1})
+				end
+
+				if unit:HasModifier("icebreaker_0_modifier_illusion")
+				and unit:HasModifier("icebreaker_u_modifier_buff") == false then
+					unit:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_buff", {duration = 1})
+				end
+			end
+		else
+			-- UP 4.21
+			if self.ability:GetRank(21)
+			or unit:IsMagicImmune() == false then
+				local ability_slow = self.caster:FindAbilityByName("icebreaker_0__slow")
+				if ability_slow then
+					if ability_slow:IsTrained() then
+						ability_slow:AddSlow(unit, self.ability)
+					end
 				end
 			end
 		end
 
-		-- UP 4.3
-		if self.ability:GetRank(3) then
-			enemy:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_degen", {duration = 1})
+		-- UP 4.31
+		if self.ability:GetRank(31) then
+			unit:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_resistance", {duration = 1})
 		end
 	end
 
-	local heroes = FindUnitsInRadius(
-		self.caster:GetTeamNumber(),	-- int, your team number
-		self.parent:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO,	-- int, type filter
-		0,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-
-	for _,hero in pairs(heroes) do
-		if hero:HasModifier("icebreaker_0_modifier_illusion")
-		or hero == self.caster then
-			hero:AddNewModifier(self.caster, self.ability, "_modifier_no_bar", {duration = 1})
-		end
-	end
-
-	-- UP 4.5
-	if self.ability:GetRank(5) then
+	-- UP 4.41
+	if self.ability:GetRank(41) then
 		local explosion_interval = (3000 / self.radius)
 		if self.time_buff % explosion_interval == 0 then
+			self:StartExplosionThink()
 			self:StartExplosionThink()
 		end
 	end
@@ -180,7 +168,7 @@ end
 
 function icebreaker_u_modifier_zero:StartExplosionThink()
 	local point = self.parent:GetOrigin()
-	local explosion_damage = 50
+	local explosion_damage = 30
 	local explosion_radius = (self.radius * 0.2)
 
 	local random_x
@@ -246,7 +234,7 @@ function icebreaker_u_modifier_zero:StartExplosionThink()
 
 	-- damage units
 	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.3})
+		enemy:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.1})
 		damageTable.victim = enemy
 		ApplyDamage(damageTable)
 

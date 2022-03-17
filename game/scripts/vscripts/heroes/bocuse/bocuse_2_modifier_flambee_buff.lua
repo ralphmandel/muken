@@ -19,18 +19,18 @@ function bocuse_2_modifier_flambee_buff:OnCreated(kv)
     local intervals = self.ability:GetSpecialValueFor("intervals")
     self.percent = self.ability:GetSpecialValueFor("percent_per_sec") * intervals
 
-    -- UP 2.3
-	if self.ability:GetRank(3) then
+    -- UP 2.13
+	if self.ability:GetRank(13) then
 		self.ability:AddBonus("_2_REC", self.parent, 12, 0, nil)
 	end
 
-	-- UP 2.4
-	if self.ability:GetRank(4) then
+	-- UP 2.21
+	if self.ability:GetRank(21) then
 		ms = self.ability:GetSpecialValueFor("ms") + 10
 	end
 
-	-- UP 2.7
-	if self.ability:GetRank(7) then
+	-- UP 2.31
+	if self.ability:GetRank(31) then
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end
 
@@ -41,14 +41,14 @@ function bocuse_2_modifier_flambee_buff:OnCreated(kv)
 end
 
 function bocuse_2_modifier_flambee_buff:OnRefresh(kv)
-	-- UP 2.3
-	if self.ability:GetRank(3) then
+	-- UP 2.13
+	if self.ability:GetRank(13) then
 		self.ability:RemoveBonus("_2_REC", self.parent)
 		self.ability:AddBonus("_2_REC", self.parent, 12, 0, nil)
 	end
 
-	-- UP 2.4
-	if self.ability:GetRank(4) then
+	-- UP 2.21
+	if self.ability:GetRank(21) then
 		local ms = self.ability:GetSpecialValueFor("ms") + 10
 		local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 		for _,modifier in pairs(mod) do
@@ -58,8 +58,8 @@ function bocuse_2_modifier_flambee_buff:OnRefresh(kv)
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 	end
 
-	-- UP 2.7
-	if self.ability:GetRank(7) then
+	-- UP 2.31
+	if self.ability:GetRank(31) then
 		local intervals = self.ability:GetSpecialValueFor("intervals")
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 1.5) * intervals
 	end

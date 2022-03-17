@@ -17,23 +17,23 @@
 		{
 			"0"
 			{
-				"1"   "icebreaker_1__frost_rank_1_1"
-				"2"   "icebreaker_1__frost_rank_1_2"
+				"1"   "icebreaker_1__frost_rank_11"
+				"2"   "icebreaker_1__frost_rank_12"
 			}
 			"1"
 			{
-				"1"   "icebreaker_2__discus_rank_1_1"
-				"2"   "icebreaker_2__discus_rank_1_2"
-				"3"   "icebreaker_2__discus_rank_1_3"
+				"1"   "icebreaker_2__discus_rank_11"
+				"2"   "icebreaker_2__discus_rank_12"
+				"3"   "icebreaker_2__discus_rank_13"
 			}
 			"2"
 			{
-				"1"   "icebreaker_3__blink_rank_1_1"
+				"1"   "icebreaker_3__blink_rank_11"
 			}
 			"3"
 			{
-				"1"   "icebreaker_u__zero_rank_1_1"
-				"2"   "icebreaker_u__zero_rank_1_2"
+				"1"   "icebreaker_u__zero_rank_11"
+				"2"   "icebreaker_u__zero_rank_12"
 			}
 			"4"
 			{
@@ -44,23 +44,23 @@
 		{
 			"0"
 			{
-				"1"   "icebreaker_1__frost_rank_2_1"
+				"1"   "icebreaker_1__frost_rank_21"
 			}
 			"1"
 			{
-				"1"   "icebreaker_2__discus_rank_2_1"
-				"2"   "icebreaker_2__discus_rank_2_2"
+				"1"   "icebreaker_2__discus_rank_21"
+				"2"   "icebreaker_2__discus_rank_22"
 			}
 			"2"
 			{
-				"1"   "icebreaker_3__blink_rank_2_1"
-				"2"   "icebreaker_3__blink_rank_2_2"
-				"3"   "icebreaker_3__blink_rank_2_3"
+				"1"   "icebreaker_3__blink_rank_21"
+				"2"   "icebreaker_3__blink_rank_22"
+				"3"   "icebreaker_3__blink_rank_23"
 			}
 			"3"
 			{
-				"1"   "icebreaker_u__zero_rank_2_1"
-				"2"   "icebreaker_u__zero_rank_2_2"
+				"1"   "icebreaker_u__zero_rank_21"
+				"2"   "icebreaker_u__zero_rank_22"
 			}
 			"4"
 			{
@@ -71,21 +71,21 @@
 		{
 			"0"
 			{
-				"1"   "icebreaker_1__frost_rank_3_1"
-				"2"   "icebreaker_1__frost_rank_3_2"
+				"1"   "icebreaker_1__frost_rank_31"
+				"2"   "icebreaker_1__frost_rank_32"
 			}
 			"1"
 			{
-				"1"   "icebreaker_2__discus_rank_3_1"
+				"1"   "icebreaker_2__discus_rank_31"
 			}
 			"2"
 			{
-				"1"   "icebreaker_3__blink_rank_3_1"
+				"1"   "icebreaker_3__blink_rank_31"
 			}
 			"3"
 			{
-				"1"   "icebreaker_u__zero_rank_3_1"
-				"2"   "icebreaker_u__zero_rank_3_2"
+				"1"   "icebreaker_u__zero_rank_31"
+				"2"   "icebreaker_u__zero_rank_32"
 			}
 			"4"
 			{

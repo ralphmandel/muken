@@ -1,0 +1,140 @@
+"TalentTree_icebreaker"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_riki"
+	{
+		"icebreaker_1__frost"
+		{
+			"0"
+			{
+				"1"   "icebreaker_1__frost_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_1__frost_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_1__frost_rank_31"
+				"2"   "icebreaker_1__frost_rank_32"
+			}
+			"3"
+			{
+				"1"   "icebreaker_1__frost_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"icebreaker_2__discus"
+		{
+			"0"
+			{
+				"1"   "icebreaker_2__discus_rank_11"
+				"2"   "icebreaker_2__discus_rank_12"
+				"3"   "icebreaker_2__discus_rank_13"
+			}
+			"1"
+			{
+				"1"   "icebreaker_2__discus_rank_21"
+				"2"   "icebreaker_2__discus_rank_22"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "icebreaker_2__discus_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"icebreaker_3__blink"
+		{
+			"0"
+			{
+				"1"   "icebreaker_3__blink_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_3__blink_rank_21"
+				"2"   "icebreaker_3__blink_rank_22"
+			}
+			"2"
+			{
+				"1"   "icebreaker_3__blink_rank_31"
+			}
+			"3"
+			{
+				"1"   "icebreaker_3__blink_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"icebreaker_u__zero"
+		{
+			"0"
+			{
+				"1"   "icebreaker_u__zero_rank_11"
+				"2"   "icebreaker_u__zero_rank_12"
+			}
+			"1"
+			{
+				"1"   "icebreaker_u__zero_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_u__zero_rank_31"
+				"2"   "icebreaker_u__zero_rank_32"
+			}
+			"3"
+			{
+				"1"   "icebreaker_u__zero_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "icebreaker_x1__skin"
+				"2"   "icebreaker_x2__sight"			
+			}
+		}
+	}	
+}

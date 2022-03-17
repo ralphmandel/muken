@@ -30,15 +30,15 @@ function bloodstained_u_modifier_debuff_slow:OnCreated( kv )
     local slow = self.ability:GetSpecialValueFor("slow")
     local blood_extraction = self.ability:GetSpecialValueFor("blood_extraction") * 0.01
 
-    -- UP 4.4
-	if self.ability:GetRank(4)
+    -- UP 4.21
+	if self.ability:GetRank(21)
 	and source == self.ability:GetAbilityName() then
 		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_0_modifier_bleeding", {})
 		slow = slow + 10
 	end
 
-    -- UP 4.7
-	if self.ability:GetRank(7)
+    -- UP 4.31
+	if self.ability:GetRank(31)
 	and source == self.ability:GetAbilityName() then
 		blood_extraction = (self.ability:GetSpecialValueFor("blood_extraction") + 5) * 0.01
 		outgoing = 20

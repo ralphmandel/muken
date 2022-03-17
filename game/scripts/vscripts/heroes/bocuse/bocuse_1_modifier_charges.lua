@@ -27,7 +27,7 @@ function bocuse_1_modifier_charges:OnCreated( kv )
 end
 
 function bocuse_1_modifier_charges:OnRefresh( kv )
-	-- if self.ability:GetRank(5) then
+	-- if self.ability:GetRank(22) then
 	-- 	self.hits = self.ability:GetSpecialValueFor("hits") - 1
 	-- end
 end
@@ -49,8 +49,8 @@ end
 function bocuse_1_modifier_charges:GetModifierProcAttack_Feedback( params )
 	local charges = self.ability:GetSpecialValueFor("charges")
 
-	-- UP 1.10
-    if self.ability:GetRank(10) then
+	-- up 1.41
+    if self.ability:GetRank(41) then
 		charges = charges + 4
 	end
 
@@ -70,12 +70,12 @@ end
 function bocuse_1_modifier_charges:OnIntervalThink()
 	self:ResetHits()
 
-    -- UP 1.1
-    if self.ability:GetRank(1) then
+    -- UP 1.11
+    if self.ability:GetRank(11) then
 		local charges = self.ability:GetSpecialValueFor("charges")
 
-		-- UP 1.10
-		if self.ability:GetRank(10) then
+		-- up 1.41
+		if self.ability:GetRank(41) then
 			charges = charges + 4
 		end
 
@@ -100,7 +100,7 @@ end
 function bocuse_1_modifier_charges:ResetHits()
 	self.hits = self.ability:GetSpecialValueFor("hits")
 
-	-- if self.ability:GetRank(5) then
+	-- if self.ability:GetRank(22) then
 	-- 	self.hits = self.hits - 1
 	-- end
 end

@@ -17,27 +17,27 @@
 		{
 			"0"
 			{
-				"1"   "slayer_1__chain_rank_1_1"
-				"2"   "slayer_1__chain_rank_1_2"
-				"3"   "slayer_1__chain_rank_1_3"
+				"1"   "slayer_1__chain_rank_11"
+				"2"   "slayer_1__chain_rank_12"
+				"3"   "slayer_1__chain_rank_13"
 			}
 			"1"
 			{
-				"1"   "slayer_2__shackles_rank_1_1"
-				"2"   "slayer_2__shackles_rank_1_2"
-				"3"   "slayer_2__shackles_rank_1_3"
+				"1"   "slayer_2__shackles_rank_11"
+				"2"   "slayer_2__shackles_rank_12"
+				"3"   "slayer_2__shackles_rank_13"
 			}
 			"2"
 			{
-				"1"   "slayer_3__vest_rank_1_1"
-				"2"   "slayer_3__vest_rank_1_2"
-				"3"   "slayer_3__vest_rank_1_3"
+				"1"   "slayer_3__vest_rank_11"
+				"2"   "slayer_3__vest_rank_12"
+				"3"   "slayer_3__vest_rank_13"
 			}
 			"3"
 			{
-				"1"   "slayer_u__judge_rank_1_1"
-				"2"   "slayer_u__judge_rank_1_2"
-				"3"   "slayer_u__judge_rank_1_3"
+				"1"   "slayer_u__judge_rank_11"
+				"2"   "slayer_u__judge_rank_12"
+				"3"   "slayer_u__judge_rank_13"
 			}
 			"4"
 			{
@@ -48,27 +48,27 @@
 		{
 			"0"
 			{
-				"1"   "slayer_1__chain_rank_2_1"
-				"2"   "slayer_1__chain_rank_2_2"
-				"3"   "slayer_1__chain_rank_2_3"
+				"1"   "slayer_1__chain_rank_21"
+				"2"   "slayer_1__chain_rank_22"
+				"3"   "slayer_1__chain_rank_23"
 			}
 			"1"
 			{
-				"1"   "slayer_2__shackles_rank_2_1"
-				"2"   "slayer_2__shackles_rank_2_2"
-				"3"   "slayer_2__shackles_rank_2_3"
+				"1"   "slayer_2__shackles_rank_21"
+				"2"   "slayer_2__shackles_rank_22"
+				"3"   "slayer_2__shackles_rank_23"
 			}
 			"2"
 			{
-				"1"   "slayer_3__vest_rank_2_1"
-				"2"   "slayer_3__vest_rank_2_2"
-				"3"   "slayer_3__vest_rank_2_3"
+				"1"   "slayer_3__vest_rank_21"
+				"2"   "slayer_3__vest_rank_22"
+				"3"   "slayer_3__vest_rank_23"
 			}
 			"3"
 			{
-				"1"   "slayer_u__judge_rank_2_1"
-				"2"   "slayer_u__judge_rank_2_2"
-				"3"   "slayer_u__judge_rank_2_3"
+				"1"   "slayer_u__judge_rank_21"
+				"2"   "slayer_u__judge_rank_22"
+				"3"   "slayer_u__judge_rank_23"
 			}
 			"4"
 			{
@@ -79,27 +79,27 @@
 		{
 			"0"
 			{
-				"1"   "slayer_1__chain_rank_3_1"
-				"2"   "slayer_1__chain_rank_3_2"
-				"3"   "slayer_1__chain_rank_3_3"
+				"1"   "slayer_1__chain_rank_31"
+				"2"   "slayer_1__chain_rank_32"
+				"3"   "slayer_1__chain_rank_33"
 			}
 			"1"
 			{
-				"1"   "slayer_2__shackles_rank_3_1"
-				"2"   "slayer_2__shackles_rank_3_2"
-				"3"   "slayer_2__shackles_rank_3_3"
+				"1"   "slayer_2__shackles_rank_31"
+				"2"   "slayer_2__shackles_rank_32"
+				"3"   "slayer_2__shackles_rank_33"
 			}
 			"2"
 			{
-				"1"   "slayer_3__vest_rank_3_1"
-				"2"   "slayer_3__vest_rank_3_2"
-				"3"   "slayer_3__vest_rank_3_3"
+				"1"   "slayer_3__vest_rank_31"
+				"2"   "slayer_3__vest_rank_32"
+				"3"   "slayer_3__vest_rank_33"
 			}
 			"3"
 			{
-				"1"   "slayer_u__judge_rank_3_1"
-				"2"   "slayer_u__judge_rank_3_2"
-				"3"   "slayer_u__judge_rank_3_3"
+				"1"   "slayer_u__judge_rank_31"
+				"2"   "slayer_u__judge_rank_32"
+				"3"   "slayer_u__judge_rank_33"
 			}
 			"4"
 			{

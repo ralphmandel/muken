@@ -23,20 +23,20 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	self.gain = self.ability:GetSpecialValueFor("gain")
 	local consume = self.ability:GetSpecialValueFor("consume") * 0.01
 
-	-- UP 1.7
-	if self.ability:GetRank(7) then
+	-- UP 1.31
+	if self.ability:GetRank(31) then
 		self.magic_immunity = true
 		self:PlayEfxBKB()
 	end
 
-	-- UP 1.10
-	if self.ability:GetRank(10) then
+	-- UP 1.41
+	if self.ability:GetRank(41) then
 		self.incoming = 20
 		self.gain = 1
 	end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
+	-- UP 1.42
+	if self.ability:GetRank(42) then
 		self.min_health = 1
 	end
 
@@ -59,20 +59,20 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 
 	self.ability:RemoveBonus("_1_STR", self.parent)
 
-	-- UP 1.7
-	if self.ability:GetRank(7) then
+	-- UP 1.31
+	if self.ability:GetRank(31) then
 		self.magic_immunity = true
 		self:PlayEfxBKB()
 	end
 
-	-- UP 1.10
-	if self.ability:GetRank(10) then
+	-- UP 1.41
+	if self.ability:GetRank(41) then
 		self.incoming = 20
 		self.gain = 1
 	end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
+	-- UP 1.42
+	if self.ability:GetRank(42) then
 		self.min_health = 1
 	end
 
@@ -126,8 +126,8 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 	if keys.attacker:IsIllusion() then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 1.4
-	if self.ability:GetRank(4) then
+	-- UP 1.21
+	if self.ability:GetRank(21) then
 		local cleaveatk = DoCleaveAttack(
 			self.parent, keys.target, self.ability, keys.damage * 0.5, 100, 400, 500,
 			"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
@@ -139,8 +139,8 @@ function bloodstained_1_modifier_rage:OnHeroKilled(keys)
 	if keys.attacker ~= self.parent then return	end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
+	-- UP 1.42
+	if self.ability:GetRank(42) then
 		local add_time = self:GetRemainingTime() + (self.ability:GetSpecialValueFor("duration") * 0.25)
 		self:SetDuration(self.ability:CalcStatus(add_time, self.caster, self.parent), true)
 	end
