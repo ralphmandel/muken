@@ -71,8 +71,8 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 
         local charges = 1
 
-        -- UP 2.1
-        if self:GetRank(1) then
+        -- UP 2.11
+        if self:GetRank(11) then
             charges = charges * 2
         end
 

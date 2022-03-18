@@ -1,5 +1,6 @@
 dasdingo_x2__mana = class({})
-LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modifier_mana", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modifier_mana", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -52,11 +53,16 @@ LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modif
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local mana = self:GetSpecialValueFor("mana")
+        local ms = self:GetSpecialValueFor("ms")
+        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
         local mnd = caster:FindModifierByName("_2_MND_modifier")
         if mnd then mana = mana * mnd:GetHealPower() end
         target:GiveMana(mana)
         SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, mana, caster)
+
+        caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {percent = ms, duration = duration})
+        target:AddNewModifier(caster, self, "_modifier_movespeed_buff", {percent = ms, duration = duration})
 
         self:PlayEfxStart(target)
     end
@@ -92,11 +98,17 @@ LinkLuaModifier( "dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modif
 -- EFFECTS
 
     function dasdingo_x2__mana:PlayEfxStart(target)
+        local caster = self:GetCaster()
         local particle = "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf"
-        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
-        ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
+        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControl(effect, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControl(effect, 1, caster:GetOrigin())
         ParticleManager:ReleaseParticleIndex(effect)
+
+        local effect2 = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect2, 0, target:GetOrigin())
+        ParticleManager:SetParticleControl(effect2, 1, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect2)
 
         if IsServer() then target:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target") end
     end

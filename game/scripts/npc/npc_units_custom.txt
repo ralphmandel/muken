@@ -1793,7 +1793,7 @@
 			{
 				//Level Up
 				"HPGain"					"5"
-				"DamageGain"				"1.5"
+				"DamageGain"				"1"
 				"ArmorGain"					"0.1"
 				"MagicResistGain"			"0"
 				"MoveSpeedGain"				"0"
@@ -1827,9 +1827,9 @@
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackDamageMin"			"15"		// Damage range min.
-			"AttackDamageMax"			"20"		// Damage range max.
-			"AttackRate"				"0.1"		// Speed of attack.
+			"AttackDamageMin"			"28"		// Damage range min.
+			"AttackDamageMax"			"32"		// Damage range max.
+			"AttackRate"				"0.5"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 			"AttackRange"				"700"		// Range within a target can be attacked.
@@ -1877,7 +1877,7 @@
 			{
 				//Level Up
 				"HPGain"					"2"
-				"DamageGain"				"0.5"
+				"DamageGain"				"1"
 				"ArmorGain"					"0"
 				"MagicResistGain"			"0"
 				"MoveSpeedGain"				"0"

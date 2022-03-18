@@ -1,5 +1,6 @@
 dasdingo_x1__ward = class({})
-LinkLuaModifier( "dasdingo_x1_modifier_tribal", "heroes/dasdingo/dasdingo_x1_modifier_tribal", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("dasdingo_x1_modifier_tribal", "heroes/dasdingo/dasdingo_x1_modifier_tribal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_x1_modifier_bounce", "heroes/dasdingo/dasdingo_x1_modifier_bounce", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

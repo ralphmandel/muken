@@ -1,0 +1,140 @@
+"TalentTree_dasdingo"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_shadow_shaman"
+	{
+		"dasdingo_1__heal"
+		{
+			"0"
+			{
+				"1"   "dasdingo_1__heal_rank_11"
+				"2"   "dasdingo_1__heal_rank_12"
+			}
+			"1"
+			{
+				"1"   "dasdingo_1__heal_rank_21"
+			}
+			"2"
+			{
+				"1"   "dasdingo_1__heal_rank_31"
+				"2"   "dasdingo_1__heal_rank_32"
+			}
+			"3"
+			{
+				"1"   "dasdingo_1__heal_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"dasdingo_2__aura"
+		{
+			"0"
+			{
+				"1"   "dasdingo_2__aura_rank_11"
+			}
+			"1"
+			{
+				"1"   "dasdingo_2__aura_rank_21"
+				"2"   "dasdingo_2__aura_rank_22"
+			}
+			"2"
+			{
+				"1"   "dasdingo_2__aura_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"dasdingo_3__hex"
+		{
+			"0"
+			{
+				"1"   "dasdingo_3__hex_rank_11"
+				"2"   "dasdingo_3__hex_rank_12"
+			}
+			"1"
+			{
+				"1"   "dasdingo_3__hex_rank_21"
+			}
+			"2"
+			{
+				"1"   "dasdingo_3__hex_rank_31"
+			}
+			"3"
+			{
+				"1"   "dasdingo_3__hex_rank_41"
+				"2"   "dasdingo_3__hex_rank_42"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"dasdingo_u__maledict"
+		{
+			"0"
+			{
+				"1"   "dasdingo_u__maledict_rank_11"
+				"2"   "dasdingo_u__maledict_rank_12"
+			}
+			"1"
+			{
+				"1"   "dasdingo_u__maledict_rank_21"
+				"2"   "dasdingo_u__maledict_rank_22"
+			}
+			"2"
+			{
+				"1"   "dasdingo_u__maledict_rank_31"
+			}
+			"3"
+			{
+				"1"   "dasdingo_u__maledict_rank_41"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "dasdingo_x1__ward"
+				"2"   "dasdingo_x2__mana"			
+			}
+		}
+	}	
+}

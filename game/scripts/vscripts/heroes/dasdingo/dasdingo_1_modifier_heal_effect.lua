@@ -27,13 +27,13 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 	self.count = 0
 	self.regen = 0
 
-	-- UP 1.2
-	if self.ability:GetRank(2) then
+	-- UP 1.12
+	if self.ability:GetRank(12) then
 		self.reset = 0
 	end
 
-	-- UP 1.4
-	if self.ability:GetRank(4) then
+	-- UP 1.41
+	if self.ability:GetRank(41) then
 		self.intervals = self.intervals - 1
 	end
 
@@ -68,9 +68,9 @@ end
 function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 
-	local chance = 30
+	local chance = 20
 	if keys.attacker:IsBaseNPC() then
-		if keys.attacker:IsHero() == false then chance = 20 end
+		if keys.attacker:IsHero() then chance = 30 end
 	end
 
 	if RandomInt(1, 100) <= chance
@@ -95,8 +95,8 @@ function dasdingo_1_modifier_heal_effect:GetModifierConstantHealthRegen()
 end
 
 function dasdingo_1_modifier_heal_effect:OnIntervalThink()
-	-- UP 1.1
-	if self.ability:GetRank(1)
+	-- UP 1.11
+	if self.ability:GetRank(11)
 	and self.parent:IsHero() then
 		local invi_bool = false
 		local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
@@ -130,8 +130,8 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
         self:PlayEfxHeal()
     end
 
-	-- UP 1.3
-	if self.ability:GetRank(3) then
+	-- UP 1.41
+	if self.ability:GetRank(41) then
 		self.parent:Purge(false, true, false, false, false)
 	end
 end

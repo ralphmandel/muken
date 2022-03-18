@@ -30,13 +30,13 @@ function dasdingo_3_modifier_hex:OnCreated(kv)
         self.parent:Kill(self.ability, self.caster)
     end
 
-	-- UP 3.1
-	if self.ability:GetRank(1) then
+	-- UP 3.11
+	if self.ability:GetRank(11) then
 		self:StartIntervalThink(0.1)
 	end
 
-	-- UP 3.2
-	if self.ability:GetRank(2) then
+	-- UP 3.12
+	if self.ability:GetRank(12) then
 		self.ms_limit = 100
 	end
 

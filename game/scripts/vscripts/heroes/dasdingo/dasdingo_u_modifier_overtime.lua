@@ -22,13 +22,13 @@ function dasdingo_u_modifier_overtime:OnCreated(kv)
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
-		damage = 3,
+		damage = 4,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self.ability
 	}
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		percent = 30
+		percent = 70
 	})
 
 	self:StartIntervalThink(0.2)

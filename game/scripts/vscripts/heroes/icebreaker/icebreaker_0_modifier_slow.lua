@@ -14,9 +14,6 @@ function icebreaker_0_modifier_slow:IsDebuff()
 	return true
 end
 
-function icebreaker_0_modifier_slow:GetTexture()
-	return "icebreaker_instance"
-end
 --------------------------------------------------------------------------------
 
 function icebreaker_0_modifier_slow:OnCreated( kv )

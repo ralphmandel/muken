@@ -35,13 +35,13 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 4.5
-	if self.ability:GetRank(5) then
+	-- UP 4.22
+	if self.ability:GetRank(22) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
 	end
 
-	-- UP 4.6
-	if self.ability:GetRank(6) then
+	-- UP 4.31
+	if self.ability:GetRank(31) then
 		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
 	end
@@ -70,13 +70,13 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 4.5
-	if self.ability:GetRank(5) then
+	-- UP 4.22
+	if self.ability:GetRank(22) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
 	end
 
-	-- UP 4.6
-	if self.ability:GetRank(6) then
+	-- UP 4.31
+	if self.ability:GetRank(31) then
 		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
 	end
@@ -99,8 +99,8 @@ end
 ------------------------------------------------------------
 
 function dasdingo_u_modifier_maledict:OnIntervalThink()
-	-- UP 4.3
-	if self.ability:GetRank(3) then
+	-- UP 4.41
+	if self.ability:GetRank(41) then
 		local units = FindUnitsInRadius(
             self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 400,
             DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -125,8 +125,8 @@ function dasdingo_u_modifier_maledict:OnIntervalThink()
 	if self.time < (self.tick_intervals / (self.tick_intervals * 0.1)) then return end
 	self.time = 0
 
-	-- UP 4.2
-	if self.ability:GetRank(2) then
+	-- UP 4.12
+	if self.ability:GetRank(12) then
 		self.parent:Purge(true, false, false, false, false)
 	end
 

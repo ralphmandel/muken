@@ -44,16 +44,16 @@ function dasdingo_1_modifier_heal:OnCreated(kv)
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 
-	-- UP 1.5
-	if self.ability:GetRank(5) then
-		self.radius = self.radius + 100
+	-- UP 1.21
+	if self.ability:GetRank(21) then
+		self.radius = self.radius + 75
 	end
 
 	if IsServer() then
 		self:PlayEfxStart()
 
-		-- UP 1.2
-		if self.ability:GetRank(2) then
+		-- UP 1.12
+		if self.ability:GetRank(12) then
 			self:PlayEfxRegen()
 		end
 	end

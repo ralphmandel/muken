@@ -15,7 +15,6 @@ function dasdingo_x1_modifier_tribal:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local levels = 0
 	local int = self.caster:FindModifierByName("_1_INT_modifier")
 	if int then self.parent:CreatureLevelUp(int:GetStackCount()) end
 
@@ -46,6 +45,8 @@ end
 
 function dasdingo_x1_modifier_tribal:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -57,13 +58,33 @@ function dasdingo_x1_modifier_tribal:DeclareFunctions()
 	return funcs
 end
 
+function dasdingo_x1_modifier_tribal:GetModifierDamageOutgoing_Percentage()
+	return -40
+end
+
+function dasdingo_x1_modifier_tribal:GetModifierProcAttack_Feedback(keys)
+	if self.parent:PassivesDisabled() then return end
+
+	CreateModifierThinker(
+		self.parent,
+		self.ability,
+		"dasdingo_x1_modifier_bounce",
+		{  },
+		keys.target:GetOrigin(),
+		self.parent:GetTeamNumber(),
+		false
+	)
+end
+
 function dasdingo_x1_modifier_tribal:GetModifierAttackSpeedPercentage()
-	return 75
+	return 100
 end
 
 function dasdingo_x1_modifier_tribal:OnAttack(keys)
 	if keys.attacker == self.parent then
-		if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.Attack") end
+		if self.ability.sound == nil then
+			if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.Attack") end
+		end
 	end
 end
 

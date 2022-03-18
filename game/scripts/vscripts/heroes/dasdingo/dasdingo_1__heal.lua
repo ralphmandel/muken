@@ -74,13 +74,13 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 1.5
-        if self:GetRank(5) then
+        -- UP 1.21
+        if self:GetRank(21) then
             charges = charges * 2
         end
 
-        -- UP 1.6
-        if self:GetRank(6) then
+        -- UP 1.32
+        if self:GetRank(32) then
             charges = charges * 3
         end
 
@@ -96,7 +96,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function dasdingo_1__heal:GetAOERadius()
         if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
 		if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 100 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 75 end
         return self:GetSpecialValueFor("radius")
     end
 

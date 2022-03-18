@@ -71,13 +71,13 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         local charges = 1
 
-        -- UP 3.3
-        if self:GetRank(3) then
+        -- UP 3.21
+        if self:GetRank(21) then
             charges = charges * 2           
         end
 
-        -- UP 3.5
-        if self:GetRank(5) then
+        -- UP 3.41
+        if self:GetRank(41) then
             charges = charges * 3
         end
 
@@ -114,12 +114,12 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             target:Kill(self, caster)
         end
 
-        -- UP 3.3
-        if self:GetRank(3) then
+        -- UP 3.21
+        if self:GetRank(21) then
             local damageTable = {
                 victim = target,
                 attacker = caster,
-                damage = target:GetMaxHealth() * 0.1,
+                damage = target:GetMaxHealth() * 0.05,
                 damage_type = DAMAGE_TYPE_MAGICAL,
                 ability = self
             }
@@ -128,13 +128,8 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
         end
 
-        -- UP 3.4
-        if self:GetRank(4) then
-            duration = duration + 1
-        end
-
-        -- UP 3.5
-        if self:GetRank(5) then
+        -- UP 3.41
+        if self:GetRank(41) then
             local radius = 225
             local enemies = FindUnitsInRadius(
                 caster:GetTeamNumber(), target:GetOrigin(), nil, radius,
@@ -144,11 +139,16 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             
             for _,enemy in pairs(enemies) do
                 enemy:AddNewModifier(caster, self, "dasdingo_3_modifier_hex", {
-                    duration = self:CalcStatus(2, caster, target)
+                    duration = self:CalcStatus(duration, caster, target)
                 })
             end
 
             self:PlayEfxAoe(target, radius)
+        end
+
+        -- UP 3.31
+        if self:GetRank(31) then
+            duration = duration + 1.5
         end
 
         if target:IsAlive() then
@@ -168,7 +168,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             return UF_FAIL_CUSTOM
         end
 
-        -- UP 3.3
+        -- UP 3.21
         if self:GetCurrentAbilityCharges() % 2 == 0 then
             flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end

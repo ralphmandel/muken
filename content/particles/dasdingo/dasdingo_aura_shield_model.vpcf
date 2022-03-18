@@ -62,8 +62,8 @@
 		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 3
-			m_flInputMax = 70.0
-			m_flOutputMin = 0.85
+			m_flInputMax = 80.0
+			m_flOutputMin = 0.8
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 			m_flOutputMax = 1.2
 		},
@@ -71,8 +71,8 @@
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 3
 			m_nFieldOutput = 7
-			m_flInputMax = 70.0
-			m_flOutputMin = 0.72
+			m_flInputMax = 80.0
+			m_flOutputMin = 0.6
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
 		},
 		{

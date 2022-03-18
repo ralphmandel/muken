@@ -8,9 +8,6 @@ function icebreaker_2_modifier_refresh:IsPurgable()
     return false
 end
 
-function icebreaker_2_modifier_refresh:GetTexture()
-	return "icebreaker_flake"
-end
 --------------------------------------------------------------------------------
 -- Initializations
 function icebreaker_2_modifier_refresh:OnCreated( kv )

@@ -8,10 +8,6 @@ function icebreaker_x1_modifier_skin:IsPurgable()
     return false
 end
 
-function icebreaker_x1_modifier_skin:GetTexture()
-	return "icebreaker_skin"
-end
-
 -----------------------------------------------------------
 
 function icebreaker_x1_modifier_skin:OnCreated( kv )
