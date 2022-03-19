@@ -2,6 +2,7 @@ dasdingo_1__heal = class({})
 LinkLuaModifier("dasdingo_1_modifier_passive", "heroes/dasdingo/dasdingo_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_heal", "heroes/dasdingo/dasdingo_1_modifier_heal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_heal_effect", "heroes/dasdingo/dasdingo_1_modifier_heal_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_1_modifier_immortal", "heroes/dasdingo/dasdingo_1_modifier_immortal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 

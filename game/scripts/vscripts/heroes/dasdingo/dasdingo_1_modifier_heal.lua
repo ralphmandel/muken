@@ -63,11 +63,14 @@ function dasdingo_1_modifier_heal:OnRefresh(kv)
 end
 
 function dasdingo_1_modifier_heal:OnRemoved(kv)
+	RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow)
 end
 
 -----------------------------------------------------------
 
 function dasdingo_1_modifier_heal:PlayEfxStart()
+	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius, self:GetDuration(), false)
+
 	local string = "particles/econ/items/witch_doctor/wd_ti10_immortal_weapon_gold/wd_ti10_immortal_voodoo_gold.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())

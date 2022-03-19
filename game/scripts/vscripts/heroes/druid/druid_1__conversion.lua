@@ -96,6 +96,7 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
         local duration = self:GetSpecialValueFor("duration")
 
         caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
+        RemoveFOWViewer(caster:GetTeamNumber(), self.fow)
         if self.efx_channel then ParticleManager:DestroyParticle(self.efx_channel, false) end
         if self.efx_channel2 then ParticleManager:DestroyParticle(self.efx_channel2, false) end
 
@@ -155,6 +156,8 @@ LinkLuaModifier("druid_1_modifier_conversion", "heroes/druid/druid_1_modifier_co
         self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_WORLDORIGIN, nil)
         ParticleManager:SetParticleControl(self.efx_channel2, 0, self.point)
         ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(radius * 0.1), 0, 0))
+
+        self.fow = AddFOWViewer(caster:GetTeamNumber(), self.point, radius, 10, true)
     end
 
     function druid_1__conversion:PlayEfxEnd(radius)

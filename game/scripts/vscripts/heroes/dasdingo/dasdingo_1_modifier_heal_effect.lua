@@ -26,6 +26,8 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 	self.intervals = self.ability:GetSpecialValueFor("intervals") / 0.25
 	self.count = 0
 	self.regen = 0
+	self.min_health = 0
+	self.death = false
 
 	-- UP 1.12
 	if self.ability:GetRank(12) then
@@ -39,14 +41,22 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
 
+	-- UP 1.31
+	if self.ability:GetRank(31) then
+		self.min_health = 1
+	end
+
 	self:StartIntervalThink(0.25)
 end
 
 function dasdingo_1_modifier_heal_effect:OnRefresh(kv)
+	print("refresh")
 end
 
 function dasdingo_1_modifier_heal_effect:OnRemoved(kv)
 	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
+
+	self.parent:RemoveModifierByName("dasdingo_1_modifier_immortal")
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
 	for _,modifier in pairs(mod) do
@@ -59,14 +69,32 @@ end
 function dasdingo_1_modifier_heal_effect:DeclareFunctions()
 
     local funcs = {
+		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
     }
     return funcs
 end
 
+function dasdingo_1_modifier_heal_effect:GetMinHealth()
+    return self.min_health
+end
+
 function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
+
+	if self.min_health == 1
+	and keys.unit:GetHealth() == 1
+	and keys.unit:HasModifier("dasdingo_1_modifier_immortal") == false then		
+		local mod = keys.unit:AddNewModifier(self.caster, self.ability, "dasdingo_1_modifier_immortal", {
+			duration = self.ability:CalcStatus(10, self.caster, keys.unit)
+		})
+
+		local info = {}
+		info.inflictor = keys.inflictor
+		info.attacker = keys.attacker
+		mod:SetKillData(info)
+	end
 
 	local chance = 20
 	if keys.attacker:IsBaseNPC() then
