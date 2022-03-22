@@ -112,6 +112,10 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
         local luck = self.parent:FindModifierByName("_2_LCK_modifier")
         if luck then critical_chance = luck:GetCriticalChance() end
 
+        if self.parent:HasModifier("ancient_1_modifier_berserk") then
+            critical_chance = (critical_chance * 0.5) + 25
+        end
+
         if (RandomInt(1, 10000) <= critical_chance * 100)
         or self.force_spell_crit == true then
             calc = calc + crit + (calc * crit * 0.01)
@@ -120,6 +124,16 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
         end
 
         return calc
+    end
+end
+
+function _1_STR_modifier:GetModifierBaseAttack_BonusDamage()
+    return self:GetStackCount() * self.damage
+end
+
+function _1_STR_modifier:GetModifierAttackRangeBonus()
+    if self.parent:GetAttackCapability() == 2 then
+        return self.range
     end
 end
 
@@ -168,12 +182,6 @@ function _1_STR_modifier:Base_STR(value)
     self.range = self.ability:GetSpecialValueFor("range") * value
 end
 
-function _1_STR_modifier:GetModifierAttackRangeBonus()
-    if self.parent:GetAttackCapability() == 2 then
-        return self.range
-    end
-end
-
 function _1_STR_modifier:GetBaseRange()
     return 350 + self.range
 end
@@ -199,7 +207,27 @@ function _1_STR_modifier:CalcCritDamage()
         bonus_value = bonus_value + mod:GetStackCount()
     end
 
-    return self.ability:GetSpecialValueFor("critical_damage") + bonus_value
+    local total_crit_dmg = self.ability:GetSpecialValueFor("critical_damage")
+
+    if self.parent:HasModifier("ancient_1_modifier_berserk") then
+        local agi = self.parent:FindModifierByName("_1_AGI_modifier")
+        local luck = self.parent:FindModifierByName("_2_LCK_modifier")
+        if agi and luck then
+            local chance_base = 0.25
+            local chance_luck = luck:GetCriticalChance() * 0.005
+            local crit_dmg = ((total_crit_dmg - 100) * 3) * 0.01
+            local time = 1
+
+            if agi:GetStackCount() > 0 then time = time + (agi:GetStackCount() / 35) end
+
+            local agi_crit_dmg = ((time - 1) * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
+            total_crit_dmg = 100 + ((crit_dmg + agi_crit_dmg) * 100)
+        end
+    end
+
+    print("total_crit_dmg [35 AGI / 42 LCK == 690]", total_crit_dmg)
+
+    return total_crit_dmg + bonus_value
 end
 
 function _1_STR_modifier:HasCritical()
@@ -210,6 +238,10 @@ function _1_STR_modifier:RollChance()
     local critical_chance = 0
     local luck = self.parent:FindModifierByName("_2_LCK_modifier")
     if luck then critical_chance = luck:GetCriticalChance() end
+
+    if self.parent:HasModifier("ancient_1_modifier_berserk") then
+        critical_chance = (critical_chance * 0.5) + 25
+    end
 
     if RandomInt(1, 10000) <= critical_chance * 100 then
         return true

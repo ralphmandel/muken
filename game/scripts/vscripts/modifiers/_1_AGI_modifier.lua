@@ -62,6 +62,10 @@ function _1_AGI_modifier:GetModifierMoveSpeed_Limit()
 end
 
 function _1_AGI_modifier:GetModifierAttackSpeedBonus_Constant()
+    if self.parent:HasModifier("ancient_1_modifier_berserk") then
+        return 0
+    end
+
     return self:GetStackCount() * self.as
 end
 
@@ -74,7 +78,9 @@ function _1_AGI_modifier:Base_AGI(value)
 end
 
 function _1_AGI_modifier:SetBaseAttackTime(bonus)
-    self.base_attack_time = self.ability:GetSpecialValueFor("base_attack_time") + bonus
+    local bat = self.ability:GetSpecialValueFor("base_attack_time")
+    if self.parent:HasModifier("ancient_1_modifier_berserk") then bat = 2.25 end
+    self.base_attack_time = bat + bonus
 end
 
 function _1_AGI_modifier:OnRespawn(keys)

@@ -9,5 +9,7 @@
     "npc_dota_hero_shadow_shaman"       "1"
     "npc_dota_hero_furion"              "1"
     //"npc_dota_hero_razor"               "1"    
+    "npc_dota_hero_elder_titan"         "1"
+    "npc_dota_hero_rubick"              "1"
     "npc_dota_hero_bloodseeker"         "1"
 }

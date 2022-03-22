@@ -1,7 +1,7 @@
 _2_LCK_modifier = class ({})
 
 function _2_LCK_modifier:IsHidden()
-    return true
+    return false
 end
 
 function _2_LCK_modifier:IsPermanent()

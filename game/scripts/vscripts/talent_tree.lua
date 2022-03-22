@@ -80,6 +80,14 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/druid/druid.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/druid/druid-ranks.txt")
         hero.att = "druid__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_elder_titan" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient-ranks.txt")
+        hero.att = "ancient__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_rubick" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
+        hero.att = "doctor__attributes"
     end
 
     hero.talentsData = {}

@@ -42,12 +42,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.6"
+				"STR"					"0.5"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.2"
+				"AGI"					"0.3"
 			}
 			"07"
 			{

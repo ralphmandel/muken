@@ -1,0 +1,161 @@
+"TalentTree_doctor"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_rubick"
+	{
+		"doctor_1__mask"
+		{
+			"0"
+			{
+				"1"   "doctor_1__mask_rank_11"
+				"2"   "doctor_1__mask_rank_12"
+				"3"   "doctor_1__mask_rank_13"
+			}
+			"1"
+			{
+				"1"   "doctor_1__mask_rank_21"
+				"2"   "doctor_1__mask_rank_22"
+				"3"   "doctor_1__mask_rank_23"
+			}
+			"2"
+			{
+				"1"   "doctor_1__mask_rank_31"
+				"2"   "doctor_1__mask_rank_32"
+				"3"   "doctor_1__mask_rank_33"
+			}
+			"3"
+			{
+				"1"   "doctor_1__mask_rank_41"
+				"2"   "doctor_1__mask_rank_42"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"doctor_2__haze"
+		{
+			"0"
+			{
+				"1"   "doctor_2__haze_rank_11"
+				"2"   "doctor_2__haze_rank_12"
+				"3"   "doctor_2__haze_rank_13"
+			}
+			"1"
+			{
+				"1"   "doctor_2__haze_rank_21"
+				"2"   "doctor_2__haze_rank_22"
+				"3"   "doctor_2__haze_rank_23"
+			}
+			"2"
+			{
+				"1"   "doctor_2__haze_rank_31"
+				"2"   "doctor_2__haze_rank_32"
+				"3"   "doctor_2__haze_rank_33"
+			}
+			"3"
+			{
+				"1"   "doctor_2__haze_rank_41"
+				"2"   "doctor_2__haze_rank_42"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"doctor_3__biohazard"
+		{
+			"0"
+			{
+				"1"   "doctor_3__biohazard_rank_11"
+				"2"   "doctor_3__biohazard_rank_12"
+				"3"   "doctor_3__biohazard_rank_13"
+			}
+			"1"
+			{
+				"1"   "doctor_3__biohazard_rank_21"
+				"2"   "doctor_3__biohazard_rank_22"
+				"3"   "doctor_3__biohazard_rank_23"
+			}
+			"2"
+			{
+				"1"   "doctor_3__biohazard_rank_31"
+				"2"   "doctor_3__biohazard_rank_32"
+				"3"   "doctor_3__biohazard_rank_33"
+			}
+			"3"
+			{
+				"1"   "doctor_3__biohazard_rank_41"
+				"2"   "doctor_3__biohazard_rank_42"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"doctor_u__pandemic"
+		{
+			"0"
+			{
+				"1"   "doctor_u__pandemic_rank_11"
+				"2"   "doctor_u__pandemic_rank_12"
+				"3"   "doctor_u__pandemic_rank_13"
+			}
+			"1"
+			{
+				"1"   "doctor_u__pandemic_rank_21"
+				"2"   "doctor_u__pandemic_rank_22"
+				"3"   "doctor_u__pandemic_rank_23"
+			}
+			"2"
+			{
+				"1"   "doctor_u__pandemic_rank_31"
+				"2"   "doctor_u__pandemic_rank_32"
+				"3"   "doctor_u__pandemic_rank_33"
+			}
+			"3"
+			{
+				"1"   "doctor_u__pandemic_rank_41"
+				"2"   "doctor_u__pandemic_rank_42"
+			}
+			"4"
+			{
+				"1"   "empty"		
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "doctor_x1__pill"
+				"2"   "doctor_x2__extra2"			
+			}
+		}
+	}	
+}

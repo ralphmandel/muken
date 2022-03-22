@@ -26,7 +26,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"160"
+				"critical_damage"		"165"
 			}
 			"03"
 			{
@@ -253,7 +253,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"crit_chance"			"0.5"
+				"crit_chance"			"0.4"
 			}
 		}
 	}
@@ -451,6 +451,7 @@
 	}
 }
 
+//RELEASES
 #base "../vscripts/heroes/icebreaker/icebreaker.txt"
 #base "../vscripts/heroes/inquisitor/inquisitor.txt"
 #base "../vscripts/heroes/shadow/shadow.txt"
@@ -459,6 +460,11 @@
 #base "../vscripts/heroes/bocuse/bocuse.txt"
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
 #base "../vscripts/heroes/druid/druid.txt"
+
+//PRE PRODUCTION
 #base "../vscripts/heroes/slayer/slayer.txt"
+#base "../vscripts/heroes/ancient/ancient.txt"
+#base "../vscripts/heroes/doctor/doctor.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
+
 #base "../vscripts/neutrals/_neutrals.txt"
