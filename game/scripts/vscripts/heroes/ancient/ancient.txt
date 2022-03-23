@@ -78,8 +78,23 @@
 		{
 			"01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"luck"		    "25"
+				"var_type"	        	"FIELD_FLOAT"
+				"strenght"	        	"20"
+			}
+            "02"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"stun_percent"          "0.5"
+			}
+            "03"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"aspd"                  "1.25"
+			}
+            "04"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"bat"                   "2.25"
 			}
 			"15"
 			{
@@ -99,24 +114,32 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		//"AbilityCastPoint"       		"0.4"
+        //"AnimationPlaybackRate"  		"0.8"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+		"AbilityManaCost"         		"0"
+		"AbilityCooldown"				"12"
+		"AbilityCastRange"      		"300"
+        "AbilityChannelTime"    		"1.25"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"channel"		"1"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"300"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage"		"60"
 			}
 			"15"
 			{

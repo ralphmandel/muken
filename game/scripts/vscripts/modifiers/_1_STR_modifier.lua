@@ -28,6 +28,7 @@ function _1_STR_modifier:OnCreated(kv)
         self.force_spell_crit = false
         self.force_crit = false
         self.pierce_proc = false
+        self.has_crit = false
 
         self.block_chance = self.ability:GetSpecialValueFor("block_chance")
         self.damage = self.ability:GetSpecialValueFor("damage")
@@ -117,10 +118,14 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
         end
 
         if (RandomInt(1, 10000) <= critical_chance * 100)
-        or self.force_spell_crit == true then
+        or self.force_spell_crit == true 
+        and not keys.target:IsBuilding() then
             calc = calc + crit + (calc * crit * 0.01)
             self.spell_critical = true
             self.force_spell_crit = false
+            self.has_crit = true
+        else
+            self.has_crit = false
         end
 
         return calc
@@ -154,7 +159,7 @@ function _1_STR_modifier:GetModifierPreAttack_CriticalStrike(keys)
         self.pierce_proc = false
         self.force_crit = false
 
-        if not self.parent:IsIllusion() and not keys.target:IsBuilding() then
+        if not keys.target:IsBuilding() then
             self.record = keys.record
             self.has_crit = true
             return self.critical_damage
@@ -216,16 +221,14 @@ function _1_STR_modifier:CalcCritDamage()
             local chance_base = 0.25
             local chance_luck = luck:GetCriticalChance() * 0.005
             local crit_dmg = ((total_crit_dmg - 100) * 3) * 0.01
-            local time = 1
+            local time = 0
 
-            if agi:GetStackCount() > 0 then time = time + (agi:GetStackCount() / 35) end
+            if agi:GetStackCount() > 0 then time = agi:GetStackCount() / 100 end
 
-            local agi_crit_dmg = ((time - 1) * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
-            total_crit_dmg = 100 + ((crit_dmg + agi_crit_dmg) * 100)
+            local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
+            total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
         end
     end
-
-    print("total_crit_dmg [35 AGI / 42 LCK == 690]", total_crit_dmg)
 
     return total_crit_dmg + bonus_value
 end

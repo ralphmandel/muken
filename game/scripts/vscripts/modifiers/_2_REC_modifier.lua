@@ -22,6 +22,7 @@ function _2_REC_modifier:OnCreated(kv)
 
         self.mp_regen = self.ability:GetSpecialValueFor("mp_regen")
         self.cooldown = self.ability:GetSpecialValueFor("cooldown")
+        self.channel = self.ability:GetSpecialValueFor("channel")
         self.ability:CalculateAttributes(0, 0)
     end
 end
@@ -50,4 +51,8 @@ function _2_REC_modifier:GetModifierPercentageCooldown()
         return self:GetStackCount() * 1
     end
     return self:GetStackCount() * self.cooldown
+end
+
+function _2_REC_modifier:GetChannelTimeReduction(time)
+    return time - (time * self:GetStackCount() * self.channel * 0.01)
 end

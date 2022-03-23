@@ -304,6 +304,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"cooldown"				"0.6"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"0.9"
+			}
 		}
 	}
 

@@ -1,23 +1,39 @@
 ancient_1__berserk = class({})
 LinkLuaModifier("ancient_1_modifier_berserk", "heroes/ancient/ancient_1_modifier_berserk", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
     function ancient_1__berserk:CalcStatus(duration, caster, target)
         local time = duration
-        if caster == nil then return time end
-        local caster_int = caster:FindModifierByName("_1_INT_modifier")
-        local caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+        local caster_int = nil
+        local caster_mnd = nil
+        local target_res = nil
 
-        if target == nil then
-            if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+        if caster ~= nil then
+            caster_int = caster:FindModifierByName("_1_INT_modifier")
+            caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+        end
+
+        if target ~= nil then
+            target_res = target:FindModifierByName("_2_RES_modifier")
+        end
+
+        if caster == nil then
+            if target ~= nil then
+                if target_res then time = time * (1 - target_res:GetStatus()) end
+            end
         else
-            if caster:GetTeamNumber() == target:GetTeamNumber() then
+            if target == nil then
                 if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
             else
-                local target_res = target:FindModifierByName("_2_RES_modifier")
-                if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
-                if target_res then time = time * (1 - target_res:GetStatus()) end
+                if caster:GetTeamNumber() == target:GetTeamNumber() then
+                    if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+                else
+                    if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
+                    if target_res then time = time * (1 - target_res:GetStatus()) end
+                end
             end
         end
 
@@ -68,18 +84,32 @@ LinkLuaModifier("ancient_1_modifier_berserk", "heroes/ancient/ancient_1_modifier
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 
-        -- if self:GetLevel() == 1 then
-        --     local luck = self:GetSpecialValueFor("luck")
-        --     local lck = caster:FindAbilityByName("_2_LCK")
-        --     if lck ~= nil then lck:BonusPermanent(luck) end
-        -- end
+        local str = caster:FindAbilityByName("_1_STR")
+        
+        if self:GetLevel() == 1 then
+            local strenght = self:GetSpecialValueFor("strenght")
+            if str ~= nil then str:BonusPermanent(strenght) end
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) and self.bonus_str == false then
+            if str ~= nil then str:BonusPermanent(10) end
+            self.bonus_str = true
+        end
 
         local charges = 1
+
+        -- UP 1.32
+        if self:GetRank(32) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
     function ancient_1__berserk:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.bonus_str = false
     end
 
 -- SPELL START
@@ -87,5 +117,11 @@ LinkLuaModifier("ancient_1_modifier_berserk", "heroes/ancient/ancient_1_modifier
     function ancient_1__berserk:GetIntrinsicModifierName()
         return "ancient_1_modifier_berserk"
     end
+
+    function ancient_1__berserk:GetCooldown(iLevel)
+		if self:GetCurrentAbilityCharges() == 0 then return 0 end
+		if self:GetCurrentAbilityCharges() == 1 then return 0 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return 15 end
+	end
 
 -- EFFECTS

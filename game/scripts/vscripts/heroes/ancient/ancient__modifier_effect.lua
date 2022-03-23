@@ -28,6 +28,7 @@ function ancient__modifier_effect:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
@@ -40,4 +41,8 @@ end
 
 function ancient__modifier_effect:GetAttackSound(keys)
     return ""
+end
+
+function ancient__modifier_effect:GetActivityTranslationModifiers()
+    return "et_2021"
 end

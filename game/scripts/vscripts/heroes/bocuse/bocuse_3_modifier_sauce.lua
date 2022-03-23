@@ -30,6 +30,7 @@ function bocuse_3_modifier_sauce:DeclareFunctions()
 end
 
 function bocuse_3_modifier_sauce:OnTakeDamage(keys)
+    if keys.attacker == nil then return end
     if keys.attacker:IsBaseNPC() == false then return end
     if not (keys.attacker == self.parent) then return end
     if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
