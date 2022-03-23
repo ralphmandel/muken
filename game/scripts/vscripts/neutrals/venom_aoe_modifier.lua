@@ -66,6 +66,8 @@ function venom_aoe_modifier:GetModifierPhysicalArmorBonus()
 end
 
 function venom_aoe_modifier:OnIntervalThink()
+	if self.caster == nil then self:Destroy() return end
+	if IsValidEntity(self.caster) == false then self:Destroy() return end
 	
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(),	-- int, your team number

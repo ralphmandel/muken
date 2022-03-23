@@ -117,15 +117,20 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
             critical_chance = (critical_chance * 0.5) + 25
         end
 
-        if (RandomInt(1, 10000) <= critical_chance * 100)
-        or self.force_spell_crit == true 
-        and not keys.target:IsBuilding() then
-            calc = calc + crit + (calc * crit * 0.01)
-            self.spell_critical = true
+        if self.force_spell_crit == nil then
             self.force_spell_crit = false
-            self.has_crit = true
-        else
             self.has_crit = false
+        else
+            if (RandomInt(1, 10000) <= critical_chance * 100)
+            or self.force_spell_crit == true 
+            and not keys.target:IsBuilding() then
+                calc = calc + crit + (calc * crit * 0.01)
+                self.spell_critical = true
+                self.force_spell_crit = false
+                self.has_crit = true
+            else
+                self.has_crit = false
+            end
         end
 
         return calc
@@ -191,9 +196,9 @@ function _1_STR_modifier:GetBaseRange()
     return 350 + self.range
 end
 
-function _1_STR_modifier:EnableForceSpellCrit(value)
+function _1_STR_modifier:EnableForceSpellCrit(value, state)
     if value > 0 then self.spell_crit_damage = value end
-    self.force_spell_crit = true
+    self.force_spell_crit = state -- NIL == force no crit
 end
 
 function _1_STR_modifier:EnableForceCrit(value)

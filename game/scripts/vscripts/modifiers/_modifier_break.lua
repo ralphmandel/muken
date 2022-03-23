@@ -30,7 +30,7 @@ end
 
 function _modifier_break:CheckState()
 	local state = {
-	[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
 	}
 
 	return state

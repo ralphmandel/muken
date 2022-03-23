@@ -1,5 +1,6 @@
 ancient_1__berserk = class({})
 LinkLuaModifier("ancient_1_modifier_berserk", "heroes/ancient/ancient_1_modifier_berserk", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_1_modifier_original", "heroes/ancient/ancient_1_modifier_original", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
@@ -110,6 +111,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_1__berserk:Spawn()
         self:SetCurrentAbilityCharges(0)
         self.bonus_str = false
+        self.original_damage = 0
     end
 
 -- SPELL START

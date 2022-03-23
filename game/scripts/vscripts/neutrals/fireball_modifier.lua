@@ -50,6 +50,9 @@ function fireball_modifier:DeclareFunctions()
 end
 
 function fireball_modifier:OnIntervalThink()
+	if self.caster == nil then self:Destroy() return end
+	if IsValidEntity(self.caster) == false then self:Destroy() return end
+	
 	ApplyDamage(self.damageTable)
 end
 

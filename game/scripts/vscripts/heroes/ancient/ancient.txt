@@ -114,23 +114,18 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
-		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
-		//"AbilityCastPoint"       		"0.4"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"       		"0.4"
         //"AnimationPlaybackRate"  		"0.8"
 
 		"AbilityManaCost"         		"0"
 		"AbilityCooldown"				"12"
 		"AbilityCastRange"      		"300"
-        "AbilityChannelTime"    		"1.25"
+        //"AbilityChannelTime"    		"1.25"
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"channel"		"1"
-			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"

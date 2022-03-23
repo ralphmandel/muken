@@ -1,5 +1,5 @@
 ancient_2__leap = class({})
-LinkLuaModifier("ancient_2_channel_leap", "heroes/ancient/ancient_2_channel_leap", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -83,6 +83,12 @@ LinkLuaModifier("ancient_2_channel_leap", "heroes/ancient/ancient_2_channel_leap
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 
         local charges = 1
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -92,31 +98,36 @@ LinkLuaModifier("ancient_2_channel_leap", "heroes/ancient/ancient_2_channel_leap
 
 -- SPELL START
 
-    function ancient_2__leap:GetChannelTime()
-        return self:GetCaster():FindModifierByName("_2_REC_modifier"):GetChannelTimeReduction(self:GetSpecialValueFor("channel"))
-    end
+    -- function ancient_2__leap:GetChannelTime()
+    --     return self:GetCaster():FindModifierByName("_2_REC_modifier"):GetChannelTimeReduction(self:GetSpecialValueFor("channel"))
+    -- end
+
+    --function ancient_2__leap:OnSpellStart()
+        -- local caster = self:GetCaster()
+        -- local time = self:GetChannelTime()
+
+        -- caster:RemoveModifierByName("ancient_2_channel_leap")
+        -- caster:AddNewModifier(caster, self, "ancient_2_channel_leap", {duration = time})
+    --end
 
     function ancient_2__leap:OnSpellStart()
         local caster = self:GetCaster()
-        local time = self:GetChannelTime()
-        self.interrupt = false
-
-        caster:AddNewModifier(caster, self, "ancient_2_channel_leap", {duration = time})
-    end
-
-    function ancient_2__leap:OnChannelFinish(bInterrupted)
-        local caster = self:GetCaster()
         local point = caster:GetOrigin()
-        local radius = self:GetSpecialValueFor("radius")
+        local radius = self:GetCastRange(point, nil)
         local damage = self:GetSpecialValueFor("damage")
+        local berserk = caster:FindAbilityByName("ancient_1__berserk")
+        local str = caster:FindModifierByName("_1_STR_modifier")
+        local has_crit = nil
+        local special = 0
 
-        if bInterrupted then
-            self.interrupt = true
-            caster:RemoveModifierByName("ancient_2_channel_leap")
-            return
+        if str then
+            if str:RollChance() == true then
+                if caster:HasModifier("ancient_1_modifier_berserk") then special = 1 end
+                has_crit = true
+            end
         end
 
-        self:PlayEfxStart(caster, point, radius)
+        self:PlayEfxStart(caster, point, radius, special)
 
         local damageTable = {
             attacker = caster,
@@ -128,20 +139,42 @@ LinkLuaModifier("ancient_2_channel_leap", "heroes/ancient/ancient_2_channel_leap
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), point, nil, radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            16, 0, false
+            0, 0, false
         )
 
         for _,enemy in pairs(enemies) do
+            if berserk then enemy:AddNewModifier(caster, berserk, "ancient_1_modifier_original", {}) end
+            if str then str:EnableForceSpellCrit(0, has_crit) end         
+
             damageTable.victim = enemy
             ApplyDamage(damageTable)
+            
+            enemy:RemoveModifierByName("ancient_1_modifier_original")
+
+            if enemy:IsAlive() then
+                -- UP 2.12
+                if self:GetRank(12) then
+                    enemy:AddNewModifier(caster, self, "_modifier_break", {
+                        duration = self:CalcStatus(3 * (special + 1), caster, enemy),
+                    })
+                end
+            end
         end
+    end
+
+    function ancient_2__leap:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 75 end
     end
 
 -- EFFECTS
 
-    function ancient_2__leap:PlayEfxStart(caster, point, radius)
-        local particle_cast = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf"
-        local effect_cast = ParticleManager:CreateParticleForPlayer(particle_cast, PATTACH_WORLDORIGIN, nil, caster:GetPlayerOwner())
+    function ancient_2__leap:PlayEfxStart(caster, point, radius, special)
+        if special == 1 then
+            local particle_screen = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf"
+            local effect_screen = ParticleManager:CreateParticleForPlayer(particle_screen, PATTACH_WORLDORIGIN, nil, caster:GetPlayerOwner())
+        end
 
         local particle_cast = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, caster)

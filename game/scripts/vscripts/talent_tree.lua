@@ -354,6 +354,12 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
     local att = hero:FindAbilityByName(hero.att)
     if (not att) then return false end
 
+    -- Ancient 2.31 requires skill 1
+    if hero.talentsData[talentId].Ability == "ancient_2__leap_rank_31"
+    and (not att.talents[1][0]) then
+        return false
+    end
+
     for i = 1, 4, 1 do
         if hero.talentsData[talentId].Tab == att.skills[i]
         and (not att.talents[i][0]) then
