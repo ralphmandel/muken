@@ -1,4 +1,5 @@
 ancient_2__leap = class({})
+LinkLuaModifier("ancient_2_modifier_combo", "heroes/ancient/ancient_2_modifier_combo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -111,6 +112,18 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
     --end
 
     function ancient_2__leap:OnSpellStart()
+        -- UP 2.41
+        if self:GetRank(41) then
+            local caster = self:GetCaster()
+            caster:RemoveModifierByName("ancient_2_modifier_combo")
+            caster:AddNewModifier(caster, self, "ancient_2_modifier_combo", {})
+            return
+        end
+
+        self:DoImpact()
+    end
+
+    function ancient_2__leap:DoImpact()
         local caster = self:GetCaster()
         local point = caster:GetOrigin()
         local radius = self:GetCastRange(point, nil)
@@ -129,6 +142,13 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
         self:PlayEfxStart(caster, point, radius, special)
 
+        -- UP 2.41
+        local flag = 0
+        if self:GetRank(41) then
+            damage = damage - 20
+            flag = 16
+        end
+
         local damageTable = {
             attacker = caster,
             damage = damage,
@@ -139,7 +159,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), point, nil, radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            0, 0, false
+            flag, 0, false
         )
 
         for _,enemy in pairs(enemies) do

@@ -57,6 +57,7 @@ end
 
 function ancient_1_modifier_berserk:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_PROPERTY_ATTACKSPEED_BASE_OVERRIDE,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
@@ -65,6 +66,12 @@ function ancient_1_modifier_berserk:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function ancient_1_modifier_berserk:OnOrder(keys)
+	if keys.unit ~= self.parent then return end
+	if keys.order_type == 1 then self.ability.attack_target = keys.target return end
+	if keys.target ~= nil then self.ability.attack_target = keys.target end
 end
 
 function ancient_1_modifier_berserk:GetModifierAttackSpeedBaseOverride()

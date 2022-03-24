@@ -120,7 +120,7 @@
         //"AnimationPlaybackRate"  		"0.8"
 
 		"AbilityManaCost"         		"0"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"14"
 		"AbilityCastRange"      		"300"
         //"AbilityChannelTime"    		"1.25"
 
