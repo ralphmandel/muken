@@ -154,6 +154,7 @@ end
 function bloodstained_1_modifier_rage:GetModifierIncomingDamage_Percentage(keys)
 	self.health = self.parent:GetHealth() + self.health
 
+	if keys.attacker:IsBaseNPC() == false then return self.incoming end
 	if keys.attacker == self.parent then return 0 end
     return self.incoming
 end

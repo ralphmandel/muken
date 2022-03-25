@@ -1,5 +1,7 @@
 ancient_2__leap = class({})
 LinkLuaModifier("ancient_2_modifier_combo", "heroes/ancient/ancient_2_modifier_combo", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_2_modifier_jump", "heroes/ancient/ancient_2_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -90,6 +92,11 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
             charges = charges * 2
         end
 
+        -- UP 2.32
+        if self:GetRank(32) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -111,7 +118,54 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         -- caster:AddNewModifier(caster, self, "ancient_2_channel_leap", {duration = time})
     --end
 
+    function ancient_2__leap:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+
+        -- UP 2.32
+        if self:GetRank(32) then
+            self.point = self:GetCursorPosition()
+            local distance = (caster:GetOrigin() - self.point):Length2D()
+            local percent = distance / self:GetCastRange(self.point, nil)
+            self.duration = percent * 1.5
+            self.height = self:GetCastRange(self.point, nil) * 0.4 * percent
+
+            caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+
+            if self.duration < 0.4 then
+                Timers:CreateTimer((self.duration), function()
+                    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+                    caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
+                    if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
+                end)
+            end
+
+            if self.duration >= 0.6 then
+                Timers:CreateTimer((0.2), function()
+                    if IsServer() then caster:EmitSound("Hero_Tiny.Toss.Target") end
+                end)
+            end
+
+            return true
+        end
+
+        if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
+
+        return true
+    end
+
     function ancient_2__leap:OnSpellStart()
+        -- UP 2.32
+        if self:GetRank(32) then
+            local caster = self:GetCaster()
+            caster:RemoveModifierByName("ancient_2_modifier_jump")
+            caster:AddNewModifier(caster, self, "ancient_2_modifier_jump", {})
+            return
+        end
+
+        self:CheckCombo()
+    end
+
+    function ancient_2__leap:CheckCombo()
         -- UP 2.41
         if self:GetRank(41) then
             local caster = self:GetCaster()
@@ -126,7 +180,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
     function ancient_2__leap:DoImpact()
         local caster = self:GetCaster()
         local point = caster:GetOrigin()
-        local radius = self:GetCastRange(point, nil)
+        local radius = self:GetAOERadius()
         local damage = self:GetSpecialValueFor("damage")
         local berserk = caster:FindAbilityByName("ancient_1__berserk")
         local str = caster:FindModifierByName("_1_STR_modifier")
@@ -141,6 +195,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         end
 
         self:PlayEfxStart(caster, point, radius, special)
+        GridNav:DestroyTreesAroundPoint(point, radius, false)
 
         -- UP 2.41
         local flag = 0
@@ -182,10 +237,32 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         end
     end
 
+	function ancient_2__leap:GetAOERadius()
+		if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 75 end
+        return self:GetSpecialValueFor("radius")
+	end
+
     function ancient_2__leap:GetCastRange(vLocation, hTarget)
         if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
         if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 75 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 900 end
+        return self:GetSpecialValueFor("radius") + 75
+    end
+
+    function ancient_2__leap:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
+        if self:GetCurrentAbilityCharges() == 1 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE end
+        return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+    end
+    
+    function ancient_2__leap:GetCastAnimation()
+        if self:GetCurrentAbilityCharges() == 0 then return ACT_DOTA_CAST_ABILITY_5 end
+        if self:GetCurrentAbilityCharges() == 1 then return ACT_DOTA_CAST_ABILITY_5 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return end
+        return ACT_DOTA_CAST_ABILITY_5
     end
 
 -- EFFECTS

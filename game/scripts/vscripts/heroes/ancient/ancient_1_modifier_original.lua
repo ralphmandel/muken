@@ -33,6 +33,7 @@ function ancient_1_modifier_original:DeclareFunctions()
 end
 
 function ancient_1_modifier_original:GetModifierIncomingDamage_Percentage(keys)
+	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.caster then return end
 	self.ability.original_damage = keys.original_damage
 end

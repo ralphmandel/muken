@@ -246,6 +246,7 @@ function shadow_0_modifier_poison:DeclareFunctions()
 end
 
 function shadow_0_modifier_poison:GetModifierIncomingDamage_Percentage(keys)
+	if keys.attacker:IsBaseNPC() == false then return 0 end
     if keys.attacker ~= self.caster then return 0 end
 	if keys.inflictor == nil then return 0 end
 

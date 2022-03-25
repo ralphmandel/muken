@@ -120,21 +120,24 @@ function bocuse_3_modifier_mark:DeclareFunctions()
 end
 
 function bocuse_3_modifier_mark:GetModifierIncomingDamage_Percentage(keys)
-    if keys.attacker ~= self.caster then return 0 end
+    if keys.attacker:IsBaseNPC() == false then return end
     if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return 0 end
     if self.parent:IsIllusion() then return end
 
     -- UP 3.32
 	if self.ability:GetRank(32) and keys.damage_flags ~= 40 then
-        local heal = keys.original_damage * (1 + (self.incoming_damage * self:GetStackCount() * 0.01))
-        heal = heal * 0.12
+        local heal = keys.original_damage * self:GetStackCount() * 0.05
         if heal > 0 then
-            self.caster:Heal(heal, nil)
-            self:PlayEfxLifesteal()
+            keys.attacker:Heal(heal, nil)
+            self:PlayEfxLifesteal(keys.attacker)
         end
 	end
 
-    return self.incoming_damage * self:GetStackCount()
+    if keys.attacker == self.caster then
+        return self.incoming_damage * self:GetStackCount()
+    else
+        return 0
+    end
 end
 
 function bocuse_3_modifier_mark:OnIntervalThink()
@@ -168,9 +171,9 @@ function bocuse_3_modifier_mark:PopupSauce(immediate)
     ParticleManager:SetParticleControl(self.pidx, 2, Vector(self:GetStackCount(), 0, 0))
 end
 
-function bocuse_3_modifier_mark:PlayEfxLifesteal()
+function bocuse_3_modifier_mark:PlayEfxLifesteal(attacker)
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.caster)
-	ParticleManager:SetParticleControl(effect_cast, 1, self.caster:GetOrigin())
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
+	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

@@ -19,6 +19,7 @@ function ancient_2_modifier_combo:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.restrict = true
 	self.gesture = true
 	self.combo = 2
 
@@ -43,7 +44,7 @@ end
 function ancient_2_modifier_combo:CheckState()
 	local state = {
 		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = self.restrict,
 	}
 
 	return state
@@ -51,10 +52,15 @@ end
 
 function ancient_2_modifier_combo:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
+end
+
+function ancient_2_modifier_combo:OnOrder(keys)
+	if keys.unit == self.parent then self:Destroy() end
 end
 
 function ancient_2_modifier_combo:OnStateChanged(keys)
@@ -70,11 +76,13 @@ function ancient_2_modifier_combo:OnIntervalThink()
 	if self.gesture == true then
 		if self.combo < 1 then self:Destroy() return end
 
+		if IsServer() then self.parent:EmitSound("Hero_ElderTitan.PreAttack") end
 		self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_5)
 		self.gesture = false
 		self:StartIntervalThink(0.4)
 	else
 		self.combo = self.combo - 1
+		if self.combo == 0 then self.restrict = false end
 
 		self.ability:DoImpact()
 		self.gesture = true

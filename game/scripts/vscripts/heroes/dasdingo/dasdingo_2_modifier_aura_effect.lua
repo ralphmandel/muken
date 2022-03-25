@@ -64,6 +64,7 @@ end
 
 function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(keys)
 	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
 
 	-- UP 2.31
 	if self.ability:GetRank(31) then

@@ -109,7 +109,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         -- UP 4.42
         if self:GetRank(42) then
-            duration = duration + 2
+            duration = duration + 1.5
         end
 
         caster:AddNewModifier(caster, self, "bocuse_u_modifier_mise", {duration = self:CalcStatus(duration, caster, caster)})

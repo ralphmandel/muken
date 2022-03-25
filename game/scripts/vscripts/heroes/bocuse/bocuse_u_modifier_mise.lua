@@ -20,8 +20,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.angle = self.ability:GetSpecialValueFor("angle")
     self.stun_chance = self.ability:GetSpecialValueFor("stun_chance")
     self.extra_damage = 0
-    self.reset = true
-    self.number_of_hits = kv.number_of_hits or -1
+    self.reset = kv.reset or 0
 
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 15})
 
@@ -38,28 +37,17 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 
     -- UP 4.21
 	if self.ability:GetRank(21) then
-		self.ability:AddBonus("_1_CON", self.parent, 25, 0, nil)
+		self.ability:AddBonus("_1_CON", self.parent, 20, 0, nil)
 	end
 
-    self.speed = 1.5
+    local speed_mult = self.ability:GetSpecialValueFor("speed_mult")
+    self.speed = 1.5 * speed_mult
     self.hits = {
-        [1] = {[1] = 1, [2] = 0.35},
-        [2] = {[1] = 2, [2] = 0.35},
-        [3] = {[1] = 3, [2] = 0.5},
-        [4] = {[1] = 4, [2] = 0.3}
+        [1] = {[1] = 1, [2] = 0.35 / speed_mult},
+        [2] = {[1] = 2, [2] = 0.35 / speed_mult},
+        [3] = {[1] = 3, [2] = 0.5 / speed_mult},
+        [4] = {[1] = 4, [2] = 0.3 / speed_mult}
     }
-
-    -- UP 4.41
-    if self.ability:GetRank(41) then
-        self.speed = 2.25
-        self.stun_chance = self.stun_chance - 20
-        self.hits = {
-            [1] = {[1] = 1, [2] = 0.23},
-            [2] = {[1] = 2, [2] = 0.23},
-            [3] = {[1] = 3, [2] = 0.34},
-            [4] = {[1] = 4, [2] = 0.2}
-        }
-    end
 
     self.state_hit = self.hits[1]
     
@@ -78,9 +66,7 @@ function bocuse_u_modifier_mise:OnRemoved()
     self.ability:SetActivated(true)
 
     local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
-    if self.reset == false then
-        cd = cd * 0.25
-    end
+    if self.reset == 1 then cd = 7 end
 
     self.ability:StartCooldown(cd)
 
@@ -152,7 +138,7 @@ function bocuse_u_modifier_mise:OnHeroKilled(keys)
 
     -- UP 4.42
     if self.ability:GetRank(42) then
-        self.extra_damage = self.extra_damage + 15
+        self.extra_damage = self.extra_damage + 10
         heal = heal + 10
     end
 
@@ -174,15 +160,9 @@ function bocuse_u_modifier_mise:OnIntervalThink()
     local radius = self.parent:Script_GetAttackRange() + 80
 
     local enemies = FindUnitsInRadius(
-        self.parent:GetTeamNumber(),	-- int, your team number
-        self.parent:GetOrigin(),	-- point, center point
-        nil,	-- handle, cacheUnit. (not known)
-        radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-        DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
-        0,	-- int, order filter
-        false	-- bool, can grow cache
+        self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	0, false
     )
 
     -- precache
@@ -193,8 +173,8 @@ function bocuse_u_modifier_mise:OnIntervalThink()
     for _,enemy in pairs(enemies) do
         -- check within cast angle
         local enemy_direction = (enemy:GetOrigin() - origin):Normalized()
-        local enemy_angle = VectorToAngles( enemy_direction ).y
-        local angle_diff = math.abs( AngleDiff( cast_angle, enemy_angle ) )
+        local enemy_angle = VectorToAngles(enemy_direction).y
+        local angle_diff = math.abs(AngleDiff(cast_angle, enemy_angle))
         if angle_diff<=self.angle then
             if enemy:IsInvulnerable() == false
             and enemy:IsAttackImmune() == false then
@@ -211,12 +191,7 @@ function bocuse_u_modifier_mise:OnIntervalThink()
                 self:PlayEfxHit( enemy, origin, cast_direction )
 
                 if RandomInt(1, 100) <= self.stun_chance then
-                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
-                end
-
-                -- UP 4.22
-                if self.ability:GetRank(22) then
-                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_break", {duration = 1})
+                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.25})
                 end
             end
         end
@@ -245,14 +220,6 @@ function bocuse_u_modifier_mise:OnIntervalThink()
             end
             break
         end
-    end
-
-    if self.number_of_hits > 0 then
-        self.number_of_hits = self.number_of_hits - 1
-    elseif self.number_of_hits == 0 then
-        self.reset = false
-        self:Destroy()
-        return
     end
 
     self:StartIntervalThink(self.state_hit[2])
