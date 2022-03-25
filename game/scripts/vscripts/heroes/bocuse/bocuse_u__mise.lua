@@ -2,6 +2,7 @@ bocuse_u__mise = class ({})
 LinkLuaModifier("bocuse_u_modifier_mise", "heroes/bocuse/bocuse_u_modifier_mise", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_u_modifier_autocast", "heroes/bocuse/bocuse_u_modifier_autocast", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_u_modifier_jump", "heroes/bocuse/bocuse_u_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("bocuse_u_modifier_exhaustion", "heroes/bocuse/bocuse_u_modifier_exhaustion", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
@@ -86,6 +87,15 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+
+		local charges = 1
+
+		-- UP 4.31
+		if self:GetRank(31) then
+			charges = charges * 2
+		end
+
+		self:SetCurrentAbilityCharges(charges)
     end
 
     function bocuse_u__mise:Spawn()
@@ -115,6 +125,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         caster:AddNewModifier(caster, self, "bocuse_u_modifier_mise", {duration = self:CalcStatus(duration, caster, caster)})
         self:EndCooldown()
         self:SetActivated(false)
+    end
+
+    function bocuse_u__mise:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() == 1 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 350 end
     end
 
 -- EFFECTS

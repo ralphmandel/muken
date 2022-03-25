@@ -156,11 +156,10 @@ require("talent_tree")
 
 		local gain = 0
 		if level ~= 2 and level ~= 5 and level ~= 8 then gain = -1 end
-		if level > 0 then gain = gain + 1 end
-		if level > 4 then gain = gain + 1 end
-		if level > 8 then gain = gain + 1 end
+		if level > 8 then gain = gain + 3 end
 		if level > 12 then gain = gain + 1 end
 		if level > 16 then gain = gain + 1 end
+		if level == 8 then gain = 12 end
 		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
 
 		self:UpgradeAbility(true)
@@ -321,4 +320,7 @@ require("talent_tree")
 		PrecacheResource( "particle", "particles/items_fx/black_king_bar_avatar.vpcf", context )
 		PrecacheResource( "particle", "particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", context )
 		PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_secondstyle_debuff.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
+		PrecacheResource( "particle", "particles/status_fx/status_effect_slark_shadow_dance.vpcf", context )
+		PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_blast_off.vpcf", context )
 	end

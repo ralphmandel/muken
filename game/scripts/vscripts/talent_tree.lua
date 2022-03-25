@@ -360,6 +360,12 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
         return false
     end
 
+    -- Bocuse 4.22 requires skill 1
+    if hero.talentsData[talentId].Ability == "bocuse_u__mise_rank_22"
+    and (not att.talents[1][0]) then
+        return false
+    end
+
     for i = 1, 4, 1 do
         if hero.talentsData[talentId].Tab == att.skills[i]
         and (not att.talents[i][0]) then

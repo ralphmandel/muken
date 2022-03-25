@@ -66,7 +66,45 @@ function bocuse_u_modifier_mise:OnRemoved()
     self.ability:SetActivated(true)
 
     local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
-    if self.reset == 1 then cd = 7 end
+    if self.reset == 1 then
+        cd = 7
+    else
+        -- UP 4.31
+        if self.ability:GetRank(31) then
+            local stun_duration = 4
+            self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_exhaustion", {
+                duration = self.ability:CalcStatus(stun_duration, nil, self.parent)
+            })
+
+            self:PlayEfxBlast()
+
+            local damageTable = {
+                damage = 200,
+                attacker = self.parent,
+                damage_type = DAMAGE_TYPE_MAGICAL,
+                ability = self.ability
+            }
+
+            local enemies = FindUnitsInRadius(
+                self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetCastRange(self.parent:GetOrigin(), nil),
+                DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	0, false
+            )
+
+            for _,enemy in pairs(enemies) do
+                if enemy:IsMagicImmune() == false then
+                    damageTable.victim = enemy
+                    ApplyDamage(damageTable)
+                end
+
+                if enemy:IsAlive() then
+                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+                        duration = self.ability:CalcStatus(stun_duration, self.caster, enemy)
+                    })
+                end
+            end
+        end       
+    end
 
     self.ability:StartCooldown(cd)
 
@@ -130,9 +168,7 @@ function bocuse_u_modifier_mise:OnHeroKilled(keys)
     local con = self.parent:FindAbilityByName("_1_CON")
 	if con ~= nil then con:BonusPermanent(1) end
 
-    local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-    ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
-    ParticleManager:ReleaseParticleIndex(nFXIndex)
+    self:PlayEfxKill()
 
     local heal = self.ability:GetSpecialValueFor("heal")
 
@@ -170,6 +206,12 @@ function bocuse_u_modifier_mise:OnIntervalThink()
     local cast_direction = self.parent:GetForwardVector():Normalized()
     local cast_angle = VectorToAngles( cast_direction ).y
 
+    local damageTable = {
+        attacker = self.parent,
+        damage_type = DAMAGE_TYPE_PHYSICAL,
+        ability = self.ability
+    }
+
     for _,enemy in pairs(enemies) do
         -- check within cast angle
         local enemy_direction = (enemy:GetOrigin() - origin):Normalized()
@@ -178,20 +220,19 @@ function bocuse_u_modifier_mise:OnIntervalThink()
         if angle_diff<=self.angle then
             if enemy:IsInvulnerable() == false
             and enemy:IsAttackImmune() == false then
-                local damage = RandomInt(self.damage_min, self.damage_max) + self.extra_damage
-                local damageTable = {
-                    victim = enemy,
-                    attacker = self.parent,
-                    damage = damage,
-                    damage_type = DAMAGE_TYPE_PHYSICAL,
-                    ability = self.ability
-                }
-
+                damageTable.damage = RandomInt(self.damage_min, self.damage_max) + self.extra_damage
+                damageTable.victim = enemy
                 ApplyDamage(damageTable)
+
                 self:PlayEfxHit( enemy, origin, cast_direction )
 
                 if RandomInt(1, 100) <= self.stun_chance then
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.25})
+
+                    -- UP 4.22
+                    if self.ability:GetRank(22) then
+                        self.caster:FindAbilityByName("bocuse_1__julienne"):InflictBleeding(enemy)
+                    end
                 end
             end
         end
@@ -236,61 +277,27 @@ function bocuse_u_modifier_mise:StatusEffectPriority()
 end
 
 function bocuse_u_modifier_mise:PlayEfxStart()
-    if IsServer() then self.parent:EmitSound("Hero_Alchemist.ChemicalRage.Cast") end
-
-    particle_cast = "particles/econ/items/doom/doom_ti8_immortal_arms/doom_ti8_immortal_devour.vpcf"
-	effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self.parent )
+    local particle_cast = "particles/econ/items/doom/doom_ti8_immortal_arms/doom_ti8_immortal_devour.vpcf"
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl( effect_cast, 0, self.parent:GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 1, self.parent:GetOrigin() )
 
     if self.effect_cast ~= nil then ParticleManager:DestroyParticle(self.effect_cast, true) end
     local particle_cast_1 = "particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_rot.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast_1, PATTACH_ABSORIGIN_FOLLOW, self.parent )
-	ParticleManager:SetParticleControlEnt(
-		self.effect_cast,
-		0,
-		self.parent,
-		PATTACH_ABSORIGIN_FOLLOW,
-		"",
-		Vector(0,0,0), -- unknown
-		true -- unknown, true
-	)
-
-	-- buff particle
-	self:AddParticle(
-		self.effect_cast,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
+	ParticleManager:SetParticleControlEnt(self.effect_cast, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0,0,0), true)
+	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
     if self.effect_cast2 ~= nil then ParticleManager:DestroyParticle(self.effect_cast2, true) end
     local particle_cast_2 = "particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff.vpcf"
 	self.effect_cast2 = ParticleManager:CreateParticle( particle_cast_2, PATTACH_POINT_FOLLOW, self.parent )
-	ParticleManager:SetParticleControlEnt(
-		self.effect_cast2,
-		0,
-		self.parent,
-		PATTACH_ABSORIGIN_FOLLOW,
-		"",
-		Vector(0,0,0), -- unknown
-		true -- unknown, true
-	)
+	ParticleManager:SetParticleControlEnt(self.effect_cast2, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0,0,0), true)
+	self:AddParticle(self.effect_cast2, false, false, -1, false, false)
 
-	-- buff particle
-	self:AddParticle(
-		self.effect_cast2,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
+    if IsServer() then self.parent:EmitSound("Hero_Alchemist.ChemicalRage.Cast") end
 end
 
-function bocuse_u_modifier_mise:PlayEfxHit( target, origin, direction )
+function bocuse_u_modifier_mise:PlayEfxHit(target, origin, direction)
     local particle_cast = "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground.vpcf"
     local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
     ParticleManager:SetParticleControl( effect_cast, 0, target:GetOrigin() )
@@ -303,4 +310,20 @@ function bocuse_u_modifier_mise:PlayEfxHit( target, origin, direction )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
     if IsServer() then target:EmitSound("Hero_Alchemist.ChemicalRage.Attack") end
+end
+
+function bocuse_u_modifier_mise:PlayEfxKill()
+    local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+    ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+
+    local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+    ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+    ParticleManager:ReleaseParticleIndex(nFXIndex)
+end
+
+function bocuse_u_modifier_mise:PlayEfxBlast()
+    local particle_cast = "particles/units/heroes/hero_techies/techies_blast_off.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, self.parent)
+    ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 end

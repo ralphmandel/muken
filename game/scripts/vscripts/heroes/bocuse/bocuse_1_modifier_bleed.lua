@@ -30,8 +30,6 @@ function bocuse_1_modifier_bleed:OnCreated(kv)
 	local bleed_dps = self.ability:GetSpecialValueFor("bleed_dps")
 	bleed_dps = bleed_dps * intervals
 
-	self:PlayEfxStart()
-
     -- UP 1.22
     if self.ability:GetRank(22) then
         self.degen = self.degen + 25
@@ -48,9 +46,11 @@ function bocuse_1_modifier_bleed:OnCreated(kv)
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
 	self:StartIntervalThink(intervals)
+	self:PlayEfxStart()
 end
 
 function bocuse_1_modifier_bleed:OnRefresh(kv)
+	self:PlayEfxStart()
 end
 
 function bocuse_1_modifier_bleed:OnRemoved()
@@ -81,7 +81,7 @@ end
 
 function bocuse_1_modifier_bleed:OnIntervalThink()
 	local apply_damage = math.floor(ApplyDamage(self.damageTable))
-	--if apply_damage > 0 then self:PopupBleed(apply_damage) end
+	if apply_damage > 0 then self:PopupBleed(apply_damage) end
 end
 
 --------------------------------------------------------------------------------
@@ -94,20 +94,33 @@ function bocuse_1_modifier_bleed:GetEffectAttachType()
 	return PATTACH_POINT_FOLLOW
 end
 
--- function bocuse_1_modifier_bleed:PopupBleed(amount)
---     local pfxPath = "particles/bocuse/bocuse_msg.vpcf"
--- 	local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, self.parent)
+function bocuse_1_modifier_bleed:PopupBleed(amount)
+    local pfxPath = "particles/bocuse/bocuse_msg.vpcf"
+	local pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_OVERHEAD_FOLLOW, self.parent)
     
---     local digits = 1
---     if amount ~= nil then
---         digits = digits + #tostring(amount)
---     end
+    local digits = 1
+    if amount ~= nil then
+        digits = digits + #tostring(amount)
+    end
 
---     ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
---     ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
---     --ParticleManager:SetParticleControl(pidx, 3, Vector(100, 25, 40))
--- end
+    ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
+    ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
+    --ParticleManager:SetParticleControl(pidx, 3, Vector(100, 25, 40))
+end
 
 function bocuse_1_modifier_bleed:PlayEfxStart()
-	if IsServer() then self.parent:EmitSound("Hero_LifeStealer.OpenWounds") end
+	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin())
+
+	local particle_cast2 = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+	local effect_cast2 = ParticleManager:CreateParticle(particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast2, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast2, 1, self.parent:GetOrigin())
+
+	if IsServer() then
+		self.parent:EmitSound("Hero_LifeStealer.OpenWounds")
+		self.parent:EmitSound("Hero_LifeStealer.Infest")
+	end
 end

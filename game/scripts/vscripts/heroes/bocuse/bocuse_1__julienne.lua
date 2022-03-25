@@ -133,6 +133,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if charges then charges:StartIntervalThink(5) end
 
         if self.target:TriggerSpellAbsorb( self ) then
+            if charges then
+                charges:ResetHits()
+                charges:DecrementStackCount()
+            end
             return
         end
 
@@ -216,7 +220,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 for _,unit in pairs(units) do
                     if unit ~= target then
                         self:PlayEfxStart(unit, particle)
-                        self:PlayEfxCut(unit)
 
                         if unit:HasModifier("strider_1_modifier_spirit") == false 
                         and unit:HasModifier("bloodstained_u_modifier_copy") == false then
@@ -227,7 +230,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             end
 
             self:PlayEfxStart(target, particle)
-            self:PlayEfxCut(target)
             self:ApplyCut(target, particle, true, index)
         else
             self.cancel = true
@@ -260,12 +262,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local damage = self:GetSpecialValueFor("damage")
         local charges = self:GetSpecialValueFor("charges")
         local stun_duration = self:GetSpecialValueFor("stun_duration")
-        local bleed_duration = self:GetSpecialValueFor("bleed_duration")
-
-        -- UP 1.22
-        if self:GetRank(22) then
-            bleed_duration = bleed_duration * 2
-        end
 
         -- up 1.41
         if self:GetRank(41) then
@@ -291,13 +287,27 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         --if apply_damage > 0 then self:PopupCut(target, apply_damage) end
         if target:IsAlive() == false and original == true then self.cancel = true end
 
-        if index > 2 and self.cancel == true then
-            if target:IsAlive() and target:IsMagicImmune() == false and original == true then
-                target:AddNewModifier(caster, self, "_modifier_stun", {duration = self:CalcStatus(stun_duration, caster, target)})
+        if target:IsAlive() then
+            self:InflictBleeding(target)
+            
+            if index > 2 and self.cancel == true then
+                if target:IsMagicImmune() == false and original == true then
+                    target:AddNewModifier(caster, self, "_modifier_stun", {duration = self:CalcStatus(stun_duration, caster, target)})
+                end
             end
-        else
-            target:AddNewModifier(caster, self, "bocuse_1_modifier_bleed", {duration = self:CalcStatus(bleed_duration, caster, target)})
         end
+    end
+
+    function bocuse_1__julienne:InflictBleeding(target)
+        local caster = self:GetCaster()
+        local bleed_duration = self:GetSpecialValueFor("bleed_duration")
+
+        -- UP 1.22
+        if self:GetRank(22) then
+            bleed_duration = bleed_duration * 2
+        end
+        
+        target:AddNewModifier(caster, self, "bocuse_1_modifier_bleed", {duration = self:CalcStatus(bleed_duration, caster, target)})
     end
 
     function bocuse_1__julienne:CastFilterResultTarget( hTarget )
@@ -351,23 +361,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         ParticleManager:SetParticleControl(effect_cast, 0, point)
         ParticleManager:SetParticleControlForward(effect_cast, 0, direction:Normalized())
         ParticleManager:ReleaseParticleIndex(effect_cast)
-    end
 
-    function bocuse_1__julienne:PlayEfxCut(target)
-        local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-        ParticleManager:SetParticleControl(effect_cast, 1, target:GetOrigin())
-
-        local particle_cast2 = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
-        local effect_cast2 = ParticleManager:CreateParticle(particle_cast2, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect_cast2, 0, target:GetOrigin())
-        ParticleManager:SetParticleControl(effect_cast2, 1, target:GetOrigin())
-
-        if IsServer() then
-            target:EmitSound("Hero_LifeStealer.Infest")
-            target:EmitSound("Hero_Alchemist.ChemicalRage.Attack")
-        end
+        if IsServer() then target:EmitSound("Hero_Alchemist.ChemicalRage.Attack") end
     end
 
     -- function bocuse_1__julienne:PopupCut(target, amount)

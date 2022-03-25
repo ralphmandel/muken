@@ -35,6 +35,9 @@ function bocuse_u_modifier_autocast:OnAttackLanded(keys)
     if self.parent:PassivesDisabled() then return end
     if RandomInt(1, 100) > 15 then return end
 
+    local charges = self.parent:FindModifierByName("bocuse_1_modifier_charges")
+    if charges then charges:CalculateHit() end
+
     -- UP 4.41
     if self.ability:GetRank(41) then
         self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_mise", {

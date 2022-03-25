@@ -31,17 +31,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"block"					"2"
+				"block"					"1.5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_block"			"20"
+				"base_block"			"15"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"40"
+				"block_chance"			"50"
 			}
 			"05"
 			{
