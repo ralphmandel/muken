@@ -154,24 +154,42 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		//"AbilityCastAnimation"   		"ACT_DOTA_TELEPORT"
+		//"AbilityCastPoint"       		"0.4"
+        //"AnimationPlaybackRate"  		"0.8"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+		"AbilityManaCost"         		"0"
+		"AbilityCooldown"				"45"
+		//"AbilityCastRange"      		"300"
+        "AbilityChannelTime"    		"3.25"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"channel_time"  "3.75"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"        "400"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"self_slow"     "50"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"          "75"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"intervals"     "1.75"
 			}
 			"15"
 			{

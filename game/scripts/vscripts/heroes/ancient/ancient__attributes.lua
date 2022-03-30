@@ -285,5 +285,5 @@ require("talent_tree")
 
 --PRECACHE
 	function ancient__attributes:Precache(context)
-		
+		PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
 	end

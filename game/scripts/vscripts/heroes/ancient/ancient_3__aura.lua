@@ -1,5 +1,8 @@
 ancient_3__aura = class({})
+LinkLuaModifier("ancient_3_modifier_channel", "heroes/ancient/ancient_3_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_aura", "heroes/ancient/ancient_3_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_3_modifier_aura_effect", "heroes/ancient/ancient_3_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,6 +97,30 @@ LinkLuaModifier("ancient_3_modifier_aura", "heroes/ancient/ancient_3_modifier_au
 
     function ancient_3__aura:OnSpellStart()
         local caster = self:GetCaster()
+        local time = self:GetChannelTime()
+
+        if IsServer() then caster:EmitSound("Ancient.Aura.Channel") end
+
+        caster:RemoveModifierByName("ancient_3_modifier_channel")
+        caster:AddNewModifier(caster, self, "ancient_3_modifier_channel", {duration = time})
+    end
+    
+    function ancient_3__aura:OnChannelFinish(bInterrupted)
+        local caster = self:GetCaster()
+        
+        if bInterrupted == true then
+            caster:RemoveModifierByName("ancient_3_modifier_channel")
+            return
+        end
+
+        caster:RemoveModifierByName("ancient_3_modifier_aura")
+        caster:AddNewModifier(caster, self, "ancient_3_modifier_aura", {duration = 30})
+
+        if IsServer() then
+            caster:EmitSound("Ancient.Aura.Cast")
+            caster:EmitSound("Ancient.Aura.Effect")
+            caster:EmitSound("Ancient.Aura.Layer")
+        end
     end
 
 -- EFFECTS
