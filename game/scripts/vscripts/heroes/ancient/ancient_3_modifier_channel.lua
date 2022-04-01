@@ -24,6 +24,10 @@ function ancient_3_modifier_channel:OnCreated(kv)
 	self.pos_delay = 0.65
 	self.step = 1
 
+	if IsServer() then
+		self.parent:AddNewModifier(self.caster, self.ability, "ancient_3_modifier_hands", {duration = time})
+	end
+
 	if think < 0 then
 		local rate = 1 / (time / 0.45)
 		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_ANCESTRAL_SPIRIT, rate)
@@ -42,7 +46,10 @@ end
 function ancient_3_modifier_channel:OnRemoved(kv)
 	self.parent:FadeGesture(ACT_DOTA_TELEPORT)
 	self.parent:FadeGesture(ACT_DOTA_ANCESTRAL_SPIRIT)
-	if IsServer() then self.parent:StopSound("Ancient.Aura.Channel") end
+	if IsServer() then
+		self.parent:StopSound("Ancient.Aura.Channel")
+		self.parent:RemoveModifierByName("ancient_3_modifier_hands")
+	end
 end
 
 ------------------------------------------------------------

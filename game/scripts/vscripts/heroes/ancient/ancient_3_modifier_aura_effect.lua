@@ -48,6 +48,14 @@ end
 
 -----------------------------------------------------------
 
+function ancient_3_modifier_aura_effect:GetEffectName()
+	return "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_overhead_debuff.vpcf"
+end
+
+function ancient_3_modifier_aura_effect:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
 function ancient_3_modifier_aura_effect:PlayEfxStart()
 	-- local special = (self.ability:GetLevel() - 1) * 10
 	-- local string = "particles/dasdingo/dasdingo_aura.vpcf"

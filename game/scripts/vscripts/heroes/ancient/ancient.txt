@@ -179,7 +179,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"self_slow"     "200"
+				"self_slow"     "175"
 			}
             "04"
 			{

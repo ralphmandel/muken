@@ -84,8 +84,18 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+        
+        self:SetCharges(nil)
+    end
 
-        local charges = 1
+    function ancient_2__leap:Spawn()
+        self:SetCurrentAbilityCharges(0)
+        self.temp_charge = 1
+    end
+
+    function ancient_2__leap:SetCharges(value)
+        if value ~= nil then self.temp_charge = value end
+        local charges = self.temp_charge
 
         -- UP 2.11
         if self:GetRank(11) then
@@ -100,10 +110,6 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function ancient_2__leap:Spawn()
-        self:SetCurrentAbilityCharges(0)
-    end
-
 -- SPELL START
 
     function ancient_2__leap:OnAbilityPhaseStart()
@@ -112,10 +118,11 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         -- UP 2.32
         if self:GetRank(32) then
             self.point = self:GetCursorPosition()
+            local jump_range = 900 --self:GetCastRange(self.point, nil)
             local distance = (caster:GetOrigin() - self.point):Length2D()
-            local percent = distance / self:GetCastRange(self.point, nil)
+            local percent = distance / jump_range
             self.duration = percent * 1.5
-            self.height = self:GetCastRange(self.point, nil) * 0.4 * percent
+            self.height = jump_range * 0.4 * percent
 
             caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 
@@ -235,6 +242,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
     function ancient_2__leap:GetCastRange(vLocation, hTarget)
         if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
         if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() % 3 == 0 and self:GetCurrentAbilityCharges() % 5 == 0 then return 200 end
         if self:GetCurrentAbilityCharges() % 3 == 0 then return 900 end
         return self:GetSpecialValueFor("radius") + 75
     end

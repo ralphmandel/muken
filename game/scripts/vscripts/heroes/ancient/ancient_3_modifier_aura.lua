@@ -52,6 +52,13 @@ function ancient_3_modifier_aura:OnCreated(kv)
 
 	--self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = self_slow})
 
+	local leap = self.parent:FindAbilityByName("ancient_2__leap")
+	if leap then
+		if leap:IsTrained() then
+			leap:SetCharges(5)
+		end
+	end
+
 	if IsServer() then
 		self:StartIntervalThink(intervals)
 		self:PlayEfxStart()
@@ -65,6 +72,13 @@ end
 function ancient_3_modifier_aura:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
+
+	local leap = self.parent:FindAbilityByName("ancient_2__leap")
+	if leap then
+		if leap:IsTrained() then
+			leap:SetCharges(1)
+		end
+	end
 end
 
 -----------------------------------------------------------

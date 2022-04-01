@@ -24,6 +24,7 @@ function _2_LCK:Spawn()
 	self.basic_up = false
 	self.min = 0
 	self.max = 99
+	self.spend = 0
 end
 
 function _2_LCK:OnOwnerSpawned()
@@ -57,7 +58,7 @@ function _2_LCK:CheckLevelUp(trained)
 		return
 	end
 	
-	if self:GetLevel() < (caster:GetLevel() * 2.5) then
+	if self.spend < 30 then
 		self:SetCurrentAbilityCharges(2)
 	else
 		self:SetCurrentAbilityCharges(1)
@@ -72,18 +73,16 @@ function _2_LCK:OnUpgrade()
 		return
 	end
 
-	if self.basic_up == true then
-		self.basic_up = false
-		self:CheckLevelUp(false)
-		self:CalculateAttributes(0, 0)
-		return
-	end
-	
-	local str = caster:FindAbilityByName("_1_STR")
-	local agi = caster:FindAbilityByName("_1_AGI")
-	if str ~= nil then str:AddFraction(1) end
-	if agi ~= nil then agi:AddFraction(1) end
+	if self.basic_up == false then
+		local str = caster:FindAbilityByName("_1_STR")
+		local agi = caster:FindAbilityByName("_1_AGI")
+		if str ~= nil then str:AddFraction(1) end
+		if agi ~= nil then agi:AddFraction(1) end
 
+		self.spend = self.spend + 1
+	end
+
+	self.basic_up = false
 	self:CheckLevelUp(false)
 	self:CalculateAttributes(0, 0)
 end
