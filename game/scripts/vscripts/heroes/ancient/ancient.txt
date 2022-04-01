@@ -160,7 +160,7 @@
         //"AnimationPlaybackRate"  		"0.8"
 
 		"AbilityManaCost"         		"0"
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"42"
 		//"AbilityCastRange"      		"300"
         "AbilityChannelTime"    		"3.25"
 
@@ -179,17 +179,32 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"self_slow"     "50"
+				"self_slow"     "200"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"          "75"
+				"slow"          "150"
 			}
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"intervals"     "1.75"
+			}
+            "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"block_min"     "10"
+			}
+            "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"block_max"     "15"
+			}
+            "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"      "17"
 			}
 			"15"
 			{

@@ -8,6 +8,14 @@ function ancient_3_modifier_aura_effect:IsPurgable()
 	return false
 end
 
+function ancient_3_modifier_aura_effect:IsDebuff()
+	return true
+end
+
+function ancient_3_modifier_aura_effect:GetPriority()
+    return MODIFIER_PRIORITY_ULTRA
+end
+
 -----------------------------------------------------------
 
 function ancient_3_modifier_aura_effect:OnCreated(kv)
@@ -15,19 +23,27 @@ function ancient_3_modifier_aura_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local slow = self.ability:GetSpecialValueFor("slow")
-
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
+	self.slow = self.ability:GetSpecialValueFor("slow")
 end
 
 function ancient_3_modifier_aura_effect:OnRefresh(kv)
 end
 
-function ancient_3_modifier_aura_effect:OnRemoved(kv)
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+function ancient_3_modifier_aura_effect:OnRemoved()
+end
+
+-----------------------------------------------------------
+
+function ancient_3_modifier_aura_effect:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT
+	}
+
+	return funcs
+end
+
+function ancient_3_modifier_aura_effect:GetModifierMoveSpeed_Limit()
+	return self.slow
 end
 
 -----------------------------------------------------------

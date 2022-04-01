@@ -312,6 +312,23 @@
 		}
 	}
 
+	"_channel"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"modifiers/_channel"
+        "AbilityTextureName"    		"REC"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
 	"_status"
 	{
 		"BaseClass"						"ability_lua"

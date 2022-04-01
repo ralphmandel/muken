@@ -103,24 +103,43 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         caster:RemoveModifierByName("ancient_3_modifier_channel")
         caster:AddNewModifier(caster, self, "ancient_3_modifier_channel", {duration = time})
+        
+        self:EndCooldown()
+        self:SetActivated(false)
+    end
+
+    function ancient_3__aura:GetChannelTime()
+        local rec = self:GetCaster():FindAbilityByName("_2_REC")
+        local channel = self:GetCaster():FindAbilityByName("_channel")
+        local channel_time = self:GetSpecialValueFor("channel_time")
+        return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
     end
     
     function ancient_3__aura:OnChannelFinish(bInterrupted)
         local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
         
         if bInterrupted == true then
             caster:RemoveModifierByName("ancient_3_modifier_channel")
+            self:StartCooldown(5)
+            self:SetActivated(true)
             return
         end
 
         caster:RemoveModifierByName("ancient_3_modifier_aura")
-        caster:AddNewModifier(caster, self, "ancient_3_modifier_aura", {duration = 30})
+        caster:AddNewModifier(caster, self, "ancient_3_modifier_aura", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
 
         if IsServer() then
             caster:EmitSound("Ancient.Aura.Cast")
             caster:EmitSound("Ancient.Aura.Effect")
             caster:EmitSound("Ancient.Aura.Layer")
         end
+    end
+
+    function ancient_3__aura:GetCastRange(vLocation, hTarget)
+        return self:GetSpecialValueFor("radius")
     end
 
 -- EFFECTS

@@ -106,18 +106,6 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
 -- SPELL START
 
-    -- function ancient_2__leap:GetChannelTime()
-    --     return self:GetCaster():FindModifierByName("_2_REC_modifier"):GetChannelTimeReduction(self:GetSpecialValueFor("channel"))
-    -- end
-
-    --function ancient_2__leap:OnSpellStart()
-        -- local caster = self:GetCaster()
-        -- local time = self:GetChannelTime()
-
-        -- caster:RemoveModifierByName("ancient_2_channel_leap")
-        -- caster:AddNewModifier(caster, self, "ancient_2_channel_leap", {duration = time})
-    --end
-
     function ancient_2__leap:OnAbilityPhaseStart()
         local caster = self:GetCaster()
 

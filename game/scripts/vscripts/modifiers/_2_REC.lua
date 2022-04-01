@@ -117,6 +117,9 @@ function _2_REC:CalculateAttributes(stacks, percent)
 	if IsServer() then
 		local mod = self:GetCaster():FindModifierByName("_2_REC_modifier")
 		if mod then mod:SetStackCount(total) end
+
+		local channel = self:GetCaster():FindAbilityByName("_channel")
+		if channel then channel:SetLevel(total) end
 	end
 end
 
