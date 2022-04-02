@@ -31,11 +31,18 @@ function ancient_3_modifier_aura:GetAuraRadius()
 end
 
 function ancient_3_modifier_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
+	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return DOTA_UNIT_TARGET_TEAM_ENEMY end
+	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return DOTA_UNIT_TARGET_TEAM_ENEMY end
+	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return DOTA_UNIT_TARGET_TEAM_BOTH end
+	return DOTA_UNIT_TARGET_TEAM_ENEMY 
 end
 
 function ancient_3_modifier_aura:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+
+function ancient_3_modifier_aura:GetAbilityTargetFlags()
+	return DOTA_UNIT_TARGET_FLAG_NO_INVIS
 end
 
 -----------------------------------------------------------
@@ -49,8 +56,29 @@ function ancient_3_modifier_aura:OnCreated(kv)
 	self.self_slow = self.ability:GetSpecialValueFor("self_slow")
 	self.block_min = self.ability:GetSpecialValueFor("block_min")
 	self.block_max = self.ability:GetSpecialValueFor("block_max")
+	self.ms_boost = 0
+	self.ability.find = false
+	self.stun_immunity = false
 
-	--self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = self_slow})
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.ms_boost = 100
+	end
+
+	-- UP 3.21
+	if self.ability:GetRank(21) then
+		self.stun_immunity = true
+	end
+
+	-- UP 3.22
+	if self.ability:GetRank(22) then
+		self.block_max = self.block_max + 10
+	end
+
+	-- UP 3.41
+	if self.ability:GetRank(41) then
+		self:ApplyHeal(50, 100)
+	end
 
 	local leap = self.parent:FindAbilityByName("ancient_2__leap")
 	if leap then
@@ -83,6 +111,19 @@ end
 
 -----------------------------------------------------------
 
+function ancient_3_modifier_aura:CheckState()
+	local state = {}
+
+	if self.stun_immunity == true then
+		state = {
+			[MODIFIER_STATE_STUNNED] = false,
+			[MODIFIER_STATE_FROZEN] = false
+		}
+	end
+
+	return state
+end
+
 function ancient_3_modifier_aura:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
@@ -93,6 +134,10 @@ function ancient_3_modifier_aura:DeclareFunctions()
 end
 
 function ancient_3_modifier_aura:GetModifierMoveSpeed_Limit()
+	if self.ability.find == false then
+		return self.self_slow +  self.ms_boost
+	end
+
 	return self.self_slow
 end
 
@@ -102,6 +147,31 @@ end
 
 function ancient_3_modifier_aura:OnIntervalThink()
 	self:PlayEfxStart()
+
+	-- UP 3.41
+	if self.ability:GetRank(41) then
+		self:ApplyHeal(10, 25)
+	end
+end
+
+function ancient_3_modifier_aura:ApplyHeal(heal, chance)
+	local mnd = self.caster:FindModifierByName("_2_MND_modifier")
+	if mnd then heal = heal * mnd:GetHealPower() end
+
+	local allies = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("radius"),
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		0, 0, false
+	)
+
+	for _,ally in pairs(allies) do
+		ally:Heal(heal, self.ability)
+		self:PlayEfxHeal(ally)
+
+		if RandomInt(1, 100) <= chance then
+			ally:Purge(false, true, false, false, false)
+		end
+	end
 end
 
 -----------------------------------------------------------
@@ -135,4 +205,10 @@ function ancient_3_modifier_aura:PlayEfxBuff()
 	ParticleManager:SetParticleControl(self.effect_caster, 2, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_caster, 4, self.parent:GetOrigin())
 	self:AddParticle(self.effect_caster, false, false, -1, false, false)
+end
+
+function ancient_3_modifier_aura:PlayEfxHeal(unit)
+	local particle_cast = "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_heal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, unit)
+	ParticleManager:SetParticleControl(effect_cast, 0, unit:GetOrigin())
 end

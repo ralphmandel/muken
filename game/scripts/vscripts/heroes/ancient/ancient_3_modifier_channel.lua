@@ -9,7 +9,7 @@ function ancient_3_modifier_channel:IsPurgable()
 end
 
 function ancient_3_modifier_channel:GetPriority()
-    return MODIFIER_PRIORITY_ULTRA
+    return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 -----------------------------------------------------------

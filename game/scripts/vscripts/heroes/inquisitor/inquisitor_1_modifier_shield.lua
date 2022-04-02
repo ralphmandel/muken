@@ -105,15 +105,15 @@ end
 --------------------------------------------------------------------------------------------------
 
 function inquisitor_1_modifier_shield:CheckState()
-	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = self.immunity,
-	}
+    local state = {}
+
+    if self.immunity == true then
+        state = {
+            [MODIFIER_STATE_MAGIC_IMMUNE] = true,
+        }
+    end
 
 	return state
-end
-
-function inquisitor_1_modifier_shield:GetPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function inquisitor_1_modifier_shield:DeclareFunctions()

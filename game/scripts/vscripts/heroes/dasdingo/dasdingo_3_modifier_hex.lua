@@ -16,6 +16,10 @@ function dasdingo_3_modifier_hex:IsPurgable()
 	return true
 end
 
+function dasdingo_3_modifier_hex:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+
 --------------------------------------------------------------------------------
 
 function dasdingo_3_modifier_hex:OnCreated(kv)
@@ -87,10 +91,6 @@ end
 
 function dasdingo_3_modifier_hex:GetModifierModelChange()
 	return self.model
-end
-
-function dasdingo_3_modifier_hex:GetPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function dasdingo_3_modifier_hex:OnIntervalThink()

@@ -12,6 +12,10 @@ function bocuse_3_modifier_mark:IsDebuff()
     return true
 end
 
+function bocuse_3_modifier_mark:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
 -----------------------------------------------------------
 
 function bocuse_3_modifier_mark:OnCreated(kv)
@@ -105,10 +109,6 @@ function bocuse_3_modifier_mark:CheckState()
     end
 
 	return state
-end
-
-function bocuse_3_modifier_mark:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function bocuse_3_modifier_mark:DeclareFunctions()

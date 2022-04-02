@@ -87,6 +87,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
 
         local charges = 1
+
+        -- UP 3.42
+        if self:GetRank(42) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -107,13 +113,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         
         self:EndCooldown()
         self:SetActivated(false)
-    end
-
-    function ancient_3__aura:GetChannelTime()
-        local rec = self:GetCaster():FindAbilityByName("_2_REC")
-        local channel = self:GetCaster():FindAbilityByName("_channel")
-        local channel_time = self:GetSpecialValueFor("channel_time")
-        return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
     end
     
     function ancient_3__aura:OnChannelFinish(bInterrupted)
@@ -137,6 +136,32 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             caster:EmitSound("Ancient.Aura.Effect")
             caster:EmitSound("Ancient.Aura.Layer")
         end
+    end
+
+    function ancient_3__aura:CheckEnemies()
+        local caster = self:GetCaster()
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            0, 0, false
+        )
+    
+        for _,enemy in pairs(enemies) do
+            if enemy:HasModifier("ancient_3_modifier_aura_effect")
+            and enemy:IsHero() then
+                self.find = true
+                return
+            end
+        end
+    
+        self.find = false
+    end
+
+    function ancient_3__aura:GetChannelTime()
+        local rec = self:GetCaster():FindAbilityByName("_2_REC")
+        local channel = self:GetCaster():FindAbilityByName("_channel")
+        local channel_time = self:GetSpecialValueFor("channel_time")
+        return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
     end
 
     function ancient_3__aura:GetCastRange(vLocation, hTarget)

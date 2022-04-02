@@ -17,6 +17,10 @@ function shadow_0_modifier_poison:GetTexture()
 	return "shadow_poison"
 end
 
+function shadow_0_modifier_poison:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 
@@ -229,10 +233,6 @@ function shadow_0_modifier_poison:CheckState()
 	if self.break_invi == true then
 		return state
 	end
-end
-
-function shadow_0_modifier_poison:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function shadow_0_modifier_poison:DeclareFunctions()

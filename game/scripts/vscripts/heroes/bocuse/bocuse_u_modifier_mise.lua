@@ -8,6 +8,10 @@ function bocuse_u_modifier_mise:IsPurgable()
     return false
 end
 
+function bocuse_u_modifier_mise:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+
 -----------------------------------------------------------
 
 function bocuse_u_modifier_mise:OnCreated(kv)
@@ -126,10 +130,6 @@ function bocuse_u_modifier_mise:CheckState()
 	}
 
 	return state
-end
-
-function bocuse_u_modifier_mise:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function bocuse_u_modifier_mise:DeclareFunctions()

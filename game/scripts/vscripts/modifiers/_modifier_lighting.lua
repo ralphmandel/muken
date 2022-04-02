@@ -51,10 +51,6 @@ function _modifier_lighting:CheckState()
 	return state
 end
 
-function _modifier_lighting:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 ---------------------------------------------------------------------------
 
 function _modifier_lighting:PlayEffects()

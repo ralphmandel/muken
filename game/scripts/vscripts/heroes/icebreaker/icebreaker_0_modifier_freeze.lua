@@ -17,6 +17,11 @@ end
 function icebreaker_0_modifier_freeze:GetTexture()
 	return "icebreaker_frozen"
 end
+
+function icebreaker_0_modifier_freeze:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
 --------------------------------------------------------------------------------
 
 function icebreaker_0_modifier_freeze:OnCreated( kv )
@@ -31,6 +36,7 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	if IsServer() then
 		self:SetStackCount(0)
 		self:PlayEfxStart()
+		self:StartIntervalThink(0.25)
 	end
 end
 
@@ -133,10 +139,6 @@ function icebreaker_0_modifier_freeze:CheckState()
 	return state
 end
 
-function icebreaker_0_modifier_freeze:GetPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function icebreaker_0_modifier_freeze:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_AVOID_DAMAGE,
@@ -200,6 +202,10 @@ function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
 		self:PlayEfxBlink((keys.target:GetOrigin() - keys.unit:GetOrigin()), keys.unit:GetOrigin(), keys.target)
 		self:Destroy()
 	end
+end
+
+function icebreaker_0_modifier_freeze:OnIntervalThink()
+	if self.parent:IsStunned() == false then self:Destroy() end
 end
 
 --------------------------------------------------------------------------------

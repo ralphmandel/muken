@@ -9,7 +9,7 @@ function ancient_2_modifier_combo:IsPurgable()
 end
 
 function ancient_2_modifier_combo:GetPriority()
-    return MODIFIER_PRIORITY_ULTRA
+    return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 -----------------------------------------------------------

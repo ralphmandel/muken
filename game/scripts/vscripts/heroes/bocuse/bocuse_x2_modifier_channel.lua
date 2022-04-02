@@ -8,6 +8,10 @@ function bocuse_x2_modifier_channel:IsPurgable()
     return false
 end
 
+function bocuse_x2_modifier_channel:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+
 -----------------------------------------------------------
 
 function bocuse_x2_modifier_channel:OnCreated(kv)
@@ -36,10 +40,6 @@ function bocuse_x2_modifier_channel:CheckState()
 	}
 
 	return state
-end
-
-function bocuse_x2_modifier_channel:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function bocuse_x2_modifier_channel:DeclareFunctions()

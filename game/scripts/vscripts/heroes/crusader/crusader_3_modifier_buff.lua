@@ -8,10 +8,6 @@ function crusader_3_modifier_buff:IsPurgable()
     return false
 end
 
-function crusader_3_modifier_buff:GetPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-
 ---------------------------------------------------------------------------------------------------
 
 function crusader_3_modifier_buff:OnCreated( kv )

@@ -1,7 +1,11 @@
 ancient_3_modifier_aura_effect = class({})
 
 function ancient_3_modifier_aura_effect:IsHidden()
-	return false
+	if self:GetParent() == self:GetCaster() then
+		return true
+	else
+		return false
+	end
 end
 
 function ancient_3_modifier_aura_effect:IsPurgable()
@@ -9,11 +13,15 @@ function ancient_3_modifier_aura_effect:IsPurgable()
 end
 
 function ancient_3_modifier_aura_effect:IsDebuff()
-	return true
+	if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
+		return true
+	end
 end
 
 function ancient_3_modifier_aura_effect:GetPriority()
-    return MODIFIER_PRIORITY_ULTRA
+	if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
+		return MODIFIER_PRIORITY_ULTRA
+	end
 end
 
 -----------------------------------------------------------
@@ -24,15 +32,44 @@ function ancient_3_modifier_aura_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.slow = self.ability:GetSpecialValueFor("slow")
+
+	-- UP 3.12
+	if self.ability:GetRank(12) then
+		self.slow = self.slow - 25
+	end
+
+	-- UP 3.23
+	if self.ability:GetRank(23) then
+		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+			self.ability:AddBonus("_1_AGI", self.parent, -15, 0, nil)
+		end
+	end
+
+	self.ability:CheckEnemies()
 end
 
 function ancient_3_modifier_aura_effect:OnRefresh(kv)
 end
 
 function ancient_3_modifier_aura_effect:OnRemoved()
+	self.ability:RemoveBonus("_1_AGI", self.parent)
+	self.ability:CheckEnemies()
 end
 
 -----------------------------------------------------------
+
+function ancient_3_modifier_aura_effect:CheckState()
+	local state = {}
+
+	if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber()
+	and self:GetParent() ~= self:GetCaster() then
+		state = {
+			[MODIFIER_STATE_MAGIC_IMMUNE] = true
+		}
+	end
+
+	return state
+end
 
 function ancient_3_modifier_aura_effect:DeclareFunctions()
 	local funcs = {
@@ -43,27 +80,29 @@ function ancient_3_modifier_aura_effect:DeclareFunctions()
 end
 
 function ancient_3_modifier_aura_effect:GetModifierMoveSpeed_Limit()
-	return self.slow
+	if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
+		return self.slow
+	end
 end
 
 -----------------------------------------------------------
 
 function ancient_3_modifier_aura_effect:GetEffectName()
-	return "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_overhead_debuff.vpcf"
+	if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+		if self:GetParent() ~= self:GetCaster() then
+			return "particles/items_fx/black_king_bar_avatar.vpcf"
+		end
+	else
+		return "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_overhead_debuff.vpcf"
+	end
 end
 
 function ancient_3_modifier_aura_effect:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function ancient_3_modifier_aura_effect:PlayEfxStart()
-	-- local special = (self.ability:GetLevel() - 1) * 10
-	-- local string = "particles/dasdingo/dasdingo_aura.vpcf"
-	-- local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	-- ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
-	-- ParticleManager:SetParticleControl(effect_cast, 3, Vector(special, 0, 0 ))
-
-	-- self:AddParticle(effect_cast, false, false, -1, false, false)
-
-	-- if IsServer() then self.parent:EmitSound("Hero_Pangolier.TailThump.Cast") end
+	if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+		if self:GetParent() ~= self:GetCaster() then
+			return PATTACH_ABSORIGIN_FOLLOW
+		end
+	else
+		return PATTACH_OVERHEAD_FOLLOW
+	end
 end

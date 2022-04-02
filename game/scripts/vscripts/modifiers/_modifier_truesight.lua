@@ -40,7 +40,7 @@ function _modifier_truesight:CheckState()
 end
 
 function _modifier_truesight:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
+	return MODIFIER_PRIORITY_HIGH
 end
 
 --------------------------------------------------------------------------------

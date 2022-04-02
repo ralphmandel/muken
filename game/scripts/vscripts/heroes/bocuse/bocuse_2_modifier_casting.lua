@@ -8,6 +8,10 @@ function bocuse_2_modifier_casting:IsPurgable()
     return false
 end
 
+function bocuse_2_modifier_casting:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+
 -----------------------------------------------------------
 
 function bocuse_2_modifier_casting:OnCreated(kv)
@@ -34,10 +38,6 @@ function bocuse_2_modifier_casting:CheckState()
 	}
 
 	return state
-end
-
-function bocuse_2_modifier_casting:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function bocuse_2_modifier_casting:OnIntervalThink()

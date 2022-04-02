@@ -41,7 +41,11 @@ function _modifier_stun:OnCreated(kv)
 	self.particle = ParticleManager:CreateParticle(effect, attach, self:GetParent())
 	ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetOrigin())
 
-	if IsServer() then self:GetParent():EmitSound("DOTA_Item.SkullBasher") end
+	if IsServer() then
+		self:GetParent():EmitSound("DOTA_Item.SkullBasher")
+		self:SetStackCount(0)
+		self:StartIntervalThink(FrameTime())
+	end
 end
 
 function _modifier_stun:OnRefresh(kv)
@@ -73,5 +77,13 @@ function _modifier_stun:DeclareFunctions()
 end
 
 function _modifier_stun:GetOverrideAnimation(keys)
-	return ACT_DOTA_DISABLED
+	return self:GetStackCount()
+end
+
+function _modifier_stun:OnIntervalThink()
+	if self:GetParent():IsStunned() then
+		self:SetStackCount(1509)
+	else
+		self:SetStackCount(0)
+	end
 end

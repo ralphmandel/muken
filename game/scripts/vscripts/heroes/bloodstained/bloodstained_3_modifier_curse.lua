@@ -8,6 +8,10 @@ function bloodstained_3_modifier_curse:IsPurgable()
     return self.purge
 end
 
+function bloodstained_3_modifier_curse:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
 ----------------------------------------------------------------------------------------------------------------
 
 function bloodstained_3_modifier_curse:OnCreated(kv)
@@ -88,10 +92,6 @@ function bloodstained_3_modifier_curse:CheckState()
 	if self.truesight == true then
 		return state
 	end
-end
-
-function bloodstained_3_modifier_curse:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function bloodstained_3_modifier_curse:DeclareFunctions()
