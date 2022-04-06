@@ -84,7 +84,7 @@
             "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"stun_percent"          "0.5"
+				"stun_percent"          "0.4"
 			}
             "03"
 			{
@@ -95,6 +95,21 @@
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"bat"                   "2.25"
+			}
+            "05"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"mana_gain"             "10"
+			}
+            "06"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"mana_gain_crit"        "25"
+			}
+            "07"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"mana_gain_hero"        "15"
 			}
 			"15"
 			{

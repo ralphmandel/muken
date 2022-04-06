@@ -157,6 +157,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self.find = false
     end
 
+    function ancient_3__aura:OnOwnerDied()
+        local caster = self:GetCaster()
+        caster:RemoveModifierByName("ancient_3_modifier_aura")
+    end
+
     function ancient_3__aura:GetChannelTime()
         local rec = self:GetCaster():FindAbilityByName("_2_REC")
         local channel = self:GetCaster():FindAbilityByName("_channel")

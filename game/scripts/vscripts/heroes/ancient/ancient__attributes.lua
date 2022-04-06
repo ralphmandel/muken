@@ -126,6 +126,7 @@ require("talent_tree")
 		Timers:CreateTimer((0.2), function()
 			if caster:IsIllusion() == false then
 				caster:Heal(1000, nil)
+				caster:SetMana(0)
 				if self:IsTrained() then TalentTree:SetupForHero(caster) end
 			end
 		end)
@@ -286,4 +287,10 @@ require("talent_tree")
 --PRECACHE
 	function ancient__attributes:Precache(context)
 		PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
+	end
+
+--CUSTOM
+	function ancient__attributes:OnOwnerSpawned()
+		local caster = self:GetCaster()
+		caster:SetMana(0)
 	end

@@ -8,10 +8,6 @@ function ancient_3_modifier_aura:IsPurgable()
 	return false
 end
 
-function ancient_3_modifier_aura:RemoveOnDeath()
-	return true
-end
-
 function ancient_3_modifier_aura:GetPriority()
     return MODIFIER_PRIORITY_ULTRA
 end

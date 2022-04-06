@@ -121,8 +121,7 @@ function _1_STR_modifier:GetModifierSpellAmplify_Percentage(keys)
             self.force_spell_crit = false
             self.has_crit = false
         else
-            if (RandomInt(1, 10000) <= critical_chance * 100)
-            or self.force_spell_crit == true 
+            if ((RandomInt(1, 10000) <= critical_chance * 100) or self.force_spell_crit == true)
             and not keys.target:IsBuilding() then
                 calc = calc + crit + (calc * crit * 0.01)
                 self.spell_critical = true
@@ -228,7 +227,7 @@ function _1_STR_modifier:CalcCritDamage()
             local crit_dmg = ((total_crit_dmg - 100) * 3) * 0.01
             local time = 0
 
-            if agi:GetStackCount() > 0 then time = agi:GetStackCount() / 100 end
+            if agi:GetStackCount() > 0 then time = agi:GetStackCount() / 120 end
 
             local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
             total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100

@@ -100,9 +100,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 1.32
-        if self:GetRank(32) then
+        -- UP 1.11
+        if self:GetRank(11) then
             charges = charges * 2
+            if str ~= nil then
+                caster:RemoveModifierByName("_1_STR_modifier")
+                caster:AddNewModifier(caster, str, "_1_STR_modifier", {})
+                str:CalcBase()
+            end
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -123,7 +128,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_1__berserk:GetCooldown(iLevel)
 		if self:GetCurrentAbilityCharges() == 0 then return 0 end
 		if self:GetCurrentAbilityCharges() == 1 then return 0 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 15 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return 20 end
 	end
 
 -- EFFECTS

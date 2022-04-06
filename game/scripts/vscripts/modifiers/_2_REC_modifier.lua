@@ -40,7 +40,8 @@ function _2_REC_modifier:DeclareFunctions()
 end
 
 function _2_REC_modifier:GetModifierConstantManaRegen()
-    if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" then
+    if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" 
+    or self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then
         return 0
     end
     return self:GetStackCount() * self.mp_regen
@@ -51,8 +52,4 @@ function _2_REC_modifier:GetModifierPercentageCooldown()
         return self:GetStackCount() * 1
     end
     return self:GetStackCount() * self.cooldown
-end
-
-function _2_REC_modifier:GetChannelTimeReduction(time)
-    return time - (time * self:GetStackCount() * self.channel * 0.01)
 end
