@@ -32,43 +32,50 @@ end
 --------------------------------------------------------------------------------------------------------------------------
 
 function fountain_modifier:OnIntervalThink()
-	if GameRules:IsDaytime() then
-		if self.pfx == nil then self:PlayEfxStart() end
-		local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-		local units = FindUnitsInRadius(
-			self.parent:GetTeamNumber(),	-- int, your team number
-			self.parent:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
-			self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-			DOTA_UNIT_TARGET_HERO,	-- int, type filter
-			flags,	-- int, flag filter
-			0,	-- int, order filter
-			false	-- bool, can grow cache
-		)
-		for _,unit in pairs(units) do
-			local heal = self.hp_percent * unit:GetMaxHealth() * 0.25
-			local recovery = self.mp_percent * unit:GetMaxMana() * 0.25
-			
-			unit:Heal(heal, self.ability)
-			unit:GiveMana(recovery)
-			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, unit, recovery, unit)
+	-- if GameRules:IsDaytime() then
+
+	-- else
+	-- 	if self.pfx ~= nil then
+	-- 		ParticleManager:DestroyParticle(self.pfx, true)
+	-- 		self.pfx = nil
+	-- 	end
+	-- end
+
+	if self.pfx == nil then self:PlayEfxStart() end
+	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local units = FindUnitsInRadius(
+		self.parent:GetTeamNumber(),	-- int, your team number
+		self.parent:GetOrigin(),	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO,	-- int, type filter
+		flags,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+	for _,unit in pairs(units) do
+		if GameRules:IsDaytime() then
 			unit:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {duration = 0.3})
-	
+			local heal = self.hp_percent * unit:GetMaxHealth() * 0.25
+			unit:Heal(heal, self.ability)
 			self:PlayEfxHeal(unit)
-		end
-	else
-		if self.pfx ~= nil then
-			ParticleManager:DestroyParticle(self.pfx, true)
-			self.pfx = nil
+		else
+			local recovery = self.mp_percent * unit:GetMaxMana() * 0.25
+			if unit:GetUnitName() == "npc_dota_hero_elder_titan" then recovery = 1 end
+			unit:GiveMana(recovery)
+			self:PlayEfxMana(unit)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, unit, recovery, unit)
 		end
 	end
 
-	AddFOWViewer(DOTA_TEAM_CUSTOM_1, self.parent:GetOrigin(), self.radius, 1, true)
-	AddFOWViewer(DOTA_TEAM_CUSTOM_2, self.parent:GetOrigin(), self.radius, 1, true)
-	AddFOWViewer(DOTA_TEAM_CUSTOM_3, self.parent:GetOrigin(), self.radius, 1, true)
-	AddFOWViewer(DOTA_TEAM_CUSTOM_4, self.parent:GetOrigin(), self.radius, 1, true)
-	AddFOWViewer(DOTA_TEAM_CUSTOM_5, self.parent:GetOrigin(), self.radius, 1, true)
+	if GameRules:IsDaytime() then
+		AddFOWViewer(DOTA_TEAM_CUSTOM_1, self.parent:GetOrigin(), self.radius, 1, true)
+		AddFOWViewer(DOTA_TEAM_CUSTOM_2, self.parent:GetOrigin(), self.radius, 1, true)
+		AddFOWViewer(DOTA_TEAM_CUSTOM_3, self.parent:GetOrigin(), self.radius, 1, true)
+		AddFOWViewer(DOTA_TEAM_CUSTOM_4, self.parent:GetOrigin(), self.radius, 1, true)
+		AddFOWViewer(DOTA_TEAM_CUSTOM_5, self.parent:GetOrigin(), self.radius, 1, true)
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------------------
@@ -89,6 +96,13 @@ end
 
 function fountain_modifier:PlayEfxHeal(target)
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(effect_cast, 1, target:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+end
+
+function fountain_modifier:PlayEfxMana(target)
+	local particle_cast = "particles/generic/give_mana.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(effect_cast, 1, target:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast)

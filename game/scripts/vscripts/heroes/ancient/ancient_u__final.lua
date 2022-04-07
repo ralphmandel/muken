@@ -1,5 +1,5 @@
 ancient_u__final = class({})
-LinkLuaModifier("ancient_u_modifier_final", "heroes/ancient/ancient_u_modifier_final", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_u_modifier_passive", "heroes/ancient/ancient_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -91,6 +91,10 @@ LinkLuaModifier("ancient_u_modifier_final", "heroes/ancient/ancient_u_modifier_f
     end
 
 -- SPELL START
+
+    function ancient_u__final:GetIntrinsicModifierName()
+        return "ancient_u_modifier_passive"
+    end
 
     function ancient_u__final:OnSpellStart()
         local caster = self:GetCaster()
