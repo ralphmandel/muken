@@ -185,7 +185,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				}
 
 				if reverse_target then
-					caster:SpendMana(self:GetManaCost(-1) * 0.5, self)
+					--caster:SpendMana(self:GetManaCost(-1) * 0.5, self)
 					ProjectileManager:CreateTrackingProjectile(reverse_info)
 					self:PlayEfxCast()
 				end

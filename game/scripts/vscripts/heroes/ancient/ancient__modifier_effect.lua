@@ -14,6 +14,7 @@ function ancient__modifier_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.activity = "et_2021"
 end
 
 function ancient__modifier_effect:OnRefresh(kv)
@@ -44,5 +45,9 @@ function ancient__modifier_effect:GetAttackSound(keys)
 end
 
 function ancient__modifier_effect:GetActivityTranslationModifiers()
-    return "et_2021"
+    return self.activity
+end
+
+function ancient__modifier_effect:ChangeActivity(string)
+    self.activity = string
 end

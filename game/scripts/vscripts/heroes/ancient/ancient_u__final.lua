@@ -1,5 +1,7 @@
 ancient_u__final = class({})
 LinkLuaModifier("ancient_u_modifier_passive", "heroes/ancient/ancient_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_u_modifier_pos", "heroes/ancient/ancient_u_modifier_pos", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
 
 -- INIT
 
@@ -96,8 +98,114 @@ LinkLuaModifier("ancient_u_modifier_passive", "heroes/ancient/ancient_u_modifier
         return "ancient_u_modifier_passive"
     end
 
+    function ancient_u__final:OnAbilityPhaseStart()
+        self:PlayEffects1()
+        return true
+    end
+    
+    function ancient_u__final:OnAbilityPhaseInterrupted()
+        local caster = self:GetCaster()
+        caster:SpendMana(math.floor(caster:GetMana() * 0.2), self)
+        self:StopEffects1(true)
+    end
+    
     function ancient_u__final:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+
+        self.mana_loss = 0
+        self.damage = self:GetSpecialValueFor("damage") * caster:GetMana() * 0.01
+        self:StopEffects1(false)
+    
+        local name = "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+        local distance = self:GetCastRange(point, nil)
+        local radius = self:GetSpecialValueFor("radius")
+        local speed = self:GetSpecialValueFor("speed")
+        local flag = DOTA_UNIT_TARGET_FLAG_NONE
+    
+        local direction = point - caster:GetOrigin()
+        direction.z = 0
+        direction = direction:Normalized()
+    
+        local info = {
+            Source = caster,
+            Ability = self,
+            vSpawnOrigin = caster:GetAbsOrigin(),
+            
+            bDeleteOnHit = true,
+            
+            iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+            iUnitTargetFlags = flag,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            
+            EffectName = name,
+            fDistance = distance,
+            fStartRadius = radius,
+            fEndRadius = radius,
+            vVelocity = direction * speed,
+        }
+        ProjectileManager:CreateLinearProjectile(info)
+    end
+
+    function ancient_u__final:OnProjectileHit( target, location )
+        if not target then return end
+        local caster = self:GetCaster()
+
+        local damageTable = {
+            victim = target,
+            attacker = caster,
+            damage = self.damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self, --Optional.
+        }
+        ApplyDamage(damageTable)
+    
+        -- local pull_duration = self:GetSpecialValueFor("pull_duration")
+        -- local pull_distance = self:GetSpecialValueFor("pull_distance")
+        -- local mod = target:AddNewModifier(
+        --     caster, -- player source
+        --     self, -- ability source
+        --     "modifier_generic_arc_lua", -- modifier name
+        --     {
+        --         target_x = location.x,
+        --         target_y = location.y,
+        --         duration = pull_duration,
+        --         distance = pull_distance,
+        --         activity = ACT_DOTA_FLAIL,
+        --     } -- kv
+        -- )
+    
+        -- self:PlayEffects2(target, mod)
+    
+        return false
+    end
+
+    function ancient_u__final:GetCastRange(vLocation, hTarget)
+        return self:GetSpecialValueFor("distance") * self:GetCaster():GetMana()
     end
 
 -- EFFECTS
+
+    function ancient_u__final:PlayEffects2(target, mod)
+        local particle_cast = "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+        mod:AddParticle(effect_cast, false, false, -1, false, false)
+    end
+
+    function ancient_u__final:PlayEffects1()
+        local caster = self:GetCaster()
+        local particle_cast = "particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(effect_cast, 1, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
+        self.effect_cast = effect_cast
+
+        caster:AddNewModifier(caster, self, "ancient_u_modifier_pos", {duration = 2})
+    end
+
+    function ancient_u__final:StopEffects1(interrupted)
+        local caster = self:GetCaster()
+        ParticleManager:DestroyParticle(self.effect_cast, interrupted)
+        ParticleManager:ReleaseParticleIndex(self.effect_cast)
+        if interrupted == true then caster:RemoveModifierByName("ancient_u_modifier_pos") end
+    end

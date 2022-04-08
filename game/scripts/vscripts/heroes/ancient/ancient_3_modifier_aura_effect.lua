@@ -35,13 +35,16 @@ function ancient_3_modifier_aura_effect:OnCreated(kv)
 
 	-- UP 3.12
 	if self.ability:GetRank(12) then
-		self.slow = self.slow - 25
+		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+			self.ability:AddBonus("_1_AGI", self.parent, -10, 0, nil)
+		end
 	end
 
 	-- UP 3.23
 	if self.ability:GetRank(23) then
 		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-			self.ability:AddBonus("_1_AGI", self.parent, -15, 0, nil)
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {slow = 0})
+			self.slow = self.slow - 20
 		end
 	end
 
@@ -52,6 +55,11 @@ function ancient_3_modifier_aura_effect:OnRefresh(kv)
 end
 
 function ancient_3_modifier_aura_effect:OnRemoved()
+	local mod = self.parent:FindAllModifiersByName("_modifier_truesight")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:CheckEnemies()
 end

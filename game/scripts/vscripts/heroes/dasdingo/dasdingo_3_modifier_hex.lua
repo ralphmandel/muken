@@ -95,8 +95,10 @@ end
 
 function dasdingo_3_modifier_hex:OnIntervalThink()
 	if self.parent:IsMoving() then
-		self.parent:ReduceMana(6)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, -6, self.caster)
+		local value = 6
+		if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then value = value * 0.5 end
+		self.parent:ReduceMana(value)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, -value, self.caster)
 	end
 end
 

@@ -180,6 +180,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         if self:GetRank(13) then
             local burned_mana = target:GetMaxMana() * 0.1
             if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
+            if target:GetUnitName() == "npc_dota_hero_elder_titan" then burned_mana = burned_mana * 0.5 end
             target:ReduceMana(burned_mana)
             SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, -burned_mana, caster)
 
