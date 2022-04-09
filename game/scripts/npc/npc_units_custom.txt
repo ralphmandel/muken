@@ -667,8 +667,8 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"1500"		// Base health.
 			"StatusHealthRegen"			"3"			// Health regeneration rate.
-			"StatusMana"				"500"			// Base mana.
-			"StatusManaRegen"			"6"		// Mana regeneration rate.		 
+			"StatusMana"				"600"			// Base mana.
+			"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
@@ -837,7 +837,7 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"800"		// Base health.
 			"StatusHealthRegen"			"15"			// Health regeneration rate.
-			"StatusMana"				"300"			// Base mana.
+			"StatusMana"				"450"			// Base mana.
 			"StatusManaRegen"			"3"		// Mana regeneration rate.		 
 			
 			// Vision
@@ -900,7 +900,7 @@
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"90"		// Range within a target can be attacked.
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.
 
 			// Bounds
 			//----------------------------------------------------------------
@@ -922,7 +922,7 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"550"		// Base health.
 			"StatusHealthRegen"			"10"			// Health regeneration rate.
-			"StatusMana"				"275"			// Base mana.
+			"StatusMana"				"400"			// Base mana.
 			"StatusManaRegen"			"4"		// Mana regeneration rate.		 
 			
 			// Vision
@@ -1008,8 +1008,8 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"600"		// Base health.
 			"StatusHealthRegen"			"7"			// Health regeneration rate.
-			"StatusMana"				"350"			// Base mana.
-			"StatusManaRegen"			"10"		// Mana regeneration rate.		 
+			"StatusMana"				"500"			// Base mana.
+			"StatusManaRegen"			"6"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------

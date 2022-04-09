@@ -14,9 +14,9 @@ require('libraries/wearables')
 
 function GameSetup:init()
     if IsInToolsMode() then -- debug build
-        GameRules:SetStartingGold(9999)
+        GameRules:SetStartingGold(99999)
     else
-        GameRules:SetStartingGold(134)
+        GameRules:SetStartingGold(90)
     end
     -- skip all the starting game mode stages e.g picking screen, showcase, etc
     --GameRules:EnableCustomGameSetupAutoLaunch(true)
@@ -29,6 +29,7 @@ function GameSetup:init()
     GameRules:SetSafeToLeave(true)
     GameRules:SetTimeOfDay(0.25)
     GameRules:SetTreeRegrowTime(60)
+    GameRules:SetFirstBloodActive(true)
     GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 0)
     GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 0)
     GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_CUSTOM_1, 4)

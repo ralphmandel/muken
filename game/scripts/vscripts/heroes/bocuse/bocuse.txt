@@ -346,7 +346,7 @@
 
 		// Stats
 		"AbilityManaCost"         				"100"
-		"AbilityCooldown"						"10"
+		"AbilityCooldown"						"13"
 		"AbilityCastRange"    		   			"650"
 
 		"AbilitySpecial"
@@ -412,21 +412,26 @@
 		// Stats
 		"AbilityCooldown"				"60"
 		"AbilityManaCost"         		"50"
-		"AbilityChannelTime"    		"4"
+		"AbilityChannelTime"    		"5"
 
 		"AbilitySpecial"
 		{
-			"01"
+            "01"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"30"
+				"var_type"		    "FIELD_FLOAT"
+				"channel_time"      "5"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"max_range"			"50"
+				"duration"			"30"
 			}
 			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_range"			"50"
+			}
+			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"resistance"		"30"

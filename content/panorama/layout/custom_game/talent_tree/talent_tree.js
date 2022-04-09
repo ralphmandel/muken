@@ -36,7 +36,7 @@ function OnTalentsState(event) {
         talentsData[talentId].panel.SetHasClass("upgraded", parsedStateData[i].upgraded);
         talentsData[talentId].panel.levelLabel.text = parsedStateData[i].level + " / " + parsedStateData[i].maxlevel;
     }
-    TALENTS_LAYOUT["TalentPointsLabel"].text = $.Localize("talent_tree_current_talent_points").replace("%POINTS%", talentPoints);
+    TALENTS_LAYOUT["TalentPointsLabel"].text = 'RANK POINTS: ' + talentPoints;//$.Localize("talent_tree_current_talent_points").replace("%POINTS%", talentPoints);
 	
 	//если есть поинтов нет прячем верхнюю картинку, если есть - анонируем, простите анимируем то есть
 	var hasZeroTalentPoints = talentPoints <= 0

@@ -19,7 +19,7 @@ function bocuse_x2_modifier_channel:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self:PlayEfxStart()
+	self.parent:StartGesture(ACT_DOTA_TELEPORT)
 end
 
 function bocuse_x2_modifier_channel:OnRefresh(kv)
@@ -27,6 +27,7 @@ end
 
 function bocuse_x2_modifier_channel:OnRemoved()
 	if IsServer() then
+		self.parent:FadeGesture(ACT_DOTA_TELEPORT)
 		self.parent:StopSound("DOTA_Item.Cheese.Activate")
 		self.parent:StopSound("DOTA_Item.RepairKit.Target")
 	end
@@ -66,11 +67,4 @@ end
 
 function bocuse_x2_modifier_channel:GetEffectAttachType()
 	return PATTACH_POINT_FOLLOW
-end
-
-function bocuse_x2_modifier_channel:PlayEfxStart()
-	if IsServer() then
-		self.parent:EmitSound("DOTA_Item.Cheese.Activate")
-		self.parent:EmitSound("DOTA_Item.RepairKit.Target")
-	end
 end

@@ -108,9 +108,8 @@ LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODI
         local caster = self:GetCaster()
         local time = self:GetChannelTime()
 
-        if IsServer() then caster:EmitSound("Ancient.Aura.Channel") end
-
         caster:RemoveModifierByName("ancient_3_modifier_channel")
+        if IsServer() then caster:EmitSound("Ancient.Aura.Channel") end
         caster:AddNewModifier(caster, self, "ancient_3_modifier_channel", {duration = time})
         
         self:EndCooldown()

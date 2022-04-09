@@ -15,14 +15,13 @@ function bocuse_x2_modifier_mirepoix:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability:SetActivated(false)
-
 	local resistance = self.ability:GetSpecialValueFor("resistance")
 	self.init_model_scale = self.ability:GetSpecialValueFor("init_model_scale")
 	self.max_range = self.ability:GetSpecialValueFor("max_range") * 100
     self.range = 0
 
 	self.ability:AddBonus("_2_RES", self.parent, resistance, 0, nil)
+	self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
 	self:StartIntervalThink(FrameTime())
     self:PlayEfxStart()
 end
@@ -31,8 +30,8 @@ function bocuse_x2_modifier_mirepoix:OnRefresh(kv)
 end
 
 function bocuse_x2_modifier_mirepoix:OnRemoved()
-	self.ability:SetActivated(true)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	self.ability:SetActivated(true)
 	self.ability:RemoveBonus("_2_RES", self.parent)
 
 	self.parent:AddNewModifier(self.caster, self.ability, "bocuse_x2_modifier_end", {

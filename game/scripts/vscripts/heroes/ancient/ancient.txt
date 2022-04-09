@@ -182,7 +182,7 @@
 		"AbilityManaCost"         		"0"
 		"AbilityCooldown"				"42"
 		//"AbilityCastRange"      		"300"
-        "AbilityChannelTime"    		"3.25"
+        "AbilityChannelTime"    		"3.75"
 
 		"AbilitySpecial"
 		{

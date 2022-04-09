@@ -66,25 +66,38 @@ LinkLuaModifier("bocuse_x2_modifier_end", "heroes/bocuse/bocuse_x2_modifier_end"
 
     function bocuse_x2__mirepoix:OnSpellStart()
         local caster = self:GetCaster()
-        caster:StartGesture(ACT_DOTA_TELEPORT)
-        caster:AddNewModifier(caster, self, "bocuse_x2_modifier_channel", {})
+        local time = self:GetChannelTime()
+
+        caster:RemoveModifierByName("bocuse_x2_modifier_channel")
+        if IsServer() then
+            caster:EmitSound("DOTA_Item.Cheese.Activate")
+            caster:EmitSound("DOTA_Item.RepairKit.Target")
+        end
+        caster:AddNewModifier(caster, self, "bocuse_x2_modifier_channel", {duration = time})
+
+        self:EndCooldown()
+        self:SetActivated(false)
     end
 
     function bocuse_x2__mirepoix:OnChannelFinish( bInterrupted )
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
-        caster:RemoveModifierByName("bocuse_x2_modifier_channel")
-
-        if bInterrupted then
-            caster:FadeGesture(ACT_DOTA_TELEPORT)
-            self:EndCooldown()
-            self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
-        else
-            caster:FadeGesture(ACT_DOTA_TELEPORT)
-            caster:StartGesture(ACT_DOTA_TELEPORT_END)
-            caster:AddNewModifier(caster, self, "bocuse_x2_modifier_mirepoix", {duration = self:CalcStatus(duration, caster, caster)})
-            self:EndCooldown()
+        
+        if bInterrupted == true then
+            caster:RemoveModifierByName("bocuse_x2_modifier_channel")
+            self:StartCooldown(5)
+            self:SetActivated(true)
+            return
         end
+
+        caster:AddNewModifier(caster, self, "bocuse_x2_modifier_mirepoix", {duration = self:CalcStatus(duration, caster, caster)})
+    end
+
+    function bocuse_x2__mirepoix:GetChannelTime()
+        local rec = self:GetCaster():FindAbilityByName("_2_REC")
+        local channel = self:GetCaster():FindAbilityByName("_channel")
+        local channel_time = self:GetSpecialValueFor("channel_time")
+        return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
     end
 
 -- EFFECTS

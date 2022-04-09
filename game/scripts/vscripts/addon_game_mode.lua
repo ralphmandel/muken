@@ -5,7 +5,7 @@ end
 require("game_setup")
 require("talent_tree")
 
-function Precache( context )
+function Precache(context)
 	--[[
 		Precache things we know we'll use.  Possible file types include (but not limited to):
 			PrecacheResource( "model", "*.vmdl", context )
@@ -171,31 +171,29 @@ function Activate()
 end
 
 function BattleArena:InitGameMode()
-	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
-	
 	GameSetup:init()
+
 	local GameMode = GameRules:GetGameModeEntity()
 
 	GameMode:SetBountyRunePickupFilter(
 		function(ctx, event)
 			event.xp_bounty = 0
-			event.gold_bounty = self.gold_bounty + (GameRules:GetDOTATime(false, false) * self.gold_bounty_time)
+			event.gold_bounty = 0
 
 			for _,player in pairs(self.players) do
 				if player:GetPlayerID() == event.player_id_const then
-					for i = #self.teams, 1, -1 do
-						if player:GetTeamNumber() == self.teams[i][1] then
-							local score = self.score_bounty / self.teams[i][4]
-							self.teams[i][2] = self.teams[i][2] + score
-							local message = self.teams[i][3] .. " SCORE: " .. self.teams[i][2]
-							GameRules:SendCustomMessage(self.teams[i][5] .. message .."</font>",-1,0)
-						end
-						if self.teams[i][2] >= self.score then
-							local message = self.teams[i][3] .. " VICTORY!"
-							GameRules:SetCustomVictoryMessage(message)
-							GameRules:SetGameWinner(self.teams[i][2])
-						end
+					local team_index = self:GetTeamIndex(player:GetTeamNumber())
+					local score = self.score_bounty / self.teams[team_index][4]
+					self.teams[team_index][2] = self.teams[team_index][2] + score
+					local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
+					GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
+
+					if self.teams[team_index][2] >= self.score then
+						local message = self.teams[team_index][3] .. " VICTORY!"
+						GameRules:SetCustomVictoryMessage(message)
+						GameRules:SetGameWinner(self.teams[team_index][1])
+						return
 					end
 				end
 			end
@@ -249,14 +247,10 @@ function BattleArena:InitGameMode()
 	-- , self)
 
 
-	self.score = 200
-	self.score_kill = 5
-	self.score_bounty = 10
-
-	self.gold_kill = 50
-	self.gold_kill_mult = 5
-	self.gold_bounty = 50
-	self.gold_bounty_time = 0.1
+	self.score = 1500
+	self.score_kill = 60
+	self.score_bounty = 120
+	self.first_blood = true
 
 	self.players = {}
 	self.teams = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
@@ -268,6 +262,7 @@ function BattleArena:InitGameMode()
 	}
 
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
+	ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap(self, "OnTeamKill"), self)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(self, "OnUnitSpawn"), self)
 
 	local fountain = CreateUnitByName("fountain_building", Vector(-250,-300,0), true, nil, nil, DOTA_TEAM_NEUTRALS)
@@ -304,67 +299,6 @@ function BattleArena:InitGameMode()
 		count = count + 1
 		self:CreateSpot(count)
 	end
-end
-
-function BattleArena:GiveWards()
-	local time = math.floor(GameRules:GetDOTATime(false, false))
-	if not self.observer_time then self.observer_time = -10 end
-	if not self.sentry_time then self.sentry_time = -10 end
-	local has_observer = false
-	local has_sentry = false
-	
-	for _,player in pairs(self.players) do
-		local observer_time = 40
-		local sentry_time = 60
-		local max_wards = 4
-		for i = #self.teams, 1, -1 do
-			if player:GetTeamNumber() == self.teams[i][1] then
-				observer_time = observer_time * (self.teams[i][4] + 1)
-				sentry_time = sentry_time * (self.teams[i][4] + 1)
-				max_wards = max_wards - self.teams[i][4]
-				if max_wards == 0 then max_wards = 1 end
-			end
-		end
-
-		-- OBSERVER
-		if time % observer_time == 0 and self.observer_time < time then
-			has_observer = true
-			local dispenser = player:FindItemInInventory("item_ward_dispenser")
-			if dispenser ~= nil then
-				if dispenser:GetCurrentCharges() < max_wards then
-					player:AddItemByName("item_ward_observer")
-				end
-			else
-				local observer = player:FindItemInInventory("item_ward_observer")
-				if observer == nil then
-					player:AddItemByName("item_ward_observer")
-				elseif observer:GetCurrentCharges() < max_wards then
-					player:AddItemByName("item_ward_observer")
-				end
-			end
-		end
-
-		--SENTRY
-		if time % sentry_time == 0 and self.sentry_time < time then
-			has_sentry = true
-			local dispenser = player:FindItemInInventory("item_ward_dispenser")
-			if dispenser ~= nil then
-				if dispenser:GetSecondaryCharges() < max_wards then
-					player:AddItemByName("item_ward_sentry")
-				end
-			else
-				local observer = player:FindItemInInventory("item_ward_sentry")
-				if observer == nil then
-					player:AddItemByName("item_ward_sentry")
-				elseif observer:GetCurrentCharges() < max_wards then
-					player:AddItemByName("item_ward_sentry")
-				end
-			end
-		end
-	end
-
-	if has_observer then self.observer_time = time end
-	if has_sentry then self.sentry_time = time end
 end
 
 function BattleArena:SpawnBountyRune()
@@ -404,12 +338,11 @@ function BattleArena:SpawnBountyRune()
 end
 
 function BattleArena:CreateMinimapEvent(duration, step)
+	for _,player in pairs(self.players) do
+		MinimapEvent(player:GetTeamNumber(), player, self.pos.x, self.pos.y, step, duration)
+	end
+
 	for _,team in pairs(self.teams) do
-		for _,player in pairs(self.players) do
-			if player:GetTeamNumber() == team[1] then
-				MinimapEvent(team[1], player, self.pos.x, self.pos.y, step, duration)
-			end
-		end
 		if step == 128 then
 			GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
 		end
@@ -653,7 +586,7 @@ function BattleArena:RandomizePlayerSpawn(unit)
 	FindClearSpaceForUnit(unit, further_loc, true)
 end
 
-function BattleArena:OnUnitKilled( args )
+function BattleArena:OnUnitKilled(args)
 	local unit = EntIndexToHScript(args.entindex_killed)
 	local killer = EntIndexToHScript(args.entindex_attacker)
 	if unit == nil or killer == nil then return end
@@ -672,36 +605,6 @@ function BattleArena:OnUnitKilled( args )
 		end
 	end
 
-	if unit:IsHero() then
-		local hero_kill = false
-		if killer:GetClassname() ~= "ability_lua" then
-			if killer:IsHero() then
-				hero_kill = true
-			end
-		end
-
-		for i = #self.teams, 1, -1 do
-			if hero_kill == false then
-				if unit:GetTeamNumber() == self.teams[i][1] then
-					self.teams[i][2] = self.teams[i][2] - self.score_kill
-					local message = self.teams[i][3] .. " SCORE: " .. self.teams[i][2]
-					GameRules:SendCustomMessage(self.teams[i][5] .. message .."</font>",-1,0)
-				end
-			else
-				if killer:GetTeamNumber() == self.teams[i][1] then
-					self.teams[i][2] = self.teams[i][2] + self.score_kill
-					local message = self.teams[i][3] .. " SCORE: " .. self.teams[i][2]
-					GameRules:SendCustomMessage(self.teams[i][5] .. message .."</font>",-1,0)
-				end
-			end
-			if self.teams[i][2] >= self.score then
-				local message = self.teams[i][3] .. " VICTORY!"
-				GameRules:SetCustomVictoryMessage(message)
-				GameRules:SetGameWinner(self.teams[i][2])
-			end
-		end
-	end
-
 	local gold = 0
 	local number = 1
 
@@ -711,44 +614,6 @@ function BattleArena:OnUnitKilled( args )
 	if player_owner == nil then return end
 	local assigned_hero = player_owner:GetAssignedHero()
 	if assigned_hero == nil then return end
-
-	if unit:IsHero()
-	and unit:IsIllusion() == false
-	and assigned_hero:GetTeamNumber() ~= unit:GetTeamNumber() then
-
-		local allies = FindUnitsInRadius(
-			assigned_hero:GetTeamNumber(),	-- int, your team number
-			unit:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
-			1500,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- int, team filter
-			DOTA_UNIT_TARGET_HERO,	-- int, type filter
-			0,	-- int, flag filter
-			0,	-- int, order filter
-			false	-- bool, can grow cache
-		)
-		for _,unit in pairs(allies) do
-			if unit ~= assigned_hero then
-				number = number + 1
-			end
-		end
-
-		gold = (((unit:GetLevel() + 1) * self.gold_kill_mult) + self.gold_kill) / number
-
-		if math.floor(gold) > 0 then
-			assigned_hero:ModifyGold(math.floor(gold), false, 18)
-			SendOverheadEventMessage(player_owner, OVERHEAD_ALERT_GOLD, assigned_hero, gold, assigned_hero)
-
-			for _,unit in pairs(allies) do
-				if unit ~= assigned_hero then
-					unit:ModifyGold(math.floor(gold), false, 18)
-					SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
-				end
-			end
-		end
-
-		return
-	end
 
 	if unit:IsCreature()
 	and unit:IsDominated() == false
@@ -783,6 +648,32 @@ function BattleArena:OnUnitKilled( args )
 	end
 end
 
+function BattleArena:OnTeamKill(args)
+	local killer = EntIndexToHScript(args.killer_userid)
+	local victim = EntIndexToHScript(args.victim_userid)
+	local team_number = args.teamnumber
+	local hero_kills = args.herokills
+
+	if victim:GetAssignedHero():IsReincarnating() then return end
+	local team_index = self:GetTeamIndex(team_number)
+	local score = self.score_kill / self.teams[self:GetTeamIndex(victim:GetTeamNumber())][4]
+
+	if self.first_blood == true then
+		self.first_blood = false
+		score = 100
+	end
+
+	self.teams[team_index][2] = self.teams[team_index][2] + score
+	local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
+	GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
+
+	if self.teams[team_index][2] >= self.score then
+		local message = self.teams[team_index][3] .. " VICTORY!"
+		GameRules:SetCustomVictoryMessage(message)
+		GameRules:SetGameWinner(self.teams[team_index][1])
+	end
+end
+
 function BattleArena:OnUnitSpawn( args )
 	local unit = EntIndexToHScript(args.entindex)
 	if unit == nil then return end
@@ -807,13 +698,17 @@ function BattleArena:OnUnitSpawn( args )
 				end
 			end
 
-			for i = #self.teams, 1, -1 do
-				if unit:GetTeamNumber() == self.teams[i][1] then
-					self.teams[i][4] = self.teams[i][4] + 1
-				end
-			end
-
+			local team_index = self:GetTeamIndex(unit:GetTeamNumber())
+			self.teams[team_index][4] = self.teams[team_index][4] + 1
 			table.insert(self.players, unit)
+		end
+	end
+end
+
+function BattleArena:GetTeamIndex(team_number)
+	for i = #self.teams, 1, -1 do
+		if team_number == self.teams[i][1] then
+			return i
 		end
 	end
 end
@@ -848,7 +743,6 @@ function BattleArena:OnThink()
 			self:CreateSpot(index)
 		end
 
-		self:GiveWards()
 		self:SpawnBountyRune()
 		
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
