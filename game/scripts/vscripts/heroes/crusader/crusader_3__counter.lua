@@ -81,12 +81,14 @@ LinkLuaModifier("crusader_3_modifier_pull_trigger", "heroes/crusader/crusader_3_
             end
         end
         
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_RES"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then
+			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
+		end
 
         -- UP 3.4
         if self:GetRank(4)

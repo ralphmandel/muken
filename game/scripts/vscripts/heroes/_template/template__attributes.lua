@@ -286,5 +286,6 @@ require("talent_tree")
 
 --PRECACHE
 	function template__attributes:Precache(context)
-		
+		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
+		PrecacheResource("particle", "path", context)
 	end

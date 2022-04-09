@@ -360,6 +360,12 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
         return false
     end
 
+    -- Ancient 4.31 requires skill 1
+    if hero.talentsData[talentId].Ability == "ancient_u__final_rank_31"
+    and (not att.talents[1][0]) then
+        return false
+    end
+
     -- Bocuse 4.22 requires skill 1
     if hero.talentsData[talentId].Ability == "bocuse_u__mise_rank_22"
     and (not att.talents[1][0]) then

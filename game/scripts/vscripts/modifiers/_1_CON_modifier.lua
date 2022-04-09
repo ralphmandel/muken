@@ -22,7 +22,8 @@ function _1_CON_modifier:OnCreated(kv)
 
         self.hp = self.ability:GetSpecialValueFor("hp")
         self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
-        self.heal_amp = 0
+        self.hp_regen_base = 0
+        self.regen_state = 1
         
         self.ability:CalculateAttributes(0, 0)
     end
@@ -47,11 +48,15 @@ function _1_CON_modifier:GetModifierHealthBonus()
 end
 
 function _1_CON_modifier:GetModifierConstantHealthRegen()
-    return (self:GetStackCount() * self.hp_regen) + self.heal_amp
+    return ((self:GetStackCount() * self.hp_regen) + self.hp_regen_base) * self.regen_state
+end
+
+function _1_CON_modifier:SetRegenState(bool)
+    if bool == true then self.regen_state = 1 else self.regen_state = 0 end
 end
 
 function _1_CON_modifier:Base_CON(value)
-    self.heal_amp = self.ability:GetSpecialValueFor("heal_amp") * value
+    self.hp_regen_base = (self.ability:GetSpecialValueFor("hp_regen_bonus") * value) + self.ability:GetSpecialValueFor("hp_regen_base")
 end
 
 function _1_CON_modifier:OnHealReceived(keys)

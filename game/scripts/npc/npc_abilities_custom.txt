@@ -155,7 +155,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"1"
+				"hp_regen_base"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen_bonus"		"1"
 			}
 		}
 	}

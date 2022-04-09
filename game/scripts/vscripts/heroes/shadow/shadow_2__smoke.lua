@@ -67,12 +67,14 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 			end
 		end
 		
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true) end
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true) end
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_RES"):CheckLevelUp(true) end
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
-		if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+		if self:GetLevel() == 1 then
+			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
+		end
 
 		local charges = 1
 

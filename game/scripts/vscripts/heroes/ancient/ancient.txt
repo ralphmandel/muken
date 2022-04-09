@@ -42,7 +42,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"1"
+				"STR"					"0.8"
 			}
 			"06"
 			{
@@ -52,7 +52,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.3"
+				"INT"					"0.5"
 			}
 			"08"
 			{
@@ -110,6 +110,11 @@
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"mana_gain_hero"        "15"
+			}
+            "08"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"natural_loss"          "5"
 			}
 			"15"
 			{
@@ -241,7 +246,8 @@
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityCastPoint"       		"1"
+        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"       		"0.4"
         "AbilityCooldown"				"5"
 
 		"AbilitySpecial"
@@ -269,7 +275,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"	    "50"
+				"damage"	    "60"
 			}
             "05"
 			{

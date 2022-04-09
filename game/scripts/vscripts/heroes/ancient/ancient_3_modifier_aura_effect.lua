@@ -1,11 +1,12 @@
 ancient_3_modifier_aura_effect = class({})
 
 function ancient_3_modifier_aura_effect:IsHidden()
-	if self:GetParent() == self:GetCaster() then
-		return true
-	else
-		return false
-	end
+	-- if self:GetParent() == self:GetCaster() then
+	-- 	return true
+	-- else
+	-- 	return false
+	-- end
+	return true
 end
 
 function ancient_3_modifier_aura_effect:IsPurgable()

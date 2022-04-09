@@ -77,12 +77,45 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
             end
         end
         
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_RES"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then
+			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
+            self:SetActivated(false)
+		end
+
+    	-- UP 4.12
+        if self:GetRank(12) then
+            --if IsServer() then self:SetStackCount(200) end
+            self.mana_bonus = 200
+            local void = caster:FindAbilityByName("_void")
+            if void then void:SetLevel(1) end
+        end
+
+        -- UP 4.21
+        if self:GetRank(21) then
+            local con_mod = caster:FindModifierByName("_1_CON_modifier")
+            if con_mod then con_mod:SetRegenState(false) end
+        end
+
+        -- UP 4.22
+        self.min_mana = self:GetSpecialValueFor("min_mana")
+        if self:GetRank(22) then
+            self.min_mana = self.min_mana - 10
+        end
+
+        -- UP 4.31
+        if self:GetRank(31) then
+            local berserk = caster:FindAbilityByName("ancient_1__berserk")
+            if berserk then
+                if berserk:IsTrained() then
+                    berserk.natural_loss = berserk:GetSpecialValueFor("natural_loss") * 2
+                end
+            end
+        end
 
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
@@ -90,6 +123,8 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
     function ancient_u__final:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.casting = false
+        self.mana_bonus = 0
     end
 
 -- SPELL START
@@ -115,13 +150,32 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
         self.mana_loss = 0
         self.damage = self:GetSpecialValueFor("damage") * caster:GetMana() * 0.01
-        self:StopEffects1(false)
+
+        -- UP 4.21
+        if self:GetRank(21) then
+            local heal = caster:GetMana() * 0.3
+            local mnd = caster:FindModifierByName("_2_MND_modifier")
+            if mnd then heal = heal * mnd:GetHealPower() end
+            caster:Heal(heal, self)
+        end
     
         local name = "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
         local distance = self:GetCastRange(point, nil)
         local radius = self:GetSpecialValueFor("radius")
         local speed = self:GetSpecialValueFor("speed")
         local flag = DOTA_UNIT_TARGET_FLAG_NONE
+        local energy_left = 0
+
+        -- UP 4.22
+        if self:GetRank(22) then
+            radius = radius + 50
+        end
+
+        -- UP 4.23
+        if self:GetRank(23) then
+            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+            energy_left = caster:GetMana() * 0.3
+        end
     
         local direction = point - caster:GetOrigin()
         direction.z = 0
@@ -143,39 +197,58 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
             fStartRadius = radius,
             fEndRadius = radius,
             vVelocity = direction * speed,
+            bProvidesVision = true,
+            iVisionRadius = radius,
+            iVisionTeamNumber = caster:GetTeamNumber()
         }
+
         ProjectileManager:CreateLinearProjectile(info)
+        caster:SetMana(energy_left)
+        self:StopEffects1(false)
     end
 
-    function ancient_u__final:OnProjectileHit( target, location )
+    function ancient_u__final:OnProjectileHit(target, location)
         if not target then return end
         local caster = self:GetCaster()
+        local activity = ACT_DOTA_DISABLED
+        local distance = 0
+        local duration = 0.2
+
+        -- UP 4.22
+        if self:GetRank(22) then
+            activity = ACT_DOTA_FLAIL
+            distance = 375
+            duration = 0.5
+        end
+
+        local calc_dist = CalcDistanceBetweenEntityOBB(caster, target)
+        if distance > calc_dist then distance = calc_dist end
 
         local damageTable = {
             victim = target,
             attacker = caster,
             damage = self.damage,
             damage_type = DAMAGE_TYPE_MAGICAL,
-            ability = self, --Optional.
+            ability = self
         }
         ApplyDamage(damageTable)
     
-        -- local pull_duration = self:GetSpecialValueFor("pull_duration")
-        -- local pull_distance = self:GetSpecialValueFor("pull_distance")
-        -- local mod = target:AddNewModifier(
-        --     caster, -- player source
-        --     self, -- ability source
-        --     "modifier_generic_arc_lua", -- modifier name
-        --     {
-        --         target_x = location.x,
-        --         target_y = location.y,
-        --         duration = pull_duration,
-        --         distance = pull_distance,
-        --         activity = ACT_DOTA_FLAIL,
-        --     } -- kv
-        -- )
-    
-        -- self:PlayEffects2(target, mod)
+        if target:IsMagicImmune() == false then
+            local mod = target:AddNewModifier(
+                caster, -- player source
+                self, -- ability source
+                "_modifier_generic_arc", -- modifier name
+                {
+                    target_x = location.x,
+                    target_y = location.y,
+                    duration = duration,
+                    distance = distance,
+                    activity = activity,
+                } -- kv
+            )
+        
+            self:PlayEffects2(target, mod)
+        end
     
         return false
     end
@@ -187,25 +260,51 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 -- EFFECTS
 
     function ancient_u__final:PlayEffects2(target, mod)
-        local particle_cast = "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
+        local particle_cast = "particles/ancient/ancient_final_blow_hit.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:ReleaseParticleIndex(effect_cast)
-        mod:AddParticle(effect_cast, false, false, -1, false, false)
+        if mod then mod:AddParticle(effect_cast, false, false, -1, false, false) end
+
+        if IsServer() then target:EmitSound("Ancient.Final.Hit") end
     end
 
     function ancient_u__final:PlayEffects1()
         local caster = self:GetCaster()
+        self.casting = true
+
         local particle_cast = "particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
         ParticleManager:SetParticleControlEnt(effect_cast, 1, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
         self.effect_cast = effect_cast
 
-        caster:AddNewModifier(caster, self, "ancient_u_modifier_pos", {duration = 2})
-    end
+        caster:FindModifierByName("ancient__modifier_effect"):ChangeActivity("")
 
+        if IsServer() then caster:EmitSound("Ancient.Final.Pre") end
+    end
+    
     function ancient_u__final:StopEffects1(interrupted)
         local caster = self:GetCaster()
+        self.casting = false
+
         ParticleManager:DestroyParticle(self.effect_cast, interrupted)
         ParticleManager:ReleaseParticleIndex(self.effect_cast)
-        if interrupted == true then caster:RemoveModifierByName("ancient_u_modifier_pos") end
+
+        caster:FindModifierByName("ancient__modifier_effect"):ChangeActivity("et_2021")
+
+        if IsServer() then
+            if interrupted == true then
+                caster:StopSound("Ancient.Final.Pre")
+            else
+                caster:EmitSound("Ancient.Final.Cast")
+            end
+        end
     end
+
+	-- function ancient_u__final:PlayEfxCharge(direction, target)
+	-- 	local particle_cast = "particles/econ/items/lion/lion_demon_drain/lion_spell_mana_drain_demon.vpcf"
+	-- 	local effect_charge = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
+	-- 	ParticleManager:SetParticleControl(effect_charge, 0, target:GetOrigin())
+    --     ParticleManager:SetParticleControl(effect_charge, 1, target:GetOrigin())
+	-- 	ParticleManager:SetParticleControlForward(effect_charge, 1, direction:Normalized())
+    --     self.effect_charge = effect_charge
+	-- end

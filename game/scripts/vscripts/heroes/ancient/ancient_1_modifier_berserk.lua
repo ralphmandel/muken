@@ -22,12 +22,15 @@ function ancient_1_modifier_berserk:OnCreated(kv)
 	self.stun_percent = self.ability:GetSpecialValueFor("stun_percent") * 0.01
 	self.aspd = self.ability:GetSpecialValueFor("aspd")
 	self.no_disarm = false
+	self.popup_mana = 0
+	self.heal = 0
 
 	self.agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
 	if self.agi_mod then self.agi_mod:SetBaseAttackTime(0) end
 
 	if IsServer() then
 		self:SetStackCount(0)
+		self:StartIntervalThink(FrameTime())
 	end
 end
 
@@ -186,7 +189,7 @@ function ancient_1_modifier_berserk:OnTakeDamage(keys)
 
 			-- UP 1.32
 			if self.ability:GetRank(32) then
-				self.parent:Heal(self.ability.original_damage * 0.15, self.ability)
+				self.heal = self.heal + (self.ability.original_damage * 0.15)
 			end
 	
 			if IsServer() then keys.unit:EmitSound("DOTA_Item.SkullBasher") end
@@ -198,10 +201,40 @@ function ancient_1_modifier_berserk:OnTakeDamage(keys)
 		mana_gain = mana_gain + self.ability:GetSpecialValueFor("mana_gain_hero")
 	end
 
+	local final = self.parent:FindAbilityByName("ancient_u__final")
+	if final then
+		if final:IsTrained() then
+			-- UP 4.31
+			if final:GetRank(31)
+			and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+				local burned_mana = keys.unit:GetMaxMana() * 0.05
+				if burned_mana > keys.unit:GetMana() then burned_mana = keys.unit:GetMana() end
+				if burned_mana > 0 then
+					keys.unit:ReduceMana(burned_mana)
+					SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, keys.unit, burned_mana, self.caster)
+					mana_gain = mana_gain + burned_mana
+				end
+			end
+		end
+	end
+
 	self.parent:GiveMana(mana_gain)
+	self.popup_mana = self.popup_mana + mana_gain
+end
+
+function ancient_1_modifier_berserk:OnIntervalThink()
+	if self.popup_mana > 0 then
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, self.popup_mana, self.caster)
+		self.popup_mana = 0
+	end
+
+	if self.heal > 0 then
+		self.parent:Heal(self.heal, self.ability)
+		self.heal = 0
+	end
 end
 
 function ancient_1_modifier_berserk:GetModifierConstantManaRegen()
 	if self.parent:HasModifier("ancient_3_modifier_aura") then return 0 end
-    return -5
+    return -self.ability.natural_loss
 end

@@ -80,12 +80,14 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             end
         end
         
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_RES"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_REC"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_MND"):CheckLevelUp(true) end
-        if self:GetLevel() == 1 then caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true) end
+        if self:GetLevel() == 1 then
+			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
+			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
+		end
     end
 
     function icebreaker_2__discus:Spawn()
@@ -181,12 +183,15 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             local burned_mana = target:GetMaxMana() * 0.1
             if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
             if target:GetUnitName() == "npc_dota_hero_elder_titan" then burned_mana = burned_mana * 0.5 end
-            target:ReduceMana(burned_mana)
-            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, -burned_mana, caster)
 
-            self.damageTable.victim = target
-            self.damageTable.damage = burned_mana
-            ApplyDamage(self.damageTable)
+            if burned_mana > 0 then
+                target:ReduceMana(burned_mana)
+                SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, burned_mana, caster)
+
+                self.damageTable.victim = target
+                self.damageTable.damage = burned_mana
+                ApplyDamage(self.damageTable)
+            end
         end
 
         -- UP 2.22

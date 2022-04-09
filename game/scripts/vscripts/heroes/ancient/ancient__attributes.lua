@@ -287,6 +287,21 @@ require("talent_tree")
 --PRECACHE
 	function ancient__attributes:Precache(context)
 		PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
+		PrecacheResource("particle", "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf", context)
+		PrecacheResource("particle", "particles/items_fx/black_king_bar_avatar.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_overhead_debuff.vpcf", context)
+		PrecacheResource("particle", "particles/status_fx/status_effect_statue.vpcf", context)
+		PrecacheResource("particle", "particles/ancient/ancient_aura_pulses.vpcf", context)
+		PrecacheResource("particle", "particles/items_fx/aura_endurance.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_heal.vpcf", context)
+		PrecacheResource("particle", "particles/ancient/ancient_aura_hands.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", context)
+		PrecacheResource("particle", "particles/ancient/ancient_final_blow_hit.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf", context)
+		PrecacheResource("particle", "particles/ancient/ancient_magic_buff.vpcf", context)
 	end
 
 --CUSTOM
