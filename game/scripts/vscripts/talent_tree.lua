@@ -15,23 +15,11 @@ function TalentTree:Init()
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(self, "OnPlayerReconnect"), self)
 end
 
-function TalentTree:OnPlayerReconnect(keys)
-    if (not IsServer()) then
-        return
-    end
-    local player = EntIndexToHScript(keys.PlayerID)
-    if (not player) then
-        return
-    end
-    local hero = player:GetAssignedHero()
-    if (not hero) then
-        return
-    end
-
-    CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {talents = hero.talentsData, tabs = hero.tabs, rows = hero.rows})
-
-    local mod = hero:FindModifierByName("gold_next_level")
-    if mod then mod:GetNextGoldState() end
+function TalentTree:InitPanaromaEvents()
+    CustomGameEventManager:RegisterListener("talent_tree_get_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeTalentsRequest'))
+    CustomGameEventManager:RegisterListener("talent_tree_level_up_talent", Dynamic_Wrap(TalentTree, 'OnTalentTreeLevelUpRequest'))
+    CustomGameEventManager:RegisterListener("talent_tree_get_state", Dynamic_Wrap(TalentTree, 'OnTalentTreeStateRequest'))
+    CustomGameEventManager:RegisterListener("talent_tree_reset_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeResetRequest'))
 end
 
 function TalentTree:ResetData(hero)
@@ -150,30 +138,6 @@ function TalentTree:ResetData(hero)
     self.talentData = data
 end
 
-function TalentTree:InitPanaromaEvents()
-    CustomGameEventManager:RegisterListener("talent_tree_get_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeTalentsRequest'))
-    CustomGameEventManager:RegisterListener("talent_tree_level_up_talent", Dynamic_Wrap(TalentTree, 'OnTalentTreeLevelUpRequest'))
-    CustomGameEventManager:RegisterListener("talent_tree_get_state", Dynamic_Wrap(TalentTree, 'OnTalentTreeStateRequest'))
-    CustomGameEventManager:RegisterListener("talent_tree_reset_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeResetRequest'))
-end
-
-function TalentTree:OnTalentTreeTalentsRequest(event)
-    if (not event or not event.PlayerID) then
-        return
-    end
-    local player = PlayerResource:GetPlayer(event.PlayerID)
-    if (not player) then
-        return
-    end
-
-    local hero = player:GetAssignedHero()
-    if (not hero) then
-        return
-    end
-
-    CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {talents = hero.talentsData, tabs = hero.tabs, rows = hero.rows})
-end
-
 function TalentTree:GetColumnTalentPoints(hero, tab)
     local points = 0
     if hero and hero.talents then
@@ -238,16 +202,6 @@ function TalentTree:AddTalentPointsToHero(hero, points)
 
     TalentTree:OnTalentTreeStateRequest({ PlayerID = hero:GetPlayerOwnerID() })
 end
-
--- ListenToGameEvent("npc_spawned", function(keys)
---     if (not IsServer()) then
---         return
---     end
---     local unit = EntIndexToHScript(keys.entindex)
---     if (TalentTree:IsHeroHaveTalentTree(unit) == false and unit.IsRealHero and unit:IsRealHero()) then
---         TalentTree:SetupForHero(unit)
---     end
--- end, nil)
 
 function TalentTree:IsHeroHaveTalentTree(hero)
     if (not hero) then
@@ -353,6 +307,30 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
 
     local att = hero:FindAbilityByName(hero.att)
     if (not att) then return false end
+    local mod_rank_points = hero:FindModifierByName("rank_points")
+    if mod_rank_points == nil then return false end
+
+    local level = hero.talentsData[talentId].NeedLevel + 1
+    local points_level = TalentTree:GetHeroRankLevel(hero)
+    local points_max_level = mod_rank_points.max_level
+    local left = points_max_level - points_level - level
+
+    if left < 5 and TalentTree:GetTotalTalents(hero, left) == 0 then
+        if left == 1 then return false end
+        if left == 2 then
+            if TalentTree:GetTotalTalents(hero, 1) < 2 then return false end
+        end
+        if left == 3 then
+            if (TalentTree:GetTotalTalents(hero, 2) == 0 or TalentTree:GetTotalTalents(hero, 1) == 0)
+            and TalentTree:GetTotalTalents(hero, 1) < 3 then return false end
+        end
+        if left == 4 then
+            if (TalentTree:GetTotalTalents(hero, 3) == 0 or TalentTree:GetTotalTalents(hero, 1) == 0)
+            and (TalentTree:GetTotalTalents(hero, 2) == 0 or TalentTree:GetTotalTalents(hero, 1) < 2)
+            and TalentTree:GetTotalTalents(hero, 2) < 2
+            and TalentTree:GetTotalTalents(hero, 1) < 4 then return false end
+        end
+    end
 
     -- Ancient 2.31 requires skill 1
     if hero.talentsData[talentId].Ability == "ancient_2__leap_rank_31"
@@ -402,6 +380,32 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
         return false
     end
     return true
+end
+
+function TalentTree:GetTotalTalents(hero, level)
+    local total = 0
+    if hero and hero.talentsData then
+        for talentId,talent in pairs(hero.talentsData) do
+            if (TalentTree:GetHeroTalentLevel(hero, talentId) < TalentTree:GetTalentMaxLevel(hero, talentId))
+            and (talent.NeedLevel + 1) == level
+            and talent.Ability ~= "empty" then
+                total = total + 1
+            end
+        end
+    end
+
+    return total
+end
+
+function TalentTree:GetHeroRankLevel(hero)
+    local rank = 0
+    if hero and hero.talentsData then
+        for talentId,talent in pairs(hero.talentsData) do
+            rank = rank + TalentTree:GetHeroTalentLevel(hero, talentId)
+        end
+    end
+
+    return rank
 end
 
 function TalentTree:OnTalentTreeResetRequest(event)
@@ -467,7 +471,6 @@ function TalentTree:OnTalentTreeLevelUpRequest(event)
     end
 end
 
--- отправляет текущее состояние талантов и ково поинтов на клиент игрока
 function TalentTree:OnTalentTreeStateRequest(event)
     if (not IsServer()) then
         return
@@ -517,4 +520,50 @@ function TalentTree:OnTalentTreeStateRequest(event)
 	end)
 end
 
+function TalentTree:OnTalentTreeTalentsRequest(event)
+    if (not event or not event.PlayerID) then
+        return
+    end
+    local player = PlayerResource:GetPlayer(event.PlayerID)
+    if (not player) then
+        return
+    end
+
+    local hero = player:GetAssignedHero()
+    if (not hero) then
+        return
+    end
+
+    CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {talents = hero.talentsData, tabs = hero.tabs, rows = hero.rows})
+end
+
+function TalentTree:OnPlayerReconnect(keys)
+    if (not IsServer()) then
+        return
+    end
+    local player = EntIndexToHScript(keys.PlayerID)
+    if (not player) then
+        return
+    end
+    local hero = player:GetAssignedHero()
+    if (not hero) then
+        return
+    end
+
+    CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {talents = hero.talentsData, tabs = hero.tabs, rows = hero.rows})
+
+    local mod = hero:FindModifierByName("gold_next_level")
+    if mod then mod:GetNextGoldState() end
+end
+
 TalentTree:Init()
+
+-- ListenToGameEvent("npc_spawned", function(keys)
+--     if (not IsServer()) then
+--         return
+--     end
+--     local unit = EntIndexToHScript(keys.entindex)
+--     if (TalentTree:IsHeroHaveTalentTree(unit) == false and unit.IsRealHero and unit:IsRealHero()) then
+--         TalentTree:SetupForHero(unit)
+--     end
+-- end, nil)

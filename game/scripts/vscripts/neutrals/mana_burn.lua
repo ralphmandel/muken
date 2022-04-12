@@ -1,9 +1,8 @@
-rage = class({})
-LinkLuaModifier( "rage_modifier", "neutrals/rage_modifier", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "rage_modifier_damage", "neutrals/rage_modifier_damage", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "rage_modifier_damage_stack", "neutrals/rage_modifier_damage_stack", LUA_MODIFIER_MOTION_NONE )
+mana_burn = class({})
+LinkLuaModifier("mana_burn_modifier", "neutrals/mana_burn_modifier", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
-function rage:CalcStatus(duration, caster, target)
+function mana_burn:CalcStatus(duration, caster, target)
     local time = duration
 	local caster_int = nil
     local caster_mnd = nil
@@ -39,6 +38,6 @@ function rage:CalcStatus(duration, caster, target)
     return time
 end
 
-function rage:GetIntrinsicModifierName()
-	return "rage_modifier"
+function mana_burn:GetIntrinsicModifierName()
+	return "mana_burn_modifier"
 end

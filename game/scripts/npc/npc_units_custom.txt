@@ -542,7 +542,7 @@
 			"Ability2"					"_neutral_lamp"		// Ability 2
 			"Ability3"					"stun_hits"			// Ability 3
 			"Ability4"					"lifesteal"			// Ability 4
-			"Ability5"					""					// Ability 5
+			"Ability5"					"spike_armor"		// Ability 5
 
 			// Armor
 			//----------------------------------------------------------------
@@ -581,8 +581,8 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"900"		// Base health.
 			"StatusHealthRegen"			"1"			// Health regeneration rate.
-			"StatusMana"				"0"			// Base mana.
-			"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+			"StatusMana"				"450"			// Base mana.
+			"StatusManaRegen"			"3"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
@@ -967,7 +967,7 @@
 			// Abilities
 			//----------------------------------------------------------------
 			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					""			// Ability 2
+			"Ability2"					"mana_burn"			// Ability 2
 			"Ability3"					""			// Ability 3
 			"Ability4"					""			// Ability 4
 
@@ -979,8 +979,8 @@
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackDamageMin"			"70"		// Damage range min.
-			"AttackDamageMax"			"80"		// Damage range max.
+			"AttackDamageMin"			"50"		// Damage range min.
+			"AttackDamageMax"			"55"		// Damage range max.
 			"AttackRate"				"1"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
@@ -1008,8 +1008,8 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"600"		// Base health.
 			"StatusHealthRegen"			"7"			// Health regeneration rate.
-			"StatusMana"				"500"			// Base mana.
-			"StatusManaRegen"			"6"		// Mana regeneration rate.		 
+			"StatusMana"				"500"		// Base mana.
+			"StatusManaRegen"			"10"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
@@ -1058,14 +1058,14 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"7"			// Physical protection.
+			"ArmorPhysical"				"10"			// Physical protection.
 			"MagicalResistance"        	"0"
 
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackDamageMin"			"45"		// Damage range min.
-			"AttackDamageMax"			"55"		// Damage range max.
+			"AttackDamageMax"			"50"		// Damage range max.
 			"AttackRate"				"1.5"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
@@ -1091,7 +1091,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"650"		// Base health.
+			"StatusHealth"				"600"		// Base health.
 			"StatusHealthRegen"			"3"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
@@ -1137,24 +1137,24 @@
 			// Abilities
 			//----------------------------------------------------------------
 			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					""		// Ability 2
+			"Ability2"					"strike"		// Ability 2
 			"Ability3"					""			// Ability 3
 			"Ability4"					""			// Ability 4
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"10"			// Physical protection.
+			"ArmorPhysical"				"8"			// Physical protection.
 			"MagicalResistance"        	"0"
 
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"70"		// Damage range min.
-			"AttackDamageMax"			"80"		// Damage range max.
-			"AttackRate"				"1"		// Speed of attack.
+			"AttackDamageMin"			"150"		// Damage range min.
+			"AttackDamageMax"			"175"		// Damage range max.
+			"AttackRate"				"1.7"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"60"		// Range within a target can be attacked.
+			"AttackAcquisitionRange"	"45"		// Range within a target can be acquired.
+			"AttackRange"				"45"		// Range within a target can be attacked.
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
 			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
 
@@ -1172,11 +1172,11 @@
 			// Movement
 			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"240"		// Speed.			
+			"MovementSpeed"				"220"		// Speed.			
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"675"		// Base health.
+			"StatusHealth"				"575"		// Base health.
 			"StatusHealthRegen"			"7"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
@@ -1557,7 +1557,7 @@
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"3"
+			"Level"						"2"
 			"ModelScale" 				"1"
 
 			// Abilities

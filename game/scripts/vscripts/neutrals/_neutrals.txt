@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"20"
+				"percent"		"15"
 			}
 		}
 	}
@@ -196,6 +196,87 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"stun_duration"		"1"
+			}
+		}
+	}
+
+	"spike_armor"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/spike_armor"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"     		"spike_armor"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"3"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"       		"0.0"
+
+		"AbilityManaCost"         		"100"
+		"AbilityCooldown"				"12"
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"10"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"return_percent"	"200"
+			}
+		}
+	}
+
+	"mana_burn"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/mana_burn"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"mana_burn"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"3"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityManaCost"         		"25"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow"				"50"
+			}
+		}
+	}
+
+	"strike"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/strike"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"strike"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"3"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCooldown"				"7"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"strike_damage"		"500"
 			}
 		}
 	}

@@ -41,6 +41,7 @@ function Precache(context)
 			PrecacheResource( "model", "models/props_structures/good_fountain001.vmdl", context )
 			PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 			
+			PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
 			PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
 			PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
 			PrecacheResource( "particle", "particles/basics/restrict.vpcf", context )
@@ -816,6 +817,12 @@ function BattleArena:OnThink()
 			if rand == 5 then self.pos = Vector(2558,2298,264) end
 			if rand == 6 then self.pos = Vector(-4606,-2052,392) end
 			self:CreateMinimapEvent(40, 128)
+		end
+
+		if self.neutral_test == nil then self.neutral_test = true end
+		if IsInToolsMode() and self.neutral_test == true then
+			CreateUnitByName("neutral_crocodile",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			self.neutral_test = false
 		end
 	end
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
