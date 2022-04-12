@@ -524,6 +524,93 @@
 			}
 		}
 
+	//BOSSES
+		"boss_lulu"	
+		{
+			// General
+			//----------------------------------------------------------------
+			"Model"						"models/items/undying/flesh_golem/spring2021_bristleback_paganism_pope_golem/spring2021_bristleback_paganism_pope_golem.vmdl"	// Model.
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"6"
+			"ModelScale" 				"1.5"
+
+			// Abilities
+			//----------------------------------------------------------------
+			"Ability1"					"_neutral__ai"		// Ability 1
+			"Ability2"					"_neutral_lamp"		// Ability 2
+			"Ability3"					"stun_hits"			// Ability 3
+			"Ability4"					"lifesteal"			// Ability 4
+			"Ability5"					"spike_armor"		// Ability 5
+
+			// Armor
+			//----------------------------------------------------------------
+			"ArmorPhysical"				"15"			// Physical protection.
+			"MagicalResistance"        	"0"
+
+			// Attack
+			//----------------------------------------------------------------
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"			"120"		// Damage range min.
+			"AttackDamageMax"			"150"		// Damage range max.
+			"AttackRate"				"1.2"		// Speed of attack.
+			"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
+			"AttackRange"				"150"		// Range within a target can be attacked.
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+			// Bounds
+			//----------------------------------------------------------------
+			"RingRadius"				"40"
+			"HealthBarOffset"			"170"
+
+			// Bounty
+			//----------------------------------------------------------------
+			"BountyXP"					"0"		// Experience earn.
+			"BountyGoldMin"				"70"	// Gold earned min.
+			"BountyGoldMax"				"80"		// Gold earned max.
+
+			// Movement
+			//----------------------------------------------------------------
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementSpeed"				"375"		// Speed.			
+
+			// Status
+			//----------------------------------------------------------------
+			"StatusHealth"				"900"		// Base health.
+			"StatusHealthRegen"			"1"			// Health regeneration rate.
+			"StatusMana"				"450"			// Base mana.
+			"StatusManaRegen"			"3"		// Mana regeneration rate.		 
+			
+			// Vision
+			//----------------------------------------------------------------
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+
+			// Team
+			//----------------------------------------------------------------
+			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+			// Creature Data
+			//----------------------------------------------------------------
+			"Creature"
+			{
+				//Level Up
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
 	//NEUTRALS LEVEL 3
 		"neutral_lamp"	
 		{
