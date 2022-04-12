@@ -109,6 +109,7 @@ function bocuse_1_modifier_bleed:PopupBleed(amount)
 end
 
 function bocuse_1_modifier_bleed:PlayEfxStart()
+	local rand = RandomInt(1,3)
 	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
@@ -120,7 +121,10 @@ function bocuse_1_modifier_bleed:PlayEfxStart()
 	ParticleManager:SetParticleControl(effect_cast2, 1, self.parent:GetOrigin())
 
 	if IsServer() then
-		self.parent:EmitSound("Hero_LifeStealer.OpenWounds")
-		self.parent:EmitSound("Hero_LifeStealer.Infest")
+		if rand == 1 then self.parent:EmitSound("Bocuse.Cut.1") end
+		if rand == 2 then self.parent:EmitSound("Bocuse.Cut.2") end
+		if rand == 3 then self.parent:EmitSound("Bocuse.Cut.3") end
+		-- self.parent:EmitSound("Hero_LifeStealer.OpenWounds")
+		-- self.parent:EmitSound("Hero_LifeStealer.Infest")
 	end
 end

@@ -95,23 +95,29 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		return self:GetSpecialValueFor( "radius" )
 	end
 
+	function bocuse_2__flambee:OnAbilityPhaseStart()
+		local caster = self:GetCaster()
+		self.target = self:GetCursorTarget()
+		caster:RemoveModifierByName("bocuse_2_modifier_casting")
+		caster:AddNewModifier(caster, self, "bocuse_2_modifier_casting", {duration = 1})
+		return true
+	end
+
 	function bocuse_2__flambee:OnSpellStart()
 		local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
 		local range = self:GetCastRange(caster:GetOrigin(), nil)
 		
 		if target == caster then
-			caster:StartGestureWithPlaybackRate(1602, 0.75)
 			if IsServer() then
 				caster:EmitSound("DOTA_Item.HealingSalve.Activate")
 				caster:EmitSound("Hero_Brewmaster.Brawler.Crit")
 			end
+
 			self:PlayEfxFire(caster)
 			self:BreakFlask(target, caster:GetOrigin())
 			return
 		end
-		
-		caster:AddNewModifier(caster, self, "bocuse_2_modifier_casting", {duration = 0.6})
 
 		local projectile_name = "particles/bocuse/bocuse_flambee.vpcf"
 		local projectile_speed = self:GetSpecialValueFor("projectile_speed")
@@ -126,73 +132,50 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 			bDodgeable = true,
 		}
 
-		Timers:CreateTimer((0.35), function()
-			if self == nil then return end
-			caster = self:GetCaster()
-			target = self:GetCursorTarget()
-			range = self:GetCastRange(caster:GetOrigin(), nil)
-			projectile_name = "particles/bocuse/bocuse_flambee.vpcf"
-			projectile_speed = self:GetSpecialValueFor("projectile_speed")
+		ProjectileManager:CreateTrackingProjectile(info)
+		if IsServer() then caster:EmitSound("Hero_OgreMagi.Ignite.Cast") end
 
-			if IsValidEntity(target) then
-				ProjectileManager:CreateTrackingProjectile(info)
-				self:PlayEfxCast()
+		-- UP 2.32
+		if self:GetRank(32) then
+			local reverse_target = nil
+			local team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
+			if target:GetTeamNumber() == caster:GetTeamNumber() then
+				team = DOTA_UNIT_TARGET_TEAM_ENEMY
+			end
+			
+			local units = FindUnitsInRadius(
+				caster:GetTeamNumber(),	-- int, your team number
+				caster:GetOrigin(),	-- point, center point
+				nil,	-- handle, cacheUnit. (not known)
+				range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+				team,	-- int, team filter
+				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+				DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,	-- int, flag filter
+				0,	-- int, order filter
+				false	-- bool, can grow cache
+			)
+		
+			for _,unit in pairs(units) do
+				if not (unit == caster) and unit:IsHero() and reverse_target == nil then
+					reverse_target = unit
+					break
+				end
 			end
 
-			-- UP 2.32
-			if self:GetRank(32) then
-				if caster:GetMana() < self:GetManaCost(-1) then return end
-				local reverse_target = nil
-				local team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
-				if target:GetTeamNumber() == caster:GetTeamNumber() then
-					team = DOTA_UNIT_TARGET_TEAM_ENEMY
-				end
-				
-				local units = FindUnitsInRadius(
-					caster:GetTeamNumber(),	-- int, your team number
-					caster:GetOrigin(),	-- point, center point
-					nil,	-- handle, cacheUnit. (not known)
-					range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-					team,	-- int, team filter
-					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-					DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,	-- int, flag filter
-					0,	-- int, order filter
-					false	-- bool, can grow cache
-				)
-			
+			if reverse_target == nil then
 				for _,unit in pairs(units) do
-					if not (unit == caster) and unit:IsHero() and reverse_target == nil then
+					if not (unit == caster) and reverse_target == nil then
 						reverse_target = unit
 						break
 					end
 				end
-
-				if reverse_target == nil then
-					for _,unit in pairs(units) do
-						if not (unit == caster) and reverse_target == nil then
-							reverse_target = unit
-							break
-						end
-					end
-				end
-
-				local reverse_info = {
-					Target = reverse_target,
-					Source = caster,
-					Ability = self,	
-					
-					EffectName = projectile_name,
-					iMoveSpeed = projectile_speed,
-					bDodgeable = true,
-				}
-
-				if reverse_target then
-					--caster:SpendMana(self:GetManaCost(-1) * 0.5, self)
-					ProjectileManager:CreateTrackingProjectile(reverse_info)
-					self:PlayEfxCast()
-				end
 			end
-		end)
+			
+			if reverse_target then
+				info.Target = reverse_target
+				ProjectileManager:CreateTrackingProjectile(info)
+			end
+		end
 	end
 
 	function bocuse_2__flambee:OnProjectileHit( target, location )
@@ -208,6 +191,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		local duration = self:GetSpecialValueFor("duration")
 		local radius = self:GetSpecialValueFor("radius")
 		local team = DOTA_UNIT_TARGET_TEAM_ENEMY
+
+		AddFOWViewer(caster:GetTeamNumber(), caster:GetOrigin(), radius, 1, true)
+
 		if target:GetTeamNumber() == caster:GetTeamNumber() then
 			team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 		end
@@ -215,7 +201,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		local damageTable = {
 			--victim = nil,
 			attacker = caster,
-			damage = 75,
+			damage = 175,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self
 		}
@@ -234,14 +220,14 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 		for _,unit in pairs(units) do
 			if team == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
-				-- UP 2.11
-				if self:GetRank(11) then
+				-- UP 2.31
+				if self:GetRank(31) then
 					unit:Purge(false, true, false, true, false)
 				end
 				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_buff", {duration = self:CalcStatus(duration, caster, unit)})
 			else
-				-- UP 2.11
-				if self:GetRank(11) then
+				-- UP 2.31
+				if self:GetRank(31) then
 					damageTable.victim = unit
 					ApplyDamage(damageTable)
 				end
@@ -298,10 +284,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		local particle_cast = "particles/bocuse/bocuse_flambee_impact_fire_ring.vpcf"
 		local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
 		ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-	end
-
-	function bocuse_2__flambee:PlayEfxCast()
-		if IsServer() then self:GetCaster():EmitSound("Hero_OgreMagi.Ignite.Cast") end
 	end
 
 -- particles/econ/items/phoenix/phoenix_ti10_immortal/phoenix_ti10_fire_spirit_ground.vpcf

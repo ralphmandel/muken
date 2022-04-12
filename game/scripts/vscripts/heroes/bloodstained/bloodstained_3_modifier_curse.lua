@@ -5,7 +5,7 @@ function bloodstained_3_modifier_curse:IsHidden()
 end
 
 function bloodstained_3_modifier_curse:IsPurgable()
-    return self.purge
+    return true
 end
 
 function bloodstained_3_modifier_curse:GetPriority()
@@ -19,15 +19,9 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.truesight = false
-	self.purge = true
 
 	self.max_range = self.ability:GetSpecialValueFor("max_range")
 	self.shared_damage = self.ability:GetSpecialValueFor("shared_damage") * 0.01
-
-    -- UP 3.21
-	if self.ability:GetRank(21) then
-		self.purge = false
-	end
 
     -- UP 3.31
 	if self.ability:GetRank(31) then

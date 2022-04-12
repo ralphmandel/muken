@@ -67,6 +67,8 @@ function GameSetup:init()
     GameMode:SetCustomScanCooldown(60)
     GameMode:SetNeutralStashEnabled(false)
     GameMode:SetInnateMeleeDamageBlockAmount(0)
+    GameMode:SetAnnouncerDisabled(true)
+    GameMode:SetKillingSpreeAnnouncerDisabled(true)
 
     -- disable HUDs hud
     --GameMode:SetHUDVisible(DOTA_HUD_VISIBILITY_INVENTORY_ITEMS , false)

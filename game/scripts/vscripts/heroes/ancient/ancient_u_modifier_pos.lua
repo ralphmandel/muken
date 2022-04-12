@@ -40,7 +40,6 @@ end
 ------------------------------------------------------------
 
 function ancient_u_modifier_pos:DeclareFunctions()
-
     local funcs = {
         MODIFIER_PROPERTY_PRE_ATTACK
     }

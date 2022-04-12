@@ -28,6 +28,7 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 	self.regen = 0
 	self.min_health = 0
 	self.death = false
+	self.purge = 0
 
 	-- UP 1.12
 	if self.ability:GetRank(12) then
@@ -160,7 +161,11 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
-		self.parent:Purge(false, true, false, false, false)
+		self.purge = self.purge + 1
+		if self.purge > 3 then
+			self.parent:Purge(false, true, false, false, false)
+			self.purge = 0
+		end
 	end
 end
 

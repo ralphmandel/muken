@@ -5,7 +5,7 @@ function bloodstained_1_modifier_rage:IsHidden()
 end
 
 function bloodstained_1_modifier_rage:IsPurgable()
-    return false
+    return true
 end
 
 ---------------------------------------------------------------------------------------------------

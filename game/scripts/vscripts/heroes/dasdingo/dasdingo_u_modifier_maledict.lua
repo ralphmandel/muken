@@ -9,7 +9,7 @@ function dasdingo_u_modifier_maledict:IsDebuff()
 end
 
 function dasdingo_u_modifier_maledict:IsPurgable()
-	return false
+	return true
 end
 
 -----------------------------------------------------------
@@ -99,10 +99,10 @@ end
 ------------------------------------------------------------
 
 function dasdingo_u_modifier_maledict:OnIntervalThink()
-	-- UP 4.41
-	if self.ability:GetRank(41) then
+	-- UP 4.12
+	if self.ability:GetRank(12) then
 		local units = FindUnitsInRadius(
-            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 400,
+            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 300,
             DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             16, 0, false
         )
@@ -125,8 +125,8 @@ function dasdingo_u_modifier_maledict:OnIntervalThink()
 	if self.time < (self.tick_intervals / (self.tick_intervals * 0.1)) then return end
 	self.time = 0
 
-	-- UP 4.12
-	if self.ability:GetRank(12) then
+	-- UP 4.41
+	if self.ability:GetRank(41) then
 		self.parent:Purge(true, false, false, false, false)
 	end
 

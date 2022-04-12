@@ -19,7 +19,6 @@ function icebreaker_u_modifier_buff:OnCreated( kv )
 	self.active_regen = 0
 	self.out = true
 
-	self.parent:Purge(false, true, false, false, false)
 	self.parent:AddNewModifier(self.caster, self.ability, "icebreaker_u_modifier_blur", {})
 
 	-- UP 4.12

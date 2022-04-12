@@ -22,13 +22,13 @@ function dasdingo_u_modifier_overtime:OnCreated(kv)
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
-		damage = 4,
+		damage = 3,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self.ability
 	}
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		percent = 70
+		percent = 75
 	})
 
 	self:StartIntervalThink(0.2)
@@ -49,7 +49,7 @@ end
 function dasdingo_u_modifier_overtime:OnIntervalThink()
 	local find = false
 	local units = FindUnitsInRadius(
-		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 450,
+		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 325,
 		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		16, 0, false
 	)

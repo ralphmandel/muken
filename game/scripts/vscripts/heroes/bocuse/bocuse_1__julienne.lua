@@ -277,6 +277,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             stun_duration = stun_duration + 1
         end
 
+        self:InflictBleeding(target)
+
         local damageTable = {
             victim = target,
             attacker = caster,
@@ -290,8 +292,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if target:IsAlive() == false and original == true then self.cancel = true end
 
         if target:IsAlive() then
-            self:InflictBleeding(target)
-            
             if index > 2 and self.cancel == true then
                 if target:IsMagicImmune() == false and original == true then
                     target:AddNewModifier(caster, self, "_modifier_stun", {duration = self:CalcStatus(stun_duration, caster, target)})
@@ -364,7 +364,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         ParticleManager:SetParticleControlForward(effect_cast, 0, direction:Normalized())
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
-        if IsServer() then target:EmitSound("Hero_Alchemist.ChemicalRage.Attack") end
+        --if IsServer() then target:EmitSound("Hero_Alchemist.ChemicalRage.Attack") end
     end
 
     -- function bocuse_1__julienne:PopupCut(target, amount)

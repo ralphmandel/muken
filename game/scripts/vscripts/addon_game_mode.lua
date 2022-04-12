@@ -160,8 +160,10 @@ function Precache(context)
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mars.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
+		PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
 		PrecacheResource( "soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
 		PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
+		PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
 end
 
 -- Create the game mode when we activate
@@ -181,9 +183,26 @@ function BattleArena:InitGameMode()
 			event.xp_bounty = 0
 			event.gold_bounty = 0
 
+			if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time 
+			and self.first_blood == false then
+				self.vo = self.vo + 1
+				Timers:CreateTimer((1), function()
+					self.vo = self.vo - 1
+					if self.vo == 0 then
+						if RandomInt(1,2) == 1 then
+							EmitAnnouncerSound("Vo.Rune.1")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
+						else
+							EmitAnnouncerSound("Vo.Rune.2")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 7
+						end
+					end
+				end)				
+			end
+
 			for _,player in pairs(self.players) do
-				if player:GetPlayerID() == event.player_id_const then
-					local team_index = self:GetTeamIndex(player:GetTeamNumber())
+				if player[1]:GetPlayerID() == event.player_id_const then
+					local team_index = self:GetTeamIndex(player[1]:GetTeamNumber())
 					local score = self.score_bounty / self.teams[team_index][4]
 					self.teams[team_index][2] = self.teams[team_index][2] + score
 					local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
@@ -251,6 +270,8 @@ function BattleArena:InitGameMode()
 	self.score_kill = 60
 	self.score_bounty = 120
 	self.first_blood = true
+	self.vo = 0
+	self.vo_time = -60
 
 	self.players = {}
 	self.teams = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
@@ -339,7 +360,7 @@ end
 
 function BattleArena:CreateMinimapEvent(duration, step)
 	for _,player in pairs(self.players) do
-		MinimapEvent(player:GetTeamNumber(), player, self.pos.x, self.pos.y, step, duration)
+		MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, step, duration)
 	end
 
 	for _,team in pairs(self.teams) do
@@ -593,6 +614,25 @@ function BattleArena:OnUnitKilled(args)
 	if killer:IsBaseNPC() == false then return end
 	if unit:IsReincarnating() then return end
 
+	for _,player in pairs(self.players) do
+		if player[1]:GetAssignedHero() == unit then
+			player[2] = 0
+
+			if killer:GetTeamNumber() == DOTA_TEAM_NEUTRALS
+			and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time 
+			and self.first_blood == false then
+				self.vo = self.vo + 1
+				Timers:CreateTimer((1.5), function()
+					self.vo = self.vo - 1
+					if self.vo == 0 then
+						EmitAnnouncerSound("Vo.Suicide")
+						self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+					end
+				end)
+			end
+		end
+	end
+
 	if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
 		for _,spot in pairs(self.spots) do
 			for i = #spot[1], 1, -1 do
@@ -649,8 +689,8 @@ function BattleArena:OnUnitKilled(args)
 end
 
 function BattleArena:OnTeamKill(args)
-	local killer = EntIndexToHScript(args.killer_userid)
-	local victim = EntIndexToHScript(args.victim_userid)
+	local killer = PlayerResource:GetPlayer(args.killer_userid)
+	local victim = PlayerResource:GetPlayer(args.victim_userid)
 	local team_number = args.teamnumber
 	local hero_kills = args.herokills
 
@@ -659,8 +699,35 @@ function BattleArena:OnTeamKill(args)
 	local score = self.score_kill / self.teams[self:GetTeamIndex(victim:GetTeamNumber())][4]
 
 	if self.first_blood == true then
+		EmitAnnouncerSound("announcer_killing_spree_announcer_1stblood_01")
 		self.first_blood = false
 		score = 100
+	else
+		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time
+		and RandomInt(1,3) > 1 then
+			self.vo = self.vo + 1
+			Timers:CreateTimer((2), function()
+				self.vo = self.vo - 1
+				if self.vo == 0 then
+					if RandomInt(1,2) == 1 then
+						EmitAnnouncerSound("Vo.Kill.1")
+						self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
+					else
+						EmitAnnouncerSound("Vo.Kill.2")
+						self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+					end
+				end
+			end)
+		end
+	end
+
+	for _,player in pairs(self.players) do
+		if player[1] == killer then
+			player[2] = player[2] + 1
+			local string = self:GetKillingSpreeAnnouncer(player[2])
+			if player[2] > 2 then EmitAnnouncerSound(string) end
+			break
+		end
 	end
 
 	self.teams[team_index][2] = self.teams[team_index][2] + score
@@ -700,7 +767,8 @@ function BattleArena:OnUnitSpawn( args )
 
 			local team_index = self:GetTeamIndex(unit:GetTeamNumber())
 			self.teams[team_index][4] = self.teams[team_index][4] + 1
-			table.insert(self.players, unit)
+			local player = {[1] = unit:GetPlayerOwner(), [2] = 0}
+			table.insert(self.players, player)
 		end
 	end
 end
@@ -711,6 +779,29 @@ function BattleArena:GetTeamIndex(team_number)
 			return i
 		end
 	end
+end
+
+function BattleArena:GetKillingSpreeAnnouncer(kills)
+	local rand = RandomInt(1,2)
+
+	if kills == 4 then
+		if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
+		if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
+	end
+	if kills == 5 then
+		if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
+		if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
+	end
+	if kills == 6 then
+		if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
+		if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
+	end
+	if kills >= 7 then
+		if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
+		if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
+	end
+
+	return "announcer_killing_spree_announcer_kill_spree_01"
 end
 
 -- Evaluate the state of the game

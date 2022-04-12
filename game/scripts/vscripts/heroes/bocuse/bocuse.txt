@@ -161,7 +161,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityCastPoint"       		"0.1"
+		"AbilityCastPoint"       		"0.4"
 
 		// Stats
 		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260 273"
