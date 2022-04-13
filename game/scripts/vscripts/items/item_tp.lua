@@ -2,15 +2,24 @@ item_tp = class({})
 LinkLuaModifier("rank_points", "items/rank_points", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("gold_next_level", "items/gold_next_level", LUA_MODIFIER_MOTION_NONE)
 
+function item_tp:Spawn()
+	self.cooldown = 60
+end
+
 function item_tp:GetIntrinsicModifierName()
 	return "rank_points"
 end
+
+-----------------------------------------------------------
 
 function item_tp:OnSpellStart()
 	local caster = self:GetCaster()
 	local start_pfx_name = "particles/items2_fx/teleport_start.vpcf"
 	local end_pfx_name = "particles/items2_fx/teleport_end.vpcf"
 	self.location = self:RandomizePlayerSpawn(caster)
+
+	self:EndCooldown()
+	self:SetActivated(false)
 
 	caster:StartGesture(ACT_DOTA_TELEPORT)
 	EmitSoundOn("Portal.Loop_Disappear", caster)
@@ -53,12 +62,16 @@ end
 
 function item_tp:OnChannelFinish( bInterrupted )
 	local caster = self:GetCaster()
+	self:SetActivated(true)
 
 	if bInterrupted then -- unsuccessful
 		caster:FadeGesture(ACT_DOTA_TELEPORT)
+		self:StartCooldown(5)
 	else -- successful
 		caster:FadeGesture(ACT_DOTA_TELEPORT)
 		caster:StartGesture(ACT_DOTA_TELEPORT_END)
+		self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
+
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Disappear", caster)
 		FindClearSpaceForUnit(caster, self.location, true)
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Appear", caster)
@@ -74,4 +87,15 @@ function item_tp:OnChannelFinish( bInterrupted )
 		ParticleManager:DestroyParticle(self.start_pfx, false)
 		self.start_pfx = nil
 	end
+end
+
+function item_tp:GetCooldown(iLevel)
+	return self.cooldown
+end
+
+function item_tp:GetChannelTime()
+	local rec = self:GetCaster():FindAbilityByName("_2_REC")
+	local channel = self:GetCaster():FindAbilityByName("_channel")
+	local channel_time = self:GetSpecialValueFor("channel_time")
+	return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
 end

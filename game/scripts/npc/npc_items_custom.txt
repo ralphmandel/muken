@@ -52,8 +52,8 @@
 		{
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"tooltip_channel_time"	"0"
+				"var_type"		"FIELD_FLOAT"
+				"channel_time"	"6"
 			}
 		}
 	}

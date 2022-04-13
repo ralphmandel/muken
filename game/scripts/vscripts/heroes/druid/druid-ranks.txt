@@ -18,25 +18,18 @@
 			"0"
 			{
 				"1"   "druid_1__conversion_rank_11"
-				"2"   "druid_1__conversion_rank_12"
-				"3"   "druid_1__conversion_rank_13"
 			}
 			"1"
 			{
 				"1"   "druid_1__conversion_rank_21"
-				"2"   "druid_1__conversion_rank_22"
-				"3"   "druid_1__conversion_rank_23"
 			}
 			"2"
 			{
 				"1"   "druid_1__conversion_rank_31"
-				"2"   "druid_1__conversion_rank_32"
-				"3"   "druid_1__conversion_rank_33"
 			}
 			"3"
 			{
 				"1"   "druid_1__conversion_rank_41"
-				"2"   "druid_1__conversion_rank_42"
 			}
 			"4"
 			{

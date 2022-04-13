@@ -127,7 +127,7 @@ function dasdingo_x1_modifier_tribal:OnTakeDamage(keys)
 end
 
 function dasdingo_x1_modifier_tribal:PopupCustom(damage, color)
-	local pidx = ParticleManager:CereateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent) -- target:GetOwner()
+	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent) -- target:GetOwner()
     local digits = 1
 	if damage < 10 then digits = 1 end
     if damage > 9 and damage < 100 then digits = 2 end

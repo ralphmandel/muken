@@ -14,6 +14,8 @@ function druid__modifier_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	self.activity = "when_nature_attacks"
 end
 
 function druid__modifier_effect:OnRefresh(kv)
@@ -44,5 +46,9 @@ function druid__modifier_effect:GetAttackSound(keys)
 end
 
 function druid__modifier_effect:GetActivityTranslationModifiers(keys)
-    return "when_nature_attacks"
+    return self.activity
+end
+
+function druid__modifier_effect:ChangeActivity(string)
+    self.activity = string
 end

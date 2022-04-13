@@ -23,7 +23,7 @@
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
-			"Ability19"						"null"
+			"Ability19"						"_channel"
 			"Ability20"						"_void"
 			"Ability21"						"_1_STR"
 			"Ability22"						"_1_AGI"

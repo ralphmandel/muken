@@ -704,30 +704,30 @@ function BattleArena:OnTeamKill(args)
 		self.first_blood = false
 		score = 100
 	else
-		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time
-		and RandomInt(1,3) > 1 then
-			self.vo = self.vo + 1
-			Timers:CreateTimer((2), function()
-				self.vo = self.vo - 1
-				if self.vo == 0 then
-					if RandomInt(1,2) == 1 then
-						EmitAnnouncerSound("Vo.Kill.1")
-						self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
-					else
-						EmitAnnouncerSound("Vo.Kill.2")
-						self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
+			if RandomInt(1,3) > 1 then
+				self.vo = self.vo + 1
+				Timers:CreateTimer((2), function()
+					self.vo = self.vo - 1
+					if self.vo == 0 then
+						if RandomInt(1,2) == 1 then
+							EmitAnnouncerSound("Vo.Kill.1")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
+						else
+							EmitAnnouncerSound("Vo.Kill.2")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+						end
 					end
+				end)
+			end
+			for _,player in pairs(self.players) do
+				if player[1] == killer then
+					player[2] = player[2] + 1
+					local string = self:GetKillingSpreeAnnouncer(player[2])
+					if player[2] > 2 then EmitAnnouncerSound(string) end
+					break
 				end
-			end)
-		end
-	end
-
-	for _,player in pairs(self.players) do
-		if player[1] == killer then
-			player[2] = player[2] + 1
-			local string = self:GetKillingSpreeAnnouncer(player[2])
-			if player[2] > 2 then EmitAnnouncerSound(string) end
-			break
+			end
 		end
 	end
 

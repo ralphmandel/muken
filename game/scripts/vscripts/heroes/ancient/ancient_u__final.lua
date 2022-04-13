@@ -89,7 +89,6 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
     	-- UP 4.12
         if self:GetRank(12) then
-            --if IsServer() then self:SetStackCount(200) end
             self.mana_bonus = 200
             local void = caster:FindAbilityByName("_void")
             if void then void:SetLevel(1) end

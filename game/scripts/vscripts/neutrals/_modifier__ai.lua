@@ -6,6 +6,10 @@ local AI_STATE_RETURNING = 2
 
 local AI_THINK_INTERVAL = 0.25
 
+function _modifier__ai:IsHidden()
+	return true
+end
+
 function _modifier__ai:OnCreated(params)
     -- Only do AI on server
     if IsServer() then
@@ -18,7 +22,7 @@ function _modifier__ai:OnCreated(params)
         self.leashRange = 700
 
         -- Store unit handle so we don't have to call self:GetParent() every time
-        self.unit = self:GetParent()
+        self.unit = self:GetParent() 
         Timers:CreateTimer((0.2), function()
 			self.spawnPos = self.unit:GetOrigin()
 		end)
@@ -147,27 +151,28 @@ end
 
 function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
     if keys.attacker:IsBaseNPC() == false then return -50 end
-    if keys.attacker:IsHero() then return 0 end
+    if self.unit:IsDominated() then return 0 end
+    if keys.attacker:IsHero() and keys.attacker:IsIllusion() == false then return 0 end
     return -50
 end
 
 function _modifier__ai:OnAttackLanded(keys)
-	if keys.attacker ~= self:GetParent() then return end
+	if keys.attacker ~= self.unit then return end
     local sound = ""
-    if self:GetParent():GetUnitName() == "neutral_lamp" then sound = "Hero_Spirit_Breaker.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_skydragon" then sound = "Hero_Magnataur.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_dragon" then sound = "Hero_Magnataur.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_igor" then sound = "hero_Crystal.attack" end
-    if self:GetParent():GetUnitName() == "neutral_frostbitten" then sound = "Hero_DarkSeer.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_crocodile" then sound = "Hero_Slardar.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_basic_chameleon" then sound = "Hero_Meepo.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_basic_chameleon_b" then sound = "Hero_Meepo.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_basic_crocodilian" then sound = "Hero_Slardar.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_basic_crocodilian_b" then sound = "Hero_Slardar.Attack" end
-    if self:GetParent():GetUnitName() == "neutral_basic_gargoyle" then sound = "Hero_LoneDruid.ProjectileImpact" end
-    if self:GetParent():GetUnitName() == "neutral_basic_gargoyle_b" then sound = "Hero_LoneDruid.ProjectileImpact" end
+    if self.unit:GetUnitName() == "neutral_lamp" then sound = "Hero_Spirit_Breaker.Attack" end
+    if self.unit:GetUnitName() == "neutral_skydragon" then sound = "Hero_Magnataur.Attack" end
+    if self.unit:GetUnitName() == "neutral_dragon" then sound = "Hero_Magnataur.Attack" end
+    if self.unit:GetUnitName() == "neutral_igor" then sound = "hero_Crystal.attack" end
+    if self.unit:GetUnitName() == "neutral_frostbitten" then sound = "Hero_DarkSeer.Attack" end
+    if self.unit:GetUnitName() == "neutral_crocodile" then sound = "Hero_Slardar.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_chameleon" then sound = "Hero_Meepo.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_chameleon_b" then sound = "Hero_Meepo.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_crocodilian" then sound = "Hero_Slardar.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_crocodilian_b" then sound = "Hero_Slardar.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle" then sound = "Hero_LoneDruid.ProjectileImpact" end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle_b" then sound = "Hero_LoneDruid.ProjectileImpact" end
 
-	if IsServer() then self:GetParent():EmitSound(sound) end
+	if IsServer() then self.unit:EmitSound(sound) end
 end
 
 function _modifier__ai:GetAttackSound(keys)
@@ -175,7 +180,7 @@ function _modifier__ai:GetAttackSound(keys)
 end
 
 function _modifier__ai:OnHealReceived(keys)
-    if keys.unit ~= self:GetParent() then return end
+    if keys.unit ~= self.unit then return end
     if keys.inflictor == nil then return end
     if keys.gain < 1 then return end
 
@@ -183,7 +188,7 @@ function _modifier__ai:OnHealReceived(keys)
 end
 
 function _modifier__ai:OnTakeDamage(keys)
-    if keys.unit ~= self:GetParent() then return end
+    if keys.unit ~= self.unit then return end
     if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
 
     local efx = nil
@@ -199,16 +204,16 @@ function _modifier__ai:OnTakeDamage(keys)
     end
 
     if efx == nil then return end
-    SendOverheadEventMessage(nil, efx, self:GetParent(), keys.damage, self:GetParent())
+    SendOverheadEventMessage(nil, efx, self.unit, keys.damage, self.unit)
 end
 
 function _modifier__ai:PopupCustom(damage, color)
-	local pidx = ParticleManager:CereateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     local digits = 1
-	if damage < 10 then digits = 1 end
-    if damage > 9 and damage < 100 then digits = 2 end
-    if damage > 99 and damage < 1000 then digits = 3 end
-    if damage > 999 then digits = 4 end
+	if damage < 10 then digits = 2 end
+    if damage > 9 and damage < 100 then digits = 3 end
+    if damage > 99 and damage < 1000 then digits = 4 end
+    if damage > 999 then digits = 5 end
 
     ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
     ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))

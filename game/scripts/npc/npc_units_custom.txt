@@ -13,7 +13,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"3"
+			//"ModelScale" 				"3"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -97,7 +97,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"		"soundevents/game_sounds_creeps.vsndevts"
 			"Level"							"1"
-			"ModelScale" 				"3"
+			//"ModelScale" 				"3"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -265,7 +265,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"1.4"
+			//"ModelScale" 				"1.4"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -377,7 +377,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"1"
+			//"ModelScale" 				"1"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -455,7 +455,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"2.5"
+			//"ModelScale" 				"2.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -533,29 +533,29 @@
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"6"
-			"ModelScale" 				"1.5"
+			"Level"						"20"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
 			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					"_neutral_lamp"		// Ability 2
-			"Ability3"					"stun_hits"			// Ability 3
-			"Ability4"					"lifesteal"			// Ability 4
-			"Ability5"					"spike_armor"		// Ability 5
+			"Ability2"					""		// Ability 2
+			"Ability3"					""			// Ability 3
+			"Ability4"					""			// Ability 4
+			"Ability5"					""		// Ability 5
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"15"			// Physical protection.
-			"MagicalResistance"        	"0"
+			"ArmorPhysical"				"30"			// Physical protection.
+			"MagicalResistance"        	"40"
 
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"120"		// Damage range min.
-			"AttackDamageMax"			"150"		// Damage range max.
-			"AttackRate"				"1.2"		// Speed of attack.
-			"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+			"AttackDamageMin"			"250"		// Damage range min.
+			"AttackDamageMax"			"275"		// Damage range max.
+			"AttackRate"				"1.7"		// Speed of attack.
+			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"150"		// Range within a target can be attacked.
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
@@ -563,26 +563,26 @@
 
 			// Bounds
 			//----------------------------------------------------------------
-			"RingRadius"				"40"
-			"HealthBarOffset"			"170"
+			"RingRadius"				"140"
+			"HealthBarOffset"			"450"
 
 			// Bounty
 			//----------------------------------------------------------------
 			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"70"	// Gold earned min.
-			"BountyGoldMax"				"80"		// Gold earned max.
+			"BountyGoldMin"				"0"	// Gold earned min.
+			"BountyGoldMax"				"0"		// Gold earned max.
 
 			// Movement
 			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"375"		// Speed.			
+			"MovementSpeed"				"250"		// Speed.			
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"900"		// Base health.
-			"StatusHealthRegen"			"1"			// Health regeneration rate.
-			"StatusMana"				"450"			// Base mana.
-			"StatusManaRegen"			"3"		// Mana regeneration rate.		 
+			"StatusHealth"				"9999"		// Base health.
+			"StatusHealthRegen"			"20"			// Health regeneration rate.
+			"StatusMana"				"900"			// Base mana.
+			"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
@@ -621,7 +621,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"6"
-			"ModelScale" 				"1.5"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -707,7 +707,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"6"
-			"ModelScale" 				"1"
+			//"ModelScale" 				"1"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -793,7 +793,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"ModelScale" 				"0.5"
+			//"ModelScale" 				"0.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -878,7 +878,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"5"
-			"ModelScale" 				"1.2"
+			//"ModelScale" 				"1.2"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -963,7 +963,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"4"
-			"ModelScale" 				"1"
+			//"ModelScale" 				"1"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1049,7 +1049,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"4"
-			"ModelScale" 				"1.5"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1134,7 +1134,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"3"
-			"ModelScale" 				"0.8"
+			//"ModelScale" 				"0.8"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1219,7 +1219,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"4"
-			"ModelScale" 				"1.5"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1305,7 +1305,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"1.2"
+			//"ModelScale" 				"1.2"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1390,7 +1390,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"1"
+			//"ModelScale" 				"1"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1475,7 +1475,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"ModelScale" 				"1.5"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1560,7 +1560,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"ModelScale" 				"1.5"
+			//"ModelScale" 				"1.5"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1645,7 +1645,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"ModelScale" 				"1"
+			//"ModelScale" 				"1"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -1730,7 +1730,7 @@
 			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"ModelScale" 				"0.8"
+			//"ModelScale" 				"0.8"
 
 			// Abilities
 			//----------------------------------------------------------------
