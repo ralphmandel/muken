@@ -100,6 +100,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         self.origin = caster:GetOrigin()
+        self.location = nil
 
         local name = ""
         local distance = self:GetCastRange(point, nil)
@@ -138,15 +139,15 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_2__root:OnProjectileThink(vLocation)
         local caster = self:GetCaster()
         local grasp_duration = self:GetSpecialValueFor("grasp_duration")
-        local distance = 50
 
         if self.location == nil then
             self.location = vLocation
-        else
-            distance = (vLocation - self.location):Length2D()
         end
 
-        if distance >= 50 then
+        local distance = (vLocation - self.location):Length2D()
+        print("distance", distance)
+
+        if distance >= self:GetAOERadius() then
             CreateModifierThinker(
                 caster, self, "druid_2_modifier_aura", {duration = grasp_duration},
                 self:RandomizeLocation(vLocation), caster:GetTeamNumber(), false
@@ -164,7 +165,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     end
 
     function druid_2__root:RandomizeLocation(point)
-        local distance = RandomInt(-100, 100)
+        local distance = RandomInt(-200, 200)
         local cross = CrossVectors(self.origin - point, Vector(0, 0, 1)):Normalized() * distance
         return point + cross
     end
