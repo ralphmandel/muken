@@ -28,24 +28,6 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_neutral_spider:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
-	}
-
-	return funcs
-end
-
-function _modifier_neutral_spider:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-	if IsServer() then self.parent:EmitSound("Hero_Broodmother.Attack") end
-end
-
-function _modifier_neutral_spider:GetAttackSound(keys)
-    return ""
-end
-
 function _modifier_neutral_spider:OnIntervalThink()
 	local target = self.parent:GetAggroTarget()
 	if target == nil then return end

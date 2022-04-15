@@ -25,6 +25,7 @@ function _modifier__ai:OnCreated(params)
         self.unit = self:GetParent() 
         Timers:CreateTimer((0.2), function()
 			self.spawnPos = self.unit:GetOrigin()
+            self:ChangeModelScale()
 		end)
 
         -- Set state -> action mapping
@@ -159,6 +160,7 @@ end
 function _modifier__ai:OnAttackLanded(keys)
 	if keys.attacker ~= self.unit then return end
     local sound = ""
+    if self.unit:GetUnitName() == "neutral_spider" then sound = "hero_viper.projectileImpact" end
     if self.unit:GetUnitName() == "neutral_lamp" then sound = "Hero_Spirit_Breaker.Attack" end
     if self.unit:GetUnitName() == "neutral_skydragon" then sound = "Hero_Magnataur.Attack" end
     if self.unit:GetUnitName() == "neutral_dragon" then sound = "Hero_Magnataur.Attack" end
@@ -206,6 +208,24 @@ function _modifier__ai:OnTakeDamage(keys)
     if efx == nil then return end
     SendOverheadEventMessage(nil, efx, self.unit, keys.damage, self.unit)
 end
+
+function _modifier__ai:ChangeModelScale()
+    if self.unit:GetUnitName() == "neutral_spider" then self.unit:SetModelScale(1) end
+    if self.unit:GetUnitName() == "neutral_lamp" then self.unit:SetModelScale(1.4) end
+    if self.unit:GetUnitName() == "neutral_skydragon" then self.unit:SetModelScale(1) end
+    if self.unit:GetUnitName() == "neutral_dragon" then self.unit:SetModelScale(0.9) end
+    if self.unit:GetUnitName() == "neutral_igor" then self.unit:SetModelScale(1.5) end
+    if self.unit:GetUnitName() == "neutral_frostbitten" then self.unit:SetModelScale(0.9) end
+    if self.unit:GetUnitName() == "neutral_crocodile" then self.unit:SetModelScale(1.4) end
+    if self.unit:GetUnitName() == "neutral_basic_chameleon" then self.unit:SetModelScale(1) end
+    if self.unit:GetUnitName() == "neutral_basic_chameleon_b" then self.unit:SetModelScale(0.9) end
+    if self.unit:GetUnitName() == "neutral_basic_crocodilian" then self.unit:SetModelScale(1.3) end
+    if self.unit:GetUnitName() == "neutral_basic_crocodilian_b" then self.unit:SetModelScale(1.3) end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle" then self.unit:SetModelScale(1) end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle_b" then self.unit:SetModelScale(0.8) end
+end
+
+-------------------------------------------------------------
 
 function _modifier__ai:PopupCustom(damage, color)
 	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)

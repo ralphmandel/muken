@@ -23,7 +23,7 @@ function druid_1_modifier_channel:OnCreated(kv)
 
 	if think < 0 then
 		local rate = 1 / (time / 1.65 )
-		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST4_STATUE, rate)
+		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, rate)
 		return
 	end
 
@@ -36,7 +36,7 @@ end
 
 function druid_1_modifier_channel:OnRemoved(kv)
 	self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
-	self.parent:FadeGesture(ACT_DOTA_CAST4_STATUE)
+	self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
 
 	local mod_efx = self.parent:FindModifierByName("druid__modifier_effect")
 	if mod_efx then mod_efx:ChangeActivity("when_nature_attacks") end
@@ -57,6 +57,6 @@ end
 
 function druid_1_modifier_channel:OnIntervalThink()
 	self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
-	self.parent:StartGesture(ACT_DOTA_CAST4_STATUE)
+	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 	self:StartIntervalThink(-1)
 end

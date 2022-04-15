@@ -40,6 +40,8 @@ function _modifier_root:OnCreated(kv)
 	elseif effect == 4 then
 		path = "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf"
 		--self.sound = "Hero_Treant.Overgrowth.Target"
+	elseif effect == 5 then
+		path = "particles/druid/druid_skill2_roots.vpcf"
 	end
 		
 
@@ -48,6 +50,9 @@ end
 
 function _modifier_root:OnRemoved(kv)
 	ParticleManager:DestroyParticle(self.particle, false)
+
+	local druid_root = self.parent:FindModifierByName("druid_2_modifier_aura_effect")
+	if druid_root then druid_root:StartIntervalThink(3) end
 end
 --------------------------------------------------------------------------------
 

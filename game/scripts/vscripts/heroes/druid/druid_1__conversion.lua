@@ -131,6 +131,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
         local damage = self:GetSpecialValueFor("damage")
+        local cd_red_lvl = self:GetSpecialValueFor("cd_red_lvl") * 0.01
         local extra_hp = 0
 
         self:PlayEfxEnd(bInterrupted)
@@ -142,7 +143,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             return
         end
 
-        self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
+        local cooldown_reduction = 0
 
         -- UP 1.31
 	    if self:GetRank(31) then
@@ -164,16 +165,17 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         for _,neutral in pairs(neutrals) do
             local chance = self:CalcChance(neutral:GetLevel())
-            if neutral:GetUnitName() ~= "summon_spiders"
+            if neutral:GetUnitName() ~= "summoner_spider"
             and neutral:HasModifier("druid_1_modifier_failed") == false
             and neutral:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
                 if RandomInt(1, 10000) <= chance * 100 then
                     neutral:Purge( false, true, false, false, false )
                     neutral:AddNewModifier(caster, self, "druid_1_modifier_conversion", {
-                        duration = self:CalcStatus(duration, caster, neutral),
+                        duration = self:CalcStatus(duration, caster, nil),
                         extra_hp = extra_hp
                     })
                 else
+                    cooldown_reduction = cooldown_reduction + (neutral:GetLevel() * cd_red_lvl)
                     damageTable.victim = neutral
                     ApplyDamage(damageTable)
                     if neutral:IsAlive() then
@@ -182,10 +184,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 end
             end
         end
+
+        self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()) * (1 - cooldown_reduction))
     end
 
     function druid_1__conversion:CalcChance(level)
-        level = level - 1
         local chance = self:GetSpecialValueFor("chance")
         local chance_lvl = self:GetSpecialValueFor("chance_lvl")
         local chance_bonus = self:GetSpecialValueFor("chance_bonus")

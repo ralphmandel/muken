@@ -51,7 +51,6 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 end
 
 function dasdingo_1_modifier_heal_effect:OnRefresh(kv)
-	print("refresh")
 end
 
 function dasdingo_1_modifier_heal_effect:OnRemoved(kv)

@@ -1,5 +1,7 @@
 druid_2__root = class({})
-LinkLuaModifier("druid_2_modifier_root", "heroes/druid/druid_2_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_2_modifier_aura", "heroes/druid/druid_2_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_2_modifier_aura_effect", "heroes/druid/druid_2_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,6 +98,125 @@ LinkLuaModifier("druid_2_modifier_root", "heroes/druid/druid_2_modifier_root", L
 
     function druid_2__root:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+
+        local name = ""
+        local distance = self:GetCastRange(point, nil)
+        local radius = self:GetAOERadius()
+        local speed = self:GetSpecialValueFor("speed")
+        local flag = DOTA_UNIT_TARGET_FLAG_NONE
+
+        local direction = point - caster:GetOrigin()
+        direction.z = 0
+        direction = direction:Normalized()
+
+        local info = {
+            Source = caster,
+            Ability = self,
+            vSpawnOrigin = caster:GetAbsOrigin(),
+            
+            bDeleteOnHit = true,
+            
+            iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+            iUnitTargetFlags = flag,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            
+            EffectName = name,
+            fDistance = distance,
+            fStartRadius = radius,
+            fEndRadius = radius,
+            vVelocity = direction * speed,
+            bProvidesVision = true,
+            iVisionRadius = radius + 50,
+            iVisionTeamNumber = caster:GetTeamNumber()
+        }
+
+        ProjectileManager:CreateLinearProjectile(info)
+    end
+
+    function druid_2__root:OnProjectileThink(vLocation)
+        local caster = self:GetCaster()
+        local grasp_duration = self:GetSpecialValueFor("grasp_duration")
+        local distance = 50
+
+        if self.location == nil then
+            self.location = vLocation
+        else
+            distance = (vLocation - self.location):Length2D()
+        end
+
+        if distance >= 50 then
+            CreateModifierThinker(
+                caster, self, "druid_2_modifier_aura", {duration = grasp_duration},
+                self:RandomizeLocation(vLocation), caster:GetTeamNumber(), false
+            )
+            self.location = vLocation
+        end
+    end
+
+    function druid_2__root:GetCastRange(vLocation, hTarget)
+        return self:GetSpecialValueFor("distance")
+    end
+
+    function druid_2__root:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
+    end
+
+    function druid_2__root:RandomizeLocation(point)
+        local range_max = 50
+        local random_x
+        local random_y
+    
+        if self.quarter == nil then self.quarter = 1 end
+        self.quarter = self.quarter + 1
+        if self.quarter == 5 then self.quarter = 1 end
+
+
+        if self.quarter == 1 then
+            random_x = RandomInt(25, range_max)
+            if random_x > 0 then
+                random_y = -range_max
+            else
+                random_y = -range_max
+            end
+        elseif self.quarter == 2 then
+            random_x = RandomInt(-range_max, -25)
+            if random_x > 0 then
+                random_y = range_max
+            else
+                random_y = range_max
+            end
+        elseif self.quarter == 3 then
+            random_y = RandomInt(25, range_max)
+            if random_y > 0 then
+                random_x = -range_max
+            else
+                random_x = -range_max
+            end
+        elseif self.quarter == 4 then
+            random_y = RandomInt(-range_max, -25)
+            if random_y > 0 then
+                random_x = range_max
+            else
+                random_x = range_max
+            end
+        end
+    
+        local x = self:CalculateAngle(random_x, random_y)
+        local y = self:CalculateAngle(random_y, random_x)
+        point.x = point.x + x
+        point.y = point.y + y
+    
+        return point
+    end
+    
+    function druid_2__root:CalculateAngle(a, b)
+        if a < 0 then
+            if b > 0 then b = -b end
+        else
+            if b < 0 then b = -b end
+        end
+        return a - math.floor(b/4)
     end
 
 -- EFFECTS

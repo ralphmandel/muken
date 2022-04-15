@@ -25,14 +25,15 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 
 	-- UP 1.31
 	if self.ability:GetRank(31) then
-		self.magic_immunity = true
-		self:PlayEfxBKB()
+		self.incoming = 10
+		self.gain = 1
 	end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
-		self.incoming = 20
-		self.gain = 1
+		self.parent:Purge(false, true, false, false, false)
+		self.magic_immunity = true
+		self:PlayEfxBKB()
 	end
 
 	-- UP 1.42
@@ -61,14 +62,15 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 
 	-- UP 1.31
 	if self.ability:GetRank(31) then
-		self.magic_immunity = true
-		self:PlayEfxBKB()
+		self.incoming = 10
+		self.gain = 1
 	end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
-		self.incoming = 20
-		self.gain = 1
+		self.parent:Purge(false, true, false, false, false)
+		self.magic_immunity = true
+		self:PlayEfxBKB()
 	end
 
 	-- UP 1.42

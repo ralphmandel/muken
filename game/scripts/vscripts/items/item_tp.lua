@@ -18,10 +18,14 @@ function item_tp:OnSpellStart()
 	local end_pfx_name = "particles/items2_fx/teleport_end.vpcf"
 	self.location = self:RandomizePlayerSpawn(caster)
 
+	self.gesture = ACT_DOTA_TELEPORT
+	if caster:GetUnitName() == "npc_dota_hero_furion" then
+		self.gesture = ACT_DOTA_GENERIC_CHANNEL_1
+	end
+
+	caster:StartGesture(self.gesture)
 	self:EndCooldown()
 	self:SetActivated(false)
-
-	caster:StartGesture(ACT_DOTA_TELEPORT)
 	EmitSoundOn("Portal.Loop_Disappear", caster)
 
 	self.start_pfx = ParticleManager:CreateParticle(start_pfx_name, PATTACH_WORLDORIGIN, caster)
@@ -63,12 +67,11 @@ end
 function item_tp:OnChannelFinish( bInterrupted )
 	local caster = self:GetCaster()
 	self:SetActivated(true)
+	caster:FadeGesture(self.gesture)
 
 	if bInterrupted then -- unsuccessful
-		caster:FadeGesture(ACT_DOTA_TELEPORT)
 		self:StartCooldown(5)
 	else -- successful
-		caster:FadeGesture(ACT_DOTA_TELEPORT)
 		caster:StartGesture(ACT_DOTA_TELEPORT_END)
 		self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
 

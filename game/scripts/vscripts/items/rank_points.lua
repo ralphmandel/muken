@@ -48,7 +48,7 @@ end
 function rank_points:OnTakeDamage(keys)
 	if self.parent:IsIllusion() then return end
 	if keys.unit ~= self.parent then return end
-	self.ability:StartCooldown(5)
+	if self.ability:GetCooldownTimeRemaining() < 5 then self.ability:StartCooldown(5) end
 end
 
 function rank_points:OnIntervalThink()

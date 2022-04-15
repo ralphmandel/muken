@@ -245,7 +245,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityManaCost"         		"25"
+		"AbilityManaCost"         		"35"
 
 		"AbilitySpecial"
 		{
@@ -341,12 +341,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"20"
+				"damage"				"30"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"10"
+				"armor_reduction"		"12"
 			}
 		}
 	}
