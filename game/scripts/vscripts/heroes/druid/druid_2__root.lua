@@ -99,6 +99,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_2__root:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
+        self.origin = caster:GetOrigin()
 
         local name = ""
         local distance = self:GetCastRange(point, nil)
@@ -163,60 +164,9 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     end
 
     function druid_2__root:RandomizeLocation(point)
-        local range_max = 50
-        local random_x
-        local random_y
-    
-        if self.quarter == nil then self.quarter = 1 end
-        self.quarter = self.quarter + 1
-        if self.quarter == 5 then self.quarter = 1 end
-
-
-        if self.quarter == 1 then
-            random_x = RandomInt(25, range_max)
-            if random_x > 0 then
-                random_y = -range_max
-            else
-                random_y = -range_max
-            end
-        elseif self.quarter == 2 then
-            random_x = RandomInt(-range_max, -25)
-            if random_x > 0 then
-                random_y = range_max
-            else
-                random_y = range_max
-            end
-        elseif self.quarter == 3 then
-            random_y = RandomInt(25, range_max)
-            if random_y > 0 then
-                random_x = -range_max
-            else
-                random_x = -range_max
-            end
-        elseif self.quarter == 4 then
-            random_y = RandomInt(-range_max, -25)
-            if random_y > 0 then
-                random_x = range_max
-            else
-                random_x = range_max
-            end
-        end
-    
-        local x = self:CalculateAngle(random_x, random_y)
-        local y = self:CalculateAngle(random_y, random_x)
-        point.x = point.x + x
-        point.y = point.y + y
-    
-        return point
-    end
-    
-    function druid_2__root:CalculateAngle(a, b)
-        if a < 0 then
-            if b > 0 then b = -b end
-        else
-            if b < 0 then b = -b end
-        end
-        return a - math.floor(b/4)
+        local distance = RandomInt(-100, 100)
+        local cross = CrossVectors(self.origin - point, Vector(0, 0, 1)):Normalized() * distance
+        return point + cross
     end
 
 -- EFFECTS
