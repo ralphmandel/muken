@@ -19,6 +19,14 @@ function druid_2_modifier_aura_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.drain = false
+
+	-- UP 2.41
+	if self.ability:GetRank(41) then
+		self.drain = true
+		self:DrainHealth()
+	end
+
 	if IsServer() then
 		self:CheckRootState()
 	end
@@ -28,6 +36,7 @@ function druid_2_modifier_aura_effect:OnRefresh(kv)
 end
 
 function druid_2_modifier_aura_effect:OnRemoved(kv)
+	self.drain = false
 end
 
 -----------------------------------------------------------
@@ -56,6 +65,19 @@ function druid_2_modifier_aura_effect:CheckRootState()
 	--     ability = self
 	-- }
 	-- ApplyDamage(damageTable)
+end
+
+function druid_2_modifier_aura_effect:DrainHealth()
+	if self.parent == nil then return end
+	if IsValidEntity(self.parent) == false then return end
+	if self.parent:IsAlive() == false then return end
+	if self.drain == false then return end
+
+	Timers:CreateTimer((0.1), function()
+		local iDesiredHealthValue = self.parent:GetHealth() - (self.parent:GetMaxHealth() * 0.005)
+		self.parent:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
+		self:DrainHealth()
+	end)
 end
 
 function druid_2_modifier_aura_effect:OnIntervalThink()

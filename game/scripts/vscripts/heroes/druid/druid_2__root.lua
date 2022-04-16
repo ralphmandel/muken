@@ -96,10 +96,26 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function druid_2__root:OnAbilityPhaseStart()
+        if IsServer() then
+            self:GetCaster():EmitSound("Druid.Root.Cast")
+            self:GetCaster():EmitSound("Hero_EarthShaker.Whoosh")
+        end
+        return true
+    end
+
+    function druid_2__root:OnAbilityPhaseInterrupted()
+        if IsServer() then
+            self:GetCaster():StopSound("Druid.Root.Cast")
+            self:GetCaster():StopSound("Hero_EarthShaker.Whoosh")
+        end
+    end
+
     function druid_2__root:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         self.origin = caster:GetOrigin()
+        self.bramble_duration = self:GetSpecialValueFor("bramble_duration")
         self.location = nil
 
         local name = ""
@@ -111,6 +127,11 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
+
+        -- UP 2.41
+        if self:GetRank(41) then
+            self.bramble_duration = self.bramble_duration + 10
+        end
 
         local info = {
             Source = caster,
@@ -134,22 +155,22 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         }
 
         ProjectileManager:CreateLinearProjectile(info)
+        self:PlayEfxStart()
+        if IsServer() then caster:EmitSound("Hero_EarthShaker.EchoSlamSmall") end
     end
 
     function druid_2__root:OnProjectileThink(vLocation)
         local caster = self:GetCaster()
-        local grasp_duration = self:GetSpecialValueFor("grasp_duration")
 
         if self.location == nil then
             self.location = vLocation
         end
 
         local distance = (vLocation - self.location):Length2D()
-        print("distance", distance)
 
-        if distance >= self:GetAOERadius() then
+        if distance >= self:GetAOERadius() / 3 then
             CreateModifierThinker(
-                caster, self, "druid_2_modifier_aura", {duration = grasp_duration},
+                caster, self, "druid_2_modifier_aura", {duration = self.bramble_duration},
                 self:RandomizeLocation(vLocation), caster:GetTeamNumber(), false
             )
             self.location = vLocation
@@ -165,9 +186,16 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     end
 
     function druid_2__root:RandomizeLocation(point)
-        local distance = RandomInt(-200, 200)
+        local distance = RandomInt(-self:GetAOERadius(), self:GetAOERadius())
         local cross = CrossVectors(self.origin - point, Vector(0, 0, 1)):Normalized() * distance
         return point + cross
     end
 
 -- EFFECTS
+
+    function druid_2__root:PlayEfxStart()
+        local caster = self:GetCaster()
+        local string = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+    end

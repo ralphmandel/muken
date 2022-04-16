@@ -41,7 +41,8 @@ function _modifier_root:OnCreated(kv)
 		path = "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf"
 		--self.sound = "Hero_Treant.Overgrowth.Target"
 	elseif effect == 5 then
-		path = "particles/druid/druid_skill2_roots.vpcf"
+		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
+		self.sound = "Druid.Root"
 	end
 		
 

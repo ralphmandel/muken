@@ -50,7 +50,7 @@ end
 -----------------------------------------------------------
 
 function druid_2_modifier_aura:PlayEfxStart()
-	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetAOERadius(), self:GetDuration(), false)
+	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetAOERadius() + 50, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_skill2_ground_root.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
@@ -58,5 +58,5 @@ function druid_2_modifier_aura:PlayEfxStart()
     ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, 0, 0 ))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
     
-	--if IsServer() then self.parent:EmitSound("Hero_Enchantress.EnchantCast") end
+	if IsServer() then self.parent:EmitSound("Druid.Bramble_" .. RandomInt(1, 3)) end
 end

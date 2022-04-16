@@ -148,7 +148,7 @@
 		"AbilityCastPoint"       		"0.5"
 
 		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240 252 264"
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
@@ -169,13 +169,13 @@
 			}
             "04"
 			{
-				"var_type"      "FIELD_FLOAT"
-				"grasp_duration""3"
+				"var_type"          "FIELD_FLOAT"
+				"bramble_duration"  "5"
 			}
             "05"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"root_duration"	"3"
+				"var_type"		    "FIELD_FLOAT"
+				"root_duration"	    "3"
 			}
 			"15"
 			{

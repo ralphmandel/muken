@@ -635,6 +635,7 @@ function BattleArena:OnUnitKilled(args)
 	end
 
 	if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+		if IsServer() then unit:EmitSound("Creature.Kill") end
 		for _,spot in pairs(self.spots) do
 			for i = #spot[1], 1, -1 do
 				local neutral = spot[1][i]

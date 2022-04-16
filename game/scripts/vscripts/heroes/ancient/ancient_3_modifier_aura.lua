@@ -185,7 +185,10 @@ function ancient_3_modifier_aura:PlayEfxStart()
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin())
 
-	if IsServer() then self.parent:EmitSound("Ancient.Aura.Layer") end
+	if IsServer() then
+		self.parent:EmitSound("Ancient.Aura.Layer")
+		self.parent:EmitSound("Hero_EarthShaker.Totem.Attack.Immortal.Layer")
+	end
 end
 
 function ancient_3_modifier_aura:PlayEfxBuff()

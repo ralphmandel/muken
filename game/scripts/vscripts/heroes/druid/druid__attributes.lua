@@ -285,5 +285,6 @@ require("talent_tree")
 
 --PRECACHE
 	function druid__attributes:Precache(context)
-		
+		PrecacheResource("soundfile", "soundevents/soundevent_druid.vsndevts", context)
+		PrecacheResource("particle", "", context)
 	end
