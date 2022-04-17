@@ -52,10 +52,12 @@ function druid_2_modifier_aura_effect:CheckRootState()
 
 	local root_duration = self.ability:GetSpecialValueFor("root_duration")
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-		duration = self.ability:CalcStatus(root_duration, self.caster, self.parent),
-		effect = 5
-	})
+	if self.parent:HasModifier("_modifier_root") == false then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
+			duration = self.ability:CalcStatus(root_duration, self.caster, self.parent),
+			effect = 5
+		})
+	end
 
 	-- local damageTable = {
 	--     victim = target,

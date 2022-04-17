@@ -43,8 +43,10 @@ function _modifier_root:OnCreated(kv)
 	elseif effect == 5 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
 		self.sound = "Druid.Root"
+	elseif effect == 6 then
+		path = "particles/druid/druid_skill2_roots.vpcf"
+		self.sound = "Hero_Treant.Overgrowth.Target"
 	end
-		
 
 	self:PlayEfxStart(path)
 end
@@ -53,7 +55,8 @@ function _modifier_root:OnRemoved(kv)
 	ParticleManager:DestroyParticle(self.particle, false)
 
 	local druid_root = self.parent:FindModifierByName("druid_2_modifier_aura_effect")
-	if druid_root then druid_root:StartIntervalThink(3) end
+	if self.ability == nil then return end
+	if druid_root and self.ability:GetAbilityName() == "druid_2__root" then druid_root:StartIntervalThink(3) end
 end
 --------------------------------------------------------------------------------
 

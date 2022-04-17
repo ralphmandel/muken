@@ -133,6 +133,32 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
             self.bramble_duration = self.bramble_duration + 10
         end
 
+        -- UP 2.42
+        if self:GetRank(42) then
+            local damageTable = {
+                --victim = target,
+                attacker = caster,
+                damage = RandomInt(150, 175),
+                damage_type = DAMAGE_TYPE_MAGICAL,
+                ability = self
+            }
+
+            local enemies = FindUnitsInRadius(
+                caster:GetTeamNumber(), caster:GetOrigin(), nil, 500,
+                DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                16, 0, false
+            )
+    
+            for _,enemy in pairs(enemies) do
+                enemy:AddNewModifier(caster, self, "_modifier_root", {
+                    duration = self:CalcStatus(2, caster, enemy),
+                    effect = 6
+                })
+                damageTable.victim = enemy
+                ApplyDamage(damageTable)
+            end
+        end
+
         local info = {
             Source = caster,
             Ability = self,
@@ -156,7 +182,6 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         ProjectileManager:CreateLinearProjectile(info)
         self:PlayEfxStart()
-        if IsServer() then caster:EmitSound("Hero_EarthShaker.EchoSlamSmall") end
     end
 
     function druid_2__root:OnProjectileThink(vLocation)
@@ -195,7 +220,14 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
     function druid_2__root:PlayEfxStart()
         local caster = self:GetCaster()
-        local string = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+        local string = "particles/druid/druid_skill2_overgrowth.vpcf"
+
+        -- UP 2.42
+        if self:GetRank(42) then
+            string = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+        end
+
         local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, caster)
         ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+        if IsServer() then caster:EmitSound("Hero_EarthShaker.EchoSlamSmall") end
     end
