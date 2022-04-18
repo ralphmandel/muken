@@ -1,6 +1,8 @@
 druid_2__root = class({})
+LinkLuaModifier("druid_2_modifier_passive", "heroes/druid/druid_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_2_modifier_aura", "heroes/druid/druid_2_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_2_modifier_aura_effect", "heroes/druid/druid_2_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_2_modifier_armor", "heroes/druid/druid_2_modifier_armor", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -96,6 +98,10 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function druid_2__root:GetIntrinsicModifierName()
+        return "druid_2_modifier_passive"
+    end
+
     function druid_2__root:OnAbilityPhaseStart()
         if IsServer() then
             self:GetCaster():EmitSound("Druid.Root.Cast")
@@ -127,6 +133,11 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            speed = speed + 600
+        end
 
         -- UP 2.41
         if self:GetRank(41) then
@@ -199,6 +210,21 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
                 self:RandomizeLocation(vLocation), caster:GetTeamNumber(), false
             )
             self.location = vLocation
+
+            -- UP 2.21
+            if self:GetRank(21) then
+                local allies = FindUnitsInRadius(
+                    caster:GetTeamNumber(), vLocation, nil, self:GetAOERadius(),
+                    DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                    0, 0, false
+                )
+        
+                for _,ally in pairs(allies) do
+                    ally:AddNewModifier(caster, self, "druid_2_modifier_armor", {
+                        duration = self:CalcStatus(5, caster, ally)
+                    })
+                end
+            end
         end
     end
 

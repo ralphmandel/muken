@@ -27,24 +27,24 @@ function _modifier_root:OnCreated(kv)
 	self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local effect = kv.effect
+	self.effect = kv.effect
 	self.sound = "Hero_DarkWillow.Bramble.Target.Layer"
 
 	local path
-	if effect == 1 then
+	if self.effect == 1 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
-	elseif effect == 2 then
+	elseif self.effect == 2 then
 		path = "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
-	elseif effect == 3 then
+	elseif self.effect == 3 then
 		path = "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"
-	elseif effect == 4 then
+	elseif self.effect == 4 then
 		path = "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf"
 		--self.sound = "Hero_Treant.Overgrowth.Target"
-	elseif effect == 5 then
+	elseif self.effect == 5 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
 		self.sound = "Druid.Root"
-	elseif effect == 6 then
-		path = "particles/druid/druid_skill2_roots.vpcf"
+	elseif self.effect == 6 then
+		path = "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
 		self.sound = "Hero_Treant.Overgrowth.Target"
 	end
 
@@ -53,10 +53,16 @@ end
 
 function _modifier_root:OnRemoved(kv)
 	ParticleManager:DestroyParticle(self.particle, false)
+	if IsServer() then self.parent:StopSound(self.sound) end
 
 	local druid_root = self.parent:FindModifierByName("druid_2_modifier_aura_effect")
 	if self.ability == nil then return end
-	if druid_root and self.ability:GetAbilityName() == "druid_2__root" then druid_root:StartIntervalThink(3) end
+	
+	if druid_root
+	and self.ability:GetAbilityName() == "druid_2__root"
+	and self.effect == 5 then
+		druid_root:StartIntervalThink(3)
+	end
 end
 --------------------------------------------------------------------------------
 

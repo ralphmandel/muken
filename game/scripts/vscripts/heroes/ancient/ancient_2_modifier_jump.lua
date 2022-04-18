@@ -40,7 +40,7 @@ function ancient_2_modifier_jump:OnCreated( kv )
 		self:Destroy()	
 
         if IsServer() then
-            self.parent:StopSound("Hero_Tiny.Toss.Target")
+            self.parent:StopSound("Ancient.Jump")
             if interrupted then return end
             if self.duration >= 0.6 then self.parent:EmitSound("Ability.TossImpact") end
         end

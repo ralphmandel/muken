@@ -138,7 +138,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
             if self.duration >= 0.6 then
                 Timers:CreateTimer((0.2), function()
-                    if IsServer() then caster:EmitSound("Hero_Tiny.Toss.Target") end
+                    if IsServer() then caster:EmitSound("Ancient.Jump") end
                 end)
             end
 

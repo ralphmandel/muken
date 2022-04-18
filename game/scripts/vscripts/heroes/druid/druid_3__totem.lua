@@ -1,5 +1,6 @@
 druid_3__totem = class({})
 LinkLuaModifier("druid_3_modifier_totem", "heroes/druid/druid_3_modifier_totem", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_3_modifier_totem_effect", "heroes/druid/druid_3_modifier_totem_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,6 +97,28 @@ LinkLuaModifier("druid_3_modifier_totem", "heroes/druid/druid_3_modifier_totem",
 
     function druid_3__totem:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+        local duration = self:GetSpecialValueFor("duration")
+
+        if self.summoned_unit then
+            if IsValidEntity(self.summoned_unit) then
+                self.summoned_unit:RemoveModifierByName("druid_3_modifier_totem")
+            end
+        end
+    
+        self.summoned_unit = CreateUnitByName("druid_totem", point, true, caster, caster, caster:GetTeamNumber())
+        self.summoned_unit:SetControllableByPlayer(caster:GetPlayerID(), false)
+        self.summoned_unit:SetOwner(caster)
+        --self.summoned_unit:AddNoDraw()
+        self.summoned_unit:AddNewModifier(caster, self, "druid_3_modifier_totem", {
+            duration = self:CalcStatus(duration, caster, nil)
+        })
+
+        --if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+    end
+
+    function druid_3__totem:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
 -- EFFECTS

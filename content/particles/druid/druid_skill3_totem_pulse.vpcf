@@ -59,6 +59,7 @@
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusMin = 375.0
 			m_flRadiusMax = 395.0
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -72,6 +73,12 @@
 			_class = "C_INIT_RandomColor"
 			m_ColorMin = [ 151, 198, 0 ]
 			m_ColorMax = [ 95, 192, 0 ]
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1000.0
 		},
 	]
 	m_Operators = 

@@ -82,6 +82,7 @@
 		},
 		{
 			_class = "C_INIT_CreateFromCPs"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -485,6 +486,7 @@
 					m_Stops = [  ]
 				}
 			}
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -496,6 +498,13 @@
 			m_flInputMax = 0.0
 			m_nCPInput = 5
 		},
+		{
+			_class = "C_INIT_RingWave"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
 	]
 	m_Operators = 
 	[
@@ -504,6 +513,9 @@
 		},
 		{
 			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_LerpToInitialPosition"
 		},
 	]
 	m_Renderers = 
@@ -719,7 +731,7 @@
 			m_flAnimationRate = 3.0
 			m_bScaleAnimationRate = true
 			m_nAnimationScaleField = 8
-			m_nAnimationField = 8
+			m_nAnimationField = 33
 		},
 	]
 	m_Children = 

@@ -218,7 +218,6 @@
 		}
 	}
 
-
 	"bocuse_3__sauce"
 	{
 		// General  
@@ -266,7 +265,6 @@
 			}
 		}
 	}
-
 
 	"bocuse_u__mise"
 	{

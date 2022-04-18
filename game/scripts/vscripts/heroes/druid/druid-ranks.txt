@@ -41,20 +41,15 @@
 			"0"
 			{
 				"1"   "druid_2__root_rank_11"
-				"2"   "druid_2__root_rank_12"
-				"3"   "druid_2__root_rank_13"
 			}
 			"1"
 			{
 				"1"   "druid_2__root_rank_21"
 				"2"   "druid_2__root_rank_22"
-				"3"   "druid_2__root_rank_23"
 			}
 			"2"
 			{
 				"1"   "druid_2__root_rank_31"
-				"2"   "druid_2__root_rank_32"
-				"3"   "druid_2__root_rank_33"
 			}
 			"3"
 			{
