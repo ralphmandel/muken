@@ -208,6 +208,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
     function ancient_u__final:OnProjectileHit(target, location)
         if not target then return end
+        if target:IsInvulnerable() then return end
         if target:GetAbsOrigin().z > location.z + 50 then return end
         local caster = self:GetCaster()
         local activity = ACT_DOTA_DISABLED

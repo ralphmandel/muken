@@ -35,8 +35,28 @@ function druid_3_modifier_totem:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.min_health = self.parent:GetMaxHealth()
-	if IsServer() then self:PlayEfxStart() end
+	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
+	self.hits = self.ability:GetSpecialValueFor("hits")
+	self.disable_healing = 0
+
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.movespeed = self.movespeed + 100
+	end
+
+	-- UP 3.12
+	if self.ability:GetRank(12) then
+		self.hits = self.hits + 5
+	end
+
+	Timers:CreateTimer((0.1), function()
+		self.disable_healing = 1
+		self.min_health = self.parent:GetMaxHealth()
+	end)
+
+	if IsServer() then
+		self:PlayEfxStart()
+	end
 end
 
 function druid_3_modifier_totem:OnRefresh(kv)
@@ -47,13 +67,31 @@ function druid_3_modifier_totem:OnRemoved()
 		if self.parent:IsAlive() then
 			self.parent:Kill(self.ability, nil)
 		end
+
+		if IsServer() then
+			self.parent:StopSound("Hero_Juggernaut.HealingWard.Loop")
+			self.parent:EmitSound("Hero_Juggernaut.HealingWard.Stop")
+		end
 	end
 end
 
 --------------------------------------------------------------------------------
 
+function druid_3_modifier_totem:CheckState()
+	local state = {
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true
+	}
+
+	return state
+end
+
 function druid_3_modifier_totem:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
+		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_VISUAL_Z_DELTA,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -63,16 +101,39 @@ function druid_3_modifier_totem:DeclareFunctions()
 	return funcs
 end
 
+function druid_3_modifier_totem:GetModifierExtraHealthBonus()
+    return self.hits - 1
+end
+
+function druid_3_modifier_totem:GetModifierIgnoreMovespeedLimit()
+	return 1
+end
+
+
+function druid_3_modifier_totem:GetModifierMoveSpeed_Limit()
+	return self.movespeed
+end
+
+
+function druid_3_modifier_totem:GetModifierMoveSpeed_AbsoluteMin()
+	return self.movespeed
+end
+
+function druid_3_modifier_totem:GetModifierMoveSpeedOverride()
+	return self.movespeed
+end
+
+
 function druid_3_modifier_totem:GetVisualZDelta(keys)
 	return 100
 end
 
 function druid_3_modifier_totem:GetDisableHealing(keys)
-	return 1
+	return self.disable_healing
 end
 
 function druid_3_modifier_totem:GetMinHealth(keys)
-	return self.min_health
+	return self.min_health or 0
 end
 
 function druid_3_modifier_totem:OnAttackLanded(keys)
@@ -89,4 +150,6 @@ function druid_3_modifier_totem:PlayEfxStart()
 	--ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.ability:GetAOERadius(), 0, 0))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
+
+	if IsServer() then self.parent:EmitSound("Hero_Juggernaut.HealingWard.Loop") end
 end

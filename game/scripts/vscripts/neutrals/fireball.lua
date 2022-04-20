@@ -64,7 +64,6 @@ function fireball:OnSpellStart()
 end
 
 function fireball:OnProjectileHit(hTarget, vLocation)
-
 	if hTarget == nil then return end
 	if hTarget:IsInvulnerable() or hTarget:IsMagicImmune() then return end
 	if hTarget:TriggerSpellAbsorb( self ) then return end

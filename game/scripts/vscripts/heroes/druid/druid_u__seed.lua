@@ -1,5 +1,6 @@
 druid_u__seed = class({})
-LinkLuaModifier("druid_u_modifier_seed", "heroes/druid/druid_u_modifier_seed", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_u_modifier_aura", "heroes/druid/druid_u_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,8 +95,33 @@ LinkLuaModifier("druid_u_modifier_seed", "heroes/druid/druid_u_modifier_seed", L
 
 -- SPELL START
 
-    function druid_u__seed:OnSpellStart()
+    function druid_u__seed:GetIntrinsicModifierName()
+        return "druid_u_modifier_aura"
+    end
+
+    function druid_u__seed:OnProjectileHit(hTarget, vLocation)
+        if not hTarget then return end
+        if hTarget:IsInvulnerable() then return end
+
         local caster = self:GetCaster()
+        local seed_heal = self:GetSpecialValueFor("seed_heal")
+        local mnd = caster:FindModifierByName("_2_MND_modifier")
+        if mnd then seed_heal = seed_heal * mnd:GetHealPower() end
+
+        hTarget:Heal(seed_heal, self)
+        self:PlayEfxHeal(hTarget)
+    end
+
+    function druid_u__seed:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
 -- EFFECTS
+
+    function druid_u__seed:PlayEfxHeal(target)
+        local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+        ParticleManager:ReleaseParticleIndex(effect)
+
+        if IsServer() then target:EmitSound("Druid.Seed.Heal") end
+    end

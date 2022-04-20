@@ -171,6 +171,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         local caster = self:GetCaster()
 
         if target == nil then return end
+        if target:IsInvulnerable() or target:IsMagicImmune() then return end
         if target:HasModifier("icebreaker_0_modifier_freeze") then return end
 
         if self.first_hit == false then

@@ -73,18 +73,14 @@
 			{
 				"1"   "druid_3__totem_rank_21"
 				"2"   "druid_3__totem_rank_22"
-				"3"   "druid_3__totem_rank_23"
 			}
 			"2"
 			{
 				"1"   "druid_3__totem_rank_31"
-				"2"   "druid_3__totem_rank_32"
-				"3"   "druid_3__totem_rank_33"
 			}
 			"3"
 			{
-				"1"   "druid_3__totem_rank_41"
-				"2"   "druid_3__totem_rank_42"
+				"1"   "empty"
 			}
 			"4"
 			{
@@ -97,24 +93,19 @@
 			{
 				"1"   "druid_u__seed_rank_11"
 				"2"   "druid_u__seed_rank_12"
-				"3"   "druid_u__seed_rank_13"
 			}
 			"1"
 			{
 				"1"   "druid_u__seed_rank_21"
-				"2"   "druid_u__seed_rank_22"
-				"3"   "druid_u__seed_rank_23"
 			}
 			"2"
 			{
 				"1"   "druid_u__seed_rank_31"
 				"2"   "druid_u__seed_rank_32"
-				"3"   "druid_u__seed_rank_33"
 			}
 			"3"
 			{
 				"1"   "druid_u__seed_rank_41"
-				"2"   "druid_u__seed_rank_42"
 			}
 			"4"
 			{
