@@ -32,10 +32,6 @@
 			{
 				"1"   "icebreaker_1__frost_rank_41"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"icebreaker_2__discus"
 		{
@@ -58,10 +54,6 @@
 			{
 				"1"   "icebreaker_2__discus_rank_41"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"icebreaker_3__blink"
 		{
@@ -81,10 +73,6 @@
 			"3"
 			{
 				"1"   "icebreaker_3__blink_rank_41"
-			}
-			"4"
-			{
-				"1"   "empty"		
 			}
 		}
 		"icebreaker_u__zero"
@@ -107,10 +95,6 @@
 			{
 				"1"   "icebreaker_u__zero_rank_41"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -124,16 +108,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_x1__skin"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "icebreaker_x1__skin"
-				"2"   "icebreaker_x2__sight"			
+				"1"   "icebreaker_x2__sight"
 			}
 		}
 	}	

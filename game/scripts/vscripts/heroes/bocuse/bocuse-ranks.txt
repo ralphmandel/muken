@@ -33,10 +33,6 @@
 			{
 				"1"   "bocuse_1__julienne_rank_41"//10
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"bocuse_2__flambee"
 		{
@@ -56,10 +52,6 @@
 				"2"   "bocuse_2__flambee_rank_32" //8
 			}
 			"3"
-			{
-				"1"   "empty"
-			}
-			"4"
 			{
 				"1"   "empty"
 			}
@@ -83,10 +75,6 @@
 			{
 				"1"   "bocuse_3__sauce_rank_41" //10
 			}
-			"4"
-			{
-				"1"   "empty"			
-			}
 		}
 		"bocuse_u__mise"
 		{
@@ -109,10 +97,6 @@
 				"1"   "bocuse_u__mise_rank_41" //10
 				"2"   "bocuse_u__mise_rank_42" //11
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -126,16 +110,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bocuse_x1__roux"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "bocuse_x1__roux"
-				"2"   "bocuse_x2__mirepoix"			
+				"1"   "bocuse_x2__mirepoix"			
 			}
 		}
 	}	

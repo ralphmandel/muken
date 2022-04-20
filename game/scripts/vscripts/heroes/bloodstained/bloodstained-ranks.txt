@@ -33,10 +33,6 @@
 				"1"   "bloodstained_1__rage_rank_41"
 				"2"   "bloodstained_1__rage_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"bloodstained_2__bloodsteal"
 		{
@@ -58,10 +54,6 @@
 			{
 				"1"   "bloodstained_2__bloodsteal_rank_41"
 				"2"   "bloodstained_2__bloodsteal_rank_42"
-			}
-			"4"
-			{
-				"1"   "empty"
 			}
 		}
 		"bloodstained_3__curse"
@@ -85,10 +77,6 @@
 			{
 				"1"   "empty"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"bloodstained_u__seal"
 		{
@@ -110,10 +98,6 @@
 			{
 				"1"   "empty"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -127,16 +111,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bloodstained_x1__mirror"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "bloodstained_x1__mirror"
-				"2"   "bloodstained_x2__soulsteal"			
+				"1"   "bloodstained_x2__soulsteal"
 			}
 		}
 	}	

@@ -21,6 +21,12 @@ function druid_u_modifier_aura_effect:OnCreated(kv)
 	self.hp_lost = self.ability:GetSpecialValueFor("hp_lost")
 	self.seed_max = self.ability:GetSpecialValueFor("seed_max")
 
+	-- UP 4.32
+	if self.ability:GetRank(32) then
+		self.hp_lost = self.hp_lost + 50
+		self.seed_max = self.seed_max + 5
+	end
+
 	self.info = {
 		--Target = target,
 		Source = self.parent,
@@ -49,6 +55,7 @@ end
 function druid_u_modifier_aura_effect:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
 	}
 
 	return funcs
@@ -58,6 +65,13 @@ function druid_u_modifier_aura_effect:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 
 	self:SetStackCount(self:GetStackCount() - keys.damage)
+end
+
+function druid_u_modifier_aura_effect:GetModifierConstantHealthRegen()
+	if self:GetCaster() == self:GetParent() then
+		return (100 - self:GetCaster():GetHealthPercent()) * 0.01 * self:GetAbility().regeneration
+	end
+    return (100 - self:GetCaster():GetHealthPercent()) * 0.005 * self:GetAbility().regeneration
 end
 
 function druid_u_modifier_aura_effect:CreateSeed()
@@ -81,6 +95,7 @@ function druid_u_modifier_aura_effect:CreateSeed()
 		end
 
 		if self.info.Target ~= nil then
+			self.info.ExtraData = {damage = 0, source = self.info.Target:entindex()}
 			ProjectileManager:CreateTrackingProjectile(self.info)
 			count = count + 1
 		end

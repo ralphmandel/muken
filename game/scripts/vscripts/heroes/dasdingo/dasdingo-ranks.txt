@@ -33,10 +33,6 @@
 			{
 				"1"   "dasdingo_1__heal_rank_41"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"dasdingo_2__aura"
 		{
@@ -54,10 +50,6 @@
 				"1"   "dasdingo_2__aura_rank_31"
 			}
 			"3"
-			{
-				"1"   "empty"
-			}
-			"4"
 			{
 				"1"   "empty"
 			}
@@ -82,10 +74,6 @@
 				"1"   "dasdingo_3__hex_rank_41"
 				"2"   "dasdingo_3__hex_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"dasdingo_u__maledict"
 		{
@@ -107,10 +95,6 @@
 			{
 				"1"   "dasdingo_u__maledict_rank_41"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -124,16 +108,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "dasdingo_x1__ward"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "dasdingo_x1__ward"
-				"2"   "dasdingo_x2__mana"			
+				"1"   "dasdingo_x2__mana"			
 			}
 		}
 	}	

@@ -85,12 +85,18 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
 			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
 		end
 
+        -- UP 4.31
+        if self:GetRank(31) then
+            self.regeneration = 25
+        end
+
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
     end
 
     function druid_u__seed:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.regeneration = 0
     end
 
 -- SPELL START
@@ -99,14 +105,28 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
         return "druid_u_modifier_aura"
     end
 
-    function druid_u__seed:OnProjectileHit(hTarget, vLocation)
+    function druid_u__seed:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
         if not hTarget then return end
         if hTarget:IsInvulnerable() then return end
+        local source = EntIndexToHScript(ExtraData.source)
+        local damage = ExtraData.damage
 
         local caster = self:GetCaster()
         local seed_heal = self:GetSpecialValueFor("seed_heal")
+
+        -- UP 4.32
+        if self:GetRank(32) then
+            seed_heal = seed_heal + 10
+        end
+
         local mnd = caster:FindModifierByName("_2_MND_modifier")
         if mnd then seed_heal = seed_heal * mnd:GetHealPower() end
+
+        if source:GetTeamNumber() ~= caster:GetTeamNumber() then
+            seed_heal = damage * 0.2
+            local int = caster:FindModifierByName("_1_INT_modifier")
+            if int then seed_heal = seed_heal * (1 + int:GetSpellAmp()) end
+        end
 
         hTarget:Heal(seed_heal, self)
         self:PlayEfxHeal(hTarget)
@@ -121,6 +141,8 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
     function druid_u__seed:PlayEfxHeal(target)
         local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
         local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+        ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
         ParticleManager:ReleaseParticleIndex(effect)
 
         if IsServer() then target:EmitSound("Druid.Seed.Heal") end

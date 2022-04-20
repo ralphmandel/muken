@@ -178,6 +178,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                     cooldown_reduction = cooldown_reduction + (neutral:GetLevel() * cd_red_lvl)
                     damageTable.victim = neutral
                     ApplyDamage(damageTable)
+                    if IsServer() then neutral:EmitSound("Hero_Treant.LeechSeed.Target") end
                     if neutral:IsAlive() then
                         neutral:AddNewModifier(caster, self, "druid_1_modifier_failed", {})
                     end
@@ -224,6 +225,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.radius * 0.1), 0, 0))
 
         self.fow = AddFOWViewer(caster:GetTeamNumber(), self.point, self.radius, 10, true)
+        if IsServer() then caster:EmitSound("Druid.Channel") end
     end
 
     function druid_1__conversion:PlayEfxEnd(bInterrupted)
@@ -231,10 +233,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self.efx_channel then ParticleManager:DestroyParticle(self.efx_channel, false) end
         if self.efx_channel2 then ParticleManager:DestroyParticle(self.efx_channel2, false) end
         RemoveFOWViewer(caster:GetTeamNumber(), self.fow)
+        if IsServer() then caster:StopSound("Druid.Channel") end
 
         if bInterrupted == false then
             local efx = ParticleManager:CreateParticle("particles/druid/druid_skill1_cast_circle_leaf.vpcf", PATTACH_WORLDORIGIN, nil)
             ParticleManager:SetParticleControl(efx, 0, self.point)
             ParticleManager:SetParticleControl(efx, 1, Vector(self.radius, 0, 0))
+            if IsServer() then caster:EmitSound("Druid.Finish") end
         end
     end

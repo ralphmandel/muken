@@ -183,7 +183,71 @@
 						"value"			"0"
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
-					"volume"            { "value"   "0.30000"	}
+					"volume"            { "value"   "0.25000"	}
+				}
+			}
+		}
+	}
+}
+
+"Druid.Channel"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_channel.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"Druid.Finish"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_finish.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.00000"	}
 				}
 			}
 		}

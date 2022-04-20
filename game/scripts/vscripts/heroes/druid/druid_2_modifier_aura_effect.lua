@@ -68,10 +68,8 @@ function druid_2_modifier_aura_effect:OnStateChanged(keys)
 	-- UP 2.22
 	if self.ability:GetRank(22)
 	and keys.unit:IsRooted() then
-		print("nani")
 		self.break_passive = true
 	else
-		print("nani off")
 		self.break_passive = false
 	end
 end

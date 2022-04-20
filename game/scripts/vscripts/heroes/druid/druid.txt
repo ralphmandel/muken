@@ -259,7 +259,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_amp"		"50"
+				"heal_amp"		"25"
 			}
             "03"
 			{
@@ -273,15 +273,20 @@
 			}
             "05"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"seed_max"		"3"
+				"var_type"		    "FIELD_FLOAT"
+				"seed_min_tooltip"	"1"
 			}
             "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"seed_heal"		"15"
+				"seed_max"		"3"
 			}
             "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"seed_heal"		"15"
+			}
+            "08"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"seed_speed"	"300"

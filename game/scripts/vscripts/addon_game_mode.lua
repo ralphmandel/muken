@@ -822,9 +822,9 @@ function BattleArena:OnThink()
 
 		if self.neutral_test == nil then self.neutral_test = true end
 		if IsInToolsMode() and self.neutral_test == true then
-			CreateUnitByName("neutral_basic_chameleon",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-			CreateUnitByName("neutral_basic_chameleon",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-			CreateUnitByName("neutral_basic_chameleon",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 			self.neutral_test = false
 		end
 	end

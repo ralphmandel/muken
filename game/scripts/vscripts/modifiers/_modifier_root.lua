@@ -53,7 +53,6 @@ end
 
 function _modifier_root:OnRemoved(kv)
 	ParticleManager:DestroyParticle(self.particle, false)
-	if IsServer() then self.parent:StopSound(self.sound) end
 
 	local druid_root = self.parent:FindModifierByName("druid_2_modifier_aura_effect")
 	if self.ability == nil then return end
