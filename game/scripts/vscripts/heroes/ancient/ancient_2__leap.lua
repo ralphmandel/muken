@@ -252,7 +252,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
     function ancient_2__leap:GetBehavior()
         if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
         if self:GetCurrentAbilityCharges() == 1 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
         return DOTA_ABILITY_BEHAVIOR_NO_TARGET
     end
     

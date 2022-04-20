@@ -26,6 +26,10 @@ function ancient_u_modifier_passive:OnCreated(kv)
 end
 
 function ancient_u_modifier_passive:OnRefresh(kv)
+	if IsServer() then
+		self:PlayEfxBuff()
+		self:StartIntervalThink(FrameTime())
+	end
 end
 
 function ancient_u_modifier_passive:OnRemoved(kv)
@@ -78,7 +82,7 @@ end
 function ancient_u_modifier_passive:OnIntervalThink()
 	local value = self.parent:GetMana()
 	if self.ability.casting == true then value = 0 end
-	ParticleManager:SetParticleControl(self.effect_caster, 3, Vector(value, 0, 0))
+	if self.effect_caster then ParticleManager:SetParticleControl(self.effect_caster, 3, Vector(value, 0, 0)) end
 
 	if self.parent:GetManaPercent() < self.ability.min_mana then
 		self.ability:SetActivated(false)
@@ -95,8 +99,9 @@ end
 -----------------------------------------------------------
 
 function ancient_u_modifier_passive:PlayEfxBuff()
-	local particle = "particles/ancient/ancient_magic_buff.vpcf"
-	self.effect_caster = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	if self.effect_caster then ParticleManager:DestroyParticle(self.effect_caster, false) end
+
+	self.effect_caster = ParticleManager:CreateParticle("particles/ancient/ancient_magic_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.effect_caster, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_caster, 3, Vector(self.parent:GetMana(), 0, 0))
 	ParticleManager:SetParticleControl(self.effect_caster, 16, Vector(255, 255, 255))

@@ -254,6 +254,12 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         return false
     end
 
+    function ancient_u__final:OnOwnerSpawned()
+        local caster = self:GetCaster()
+        local mod = caster:FindModifierByName("ancient_u_modifier_passive")
+        if mod then mod:PlayEfxBuff() end
+    end
+
     function ancient_u__final:GetCastRange(vLocation, hTarget)
         return self:GetSpecialValueFor("distance") * self:GetCaster():GetMana()
     end

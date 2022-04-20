@@ -23,6 +23,7 @@ function ancient_2_modifier_combo:OnCreated(kv)
 	self.gesture = true
 	self.combo = 2
 
+	self.parent:Hold()
 	self.ability:DoImpact()
 	self:StartIntervalThink(0.5)
 end
