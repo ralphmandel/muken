@@ -37,7 +37,6 @@ function druid_3_modifier_totem:OnCreated(kv)
 
 	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
 	self.hits = self.ability:GetSpecialValueFor("hits")
-	self.disable_healing = 0
 
 	-- UP 3.11
 	if self.ability:GetRank(11) then
@@ -50,7 +49,6 @@ function druid_3_modifier_totem:OnCreated(kv)
 	end
 
 	Timers:CreateTimer((0.1), function()
-		self.disable_healing = 1
 		self.min_health = self.parent:GetMaxHealth()
 	end)
 
@@ -129,7 +127,7 @@ function druid_3_modifier_totem:GetVisualZDelta(keys)
 end
 
 function druid_3_modifier_totem:GetDisableHealing(keys)
-	return self.disable_healing
+	return 1
 end
 
 function druid_3_modifier_totem:GetMinHealth(keys)

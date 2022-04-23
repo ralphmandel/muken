@@ -24,7 +24,7 @@ function druid_u_modifier_aura_effect:OnCreated(kv)
 	-- UP 4.32
 	if self.ability:GetRank(32) then
 		self.hp_lost = self.hp_lost + 50
-		self.seed_max = self.seed_max + 5
+		self.seed_max = self.seed_max + 7
 	end
 
 	self.info = {

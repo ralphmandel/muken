@@ -1,8 +1,5 @@
 "DOTAAbilities"
 {
-    //=================================================================================================================
-	//Teleport Scroll
-	//=================================================================================================================
 	"item_tp"
 	{
 		"BaseClass"						"item_lua"
@@ -54,6 +51,88 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"channel_time"	"6"
+			}
+		}
+	}
+
+	"item_legendary_serluc"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_legendary_serluc"
+		"AbilityTextureName"			"item_legendary_serluc"
+		"ID"							"7771"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"Model"							"models/ui/treasure/reaver_2022_treasure/reaver_2022_treasure.vmdl"
+
+		"AbilityCooldown"				"30.0"
+		"AbilityManaCost"				"75"
+		"ItemCost"						"0"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"1"
+        "ItemDroppable"                 "1"
+        "ItemSellable"                  "0"
+		"ItemInitial"			        "0"
+		"SideShop"						"0"
+        "AllowedInBackpack"             "0"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"						""
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"agi"			"30"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms"			"75"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"passive_lifesteal"	"15"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"passive_str"	"20"
+			}
+			"06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"passive_lck"	"10"
+			}
+			"06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"passive_mnd"	"10"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rank_lifesteal"	"25 35 45 55 65 75"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"xp"				"500 550 650 800 1000 0"
+				// dealing above 500 damage within 7 seconds gives you 75 xp and reduces cd by 10 seconds.
+				// killing a hero while berserk mode gives you 250 xp.
 			}
 		}
 	}

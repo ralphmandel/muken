@@ -284,7 +284,7 @@
             "07"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"seed_heal"		"15"
+				"seed_heal"		"25"
 			}
             "08"
 			{

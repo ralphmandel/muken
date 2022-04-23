@@ -1,7 +1,7 @@
 druid_2_modifier_aura = class({})
 
 function druid_2_modifier_aura:IsHidden()
-	return false
+	return true
 end
 
 function druid_2_modifier_aura:IsPurgable()

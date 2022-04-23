@@ -116,7 +116,7 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
 
         -- UP 4.32
         if self:GetRank(32) then
-            seed_heal = seed_heal + 10
+            seed_heal = seed_heal + 15
         end
 
         local mnd = caster:FindModifierByName("_2_MND_modifier")

@@ -50,7 +50,6 @@
 	"item_clarity"								"REMOVE"
 	"item_faerie_fire"							"REMOVE"
 	"item_smoke_of_deceit"						"REMOVE"
-	//"item_ward_sentry"							"REMOVE"
 	"item_enchanted_mango"						"REMOVE"
 	"item_flask"								"REMOVE"
 	"item_tango"								"REMOVE"
@@ -276,37 +275,40 @@
 	"item_gem"									"REMOVE"
 	"item_lotus_orb"							"REMOVE"
 	
-	//"item_ward_observer" "REMOVE"
-	"item_ward_observer"
-	{
-		"ItemStackable"					"1"
-		"AllowedInBackpack"             "0"
-		"ItemDroppable"                 "0"
-		"ItemPermanent"					"0"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemSellable"                  "0"
-		"ItemIsNeutralDrop"				"1"
-	}
+	"item_ward_observer" "REMOVE"
+	"item_ward_sentry" "REMOVE"
+	"item_ward_dispenser" "REMOVE"
 
-	"item_ward_sentry"
-	{
-		"ItemStackable"					"1"
-		"AllowedInBackpack"             "0"
-		"ItemDroppable"                 "0"
-		"ItemPermanent"					"0"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemSellable"                  "0"
-		"ItemIsNeutralDrop"				"1"
-	}
+	// "item_ward_observer"
+	// {
+	// 	"ItemStackable"					"1"
+	// 	"AllowedInBackpack"             "0"
+	// 	"ItemDroppable"                 "0"
+	// 	"ItemPermanent"					"0"
+	// 	"ItemShareability"				"ITEM_NOT_SHAREABLE"
+	// 	"ItemSellable"                  "0"
+	// 	"ItemIsNeutralDrop"				"1"
+	// }
 
-	"item_ward_dispenser"
-	{
-		"ItemStackable"					"1"
-		"AllowedInBackpack"             "0"
-		"ItemDroppable"                 "0"
-		"ItemPermanent"					"0"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemSellable"                  "0"
-		"ItemIsNeutralDrop"				"1"
-	}
+	// "item_ward_sentry"
+	// {
+	// 	"ItemStackable"					"1"
+	// 	"AllowedInBackpack"             "0"
+	// 	"ItemDroppable"                 "0"
+	// 	"ItemPermanent"					"0"
+	// 	"ItemShareability"				"ITEM_NOT_SHAREABLE"
+	// 	"ItemSellable"                  "0"
+	// 	"ItemIsNeutralDrop"				"1"
+	// }
+
+	// "item_ward_dispenser"
+	// {
+	// 	"ItemStackable"					"1"
+	// 	"AllowedInBackpack"             "0"
+	// 	"ItemDroppable"                 "0"
+	// 	"ItemPermanent"					"0"
+	// 	"ItemShareability"				"ITEM_NOT_SHAREABLE"
+	// 	"ItemSellable"                  "0"
+	// 	"ItemIsNeutralDrop"				"1"
+	// }
 }

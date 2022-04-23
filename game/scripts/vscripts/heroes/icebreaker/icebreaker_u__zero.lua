@@ -1,6 +1,6 @@
 icebreaker_u__zero = class({})
 LinkLuaModifier( "icebreaker_u_modifier_zero", "heroes/icebreaker/icebreaker_u_modifier_zero", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_u_modifier_buff", "heroes/icebreaker/icebreaker_u_modifier_buff", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_u_modifier_aura_effect", "heroes/icebreaker/icebreaker_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_blur", "heroes/icebreaker/icebreaker_u_modifier_blur", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_resistance", "heroes/icebreaker/icebreaker_u_modifier_resistance", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
@@ -97,6 +97,16 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
             charges = charges * 2
         end
 
+        -- UP 4.21
+        if self:GetRank(21) then
+            charges = charges * 3
+        end
+
+	    -- UP 4.32
+	    if self:GetRank(32) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -109,17 +119,23 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
     function icebreaker_u__zero:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
+        local duration = self:GetSpecialValueFor("duration")
 
+        self:DestroyShard()
+        local shard = CreateUnitByName("ice_shard", point, true, caster, caster, caster:GetTeamNumber())
+        shard:CreatureLevelUp(self:GetLevel() - 1)
+        shard:AddNewModifier(caster, self, "icebreaker_u_modifier_zero", {duration = duration})
+    end
+
+    function icebreaker_u__zero:DestroyShard()
+        local caster = self:GetCaster()
         local units = Entities:FindAllByClassname("npc_dota_creature")
         for _,shard in pairs(units) do
             if shard:GetPlayerOwner() == caster:GetPlayerOwner()
             and shard:IsAlive() and shard:GetUnitName() == "ice_shard" then
-                shard:Kill(self, nil)
+                shard:RemoveModifierByName("icebreaker_u_modifier_zero")
             end
         end
-
-        local shard = CreateUnitByName("ice_shard", point, true, caster, caster, caster:GetTeamNumber())
-        shard:CreatureLevelUp(self:GetLevel() - 1)
     end
 
     function icebreaker_u__zero:CastFilterResultLocation( vec )
@@ -142,13 +158,17 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
     end
 
     function icebreaker_u__zero:GetCooldown(iLevel)
-        if self:GetCurrentAbilityCharges() == 0 then
-            return 120
-        elseif self:GetCurrentAbilityCharges() % 2 == 0 then
-            return 90
-        end
-
+        if self:GetCurrentAbilityCharges() == 0 then return 120 end
+        if self:GetCurrentAbilityCharges() == 1 then return 120 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 90 end
         return 120
+    end
+
+    function icebreaker_u__zero:GetAOERadius()
+        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return self:GetSpecialValueFor("radius") + 500 end
+        return self:GetSpecialValueFor("radius")
     end
 
 -- EFFECTS

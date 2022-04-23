@@ -3,7 +3,7 @@ icebreaker_1_modifier_instant = class({})
 --------------------------------------------------------------------------------
 
 function icebreaker_1_modifier_instant:IsHidden()
-	return false
+	return true
 end
 
 function icebreaker_1_modifier_instant:IsPurgable()

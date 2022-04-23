@@ -115,7 +115,7 @@
             "08"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"natural_loss"          "5"
+				"natural_loss"          "4"
 			}
 			"15"
 			{
@@ -176,7 +176,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
 		//"AbilityCastAnimation"   		"ACT_DOTA_TELEPORT"
 		//"AbilityCastPoint"       		"0.4"
         //"AnimationPlaybackRate"  		"0.8"
@@ -277,7 +277,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"	    "60"
+				"damage"	    "75"
 			}
             "05"
 			{
