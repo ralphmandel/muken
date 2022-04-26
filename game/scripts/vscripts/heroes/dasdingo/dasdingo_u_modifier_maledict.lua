@@ -161,7 +161,7 @@ function dasdingo_u_modifier_maledict:PlayEfxStart(bStart)
 
 		if IsServer() then
 			self.parent:EmitSound("Hero_WitchDoctor.Maledict_Cast")
-			if self.parent:GetPlayerOwnerID() then
+			if self.parent:GetPlayerOwnerID() and self.parent:IsAlive() then
 				EmitSoundOnEntityForPlayer("Hero_WitchDoctor.Maledict_Loop", self.parent, self.parent:GetPlayerOwnerID())
 			end
 		end

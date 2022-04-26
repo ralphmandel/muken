@@ -757,6 +757,7 @@ function BattleArena:OnUnitSpawn( args )
 
 		if unit:HasItemInInventory("item_tp") == false then
 			unit:AddItemByName("item_tp")
+			unit:AddItemByName("item_legend_serluc")
 
 			if IsInToolsMode() then
 				if self.temp == nil then
@@ -825,6 +826,8 @@ function BattleArena:OnThink()
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			local item = CreateItem("item_legend_serluc", nil, nil)
+			CreateItemOnPositionSync(Vector(-500, -2000, 0), item)
 			self.neutral_test = false
 		end
 	end

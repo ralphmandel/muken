@@ -37,6 +37,7 @@ function druid_3_modifier_totem:OnCreated(kv)
 
 	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
 	self.hits = self.ability:GetSpecialValueFor("hits")
+	self.no_bar = true
 
 	-- UP 3.11
 	if self.ability:GetRank(11) then
@@ -49,7 +50,9 @@ function druid_3_modifier_totem:OnCreated(kv)
 	end
 
 	Timers:CreateTimer((0.1), function()
+		self.parent:ModifyHealth(self.parent:GetMaxHealth(), self.ability, false, 0)
 		self.min_health = self.parent:GetMaxHealth()
+		self.no_bar = false
 	end)
 
 	if IsServer() then
@@ -77,7 +80,8 @@ end
 
 function druid_3_modifier_totem:CheckState()
 	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = true
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = self.no_bar
 	}
 
 	return state
@@ -85,6 +89,7 @@ end
 
 function druid_3_modifier_totem:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
@@ -97,6 +102,12 @@ function druid_3_modifier_totem:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function druid_3_modifier_totem:OnDeath(keys)
+	if keys.unit == self.parent then
+		self:Destroy()
+	end
 end
 
 function druid_3_modifier_totem:GetModifierExtraHealthBonus()
@@ -145,7 +156,6 @@ function druid_3_modifier_totem:PlayEfxStart()
 	local string = "particles/druid/druid_skill3_totem.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-	--ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.ability:GetAOERadius(), 0, 0))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
 

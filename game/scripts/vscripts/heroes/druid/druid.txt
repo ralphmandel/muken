@@ -251,11 +251,6 @@
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"extra_hp"		"300"
-			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -284,7 +279,7 @@
             "07"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"seed_heal"		"25"
+				"seed_heal"		"50"
 			}
             "08"
 			{

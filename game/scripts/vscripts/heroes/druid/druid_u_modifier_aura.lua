@@ -35,7 +35,7 @@ function druid_u_modifier_aura:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.extra_hp = self.ability:GetSpecialValueFor("extra_hp")
+	self.extra_hp = 0
 	self.heal_amp = self.ability:GetSpecialValueFor("heal_amp")
 
 	if IsServer() then
@@ -52,7 +52,7 @@ function druid_u_modifier_aura:OnRefresh(kv)
 
 	-- UP 4.12
 	if self.ability:GetRank(12) then
-		self.extra_hp = self.ability:GetSpecialValueFor("extra_hp") + 150
+		self.extra_hp = 200
 	end
 
 	-- UP 4.41

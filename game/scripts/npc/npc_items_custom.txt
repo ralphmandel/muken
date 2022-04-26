@@ -55,26 +55,37 @@
 		}
 	}
 
-	"item_legendary_serluc"
+	"item_legend_serluc"
 	{
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_legendary_serluc"
-		"AbilityTextureName"			"item_legendary_serluc"
-		"ID"							"7771"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ScriptFile"					"items/item_legend_serluc"
+		"AbilityTextureName"			"item_legend_serluc"
+		"ID"							"1501"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"Model"							"models/ui/treasure/reaver_2022_treasure/reaver_2022_treasure.vmdl"
+		"Model"							"models/props_gameplay/treasure_chest_gold.vmdl"
 
+		"ItemCost"			"0"
+		"ItemKillable"		"1"
+		"ItemSellable"		"0"
+		"ItemPurchasable" 	"0"
+		"ItemDroppable" 	"1"
+
+		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"		"1" //used for charges
+		"ItemStackable"		"0"
+		"MaxUpgradeLevel" 	"6"
+		"ItemBaseLevel" 	"1"
+
+		"ItemQuality"		"artifact"
+        "AllowedInBackpack"	"1"
+		"ItemIsNeutralDrop"	"1"
+		"ItemAlertable" 	"1"
+		"ItemInitial"		"0"
+		"SideShop"			"0"
+		"SecretShop"		"0"
+		
 		"AbilityCooldown"				"30.0"
 		"AbilityManaCost"				"75"
-		"ItemCost"						"0"
-		"ItemStackable"					"0"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
-		"ItemPermanent"					"1"
-        "ItemDroppable"                 "1"
-        "ItemSellable"                  "0"
-		"ItemInitial"			        "0"
-		"SideShop"						"0"
-        "AllowedInBackpack"             "0"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -115,12 +126,12 @@
 			"06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"passive_lck"	"10"
+				"passive_lck"	"12"
 			}
 			"06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"passive_mnd"	"10"
+				"passive_mnd"	"8"
 			}
 			"06"
 			{
