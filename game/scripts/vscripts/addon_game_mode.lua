@@ -178,6 +178,7 @@ function BattleArena:InitGameMode()
 	GameSetup:init()
 
 	local GameMode = GameRules:GetGameModeEntity()
+	GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
 
 	GameMode:SetBountyRunePickupFilter(
 		function(ctx, event)
@@ -635,7 +636,11 @@ function BattleArena:OnUnitKilled(args)
 	end
 
 	if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
-		if IsServer() then unit:EmitSound("Creature.Kill") end
+		if IsServer() then
+			unit:EmitSound("Creature.Kill")
+			self:RollDrops(unit)
+		end
+		
 		for _,spot in pairs(self.spots) do
 			for i = #spot[1], 1, -1 do
 				local neutral = spot[1][i]
@@ -757,7 +762,10 @@ function BattleArena:OnUnitSpawn( args )
 
 		if unit:HasItemInInventory("item_tp") == false then
 			unit:AddItemByName("item_tp")
-			unit:AddItemByName("item_legend_serluc")
+			unit:AddItemByName("item_branch_green")
+			unit:AddItemByName("item_branch_red")
+			unit:AddItemByName("item_branch_green")
+			unit:AddItemByName("item_branch_red")
 
 			if IsInToolsMode() then
 				if self.temp == nil then
@@ -807,6 +815,25 @@ function BattleArena:GetKillingSpreeAnnouncer(kills)
 	return "announcer_killing_spree_announcer_kill_spree_01"
 end
 
+function BattleArena:RollDrops(unit)
+    local DropInfo = GameRules.DropTable["neutral_basic_crocodilian"]
+    if DropInfo then
+        for item_name,chance in pairs(DropInfo) do
+            if RandomInt(1, 100) <= chance then
+
+				local item = CreateItem(item_name, nil, nil)
+				CreateItemOnPositionForLaunch(unit:GetAbsOrigin(), item)
+                -- Create the item
+                -- local item = CreateItem(item_name, nil, nil)
+                -- local pos = unit:GetAbsOrigin()
+                -- local drop = CreateItemOnPositionSync( pos, item )
+                -- local pos_launch = pos+RandomVector(RandomFloat(150,200))
+                -- item:LaunchLoot(false, 200, 0.75, pos_launch)
+            end
+        end
+    end
+end
+
 -- Evaluate the state of the game
 function BattleArena:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
@@ -826,8 +853,7 @@ function BattleArena:OnThink()
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 			CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-			local item = CreateItem("item_legend_serluc", nil, nil)
-			CreateItemOnPositionSync(Vector(-500, -2000, 0), item)
+			--CreateItemOnPositionSync(Vector(-500, -2000, 0), CreateItem("item_branch_blue", nil, nil))
 			self.neutral_test = false
 		end
 	end
