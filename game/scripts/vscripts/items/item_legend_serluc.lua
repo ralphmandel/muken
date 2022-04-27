@@ -1,6 +1,7 @@
 item_legend_serluc = class({})
 LinkLuaModifier("item_legend_serluc_mod_passive", "items/item_legend_serluc_mod_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("item_legend_serluc_mod_berserk", "items/item_legend_serluc_mod_berserk", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 function item_legend_serluc:CalcStatus(duration, caster, target)
 	local time = duration
@@ -65,4 +66,9 @@ end
 
 function item_legend_serluc:OnSpellStart()
 	local caster = self:GetCaster()
+	local duration = self:GetSpecialValueFor("duration")
+
+	caster:AddNewModifier(caster, self, "item_legend_serluc_mod_berserk", {
+		duration = self:CalcStatus(duration, caster, nil)
+	})
 end

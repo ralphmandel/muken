@@ -113,25 +113,46 @@ end
 
 function bocuse_3_modifier_mark:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+        MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
 	}
 
 	return funcs
+end
+
+function bocuse_3_modifier_mark:OnAttacked(keys)
+	if keys.target ~= self.parent then return end
+	if keys.attacker:IsBuilding() then return end
+
+    -- UP 3.32
+	if self.ability:GetRank(32) and keys.damage_flags ~= 40 then
+        local heal = keys.original_damage * self:GetStackCount() * 0.05
+        keys.attacker:Heal(heal, self.ability)
+        self:PlayEfxLifesteal(keys.attacker)
+	end
+end
+
+function bocuse_3_modifier_mark:OnTakeDamage(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.unit ~= self.parent then return end
+	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
+	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_SPELL then return end
+	if keys.attacker:IsBuilding() then return end
+
+    -- UP 3.32
+	if self.ability:GetRank(32) and keys.damage_flags ~= 40 then
+        local heal = keys.original_damage * self:GetStackCount() * 0.05
+        keys.attacker:Heal(heal, self.ability)
+        self:PlayEfxLifesteal(keys.attacker)
+	end
 end
 
 function bocuse_3_modifier_mark:GetModifierIncomingDamage_Percentage(keys)
     if keys.attacker:IsBaseNPC() == false then return end
     if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return 0 end
     if self.parent:IsIllusion() then return end
-
-    -- UP 3.32
-	if self.ability:GetRank(32) and keys.damage_flags ~= 40 then
-        local heal = keys.original_damage * self:GetStackCount() * 0.05
-        if heal > 0 then
-            keys.attacker:Heal(heal, nil)
-            self:PlayEfxLifesteal(keys.attacker)
-        end
-	end
 
     if keys.attacker == self.caster then
         return self.incoming_damage * self:GetStackCount()

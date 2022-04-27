@@ -101,44 +101,44 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"3"
+				"passive_str"	"20"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi"			"30"
+				"passive_lck"	"12"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"ms"			"75"
+				"passive_mnd"	"8"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"passive_lifesteal"	"15"
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3"
 			}
 			"05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"passive_str"	"20"
+				"agi"			"30"
 			}
 			"06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"passive_lck"	"12"
+				"ms"			"75"
 			}
-			"06"
+			"07"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"passive_mnd"	"8"
+				"var_type"			"FIELD_FLOAT"
+				"passive_lifesteal"	"15"
 			}
-			"06"
+			"08"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"rank_lifesteal"	"25 35 45 55 65 75"
 			}
-			"07"
+			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"xp"				"500 550 650 800 1000 0"
