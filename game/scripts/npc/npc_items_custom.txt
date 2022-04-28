@@ -55,14 +55,14 @@
 		}
 	}
 
-	// BRANCHS AND POTIONS
+	// BRANCHS
 		"item_branch_blue"
 		{
 			"BaseClass"						"item_lua"
 			"ScriptFile"					"items/item_branch_blue"
 			"AbilityTextureName"			"item_branch_blue"
 			"ID"							"1611"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/branch.vmdl"
 
 			"ItemCost"			"0"
@@ -89,7 +89,7 @@
 			"ScriptFile"					"items/item_branch_green"
 			"AbilityTextureName"			"item_branch_green"
 			"ID"							"1612"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/branch.vmdl"
 
 			"ItemCost"			"0"
@@ -116,7 +116,7 @@
 			"ScriptFile"					"items/item_branch_red"
 			"AbilityTextureName"			"item_branch_red"
 			"ID"							"1613"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/branch.vmdl"
 
 			"ItemCost"			"0"
@@ -143,7 +143,7 @@
 			"ScriptFile"					"items/item_branch_yellow"
 			"AbilityTextureName"			"item_branch_yellow"
 			"ID"							"1614"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/branch.vmdl"
 
 			"ItemCost"			"0"
@@ -164,13 +164,14 @@
 			"SecretShop"		"0"
 		}
 
+	//POTIONS
 		"item_potion_recover"
 		{
 			"BaseClass"						"item_lua"
 			"ScriptFile"					"items/item_potion_recover"
 			"AbilityTextureName"			"item_potion_recover"
 			"ID"							"1621"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -179,7 +180,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -193,6 +194,20 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"mana"			"30"
+				}
+			}
 		}
 
 		"item_potion_heal"
@@ -201,7 +216,7 @@
 			"ScriptFile"					"items/item_potion_heal"
 			"AbilityTextureName"			"item_potion_heal"
 			"ID"							"1622"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -210,7 +225,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -224,6 +239,25 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"heal_hit"		"20"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"heal"			"50"
+				}
+			}
 		}
 
 		"item_potion_speed"
@@ -232,7 +266,7 @@
 			"ScriptFile"					"items/item_potion_speed"
 			"AbilityTextureName"			"item_potion_speed"
 			"ID"							"1623"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -241,7 +275,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -255,6 +289,20 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"ms"			"40"
+				}
+			}
 		}
 
 		"item_potion_strenght"
@@ -263,7 +311,7 @@
 			"ScriptFile"					"items/item_potion_strenght"
 			"AbilityTextureName"			"item_potion_strenght"
 			"ID"							"1624"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -272,7 +320,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -286,6 +334,20 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"bonus_damage"	"50"
+				}
+			}
 		}
 
 		"item_potion_defense"
@@ -294,7 +356,7 @@
 			"ScriptFile"					"items/item_potion_defense"
 			"AbilityTextureName"			"item_potion_defense"
 			"ID"							"1625"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -303,7 +365,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -317,6 +379,20 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"armor"			"15"
+				}
+			}
 		}
 
 		"item_potion_resistance"
@@ -325,7 +401,7 @@
 			"ScriptFile"					"items/item_potion_resistance"
 			"AbilityTextureName"			"item_potion_resistance"
 			"ID"							"1626"
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
 
 			"ItemCost"			"0"
@@ -334,7 +410,7 @@
 			"ItemPurchasable" 	"0"
 			"ItemDroppable" 	"1"
 
-			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
 			"ItemStackableMax"	"2"
@@ -348,8 +424,21 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
-		}
 
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"resist"		"30"
+				}
+			}
+		}
 
 	//RECIPES
 		"item_recipe_potion_recover"

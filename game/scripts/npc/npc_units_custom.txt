@@ -611,7 +611,7 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 3
+	//NEUTRALS TIER 3
 		"neutral_lamp"	
 		{
 			// General
@@ -1039,7 +1039,7 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 2
+	//NEUTRALS TIER 2
 		"neutral_igor"	
 		{
 			// General
@@ -1295,7 +1295,7 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 1
+	//NEUTRALS TIER 1
 		"neutral_basic_chameleon"	
 		{
 			// General
