@@ -164,7 +164,7 @@
 			"SecretShop"		"0"
 		}
 
-	//POTIONS
+	// POTIONS
 		"item_potion_recover"
 		{
 			"BaseClass"						"item_lua"
@@ -440,7 +440,7 @@
 			}
 		}
 
-	//RECIPES
+	// RECIPES
 		"item_recipe_potion_recover"
 		{
 			"ID"							"1631"

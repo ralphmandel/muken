@@ -160,6 +160,8 @@ function bocuse_u_modifier_mise:OnOrder(keys)
 end
 
 function bocuse_u_modifier_mise:OnHeroKilled(keys)
+    if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
     if keys.attacker ~= self.parent then return end
     if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 

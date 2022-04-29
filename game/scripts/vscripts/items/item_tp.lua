@@ -102,12 +102,3 @@ function item_tp:GetChannelTime()
 	local channel_time = self:GetSpecialValueFor("channel_time")
 	return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
 end
-
--- function item_tp:RepickItem(hItem)
--- 	local caster = self:GetCaster()
--- 	caster:DropItemAtPosition(caster:GetOrigin(), hItem)
-		
--- 	Timers:CreateTimer((2), function()
--- 		caster:PickupDroppedItem(hItem)
--- 	end)
--- end

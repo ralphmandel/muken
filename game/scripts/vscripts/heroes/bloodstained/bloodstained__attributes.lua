@@ -30,9 +30,6 @@ require("talent_tree")
 	}
 
 	function bloodstained__attributes:UpgradeRank(skill, id, level)
-		print("skill", skill)
-		print("id", id)
-		print("level", level)
 		local caster = self:GetCaster()
 		self:CheckNewAbility(skill, id, level)
 

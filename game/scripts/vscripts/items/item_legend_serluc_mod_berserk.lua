@@ -15,8 +15,8 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability:EndCooldown()
-	self.ability:SetActivated(false)
+	--self.ability:EndCooldown()
+	--self.ability:SetActivated(false)
 
 	local agi = self.ability:GetSpecialValueFor("agi")
 	local ms = self.ability:GetSpecialValueFor("ms")
@@ -24,6 +24,7 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
 	self:StartIntervalThink(FrameTime())
+	self:PlayEfxBuff()
 end
 
 function item_legend_serluc_mod_berserk:OnRefresh( kv )
@@ -38,8 +39,8 @@ function item_legend_serluc_mod_berserk:OnRemoved( kv )
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
-	self.ability:SetActivated(true)
+	--self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	--self.ability:SetActivated(true)
 end
 ---------------------------------------------------------------------------------------------------
 
@@ -57,7 +58,7 @@ function item_legend_serluc_mod_berserk:OnIntervalThink()
 	if IsValidEntity(self.target) == false then self:FindNewTarget(true) return end
 	if self.target:IsBaseNPC() == false then self:FindNewTarget(true) return end
 	if self.target:IsAlive() == false or self.target:IsOutOfGame()
-	or (self.target:IsInvisible() and self.parent:CanEntityBeSeenByMyTeam(self.target) == false) then self:FindNewTarget(true) return end
+		or self.target:IsInvisible() then self:FindNewTarget(true) return end
 	if self.target:IsHero() == false then self:FindNewTarget(false) return end
 	if CalcDistanceBetweenEntityOBB(self.parent, self.target) > 500 then self:FindNewTarget(true) end
 end
@@ -105,18 +106,29 @@ end
 
 --------------------------------------------------------------------------------------------------
 
--- function item_legend_serluc_mod_berserk:GetEffectName()
--- 	return "particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
--- end
+function item_legend_serluc_mod_berserk:GetEffectName()
+	return "particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
+end
 
--- function item_legend_serluc_mod_berserk:GetEffectAttachType()
--- 	return PATTACH_OVERHEAD_FOLLOW
--- end
+function item_legend_serluc_mod_berserk:GetEffectAttachType()
+	return PATTACH_ABSORIGIN
+end
 
--- function item_legend_serluc_mod_berserk:GetStatusEffectName()
--- 	return "particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
--- end
+function item_legend_serluc_mod_berserk:GetStatusEffectName()
+	return "particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
+	--return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
+end
 
--- function item_legend_serluc_mod_berserk:StatusEffectPriority()
--- 	return MODIFIER_PRIORITY_HIGH
--- end
+function item_legend_serluc_mod_berserk:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
+function item_legend_serluc_mod_berserk:PlayEfxBuff()
+	local particle_cast = "particles/items/item_fx_serluc_berserk.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetOrigin(), true)
+	ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetOrigin(), true)
+	ParticleManager:SetParticleControlEnt(effect_cast, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetOrigin(), true)
+
+	self:AddParticle(effect_cast, false, false, -1, false, false)
+end

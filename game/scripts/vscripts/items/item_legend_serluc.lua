@@ -53,9 +53,14 @@ function item_legend_serluc:RemoveBonus(string, target)
 end
 
 function item_legend_serluc:OnUpgrade()
+	if self:GetLevel() < 6 then
+		if self.xp == nil then self.xp = 0 end
+		self.xp = self:GetSpecialValueFor("xp") - self.xp
+	end
 end
 
-function item_legend_serluc:Spawn()
+function item_legend_serluc:CheckXP()
+	if self.xp == nil then self.xp = self:GetSpecialValueFor("xp") end
 end
 
 -----------------------------------------------------------
@@ -67,6 +72,8 @@ end
 function item_legend_serluc:OnSpellStart()
 	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
+
+	if IsServer() then caster:EmitSound("DOTA_Item.MaskOfMadness.Activate") end
 
 	caster:AddNewModifier(caster, self, "item_legend_serluc_mod_berserk", {
 		duration = self:CalcStatus(duration, caster, nil)

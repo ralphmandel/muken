@@ -46,11 +46,24 @@ end
 
 function item_legend_serluc_mod_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_HERO_KILLED,
 		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
+end
+
+function item_legend_serluc_mod_passive:OnHeroKilled(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker ~= self.parent then return end
+	if keys.attacker:HasModifier("item_legend_serluc_mod_berserk") == false then return end
+
+	local xp_gain = 250
+	self.ability:CheckXP()
+	self.ability.xp = self.ability.xp - xp_gain
+	if self.ability.xp < 0 then self.ability:UpgradeAbility(true) end
 end
 
 function item_legend_serluc_mod_passive:OnAttacked(keys)

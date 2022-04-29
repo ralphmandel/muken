@@ -821,14 +821,7 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName("item_branch_green")
-					unit:AddItemByName("item_branch_green")
-					unit:AddItemByName("item_branch_red")
-					unit:AddItemByName("item_branch_red")
-					unit:AddItemByName("item_branch_blue")
-					unit:AddItemByName("item_branch_blue")
-					unit:AddItemByName("item_branch_yellow")
-					unit:AddItemByName("item_branch_yellow")
+					unit:AddItemByName("item_legend_serluc")
 					if self.temp == nil then
 						self.temp = 1
 					else

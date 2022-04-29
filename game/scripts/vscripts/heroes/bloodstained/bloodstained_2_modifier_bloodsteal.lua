@@ -166,6 +166,8 @@ function bloodstained_2_modifier_bloodsteal:OnAttackLanded(keys)
 end
 
 function bloodstained_2_modifier_bloodsteal:OnDeath(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end

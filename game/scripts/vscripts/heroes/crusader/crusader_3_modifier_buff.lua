@@ -82,7 +82,6 @@ function crusader_3_modifier_buff:PlayEfxStart()
 	-- ParticleManager:SetParticleControl(self.effect_cast_2, 0, self.parent:GetOrigin())
 
 	-- Timers:CreateTimer((0.2), function()
-	-- 	print("oi111", self.effect_cast_2)
 	-- 	if self.effect_cast_2 then ParticleManager:DestroyParticle(self.effect_cast_2, false) end
 	-- end)
 end

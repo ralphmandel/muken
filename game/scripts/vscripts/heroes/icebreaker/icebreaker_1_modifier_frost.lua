@@ -57,6 +57,7 @@ end
 
 function icebreaker_1_modifier_frost:OnHeroKilled(keys)
 	if keys.attacker == nil or keys.target == nil or keys.inflictor == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
