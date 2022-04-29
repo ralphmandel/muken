@@ -96,7 +96,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 		mod:SetKillData(info)
 	end
 
-	local chance = 20
+	local chance = 15
 	if keys.attacker:IsBaseNPC() then
 		if keys.attacker:IsHero() then chance = 30 end
 	end

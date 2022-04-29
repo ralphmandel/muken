@@ -91,14 +91,9 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 1.21
-        if self:GetRank(21) then
-            charges = charges * 2
-        end
-
         -- UP 1.32
         if self:GetRank(32) then
-            charges = charges * 3
+            charges = charges * 2
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -111,9 +106,6 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 -- SPELL START
 
     function dasdingo_1__heal:GetAOERadius()
-        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
-		if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") + 75 end
         return self:GetSpecialValueFor("radius")
     end
 
@@ -121,6 +113,11 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
+
+        -- UP 1.21
+        if self:GetRank(21) then
+            duration = duration + 10
+        end
 
         CreateModifierThinker(caster, self, "dasdingo_1_modifier_heal", {duration = duration}, point, caster:GetTeamNumber(), false)
     end
