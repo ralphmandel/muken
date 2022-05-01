@@ -543,7 +543,7 @@
 			}
 		}
 
-	// EQUIPS
+	// LEGENDARY ITEMS
 		"item_legend_serluc"
 		{
 			"BaseClass"						"item_lua"
@@ -580,7 +580,9 @@
 			//-------------------------------------------------------------------------------------------------------------
 			"precache"
 			{
-				"particle"						""
+				"particle"	"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
+				"particle"	"particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
+				"particle"	"particles/items/item_fx_serluc_berserk.vpcf"
 			}
 			
 			// Special	
@@ -633,6 +635,78 @@
 					"xp"				"500 550 650 800 1000 0"
 					// dealing above 500 damage within 7 seconds gives you 75 xp and reduces cd by 10 seconds.
 					// killing a hero while berserk mode gives you 250 xp.
+				}
+			}
+		}
+
+	// RARE ITEMS
+		"item_rare_serluc_armor"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_serluc_armor"
+			"AbilityTextureName"			"item_rare_serluc_armor"
+			"ID"							"1401"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			//"AbilityCooldown"				"30.0"
+			//"AbilityManaCost"				"75"
+			
+			// Precache
+			//-------------------------------------------------------------------------------------------------------------
+			"precache"
+			{
+				"particle"	"particles/items_fx/aura_shivas.vpcf"
+			}
+			
+			// Special	
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_con"	"10"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mnd"	"5"
+				}
+				"04"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"radius"		"800"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"def"			"7"
+				}
+				"06"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"res"			"7"
 				}
 			}
 		}

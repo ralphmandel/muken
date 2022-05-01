@@ -178,6 +178,13 @@
 		GameSetup:init()
 
 		GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
+		self.rare_item_bundle = {
+			[1] = "item_rare_serluc_armor"
+			--[2]
+			--[3]
+			--[4]
+			--[5]
+		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
 		ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap(self, "OnTeamKill"), self)
@@ -654,6 +661,9 @@
 		if DropInfo then
 			for item_name,chance in pairs(DropInfo) do
 				if RandomInt(1, 100) <= chance then
+					-- Check bundle drop
+					item_name = self:GetBundleItem(item_name)
+
 					-- Create the item
 					local item = CreateItem(item_name, nil, nil)
 					local pos = unit:GetAbsOrigin()
@@ -663,6 +673,15 @@
 				end
 			end
 		end
+	end
+
+	function BattleArena:GetBundleItem(item_name)
+		if item_name == "rare_item_bundle" then
+			--return "item_rare_serluc_armor"
+			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
+		end
+
+		return item_name
 	end
 
 -- LISTENERS
