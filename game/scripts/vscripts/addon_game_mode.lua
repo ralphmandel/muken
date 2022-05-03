@@ -1,4 +1,4 @@
---INIT
+-- INIT
 	if BattleArena == nil then
 		BattleArena = class({})
 	end
@@ -166,6 +166,7 @@
 			PrecacheResource( "soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
+			PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
 	end
 
 	function Activate()
@@ -179,11 +180,11 @@
 
 		GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
 		self.rare_item_bundle = {
-			[1] = "item_rare_serluc_armor"
-			--[2]
-			--[3]
-			--[4]
-			--[5]
+			[1] = "item_rare_serluc_armor",
+			[2] = "item_rare_eternal_wings",
+			[3] = "item_rare_wild_axe",
+			[4] = "item_rare_lacerator",
+			[5] = "item_rare_dowser"
 		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
@@ -677,7 +678,6 @@
 
 	function BattleArena:GetBundleItem(item_name)
 		if item_name == "rare_item_bundle" then
-			--return "item_rare_serluc_armor"
 			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
 		end
 
@@ -840,7 +840,7 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName("item_legend_serluc")
+					unit:AddItemByName("item_rare_lacerator")
 					if self.temp == nil then
 						self.temp = 1
 					else
@@ -875,6 +875,13 @@
 			if IsInToolsMode() and self.neutral_test == true then
 				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				--CreateItemOnPositionSync(Vector(-500, -2000, 0), CreateItem("item_branch_blue", nil, nil))
 				self.neutral_test = false

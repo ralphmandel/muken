@@ -1,9 +1,7 @@
-item_legend_serluc = class({})
-LinkLuaModifier("item_legend_serluc_mod_passive", "items/item_legend_serluc_mod_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("item_legend_serluc_mod_berserk", "items/item_legend_serluc_mod_berserk", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+item_rare_lacerator = class({})
+LinkLuaModifier("item_rare_lacerator_mod_passive", "items/item_rare_lacerator_mod_passive", LUA_MODIFIER_MOTION_NONE)
 
-function item_legend_serluc:CalcStatus(duration, caster, target)
+function item_rare_lacerator:CalcStatus(duration, caster, target)
 	local time = duration
 	local caster_int = nil
 	local caster_mnd = nil
@@ -39,12 +37,12 @@ function item_legend_serluc:CalcStatus(duration, caster, target)
 	return time
 end
 
-function item_legend_serluc:AddBonus(string, target, const, percent, time)
+function item_rare_lacerator:AddBonus(string, target, const, percent, time)
 	local att = target:FindAbilityByName(string)
 	if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
 end
 
-function item_legend_serluc:RemoveBonus(string, target)
+function item_rare_lacerator:RemoveBonus(string, target)
 	local stringFormat = string.format("%s_modifier_stack", string)
 	local mod = target:FindAllModifiersByName(stringFormat)
 	for _,modifier in pairs(mod) do
@@ -52,30 +50,15 @@ function item_legend_serluc:RemoveBonus(string, target)
 	end
 end
 
-function item_legend_serluc:OnUpgrade()
-	if self:GetLevel() < self:GetMaxLevel() then
-		if self.xp == nil then self.xp = 0 end
-		self.xp = self:GetSpecialValueFor("xp") - self.xp
-	end
-end
-
-function item_legend_serluc:CheckXP()
-	if self.xp == nil then self.xp = self:GetSpecialValueFor("xp") end
-end
-
 -----------------------------------------------------------
 
-function item_legend_serluc:GetIntrinsicModifierName()
-	return "item_legend_serluc_mod_passive"
+function item_rare_lacerator:GetIntrinsicModifierName()
+	return "item_rare_lacerator_mod_passive"
 end
 
-function item_legend_serluc:OnSpellStart()
+function item_rare_lacerator:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
+	local target = self:GetCursorTarget()
 
-	if IsServer() then caster:EmitSound("DOTA_Item.MaskOfMadness.Activate") end
-
-	caster:AddNewModifier(caster, self, "item_legend_serluc_mod_berserk", {
-		duration = self:CalcStatus(duration, caster, nil)
-	})
+	if target:TriggerSpellAbsorb(self) then return end
 end

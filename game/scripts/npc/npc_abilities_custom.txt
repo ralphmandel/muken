@@ -155,12 +155,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen_base"			"2.5"
+				"hp_regen_base"			"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen_bonus"		"0.75"
+				"hp_regen_bonus"		"0.5"
 			}
 		}
 	}

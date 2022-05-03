@@ -573,11 +573,9 @@
 			"SideShop"			"0"
 			"SecretShop"		"0"
 			
-			"AbilityCooldown"				"30.0"
+			"AbilityCooldown"				"20.0"
 			"AbilityManaCost"				"75"
 			
-			// Precache
-			//-------------------------------------------------------------------------------------------------------------
 			"precache"
 			{
 				"particle"	"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
@@ -585,8 +583,6 @@
 				"particle"	"particles/items/item_fx_serluc_berserk.vpcf"
 			}
 			
-			// Special	
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
@@ -672,15 +668,11 @@
 			//"AbilityCooldown"				"30.0"
 			//"AbilityManaCost"				"75"
 			
-			// Precache
-			//-------------------------------------------------------------------------------------------------------------
 			"precache"
 			{
 				"particle"	"particles/items_fx/aura_shivas.vpcf"
 			}
 			
-			// Special	
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
@@ -707,6 +699,193 @@
 				{
 					"var_type"		"FIELD_FLOAT"
 					"res"			"7"
+				}
+			}
+		}
+
+		"item_rare_eternal_wings"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_eternal_wings"
+			"AbilityTextureName"			"item_rare_eternal_wings"
+			"ID"							"1402"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"20.0"
+			//"AbilityManaCost"				"75"
+			
+			"precache"
+			{
+				"particle"	"particles/status_fx/status_effect_guardian_angel.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
+				"particle"	"particles/status_fx/status_effect_guardian_angel.vpcf"
+			}
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_rec"	"15"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"wings_duration"	"7"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"manacost"		"50"
+				}
+			}
+		}
+
+		"item_rare_wild_axe"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_wild_axe"
+			"AbilityTextureName"			"item_rare_wild_axe"
+			"ID"							"1403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"15.0"
+			"AbilityManaCost"		"50"
+			"AbilityCastRange"		"150"
+			
+			"precache"
+			{
+				"particle"	""
+			}
+			
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_str"	"10"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_dex"	"10"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"chance"		"50"
+				}
+			}
+		}
+
+		"item_rare_lacerator"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_lacerator"
+			"AbilityTextureName"			"item_rare_lacerator"
+			"ID"							"1404"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			"AbilityCastPoint"				"0.3"
+			"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			"MaxUpgradeLevel" 	"6"
+			"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"0"
+			"AbilityManaCost"		"125 150 175 200 225 250"
+			"AbilityCastRange"		"200"
+			
+			"precache"
+			{
+				"particle"	""
+			}
+			
+			"AbilitySpecial"
+			{
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"max_stack"		"30 33 36 39 42 45"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"distance"		"350"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"damage_stack"	"1000"
 				}
 			}
 		}

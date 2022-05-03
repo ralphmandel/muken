@@ -66,7 +66,7 @@ function _1_CON_modifier:OnHealReceived(keys)
 
     if self.parent:HasModifier("item_legend_serluc_mod_berserk")
     and keys.inflictor:GetAbilityName() == "item_legend_serluc" then
-        if keys.inflictor:GetLevel() < 6 then
+        if keys.inflictor:GetLevel() < keys.inflictor:GetMaxLevel() then
             local xp_gain = math.floor(keys.gain * 0.25)
             if xp_gain > 0 then
                 keys.inflictor:CheckXP()
