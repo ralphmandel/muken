@@ -495,4 +495,4 @@
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
 
 #base "../vscripts/neutrals/_neutrals.txt"
-#base "../vscripts/neutrals/_bosses.txt"
+#base "../vscripts/bosses/_bosses.txt"

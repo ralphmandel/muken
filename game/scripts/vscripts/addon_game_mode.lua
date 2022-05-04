@@ -183,8 +183,8 @@
 			[1] = "item_rare_serluc_armor",
 			[2] = "item_rare_eternal_wings",
 			[3] = "item_rare_wild_axe",
-			[4] = "item_rare_lacerator",
-			[5] = "item_rare_dowser"
+			[4] = "item_rare_lacerator"
+			--[5] = "item_rare_dowser"
 		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
@@ -341,52 +341,68 @@
 	end
 
 -- UTIL FUNCTIONS
-	function BattleArena:SpawnBountyRune()
-		local time = GameRules:GetDOTATime(false, false)
-		local intervals = 180
-		local ping_delay = 40
-		if self.creation_time == nil then 
-			self.creation_time = -60
-		end
-
-		if math.floor(time) == 0 then
-			if self.creation_time ~= math.floor(time) then
-				self.creation_time = math.floor(time)
-				CreateRune(self.pos, DOTA_RUNE_BOUNTY)
-				self:CreateMinimapEvent(0.5, 256)
-			end
-		end
-
-		if (math.floor(time) + ping_delay) % intervals == 0 then
-			local rand = RandomInt(1,6)
-			if rand == 1 then self.pos = Vector(-255,-2114,136) end
-			if rand == 2 then self.pos = Vector(2686,-4038,136) end
-			if rand == 3 then self.pos = Vector(-3197,61,136) end
-			if rand == 4 then self.pos = Vector(315,3317,8) end
-			if rand == 5 then self.pos = Vector(2558,2298,264) end
-			if rand == 6 then self.pos = Vector(-4606,-2052,392) end
-			self:CreateMinimapEvent(ping_delay, 128)
-		end
-
-		if math.floor(time) % intervals == 0 then
-			if self.creation_time ~= math.floor(time) then
-				self.creation_time = math.floor(time)
-				CreateRune(self.pos, DOTA_RUNE_BOUNTY)
-				self:CreateMinimapEvent(0.5, 256)
-			end
-		end
-	end
-
-	function BattleArena:CreateMinimapEvent(duration, step)
+	function BattleArena:EventPreBounty()
+		local rand = RandomInt(1,6)
+		if rand == 1 then self.pos = Vector(-255,-2114,136) end
+		if rand == 2 then self.pos = Vector(2686,-4038,136) end
+		if rand == 3 then self.pos = Vector(-3197,61,136) end
+		if rand == 4 then self.pos = Vector(315,3317,8) end
+		if rand == 5 then self.pos = Vector(2558,2298,264) end
+		if rand == 6 then self.pos = Vector(-4606,-2052,392) end
+		
 		for _,player in pairs(self.players) do
-			MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, step, duration)
+			MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 128, 40)
 		end
 
 		for _,team in pairs(self.teams) do
-			if step == 128 then
-				GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
-			end
+			GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
 		end
+	end
+
+	function BattleArena:EventBountyRune()
+		CreateRune(self.pos, DOTA_RUNE_BOUNTY)
+
+		for _,player in pairs(self.players) do
+			MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 256, 0.5)
+		end
+	end
+
+	function BattleArena:EventBoss(ping)
+		local loc_x = {[1] = -3748, [2] = 5745}
+		local loc_y = {[1] = -3774, [2] = 2317}
+
+		if ping == 1 then
+			self.mini_boss_ping = RandomInt(1, 2)
+		else
+			if self.mini_boss_ping == 1 then self.mini_boss_ping = 2 else self.mini_boss_ping = 1 end
+		end
+
+		for _,player in pairs(self.players) do
+			MinimapEvent(
+				player[1]:GetTeamNumber(), player[1]:GetAssignedHero(),
+				loc_x[self.mini_boss_ping], loc_y[self.mini_boss_ping],
+				512, 20
+			)
+		end
+	end
+
+	function BattleArena:GenerateEvent(includeNegativeTime)
+		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
+		local sync_time = time % 600
+		if self.event_time == nil then self.event_time = -60 end
+		if self.event_time == math.floor(time) then return end
+		self.event_time = math.floor(time)
+
+		if time == -40 then self:EventPreBounty() end
+		if includeNegativeTime then return end
+
+		if time == 0 then self:EventBountyRune() return end
+		if sync_time == 140 then self:EventPreBounty() end
+		if sync_time == 180 then self:EventBountyRune() end
+		if sync_time == 320 then self:EventPreBounty() end
+		if sync_time == 360 then self:EventBountyRune() end
+		if sync_time == 520 then self:EventBoss(1) end
+		if sync_time == 580 then self:EventBoss(2) end
 	end
 
 	function BattleArena:CreateSpot(number)
@@ -661,7 +677,7 @@
 		local DropInfo = GameRules.DropTable[unit:GetUnitName()]
 		if DropInfo then
 			for item_name,chance in pairs(DropInfo) do
-				if RandomInt(1, 100) <= chance then
+				if RandomInt(1, 200) <= chance * 2 then
 					-- Check bundle drop
 					item_name = self:GetBundleItem(item_name)
 
@@ -860,35 +876,17 @@
 -- ON THINK
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			if math.floor(GameRules:GetDOTATime(false, true)) == -40 then
-				local rand = RandomInt(1,6)
-				if rand == 1 then self.pos = Vector(-255,-2114,136) end
-				if rand == 2 then self.pos = Vector(2686,-4038,136) end
-				if rand == 3 then self.pos = Vector(-3197,61,136) end
-				if rand == 4 then self.pos = Vector(315,3317,8) end
-				if rand == 5 then self.pos = Vector(2558,2298,264) end
-				if rand == 6 then self.pos = Vector(-4606,-2052,392) end
-				self:CreateMinimapEvent(40, 128)
-			end
+			self:GenerateEvent(true)
 
 			if self.neutral_test == nil then self.neutral_test = true end
 			if IsInToolsMode() and self.neutral_test == true then
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -1700, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				CreateUnitByName("neutral_basic_crocodilian",  Vector(0, -2000, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				--CreateItemOnPositionSync(Vector(-500, -2000, 0), CreateItem("item_branch_blue", nil, nil))
+				CreateUnitByName("boss_gorillaz",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				self.neutral_test = false
 			end
 		end
+
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-			local myTable = CustomNetTables:GetTableValue("game_state", "round_data")		
+			local myTable = CustomNetTables:GetTableValue("game_state", "round_data")
 
 			if myTable == nil then
 				CustomNetTables:SetTableValue("game_state", "round_data", { value = 0 })
@@ -903,10 +901,12 @@
 				self:CreateSpot(index)
 			end
 
-			self:SpawnBountyRune()
-			
-		elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+			self:GenerateEvent(false)
+		end
+		
+		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
 			return nil
 		end
+		
 		return 1
 	end

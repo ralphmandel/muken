@@ -1,5 +1,5 @@
 _boss__ai = class({})
-LinkLuaModifier( "_boss_modifier__ai", "neutrals/_boss_modifier__ai", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("_boss_modifier__ai", "bosses/_boss_modifier__ai", LUA_MODIFIER_MOTION_NONE)
 
 function _boss__ai:CalcStatus(duration, caster, target)
     local time = duration

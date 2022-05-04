@@ -6,7 +6,7 @@
 	"name"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"neutrals/name"
+		"ScriptFile"            		"bosses/name"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityTextureName"     		"spellicon"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -48,7 +48,7 @@
 	"_boss__ai"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"neutrals/_boss__ai"
+		"ScriptFile"            		"bosses/_boss__ai"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"     		"spellicon"
 

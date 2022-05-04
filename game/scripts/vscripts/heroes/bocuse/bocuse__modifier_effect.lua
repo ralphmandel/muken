@@ -23,6 +23,8 @@ function bocuse__modifier_effect:OnCreated(kv)
 			end
 		end
 	end)
+
+	--self:StartIntervalThink(1)
 end
 
 function bocuse__modifier_effect:OnRefresh(kv)
@@ -47,3 +49,7 @@ end
 function bocuse__modifier_effect:GetAttackSound(keys)
     return ""
 end
+
+-- function bocuse__modifier_effect:OnIntervalThink()
+--     print("x", self.parent:GetAbsOrigin().x, "| y", self.parent:GetAbsOrigin().y, "| z", self.parent:GetAbsOrigin().z)
+-- end
