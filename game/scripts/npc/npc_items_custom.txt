@@ -55,96 +55,838 @@
 		}
 	}
 
-	"item_legend_serluc"
-	{
-		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_legend_serluc"
-		"AbilityTextureName"			"item_legend_serluc"
-		"ID"							"1501"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"Model"							"models/props_gameplay/treasure_chest_gold.vmdl"
-
-		"ItemCost"			"0"
-		"ItemKillable"		"1"
-		"ItemSellable"		"0"
-		"ItemPurchasable" 	"0"
-		"ItemDroppable" 	"1"
-
-		"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		"ItemPermanent"		"1" //used for charges
-		"ItemStackable"		"0"
-		"MaxUpgradeLevel" 	"6"
-		"ItemBaseLevel" 	"1"
-
-		"ItemQuality"		"artifact"
-        "AllowedInBackpack"	"1"
-		"ItemIsNeutralDrop"	"1"
-		"ItemAlertable" 	"1"
-		"ItemInitial"		"0"
-		"SideShop"			"0"
-		"SecretShop"		"0"
-		
-		"AbilityCooldown"				"30.0"
-		"AbilityManaCost"				"75"
-		
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
+	// BRANCHS
+		"item_branch_blue"
 		{
-			"particle"						""
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_branch_blue"
+			"AbilityTextureName"			"item_branch_blue"
+			"ID"							"1611"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/branch.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			//"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
 		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+
+		"item_branch_green"
 		{
-			"01"
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_branch_green"
+			"AbilityTextureName"			"item_branch_green"
+			"ID"							"1612"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/branch.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			//"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+		}
+
+		"item_branch_red"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_branch_red"
+			"AbilityTextureName"			"item_branch_red"
+			"ID"							"1613"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/branch.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			//"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+		}
+
+		"item_branch_yellow"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_branch_yellow"
+			"AbilityTextureName"			"item_branch_yellow"
+			"ID"							"1614"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/branch.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			//"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+		}
+
+	// POTIONS
+		"item_potion_recover"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_recover"
+			"AbilityTextureName"			"item_potion_recover"
+			"ID"							"1621"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"passive_str"	"20"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"passive_lck"	"12"
-			}
-			"03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"passive_mnd"	"8"
-			}
-			"04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"3"
-			}
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"			"30"
-			}
-			"06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"ms"			"75"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"passive_lifesteal"	"15"
-			}
-			"08"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"rank_lifesteal"	"25 35 45 55 65 75"
-			}
-			"09"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"xp"				"500 550 650 800 1000 0"
-				// dealing above 500 damage within 7 seconds gives you 75 xp and reduces cd by 10 seconds.
-				// killing a hero while berserk mode gives you 250 xp.
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"mana"			"30"
+				}
 			}
 		}
-	}
+
+		"item_potion_heal"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_heal"
+			"AbilityTextureName"			"item_potion_heal"
+			"ID"							"1622"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"heal_hit"		"20"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"heal"			"50"
+				}
+			}
+		}
+
+		"item_potion_speed"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_speed"
+			"AbilityTextureName"			"item_potion_speed"
+			"ID"							"1623"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"ms"			"40"
+				}
+			}
+		}
+
+		"item_potion_strenght"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_strenght"
+			"AbilityTextureName"			"item_potion_strenght"
+			"ID"							"1624"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"bonus_damage"	"50"
+				}
+			}
+		}
+
+		"item_potion_defense"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_defense"
+			"AbilityTextureName"			"item_potion_defense"
+			"ID"							"1625"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"armor"			"15"
+				}
+			}
+		}
+
+		"item_potion_resistance"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_potion_resistance"
+			"AbilityTextureName"			"item_potion_resistance"
+			"ID"							"1626"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/bottle_blue.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_NOT_SHAREABLE"
+			"ItemPermanent"		"0" //used for charges
+			"ItemStackable"		"1"
+			"ItemStackableMax"	"2"
+			"ItemInitialCharges""1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		"consumable"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"8"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"resist"		"30"
+				}
+			}
+		}
+
+	// RECIPES
+		"item_recipe_potion_recover"
+		{
+			"ID"							"1631"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_recover"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_recover"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_red;item_branch_blue"
+			}
+		}
+
+		"item_recipe_potion_heal"
+		{
+			"ID"							"1632"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_heal"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_heal"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_red;item_branch_green"
+			}
+		}
+
+		"item_recipe_potion_speed"
+		{
+			"ID"							"1633"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_speed"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_speed"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_green;item_branch_blue"
+			}
+		}
+
+		"item_recipe_potion_strenght"
+		{
+			"ID"							"1634"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_strenght"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_strenght"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_red;item_branch_yellow"
+			}
+		}
+
+		"item_recipe_potion_defense"
+		{
+			"ID"							"1635"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_defense"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_defense"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_green;item_branch_yellow"
+			}
+		}
+
+		"item_recipe_potion_resistance"
+		{
+			"ID"							"1636"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName" 			"item_potion_resistance"
+			"Model"							"models/props_gameplay/recipe.vmdl"
+			"ItemCost"						"0"
+			"ItemShopTags"					""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_potion_resistance"
+
+			"ItemRequirements"
+			{
+				"01"						"item_branch_blue;item_branch_yellow"
+			}
+		}
+
+	// LEGENDARY ITEMS
+		"item_legend_serluc"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_legend_serluc"
+			"AbilityTextureName"			"item_legend_serluc"
+			"ID"							"1501"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+			"Model"							"models/props_gameplay/treasure_chest_gold.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			"MaxUpgradeLevel" 	"6"
+			"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"				"20.0"
+			"AbilityManaCost"				"75"
+			
+			"precache"
+			{
+				"particle"	"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
+				"particle"	"particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
+				"particle"	"particles/items/item_fx_serluc_berserk.vpcf"
+			}
+			
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_str"	"20"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_lck"	"12"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mnd"	"8"
+				}
+				"04"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"3"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"agi"			"30"
+				}
+				"06"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"ms"			"75"
+				}
+				"07"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"passive_lifesteal"	"15"
+				}
+				"08"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"rank_lifesteal"	"25 35 45 55 65 75"
+				}
+				"09"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"xp"				"500 550 650 800 1000 0"
+					// dealing above 500 damage within 7 seconds gives you 75 xp and reduces cd by 10 seconds.
+					// killing a hero while berserk mode gives you 250 xp.
+				}
+			}
+		}
+
+	// RARE ITEMS
+		"item_rare_serluc_armor"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_serluc_armor"
+			"AbilityTextureName"			"item_rare_serluc_armor"
+			"ID"							"1401"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			//"AbilityCooldown"				"30.0"
+			//"AbilityManaCost"				"75"
+			
+			"precache"
+			{
+				"particle"	"particles/items_fx/aura_shivas.vpcf"
+			}
+			
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_con"	"10"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mnd"	"5"
+				}
+				"04"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"radius"		"800"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"def"			"7"
+				}
+				"06"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"res"			"7"
+				}
+			}
+		}
+
+		"item_rare_eternal_wings"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_eternal_wings"
+			"AbilityTextureName"			"item_rare_eternal_wings"
+			"ID"							"1402"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"20.0"
+			//"AbilityManaCost"				"75"
+			
+			"precache"
+			{
+				"particle"	"particles/status_fx/status_effect_guardian_angel.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
+				"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
+				"particle"	"particles/status_fx/status_effect_guardian_angel.vpcf"
+			}
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_rec"	"15"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"wings_duration"	"7"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"manacost"		"50"
+				}
+			}
+		}
+
+		"item_rare_wild_axe"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_wild_axe"
+			"AbilityTextureName"			"item_rare_wild_axe"
+			"ID"							"1403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"15.0"
+			"AbilityManaCost"		"50"
+			"AbilityCastRange"		"150"
+			
+			"precache"
+			{
+				"particle"	""
+			}
+			
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_str"	"10"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_dex"	"10"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"chance"		"50"
+				}
+			}
+		}
+
+		"item_rare_lacerator"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_lacerator"
+			"AbilityTextureName"			"item_rare_lacerator"
+			"ID"							"1404"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			"AbilityCastPoint"				"0.3"
+			//"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			"MaxUpgradeLevel" 	"6"
+			"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"AbilityCooldown"		"0"
+			"AbilityManaCost"		"125 150 175 200 225 250"
+			"AbilityCastRange"		"200"
+			
+			"precache"
+			{
+				"particle"	""
+			}
+			
+			"AbilitySpecial"
+			{
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"max_stack"		"30 33 36 39 42 45"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"distance"		"350"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"damage_stack"	"1000"
+				}
+			}
+		}
 }

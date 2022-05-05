@@ -138,6 +138,8 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 end
 
 function bloodstained_1_modifier_rage:OnHeroKilled(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return	end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 

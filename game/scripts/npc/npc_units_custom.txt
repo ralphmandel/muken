@@ -611,7 +611,68 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 3
+		"boss_gorillaz"	
+		{
+			"Model"						"models/items/lone_druid/bear/tarzan_and_kingkong_spirit/tarzan_and_kingkong_spirit.vmdl"	// Model.
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"15"
+			"ModelScale" 				"1.4"
+
+			"Ability1"					"_boss__ai"
+			"Ability2"					"_boss_gorillaz"
+			"Ability3"					"mk_root"
+			//"Ability4"					"mk_fury"
+			//"Ability5"					"mk_roar"
+			//"Ability6"					"mk_bite"
+
+			"ArmorPhysical"				"35"			// Physical protection.
+			"MagicalResistance"        	"35"
+
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"			"200"		// Damage range min.
+			"AttackDamageMax"			"250"		// Damage range max.
+			"AttackRate"				"1"		// Speed of attack.
+			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
+			"AttackRange"				"200"		// Range within a target can be attacked.
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+			"RingRadius"				"100"
+			"HealthBarOffset"			"275"
+			"BountyXP"					"0"		// Experience earn.
+			"BountyGoldMin"				"75"	// Gold earned min.
+			"BountyGoldMax"				"80"		// Gold earned max.
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementSpeed"				"450"		// Speed.			
+
+			"StatusHealth"				"4500"		// Base health.
+			"StatusHealthRegen"			"15"			// Health regeneration rate.
+			"StatusMana"				"750"			// Base mana.
+			"StatusManaRegen"			"5"		// Mana regeneration rate.		 
+			"VisionDaytimeRange"		"700"		// Range of vision during day light.
+			"VisionNighttimeRange"		"500"		// Range of vision at night time.
+
+			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+	//NEUTRALS TIER 3
 		"neutral_lamp"	
 		{
 			// General
@@ -1039,7 +1100,7 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 2
+	//NEUTRALS TIER 2
 		"neutral_igor"	
 		{
 			// General
@@ -1295,7 +1356,7 @@
 			}
 		}
 
-	//NEUTRALS LEVEL 1
+	//NEUTRALS TIER 1
 		"neutral_basic_chameleon"	
 		{
 			// General

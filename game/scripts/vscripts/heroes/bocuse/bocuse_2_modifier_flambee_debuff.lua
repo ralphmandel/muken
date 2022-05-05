@@ -88,6 +88,7 @@ end
 
 function bocuse_2_modifier_flambee_debuff:OnIntervalThink()
     local amount = self.parent:GetMaxHealth() * self.percent * 0.01
+	if self.parent:GetUnitName() == "boss_gorillaz" then amount = amount * 0.5 end
     self.damageTable.damage = amount
     local damage = ApplyDamage(self.damageTable)
 

@@ -66,9 +66,6 @@ function venom_aoe_modifier:GetModifierPhysicalArmorBonus()
 end
 
 function venom_aoe_modifier:OnIntervalThink()
-	if self.caster == nil then self:Destroy() return end
-	if IsValidEntity(self.caster) == false then self:Destroy() return end
-	
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(),	-- int, your team number
 		self.parent:GetOrigin(),	-- point, center point
@@ -103,9 +100,9 @@ function venom_aoe_modifier:GetAuraRadius()
 	return self.radius
 end
 
-function venom_aoe_modifier:GetAuraDuration()
-	return 0.5
-end
+-- function venom_aoe_modifier:GetAuraDuration()
+-- 	return 0.5
+-- end
 
 function venom_aoe_modifier:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_ENEMY

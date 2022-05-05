@@ -37,6 +37,7 @@ end
 --------------------------------------------------------------------------------
 
 function bloodstained_0_modifier_bleeding:OnIntervalThink()
+	if self.parent:GetUnitName() == "boss_gorillaz" then return end
 	if self.delay == true then
 		self.delay = false
 		self:StartIntervalThink(0.1)

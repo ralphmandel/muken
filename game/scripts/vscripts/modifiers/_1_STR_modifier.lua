@@ -22,6 +22,8 @@ function _1_STR_modifier:OnCreated(kv)
 
         self.critical_damage = 0
         self.block_damage = 0
+        self.physical_block = 0
+        self.magical_block = 0
         self.range = 0
         self.spell_critical = false
         self.spell_crit_damage = 0
@@ -70,7 +72,8 @@ end
 function _1_STR_modifier:GetModifierPhysical_ConstantBlock(keys)
     if RandomInt(1, 100) <= self.block_chance
     and self.parent:GetAttackCapability() == 1 then
-        return math.floor(keys.damage * self.block_damage * 0.01)
+        local total_block_percent = self.block_damage + self.physical_block
+        return math.floor(keys.damage * total_block_percent * 0.01)
     end
 end
 
@@ -78,7 +81,8 @@ function _1_STR_modifier:GetModifierMagical_ConstantBlock(keys)
     if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
     if RandomInt(1, 100) <= self.block_chance
     and self.parent:GetAttackCapability() == 1 then
-        return math.floor(keys.damage * self.block_damage * 0.01)
+        local total_block_percent = self.block_damage + self.magical_block
+        return math.floor(keys.damage * total_block_percent * 0.01)
     end
 end
 
@@ -239,6 +243,14 @@ end
 
 function _1_STR_modifier:HasCritical()
     return self.has_crit
+end
+
+function _1_STR_modifier:ModifyBonusPhysicalBlock(amount)
+    self.physical_block = self.physical_block + amount
+end
+
+function _1_STR_modifier:ModifyBonusMagicalBlock(amount)
+    self.magical_block = self.magical_block + amount
 end
 
 function _1_STR_modifier:RollChance()

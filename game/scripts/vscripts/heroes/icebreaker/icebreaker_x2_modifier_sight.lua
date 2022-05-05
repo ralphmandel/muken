@@ -38,7 +38,9 @@ function icebreaker_x2_modifier_sight:OnIntervalThink()
 		damage = self.tick * self.parent:GetMaxHealth() * 0.01,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self.ability
-	} 
+	}
+	
+	if self.parent:GetUnitName() == "boss_gorillaz" then damageTable.damage = damageTable.damage * 0.5 end
 	ApplyDamage(damageTable)
 end
 

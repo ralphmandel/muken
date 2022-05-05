@@ -136,7 +136,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         -- UP 2.11
         if self:GetRank(11) then
-            speed = speed + 600
+            speed = speed + 800
         end
 
         -- UP 2.41

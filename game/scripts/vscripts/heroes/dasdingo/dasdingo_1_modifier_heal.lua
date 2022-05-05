@@ -18,17 +18,14 @@ function dasdingo_1_modifier_heal:GetModifierAura()
 end
 
 function dasdingo_1_modifier_heal:GetAuraRadius()
-	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return self:GetAbility():GetSpecialValueFor("radius") end
-	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return self:GetAbility():GetSpecialValueFor("radius") end
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return self:GetAbility():GetSpecialValueFor("radius") + 100 end
 	return self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function dasdingo_1_modifier_heal:GetAuraSearchTeam()
 	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
 	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
-	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then return DOTA_UNIT_TARGET_TEAM_BOTH end
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY 
+	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return DOTA_UNIT_TARGET_TEAM_BOTH end
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
 function dasdingo_1_modifier_heal:GetAuraSearchType()
@@ -43,11 +40,6 @@ function dasdingo_1_modifier_heal:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
-
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		self.radius = self.radius + 75
-	end
 
 	if IsServer() then
 		self:PlayEfxStart()

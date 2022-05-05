@@ -126,7 +126,8 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 	if self.ability:GetRank(32)
 	and self.time % 20 == 0 then
 		local leech = self.parent:GetMaxHealth() * 0.05
-		if self.parent:IsMagicImmune() == false then
+		if self.parent:IsMagicImmune() == false
+		and self.parent:GetUnitName() ~= "boss_gorillaz" then
 			self.parent:ModifyHealth(self.parent:GetHealth() - leech, self.ability, true, 0)
 			self.caster:ModifyHealth(self.caster:GetHealth() + leech, self.ability, true, 0)
 			self:PlayEfxHeal()

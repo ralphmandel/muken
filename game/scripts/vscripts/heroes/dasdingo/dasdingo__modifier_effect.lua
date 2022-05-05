@@ -26,6 +26,7 @@ end
 
 function dasdingo__modifier_effect:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
 	}
@@ -33,9 +34,14 @@ function dasdingo__modifier_effect:DeclareFunctions()
 	return funcs
 end
 
-function dasdingo__modifier_effect:OnAttackLanded(keys)
+function dasdingo__modifier_effect:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 	if IsServer() then self.parent:EmitSound("Hero_ShadowShaman.Attack") end
+end
+
+function dasdingo__modifier_effect:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if IsServer() then keys.target:EmitSound("Hero_ShadowShaman.ProjectileImpact") end
 end
 
 function dasdingo__modifier_effect:GetAttackSound(keys)

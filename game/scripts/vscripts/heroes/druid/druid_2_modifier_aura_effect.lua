@@ -110,6 +110,7 @@ function druid_2_modifier_aura_effect:DrainHealth()
 
 	Timers:CreateTimer((0.1), function()
 		local iDesiredHealthValue = self.parent:GetHealth() - (self.parent:GetMaxHealth() * 0.004)
+		if self.parent:GetUnitName() == "boss_gorillaz" then iDesiredHealthValue = iDesiredHealthValue * 0.5 end
 		self.parent:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
 		self:DrainHealth()
 	end)

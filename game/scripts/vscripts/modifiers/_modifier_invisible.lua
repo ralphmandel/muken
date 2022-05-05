@@ -21,12 +21,10 @@ end
 
 -- Initializations
 function _modifier_invisible:OnCreated( kv )
-
 	self.delay = false
     self.hidden = false
 
 	if IsServer() then
-		print("delay", kv.delay)
 		if kv.delay == 0 then
 			self.hidden = true
 		else

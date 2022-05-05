@@ -49,7 +49,7 @@ end
 function _modifier__ai:IdleThink()
     -- Find any enemy units around the AI unit inside the aggroRange
     local units = FindUnitsInRadius(self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil,
-        self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, 
+        self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 
         FIND_ANY_ORDER, false)
 
     -- If one or more units were found, start attacking the first one
@@ -105,6 +105,13 @@ function _modifier__ai:AggressiveThink()
     
     -- Check if the target has died
     if not self.aggroTarget:IsAlive() then
+        self.unit:MoveToPosition(self.spawnPos) --Move back to the spawnpoint
+        self.state = AI_STATE_RETURNING --Transition the state to the 'Returning' state(!)
+        return -- Stop processing this state
+    end
+
+    -- Check if the target is invisible or out of game
+    if self.aggroTarget:IsOutOfGame() or self.aggroTarget:IsInvisible() then
         self.unit:MoveToPosition(self.spawnPos) --Move back to the spawnpoint
         self.state = AI_STATE_RETURNING --Transition the state to the 'Returning' state(!)
         return -- Stop processing this state

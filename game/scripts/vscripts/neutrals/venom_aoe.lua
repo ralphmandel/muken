@@ -48,3 +48,15 @@ function venom_aoe:OnSpellStart()
 
     CreateModifierThinker(caster, self, "venom_aoe_modifier", {duration = duration}, point, caster:GetTeamNumber(), false)
 end
+
+function venom_aoe:OnOwnerDied()
+	local caster = self:GetCaster()
+
+	local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+	for _,thinker in pairs(thinkers) do
+		if thinker:GetOwner() == caster and thinker:HasModifier("venom_aoe_modifier") then
+			thinker:RemoveModifierByName("venom_aoe_modifier")
+			--thinker:Kill(self, nil)
+		end
+	end
+end
