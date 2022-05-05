@@ -493,6 +493,7 @@
 #base "../vscripts/heroes/slayer/slayer.txt"
 #base "../vscripts/heroes/doctor/doctor.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
+#base "../vscripts/heroes/succubus/succubus.txt"
 
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "../vscripts/bosses/_bosses.txt"
