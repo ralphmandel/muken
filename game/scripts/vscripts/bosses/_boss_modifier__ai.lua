@@ -40,7 +40,6 @@ function _boss_modifier__ai:OnCreated(params)
 end
 
 function _boss_modifier__ai:OnIntervalThink()
-    print("cadeee")
     -- Execute action corresponding to the current state
     if self.unit:IsDominated() then return end
     self.stateActions[self.state](self)    
@@ -52,6 +51,15 @@ function _boss_modifier__ai:IdleThink()
         self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 
         FIND_ANY_ORDER, false)
 
+    for _,unit in pairs(units) do
+        if unit:IsIllusion() == false then
+            self.aggroTarget = unit -- Remember who to attack
+            self.unit:MoveToTargetToAttack(self.aggroTarget) --Start attacking
+            self.state = AI_STATE_AGGRESSIVE --State transition
+            return -- Stop processing this state
+        end
+    end
+
     -- If one or more units were found, start attacking the first one
     -- if #units > 0 then
     --     --self.spawnPos = self.unit:GetAbsOrigin() -- Remember position to return to
@@ -61,14 +69,7 @@ function _boss_modifier__ai:IdleThink()
     --     return -- Stop processing this state
     -- end
 
-	for _,unit in pairs(units) do
-		if unit:IsIllusion() == false then
-            self.aggroTarget = unit -- Remember who to attack
-            self.unit:MoveToTargetToAttack(self.aggroTarget) --Start attacking
-            self.state = AI_STATE_AGGRESSIVE --State transition
-            return -- Stop processing this state
-        end
-	end
+
 
     if self.unit:GetAggroTarget() ~= nil then
         self.aggroTarget = self.unit:GetAggroTarget()
@@ -116,9 +117,13 @@ function _boss_modifier__ai:AggressiveThink()
         self.state = AI_STATE_RETURNING --Transition the state to the 'Returning' state(!)
         return -- Stop processing this state
     end
-    
-    -- Still in the aggressive state, so do some aggressive stuff.
-    self.unit:MoveToTargetToAttack(self.aggroTarget)
+
+    if self.unit:GetAggroTarget() ~= nil then
+        if self.unit:GetAggroTarget() ~= self.aggroTarget then
+            self.aggroTarget = self.unit:GetAggroTarget()
+            self.unit:MoveToTargetToAttack(self.aggroTarget)
+        end
+    end
 end
 
 function _boss_modifier__ai:ReturningThink()

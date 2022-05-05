@@ -44,10 +44,16 @@ end
 
 function fireball_modifier:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_DEATH
 	}
 
 	return funcs
 end
+
+function fireball_modifier:OnDeath(keys)
+	if keys.unit ~= self.caster then return end
+	self:Destroy()
+end 
 
 function fireball_modifier:OnIntervalThink()
 	if self.caster == nil then self:Destroy() return end

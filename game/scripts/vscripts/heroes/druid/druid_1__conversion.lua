@@ -166,6 +166,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         for _,neutral in pairs(neutrals) do
             local chance = self:CalcChance(neutral:GetLevel())
             if neutral:GetUnitName() ~= "summoner_spider"
+            and neutral:GetUnitName() ~= "boss_gorillaz"
             and neutral:HasModifier("druid_1_modifier_failed") == false
             and neutral:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
                 if RandomInt(1, 10000) <= chance * 100 then

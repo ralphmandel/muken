@@ -162,6 +162,7 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mars.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
@@ -310,6 +311,7 @@
 			fountain:SetAbsOrigin(Vector(-250,-300,0))
 		end)
 		
+		self.boss = {[1] = nil, [2] = nil}
 		self.spots = {
 			[1] = { [1] = {}, [2] = Vector(3960, -2963, 0), [3] = -30, [4] = 1},
 			[2] = { [1] = {}, [2] = Vector(1604, -4734, 0), [3] = -30, [4] = 1},
@@ -386,6 +388,17 @@
 		end
 	end
 
+	function BattleArena:CreateBoss(boss_name, spot)
+		local spot_vec = {
+			[1] = Vector(-3748, -3774, 0),
+			[2] = Vector(5745, 2317, 0)
+		}
+
+		if self.boss[spot] == nil then
+			self.boss[spot] = CreateUnitByName(boss_name, spot_vec[spot], true, nil, nil, DOTA_TEAM_NEUTRALS)
+		end
+	end
+
 	function BattleArena:GenerateEvent(includeNegativeTime)
 		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
 		local sync_time = time % 600
@@ -402,7 +415,9 @@
 		if sync_time == 320 then self:EventPreBounty() end
 		if sync_time == 360 then self:EventBountyRune() end
 		if sync_time == 520 then self:EventBoss(1) end
+		if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
 		if sync_time == 580 then self:EventBoss(2) end
+		if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
 	end
 
 	function BattleArena:CreateSpot(number)
@@ -677,7 +692,7 @@
 		local DropInfo = GameRules.DropTable[unit:GetUnitName()]
 		if DropInfo then
 			for item_name,chance in pairs(DropInfo) do
-				if RandomInt(1, 200) <= chance * 2 then
+				if RandomInt(1, 400) <= chance * 2 then
 					-- Check bundle drop
 					item_name = self:GetBundleItem(item_name)
 
@@ -692,7 +707,18 @@
 		end
 	end
 
+	function BattleArena:RollBossDrops(unit)
+		local item_name = self:GetBundleItem("rare_item_bundle")
+		local item = CreateItem(item_name, nil, nil)
+		local pos = unit:GetAbsOrigin()
+		local drop = CreateItemOnPositionSync( pos, item )
+		local pos_launch = pos+RandomVector(RandomFloat(150,200))
+		item:LaunchLoot(false, 200, 0.75, pos_launch)
+	end
+
 	function BattleArena:GetBundleItem(item_name)
+		if RandomInt(1, 100) <= 5 then return "item_legend_serluc" end
+
 		if item_name == "rare_item_bundle" then
 			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
 		end
@@ -725,6 +751,15 @@
 					end)
 				end
 			end
+		end
+
+		if unit == self.boss[1] then
+			self.boss[1] = nil
+			self:RollBossDrops(unit)
+		end
+		if unit == self.boss[2] then
+			self.boss[2] = nil
+			self:RollBossDrops(unit)
 		end
 
 		if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
@@ -856,7 +891,9 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName("item_rare_lacerator")
+					unit:AddItemByName("item_rare_serluc_armor")
+					unit:AddItemByName("item_rare_eternal_wings")
+
 					if self.temp == nil then
 						self.temp = 1
 					else
@@ -880,7 +917,7 @@
 
 			if self.neutral_test == nil then self.neutral_test = true end
 			if IsInToolsMode() and self.neutral_test == true then
-				CreateUnitByName("boss_gorillaz",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				--CreateUnitByName("boss_gorillaz",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
 				self.neutral_test = false
 			end
 		end

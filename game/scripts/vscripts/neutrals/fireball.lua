@@ -92,25 +92,3 @@ function fireball:OnProjectileHit(hTarget, vLocation)
 		})
 	end
 end
-
-function fireball:OnOwnerDied()
-	local caster = self:GetCaster()
-	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-	self.caster = nil
-
-	local enemies = FindUnitsInRadius(
-		caster:GetTeamNumber(),	-- int, your team number
-		caster:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		FIND_UNITS_EVERYWHERE,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		flags,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-
-	for _,enemy in pairs(enemies) do
-		enemy:RemoveModifierByName("fireball_modifier")
-	end
-end

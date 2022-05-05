@@ -140,6 +140,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
                 ability = self
             }
         
+            if target:GetUnitName() == "boss_gorillaz" then damageTable.damage = damageTable.damage * 0.5 end
             ApplyDamage(damageTable)
             if IsServer() then target:EmitSound("Hero_Juggernaut.BladeDance") end
         end
