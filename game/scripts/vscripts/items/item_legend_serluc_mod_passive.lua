@@ -63,7 +63,10 @@ function item_legend_serluc_mod_passive:OnHeroKilled(keys)
 	local xp_gain = 250
 	self.ability:CheckXP()
 	self.ability.xp = self.ability.xp - xp_gain
-	if self.ability.xp < 0 then self.ability:UpgradeAbility(true) end
+	if self.ability.xp < 0 then
+		self:PlayLevelUpEfx()
+		self.ability:UpgradeAbility(true)
+	end
 end
 
 function item_legend_serluc_mod_passive:OnAttacked(keys)
@@ -124,4 +127,14 @@ function item_legend_serluc_mod_passive:PlayEfxLifesteal(target)
 	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
 	ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
+end
+
+function item_legend_serluc_mod_passive:PlayLevelUpEfx()
+	local caster = self:GetCaster()
+	local particle = "particles/econ/events/spring_2021/hero_levelup_spring_2021.vpcf"
+	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
+	ParticleManager:SetParticleControl(effect, 0, caster:GetOrigin())
+	self:AddParticle(effect, false, false, -1, false, false)
+
+	--if IsServer() then caster:EmitSound("LevelUp.Legendary") end
 end

@@ -707,6 +707,14 @@
 					local drop = CreateItemOnPositionSync( pos, item )
 					local pos_launch = pos+RandomVector(RandomFloat(150,200))
 					item:LaunchLoot(false, 200, 0.75, pos_launch)
+
+					Timers:CreateTimer((15), function()
+						if drop then
+							if IsValidEntity(drop) then
+								UTIL_Remove(drop)
+							end
+						end
+					end)
 				end
 			end
 		end
@@ -894,7 +902,7 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName(self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)])
+					unit:AddItemByName("item_legend_serluc")
 
 					if self.temp == nil then
 						self.temp = 1

@@ -71,7 +71,11 @@ function _1_CON_modifier:OnHealReceived(keys)
             if xp_gain > 0 then
                 keys.inflictor:CheckXP()
                 keys.inflictor.xp = keys.inflictor.xp - xp_gain
-                if keys.inflictor.xp < 0 then keys.inflictor:UpgradeAbility(true) end
+                if keys.inflictor.xp < 0 then
+                    local mod_passive = self.parent:FindModifierByName("item_legend_serluc_mod_passive")
+                    if mod_passive then mod_passive:PlayLevelUpEfx() end
+                    keys.inflictor:UpgradeAbility(true)
+                end
             end
         end
     end

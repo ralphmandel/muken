@@ -581,6 +581,7 @@
 				"particle"	"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff.vpcf"
 				"particle"	"particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
 				"particle"	"particles/items/item_fx_serluc_berserk.vpcf"
+				"particle"	"particles/econ/events/spring_2021/hero_levelup_spring_2021.vpcf"
 			}
 			
 			"AbilitySpecial"
