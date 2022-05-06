@@ -76,6 +76,10 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
         hero.att = "doctor__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_queenofpain" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus-ranks.txt")
+        hero.att = "succubus__attributes"
     end
 
     hero.talentsData = {}

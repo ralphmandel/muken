@@ -1,0 +1,154 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_flConstantRadius = 128.0
+	m_ConstantColor = [ 90, 54, 79, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 4.0
+			m_fLifetimeMin = 4.0
+		},
+		{
+			_class = "C_INIT_VelocityFromCP"
+			m_nControlPoint = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_nLerpCP = 3
+			m_flTolerance = 96.0
+			m_flOffset = 75.0
+			m_bIncludeWater = true
+			m_flMaxTraceLength = 1024.0
+			m_flTraceOffset = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 3
+		},
+		{
+			_class = "C_OP_OrientTo2dDirection"
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_grnd_proj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_grnd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_grnd_blast.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_blots.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_grnd_steam.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_core_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_pnt.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_cast.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_cast_magic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_symbol.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_rope_right.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_rope_left.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_leading.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/succubus/succubus_1_dash_symbol_model.vpcf"
+		},
+	]
+}

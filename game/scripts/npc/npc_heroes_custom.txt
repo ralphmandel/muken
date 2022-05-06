@@ -377,3 +377,4 @@
 #base "../vscripts/heroes/ancient/ancient-props.txt"
 #base "../vscripts/heroes/doctor/doctor-props.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage-props.txt"
+#base "../vscripts/heroes/succubus/succubus-props.txt"
