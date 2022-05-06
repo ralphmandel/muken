@@ -836,7 +836,6 @@
 			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 			"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			"AbilityCastPoint"				"0.3"
 			//"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
 			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
@@ -864,10 +863,12 @@
 			"AbilityCooldown"		"0"
 			"AbilityManaCost"		"125 150 175 200 225 250"
 			"AbilityCastRange"		"200"
+			"AbilityCastPoint"		"0.3"
 			
 			"precache"
 			{
-				"particle"	""
+				"particle"	"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+				"particle"	"particles/econ/items/centaur/centaur_ti9/centaur_double_edge_phase_ti9.vpcf"
 			}
 			
 			"AbilitySpecial"
@@ -951,125 +952,214 @@
 			}
 		}
 
-		// "item_rare_arcane_hammer"
-		// {
-		// 	"BaseClass"						"item_lua"
-		// 	"ScriptFile"					"items/item_rare_wild_axe"
-		// 	"AbilityTextureName"			"item_rare_wild_axe"
-		// 	"ID"							"1403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		// 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		// 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
-		// 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
-		// 	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
-		// 	"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+		"item_rare_emperor_crown"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_emperor_crown"
+			"AbilityTextureName"			"item_rare_emperor_crown"
+			"ID"							"1406"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
 
-		// 	"ItemCost"			"0"
-		// 	"ItemKillable"		"1"
-		// 	"ItemSellable"		"0"
-		// 	"ItemPurchasable" 	"0"
-		// 	"ItemDroppable" 	"1"
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
 
-		// 	"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		// 	"ItemPermanent"		"1" //used for charges
-		// 	"ItemStackable"		"0"
-		// 	//"MaxUpgradeLevel" 	"1"
-		// 	//"ItemBaseLevel" 	"1"
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
 
-		// 	"ItemQuality"		"artifact"
-		// 	"AllowedInBackpack"	"1"
-		// 	"ItemIsNeutralDrop"	"1"
-		// 	"ItemAlertable" 	"1"
-		// 	"ItemInitial"		"0"
-		// 	"SideShop"			"0"
-		// 	"SecretShop"		"0"
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
 			
-		// 	"AbilityCooldown"		"15.0"
-		// 	"AbilityManaCost"		"50"
-		// 	"AbilityCastRange"		"150"
+			"precache"
+			{
+				"particle"	""
+			}
 			
-		// 	"precache"
-		// 	{
-		// 		"particle"	""
-		// 	}
-			
-		// 	"AbilitySpecial"
-		// 	{
-		// 		"01"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"passive_str"	"15"
-		// 		}
-		// 		"02"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"passive_con"	"10"
-		// 		}
-		// 		"03"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"chance"		"50"
-		// 		}
-		// 	}
-		// }
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_str"	"5"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_agi"	"5"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_int"	"5"
+				}
+				"04"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_con"	"5"
+				}
+				"05"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_dex"	"5"
+				}
+				"06"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_def"	"5"
+				}
+				"07"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_res"	"5"
+				}
+				"08"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_rec"	"5"
+				}
+				"09"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mnd"	"5"
+				}
+				"10"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_lck"	"5"
+				}
+			}
+		}
 
-		// "item_rare_mystic_brooch"
-		// {
-		// 	"BaseClass"						"item_lua"
-		// 	"ScriptFile"					"items/item_rare_wild_axe"
-		// 	"AbilityTextureName"			"item_rare_wild_axe"
-		// 	"ID"							"1403"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		// 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		// 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
-		// 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
-		// 	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
-		// 	"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+		"item_rare_arcane_hammer"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_arcane_hammer"
+			"AbilityTextureName"			"item_rare_arcane_hammer"
+			"ID"							"1407"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+			"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
 
-		// 	"ItemCost"			"0"
-		// 	"ItemKillable"		"1"
-		// 	"ItemSellable"		"0"
-		// 	"ItemPurchasable" 	"0"
-		// 	"ItemDroppable" 	"1"
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
 
-		// 	"ItemShareability"	"ITEM_FULLY_SHAREABLE"
-		// 	"ItemPermanent"		"1" //used for charges
-		// 	"ItemStackable"		"0"
-		// 	//"MaxUpgradeLevel" 	"1"
-		// 	//"ItemBaseLevel" 	"1"
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
 
-		// 	"ItemQuality"		"artifact"
-		// 	"AllowedInBackpack"	"1"
-		// 	"ItemIsNeutralDrop"	"1"
-		// 	"ItemAlertable" 	"1"
-		// 	"ItemInitial"		"0"
-		// 	"SideShop"			"0"
-		// 	"SecretShop"		"0"
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
 			
-		// 	"AbilityCooldown"		"15.0"
-		// 	"AbilityManaCost"		"50"
-		// 	"AbilityCastRange"		"150"
+			"AbilityCooldown"		"25"
+			"AbilityManaCost"		"200"
+			"AbilityCastRange"		"600"
+			"AbilityCastPoint"		"0.1"
 			
-		// 	"precache"
-		// 	{
-		// 		"particle"	""
-		// 	}
+			"precache"
+			{
+				"particle"	"particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_orchid.vpcf"
+			}
 			
-		// 	"AbilitySpecial"
-		// 	{
-		// 		"01"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"passive_str"	"15"
-		// 		}
-		// 		"02"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"passive_con"	"10"
-		// 		}
-		// 		"03"
-		// 		{
-		// 			"var_type"		"FIELD_FLOAT"
-		// 			"chance"		"50"
-		// 		}
-		// 	}
-		// }
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_int"	"15"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mana"	"100"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"4"
+				}
+				"04"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"damage_percent"	"30"
+				}
+			}
+		}
+
+		"item_rare_mystic_brooch"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_rare_mystic_brooch"
+			"AbilityTextureName"			"item_rare_mystic_brooch"
+			"ID"							"1408"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
+
+			"ItemCost"			"0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" 	"0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		"1" //used for charges
+			"ItemStackable"		"0"
+			//"MaxUpgradeLevel" 	"1"
+			//"ItemBaseLevel" 	"1"
+
+			"ItemQuality"		"artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"1"
+			"ItemAlertable" 	"1"
+			"ItemInitial"		"0"
+			"SideShop"			"0"
+			"SecretShop"		"0"
+			
+			"precache"
+			{
+				"particle"	""
+			}
+			
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_dex"	"15"
+				}
+				"02"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"passive_mnd"	"15"
+				}
+				"03"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"regen"			"10"
+				}
+			}
+		}
 }

@@ -62,7 +62,9 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 
 	if self.hits > 0 then
 		self.hits = self.hits - 1
-	else
+	end
+	
+	if self.hits < 1 then
 		self.ability:RemoveBonus("_1_AGI", self.parent)
 		self.ability:AddBonus("_1_AGI", self.parent, self.passive_agi, 0, nil)
 		self:StartIntervalThink(-1)

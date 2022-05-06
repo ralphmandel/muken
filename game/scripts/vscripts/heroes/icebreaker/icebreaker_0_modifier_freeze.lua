@@ -194,7 +194,7 @@ function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
 		-- UP 3.41
 		local damage = self.break_damage
 		if self.ability_break:GetRank(41) then
-			damage = damage + 60
+			damage = damage + 70
 		end
 
 		self.heal = self.break_damage

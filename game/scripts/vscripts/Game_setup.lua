@@ -69,6 +69,8 @@ function GameSetup:init()
     GameMode:SetInnateMeleeDamageBlockAmount(0)
     GameMode:SetAnnouncerDisabled(true)
     GameMode:SetKillingSpreeAnnouncerDisabled(true)
+    --GameMode:SetSendToStashEnabled(true)
+    --GameMode:SetNeutralStashEnabled(true)
 
     -- disable HUDs hud
     --GameMode:SetHUDVisible(DOTA_HUD_VISIBILITY_INVENTORY_ITEMS , false)

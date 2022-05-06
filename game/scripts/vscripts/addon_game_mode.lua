@@ -72,14 +72,19 @@
 				PrecacheResource( "particle", "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf", context )
 				PrecacheResource( "particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf", context )
 
-			--bloodstained
-			--crusader
-			--icebreaker
-			--inquisitor
-			--shadow
-			--bocuse
-			--dasdingo
+			--creatures
+				PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_chemical_rage_aurelian.vpcf", context )
+				PrecacheResource( "particle", "particles/status_fx/status_effect_life_stealer_rage.vpcf", context )
+				PrecacheResource( "particle", "particles/druid/druid_ult_projectile.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context )
 
+				PrecacheResource( "particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
+				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )	
 
 		--precache soundfile
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context )
@@ -185,7 +190,10 @@
 			[2] = "item_rare_eternal_wings",
 			[3] = "item_rare_wild_axe",
 			[4] = "item_rare_lacerator",
-			[5] = "item_rare_killer_dagger"
+			[5] = "item_rare_killer_dagger",
+			[6] = "item_rare_emperor_crown",
+			[7] = "item_rare_arcane_hammer",
+			[8] = "item_rare_mystic_brooch"
 		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
@@ -706,6 +714,7 @@
 
 	function BattleArena:RollBossDrops(unit)
 		local item_name = self:GetBundleItem("rare_item_bundle")
+		if item_name == nil then return end
 		local item = CreateItem(item_name, nil, nil)
 		local pos = unit:GetAbsOrigin()
 		local drop = CreateItemOnPositionSync( pos, item )
@@ -713,14 +722,11 @@
 		item:LaunchLoot(false, 200, 0.75, pos_launch)
 	end
 
-	function BattleArena:GetBundleItem(item_name)
-		if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
-
-		if item_name == "rare_item_bundle" then
+	function BattleArena:GetBundleItem(package_name)
+		if package_name == "rare_item_bundle" then
+			if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
 			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
 		end
-
-		return item_name
 	end
 
 -- LISTENERS
@@ -888,8 +894,7 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName(self.rare_item_bundle[5])
-					unit:AddItemByName("item_legend_serluc")
+					unit:AddItemByName(self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)])
 
 					if self.temp == nil then
 						self.temp = 1
