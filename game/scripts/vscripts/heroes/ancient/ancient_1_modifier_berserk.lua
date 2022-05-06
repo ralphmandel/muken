@@ -20,13 +20,13 @@ function ancient_1_modifier_berserk:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.stun_percent = self.ability:GetSpecialValueFor("stun_percent") * 0.01
-	self.aspd = self.ability:GetSpecialValueFor("aspd")
 	self.no_disarm = false
 	self.popup_mana = 0
 	self.heal = 0
 
 	self.agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
-	if self.agi_mod then self.agi_mod:SetBaseAttackTime(0) end
+	self.hits = 0
+	self:SetMultipleHits(0)
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -35,8 +35,8 @@ function ancient_1_modifier_berserk:OnCreated(kv)
 end
 
 function ancient_1_modifier_berserk:OnRefresh(kv)
-	-- UP 1.31
-	if self.ability:GetRank(31) then
+	-- UP 1.11
+	if self.ability:GetRank(11) then
 		self.no_disarm = true
 	end
 end
@@ -83,32 +83,51 @@ function ancient_1_modifier_berserk:GetModifierAttackSpeedBaseOverride()
 	return self.aspd
 end
 
+function ancient_1_modifier_berserk:SetMultipleHits(hits)
+	if hits > 0 then
+		if hits > self.hits then self.hits = hits end
+	else
+		self.hits = self.hits - 1
+	end
+
+	local atkSpeed = self.ability:GetSpecialValueFor("aspd")
+	local baseAS = 0
+
+	if self.hits > 0 then
+		atkSpeed = 5
+		baseAS = -1
+	end
+
+	if self.agi_mod then self.agi_mod:SetBaseAttackTime(baseAS) end
+	self.aspd = atkSpeed
+
+	if self.hits < 0 then self.hits = 0 end
+end
+
 function ancient_1_modifier_berserk:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
-		if self:GetStackCount() > 0 then
-			if self:GetStackCount() == 1 then
-				if self.parent:PassivesDisabled() == false then
-					if self.agi_mod then self.agi_mod:SetBaseAttackTime(-2) end
-					self.aspd = 5
-				else
-					return
-				end
+		if self.parent:PassivesDisabled() == false then
+			if self:GetStackCount() == 0 then
+				self:SetStackCount(4)
+			else
+				self:DecrementStackCount()
 			end
-			self:DecrementStackCount()
-		else
-			self:SetStackCount(4)
-			if self.agi_mod then self.agi_mod:SetBaseAttackTime(0) end
-			self.aspd = self.ability:GetSpecialValueFor("aspd")
+			if self:GetStackCount() == 0 then
+				self:SetMultipleHits(1)
+				return
+			end
 		end
 	end
+
+	self:SetMultipleHits(0)
 end
 
 function ancient_1_modifier_berserk:GetModifierPreAttack_CriticalStrike()
-	-- UP 1.11
-	if self.ability:GetRank(11) 
+	-- UP 1.31
+	if self.ability:GetRank(31) 
 	and self.ability:IsCooldownReady() 
 	and self.parent:PassivesDisabled() == false then
 		local str_mod = self.parent:FindModifierByName("_1_STR_modifier")
@@ -131,8 +150,8 @@ function ancient_1_modifier_berserk:GetModifierProcAttack_Feedback(keys)
 		end
 	end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) 
+	-- UP 1.31
+	if self.ability:GetRank(31) 
 	and self.ability:IsCooldownReady() 
 	and self.parent:PassivesDisabled() == false then
 		if str_mod then
@@ -147,22 +166,20 @@ function ancient_1_modifier_berserk:GetModifierProcAttack_Feedback(keys)
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
-		if self:GetStackCount() > 0 then
-			if self:GetStackCount() == 1 then
-				if self.parent:PassivesDisabled() == false then
-					if self.agi_mod then self.agi_mod:SetBaseAttackTime(-2) end
-					self.aspd = 5
-				else
-					return
-				end
+		if self.parent:PassivesDisabled() == false then
+			if self:GetStackCount() == 0 then
+				self:SetStackCount(4)
+			else
+				self:DecrementStackCount()
 			end
-			self:DecrementStackCount()
-		else
-			self:SetStackCount(4)
-			if self.agi_mod then self.agi_mod:SetBaseAttackTime(0) end
-			self.aspd = self.ability:GetSpecialValueFor("aspd")
+			if self:GetStackCount() == 0 then
+				self:SetMultipleHits(1)
+				return
+			end
 		end
 	end
+
+	self:SetMultipleHits(0)
 end
 
 function ancient_1_modifier_berserk:GetModifierTotalDamageOutgoing_Percentage(keys)
@@ -201,22 +218,21 @@ function ancient_1_modifier_berserk:OnTakeDamage(keys)
 		mana_gain = mana_gain + self.ability:GetSpecialValueFor("mana_gain_hero")
 	end
 
-	local final = self.parent:FindAbilityByName("ancient_u__final")
-	if final then
-		if final:IsTrained() then
-			-- UP 4.31
-			if final:GetRank(31)
-			and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-				local burned_mana = keys.unit:GetMaxMana() * 0.05
-				if burned_mana > keys.unit:GetMana() then burned_mana = keys.unit:GetMana() end
-				if burned_mana > 0 then
-					keys.unit:ReduceMana(burned_mana)
-					SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, keys.unit, burned_mana, self.caster)
-					mana_gain = mana_gain + burned_mana
-				end
-			end
-		end
-	end
+	-- local final = self.parent:FindAbilityByName("ancient_u__final")
+	-- if final then
+	-- 	if final:IsTrained() then
+	-- 		if final:GetRank(31)
+	-- 		and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+	-- 			local burned_mana = keys.unit:GetMaxMana() * 0.05
+	-- 			if burned_mana > keys.unit:GetMana() then burned_mana = keys.unit:GetMana() end
+	-- 			if burned_mana > 0 then
+	-- 				keys.unit:ReduceMana(burned_mana)
+	-- 				SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, keys.unit, burned_mana, self.caster)
+	-- 				mana_gain = mana_gain + burned_mana
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
 
 	self.parent:GiveMana(mana_gain)
 	self.popup_mana = self.popup_mana + mana_gain

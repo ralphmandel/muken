@@ -89,7 +89,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
     	-- UP 4.12
         if self:GetRank(12) then
-            self.mana_bonus = 200
+            self.mana_bonus = 150
             local void = caster:FindAbilityByName("_void")
             if void then void:SetLevel(1) end
         end
@@ -104,16 +104,6 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         self.min_mana = self:GetSpecialValueFor("min_mana")
         if self:GetRank(22) then
             self.min_mana = self.min_mana - 10
-        end
-
-        -- UP 4.31
-        if self:GetRank(31) then
-            local berserk = caster:FindAbilityByName("ancient_1__berserk")
-            if berserk then
-                if berserk:IsTrained() then
-                    berserk.natural_loss = berserk:GetSpecialValueFor("natural_loss") * 2
-                end
-            end
         end
 
         local charges = 1
@@ -146,9 +136,15 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
     function ancient_u__final:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
-
+        local damage = self:GetSpecialValueFor("damage")
         self.mana_loss = 0
-        self.damage = self:GetSpecialValueFor("damage") * caster:GetMana() * 0.01
+
+        -- UP 4.31
+        if self:GetRank(31) then
+            damage = damage + 30
+        end
+
+        self.damage = damage * caster:GetMana() * 0.01
 
         -- UP 4.21
         if self:GetRank(21) then

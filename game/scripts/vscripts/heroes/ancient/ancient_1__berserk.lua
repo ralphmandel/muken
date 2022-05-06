@@ -91,20 +91,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         
         if self:GetLevel() == 1 then
             self.natural_loss = self:GetSpecialValueFor("natural_loss")
-            local strenght = self:GetSpecialValueFor("strenght")
-            if str ~= nil then str:BonusPermanent(strenght) end
-        end
-
-        -- UP 1.31
-        if self:GetRank(31) and self.bonus_str == false then
-            if str ~= nil then str:BonusPermanent(10) end
-            self.bonus_str = true
         end
 
         local charges = 1
 
-        -- UP 1.11
-        if self:GetRank(11) then
+        -- UP 1.31
+        if self:GetRank(31) then
             charges = charges * 2
             if str ~= nil then
                 caster:RemoveModifierByName("_1_STR_modifier")
@@ -118,7 +110,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_1__berserk:Spawn()
         self:SetCurrentAbilityCharges(0)
-        self.bonus_str = false
         self.original_damage = 0
     end
 
@@ -131,7 +122,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_1__berserk:GetCooldown(iLevel)
 		if self:GetCurrentAbilityCharges() == 0 then return 0 end
 		if self:GetCurrentAbilityCharges() == 1 then return 0 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 20 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return 15 end
 	end
 
 -- EFFECTS

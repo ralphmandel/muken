@@ -77,45 +77,40 @@
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"	        	"FIELD_FLOAT"
-				"strenght"	        	"20"
-			}
-            "02"
+            "01"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"stun_percent"          "0.4"
 			}
-            "03"
+            "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"aspd"                  "1.25"
 			}
-            "04"
+            "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"bat"                   "2.25"
 			}
-            "05"
+            "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"mana_gain"             "10"
 			}
-            "06"
+            "05"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"mana_gain_crit"        "25"
 			}
-            "07"
+            "06"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"mana_gain_hero"        "15"
 			}
-            "08"
+            "07"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"natural_loss"          "4"
+				"natural_loss"          "5"
 			}
 			"15"
 			{
@@ -277,7 +272,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"	    "75"
+				"damage"	    "70"
 			}
             "05"
 			{

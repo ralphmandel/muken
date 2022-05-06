@@ -184,8 +184,8 @@
 			[1] = "item_rare_serluc_armor",
 			[2] = "item_rare_eternal_wings",
 			[3] = "item_rare_wild_axe",
-			[4] = "item_rare_lacerator"
-			--[5] = "item_rare_dowser"
+			[4] = "item_rare_lacerator",
+			[5] = "item_rare_killer_dagger"
 		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
@@ -289,7 +289,7 @@
 		, self)
 
 
-		self.score = 1500
+		self.score = 2000
 		self.score_kill = 60
 		self.score_bounty = 120
 		self.first_blood = true
@@ -692,10 +692,7 @@
 		local DropInfo = GameRules.DropTable[unit:GetUnitName()]
 		if DropInfo then
 			for item_name,chance in pairs(DropInfo) do
-				if RandomInt(1, 400) <= chance * 2 then
-					-- Check bundle drop
-					item_name = self:GetBundleItem(item_name)
-
+				if RandomInt(1, 100) <= chance then
 					-- Create the item
 					local item = CreateItem(item_name, nil, nil)
 					local pos = unit:GetAbsOrigin()
@@ -717,7 +714,7 @@
 	end
 
 	function BattleArena:GetBundleItem(item_name)
-		if RandomInt(1, 100) <= 5 then return "item_legend_serluc" end
+		if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
 
 		if item_name == "rare_item_bundle" then
 			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
@@ -875,7 +872,7 @@
 		end
 	end
 
-	function BattleArena:OnUnitSpawn( args )
+	function BattleArena:OnUnitSpawn(args)
 		local unit = EntIndexToHScript(args.entindex)
 		if unit == nil then return end
 		if unit:IsReincarnating() then return end
@@ -891,14 +888,14 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName("item_rare_serluc_armor")
-					unit:AddItemByName("item_rare_eternal_wings")
+					unit:AddItemByName(self.rare_item_bundle[5])
+					unit:AddItemByName("item_legend_serluc")
 
 					if self.temp == nil then
 						self.temp = 1
 					else
 						self.temp = self.temp + 1
-						unit:SetTeam(self.teams[self.temp][1])
+						unit:SetTeam(self.teams[2][1])
 					end
 				end
 

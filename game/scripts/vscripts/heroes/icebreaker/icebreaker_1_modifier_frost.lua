@@ -89,7 +89,7 @@ function icebreaker_1_modifier_frost:OnAttack(keys)
 		and self.ability:IsCooldownReady() then
 			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 			self.ability:RemoveBonus("_1_AGI", self.parent)
-			self.ability:AddBonus("_1_AGI", self.parent, 99, 0, 2)
+			self.ability:AddBonus("_1_AGI", self.parent, 999, 0, 2)
 			self.hits = 1
 		end
 
@@ -119,30 +119,22 @@ end
 
 function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	local chance = self.ability:GetSpecialValueFor("chance")
-
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		chance = 100
-	else
-		if keys.target:IsMagicImmune() then
-			chance = 0
-		end
-	end
-
 	if self.parent:PassivesDisabled() then return end
 
 	local ability_slow = self.caster:FindAbilityByName("icebreaker_0__slow")
 	if ability_slow == nil then return end
 	if ability_slow:IsTrained() == false then return end
 
-	if RandomInt(1, 100) <= chance then
+	-- UP 1.31
+	if self.ability:GetRank(31) 
+	or (keys.target:IsMagicImmune() == false and self.parent:PassivesDisabled() == false) then
 		ability_slow:AddSlow(keys.target, self.ability)
 	end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) 
-	and RandomInt(1, 100) <= 15 then
+	and RandomInt(1, 100) <= 15
+	and self.parent:PassivesDisabled() == false then
 		local illu = CreateIllusions(
 			self.caster, self.caster,
 			{

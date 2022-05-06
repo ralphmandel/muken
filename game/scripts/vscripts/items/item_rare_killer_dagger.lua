@@ -1,7 +1,7 @@
-item_rare_wild_axe = class({})
-LinkLuaModifier("item_rare_wild_axe_mod_passive", "items/item_rare_wild_axe_mod_passive", LUA_MODIFIER_MOTION_NONE)
+item_rare_killer_dagger = class({})
+LinkLuaModifier("item_rare_killer_dagger_mod_passive", "items/item_rare_killer_dagger_mod_passive", LUA_MODIFIER_MOTION_NONE)
 
-function item_rare_wild_axe:CalcStatus(duration, caster, target)
+function item_rare_killer_dagger:CalcStatus(duration, caster, target)
 	local time = duration
 	local caster_int = nil
 	local caster_mnd = nil
@@ -37,12 +37,12 @@ function item_rare_wild_axe:CalcStatus(duration, caster, target)
 	return time
 end
 
-function item_rare_wild_axe:AddBonus(string, target, const, percent, time)
+function item_rare_killer_dagger:AddBonus(string, target, const, percent, time)
 	local att = target:FindAbilityByName(string)
 	if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
 end
 
-function item_rare_wild_axe:RemoveBonus(string, target)
+function item_rare_killer_dagger:RemoveBonus(string, target)
 	local stringFormat = string.format("%s_modifier_stack", string)
 	local mod = target:FindAllModifiersByName(stringFormat)
 	for _,modifier in pairs(mod) do
@@ -52,29 +52,6 @@ end
 
 -----------------------------------------------------------
 
-function item_rare_wild_axe:GetIntrinsicModifierName()
-	return "item_rare_wild_axe_mod_passive"
-end
-
-function item_rare_wild_axe:OnSpellStart()
-	local caster = self:GetCaster()
-	local tree = self:GetCursorTarget()
-
-	local branches = {
-		[1] = "item_branch_blue",
-		[2] = "item_branch_yellow",
-		[3] = "item_branch_red",
-		[4] = "item_branch_green"
-	}
-
-	local chance = self:GetSpecialValueFor("chance")
-	if RandomInt(1, 100) <= chance then
-		local item = CreateItem(branches[RandomInt(1, 4)], nil, nil)
-		local pos = tree:GetAbsOrigin()
-		local drop = CreateItemOnPositionSync(pos, item)
-		local pos_launch = pos + RandomVector(RandomFloat(150,200))
-		item:LaunchLoot(false, 100, 0.5, pos_launch)
-	end
-
-	tree:CutDownRegrowAfter(120, caster:GetTeamNumber())
+function item_rare_killer_dagger:GetIntrinsicModifierName()
+	return "item_rare_killer_dagger_mod_passive"
 end

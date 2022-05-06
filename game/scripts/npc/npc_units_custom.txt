@@ -627,12 +627,12 @@
 			//"Ability5"					"mk_roar"
 			//"Ability6"					"mk_bite"
 
-			"ArmorPhysical"				"35"			// Physical protection.
-			"MagicalResistance"        	"35"
+			"ArmorPhysical"				"30"			// Physical protection.
+			"MagicalResistance"        	"30"
 
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"200"		// Damage range min.
-			"AttackDamageMax"			"250"		// Damage range max.
+			"AttackDamageMin"			"175"		// Damage range min.
+			"AttackDamageMax"			"200"		// Damage range max.
 			"AttackRate"				"1"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.

@@ -15,8 +15,8 @@ function gold_next_level:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.gold_init = 25
-	self.gold_mult = 5
+	self.gold_init = 20
+	self.gold_mult = 4
 	self.max_level = 33
 	
 	if IsServer() then

@@ -41,26 +41,14 @@ function ancient_3_modifier_aura_effect:OnCreated(kv)
 		end
 	end
 
-	-- UP 3.23
-	if self.ability:GetRank(23) then
-		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {slow = 0})
-			self.slow = self.slow - 20
-		end
-	end
-
 	self.ability:CheckEnemies()
+	self:StartIntervalThink(1)
 end
 
 function ancient_3_modifier_aura_effect:OnRefresh(kv)
 end
 
 function ancient_3_modifier_aura_effect:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("_modifier_truesight")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:CheckEnemies()
 end
@@ -91,6 +79,22 @@ end
 function ancient_3_modifier_aura_effect:GetModifierMoveSpeed_Limit()
 	if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
 		return self.slow
+	end
+end
+
+function ancient_3_modifier_aura_effect:OnIntervalThink()
+	-- UP 3.23
+	if self.ability:GetRank(23) then
+		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+			local burned_mana = self.parent:GetMaxMana() * 0.02
+			if burned_mana > self.parent:GetMana() then burned_mana = self.parent:GetMana() end
+			if burned_mana > 0 then
+				self.parent:ReduceMana(burned_mana)
+				self.caster:GiveMana(burned_mana * 0.5)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, burned_mana, self.caster)
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.caster, burned_mana * 0.5, self.caster)
+			end
+		end
 	end
 end
 
