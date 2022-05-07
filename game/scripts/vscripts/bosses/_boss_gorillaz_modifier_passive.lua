@@ -91,27 +91,9 @@ function _boss_gorillaz_modifier_passive:TryCast_Skill_1()
 	if ability:IsTrained() == false then return false end
 	if ability:IsCooldownReady() == false then return false end
 	if ability:IsOwnersManaEnough() == false then return false end
-	if RandomInt(1, 100) > 20 then return end
+	if RandomInt(1, 100) > 20 then return false end
 
-	local find = 0
-	local radius = ability:GetSpecialValueFor("radius")
-
-	local heroes = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
-	)
-
-	for _,hero in pairs(heroes) do
-		find = find + 1
-	end
-
-	if find > 1 then
-		self.parent:CastAbilityNoTarget(ability, -1)
-		return true
-	end
-
-	return false
+	self.parent:CastAbilityNoTarget(ability, -1)
 end
 
 function _boss_gorillaz_modifier_passive:TryCast_Skill_2()

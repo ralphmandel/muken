@@ -161,6 +161,7 @@ LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODI
     function ancient_3__aura:OnOwnerDied()
         local caster = self:GetCaster()
         caster:RemoveModifierByName("ancient_3_modifier_aura")
+        self:SetActivated(true)
     end
 
     function ancient_3__aura:GetChannelTime()

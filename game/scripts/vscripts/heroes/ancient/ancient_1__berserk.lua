@@ -87,17 +87,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
 		end
 
-        local str = caster:FindAbilityByName("_1_STR")
         
-        if self:GetLevel() == 1 then
-            self.natural_loss = self:GetSpecialValueFor("natural_loss")
-        end
-
         local charges = 1
 
         -- UP 1.31
         if self:GetRank(31) then
             charges = charges * 2
+            local str = caster:FindAbilityByName("_1_STR")
             if str ~= nil then
                 caster:RemoveModifierByName("_1_STR_modifier")
                 caster:AddNewModifier(caster, str, "_1_STR_modifier", {})

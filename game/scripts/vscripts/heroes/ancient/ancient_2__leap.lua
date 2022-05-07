@@ -197,10 +197,11 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         -- UP 2.41
         local flag = 0
         if self:GetRank(41) then
-            damage = damage - 20
+            damage = damage - 30
             flag = 16
         end
 
+        local mana_gain = 0
         local damageTable = {
             attacker = caster,
             damage = damage,
@@ -223,6 +224,12 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
             
             enemy:RemoveModifierByName("ancient_1_modifier_original")
 
+            if mana_gain == 0 then
+                mana_gain = self:GetSpecialValueFor("mana_gain") + self:GetSpecialValueFor("mana_gain_bonus")
+            else
+                mana_gain = mana_gain + self:GetSpecialValueFor("mana_gain_bonus")
+            end
+
             if enemy:IsAlive() then
                 -- UP 2.12
                 if self:GetRank(12) then
@@ -231,6 +238,12 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
                     })
                 end
             end
+        end
+
+        if has_crit ~= nil then mana_gain = mana_gain * self:GetSpecialValueFor("mana_gain_crit") end
+        if mana_gain > 0 then
+            caster:GiveMana(mana_gain)
+		    SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_gain, caster)
         end
     end
 

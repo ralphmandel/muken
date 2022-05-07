@@ -31,12 +31,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"block"					"1.5"
+				"block"					"1"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_block"			"15"
+				"base_block"			"10"
 			}
 			"05"
 			{

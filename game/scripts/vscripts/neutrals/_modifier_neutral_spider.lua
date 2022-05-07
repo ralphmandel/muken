@@ -40,7 +40,7 @@ function _modifier_neutral_spider:OnIntervalThink()
 		return
 	end
 
-	if RandomInt(1, 100) <= 50 then
+	if RandomInt(1, 100) <= 25 then
 		self:TryCast_Skill_2(target)
 		return
 	end

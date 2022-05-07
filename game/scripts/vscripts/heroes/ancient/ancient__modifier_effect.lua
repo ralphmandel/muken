@@ -29,7 +29,8 @@ function ancient__modifier_effect:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
 	}
 
 	return funcs
@@ -50,4 +51,9 @@ end
 
 function ancient__modifier_effect:ChangeActivity(string)
     self.activity = string
+end
+
+function ancient__modifier_effect:GetModifierConstantManaRegen()
+	if self.parent:HasModifier("ancient_3_modifier_aura") then return 0 end
+    return -5
 end

@@ -68,7 +68,7 @@ function ancient_3_modifier_aura:OnCreated(kv)
 
 	-- UP 3.22
 	if self.ability:GetRank(22) then
-		self.block_max = self.block_max + 10
+		self.block_max = self.block_max + 20
 	end
 
 	-- UP 3.41

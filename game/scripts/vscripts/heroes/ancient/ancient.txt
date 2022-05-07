@@ -95,22 +95,12 @@
             "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"mana_gain"             "10"
+				"mana_gain"             "20"
 			}
             "05"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"mana_gain_crit"        "25"
-			}
-            "06"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"mana_gain_hero"        "15"
-			}
-            "07"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"natural_loss"          "5"
+				"mana_gain_crit"        "40"
 			}
 			"15"
 			{
@@ -143,15 +133,30 @@
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"	    	"FIELD_FLOAT"
+				"radius"	    	"300"
+			}
             "02"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"300"
+				"var_type"	    	"FIELD_FLOAT"
+				"damage"	    	"90"
 			}
             "03"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"		"60"
+				"var_type"          "FIELD_FLOAT"
+				"mana_gain"         "20"
+			}
+            "04"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"mana_gain_bonus"    "10"
+			}
+            "05"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"mana_gain_crit"    "1.5"
 			}
 			"15"
 			{
@@ -211,12 +216,12 @@
             "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"block_min"     "10"
+				"block_min"     "20"
 			}
             "07"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"block_max"     "15"
+				"block_max"     "30"
 			}
             "08"
 			{
@@ -272,7 +277,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"	    "70"
+				"damage"	    "50"
 			}
             "05"
 			{

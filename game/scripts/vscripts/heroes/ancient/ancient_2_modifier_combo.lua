@@ -67,6 +67,7 @@ end
 function ancient_2_modifier_combo:OnStateChanged(keys)
 	if keys.unit ~= self.parent then return end
 	if self.parent:IsStunned()
+	or self.parent:IsHexed()
 	or self.parent:IsOutOfGame()
 	or self.parent:IsFrozen() then
 		self:Destroy()

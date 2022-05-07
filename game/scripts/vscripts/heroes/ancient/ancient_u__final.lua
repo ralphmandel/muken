@@ -141,7 +141,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
         -- UP 4.31
         if self:GetRank(31) then
-            damage = damage + 30
+            damage = damage + 25
         end
 
         self.damage = damage * caster:GetMana() * 0.01
