@@ -5,12 +5,12 @@ end
 -- nil will not force a hero selection
 local forceHero = nil
 
--- require('libraries/keyvalues')
 -- require('libraries/modifiers')
 require('libraries/timers')
+require('libraries/animations')
+require('libraries/keyvalues')
 require('libraries/wearables')
---require('libraries/wearables_warmful_ancient')
-
+require('libraries/wearables_warmful_ancient')
 
 function GameSetup:init()
     if IsInToolsMode() then -- debug build
