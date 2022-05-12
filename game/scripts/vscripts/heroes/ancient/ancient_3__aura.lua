@@ -2,6 +2,7 @@ ancient_3__aura = class({})
 LinkLuaModifier("ancient_3_modifier_channel", "heroes/ancient/ancient_3_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_hands", "heroes/ancient/ancient_3_modifier_hands", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_aura", "heroes/ancient/ancient_3_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_3_modifier_aura_status_efx", "heroes/ancient/ancient_3_modifier_aura_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_aura_effect", "heroes/ancient/ancient_3_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODIFIER_MOTION_NONE)
 

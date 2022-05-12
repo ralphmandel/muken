@@ -3,6 +3,7 @@
 	"ancient"
 	{
 		"override_hero"					"npc_dota_hero_elder_titan"
+		"DisableWearables" "1"
 
 		//ABILITIES
 			"Ability1"						"ancient_1__berserk"

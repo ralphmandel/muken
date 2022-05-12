@@ -59,6 +59,9 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     self.parent:StartGestureWithPlaybackRate(1728, 3)
     self:StartIntervalThink(0.5)
     self:PlayEfxStart()
+
+    local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bocuse_u_modifier_mise_status_efx", true) end
 end
 
 function bocuse_u_modifier_mise:OnRefresh(kv)
@@ -68,6 +71,9 @@ function bocuse_u_modifier_mise:OnRemoved()
     self.ability:RemoveBonus("_1_CON", self.parent)
     self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_4)
     self.ability:SetActivated(true)
+
+    local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bocuse_u_modifier_mise_status_efx", false) end
 
     local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
     if self.reset == 1 then

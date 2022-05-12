@@ -83,6 +83,9 @@ function ancient_3_modifier_aura:OnCreated(kv)
 		end
 	end
 
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("ancient_3_modifier_aura_status_efx", true) end
+
 	if IsServer() then
 		self:StartIntervalThink(intervals)
 		self:PlayEfxStart()
@@ -94,6 +97,9 @@ function ancient_3_modifier_aura:OnRefresh(kv)
 end
 
 function ancient_3_modifier_aura:OnRemoved()
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("ancient_3_modifier_aura_status_efx", false) end
+
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 

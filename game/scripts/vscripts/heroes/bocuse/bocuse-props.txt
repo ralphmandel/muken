@@ -3,6 +3,7 @@
 	"bocuse"
 	{
 		"override_hero"					"npc_dota_hero_pudge"
+		"DisableWearables" "1"
 
 		//ABILITIES
 			"Ability1"						"bocuse_1__julienne"

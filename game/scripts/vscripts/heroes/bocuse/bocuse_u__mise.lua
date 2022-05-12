@@ -3,6 +3,8 @@ LinkLuaModifier("bocuse_u_modifier_mise", "heroes/bocuse/bocuse_u_modifier_mise"
 LinkLuaModifier("bocuse_u_modifier_autocast", "heroes/bocuse/bocuse_u_modifier_autocast", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_u_modifier_jump", "heroes/bocuse/bocuse_u_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("bocuse_u_modifier_exhaustion", "heroes/bocuse/bocuse_u_modifier_exhaustion", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("bocuse_u_modifier_exhaustion_status_efx", "heroes/bocuse/bocuse_u_modifier_exhaustion_status_efx", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("bocuse_u_modifier_mise_status_efx", "heroes/bocuse/bocuse_u_modifier_mise_status_efx", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)

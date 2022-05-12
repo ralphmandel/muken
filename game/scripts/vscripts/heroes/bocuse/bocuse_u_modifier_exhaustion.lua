@@ -16,9 +16,16 @@ function bocuse_u_modifier_exhaustion:OnCreated(kv)
 	self.ability = self:GetAbility()
 
     self:PlayEfxStart()
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bocuse_u_modifier_exhaustion_status_efx", true) end
 end
 
 function bocuse_u_modifier_exhaustion:OnRefresh(kv)
+end
+
+function bocuse_u_modifier_exhaustion:OnRemoved()
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bocuse_u_modifier_exhaustion_status_efx", false) end
 end
 
 ------------------------------------------------------------
