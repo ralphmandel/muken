@@ -3,7 +3,8 @@
 	"bloodstained"
 	{
 		"override_hero"					"npc_dota_hero_shadow_demon"
-
+		"DisableWearables"					 "1"
+		
 		//ABILITIES
 			"Ability1"						"bloodstained_1__rage"
 			"Ability2"						"bloodstained_2__bloodsteal"

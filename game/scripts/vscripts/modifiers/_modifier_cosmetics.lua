@@ -106,4 +106,19 @@ function _modifier_cosmetics:PlayEfxAmbient()
 		ParticleManager:SetParticleControlEnt(effect_cast, 7, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
 		self:AddParticle(effect_cast, false, false, -1, false, false)
 	end
+
+	if self.model == "models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl" then
+		local string = "particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_ambient.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_head", Vector(0,0,0), true)
+		self:AddParticle(effect_cast, false, false, -1, false, false)
+	end
+	if self.model == "models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl" then
+		local string = "particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_armor.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
+		self:AddParticle(effect_cast, false, false, -1, false, false)
+	end
 end

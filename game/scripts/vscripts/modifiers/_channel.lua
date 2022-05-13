@@ -30,6 +30,13 @@ function _channel:AddCosmetics()
 			[6] = "models/items/pudge/doomsday_ripper_belt/doomsday_ripper_belt.vmdl", -- belt
 			[7] = "models/items/pudge/delicacies_arms/delicacies_arms.vmdl" -- arms
 		}
+	elseif caster:GetUnitName() == "npc_dota_hero_shadow_demon" then
+		self.models = {
+			[1] = "models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl", -- back
+			[2] = "models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl", -- armor
+			[3] = "models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl", -- belt
+			[4] = "models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl", -- tail
+		}
 	end
 
 	for i = 1, #self.models, 1 do
