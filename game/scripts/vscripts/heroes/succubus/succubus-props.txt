@@ -3,7 +3,8 @@
 	"succubus"
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"
-
+		"DisableWearables"					 "1"
+		
 		//ABILITIES
 			"Ability1"						"succubus_1__dash"
 			"Ability2"						"succubus_2__heart"

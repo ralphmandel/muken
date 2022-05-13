@@ -37,6 +37,14 @@ function _channel:AddCosmetics()
 			[3] = "models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl", -- belt
 			[4] = "models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl", -- tail
 		}
+	elseif caster:GetUnitName() == "npc_dota_hero_queenofpain" then
+		self.models = {
+			[1] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_base_armor.vmdl", -- base armor
+			[2] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_armor_legacy.vmdl", -- armor
+			[3] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_head.vmdl", -- head
+			[4] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_modest_wings.vmdl", -- wings
+			[5] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_dagger.vmdl", -- weapon
+		}
 	end
 
 	for i = 1, #self.models, 1 do
