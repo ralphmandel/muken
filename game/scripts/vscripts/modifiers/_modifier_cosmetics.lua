@@ -28,6 +28,7 @@ function _modifier_cosmetics:OnCreated( kv )
 
 	Timers:CreateTimer((0.2), function()
 		self.parent:FollowEntity(self.caster, true)
+		self:PlayEfxAmbient()
 	end)
 end
 
@@ -70,5 +71,39 @@ function _modifier_cosmetics:OnStateChanged(keys)
 		self.parent:AddNoDraw()
 	else
 		self.parent:RemoveNoDraw()
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function _modifier_cosmetics:PlayEfxAmbient()
+	if self.model == "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl" then
+		local string = "particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_weapon", Vector(0,0,0), true)
+		self:AddParticle(effect_cast, false, false, -1, false, false)
+	end
+
+	if self.model == "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl" then
+		local string = "particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_ti7_ambient.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_back_top_left", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 2, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_back_top_right", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 3, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_back_bot_right", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 4, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 4, self.parent, PATTACH_POINT_FOLLOW, "attach_back_bot_left", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 5, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 5, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 6, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 6, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
+		ParticleManager:SetParticleControl(effect_cast, 7, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 7, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
+		self:AddParticle(effect_cast, false, false, -1, false, false)
 	end
 end

@@ -15,10 +15,10 @@ function _channel:AddCosmetics()
 	if caster:GetUnitName() == "npc_dota_hero_elder_titan" then
 		self.models = {
 			[1] = "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl", -- weapon
-			[2] = "models/items/elder_titan/warden_of_the_gong_arms/warden_of_the_gong_arms.vmdl", -- arms
-			[3] = "models/items/elder_titan/warden_of_the_gong_back/warden_of_the_gong_back.vmdl", -- back
+			[2] = "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl", -- arms
+			[3] = "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl", -- back
 			[4] = "models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl", -- head
-			[5] = "models/items/elder_titan/warden_of_the_gong_shoulder/warden_of_the_gong_shoulder.vmdl" -- shoulder
+			[5] = "models/items/elder_titan/harness_of_the_soulforged_shoulder/harness_of_the_soulforged_shoulder.vmdl" -- shoulder
 		}
 	elseif caster:GetUnitName() == "npc_dota_hero_pudge" then
 		self.models = {
