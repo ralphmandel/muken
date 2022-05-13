@@ -83,6 +83,10 @@ function ancient_u_modifier_passive:OnIntervalThink()
 	local value = self.parent:GetMana()
 	if self.ability.casting == true then value = 0 end
 	if self.effect_caster then ParticleManager:SetParticleControl(self.effect_caster, 1, Vector(value, 0, 0)) end
+	if self.ancient_mace then
+		ParticleManager:SetParticleControl(self.ancient_mace, 20, Vector(value, 30, 12))
+		ParticleManager:SetParticleControl(self.ancient_mace, 21, Vector(value * 0.01, 0, 0))
+	end
 
 	if self.parent:GetManaPercent() < self.ability.min_mana then
 		self.ability:SetActivated(false)
@@ -106,4 +110,19 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 	ParticleManager:SetParticleControl(self.effect_caster, 1, Vector(self.parent:GetMana(), 0, 0))
 	--ParticleManager:SetParticleControl(self.effect_caster, 16, Vector(255, 255, 255))
 	self:AddParticle(self.effect_caster, false, false, -1, false, false)
+
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then
+		for i = 1, #channel.models, 1 do
+			if channel.models[i] == "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl" then
+				local mod_cosmetic = channel.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
+				if mod_cosmetic then self.ancient_mace = mod_cosmetic.ancient_mace end
+			end
+		end	
+	end
+
+	if self.ancient_mace then
+		ParticleManager:SetParticleControl(self.ancient_mace, 20, Vector(self.parent:GetMana(), 30, 12))
+		ParticleManager:SetParticleControl(self.ancient_mace, 21, Vector(self.parent:GetMana() * 0.01, 0, 0))
+	end
 end

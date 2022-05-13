@@ -68,6 +68,7 @@
 			m_flRadiusMin = 30.0
 			m_flRadiusMax = 50.0
 			m_flRadiusRandExponent = 2.0
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -93,6 +94,12 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 20
+			m_flInputMax = 1500.0
+			m_flOutputMax = 100.0
 		},
 	]
 	m_Operators = 
@@ -157,25 +164,25 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_swirl.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_glow.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_ring.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_ember.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_sphere.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_fissured_soul/elder_titan_fissured_soul_weapon_ember_base.vpcf"
-		},
-		{
 			m_ChildRef = resource:"particles/ancient/ancient_weapon_streak.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_sphere.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_ember.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_weapon_ember_base.vpcf"
 		},
 	]
 }

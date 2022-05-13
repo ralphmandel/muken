@@ -78,7 +78,7 @@
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
 			m_nFieldOutput = 10
-			m_flInputMax = 1800.0
+			m_flInputMax = 1500.0
 			m_flOutputMin = 1.0
 			m_flOutputMax = 7.0
 		},

@@ -39,6 +39,7 @@
 				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee_mega.vmdl", context )
 				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee.vmdl", context )
 				PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl", context )
+				PrecacheResource( "model", "models/items/lone_druid/bear/tarzan_and_kingkong_spirit/tarzan_and_kingkong_spirit.vmdl", context )
 				PrecacheResource( "model", "models/props_structures/good_fountain001.vmdl", context )
 				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 				
