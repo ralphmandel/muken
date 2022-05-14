@@ -45,6 +45,14 @@ function _channel:AddCosmetics()
 			[4] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_modest_wings.vmdl", -- wings
 			[5] = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_dagger.vmdl", -- weapon
 		}
+	elseif caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then
+		self.models = {
+			[1] = "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", -- weapon
+			[2] = "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl", -- off-hand
+			[3] = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl", -- head
+			[4] = "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", -- arms
+			[5] = "models/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt.vmdl", -- belt
+		}
 	end
 
 	for i = 1, #self.models, 1 do

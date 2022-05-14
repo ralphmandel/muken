@@ -1,0 +1,173 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_ConstantColor = [ 80, 0, 0, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 8.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 4.0
+			m_fLifetimeMax = 4.0
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 9.0
+			m_bEvenDistribution = true
+			m_bXYVelocityOnly = false
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 15.0
+			}
+			m_flThickness = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
+			m_flPitch = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+			}
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusRandExponent = 1.5
+			m_flRadiusMin = 0.5
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 3
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 138, 244, 165, 255 ]
+			m_ColorMax = [ 43, 254, 229, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, -3.0, -3.0 ]
+			m_OffsetMax = [ 20.0, 3.0, 3.0 ]
+			m_bLocalCoords = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_bOffset = true
+			m_RateMax = [ 5.0, 5.0, 5.0 ]
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+			m_flEndTime_min = 9999999999.0
+			m_flEndTime_max = 99999999999.0
+			m_RateMin = [ -5.0, -5.0, -5.0 ]
+		},
+		{
+			_class = "C_OP_RampScalarSpline"
+			m_nField = 4
+			m_RateMin = -4.0
+			m_RateMax = 4.0
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 20.0
+			m_vecRotAxis = [ 1.0, 0.0, 0.0 ]
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_flEndTime_max = 9999.0
+			m_flEndTime_min = 9999.0
+			m_RateMax = 2.0
+			m_RateMin = 1.0
+			m_nField = 12
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_bSetOrientation = true
+			m_nNumControlPoints = 8
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMaxDistance = 30.0
+		},
+		{
+			_class = "C_OP_BoxConstraint"
+			m_bDisableOperator = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nBodyGroupField = 19
+			m_nSubModelField = 9
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/items/elder_titan/elder_titan_immortal_back/elder_titan_back_immortal_rock_fx.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bSuppressTint = true
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_ti7_ambient_model_mist.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/ancient/ancient_back_model_glow.vpcf"
+		},
+	]
+}

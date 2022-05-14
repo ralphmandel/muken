@@ -18,12 +18,18 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
 	self.ability = self:GetAbility()
 
 	self.target = self.parent:GetForceAttackTarget()
+
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bloodstained_u_modifier_copy_status_efx", true) end
 end
 
 function bloodstained_u_modifier_copy:OnRefresh(kv)
 end
 
 function bloodstained_u_modifier_copy:OnRemoved(kv)
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bloodstained_u_modifier_copy_status_efx", false) end
+
 	if self.target ~= nil then
 		if IsValidEntity(self.target) then
 			self.target:RemoveModifierByName("bloodstained_u_modifier_debuff_slow")

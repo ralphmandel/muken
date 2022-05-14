@@ -19,6 +19,9 @@ function bloodstained_1_modifier_berserk:OnCreated( kv )
 	self.origin = self.caster:GetOrigin()
 
 	if IsServer() then self:StartIntervalThink(0.2) end
+
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", true) end
 end
 
 function bloodstained_1_modifier_berserk:OnRefresh( kv )
@@ -26,6 +29,9 @@ end
 
 function bloodstained_1_modifier_berserk:OnRemoved()
 	self.parent:SetForceAttackTarget(nil)
+
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", false) end
 end
 
 --------------------------------------------------------------------------------
@@ -49,4 +55,8 @@ end
 
 function bloodstained_1_modifier_berserk:GetStatusEffectName()
 	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+
+function bloodstained_1_modifier_berserk:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end

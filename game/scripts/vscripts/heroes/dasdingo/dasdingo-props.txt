@@ -3,6 +3,7 @@
 	"dasdingo"
 	{
 		"override_hero"					"npc_dota_hero_shadow_shaman"
+		"DisableWearables" "1"
 
 		//ABILITIES
 			"Ability1"						"dasdingo_1__heal"

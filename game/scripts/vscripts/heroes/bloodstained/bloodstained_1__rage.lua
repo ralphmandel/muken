@@ -1,6 +1,8 @@
 bloodstained_1__rage = class({})
 LinkLuaModifier( "bloodstained_1_modifier_rage", "heroes/bloodstained/bloodstained_1_modifier_rage", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "bloodstained_1_modifier_berserk", "heroes/bloodstained/bloodstained_1_modifier_berserk", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "bloodstained_1_modifier_rage_status_efx", "heroes/bloodstained/bloodstained_1_modifier_rage_status_efx", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstained/bloodstained_1_modifier_berserk_status_efx", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
