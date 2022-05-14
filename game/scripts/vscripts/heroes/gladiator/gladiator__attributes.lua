@@ -1,9 +1,9 @@
-template__attributes = class ({})
-LinkLuaModifier("template__modifier_effect", "heroes/template/template__modifier_effect", LUA_MODIFIER_MOTION_NONE)
+gladiator__attributes = class ({})
+LinkLuaModifier("gladiator__modifier_effect", "heroes/gladiator/gladiator__modifier_effect", LUA_MODIFIER_MOTION_NONE)
 require("talent_tree")
 
 --TALENT FUNCTIONS
-	template__attributes.talents = {
+	gladiator__attributes.talents = {
 		[1] = {
 			[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
 			[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
@@ -22,14 +22,14 @@ require("talent_tree")
 		}
 	}
 
-	template__attributes.skills = {
-		[1] = "template_1__sk1",
-		[2] = "template_2__sk2",
-		[3] = "template_3__sk3",
-		[4] = "template_u__sk4"
+	gladiator__attributes.skills = {
+		[1] = "gladiator_1__bash",
+		[2] = "gladiator_2__combat",
+		[3] = "gladiator_3__battlecry",
+		[4] = "gladiator_u__war"
 	}
 
-	function template__attributes:UpgradeRank(skill, id, level)
+	function gladiator__attributes:UpgradeRank(skill, id, level)
 		local caster = self:GetCaster()
 		self:CheckNewAbility(skill, id, level)
 
@@ -62,10 +62,10 @@ require("talent_tree")
 		end
 
 		local ability = nil
-		if skill == 1 then ability = caster:FindAbilityByName("template_1__sk1") end
-		if skill == 2 then ability = caster:FindAbilityByName("template_2__sk2") end
-		if skill == 3 then ability = caster:FindAbilityByName("template_3__sk3") end
-		if skill == 4 then ability = caster:FindAbilityByName("template_u__sk4") end
+		if skill == 1 then ability = caster:FindAbilityByName("gladiator_1__bash") end
+		if skill == 2 then ability = caster:FindAbilityByName("gladiator_2__combat") end
+		if skill == 3 then ability = caster:FindAbilityByName("gladiator_3__battlecry") end
+		if skill == 4 then ability = caster:FindAbilityByName("gladiator_u__war") end
 
 		self.talents[skill][id] = true
 
@@ -76,19 +76,19 @@ require("talent_tree")
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 	end
 
-	function template__attributes:CheckNewAbility(skill, id, level)
+	function gladiator__attributes:CheckNewAbility(skill, id, level)
 		local caster = self:GetCaster()
 
-		if skill == 5 and id == 1 then caster:FindAbilityByName("template_x1__extra1"):SetLevel(level) end
-		if skill == 5 and id == 2 then caster:FindAbilityByName("template_x2__extra2"):SetLevel(level) end
+		if skill == 5 and id == 1 then caster:FindAbilityByName("gladiator_x1__nimble"):SetLevel(level) end
+		if skill == 5 and id == 2 then caster:FindAbilityByName("gladiator_x2__shield"):SetLevel(level) end
 	end
 
 --SHOW ATTRIBUTES FUNCTIONS
-	function template__attributes:GetIntrinsicModifierName()
-		return "template__modifier_effect"
+	function gladiator__attributes:GetIntrinsicModifierName()
+		return "gladiator__modifier_effect"
 	end
 
-	function template__attributes:GetAbilityTextureName()
+	function gladiator__attributes:GetAbilityTextureName()
 		if self:GetToggleState() then
 			return "attributes_off"
 		else
@@ -96,7 +96,7 @@ require("talent_tree")
 		end
 	end
 
-	function template__attributes:OnToggle()
+	function gladiator__attributes:OnToggle()
 		local caster = self:GetCaster()
 		local ATTs = {
 			[1] = caster:FindAbilityByName("_2_DEX"),
@@ -119,7 +119,7 @@ require("talent_tree")
 	end
 
 --LEVELUP ATTRIBUTES FUNCTIONS
-	function template__attributes:Spawn()
+	function gladiator__attributes:Spawn()
 		local caster = self:GetCaster()
 		caster:SetAbilityPoints(1)
 		
@@ -149,7 +149,7 @@ require("talent_tree")
 		if self:IsTrained() == false then self:UpgradeAbility(true) end
 	end
 
-	function template__attributes:OnHeroLevelUp()
+	function gladiator__attributes:OnHeroLevelUp()
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
@@ -172,7 +172,7 @@ require("talent_tree")
 		end
 	end
 
-	function template__attributes:OnUpgrade()
+	function gladiator__attributes:OnUpgrade()
 		local caster = self:GetCaster()
 
 		local skill_str = caster:FindAbilityByName("_1_STR")
@@ -270,7 +270,7 @@ require("talent_tree")
 		self.basic_fraction_lck = self.basic_fraction_lck % 2
 	end
 
-	function template__attributes:SetBasicFraction(secondary_att, fraction)
+	function gladiator__attributes:SetBasicFraction(secondary_att, fraction)
 		local caster = self:GetCaster()
 		local sub = caster:FindAbilityByName(secondary_att)
 		if sub == nil then return end
@@ -285,7 +285,7 @@ require("talent_tree")
 	end
 
 --PRECACHE
-	function template__attributes:Precache(context)
+	function gladiator__attributes:Precache(context)
 		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
 		PrecacheResource("particle", "path", context)
 	end

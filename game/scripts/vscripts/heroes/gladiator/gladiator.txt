@@ -1,13 +1,13 @@
-// Dota Ability template
+// Dota Ability gladiator
 "DOTAAbilities"
 {
 	"Version"		"1"
 
-	"template__attributes"
+	"gladiator__attributes"
 	{
 
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/template/template__attributes"
+		"ScriptFile"					"heroes/gladiator/gladiator__attributes"
 
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"30"
@@ -62,11 +62,11 @@
 		}
 	}
 
-	"template_1__sk1"
+	"gladiator_1__bash"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_1__sk1"
-		"AbilityTextureName"     		"template_sk1"
+		"ScriptFile"            		"heroes/gladiator/gladiator_1__bash"
+		"AbilityTextureName"     		"gladiator_bash"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
@@ -99,11 +99,11 @@
 		}
 	}
 
-	"template_2__sk2"
+	"gladiator_2__combat"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_2__sk2"
-		"AbilityTextureName"     		"template_sk2"
+		"ScriptFile"            		"heroes/gladiator/gladiator_2__combat"
+		"AbilityTextureName"     		"gladiator_combat"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
@@ -136,11 +136,11 @@
 		}
 	}
 
-	"template_3__sk3"
+	"gladiator_3__battlecry"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_3__sk3"
-		"AbilityTextureName"     		"template_sk3"
+		"ScriptFile"            		"heroes/gladiator/gladiator_3__battlecry"
+		"AbilityTextureName"     		"gladiator_battlecry"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
@@ -173,11 +173,11 @@
 		}
 	}
 
-	"template_u__sk4"
+	"gladiator_u__war"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_u__sk4"
-		"AbilityTextureName"     		"template_sk4"
+		"ScriptFile"            		"heroes/gladiator/gladiator_u__war"
+		"AbilityTextureName"     		"gladiator_war"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"8"
@@ -210,15 +210,15 @@
 		}
 	}
 
-    "template_x1__extra1"
+    "gladiator_x1__nimble"
     {
         // General  
         "BaseClass"              		"ability_lua"
-        "ScriptFile"            		"heroes/template/template_x1__extra1"
+        "ScriptFile"            		"heroes/gladiator/gladiator_x1__nimble"
         "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-        "AbilityTextureName"     		"template_extra1"
+        "AbilityTextureName"     		"gladiator_nimble"
 
         "AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
         "MaxLevel"               		"5"
@@ -257,15 +257,15 @@
         }
     }
 
-    "template_x2__extra2"
+    "gladiator_x2__shield"
     {
         // General  
         "BaseClass"              		"ability_lua"
-        "ScriptFile"            		"heroes/template/template_x2__extra2"
+        "ScriptFile"            		"heroes/gladiator/gladiator_x2__shield"
         "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
         "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-        "AbilityTextureName"     		"template_extra2"
+        "AbilityTextureName"     		"gladiator_shield"
 
         "AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
         "MaxLevel"               		"5"
@@ -305,10 +305,10 @@
     }
 
     //RANKS 1
-        "template_1__sk1_rank_11"{
+        "gladiator_1__bash_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -335,10 +335,10 @@
             }
         }
 
-        "template_1__sk1_rank_12"{
+        "gladiator_1__bash_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -365,10 +365,10 @@
             }
         }
 
-        "template_1__sk1_rank_13"{
+        "gladiator_1__bash_rank_13"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -395,10 +395,10 @@
             }
         }
 
-        "template_1__sk1_rank_21"{
+        "gladiator_1__bash_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -425,10 +425,10 @@
             }
         }
 
-        "template_1__sk1_rank_22"{
+        "gladiator_1__bash_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -455,10 +455,10 @@
             }
         }
 
-        "template_1__sk1_rank_23"{
+        "gladiator_1__bash_rank_23"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -485,10 +485,10 @@
             }
         }
 
-        "template_1__sk1_rank_31"{
+        "gladiator_1__bash_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -515,10 +515,10 @@
             }
         }
 
-        "template_1__sk1_rank_32"{
+        "gladiator_1__bash_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -545,10 +545,10 @@
             }
         }
 
-        "template_1__sk1_rank_33"{
+        "gladiator_1__bash_rank_33"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -575,10 +575,10 @@
             }
         }
 
-        "template_1__sk1_rank_41"{
+        "gladiator_1__bash_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -605,10 +605,10 @@
             }
         }
 
-        "template_1__sk1_rank_42"{
+        "gladiator_1__bash_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk1"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -636,10 +636,10 @@
         }
 
     //RANKS 2
-        "template_2__sk2_rank_11"{
+        "gladiator_2__combat_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -666,10 +666,10 @@
             }
         }
 
-        "template_2__sk2_rank_12"{
+        "gladiator_2__combat_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -696,10 +696,10 @@
             }
         }
 
-        "template_2__sk2_rank_13"{
+        "gladiator_2__combat_rank_13"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -726,10 +726,10 @@
             }
         }
 
-        "template_2__sk2_rank_21"{
+        "gladiator_2__combat_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -756,10 +756,10 @@
             }
         }
 
-        "template_2__sk2_rank_22"{
+        "gladiator_2__combat_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -786,10 +786,10 @@
             }
         }
 
-        "template_2__sk2_rank_23"{
+        "gladiator_2__combat_rank_23"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -816,10 +816,10 @@
             }
         }
 
-        "template_2__sk2_rank_31"{
+        "gladiator_2__combat_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -846,10 +846,10 @@
             }
         }
 
-        "template_2__sk2_rank_32"{
+        "gladiator_2__combat_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -876,10 +876,10 @@
             }
         }
 
-        "template_2__sk2_rank_33"{
+        "gladiator_2__combat_rank_33"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -906,10 +906,10 @@
             }
         }
 
-        "template_2__sk2_rank_41"{
+        "gladiator_2__combat_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -936,10 +936,10 @@
             }
         }
 
-        "template_2__sk2_rank_42"{
+        "gladiator_2__combat_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk2"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_combat"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -967,10 +967,10 @@
         }
 
     //RANKS 3
-        "template_3__sk3_rank_11"{
+        "gladiator_3__battlecry_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -997,10 +997,10 @@
             }
         }
 
-        "template_3__sk3_rank_12"{
+        "gladiator_3__battlecry_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1027,10 +1027,10 @@
             }
         }
 
-        "template_3__sk3_rank_13"{
+        "gladiator_3__battlecry_rank_13"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1057,10 +1057,10 @@
             }
         }
 
-        "template_3__sk3_rank_21"{
+        "gladiator_3__battlecry_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1087,10 +1087,10 @@
             }
         }
 
-        "template_3__sk3_rank_22"{
+        "gladiator_3__battlecry_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1117,10 +1117,10 @@
             }
         }
 
-        "template_3__sk3_rank_23"{
+        "gladiator_3__battlecry_rank_23"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1147,10 +1147,10 @@
             }
         }
 
-        "template_3__sk3_rank_31"{
+        "gladiator_3__battlecry_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1177,10 +1177,10 @@
             }
         }
 
-        "template_3__sk3_rank_32"{
+        "gladiator_3__battlecry_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1207,10 +1207,10 @@
             }
         }
 
-        "template_3__sk3_rank_33"{
+        "gladiator_3__battlecry_rank_33"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1237,10 +1237,10 @@
             }
         }
 
-        "template_3__sk3_rank_41"{
+        "gladiator_3__battlecry_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1267,10 +1267,10 @@
             }
         }
 
-        "template_3__sk3_rank_42"{
+        "gladiator_3__battlecry_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk3"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_battlecry"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1298,10 +1298,10 @@
         }
 
     //RANKS U
-        "template_u__sk4_rank_11"{
+        "gladiator_u__war_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1328,10 +1328,10 @@
             }
         }
 
-        "template_u__sk4_rank_12"{
+        "gladiator_u__war_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1358,10 +1358,10 @@
             }
         }
 
-        "template_u__sk4_rank_13"{
+        "gladiator_u__war_rank_13"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1388,10 +1388,10 @@
             }
         }
 
-        "template_u__sk4_rank_21"{
+        "gladiator_u__war_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1418,10 +1418,10 @@
             }
         }
 
-        "template_u__sk4_rank_22"{
+        "gladiator_u__war_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1448,10 +1448,10 @@
             }
         }
 
-        "template_u__sk4_rank_23"{
+        "gladiator_u__war_rank_23"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1478,10 +1478,10 @@
             }
         }
 
-        "template_u__sk4_rank_31"{
+        "gladiator_u__war_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1508,10 +1508,10 @@
             }
         }
 
-        "template_u__sk4_rank_32"{
+        "gladiator_u__war_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1538,10 +1538,10 @@
             }
         }
 
-        "template_u__sk4_rank_33"{
+        "gladiator_u__war_rank_33"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1568,10 +1568,10 @@
             }
         }
         
-        "template_u__sk4_rank_41"{
+        "gladiator_u__war_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1598,10 +1598,10 @@
             }
         }
 
-        "template_u__sk4_rank_42"{
+        "gladiator_u__war_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk4"
+            "ScriptFile"					"heroes/gladiator/gladiator-ranks_lua"
+            "AbilityTextureName"    		"gladiator_war"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

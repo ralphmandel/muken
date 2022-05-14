@@ -1,9 +1,9 @@
-template_3__sk3 = class({})
-LinkLuaModifier("template_3_modifier_sk3", "heroes/template/template_3_modifier_sk3", LUA_MODIFIER_MOTION_NONE)
+gladiator_u__war = class({})
+LinkLuaModifier("gladiator_u_modifier_war", "heroes/gladiator/gladiator_u_modifier_war", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function template_3__sk3:CalcStatus(duration, caster, target)
+    function gladiator_u__war:CalcStatus(duration, caster, target)
         local time = duration
         local caster_int = nil
         local caster_mnd = nil
@@ -39,12 +39,12 @@ LinkLuaModifier("template_3_modifier_sk3", "heroes/template/template_3_modifier_
         return time
     end
 
-    function template_3__sk3:AddBonus(string, target, const, percent, time)
+    function gladiator_u__war:AddBonus(string, target, const, percent, time)
         local att = target:FindAbilityByName(string)
         if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
     end
 
-    function template_3__sk3:RemoveBonus(string, target)
+    function gladiator_u__war:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -52,26 +52,26 @@ LinkLuaModifier("template_3_modifier_sk3", "heroes/template/template_3_modifier_
         end
     end
 
-    function template_3__sk3:GetRank(upgrade)
+    function gladiator_u__war:GetRank(upgrade)
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("template__attributes")
+        local att = caster:FindAbilityByName("gladiator__attributes")
         if not att then return end
         if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_phantom_assassin" then return end
 
-        return att.talents[3][upgrade]
+        return att.talents[4][upgrade]
     end
 
-    function template_3__sk3:OnUpgrade()
+    function gladiator_u__war:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_phantom_assassin" then return end
 
-        local att = caster:FindAbilityByName("template__attributes")
+        local att = caster:FindAbilityByName("gladiator__attributes")
         if att then
             if att:IsTrained() then
-                att.talents[3][0] = true
+                att.talents[4][0] = true
             end
         end
         
@@ -88,13 +88,13 @@ LinkLuaModifier("template_3_modifier_sk3", "heroes/template/template_3_modifier_
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function template_3__sk3:Spawn()
+    function gladiator_u__war:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function template_3__sk3:OnSpellStart()
+    function gladiator_u__war:OnSpellStart()
         local caster = self:GetCaster()
     end
 

@@ -1,17 +1,17 @@
 "DOTAHeroes"
 {
-	"template"
+	"gladiator"
 	{
-		"override_hero"					"npc_dota_hero_id_name"
+		"override_hero"					"npc_dota_hero_phantom_assassin"
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"template_1__sk1"
-			"Ability2"						"template_2__sk2"
-			"Ability3"						"template_3__sk3"
+			"Ability1"						"gladiator_1__bash"
+			"Ability2"						"gladiator_2__combat"
+			"Ability3"						"gladiator_3__battlecry"
 			"Ability4"						"null"
 			"Ability5"						"null"
-			"Ability6"						"template_u__sk4"
+			"Ability6"						"gladiator_u__war"
 			"Ability7"						"null"
 			"Ability8"						"null"
 			"Ability9"						"null"
@@ -19,8 +19,8 @@
 			"Ability11"						"null"
 			"Ability12"						"null"
 			"Ability13"						"null"
-			"Ability14"						"template_x1__extra1"
-			"Ability15"						"template_x2__extra2"
+			"Ability14"						"gladiator_x1__nimble"
+			"Ability15"						"gladiator_x2__shield"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,7 +36,7 @@
 			"Ability28"						"_2_LCK"		
 			"Ability29"						"_2_DEX"		
 			"Ability30"						"_2_DEF"
-			"Ability31"						"template__attributes"
+			"Ability31"						"gladiator__attributes"
 			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"

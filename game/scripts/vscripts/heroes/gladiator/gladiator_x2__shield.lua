@@ -1,9 +1,9 @@
-template_1__sk1 = class({})
-LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_sk1", LUA_MODIFIER_MOTION_NONE)
+gladiator_x2__shield = class({})
+LinkLuaModifier( "gladiator_x2_modifier_shield", "heroes/gladiator/gladiator_x2_modifier_shield", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
-    function template_1__sk1:CalcStatus(duration, caster, target)
+    function gladiator_x2__shield:CalcStatus(duration, caster, target)
         local time = duration
         local caster_int = nil
         local caster_mnd = nil
@@ -39,12 +39,12 @@ LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_
         return time
     end
 
-    function template_1__sk1:AddBonus(string, target, const, percent, time)
+    function gladiator_x2__shield:AddBonus(string, target, const, percent, time)
         local att = target:FindAbilityByName(string)
         if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
     end
 
-    function template_1__sk1:RemoveBonus(string, target)
+    function gladiator_x2__shield:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -52,49 +52,17 @@ LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_
         end
     end
 
-    function template_1__sk1:GetRank(upgrade)
-        local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("template__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
-
-        return att.talents[1][upgrade]
+    function gladiator_x2__shield:OnUpgrade()
+        self:SetHidden(false)
     end
 
-    function template_1__sk1:OnUpgrade()
-        local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
-
-        local att = caster:FindAbilityByName("template__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[1][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
-
-        local charges = 1
-        self:SetCurrentAbilityCharges(charges)
-    end
-
-    function template_1__sk1:Spawn()
+    function gladiator_x2__shield:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function template_1__sk1:OnSpellStart()
+    function gladiator_x2__shield:OnSpellStart()
         local caster = self:GetCaster()
     end
 
