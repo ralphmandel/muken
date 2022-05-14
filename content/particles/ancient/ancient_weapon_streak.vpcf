@@ -382,7 +382,7 @@
 			m_nCPInput = 20
 			m_flInputMax = 1500.0
 			m_flOutputMin = 20.0
-			m_flOutputMax = 40.0
+			m_flOutputMax = 50.0
 		},
 	]
 	m_Operators = 

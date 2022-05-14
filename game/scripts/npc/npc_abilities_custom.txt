@@ -484,14 +484,11 @@
 #base "../vscripts/heroes/bocuse/bocuse.txt"
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
+#base "../vscripts/heroes/druid/druid.txt"
 
 //PRE PRODUCTION
-#base "../vscripts/heroes/druid/druid.txt"
-#base "../vscripts/heroes/inquisitor/inquisitor.txt"
-#base "../vscripts/heroes/shadow/shadow.txt"
-#base "../vscripts/heroes/crusader/crusader.txt"
-#base "../vscripts/heroes/slayer/slayer.txt"
 #base "../vscripts/heroes/doctor/doctor.txt"
+#base "../vscripts/heroes/gladiator/gladiator.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
 #base "../vscripts/heroes/succubus/succubus.txt"
 

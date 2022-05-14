@@ -269,7 +269,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityCooldown"				"7"
+		"AbilityCooldown"				"5"
 
 		"AbilitySpecial"
 		{
@@ -341,7 +341,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"30"
+				"damage"				"40"
 			}
 			"04"
 			{

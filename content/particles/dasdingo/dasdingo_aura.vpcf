@@ -4,7 +4,7 @@
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 1
 	m_flConstantRadius = 24.0
-	m_ConstantColor = [ 135, 255, 0, 70 ]
+	m_ConstantColor = [ 255, 0, 33, 70 ]
 	m_nConstantSequenceNumber = 1
 	m_nBehaviorVersion = 12
 	m_controlPointConfigurations = 

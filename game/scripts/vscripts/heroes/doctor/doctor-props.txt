@@ -3,6 +3,7 @@
 	"doctor"
 	{
 		"override_hero"					"npc_dota_hero_rubick"
+		"DisableWearables"					 "1"
 
 		//ABILITIES
 			"Ability1"						"doctor_1__mask"
@@ -23,7 +24,7 @@
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
-			"Ability19"						"null"
+			"Ability19"						"_channel"
 			"Ability20"						"_void"
 			"Ability21"						"_1_STR"
 			"Ability22"						"_1_AGI"

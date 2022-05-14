@@ -1,0 +1,10 @@
+"Cosmetics"
+{
+	"models/items/pudge/pudge_lord_of_decay_weapon/pudge_lord_of_decay_weapon.vmdl" "nil"
+	"models/items/pudge/pudge_insanity_chooper/pudge_insanity_chooper.vmdl" "nil"
+	"models/items/pudge/pudge_frozen_pig_face_head/pudge_frozen_pig_face_head.vmdl" "nil"
+	"models/items/pudge/the_ol_choppers_shoulder/the_ol_choppers_shoulder.vmdl" "nil"
+	"models/items/pudge/delicacies_back/delicacies_back.vmdl" "nil"
+	"models/items/pudge/doomsday_ripper_belt/doomsday_ripper_belt.vmdl" "nil"
+	"models/items/pudge/delicacies_arms/delicacies_arms.vmdl" "nil"
+}

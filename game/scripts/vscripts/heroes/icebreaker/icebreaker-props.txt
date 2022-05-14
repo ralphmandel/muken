@@ -3,7 +3,8 @@
 	"icebreaker"
 	{
 		"override_hero"					"npc_dota_hero_riki"
-
+		"DisableWearables" "1"
+		
 		//ABILITIES
 			"Ability1"						"icebreaker_1__frost"
 			"Ability2"						"icebreaker_2__discus"

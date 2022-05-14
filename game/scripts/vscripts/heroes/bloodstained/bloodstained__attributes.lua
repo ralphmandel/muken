@@ -316,4 +316,11 @@ require("talent_tree")
 		PrecacheResource( "particle", "particles/econ/events/ti6/blink_dagger_start_ti6.vpcf", context )
 		PrecacheResource( "particle", "particles/econ/events/ti6/blink_dagger_end_ti6.vpcf", context )
 		PrecacheResource( "particle", "particles/bloodstained/bloodstained_x2_blood.vpcf", context )
+
+		PrecacheResource( "model", "models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl", context )
+		PrecacheResource( "model", "models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl", context )
+		PrecacheResource( "model", "models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl", context )
+		PrecacheResource( "model", "models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl", context )
+		PrecacheResource( "particle", "particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_ambient.vpcf", context )
+		PrecacheResource( "particle", "particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_armor.vpcf", context )
 	end

@@ -1,9 +1,9 @@
-dasdingo__attributes = class ({})
-LinkLuaModifier("dasdingo__modifier_effect", "heroes/dasdingo/dasdingo__modifier_effect", LUA_MODIFIER_MOTION_NONE)
+template__attributes = class ({})
+LinkLuaModifier("template__modifier_effect", "heroes/template/template__modifier_effect", LUA_MODIFIER_MOTION_NONE)
 require("talent_tree")
 
 --TALENT FUNCTIONS
-	dasdingo__attributes.talents = {
+	template__attributes.talents = {
 		[1] = {
 			[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
 			[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
@@ -22,14 +22,14 @@ require("talent_tree")
 		}
 	}
 
-	dasdingo__attributes.skills = {
-		[1] = "dasdingo_1__heal",
-		[2] = "dasdingo_2__aura",
-		[3] = "dasdingo_3__hex",
-		[4] = "dasdingo_u__maledict"
+	template__attributes.skills = {
+		[1] = "template_1__sk1",
+		[2] = "template_2__sk2",
+		[3] = "template_3__sk3",
+		[4] = "template_u__sk4"
 	}
 
-	function dasdingo__attributes:UpgradeRank(skill, id, level)
+	function template__attributes:UpgradeRank(skill, id, level)
 		local caster = self:GetCaster()
 		self:CheckNewAbility(skill, id, level)
 
@@ -62,10 +62,10 @@ require("talent_tree")
 		end
 
 		local ability = nil
-		if skill == 1 then ability = caster:FindAbilityByName("dasdingo_1__heal") end
-		if skill == 2 then ability = caster:FindAbilityByName("dasdingo_2__aura") end
-		if skill == 3 then ability = caster:FindAbilityByName("dasdingo_3__hex") end
-		if skill == 4 then ability = caster:FindAbilityByName("dasdingo_u__maledict") end
+		if skill == 1 then ability = caster:FindAbilityByName("template_1__sk1") end
+		if skill == 2 then ability = caster:FindAbilityByName("template_2__sk2") end
+		if skill == 3 then ability = caster:FindAbilityByName("template_3__sk3") end
+		if skill == 4 then ability = caster:FindAbilityByName("template_u__sk4") end
 
 		self.talents[skill][id] = true
 
@@ -76,19 +76,19 @@ require("talent_tree")
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 	end
 
-	function dasdingo__attributes:CheckNewAbility(skill, id, level)
+	function template__attributes:CheckNewAbility(skill, id, level)
 		local caster = self:GetCaster()
 
-		if skill == 5 and id == 1 then caster:FindAbilityByName("dasdingo_x1__ward"):SetLevel(level) end
-		if skill == 5 and id == 2 then caster:FindAbilityByName("dasdingo_x2__mana"):SetLevel(level) end
+		if skill == 5 and id == 1 then caster:FindAbilityByName("template_x1__extra1"):SetLevel(level) end
+		if skill == 5 and id == 2 then caster:FindAbilityByName("template_x2__extra2"):SetLevel(level) end
 	end
 
 --SHOW ATTRIBUTES FUNCTIONS
-	function dasdingo__attributes:GetIntrinsicModifierName()
-		return "dasdingo__modifier_effect"
+	function template__attributes:GetIntrinsicModifierName()
+		return "template__modifier_effect"
 	end
 
-	function dasdingo__attributes:GetAbilityTextureName()
+	function template__attributes:GetAbilityTextureName()
 		if self:GetToggleState() then
 			return "attributes_off"
 		else
@@ -96,7 +96,7 @@ require("talent_tree")
 		end
 	end
 
-	function dasdingo__attributes:OnToggle()
+	function template__attributes:OnToggle()
 		local caster = self:GetCaster()
 		local ATTs = {
 			[1] = caster:FindAbilityByName("_2_DEX"),
@@ -119,7 +119,7 @@ require("talent_tree")
 	end
 
 --LEVELUP ATTRIBUTES FUNCTIONS
-	function dasdingo__attributes:Spawn()
+	function template__attributes:Spawn()
 		local caster = self:GetCaster()
 		caster:SetAbilityPoints(1)
 		
@@ -149,7 +149,7 @@ require("talent_tree")
 		if self:IsTrained() == false then self:UpgradeAbility(true) end
 	end
 
-	function dasdingo__attributes:OnHeroLevelUp()
+	function template__attributes:OnHeroLevelUp()
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
@@ -160,6 +160,7 @@ require("talent_tree")
 		if level > 12 then gain = gain + 1 end
 		if level > 16 then gain = gain + 1 end
 		if level == 8 then gain = 12 end
+
 		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
 
 		self:UpgradeAbility(true)
@@ -171,7 +172,7 @@ require("talent_tree")
 		end
 	end
 
-	function dasdingo__attributes:OnUpgrade()
+	function template__attributes:OnUpgrade()
 		local caster = self:GetCaster()
 
 		local skill_str = caster:FindAbilityByName("_1_STR")
@@ -269,7 +270,7 @@ require("talent_tree")
 		self.basic_fraction_lck = self.basic_fraction_lck % 2
 	end
 
-	function dasdingo__attributes:SetBasicFraction(secondary_att, fraction)
+	function template__attributes:SetBasicFraction(secondary_att, fraction)
 		local caster = self:GetCaster()
 		local sub = caster:FindAbilityByName(secondary_att)
 		if sub == nil then return end
@@ -284,32 +285,7 @@ require("talent_tree")
 	end
 
 --PRECACHE
-	function dasdingo__attributes:Precache(context)
-		PrecacheResource( "particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti10_immortal_weapon_gold/wd_ti10_immortal_voodoo_gold.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healing_ward_fortunes_tout_ward_gold_flame.vpcf", context )
-		PrecacheResource( "particle", "particles/dasdingo/dasdingo_aura.vpcf", context )
-		PrecacheResource( "particle", "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf", context )
-		PrecacheResource( "particle", "particles/dasdingo/dasdingo_aoe_hex.vpcf", context )
-		PrecacheResource( "particle", "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti8_immortal_head/wd_ti8_immortal_maledict.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/invoker/invoker_ti6/invoker_deafening_blast_ti6_knockback_debuff.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_2021_cache/wd_2021_cache_death_ward.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_hero_heal.vpcf", context )
-		PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf", context )
-		PrecacheResource( "particle", "particles/msg_fx/msg_mana_add.vpcf", context )
-
-		PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", context )
-		PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", context )
-		PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl", context )
-		PrecacheResource( "model", "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl", context )
-		PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt.vmdl", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon_ambient.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_hair.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_eyes.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_mouth_drips.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_crystal.vpcf", context )
-		PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt_ambient.vpcf", context )
+	function template__attributes:Precache(context)
+		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
+		PrecacheResource("particle", "path", context)
 	end

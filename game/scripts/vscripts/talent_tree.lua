@@ -36,18 +36,6 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodstained/bloodstained.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/bloodstained/bloodstained-ranks.txt")
         hero.att = "bloodstained__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_phantom_assassin" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow-ranks.txt")
-        hero.att = "shadow__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_dawnbreaker" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/inquisitor/inquisitor.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/inquisitor/inquisitor-ranks.txt")
-        hero.att = "inquisitor__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_abaddon" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/crusader/crusader.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/crusader/crusader-ranks.txt")
-        hero.att = "crusader__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_pudge" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse-ranks.txt")
@@ -56,14 +44,6 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo-ranks.txt")
         hero.att = "dasdingo__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_razor" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/slayer/slayer-ranks.txt")
-        hero.att = "slayer__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage-ranks.txt")
-        hero.att = "bloodmage__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_furion" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/druid/druid.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/druid/druid-ranks.txt")
@@ -72,14 +52,22 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient-ranks.txt")
         hero.att = "ancient__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_rubick" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
-        hero.att = "doctor__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_queenofpain" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus-ranks.txt")
         hero.att = "succubus__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_phantom_assassin" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/gladiator/gladiator.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/gladiator/gladiator-ranks.txt")
+        hero.att = "gladiator__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage-ranks.txt")
+        hero.att = "bloodmage__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_rubick" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
+        hero.att = "doctor__attributes"
     end
 
     hero.talentsData = {}

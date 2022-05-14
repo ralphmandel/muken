@@ -30,7 +30,6 @@ function _modifier_cosmetics:OnCreated( kv )
 
 	Timers:CreateTimer((0.2), function()
 		self.parent:FollowEntity(self.caster, true)
-		self:PlayEfxAmbient()
 	end)
 end
 
@@ -83,83 +82,15 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_cosmetics:PlayEfxAmbient()
-	if self.model == "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl" then
-		local string = "particles/ancient/ancient_weapon.vpcf"
-		self.ancient_mace = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(self.ancient_mace, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(self.ancient_mace, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_weapon", Vector(0,0,0), true)
-		self:AddParticle(self.ancient_mace, false, false, -1, false, false)
-	end
+function _modifier_cosmetics:PlayEfxAmbient(ambient, attach)
+	if self.index == nil then self.index = 0 end
+	if self.ambient == nil then self.ambient = {} end
+	if self.particle == nil then self.particle = {} end
+	self.index = self.index + 1
+	self.ambient[self.index] = ambient
 
-	if self.model == "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl" then
-		local string = "particles/ancient/ancient_back.vpcf"
-		self.ancient_stone = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(self.ancient_stone, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(self.ancient_stone, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_back", Vector(0,0,0), true)
-		self:AddParticle(self.ancient_stone, false, false, -1, false, false)
-	end
-
-	--BLOOSTAINED
-	if self.model == "models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl" then
-		local string = "particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_head", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-
-	if self.model == "models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl" then
-		local string = "particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_armor.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-
-	--SUCCUBUS
-	if self.model == "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_dagger.vmdl" then
-		local string = "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_blade_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-	if self.model == "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_head.vmdl" then
-		local string = "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_head_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-	if self.model == "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_modest_wings.vmdl" then
-		local string = "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-
-	--DASDINGO
-	if self.model == "models/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt.vmdl" then
-		local string = "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-	if self.model == "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl" then
-		local string = "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon_ambient.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
-	if self.model == "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl" then
-		local string = "particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
+	self.particle[self.index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle[self.index], 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(self.particle[self.index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
 end

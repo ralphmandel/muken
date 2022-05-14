@@ -1,0 +1,16 @@
+"Cosmetics"
+{
+	"models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl" "nil"
+
+	"models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl" "nil"
+	
+	"models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl"
+	{
+		"particles/econ/items/shadow_demon/sd_ti7_shadow_poison/sd_ti7_immortal_ambient.vpcf" "attach_head"
+	}
+
+	"models/items/shadow_demon/sd_crown_of_the_nightworld_armor/sd_crown_of_the_nightworld_armor.vmdl"
+	{
+		"particles/econ/items/shadow_demon/sd_crown_nightworld/sd_crown_nightworld_armor.vpcf" ""
+	}
+}

@@ -112,17 +112,22 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 	self:AddParticle(self.effect_caster, false, false, -1, false, false)
 
 	local channel = self.parent:FindAbilityByName("_channel")
+	
 	if channel then
-		for i = 1, #channel.models, 1 do
-			if channel.models[i] == "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl" then
-				local mod_cosmetic = channel.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
-				if mod_cosmetic then self.ancient_stone = mod_cosmetic.ancient_stone end
+		for i = 1, #channel.cosmetic, 1 do
+			local mod_cosmetic = channel.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
+			if mod_cosmetic then
+				if mod_cosmetic.index ~= nil then
+					for i = 1, mod_cosmetic.index, 1 do
+						if mod_cosmetic.ambient[i] == "particles/ancient/ancient_back.vpcf" then
+							self.ancient_stone = mod_cosmetic.particle[i]
+						end
+						if mod_cosmetic.ambient[i] == "particles/ancient/ancient_weapon.vpcf" then
+							self.ancient_mace = mod_cosmetic.particle[i]
+						end
+					end
+				end
 			end
-			if channel.models[i] == "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl" then
-				local mod_cosmetic = channel.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
-				if mod_cosmetic then self.ancient_mace = mod_cosmetic.ancient_mace end
-			end
-			
 		end	
 	end
 

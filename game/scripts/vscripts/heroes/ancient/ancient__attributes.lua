@@ -302,6 +302,15 @@ require("talent_tree")
 		PrecacheResource("particle", "particles/ancient/ancient_final_blow_hit.vpcf", context)
 		PrecacheResource("particle", "particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf", context)
 		PrecacheResource("particle", "particles/ancient/ancient_magic_buff.vpcf", context)
+		PrecacheResource("particle", "particles/ancient/ancient_aura_alt.vpcf", context)
+
+		PrecacheResource( "model", "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl", context )
+		PrecacheResource( "model", "models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl", context )
+		PrecacheResource( "model", "models/items/elder_titan/harness_of_the_soulforged_shoulder/harness_of_the_soulforged_shoulder.vmdl", context )
+		PrecacheResource( "model", "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl", context )
+		PrecacheResource( "model", "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl", context )
+		PrecacheResource( "particle", "particles/ancient/ancient_weapon.vpcf", context )
+		PrecacheResource( "particle", "particles/ancient/ancient_back.vpcf", context )
 	end
 
 --CUSTOM

@@ -323,4 +323,12 @@ require("talent_tree")
 		PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
 		PrecacheResource( "particle", "particles/status_fx/status_effect_slark_shadow_dance.vpcf", context )
 		PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_blast_off.vpcf", context )
+
+		PrecacheResource( "model", "models/items/pudge/pudge_lord_of_decay_weapon/pudge_lord_of_decay_weapon.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/pudge_insanity_chooper/pudge_insanity_chooper.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/pudge_frozen_pig_face_head/pudge_frozen_pig_face_head.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/the_ol_choppers_shoulder/the_ol_choppers_shoulder.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/delicacies_back/delicacies_back.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/doomsday_ripper_belt/doomsday_ripper_belt.vmdl", context )
+		PrecacheResource( "model", "models/items/pudge/delicacies_arms/delicacies_arms.vmdl", context )
 	end

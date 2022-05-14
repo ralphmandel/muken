@@ -460,7 +460,7 @@
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 			"AttackDamageMin"			"50"		// Damage range min.
 			"AttackDamageMax"			"55"		// Damage range max.
-			"AttackRate"				"1"		// Speed of attack.
+			"AttackRate"				"0.8"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"350"		// Range within a target can be attacked.
@@ -543,8 +543,8 @@
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"30"		// Damage range min.
-			"AttackDamageMax"			"35"		// Damage range max.
+			"AttackDamageMin"			"35"		// Damage range min.
+			"AttackDamageMax"			"40"		// Damage range max.
 			"AttackRate"				"1.4"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
@@ -629,7 +629,7 @@
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackDamageMin"			"150"		// Damage range min.
-			"AttackDamageMax"			"175"		// Damage range max.
+			"AttackDamageMax"			"160"		// Damage range max.
 			"AttackRate"				"1.7"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"45"		// Range within a target can be acquired.
@@ -1076,7 +1076,7 @@
 
 			// Movement
 			//----------------------------------------------------------------
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
 			"MovementSpeed"				"250"		// Speed.			
 
 			// Status

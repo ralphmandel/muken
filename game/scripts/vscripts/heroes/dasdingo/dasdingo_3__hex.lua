@@ -121,6 +121,8 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local duration = self:GetSpecialValueFor("duration")
+        local gold_chance = self:GetSpecialValueFor("gold_chance")
+        local gold_bonus = self:GetSpecialValueFor("gold_bonus")
 
         if target:TriggerSpellAbsorb(self) then return end
 
@@ -128,6 +130,18 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         and target:HasModifier("bloodstained_u_modifier_copy") == false
         and target:IsIllusion() then
             target:Kill(self, caster)
+        end
+
+        local level = target:GetLevel()
+        if RandomInt(1, 100) <= (gold_chance - (level * 3))
+        and target:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+            local gold = gold_bonus + (level * 3)
+            target:Kill(self, caster)
+            caster:ModifyGold(gold, false, 18)
+            
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_GOLD, caster, gold, caster)
+            self:PlayEfxStart(target)
+            return
         end
 
         -- UP 3.21

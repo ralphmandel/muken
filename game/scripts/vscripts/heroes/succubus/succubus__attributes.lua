@@ -286,6 +286,16 @@ require("talent_tree")
 
 --PRECACHE
 	function succubus__attributes:Precache(context)
-		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
-		PrecacheResource("particle", "path", context)
+		--PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana.vmdl", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_base_armor.vmdl", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_armor_legacy.vmdl", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_head.vmdl", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_modest_wings.vmdl", context)
+		PrecacheResource("model", "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_dagger.vmdl", context)
+		PrecacheResource("particle", "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_feet_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_whip_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_head_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_blade_ambient.vpcf", context)
 	end
