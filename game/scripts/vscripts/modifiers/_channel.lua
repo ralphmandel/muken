@@ -62,6 +62,18 @@ function _channel:SetStatusEffect(string, enable)
 	end
 end
 
+function _channel:HideCosmetic(model, bApply)
+	for i = 1, #self.cosmetic, 1 do
+		if self.cosmetic[i]:GetModelName() == model then
+			if bApply then
+				self.cosmetic[i]:AddNoDraw()
+			else
+				self.cosmetic[i]:RemoveNoDraw()
+			end
+		end
+	end
+end
+
 function _channel:ChangeTeam(team)
 	for i = 1, #self.cosmetic, 1 do
 		self.cosmetic[i]:SetTeam(team)

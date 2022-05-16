@@ -2,7 +2,9 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 1
+	m_nMaxParticles = 16
+	m_flConstantRadius = 1.0
+	m_bShouldSort = false
 	m_nBehaviorVersion = 12
 	m_controlPointConfigurations = 
 	[
@@ -30,7 +32,27 @@
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
 				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
 			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapAverageScalarValuetoCP"
+			m_flOutputMax = 360.0
+			m_nOutControlPointNumber = 5
+			m_flInputMax = 360.0
+			m_nField = 12
 		},
 	]
 	m_Emitters = 
@@ -47,44 +69,38 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.2
-			m_fLifetimeMax = 0.2
-		},
-		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
 		{
-			_class = "C_INIT_RandomRotation"
-			m_flDegreesMin = 90.0
-			m_flDegreesMax = 90.0
-			m_nFieldOutput = 12
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.1
+			m_fLifetimeMin = 0.1
 		},
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 1.5
-			m_flRadiusMax = 1.5
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 0.0
+			m_flDegrees = 90.0
+			m_bDisableOperator = true
 		},
 	]
 	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
-			m_fDrag = 0.4
 		},
 		{
 			_class = "C_OP_MaxVelocity"
 			m_nOverrideCP = 2
-			m_flMaxVelocity = 800.0
-		},
-		{
-			_class = "C_OP_BasicMovement"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_flMaxVelocity = 600.0
 		},
 		{
 			_class = "C_OP_Decay"
 			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
 		},
 		{
 			_class = "C_OP_SpinUpdate"
@@ -93,30 +109,26 @@
 			_class = "C_OP_SpinYaw"
 			m_nSpinRateDegrees = 150
 		},
-		{
-			_class = "C_OP_SetControlPointsToParticle"
-			m_nFirstControlPoint = 3
-			m_bSetOrientation = true
-		},
 	]
 	m_ForceGenerators = 
 	[
 		{
 			_class = "C_OP_AttractToControlPoint"
+			m_nControlPointNumber = 3
+			m_fFalloffPower = 0.0
 			m_fForceAmount = 
 			{
 				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 100000.0
+				m_flLiteralValue = 1000000.0
 			}
-			m_fFalloffPower = 0.0
-			m_nControlPointNumber = 1
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
 		},
 	]
 	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderModels"
+			m_nModelCP = 7
+			m_EconSlotName = "weapon"
 			m_bOrientZ = true
 			m_bSuppressTint = true
 			m_ModelList = 
@@ -333,7 +345,7 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/units/heroes/hero_bounty_hunter/bounty_hunter_shuriken_toss_main.vpcf"
+			m_ChildRef = resource:"particles/gladiator/gladiator_shield_bash_main.vpcf"
 		},
 	]
 }
