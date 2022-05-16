@@ -96,6 +96,19 @@ LinkLuaModifier("gladiator_1_modifier_bash", "heroes/gladiator/gladiator_1_modif
 
     function gladiator_1__bash:OnSpellStart()
         local caster = self:GetCaster()
+        local info = {
+			Target = self:GetCursorTarget(),
+			Source = caster,
+			Ability = self,	
+			EffectName = "particles/gladiator/shield_bash_proj.vpcf",
+			iMoveSpeed = 600,
+			bReplaceExisting = false,
+			bProvidesVision = true,
+			iVisionRadius = 300,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+
+		ProjectileManager:CreateTrackingProjectile(info)
     end
 
 -- EFFECTS

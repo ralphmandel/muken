@@ -909,8 +909,8 @@
 						self.temp = 1
 					else
 						self.temp = self.temp + 1
-						--unit:SetTeam(self.teams[2][1])
-						--unit:FindAbilityByName("_channel"):ChangeTeam(self.teams[2][1])
+						unit:SetTeam(self.teams[2][1])
+						unit:FindAbilityByName("_channel"):ChangeTeam(self.teams[2][1])
 					end
 				end
 

@@ -17,6 +17,11 @@ function icebreaker_u_modifier_aura_effect:OnCreated( kv )
 
 	local res = 0
 	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then
+		if self.parent:HasModifier("icebreaker__modifier_effect") then
+			local channel = self.parent:FindAbilityByName("_channel")
+			if channel then channel:SetStatusEffect("icebreaker_u_modifier_status_effect", true) end
+		end
+
 		-- UP 4.12
 		if self.ability:GetRank(12)
 		and self.caster == self.parent then
@@ -39,6 +44,11 @@ function icebreaker_u_modifier_aura_effect:OnRefresh( kv )
 end
 
 function icebreaker_u_modifier_aura_effect:OnRemoved()
+	if self.parent:HasModifier("icebreaker__modifier_effect") then
+		local channel = self.parent:FindAbilityByName("_channel")
+		if channel then channel:SetStatusEffect("icebreaker_u_modifier_status_effect", false) end
+	end
+
 	if self.caster == self.parent then self.ability:DestroyShard() end
 	self.ability:RemoveBonus("_2_RES", self.parent)
 

@@ -49,7 +49,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "160"     // Range within a target can be attacked.
+		"AttackRange"                   "120"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 
 		"VisionDaytimeRange"        	"900"        // Range of vision during day light.

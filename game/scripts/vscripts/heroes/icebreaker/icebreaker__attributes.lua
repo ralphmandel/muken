@@ -1,5 +1,6 @@
 icebreaker__attributes = class ({})
 LinkLuaModifier("icebreaker__modifier_effect", "heroes/icebreaker/icebreaker__modifier_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker__modifier_status_effect", "heroes/icebreaker/icebreaker__modifier_status_effect", LUA_MODIFIER_MOTION_NONE)
 require("talent_tree")
 
 --TALENT FUNCTIONS
@@ -312,4 +313,14 @@ require("talent_tree")
 		PrecacheResource( "particle", "particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_blur_ambient_warp.vpcf", context )
 		PrecacheResource( "particle", "particles/icebreaker/icebreaker_zero.vpcf", context )
 		PrecacheResource( "particle", "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", context )
+
+		PrecacheResource( "model", "models/items/rikimaru/shadowfang_offhand/shadowfang_offhand.vmdl", context )
+		PrecacheResource( "model", "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl", context )
+		PrecacheResource( "model", "models/items/rikimaru/riki_killer_of_purple_smoke_tail/riki_killer_of_purple_smoke_tail.vmdl", context )
+		PrecacheResource( "model", "models/items/rikimaru/haze_atrocity_head/haze_atrocity_head.vmdl", context )
+		PrecacheResource( "model", "models/items/rikimaru/riki_killer_of_purple_smoke_arms/riki_killer_of_purple_smoke_arms.vmdl", context )
+		PrecacheResource( "model", "models/items/rikimaru/ti6_blink_strike/riki_ti6_blink_strike.vmdl", context )
+		PrecacheResource( "particle", "particles/econ/items/riki/riki_haze_atrocity/riki_versuta_eye_smoke.vpcf", context )
+		PrecacheResource( "particle", "particles/icebreaker/icebreaker_back.vpcf", context )
+		PrecacheResource( "particle", "particles/icebreaker/icebreaker_smoke_arms.vpcf", context )
 	end

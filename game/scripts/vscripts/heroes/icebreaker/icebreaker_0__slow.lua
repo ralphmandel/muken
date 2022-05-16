@@ -3,6 +3,9 @@ LinkLuaModifier( "icebreaker_0_modifier_slow", "heroes/icebreaker/icebreaker_0_m
 LinkLuaModifier( "icebreaker_0_modifier_freeze", "heroes/icebreaker/icebreaker_0_modifier_freeze", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_0_modifier_illusion", "heroes/icebreaker/icebreaker_0_modifier_illusion", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_0_modifier_slow_status_effect", "heroes/icebreaker/icebreaker_0_modifier_slow_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_0_modifier_freeze_status_effect", "heroes/icebreaker/icebreaker_0_modifier_freeze_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreaker/icebreaker_1_modifier_instant_status_effect", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 

@@ -1,0 +1,23 @@
+"Cosmetics"
+{
+	"models/items/rikimaru/shadowfang_offhand/shadowfang_offhand.vmdl" "nil"
+
+	"models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl" "nil"
+
+	"models/items/rikimaru/riki_killer_of_purple_smoke_tail/riki_killer_of_purple_smoke_tail.vmdl" "nil"
+
+	"models/items/rikimaru/haze_atrocity_head/haze_atrocity_head.vmdl"
+	{
+		"particles/econ/items/riki/riki_haze_atrocity/riki_versuta_eye_smoke.vpcf" "attach_eyes"
+	}
+
+	"models/items/rikimaru/ti6_blink_strike/riki_ti6_blink_strike.vmdl"
+	{
+		"particles/icebreaker/icebreaker_back.vpcf" "attach_back"
+	}
+
+	"models/items/rikimaru/riki_killer_of_purple_smoke_arms/riki_killer_of_purple_smoke_arms.vmdl"
+	{
+		"particles/icebreaker/icebreaker_smoke_arms.vpcf" ""
+	}
+}

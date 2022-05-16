@@ -16,6 +16,9 @@ function icebreaker__modifier_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
     self:PlayEffects()
+
+	local channel = self.parent:FindAbilityByName("_channel")
+	if channel then channel:SetStatusEffect("icebreaker__modifier_status_effect", true) end
 end
 
 function icebreaker__modifier_effect:OnRefresh(kv)
@@ -44,7 +47,6 @@ end
 
 function icebreaker__modifier_effect:OnRespawn(keys)
     if keys.unit == self.parent then
-        --self:PlayEffects()
     end
 end
 

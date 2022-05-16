@@ -1,6 +1,7 @@
 icebreaker_1__frost = class({})
 LinkLuaModifier( "icebreaker_1_modifier_frost", "heroes/icebreaker/icebreaker_1_modifier_frost", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreaker/icebreaker_1_modifier_instant_status_effect", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
