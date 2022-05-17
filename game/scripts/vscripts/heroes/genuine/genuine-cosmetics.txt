@@ -1,7 +1,5 @@
 "Cosmetics"
 {
-	//"models/items/drow/ti6_immortal_cape/drow_ti6_immortal_arcana_refit.vmdl" "nil"
-
 	"models/items/drow/secret_witch_head/secret_witch_head.vmdl" "nil"
 
 	"models/items/drow/secret_witch_legs/secret_witch_legs.vmdl" "nil"
