@@ -1,0 +1,136 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 84
+	m_flConstantRadius = 25.0
+	m_flConstantLifespan = 0.1
+	m_ConstantColor = [ 227, 143, 48, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bDisableOperator = true
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nSnapshotControlPoint = 6
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 84.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 221, 153, 71 ]
+			m_ColorMax = [ 227, 123, 48 ]
+		},
+		{
+			_class = "C_INIT_InitSkinnedPositionFromCPSnapshot"
+			m_nSnapshotControlPointNumber = 6
+			m_bRigid = true
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 3.0
+			m_flRadiusMax = 8.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMin = 20.0
+			m_flDegreesMax = 60.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SnapshotRigidSkinToBones"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 255, 78, 149, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_ControlpointLight"
+			m_nControlPoint1 = 1
+			m_nControlPoint2 = 1
+			m_vecCPOffset2 = [ 0.0, 0.0, 150.0 ]
+			m_LightFiftyDist1 = 20.0
+			m_LightZeroDist1 = 20.0
+			m_LightFiftyDist2 = 135.0
+			m_LightZeroDist2 = 150.0
+			m_LightColor1 = [ 48, 64, 191, 255 ]
+			m_LightColor2 = [ 225, 12, 12, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_DistanceToCP"
+			m_nFieldOutput = 16
+			m_flInputMin = 10.0
+			m_flInputMax = 50.0
+			m_nStartCP = 1
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flCameraBias = -10.0
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/lava_pool_glow.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

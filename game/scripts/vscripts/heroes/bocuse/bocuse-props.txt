@@ -23,7 +23,7 @@
 			"Ability15"						"bocuse_x2__mirepoix"
 			"Ability16"						"null"
 			"Ability17"						"null"
-			"Ability18"						"null"
+			"Ability18"						"cosmetics"
 			"Ability19"						"_channel"
 			"Ability20"						"_void"
 			"Ability21"						"_1_STR"

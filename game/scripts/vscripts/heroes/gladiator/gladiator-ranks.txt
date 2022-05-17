@@ -38,10 +38,6 @@
 				"1"   "gladiator_1__bash_rank_41"
 				"2"   "gladiator_1__bash_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"gladiator_2__combat"
 		{
@@ -67,10 +63,6 @@
 			{
 				"1"   "gladiator_2__combat_rank_41"
 				"2"   "gladiator_2__combat_rank_42"
-			}
-			"4"
-			{
-				"1"   "empty"
 			}
 		}
 		"gladiator_3__battlecry"
@@ -98,10 +90,6 @@
 				"1"   "gladiator_3__battlecry_rank_41"
 				"2"   "gladiator_3__battlecry_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"gladiator_u__war"
 		{
@@ -128,10 +116,6 @@
 				"1"   "gladiator_u__war_rank_41"
 				"2"   "gladiator_u__war_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -145,16 +129,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "gladiator_x1__nimble"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "gladiator_x1__nimble"
-				"2"   "gladiator_x2__shield"			
+				"1"   "gladiator_x2__shield"			
 			}
 		}
 	}	

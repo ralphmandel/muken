@@ -17,8 +17,8 @@ function icebreaker__modifier_effect:OnCreated(kv)
 
     self:PlayEffects()
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker__modifier_status_effect", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true) end
 end
 
 function icebreaker__modifier_effect:OnRefresh(kv)

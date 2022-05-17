@@ -32,10 +32,6 @@
 			{
 				"1"   "ancient_1__berserk_rank_41"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"
-			// }
 		}
 		"ancient_2__leap"
 		{
@@ -57,10 +53,6 @@
 			{
 				"1"   "ancient_2__leap_rank_41"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"
-			// }
 		}
 		"ancient_3__aura"
 		{
@@ -84,10 +76,6 @@
 				"1"   "ancient_3__aura_rank_41"
 				"2"   "ancient_3__aura_rank_42"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"		
-			// }
 		}
 		"ancient_u__final"
 		{
@@ -110,10 +98,6 @@
 			{
 				"1"   "empty"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"		
-			// }
 		}
 		// "extras"
 		// {
@@ -127,16 +111,11 @@
 		// 	}
 		// 	"2"
 		// 	{
-		// 		"1"   "empty"
+		// 		"1"   "ancient_x1__extra1"
 		// 	}
 		// 	"3"
 		// 	{
-		// 		"1"   "empty"
-		// 	}
-		// 	"4"
-		// 	{
-		// 		"1"   "ancient_x1__extra1"
-		// 		"2"   "ancient_x2__extra2"			
+		// 		"1"   "ancient_x2__extra2"
 		// 	}
 		// }
 	}	

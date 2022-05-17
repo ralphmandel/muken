@@ -68,6 +68,10 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
         hero.att = "doctor__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_drow_ranger" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine-ranks.txt")
+        hero.att = "genuine__attributes"
     end
 
     hero.talentsData = {}
@@ -357,13 +361,19 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
 
     if hero.talentsData[talentId].Tab == "extras" then
         if (not att.talents[1][0]) or (not att.talents[2][0]) or (not att.talents[3][0]) or (not att.talents[4][0]) then
+            print(att.talents[1][0])
+            print(att.talents[2][0])
+            print(att.talents[3][0])
+            print(att.talents[4][0])
             return false
         else
             if att.extras_unlocked > 0 then
+                print("2")
                 if hero:GetLevel() < 15 then
                     return false
                 end
             else
+                print("3")
                 if hero:GetLevel() < 10 then
                     return false
                 end

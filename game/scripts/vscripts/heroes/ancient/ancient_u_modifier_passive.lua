@@ -111,11 +111,11 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 	ParticleManager:SetParticleControl(self.effect_caster, 1, Vector(self.parent:GetMana(), 0, 0))
 	self:AddParticle(self.effect_caster, false, false, -1, false, false)
 
-	local channel = self.parent:FindAbilityByName("_channel")
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	
-	if channel then
-		for i = 1, #channel.cosmetic, 1 do
-			local mod_cosmetic = channel.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
+	if cosmetics then
+		for i = 1, #cosmetics.cosmetic, 1 do
+			local mod_cosmetic = cosmetics.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
 			if mod_cosmetic then
 				if mod_cosmetic.index ~= nil then
 					for i = 1, mod_cosmetic.index, 1 do

@@ -38,10 +38,6 @@
 				"1"   "template_1__sk1_rank_41"
 				"2"   "template_1__sk1_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"template_2__sk2"
 		{
@@ -67,10 +63,6 @@
 			{
 				"1"   "template_2__sk2_rank_41"
 				"2"   "template_2__sk2_rank_42"
-			}
-			"4"
-			{
-				"1"   "empty"
 			}
 		}
 		"template_3__sk3"
@@ -98,10 +90,6 @@
 				"1"   "template_3__sk3_rank_41"
 				"2"   "template_3__sk3_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"template_u__sk4"
 		{
@@ -128,10 +116,6 @@
 				"1"   "template_u__sk4_rank_41"
 				"2"   "template_u__sk4_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -145,16 +129,12 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "template_x1__extra1"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "template_x1__extra1"
-				"2"   "template_x2__extra2"			
+				
+				"1"   "template_x2__extra2"			
 			}
 		}
 	}	

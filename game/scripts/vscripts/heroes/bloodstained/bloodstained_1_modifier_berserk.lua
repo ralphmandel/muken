@@ -20,8 +20,8 @@ function bloodstained_1_modifier_berserk:OnCreated( kv )
 
 	if IsServer() then self:StartIntervalThink(0.2) end
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", true) end
 end
 
 function bloodstained_1_modifier_berserk:OnRefresh( kv )
@@ -30,8 +30,8 @@ end
 function bloodstained_1_modifier_berserk:OnRemoved()
 	self.parent:SetForceAttackTarget(nil)
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_berserk_status_efx", false) end
 end
 
 --------------------------------------------------------------------------------

@@ -33,8 +33,8 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	self.break_damage = self.ability:GetSpecialValueFor("break_damage")
 	self.heal = 0
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_0_modifier_freeze_status_effect", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_effect", true) end
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -47,8 +47,8 @@ function icebreaker_0_modifier_freeze:OnRefresh( kv )
 end
 
 function icebreaker_0_modifier_freeze:OnRemoved( kv )
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_0_modifier_freeze_status_effect", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_effect", false) end
 
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 		local heal = self.heal * 0.5

@@ -38,10 +38,6 @@
 				"1"   "succubus_1__dash_rank_41"
 				"2"   "succubus_1__dash_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"succubus_2__heart"
 		{
@@ -67,10 +63,6 @@
 			{
 				"1"   "succubus_2__heart_rank_41"
 				"2"   "succubus_2__heart_rank_42"
-			}
-			"4"
-			{
-				"1"   "empty"
 			}
 		}
 		"succubus_3__clone"
@@ -98,10 +90,6 @@
 				"1"   "succubus_3__clone_rank_41"
 				"2"   "succubus_3__clone_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"succubus_u__bat"
 		{
@@ -128,10 +116,6 @@
 				"1"   "succubus_u__bat_rank_41"
 				"2"   "succubus_u__bat_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -145,16 +129,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "succubus_x1__extra1"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "succubus_x1__extra1"
-				"2"   "succubus_x2__extra2"			
+				"1"   "succubus_x2__extra2"	
 			}
 		}
 	}	

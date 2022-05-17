@@ -128,9 +128,9 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
         caster:AddNewModifier(caster, self, "_modifier_disarm", {})
         self:SetActivated(false)
 
-        local channel = caster:FindAbilityByName("_channel")
+        local cosmetics = caster:FindAbilityByName("cosmetics")
         local model = "models/items/phantom_assassin/athena_pa_weapon/athena_pa_weapon.vmdl"
-        if channel then channel:HideCosmetic(model, true) end
+        if cosmetics then cosmetics:HideCosmetic(model, true) end
     end
 
     function gladiator_1__bash:OnProjectileHit(hTarget, vLocation)
@@ -143,9 +143,9 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
             local mod = caster:FindModifierByName("gladiator__modifier_effect")
             if mod then mod:ChangeActivity("loda") end
 
-            local channel = caster:FindAbilityByName("_channel")
+            local cosmetics = caster:FindAbilityByName("cosmetics")
             local model = "models/items/phantom_assassin/athena_pa_weapon/athena_pa_weapon.vmdl"
-            if channel then channel:HideCosmetic(model, false) end
+            if cosmetics then cosmetics:HideCosmetic(model, false) end
 
             return
         end

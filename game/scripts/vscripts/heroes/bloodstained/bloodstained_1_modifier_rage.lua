@@ -50,8 +50,8 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	self.parent:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
 	self:ApplyGain()
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", true) end
 end
 
 function bloodstained_1_modifier_rage:OnRefresh( kv )
@@ -99,8 +99,8 @@ function bloodstained_1_modifier_rage:OnRemoved( kv )
 	self.ability:SetActivated(true)
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", false) end
 end
 ---------------------------------------------------------------------------------------------------
 

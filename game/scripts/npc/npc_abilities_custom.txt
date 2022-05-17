@@ -317,6 +317,23 @@
 		}
 	}
 
+	"cosmetics"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"modifiers/cosmetics"
+        "AbilityTextureName"    		"REC"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
 	"_channel"
 	{
 		"BaseClass"						"ability_lua"
@@ -487,10 +504,13 @@
 #base "../vscripts/heroes/druid/druid.txt"
 
 //PRE PRODUCTION
-#base "../vscripts/heroes/doctor/doctor.txt"
+#base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/gladiator/gladiator.txt"
-#base "../vscripts/heroes/bloodmage/bloodmage.txt"
 #base "../vscripts/heroes/succubus/succubus.txt"
+
+//STAND BY
+#base "../vscripts/heroes/bloodmage/bloodmage.txt"
+#base "../vscripts/heroes/doctor/doctor.txt"
 
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "../vscripts/bosses/_bosses.txt"

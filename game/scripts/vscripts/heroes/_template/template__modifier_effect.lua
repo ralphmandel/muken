@@ -26,12 +26,18 @@ end
 
 function template__modifier_effect:DeclareFunctions()
 	local funcs = {
+		--MODIFIER_EVENT_ON_ATTACK,		-- Enable for Ranged Heroes
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
 	}
 
 	return funcs
 end
+
+-- function template__modifier_effect:OnAttack(keys)	-- Enable for Ranged Heroes
+-- 	if keys.attacker ~= self.parent then return end
+-- 	if IsServer() then self.parent:EmitSound("") end
+-- end
 
 function template__modifier_effect:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end

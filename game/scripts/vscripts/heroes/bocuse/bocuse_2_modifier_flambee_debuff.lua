@@ -46,8 +46,8 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5) * intervals
 	end
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bocuse_2_modifier_status_efx", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bocuse_2_modifier_status_efx", true) end
 
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind * 2, miss_chance = blind})
     self:StartIntervalThink(intervals)
@@ -81,8 +81,8 @@ end
 function bocuse_2_modifier_flambee_debuff:OnRemoved()
 	self.ability:RemoveBonus("_2_REC", self.parent)
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("bocuse_2_modifier_status_efx", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("bocuse_2_modifier_status_efx", false) end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
 	for _,modifier in pairs(mod) do

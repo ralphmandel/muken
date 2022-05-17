@@ -55,8 +55,8 @@ function icebreaker_0_modifier_slow:OnCreated( kv )
 	local agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
 	if agi_mod then agi_mod:SetBaseAttackTime(self:GetStackCount() * as_slow) end
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", true) end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		percent = self.slow * self:GetStackCount()
@@ -108,8 +108,8 @@ function icebreaker_0_modifier_slow:OnRefresh( kv )
 end
 
 function icebreaker_0_modifier_slow:OnRemoved( kv )
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", false) end
 
 	ParticleManager:DestroyParticle(self.pidx, false)
 	self:CheckCounterEfx()

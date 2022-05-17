@@ -21,8 +21,8 @@ function dasdingo_1_modifier_immortal:OnCreated(kv)
 
 	if IsServer() then self.parent:EmitSound("Hero_SkeletonKing.Reincarnate.Ghost") end
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("dasdingo_1_modifier_immortal_status_efx", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("dasdingo_1_modifier_immortal_status_efx", true) end
 end
 
 function dasdingo_1_modifier_immortal:OnRefresh(kv)
@@ -32,8 +32,8 @@ function dasdingo_1_modifier_immortal:OnRemoved(kv)
 	self.parent:RemoveModifierByName("dasdingo_1_modifier_heal_effect")
 	if self.parent:IsAlive() then self.parent:Kill(self.inflictor, self.attacker) end
 
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("dasdingo_1_modifier_immortal_status_efx", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("dasdingo_1_modifier_immortal_status_efx", false) end
 end
 
 -----------------------------------------------------------

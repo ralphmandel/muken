@@ -30,16 +30,16 @@ function icebreaker_1_modifier_instant:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	self:PlayEfxStart()
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_1_modifier_instant_status_effect", true) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_1_modifier_instant_status_effect", true) end
 end
 
 function icebreaker_1_modifier_instant:OnRefresh( kv )
 end
 
 function icebreaker_1_modifier_instant:OnRemoved( kv )
-	local channel = self.parent:FindAbilityByName("_channel")
-	if channel then channel:SetStatusEffect("icebreaker_1_modifier_instant_status_effect", false) end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_1_modifier_instant_status_effect", false) end
 end
 
 --------------------------------------------------------------------------------

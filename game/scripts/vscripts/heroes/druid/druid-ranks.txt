@@ -31,10 +31,6 @@
 			{
 				"1"   "druid_1__conversion_rank_41"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"
-			// }
 		}
 		"druid_2__root"
 		{
@@ -56,10 +52,6 @@
 				"1"   "druid_2__root_rank_41"
 				"2"   "druid_2__root_rank_42"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"
-			// }
 		}
 		"druid_3__totem"
 		{
@@ -82,10 +74,6 @@
 			{
 				"1"   "empty"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"		
-			// }
 		}
 		"druid_u__seed"
 		{
@@ -107,10 +95,6 @@
 			{
 				"1"   "druid_u__seed_rank_41"
 			}
-			// "4"
-			// {
-			// 	"1"   "empty"		
-			// }
 		}
 		// "extras"
 		// {
@@ -124,16 +108,11 @@
 		// 	}
 		// 	"2"
 		// 	{
-		// 		"1"   "empty"
+		// 		"1"   "druid_x1__tree"
 		// 	}
 		// 	"3"
 		// 	{
-		// 		"1"   "empty"
-		// 	}
-		// 	"4"
-		// 	{
-		// 		"1"   "druid_x1__tree"
-		// 		"2"   "druid_x2__form"			
+		// 		"1"   "druid_x2__form"			
 		// 	}
 		// }
 	}	

@@ -1,6 +1,6 @@
 "Cosmetics"
 {
-	"cosmetic string" "nil" // COSMETIC WITHOUT AMBIENT EXAMPLE
+	"cosmetic_string" "nil" // COSMETIC WITHOUT AMBIENT EXAMPLE
 
 	"cosmetic_string"
 	{

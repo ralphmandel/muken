@@ -38,10 +38,6 @@
 				"1"   "doctor_1__mask_rank_41"
 				"2"   "doctor_1__mask_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"
-			}
 		}
 		"doctor_2__haze"
 		{
@@ -67,10 +63,6 @@
 			{
 				"1"   "doctor_2__haze_rank_41"
 				"2"   "doctor_2__haze_rank_42"
-			}
-			"4"
-			{
-				"1"   "empty"
 			}
 		}
 		"doctor_3__biohazard"
@@ -98,10 +90,6 @@
 				"1"   "doctor_3__biohazard_rank_41"
 				"2"   "doctor_3__biohazard_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"doctor_u__pandemic"
 		{
@@ -128,10 +116,6 @@
 				"1"   "doctor_u__pandemic_rank_41"
 				"2"   "doctor_u__pandemic_rank_42"
 			}
-			"4"
-			{
-				"1"   "empty"		
-			}
 		}
 		"extras"
 		{
@@ -145,16 +129,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "doctor_x1__pill"
 			}
 			"3"
 			{
-				"1"   "empty"
-			}
-			"4"
-			{
-				"1"   "doctor_x1__pill"
-				"2"   "doctor_x2__extra2"			
+				"1"   "doctor_x2__extra2"	
 			}
 		}
 	}	
