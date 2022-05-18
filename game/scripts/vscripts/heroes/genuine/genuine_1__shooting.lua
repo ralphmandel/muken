@@ -1,5 +1,6 @@
 genuine_1__shooting = class({})
-LinkLuaModifier("genuine_1_modifier_shooting", "heroes/genuine/genuine_1_modifier_shooting", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_chaos", "heroes/genuine/genuine_1_modifier_chaos", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,8 +95,42 @@ LinkLuaModifier("genuine_1_modifier_shooting", "heroes/genuine/genuine_1_modifie
 
 -- SPELL START
 
-    function genuine_1__shooting:OnSpellStart()
+    function genuine_1__shooting:GetIntrinsicModifierName()
+        return "genuine_1_modifier_orb"
+    end
+
+    function genuine_1__shooting:GetProjectileName()
+        return "particles/genuine/shooting_star/genuine_shooting.vpcf"
+    end
+
+    function genuine_1__shooting:OnOrbFire(keys)
         local caster = self:GetCaster()
+        if IsServer() then caster:EmitSound("Hero_DrowRanger.FrostArrows") end
+    end
+
+    function genuine_1__shooting:OnOrbImpact(keys)
+        local caster = self:GetCaster()
+        local bonus_damage = self:GetSpecialValueFor("bonus_damage")
+
+        local damageTable = {
+            victim = keys.target,
+            attacker = caster,
+            damage = bonus_damage,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self
+        }
+        ApplyDamage(damageTable)
+
+        --if RandomInt(1, 100) <= chaos_chance
+        --and keys.target:IsMagicImmune() == false then
+            -- keys.target:AddNewModifier(caster, self, "genuine_1_modifier_chaos", {
+            --     duration = self:CalcStatus(chaos_duration, caster, keys.target)
+            -- })
+
+            -- self:PlayEfxChaos(keys.target)
+        --end
+
+        if IsServer() then keys.target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
     end
 
 -- EFFECTS

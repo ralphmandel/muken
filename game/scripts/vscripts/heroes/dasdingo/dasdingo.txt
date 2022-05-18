@@ -22,32 +22,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"5"
+				"base_STR"				"4"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"3"
+				"base_AGI"				"4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"9"
+				"base_INT"				"7"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"3"
+				"base_CON"				"5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.3"
+				"STR"					"0.4"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.6"
+				"AGI"					"0.3"
 			}
 			"07"
 			{
@@ -57,7 +57,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.3"
+				"CON"					"0.5"
 			}
 		}
 	}
