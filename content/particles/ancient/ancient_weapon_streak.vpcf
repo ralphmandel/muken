@@ -375,14 +375,14 @@
 			m_nCPInput = 20
 			m_nFieldOutput = 10
 			m_flInputMax = 1500.0
-			m_flOutputMax = 7.5
+			m_flOutputMax = 15.0
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 20
 			m_flInputMax = 1500.0
-			m_flOutputMin = 20.0
-			m_flOutputMax = 50.0
+			m_flOutputMin = 25.0
+			m_flOutputMax = 75.0
 		},
 	]
 	m_Operators = 

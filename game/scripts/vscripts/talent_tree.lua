@@ -361,20 +361,14 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
 
     if hero.talentsData[talentId].Tab == "extras" then
         if (not att.talents[1][0]) or (not att.talents[2][0]) or (not att.talents[3][0]) or (not att.talents[4][0]) then
-            print(att.talents[1][0])
-            print(att.talents[2][0])
-            print(att.talents[3][0])
-            print(att.talents[4][0])
             return false
         else
             if att.extras_unlocked > 0 then
-                print("2")
                 if hero:GetLevel() < 15 then
                     return false
                 end
             else
-                print("3")
-                if hero:GetLevel() < 10 then
+                if hero:GetLevel() < 8 then
                     return false
                 end
             end

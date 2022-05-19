@@ -159,7 +159,7 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		local gain = 0
-		if level ~= 2 and level ~= 5 and level ~= 8 then gain = -1 end
+		if level ~= 1 and level ~= 3 and level ~= 7 then gain = -1 end
 		if level > 8 then gain = gain + 3 end
 		if level > 12 then gain = gain + 1 end
 		if level > 16 then gain = gain + 1 end

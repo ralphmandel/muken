@@ -1,6 +1,7 @@
 genuine_1__shooting = class({})
 LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("genuine_1_modifier_chaos", "heroes/genuine/genuine_1_modifier_chaos", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -86,11 +87,18 @@ LinkLuaModifier("genuine_1_modifier_chaos", "heroes/genuine/genuine_1_modifier_c
 		end
 
         local charges = 1
+
+        -- UP 1.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
     function genuine_1__shooting:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.spell_lifesteal = false
     end
 
 -- SPELL START
@@ -111,26 +119,97 @@ LinkLuaModifier("genuine_1_modifier_chaos", "heroes/genuine/genuine_1_modifier_c
     function genuine_1__shooting:OnOrbImpact(keys)
         local caster = self:GetCaster()
         local bonus_damage = self:GetSpecialValueFor("bonus_damage")
+        local target = keys.target
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            local stacks = 0
+            local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
+            for _,mod in pairs(starfall_stack_mods) do
+                stacks = stacks + 1
+            end
+
+            if stacks > 1 then
+                for _,mod in pairs(starfall_stack_mods) do mod:Destroy() end
+                self:PlayEfxStarfall(target)
+
+                Timers:CreateTimer((0.5), function()
+                    if target ~= nil then
+                        if IsValidEntity(target) then
+                            self:ApplyStarfall(target)
+                        end
+                    end
+                end)
+            else
+                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 5})
+            end
+        end
+
+        -- UP 1.41
+        if self:GetRank(41) then
+            if RandomInt(1, 100) <= 20
+            and target:IsMagicImmune() == false then
+                target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
+                    duration = self:CalcStatus(1, caster, target)
+                })
+            end
+        end
 
         local damageTable = {
-            victim = keys.target,
+            victim = target,
             attacker = caster,
             damage = bonus_damage,
             damage_type = self:GetAbilityDamageType(),
             ability = self
         }
+
+        self.spell_lifesteal = true
         ApplyDamage(damageTable)
 
-        --if RandomInt(1, 100) <= chaos_chance
-        --and keys.target:IsMagicImmune() == false then
-            -- keys.target:AddNewModifier(caster, self, "genuine_1_modifier_chaos", {
-            --     duration = self:CalcStatus(chaos_duration, caster, keys.target)
-            -- })
+        if IsServer() then target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+    end
 
-            -- self:PlayEfxChaos(keys.target)
-        --end
+    function genuine_1__shooting:ApplyStarfall(target)
+        local caster = self:GetCaster()
+        local starfall_damage = 125
+        local starfall_radius = 300
+        local damageTable = {
+            attacker = caster,
+            damage = starfall_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+        )
 
-        if IsServer() then keys.target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
+
+    function genuine_1__shooting:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = self:GetLevel() - 1
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() == 1 then return manacost * (1 + (level* 0.1)) end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 20) * (1 + (level * 0.1)) end
+        return manacost * (1 + (level* 0.1))
     end
 
 -- EFFECTS
+
+    function genuine_1__shooting:PlayEfxStarfall(target)
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+    end

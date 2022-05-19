@@ -62,8 +62,8 @@ function ancient_u_modifier_passive:GetModifierConstantManaRegen()
 end
 
 function ancient_u_modifier_passive:GetModifierIncomingSpellDamageConstant(keys)
-	local damage = 0
 	local percent = self.ability:GetSpecialValueFor("percent")
+	local damage = 0
 
 	-- UP 4.11
 	if self.ability:GetRank(11) then
@@ -94,6 +94,16 @@ function ancient_u_modifier_passive:OnIntervalThink()
 	else
 		self.ability:SetActivated(true)
 	end
+
+	local percent = self.ability:GetSpecialValueFor("percent")
+
+	-- UP 4.11
+	if self.ability:GetRank(11) then
+		percent = percent + 0.01
+	end	
+
+	local stack = percent * self.parent:GetMana()
+	self:SetStackCount(math.floor(stack))
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then

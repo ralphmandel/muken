@@ -74,12 +74,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as"					"2"
+				"as"					"2.5" //2
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.85"
+				"base_attack_time"		"1.2" //0.85
 			}
 			"03"
 			{

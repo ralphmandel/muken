@@ -18,25 +18,20 @@
 			"0"
 			{
 				"1"   "genuine_1__shooting_rank_11"
-				"2"   "genuine_1__shooting_rank_12"
-				"3"   "genuine_1__shooting_rank_13"
 			}
 			"1"
 			{
 				"1"   "genuine_1__shooting_rank_21"
 				"2"   "genuine_1__shooting_rank_22"
-				"3"   "genuine_1__shooting_rank_23"
 			}
 			"2"
 			{
 				"1"   "genuine_1__shooting_rank_31"
 				"2"   "genuine_1__shooting_rank_32"
-				"3"   "genuine_1__shooting_rank_33"
 			}
 			"3"
 			{
 				"1"   "genuine_1__shooting_rank_41"
-				"2"   "genuine_1__shooting_rank_42"
 			}
 		}
 		"genuine_2__fallen"

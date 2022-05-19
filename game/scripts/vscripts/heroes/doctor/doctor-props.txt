@@ -60,7 +60,7 @@
 			"AttackDamageMin"         	"35"
 			"ArmorPhysical"           	"0"
 		//AGILITY
-			"BaseAttackSpeed"			"70"
+			"BaseAttackSpeed"			"100"
 			"AttackRate"              	"1"
 			"MovementTurnRate"          "0.5"
 			"MovementSpeed"           	"50"

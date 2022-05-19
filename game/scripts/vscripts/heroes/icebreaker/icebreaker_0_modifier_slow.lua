@@ -41,13 +41,13 @@ function icebreaker_0_modifier_slow:OnCreated( kv )
 		self:StartIntervalThink(self:GetRemainingTime())
 	end
 
-	local as_slow = 0.15
+	local as_slow = 0.2
 	local frost = self.caster:FindAbilityByName("icebreaker_1__frost")
 	if frost then
 		if frost:IsTrained() then
 			-- UP 1.21
 			if frost:GetRank(21) then
-				as_slow = 0.3
+				as_slow = 0.4
 			end			
 		end
 	end
@@ -83,13 +83,13 @@ function icebreaker_0_modifier_slow:OnRefresh( kv )
 		self:PopupIce(false)
 	end
 
-	local as_slow = 0.15
+	local as_slow = 0.2
 	local frost = self.caster:FindAbilityByName("icebreaker_1__frost")
 	if frost then
 		if frost:IsTrained() then
 			-- UP 1.21
 			if frost:GetRank(21) then
-				as_slow = 0.3
+				as_slow = 0.4
 			end			
 		end
 	end
