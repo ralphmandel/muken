@@ -204,7 +204,7 @@
 		"AbilityTextureName"     		"dasdingo_maledict"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"14"
-		"RequiredLevel"         	 	"8"
+		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"

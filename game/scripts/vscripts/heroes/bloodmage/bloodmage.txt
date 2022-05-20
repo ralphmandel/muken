@@ -223,7 +223,7 @@
 		"AbilityTextureName"     		"bloodmage_gamble"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"9"
-		"RequiredLevel"         	 	"8"
+		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"

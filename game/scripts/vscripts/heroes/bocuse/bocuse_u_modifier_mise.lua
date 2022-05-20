@@ -25,6 +25,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     self.stun_chance = self.ability:GetSpecialValueFor("stun_chance")
     self.extra_damage = 0
     self.reset = kv.reset or 0
+    self.stop = false
 
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 15})
 
@@ -44,20 +45,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 		self.ability:AddBonus("_1_CON", self.parent, 20, 0, nil)
 	end
 
-    local speed_mult = self.ability:GetSpecialValueFor("speed_mult")
-    self.speed = 1.5 * speed_mult
-    self.hits = {
-        [1] = {[1] = 1, [2] = 0.35 / speed_mult},
-        [2] = {[1] = 2, [2] = 0.35 / speed_mult},
-        [3] = {[1] = 3, [2] = 0.5 / speed_mult},
-        [4] = {[1] = 4, [2] = 0.3 / speed_mult}
-    }
-
-    self.state_hit = self.hits[1]
-    
-    self.delay = true
-    self.parent:StartGestureWithPlaybackRate(1728, 3)
-    self:StartIntervalThink(0.5)
+    self:StartSlash()
     self:PlayEfxStart()
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
@@ -141,7 +129,8 @@ end
 function bocuse_u_modifier_mise:DeclareFunctions()
 	local funcs = {
         MODIFIER_EVENT_ON_ORDER,
-		MODIFIER_EVENT_ON_HERO_KILLED
+		MODIFIER_EVENT_ON_HERO_KILLED,
+        MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
@@ -192,6 +181,19 @@ function bocuse_u_modifier_mise:OnHeroKilled(keys)
     self:PlayEfxStart()
 end
 
+function bocuse_u_modifier_mise:OnStateChanged(keys)
+    if keys.unit ~= self.parent then return end
+    if self.parent:IsHexed() == true and self.stop == false then
+       self.stop = true
+       self:StartIntervalThink(-1)
+    end
+
+    if self.parent:IsHexed() == false and self.stop == true then
+        self.stop = false
+        self:StartSlash()
+     end
+end
+
 function bocuse_u_modifier_mise:OnIntervalThink()
     if self.delay == true then
         self.delay = false
@@ -227,7 +229,8 @@ function bocuse_u_modifier_mise:OnIntervalThink()
         local angle_diff = math.abs(AngleDiff(cast_angle, enemy_angle))
         if angle_diff<=self.angle then
             if enemy:IsInvulnerable() == false
-            and enemy:IsAttackImmune() == false then
+            and enemy:IsAttackImmune() == false
+            and self.parent:IsHexed() == false then
                 damageTable.damage = RandomInt(self.damage_min, self.damage_max) + self.extra_damage
                 damageTable.victim = enemy
                 ApplyDamage(damageTable)
@@ -250,12 +253,14 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
     if trees then
         for _,tree in pairs(trees) do
-            -- check within cast angle
-            local tree_direction = (tree:GetOrigin() - origin):Normalized()
-            local tree_angle = VectorToAngles(tree_direction).y
-            local angle_diff = math.abs(AngleDiff(cast_angle, tree_angle))
-            if angle_diff<=self.angle then
-                tree:CutDown(self.parent:GetTeamNumber())
+            if self.parent:IsHexed() == false then
+                -- check within cast angle
+                local tree_direction = (tree:GetOrigin() - origin):Normalized()
+                local tree_angle = VectorToAngles(tree_direction).y
+                local angle_diff = math.abs(AngleDiff(cast_angle, tree_angle))
+                if angle_diff<=self.angle then
+                    tree:CutDown(self.parent:GetTeamNumber())
+                end
             end
         end
     end
@@ -272,6 +277,23 @@ function bocuse_u_modifier_mise:OnIntervalThink()
     end
 
     self:StartIntervalThink(self.state_hit[2])
+end
+
+function bocuse_u_modifier_mise:StartSlash()
+    local speed_mult = self.ability:GetSpecialValueFor("speed_mult")
+    self.speed = 1.5 * speed_mult
+    self.hits = {
+        [1] = {[1] = 1, [2] = 0.35 / speed_mult},
+        [2] = {[1] = 2, [2] = 0.35 / speed_mult},
+        [3] = {[1] = 3, [2] = 0.5 / speed_mult},
+        [4] = {[1] = 4, [2] = 0.3 / speed_mult}
+    }
+
+    self.state_hit = self.hits[1]
+    
+    self.delay = true
+    self.parent:StartGestureWithPlaybackRate(1728, 3)
+    self:StartIntervalThink(0.5)
 end
 
 --------------------------------------------------------------------------------
