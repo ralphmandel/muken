@@ -1,0 +1,32 @@
+"Genuine.Fear.Loop"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/physics/movement/hero/dark_willow/idle_loop.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "2.30000"	}
+					"volume_fade_out"	{ "value"	"1.5"		}
+				}
+			}
+		}
+	}
+}

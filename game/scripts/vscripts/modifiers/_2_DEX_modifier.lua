@@ -28,6 +28,8 @@ end
 function _2_DEX_modifier:OnRefresh(kv)
 end
 
+-----------------------------------------
+
 function _2_DEX_modifier:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_EVASION_CONSTANT
@@ -36,8 +38,7 @@ function _2_DEX_modifier:DeclareFunctions()
 end
 
 function _2_DEX_modifier:GetModifierEvasion_Constant(keys)
-    return 100
-    -- local value = self:GetStackCount() * self.evade
-    -- local calc = (value * 6) / (1 +  (value * 0.06))
-    -- return calc
+    local value = self:GetStackCount() * self.evade
+    local calc = (value * 6) / (1 +  (value * 0.06))
+    return calc
 end

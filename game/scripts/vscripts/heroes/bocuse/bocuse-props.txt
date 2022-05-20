@@ -52,8 +52,8 @@
 		"AttackRange"                   "160"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 
-		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"800"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"

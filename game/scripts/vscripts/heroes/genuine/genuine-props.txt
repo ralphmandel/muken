@@ -54,8 +54,8 @@
 		"ProjectileModel"          		"particles/genuine/base_attack/genuine_base_attack.vpcf"
 		//"ProjectileSpeed"          	"900"
 		
-		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"800"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"

@@ -2,6 +2,7 @@ genuine_1__shooting = class({})
 LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -175,12 +176,10 @@ LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fe
         end
 
         -- UP 1.41
-        if self:GetRank(41) then
-            if RandomInt(1, 100) <= 20 then
-                target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
-                    duration = self:CalcStatus(1, caster, target)
-                })
-            end
+        if self:GetRank(41) and RandomInt(1, 100) <= 25 then
+            target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
+                duration = self:CalcStatus(1.5, caster, target)
+            })
         end
 
         local damageTable = {

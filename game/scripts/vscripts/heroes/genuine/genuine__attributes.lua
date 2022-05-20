@@ -286,6 +286,6 @@ require("talent_tree")
 
 --PRECACHE
 	function genuine__attributes:Precache(context)
-		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
+		PrecacheResource("soundfile", "soundevents/soundevent_genuine.vsndevts", context)
 		PrecacheResource("particle", "path", context)
 	end

@@ -18,17 +18,12 @@ function genuine_1_modifier_orb:OnCreated(kv)
 
 		self.proj = false
 		self.cast = false
-		self.pierce = false
-		self.pierce_proc = false
+		self.pierce_records = {}
 		self.records = {}
 	end
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
-	-- UP 1.32
-	if self.ability:GetRank(32) then
-		self.pierce_proc = true
-	end
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
@@ -36,23 +31,12 @@ end
 
 ------------------------------------------------------------
 
-function genuine_1_modifier_orb:CheckState()
-	local state = {}
-
-	if self.pierce then
-		state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-	end
-
-	return state
-end
-
 function genuine_1_modifier_orb:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
@@ -95,26 +79,21 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 	end
 end
 
-function genuine_1_modifier_orb:GetModifierPreAttack(keys)
-	print("pre")
-end
-
 function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)
-	print("speed")
-	if self.pierce_proc == true
+	-- UP 1.32
+	if self.ability:GetRank(32)
 	and RandomInt(1, 100) <= 50 then
 		self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), true)
-		if self.proj == true then
-			self.pierce = true
+
+		if self.proj then
+			self.pierce_records[keys.record] = true
 			return 1200
-		else
-			self.pierce = false
-			return 0
 		end
+		                                                                                                                                                                                                                                                                                                                                                                                              
+		return 0
 	end
 
 	self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), false)
-	self.pierce = false
 	return 0
 end
 
@@ -137,6 +116,12 @@ function genuine_1_modifier_orb:GetModifierProcAttack_Feedback(keys)
 end
 
 function genuine_1_modifier_orb:OnAttackFail(keys)
+	if self.pierce_records[keys.record] then
+		self.parent:PerformAttack(keys.target, true, true, true, true, false, false, true)
+		if self.ability.OnOrbImpact then self.ability:OnOrbImpact(keys) end
+		return
+	end
+
 	if self.records[keys.record] then
 		if self.ability.OnOrbFail then self.ability:OnOrbFail(keys) end
 	end
@@ -144,6 +129,7 @@ end
 
 function genuine_1_modifier_orb:OnAttackRecordDestroy(keys)
 	self.records[keys.record] = nil
+	self.pierce_records[keys.record] = nil
 end
 
 function genuine_1_modifier_orb:OnOrder(keys)
