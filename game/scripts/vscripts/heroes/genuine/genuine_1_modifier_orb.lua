@@ -11,16 +11,24 @@ end
 -----------------------------------------------------------
 
 function genuine_1_modifier_orb:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	if IsServer() then
+		self.caster = self:GetCaster()
+		self.parent = self:GetParent()
+		self.ability = self:GetAbility()
 
-	self.proj = false
-	self.cast = false
-	self.records = {}
+		self.proj = false
+		self.cast = false
+		self.pierce = false
+		self.pierce_proc = false
+		self.records = {}
+	end
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
+	-- UP 1.32
+	if self.ability:GetRank(32) then
+		self.pierce_proc = true
+	end
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
@@ -28,10 +36,22 @@ end
 
 ------------------------------------------------------------
 
+function genuine_1_modifier_orb:CheckState()
+	local state = {}
+
+	if self.pierce then
+		state = {[MODIFIER_STATE_CANNOT_MISS] = true}
+	end
+
+	return state
+end
+
 function genuine_1_modifier_orb:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
@@ -75,10 +95,33 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 	end
 end
 
+function genuine_1_modifier_orb:GetModifierPreAttack(keys)
+	print("pre")
+end
+
+function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)
+	print("speed")
+	if self.pierce_proc == true
+	and RandomInt(1, 100) <= 50 then
+		self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), true)
+		if self.proj == true then
+			self.pierce = true
+			return 1200
+		else
+			self.pierce = false
+			return 0
+		end
+	end
+
+	self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), false)
+	self.pierce = false
+	return 0
+end
+
 function genuine_1_modifier_orb:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
-	if self:ShouldLaunch(keys.target) and self.proj == true then
+	if self.proj == true then
 		self.ability:UseResources(true, false, true)
 		self.records[keys.record] = true
 		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end
@@ -119,31 +162,25 @@ end
 function genuine_1_modifier_orb:GetModifierProjectileName()
 	if not self.ability.GetProjectileName then return end
 
-	if self:ShouldLaunch(self.caster:GetAggroTarget()) then
-		self.proj = true
+	if self.proj == true then
 		return self.ability:GetProjectileName()
 	end
-
-	self.proj = false
 end
 
-function genuine_1_modifier_orb:ShouldLaunch(target)
+function genuine_1_modifier_orb:ShouldLaunch(target, pierce)
 	if self.ability:GetAutoCastState() then
-		if self.ability.CastFilterResultTarget ~= CDOTA_Ability_Lua.CastFilterResultTarget then
-			if self.ability:CastFilterResultTarget(target) == UF_SUCCESS then
-				self.cast = true
-			end
-		else
-			local nResult = UnitFilter(
-				target,
-				self.ability:GetAbilityTargetTeam(),
-				self.ability:GetAbilityTargetType(),
-				self.ability:GetAbilityTargetFlags(),
-				self.caster:GetTeamNumber()
-			)
-			if nResult == UF_SUCCESS then
-				self.cast = true
-			end
+		local flags = self.ability:GetAbilityTargetFlags()
+		if pierce then flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
+
+		local nResult = UnitFilter(
+			target,
+			self.ability:GetAbilityTargetTeam(),
+			self.ability:GetAbilityTargetType(),
+			flags,
+			self.caster:GetTeamNumber()
+		)
+		if nResult == UF_SUCCESS then
+			self.cast = true
 		end
 	end
 

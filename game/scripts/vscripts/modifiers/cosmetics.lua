@@ -4,6 +4,9 @@ LinkLuaModifier("_modifier_status_effect", "modifiers/_modifier_status_effect", 
 
 function cosmetics:Spawn()
 	self:UpgradeAbility(true)
+	self.status_efx_flags = {
+		[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
+	}
 	self.cosmetic = {}
 	self:LoadCosmetics()
 end
@@ -55,12 +58,27 @@ function cosmetics:SetStatusEffect(string, enable)
 	local caster = self:GetCaster()
 
 	for i = 1, #self.cosmetic, 1 do
-		if enable == true then
-			self.cosmetic[i]:AddNewModifier(caster, self, string, {})
-		else
-			self.cosmetic[i]:RemoveModifierByName(string)
+		if self:CheckFlags(self.cosmetic[i]) then
+			if enable == true then
+				self.cosmetic[i]:AddNewModifier(caster, self, string, {})
+			else
+				self.cosmetic[i]:RemoveModifierByName(string)
+			end
 		end
 	end
+end
+
+function cosmetics:CheckFlags(cosmetic)
+	local mod = cosmetic:FindModifierByName("_modifier_cosmetics")
+	if mod then
+		for i = 1, #self.status_efx_flags, 1 do
+			if mod.model == self.status_efx_flags[i] then
+				return false
+			end
+		end
+	end
+
+	return true
 end
 
 function cosmetics:HideCosmetic(model, bApply)

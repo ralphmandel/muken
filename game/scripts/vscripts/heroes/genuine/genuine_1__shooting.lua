@@ -116,6 +116,35 @@ LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fe
         if IsServer() then caster:EmitSound("Hero_DrowRanger.FrostArrows") end
     end
 
+    function genuine_1__shooting:OnOrbFail(keys)
+        local caster = self:GetCaster()
+        local target = keys.target
+        
+        -- UP 1.31
+        if self:GetRank(31) then
+            local stacks = 0
+            local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
+            for _,mod in pairs(starfall_stack_mods) do
+                stacks = stacks + 1
+            end
+
+            if stacks > 1 then
+                for _,mod in pairs(starfall_stack_mods) do mod:Destroy() end
+                self:PlayEfxStarfall(target)
+
+                Timers:CreateTimer((0.5), function()
+                    if target ~= nil then
+                        if IsValidEntity(target) then
+                            self:ApplyStarfall(target)
+                        end
+                    end
+                end)
+            else
+                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 5})
+            end
+        end
+    end
+
     function genuine_1__shooting:OnOrbImpact(keys)
         local caster = self:GetCaster()
         local bonus_damage = self:GetSpecialValueFor("bonus_damage")
@@ -147,8 +176,7 @@ LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fe
 
         -- UP 1.41
         if self:GetRank(41) then
-            if RandomInt(1, 100) <= 20
-            and target:IsMagicImmune() == false then
+            if RandomInt(1, 100) <= 20 then
                 target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
                     duration = self:CalcStatus(1, caster, target)
                 })

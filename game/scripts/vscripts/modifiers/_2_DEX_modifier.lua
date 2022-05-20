@@ -36,7 +36,8 @@ function _2_DEX_modifier:DeclareFunctions()
 end
 
 function _2_DEX_modifier:GetModifierEvasion_Constant(keys)
-    local value = self:GetStackCount() * self.evade
-    local calc = (value * 6) / (1 +  (value * 0.06))
-    return calc
+    return 100
+    -- local value = self:GetStackCount() * self.evade
+    -- local calc = (value * 6) / (1 +  (value * 0.06))
+    -- return calc
 end
