@@ -1,5 +1,6 @@
 genuine_2__fallen = class({})
-LinkLuaModifier("genuine_2_modifier_fallen", "heroes/genuine/genuine_2_modifier_fallen", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,6 +97,61 @@ LinkLuaModifier("genuine_2_modifier_fallen", "heroes/genuine/genuine_2_modifier_
 
     function genuine_2__fallen:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+    
+        local speed = self:GetSpecialValueFor("speed")
+        local radius = self:GetSpecialValueFor("radius")
+        local distance = self:GetCastRange( point, nil )
+        local direction = point - caster:GetOrigin()
+        direction.z = 0
+        direction = direction:Normalized()
+
+        local info = {
+            Source = caster,
+            Ability = self,
+            vSpawnOrigin = caster:GetAbsOrigin(),
+            
+            bDeleteOnHit = false,
+            
+            iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+            iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            
+            EffectName = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf",
+            fDistance = distance,
+            fStartRadius = radius,
+            fEndRadius = radius,
+            vVelocity = direction * speed
+        }
+        ProjectileManager:CreateLinearProjectile(info)
+        if IsServer() then caster:EmitSound("Hero_DrowRanger.Silence") end
+    end
+
+    function genuine_2__fallen:OnProjectileHit(hTarget, vLocation)
+        if not hTarget then return end
+        local caster = self:GetCaster()
+        local fear_duration = self:GetSpecialValueFor("fear_duration")
+        local mana_steal = self:GetSpecialValueFor("mana_steal")
+
+        if mana_steal > hTarget:GetMana() then mana_steal = hTarget:GetMana() end
+        if mana_steal > 0 then
+            hTarget:ReduceMana(mana_steal)
+            caster:GiveMana(mana_steal)
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, hTarget, mana_steal, caster)
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_steal, caster)
+        end
+
+        hTarget:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
+            duration = self:CalcStatus(fear_duration, caster, hTarget)
+        })
+
+        self:PlayEffects(hTarget)
     end
 
 -- EFFECTS
+
+    function genuine_2__fallen:PlayEffects(target)
+        local particle_cast = "particles/genuine/genuine_fallen_hit.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+    end
