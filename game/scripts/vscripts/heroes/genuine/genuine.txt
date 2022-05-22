@@ -122,14 +122,14 @@
 
 		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180 190 200"
 		"AbilityCooldown"				"13"
-		"AbilityCastRange"      		"650 675 700 725 750 775 800 825 850 875 900"
+		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed"		    "1500"
+				"speed"		    "1000"
 			}
             "02"
 			{
@@ -144,7 +144,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"125"
+				"mana_steal"	"125 130 135 140 145 150 155 160 165 170 175"
 			}
 			"15"
 			{
