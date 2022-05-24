@@ -22,17 +22,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"6"
+				"base_STR"				"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"5"
+				"base_AGI"				"4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"8"
+				"base_INT"				"10"
 			}
 			"04"
 			{
@@ -42,12 +42,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.2"
+				"STR"					"0.3"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.7"
+				"AGI"					"0.6"
 			}
 			"07"
 			{
@@ -77,8 +77,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityManaCost"         		"50"
-		"AbilityCooldown"				"1.5"
+		"AbilityCooldown"				"2.5"
 		"AbilityCastRange"      		"700 720 740 760 780 800 820 840 860 880 900 920 940 960 980 1000"
 
 		"AbilitySpecial"
@@ -112,7 +111,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_2__fallen"
 		"AbilityTextureName"     		"genuine_fallen"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -120,9 +119,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180 190 200"
-		"AbilityCooldown"				"13"
-		"AbilityCastRange"      		"450"
+		"AbilityCooldown"				"12"
 
 		"AbilitySpecial"
 		{
@@ -138,18 +135,28 @@
 			}
             "03"
 			{
+				"var_type"		"FIELD_FLOAT"
+				"distance"		"450"
+			}
+            "03"
+			{
 				"var_type"		    "FIELD_FLOAT"
 				"fear_duration"		"1.5"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"125 130 135 140 145 150 155 160 165 170 175"
+				"mana_steal"	"120 125 130 135 140 145 150 155 160 165 170 175 180"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"  	"100"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -160,33 +167,43 @@
 		"ScriptFile"            		"heroes/genuine/genuine_3__morning"
 		"AbilityTextureName"     		"genuine_morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastPoint"       		"0.35"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+        "AbilityCooldown"				"30 28 26 24 22 20 18 16 14 12"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"agi_bonus"	    "15"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rec_bonus"	    "30"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"	    "12"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"	    "80"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0 1 2 3 4 5 6 7 8"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}

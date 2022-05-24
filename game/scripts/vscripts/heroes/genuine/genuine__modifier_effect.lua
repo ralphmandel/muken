@@ -14,6 +14,8 @@ function genuine__modifier_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	self.activity = "ti6"
 end
 
 function genuine__modifier_effect:OnRefresh(kv)
@@ -29,6 +31,7 @@ function genuine__modifier_effect:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
@@ -46,4 +49,12 @@ end
 
 function genuine__modifier_effect:GetAttackSound(keys)
     return ""
+end
+
+function genuine__modifier_effect:GetActivityTranslationModifiers(keys)
+    return self.activity
+end
+
+function genuine__modifier_effect:ChangeActivity(string)
+    self.activity = string
 end

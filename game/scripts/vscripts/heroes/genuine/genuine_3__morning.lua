@@ -1,5 +1,6 @@
 genuine_3__morning = class({})
 LinkLuaModifier("genuine_3_modifier_morning", "heroes/genuine/genuine_3_modifier_morning", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -90,12 +91,56 @@ LinkLuaModifier("genuine_3_modifier_morning", "heroes/genuine/genuine_3_modifier
 
     function genuine_3__morning:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.kills = 0
     end
 
 -- SPELL START
 
-    function genuine_3__morning:OnSpellStart()
-        local caster = self:GetCaster()
+    function genuine_3__morning:GetIntrinsicModifierName()
+        return "genuine_3_modifier_passive"
     end
 
+    function genuine_3__morning:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        local particle = "particles/genuine/genuine_morning_star_start.vpcf"
+        local effect_caster = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControl(effect_caster, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControl(effect_caster, 1, caster:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_caster)
+
+        return true
+    end
+
+    function genuine_3__morning:OnSpellStart()
+        local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        -- UP 3.41
+        if self:GetRank(41) then
+            duration = duration + 12
+        end
+
+        caster:AddNewModifier(caster, self, "genuine_3_modifier_morning", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
+    end
+
+    function genuine_3__morning:AddKillPoint(pts)
+        local caster = self:GetCaster()
+        self.kills = self.kills + pts
+
+        local mod = caster:FindAbilityByName("_1_INT")
+        if mod ~= nil then mod:BonusPermanent(1) end
+
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
+    end
+
+    function genuine_3__morning:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
 -- EFFECTS

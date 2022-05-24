@@ -122,8 +122,8 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMax = 150
-			m_nAlphaMin = 125
+			m_nAlphaMax = 120
+			m_nAlphaMin = 100
 		},
 		{
 			_class = "C_INIT_RandomColor"

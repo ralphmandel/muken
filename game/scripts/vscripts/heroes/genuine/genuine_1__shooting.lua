@@ -175,13 +175,6 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
             end
         end
 
-        -- UP 1.41
-        if self:GetRank(41) and RandomInt(1, 100) <= 25 then
-            target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
-                duration = self:CalcStatus(1.5, caster, target)
-            })
-        end
-
         local damageTable = {
             victim = target,
             attacker = caster,
@@ -192,6 +185,14 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
 
         self.spell_lifesteal = true
         ApplyDamage(damageTable)
+
+        -- UP 1.41
+        if self:GetRank(41) and target:IsAlive()
+        and RandomInt(1, 100) <= 25 then
+            target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
+                duration = self:CalcStatus(1.5, caster, target)
+            })
+        end
 
         if IsServer() then target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
     end
@@ -223,11 +224,11 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
 
     function genuine_1__shooting:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level = self:GetLevel() - 1
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return manacost * (1 + (level* 0.1)) end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 20) * (1 + (level * 0.1)) end
-        return manacost * (1 + (level* 0.1))
+        if self:GetCurrentAbilityCharges() == 1 then return manacost * level end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 20) * level end
+        return manacost * level
     end
 
 -- EFFECTS

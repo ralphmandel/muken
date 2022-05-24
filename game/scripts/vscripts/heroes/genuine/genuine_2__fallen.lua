@@ -1,6 +1,8 @@
 genuine_2__fallen = class({})
 LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_2_modifier_dispel", "heroes/genuine/genuine_2_modifier_dispel", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -86,6 +88,12 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
 		end
 
         local charges = 1
+
+        -- UP 2.22
+        if self:GetRank(22) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -99,12 +107,34 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
     
+        local flags = DOTA_UNIT_TARGET_FLAG_NONE
+        local projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf"
         local speed = self:GetSpecialValueFor("speed")
         local radius = self:GetSpecialValueFor("radius")
         local distance = self:GetCastRange( point, nil )
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
+                duration = self:CalcStatus(2.5, caster, caster),
+                percent = 50
+            })
+        end
+
+        -- UP 2.12
+        if self:GetRank(12) then
+            flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+        end
+
+        -- UP 2.22
+        if self:GetRank(22) then
+            speed = speed * 2
+            radius = radius + 150
+            projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf"
+        end
 
         local info = {
             Source = caster,
@@ -114,14 +144,18 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
             bDeleteOnHit = false,
             
             iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-            iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+            iUnitTargetFlags = flags,
             iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             
-            EffectName = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf",
+            EffectName = projectile_name,
             fDistance = distance,
             fStartRadius = radius,
             fEndRadius = radius,
-            vVelocity = direction * speed
+            vVelocity = direction * speed,
+
+            bProvidesVision = true,
+			iVisionRadius = radius,
+            iVisionTeamNumber = caster:GetTeamNumber()
         }
         ProjectileManager:CreateLinearProjectile(info)
         if IsServer() then caster:EmitSound("Hero_DrowRanger.Silence") end
@@ -132,6 +166,11 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
         local caster = self:GetCaster()
         local fear_duration = self:GetSpecialValueFor("fear_duration")
         local mana_steal = self:GetSpecialValueFor("mana_steal")
+
+        -- UP 2.31
+        if self:GetRank(31) then
+            fear_duration = fear_duration + 1
+        end
 
         if mana_steal > hTarget:GetMana() then mana_steal = hTarget:GetMana() end
         if mana_steal > 0 then
@@ -145,7 +184,67 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
             duration = self:CalcStatus(fear_duration, caster, hTarget)
         })
 
+        -- UP 2.21
+        if self:GetRank(21) then
+            hTarget:AddNewModifier(caster, self, "genuine_2_modifier_dispel", {
+                duration = self:CalcStatus(5, caster, hTarget)
+            })
+        end
+
+        -- UP 2.32
+        if self:GetRank(32)
+        and RandomInt(1, 100) <= 70 then
+            self:PlayEfxStarfall(hTarget)
+
+            Timers:CreateTimer((0.5), function()
+                if hTarget ~= nil then
+                    if IsValidEntity(hTarget) then
+                        self:ApplyStarfall(hTarget)
+                    end
+                end
+            end)
+        end
+
         self:PlayEffects(hTarget)
+    end
+
+    function genuine_2__fallen:ApplyStarfall(target)
+        local caster = self:GetCaster()
+        local starfall_damage = 125
+        local starfall_radius = 300
+        local damageTable = {
+            attacker = caster,
+            damage = starfall_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
+
+    function genuine_2__fallen:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
+
+    function genuine_2__fallen:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("distance") end
+        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("distance") end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("distance") * 2 end
+        return self:GetSpecialValueFor("distance")
     end
 
 -- EFFECTS
@@ -154,4 +253,13 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
         local particle_cast = "particles/genuine/genuine_fallen_hit.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:ReleaseParticleIndex(effect_cast)
+    end
+
+    function genuine_2__fallen:PlayEfxStarfall(target)
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
     end
