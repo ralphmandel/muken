@@ -166,7 +166,13 @@ function genuine_1_modifier_orb:ShouldLaunch(target, pierce)
 			self.caster:GetTeamNumber()
 		)
 		if nResult == UF_SUCCESS then
-			self.cast = true
+			if self.parent:HasModifier("genuine_u_modifier_caster") then
+				if target:HasModifier("genuine_u_modifier_target") then
+					self.cast = true
+				end
+			else
+				self.cast = true
+			end
 		end
 	end
 

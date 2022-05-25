@@ -194,15 +194,18 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         -- UP 2.32
         if self:GetRank(32)
         and RandomInt(1, 100) <= 70 then
-            self:PlayEfxStarfall(hTarget)
+            if caster:HasModifier("genuine_u_modifier_caster") == false 
+            or hTarget:HasModifier("genuine_u_modifier_target") then
+                self:PlayEfxStarfall(hTarget)
 
-            Timers:CreateTimer((0.5), function()
-                if hTarget ~= nil then
-                    if IsValidEntity(hTarget) then
-                        self:ApplyStarfall(hTarget)
+                Timers:CreateTimer((0.5), function()
+                    if hTarget ~= nil then
+                        if IsValidEntity(hTarget) then
+                            self:ApplyStarfall(hTarget)
+                        end
                     end
-                end
-            end)
+                end)
+			end
         end
 
         self:PlayEffects(hTarget)

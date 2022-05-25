@@ -10,7 +10,6 @@
 	[
 		{
 			m_name = "preview"
-			m_drivers = [  ]
 		},
 	]
 	m_Emitters = 
@@ -33,8 +32,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 5.0
-			m_fLifetimeMin = 4.0
+			m_fLifetimeMax = 2.5
+			m_fLifetimeMin = 2.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -42,8 +41,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 212, 108, 170 ]
-			m_ColorMin = [ 176, 66, 216 ]
+			m_ColorMax = [ 201, 108, 212 ]
+			m_ColorMin = [ 101, 66, 216 ]
 		},
 		{
 			_class = "C_INIT_RandomRadius"

@@ -79,7 +79,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
 		"AbilityCooldown"				"10"
 		"AbilityCastRange"      		"500"
 		"AoERadius"               		"100"
@@ -90,6 +89,11 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"10"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
 			}
 			"15"
 			{
@@ -128,6 +132,11 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"10"
 			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -164,6 +173,11 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"10"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
 			}
 			"15"
 			{
@@ -202,6 +216,11 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"10"
 			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -234,6 +253,11 @@
 
         "AbilitySpecial"
         {
+            "11"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
+			}
             "12"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -281,6 +305,11 @@
 
         "AbilitySpecial"
         {
+            "11"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"100"
+			}
             "12"
 			{
 				"var_type"		"FIELD_FLOAT"

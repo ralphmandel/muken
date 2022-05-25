@@ -1,5 +1,9 @@
 genuine_u__star = class({})
-LinkLuaModifier("genuine_u_modifier_star", "heroes/genuine/genuine_u_modifier_star", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_u_modifier_caster", "heroes/genuine/genuine_u_modifier_caster", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_u_modifier_target", "heroes/genuine/genuine_u_modifier_target", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,8 +98,55 @@ LinkLuaModifier("genuine_u_modifier_star", "heroes/genuine/genuine_u_modifier_st
 
 -- SPELL START
 
+    function genuine_u__star:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("")
+
+        return true
+    end
+
+    function genuine_u__star:OnAbilityPhaseInterrupted()
+        local caster = self:GetCaster()
+        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("ti6")
+    end
+
     function genuine_u__star:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local duration = self:GetSpecialValueFor("duration")
+        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("ti6")
+
+        if target:TriggerSpellAbsorb(self) then return end
+
+        self:PlayEfxStart(caster, target)
+
+        target:AddNewModifier(caster, self, "genuine_u_modifier_target", {
+            duration = self:CalcStatus(duration, caster, target)
+        })
+    end
+
+    function genuine_u__star:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
     end
 
 -- EFFECTS
+
+    function genuine_u__star:PlayEfxStart(caster, target)
+        local particle_cast = "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControlEnt(effect_cast, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+        ParticleManager:SetParticleControlEnt(effect_cast, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+        ParticleManager:SetParticleControl(effect_cast, 60, Vector(125, 0, 175))
+        ParticleManager:SetParticleControl(effect_cast, 61, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        particle_cast = "particles/econ/items/drow/drow_arcana/drow_arcana_msg_deny_v2.vpcf"
+        effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
+        ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
+        ParticleManager:SetParticleControlEnt(effect_cast, 1, target, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
+
+        if IsServer() then target:EmitSound("Hero_Terrorblade.DemonZeal.Cast") end
+    end

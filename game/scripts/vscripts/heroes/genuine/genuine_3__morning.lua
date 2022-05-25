@@ -102,13 +102,22 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
 
     function genuine_3__morning:OnAbilityPhaseStart()
         local caster = self:GetCaster()
-        local particle = "particles/genuine/genuine_morning_star_start.vpcf"
-        local effect_caster = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
-        ParticleManager:SetParticleControl(effect_caster, 0, caster:GetOrigin())
-        ParticleManager:SetParticleControl(effect_caster, 1, caster:GetOrigin())
-        ParticleManager:ReleaseParticleIndex(effect_caster)
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:PlayEfxBuff() end
 
         return true
+    end
+
+    function genuine_3__morning:OnAbilityPhaseInterrupted()
+        local caster = self:GetCaster()
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:StopEfxBuff() end
+    end
+
+    function genuine_3__morning:OnOwnerDied()
+        local caster = self:GetCaster()
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:StopEfxBuff() end
     end
 
     function genuine_3__morning:OnSpellStart()
@@ -119,6 +128,8 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         if self:GetRank(41) then
             duration = duration + 12
         end
+
+        if IsServer() then caster:EmitSound("Genuine.Morning") end
 
         caster:AddNewModifier(caster, self, "genuine_3_modifier_morning", {
             duration = self:CalcStatus(duration, caster, caster)
@@ -143,4 +154,5 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
+    
 -- EFFECTS

@@ -39,7 +39,6 @@ function genuine_3_modifier_morning:OnCreated(kv)
 
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
-	self:PlayEfxBuff()
 end
 
 function genuine_3_modifier_morning:OnRefresh(kv)
@@ -50,12 +49,11 @@ function genuine_3_modifier_morning:OnRemoved(kv)
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_REC", self.parent)
 
+	local passive = self.caster:FindModifierByName("genuine_3_modifier_passive")
+	if passive then passive:StopEfxBuff() end
+
 	self.ability:SetActivated(true)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -----------------------------------------------------------
-
-function genuine_3_modifier_morning:PlayEfxBuff()
-	--self:AddParticle(effect_caster, false, false, -1, false, false)
-end

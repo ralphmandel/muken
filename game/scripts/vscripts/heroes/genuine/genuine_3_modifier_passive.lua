@@ -43,3 +43,19 @@ function genuine_3_modifier_passive:OnHeroKilled(keys)
 	self.ability:AddKillPoint(1)
 	self:SetStackCount(self.ability.kills)
 end
+
+-----------------------------------------------------------
+
+function genuine_3_modifier_passive:PlayEfxBuff()
+	if self.effect_caster then ParticleManager:DestroyParticle(self.effect_caster, true) end
+
+	local particle = "particles/genuine/morning_star/genuine_morning_star.vpcf"
+	self.effect_caster = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.effect_caster, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.effect_caster, 1, self.parent:GetOrigin())
+	self:AddParticle(self.effect_caster, false, false, -1, false, false)
+end
+
+function genuine_3_modifier_passive:StopEfxBuff()
+	if self.effect_caster then ParticleManager:DestroyParticle(self.effect_caster, false) end
+end
