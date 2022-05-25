@@ -37,6 +37,7 @@ function _modifier_cosmetics:OnRefresh( kv )
 end
 
 function _modifier_cosmetics:OnRemoved()
+	UTIL_Remove(self.parent)
 end
 
 --------------------------------------------------------------------------------
@@ -56,7 +57,8 @@ end
 function _modifier_cosmetics:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MODEL_CHANGE,
-		MODIFIER_EVENT_ON_STATE_CHANGED
+		MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_EVENT_ON_DEATH
 
 	}
 
@@ -70,13 +72,24 @@ end
 function _modifier_cosmetics:OnStateChanged(keys)
 	if keys.unit ~= self.caster then return end
 	
-	if self.caster:IsInvisible() then self.invi = true else self.invi = false end
+	if self.caster:IsInvisible() then
+		self.invi = true
+	else
+		self.invi = false
+	end
 
 	if self.caster:IsHexed()
 	or self.caster:IsOutOfGame() then
 		self.parent:AddNoDraw()
 	else
 		self.parent:RemoveNoDraw()
+	end
+end
+
+function _modifier_cosmetics:OnDeath(keys)
+	if keys.unit == self.caster
+	and keys.unit:IsIllusion() then
+		self:Destroy()
 	end
 end
 

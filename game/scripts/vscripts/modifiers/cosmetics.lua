@@ -69,6 +69,8 @@ function cosmetics:SetStatusEffect(string, enable)
 end
 
 function cosmetics:CheckFlags(cosmetic)
+	if cosmetic == nil then return end
+	if IsValidEntity(cosmetic) == false then return end
 	local mod = cosmetic:FindModifierByName("_modifier_cosmetics")
 	if mod then
 		for i = 1, #self.status_efx_flags, 1 do

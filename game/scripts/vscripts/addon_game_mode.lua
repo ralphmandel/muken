@@ -949,7 +949,7 @@
 			local index = 0
 			for _,spot in pairs(self.spots) do
 				index = index + 1
-				--self:CreateSpot(index)
+				self:CreateSpot(index)
 			end
 
 			self:GenerateEvent(false)

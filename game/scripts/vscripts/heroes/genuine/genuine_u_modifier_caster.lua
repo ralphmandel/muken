@@ -20,6 +20,8 @@ function genuine_u_modifier_caster:OnRefresh(kv)
 end
 
 function genuine_u_modifier_caster:OnRemoved(kv)
+	local passive = self.caster:FindModifierByName("genuine_u_modifier_passive")
+	if passive then passive:StopEfxBuff() end
 end
 
 -----------------------------------------------------------
@@ -69,7 +71,10 @@ function genuine_u_modifier_caster:OnHeroKilled(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.target:HasModifier("genuine_u_modifier_target") == false then return end
 
-	self.ability:EndCooldown()
+	-- UP 4.41
+	if self.ability:GetRank(41) then
+		self.ability:EndCooldown()
+	end
 end
 
 -----------------------------------------------------------

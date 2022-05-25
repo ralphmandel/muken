@@ -89,6 +89,12 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 		end
 
         local charges = 1
+
+        -- UP 4.42
+        if self:GetRank(42) == false then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -101,6 +107,10 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:OnAbilityPhaseStart()
         local caster = self:GetCaster()
         caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("")
+        
+        local particle_cast = "particles/genuine/ult_caster/genuine_ult_caster.vpcf"
+	    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:ReleaseParticleIndex(effect_cast)
 
         return true
     end
@@ -116,13 +126,91 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         local duration = self:GetSpecialValueFor("duration")
         caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("ti6")
 
-        if target:TriggerSpellAbsorb(self) then return end
-
+        -- UP 4.42
+        if self:GetRank(42) == false then
+            if target:TriggerSpellAbsorb(self) then return end
+        end
+        
         self:PlayEfxStart(caster, target)
+        self:PlayEfxStart(target, caster)
+        if IsServer() then target:EmitSound("Hero_Terrorblade.DemonZeal.Cast") end
+
+        -- UP 4.11
+        if self:GetRank(11) then
+            duration = duration + 1.5
+        end
 
         target:AddNewModifier(caster, self, "genuine_u_modifier_target", {
             duration = self:CalcStatus(duration, caster, target)
         })
+    end
+
+    function genuine_u__star:CreateStarfall(target)
+        self:PlayEfxStarfall(target)
+
+		Timers:CreateTimer((0.5), function()
+			if target ~= nil then
+				if IsValidEntity(target) then
+					self:ApplyStarfall(target)
+				end
+			end
+		end)
+    end
+
+    function genuine_u__star:ApplyStarfall(target)
+        local caster = self:GetCaster()
+        local starfall_damage = 75
+        local starfall_radius = 300
+        local damageTable = {
+            attacker = caster,
+            damage = starfall_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
+
+    function genuine_u__star:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+        local flag = 0
+
+        if caster == hTarget then
+            return UF_FAIL_CUSTOM
+        end
+
+        -- UP 4.42
+        if self:GetCurrentAbilityCharges() % 2 == 0 then
+            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+        end
+
+        local result = UnitFilter(
+            hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+            flag, caster:GetTeamNumber()
+        )
+        
+        if result ~= UF_SUCCESS then
+            return result
+        end
+
+        return UF_SUCCESS
+    end
+
+    function genuine_u__star:GetCustomCastErrorTarget(hTarget)
+        if self:GetCaster() == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
     end
 
     function genuine_u__star:GetManaCost(iLevel)
@@ -134,19 +222,21 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
 -- EFFECTS
 
-    function genuine_u__star:PlayEfxStart(caster, target)
+    function genuine_u__star:PlayEfxStart(hero_1, hero_2)
         local particle_cast = "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControlEnt(effect_cast, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
-        ParticleManager:SetParticleControlEnt(effect_cast, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, hero_2)
+        ParticleManager:SetParticleControlEnt(effect_cast, 0, hero_1, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+        ParticleManager:SetParticleControlEnt(effect_cast, 1, hero_2, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
         ParticleManager:SetParticleControl(effect_cast, 60, Vector(125, 0, 175))
         ParticleManager:SetParticleControl(effect_cast, 61, Vector(1, 0, 0))
         ParticleManager:ReleaseParticleIndex(effect_cast)
+    end
 
-        particle_cast = "particles/econ/items/drow/drow_arcana/drow_arcana_msg_deny_v2.vpcf"
-        effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
-        ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-        ParticleManager:SetParticleControlEnt(effect_cast, 1, target, PATTACH_POINT_FOLLOW, "", Vector(0,0,0), true)
-
-        if IsServer() then target:EmitSound("Hero_Terrorblade.DemonZeal.Cast") end
+    function genuine_u__star:PlayEfxStarfall(target)
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+    
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
     end

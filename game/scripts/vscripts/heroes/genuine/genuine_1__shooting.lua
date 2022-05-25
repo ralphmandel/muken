@@ -141,7 +141,7 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
                     end
                 end)
             else
-                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 5})
+                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 7})
             end
         end
     end

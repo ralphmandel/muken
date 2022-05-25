@@ -1,5 +1,8 @@
 genuine_x1__nightfall = class({})
-LinkLuaModifier( "genuine_x1_modifier_nightfall", "heroes/genuine/genuine_x1_modifier_nightfall", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("genuine_x1_modifier_aura", "heroes/genuine/genuine_x1_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_x1_modifier_aura_effect", "heroes/genuine/genuine_x1_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -62,8 +65,24 @@ LinkLuaModifier( "genuine_x1_modifier_nightfall", "heroes/genuine/genuine_x1_mod
 
 -- SPELL START
 
+    function genuine_x1__nightfall:GetIntrinsicModifierName()
+        return "genuine_x1_modifier_aura"
+    end
+
     function genuine_x1__nightfall:OnSpellStart()
         local caster = self:GetCaster()
+        caster:AddNewModifier(caster, self, "_modifier_invisible", {delay = 1})
+        self:SetActivated(false)
+    end
+
+    function genuine_x1__nightfall:GetCastRange(vLocation, hTarget)
+        if GameRules:IsDaytime() then
+            return self:GetSpecialValueFor("day_radius")
+        else
+            return self:GetSpecialValueFor("night_radius")
+        end
+
+        return 0
     end
 
 -- EFFECTS
