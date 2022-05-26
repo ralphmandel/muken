@@ -4,14 +4,14 @@ LinkLuaModifier("_modifier_status_effect", "modifiers/_modifier_status_effect", 
 
 function cosmetics:Spawn()
 	self:UpgradeAbility(true)
+end
+
+function cosmetics:LoadCosmetics()
 	self.status_efx_flags = {
 		[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
 	}
 	self.cosmetic = {}
-	self:LoadCosmetics()
-end
 
-function cosmetics:LoadCosmetics()
 	local caster = self:GetCaster()
 	local hero_name = nil
 

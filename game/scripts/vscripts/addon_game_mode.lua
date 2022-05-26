@@ -907,19 +907,22 @@
 				if IsInToolsMode() then
 					--unit:AddItemByName("item_legend_serluc")
 
-					if self.temp == nil then
-						self.temp = 1
-					else
-						self.temp = self.temp + 1
-						unit:SetTeam(self.teams[2][1])
-						unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
-					end
+					-- if self.temp == nil then
+					-- 	self.temp = 1
+					-- else
+					-- 	self.temp = self.temp + 1
+					-- 	unit:SetTeam(self.teams[2][1])
+					-- 	unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
+					-- end
 				end
 
 				local team_index = self:GetTeamIndex(unit:GetTeamNumber())
 				self.teams[team_index][4] = self.teams[team_index][4] + 1
 				local player = {[1] = unit:GetPlayerOwner(), [2] = 0}
 				table.insert(self.players, player)
+
+				local cosmetics = unit:FindAbilityByName("cosmetics")
+				if cosmetics then cosmetics:LoadCosmetics() end 
 			end
 		end
 	end
