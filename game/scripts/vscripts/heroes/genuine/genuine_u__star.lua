@@ -160,7 +160,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:ApplyStarfall(target)
         local caster = self:GetCaster()
         local starfall_damage = 75
-        local starfall_radius = 300
+        local starfall_radius = 200
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,
@@ -171,7 +171,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+            0, 0, false
         )
 
         for _,enemy in pairs(enemies) do

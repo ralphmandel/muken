@@ -29,11 +29,6 @@ function genuine_3_modifier_morning:OnCreated(kv)
 		rec_bonus = rec_bonus + 10
 	end
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
-		self.ability:AddBonus("_1_INT", self.parent, 15, 0, nil)
-	end
-
 	self.ability:AddBonus("_1_AGI", self.parent, agi_bonus, 0, nil)
 	self.ability:AddBonus("_2_REC", self.parent, rec_bonus, 0, nil)
 
@@ -45,7 +40,6 @@ function genuine_3_modifier_morning:OnRefresh(kv)
 end
 
 function genuine_3_modifier_morning:OnRemoved(kv)
-	self.ability:RemoveBonus("_1_INT", self.parent)
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_REC", self.parent)
 

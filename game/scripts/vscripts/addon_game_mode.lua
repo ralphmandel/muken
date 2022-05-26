@@ -903,26 +903,38 @@
 
 			if unit:HasItemInInventory("item_tp") == false then
 				unit:AddItemByName("item_tp")
+				self:SpawnUnitCosmetics(unit)
 
 				if IsInToolsMode() then
 					--unit:AddItemByName("item_legend_serluc")
 
-					-- if self.temp == nil then
-					-- 	self.temp = 1
-					-- else
-					-- 	self.temp = self.temp + 1
-					-- 	unit:SetTeam(self.teams[2][1])
-					-- 	unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
-					-- end
+					if self.temp == nil then
+						self.temp = 1
+					else
+						self.temp = self.temp + 1
+						unit:SetTeam(self.teams[2][1])
+						unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
+					end
 				end
 
 				local team_index = self:GetTeamIndex(unit:GetTeamNumber())
 				self.teams[team_index][4] = self.teams[team_index][4] + 1
 				local player = {[1] = unit:GetPlayerOwner(), [2] = 0}
 				table.insert(self.players, player)
+			end
+		end
 
-				local cosmetics = unit:FindAbilityByName("cosmetics")
-				if cosmetics then cosmetics:LoadCosmetics() end 
+		if unit:IsHero() and unit:IsIllusion() then
+			self:SpawnUnitCosmetics(unit)
+		end
+	end
+
+	function BattleArena:SpawnUnitCosmetics(unit)
+		local cosmetics = unit:FindAbilityByName("cosmetics")
+		if cosmetics then
+			cosmetics:LoadCosmetics()
+			if unit:GetUnitName() == "npc_dota_hero_riki" then
+				cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
 			end
 		end
 	end

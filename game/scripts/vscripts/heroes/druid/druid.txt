@@ -73,7 +73,6 @@
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityManaCost"         		"140 154 168 182 196 210 224 238 252 266 280"
 		"AbilityCooldown"				"45"
 		"AbilityCastRange"      		"500"
 		"AbilityChannelTime"    		"4.5"
@@ -124,6 +123,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"damage"			"300 310 320 330 340 350 360 370 380 390 400"
+			}
+            "14"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"manacost"			"140"
 			}
 			"15"
 			{

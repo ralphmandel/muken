@@ -192,8 +192,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         end
 
         -- UP 2.32
-        if self:GetRank(32)
-        and RandomInt(1, 100) <= 70 then
+        local starfall_chance = 50
+        if hTarget:IsHero() and hTarget:IsIllusion() == false then starfall_chance = 75 end
+        if self:GetRank(32) and RandomInt(1, 100) <= starfall_chance then
             if caster:HasModifier("genuine_u_modifier_caster") == false 
             or hTarget:HasModifier("genuine_u_modifier_target") then
                 self:PlayEfxStarfall(hTarget)
@@ -213,8 +214,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_2__fallen:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 150
-        local starfall_radius = 300
+        local starfall_damage = 125
+        local starfall_radius = 200
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,
@@ -225,7 +226,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+            0, 0, false
         )
 
         for _,enemy in pairs(enemies) do

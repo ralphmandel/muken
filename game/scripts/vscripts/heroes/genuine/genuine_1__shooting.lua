@@ -200,7 +200,7 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
     function genuine_1__shooting:ApplyStarfall(target)
         local caster = self:GetCaster()
         local starfall_damage = 125
-        local starfall_radius = 300
+        local starfall_radius = 200
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,
@@ -211,7 +211,7 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+            0, 0, false
         )
 
         for _,enemy in pairs(enemies) do

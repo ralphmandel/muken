@@ -101,7 +101,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         local cursorPt = self:GetCursorPosition()
         local casterPt = caster:GetAbsOrigin()
 
-        if IsServer() then caster:EmitSound("Hero_DrowRanger.Silence") end
+        if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.IceBlast.Target") end
         
         local direction = cursorPt - casterPt
         direction = direction:Normalized()

@@ -16,9 +16,6 @@ function icebreaker__modifier_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
     self:PlayEffects()
-
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true) end
 end
 
 function icebreaker__modifier_effect:OnRefresh(kv)

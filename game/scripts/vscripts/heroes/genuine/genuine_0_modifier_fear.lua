@@ -19,8 +19,10 @@ function genuine_0_modifier_fear:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-    self:ApplyFear()
-    self:PlayEfxStart()
+    if IsServer() then
+        self:ApplyFear()
+        self:PlayEfxStart()
+    end
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("genuine_0_modifier_fear_status_effect", true) end
@@ -37,6 +39,10 @@ function genuine_0_modifier_fear:OnRemoved(kv)
     if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 
     self.parent:Stop()
+end
+
+function genuine_0_modifier_fear:OnDestroy()
+    if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 end
 
 -----------------------------------------------------------
