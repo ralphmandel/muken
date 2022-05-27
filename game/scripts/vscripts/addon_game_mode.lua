@@ -44,6 +44,7 @@
 				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 				
 				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/restrict.vpcf", context )

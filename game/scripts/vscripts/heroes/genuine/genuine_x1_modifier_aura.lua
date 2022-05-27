@@ -80,3 +80,13 @@ function genuine_x1_modifier_aura:OnIntervalThink()
 		end
 	end
 end
+
+--------------------------------------------------------------------------------
+
+function genuine_x1_modifier_aura:GetEffectName()
+	return "particles/econ/events/diretide_2020/emblem/fall20_emblem_v2_effect.vpcf"
+end
+
+function genuine_x1_modifier_aura:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

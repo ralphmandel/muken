@@ -160,7 +160,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:ApplyStarfall(target)
         local caster = self:GetCaster()
         local starfall_damage = 75
-        local starfall_radius = 200
+        local starfall_radius = 175
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,

@@ -88,12 +88,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		end
 
         local charges = 1
-
-        -- UP 2.22
-        if self:GetRank(22) then
-            charges = charges * 2
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -110,8 +104,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local flags = DOTA_UNIT_TARGET_FLAG_NONE
         local projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf"
         local speed = self:GetSpecialValueFor("speed")
+        local distance = self:GetSpecialValueFor("distance")
         local radius = self:GetSpecialValueFor("radius")
-        local distance = self:GetCastRange( point, nil )
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
@@ -132,6 +126,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         -- UP 2.22
         if self:GetRank(22) then
             speed = speed * 2
+            distance = distance * 2
             radius = radius + 150
             projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf"
         end
@@ -215,7 +210,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     function genuine_2__fallen:ApplyStarfall(target)
         local caster = self:GetCaster()
         local starfall_damage = 125
-        local starfall_radius = 200
+        local starfall_radius = 175
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,
@@ -242,13 +237,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local level =  (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
-    end
-
-    function genuine_2__fallen:GetCastRange(vLocation, hTarget)
-        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("distance") end
-        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("distance") end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("distance") * 2 end
-        return self:GetSpecialValueFor("distance")
     end
 
 -- EFFECTS

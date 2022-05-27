@@ -39,6 +39,7 @@ function genuine_3_modifier_passive:OnHeroKilled(keys)
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:HasModifier("genuine_3_modifier_morning") == false then return end
 
 	self.ability:AddKillPoint(1)
 	self:SetStackCount(self.ability.kills)

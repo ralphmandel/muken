@@ -119,7 +119,8 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"15"
+        "AbilityCastRange"              "0"
 
 		"AbilitySpecial"
 		{
@@ -198,7 +199,7 @@
             "04"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"star_radius"   "200"
+				"star_radius"   "175"
 			}
             "05"
 			{
@@ -329,22 +330,68 @@
         // General  
         "BaseClass"              		"ability_lua"
         "ScriptFile"            		"heroes/genuine/genuine_x2__under"
-        "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityTextureName"     		"genuine_under"
 
         "AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
         "MaxLevel"               		"5"
         "RequiredLevel"         	 	"0"
 
-        "AbilityCastPoint"       		"0.2"
         "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+        "AbilityCastPoint"				"0.0"
+        "AbilityCastRange"				"2600"
 
-        // Stats
-        "AbilityCooldown"				"15"
-        "AbilityCastRange"    		   	"275"
+        "AbilityCooldown"				"10"
+        "AbilityManaCost"				"150"
 
         "AbilitySpecial"
         {
+            "01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"powershot_damage"		"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_reduction"		"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"arrow_width"			"125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"arrow_range"			"2600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_speed"			"3000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tree_width"			"75"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"400"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"3.34"
+			}
+            "09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_time"		    "3.0"
+			}
             "12"
 			{
 				"var_type"		"FIELD_FLOAT"
