@@ -308,4 +308,12 @@ require("talent_tree")
 		PrecacheResource("particle", "particles/genuine/shoulder_efx/genuine_back_ambient.vpcf", context)
 		PrecacheResource("particle", "particles/genuine/bow_efx/genuine_bow_ambient.vpcf", context)
 		PrecacheResource("particle", "particles/genuine/base_attack/genuine_base_attack.vpcf", context)
+
+		PrecacheResource("model", "models/items/drow/secret_witch_head/secret_witch_head.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_legs/secret_witch_legs.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_arms/secret_witch_arms.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_shoulder/secret_witch_shoulder.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_misc/secret_witch_misc.vmdl", context)
+		PrecacheResource("model", "models/items/drow/ti6_immortal_cape/mesh/drow_ti6_immortal_cape.vmdl", context)
+		PrecacheResource("model", "models/items/drow/drow_ti9_immortal_weapon/drow_ti9_immortal_weapon.vmdl", context)
 	end
