@@ -107,3 +107,14 @@ function _modifier_cosmetics:PlayEfxAmbient(ambient, attach)
 	ParticleManager:SetParticleControlEnt(self.particle[self.index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
 	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
 end
+
+function _modifier_cosmetics:ResetAmbientEfx()
+	if self.index == nil then return end
+	if self.ambient == nil then return end
+	if self.particle == nil then return end
+	
+	self.particle[self.index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle[self.index], 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(self.particle[self.index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
+end

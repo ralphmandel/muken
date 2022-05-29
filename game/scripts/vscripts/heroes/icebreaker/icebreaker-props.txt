@@ -54,7 +54,7 @@
 		//"ProjectileModel"          	"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_base_attack.vpcf"
 		//"ProjectileSpeed"          	"900"
 		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"800"        // Range of vision at night time.
+		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"

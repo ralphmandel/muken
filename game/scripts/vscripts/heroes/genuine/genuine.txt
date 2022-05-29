@@ -84,18 +84,18 @@
 		{
 			"01"
 			{
-				"var_type"                  "FIELD_FLOAT"
-				"bonus_damage"	            "60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75"
+				"var_type"              "FIELD_FLOAT"
+				"bonus_damage"	        "60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75"
 			}
             "02"
 			{
-				"var_type"		            "FIELD_FLOAT"
-				"cast_range_tooltip"		"700 720 740 760 780 800 820 840 860 880 900 920 940 960 980 1000"
+				"var_type"		        "FIELD_FLOAT"
+				"atk_range"		        "100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400"
 			}
             "03"
 			{
-				"var_type"		            "FIELD_FLOAT"
-				"manacost"		            "50"
+				"var_type"		        "FIELD_FLOAT"
+				"manacost"		        "50"
 			}
 			"15"
 			{

@@ -42,15 +42,17 @@ function cosmetics:ApplyCosmetics(cosmetics_data)
 		self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
 		local modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
 
-		if ambients ~= "nil" then
-			for ambient, attach in pairs(ambients) do
-				if ambient == "material" then
-					self.cosmetic[index]:SetMaterialGroup(tostring(attach))
-				else
-					modifier:PlayEfxAmbient(ambient, attach)
+		Timers:CreateTimer((0.2), function()
+			if ambients ~= "nil" then
+				for ambient, attach in pairs(ambients) do
+					if ambient == "material" then
+						self.cosmetic[index]:SetMaterialGroup(tostring(attach))
+					else
+						modifier:PlayEfxAmbient(ambient, attach)
+					end
 				end
 			end
-		end
+		end)
 	end
 end
 

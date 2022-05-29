@@ -16,6 +16,8 @@ function genuine_1_modifier_orb:OnCreated(kv)
 		self.parent = self:GetParent()
 		self.ability = self:GetAbility()
 
+		self.atk_range = self.ability:GetSpecialValueFor("atk_range")
+		
 		self.proj = false
 		self.cast = false
 		self.pierce_records = {}
@@ -24,6 +26,7 @@ function genuine_1_modifier_orb:OnCreated(kv)
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
+	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
@@ -36,6 +39,7 @@ function genuine_1_modifier_orb:DeclareFunctions()
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
@@ -77,6 +81,15 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 		self:PlayEfxSpellLifesteal(self.parent)
 		self.ability.spell_lifesteal = false
 	end
+end
+
+function genuine_1_modifier_orb:GetModifierAttackRangeBonus(keys)
+	if self:GetAbility():IsCooldownReady()
+	and self:GetAbility():GetAutoCastState() then
+		return self.atk_range
+	end
+	
+	return 0
 end
 
 function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)

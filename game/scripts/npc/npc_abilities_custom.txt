@@ -46,7 +46,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"range"					"35"
+				"range"					"40"
 			}
 			// "06"
 			// {

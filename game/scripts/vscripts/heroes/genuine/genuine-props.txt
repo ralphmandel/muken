@@ -49,13 +49,13 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "350"     // Range within a target can be attacked.
+		"AttackRange"                   "400"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		"ProjectileModel"          		"particles/genuine/base_attack/genuine_base_attack.vpcf"
 		//"ProjectileSpeed"          	"900"
 		
 		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"800"        // Range of vision at night time.
+		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"

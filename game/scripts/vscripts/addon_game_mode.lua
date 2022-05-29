@@ -432,6 +432,34 @@
 		if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
 	end
 
+	function BattleArena:SpawnPlayerCosmetics(includeNegativeTime)
+		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
+		if time == -55 then
+			if not self.cosmetic_set then
+				self.cosmetic_set = true
+
+				for _,player in pairs(self.players) do
+					local hero = player[1]:GetAssignedHero()
+					self:ApplyUnitCosmetics(hero)
+
+					if IsInToolsMode() then
+						hero:FindAbilityByName("cosmetics"):ChangeTeam(hero:GetTeamNumber())
+					end
+				end
+			end
+		end
+	end
+
+	function BattleArena:ApplyUnitCosmetics(unit)
+		local cosmetics = unit:FindAbilityByName("cosmetics")
+		if cosmetics then
+			cosmetics:LoadCosmetics()
+			if unit:GetUnitName() == "npc_dota_hero_riki" then
+				cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
+			end
+		end
+	end
+
 	function BattleArena:CreateSpot(number)
 		local time = GameRules:GetDOTATime(false, false)
 		local spawn_time = 30
@@ -904,17 +932,15 @@
 
 			if unit:HasItemInInventory("item_tp") == false then
 				unit:AddItemByName("item_tp")
-				self:SpawnUnitCosmetics(unit)
 
 				if IsInToolsMode() then
 					--unit:AddItemByName("item_legend_serluc")
 
 					if self.temp == nil then
-						self.temp = 1
+						self.temp = 6
 					else
 						self.temp = self.temp + 1
-						unit:SetTeam(self.teams[2][1])
-						unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
+						unit:SetTeam(self.temp)
 					end
 				end
 
@@ -926,17 +952,7 @@
 		end
 
 		if unit:IsHero() and unit:IsIllusion() then
-			self:SpawnUnitCosmetics(unit)
-		end
-	end
-
-	function BattleArena:SpawnUnitCosmetics(unit)
-		local cosmetics = unit:FindAbilityByName("cosmetics")
-		if cosmetics then
-			cosmetics:LoadCosmetics()
-			if unit:GetUnitName() == "npc_dota_hero_riki" then
-				cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
-			end
+			self:ApplyUnitCosmetics(unit)
 		end
 	end
 
@@ -944,12 +960,7 @@
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
 			self:GenerateEvent(true)
-
-			if self.neutral_test == nil then self.neutral_test = true end
-			if IsInToolsMode() and self.neutral_test == true then
-				--CreateUnitByName("boss_gorillaz",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				self.neutral_test = false
-			end
+			self:SpawnPlayerCosmetics(true)
 		end
 
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then

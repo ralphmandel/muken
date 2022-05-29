@@ -118,7 +118,13 @@ function _modifier__ai:AggressiveThink()
     end
     
     -- Still in the aggressive state, so do some aggressive stuff.
-    self.unit:MoveToTargetToAttack(self.aggroTarget)
+    if self.unit:GetAggroTarget() ~= nil then
+        if self.unit:GetAggroTarget() ~= self.aggroTarget then
+            self.aggroTarget = self.unit:GetAggroTarget()
+            self.unit:MoveToTargetToAttack(self.aggroTarget)
+        end
+    end
+    --self.unit:MoveToTargetToAttack(self.aggroTarget)
 end
 
 function _modifier__ai:ReturningThink()
