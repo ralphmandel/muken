@@ -21,11 +21,11 @@ function cosmetics:LoadCosmetics()
 	if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then hero_name = "bloodstained" end
 	if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
 	if caster:GetUnitName() == "npc_dota_hero_furion" then hero_name = "druid" end
+	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
+	if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
+
 	if caster:GetUnitName() == "npc_dota_hero_queenofpain" then hero_name = "succubus" end
 	if caster:GetUnitName() == "npc_dota_hero_phantom_assassin" then hero_name = "gladiator" end
-	if caster:GetUnitName() == "npc_dota_hero_bloodseeker" then hero_name = "bloodmage" end
-	if caster:GetUnitName() == "npc_dota_hero_rubick" then hero_name = "doctor" end
-	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 
 	if hero_name ~= nil then
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
@@ -38,21 +38,29 @@ function cosmetics:ApplyCosmetics(cosmetics_data)
 	local index = 0
 
 	for cosmetic, ambients in pairs(cosmetics_data) do
-		index = index + 1
-		self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
-		local modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
+		local unit = caster
+		local modifier = caster:FindModifierByName(cosmetic)
 
-		Timers:CreateTimer((0.2), function()
-			if ambients ~= "nil" then
-				for ambient, attach in pairs(ambients) do
-					if ambient == "material" then
-						self.cosmetic[index]:SetMaterialGroup(tostring(attach))
-					else
-						modifier:PlayEfxAmbient(ambient, attach)
-					end
-				end
-			end
-		end)
+		if modifier == nil then
+			index = index + 1
+			self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
+			modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
+			unit = self.cosmetic[index]
+		end
+
+		if ambients ~= "nil" then
+			self:ApplyAmbient(ambients, unit, modifier)
+		end
+	end
+end
+
+function cosmetics:ApplyAmbient(ambients, unit, modifier)
+	for ambient, attach in pairs(ambients) do
+		if ambient == "material" then
+			unit:SetMaterialGroup(tostring(attach))
+		else
+			modifier:PlayEfxAmbient(ambient, attach)
+		end
 	end
 end
 

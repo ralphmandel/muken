@@ -502,15 +502,16 @@
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
 #base "../vscripts/heroes/druid/druid.txt"
+#base "../vscripts/heroes/genuine/genuine.txt"
 
 //PRE PRODUCTION
-#base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/gladiator/gladiator.txt"
-#base "../vscripts/heroes/succubus/succubus.txt"
+#base "../vscripts/heroes/shadow/shadow.txt"
 
 //STAND BY
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
 #base "../vscripts/heroes/doctor/doctor.txt"
+#base "../vscripts/heroes/succubus/succubus.txt"
 
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "../vscripts/bosses/_bosses.txt"

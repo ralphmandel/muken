@@ -132,9 +132,8 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 	end
 
 	-- UP 1.41
-	if --self.ability:GetRank(41) 
-	--and
-	RandomInt(1, 100) <= 15
+	if self.ability:GetRank(41) 
+	and RandomInt(1, 100) <= 15
 	and self.parent:PassivesDisabled() == false then
 		local illu = CreateIllusions(
 			self.caster, self.caster,

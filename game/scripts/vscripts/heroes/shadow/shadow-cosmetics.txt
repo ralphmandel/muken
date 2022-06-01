@@ -1,0 +1,18 @@
+"Cosmetics"
+{
+	"models/items/phantom_assassin/creeping_shadow_back/creeping_shadow_back.vmdl" "nil"
+
+	"models/items/phantom_assassin/creeping_shadow_belt/creeping_shadow_belt.vmdl" "nil"
+
+	"models/items/phantom_assassin/creeping_shadow_head/creeping_shadow_head.vmdl" "nil"
+	
+	"models/items/phantom_assassin/creeping_shadow_shoulder/creeping_shadow_shoulder.vmdl" "nil"
+	
+	"models/items/phantom_assassin/hells_guide/hells_guide.vmdl" "nil"
+
+	"shadow__modifier_effect"
+	{
+		"particles/econ/items/phantom_assassin/phantom_assassin_weapon_hells_usher/phantom_assassin_hells_usher_ambient.vpcf" "attach_attack1"
+		"particles/shadowmancer/shadowmancer_arcana_ambient.vpcf" ""
+	}
+}

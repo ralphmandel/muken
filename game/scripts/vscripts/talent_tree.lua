@@ -52,6 +52,14 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/ancient/ancient-ranks.txt")
         hero.att = "ancient__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_drow_ranger" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine-ranks.txt")
+        hero.att = "genuine__attributes"
+    elseif hero:GetUnitName() == "npc_dota_hero_spectre" then
+        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow.txt")
+        data = LoadKeyValues("scripts/vscripts/heroes/shadow/shadow-ranks.txt")
+        hero.att = "shadow__attributes"
     elseif hero:GetUnitName() == "npc_dota_hero_queenofpain" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/succubus/succubus-ranks.txt")
@@ -60,18 +68,6 @@ function TalentTree:ResetData(hero)
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/gladiator/gladiator.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/gladiator/gladiator-ranks.txt")
         hero.att = "gladiator__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_bloodseeker" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/bloodmage/bloodmage-ranks.txt")
-        hero.att = "bloodmage__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_rubick" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/doctor/doctor-ranks.txt")
-        hero.att = "doctor__attributes"
-    elseif hero:GetUnitName() == "npc_dota_hero_drow_ranger" then
-        self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine.txt")
-        data = LoadKeyValues("scripts/vscripts/heroes/genuine/genuine-ranks.txt")
-        hero.att = "genuine__attributes"
     end
 
     hero.talentsData = {}
@@ -82,7 +78,7 @@ function TalentTree:ResetData(hero)
 		if not unit["min_level"] then
             local att = hero:FindAbilityByName(hero.att)
             if (not att) then return false end
-            for i = 1, 5, 1 do
+            for i = 0, 5, 1 do
                 for tabName, tabData in pairs(unit) do
                     local isTab = false
                     if i == 5 then
@@ -90,8 +86,10 @@ function TalentTree:ResetData(hero)
                             isTab = true
                         end
                     else
-                        if tabName == att.skills[i] then
-                            isTab = true
+                        if att.skills[i] then
+                            if tabName == att.skills[i] then
+                                isTab = true
+                            end
                         end
                     end
 

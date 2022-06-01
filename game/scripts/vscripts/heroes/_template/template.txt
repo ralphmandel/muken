@@ -120,7 +120,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
 		"AbilityCooldown"				"10"
 		"AbilityCastRange"      		"500"
 		"AoERadius"               		"100"
@@ -162,7 +161,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
 		"AbilityCooldown"				"10"
 		"AbilityCastRange"      		"500"
 		"AoERadius"               		"100"
@@ -204,7 +202,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"100 110 120 130 140 150 160 170 180"
 		"AbilityCooldown"				"10"
 		"AbilityCastRange"      		"500"
 		"AoERadius"               		"100"
