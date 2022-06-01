@@ -127,6 +127,8 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
         local shard = CreateUnitByName("ice_shard", point, true, caster, caster, caster:GetTeamNumber())
         shard:CreatureLevelUp(self:GetLevel() - 1)
         shard:AddNewModifier(caster, self, "icebreaker_u_modifier_zero", {duration = duration})
+
+        if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.ColdFeetCast") end
     end
 
     function icebreaker_u__zero:DestroyShard()

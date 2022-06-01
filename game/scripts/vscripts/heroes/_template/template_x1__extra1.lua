@@ -66,4 +66,11 @@ LinkLuaModifier( "template_x1_modifier_extra1", "heroes/template/template_x1_mod
         local caster = self:GetCaster()
     end
 
+    function template_x1__extra1:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
+
 -- EFFECTS

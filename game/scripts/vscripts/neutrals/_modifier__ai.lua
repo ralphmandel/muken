@@ -118,7 +118,13 @@ function _modifier__ai:AggressiveThink()
     end
     
     -- Still in the aggressive state, so do some aggressive stuff.
-    self.unit:MoveToTargetToAttack(self.aggroTarget)
+    if self.unit:GetAggroTarget() ~= nil then
+        if self.unit:GetAggroTarget() ~= self.aggroTarget then
+            self.aggroTarget = self.unit:GetAggroTarget()
+            self.unit:MoveToTargetToAttack(self.aggroTarget)
+        end
+    end
+    --self.unit:MoveToTargetToAttack(self.aggroTarget)
 end
 
 function _modifier__ai:ReturningThink()
@@ -206,8 +212,7 @@ function _modifier__ai:OnTakeDamage(keys)
     if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
 
     if keys.inflictor ~= nil then
-        if keys.inflictor == "shadow_1__weapon"
-        or keys.inflictor == "shadow_2__smoke" then
+        if keys.inflictor == "shadow_0__toxin" then
             efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
         end
     end

@@ -18,25 +18,20 @@
 			"0"
 			{
 				"1"   "genuine_1__shooting_rank_11"
-				"2"   "genuine_1__shooting_rank_12"
-				"3"   "genuine_1__shooting_rank_13"
 			}
 			"1"
 			{
 				"1"   "genuine_1__shooting_rank_21"
 				"2"   "genuine_1__shooting_rank_22"
-				"3"   "genuine_1__shooting_rank_23"
 			}
 			"2"
 			{
 				"1"   "genuine_1__shooting_rank_31"
 				"2"   "genuine_1__shooting_rank_32"
-				"3"   "genuine_1__shooting_rank_33"
 			}
 			"3"
 			{
 				"1"   "genuine_1__shooting_rank_41"
-				"2"   "genuine_1__shooting_rank_42"
 			}
 		}
 		"genuine_2__fallen"
@@ -45,24 +40,20 @@
 			{
 				"1"   "genuine_2__fallen_rank_11"
 				"2"   "genuine_2__fallen_rank_12"
-				"3"   "genuine_2__fallen_rank_13"
 			}
 			"1"
 			{
 				"1"   "genuine_2__fallen_rank_21"
 				"2"   "genuine_2__fallen_rank_22"
-				"3"   "genuine_2__fallen_rank_23"
 			}
 			"2"
 			{
 				"1"   "genuine_2__fallen_rank_31"
 				"2"   "genuine_2__fallen_rank_32"
-				"3"   "genuine_2__fallen_rank_33"
 			}
 			"3"
 			{
-				"1"   "genuine_2__fallen_rank_41"
-				"2"   "genuine_2__fallen_rank_42"
+				"1"   "empty"
 			}
 		}
 		"genuine_3__morning"
@@ -70,25 +61,19 @@
 			"0"
 			{
 				"1"   "genuine_3__morning_rank_11"
-				"2"   "genuine_3__morning_rank_12"
-				"3"   "genuine_3__morning_rank_13"
 			}
 			"1"
 			{
 				"1"   "genuine_3__morning_rank_21"
 				"2"   "genuine_3__morning_rank_22"
-				"3"   "genuine_3__morning_rank_23"
 			}
 			"2"
 			{
-				"1"   "genuine_3__morning_rank_31"
-				"2"   "genuine_3__morning_rank_32"
-				"3"   "genuine_3__morning_rank_33"
+				"1"   "empty"
 			}
 			"3"
 			{
 				"1"   "genuine_3__morning_rank_41"
-				"2"   "genuine_3__morning_rank_42"
 			}
 		}
 		"genuine_u__star"
@@ -101,15 +86,11 @@
 			}
 			"1"
 			{
-				"1"   "genuine_u__star_rank_21"
-				"2"   "genuine_u__star_rank_22"
-				"3"   "genuine_u__star_rank_23"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "genuine_u__star_rank_31"
-				"2"   "genuine_u__star_rank_32"
-				"3"   "genuine_u__star_rank_33"
 			}
 			"3"
 			{

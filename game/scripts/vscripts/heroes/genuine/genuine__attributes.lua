@@ -155,7 +155,7 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		local gain = 0
-		if level ~= 2 and level ~= 5 and level ~= 8 then gain = -1 end
+		if level ~= 1 and level ~= 3 and level ~= 7 then gain = -1 end
 		if level > 8 then gain = gain + 3 end
 		if level > 12 then gain = gain + 1 end
 		if level > 16 then gain = gain + 1 end
@@ -286,6 +286,34 @@ require("talent_tree")
 
 --PRECACHE
 	function genuine__attributes:Precache(context)
-		PrecacheResource("soundfile", "soundevents/name.vsndevts", context)
-		PrecacheResource("particle", "path", context)
+		PrecacheResource("soundfile", "soundevents/soundevent_genuine.vsndevts", context)
+		PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/dark_willow/dark_willow_immortal_2021/dw_2021_willow_wisp_spell_debuff.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/genuine_fear.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/shooting_star/genuine_shooting.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/starfall/genuine_starfall_attack.vpcf", context)
+		PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf", context)
+		PrecacheResource("particle", "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/genuine_fallen_hit.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/morning_star/genuine_morning_star.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/ult_caster/genuine_ult_caster.vpcf", context)
+		PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/genuine_ultimate.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/ult_deny/genuine_deny_v2.vpcf", context)
+		PrecacheResource("particle", "particles/econ/events/diretide_2020/emblem/fall20_emblem_v2_effect.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/genuine_powershoot/genuine_spell_powershot_ti6.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/genuine_powershoot/genuine_powershot_channel_combo_v2.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/shoulder_efx/genuine_back_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/bow_efx/genuine_bow_ambient.vpcf", context)
+		PrecacheResource("particle", "particles/genuine/base_attack/genuine_base_attack.vpcf", context)
+
+		PrecacheResource("model", "models/items/drow/secret_witch_head/secret_witch_head.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_legs/secret_witch_legs.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_arms/secret_witch_arms.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_shoulder/secret_witch_shoulder.vmdl", context)
+		PrecacheResource("model", "models/items/drow/secret_witch_misc/secret_witch_misc.vmdl", context)
+		PrecacheResource("model", "models/items/drow/ti6_immortal_cape/mesh/drow_ti6_immortal_cape.vmdl", context)
+		PrecacheResource("model", "models/items/drow/drow_ti9_immortal_weapon/drow_ti9_immortal_weapon.vmdl", context)
 	end

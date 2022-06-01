@@ -36,7 +36,7 @@ end
 function _modifier_blind:OnRemoved()
 	self.percent = 0
 	local mod = self.parent:FindModifierByName("_modifier_blind_stack")
-	if mod then mod:Check() return end
+	if mod then mod:Check() end
 end
 
 --------------------------------------------------------------------------------

@@ -191,9 +191,12 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
     end
 
     function bloodstained_u__seal:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return 160 + (16 * (self:GetLevel() - 1)) end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return 60 + (16 * (self:GetLevel() - 1)) end
+        if self:GetCurrentAbilityCharges() == 1 then return manacost * level end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 60) * level end
+        return manacost * level
     end
 
     -- init bramble locations

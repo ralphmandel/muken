@@ -18,7 +18,7 @@ function bocuse__modifier_effect:OnCreated(kv)
 	Timers:CreateTimer((0.5), function()
 		if self.parent then
 			if IsValidEntity(self.parent) then
-				self.parent:SetModelScale(1.35)
+				self.parent:SetModelScale(1.15)
 				self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 			end
 		end

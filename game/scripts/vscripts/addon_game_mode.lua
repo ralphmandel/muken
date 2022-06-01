@@ -44,6 +44,7 @@
 				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 				
 				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
 				PrecacheResource( "particle", "particles/basics/restrict.vpcf", context )
@@ -101,11 +102,14 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context )
@@ -123,7 +127,6 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context ) 
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context )
@@ -208,8 +211,7 @@
 				event.xp_bounty = 0
 				event.gold_bounty = 0
 
-				if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time 
-				and self.first_blood == false then
+				if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
 					self.vo = self.vo + 1
 					Timers:CreateTimer((1), function()
 						self.vo = self.vo - 1
@@ -228,7 +230,8 @@
 				for _,player in pairs(self.players) do
 					if player[1]:GetPlayerID() == event.player_id_const then
 						local team_index = self:GetTeamIndex(player[1]:GetTeamNumber())
-						local score = self.score_bounty / self.teams[team_index][4]
+						--local score = self.score_bounty / self.teams[team_index][4]
+						local score = 50
 						self.teams[team_index][2] = self.teams[team_index][2] + score
 						local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
 						GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
@@ -427,6 +430,34 @@
 		if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
 		if sync_time == 580 then self:EventBoss(2) end
 		if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
+	end
+
+	function BattleArena:SpawnPlayerCosmetics(includeNegativeTime)
+		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
+		if time == -55 then
+			if not self.cosmetic_set then
+				self.cosmetic_set = true
+
+				for _,player in pairs(self.players) do
+					local hero = player[1]:GetAssignedHero()
+					self:ApplyUnitCosmetics(hero)
+
+					if IsInToolsMode() then
+						hero:FindAbilityByName("cosmetics"):ChangeTeam(hero:GetTeamNumber())
+					end
+				end
+			end
+		end
+	end
+
+	function BattleArena:ApplyUnitCosmetics(unit)
+		local cosmetics = unit:FindAbilityByName("cosmetics")
+		if cosmetics then
+			cosmetics:LoadCosmetics()
+			if unit:GetUnitName() == "npc_dota_hero_riki" then
+				cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
+			end
+		end
 	end
 
 	function BattleArena:CreateSpot(number)
@@ -751,8 +782,7 @@
 				player[2] = 0
 
 				if killer:GetTeamNumber() == DOTA_TEAM_NEUTRALS
-				and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time 
-				and self.first_blood == false then
+				and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
 					self.vo = self.vo + 1
 					Timers:CreateTimer((1.5), function()
 						self.vo = self.vo - 1
@@ -842,36 +872,37 @@
 
 		if victim:GetAssignedHero():IsReincarnating() then return end
 		local team_index = self:GetTeamIndex(team_number)
-		local score = self.score_kill / self.teams[self:GetTeamIndex(victim:GetTeamNumber())][4]
+		--local score = self.score_kill / self.teams[self:GetTeamIndex(victim:GetTeamNumber())][4]
+		local score = 25
 
 		if self.first_blood == true then
 			EmitAnnouncerSound("announcer_killing_spree_announcer_1stblood_01")
 			self.first_blood = false
 			score = 100
-		else
-			if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-				if RandomInt(1,3) > 1 then
-					self.vo = self.vo + 1
-					Timers:CreateTimer((2), function()
-						self.vo = self.vo - 1
-						if self.vo == 0 then
-							if RandomInt(1,2) == 1 then
-								EmitAnnouncerSound("Vo.Kill.1")
-								self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
-							else
-								EmitAnnouncerSound("Vo.Kill.2")
-								self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-							end
+		end
+
+		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
+			if RandomInt(1,3) > 1 then
+				self.vo = self.vo + 1
+				Timers:CreateTimer((2), function()
+					self.vo = self.vo - 1
+					if self.vo == 0 then
+						if RandomInt(1,2) == 1 then
+							EmitAnnouncerSound("Vo.Kill.1")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
+						else
+							EmitAnnouncerSound("Vo.Kill.2")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
 						end
-					end)
-				end
-				for _,player in pairs(self.players) do
-					if player[1] == killer then
-						player[2] = player[2] + 1
-						local string = self:GetKillingSpreeAnnouncer(player[2])
-						if player[2] > 2 then EmitAnnouncerSound(string) end
-						break
 					end
+				end)
+			end
+			for _,player in pairs(self.players) do
+				if player[1] == killer then
+					player[2] = player[2] + 1
+					local string = self:GetKillingSpreeAnnouncer(player[2])
+					if player[2] > 2 then EmitAnnouncerSound(string) end
+					break
 				end
 			end
 		end
@@ -903,14 +934,13 @@
 				unit:AddItemByName("item_tp")
 
 				if IsInToolsMode() then
-					unit:AddItemByName("item_legend_serluc")
+					--unit:AddItemByName("item_legend_serluc")
 
 					if self.temp == nil then
-						self.temp = 1
+						self.temp = 6
 					else
 						self.temp = self.temp + 1
-						unit:SetTeam(self.teams[2][1])
-						unit:FindAbilityByName("cosmetics"):ChangeTeam(self.teams[2][1])
+						unit:SetTeam(self.temp)
 					end
 				end
 
@@ -920,18 +950,17 @@
 				table.insert(self.players, player)
 			end
 		end
+
+		if unit:IsHero() and unit:IsIllusion() then
+			self:ApplyUnitCosmetics(unit)
+		end
 	end
 
 -- ON THINK
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			self:GenerateEvent(true)
-
-			if self.neutral_test == nil then self.neutral_test = true end
-			if IsInToolsMode() and self.neutral_test == true then
-				--CreateUnitByName("boss_gorillaz",  Vector(0, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				self.neutral_test = false
-			end
+			--self:GenerateEvent(true)
+			self:SpawnPlayerCosmetics(true)
 		end
 
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -950,7 +979,7 @@
 				self:CreateSpot(index)
 			end
 
-			self:GenerateEvent(false)
+			--self:GenerateEvent(false)
 		end
 		
 		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then

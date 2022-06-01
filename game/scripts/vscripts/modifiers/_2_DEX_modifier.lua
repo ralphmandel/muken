@@ -28,6 +28,8 @@ end
 function _2_DEX_modifier:OnRefresh(kv)
 end
 
+-----------------------------------------
+
 function _2_DEX_modifier:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_EVASION_CONSTANT

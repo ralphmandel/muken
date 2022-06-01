@@ -1,5 +1,6 @@
 genuine_3__morning = class({})
 LinkLuaModifier("genuine_3_modifier_morning", "heroes/genuine/genuine_3_modifier_morning", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -90,12 +91,161 @@ LinkLuaModifier("genuine_3_modifier_morning", "heroes/genuine/genuine_3_modifier
 
     function genuine_3__morning:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.kills = 0
     end
 
 -- SPELL START
 
-    function genuine_3__morning:OnSpellStart()
-        local caster = self:GetCaster()
+    function genuine_3__morning:GetIntrinsicModifierName()
+        return "genuine_3_modifier_passive"
     end
 
+    function genuine_3__morning:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:PlayEfxBuff() end
+
+        return true
+    end
+
+    function genuine_3__morning:OnAbilityPhaseInterrupted()
+        local caster = self:GetCaster()
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:StopEfxBuff() end
+    end
+
+    function genuine_3__morning:OnOwnerDied()
+        local caster = self:GetCaster()
+        local passive = caster:FindModifierByName("genuine_3_modifier_passive")
+        if passive then passive:StopEfxBuff() end
+    end
+
+    function genuine_3__morning:OnSpellStart()
+        local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        -- UP 3.41
+        if self:GetRank(41) then
+            duration = duration + 12
+        end
+
+        if IsServer() then caster:EmitSound("Genuine.Morning") end
+        if GameRules:IsDaytime() == false then self:FindEnemies() end
+
+        caster:AddNewModifier(caster, self, "genuine_3_modifier_morning", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
+    end
+
+    function genuine_3__morning:FindEnemies()
+        local caster = self:GetCaster()
+        local number = 1
+
+        -- UP 3.22
+        if self:GetRank(22) then
+            number = 2
+        end
+
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+            DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            self:PlayEfxStarfall(enemy)
+
+            Timers:CreateTimer((0.5), function()
+                if enemy ~= nil then
+                    if IsValidEntity(enemy) then
+                        self:ApplyStarfall(enemy)
+                    end
+                end
+            end)
+
+            number = number - 1
+            if number < 1 then return end
+        end
+
+        enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            self:PlayEfxStarfall(enemy)
+
+            Timers:CreateTimer((0.5), function()
+                if enemy ~= nil then
+                    if IsValidEntity(enemy) then
+                        self:ApplyStarfall(enemy)
+                    end
+                end
+            end)
+
+            number = number - 1
+            if number < 1 then return end
+        end
+    end
+
+    function genuine_3__morning:ApplyStarfall(target)
+        local caster = self:GetCaster()
+        local star_damage = self:GetSpecialValueFor("star_damage")
+        local star_radius = self:GetSpecialValueFor("star_radius")
+
+        -- UP 3.22
+        if self:GetRank(22) then
+            star_damage = star_damage + 50
+        end
+
+        local damageTable = {
+            attacker = caster,
+            damage = star_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, star_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            0, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
+
+    function genuine_3__morning:AddKillPoint(pts)
+        local caster = self:GetCaster()
+        self.kills = self.kills + pts
+
+        local mod = caster:FindAbilityByName("_1_INT")
+        if mod ~= nil then mod:BonusPermanent(1) end
+
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
+    end
+
+    function genuine_3__morning:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
+    
 -- EFFECTS
+
+    function genuine_3__morning:PlayEfxStarfall(target)
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+    end

@@ -209,9 +209,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function druid_1__conversion:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return 140 + (14 * (self:GetLevel() - 1)) end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return 60 + (14 * (self:GetLevel() - 1)) end
+        if self:GetCurrentAbilityCharges() == 1 then return manacost * level end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 40) * level end
+        return manacost * level
     end
 
 -- EFFECTS

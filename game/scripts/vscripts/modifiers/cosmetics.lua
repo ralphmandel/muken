@@ -4,11 +4,14 @@ LinkLuaModifier("_modifier_status_effect", "modifiers/_modifier_status_effect", 
 
 function cosmetics:Spawn()
 	self:UpgradeAbility(true)
-	self.cosmetic = {}
-	self:LoadCosmetics()
 end
 
 function cosmetics:LoadCosmetics()
+	self.status_efx_flags = {
+		[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
+	}
+	self.cosmetic = {}
+
 	local caster = self:GetCaster()
 	local hero_name = nil
 
@@ -18,11 +21,11 @@ function cosmetics:LoadCosmetics()
 	if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then hero_name = "bloodstained" end
 	if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
 	if caster:GetUnitName() == "npc_dota_hero_furion" then hero_name = "druid" end
+	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
+	if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
+
 	if caster:GetUnitName() == "npc_dota_hero_queenofpain" then hero_name = "succubus" end
 	if caster:GetUnitName() == "npc_dota_hero_phantom_assassin" then hero_name = "gladiator" end
-	if caster:GetUnitName() == "npc_dota_hero_bloodseeker" then hero_name = "bloodmage" end
-	if caster:GetUnitName() == "npc_dota_hero_rubick" then hero_name = "doctor" end
-	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 
 	if hero_name ~= nil then
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
@@ -35,35 +38,65 @@ function cosmetics:ApplyCosmetics(cosmetics_data)
 	local index = 0
 
 	for cosmetic, ambients in pairs(cosmetics_data) do
-		index = index + 1
-		self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
-		local modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
+		local unit = caster
+		local modifier = caster:FindModifierByName(cosmetic)
+
+		if modifier == nil then
+			index = index + 1
+			self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
+			modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
+			unit = self.cosmetic[index]
+		end
 
 		if ambients ~= "nil" then
-			for ambient, attach in pairs(ambients) do
-				if ambient == "material" then
-					self.cosmetic[index]:SetMaterialGroup(tostring(attach))
-				else
-					modifier:PlayEfxAmbient(ambient, attach)
-				end
-			end
+			self:ApplyAmbient(ambients, unit, modifier)
+		end
+	end
+end
+
+function cosmetics:ApplyAmbient(ambients, unit, modifier)
+	for ambient, attach in pairs(ambients) do
+		if ambient == "material" then
+			unit:SetMaterialGroup(tostring(attach))
+		else
+			modifier:PlayEfxAmbient(ambient, attach)
 		end
 	end
 end
 
 function cosmetics:SetStatusEffect(string, enable)
 	local caster = self:GetCaster()
+	if self.cosmetic == nil then return end
 
 	for i = 1, #self.cosmetic, 1 do
-		if enable == true then
-			self.cosmetic[i]:AddNewModifier(caster, self, string, {})
-		else
-			self.cosmetic[i]:RemoveModifierByName(string)
+		if self:CheckFlags(self.cosmetic[i]) then
+			if enable == true then
+				self.cosmetic[i]:AddNewModifier(caster, self, string, {})
+			else
+				self.cosmetic[i]:RemoveModifierByName(string)
+			end
 		end
 	end
 end
 
+function cosmetics:CheckFlags(cosmetic)
+	if cosmetic == nil then return end
+	if IsValidEntity(cosmetic) == false then return end
+	local mod = cosmetic:FindModifierByName("_modifier_cosmetics")
+	if mod then
+		for i = 1, #self.status_efx_flags, 1 do
+			if mod.model == self.status_efx_flags[i] then
+				return false
+			end
+		end
+	end
+
+	return true
+end
+
 function cosmetics:HideCosmetic(model, bApply)
+	if self.cosmetic == nil then return end
+
 	for i = 1, #self.cosmetic, 1 do
 		if self.cosmetic[i]:GetModelName() == model then
 			if bApply then
@@ -76,6 +109,8 @@ function cosmetics:HideCosmetic(model, bApply)
 end
 
 function cosmetics:ChangeTeam(team)
+	if self.cosmetic == nil then return end
+
 	for i = 1, #self.cosmetic, 1 do
 		self.cosmetic[i]:SetTeam(team)
 	end

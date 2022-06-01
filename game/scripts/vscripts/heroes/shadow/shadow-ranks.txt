@@ -1,0 +1,148 @@
+"TalentTree_shadow"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_spectre"
+	{
+		"shadow_0__toxin"
+		{
+			"0"
+			{
+				"1"   "shadow_0__toxin_rank_11"
+			}
+			"1"
+			{
+				"1"   "shadow_0__toxin_rank_21"
+			}
+			"2"
+			{
+				"1"   "shadow_0__toxin_rank_31"
+			}
+			"3"
+			{
+				"1"   "shadow_0__toxin_rank_41"
+			}
+		}
+		"shadow_1__strike"
+		{
+			"0"
+			{
+				"1"   "shadow_1__strike_rank_11"
+			}
+			"1"
+			{
+				"1"   "shadow_1__strike_rank_21"
+				"2"   "shadow_1__strike_rank_22"
+			}
+			"2"
+			{
+				"1"   "shadow_1__strike_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"shadow_2__puddle"
+		{
+			"0"
+			{
+				"1"   "shadow_2__puddle_rank_11"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "shadow_2__puddle_rank_31"
+			}
+			"3"
+			{
+				"1"   "shadow_2__puddle_rank_41"
+				"2"   "shadow_2__puddle_rank_42"
+			}
+		}
+		"shadow_3__walk"
+		{
+			"0"
+			{
+				"1"   "shadow_3__walk_rank_11"
+				"2"   "shadow_3__walk_rank_12"
+				"3"   "shadow_3__walk_rank_13"
+			}
+			"1"
+			{
+				"1"   "shadow_3__walk_rank_21"
+				"2"   "shadow_3__walk_rank_22"
+				"3"   "shadow_3__walk_rank_23"
+			}
+			"2"
+			{
+				"1"   "shadow_3__walk_rank_31"
+				"2"   "shadow_3__walk_rank_32"
+				"3"   "shadow_3__walk_rank_33"
+			}
+			"3"
+			{
+				"1"   "shadow_3__walk_rank_41"
+				"2"   "shadow_3__walk_rank_42"
+			}
+		}
+		"shadow_u__dagger"
+		{
+			"0"
+			{
+				"1"   "shadow_u__dagger_rank_11"
+				"2"   "shadow_u__dagger_rank_12"
+				"3"   "shadow_u__dagger_rank_13"
+			}
+			"1"
+			{
+				"1"   "shadow_u__dagger_rank_21"
+				"2"   "shadow_u__dagger_rank_22"
+				"3"   "shadow_u__dagger_rank_23"
+			}
+			"2"
+			{
+				"1"   "shadow_u__dagger_rank_31"
+				"2"   "shadow_u__dagger_rank_32"
+				"3"   "shadow_u__dagger_rank_33"
+			}
+			"3"
+			{
+				"1"   "shadow_u__dagger_rank_41"
+				"2"   "shadow_u__dagger_rank_42"
+			}
+		}
+		"extras"
+		{
+			"0"
+			{
+				"1"   "empty"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "shadow_x1__heart"
+			}
+			"3"
+			{
+				
+				"1"   "shadow_x2__potion"			
+			}
+		}
+	}	
+}

@@ -29,7 +29,7 @@ function _modifier_stun:OnCreated(kv)
 	local attach
 
 	if special == 0 then
-		effect = "particles/generic_gameplay/generic_stunned.vpcf"
+		effect = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_stunned.vpcf"
 		attach = PATTACH_OVERHEAD_FOLLOW
 	end
 

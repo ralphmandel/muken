@@ -1,5 +1,8 @@
 genuine_1__shooting = class({})
-LinkLuaModifier("genuine_1_modifier_shooting", "heroes/genuine/genuine_1_modifier_shooting", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -85,17 +88,156 @@ LinkLuaModifier("genuine_1_modifier_shooting", "heroes/genuine/genuine_1_modifie
 		end
 
         local charges = 1
+
+        -- UP 1.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
     function genuine_1__shooting:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.spell_lifesteal = false
     end
 
 -- SPELL START
 
-    function genuine_1__shooting:OnSpellStart()
+    function genuine_1__shooting:GetIntrinsicModifierName()
+        return "genuine_1_modifier_orb"
+    end
+
+    function genuine_1__shooting:GetProjectileName()
+        return "particles/genuine/shooting_star/genuine_shooting.vpcf"
+    end
+
+    function genuine_1__shooting:OnOrbFire(keys)
         local caster = self:GetCaster()
+        if IsServer() then caster:EmitSound("Hero_DrowRanger.FrostArrows") end
+    end
+
+    function genuine_1__shooting:OnOrbFail(keys)
+        local caster = self:GetCaster()
+        local target = keys.target
+        
+        -- UP 1.31
+        if self:GetRank(31) then
+            local stacks = 0
+            local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
+            for _,mod in pairs(starfall_stack_mods) do
+                stacks = stacks + 1
+            end
+
+            if stacks > 1 then
+                for _,mod in pairs(starfall_stack_mods) do mod:Destroy() end
+                self:PlayEfxStarfall(target)
+
+                Timers:CreateTimer((0.5), function()
+                    if target ~= nil then
+                        if IsValidEntity(target) then
+                            self:ApplyStarfall(target)
+                        end
+                    end
+                end)
+            else
+                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 7})
+            end
+        end
+    end
+
+    function genuine_1__shooting:OnOrbImpact(keys)
+        local caster = self:GetCaster()
+        local bonus_damage = self:GetSpecialValueFor("bonus_damage")
+        local target = keys.target
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            local stacks = 0
+            local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
+            for _,mod in pairs(starfall_stack_mods) do
+                stacks = stacks + 1
+            end
+
+            if stacks > 1 then
+                for _,mod in pairs(starfall_stack_mods) do mod:Destroy() end
+                self:PlayEfxStarfall(target)
+
+                Timers:CreateTimer((0.5), function()
+                    if target ~= nil then
+                        if IsValidEntity(target) then
+                            self:ApplyStarfall(target)
+                        end
+                    end
+                end)
+            else
+                target:AddNewModifier(caster, self, "genuine_1_modifier_starfall_stack", {duration = 5})
+            end
+        end
+
+        local damageTable = {
+            victim = target,
+            attacker = caster,
+            damage = bonus_damage,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self
+        }
+
+        self.spell_lifesteal = true
+        ApplyDamage(damageTable)
+
+        -- UP 1.41
+        if self:GetRank(41) and target:IsAlive()
+        and RandomInt(1, 100) <= 25 then
+            target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
+                duration = self:CalcStatus(1.5, caster, target)
+            })
+        end
+
+        if IsServer() then target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+    end
+
+    function genuine_1__shooting:ApplyStarfall(target)
+        local caster = self:GetCaster()
+        local starfall_damage = 125
+        local starfall_radius = 175
+        local damageTable = {
+            attacker = caster,
+            damage = starfall_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            0, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
+
+    function genuine_1__shooting:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() == 1 then return manacost * level end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 20) * level end
+        return manacost * level
     end
 
 -- EFFECTS
+
+    function genuine_1__shooting:PlayEfxStarfall(target)
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+    end

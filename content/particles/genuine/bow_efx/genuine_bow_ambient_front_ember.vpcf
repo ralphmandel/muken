@@ -123,7 +123,7 @@
 			m_vecTexturesInput = 
 			[
 				{
-					m_hTexture = resource:"materials/particle/particle_flares/aircraft_yellow.vtex"
+					m_hTexture = resource:"materials/particle/aircraft_purple.vtex"
 				},
 			]
 			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"

@@ -1,0 +1,52 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_body_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_symbol_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_body_ice_mist.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_symbol_ice_mist.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_ice_bits.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/genuine/ult_deny/genuine_deny_v2_symbol_question.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}

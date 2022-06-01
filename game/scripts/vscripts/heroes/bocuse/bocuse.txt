@@ -276,7 +276,7 @@
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"17"
-		"RequiredLevel"         	 	"8"
+		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityManaCost"         		"140 154 168 182 196 210 224 238 252 266 280 294 308 322 336 350 364"
@@ -437,7 +437,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"init_model_scale"	"1.35"
+				"init_model_scale"	"1.15"
 			}
 			"12"
 			{

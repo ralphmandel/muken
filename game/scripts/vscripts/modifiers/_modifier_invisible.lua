@@ -25,6 +25,15 @@ function _modifier_invisible:OnCreated( kv )
     self.hidden = false
 
 	if IsServer() then
+		local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
+		if cosmetics then
+			for i = 1, #cosmetics.cosmetic, 1 do
+				local invi_cosmetic = cosmetics.cosmetic[i]:AddNewModifier(
+					self:GetParent(), self:GetAbility(), "_modifier_invisible_cosmetics", {}
+				)
+			end
+		end
+
 		if kv.delay == 0 then
 			self.hidden = true
 		else
@@ -38,6 +47,15 @@ function _modifier_invisible:OnRefresh( kv )
 end
 
 function _modifier_invisible:OnDestroy( kv )
+	local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
+	if cosmetics then
+		for i = 1, #cosmetics.cosmetic, 1 do
+			local mod = cosmetics.cosmetic[i]:FindAllModifiersByName("_modifier_invisible_cosmetics")
+			for _,modifier in pairs(mod) do
+				if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
+			end
+		end
+	end
 end
 
 -------------------------------------------------------------
@@ -46,7 +64,7 @@ function _modifier_invisible:DeclareFunctions()
 	local funcs = {
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+		MODIFIER_EVENT_ON_ABILITY_START
 	}
 
 	return funcs
@@ -64,7 +82,7 @@ function _modifier_invisible:GetModifierProcAttack_Feedback(keys)
     end
 end
 
-function _modifier_invisible:OnAbilityFullyCast(keys)
+function _modifier_invisible:OnAbilityStart(keys)
 	if keys.unit == self:GetParent() then self:Destroy() end
 end
 
@@ -102,10 +120,7 @@ function _modifier_invisible:GetEffectAttachType()
 end
 
 function _modifier_invisible:PlayEffects()
-	-- Get Resources
 	local particle_cast = "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf"
-
-	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
 

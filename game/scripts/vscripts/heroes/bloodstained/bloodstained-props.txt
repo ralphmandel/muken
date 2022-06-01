@@ -50,18 +50,18 @@
 
 		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "140"     // Range within a target can be attacked.
+		"AttackRange"                   "130"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 
-		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"
 			"AttackDamageMin"         	"35"
 			"ArmorPhysical"           	"0"
 		//AGILITY
-			"BaseAttackSpeed"			"70"
+			"BaseAttackSpeed"			"100"
 			"AttackRate"              	"1"
 			"MovementTurnRate"          "0.5"
 			"MovementSpeed"           	"50"

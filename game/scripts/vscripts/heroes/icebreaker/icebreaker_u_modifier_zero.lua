@@ -76,7 +76,7 @@ function icebreaker_u_modifier_zero:OnRemoved()
 	if IsValidEntity(self.parent) then
 		if IsServer() then
 			self.parent:EmitSound("Ability.FrostNova")
-			self.parent:StopSound("Hero_Lich.ChainFrostLoop.TI8")
+			self.parent:StopSound("Hero_Icebreaker.Zero.Loop")
 		end
 
 		self.parent:SetModelScale(0.1)
@@ -233,7 +233,7 @@ function icebreaker_u_modifier_zero:PlayEfxStart(radius)
 	ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0,0,0), true)
 	self:AddParticle(effect_cast, false, false, -1, false, false)
 
-	if IsServer() then self.parent:EmitSound("Hero_Lich.ChainFrostLoop.TI8") end
+	if IsServer() then self.parent:EmitSound("Hero_Icebreaker.Zero.Loop") end
 end
 
 function icebreaker_u_modifier_zero:PlayEfxExplosion( point )
