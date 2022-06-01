@@ -30,6 +30,7 @@ function shadow_0_modifier_toxin:OnCreated(kv)
 	self.toxin_damage = self.ability:GetSpecialValueFor("toxin_damage")
 	self.total_toxin = 0
 	self.last_damage = 0
+	self.percent = 1 + (self.ability:GetSpecialValueFor("damage_percent") * 0.01)
 
 	self.damageTable = {
 		damage = nil,
@@ -39,6 +40,18 @@ function shadow_0_modifier_toxin:OnCreated(kv)
 		damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL,
 		ability = self.ability
 	}
+
+	-- UP 0.11
+	if self.ability:GetRank(11) then
+		self.damageTable.damage = 75 * self.percent
+		ApplyDamage(self.damageTable)
+		self:PlayEfxDamage()
+	end
+
+	-- UP 0.31
+	if self.ability:GetRank(31) then
+		lifetime = lifetime + 10
+	end
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -52,6 +65,11 @@ function shadow_0_modifier_toxin:OnRefresh(kv)
 	local lifetime = self.ability:GetSpecialValueFor("lifetime")
 	local intervals = self.ability:GetSpecialValueFor("intervals")
 	self.toxin_damage = self.ability:GetSpecialValueFor("toxin_damage")
+
+	-- UP 0.31
+	if self.ability:GetRank(31) then
+		lifetime = lifetime + 10
+	end
 
 	if IsServer() then
 		self:AddMultStack(lifetime)
@@ -96,7 +114,7 @@ function shadow_0_modifier_toxin:ApplyToxinDamage()
 		damage = damage + (self.toxin_damage * (0.8^x))
 	end
 
-	self.damageTable.damage = damage
+	self.damageTable.damage = damage * self.percent
 	self.last_damage = ApplyDamage(self.damageTable)
 	self.total_toxin = self.total_toxin + self.last_damage
 
@@ -111,6 +129,20 @@ function shadow_0_modifier_toxin:ApplyWeakness(bApply)
 	for _,string in pairs(stats) do
 		self.ability:RemoveBonus(string, self.parent)
 		if bApply then self.ability:AddBonus(string, self.parent, -self:GetStackCount(), 0, nil) end
+	end
+
+	-- UP 0.41
+	if self.ability:GetRank(41) then
+		local mod = self.parent:FindAllModifiersByName("_modifier_blind")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then modifier:Destroy() end
+		end
+
+		if bApply then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {
+				percent = self:GetStackCount() * 5, miss_chance = 0
+			})
+		end
 	end
 end
 

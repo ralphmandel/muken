@@ -1,4 +1,5 @@
 shadow_0__toxin = class({})
+LinkLuaModifier("shadow_0_modifier_passive", "heroes/shadow/shadow_0_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_0_modifier_toxin", "heroes/shadow/shadow_0_modifier_toxin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_0_modifier_toxin_stack", "heroes/shadow/shadow_0_modifier_toxin_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_0_modifier_toxin_status_efx", "heroes/shadow/shadow_0_modifier_toxin_status_efx", LUA_MODIFIER_MOTION_NONE)
@@ -87,6 +88,10 @@ LinkLuaModifier("shadow_0_modifier_toxin_status_efx", "heroes/shadow/shadow_0_mo
     end
 
 -- SPELL START
+
+    function shadow_0__toxin:GetIntrinsicModifierName()
+        return "shadow_0_modifier_passive"
+    end
 
     function shadow_0__toxin:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")

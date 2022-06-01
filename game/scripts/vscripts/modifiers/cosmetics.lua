@@ -66,6 +66,7 @@ end
 
 function cosmetics:SetStatusEffect(string, enable)
 	local caster = self:GetCaster()
+	if self.cosmetic == nil then return end
 
 	for i = 1, #self.cosmetic, 1 do
 		if self:CheckFlags(self.cosmetic[i]) then
@@ -94,6 +95,8 @@ function cosmetics:CheckFlags(cosmetic)
 end
 
 function cosmetics:HideCosmetic(model, bApply)
+	if self.cosmetic == nil then return end
+
 	for i = 1, #self.cosmetic, 1 do
 		if self.cosmetic[i]:GetModelName() == model then
 			if bApply then
@@ -106,6 +109,8 @@ function cosmetics:HideCosmetic(model, bApply)
 end
 
 function cosmetics:ChangeTeam(team)
+	if self.cosmetic == nil then return end
+
 	for i = 1, #self.cosmetic, 1 do
 		self.cosmetic[i]:SetTeam(team)
 	end

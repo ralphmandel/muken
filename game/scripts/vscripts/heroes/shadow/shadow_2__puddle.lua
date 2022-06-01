@@ -1,5 +1,7 @@
 shadow_2__puddle = class({})
 LinkLuaModifier("shadow_2_modifier_puddle", "heroes/shadow/shadow_2_modifier_puddle", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadow_2_modifier_vacuum", "heroes/shadow/shadow_2_modifier_vacuum", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,11 +98,41 @@ LinkLuaModifier("shadow_2_modifier_puddle", "heroes/shadow/shadow_2_modifier_pud
 
     function shadow_2__puddle:OnSpellStart()
         local caster = self:GetCaster()
+		local point = self:GetCursorPosition()
+        
+		local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+		for _,smoke in pairs(thinkers) do
+			if smoke:GetOwner() == caster and smoke:HasModifier("shadow_2_modifier_puddle") then
+				smoke:Kill(self, nil)
+			end
+		end
+
+		CreateModifierThinker(caster, self, "shadow_2_modifier_puddle", {}, point, caster:GetTeamNumber(), false)
+    end
+
+    function shadow_2__puddle:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
+    end
+
+    function shadow_2__puddle:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+		if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+		if self:GetCurrentAbilityCharges() == 1 then return cooldown end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 4 end
+        return cooldown
+	end
+
+    function shadow_2__puddle:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() == 1 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 0 end
+        return cast_range
     end
 
     function shadow_2__puddle:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level = (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

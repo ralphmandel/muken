@@ -37,25 +37,19 @@
 			"0"
 			{
 				"1"   "shadow_1__strike_rank_11"
-				"2"   "shadow_1__strike_rank_12"
-				"3"   "shadow_1__strike_rank_13"
 			}
 			"1"
 			{
 				"1"   "shadow_1__strike_rank_21"
 				"2"   "shadow_1__strike_rank_22"
-				"3"   "shadow_1__strike_rank_23"
 			}
 			"2"
 			{
 				"1"   "shadow_1__strike_rank_31"
-				"2"   "shadow_1__strike_rank_32"
-				"3"   "shadow_1__strike_rank_33"
 			}
 			"3"
 			{
-				"1"   "shadow_1__strike_rank_41"
-				"2"   "shadow_1__strike_rank_42"
+				"1"   "empty"
 			}
 		}
 		"shadow_2__puddle"
@@ -63,20 +57,14 @@
 			"0"
 			{
 				"1"   "shadow_2__puddle_rank_11"
-				"2"   "shadow_2__puddle_rank_12"
-				"3"   "shadow_2__puddle_rank_13"
 			}
 			"1"
 			{
-				"1"   "shadow_2__puddle_rank_21"
-				"2"   "shadow_2__puddle_rank_22"
-				"3"   "shadow_2__puddle_rank_23"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "shadow_2__puddle_rank_31"
-				"2"   "shadow_2__puddle_rank_32"
-				"3"   "shadow_2__puddle_rank_33"
 			}
 			"3"
 			{

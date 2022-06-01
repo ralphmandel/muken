@@ -68,7 +68,7 @@
 		"ScriptFile"            		"heroes/shadow/shadow_0__toxin"
 		"AbilityTextureName"     		"shadow_toxin"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -79,8 +79,8 @@
 		{
 			"01"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"toxin_damage"		"10"
+				"var_type"	    "FIELD_FLOAT"
+				"toxin_damage"  "10"
 			}
             "02"
 			{
@@ -92,6 +92,11 @@
 				"var_type"      "FIELD_FLOAT"
 				"lifetime"      "20"
 			}
+            "04"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"damage_percent"    "0 2.5 5 7.5 10 12.5 15 17.5 20 22.5 25"
+			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -100,7 +105,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0"
+				"rank"			"0 1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -132,7 +137,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
@@ -143,37 +148,52 @@
 		"ScriptFile"            		"heroes/shadow/shadow_2__puddle"
 		"AbilityTextureName"     		"shadow_puddle"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.1"
+    	"AbilityCooldown"				"24"
 
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"intervals"		"1"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ticks"		    "6"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"450"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"240 245 250 255 260 265 270 275 280 285 290 295 300"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cooldown"		"24"
 			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"150"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"0 1 2 3 4 5 6 7 8"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
