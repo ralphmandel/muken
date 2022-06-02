@@ -68,7 +68,7 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
 
     function shadow_x1__heart:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

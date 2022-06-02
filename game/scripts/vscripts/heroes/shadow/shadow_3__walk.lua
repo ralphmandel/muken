@@ -1,5 +1,7 @@
 shadow_3__walk = class({})
+LinkLuaModifier("shadow_3_modifier_passive", "heroes/shadow/shadow_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_3_modifier_walk", "heroes/shadow/shadow_3_modifier_walk", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadow_3_modifier_walk_cosmetic", "heroes/shadow/shadow_3_modifier_walk_cosmetic", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,13 +96,30 @@ LinkLuaModifier("shadow_3_modifier_walk", "heroes/shadow/shadow_3_modifier_walk"
 
 -- SPELL START
 
+    function shadow_3__walk:GetIntrinsicModifierName()
+        return "shadow_3_modifier_passive"
+    end
+
     function shadow_3__walk:OnSpellStart()
         local caster = self:GetCaster()
+        local invi_duration = self:GetSpecialValueFor("invi_duration")
+
+        ProjectileManager:ProjectileDodge(caster)
+
+        caster:AddNewModifier(caster, self, "shadow_3_modifier_walk", {
+            duration = self:CalcStatus(invi_duration, caster, caster)
+        })
+    end
+
+    function shadow_3__walk:OnOwnerDied()
+        local caster = self:GetCaster()
+        caster:RemoveModifierByName("shadow_3_modifier_walk")
+        self:SetActivated(true)
     end
 
     function shadow_3__walk:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

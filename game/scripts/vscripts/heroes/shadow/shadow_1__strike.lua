@@ -1,6 +1,6 @@
 shadow_1__strike = class({})
 LinkLuaModifier("shadow_1_modifier_passive", "heroes/shadow/shadow_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 -- INIT
 
     function shadow_1__strike:CalcStatus(duration, caster, target)
@@ -100,7 +100,7 @@ LinkLuaModifier("shadow_1_modifier_passive", "heroes/shadow/shadow_1_modifier_pa
 
     function shadow_1__strike:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

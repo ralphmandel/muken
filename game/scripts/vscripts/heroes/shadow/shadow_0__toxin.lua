@@ -3,6 +3,8 @@ LinkLuaModifier("shadow_0_modifier_passive", "heroes/shadow/shadow_0_modifier_pa
 LinkLuaModifier("shadow_0_modifier_toxin", "heroes/shadow/shadow_0_modifier_toxin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_0_modifier_toxin_stack", "heroes/shadow/shadow_0_modifier_toxin_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_0_modifier_toxin_status_efx", "heroes/shadow/shadow_0_modifier_toxin_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -95,7 +97,7 @@ LinkLuaModifier("shadow_0_modifier_toxin_status_efx", "heroes/shadow/shadow_0_mo
 
     function shadow_0__toxin:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

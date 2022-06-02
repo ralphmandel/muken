@@ -41,8 +41,8 @@ function shadow_0_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker:IsMagicImmune() then return end
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 0.21
-	if self.ability:GetRank(21)
+	-- UP 0.31
+	if self.ability:GetRank(31)
 	and RandomInt(1, 100) <= 15 then
 		keys.attacker:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_toxin", {})
 	end
@@ -54,8 +54,8 @@ function shadow_0_modifier_passive:OnAttackFail(keys)
 	if keys.attacker:IsMagicImmune() then return end
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 0.21
-	if self.ability:GetRank(21)
+	-- UP 0.31
+	if self.ability:GetRank(31)
 	and RandomInt(1, 100) <= 15 then
 		keys.attacker:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_toxin", {})
 	end

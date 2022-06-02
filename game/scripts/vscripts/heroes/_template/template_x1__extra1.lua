@@ -68,7 +68,7 @@ LinkLuaModifier( "template_x1_modifier_extra1", "heroes/template/template_x1_mod
 
     function template_x1__extra1:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

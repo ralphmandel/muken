@@ -2,6 +2,7 @@ shadow_2__puddle = class({})
 LinkLuaModifier("shadow_2_modifier_puddle", "heroes/shadow/shadow_2_modifier_puddle", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadow_2_modifier_vacuum", "heroes/shadow/shadow_2_modifier_vacuum", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -87,6 +88,17 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 		end
 
         local charges = 1
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
+        -- UP 2.41
+        if self:GetRank(41) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -118,7 +130,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local cooldown = self:GetSpecialValueFor("cooldown")
 		if self:GetCurrentAbilityCharges() == 0 then return cooldown end
 		if self:GetCurrentAbilityCharges() == 1 then return cooldown end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 4 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 5 end
         return cooldown
 	end
 
@@ -132,7 +144,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function shadow_2__puddle:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.1))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

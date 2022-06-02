@@ -15,12 +15,27 @@ function shadow_2_modifier_puddle:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetAOERadius()
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
 	self.ticks = self.ability:GetSpecialValueFor("ticks")
+	self.radius = self.ability:GetAOERadius()
+
+	local pull_radius = self.radius
+	self.silence = false
+
+	-- UP 2.31
+	if self.ability:GetRank(31) then
+		pull_radius = pull_radius + 150
+		self.silence = true
+	end
+
+	-- UP 2.42
+	if self.ability:GetRank(42) then
+		self.intervals = self.intervals - 0.25
+		self.ticks = self.ticks + 4
+	end
 
 	if IsServer() then
-		self:PullEnemies()
+		self:PullEnemies(pull_radius)
 		self:StartIntervalThink(0.3)
 	end
 end
@@ -47,9 +62,8 @@ function shadow_2_modifier_puddle:OnIntervalThink()
 	self:StartIntervalThink(self.intervals)
 end
 
-function shadow_2_modifier_puddle:PullEnemies()
+function shadow_2_modifier_puddle:PullEnemies(pull_radius)
 	local point = self.parent:GetOrigin()
-	local pull_radius = self.radius
 	self:PlayEfxPull(pull_radius)
 
 	local enemies = FindUnitsInRadius(
@@ -85,6 +99,13 @@ function shadow_2_modifier_puddle:ApplyPulse()
 		if toxin_ability ~= nil then
 			enemy:AddNewModifier(self.caster, toxin_ability, "shadow_0_modifier_toxin", {})
 			enemy:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {duration = 0.5, percent = 100})
+		end
+
+		if self.silence then
+			self.silence = false
+			enemy:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
+				duration = self.ability:CalcStatus(5, self.caster, enemy),
+			})
 		end
 	end
 end

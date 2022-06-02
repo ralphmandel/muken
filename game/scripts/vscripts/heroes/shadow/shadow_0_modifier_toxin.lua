@@ -44,13 +44,13 @@ function shadow_0_modifier_toxin:OnCreated(kv)
 	-- UP 0.11
 	if self.ability:GetRank(11) then
 		self.damageTable.damage = 75 * self.percent
-		ApplyDamage(self.damageTable)
+		self.last_damage = ApplyDamage(self.damageTable)
 		self:PlayEfxDamage()
 	end
 
-	-- UP 0.31
-	if self.ability:GetRank(31) then
-		lifetime = lifetime + 10
+	-- UP 0.21
+	if self.ability:GetRank(21) then
+		lifetime = lifetime + 5
 	end
 
 	if IsServer() then
@@ -66,9 +66,9 @@ function shadow_0_modifier_toxin:OnRefresh(kv)
 	local intervals = self.ability:GetSpecialValueFor("intervals")
 	self.toxin_damage = self.ability:GetSpecialValueFor("toxin_damage")
 
-	-- UP 0.31
-	if self.ability:GetRank(31) then
-		lifetime = lifetime + 10
+	-- UP 0.21
+	if self.ability:GetRank(21) then
+		lifetime = lifetime + 5
 	end
 
 	if IsServer() then

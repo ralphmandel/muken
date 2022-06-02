@@ -58,7 +58,7 @@ function _2_REC:CheckLevelUp(trained)
 		return
 	end
 	
-	if self.spend < 40 then
+	if self.spend < 30 then
 		self:SetCurrentAbilityCharges(2)
 	else
 		self:SetCurrentAbilityCharges(1)
