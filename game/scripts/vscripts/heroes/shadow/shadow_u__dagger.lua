@@ -96,6 +96,24 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
 
     function shadow_u__dagger:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local dagger_speed = self:GetSpecialValueFor("dagger_speed")
+        local dagger_name = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+
+        local info = {
+			Target = target,
+			Source = caster,
+			Ability = self,	
+			EffectName = dagger_name,
+			iMoveSpeed = dagger_speed,
+			bReplaceExisting = false,
+			bProvidesVision = true,
+			iVisionRadius = 150,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+
+        ProjectileManager:CreateTrackingProjectile(info)
+		if IsServer() then caster:EmitSound("Hero_PhantomAssassin.Dagger.Cast") end
     end
 
     function shadow_u__dagger:GetManaCost(iLevel)

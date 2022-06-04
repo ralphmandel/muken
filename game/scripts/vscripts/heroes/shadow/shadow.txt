@@ -209,7 +209,7 @@
 		"ScriptFile"            		"heroes/shadow/shadow_3__walk"
 		"AbilityTextureName"     		"shadow_walk"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -250,7 +250,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}
@@ -261,27 +261,35 @@
 		"ScriptFile"            		"heroes/shadow/shadow_u__dagger"
 		"AbilityTextureName"     		"shadow_dagger"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.2"
 
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-		"AoERadius"               		"100"
+		"AbilityCooldown"				"20"
 
 		"AbilitySpecial"
 		{
-			"01"
+            "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10"
+				"cast_range"	"900"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dagger_speed"	"750"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"multiplier"	"120 122 124 126 128 130 132 134 136 138 140"
 			}
             "14"
 			{
@@ -291,7 +299,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}

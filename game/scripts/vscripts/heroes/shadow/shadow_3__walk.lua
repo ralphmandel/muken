@@ -104,10 +104,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function shadow_3__walk:CreateShadow(target, shadow_duration, shadow_number)
         local caster = self:GetCaster()
+        ProjectileManager:ProjectileDodge(caster)
+        if caster:IsIllusion() then return end -- VERY IMPORTANT !
+        
         local shadow_incoming = self:GetSpecialValueFor("shadow_incoming") -100
         local shadow_outgoing = self:GetSpecialValueFor("shadow_outgoing") -100
-        
-        if caster:IsIllusion() then return end -- VERY IMPORTANT !
 
         local illu = CreateIllusions(
 			caster, caster,

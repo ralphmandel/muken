@@ -30,9 +30,9 @@ function shadow_3_modifier_walk:OnCreated(kv)
 		})
 	end
 
-	-- UP 3.31
-	if self.ability:GetRank(31) then
-		self.hits = 7
+	-- UP 3.23
+	if self.ability:GetRank(23) then
+		self.hits = 5
 	end
 
 	if IsServer() then self:StartIntervalThink(0.5) end
