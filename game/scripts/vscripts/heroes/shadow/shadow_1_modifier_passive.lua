@@ -14,6 +14,11 @@ function shadow_1_modifier_passive:OnCreated(kv)
 	self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	if self.parent:IsIllusion() then
+		self.caster = self.parent:GetPlayerOwner():GetAssignedHero()
+		self.ability = self.caster:FindAbilityByName("shadow_1__strike")
+	end
 end
 
 function shadow_1_modifier_passive:OnRefresh(kv)
@@ -36,10 +41,13 @@ end
 function shadow_1_modifier_passive:OnAttackLanded(keys)
 	local toxin_ability = self.caster:FindAbilityByName("shadow_0__toxin")
 	if toxin_ability == nil then return end
+	if self.ability == nil then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 	local chance = self.ability:GetSpecialValueFor("chance")
+	local chance_copy = self.ability:GetSpecialValueFor("chance_copy")
+	if self.parent:IsIllusion() then chance = chance_copy end
 	local toxin_target = keys.target:FindModifierByName("shadow_0_modifier_toxin")
 
 	-- UP 1.21
@@ -82,10 +90,13 @@ end
 function shadow_1_modifier_passive:OnAttackFail(keys)
 	local toxin_ability = self.caster:FindAbilityByName("shadow_0__toxin")
 	if toxin_ability == nil then return end
+	if self.ability == nil then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 	local chance = self.ability:GetSpecialValueFor("chance")
+	local chance_copy = self.ability:GetSpecialValueFor("chance_copy")
+	if self.parent:IsIllusion() then chance = chance_copy end
 
 	-- UP 1.32
 	if self.ability:GetRank(32)

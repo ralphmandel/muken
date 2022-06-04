@@ -1,7 +1,7 @@
 _2_DEX_modifier = class ({})
 
 function _2_DEX_modifier:IsHidden()
-    return true
+    return false
 end
 
 function _2_DEX_modifier:IsPermanent()

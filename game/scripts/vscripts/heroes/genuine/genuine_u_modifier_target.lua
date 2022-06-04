@@ -25,7 +25,7 @@ function genuine_u_modifier_target:OnCreated(kv)
 
 	-- UP 4.12
 	if self.ability:GetRank(12) then
-		slow = slow + 30
+		slow = slow + 20
 	end
 
 	-- UP 4.13

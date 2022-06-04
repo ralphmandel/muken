@@ -14,6 +14,11 @@ function shadow_0_modifier_passive:OnCreated(kv)
 	self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	if self.parent:IsIllusion() then
+		self.caster = self.parent:GetPlayerOwner():GetAssignedHero()
+		self.ability = self.caster:FindAbilityByName("shadow_0__toxin")
+	end
 end
 
 function shadow_0_modifier_passive:OnRefresh(kv)
@@ -40,10 +45,14 @@ function shadow_0_modifier_passive:OnAttackLanded(keys)
 	if self.parent ~= keys.target then return end
 	if keys.attacker:IsMagicImmune() then return end
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.ability == nil then return end
+
+	local chance = 15
+	if self.parent:IsIllusion() then chance = 10 end
 
 	-- UP 0.31
 	if self.ability:GetRank(31)
-	and RandomInt(1, 100) <= 15 then
+	and RandomInt(1, 100) <= chance then
 		keys.attacker:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_toxin", {})
 	end
 end
@@ -53,10 +62,14 @@ function shadow_0_modifier_passive:OnAttackFail(keys)
 	if self.parent ~= keys.target then return end
 	if keys.attacker:IsMagicImmune() then return end
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.ability == nil then return end
+
+	local chance = 15
+	if self.parent:IsIllusion() then chance = 10 end
 
 	-- UP 0.31
 	if self.ability:GetRank(31)
-	and RandomInt(1, 100) <= 15 then
+	and RandomInt(1, 100) <= chance then
 		keys.attacker:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_toxin", {})
 	end
 end

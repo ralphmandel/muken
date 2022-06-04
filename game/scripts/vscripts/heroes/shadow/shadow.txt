@@ -129,6 +129,11 @@
 				"var_type"		"FIELD_FLOAT"
 				"chance"		"25"
 			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"chance_copy"	"10"
+			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -208,44 +213,39 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"	    	"FIELD_FLOAT"
-				"delay"		        "4"
+				"delay"		        "5"
 			}
             "03"
-			{
-				"var_type"          "FIELD_FLOAT"
-				"invi_duration"		"4"
-			}
-            "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"shadow_incoming"   "200"
 			}
-            "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"shadow_outgoing"   "0"
-			}
-            "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"shadow_duration"   "12"
-			}
             "04"
 			{
-				"var_type"          "FIELD_FLOAT"
-				"dex"		        "20 21 22 23 24 25 26 27 28 29 30"
+				"var_type"		    "FIELD_FLOAT"
+				"shadow_outgoing"   "25"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"shadow_number"     "2"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"shadow_duration"   "10"
 			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"75"
+				"manacost"		"0"
 			}
 			"15"
 			{
