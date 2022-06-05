@@ -158,6 +158,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_2__fallen:OnProjectileHit(hTarget, vLocation)
         if not hTarget then return end
+        if hTarget:IsInvulnerable() then return end
+        
         local caster = self:GetCaster()
         local fear_duration = self:GetSpecialValueFor("fear_duration")
         local mana_steal = self:GetSpecialValueFor("mana_steal")

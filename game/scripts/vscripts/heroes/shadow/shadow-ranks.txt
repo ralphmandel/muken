@@ -84,7 +84,7 @@
 			{
 				"1"   "shadow_3__walk_rank_21"
 				"2"   "shadow_3__walk_rank_22"
-				"2"   "shadow_3__walk_rank_23"
+				"3"   "shadow_3__walk_rank_23"
 			}
 			"2"
 			{
@@ -131,7 +131,7 @@
 			"3"
 			{
 				
-				"1"   "shadow_x2__potion"			
+				"1"   "shadow_x2__blink"			
 			}
 		}
 	}	

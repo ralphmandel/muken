@@ -225,14 +225,20 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				if self:GetRank(31) then
 					unit:Purge(false, true, false, true, false)
 				end
-				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_buff", {duration = self:CalcStatus(duration, caster, unit)})
+				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_buff", {
+					duration = self:CalcStatus(duration, caster, unit)
+				})
 			else
-				-- UP 2.31
-				if self:GetRank(31) then
-					damageTable.victim = unit
-					ApplyDamage(damageTable)
+				if unit:IsInvulnerable() == false then
+					-- UP 2.31
+					if self:GetRank(31) then
+						damageTable.victim = unit
+						ApplyDamage(damageTable)
+					end
+					unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_debuff", {
+						duration = self:CalcStatus(duration, caster, unit)
+					})
 				end
-				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_debuff", {duration = self:CalcStatus(duration, caster, unit)})
 			end
 			self:PlayEfxFire(unit)
 		end

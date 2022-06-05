@@ -156,6 +156,8 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
         ProjectileManager:CreateTrackingProjectile(self.info)
 
         if hTarget == nil then return end
+        if hTarget:IsInvulnerable() then return end
+		if hTarget:TriggerSpellAbsorb( self ) then return end
 
         local hit_damage = self:GetSpecialValueFor("hit_damage")
         local damageTable = {

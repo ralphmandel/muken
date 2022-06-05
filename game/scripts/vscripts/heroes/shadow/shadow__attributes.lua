@@ -86,7 +86,7 @@ require("talent_tree")
 		local caster = self:GetCaster()
 
 		if skill == 5 and id == 1 then caster:FindAbilityByName("shadow_x1__heart"):SetLevel(level) end
-		if skill == 5 and id == 2 then caster:FindAbilityByName("shadow_x2__potion"):SetLevel(level) end
+		if skill == 5 and id == 2 then caster:FindAbilityByName("shadow_x2__blink"):SetLevel(level) end
 	end
 
 --SHOW ATTRIBUTES FUNCTIONS

@@ -1,9 +1,9 @@
-shadow_x2__potion = class({})
-LinkLuaModifier( "shadow_x2_modifier_potion", "heroes/shadow/shadow_x2_modifier_potion", LUA_MODIFIER_MOTION_NONE )
+shadow_x2__blink = class({})
+LinkLuaModifier( "shadow_x2_modifier_blink", "heroes/shadow/shadow_x2_modifier_blink", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
-    function shadow_x2__potion:CalcStatus(duration, caster, target)
+    function shadow_x2__blink:CalcStatus(duration, caster, target)
         local time = duration
         local caster_int = nil
         local caster_mnd = nil
@@ -39,12 +39,12 @@ LinkLuaModifier( "shadow_x2_modifier_potion", "heroes/shadow/shadow_x2_modifier_
         return time
     end
 
-    function shadow_x2__potion:AddBonus(string, target, const, percent, time)
+    function shadow_x2__blink:AddBonus(string, target, const, percent, time)
         local att = target:FindAbilityByName(string)
         if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
     end
 
-    function shadow_x2__potion:RemoveBonus(string, target)
+    function shadow_x2__blink:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -52,21 +52,21 @@ LinkLuaModifier( "shadow_x2_modifier_potion", "heroes/shadow/shadow_x2_modifier_
         end
     end
 
-    function shadow_x2__potion:OnUpgrade()
+    function shadow_x2__blink:OnUpgrade()
         self:SetHidden(false)
     end
 
-    function shadow_x2__potion:Spawn()
+    function shadow_x2__blink:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function shadow_x2__potion:OnSpellStart()
+    function shadow_x2__blink:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function shadow_x2__potion:GetManaCost(iLevel)
+    function shadow_x2__blink:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end

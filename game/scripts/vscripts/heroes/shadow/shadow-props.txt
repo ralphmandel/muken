@@ -20,7 +20,7 @@
 			"Ability12"						"null"
 			"Ability13"						"null"
 			"Ability14"						"shadow_x1__heart"
-			"Ability15"						"shadow_x2__potion"
+			"Ability15"						"shadow_x2__blink"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"cosmetics"

@@ -356,15 +356,15 @@
         }
     }
 
-    "shadow_x2__potion"
+    "shadow_x2__blink"
     {
         // General  
         "BaseClass"              		"ability_lua"
-        "ScriptFile"            		"heroes/shadow/shadow_x2__potion"
+        "ScriptFile"            		"heroes/shadow/shadow_x2__blink"
         "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-        "AbilityTextureName"     		"shadow_potion"
+        "AbilityTextureName"     		"shadow_blink"
 
         "AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
         "MaxLevel"               		"5"

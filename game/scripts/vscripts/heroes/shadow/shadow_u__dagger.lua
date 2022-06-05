@@ -116,6 +116,41 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
 		if IsServer() then caster:EmitSound("Hero_PhantomAssassin.Dagger.Cast") end
     end
 
+    function shadow_u__dagger:OnProjectileHit(hTarget, vLocation)
+		if hTarget == nil then return end
+		if hTarget:IsInvulnerable() then return end
+		if hTarget:TriggerSpellAbsorb( self ) then return end
+        if IsServer() then hTarget:EmitSound("Hero_PhantomAssassin.Dagger.Target") end
+
+        local caster = self:GetCaster()
+        local multiplier = self:GetSpecialValueFor("multiplier")
+        local target_toxin = hTarget:FindModifierByName("shadow_0_modifier_toxin")
+        if target_toxin == nil then return end
+
+		-- UP 4.21
+		if self:GetRank(21) == false
+        and hTarget:IsMagicImmune() then
+			return
+		end
+
+		local damageTable = {
+			victim = hTarget,
+			attacker = caster,
+			damage = target_toxin.total_toxin * multiplier * 0.01,
+			damage_type = self:GetAbilityDamageType(),
+			ability = self
+		}
+		
+		local total = ApplyDamage(damageTable)
+		self:PlayEfxHit(hTarget)
+
+		if hTarget:IsAlive() then
+			hTarget:RemoveModifierByName("shadow_0_modifier_toxin")
+		else
+			self:EndCooldown()
+		end
+	end
+
     function shadow_u__dagger:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level =  (1 + ((self:GetLevel() - 1) * 0.05))
@@ -124,3 +159,11 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
     end
 
 -- EFFECTS
+
+    function shadow_u__dagger:PlayEfxHit(target )
+        local particle_cast = "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_dmg.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        if IsServer() then target:EmitSound("Hero_QueenOfPain.ShadowStrike") end
+    end
