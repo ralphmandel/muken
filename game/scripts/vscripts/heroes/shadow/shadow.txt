@@ -80,7 +80,7 @@
 			"01"
 			{
 				"var_type"	    "FIELD_FLOAT"
-				"toxin_damage"  "10"
+				"toxin_damage"  "7"
 			}
             "02"
 			{
@@ -289,7 +289,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"multiplier"	"120 122 124 126 128 130 132 134 136 138 140"
+				"multiplier"	"130 132 134 136 138 140 142 144 146 148 150"
 			}
             "14"
 			{
