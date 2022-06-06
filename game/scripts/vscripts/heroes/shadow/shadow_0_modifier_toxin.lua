@@ -63,8 +63,6 @@ end
 
 function shadow_0_modifier_toxin:OnRefresh(kv)
 	local lifetime = self.ability:GetSpecialValueFor("lifetime")
-	local intervals = self.ability:GetSpecialValueFor("intervals")
-	self.toxin_damage = self.ability:GetSpecialValueFor("toxin_damage")
 
 	-- UP 0.21
 	if self.ability:GetRank(21) then
@@ -96,6 +94,11 @@ end
 
 function shadow_0_modifier_toxin:OnIntervalThink()
 	if self:GetStackCount() > 0 then self:ApplyToxinDamage() end
+
+	local intervals = self.ability:GetSpecialValueFor("intervals")
+	if self.purge == false then intervals = intervals - 0.5 end
+
+	self:StartIntervalThink(intervals)
 end
 
 function shadow_0_modifier_toxin:AddMultStack(lifetime)
@@ -178,4 +181,22 @@ function shadow_0_modifier_toxin:PlayEfxDamage()
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then EmitSoundOnLocationForAllies(self.parent:GetOrigin(), "Shadowmancer.Poison.Damage", self.parent) end
+end
+
+function shadow_0_modifier_toxin:PlayEfxHeart(attacker, bHeart)
+	local particle_cast = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControlOrientation(effect_cast, 1, attacker:GetForwardVector() * (-1), attacker:GetRightVector(), attacker:GetUpVector())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+
+	if bHeart then
+		particle_cast = "particles/bioshadow/bioshadow_heart.vpcf"
+		effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		self:AddParticle(effect_cast, false, false, -1, false, true)
+	end
+
+	if IsServer() then self.parent:EmitSound("Hero_PhantomAssassin.CoupDeGrace.Arcana") end
 end

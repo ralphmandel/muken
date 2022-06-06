@@ -124,16 +124,18 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	
 	if cosmetics then
-		for i = 1, #cosmetics.cosmetic, 1 do
-			local mod_cosmetic = cosmetics.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
-			if mod_cosmetic then
-				if mod_cosmetic.index ~= nil then
-					for i = 1, mod_cosmetic.index, 1 do
-						if mod_cosmetic.ambient[i] == "particles/ancient/ancient_back.vpcf" then
-							self.ancient_stone = mod_cosmetic.particle[i]
-						end
-						if mod_cosmetic.ambient[i] == "particles/ancient/ancient_weapon.vpcf" then
-							self.ancient_mace = mod_cosmetic.particle[i]
+		if cosmetics.cosmetic then
+			for i = 1, #cosmetics.cosmetic, 1 do
+				local mod_cosmetic = cosmetics.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
+				if mod_cosmetic then
+					if mod_cosmetic.index ~= nil then
+						for i = 1, mod_cosmetic.index, 1 do
+							if mod_cosmetic.ambient[i] == "particles/ancient/ancient_back.vpcf" then
+								self.ancient_stone = mod_cosmetic.particle[i]
+							end
+							if mod_cosmetic.ambient[i] == "particles/ancient/ancient_weapon.vpcf" then
+								self.ancient_mace = mod_cosmetic.particle[i]
+							end
 						end
 					end
 				end

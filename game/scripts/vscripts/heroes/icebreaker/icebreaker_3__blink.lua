@@ -127,6 +127,7 @@ icebreaker_3__blink = class({})
 
 		caster:SetOrigin( blinkPosition )
 		FindClearSpaceForUnit(caster, blinkPosition, true)
+		ProjectileManager:ProjectileDodge(caster)
 		caster:MoveToTargetToAttack(target)
 
 		self:PlayEffects(direction, origin, target)

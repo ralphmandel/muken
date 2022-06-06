@@ -17,6 +17,7 @@ function shadow_1_modifier_passive:OnCreated(kv)
 
 	if self.parent:IsIllusion() then
 		self.caster = self.parent:GetPlayerOwner():GetAssignedHero()
+		self.ability_copy = self.ability
 		self.ability = self.caster:FindAbilityByName("shadow_1__strike")
 	end
 end
@@ -40,23 +41,33 @@ end
 
 function shadow_1_modifier_passive:OnAttackLanded(keys)
 	local toxin_ability = self.caster:FindAbilityByName("shadow_0__toxin")
+	local toxin_target = keys.target:FindModifierByName("shadow_0_modifier_toxin")
 	if toxin_ability == nil then return end
 	if self.ability == nil then return end
-	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-	if self.parent:PassivesDisabled() then return end
-	local chance = self.ability:GetSpecialValueFor("chance")
-	local chance_copy = self.ability:GetSpecialValueFor("chance_copy")
-	if self.parent:IsIllusion() then chance = chance_copy end
-	local toxin_target = keys.target:FindModifierByName("shadow_0_modifier_toxin")
 
 	-- UP 1.21
 	if self.ability:GetRank(21)
-	and self.ability:IsCooldownReady()
+	and keys.attacker == self.caster
 	and toxin_target then
-		self.ability:AddBonus("_1_AGI", self.parent, 25, 0, 5)
-		self.ability:StartCooldown(20)
+		if self.ability_copy then
+			if self.ability_copy:IsCooldownReady() then
+				self.ability:AddBonus("_1_AGI", self.parent, 20, 0, 5)
+				self.ability_copy:StartCooldown(15)
+			end
+		else
+			if self.ability:IsCooldownReady() then
+				self.ability:AddBonus("_1_AGI", self.parent, 20, 0, 5)
+				self.ability:StartCooldown(15)
+			end
+		end
 	end
+
+	if self.parent:PassivesDisabled() then return end
+	if keys.attacker ~= self.parent then return end
+	local chance = self.ability:GetSpecialValueFor("chance")
+	local chance_copy = self.ability:GetSpecialValueFor("chance_copy")
+	if self.parent:IsIllusion() then chance = chance_copy end
 
 	-- UP 1.31
 	if self.ability:GetRank(31)

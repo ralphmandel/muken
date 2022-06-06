@@ -1,5 +1,4 @@
 shadow_x2__blink = class({})
-LinkLuaModifier( "shadow_x2_modifier_blink", "heroes/shadow/shadow_x2_modifier_blink", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
@@ -64,6 +63,49 @@ LinkLuaModifier( "shadow_x2_modifier_blink", "heroes/shadow/shadow_x2_modifier_b
 
     function shadow_x2__blink:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local origin = caster:GetOrigin()
+        local point = target:GetOrigin()
+        local direction = (point - origin)
+        local distance = self:GetSpecialValueFor("distance") * 0.01
+
+        local blinkDirection = (caster:GetOrigin() - target:GetOrigin()):Normalized()
+        local blinkPosition = target:GetOrigin() + blinkDirection
+        if IsServer() then caster:EmitSound("Hero_PhantomAssassin.Strike.Start") end
+
+        caster:SetOrigin(blinkPosition)
+        FindClearSpaceForUnit(caster, blinkPosition, true)
+        ProjectileManager:ProjectileDodge(caster)
+        self:PlayEfxBlink(direction, origin, target)
+
+        local distance_traveled = (blinkPosition - origin):Length2D()
+        local cooldown = distance_traveled * distance
+        self:StartCooldown(cooldown)
+        target:ForceKill(false)
+    end
+
+    function shadow_x2__blink:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+    
+        if caster == hTarget then
+            return UF_FAIL_CUSTOM
+        end
+    
+        if hTarget:HasModifier("shadow_0_modifier_passive") == false
+        or hTarget:GetTeam() ~= caster:GetTeam() then
+            return UF_FAIL_CUSTOM
+        end
+    
+        return UF_SUCCESS
+    end
+    
+    function shadow_x2__blink:GetCustomCastErrorTarget(hTarget)
+        local caster = self:GetCaster()
+        if caster == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
+        
+        return "INVALID TARGET"
     end
 
     function shadow_x2__blink:GetManaCost(iLevel)
@@ -74,3 +116,22 @@ LinkLuaModifier( "shadow_x2_modifier_blink", "heroes/shadow/shadow_x2_modifier_b
     end
 
 -- EFFECTS
+
+    function shadow_x2__blink:PlayEfxBlink(direction, origin, target)
+        local caster = self:GetCaster()
+        local particle_cast_a = "particles/econ/events/ti9/blink_dagger_ti9_start_lvl2.vpcf"
+        local particle_cast_b = "particles/econ/events/ti9/blink_dagger_ti9_lvl2_end.vpcf"
+
+        local effect_cast_a = ParticleManager:CreateParticle(particle_cast_a, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(effect_cast_a, 0, origin)
+        ParticleManager:SetParticleControlForward(effect_cast_a, 0, direction:Normalized())
+        ParticleManager:SetParticleControl(effect_cast_a, 1, origin + direction)
+        ParticleManager:ReleaseParticleIndex(effect_cast_a)
+
+        local effect_cast_b = ParticleManager:CreateParticle(particle_cast_b, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(effect_cast_b, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControlForward(effect_cast_b, 0, direction:Normalized())
+        ParticleManager:ReleaseParticleIndex(effect_cast_b)
+
+        if IsServer() then caster:EmitSound("Hero_PhantomAssassin.Strike.End") end
+    end

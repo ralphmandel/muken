@@ -62,8 +62,71 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
 
 -- SPELL START
 
+    function shadow_x1__heart:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        if IsServer() then caster:EmitSound("Hero_PhantomAssassin.PreAttack") end
+
+        return true
+    end
+
     function shadow_x1__heart:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        if target:TriggerSpellAbsorb(self) then return end
+
+        local crit = nil
+        local damage = self:GetSpecialValueFor("damage")
+        local critical_damage = self:GetSpecialValueFor("critical_damage")
+        local toxin_target = target:FindModifierByName("shadow_0_modifier_toxin")
+        local str = caster:FindModifierByName("_1_STR_modifier")
+
+        if str then
+            if (str:RollChance() == true or self:CheckAngle(target))
+            and toxin_target then
+                toxin_target:PlayEfxHeart(caster, toxin_target:IsPurgable())
+                toxin_target.purge = false
+                crit = true
+            end
+        end
+
+        local damageTable = {
+			victim = target,
+			attacker = caster,
+			damage = damage,
+			damage_type = self:GetAbilityDamageType(),
+			ability = self
+		}
+		
+        if str then str:EnableForceSpellCrit(critical_damage, crit) end   
+		local total = ApplyDamage(damageTable)
+
+        self:PlayEfxHit(target)
+    end
+
+    function shadow_x1__heart:CheckAngle(target)
+        local caster = self:GetCaster()
+        local angle = 60
+
+        -- Find targets back
+        local victim_angle = target:GetAnglesAsVector().y
+        local origin_difference = target:GetAbsOrigin() - caster:GetAbsOrigin()
+        local origin_difference_radian = math.atan2(origin_difference.y, origin_difference.x)
+        origin_difference_radian = origin_difference_radian * 180
+
+        local attacker_angle = origin_difference_radian / math.pi
+
+        -- For some reason Dota mechanics read the result as 30 degrees anticlockwise, need to adjust it down to appropriate angles for backstabbing.
+        attacker_angle = attacker_angle + 180.0 + 30.0
+
+        local result_angle = attacker_angle - victim_angle
+        result_angle = math.abs(result_angle)
+
+        if result_angle >= (180 - angle)
+        and result_angle <= (180 + angle) then
+            return true
+        end
+
+        return false
     end
 
     function shadow_x1__heart:GetManaCost(iLevel)
@@ -74,3 +137,12 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
     end
 
 -- EFFECTS
+
+    function shadow_x1__heart:PlayEfxHit(target)
+        local caster = self:GetCaster()
+        local particle_cast = "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_dmg.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        if IsServer() then target:EmitSound("Hero_PhantomAssassin.FanOfKnives.Cast") end
+    end

@@ -300,7 +300,6 @@
 			end
 		, self)
 
-
 		self.score = 2000
 		self.score_kill = 60
 		self.score_bounty = 120
@@ -355,419 +354,450 @@
 	end
 
 -- UTIL FUNCTIONS
-	function BattleArena:EventPreBounty()
-		local rand = RandomInt(1,6)
-		if rand == 1 then self.pos = Vector(-255,-2114,136) end
-		if rand == 2 then self.pos = Vector(2686,-4038,136) end
-		if rand == 3 then self.pos = Vector(-3197,61,136) end
-		if rand == 4 then self.pos = Vector(315,3317,8) end
-		if rand == 5 then self.pos = Vector(2558,2298,264) end
-		if rand == 6 then self.pos = Vector(-4606,-2052,392) end
-		
-		for _,player in pairs(self.players) do
-			MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 128, 40)
+	-- GAME EVENTS
+		function BattleArena:EventPreBounty()
+			local rand = RandomInt(1,6)
+			if rand == 1 then self.pos = Vector(-255,-2114,136) end
+			if rand == 2 then self.pos = Vector(2686,-4038,136) end
+			if rand == 3 then self.pos = Vector(-3197,61,136) end
+			if rand == 4 then self.pos = Vector(315,3317,8) end
+			if rand == 5 then self.pos = Vector(2558,2298,264) end
+			if rand == 6 then self.pos = Vector(-4606,-2052,392) end
+			
+			for _,player in pairs(self.players) do
+				MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 128, 40)
+			end
+
+			for _,team in pairs(self.teams) do
+				GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
+			end
 		end
 
-		for _,team in pairs(self.teams) do
-			GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
-		end
-	end
+		function BattleArena:EventBountyRune()
+			CreateRune(self.pos, DOTA_RUNE_BOUNTY)
 
-	function BattleArena:EventBountyRune()
-		CreateRune(self.pos, DOTA_RUNE_BOUNTY)
-
-		for _,player in pairs(self.players) do
-			MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 256, 0.5)
-		end
-	end
-
-	function BattleArena:EventBoss(ping)
-		local loc_x = {[1] = -3748, [2] = 5745}
-		local loc_y = {[1] = -3774, [2] = 2317}
-
-		if ping == 1 then
-			self.mini_boss_ping = RandomInt(1, 2)
-		else
-			if self.mini_boss_ping == 1 then self.mini_boss_ping = 2 else self.mini_boss_ping = 1 end
+			for _,player in pairs(self.players) do
+				MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 256, 0.5)
+			end
 		end
 
-		for _,player in pairs(self.players) do
-			MinimapEvent(
-				player[1]:GetTeamNumber(), player[1]:GetAssignedHero(),
-				loc_x[self.mini_boss_ping], loc_y[self.mini_boss_ping],
-				512, 20
+		function BattleArena:EventBoss(ping)
+			local loc_x = {[1] = -3748, [2] = 5745}
+			local loc_y = {[1] = -3774, [2] = 2317}
+
+			if ping == 1 then
+				self.mini_boss_ping = RandomInt(1, 2)
+			else
+				if self.mini_boss_ping == 1 then self.mini_boss_ping = 2 else self.mini_boss_ping = 1 end
+			end
+
+			for _,player in pairs(self.players) do
+				MinimapEvent(
+					player[1]:GetTeamNumber(), player[1]:GetAssignedHero(),
+					loc_x[self.mini_boss_ping], loc_y[self.mini_boss_ping],
+					512, 20
+				)
+			end
+		end
+
+		function BattleArena:CreateBoss(boss_name, spot)
+			local spot_vec = {
+				[1] = Vector(-3748, -3774, 0),
+				[2] = Vector(5745, 2317, 0)
+			}
+
+			if self.boss[spot] == nil then
+				self.boss[spot] = CreateUnitByName(boss_name, spot_vec[spot], true, nil, nil, DOTA_TEAM_NEUTRALS)
+			end
+		end
+
+		function BattleArena:GenerateEvent(includeNegativeTime)
+			local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
+			local sync_time = time % 600
+			if self.event_time == nil then self.event_time = -60 end
+			if self.event_time == math.floor(time) then return end
+			self.event_time = math.floor(time)
+
+			if time == -40 then self:EventPreBounty() end
+			if includeNegativeTime then return end
+
+			if time == 0 then self:EventBountyRune() return end
+			if sync_time == 140 then self:EventPreBounty() end
+			if sync_time == 180 then self:EventBountyRune() end
+			if sync_time == 320 then self:EventPreBounty() end
+			if sync_time == 360 then self:EventBountyRune() end
+			if sync_time == 520 then self:EventBoss(1) end
+			if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
+			if sync_time == 580 then self:EventBoss(2) end
+			if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
+		end
+
+	-- COSMETICS UTIL
+		function BattleArena:SpawnPlayerCosmetics(includeNegativeTime)
+			local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
+			if time == -55 then
+				if not self.cosmetic_set then
+					self.cosmetic_set = true
+
+					for _,player in pairs(self.players) do
+						local hero = player[1]:GetAssignedHero()
+						self:ApplyUnitCosmetics(hero)
+
+						if IsInToolsMode() then
+							hero:FindAbilityByName("cosmetics"):ChangeTeam(hero:GetTeamNumber())
+						end
+					end
+				end
+			end
+		end
+
+		function BattleArena:ApplyUnitCosmetics(unit)
+			local cosmetics = unit:FindAbilityByName("cosmetics")
+			if cosmetics then
+				cosmetics:LoadCosmetics()
+				if unit:GetUnitName() == "npc_dota_hero_riki" then
+					cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
+				end
+			end
+		end
+
+	-- SPOTS
+		function BattleArena:CalculateNeutralQuantity()
+			local quantity = 0
+			for i = 1, 20, 1 do
+				local empty = true
+				for _,unit in pairs(self.spots[i][1]) do
+					if unit ~= nil then
+						if IsValidEntity(unit) then
+							if unit:IsAlive() then
+								empty = false
+							end
+						end
+					end
+				end
+				if empty == false then quantity = quantity + 1 end
+			end
+
+			if quantity >= 12 then return end
+
+			local index = 0
+			for _,spot in pairs(self.spots) do
+				index = index + 1
+				self:CreateSpot(index)
+			end
+		end
+
+		function BattleArena:CreateSpot(number)
+			local time = GameRules:GetDOTATime(false, false)
+			local spawn_time = 30
+			local respawn_time = 60
+			local new = true
+			for _,unit in pairs(self.spots[number][1]) do
+				if unit ~= nil then
+					if IsValidEntity(unit) then
+						if unit:IsAlive() then
+							new = false
+						end
+					end
+				end
+			end
+			
+			if new then
+				if self.spots[number][3] == nil then
+					self.spots[number][3] = time
+				end
+
+				if time >= spawn_time and time - self.spots[number][3] >= respawn_time then
+					self:RandomizeNeutrals(number)
+				end
+			end
+		end
+
+		function BattleArena:RandomizeNeutrals(number)
+			local time = GameRules:GetDOTATime(false, false)
+			local factor_quantity = 1 + math.floor(time / 150)
+			if factor_quantity > 16 then factor_quantity = 16 end
+
+			local tier_3 = RandomInt(1, 100)
+
+			local total = 0
+			local t3_quantity = 0
+			for _,spot in pairs(self.spots) do
+				if spot[4] == 3 then
+					t3_quantity = t3_quantity + 1
+				end
+			end
+
+			if tier_3 <= 50 and t3_quantity < factor_quantity then
+				local rand_3 = RandomInt(1,3)
+
+				if rand_3 == 1 then
+					local unit = CreateUnitByName("neutral_lamp", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+					table.insert(self.spots[number][1], unit)
+					
+
+					self.spots[number][3] = nil
+					self.spots[number][4] = 3
+					return
+				end
+
+				if rand_3 == 2 then
+					local unit = CreateUnitByName("neutral_spider", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+					table.insert(self.spots[number][1], unit)
+					
+			
+					self.spots[number][3] = nil
+					self.spots[number][4] = 3
+					return
+				end
+			
+				if rand_3 == 3 then
+					local unit = CreateUnitByName("neutral_skydragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+					table.insert(self.spots[number][1], unit)
+					
+			
+					unit = CreateUnitByName("neutral_dragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+					table.insert(self.spots[number][1], unit)
+					
+			
+					self.spots[number][3] = nil
+					self.spots[number][4] = 3
+					return
+				end
+			end
+
+			local tier_1 = RandomInt(1,5)
+
+			if tier_1 == 1 then
+				local unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				self.spots[number][3] = nil
+				self.spots[number][4] = 1
+				return
+			end
+
+			if tier_1 == 2 then
+				local unit = CreateUnitByName("neutral_basic_crocodilian", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_crocodilian_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				self.spots[number][3] = nil
+				self.spots[number][4] = 1
+				return
+			end
+
+			if tier_1 == 3 then
+				local unit = CreateUnitByName("neutral_basic_gargoyle", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				self.spots[number][3] = nil
+				self.spots[number][4] = 1
+				return
+			end
+
+			if tier_1 == 4 then
+				local unit = CreateUnitByName("neutral_igor", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				self.spots[number][3] = nil
+				self.spots[number][4] = 2
+				return
+			end
+
+			if tier_1 == 5 then
+				local unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(self.spots[number][1], unit)
+				
+
+				self.spots[number][3] = nil
+				self.spots[number][4] = 2
+				return
+			end
+		end
+
+	-- PLAYERS
+		function BattleArena:RandomizePlayerSpawn(unit)
+			local further_loc = nil
+			local further_distance = nil
+
+			local spawn_pos = {
+				[1] = Vector(455, -1394, 0),
+				[2] = Vector(-1040, -3661, 0),
+				[3] = Vector(-2724, -2628, 0),
+				[4] = Vector(-2563, -923, 0),
+				[5] = Vector(-3144, 1596, 0),
+				[6] = Vector(-828, 1413, 0),
+				[7] = Vector(-2047, 4349, 0),
+				[8] = Vector(1858, 5903, 0),
+				[9] = Vector(935, 2619, 0),
+				[10] = Vector(3291, 2578, 0),
+				[11] = Vector(1084, 875, 0),
+				[12] = Vector(3587, -670, 0),
+				[13] = Vector(3848, -1969, 0),
+				[14] = Vector(3920, -3897, 0),
+				[15] = Vector(2175, -3259, 0)
+			}
+
+			local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+			local enemies = FindUnitsInRadius(
+				unit:GetTeamNumber(),	-- int, your team number
+				unit:GetOrigin(),	-- point, center point
+				nil,	-- handle, cacheUnit. (not known)
+				FIND_UNITS_EVERYWHERE,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+				DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+				DOTA_UNIT_TARGET_HERO,	-- int, type filter
+				flags,	-- int, flag filter
+				0,	-- int, order filter
+				false	-- bool, can grow cache
 			)
-		end
-	end
-
-	function BattleArena:CreateBoss(boss_name, spot)
-		local spot_vec = {
-			[1] = Vector(-3748, -3774, 0),
-			[2] = Vector(5745, 2317, 0)
-		}
-
-		if self.boss[spot] == nil then
-			self.boss[spot] = CreateUnitByName(boss_name, spot_vec[spot], true, nil, nil, DOTA_TEAM_NEUTRALS)
-		end
-	end
-
-	function BattleArena:GenerateEvent(includeNegativeTime)
-		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
-		local sync_time = time % 600
-		if self.event_time == nil then self.event_time = -60 end
-		if self.event_time == math.floor(time) then return end
-		self.event_time = math.floor(time)
-
-		if time == -40 then self:EventPreBounty() end
-		if includeNegativeTime then return end
-
-		if time == 0 then self:EventBountyRune() return end
-		if sync_time == 140 then self:EventPreBounty() end
-		if sync_time == 180 then self:EventBountyRune() end
-		if sync_time == 320 then self:EventPreBounty() end
-		if sync_time == 360 then self:EventBountyRune() end
-		if sync_time == 520 then self:EventBoss(1) end
-		if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
-		if sync_time == 580 then self:EventBoss(2) end
-		if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
-	end
-
-	function BattleArena:SpawnPlayerCosmetics(includeNegativeTime)
-		local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
-		if time == -55 then
-			if not self.cosmetic_set then
-				self.cosmetic_set = true
-
-				for _,player in pairs(self.players) do
-					local hero = player[1]:GetAssignedHero()
-					self:ApplyUnitCosmetics(hero)
-
-					if IsInToolsMode() then
-						hero:FindAbilityByName("cosmetics"):ChangeTeam(hero:GetTeamNumber())
+			for _,loc in pairs(spawn_pos) do
+				local closer = nil
+				local distance = 0
+				
+				for _,enemy in pairs(enemies) do
+					if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
+						if closer == nil then
+							closer = loc
+							distance = (loc - enemy:GetAbsOrigin()):Length()
+						end
+						if (loc - enemy:GetAbsOrigin()):Length() < distance then
+							closer = loc
+							distance = (loc - enemy:GetAbsOrigin()):Length()
+						end
 					end
 				end
-			end
-		end
-	end
 
-	function BattleArena:ApplyUnitCosmetics(unit)
-		local cosmetics = unit:FindAbilityByName("cosmetics")
-		if cosmetics then
-			cosmetics:LoadCosmetics()
-			if unit:GetUnitName() == "npc_dota_hero_riki" then
-				cosmetics:SetStatusEffect("icebreaker__modifier_status_effect", true)
-			end
-		end
-	end
-
-	function BattleArena:CreateSpot(number)
-		local time = GameRules:GetDOTATime(false, false)
-		local spawn_time = 30
-		local respawn_time = 60
-		local new = true
-		for _,unit in pairs(self.spots[number][1]) do
-			if unit ~= nil then
-				if IsValidEntity(unit) then
-					if unit:IsAlive() then
-						new = false
-					end
-				end
-			end
-		end
-		
-		if new then
-			if self.spots[number][3] == nil then
-				self.spots[number][3] = time
-			end
-
-			if time >= spawn_time and time - self.spots[number][3] >= respawn_time then
-				self:RandomizeNeutrals(number)
-			end
-		end
-	end
-
-	function BattleArena:RandomizeNeutrals(number)
-		local time = GameRules:GetDOTATime(false, false)
-		local factor_quantity = 1 + math.floor(time / 150)
-		if factor_quantity > 16 then factor_quantity = 16 end
-
-		local tier_3 = RandomInt(1, 100)
-
-		local quantity = 0
-		for _,spot in pairs(self.spots) do
-			if spot[4] == 3 then
-				quantity = quantity + 1
-			end
-		end
-
-		if tier_3 <= 50 and quantity < factor_quantity then
-			local rand_3 = RandomInt(1,3)
-
-			if rand_3 == 1 then
-				local unit = CreateUnitByName("neutral_lamp", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				
-
-				self.spots[number][3] = nil
-				self.spots[number][4] = 3
-				return
-			end
-
-			if rand_3 == 2 then
-				local unit = CreateUnitByName("neutral_spider", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				
-		
-				self.spots[number][3] = nil
-				self.spots[number][4] = 3
-				return
-			end
-		
-			if rand_3 == 3 then
-				local unit = CreateUnitByName("neutral_skydragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				
-		
-				unit = CreateUnitByName("neutral_dragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				
-		
-				self.spots[number][3] = nil
-				self.spots[number][4] = 3
-				return
-			end
-		end
-
-		local tier_1 = RandomInt(1,5)
-
-		if tier_1 == 1 then
-			local unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			self.spots[number][3] = nil
-			self.spots[number][4] = 1
-			return
-		end
-
-		if tier_1 == 2 then
-			local unit = CreateUnitByName("neutral_basic_crocodilian", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_crocodilian_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			self.spots[number][3] = nil
-			self.spots[number][4] = 1
-			return
-		end
-
-		if tier_1 == 3 then
-			local unit = CreateUnitByName("neutral_basic_gargoyle", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			self.spots[number][3] = nil
-			self.spots[number][4] = 1
-			return
-		end
-
-		if tier_1 == 4 then
-			local unit = CreateUnitByName("neutral_igor", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			self.spots[number][3] = nil
-			self.spots[number][4] = 2
-			return
-		end
-
-		if tier_1 == 5 then
-			local unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			table.insert(self.spots[number][1], unit)
-			
-
-			self.spots[number][3] = nil
-			self.spots[number][4] = 2
-			return
-		end
-	end
-
-	function BattleArena:RandomizePlayerSpawn(unit)
-		local further_loc = nil
-		local further_distance = nil
-
-		local spawn_pos = {
-			[1] = Vector(455, -1394, 0),
-			[2] = Vector(-1040, -3661, 0),
-			[3] = Vector(-2724, -2628, 0),
-			[4] = Vector(-2563, -923, 0),
-			[5] = Vector(-3144, 1596, 0),
-			[6] = Vector(-828, 1413, 0),
-			[7] = Vector(-2047, 4349, 0),
-			[8] = Vector(1858, 5903, 0),
-			[9] = Vector(935, 2619, 0),
-			[10] = Vector(3291, 2578, 0),
-			[11] = Vector(1084, 875, 0),
-			[12] = Vector(3587, -670, 0),
-			[13] = Vector(3848, -1969, 0),
-			[14] = Vector(3920, -3897, 0),
-			[15] = Vector(2175, -3259, 0)
-		}
-
-		local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-		local enemies = FindUnitsInRadius(
-			unit:GetTeamNumber(),	-- int, your team number
-			unit:GetOrigin(),	-- point, center point
-			nil,	-- handle, cacheUnit. (not known)
-			FIND_UNITS_EVERYWHERE,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-			DOTA_UNIT_TARGET_HERO,	-- int, type filter
-			flags,	-- int, flag filter
-			0,	-- int, order filter
-			false	-- bool, can grow cache
-		)
-		for _,loc in pairs(spawn_pos) do
-			local closer = nil
-			local distance = 0
-			
-			for _,enemy in pairs(enemies) do
-				if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
-					if closer == nil then
-						closer = loc
-						distance = (loc - enemy:GetAbsOrigin()):Length()
-					end
-					if (loc - enemy:GetAbsOrigin()):Length() < distance then
-						closer = loc
-						distance = (loc - enemy:GetAbsOrigin()):Length()
+				if further_loc == nil then
+					further_loc = closer
+					further_distance = distance
+				else
+					if distance > further_distance then
+						further_loc = closer
+						further_distance = distance
 					end
 				end
 			end
 
 			if further_loc == nil then
-				further_loc = closer
-				further_distance = distance
-			else
-				if distance > further_distance then
-					further_loc = closer
-					further_distance = distance
+				further_loc = spawn_pos[RandomInt(1, 12)]
+			end
+
+			unit:SetOrigin(further_loc)
+			FindClearSpaceForUnit(unit, further_loc, true)
+		end
+
+		function BattleArena:GetTeamIndex(team_number)
+			for i = #self.teams, 1, -1 do
+				if team_number == self.teams[i][1] then
+					return i
 				end
 			end
 		end
 
-		if further_loc == nil then
-			further_loc = spawn_pos[RandomInt(1, 12)]
-		end
+		function BattleArena:GetKillingSpreeAnnouncer(kills)
+			local rand = RandomInt(1,2)
 
-		unit:SetOrigin(further_loc)
-		FindClearSpaceForUnit(unit, further_loc, true)
-	end
-
-	function BattleArena:GetTeamIndex(team_number)
-		for i = #self.teams, 1, -1 do
-			if team_number == self.teams[i][1] then
-				return i
+			if kills == 4 then
+				if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
+				if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
 			end
-		end
-	end
+			if kills == 5 then
+				if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
+				if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
+			end
+			if kills == 6 then
+				if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
+				if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
+			end
+			if kills >= 7 then
+				if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
+				if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
+			end
 
-	function BattleArena:GetKillingSpreeAnnouncer(kills)
-		local rand = RandomInt(1,2)
-
-		if kills == 4 then
-			if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
-			if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
-		end
-		if kills == 5 then
-			if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
-			if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
-		end
-		if kills == 6 then
-			if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
-			if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
-		end
-		if kills >= 7 then
-			if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
-			if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
+			return "announcer_killing_spree_announcer_kill_spree_01"
 		end
 
-		return "announcer_killing_spree_announcer_kill_spree_01"
-	end
+	-- DROPS
+		function BattleArena:RollDrops(unit)
+			local DropInfo = GameRules.DropTable[unit:GetUnitName()]
+			if DropInfo then
+				for item_name,chance in pairs(DropInfo) do
+					if RandomInt(1, 100) <= chance then
+						-- Create the item
+						local item = CreateItem(item_name, nil, nil)
+						local pos = unit:GetAbsOrigin()
+						local drop = CreateItemOnPositionSync( pos, item )
+						local pos_launch = pos+RandomVector(RandomFloat(150,200))
+						item:LaunchLoot(false, 200, 0.75, pos_launch)
 
-	function BattleArena:RollDrops(unit)
-		local DropInfo = GameRules.DropTable[unit:GetUnitName()]
-		if DropInfo then
-			for item_name,chance in pairs(DropInfo) do
-				if RandomInt(1, 100) <= chance then
-					-- Create the item
-					local item = CreateItem(item_name, nil, nil)
-					local pos = unit:GetAbsOrigin()
-					local drop = CreateItemOnPositionSync( pos, item )
-					local pos_launch = pos+RandomVector(RandomFloat(150,200))
-					item:LaunchLoot(false, 200, 0.75, pos_launch)
-
-					Timers:CreateTimer((15), function()
-						if drop then
-							if IsValidEntity(drop) then
-								UTIL_Remove(drop)
+						Timers:CreateTimer((15), function()
+							if drop then
+								if IsValidEntity(drop) then
+									UTIL_Remove(drop)
+								end
 							end
-						end
-					end)
+						end)
+					end
 				end
 			end
 		end
-	end
 
-	function BattleArena:RollBossDrops(unit)
-		local item_name = self:GetBundleItem("rare_item_bundle")
-		if item_name == nil then return end
-		local item = CreateItem(item_name, nil, nil)
-		local pos = unit:GetAbsOrigin()
-		local drop = CreateItemOnPositionSync( pos, item )
-		local pos_launch = pos+RandomVector(RandomFloat(150,200))
-		item:LaunchLoot(false, 200, 0.75, pos_launch)
-	end
-
-	function BattleArena:GetBundleItem(package_name)
-		if package_name == "rare_item_bundle" then
-			if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
-			return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
+		function BattleArena:RollBossDrops(unit)
+			local item_name = self:GetBundleItem("rare_item_bundle")
+			if item_name == nil then return end
+			local item = CreateItem(item_name, nil, nil)
+			local pos = unit:GetAbsOrigin()
+			local drop = CreateItemOnPositionSync( pos, item )
+			local pos_launch = pos+RandomVector(RandomFloat(150,200))
+			item:LaunchLoot(false, 200, 0.75, pos_launch)
 		end
-	end
+
+		function BattleArena:GetBundleItem(package_name)
+			if package_name == "rare_item_bundle" then
+				if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
+				return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
+			end
+		end
 
 -- LISTENERS
 	function BattleArena:OnUnitKilled(args)
@@ -948,6 +978,10 @@
 				self.teams[team_index][4] = self.teams[team_index][4] + 1
 				local player = {[1] = unit:GetPlayerOwner(), [2] = 0}
 				table.insert(self.players, player)
+
+				local channel = unit:FindAbilityByName("_channel")
+				unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 5})
+				unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 5})
 			end
 		end
 
@@ -973,12 +1007,7 @@
 				CustomNetTables:SetTableValue("game_state", "round_data", { value = nextValue })
 			end
 
-			local index = 0
-			for _,spot in pairs(self.spots) do
-				index = index + 1
-				self:CreateSpot(index)
-			end
-
+			self:CalculateNeutralQuantity()
 			--self:GenerateEvent(false)
 		end
 		

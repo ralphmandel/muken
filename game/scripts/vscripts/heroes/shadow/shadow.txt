@@ -270,7 +270,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.2"
+		"AbilityCastPoint"       		"0.3"
 
 		"AbilityCooldown"				"20"
 
@@ -289,7 +289,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"multiplier"	"130 132 134 136 138 140 142 144 146 148 150"
+				"multiplier"	"120 122 124 126 128 130 132 134 136 138 140"
 			}
             "14"
 			{
@@ -306,32 +306,41 @@
 
     "shadow_x1__heart"
     {
-        // General  
         "BaseClass"              		"ability_lua"
         "ScriptFile"            		"heroes/shadow/shadow_x1__heart"
         "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-        "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+        "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "AbilityTextureName"     		"shadow_heart"
 
         "AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
         "MaxLevel"               		"5"
         "RequiredLevel"         	 	"0"
 
-        "AbilityCastPoint"       		"0.2"
+        "AbilityCastPoint"       		"0.3"
         "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-
-        // Stats
-        "AbilityManaCost"         		"125"
-        "AbilityCooldown"				"15"
-        "AbilityCastRange"    		   	"275"
+        "AbilityCooldown"				"12"
+        "AbilityCastRange"    		   	"150"
 
         "AbilitySpecial"
         {
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage"		"100"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"critical_damage"	"225"
+			}
             "11"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"125"
 			}
             "12"
 			{
@@ -361,7 +370,7 @@
         // General  
         "BaseClass"              		"ability_lua"
         "ScriptFile"            		"heroes/shadow/shadow_x2__blink"
-        "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
         "AbilityTextureName"     		"shadow_blink"
@@ -370,20 +379,20 @@
         "MaxLevel"               		"5"
         "RequiredLevel"         	 	"0"
 
-        "AbilityCastPoint"       		"0.2"
-        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-
-        // Stats
-        "AbilityManaCost"         		"125"
-        "AbilityCooldown"				"15"
-        "AbilityCastRange"    		   	"275"
+        "AbilityCastPoint"       		"0.1"
+        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 
         "AbilitySpecial"
         {
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"distance"		"1"
+			}
             "11"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"75"
 			}
             "12"
 			{

@@ -65,6 +65,7 @@ bloodstained_x1__blink = class({})
 		caster:SetOrigin(blinkPosition)
 		self:PlayEfxBlink(direction, origin)
 		FindClearSpaceForUnit(caster, blinkPosition, true)
+		ProjectileManager:ProjectileDodge(caster)
 
 		if IsServer() then caster:EmitSound("Hero_Antimage.Blink_in.Persona") end
 	end

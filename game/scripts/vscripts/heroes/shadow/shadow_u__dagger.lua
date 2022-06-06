@@ -1,5 +1,5 @@
 shadow_u__dagger = class({})
-LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dagger", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadow_u_modifier_passive", "heroes/shadow/shadow_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -85,6 +85,22 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
 		end
 
         local charges = 1
+
+        -- UP 4.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
+        -- UP 4.21
+        if self:GetRank(21) then
+            charges = charges * 3
+        end
+
+        -- UP 4.41
+        if self:GetRank(41) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -94,11 +110,20 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
 
 -- SPELL START
 
+    function shadow_u__dagger:GetIntrinsicModifierName()
+        return "shadow_u_modifier_passive"
+    end
+
     function shadow_u__dagger:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local dagger_speed = self:GetSpecialValueFor("dagger_speed")
-        local dagger_name = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+        local dagger_name = "particles/shadowmancer/dagger/shadowmancer_stifling_dagger_arcana_combined.vpcf"
+
+        -- UP 4.21
+        if self:GetRank(21) then
+            dagger_speed = dagger_speed + 1000
+        end
 
         local info = {
 			Target = target,
@@ -119,7 +144,7 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
     function shadow_u__dagger:OnProjectileHit(hTarget, vLocation)
 		if hTarget == nil then return end
 		if hTarget:IsInvulnerable() then return end
-		if hTarget:TriggerSpellAbsorb( self ) then return end
+		if hTarget:TriggerSpellAbsorb(self) then return end
         if IsServer() then hTarget:EmitSound("Hero_PhantomAssassin.Dagger.Target") end
 
         local caster = self:GetCaster()
@@ -132,6 +157,12 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
         and hTarget:IsMagicImmune() then
 			return
 		end
+
+        -- UP 4.31
+        if self:GetRank(31) then
+            self.target = hTarget
+            self.health_percent = hTarget:GetHealthPercent()
+        end
 
 		local damageTable = {
 			victim = hTarget,
@@ -149,21 +180,69 @@ LinkLuaModifier("shadow_u_modifier_dagger", "heroes/shadow/shadow_u_modifier_dag
 		else
 			self:EndCooldown()
 		end
+
+        self.health_percent = nil
+        self.target = nil
 	end
+
+    function shadow_u__dagger:OnHeroDiedNearby(hVictim, hKiller, kv)
+		if hVictim == nil or hKiller == nil then return end
+        if self.health_percent == nil then return end
+        if self.target == nil then return end
+
+        local caster = self:GetCaster()
+
+		if hVictim == self.target and hKiller == caster then
+			local new_respawnTime = hVictim:GetRespawnTime() + (self.health_percent * 0.5)
+			hVictim:SetTimeUntilRespawn(new_respawnTime)
+		end
+	end
+
+    function shadow_u__dagger:CastFilterResultTarget(hTarget)
+		local caster = self:GetCaster()
+		local flag = 0
+
+		-- UP 4.21
+		if self:GetCurrentAbilityCharges() % 3 == 0 then
+			flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+		end
+
+		local result = UnitFilter(
+			hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+			flag, caster:GetTeamNumber()
+		)
+		
+		if result ~= UF_SUCCESS then
+			return result
+		end
+
+		return UF_SUCCESS
+	end
+
+    function shadow_u__dagger:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return 0 end
+        return cast_range
+    end
 
     function shadow_u__dagger:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level =  (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
         return manacost * level
     end
 
 -- EFFECTS
 
-    function shadow_u__dagger:PlayEfxHit(target )
+    function shadow_u__dagger:PlayEfxHit(target)
+        local caster = self:GetCaster()
         local particle_cast = "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_dmg.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
         ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
 
+        AddFOWViewer(caster:GetTeamNumber(), target:GetOrigin(), 75, 1.5, false)
         if IsServer() then target:EmitSound("Hero_QueenOfPain.ShadowStrike") end
     end
