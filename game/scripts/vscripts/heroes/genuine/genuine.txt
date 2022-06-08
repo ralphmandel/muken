@@ -78,7 +78,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCooldown"				"2.5"
-		"AbilityCastRange"      		"700 720 740 760 780 800 820 840 860 880 900 920 940 960 980 1000"
+		"AbilityCastRange"      		"600 620 640 660 680 700 720 740 760 780 800 820 840 860 880 900"
 
 		"AbilitySpecial"
 		{
@@ -90,7 +90,7 @@
             "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"atk_range"		        "100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400"
+				"atk_range"		        "0 20 40 60 80 100 120 140 160 180 200 220 240 260 280 300"
 			}
             "03"
 			{

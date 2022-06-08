@@ -230,7 +230,7 @@
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"shadow_outgoing"   "25"
+				"shadow_outgoing"   "20"
 			}
             "05"
 			{
@@ -272,7 +272,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"40"
 
 		"AbilitySpecial"
 		{

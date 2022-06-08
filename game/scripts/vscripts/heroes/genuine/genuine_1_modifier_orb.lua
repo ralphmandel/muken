@@ -53,12 +53,15 @@ function genuine_1_modifier_orb:DeclareFunctions()
 end
 
 function genuine_1_modifier_orb:OnDeath(keys)
-	if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return	end
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+    if keys.attacker ~= self.parent then return end
+    if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.unit:IsIllusion() then return end
 
 	-- UP 1.11
 	if self.ability:GetRank(11) then
-		local mana = 40
+		local mana = 50
 
 		if keys.unit:IsHero() then mana = 200 end
 
@@ -76,7 +79,7 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 	-- UP 1.22
 	if self.ability:GetRank(22)
 	and self.ability.spell_lifesteal == true then
-		local heal = keys.original_damage * 0.2
+		local heal = keys.original_damage * 0.5
 		self.parent:Heal(heal, self.ability)
 		self:PlayEfxSpellLifesteal(self.parent)
 		self.ability.spell_lifesteal = false

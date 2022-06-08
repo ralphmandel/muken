@@ -299,10 +299,10 @@
 				"var_type"			"FIELD_FLOAT"
 				"damage_max"		"35"
 			}
-			"04"
+            "04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_chance"		"30"
+				"bonus_damage"		"10"
 			}
 			"05"
 			{

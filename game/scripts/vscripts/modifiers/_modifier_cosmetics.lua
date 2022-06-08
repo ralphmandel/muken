@@ -37,7 +37,8 @@ function _modifier_cosmetics:OnRefresh( kv )
 end
 
 function _modifier_cosmetics:OnRemoved()
-	UTIL_Remove(self.parent)
+	self.parent:AddNoDraw()
+	self.parent:ForceKill(false)
 end
 
 --------------------------------------------------------------------------------

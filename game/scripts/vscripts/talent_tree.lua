@@ -304,7 +304,7 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
     local mod_rank_points = hero:FindModifierByName("rank_points")
     if mod_rank_points == nil then return false end
 
-    local level = hero.talentsData[talentId].NeedLevel + 1
+    local level = TalentTree:GetTalentRankLevel(hero, talentId)
     local points_level = TalentTree:GetHeroRankLevel(hero)
     local points_max_level = mod_rank_points.max_level
     local left = points_max_level - points_level - level
@@ -350,6 +350,14 @@ function TalentTree:IsHeroCanLevelUpTalent(hero, talentId)
         return false
     end
 
+    -- Bocuse 4.42 requires rank level 21
+    if hero.talentsData[talentId].Ability == "bocuse_u__mise_rank_42" then
+        local mise = hero:FindAbilityByName("bocuse_u__mise")
+        if mise == nil then return false end
+        if mise:IsTrained() == false then return false end
+        if mise:GetSpecialValueFor("rank") < 21 then return false end
+    end
+
     for i = 1, 4, 1 do
         if hero.talentsData[talentId].Tab == att.skills[i]
         and (not att.talents[i][0]) then
@@ -386,15 +394,23 @@ function TalentTree:GetTotalTalents(hero, level)
     local total = 0
     if hero and hero.talentsData then
         for talentId,talent in pairs(hero.talentsData) do
-            if (TalentTree:GetHeroTalentLevel(hero, talentId) < TalentTree:GetTalentMaxLevel(hero, talentId))
-            and (talent.NeedLevel + 1) == level
-            and talent.Ability ~= "empty" then
-                total = total + 1
+            if (TalentTree:GetHeroTalentLevel(hero, talentId) < TalentTree:GetTalentMaxLevel(hero, talentId)) then
+                if TalentTree:GetTalentRankLevel(hero, talentId) == level
+                and talent.Ability ~= "empty" then
+                    total = total + 1
+                end
             end
         end
     end
 
     return total
+end
+
+function TalentTree:GetTalentRankLevel(hero, talentId)
+    local talent_level = hero.talentsData[talentId].NeedLevel + 1
+    if hero.talentsData[talentId].Tab == "extras" then talent_level = 5 end
+
+    return talent_level
 end
 
 function TalentTree:GetHeroRankLevel(hero)

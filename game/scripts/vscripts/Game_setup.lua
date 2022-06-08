@@ -14,9 +14,9 @@ require('libraries/wearables_warmful_ancient')
 
 function GameSetup:init()
     if IsInToolsMode() then -- debug build
-        GameRules:SetStartingGold(99999)
+        GameRules:SetStartingGold(9999)
     else
-        GameRules:SetStartingGold(90)
+        GameRules:SetStartingGold(60)
     end
     -- skip all the starting game mode stages e.g picking screen, showcase, etc
     --GameRules:EnableCustomGameSetupAutoLaunch(true)
@@ -54,10 +54,9 @@ function GameSetup:init()
     GameMode:SetDaynightCycleAdvanceRate(1)
     GameMode:SetDaynightCycleDisabled(false)
 	XP_PER_LEVEL_TABLE = {
-		30, 40, 50, 60, 70,
-		83, 96, 109, 122, 135,
-		152, 169, 186, 203, 220,
-		242, 264, 286, 308, 330
+        25, 35, 45, 55, 65, 75, 85, 95,
+        110, 125, 140, 155, 170, 185, 200,
+        220, 240, 260, 280, 300
 	}
     GameMode:SetCustomXPRequiredToReachNextLevel(XP_PER_LEVEL_TABLE)
     GameMode:SetUseCustomHeroLevels(true)

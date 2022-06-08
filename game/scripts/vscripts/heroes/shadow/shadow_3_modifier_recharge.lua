@@ -20,6 +20,8 @@ function shadow_3_modifier_recharge:OnRefresh(kv)
 end
 
 function shadow_3_modifier_recharge:OnRemoved()
+	if self.parent:IsIllusion() and self.parent:IsAlive() == false then return end
+	
 	self.ability:EndCooldown()
 	ProjectileManager:ProjectileDodge(self.parent)
 	self.parent:AddNewModifier(self.caster, self.ability, "shadow_3_modifier_walk", {})

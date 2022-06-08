@@ -15,15 +15,14 @@ function gold_next_level:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.gold_init = 20
-	self.gold_mult = 4
-	self.max_level = 33
+	self.gold_init = 25
+	self.gold_mult = 5
+	self.max_level = 30
 	
 	if IsServer() then
 		self:SetStackCount(0)
+		self:StartIntervalThink(FrameTime())
 	end
-
-	self:StartIntervalThink(0.1)
 end
 
 function gold_next_level:OnRefresh( kv )
@@ -41,23 +40,27 @@ end
 
 function gold_next_level:OnIntervalThink()
 	if self.parent:IsIllusion() then return end
-	
 	local mod = self.parent:FindModifierByName("rank_points")
-	if mod == nil then return end
-	local level = mod:GetRankLevel()
+	
+	if mod then
+		local level = mod:GetRankLevel()
 
-	if level == self.max_level then
-		self:SetStackCount(0)
-		self:Destroy()
-		return
+		if level == self.max_level then
+			self:SetStackCount(0)
+			self:Destroy()
+			self:StartIntervalThink(FrameTime())
+			return
+		end
+
+		local next_gold = self.gold_init + (self.gold_mult * level)
+
+		if self.parent:GetGold() < next_gold then
+			local stack = next_gold - self.parent:GetGold()
+			self:SetStackCount(stack)
+		end
 	end
-
-	local next_gold = self.gold_init + (self.gold_mult * level)
-
-	if self.parent:GetGold() < next_gold then
-		local stack = next_gold - self.parent:GetGold()
-		self:SetStackCount(stack)
-	end
+	
+	self:StartIntervalThink(FrameTime())
 end
 
 function gold_next_level:OnStackCountChanged(old)

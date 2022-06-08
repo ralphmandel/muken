@@ -42,6 +42,7 @@ function shadow_3_modifier_walk:OnRefresh(kv)
 end
 
 function shadow_3_modifier_walk:OnRemoved()
+	if self.parent:IsIllusion() and self.parent:IsAlive() == false then return end
 	if IsServer() then self.parent:EmitSound("Hero_PhantomAssassin.Blur.Break") end
 
 	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")

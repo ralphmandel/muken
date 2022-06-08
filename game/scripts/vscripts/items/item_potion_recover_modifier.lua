@@ -30,6 +30,18 @@ end
 
 ---------------------------------------------------------------------------------------------------
 
+function item_potion_recover_modifier:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+	}
+
+	return funcs
+end
+
+function item_potion_recover_modifier:OnTakeDamage(keys)
+	if keys.unit == self.parent then self:Destroy() end
+end
+
 function item_potion_recover_modifier:OnIntervalThink()
 	local mana = self.mana
 	if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then mana = mana * 0.5 end

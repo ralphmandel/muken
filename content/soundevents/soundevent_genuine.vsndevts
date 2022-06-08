@@ -25,6 +25,7 @@
 					"mixgroup"			{ "value"	"Weapons"	}
 					"volume"            { "value"   "2.30000"	}
 					"volume_fade_out"	{ "value"	"1.5"		}
+					"stop_at_time" 		{ "value"	"5.000000" }
 				}
 			}
 		}

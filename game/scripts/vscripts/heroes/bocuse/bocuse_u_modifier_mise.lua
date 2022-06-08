@@ -27,8 +27,6 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     self.reset = kv.reset or 0
     self.stop = false
 
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 15})
-
     local target = self.parent:GetAttackTarget()
     if target == nil then target = self.parent:GetAggroTarget() end
     if target then
@@ -39,11 +37,6 @@ function bocuse_u_modifier_mise:OnCreated(kv)
             self.parent:MoveToPosition(point)
         end
     end
-
-    -- UP 4.21
-	if self.ability:GetRank(21) then
-		self.ability:AddBonus("_1_CON", self.parent, 20, 0, nil)
-	end
 
     self:StartSlash()
     self:PlayEfxStart()
@@ -56,7 +49,6 @@ function bocuse_u_modifier_mise:OnRefresh(kv)
 end
 
 function bocuse_u_modifier_mise:OnRemoved()
-    self.ability:RemoveBonus("_1_CON", self.parent)
     self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_4)
     self.ability:SetActivated(true)
 
@@ -105,11 +97,6 @@ function bocuse_u_modifier_mise:OnRemoved()
     end
 
     self.ability:StartCooldown(cd)
-
-    local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 ------------------------------------------------------------
@@ -129,7 +116,7 @@ end
 function bocuse_u_modifier_mise:DeclareFunctions()
 	local funcs = {
         MODIFIER_EVENT_ON_ORDER,
-		MODIFIER_EVENT_ON_HERO_KILLED,
+		MODIFIER_EVENT_ON_DEATH,
         MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
@@ -154,30 +141,28 @@ function bocuse_u_modifier_mise:OnOrder(keys)
     end)
 end
 
-function bocuse_u_modifier_mise:OnHeroKilled(keys)
+function bocuse_u_modifier_mise:OnDeath(keys)
     if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
     if keys.attacker ~= self.parent then return end
-    if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+    if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if keys.unit:IsIllusion() then return end
 
-    self:SetDuration(self:GetDuration(), true)
-    
+    -- UP 4.21
+    if self.ability:GetRank(21) then
+        local heal = keys.unit:GetMaxHealth() * 0.2
+        if heal > 0 then self.parent:Heal(heal, self.ability) end
+    end
+
+    if keys.unit:IsHero() == false then return end
+
     local con = self.parent:FindAbilityByName("_1_CON")
 	if con ~= nil then con:BonusPermanent(1) end
 
+    self:SetDuration(self:GetDuration(), true)
+    self.extra_damage = self.extra_damage + self.ability:GetSpecialValueFor("bonus_damage")
+
     self:PlayEfxKill()
-
-    local heal = self.ability:GetSpecialValueFor("heal")
-
-    -- UP 4.42
-    if self.ability:GetRank(42) then
-        self.extra_damage = self.extra_damage + 10
-        heal = heal + 10
-    end
-
-    local total_heal = heal * keys.target:GetMaxHealth() * 0.01
-    if total_heal > 0 then self.parent:Heal(total_heal, self.ability) end
-
     self:PlayEfxStart()
 end
 
@@ -237,13 +222,15 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
                 self:PlayEfxHit( enemy, origin, cast_direction )
 
-                if RandomInt(1, 100) <= self.stun_chance then
-                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.25})
+                -- UP 4.22
+                if self.ability:GetRank(22) then
+                    self.caster:FindAbilityByName("bocuse_1__julienne"):InflictBleeding(enemy)
+                end
 
-                    -- UP 4.22
-                    if self.ability:GetRank(22) then
-                        self.caster:FindAbilityByName("bocuse_1__julienne"):InflictBleeding(enemy)
-                    end
+                -- UP 4.42
+                if self.ability:GetRank(42)
+                and RandomInt(1, 100) <= 50 then
+                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
                 end
             end
         end

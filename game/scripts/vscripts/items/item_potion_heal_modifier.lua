@@ -39,13 +39,11 @@ function item_potion_heal_modifier:DeclareFunctions()
 end
 
 function item_potion_heal_modifier:OnTakeDamage(keys)
-	if keys.unit ~= self.parent then return end
-	self.heal = self.ability:GetSpecialValueFor("heal_hit")
+	if keys.unit == self.parent then self:Destroy() end
 end
 
 function item_potion_heal_modifier:OnIntervalThink()
 	self.parent:Heal(self.heal, self.ability)
-	self.heal = self.ability:GetSpecialValueFor("heal")
 end
 
 --------------------------------------------------------------------------------------------------

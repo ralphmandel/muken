@@ -761,23 +761,37 @@
 		function BattleArena:RollDrops(unit)
 			local DropInfo = GameRules.DropTable[unit:GetUnitName()]
 			if DropInfo then
-				for item_name,chance in pairs(DropInfo) do
-					if RandomInt(1, 100) <= chance then
-						-- Create the item
-						local item = CreateItem(item_name, nil, nil)
-						local pos = unit:GetAbsOrigin()
-						local drop = CreateItemOnPositionSync( pos, item )
-						local pos_launch = pos+RandomVector(RandomFloat(150,200))
-						item:LaunchLoot(false, 200, 0.75, pos_launch)
-
-						Timers:CreateTimer((15), function()
-							if drop then
-								if IsValidEntity(drop) then
-									UTIL_Remove(drop)
-								end
+				local chance = 0
+				local item_list = {}
+				for table_name, table_chance in pairs(DropInfo) do
+					if table_name == "chance" then
+						chance = table_chance
+					else
+						for i = 1, table_chance, 1 do
+							if #item_list then
+								item_list[#item_list + 1] = table_name
+							else
+								item_list[1] = table_name
 							end
-						end)
+						end
 					end
+				end
+
+				if RandomInt(1, 100) <= chance then
+					local item_name = item_list[RandomInt(1, #item_list)]
+					local item = CreateItem(item_name, nil, nil)
+					local pos = unit:GetAbsOrigin()
+					local drop = CreateItemOnPositionSync(pos, item)
+					local pos_launch = pos + RandomVector(RandomFloat(150,200))
+					item:LaunchLoot(false, 200, 0.75, pos_launch)
+
+					Timers:CreateTimer((15), function()
+						if drop then
+							if IsValidEntity(drop) then
+								UTIL_Remove(drop)
+							end
+						end
+					end)
 				end
 			end
 		end
@@ -993,7 +1007,7 @@
 -- ON THINK
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			--self:GenerateEvent(true)
+			self:GenerateEvent(true)
 			self:SpawnPlayerCosmetics(true)
 		end
 
@@ -1008,7 +1022,7 @@
 			end
 
 			self:CalculateNeutralQuantity()
-			--self:GenerateEvent(false)
+			self:GenerateEvent(false)
 		end
 		
 		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then

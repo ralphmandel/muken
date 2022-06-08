@@ -192,6 +192,16 @@ LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine
             target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
                 duration = self:CalcStatus(1.5, caster, target)
             })
+
+            Timers:CreateTimer((0.25), function()
+                if target ~= nil then
+                    if IsValidEntity(target) then
+                        if target:IsAlive() == false then
+                            if IsServer() then target:StopSound("Genuine.Fear.Loop") end
+                        end
+                    end
+                end
+            end)
         end
 
         if IsServer() then target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end

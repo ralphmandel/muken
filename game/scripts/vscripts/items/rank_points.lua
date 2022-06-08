@@ -16,17 +16,16 @@ function rank_points:OnCreated( kv )
 	self.ability = self:GetAbility()
 	if self.parent:IsIllusion() then return end
 
-	self.gold_init = 20
-	self.gold_mult = 4
+	self.gold_init = 25
+	self.gold_mult = 5
 
 	self.level = 0
-	self.max_level = 33
+	self.max_level = 30
 	
 	if IsServer() then
 		self:SetStackCount(0)
+		self:StartIntervalThink(FrameTime())
 	end
-
-	self:StartIntervalThink(0.1)
 end
 
 function rank_points:OnRefresh( kv )
@@ -55,6 +54,7 @@ function rank_points:OnIntervalThink()
 	if self.parent:IsIllusion() then return end
 	
 	self:CheckPoints()
+	self:StartIntervalThink(FrameTime())
 end
 
 function rank_points:GetNextGoldState()

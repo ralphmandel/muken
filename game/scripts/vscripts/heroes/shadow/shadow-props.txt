@@ -6,10 +6,10 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"shadow_0__toxin"
-			"Ability2"						"shadow_1__strike"
-			"Ability3"						"shadow_2__puddle"
-			"Ability4"						"shadow_3__walk"
+			"Ability1"						"shadow_1__strike"
+			"Ability2"						"shadow_2__puddle"
+			"Ability3"						"shadow_3__walk"
+			"Ability4"						"null"
 			"Ability5"						"null"
 			"Ability6"						"shadow_u__dagger"
 			"Ability7"						"null"
@@ -21,7 +21,7 @@
 			"Ability13"						"null"
 			"Ability14"						"shadow_x1__heart"
 			"Ability15"						"shadow_x2__blink"
-			"Ability16"						"null"
+			"Ability16"						"shadow_0__toxin"
 			"Ability17"						"null"
 			"Ability18"						"cosmetics"
 			"Ability19"						"_channel"
