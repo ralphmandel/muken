@@ -19,23 +19,15 @@ function _2_RES_modifier_stack:OnCreated( kv )
 		self.stacks = kv.stacks
 		self.percent = kv.percent
 
-		local ability = self:GetParent():FindAbilityByName("_2_RES")
-		if ability then
-			if ability:IsTrained() then
-				ability:CalculateAttributes(self.stacks, self.percent)
-			end
-		end
+		local base_stats = self:GetParent():FindAbilityByName("base_stats")
+		if base_stats then base_stats:CalculateStats(self.stacks, self.percent, "RES") end
 	end
 end
 
 function _2_RES_modifier_stack:OnRemoved()
 	if IsServer() then
-		local ability = self:GetParent():FindAbilityByName("_2_RES")
-		if ability then
-			if ability:IsTrained() then
-				ability:CalculateAttributes(-self.stacks, -self.percent)
-			end
-		end
+		local base_stats = self:GetParent():FindAbilityByName("base_stats")
+		if base_stats then base_stats:CalculateStats(-self.stacks, -self.percent, "RES") end
 	end
 end
 

@@ -32,14 +32,14 @@ function bloodstained_2_modifier_bloodsteal:OnRefresh( kv )
 		self.lifesteal_bonus = (self:GetAbility():GetSpecialValueFor("lifesteal_bonus") - 5) * 0.01
 	end
 
-	local mod = self.parent:FindAllModifiersByName("_1_STR_modifier_crit_bonus")
+	local mod = self.parent:FindAllModifiersByName("base_stats_mod_crit_bonus")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
 	-- UP 2.41
 	if self.ability:GetRank(41) then
-		self.parent:AddNewModifier(self.caster, self.ability, "_1_STR_modifier_crit_bonus", {crit_damage = -20})
+		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -20})
 	end
 end
 
@@ -110,9 +110,9 @@ function bloodstained_2_modifier_bloodsteal:OnAttacked(keys)
 	-- UP 2.41
 	if self.ability:GetRank(41)
 	and keys.attacker == self.parent then
-		local str_mod = keys.attacker:FindModifierByName("_1_STR_modifier")
-		if str_mod then
-			if str_mod:HasCritical() then
+		local base_stats = keys.attacker:FindAbilityByName("base_stats")
+		if base_stats then
+			if base_stats.has_crit then
 				local heal = keys.attacker:GetMaxHealth() * 0.02
 				if heal > 0 then keys.attacker:Heal(heal, self.ability) end			
 			end

@@ -89,6 +89,16 @@ function _1_AGI:CalculateAttributes(stacks, percent)
 		local mod = self:GetCaster():FindModifierByName("_1_AGI_modifier")
 		if mod then mod:SetStackCount(total) end
 	end
+
+	local player = self:GetCaster():GetPlayerOwner()
+	if (not player) then return end
+	
+	CustomGameEventManager:Send_ServerToPlayer(player, "stats_state_from_server", {
+		stat = "AGI",
+		base = self:GetLevel() + self.permanent,
+		bonus = self.stacks,
+		total = total,
+	})
 end
 
 function _1_AGI:SetBounds(min, max)

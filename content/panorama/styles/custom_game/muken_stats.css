@@ -1,0 +1,141 @@
+.MukenStatsRoot
+{
+    width: 100%;
+    height: 100%;
+}
+
+.WindowOut
+{
+    transform: translatex( -25px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
+.WindowIn
+{
+    transform: translatex( 0px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
+#StatsColumnContainer
+{
+    width: fit-children;
+    height: fit-children;
+    flow-children: right;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.StatColumn
+{
+    width: fit-children;
+    height: fit-children;
+    flow-children: down;
+    margin-right: 10px;
+}
+
+.StatRow
+{
+    flow-children: right;
+    margin-bottom: 5px;
+}
+
+.StatRow .TitleLabel
+{
+    color: white;
+    text-align: center;
+    /* text-shadow: 0 0 2px greenyellow; */
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    font-size: 16px;
+}
+
+.PositiveStats
+{
+    text-shadow: 0 0 2px greenyellow;
+}
+
+.NegativeStats
+{
+    text-shadow: 0 0 2px red;
+}
+
+
+#StatsWindowContainer
+{
+    margin-top: 152px;
+    horizontal-align: left;
+    width: fit-children;
+    height: fit-children;
+    background-color: #1922292c;
+    /* background-color: gradient( linear, 100% 0%, 100% 100%, from( #001017 ), to( #192229 ) ); */
+    flow-children: right;
+}
+
+#StatsWindowButton
+{
+    horizontal-align: left;
+    vertical-align: top;
+    margin-bottom: 5px;
+	margin-top: 112px;
+
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 24px;
+	color: white;
+    width: 150px;
+	height: 40px;
+
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+}
+
+#StatsWindowButton Label
+{
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 24px;
+	color: white;
+    margin-top: 2px;
+    text-align: center;
+    vertical-align: middle;
+    horizontal-align: middle;
+}
+
+#StatsWindowButton:hover
+{
+    wash-color: #ffffff;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) );
+}
+
+#StatsWindowButtonActive
+{
+	width: 100%;
+	height: 100%;
+	
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #aca91196 ), to( #c4c70ab2 ) );
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.Animate
+{
+	animation-name: light;
+	animation-duration: 0.7s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.Hide
+{
+	visibility: collapse;
+}
+
+@keyframes 'light'
+{
+	0% 		
+	{ 
+		opacity: 1.2; 
+	}
+	100%	
+	{ 
+		opacity: 0.1; 
+	}
+}

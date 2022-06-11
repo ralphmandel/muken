@@ -20,7 +20,7 @@ function ancient_1_modifier_berserk:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.stun_percent = self.ability:GetSpecialValueFor("stun_percent") * 0.01
-	self.agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
+	self.base_stats = self.parent:FindAbilityByName("base_stats")
 	self.hits = 0
 	self:SetMultipleHits(0)
 
@@ -74,7 +74,7 @@ function ancient_1_modifier_berserk:SetMultipleHits(hits)
 		baseAS = -1
 	end
 
-	if self.agi_mod then self.agi_mod:SetBaseAttackTime(baseAS) end
+	if self.base_stats then self.base_stats:SetBaseAttackTime(baseAS) end
 	self.aspd = atkSpeed
 
 	if self.hits < 0 then self.hits = 0 end
@@ -106,13 +106,13 @@ function ancient_1_modifier_berserk:GetModifierPreAttack_CriticalStrike()
 	if self.ability:GetRank(31) 
 	and self.ability:IsCooldownReady() 
 	and self.parent:PassivesDisabled() == false then
-		local str_mod = self.parent:FindModifierByName("_1_STR_modifier")
-		if str_mod then str_mod:EnableForceCrit(0) end
+		local base_stats = self.parent:FindAbilityByName("base_stats")
+		if base_stats then base_stats:SetForceCritHit(0) end
 	end
 end
 
 function ancient_1_modifier_berserk:GetModifierProcAttack_Feedback(keys)
-	local str_mod = self.parent:FindModifierByName("_1_STR_modifier")
+	local base_stats = self.parent:FindAbilityByName("base_stats")
 
 	-- UP 2.31
 	local leap = self.parent:FindAbilityByName("ancient_2__leap")
@@ -130,8 +130,8 @@ function ancient_1_modifier_berserk:GetModifierProcAttack_Feedback(keys)
 	if self.ability:GetRank(31) 
 	and self.ability:IsCooldownReady() 
 	and self.parent:PassivesDisabled() == false then
-		if str_mod then
-			if str_mod:HasCritical() then
+		if base_stats then
+			if base_stats.has_crit then
 				self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 				keys.target:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
 					duration = self.ability:CalcStatus(5, self.caster, keys.target)
@@ -178,10 +178,9 @@ function ancient_1_modifier_berserk:OnTakeDamage(keys)
 		mana_gain = mana_gain + 10
 	end
 
-	local str_mod = self.parent:FindModifierByName("_1_STR_modifier")
-	if str_mod then
-		if str_mod:HasCritical()
-		and self.parent:PassivesDisabled() == false then
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then
+		if base_stats.has_crit and self.parent:PassivesDisabled() == false then
 			local stun_duration = self.ability:CalcStatus(self.ability.original_damage * self.stun_percent, nil, keys.unit)
 			keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = stun_duration})
 

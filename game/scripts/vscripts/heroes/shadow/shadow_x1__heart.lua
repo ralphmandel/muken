@@ -5,32 +5,43 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
 
     function shadow_x1__heart:CalcStatus(duration, caster, target)
         local time = duration
-        local caster_int = nil
-        local caster_mnd = nil
-        local target_res = nil
+        local base_stats_caster = nil
+        local base_stats_target = nil
 
         if caster ~= nil then
-            caster_int = caster:FindModifierByName("_1_INT_modifier")
-            caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+            base_stats_caster = caster:FindAbilityByName("base_stats")
         end
 
         if target ~= nil then
-            target_res = target:FindModifierByName("_2_RES_modifier")
+            base_stats_target = target:FindAbilityByName("base_stats")
         end
 
         if caster == nil then
             if target ~= nil then
-                if target_res then time = time * (1 - target_res:GetStatus()) end
+                if base_stats_target then
+                    local value = base_stats_target.res_total * 0.01
+                    local calc = (value * 6) / (1 +  (value * 0.06))
+                    time = time * (1 - calc)
+                end
             end
         else
             if target == nil then
-                if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+                if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
             else
                 if caster:GetTeamNumber() == target:GetTeamNumber() then
-                    if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+                    if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
                 else
-                    if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
-                    if target_res then time = time * (1 - target_res:GetStatus()) end
+                    if base_stats_caster and base_stats_target then
+                        local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+                        if value > 0 then
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 + calc)
+                        else
+                            value = -1 * value
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 - calc)
+                        end
+                    end
                 end
             end
         end
@@ -40,8 +51,8 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
     end
 
     function shadow_x1__heart:AddBonus(string, target, const, percent, time)
-        local att = target:FindAbilityByName(string)
-        if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
+        local base_stats = target:FindAbilityByName("base_stats")
+        if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
     function shadow_x1__heart:RemoveBonus(string, target)
@@ -78,10 +89,10 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
         local damage = self:GetSpecialValueFor("damage")
         local critical_damage = self:GetSpecialValueFor("critical_damage")
         local toxin_target = target:FindModifierByName("shadow_0_modifier_toxin")
-        local str = caster:FindModifierByName("_1_STR_modifier")
+        local base_stats = caster:FindAbilityByName("base_stats")
 
-        if str then
-            if (str:RollChance() == true or self:CheckAngle(target))
+        if base_stats then
+            if (base_stats:RollChance() == true or self:CheckAngle(target))
             and toxin_target then
                 toxin_target:PlayEfxHeart(caster, toxin_target:IsPurgable())
                 toxin_target.purge = false
@@ -97,7 +108,7 @@ LinkLuaModifier( "shadow_x1_modifier_heart", "heroes/shadow/shadow_x1_modifier_h
 			ability = self
 		}
 		
-        if str then str:EnableForceSpellCrit(critical_damage, crit) end   
+        if base_stats then base_stats:SetForceCritPhysical(critical_damage, crit) end   
 		local total = ApplyDamage(damageTable)
 
         self:PlayEfxHit(target)

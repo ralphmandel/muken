@@ -8,32 +8,43 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
     function ancient_2__leap:CalcStatus(duration, caster, target)
         local time = duration
-        local caster_int = nil
-        local caster_mnd = nil
-        local target_res = nil
+        local base_stats_caster = nil
+        local base_stats_target = nil
 
         if caster ~= nil then
-            caster_int = caster:FindModifierByName("_1_INT_modifier")
-            caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+            base_stats_caster = caster:FindAbilityByName("base_stats")
         end
 
         if target ~= nil then
-            target_res = target:FindModifierByName("_2_RES_modifier")
+            base_stats_target = target:FindAbilityByName("base_stats")
         end
 
         if caster == nil then
             if target ~= nil then
-                if target_res then time = time * (1 - target_res:GetStatus()) end
+                if base_stats_target then
+                    local value = base_stats_target.res_total * 0.01
+                    local calc = (value * 6) / (1 +  (value * 0.06))
+                    time = time * (1 - calc)
+                end
             end
         else
             if target == nil then
-                if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+                if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
             else
                 if caster:GetTeamNumber() == target:GetTeamNumber() then
-                    if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+                    if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
                 else
-                    if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
-                    if target_res then time = time * (1 - target_res:GetStatus()) end
+                    if base_stats_caster and base_stats_target then
+                        local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+                        if value > 0 then
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 + calc)
+                        else
+                            value = -1 * value
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 - calc)
+                        end
+                    end
                 end
             end
         end
@@ -43,8 +54,8 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
     end
 
     function ancient_2__leap:AddBonus(string, target, const, percent, time)
-        local att = target:FindAbilityByName(string)
-        if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
+        local base_stats = target:FindAbilityByName("base_stats")
+        if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
     function ancient_2__leap:RemoveBonus(string, target)
@@ -180,12 +191,12 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         local radius = self:GetAOERadius()
         local damage = self:GetSpecialValueFor("damage")
         local berserk = caster:FindAbilityByName("ancient_1__berserk")
-        local str = caster:FindModifierByName("_1_STR_modifier")
+        local base_stats = caster:FindAbilityByName("base_stats")
         local has_crit = nil
         local special = 0
 
-        if str then
-            if str:RollChance() == true then
+        if base_stats then
+            if base_stats:RollChance() == true then
                 if caster:HasModifier("ancient_1_modifier_berserk") then special = 1 end
                 has_crit = true
             end
@@ -217,7 +228,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
         for _,enemy in pairs(enemies) do
             if berserk then enemy:AddNewModifier(caster, berserk, "ancient_1_modifier_original", {}) end
-            if str then str:EnableForceSpellCrit(0, has_crit) end         
+            if base_stats then base_stats:SetForceCritPhysical(0, has_crit) end         
 
             damageTable.victim = enemy
             ApplyDamage(damageTable)

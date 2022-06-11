@@ -72,7 +72,9 @@ function shadow_1_modifier_passive:OnAttackLanded(keys)
 	-- UP 1.31
 	if self.ability:GetRank(31)
 	and toxin_target then
-		local heal = toxin_target.last_damage
+		local heal = toxin_target.last_damage * 0.75
+		local base_stats = self.parent:FindAbilityByName("base_stats")
+		if base_stats then heal = heal * (1 + base_stats:GetSpellAmp()) end
 		self.parent:Heal(heal, self.ability)
 		self:PlayEfxHeal()
 	end

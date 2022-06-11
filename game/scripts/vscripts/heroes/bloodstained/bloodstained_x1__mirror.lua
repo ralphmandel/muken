@@ -3,30 +3,55 @@ bloodstained_x1__mirror = class({})
 -- INIT
 
 	function bloodstained_x1__mirror:CalcStatus(duration, caster, target)
-		local time = duration
-		if caster == nil then return time end
-		local caster_int = caster:FindModifierByName("_1_INT_modifier")
-		local caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+		    local time = duration
+	local base_stats_caster = nil
+	local base_stats_target = nil
 
-		if target == nil then
-			if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
-		else
-			if caster:GetTeamNumber() == target:GetTeamNumber() then
-				if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
-			else
-				local target_res = target:FindModifierByName("_2_RES_modifier")
-				if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
-				if target_res then time = time * (1 - target_res:GetStatus()) end
+    if caster ~= nil then
+		base_stats_caster = caster:FindAbilityByName("base_stats")
+	end
+
+	if target ~= nil then
+		base_stats_target = target:FindAbilityByName("base_stats")
+	end
+
+	if caster == nil then
+		if target ~= nil then
+			if base_stats_target then
+				local value = base_stats_target.res_total * 0.01
+				local calc = (value * 6) / (1 +  (value * 0.06))
+				time = time * (1 - calc)
 			end
 		end
+	else
+		if target == nil then
+			if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
+		else
+			if caster:GetTeamNumber() == target:GetTeamNumber() then
+				if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
+			else
+				if base_stats_caster and base_stats_target then
+					local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+					if value > 0 then
+						local calc = (value * 6) / (1 +  (value * 0.06))
+						time = time * (1 + calc)
+					else
+						value = -1 * value
+						local calc = (value * 6) / (1 +  (value * 0.06))
+						time = time * (1 - calc)
+					end
+				end
+			end
+		end
+	end
 
-		if time < 0 then time = 0 end
-		return time
+    if time < 0 then time = 0 end
+    return time
 	end
 
 	function bloodstained_x1__mirror:AddBonus(string, target, const, percent, time)
-        local att = target:FindAbilityByName(string)
-        if att then att:BonusPts(self:GetCaster(), self, const, percent, time) end
+        local base_stats = target:FindAbilityByName("base_stats")
+        if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
 	function bloodstained_x1__mirror:RemoveBonus(string, target)

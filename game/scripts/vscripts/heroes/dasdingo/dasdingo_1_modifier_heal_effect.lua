@@ -151,8 +151,8 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
 	self.count = 0
 
 	local heal = 0
-    local mnd = self.caster:FindModifierByName("_2_MND_modifier")
-	if mnd then heal = self.heal * mnd:GetHealPower() end
+    local base_stats = self.caster:FindModifierByName("base_stats")
+	if base_stats then heal = self.heal * base_stats:GetHealPower() end
     if heal > 0 then
         self.parent:Heal(heal, self.ability)
         self:PlayEfxHeal()

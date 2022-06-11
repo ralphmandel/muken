@@ -3,32 +3,43 @@ LinkLuaModifier( "summon_spiders_modifier", "neutrals/summon_spiders_modifier", 
 
 function summon_spiders:CalcStatus(duration, caster, target)
     local time = duration
-	local caster_int = nil
-    local caster_mnd = nil
-	local target_res = nil
+	local base_stats_caster = nil
+	local base_stats_target = nil
 
     if caster ~= nil then
-		caster_int = caster:FindModifierByName("_1_INT_modifier")
-		caster_mnd = caster:FindModifierByName("_2_MND_modifier")
+		base_stats_caster = caster:FindAbilityByName("base_stats")
 	end
 
 	if target ~= nil then
-		target_res = target:FindModifierByName("_2_RES_modifier")
+		base_stats_target = target:FindAbilityByName("base_stats")
 	end
 
 	if caster == nil then
 		if target ~= nil then
-			if target_res then time = time * (1 - target_res:GetStatus()) end
+			if base_stats_target then
+				local value = base_stats_target.res_total * 0.01
+				local calc = (value * 6) / (1 +  (value * 0.06))
+				time = time * (1 - calc)
+			end
 		end
 	else
 		if target == nil then
-			if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+			if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
 		else
 			if caster:GetTeamNumber() == target:GetTeamNumber() then
-				if caster_mnd then time = duration * (1 + caster_mnd:GetBuffAmp()) end
+				if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
 			else
-				if caster_int then time = duration * (1 + caster_int:GetDebuffTime()) end
-				if target_res then time = time * (1 - target_res:GetStatus()) end
+				if base_stats_caster and base_stats_target then
+					local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+					if value > 0 then
+						local calc = (value * 6) / (1 +  (value * 0.06))
+						time = time * (1 + calc)
+					else
+						value = -1 * value
+						local calc = (value * 6) / (1 +  (value * 0.06))
+						time = time * (1 - calc)
+					end
+				end
 			end
 		end
 	end

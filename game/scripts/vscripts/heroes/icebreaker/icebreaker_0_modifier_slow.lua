@@ -52,8 +52,8 @@ function icebreaker_0_modifier_slow:OnCreated( kv )
 		end
 	end
 
-	local agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
-	if agi_mod then agi_mod:SetBaseAttackTime(self:GetStackCount() * as_slow) end
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:SetBaseAttackTime(self:GetStackCount() * as_slow) end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", true) end
@@ -94,8 +94,8 @@ function icebreaker_0_modifier_slow:OnRefresh( kv )
 		end
 	end
 
-	local agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
-	if agi_mod then agi_mod:SetBaseAttackTime(self:GetStackCount() * as_slow) end
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:SetBaseAttackTime(self:GetStackCount() * as_slow) end
 	
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do
@@ -116,8 +116,8 @@ function icebreaker_0_modifier_slow:OnRemoved( kv )
 
 	self.parent:RemoveModifierByName("icebreaker_x2_modifier_sight")
 
-	local agi_mod = self.parent:FindModifierByName("_1_AGI_modifier")
-	if agi_mod then agi_mod:SetBaseAttackTime(0) end
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:SetBaseAttackTime(0) end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do

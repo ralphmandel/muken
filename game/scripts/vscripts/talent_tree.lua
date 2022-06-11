@@ -39,7 +39,7 @@ function TalentTree:ResetData(hero)
     elseif hero:GetUnitName() == "npc_dota_hero_pudge" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/bocuse/bocuse-ranks.txt")
-        hero.att = "bocuse__attributes"
+        hero.att = "base_ranks"
     elseif hero:GetUnitName() == "npc_dota_hero_shadow_shaman" then
         self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo.txt")
         data = LoadKeyValues("scripts/vscripts/heroes/dasdingo/dasdingo-ranks.txt")

@@ -32,9 +32,9 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 	}
 
     -- UP 2.13
-	if self.ability:GetRank(13) then
+	--if self.ability:GetRank(13) then
 		self.ability:AddBonus("_2_REC", self.parent, -12, 0, nil)
-	end
+	--end
 
     -- UP 2.21
 	if self.ability:GetRank(21) then

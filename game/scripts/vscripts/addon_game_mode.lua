@@ -808,7 +808,7 @@
 
 		function BattleArena:GetBundleItem(package_name)
 			if package_name == "rare_item_bundle" then
-				if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
+				--if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
 				return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
 			end
 		end

@@ -118,7 +118,8 @@ function shadow_0_modifier_toxin:ApplyToxinDamage()
 	end
 
 	self.damageTable.damage = damage * self.percent
-	self.last_damage = ApplyDamage(self.damageTable)
+	self.last_damage = self.damageTable.damage
+	self.last_damage_taken = ApplyDamage(self.damageTable)
 	self.total_toxin = self.total_toxin + self.last_damage
 
 	self:PlayEfxDamage()

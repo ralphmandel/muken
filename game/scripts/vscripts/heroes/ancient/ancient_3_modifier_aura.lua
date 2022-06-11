@@ -157,8 +157,8 @@ function ancient_3_modifier_aura:OnIntervalThink()
 end
 
 function ancient_3_modifier_aura:ApplyHeal(heal, chance)
-	local mnd = self.caster:FindModifierByName("_2_MND_modifier")
-	if mnd then heal = heal * mnd:GetHealPower() end
+	local base_stats = self.caster:FindModifierByName("base_stats")
+	if base_stats then heal = heal * base_stats:GetHealPower() end
 
 	local allies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("radius"),

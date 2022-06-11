@@ -1,0 +1,20 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/muken_stats.css"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/muken_stats.js"/>
+    </scripts>
+    <Button hittest="false" class="MukenStatsRoot">
+        <!-- RANK WINDOW -->
+        <Panel hittest="false" id="StatsWindowContainer" onactivate=''>
+            <Panel id="StatsColumnContainer"/>
+        </Panel>
+        
+        <!-- RANK UP BUTTON -->
+        <Button hittest="true" id="StatsWindowButton" onactivate='OnStatsWindowButtonClick()'>
+            <Panel hittest="false" id="StatsWindowButtonActive" class="Hide" />
+            <Label text="STATS" />
+        </Button>
+    </Button>
+</root>

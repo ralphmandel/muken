@@ -57,6 +57,7 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/selection.xml" /-->
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/talent_tree/window.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/next_up.xml" />
+    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_stats.xml" />
         
     <!-- From Overthrow.
 

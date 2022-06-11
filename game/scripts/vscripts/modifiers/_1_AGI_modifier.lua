@@ -73,6 +73,12 @@ function _1_AGI_modifier:GetModifierBaseAttackTimeConstant()
     return self.base_attack_time
 end
 
+function _1_AGI_modifier:OnRespawn(keys)
+    if keys.unit == self.parent then
+        self:SetBaseAttackTime(0)
+    end
+end
+
 function _1_AGI_modifier:Base_AGI(value)
     self.movespeed = (self.ability:GetSpecialValueFor("base_ms") + (self.ability:GetSpecialValueFor("ms") * value ))
 end
@@ -81,10 +87,4 @@ function _1_AGI_modifier:SetBaseAttackTime(bonus)
     local bat = self.ability:GetSpecialValueFor("base_attack_time")
     if self.parent:HasModifier("ancient_1_modifier_berserk") then bat = 2.25 end
     self.base_attack_time = bat + bonus
-end
-
-function _1_AGI_modifier:OnRespawn(keys)
-    if keys.unit == self.parent then
-        self:SetBaseAttackTime(0)
-    end
 end

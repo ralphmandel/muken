@@ -120,6 +120,16 @@ function _2_REC:CalculateAttributes(stacks, percent)
 		local channel = self:GetCaster():FindAbilityByName("_channel")
 		if channel then channel:SetLevel(total) end
 	end
+
+	local player = self:GetCaster():GetPlayerOwner()
+	if (not player) then return end
+	
+	CustomGameEventManager:Send_ServerToPlayer(player, "stats_state_from_server", {
+		stat = "REC",
+		base = self:GetLevel() + self.permanent,
+		bonus = self.stacks,
+		total = total,
+	})
 end
 
 function _2_REC:EnableBasicUpgrade()

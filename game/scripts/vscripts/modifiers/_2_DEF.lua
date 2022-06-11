@@ -117,6 +117,16 @@ function _2_DEF:CalculateAttributes(stacks, percent)
 		local mod = self:GetCaster():FindModifierByName("_2_DEF_modifier")
 		if mod then mod:SetStackCount(total) end
 	end
+
+	local player = self:GetCaster():GetPlayerOwner()
+	if (not player) then return end
+	
+	CustomGameEventManager:Send_ServerToPlayer(player, "stats_state_from_server", {
+		stat = "DEF",
+		base = self:GetLevel() + self.permanent,
+		bonus = self.stacks,
+		total = total,
+	})
 end
 
 function _2_DEF:EnableBasicUpgrade()
