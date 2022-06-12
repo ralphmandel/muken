@@ -18,10 +18,30 @@
     transition-duration: 0.2s;
 }
 
+.Plus
+{
+    width: 18px;
+    height: 18px;
+    background-color: #1922292c;
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 2px yellow;
+    font-size: 14px;
+    /* font-family:Arial, Helvetica, sans-serif; */
+    font-weight: bolder;
+}
+
+.Plus:hover {
+    background-color: white;
+    color: #68641d;
+    text-shadow: 0 0 2px #68641d;
+  }
+
 #StatsColumnContainer
 {
-    width: fit-children;
-    height: fit-children;
+    /* width: fit-children; */
+    /* height: fit-children; */
     flow-children: right;
     margin-top: 5px;
     margin-left: 30px;
@@ -29,15 +49,15 @@
 
 .StatColumn
 {
-    width: fit-children;
-    height: fit-children;
+    /* width: fit-children; */
+    /* height: fit-children; */
     flow-children: down;
     margin-right: 10px;
 }
 
 .StatRow
 {
-    flow-children: right;
+    height: 19px;
     margin-bottom: 5px;
 }
 
@@ -65,8 +85,8 @@
 {
     margin-top: 152px;
     horizontal-align: left;
-    width: fit-children;
-    height: fit-children;
+    /* width: fit-children;
+    height: fit-children; */
     background-color: #1922292c;
     /* background-color: gradient( linear, 100% 0%, 100% 100%, from( #001017 ), to( #192229 ) ); */
     flow-children: right;

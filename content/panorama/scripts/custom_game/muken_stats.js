@@ -19,6 +19,7 @@ function SetOpenState(isOpen) {
     STATS_LAYOUT["STAT_BASE"].SetHasClass("Hide", !isOpen)
     STATS_LAYOUT["STAT_BONUS"].SetHasClass("Hide", !isOpen)
     STATS_LAYOUT["STAT_TOTAL"].SetHasClass("Hide", isOpen)
+    STATS_LAYOUT["STAT_PLUS"].SetHasClass("Hide", !isOpen)
 
     for (const [column_name, row] of Object.entries(STATS_LAYOUT["STAT_NAME"])) {
         for (const [name_short, name_long] of Object.entries(labels_name)) {
@@ -38,6 +39,7 @@ function CreateLayout() {
     CreateColumn("STAT_BASE")
     CreateColumn("STAT_BONUS")
     CreateColumn("STAT_TOTAL")
+    CreateColumn("STAT_PLUS")
 }
 
 function CreateColumn(column) {
@@ -91,6 +93,10 @@ function OnStatsRefresh(event) {
     if (base < 0) {base = 0}
     STATS_LAYOUT["STAT_BASE"][event.stat]["label"].text = base;
     STATS_LAYOUT["STAT_TOTAL"][event.stat]["label"].text = event.total;
+
+    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].SetHasClass("TitleLabel", false)
+    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].SetHasClass("Plus", true)
+    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].text = "+";
 }
 
 (function() {	
