@@ -1,0 +1,15 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/muken_stats.css"/>
+    </styles>
+    <script>
+        var context = $.GetContextPanel();
+        var id = context.id.replace("HeroStat", "");
+
+        function OnStatClick() {
+            context.Data().OnStatClick(id, context.BHasClass("disabled"));
+        }
+    </script>
+    <Panel class="PlusBox" hittest="true" onactivate="OnStatClick()">
+    </Panel>
+</root>

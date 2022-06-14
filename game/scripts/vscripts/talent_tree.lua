@@ -12,7 +12,7 @@ function TalentTree:Init()
         TalentTree:InitPanaromaEvents()
     end
 
-    ListenToGameEvent("player_reconnected", Dynamic_Wrap(self, "OnPlayerReconnect"), self)
+    ListenToGameEvent("player_reconnected", Dynamic_Wrap(TalentTree, "OnPlayerReconnect"), TalentTree)
 end
 
 function TalentTree:InitPanaromaEvents()

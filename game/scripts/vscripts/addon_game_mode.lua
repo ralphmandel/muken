@@ -5,6 +5,7 @@
 
 	require("game_setup")
 	require("talent_tree")
+	require("hero_stats_table")
 
 	function Precache(context)
 		--[[

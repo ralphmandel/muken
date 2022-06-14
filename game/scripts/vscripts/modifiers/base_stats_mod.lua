@@ -23,6 +23,7 @@ base_stats_mod = class ({})
             self.ability = self:GetAbility()
 
             self.ability:AddBaseStatsPoints()
+            self.ability:IncrementSpenderPoints(0, 0)
 			self.ability:LoadSpecialValues()
 
             self.popup_spell_crit = false

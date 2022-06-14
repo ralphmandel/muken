@@ -1,8 +1,14 @@
 var STATS_WINDOW, STATS_CONTAINER;
 var STATS_LAYOUT = {};
-var labels_name ={
+var labels_name = {
     "STR": "STRENGHT", "AGI": "AGILITY", "INT": "INTELLIGENCE", "CON": "CONSTITUTION",
     "DEX": "DEXTERITY", "DEF": "DEFENSE", "RES": "RESISTANCE", "REC": "RECOVERY", "LCK": "LUCK", "MND": "MIND",
+}
+var primary_stats = {
+    1: "STR", 2: "AGI", 3: "INT", 4: "CON"
+}
+var secondary_stats = {
+    1: "DEX", 2: "DEF", 3: "RES", 4: "REC", 5: "LCK", 6: "MND"
 }
 
 var isWindowOpened = false;
@@ -61,20 +67,35 @@ function CreateColumn(column) {
 }
 
 function CreateRow(column, row) {
-    var StatRowPanel = $.CreatePanel("Panel", STATS_LAYOUT[column], "");
-    StatRowPanel.SetHasClass("StatRow", true);
-    STATS_LAYOUT[column][row] = StatRowPanel;
+    if (column == "STAT_PLUS") {
+        var statId = row
 
-    var titleLabel = $.CreatePanel("Label", StatRowPanel, "");
-    titleLabel.SetHasClass("TitleLabel", true);
-    STATS_LAYOUT[column][row]["label"] = titleLabel;
+        var statPanel = $.CreatePanel("Panel", STATS_LAYOUT[column], "HeroStat" + statId);
+        statPanel.BLoadLayout("file://{resources}/layout/custom_game/muken_plus.xml", false, false);
+        statPanel.hittest = true;
+        statPanel.hittestchildren = false;
+        statPanel.Data().OnStatClick = OnStatClick;
+        statPanel.SetHasClass("PlusBox", true);
+        STATS_LAYOUT[column][row] = statPanel;
 
-    // if (column == "STAT_NAME") {
-    //     STATS_LAYOUT[column][row]["label"].text = labels_name[row];
-    // }
+        var titleLabel = $.CreatePanel("Label", statPanel, "");
+        titleLabel.SetHasClass("PlusCrossX", true);
+        STATS_LAYOUT[column][row]["crossX"] = titleLabel;
+        var titleLabel = $.CreatePanel("Label", statPanel, "");
+        titleLabel.SetHasClass("PlusCrossY", true);
+        STATS_LAYOUT[column][row]["crossY"] = titleLabel;
+    }else{
+        var StatRowPanel = $.CreatePanel("Panel", STATS_LAYOUT[column], "");
+        StatRowPanel.SetHasClass("StatRow", true);
+        STATS_LAYOUT[column][row] = StatRowPanel;
+        
+        var titleLabel = $.CreatePanel("Label", StatRowPanel, "");
+        titleLabel.SetHasClass("TitleLabel", true);
+        STATS_LAYOUT[column][row]["label"] = titleLabel;
+    }
 }
 
-function OnStatsRefresh(event) {
+function OnStatUpdate(event) {
     var bonus = event.bonus
     var base = event.base
     if (event.bonus >= 0) {
@@ -93,19 +114,49 @@ function OnStatsRefresh(event) {
     if (base < 0) {base = 0}
     STATS_LAYOUT["STAT_BASE"][event.stat]["label"].text = base;
     STATS_LAYOUT["STAT_TOTAL"][event.stat]["label"].text = event.total;
+}
 
-    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].SetHasClass("TitleLabel", false)
-    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].SetHasClass("Plus", true)
-    STATS_LAYOUT["STAT_PLUS"][event.stat]["label"].text = "+";
+function OnPointsUpdate(event) {
+    STATS_BUTTON.SetHasClass("Animate", (event.primary > 0 || event.secondary > 0))
+
+    for (let index = 1; index <= 4; index++) {
+        var enabled = (event.primary > 0)
+        var stat_level = event.stats_level[primary_stats[index]]
+        if (enabled) {enabled = (event.hero_level * 2 > stat_level) && (stat_level < 30)}
+
+        STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].hittest = enabled
+        STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("PlusBox", enabled);
+        STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("NoPoints", !enabled);
+    }
+
+    for (let index = 1; index <= 6; index++) {
+        var enabled = (event.secondary > 0)
+        var stat_level = event.stats_level[secondary_stats[index]]
+        if (enabled) {enabled = (event.hero_level * 2 > stat_level) && (stat_level < 30)}
+
+        STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].hittest = enabled;
+        STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].SetHasClass("PlusBox", enabled);
+        STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].SetHasClass("NoPoints", !enabled);
+    }
+}
+
+function OnStatClick(statId, disabled) {
+    Game.EmitSound("General.SelectAction");
+    GameEvents.SendCustomGameEventToServer("leveling_stat", {"stat": statId});
+    // if(disabled == false) {
+    //     Game.EmitSound("General.SelectAction");
+    // }
 }
 
 (function() {	
-    STATS_WINDOW = $("#StatsWindowContainer")
-    STATS_WINDOW.SetHasClass("WindowOut", true)
-    STATS_WINDOW.SetHasClass("WindowIn", true)
+    STATS_WINDOW = $("#StatsWindowContainer");
+    STATS_WINDOW.SetHasClass("WindowOut", true);
+    STATS_WINDOW.SetHasClass("WindowIn", true);
     STATS_CONTAINER = $("#StatsColumnContainer");
+    STATS_BUTTON = $("#StatsWindowButton")
 
-    GameEvents.Subscribe("stats_state_from_server", OnStatsRefresh);
+    GameEvents.Subscribe("stats_state_from_server", OnStatUpdate);
+    GameEvents.Subscribe("points_state_from_server", OnPointsUpdate);
 
     CreateLayout()
     SetOpenState(isWindowOpened)

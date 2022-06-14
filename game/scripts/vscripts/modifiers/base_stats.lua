@@ -1,4 +1,5 @@
 base_stats = class ({})
+require("hero_stats_table")
 LinkLuaModifier("base_stats_mod", "modifiers/base_stats_mod", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_stack", "modifiers/base_stats_mod_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_crit_bonus", "modifiers/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
@@ -14,7 +15,6 @@ LinkLuaModifier("_2_LCK_modifier_stack", "modifiers/_2_LCK_modifier_stack", LUA_
 LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_MODIFIER_MOTION_NONE)
 
 ---- INIT
-
 	-- ABILITY FUNCTIONS
 		function base_stats:GetIntrinsicModifierName()
 			return "base_stats_mod"
@@ -28,6 +28,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:OnHeroLevelUp()
+			self:IncrementSpenderPoints(1, 3)
 			for _, stat in pairs(self.stats_primary) do
 				self:IncrementSubLevel(stat, self.bonus_level[stat])
 			end
@@ -38,6 +39,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
+			self.primary_points = 0
+			self.secondary_points = 0
+
 			self.stat_init = {}
 			self.stat_base = {}
 			self.stat_bonus = {}
@@ -45,7 +49,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.stat_percent = {}
 			self.stat_sub_level = {}
 			self.stat_fraction = {}
+			self.stat_levelup = {} -- LEVEL UP COUNT
 			self.bonus_level = {} -- CONST SPECIAL VALUE
+			
 
 			self.stats_primary = {
 				"STR", "AGI", "INT", "CON"
@@ -64,6 +70,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stat_percent[stat] = 0
 				self.stat_sub_level[stat] = 0
 				self.stat_fraction[stat] = {}
+				self.stat_levelup[stat] = 0
 			end
 
 			for _, stat in pairs(self.stats_secondary) do
@@ -74,6 +81,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stat_percent[stat] = 0
 				self.stat_sub_level[stat] = 0
 				self.stat_fraction[stat] = {}
+				self.stat_levelup[stat] = 0
 			end
 
 			self.stat_fraction["STR"] = {["value"] = 0, "DEF", "LCK", "DEX"}
@@ -118,9 +126,88 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
----- ATTRIBUTES POINTS
+		function base_stats:LoadSpecialValues()
+			-- STR
+			self.damage = self:GetSpecialValueFor("damage")
+			self.critical_damage = self:GetSpecialValueFor("critical_damage")
+			self.range = self:GetSpecialValueFor("range")
+			self.crit_damage_physical = 0
+			self.force_crit_physical = false
+			self.force_crit_hit = false
+			self.has_crit = false
 
-	-- ADD BONUS PTS
+			-- AGI
+			self.movespeed = self:GetSpecialValueFor("movespeed")
+			self.base_movespeed = self:GetSpecialValueFor("base_movespeed")
+			self.attack_speed = self:GetSpecialValueFor("attack_speed")
+			self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
+			self.attack_time = self.base_attack_time
+
+			-- INT
+			self.mana = self:GetSpecialValueFor("mana")
+			self.spell_amp = self:GetSpecialValueFor("spell_amp")
+
+			-- CON
+			self.health_bonus = self:GetSpecialValueFor("health_bonus")
+			self.health_regen = self:GetSpecialValueFor("health_regen")
+			self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
+			self.block_damage = self:GetSpecialValueFor("block_damage")
+			self.block_chance = self:GetSpecialValueFor("block_chance")
+			self.regen_state = 1
+			self.physical_block = 0
+			self.magical_block = 0
+
+			-- SECONDARY
+			self.evade = self:GetSpecialValueFor("evade") 
+			self.armor = self:GetSpecialValueFor("armor")
+			self.resistance = self:GetSpecialValueFor("resistance")
+			self.mana_regen = self:GetSpecialValueFor("mana_regen")
+			self.cooldown = self:GetSpecialValueFor("cooldown")
+			self.critical_chance = self:GetSpecialValueFor("critical_chance")
+			self.heal_power = self:GetSpecialValueFor("heal_power")
+			self.buff_amp = self:GetSpecialValueFor("buff_amp")
+
+			-- INIT
+			self.total_crit_damage = self:CalcCritDamage()
+			self.total_range = self.range * self.stat_init["STR"]
+			self.total_movespeed = (self.base_movespeed + (self.movespeed * self.stat_init["AGI"] ))
+			self.total_mana = self.mana * self.stat_init["INT"]
+			self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["CON"])
+		end
+
+---- ATTRIBUTES POINTS
+	-- ADD SPENDER POINTS AND UPDATE PANORAMA
+		function base_stats:IncrementSpenderPoints(primary, secondary)
+			self.primary_points = self.primary_points + primary
+			self.secondary_points = self.secondary_points + secondary
+			self:UpdatePanoramaPoints()
+		end
+
+		function base_stats:UpdatePanoramaStat(stat)
+			local player = self:GetCaster():GetPlayerOwner()
+			if (not player) then return end
+
+			CustomGameEventManager:Send_ServerToPlayer(player, "stats_state_from_server", {
+				stat = stat,
+				base = self.stat_base[stat],
+				bonus = self.stat_bonus[stat],
+				total = self.stat_total[stat]
+			})
+		end
+
+		function base_stats:UpdatePanoramaPoints()
+			local player = self:GetCaster():GetPlayerOwner()
+			if (not player) then return end
+
+			CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
+				primary = self.primary_points,
+				secondary = self.secondary_points,
+				stats_level = self.stat_levelup,
+				hero_level = self:GetCaster():GetLevel()
+			})
+		end
+
+	-- APPLY TEMPORARY STATS
 		function base_stats:AddBonusStat(attacker, ability, static_value, percent_value, duration, string)
 			local target = self:GetCaster()
 			local stringFormat = string.format("%s_modifier_stack", string)
@@ -147,18 +234,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			local void = self:GetCaster():FindAbilityByName("_void")
 			if void then void:SetLevel(1) end
 
-			local player = self:GetCaster():GetPlayerOwner()
-			if (not player) then return end
-			
-			CustomGameEventManager:Send_ServerToPlayer(player, "stats_state_from_server", {
-				stat = stat,
-				base = self.stat_base[stat],
-				bonus = self.stat_bonus[stat],
-				total = self.stat_total[stat]
-			})
+			self:UpdatePanoramaStat(stat)
 		end
 
-	-- LEVELING PTS
+	-- PASSIVE BONUS PTS AND FRACTION CALC
 		function base_stats:IncrementSubLevel(stat, value)
 			self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
 			if self.stat_sub_level[stat] > 1 then
@@ -187,57 +266,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
----- ATTRIBUTES VALUES
-
-	function base_stats:LoadSpecialValues()
-		-- STR
-		self.damage = self:GetSpecialValueFor("damage")
-		self.critical_damage = self:GetSpecialValueFor("critical_damage")
-		self.range = self:GetSpecialValueFor("range")
-		self.crit_damage_physical = 0
-		self.force_crit_physical = false
-		self.force_crit_hit = false
-		self.has_crit = false
-
-		-- AGI
-		self.movespeed = self:GetSpecialValueFor("movespeed")
-		self.base_movespeed = self:GetSpecialValueFor("base_movespeed")
-		self.attack_speed = self:GetSpecialValueFor("attack_speed")
-		self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
-		self.attack_time = self.base_attack_time
-
-		-- INT
-		self.mana = self:GetSpecialValueFor("mana")
-		self.spell_amp = self:GetSpecialValueFor("spell_amp")
-
-		-- CON
-		self.health_bonus = self:GetSpecialValueFor("health_bonus")
-		self.health_regen = self:GetSpecialValueFor("health_regen")
-		self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
-		self.block_damage = self:GetSpecialValueFor("block_damage")
-		self.block_chance = self:GetSpecialValueFor("block_chance")
-		self.regen_state = 1
-		self.physical_block = 0
-		self.magical_block = 0
-
-		-- SECONDARY
-		self.evade = self:GetSpecialValueFor("evade") 
-		self.armor = self:GetSpecialValueFor("armor")
-		self.resistance = self:GetSpecialValueFor("resistance")
-		self.mana_regen = self:GetSpecialValueFor("mana_regen")
-		self.cooldown = self:GetSpecialValueFor("cooldown")
-		self.critical_chance = self:GetSpecialValueFor("critical_chance")
-		self.heal_power = self:GetSpecialValueFor("heal_power")
-		self.buff_amp = self:GetSpecialValueFor("buff_amp")
-
-		-- INIT
-		self.total_crit_damage = self:CalcCritDamage()
-		self.total_range = self.range * self.stat_init["STR"]
-		self.total_movespeed = (self.base_movespeed + (self.movespeed * self.stat_init["AGI"] ))
-		self.total_mana = self.mana * self.stat_init["INT"]
-		self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["CON"])
-	end
-
+---- ATTRIBUTES UTILS
 	-- UTIL STR
 
 		function base_stats:SetForceCritPhysical(value, state)
