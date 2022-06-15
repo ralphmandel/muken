@@ -178,6 +178,7 @@
 			PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
+			PrecacheResource( "soundfile", "soundevents/soundevent_muken_config.vsndevts", context)
 	end
 
 	function Activate()
@@ -894,7 +895,9 @@
 				false	-- bool, can grow cache
 			)
 			for _,unit in pairs(allies) do
-				number = number + 1
+				if unit:IsIllusion() == false then
+					number = number + 1
+				end
 			end
 
 			local average_gold_bounty = RandomInt(unit:GetMinimumGoldBounty(), unit:GetMaximumGoldBounty())
@@ -902,8 +905,13 @@
 
 			if math.floor(gold) > 0 and number > 0 then
 				for _,unit in pairs(allies) do
-					unit:ModifyGold(math.floor(gold), false, 18)
-					SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
+					if unit:IsIllusion() == false then
+						unit:ModifyGold(math.floor(gold), false, 18)
+						SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
+						
+						local base_hero = unit:FindAbilityByName("base_hero")
+						if base_hero then base_hero:AddGold(gold) end
+					end
 				end
 			end
 		end

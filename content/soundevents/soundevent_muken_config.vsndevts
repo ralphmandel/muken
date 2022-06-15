@@ -1,0 +1,115 @@
+"Config.Cancel"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/CURSOL_CANCEL.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"Config.Move"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/CURSOL_MOVE.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"Config.Ok"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/CURSOL_OK.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"Config.Select"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/CURSOL_SELECT.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}

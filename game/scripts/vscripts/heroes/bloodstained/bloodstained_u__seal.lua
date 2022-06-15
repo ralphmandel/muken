@@ -6,7 +6,7 @@ LinkLuaModifier( "bloodstained_u_modifier_copy", "heroes/bloodstained/bloodstain
 LinkLuaModifier( "bloodstained_u_modifier_copy_status_efx", "heroes/bloodstained/bloodstained_u_modifier_copy_status_efx", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "bloodstained_u_modifier_hp_bonus", "heroes/bloodstained/bloodstained_u_modifier_hp_bonus", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "bloodstained_0_modifier_bleeding", "heroes/bloodstained/bloodstained_0_modifier_bleeding", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_custom_indicator", "modifiers/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "_modifier_generic_custom_indicator", "modifiers/_modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 
@@ -121,7 +121,7 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
 -- SPELL START
 
     function bloodstained_u__seal:GetIntrinsicModifierName()
-        return "modifier_generic_custom_indicator"
+        return "_modifier_generic_custom_indicator"
     end
 
     function bloodstained_u__seal:OnSpellStart()

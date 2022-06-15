@@ -22,6 +22,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:Spawn()
 			if self:IsTrained() == false then self:UpgradeAbility(true) end
+			Timers:CreateTimer((0.2), function()
+				if self:GetCaster():IsIllusion() == false then
+					self:GetCaster():Heal(1000, nil)
+				end
+			end)
 		end
 
 		function base_stats:OnUpgrade()
@@ -102,6 +107,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			local hero_name = nil
 
 			if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
+			if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
+			if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
+			if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
+			if caster:GetUnitName() == "npc_dota_hero_elder_titan" then hero_name = "ancient" end
+			if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
+			if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then hero_name = "bloodstained" end
+
 			if hero_name == nil then return end
 			if heroes_stats_data == nil then return end
 

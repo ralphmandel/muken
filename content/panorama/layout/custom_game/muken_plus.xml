@@ -6,10 +6,18 @@
         var context = $.GetContextPanel();
         var id = context.id.replace("HeroStat", "");
 
+        function OnStatOver() {
+            context.Data().OnStatOver(id);
+        }
+
+        function OnStatOut() {
+            context.Data().OnStatOut(id);
+        }
+
         function OnStatClick() {
             context.Data().OnStatClick(id, context.BHasClass("disabled"));
         }
     </script>
-    <Panel class="PlusBox" hittest="true" onactivate="OnStatClick()">
+    <Panel class="PlusBox" hittest="true" onactivate="OnStatClick()" onmouseover="OnStatOver()" onmouseout="OnStatOut()">
     </Panel>
 </root>

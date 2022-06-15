@@ -24,9 +24,6 @@ function cosmetics:LoadCosmetics()
 	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 	if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
 
-	if caster:GetUnitName() == "npc_dota_hero_queenofpain" then hero_name = "succubus" end
-	if caster:GetUnitName() == "npc_dota_hero_phantom_assassin" then hero_name = "gladiator" end
-
 	if hero_name ~= nil then
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
 		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
