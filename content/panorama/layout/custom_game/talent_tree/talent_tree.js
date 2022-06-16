@@ -44,11 +44,6 @@ function OnTalentsState(event) {
 	$("#TalentTreeWindowButtonActiveImage").SetHasClass("Animate", !hasZeroTalentPoints)
 }
 
-function OnRankUpState(event) {
-	$("#TalentTreeWindowButtonActiveImage").SetHasClass("hide", false)
-	$("#TalentTreeWindowButtonActiveImage").SetHasClass("Animate", true)
-}
-
 function OnResetState(event) {
     for(var column=1; column <= 3; column++) {
         for(var rows=1; rows <= 5; rows++) {
@@ -218,7 +213,6 @@ function OnTalentTreeWindowButtonClick() {
     GameEvents.Subscribe("talent_tree_get_talents_from_server", OnTalentsData);
     GameEvents.Subscribe("talent_tree_get_state_from_server", OnTalentsState);
     GameEvents.Subscribe("reset_state_from_server", OnResetState);
-    GameEvents.Subscribe("rankup_state_from_server", OnRankUpState);
 	
 	//GameEvents.SendCustomGameEventToServer( "talent_tree_get_talents", {});
 	

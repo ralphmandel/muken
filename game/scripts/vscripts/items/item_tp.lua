@@ -1,13 +1,7 @@
 item_tp = class({})
-LinkLuaModifier("rank_points", "items/rank_points", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("gold_next_level", "items/gold_next_level", LUA_MODIFIER_MOTION_NONE)
 
 function item_tp:Spawn()
 	self.cooldown = 60
-end
-
-function item_tp:GetIntrinsicModifierName()
-	return "rank_points"
 end
 
 -----------------------------------------------------------
@@ -97,8 +91,7 @@ function item_tp:GetCooldown(iLevel)
 end
 
 function item_tp:GetChannelTime()
-	local rec = self:GetCaster():FindAbilityByName("_2_REC")
 	local channel = self:GetCaster():FindAbilityByName("_channel")
 	local channel_time = self:GetSpecialValueFor("channel_time")
-	return channel_time * (1 - (channel:GetLevel() * rec:GetSpecialValueFor("channel") * 0.01))
+	return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
 end

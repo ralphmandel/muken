@@ -70,12 +70,10 @@ LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODI
     function bocuse_3__sauce:GetRank(upgrade)
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("bocuse__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_pudge" then return end
 
-        return att.talents[3][upgrade]
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[3][upgrade] end
     end
 
     function bocuse_3__sauce:OnUpgrade()
@@ -83,14 +81,8 @@ LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODI
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_pudge" then return end
 
-        local att = caster:FindAbilityByName("bocuse__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[3][0] = true
-            end
-        end
-        
-        
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[3][0] = true end
     end
 
     function bocuse_3__sauce:Spawn()

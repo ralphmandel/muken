@@ -14,7 +14,6 @@ require("talent_tree")
 		if self:GetLevel() == 1 then
 			caster:SetAbilityPoints(1)
 			self:ResetRanksData()
-			self.extras_unlocked = 0
 		end
 	end
 
@@ -45,7 +44,7 @@ require("talent_tree")
 		if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
 		if caster:GetUnitName() == "npc_dota_hero_spectre" then self.hero_name = "shadow" end
 
-		self.talents = {
+		self.ranks = {
 			[0] = {
 				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
 				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
@@ -76,15 +75,16 @@ require("talent_tree")
 		self.talents.level = {}
 		self.talents.abilities = {}
 		self.talents.currentPoints = 0
+		self.extras_unlocked = 0
 
 		-- RANK LEVEL
 		self.current_points = 0
-		self.max_level = 30
+		self.max_level = self:GetSpecialValueFor("max_level")
 
 		-- GOLD INDICATOR
 		self.current_gold = 0
-		self.gold_init = 25
-		self.gold_mult = 5
+		self.gold_init = self:GetSpecialValueFor("gold_init")
+		self.gold_mult = self:GetSpecialValueFor("gold_mult")
 
 		if self.hero_name ~= nil then
 			self:LoadSkills()
@@ -93,9 +93,9 @@ require("talent_tree")
 		end
 
 		if IsInToolsMode() then
-			self:AddGold(9999)
-		else
 			self:AddGold(60)
+		else
+			self:AddGold(self:GetSpecialValueFor("starting_gold"))
 		end
 	end
 
@@ -103,12 +103,12 @@ require("talent_tree")
 		local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-skills.txt")
 		if skills_data ~= nil then
 			for skill, skill_name in pairs(skills_data) do
-				if skill < 4 then
-					self.skills[skill] = skill_name
+				if tonumber(skill) < 5 then
+					self.skills[tonumber(skill)] = skill_name
 				else
 					for id, extra_skill_name in pairs(skill_name) do
-						self.skills[skill] = {}
-						self.skills[skill][id] = extra_skill_name
+						self.skills[tonumber(skill)] = {}
+						self.skills[tonumber(skill)][tonumber(id)] = extra_skill_name
 					end
 				end
 			end
@@ -116,7 +116,7 @@ require("talent_tree")
 	end
 
 	function base_hero:LoadRanks()
-		self.abilitiesData = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name..".txt")
+		local abilitiesData = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name..".txt")
 		local ranks_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-ranks.txt")
 		if ranks_data == nil then return end
 
@@ -148,8 +148,8 @@ require("talent_tree")
 										NeedLevel = tonumber(nlvl)
 									}
 									
-									if self.abilitiesData[talent] then
-										talentData.MaxLevel = self.abilitiesData[talent]["MaxLevel"] or 1
+									if abilitiesData[talent] then
+										talentData.MaxLevel = abilitiesData[talent]["MaxLevel"] or 1
 									else
 										talentData.MaxLevel = 1
 									end
@@ -197,13 +197,15 @@ require("talent_tree")
 		Timers:CreateTimer(0, function()
 			if not self.talents then return 1.0 end
 	
+			print("result -----------------------------------------")
+
 			local resultTable = {}
 			for i = 1, #self.talentsData do
 				local talentLvl = self:GetHeroTalentLevel(i)
 				local talentMaxLvl = self:GetTalentMaxLevel(i)
-			
 				local isDisabled = self:IsHeroCanLevelUpTalent(i) == false
 				local isUpgraded = false
+
 				if (talentLvl == talentMaxLvl) then
 					isDisabled = false
 					isUpgraded = true
@@ -231,6 +233,15 @@ require("talent_tree")
 		end)
 	end
 
+	function base_hero:UpdatePanoramaGold()
+		local player = self:GetCaster():GetPlayerOwner()
+		if (not player) then return end
+
+		CustomGameEventManager:Send_ServerToPlayer(player, "next_up_from_server", {
+			points = self.current_gold
+		})
+	end
+
 	function base_hero:UpgradeRank(skill, id, level)
 		local caster = self:GetCaster()
 		local ability = nil
@@ -240,7 +251,7 @@ require("talent_tree")
 			ability = caster:FindAbilityByName(self.skills[skill][id])
 			if not ability then return end
 		else
-			self.talents[skill][id] = true
+			self.ranks[skill][id] = true
 			ability = caster:FindAbilityByName(self.skills[skill])
 			if not ability then return end
 			if not ability:IsTrained() then return end
@@ -253,21 +264,24 @@ require("talent_tree")
 
 	function base_hero:AddGold(amount)
 		self.current_gold = self.current_gold + amount
-		local total_points = self:GetHeroRankLevel() + self.current_points
-		if total_points >= self.max_level then self.current_gold = 0 return end
 		self:CalculateGold()
 	end
 
 	function base_hero:CalculateGold()
 		local total_points = self:GetHeroRankLevel() + self.current_points
-		if total_points >= self.max_level then self.current_gold = 0 return end
-		local current_gold_cost = self.gold_init + (self.gold_mult * total_points)
-
-		if self.current_gold >= current_gold_cost then
-			self.current_gold = self.current_gold - current_gold_cost
-			self:AddTalentPointsToHero(1)
-			self:CalculateGold()
+		if total_points >= self.max_level then
+			self.current_gold = 0
+		else
+			local current_gold_cost = self.gold_init + (self.gold_mult * total_points)
+			if self.current_gold >= current_gold_cost then
+				self.current_gold = self.current_gold - current_gold_cost
+				self:AddTalentPointsToHero(1)
+				self:CalculateGold()
+				return
+			end
 		end
+
+		self:UpdatePanoramaGold()
 	end
 
 -- RANK SYSTEM
@@ -364,25 +378,25 @@ require("talent_tree")
 
 		-- Ancient 1.11 requires skill 4
 		if self.talentsData[talentId].Ability == "ancient_1__berserk_rank_11"
-		and (not self.talents[4][0]) then
+		and (not self.ranks[4][0]) then
 			return false
 		end
 
 		-- Ancient 2.31 requires skill 1
 		if self.talentsData[talentId].Ability == "ancient_2__leap_rank_31"
-		and (not self.talents[1][0]) then
+		and (not self.ranks[1][0]) then
 			return false
 		end
 
 		-- Ancient 4.31 requires skill 1
 		if self.talentsData[talentId].Ability == "ancient_u__final_rank_31"
-		and (not self.talents[1][0]) then
+		and (not self.ranks[1][0]) then
 			return false
 		end
 
 		-- Bocuse 4.22 requires skill 1
 		if self.talentsData[talentId].Ability == "bocuse_u__mise_rank_22"
-		and (not self.talents[1][0]) then
+		and (not self.ranks[1][0]) then
 			return false
 		end
 
@@ -396,13 +410,13 @@ require("talent_tree")
 
 		for i = 1, 4, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
-			and (not self.talents[i][0]) then
+			and (not self.ranks[i][0]) then
 				return false
 			end
 		end
 
 		if self.talentsData[talentId].Tab == "extras" then
-			if (not self.talents[1][0]) or (not self.talents[2][0]) or (not self.talents[3][0]) or (not self.talents[4][0]) then
+			if (not self.ranks[1][0]) or (not self.ranks[2][0]) or (not self.ranks[3][0]) or (not self.ranks[4][0]) then
 				return false
 			else
 				if self.extras_unlocked > 0 then
@@ -473,53 +487,53 @@ require("talent_tree")
 	end
 
 --PRECACHE
-	function base_hero:Precache(context)
-		if self:GetCaster():GetUnitName() == "npc_dota_hero_pudge" then
-			PrecacheResource( "particle", "particles/bocuse/bocuse_msg.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_2.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_3.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_1.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_2.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_3.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_4.vpcf", context )
-			PrecacheResource( "particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf", context )
-			PrecacheResource( "particle", "particles/items3_fx/star_emblem.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_flambee.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_flambee_impact.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_flambee_impact_fire_ring.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/lifestealer/ls_ti9_immortal/status_effect_ls_ti9_open_wounds.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_drunk_ally_crit.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_drunk_enemy.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_3_counter.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_3_double_counter.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/doom/doom_ti8_immortal_arms/doom_ti8_immortal_devour.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_rot.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff.vpcf", context )
-			PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground.vpcf", context )
-			PrecacheResource( "particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_roux_debuff.vpcf", context )
-			PrecacheResource( "particle", "particles/bocuse/bocuse_roux_aoe_mass.vpcf", context )
-			PrecacheResource( "particle", "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/meepo/meepo_colossal_crystal_chorus/meepo_divining_rod_poof_start.vpcf", context )
-			PrecacheResource( "particle", "particles/items_fx/black_king_bar_avatar.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_secondstyle_debuff.vpcf", context )
-			PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
-			PrecacheResource( "particle", "particles/status_fx/status_effect_slark_shadow_dance.vpcf", context )
-			PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_blast_off.vpcf", context )
+	-- function base_hero:Precache(context)
+	-- 	if self:GetCaster():GetUnitName() == "npc_dota_hero_pudge" then
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_msg.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_2.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_3.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_1.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_2.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_3.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_strike_blur_extra_4.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/items3_fx/star_emblem.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_flambee.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_flambee_impact.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_flambee_impact_fire_ring.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/lifestealer/ls_ti9_immortal/status_effect_ls_ti9_open_wounds.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_drunk_ally_crit.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_drunk_enemy.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_3_counter.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_3_double_counter.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/doom/doom_ti8_immortal_arms/doom_ti8_immortal_devour.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_rot.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_roux_debuff.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/bocuse/bocuse_roux_aoe_mass.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/meepo/meepo_colossal_crystal_chorus/meepo_divining_rod_poof_start.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/items_fx/black_king_bar_avatar.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/wisp/wisp_relocate_teleport_ti7_out.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_secondstyle_debuff.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/status_fx/status_effect_slark_shadow_dance.vpcf", context )
+	-- 		PrecacheResource( "particle", "particles/units/heroes/hero_techies/techies_blast_off.vpcf", context )
 
-			PrecacheResource( "model", "models/items/pudge/pudge_lord_of_decay_weapon/pudge_lord_of_decay_weapon.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/pudge_insanity_chooper/pudge_insanity_chooper.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/pudge_frozen_pig_face_head/pudge_frozen_pig_face_head.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/the_ol_choppers_shoulder/the_ol_choppers_shoulder.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/delicacies_back/delicacies_back.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/doomsday_ripper_belt/doomsday_ripper_belt.vmdl", context )
-			PrecacheResource( "model", "models/items/pudge/delicacies_arms/delicacies_arms.vmdl", context )
-		end
-	end
+	-- 		PrecacheResource( "model", "models/items/pudge/pudge_lord_of_decay_weapon/pudge_lord_of_decay_weapon.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/pudge_insanity_chooper/pudge_insanity_chooper.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/pudge_frozen_pig_face_head/pudge_frozen_pig_face_head.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/the_ol_choppers_shoulder/the_ol_choppers_shoulder.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/delicacies_back/delicacies_back.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/doomsday_ripper_belt/doomsday_ripper_belt.vmdl", context )
+	-- 		PrecacheResource( "model", "models/items/pudge/delicacies_arms/delicacies_arms.vmdl", context )
+	-- 	end
+	-- end

@@ -173,7 +173,6 @@ LinkLuaModifier("genuine_x2_modifier_under", "heroes/genuine/genuine_x2_modifier
     end
 
     function genuine_x2__under:GetChannelTime()
-        local rec = self:GetCaster():FindAbilityByName("_2_REC")
         local channel = self:GetCaster():FindAbilityByName("_channel")
         local channel_time = self:GetSpecialValueFor("channel_time")
         return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))

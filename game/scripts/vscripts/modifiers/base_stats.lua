@@ -219,7 +219,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			})
 		end
 
-	-- APPLY TEMPORARY STATS
+	-- APPLY STATS
 		function base_stats:AddBonusStat(attacker, ability, static_value, percent_value, duration, string)
 			local target = self:GetCaster()
 			local stringFormat = string.format("%s_modifier_stack", string)
@@ -249,7 +249,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self:UpdatePanoramaStat(stat)
 		end
 
-	-- PASSIVE BONUS PTS AND FRACTION CALC
+		function base_stats:AddBaseStat(stat, amount)
+			self.stat_base[stat] = self.stat_base[stat] + amount
+			self:CalculateStats(0, 0, stat)
+		end
+
+	-- PASSIVE LEVELUP PTS AND FRACTION CALC
 		function base_stats:IncrementSubLevel(stat, value)
 			self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
 			if self.stat_sub_level[stat] > 1 then

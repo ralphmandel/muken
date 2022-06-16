@@ -73,6 +73,15 @@ function hero_stats_table:OnPlayerReconnect(keys)
 
     local base_stats = hero:FindAbilityByName("base_stats")
     if (not base_stats) then return end
+
+    for _,primary in pairs(hero_stats_table.stats_primary) do
+        base_stats:UpdatePanoramaStat(primary)
+    end
+
+    for _,secondary in pairs(hero_stats_table.stats_secondary) do
+        base_stats:UpdatePanoramaStat(secondary)
+    end
+    
     base_stats:UpdatePanoramaPoints()
 end
 

@@ -213,7 +213,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function druid_1__conversion:GetChannelTime()
-        local rec = self:GetCaster():FindAbilityByName("_2_REC")
         local channel = self:GetCaster():FindAbilityByName("_channel")
         local channel_time = self:GetSpecialValueFor("channel_time")
         return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))

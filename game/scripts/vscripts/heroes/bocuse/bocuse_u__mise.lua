@@ -74,12 +74,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function bocuse_u__mise:GetRank(upgrade)
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("bocuse__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_pudge" then return end
 
-        return att.talents[4][upgrade]
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
     function bocuse_u__mise:OnUpgrade()
@@ -87,15 +85,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_pudge" then return end
 
-        local att = caster:FindAbilityByName("bocuse__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
-        end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[4][0] = true end
         
-        
-
 		local charges = 1
 
 		-- UP 4.31

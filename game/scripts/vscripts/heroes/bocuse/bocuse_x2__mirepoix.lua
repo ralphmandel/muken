@@ -105,7 +105,6 @@ LinkLuaModifier("bocuse_x2_modifier_end", "heroes/bocuse/bocuse_x2_modifier_end"
     end
 
     function bocuse_x2__mirepoix:GetChannelTime()
-        local rec = self:GetCaster():FindAbilityByName("_2_REC")
         local channel = self:GetCaster():FindAbilityByName("_channel")
         local channel_time = self:GetSpecialValueFor("channel_time")
         return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))

@@ -177,7 +177,6 @@ LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODI
     end
 
     function ancient_3__aura:GetChannelTime()
-        local rec = self:GetCaster():FindAbilityByName("_2_REC")
         local channel = self:GetCaster():FindAbilityByName("_channel")
         local channel_time = self:GetSpecialValueFor("channel_time")
         return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))

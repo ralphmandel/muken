@@ -156,8 +156,8 @@ function bocuse_u_modifier_mise:OnDeath(keys)
 
     if keys.unit:IsHero() == false then return end
 
-    local con = self.parent:FindAbilityByName("_1_CON")
-	if con ~= nil then con:BonusPermanent(1) end
+    local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:AddBaseStat("CON", 1) end
 
     self:SetDuration(self:GetDuration(), true)
     self.extra_damage = self.extra_damage + self.ability:GetSpecialValueFor("bonus_damage")

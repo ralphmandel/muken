@@ -139,6 +139,43 @@
 		}
 	}
 
+	"base_hero"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"modifiers/base_hero"
+        "AbilityTextureName"    		"base_hero"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"	
+
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_level"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"gold_init"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"gold_mult"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"starting_gold"			"60"
+			}		
+		}
+	}
+
 	"_1_STR"
 	{
 		"BaseClass"						"ability_lua"
