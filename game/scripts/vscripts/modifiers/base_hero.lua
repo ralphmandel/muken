@@ -32,18 +32,20 @@ require("talent_tree")
 	end
 
 -- LOAD DATA
-	function base_hero:ResetRanksData()
+	function base_hero:LoadHeroNames()
 		local caster = self:GetCaster()
-		self.hero_name = nil
-		if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then self.hero_name = "dasdingo" end
-		if caster:GetUnitName() == "npc_dota_hero_elder_titan" then self.hero_name = "ancient" end
-		if caster:GetUnitName() == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
-		if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then self.hero_name = "bloodstained" end
-		if caster:GetUnitName() == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
-		if caster:GetUnitName() == "npc_dota_hero_furion" then self.hero_name = "druid" end
-		if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
-		if caster:GetUnitName() == "npc_dota_hero_spectre" then self.hero_name = "shadow" end
-
+		local unit_name = caster:GetUnitName()
+		if unit_name == "npc_dota_hero_shadow_shaman" then self.hero_name = "dasdingo" end
+		if unit_name == "npc_dota_hero_elder_titan" then self.hero_name = "ancient" end
+		if unit_name == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
+		if unit_name == "npc_dota_hero_shadow_demon" then self.hero_name = "bloodstained" end
+		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
+		if unit_name == "npc_dota_hero_furion" then self.hero_name = "druid" end
+		if unit_name == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
+		if unit_name == "npc_dota_hero_spectre" then self.hero_name = "shadow" end	
+	end
+	
+	function base_hero:ResetRanksData()
 		self.ranks = {
 			[0] = {
 				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
@@ -106,8 +108,9 @@ require("talent_tree")
 				if tonumber(skill) < 5 then
 					self.skills[tonumber(skill)] = skill_name
 				else
+					self.skills[tonumber(skill)] = {}
+					
 					for id, extra_skill_name in pairs(skill_name) do
-						self.skills[tonumber(skill)] = {}
 						self.skills[tonumber(skill)][tonumber(id)] = extra_skill_name
 					end
 				end
@@ -391,8 +394,8 @@ require("talent_tree")
 			return false
 		end
 
-		-- Bocuse 4.22 requires skill 1
-		if self.talentsData[talentId].Ability == "bocuse_u__mise_rank_22"
+		-- Bocuse 4.31 requires skill 1
+		if self.talentsData[talentId].Ability == "bocuse_u__mise_rank_31"
 		and (not self.ranks[1][0]) then
 			return false
 		end

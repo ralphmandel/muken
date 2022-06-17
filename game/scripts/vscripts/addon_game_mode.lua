@@ -953,7 +953,7 @@
 		end
 
 		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-			if RandomInt(1,3) > 1 then
+			if RandomInt(1,2) > 1 then
 				self.vo = self.vo + 1
 				Timers:CreateTimer((2), function()
 					self.vo = self.vo - 1

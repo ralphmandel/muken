@@ -33,6 +33,21 @@
 					"var_type"				"FIELD_FLOAT"
 					"range"					"40"
 				}
+				"12"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"base_block_damage"		"15"
+				}
+				"13"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"block_damage"			"1.5"
+				}
+				"14"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"block_chance"			"100"
+				}
 			
 			// AGI
 				"04"
@@ -79,20 +94,10 @@
 					"var_type"				"FIELD_FLOAT"
 					"health_regen"			"0.2"
 				}
-				"12"
+				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"base_block_damage"		"10"
-				}
-				"13"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"block_damage"			"1"
-				}
-				"14"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"block_chance"			"50"
+					"heal_amplify"			"2.5"
 				}
 
 			// SECONDARIES
@@ -176,320 +181,6 @@
 		}
 	}
 
-	"_1_STR"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_1_STR"
-        "AbilityTextureName"    		"ATT-STR"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-100"
-		"LevelsBetweenUpgrades"  		"1"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"165"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_damage"			"1"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_block_damage"		"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"50"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"range"					"40"
-			}
-			// "06"
-			// {
-			// 	"var_type"				"FIELD_FLOAT"
-			// 	"range_base"			"350"
-			// }
-		}
-	}
-
-	"_1_AGI"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_1_AGI"
-        "AbilityTextureName"    		"ATT-AGI"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-100"
-		"LevelsBetweenUpgrades"  		"1"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"					"2.5" //2
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.2" //0.85
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms"					"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_ms"				"175"
-			}
-		}
-	}
-
-	"_1_INT"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_1_INT"
-        "AbilityTextureName"    		"ATT-INT"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-100"
-		"LevelsBetweenUpgrades"  		"1"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_amp"				"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_amp"				"1.25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mana"					"25"
-			}
-		}
-	}
-
-	"_1_CON"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_1_CON"
-        "AbilityTextureName"    		"ATT-CON"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-100"
-		"LevelsBetweenUpgrades"  		"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp"					"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"0.2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen_base"			"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen_bonus"		"0.5"
-			}
-		}
-	}
-
-	"_2_DEX"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_DEX"
-        "AbilityTextureName"    		"DEX"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"	
-		"RequiredLevel"         	 	"-200"	
-
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"evade"					"0.45"
-			}
-		}
-	}
-
-	"_2_RES"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_RES"
-        "AbilityTextureName"    		"RES"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"	
-		"RequiredLevel"         	 	"-200"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"resistance"			"0.9"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"0.4"
-			}
-		}
-	}
-
-	"_2_MND"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_MND"
-        "AbilityTextureName"    		"MND"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-200"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_power"			"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff"					"1.25"
-			}
-		}
-	}
-
-	"_2_LCK"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_LCK"
-        "AbilityTextureName"    		"LCK"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-200"	
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"crit_chance"			"0.4"
-			}
-		}
-	}
-
-	"_2_DEF"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_DEF"
-        "AbilityTextureName"    		"DEF"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"	
-		"RequiredLevel"         	 	"-200"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor"					"0.4"
-			}
-		}
-	}
-
-	"_2_REC"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_2_REC"
-        "AbilityTextureName"    		"REC"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"99"	
-		"RequiredLevel"         	 	"-200"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"mp_regen"				"0.3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"0.7"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel"				"0.9"
-			}
-		}
-	}
-
 	"cosmetics"
 	{
 		"BaseClass"						"ability_lua"
@@ -524,106 +215,11 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"channel"				"0.65"
+				"channel"				"0.6"
 			}
 		}
 	}
 
-	"_status"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_status"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_02"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_02"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_03"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_03"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_05"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_05"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_07"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_07"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_11"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_11"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_13"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_13"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
-
-	"_up_17"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_17"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"	
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	}
 	"_void"
 	{
 		"BaseClass"						"ability_lua"
@@ -635,42 +231,6 @@
 		"AbilityType"					"ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
-	
-	"_up_stats"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_up_stats"
-        "AbilityTextureName"    		"plus"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"5"
-		
-		"AbilityType"					"ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"level"					"1 2 3 4 5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"skill"					"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"id"					"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"permanent"				"1"
-			}
-		}
-	}
 }
 
 //RELEASES
@@ -681,15 +241,15 @@
 #base "../vscripts/heroes/ancient/ancient.txt"
 #base "../vscripts/heroes/druid/druid.txt"
 #base "../vscripts/heroes/genuine/genuine.txt"
+#base "../vscripts/heroes/shadow/shadow.txt"
 
 //PRE PRODUCTION
-#base "../vscripts/heroes/gladiator/gladiator.txt"
-#base "../vscripts/heroes/shadow/shadow.txt"
 
 //STAND BY
 #base "../vscripts/heroes/bloodmage/bloodmage.txt"
-#base "../vscripts/heroes/doctor/doctor.txt"
 #base "../vscripts/heroes/succubus/succubus.txt"
+#base "../vscripts/heroes/gladiator/gladiator.txt"
 
+//NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "../vscripts/bosses/_bosses.txt"

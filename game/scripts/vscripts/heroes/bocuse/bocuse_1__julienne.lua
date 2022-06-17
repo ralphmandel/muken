@@ -24,7 +24,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end

@@ -20,7 +20,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -81,7 +81,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local ms = self:GetSpecialValueFor("ms")
         local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
-        local base_stats = caster:FindModifierByName("base_stats")
+        local base_stats = caster:FindAbilityByName("base_stats")
         if base_stats then mana = mana * base_stats:GetHealPower() end
         if target:GetUnitName() == "npc_dota_hero_elder_titan" then mana = mana * 0.5 end
         target:GiveMana(mana)

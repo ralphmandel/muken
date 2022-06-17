@@ -1,6 +1,7 @@
 genuine_3__morning = class({})
 LinkLuaModifier("genuine_3_modifier_morning", "heroes/genuine/genuine_3_modifier_morning", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -20,7 +21,7 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -66,13 +67,11 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
 
     function genuine_3__morning:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        return att.talents[3][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[3][upgrade] end
     end
 
     function genuine_3__morning:OnUpgrade()
@@ -80,21 +79,8 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[3][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[3][0] = true end
 
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
@@ -136,25 +122,29 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         local duration = self:GetSpecialValueFor("duration")
 
         -- UP 3.41
-        if self:GetRank(41) then
-            duration = duration + 12
+        if self:GetRank(41)
+        and GameRules:IsDaytime()
+        and RandomInt(1, 100) <= 40 then
+            GameRules:BeginTemporaryNight(self:CalcStatus(duration, caster, caster))
         end
 
-        if IsServer() then caster:EmitSound("Genuine.Morning") end
-        if GameRules:IsDaytime() == false then self:FindEnemies() end
+        Timers:CreateTimer((0.1), function()
+            if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then self:FindEnemies() end
+            caster:AddNewModifier(caster, self, "genuine_3_modifier_morning", {
+                duration = self:CalcStatus(duration, caster, caster)
+            })
+        end)
 
-        caster:AddNewModifier(caster, self, "genuine_3_modifier_morning", {
-            duration = self:CalcStatus(duration, caster, caster)
-        })
+        if IsServer() then caster:EmitSound("Genuine.Morning") end
     end
 
     function genuine_3__morning:FindEnemies()
         local caster = self:GetCaster()
         local number = 1
 
-        -- UP 3.22
-        if self:GetRank(22) then
-            number = 2
+        -- UP 3.41
+        if self:GetRank(41) then
+            number = 3
         end
 
         local enemies = FindUnitsInRadius(
@@ -205,11 +195,6 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         local star_damage = self:GetSpecialValueFor("star_damage")
         local star_radius = self:GetSpecialValueFor("star_radius")
 
-        -- UP 3.22
-        if self:GetRank(22) then
-            star_damage = star_damage + 50
-        end
-
         local damageTable = {
             attacker = caster,
             damage = star_damage,
@@ -235,17 +220,15 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         local caster = self:GetCaster()
         self.kills = self.kills + pts
 
-        local mod = caster:FindAbilityByName("_1_INT")
-        if mod ~= nil then mod:BonusPermanent(1) end
+        local base_stats = caster:FindAbilityByName("base_stats")
+	    if base_stats then base_stats:AddBaseStat("INT", 1) end
 
-        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
-        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
-        ParticleManager:ReleaseParticleIndex(nFXIndex)
+        self:PlayEfxKill(caster)
     end
 
     function genuine_3__morning:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
@@ -259,4 +242,14 @@ LinkLuaModifier("genuine_3_modifier_passive", "heroes/genuine/genuine_3_modifier
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
         if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+    end
+
+    function genuine_3__morning:PlayEfxKill(target)
+        local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+    
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
     end

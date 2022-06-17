@@ -2,7 +2,6 @@ genuine_2__fallen = class({})
 LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_2_modifier_dispel", "heroes/genuine/genuine_2_modifier_dispel", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -22,7 +21,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -68,13 +67,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_2__fallen:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        return att.talents[2][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[2][upgrade] end
     end
 
     function genuine_2__fallen:OnUpgrade()
@@ -82,23 +79,16 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[2][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[2][0] = true end
 
         local charges = 1
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -120,14 +110,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
-
-        -- UP 2.11
-        if self:GetRank(11) then
-            caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
-                duration = self:CalcStatus(2.5, caster, caster),
-                percent = 50
-            })
-        end
 
         -- UP 2.12
         if self:GetRank(12) then
@@ -200,8 +182,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         end
 
         -- UP 2.32
-        local starfall_chance = 50
-        if hTarget:IsHero() and hTarget:IsIllusion() == false then starfall_chance = 75 end
+        local starfall_chance = 40
+        if hTarget:IsHero() then starfall_chance = 100 end
+        if hTarget:IsIllusion() then starfall_chance = 20 end
         if self:GetRank(32) and RandomInt(1, 100) <= starfall_chance then
             if caster:HasModifier("genuine_u_modifier_caster") == false 
             or hTarget:HasModifier("genuine_u_modifier_target") then
@@ -222,7 +205,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_2__fallen:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 125
+        local starfall_damage = 50
         local starfall_radius = 175
         local damageTable = {
             attacker = caster,
@@ -245,9 +228,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
     end
 
+    function genuine_2__fallen:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+		if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+		if self:GetCurrentAbilityCharges() == 1 then return cooldown end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 3 end
+        return cooldown
+	end
+
     function genuine_2__fallen:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

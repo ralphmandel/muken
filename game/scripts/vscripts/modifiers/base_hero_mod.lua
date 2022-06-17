@@ -15,6 +15,11 @@ function base_hero_mod:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.ability:LoadHeroNames()
+	self.activity = ""
+
+	if self.ability.hero_name == "genuine" then self.activity = "ti6" end
+
 	Timers:CreateTimer((0.5), function()
 		if self.parent then
 			if IsValidEntity(self.parent) then
@@ -37,8 +42,10 @@ end
 function base_hero_mod:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
@@ -51,18 +58,39 @@ function base_hero_mod:OnTakeDamage(keys)
 	if tp then tp:StartCooldown(5) end
 end
 
+function base_hero_mod:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+
+	if IsServer() then
+		local attack_sound = ""
+		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.Attack" end
+
+		self.parent:EmitSound(attack_sound)
+	end
+end
+
 function base_hero_mod:OnAttackLanded(keys)
-	if keys.attacker ~= self:GetParent() then return end
+	if keys.attacker ~= self.parent then return end
 	
 	if IsServer() then
 		local attack_sound = ""
 		if self.ability.hero_name == "bocuse" then attack_sound = "Hero_Pudge.Attack" end
-		self:GetParent():EmitSound(attack_sound)
+		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.ProjectileImpact" end
+
+		self.parent:EmitSound(attack_sound)
 	end
 end
 
 function base_hero_mod:GetAttackSound(keys)
     return ""
+end
+
+function base_hero_mod:GetActivityTranslationModifiers(keys)
+    return self.activity
+end
+
+function base_hero_mod:ChangeActivity(string)
+    self.activity = string
 end
 
 -- function base_hero_mod:OnIntervalThink()

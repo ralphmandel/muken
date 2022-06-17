@@ -12,7 +12,7 @@
     height: fit-children;
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #192229cd ), to( #001017cd ) );
     flow-children: down;
-    border: 2px solid dimgray;
+    border: 1px solid dimgray;
 }
 
 .WindowOut
@@ -63,6 +63,10 @@
     text-align: center;
     margin-left: 5px;
     margin-right: 5px;
+    font-size: 16px;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    text-shadow: 0 0 2px #0bbbda;
+    horizontal-align: middle;
 }
 
 .TalentContainer {
@@ -93,7 +97,7 @@
 }
 
 .TalentContainer.disabled {
-    wash-color: gray;
+    wash-color: rgb(56, 56, 56);
 }
 
 .TalentContainer #TalentImage {
@@ -139,8 +143,11 @@
     color: white;
     margin-left: 5px;
     margin-right: 5px;
-    font-size: 16px;
+    margin-bottom: 10px;
+    font-size: 20px;
     horizontal-align:center;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    text-shadow: 0 0 3px #0bbbda;
 }
 
 #TalentTreeWindowButton {

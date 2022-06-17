@@ -143,6 +143,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.damage = self:GetSpecialValueFor("damage")
 			self.critical_damage = self:GetSpecialValueFor("critical_damage")
 			self.range = self:GetSpecialValueFor("range")
+			self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
+			self.block_damage = self:GetSpecialValueFor("block_damage")
+			self.block_chance = self:GetSpecialValueFor("block_chance")
+			self.physical_block = 0
+			self.magical_block = 0
 
 			-- AGI
 			self.movespeed = self:GetSpecialValueFor("movespeed")
@@ -158,12 +163,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			-- CON
 			self.health_bonus = self:GetSpecialValueFor("health_bonus")
 			self.health_regen = self:GetSpecialValueFor("health_regen")
-			self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
-			self.block_damage = self:GetSpecialValueFor("block_damage")
-			self.block_chance = self:GetSpecialValueFor("block_chance")
-			self.regen_state = 1
-			self.physical_block = 0
-			self.magical_block = 0
+			self.heal_amplify = self:GetSpecialValueFor("heal_amplify")
+			self.regen_state = 1	
 
 			-- SECONDARY
 			self.evade = self:GetSpecialValueFor("evade") 
@@ -184,9 +185,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 			-- INIT
 			self.total_range = self.range * self.stat_init["STR"]
-			self.total_movespeed = (self.base_movespeed + (self.movespeed * self.stat_init["AGI"] ))
+			self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["STR"])
+			self.total_movespeed = self.base_movespeed + (self.movespeed * self.stat_init["AGI"])
 			self.total_mana = self.mana * self.stat_init["INT"]
-			self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["CON"])
+			self.total_heal_amplify = self.heal_amplify * self.stat_init["CON"]
 		end
 
 ---- ATTRIBUTES POINTS
@@ -244,6 +246,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 			if self.stat_total[stat] > 150 then self.stat_total[stat] = 150 end
 			if self.stat_total[stat] < 0 then self.stat_total[stat] = 0 end
+
+			if stat == "REC" then
+				local channel = self:GetCaster():FindAbilityByName("_channel")
+				if channel then channel:SetLevel(self.stat_total["REC"]) end
+			end
 
 			local void = self:GetCaster():FindAbilityByName("_void")
 			if void then void:SetLevel(1) end

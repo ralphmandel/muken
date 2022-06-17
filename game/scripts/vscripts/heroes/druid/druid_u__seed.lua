@@ -20,7 +20,7 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -130,7 +130,7 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
             seed_heal = seed_heal + 50
         end
 
-        local base_stats = caster:FindModifierByName("base_stats")
+        local base_stats = caster:FindAbilityByName("base_stats")
         if base_stats then seed_heal = seed_heal * base_stats:GetHealPower() end
 
         if source:GetTeamNumber() ~= caster:GetTeamNumber() then

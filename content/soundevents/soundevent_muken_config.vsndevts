@@ -18,9 +18,9 @@
 						}
 					}
 					"volume"            { "value"   "1.00000"	}
-					"pitch" = 			{ "value"   "1.00000"	}
-					"soundlevel" = 		{ "value"   "75.00000"	}
-					"limiter_on" = 		{ "value"   "0.00000"	}
+					"pitch"   			{ "value"   "1.00000"	}
+					"soundlevel" 		{ "value"   "75.00000"	}
+					"limiter_on" 		{ "value"   "0.00000"	}
 				}
 			}
 		}

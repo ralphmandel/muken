@@ -33,8 +33,8 @@ function genuine_u_modifier_target:OnCreated(kv)
 		self.shared_vision = true
 	end
 	
-	-- UP 4.42
-	if self.ability:GetRank(42) then
+	-- UP 4.31
+	if self.ability:GetRank(31) then
 		self.parent:Purge(true, false, false, false, false)
 	end
 
@@ -89,12 +89,12 @@ function genuine_u_modifier_target:OnIntervalThink()
 
 	-- UP 4.31
 	if self.ability:GetRank(31) then
-		self.ability:CreateStarfall(self.parent)
+		self.parent:Purge(true, false, false, false, false)
 	end
 
 	-- UP 4.42
 	if self.ability:GetRank(42) then
-		self.parent:Purge(true, false, false, false, false)
+		self.ability:CreateStarfall(self.parent)
 	end
 end
 

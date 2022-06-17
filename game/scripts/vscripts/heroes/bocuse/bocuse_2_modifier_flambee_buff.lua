@@ -87,7 +87,7 @@ end
 
 function bocuse_2_modifier_flambee_buff:OnIntervalThink()
     local amount = self.parent:GetMaxHealth() * self.percent * 0.01
-    local base_stats = self.caster:FindModifierByName("base_stats")
+    local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then amount = amount * base_stats:GetHealPower() end
     if amount > 0 then self.parent:Heal(amount, self.ability) end
 end

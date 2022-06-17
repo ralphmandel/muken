@@ -157,7 +157,7 @@ function ancient_3_modifier_aura:OnIntervalThink()
 end
 
 function ancient_3_modifier_aura:ApplyHeal(heal, chance)
-	local base_stats = self.caster:FindModifierByName("base_stats")
+	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end
 
 	local allies = FindUnitsInRadius(

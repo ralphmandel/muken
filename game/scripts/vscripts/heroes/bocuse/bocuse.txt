@@ -111,11 +111,7 @@
 		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
-
 		"AbilityCastPoint"       		"0.4"
-
-		// Stats
-        "AbilityCooldown"				"24"
 
 		"AbilitySpecial"
 		{
@@ -142,7 +138,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"intervals"			"1"
+				"intervals"			"1.2"
 			}
 			"06"
 			{
@@ -158,6 +154,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"ms"				"15"
+			}
+            "13"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cooldown"			"24"
 			}
             "14"
 			{

@@ -52,7 +52,7 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 		local heal = self.heal * 0.5
-		local base_stats = self.caster:FindModifierByName("base_stats")
+		local base_stats = self.caster:FindAbilityByName("base_stats")
 		if base_stats then heal = heal * base_stats:GetHealPower() end
 		if heal > 0 then self.parent:Heal(heal, self.ability_break) end
 	else
@@ -90,7 +90,7 @@ function icebreaker_0_modifier_freeze:OnRemoved( kv )
 			-- UP 3.21
 			if self.ability_break:GetRank(21) then
 				local heal = self.heal
-				local base_stats = self.caster:FindModifierByName("base_stats")
+				local base_stats = self.caster:FindAbilityByName("base_stats")
 				if base_stats then heal = heal * base_stats:GetHealPower() end
 				if heal > 0 then self.caster:Heal(heal, self.ability_break) end
 			end

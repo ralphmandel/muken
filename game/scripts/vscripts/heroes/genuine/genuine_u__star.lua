@@ -23,7 +23,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -69,13 +69,11 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        return att.talents[4][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
     function genuine_u__star:OnUpgrade()
@@ -83,26 +81,13 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
-        local att = caster:FindAbilityByName("genuine__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[4][0] = true end
 
         local charges = 1
 
-        -- UP 4.42
-        if self:GetRank(42) == false then
+        -- UP 4.31
+        if self:GetRank(31) == false then
             charges = charges * 2
         end
 
@@ -117,7 +102,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:OnAbilityPhaseStart()
         local caster = self:GetCaster()
-        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("")
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
         
         local particle_cast = "particles/genuine/ult_caster/genuine_ult_caster.vpcf"
 	    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -128,17 +113,17 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:OnAbilityPhaseInterrupted()
         local caster = self:GetCaster()
-        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("ti6")
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
     end
 
     function genuine_u__star:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local duration = self:GetSpecialValueFor("duration")
-        caster:FindModifierByName("genuine__modifier_effect"):ChangeActivity("ti6")
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
 
-        -- UP 4.42
-        if self:GetRank(42) == false then
+        -- UP 4.31
+        if self:GetRank(31) == false then
             if target:TriggerSpellAbsorb(self) then return end
         end
         
@@ -170,7 +155,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 75
+        local starfall_damage = 50
         local starfall_radius = 175
         local damageTable = {
             attacker = caster,
@@ -201,7 +186,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
             return UF_FAIL_CUSTOM
         end
 
-        -- UP 4.42
+        -- UP 4.31
         if self:GetCurrentAbilityCharges() % 2 == 0 then
             flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end
@@ -226,7 +211,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.1))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

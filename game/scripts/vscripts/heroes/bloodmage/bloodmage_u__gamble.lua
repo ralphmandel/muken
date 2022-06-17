@@ -19,7 +19,7 @@ LinkLuaModifier("bloodmage_u_modifier_gamble", "heroes/bloodmage/bloodmage_u_mod
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end

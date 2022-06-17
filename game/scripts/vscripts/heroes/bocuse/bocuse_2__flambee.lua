@@ -25,7 +25,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		if caster == nil then
 			if target ~= nil then
 				if base_stats_target then
-					local value = base_stats_target.stat_total["RES"] * 0.7
+					local value = base_stats_target.stat_total["RES"] * 0.4
 					local calc = (value * 6) / (1 +  (value * 0.06))
 					time = time * (1 - (calc * 0.01))
 				end
@@ -279,9 +279,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 	end
 
 	function bocuse_2__flambee:GetCooldown(iLevel)
-		if self:GetCurrentAbilityCharges() == 0 then return 24 end
-		if self:GetCurrentAbilityCharges() == 1 then return 24 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 20 end
+        local cooldown = self:GetSpecialValueFor("cooldown")
+		if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+		if self:GetCurrentAbilityCharges() == 1 then return cooldown end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 4 end
+        return cooldown
 	end
 
 	function bocuse_2__flambee:GetCastRange(vLocation, hTarget)

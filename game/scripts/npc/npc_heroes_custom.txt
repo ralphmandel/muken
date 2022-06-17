@@ -10,12 +10,11 @@
 #base "../vscripts/heroes/dasdingo/dasdingo-props.txt"
 #base "../vscripts/heroes/ancient/ancient-props.txt"
 #base "../vscripts/heroes/genuine/genuine-props.txt"
+#base "../vscripts/heroes/shadow/shadow-props.txt"
 
 //PRE PRODUCTION
-#base "../vscripts/heroes/shadow/shadow-props.txt"
-#base "../vscripts/heroes/gladiator/gladiator-props.txt"
 
 //STAND BY
-#base "../vscripts/heroes/doctor/doctor-props.txt"
 #base "../vscripts/heroes/bloodmage/bloodmage-props.txt"
 #base "../vscripts/heroes/succubus/succubus-props.txt"
+#base "../vscripts/heroes/gladiator/gladiator-props.txt"

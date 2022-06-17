@@ -59,6 +59,8 @@ base_stats_mod = class ({})
             MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
             MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
             MODIFIER_PROPERTY_PRE_ATTACK,
+            MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+            MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
             -- AGI
             MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE,
@@ -76,9 +78,8 @@ base_stats_mod = class ({})
             -- CON
             MODIFIER_PROPERTY_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+            MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
             MODIFIER_EVENT_ON_HEAL_RECEIVED,
-            MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
-            MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 
             --SECONDARY
             MODIFIER_PROPERTY_EVASION_CONSTANT,
@@ -215,6 +216,28 @@ base_stats_mod = class ({})
         end
     end
 
+    function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
+        if RandomInt(1, 100) <= self.ability.block_chance
+        and self.parent:GetAttackCapability() == 1 then
+            local total_block_percent = self.ability.total_block_damage + self.ability.physical_block
+            local random_block = RandomFloat(1, total_block_percent)
+            local calc = math.floor(keys.damage * random_block * 0.01)
+            if calc > 0 then return calc end
+        end
+    end
+
+    function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
+        if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
+        if RandomInt(1, 100) <= self.ability.block_chance
+        and self.parent:GetAttackCapability() == 1 then
+            local total_block_percent = self.ability.total_block_damage + self.ability.magical_block
+            local random_block = RandomFloat(1, total_block_percent)
+            local calc = math.floor(keys.damage * random_block * 0.01)
+            if calc > 0 then return calc end
+        end
+    end
+    
+
 -- AGI
 
     function base_stats_mod:GetModifierMoveSpeedBonus_Percentage_Unique(keys)
@@ -264,29 +287,16 @@ base_stats_mod = class ({})
         return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.regen_state
     end
 
+    function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
+        return self.ability.total_heal_amplify
+    end
+
     function base_stats_mod:OnHealReceived(keys)
         if keys.unit ~= self.parent then return end
         if keys.inflictor == nil then return end
         if keys.gain < 1 then return end
 
         SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
-    end
-
-    function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
-        if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
-        if RandomInt(1, 100) <= self.ability.block_chance
-        and self.parent:GetAttackCapability() == 1 then
-            local total_block_percent = self.ability.total_block_damage + self.ability.magical_block
-            return math.floor(keys.damage * total_block_percent * 0.01)
-        end
-    end
-
-    function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-        if RandomInt(1, 100) <= self.ability.block_chance
-        and self.parent:GetAttackCapability() == 1 then
-            local total_block_percent = self.ability.total_block_damage + self.ability.physical_block
-            return math.floor(keys.damage * total_block_percent * 0.01)
-        end
     end
 
 -- SECONDARY

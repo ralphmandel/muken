@@ -21,7 +21,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.7
+                    local value = base_stats_target.stat_total["RES"] * 0.4
                     local calc = (value * 6) / (1 +  (value * 0.06))
                     time = time * (1 - (calc * 0.01))
                 end
@@ -160,7 +160,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         -- UP 4.21
         if self:GetRank(21) then
             local heal = caster:GetMana() * 0.3
-            local base_stats = caster:FindModifierByName("base_stats")
+            local base_stats = caster:FindAbilityByName("base_stats")
             if base_stats then heal = heal * base_stats:GetHealPower() end
             caster:Heal(heal, self)
         end
