@@ -55,48 +55,44 @@ function bocuse_u_modifier_mise:OnRemoved()
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("bocuse_u_modifier_mise_status_efx", false) end
 
-    local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
-    if self.reset == 1 then
-        cd = 7
-    else
-        -- UP 4.31
-        if self.ability:GetRank(31) then
-            local stun_duration = 4
-            self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_exhaustion", {
-                duration = self.ability:CalcStatus(stun_duration, nil, self.parent)
-            })
+    if self.reset == 1 then return end
+    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
-            self:PlayEfxBlast()
+    -- UP 4.22
+    if self.ability:GetRank(22) then
+        local stun_duration = 4
+        self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_exhaustion", {
+            duration = self.ability:CalcStatus(stun_duration, nil, self.parent)
+        })
 
-            local damageTable = {
-                damage = 200,
-                attacker = self.parent,
-                damage_type = DAMAGE_TYPE_MAGICAL,
-                ability = self.ability
-            }
+        self:PlayEfxBlast()
 
-            local enemies = FindUnitsInRadius(
-                self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetCastRange(self.parent:GetOrigin(), nil),
-                DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-                DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	0, false
-            )
+        local damageTable = {
+            damage = 100,
+            attacker = self.parent,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self.ability
+        }
 
-            for _,enemy in pairs(enemies) do
-                if enemy:IsMagicImmune() == false then
-                    damageTable.victim = enemy
-                    ApplyDamage(damageTable)
-                end
+        local enemies = FindUnitsInRadius(
+            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetCastRange(self.parent:GetOrigin(), nil),
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	0, false
+        )
 
-                if enemy:IsAlive() then
-                    enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-                        duration = self.ability:CalcStatus(stun_duration, self.caster, enemy)
-                    })
-                end
+        for _,enemy in pairs(enemies) do
+            if enemy:IsMagicImmune() == false then
+                damageTable.victim = enemy
+                ApplyDamage(damageTable)
             end
-        end       
-    end
 
-    self.ability:StartCooldown(cd)
+            if enemy:IsAlive() then
+                enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+                    duration = self.ability:CalcStatus(stun_duration, self.caster, enemy)
+                })
+            end
+        end
+    end
 end
 
 ------------------------------------------------------------
@@ -222,8 +218,8 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
                 self:PlayEfxHit( enemy, origin, cast_direction )
 
-                -- UP 4.22
-                if self.ability:GetRank(22) then
+                -- UP 4.31
+                if self.ability:GetRank(31) then
                     self.caster:FindAbilityByName("bocuse_1__julienne"):InflictBleeding(enemy)
                 end
 

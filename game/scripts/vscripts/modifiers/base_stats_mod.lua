@@ -51,9 +51,9 @@ base_stats_mod = class ({})
 
         local funcs = {
             MODIFIER_EVENT_ON_TAKEDAMAGE, -- POPUP DAMAGE TYPES
+            MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --SPELL DAMAGE AND CRIT CALC
 
             -- STR
-            MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --BONUS PHYSICAL SPELL DAMAGE
             MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
             MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
             MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
@@ -96,7 +96,7 @@ base_stats_mod = class ({})
         if keys.unit == self.parent then
             local efx = nil
             if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
-            if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupPure(math.floor(keys.damage), Vector(255, 225, 175)) end
+            if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent) end
         
             if keys.inflictor ~= nil then
                 if keys.inflictor:GetClassname() == "ability_lua" then
@@ -113,44 +113,49 @@ base_stats_mod = class ({})
 
         if keys.attacker == nil then return end
         if keys.attacker:IsBaseNPC() == false then return end
-        if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
-        if self.popup_spell_crit == false then return end
+        if keys.attacker ~= self.parent then return end
 
-        self:PopupSpellCrit(keys.damage, keys.unit)
+        if self.popup_spell_crit then
+            self:PopupSpellCrit(keys.damage, keys.unit, keys.damage_type)
+        end
     end
-
--- STR
 
     function base_stats_mod:GetModifierSpellAmplify_Percentage(keys)
         if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
-        if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
-
         self.popup_spell_crit = false
+        local calc = 0
 
         if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-            local calc = (self.ability.stat_total["STR"] * self.ability.damage * 2.5)
+            if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
+                calc = self.ability.stat_total["STR"] * self.ability.damage * 2.5
+            elseif keys.damage_type == DAMAGE_TYPE_MAGICAL then
+                calc = self.ability.stat_total["INT"] * self.ability.spell_amp
+            else return end
+
+            self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type)
             local crit = self.ability.total_crit_damage - 100
             local critical_chance = self.ability:GetCriticalChance()
-            self.ability.total_crit_damage = self.ability:CalcCritDamage()
-
-            if self.parent:HasModifier("ancient_1_modifier_berserk") then
+            
+            if self.parent:HasModifier("ancient_1_modifier_berserk")
+            and keys.damage_type == DAMAGE_TYPE_PHYSICAL then
                 critical_chance = (critical_chance * 0.5) + 25
             end
 
-            if self.ability.crit_damage_physical > 0 then
-                crit = self.ability.crit_damage_physical - 100
-                self.ability.crit_damage_physical = 0
+            if self.ability.crit_damage_spell[keys.damage_type] > 0 then
+                crit = self.ability.crit_damage_spell[keys.damage_type] - 100
+                self.ability.crit_damage_spell[keys.damage_type] = 0
             end
 
-            if self.ability.force_crit_physical == nil then
-                self.ability.force_crit_physical = false
+            if self.ability.force_crit_spell[keys.damage_type] == nil then
+                self.ability.force_crit_spell[keys.damage_type] = false
                 self.ability.has_crit = false
             else
-                if ((RandomInt(1, 10000) <= critical_chance * 100) or self.ability.force_crit_physical == true)
+                if ((RandomInt(1, 10000) <= critical_chance * 100)
+                or self.ability.force_crit_spell[keys.damage_type] == true)
                 and not keys.target:IsBuilding() then
                     calc = calc + crit + (calc * crit * 0.01)
                     self.popup_spell_crit = true
-                    self.ability.force_crit_physical = false
+                    self.ability.force_crit_spell[keys.damage_type] = false
                     self.ability.has_crit = true
                 else
                     self.ability.has_crit = false
@@ -160,6 +165,8 @@ base_stats_mod = class ({})
             return calc
         end
     end
+
+-- STR
 
     function base_stats_mod:GetModifierBaseAttack_BonusDamage()
         return self.ability.stat_total["STR"] * self.ability.damage
@@ -177,8 +184,6 @@ base_stats_mod = class ({})
             if self.ability.total_crit_damage > 0 then
                 if IsServer() then self.parent:EmitSound("Item_Desolator.Target") end
             end
-
-            self.ability.total_crit_damage = self.ability:CalcCritDamage()
         end
     end
 
@@ -190,6 +195,7 @@ base_stats_mod = class ({})
             if not keys.target:IsBuilding() then
                 self.record = keys.record
                 self.ability.has_crit = true
+                self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL)
                 return self.ability.total_crit_damage
             else
                 self.ability.has_crit = false
@@ -246,11 +252,6 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierManaBonus()
         return self.ability.total_mana
-    end
-
-    function base_stats_mod:GetModifierSpellAmplify_Percentage(keys)
-        if keys.damage_type ~= DAMAGE_TYPE_MAGICAL then return end
-        return self.ability.stat_total["INT"] * self.ability.spell_amp
     end
 
 -- CON
@@ -323,20 +324,28 @@ base_stats_mod = class ({})
 
 -- EFFECTS
 
-    function base_stats_mod:PopupSpellCrit(damage, target)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, math.floor(damage), target)
-        if IsServer() then target:EmitSound("Item_Desolator.Target") end
+    function base_stats_mod:PopupSpellCrit(damage, target, damage_type)
+        if damage_type == DAMAGE_TYPE_PHYSICAL then
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, math.floor(damage), target)
+            if IsServer() then target:EmitSound("Item_Desolator.Target") end
+        end
+
+        if damage_type == DAMAGE_TYPE_MAGICAL then
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, math.floor(damage), target)
+            --self:PopupDamage(math.floor(damage), Vector(153, 0, 204), target)
+            if IsServer() then target:EmitSound("Crit_Magical") end
+        end
     end
 
-    function base_stats_mod:PopupPure(damage, color)
+    function base_stats_mod:PopupDamage(damage, color, target)
         local digits = 1
         if damage < 10 then digits = 2 end
         if damage > 9 and damage < 100 then digits = 3 end
         if damage > 99 and damage < 1000 then digits = 4 end
         if damage > 999 then digits = 5 end
     
-        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-        ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
+        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 4))
         ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
         ParticleManager:SetParticleControl(pidx, 3, color)
     end

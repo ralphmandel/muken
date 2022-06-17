@@ -17,39 +17,39 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_1__julienne_rank_11" //1
-				"2"   "bocuse_1__julienne_rank_12" //2
+				"1"   "bocuse_1__julienne_rank_11"
+				"2"   "bocuse_1__julienne_rank_12"
+				"3"   "bocuse_1__julienne_rank_13"
 			}
 			"1"
 			{
-				"1"   "bocuse_1__julienne_rank_21" //4
-				"2"   "bocuse_1__julienne_rank_22" //5
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bocuse_1__julienne_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_1__julienne_rank_41"//10
+				"1"   "bocuse_1__julienne_rank_41"
 			}
 		}
 		"bocuse_2__flambee"
 		{
 			"0"
 			{
-				"1"   "bocuse_2__flambee_rank_11" //1
-				"2"   "bocuse_2__flambee_rank_12" //2
-				"3"   "bocuse_2__flambee_rank_13" //3
+				"1"   "bocuse_2__flambee_rank_11"
+				"2"   "bocuse_2__flambee_rank_12"
 			}
 			"1"
 			{
-				"1"   "bocuse_2__flambee_rank_21" //4
+				"1"   "bocuse_2__flambee_rank_21"
+				"2"   "bocuse_2__flambee_rank_22"
+				"3"   "bocuse_2__flambee_rank_23"
 			}
 			"2"
 			{
-				"1"   "bocuse_2__flambee_rank_31" //7
-				"2"   "bocuse_2__flambee_rank_32" //8
+				"1"   "bocuse_2__flambee_rank_31"
 			}
 			"3"
 			{
@@ -60,42 +60,42 @@
 		{
 			"0"
 			{
-				"1"   "bocuse_3__sauce_rank_11" //1
+				"1"   "bocuse_3__sauce_rank_11"
 			}
 			"1"
 			{
-				"1"   "bocuse_3__sauce_rank_21" //4
+				"1"   "bocuse_3__sauce_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_3__sauce_rank_31" //7
-				"2"   "bocuse_3__sauce_rank_32" //8
+				"1"   "bocuse_3__sauce_rank_31"
+				"2"   "bocuse_3__sauce_rank_32"
 			}
 			"3"
 			{
-				"1"   "bocuse_3__sauce_rank_41" //10
+				"1"   "bocuse_3__sauce_rank_41"
 			}
 		}
 		"bocuse_u__mise"
 		{
 			"0"
 			{
-				"1"   "bocuse_u__mise_rank_11" //1
+				"1"   "bocuse_u__mise_rank_11"
 
 			}
 			"1"
 			{
-				"1"   "bocuse_u__mise_rank_21" //4
-				"2"   "bocuse_u__mise_rank_22" //5
+				"1"   "bocuse_u__mise_rank_21"
+				"2"   "bocuse_u__mise_rank_22"
 			}
 			"2"
 			{
-				"1"   "bocuse_u__mise_rank_31" //7
+				"1"   "bocuse_u__mise_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_u__mise_rank_41" //10
-				"2"   "bocuse_u__mise_rank_42" //11
+				"1"   "bocuse_u__mise_rank_41"
+				"2"   "bocuse_u__mise_rank_42"
 			}
 		}
 		"extras"

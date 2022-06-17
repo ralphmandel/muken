@@ -33,10 +33,7 @@ function bocuse_u_modifier_autocast:OnAttackLanded(keys)
     if not (keys.attacker == self.parent) then return end
     if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
     if self.parent:PassivesDisabled() then return end
-    if RandomInt(1, 100) > 15 then return end
-
-    local charges = self.parent:FindModifierByName("bocuse_1_modifier_charges")
-    if charges then charges:CalculateHit() end
+    if RandomInt(1, 100) > 12 then return end
 
     -- UP 4.41
     if self.ability:GetRank(41) then

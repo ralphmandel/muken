@@ -70,7 +70,7 @@
 			"StatusHealthRegen"        	"0"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
-			"StatusMana"              	"750"
+			"StatusMana"              	"600"
 			"StatusManaRegen"          	"4"
 	}
 }

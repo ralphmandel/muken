@@ -143,10 +143,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.damage = self:GetSpecialValueFor("damage")
 			self.critical_damage = self:GetSpecialValueFor("critical_damage")
 			self.range = self:GetSpecialValueFor("range")
-			self.crit_damage_physical = 0
-			self.force_crit_physical = false
-			self.force_crit_hit = false
-			self.has_crit = false
 
 			-- AGI
 			self.movespeed = self:GetSpecialValueFor("movespeed")
@@ -175,12 +171,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.resistance = self:GetSpecialValueFor("resistance")
 			self.mana_regen = self:GetSpecialValueFor("mana_regen")
 			self.cooldown = self:GetSpecialValueFor("cooldown")
-			self.critical_chance = self:GetSpecialValueFor("critical_chance")
 			self.heal_power = self:GetSpecialValueFor("heal_power")
 			self.buff_amp = self:GetSpecialValueFor("buff_amp")
 
+			-- CRITICAL
+			self.critical_chance = self:GetSpecialValueFor("critical_chance")
+			self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
+			self.force_crit_spell = {[DAMAGE_TYPE_PHYSICAL] = false, [DAMAGE_TYPE_MAGICAL] = false}
+			self.total_crit_damage = self:CalcCritDamage(nil)
+			self.force_crit_hit = false
+			self.has_crit = false
+
 			-- INIT
-			self.total_crit_damage = self:CalcCritDamage()
 			self.total_range = self.range * self.stat_init["STR"]
 			self.total_movespeed = (self.base_movespeed + (self.movespeed * self.stat_init["AGI"] ))
 			self.total_mana = self.mana * self.stat_init["INT"]
@@ -286,9 +288,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 ---- ATTRIBUTES UTILS
 	-- UTIL STR
 
-		function base_stats:SetForceCritPhysical(value, state)
-			if value > 0 then self.crit_damage_physical = value end
-			self.force_crit_physical = state -- NIL == force no crit
+		function base_stats:SetForceCritSpell(value, state, damage_type)
+			if value > 0 then self.crit_damage_spell[damage_type] = value end
+			self.force_crit_spell[damage_type] = state -- NIL == force no crit
 		end
 
 		function base_stats:SetForceCritHit(value)
@@ -296,7 +298,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.force_crit_hit = true
 		end
 
-		function base_stats:CalcCritDamage()
+		function base_stats:CalcCritDamage(damage_type)
 			local caster = self:GetCaster()
 			local bonus_value = 0
 			local mods = caster:FindAllModifiersByName("base_stats_mod_crit_bonus")
@@ -306,7 +308,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 			local total_crit_dmg = self.critical_damage
 
-			if caster:HasModifier("ancient_1_modifier_berserk") then
+			if caster:HasModifier("ancient_1_modifier_berserk")
+			and damage_type == DAMAGE_TYPE_PHYSICAL then
 				local chance_base = 0.25
 				local chance_luck = self:GetCriticalChance() * 0.005
 				local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
@@ -339,7 +342,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL AGI
 
 		function base_stats:SetBaseAttackTime(bonus)
-			if self.parent:HasModifier("ancient_1_modifier_berserk") then
+			local caster = self:GetCaster()
+			if caster:HasModifier("ancient_1_modifier_berserk") then
 				self.attack_time = 2.25 + bonus
 				return
 			end

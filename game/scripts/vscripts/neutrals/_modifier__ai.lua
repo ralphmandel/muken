@@ -18,8 +18,8 @@ function _modifier__ai:OnCreated(params)
 
         -- Store parameters from AI creation:
         -- unit:AddNewModifier(caster, ability, "_modifier__ai", { aggroRange = X, leashRange = Y })
-        self.aggroRange = 400
-        self.leashRange = 700
+        self.aggroRange = 450
+        self.leashRange = 750
 
         -- Store unit handle so we don't have to call self:GetParent() every time
         self.unit = self:GetParent() 
@@ -48,9 +48,12 @@ end
 
 function _modifier__ai:IdleThink()
     -- Find any enemy units around the AI unit inside the aggroRange
-    local units = FindUnitsInRadius(self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil,
-        self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 
-        FIND_ANY_ORDER, false)
+    local units = FindUnitsInRadius(
+        self.unit:GetTeam(), self.spot_origin, nil, self.aggroRange,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+        DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 
+        FIND_ANY_ORDER, false
+    )
 
     -- If one or more units were found, start attacking the first one
     -- if #units > 0 then
@@ -66,6 +69,7 @@ function _modifier__ai:IdleThink()
             self.aggroTarget = unit -- Remember who to attack
             self.unit:MoveToTargetToAttack(self.aggroTarget) --Start attacking
             self.state = AI_STATE_AGGRESSIVE --State transition
+            
             return -- Stop processing this state
         end
 	end

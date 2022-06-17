@@ -30,11 +30,6 @@ function bocuse_1_modifier_bleed:OnCreated(kv)
 	local bleed_dps = self.ability:GetSpecialValueFor("bleed_dps")
 	bleed_dps = bleed_dps * intervals
 
-    -- UP 1.22
-    if self.ability:GetRank(22) then
-        self.degen = self.degen + 25
-    end
-
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,

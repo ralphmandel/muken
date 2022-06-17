@@ -162,7 +162,6 @@
 		"AbilityCastPoint"       		"0.1"
     	"AbilityCooldown"				"30"
 
-
 		"AbilitySpecial"
 		{
 			"01"

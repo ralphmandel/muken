@@ -65,8 +65,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -151,8 +151,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"600"		// Range of vision during day light.
-			"VisionNighttimeRange"		"350"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -236,8 +236,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"400"		// Range of vision during day light.
-			"VisionNighttimeRange"		"200"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -321,8 +321,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"600"		// Range of vision during day light.
-			"VisionNighttimeRange"		"400"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -399,15 +399,15 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"750"		// Base health.
+			"StatusHealth"				"775"		// Base health.
 			"StatusHealthRegen"			"15"			// Health regeneration rate.
 			"StatusMana"				"400"			// Base mana.
 			"StatusManaRegen"			"4"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"600"		// Range of vision during day light.
-			"VisionNighttimeRange"		"400"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -465,7 +465,7 @@
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"350"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf" // Particle system model for projectile.
-			"ProjectileSpeed"			"900"		// Speed of projectile.
+			"ProjectileSpeed"			"950"		// Speed of projectile.
 
 			// Bounds
 			//----------------------------------------------------------------
@@ -485,15 +485,15 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"700"		// Base health.
+			"StatusHealth"				"725"		// Base health.
 			"StatusHealthRegen"			"7"			// Health regeneration rate.
 			"StatusMana"				"500"		// Base mana.
 			"StatusManaRegen"			"10"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -577,8 +577,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -632,7 +632,7 @@
 			"AttackDamageMax"			"80"		// Damage range max.
 			"AttackRate"				"1.7"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"45"		// Range within a target can be acquired.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"45"		// Range within a target can be attacked.
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
 			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
@@ -662,8 +662,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -748,8 +748,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -833,8 +833,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -918,8 +918,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1003,8 +1003,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1059,7 +1059,7 @@
 			"AttackRate"				"0.7"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"400"		// Range within a target can be attacked.
+			"AttackRange"				"300"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"1200"		// Speed of projectile.		     
 
@@ -1088,8 +1088,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1144,7 +1144,7 @@
 			"AttackRate"				"1"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"400"		// Range within a target can be attacked.
+			"AttackRange"				"300"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"1200"		// Speed of projectile.		     
 
@@ -1173,8 +1173,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"900"		// Range of vision during day light.
+			"VisionNighttimeRange"		"900"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------

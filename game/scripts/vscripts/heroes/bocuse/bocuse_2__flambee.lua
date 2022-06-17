@@ -25,9 +25,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		if caster == nil then
 			if target ~= nil then
 				if base_stats_target then
-					local value = base_stats_target.res_total * 0.01
+					local value = base_stats_target.stat_total["RES"] * 0.7
 					local calc = (value * 6) / (1 +  (value * 0.06))
-					time = time * (1 - calc)
+					time = time * (1 - (calc * 0.01))
 				end
 			end
 		else
@@ -38,14 +38,14 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 					if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
 				else
 					if base_stats_caster and base_stats_target then
-						local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+						local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
 						if value > 0 then
 							local calc = (value * 6) / (1 +  (value * 0.06))
-							time = time * (1 + calc)
+							time = time * (1 + (calc * 0.01))
 						else
 							value = -1 * value
 							local calc = (value * 6) / (1 +  (value * 0.06))
-							time = time * (1 - calc)
+							time = time * (1 - (calc * 0.01))
 						end
 					end
 				end
@@ -146,8 +146,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		ProjectileManager:CreateTrackingProjectile(info)
 		if IsServer() then caster:EmitSound("Hero_OgreMagi.Ignite.Cast") end
 
-		-- UP 2.32
-		if self:GetRank(32) then
+		-- UP 2.31
+		if self:GetRank(31) then
 			local reverse_target = nil
 			local team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 			if target:GetTeamNumber() == caster:GetTeamNumber() then
@@ -212,7 +212,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		local damageTable = {
 			--victim = nil,
 			attacker = caster,
-			damage = 175,
+			damage = 125,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self
 		}
@@ -231,8 +231,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 		for _,unit in pairs(units) do
 			if team == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
-				-- UP 2.31
-				if self:GetRank(31) then
+				-- UP 2.22
+				if self:GetRank(22) then
 					unit:Purge(false, true, false, true, false)
 				end
 				unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee_buff", {
@@ -240,8 +240,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				})
 			else
 				if unit:IsInvulnerable() == false then
-					-- UP 2.31
-					if self:GetRank(31) then
+					-- UP 2.22
+					if self:GetRank(22) then
 						damageTable.victim = unit
 						ApplyDamage(damageTable)
 					end
@@ -283,6 +283,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		if self:GetCurrentAbilityCharges() == 1 then return 24 end
 		if self:GetCurrentAbilityCharges() % 2 == 0 then return 20 end
 	end
+
+	function bocuse_2__flambee:GetCastRange(vLocation, hTarget)
+        return self:GetSpecialValueFor("range")
+    end
+
+	function bocuse_2__flambee:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
 
 --EFFECTS
 

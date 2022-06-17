@@ -15,7 +15,7 @@
         }
 
         function OnTalentClick() {
-            context.Data().OnTalentClick(id, context.BHasClass("disabled"));
+            context.Data().OnTalentClick(id, context.BHasClass("disabled"), context.BHasClass("upgraded"));
         }
     </script>
     <Panel class="TalentContainer disabled" hittest="true" onactivate="OnTalentClick()" onmouseover="ShowTalentTooltip()" onmouseout="HideTalentTooltip()">

@@ -21,7 +21,7 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 
     local blind = self.ability:GetSpecialValueFor("blind")
     local intervals = self.ability:GetSpecialValueFor("intervals")
-    self.percent = self.ability:GetSpecialValueFor("percent_per_sec") * intervals
+    self.percent = self.ability:GetSpecialValueFor("percent_per_sec")
 
     self.damageTable = {
 		victim = self.parent,
@@ -31,19 +31,20 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 		ability = self.ability
 	}
 
-    -- UP 2.13
-	--if self.ability:GetRank(13) then
+    -- UP 2.11
+	if self.ability:GetRank(11) then
 		self.ability:AddBonus("_2_REC", self.parent, -12, 0, nil)
-	--end
+	end
 
     -- UP 2.21
 	if self.ability:GetRank(21) then
         blind = blind + 10
 	end
 
-	-- UP 2.11
-	if self.ability:GetRank(11) then
-		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5) * intervals
+	-- UP 2.23
+	if self.ability:GetRank(23) then
+		intervals = self.ability:GetSpecialValueFor("intervals") - 0.2
+		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5)
 	end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
@@ -54,8 +55,8 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 end
 
 function bocuse_2_modifier_flambee_debuff:OnRefresh(kv)
-	-- UP 2.13
-	if self.ability:GetRank(13) then
+	-- UP 2.11
+	if self.ability:GetRank(11) then
 		self.ability:RemoveBonus("_2_REC", self.parent)
 		self.ability:AddBonus("_2_REC", self.parent, -12, 0, nil)
 	end
@@ -71,10 +72,11 @@ function bocuse_2_modifier_flambee_debuff:OnRefresh(kv)
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind * 2, miss_chance = blind})
 	end
 
-	-- UP 2.11
-	if self.ability:GetRank(11) then
-		local intervals = self.ability:GetSpecialValueFor("intervals")
-		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5) * intervals
+	-- UP 2.23
+	if self.ability:GetRank(23) then
+		local intervals = self.ability:GetSpecialValueFor("intervals") - 0.2
+		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5)
+		self:StartIntervalThink(intervals)
 	end
 end
 

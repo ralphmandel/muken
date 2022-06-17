@@ -154,6 +154,7 @@ function CreateTalentRows(column) {
 }
 
 function ShowTalentTooltip(talentId) {
+    Game.EmitSound("Config.Move");
     var locID = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(locID);
     var ability = Entities.GetAbilityByName( hero, talentsData[talentId].Ability );
@@ -165,10 +166,10 @@ function HideTalentTooltip(talentId) {
     $.DispatchEvent("DOTAHideAbilityTooltip", $("#HeroTalent" + talentId));
 }
 
-function OnTalentClick(talentId, disabled) {
-    if(disabled == false) {
+function OnTalentClick(talentId, disabled, upgraded) {
+    if(disabled == false && upgraded == false) {
         GameEvents.SendCustomGameEventToServer( "talent_tree_level_up_talent", {"id": talentId});
-        Game.EmitSound("General.SelectAction");
+        Game.EmitSound("Config.Ok");
     }
 }
 

@@ -52,11 +52,6 @@ function bocuse_1_modifier_julienne:OnRemoved()
 	if mise then
 		if mise:IsTrained() then mise:SetActivated(true) end
 	end
-
-	local charges = self.parent:FindModifierByName("bocuse_1_modifier_charges")
-	if charges then
-		charges:CheckCharges()
-	end
 end
 
 ------------------------------------------------------------

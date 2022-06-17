@@ -536,8 +536,9 @@
 				if rand_3 == 1 then
 					local unit = CreateUnitByName("neutral_lamp", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 					table.insert(self.spots[number][1], unit)
-					
-
+					local ai = unit:FindModifierByName("_modifier__ai")
+					if ai then ai.spot_origin = self.spots[number][2] end
+				
 					self.spots[number][3] = nil
 					self.spots[number][4] = 3
 					return
@@ -546,8 +547,9 @@
 				if rand_3 == 2 then
 					local unit = CreateUnitByName("neutral_spider", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 					table.insert(self.spots[number][1], unit)
+					local ai = unit:FindModifierByName("_modifier__ai")
+					if ai then ai.spot_origin = self.spots[number][2] end
 					
-			
 					self.spots[number][3] = nil
 					self.spots[number][4] = 3
 					return
@@ -556,12 +558,14 @@
 				if rand_3 == 3 then
 					local unit = CreateUnitByName("neutral_skydragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 					table.insert(self.spots[number][1], unit)
+					local ai = unit:FindModifierByName("_modifier__ai")
+					if ai then ai.spot_origin = self.spots[number][2] end
 					
-			
 					unit = CreateUnitByName("neutral_dragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 					table.insert(self.spots[number][1], unit)
+					ai = unit:FindModifierByName("_modifier__ai")
+					if ai then ai.spot_origin = self.spots[number][2] end
 					
-			
 					self.spots[number][3] = nil
 					self.spots[number][4] = 3
 					return
@@ -573,20 +577,24 @@
 			if tier_1 == 1 then
 				local unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				local ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				self.spots[number][3] = nil
 				self.spots[number][4] = 1
 				return
@@ -595,12 +603,14 @@
 			if tier_1 == 2 then
 				local unit = CreateUnitByName("neutral_basic_crocodilian", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				local ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				unit = CreateUnitByName("neutral_basic_crocodilian_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				self.spots[number][3] = nil
 				self.spots[number][4] = 1
 				return
@@ -609,15 +619,18 @@
 			if tier_1 == 3 then
 				local unit = CreateUnitByName("neutral_basic_gargoyle", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				local ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				self.spots[number][3] = nil
 				self.spots[number][4] = 1
@@ -627,16 +640,19 @@
 			if tier_1 == 4 then
 				local unit = CreateUnitByName("neutral_igor", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				local ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				self.spots[number][3] = nil
 				self.spots[number][4] = 2
 				return
@@ -645,11 +661,13 @@
 			if tier_1 == 5 then
 				local unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
+				local ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 				
-
 				unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
 				table.insert(self.spots[number][1], unit)
-				
+				ai = unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[number][2] end
 
 				self.spots[number][3] = nil
 				self.spots[number][4] = 2

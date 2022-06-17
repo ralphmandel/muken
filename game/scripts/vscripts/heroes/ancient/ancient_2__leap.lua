@@ -22,9 +22,9 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.res_total * 0.01
+                    local value = base_stats_target.stat_total["RES"] * 0.7
                     local calc = (value * 6) / (1 +  (value * 0.06))
-                    time = time * (1 - calc)
+                    time = time * (1 - (calc * 0.01))
                 end
             end
         else
@@ -35,14 +35,14 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
                     if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
                 else
                     if base_stats_caster and base_stats_target then
-                        local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+                        local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
                         if value > 0 then
                             local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 + calc)
+                            time = time * (1 + (calc * 0.01))
                         else
                             value = -1 * value
                             local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 - calc)
+                            time = time * (1 - (calc * 0.01))
                         end
                     end
                 end
@@ -228,7 +228,7 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
         for _,enemy in pairs(enemies) do
             if berserk then enemy:AddNewModifier(caster, berserk, "ancient_1_modifier_original", {}) end
-            if base_stats then base_stats:SetForceCritPhysical(0, has_crit) end         
+            if base_stats then base_stats:SetForceCritSpell(0, has_crit, DAMAGE_TYPE_PHYSICAL) end         
 
             damageTable.victim = enemy
             ApplyDamage(damageTable)

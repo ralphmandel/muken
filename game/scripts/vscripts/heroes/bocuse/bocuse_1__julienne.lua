@@ -1,5 +1,6 @@
 bocuse_1__julienne = class ({})
 LinkLuaModifier("bocuse_1_modifier_charges", "heroes/bocuse/bocuse_1_modifier_charges", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_1_modifier_charges_stack", "heroes/bocuse/bocuse_1_modifier_charges_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_1_modifier_julienne", "heroes/bocuse/bocuse_1_modifier_julienne", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_1_modifier_bleed", "heroes/bocuse/bocuse_1_modifier_bleed", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
@@ -23,9 +24,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if caster == nil then
             if target ~= nil then
                 if base_stats_target then
-                    local value = base_stats_target.res_total * 0.01
+                    local value = base_stats_target.stat_total["RES"] * 0.7
                     local calc = (value * 6) / (1 +  (value * 0.06))
-                    time = time * (1 - calc)
+                    time = time * (1 - (calc * 0.01))
                 end
             end
         else
@@ -36,14 +37,14 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                     if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
                 else
                     if base_stats_caster and base_stats_target then
-                        local value = (base_stats_caster.int_total - base_stats_target.res_total) * 0.01
+                        local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
                         if value > 0 then
                             local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 + calc)
+                            time = time * (1 + (calc * 0.01))
                         else
                             value = -1 * value
                             local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 - calc)
+                            time = time * (1 - (calc * 0.01))
                         end
                     end
                 end
@@ -83,25 +84,14 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then base_hero.ranks[1][0] = true end
-        
-        local mod = caster:FindModifierByName("bocuse_1_modifier_charges")
-        if mod then
-            -- UP 1.11
-            if not self.rank_1 then self.rank_1 = false end
-            if self:GetRank(11) and self.rank_1 == false then
-                self.rank_1 = true
-                mod:StartIntervalThink(10)
-            end
+
+        -- UP 1.11
+        if self:GetRank(11) then
+            local mod = caster:FindModifierByName("bocuse_1_modifier_charges")
+            if mod then mod.charges = self:GetSpecialValueFor("charges") + 1 end
         end
 
-        local charges = 1
-
-        -- UP 1.21
-        if self:GetRank(21) then
-            charges = charges * 2
-        end
-
-        self:SetCurrentAbilityCharges(charges)
+        self:ChangeManaCost()
     end
 
     function bocuse_1__julienne:Spawn()
@@ -126,15 +116,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function bocuse_1__julienne:OnSpellStart()
         local caster = self:GetCaster()
         self.target = self:GetCursorTarget()
+        self.extra_slashes = RandomInt(0, 3)
+        self:EndCooldown()
 
         local charges = caster:FindModifierByName("bocuse_1_modifier_charges")
-        if charges then charges:StartIntervalThink(5) end
 
         if self.target:TriggerSpellAbsorb( self ) then
-            if charges then
-                charges:ResetHits()
-                charges:DecrementStackCount()
-            end
+            if charges then charges:SetStackCount(0) end
             return
         end
 
@@ -160,18 +148,25 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local distance = CalcDistanceBetweenEntityOBB(caster, target)
         self.cancel = true
 
-        -- UP 1.21
-        if self:GetRank(21) then
-            max_distance = max_distance + 200
+        -- UP 1.31
+        if self:GetRank(31) then
+            max_distance = max_distance + 300
         end
 
         local charges = caster:FindModifierByName("bocuse_1_modifier_charges")
         if charges then
-            charges:ResetHits()
             charges:DecrementStackCount()
-            charges:StartIntervalThink(5)
-            local stacks = charges:GetStackCount()
-            if stacks > 0 then self.cancel = false end
+            if charges:GetStackCount() > 0 then
+                self.cancel = false
+            else
+                -- UP 1.41
+                if self:GetRank(41) then
+                    if self.extra_slashes > 0 then
+                        self.extra_slashes = self.extra_slashes - 1
+                        self.cancel = false
+                    end
+                end
+            end
         end
 
         local result = UF_FAIL_ENEMY
@@ -199,8 +194,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 self.cancel = true
             end
 
-            -- UP 1.21
-            if self:GetRank(21) then
+            -- UP 1.31
+            if self:GetRank(31) then
                 local forward = caster:GetForwardVector():Normalized()
                 local point = target:GetOrigin() - (forward * 50)
 
@@ -261,13 +256,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local charges = self:GetSpecialValueFor("charges")
         local stun_duration = self:GetSpecialValueFor("stun_duration")
 
-        -- up 1.41
-        if self:GetRank(41) then
-            charges = charges + 4
-        end
-
-        --local max_cut = self.cut[charges]
-
         -- UP 1.12
         if self:GetRank(12) and original == true then
             stun_duration = stun_duration + 1
@@ -288,7 +276,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if target:IsAlive() == false and original == true then self.cancel = true end
 
         if target:IsAlive() then
-            if index > 2 and self.cancel == true then
+            if index > 2 then -- and self.cancel == true <= LAST CUT STUNS
                 if target:IsMagicImmune() == false and original == true then
                     target:AddNewModifier(caster, self, "_modifier_stun", {duration = self:CalcStatus(stun_duration, caster, target)})
                 end
@@ -300,8 +288,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local bleed_duration = self:GetSpecialValueFor("bleed_duration")
 
-        -- UP 1.22
-        if self:GetRank(22) then
+        -- UP 1.13
+        if self:GetRank(13) then
             bleed_duration = bleed_duration * 2
         end
         
@@ -335,10 +323,54 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
+    function bocuse_1__julienne:CheckCharges(bIncrease)
+        local caster = self:GetCaster()
+        local mod = caster:FindModifierByName("bocuse_1_modifier_charges")
+        if bIncrease then mod:IncrementStackCount() return end
+    
+        if caster:HasModifier("bocuse_1_modifier_charges_stack") == false then
+            caster:AddNewModifier(caster, self, "bocuse_1_modifier_charges_stack", {
+                duration = self:GetEffectiveCooldown(self:GetLevel())
+            })
+        end
+    end
+
+    function bocuse_1__julienne:ChangeManaCost()
+        local charges = 1
+        local mod = self:GetCaster():FindModifierByName("bocuse_1_modifier_charges")
+        
+        if mod then
+            if mod:GetStackCount() > 0 then charges = charges * 2 end
+            if mod:GetStackCount() > 1 then charges = charges * 3 end
+            if mod:GetStackCount() > 2 then charges = charges * 5 end
+            if mod:GetStackCount() > 3 then charges = charges * 7 end
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            charges = charges * 11
+        end
+    
+        self:SetCurrentAbilityCharges(charges)
+    end
+
     function bocuse_1__julienne:GetCastRange(vLocation, hTarget)
-        if self:GetCurrentAbilityCharges() == 0 then return 300 end
-        if self:GetCurrentAbilityCharges() == 1 then return 300 end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return 500 end
+        local range = self:GetSpecialValueFor("range")
+        if self:GetCurrentAbilityCharges() == 0 then return range end
+        if self:GetCurrentAbilityCharges() == 1 then return range end
+        if self:GetCurrentAbilityCharges() % 11 == 0 then return range + 300 end
+        return range
+    end
+
+    function bocuse_1__julienne:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost + 20 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then manacost = manacost + 20 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then manacost = manacost + 20 end
+        if self:GetCurrentAbilityCharges() % 7 == 0 then manacost = manacost + 20 end
+        return manacost * level
     end
 
 -- EFFECTS
