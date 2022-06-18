@@ -43,7 +43,7 @@ function shadow_0_modifier_toxin:OnCreated(kv)
 
 	-- UP 0.11
 	if self.ability:GetRank(11) then
-		self.damageTable.damage = 75 * self.percent
+		self.damageTable.damage = 50 * self.percent
 		self.last_damage = ApplyDamage(self.damageTable)
 		self:PlayEfxDamage()
 	end

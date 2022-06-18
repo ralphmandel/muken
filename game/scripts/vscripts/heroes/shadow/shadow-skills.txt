@@ -1,0 +1,13 @@
+"skills"
+{
+	"0" "shadow_0__toxin"
+	"1" "shadow_1__strike"
+	"2" "shadow_2__puddle"
+	"3" "shadow_3__walk"
+	"4" "shadow_u__dagger"
+	"5"
+	{
+		"1" "shadow_x1__heart"
+		"2" "shadow_x2__blink"
+	}
+}

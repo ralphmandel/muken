@@ -33,6 +33,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:OnHeroLevelUp()
+			local caster = self:GetCaster()
+			local level = caster:GetLevel()
+			if caster:IsIllusion() then return end
+
 			self:IncrementSpenderPoints(1, 3)
 			for _, stat in pairs(self.stats_primary) do
 				self:IncrementSubLevel(stat, self.bonus_level[stat])
@@ -189,6 +193,64 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.total_movespeed = self.base_movespeed + (self.movespeed * self.stat_init["AGI"])
 			self.total_mana = self.mana * self.stat_init["INT"]
 			self.total_heal_amplify = self.heal_amplify * self.stat_init["CON"]
+		end
+
+		function base_stats:LoadDataForIllusion(hero)
+			local hero_stats = hero:FindAbilityByName("base_stats")
+			if hero_stats == nil then return end
+
+			self.stat_total = hero_stats.stat_total
+
+			-- STR
+			self.damage = hero_stats.damage
+			self.critical_damage = hero_stats.critical_damage
+			self.range = hero_stats.range
+			self.base_block_damage = hero_stats.base_block_damage
+			self.block_damage = hero_stats.block_damage
+			self.block_chance = hero_stats.block_chance
+			self.physical_block = hero_stats.physical_block
+			self.magical_block = hero_stats.magical_block
+
+			-- AGI
+			self.movespeed = hero_stats.movespeed
+			self.base_movespeed = hero_stats.base_movespeed
+			self.attack_speed = hero_stats.attack_speed
+			self.base_attack_time = hero_stats.base_attack_time
+			self.attack_time = hero_stats.attack_time
+
+			-- INT
+			self.mana = hero_stats.mana
+			self.spell_amp = hero_stats.spell_amp
+
+			-- CON
+			self.health_bonus = hero_stats.health_bonus
+			self.health_regen = hero_stats.health_regen
+			self.heal_amplify = hero_stats.heal_amplify
+			self.regen_state = hero_stats.regen_state
+
+			-- SECONDARY
+			self.evade = hero_stats.evade
+			self.armor = hero_stats.armor
+			self.resistance = hero_stats.resistance
+			self.mana_regen = hero_stats.mana_regen
+			self.cooldown = hero_stats.cooldown
+			self.heal_power = hero_stats.heal_power
+			self.buff_amp = hero_stats.buff_amp
+
+			-- CRITICAL
+			self.critical_chance = hero_stats.critical_chance
+			self.crit_damage_spell = hero_stats.crit_damage_spell
+			self.force_crit_spell = hero_stats.force_crit_spell
+			self.total_crit_damage = hero_stats.total_crit_damage
+			self.force_crit_hit = hero_stats.force_crit_hit
+			self.has_crit = hero_stats.has_crit
+
+			-- INIT
+			self.total_range = hero_stats.total_range
+			self.total_block_damage = hero_stats.total_block_damage
+			self.total_movespeed = hero_stats.total_movespeed
+			self.total_mana = hero_stats.total_mana
+			self.total_heal_amplify = hero_stats.total_heal_amplify
 		end
 
 ---- ATTRIBUTES POINTS

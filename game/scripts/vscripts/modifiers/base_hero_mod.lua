@@ -19,6 +19,10 @@ function base_hero_mod:OnCreated(kv)
 	self.activity = ""
 
 	if self.ability.hero_name == "genuine" then self.activity = "ti6" end
+	if self.ability.hero_name == "shadow" then
+		self.model = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
+		self.parent:SetOriginalModel(self.model)
+	end
 
 	Timers:CreateTimer((0.5), function()
 		if self.parent then
@@ -26,6 +30,9 @@ function base_hero_mod:OnCreated(kv)
 				if self.ability.hero_name == "bocuse" then
 					self.parent:SetModelScale(1.15)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+				end
+				if self.ability.hero_name == "shadow" then
+					self.parent:SetModelScale(1)
 				end
 			end
 		end
@@ -45,6 +52,7 @@ function base_hero_mod:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
@@ -76,6 +84,7 @@ function base_hero_mod:OnAttackLanded(keys)
 		local attack_sound = ""
 		if self.ability.hero_name == "bocuse" then attack_sound = "Hero_Pudge.Attack" end
 		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.ProjectileImpact" end
+		if self.ability.hero_name == "shadow" then attack_sound = "Hero_Spectre.Attack" end
 
 		self.parent:EmitSound(attack_sound)
 	end
@@ -85,12 +94,27 @@ function base_hero_mod:GetAttackSound(keys)
     return ""
 end
 
-function base_hero_mod:GetActivityTranslationModifiers(keys)
+function base_hero_mod:GetModifierModelChange()
+	if self.model then return self.model end
+end
+
+function base_hero_mod:GetActivityTranslationModifiers()
     return self.activity
 end
 
 function base_hero_mod:ChangeActivity(string)
     self.activity = string
+end
+
+-----------------------------------------------------------
+
+function base_hero_mod:PlayEfxAmbient(ambient, attach)
+	if self.ability.hero_name == "shadow" then
+		local effect_cast = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+		self:AddParticle(effect_cast, false, false, -1, false, false)
+	end
 end
 
 -- function base_hero_mod:OnIntervalThink()

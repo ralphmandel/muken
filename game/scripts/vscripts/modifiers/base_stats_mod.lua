@@ -22,12 +22,14 @@ base_stats_mod = class ({})
             self.parent = self:GetParent()
             self.ability = self:GetAbility()
 
+            self.popup_spell_crit = false
+            self.pierce_proc = false
+
+            if self.parent:IsIllusion() then return end
+
             self.ability:AddBaseStatsPoints()
             self.ability:IncrementSpenderPoints(0, 0)
 			self.ability:LoadSpecialValues()
-
-            self.popup_spell_crit = false
-            self.pierce_proc = false
         end
     end
 
