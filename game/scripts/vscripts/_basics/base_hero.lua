@@ -1,5 +1,5 @@
 base_hero = class ({})
-LinkLuaModifier("base_hero_mod", "modifiers/base_hero_mod", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("base_hero_mod", "_basics/base_hero_mod", LUA_MODIFIER_MOTION_NONE)
 require("talent_tree")
 
 -- ABILITY FUNCTIONS

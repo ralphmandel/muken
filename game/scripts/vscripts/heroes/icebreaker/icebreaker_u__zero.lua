@@ -171,4 +171,11 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
         return self:GetSpecialValueFor("radius")
     end
 
+    function icebreaker_u__zero:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then manacost = 0 end
+        return manacost * level
+    end
+
 -- EFFECTS

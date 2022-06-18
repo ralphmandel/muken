@@ -30,16 +30,15 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	self.ability = self:GetAbility()
 	self.ability_break = self:GetAbility()
 
-	self.break_damage = self.ability:GetSpecialValueFor("break_damage")
+	self.take_damage = false
 	self.heal = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_efx", true) end
 
 	if IsServer() then
-		self:SetStackCount(0)
 		self:PlayEfxStart()
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(FrameTime())
 	end
 end
 
@@ -49,87 +48,90 @@ end
 function icebreaker_0_modifier_freeze:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_efx", false) end
+	local break_damage = self.ability_break:GetSpecialValueFor("break_damage")
 
-	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		local heal = self.heal * 0.5
-		local base_stats = self.caster:FindAbilityByName("base_stats")
-		if base_stats then heal = heal * base_stats:GetHealPower() end
-		if heal > 0 then self.parent:Heal(heal, self.ability_break) end
-	else
-		local damageTable = {
-			victim = self.parent,
+	local damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		damage = 0,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability_break
+	}
+
+	if self.take_damage then
+		damageTable.damage = break_damage
+		self:PlayEfxDestroy()
+	end
+
+	if self.ability_break:GetAbilityName() == "icebreaker_3__blink" then self:BlinkStrike(break_damage) end
+	if damageTable.damage > 0 then ApplyDamage(damageTable) end
+end
+
+function icebreaker_0_modifier_freeze:BlinkStrike(break_damage)
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+
+	-- UP 3.11
+	if self.ability_break:GetRank(11) then
+		local knockbackProperties =
+		{
+			duration = 0.5,
+			knockback_duration = 0.5,
+			knockback_distance = 125,
+			center_x = self.caster:GetAbsOrigin().x + 1,
+			center_y = self.caster:GetAbsOrigin().y + 1,
+			center_z = self.caster:GetAbsOrigin().z,
+			knockback_height = 12,
+		}
+
+		self.parent:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)
+		if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
+	end
+
+	-- UP 3.41
+	if self.ability_break:GetRank(41) then
+		self:PlayEfxSpread()
+
+		local damageTableSplash = {
 			attacker = self.caster,
-			damage = self:GetStackCount(),
+			damage = break_damage,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self.ability_break
 		}
-		local value = ApplyDamage(damageTable)
 
-		if self:GetStackCount() >= self.break_damage then
-			self:PlayEfxDestroy()
-		end
-
-		if self.ability_break:GetAbilityName() == "icebreaker_3__blink" then
-			-- UP 3.11
-			if self.ability_break:GetRank(11) and self.parent:IsAlive() then
-				local knockbackProperties =
-				{
-					duration = 0.5,
-					knockback_duration = 0.5,
-					knockback_distance = 125,
-					center_x = self.caster:GetAbsOrigin().x + 1,
-					center_y = self.caster:GetAbsOrigin().y + 1,
-					center_z = self.caster:GetAbsOrigin().z,
-					knockback_height = 12,
-				}
+		local units = FindUnitsInRadius(
+			self.caster:GetTeamNumber(), self.parent:GetOrigin(),
+			nil, 250,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+			0, 0, false
+		)
 	
-				self.parent:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)
-				if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
-			end
+		for _,unit in pairs(units) do
+			if unit ~= self.parent then
+				if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
-			-- UP 3.21
-			if self.ability_break:GetRank(21) then
-				local heal = self.heal
-				local base_stats = self.caster:FindAbilityByName("base_stats")
-				if base_stats then heal = heal * base_stats:GetHealPower() end
-				if heal > 0 then self.caster:Heal(heal, self.ability_break) end
-			end
-
-			-- UP 3.31
-			if self.ability_break:GetRank(31) then
-				self:PlayEfxSpread()
-
-				local damageTable = {
-					attacker = self.caster,
-					damage = self.ability:GetSpecialValueFor("break_damage"),
-					damage_type = DAMAGE_TYPE_MAGICAL,
-					ability = self.ability_break
-				}
-
-				local units = FindUnitsInRadius(
-					self.caster:GetTeamNumber(), self.parent:GetOrigin(),
-					nil, 275,
-					DOTA_UNIT_TARGET_TEAM_ENEMY,
-					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-					0, 0, false
-				)
-			
-				for _,unit in pairs(units) do
-					if unit ~= self.parent then
-						if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-
-						damageTable.victim = unit
-						ApplyDamage(damageTable)
-
-						if unit:IsAlive() then
-							unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.6})
-							self.ability:AddSlow(unit, self.ability)
-						end
-					end
+				if base_stats then
+					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					damageTableSplash.victim = unit
+					ApplyDamage(damageTableSplash)
+				end
+				
+				if unit:IsAlive() then
+					unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
+						duration = self.ability:CalcStatus(1.5, self.caster, unit)
+					})
+					self.ability:AddSlow(unit, self.ability)
 				end
 			end
 		end
 	end
+
+	-- UP 3.31
+	if self.ability_break:GetRank(31) then
+		self.ability_break.blink_lifesteal = true
+	end
+
+	if base_stats then base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL) end
 end
 
 --------------------------------------------------------------------------------
@@ -147,71 +149,69 @@ end
 
 function icebreaker_0_modifier_freeze:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_AVOID_DAMAGE,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 	}
 	return funcs
 end
 
+function icebreaker_0_modifier_freeze:OnAttackLanded(keys)
+	if keys.target ~= self.parent then return end
+	if not self.hits then self.hits = self.ability:GetSpecialValueFor("hits") end
+	self.hits = self.hits - 1
+
+	if self.hits < 1 then
+		self.take_damage = true
+		self:Destroy()
+	end
+end
 
 function icebreaker_0_modifier_freeze:GetModifierAvoidDamage(keys)
 	if keys.target ~= self.parent then return 0 end
 	if keys.damage <= 0 then return 0 end
 
-	if IsServer() then
-		self:PlayEfxHit()
-		local stack = self:GetStackCount() + keys.damage
-		if stack >= self.break_damage then
-			self:SetStackCount(self.break_damage)
-			self.heal = self.break_damage
-			self:Destroy()
-		else
-			self:SetStackCount(stack)
-			self.heal = stack
-		end
-	end
-
+	self:PlayEfxHit()
 	return 1
 end
 
 function icebreaker_0_modifier_freeze:OnAbilityExecuted(keys)
-	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
+	if keys.unit == nil then return end
+	if keys.target == nil then return end
 	if keys.ability == nil then return end
+	if keys.unit ~= self.caster then return end
+	if keys.target ~= self.parent then return end
 	if keys.ability:GetAbilityName() ~= "icebreaker_3__blink" then return end
+
 	self.ability_break = keys.ability
+
+	Timers:CreateTimer((0.1), function()
+		if self.ability_break ~= nil then
+			if IsValidEntity(self.ability_break) then
+				self.ability_break:EndCooldown()
+			end
+		end
+	end)
 	
-	if keys.unit == self.caster
-	and keys.target == self.parent then
-		Timers:CreateTimer((0.1), function()
-			if self.ability_break ~= nil then
-				if IsValidEntity(self.ability_break) then
-					self.ability_break:EndCooldown()
-				end
-			end
-		end)
-
-		local frost = keys.unit:FindAbilityByName("icebreaker_1__frost")
-		if frost then
-			if frost:IsTrained() then
-				frost:EndCooldown()
-			end
+	local frost = keys.unit:FindAbilityByName("icebreaker_1__frost")
+	if frost then
+		if frost:IsTrained() then
+			frost:EndCooldown()
 		end
-
-		-- UP 3.41
-		local damage = self.break_damage
-		if self.ability_break:GetRank(41) then
-			damage = damage + 70
-		end
-
-		self.heal = self.break_damage
-		self:SetStackCount(damage)
-		self:PlayEfxBlink((keys.target:GetOrigin() - keys.unit:GetOrigin()), keys.unit:GetOrigin(), keys.target)
-		self:Destroy()
 	end
+
+	self:PlayEfxBlink((keys.target:GetOrigin() - keys.unit:GetOrigin()), keys.unit:GetOrigin(), keys.target)
+	self.take_damage = true
+	self:Destroy()
 end
 
 function icebreaker_0_modifier_freeze:OnIntervalThink()
-	if self.parent:IsStunned() == false then self:Destroy() end
+	if self.parent:IsStunned() == false then
+		self:Destroy()
+		return
+	end
+
+	self:StartIntervalThink(FrameTime())
 end
 
 --------------------------------------------------------------------------------

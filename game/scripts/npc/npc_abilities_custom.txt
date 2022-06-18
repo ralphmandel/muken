@@ -6,7 +6,7 @@
 	"base_stats"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/base_stats"
+		"ScriptFile"					"_basics/base_stats"
         "AbilityTextureName"    		"base_stats"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"	
@@ -147,7 +147,7 @@
 	"base_hero"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/base_hero"
+		"ScriptFile"					"_basics/base_hero"
         "AbilityTextureName"    		"base_hero"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"	
@@ -184,7 +184,7 @@
 	"cosmetics"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/cosmetics"
+		"ScriptFile"					"_basics/cosmetics"
         "AbilityTextureName"    		"REC"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"	
@@ -201,7 +201,7 @@
 	"_channel"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_channel"
+		"ScriptFile"					"_basics/_channel"
         "AbilityTextureName"    		"REC"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"	
@@ -223,7 +223,7 @@
 	"_void"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"modifiers/_void"
+		"ScriptFile"					"_basics/_void"
         "AbilityTextureName"    		"plus"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"1"	

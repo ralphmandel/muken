@@ -67,7 +67,7 @@
 			"MovementSpeed"           	"50"
 		//VITALITY
 			"StatusHealth"            	"1000"
-			"StatusHealthRegen"        	"0"
+			"StatusHealthRegen"        	"10"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"600"

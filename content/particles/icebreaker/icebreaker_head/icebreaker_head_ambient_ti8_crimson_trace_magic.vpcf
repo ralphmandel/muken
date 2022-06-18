@@ -1,0 +1,123 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 10
+	m_flConstantRadius = 25.0
+	m_flConstantLifespan = 0.1
+	m_ConstantColor = [ 53, 177, 202, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 3.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 63, 255, 251 ]
+			m_ColorMax = [ 51, 221, 255 ]
+		},
+		{
+			_class = "C_INIT_InitSkinnedPositionFromCPSnapshot"
+			m_nSnapshotControlPointNumber = 6
+			m_bRandom = true
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 7.0
+			m_flRadiusMax = 10.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMin = 45.0
+			m_flDegreesMax = 90.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.2
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 0, 202, 168 ]
+			m_flFadeStartTime = 0.5
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 20.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+		},
+		{
+			_class = "C_OP_SnapshotSkinToBones"
+			m_flLifeTimeFadeStart = 0.5
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_CurlNoiseForce"
+			m_vecNoiseScale = [ 80.0, 80.0, 80.0 ]
+			m_vecNoiseFreq = [ 0.1, 0.1, 0.1 ]
+			m_vecOffsetRate = [ 0.0, 0.0, -0.4 ]
+			m_nNoiseType = "PARTICLE_DIR_NOISE_CURL"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAddSelfAmount = 1.0
+			m_flOverbrightFactor = 6.0
+			m_flMaxSize = 0.02
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/yellowflare.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

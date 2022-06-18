@@ -1,25 +1,25 @@
-_modifier_cosmetics = class({})
+cosmetics_mod = class({})
 
 --------------------------------------------------------------------------------
-function _modifier_cosmetics:IsPurgable()
+function cosmetics_mod:IsPurgable()
 	return false
 end
 
-function _modifier_cosmetics:IsHidden()
+function cosmetics_mod:IsHidden()
 	return true
 end
 
-function _modifier_cosmetics:IsDebuff()
+function cosmetics_mod:IsDebuff()
 	return false
 end
 
-function _modifier_cosmetics:GetAttributes()
+function cosmetics_mod:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 --------------------------------------------------------------------------------
 
-function _modifier_cosmetics:OnCreated( kv )
+function cosmetics_mod:OnCreated( kv )
 	self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
@@ -28,22 +28,22 @@ function _modifier_cosmetics:OnCreated( kv )
 	self.model = kv.model
 	self.parent:SetOriginalModel(self.model)
 
-	Timers:CreateTimer((0.2), function()
+	--Timers:CreateTimer((0.2), function()
 		self.parent:FollowEntity(self.caster, true)
-	end)
+	--end)
 end
 
-function _modifier_cosmetics:OnRefresh( kv )
+function cosmetics_mod:OnRefresh( kv )
 end
 
-function _modifier_cosmetics:OnRemoved()
+function cosmetics_mod:OnRemoved()
 	self.parent:AddNoDraw()
 	self.parent:ForceKill(false)
 end
 
 --------------------------------------------------------------------------------
 
-function _modifier_cosmetics:CheckState()
+function cosmetics_mod:CheckState()
 	local state = {
 		[MODIFIER_STATE_UNSELECTABLE] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
@@ -55,7 +55,7 @@ function _modifier_cosmetics:CheckState()
 	return state
 end
 
-function _modifier_cosmetics:DeclareFunctions()
+function cosmetics_mod:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
@@ -66,11 +66,11 @@ function _modifier_cosmetics:DeclareFunctions()
 	return funcs
 end
 
-function _modifier_cosmetics:GetModifierModelChange()
+function cosmetics_mod:GetModifierModelChange()
 	return self.model
 end
 
-function _modifier_cosmetics:OnStateChanged(keys)
+function cosmetics_mod:OnStateChanged(keys)
 	if keys.unit ~= self.caster then return end
 	
 	if self.caster:IsInvisible() then
@@ -87,7 +87,7 @@ function _modifier_cosmetics:OnStateChanged(keys)
 	end
 end
 
-function _modifier_cosmetics:OnDeath(keys)
+function cosmetics_mod:OnDeath(keys)
 	if keys.unit == self.caster
 	and keys.unit:IsIllusion() then
 		self:Destroy()
@@ -96,7 +96,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_cosmetics:PlayEfxAmbient(ambient, attach)
+function cosmetics_mod:PlayEfxAmbient(ambient, attach)
 	if self.index == nil then self.index = 0 end
 	if self.ambient == nil then self.ambient = {} end
 	if self.particle == nil then self.particle = {} end
@@ -109,7 +109,7 @@ function _modifier_cosmetics:PlayEfxAmbient(ambient, attach)
 	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
 end
 
-function _modifier_cosmetics:ResetAmbientEfx()
+function cosmetics_mod:ResetAmbientEfx()
 	if self.index == nil then return end
 	if self.ambient == nil then return end
 	if self.particle == nil then return end

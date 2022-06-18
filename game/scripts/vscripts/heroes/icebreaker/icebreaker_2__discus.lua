@@ -84,29 +84,28 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then base_hero.ranks[2][0] = true end
+
+        local charges = 1
+		self:SetCurrentAbilityCharges(charges)
     end
 
     function icebreaker_2__discus:Spawn()
+        self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
     function icebreaker_2__discus:OnSpellStart()
-
         local caster = self:GetCaster()
         local cursorPt = self:GetCursorPosition()
         local casterPt = caster:GetAbsOrigin()
-
-        if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.IceBlast.Target") end
-        
         local direction = cursorPt - casterPt
         direction = direction:Normalized()
-        
-        local speed = self:GetSpecialValueFor("speed")
-        local radius = self:GetSpecialValueFor("radius")
-        local vision_radius = self:GetSpecialValueFor("vision_radius")
-        local distance = self:GetSpecialValueFor("distance")
 
+        local distance = self:GetSpecialValueFor("distance")
+        local speed = self:GetSpecialValueFor("speed")
+        local vision_radius = self:GetSpecialValueFor("vision_radius")
+        local radius = self:GetSpecialValueFor("radius")
         local flag = DOTA_UNIT_TARGET_FLAG_NONE
         
         local info = 
@@ -133,15 +132,13 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         ProjectileManager:CreateLinearProjectile(info)
 
         self.damageTable = {
-            --victim = self.parent,
             attacker = caster,
-            --damage = damage,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = self
         }
 
-        -- UP 2.22
-        if self:GetRank(22) then
+        -- UP 2.31
+        if self:GetRank(31) then
             CreateModifierThinker(caster, self, "icebreaker_2_modifier_path", {
                 x = direction.x,
                 y = direction.y,
@@ -158,28 +155,37 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 
         self.first_hit = false
         self:SetActivated(false)
-        if self:IsStolen() == false then
-            caster:AddNewModifier(caster, self, "icebreaker_2_modifier_refresh", {})
-        end
+
+        caster:AddNewModifier(caster, self, "icebreaker_2_modifier_refresh", {})
+        if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.IceBlast.Target") end
     end
 
     function icebreaker_2__discus:OnProjectileHit(target, vLocation)
         local caster = self:GetCaster()
-
         if target == nil then return end
-        if target:IsInvulnerable() or target:IsMagicImmune() then return end
         if target:HasModifier("icebreaker_0_modifier_freeze") then return end
+
+        local ability_slow = caster:FindAbilityByName("icebreaker_0__slow")
+        if ability_slow == nil then return end
+	    if ability_slow:IsTrained() == false then return end
+        ability_slow:AddSlow(target, self)
 
         if self.first_hit == false then
             caster:MoveToTargetToAttack(target)
             self.first_hit = true
         end
 
-        -- UP 2.13
-        if self:GetRank(13) then
-            local burned_mana = target:GetMaxMana() * 0.1
+        -- UP 2.12
+        if self:GetRank(12) then
+            target:AddNewModifier(caster, self, "_modifier_silence", {
+                duration = self:CalcStatus(2, caster, target)
+            })
+        end
+
+        -- UP 2.22
+        if self:GetRank(22) then
+            local burned_mana = target:GetMaxMana() * 0.2
             if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
-            if target:GetUnitName() == "npc_dota_hero_elder_titan" then burned_mana = burned_mana * 0.5 end
 
             if burned_mana > 0 then
                 target:ReduceMana(burned_mana)
@@ -191,57 +197,31 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             end
         end
 
-        -- UP 2.22
-        if self:GetRank(22) then
-            local distance = self:GetSpecialValueFor("distance") / 3
-            self.knockbackProperties.duration = 0.25
-            self.knockbackProperties.knockback_duration = 0.25
-            self.knockbackProperties.knockback_distance = self:CalcStatus(distance, caster, target)
+        -- UP 2.31
+        if self:GetRank(31) then
+            local distance = self:GetSpecialValueFor("distance") - CalcDistanceBetweenEntityOBB(caster, target)
+            if distance > 0 then
+                self.knockbackProperties.duration = 0.25
+                self.knockbackProperties.knockback_duration = 0.25
+                self.knockbackProperties.knockback_distance = self:CalcStatus(distance / 2, caster, target)
 
-            target:AddNewModifier(caster, nil, "modifier_knockback", self.knockbackProperties)
-        end
-
-        local ability_slow = caster:FindAbilityByName("icebreaker_0__slow")
-        if ability_slow then
-            if ability_slow:IsTrained() then
-                ability_slow:AddSlow(target, self)
-                if IsServer() then target:EmitSound("Hero_Lich.preAttack") end
+                target:AddNewModifier(caster, nil, "modifier_knockback", self.knockbackProperties)
             end
         end
 
-        if target:HasModifier("icebreaker_0_modifier_slow") then
-            -- UP 2.12
-            if self:GetRank(12) then
-                target:AddNewModifier(caster, self, "_modifier_silence", {
-                    duration = self:CalcStatus(2.5, caster, target)
-                })
-            end
-
-            -- UP 2.41
-            if self:GetRank(41) then
-                local illu = CreateIllusions(
-                    caster, caster,
-                    {
-                        outgoing_damage = -100,
-                        incoming_damage = 0,
-                        bounty_base = 0,
-                        bounty_growth = 0,
-                        duration = self:CalcStatus(7, caster, nil),
-                    },
-                    1, 64, false, true
-                )
-                illu = illu[1]
-
-                local blinkDistance = 75
-                local blinkDirection = (illu:GetOrigin() - target:GetOrigin()):Normalized() * blinkDistance
-                local blinkPosition = target:GetOrigin() + blinkDirection
-                illu:SetOrigin( blinkPosition )
-                FindClearSpaceForUnit( illu, blinkPosition, true )
-
-                illu:AddNewModifier(caster, ability_slow, "_modifier_phase", {})
-                illu:AddNewModifier(caster, ability_slow, "icebreaker_0_modifier_illusion", {})
-            end
+        -- UP 2.32
+        if self:GetRank(32) then
+            ability_slow:CreateIceIllusions(target, self:CalcStatus(7, caster, nil))
         end
+
+        if IsServer() then target:EmitSound("Hero_Lich.preAttack") end
+    end
+
+    function icebreaker_2__discus:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then manacost = 0 end
+        return manacost * level
     end
 
 -- EFFECTS

@@ -74,6 +74,7 @@ LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MO
     end
 
     function icebreaker_0__slow:Spawn()
+        self.kills = 0
         self:UpgradeAbility(true)
     end
 
@@ -135,4 +136,48 @@ LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MO
         })
     end
 
+    function icebreaker_0__slow:CreateIceIllusions(target, duration)
+        local caster = self:GetCaster()
+        local loc = target:GetAbsOrigin() + RandomVector(130)
+        local illu = CreateIllusions(
+			caster, caster,
+			{
+				outgoing_damage = -100,
+				incoming_damage = 0,
+				bounty_base = 0,
+				bounty_growth = 0,
+				duration = duration,
+			},
+			1, 64, false, true
+		)
+
+		illu = illu[1]
+		illu:AddNewModifier(caster, self, "_modifier_phase", {})
+		illu:AddNewModifier(caster, self, "icebreaker_0_modifier_illusion", {})
+		
+        illu:SetAbsOrigin(loc)
+        illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
+        FindClearSpaceForUnit(illu, loc, true)
+    end
+
+    function icebreaker_0__slow:AddKillPoint(pts)
+        local caster = self:GetCaster()
+        self.kills = self.kills + pts
+
+        local base_stats = caster:FindAbilityByName("base_stats")
+	    if base_stats then base_stats:AddBaseStat("AGI", 1) end
+
+        self:PlayEfxKill(caster)
+    end
+
 -- EFFECTS
+
+    function icebreaker_0__slow:PlayEfxKill(target)
+        local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
+    end

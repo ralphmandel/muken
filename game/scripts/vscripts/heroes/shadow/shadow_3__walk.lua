@@ -113,22 +113,27 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 				incoming_damage = shadow_incoming,
 				bounty_base = 0,
 				bounty_growth = 0,
-				duration = self:CalcStatus(shadow_duration, caster, nil)
+				duration = shadow_duration
 			},
 			shadow_number, 64, false, true
 		)
 
         for i = 1, #illu, 1 do
+            local loc = target:GetAbsOrigin() + RandomVector(150)
+            illu[i]:SetAbsOrigin(loc)
+            illu[i]:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
             illu[i]:SetControllableByPlayer(caster:GetPlayerID(), false)
-            FindClearSpaceForUnit(illu[i], target:GetAbsOrigin() + RandomVector(150), true)
+            FindClearSpaceForUnit(illu[i], loc, true)
         end
 
         if bSwapLoc then
             local rand_pos = RandomInt(0, #illu)
             if rand_pos > 0 then 
-                local caster_origin = caster:GetOrigin()
-                caster:SetOrigin(illu[rand_pos]:GetOrigin())
-                illu[rand_pos]:SetOrigin(caster_origin)
+                local caster_origin = caster:GetAbsOrigin()
+                caster:SetAbsOrigin(illu[rand_pos]:GetAbsOrigin())
+                caster:SetForwardVector((target:GetAbsOrigin() - illu[rand_pos]:GetAbsOrigin()):Normalized())
+                illu[rand_pos]:SetAbsOrigin(caster_origin)
+                illu[rand_pos]:SetForwardVector((target:GetAbsOrigin() - caster_origin):Normalized())
 
                 CenterCameraOnUnit(caster:GetPlayerID(), caster)
             end

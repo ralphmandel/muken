@@ -126,7 +126,7 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 	if cosmetics then
 		if cosmetics.cosmetic then
 			for i = 1, #cosmetics.cosmetic, 1 do
-				local mod_cosmetic = cosmetics.cosmetic[i]:FindModifierByName("_modifier_cosmetics")
+				local mod_cosmetic = cosmetics.cosmetic[i]:FindModifierByName("cosmetics_mod")
 				if mod_cosmetic then
 					if mod_cosmetic.index ~= nil then
 						for i = 1, mod_cosmetic.index, 1 do

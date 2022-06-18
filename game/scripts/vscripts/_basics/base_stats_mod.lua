@@ -285,15 +285,21 @@ base_stats_mod = class ({})
 -- CON
 
     function base_stats_mod:GetModifierHealthBonus()
-        return self.ability.stat_total["CON"] * self.ability.health_bonus
+        if IsServer() then
+            return self.ability.stat_total["CON"] * self.ability.health_bonus
+        end
     end
 
     function base_stats_mod:GetModifierConstantHealthRegen()
-        return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.regen_state
+        if IsServer() then
+            return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.regen_state
+        end
     end
 
     function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
-        return self.ability.total_heal_amplify
+        if IsServer() then
+            return self.ability.total_heal_amplify
+        end
     end
 
     function base_stats_mod:OnHealReceived(keys)

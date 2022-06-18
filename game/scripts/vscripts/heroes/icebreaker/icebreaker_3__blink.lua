@@ -81,9 +81,19 @@ icebreaker_3__blink = class({})
 		
 		local charges = 1
 
-	    -- UP 3.31
-        if self:GetRank(31) then
-            charges = charges * 2           
+	    -- UP 3.12
+        if self:GetRank(12) then
+            charges = charges * 2
+        end
+
+		-- UP 3.13
+        if self:GetRank(13) then
+            charges = charges * 3
+        end
+
+		-- UP 3.41
+        if self:GetRank(41) then
+            charges = charges * 5
         end
 
 		self:SetCurrentAbilityCharges(charges)
@@ -91,16 +101,10 @@ icebreaker_3__blink = class({})
 
 	function icebreaker_3__blink:Spawn()
 		self:SetCurrentAbilityCharges(0)
+		self.blink_lifesteal = false
 	end
 
 -- SPELL START
-
-	function icebreaker_3__blink:GetAOERadius()
-		if self:GetCurrentAbilityCharges() == 0 then return 0 end
-		if self:GetCurrentAbilityCharges() == 1 then return 0 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 275 end
-		return 0
-	end
 
 	function icebreaker_3__blink:OnSpellStart()
 		local caster = self:GetCaster()
@@ -112,20 +116,6 @@ icebreaker_3__blink = class({})
 		if target:GetTeamNumber()~=caster:GetTeamNumber() then
 			if target:TriggerSpellAbsorb(self) then
 				return
-			end
-		end
-		
-		local ability_slow = caster:FindAbilityByName("icebreaker_0__slow")
-		if ability_slow then
-			if ability_slow:IsTrained()
-			and target:GetTeamNumber() == caster:GetTeamNumber() then
-				-- UP 3.22
-				if self:GetRank(22) then
-					local freeze_duration = ability_slow:GetSpecialValueFor("freeze_duration")
-					target:AddNewModifier(caster, ability_slow, "icebreaker_0_modifier_freeze", {
-						duration = freeze_duration
-					})
-				end
 			end
 		end
 
@@ -185,10 +175,41 @@ icebreaker_3__blink = class({})
 	end
 
     function icebreaker_3__blink:GetBehavior()
-        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
-        if self:GetCurrentAbilityCharges() == 1 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES end
-        return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+		local behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+        if self:GetCurrentAbilityCharges() == 0 then return behavior end
+
+		if self:GetCurrentAbilityCharges() % 3 == 0 then
+			behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+		end
+
+        if self:GetCurrentAbilityCharges() % 5 == 0 then
+			behavior = behavior + DOTA_ABILITY_BEHAVIOR_AOE
+		end
+
+        return behavior
+    end
+
+	function icebreaker_3__blink:GetAOERadius()
+		if self:GetCurrentAbilityCharges() == 0 then return 0 end
+		if self:GetCurrentAbilityCharges() == 1 then return 0 end
+		if self:GetCurrentAbilityCharges() % 5 == 0 then return 250 end
+		return 0
+	end
+
+	function icebreaker_3__blink:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() == 1 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_range + 250 end
+        return cast_range
+    end
+
+	function icebreaker_3__blink:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost - 15 end
+        return manacost * level
     end
 
 -- EFFECTS

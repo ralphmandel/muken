@@ -59,7 +59,6 @@ end
 function mana_burn_modifier:InflictBurn(target)
 	local burned_mana = self.burned_mana
 	if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
-	if target:GetUnitName() == "npc_dota_hero_elder_titan" then burned_mana = burned_mana * 0.5 end
 
 	if burned_mana > 0 then
 		target:ReduceMana(burned_mana)

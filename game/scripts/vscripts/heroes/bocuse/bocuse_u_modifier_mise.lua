@@ -225,7 +225,7 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
                 -- UP 4.42
                 if self.ability:GetRank(42)
-                and RandomInt(1, 100) <= 50 then
+                and RandomInt(1, 100) <= 35 then
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
                 end
             end

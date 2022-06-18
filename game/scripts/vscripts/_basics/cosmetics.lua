@@ -1,6 +1,5 @@
 cosmetics = class ({})
-LinkLuaModifier("_modifier_cosmetics", "modifiers/_modifier_cosmetics", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_status_effect", "modifiers/_modifier_status_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("cosmetics_mod", "_basics/cosmetics_mod", LUA_MODIFIER_MOTION_NONE)
 
 function cosmetics:Spawn()
 	self:UpgradeAbility(true)
@@ -41,7 +40,7 @@ function cosmetics:ApplyCosmetics(cosmetics_data)
 		if modifier == nil then
 			index = index + 1
 			self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
-			modifier = self.cosmetic[index]:AddNewModifier(caster, self, "_modifier_cosmetics", {model = cosmetic})
+			modifier = self.cosmetic[index]:AddNewModifier(caster, self, "cosmetics_mod", {model = cosmetic})
 			unit = self.cosmetic[index]
 		end
 
@@ -79,7 +78,7 @@ end
 function cosmetics:CheckFlags(cosmetic)
 	if cosmetic == nil then return end
 	if IsValidEntity(cosmetic) == false then return end
-	local mod = cosmetic:FindModifierByName("_modifier_cosmetics")
+	local mod = cosmetic:FindModifierByName("cosmetics_mod")
 	if mod then
 		for i = 1, #self.status_efx_flags, 1 do
 			if mod.model == self.status_efx_flags[i] then

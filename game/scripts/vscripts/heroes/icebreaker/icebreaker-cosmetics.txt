@@ -6,9 +6,10 @@
 
 	"models/items/rikimaru/riki_killer_of_purple_smoke_tail/riki_killer_of_purple_smoke_tail.vmdl" "nil"
 
-	"models/items/rikimaru/haze_atrocity_head/haze_atrocity_head.vmdl"
+	"models/items/rikimaru/riki_ti8_immortal_head/riki_ti8_immortal_head.vmdl"
 	{
-		"particles/econ/items/riki/riki_haze_atrocity/riki_versuta_eye_smoke.vpcf" "attach_eyes"
+		"material" "2"
+		"particles/icebreaker/icebreaker_head/icebreaker_head_ambient_ti8_crimson.vpcf" ""
 	}
 
 	"models/items/rikimaru/ti6_blink_strike/riki_ti6_blink_strike.vmdl"

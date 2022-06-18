@@ -83,7 +83,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
         local base_stats = caster:FindAbilityByName("base_stats")
         if base_stats then mana = mana * base_stats:GetHealPower() end
-        if target:GetUnitName() == "npc_dota_hero_elder_titan" then mana = mana * 0.5 end
         target:GiveMana(mana)
         SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, mana, caster)
 

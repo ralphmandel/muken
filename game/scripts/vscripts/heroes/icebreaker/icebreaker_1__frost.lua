@@ -94,23 +94,12 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_efx", "heroes/icebreaker/
 
     function icebreaker_1__frost:Spawn()
         self:SetCurrentAbilityCharges(0)
-        self.kills = 0
     end
 
 -- SPELL START
 
     function icebreaker_1__frost:GetIntrinsicModifierName()
         return "icebreaker_1_modifier_frost"
-    end
-
-    function icebreaker_1__frost:AddKillPoint(pts)
-        local caster = self:GetCaster()
-        self.kills = self.kills + pts
-
-        local base_stats = caster:FindAbilityByName("base_stats")
-	    if base_stats then base_stats:AddBaseStat("AGI", 1) end
-
-        self:PlayEfxKill(caster)
     end
 
     function icebreaker_1__frost:GetCooldown(iLevel)
@@ -120,13 +109,3 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_efx", "heroes/icebreaker/
 	end
 
 -- EFFECTS
-
-    function icebreaker_1__frost:PlayEfxKill(target)
-        local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-
-        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
-        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
-        ParticleManager:ReleaseParticleIndex(nFXIndex)
-    end

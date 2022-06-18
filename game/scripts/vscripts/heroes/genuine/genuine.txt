@@ -305,7 +305,7 @@
         {
             "01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"powershot_damage"		"100"
 			}
 			"02"
@@ -315,12 +315,12 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"arrow_width"			"125"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"arrow_range"			"2600"
 			}
 			"05"
@@ -335,7 +335,7 @@
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"vision_radius"			"400"
 			}
 			"08"
