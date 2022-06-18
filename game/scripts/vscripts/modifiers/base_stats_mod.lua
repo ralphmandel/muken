@@ -25,7 +25,10 @@ base_stats_mod = class ({})
             self.popup_spell_crit = false
             self.pierce_proc = false
 
-            if self.parent:IsIllusion() then return end
+            if self.parent:IsIllusion() then
+                self.ability:LoadDataForIllusion()
+                return
+            end
 
             self.ability:AddBaseStatsPoints()
             self.ability:IncrementSpenderPoints(0, 0)

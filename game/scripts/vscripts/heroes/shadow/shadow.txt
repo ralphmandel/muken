@@ -6,7 +6,7 @@
 	"shadow__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/genuine/shadow-ranks_lua"
+		"ScriptFile"					"heroes/shadow/shadow-ranks_lua"
         "AbilityTextureName"    		"shadow__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -183,7 +183,7 @@
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"shadow_outgoing"   "20"
+				"shadow_outgoing"   "0"
 			}
             "05"
 			{

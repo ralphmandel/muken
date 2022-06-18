@@ -98,7 +98,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         return "shadow_3_modifier_passive"
     end
 
-    function shadow_3__walk:CreateShadow(target, shadow_duration, shadow_number)
+    function shadow_3__walk:CreateShadow(target, shadow_duration, shadow_number, bSwapLoc)
         local caster = self:GetCaster()
         ProjectileManager:ProjectileDodge(caster)
         if caster:IsIllusion() then return end -- VERY IMPORTANT !
@@ -119,21 +119,20 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		)
 
         for i = 1, #illu, 1 do
-            local base_stats = illu:FindAbilityByName("base_stats")
-            if base_stats then base_stats:LoadDataForIllusion(caster) end
-
             illu[i]:SetControllableByPlayer(caster:GetPlayerID(), false)
             FindClearSpaceForUnit(illu[i], target:GetAbsOrigin() + RandomVector(150), true)
         end
 
-        local rand_pos = RandomInt(0, #illu)
-        if rand_pos > 0 then 
-            local caster_origin = caster:GetOrigin()
-            caster:SetOrigin(illu[rand_pos]:GetOrigin())
-            illu[rand_pos]:SetOrigin(caster_origin)
-        end
+        if bSwapLoc then
+            local rand_pos = RandomInt(0, #illu)
+            if rand_pos > 0 then 
+                local caster_origin = caster:GetOrigin()
+                caster:SetOrigin(illu[rand_pos]:GetOrigin())
+                illu[rand_pos]:SetOrigin(caster_origin)
 
-        CenterCameraOnUnit(caster:GetPlayerID(), caster)
+                CenterCameraOnUnit(caster:GetPlayerID(), caster)
+            end
+        end
     end
 
     function shadow_3__walk:StartRechargeTime()

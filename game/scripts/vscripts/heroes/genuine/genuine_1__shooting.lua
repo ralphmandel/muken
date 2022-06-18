@@ -2,7 +2,7 @@ genuine_1__shooting = class({})
 LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_0_modifier_fear", "heroes/genuine/genuine_0_modifier_fear", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("genuine_0_modifier_fear_status_effect", "heroes/genuine/genuine_0_modifier_fear_status_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_0_modifier_fear_status_efx", "heroes/genuine/genuine_0_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

@@ -17,9 +17,9 @@ function icebreaker_u_modifier_aura_effect:OnCreated( kv )
 
 	local res = 0
 	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then
-		if self.parent:HasModifier("icebreaker__modifier_effect") then
+		if self.parent:HasModifier("icebreaker_0_modifier_passive_effect") then
 			local cosmetics = self.parent:FindAbilityByName("cosmetics")
-			if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_effect", true) end
+			if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_efx", true) end
 		end
 
 		-- UP 4.12
@@ -44,9 +44,9 @@ function icebreaker_u_modifier_aura_effect:OnRefresh( kv )
 end
 
 function icebreaker_u_modifier_aura_effect:OnRemoved()
-	if self.parent:HasModifier("icebreaker__modifier_effect") then
+	if self.parent:HasModifier("icebreaker_0_modifier_passive_effect") then
 		local cosmetics = self.parent:FindAbilityByName("cosmetics")
-		if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_effect", false) end
+		if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_efx", false) end
 	end
 
 	if self.caster == self.parent then self.ability:DestroyShard() end
@@ -64,7 +64,7 @@ function icebreaker_u_modifier_aura_effect:CheckState()
 	local state = {}
 
 	if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber()
-	and self:GetParent():HasModifier("icebreaker__modifier_effect") then
+	and self:GetParent():HasModifier("icebreaker_0_modifier_passive_effect") then
 		state = {
 			[MODIFIER_STATE_UNSLOWABLE] = true,
 		}
@@ -86,28 +86,28 @@ end
 
 function icebreaker_u_modifier_aura_effect:GetStatusEffectName()
 	if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber()
-	and self:GetParent():HasModifier("icebreaker__modifier_effect") then
+	and self:GetParent():HasModifier("icebreaker_0_modifier_passive_effect") then
 		return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_l2_radiant.vpcf"
 	end
 end
 
 function icebreaker_u_modifier_aura_effect:StatusEffectPriority()
 	if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber()
-	and self:GetParent():HasModifier("icebreaker__modifier_effect") then
+	and self:GetParent():HasModifier("icebreaker_0_modifier_passive_effect") then
 		return MODIFIER_PRIORITY_SUPER_ULTRA
 	end
 end
 
 function icebreaker_u_modifier_aura_effect:GetEffectName()
 	if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber()
-	and self:GetParent():HasModifier("icebreaker__modifier_effect") then
+	and self:GetParent():HasModifier("icebreaker_0_modifier_passive_effect") then
 		return "particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"
 	end
 end
 
 function icebreaker_u_modifier_aura_effect:GetEffectAttachType()
 	if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber()
-	and self:GetParent():HasModifier("icebreaker__modifier_effect") then
+	and self:GetParent():HasModifier("icebreaker_0_modifier_passive_effect") then
 		return PATTACH_ABSORIGIN_FOLLOW
 	end
 end

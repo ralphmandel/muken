@@ -98,7 +98,7 @@ function shadow_3_modifier_walk:GetModifierPreAttack(keys)
 		shadow_number = shadow_number + 1
 	end
 
-	self.ability:CreateShadow(keys.target, shadow_duration, shadow_number)
+	self.ability:CreateShadow(keys.target, shadow_duration, shadow_number, true)
 	self:Destroy()
 end
 

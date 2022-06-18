@@ -114,7 +114,7 @@ function GameSetup:RandomForNoHeroSelected()
     -- NOTE: GameRules state must be in HERO_SELECTION or STRATEGY_TIME to pick heroes
     -- loop through each player on every team and random a hero if they haven't picked
 
-    local maxPlayers = 5
+    local maxPlayers = 4
     local teams = {
         [1] = DOTA_TEAM_CUSTOM_1,
         [2] = DOTA_TEAM_CUSTOM_2,

@@ -1,11 +1,11 @@
 icebreaker_u__zero = class({})
 LinkLuaModifier( "icebreaker_u_modifier_zero", "heroes/icebreaker/icebreaker_u_modifier_zero", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_aura_effect", "heroes/icebreaker/icebreaker_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_u_modifier_status_effect", "heroes/icebreaker/icebreaker_u_modifier_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_u_modifier_status_efx", "heroes/icebreaker/icebreaker_u_modifier_status_efx", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_blur", "heroes/icebreaker/icebreaker_u_modifier_blur", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_u_modifier_resistance", "heroes/icebreaker/icebreaker_u_modifier_resistance", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreaker/icebreaker_1_modifier_instant_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_1_modifier_instant_status_efx", "heroes/icebreaker/icebreaker_1_modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_modifier_no_bar", "modifiers/_modifier_no_bar", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
@@ -73,13 +73,11 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
 
     function icebreaker_u__zero:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("icebreaker__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
-        return att.talents[4][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
     function icebreaker_u__zero:OnUpgrade()
@@ -87,21 +85,8 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
-        local att = caster:FindAbilityByName("icebreaker__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[4][0] = true end
 
         local charges = 1
 

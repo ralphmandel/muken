@@ -56,7 +56,7 @@ function icebreaker_0_modifier_slow:OnCreated( kv )
 	if base_stats then base_stats:SetBaseAttackTime(self:GetStackCount() * as_slow) end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", true) end
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_efx", true) end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		percent = self.slow * self:GetStackCount()
@@ -109,7 +109,7 @@ end
 
 function icebreaker_0_modifier_slow:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_effect", false) end
+	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_slow_status_efx", false) end
 
 	ParticleManager:DestroyParticle(self.pidx, false)
 	self:CheckCounterEfx()

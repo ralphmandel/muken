@@ -1,7 +1,7 @@
 icebreaker_1__frost = class({})
 LinkLuaModifier( "icebreaker_1_modifier_frost", "heroes/icebreaker/icebreaker_1_modifier_frost", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreaker/icebreaker_1_modifier_instant_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_1_modifier_instant_status_efx", "heroes/icebreaker/icebreaker_1_modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE )
 
 -- INIT
 
@@ -67,13 +67,11 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreak
 
     function icebreaker_1__frost:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("icebreaker__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
-        return att.talents[1][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[1][upgrade] end
     end
 
     function icebreaker_1__frost:OnUpgrade()
@@ -81,21 +79,8 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreak
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
-        local att = caster:FindAbilityByName("icebreaker__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[1][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[1][0] = true end
 
         local charges = 1
 
@@ -122,12 +107,10 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreak
         local caster = self:GetCaster()
         self.kills = self.kills + pts
 
-        local mod = caster:FindAbilityByName("_1_AGI")
-        if mod ~= nil then mod:BonusPermanent(1) end
+        local base_stats = caster:FindAbilityByName("base_stats")
+	    if base_stats then base_stats:AddBaseStat("AGI", 1) end
 
-        local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster() )
-        ParticleManager:SetParticleControl( nFXIndex, 1, Vector( 1, 0, 0 ) )
-        ParticleManager:ReleaseParticleIndex( nFXIndex )
+        self:PlayEfxKill(caster)
     end
 
     function icebreaker_1__frost:GetCooldown(iLevel)
@@ -137,3 +120,13 @@ LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreak
 	end
 
 -- EFFECTS
+
+    function icebreaker_1__frost:PlayEfxKill(target)
+        local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
+    end

@@ -195,10 +195,15 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.total_heal_amplify = self.heal_amplify * self.stat_init["CON"]
 		end
 
-		function base_stats:LoadDataForIllusion(hero)
-			local hero_stats = hero:FindAbilityByName("base_stats")
+		function base_stats:LoadDataForIllusion()
+			local hero_stats = nil
+			local hero = self:FindOriginalHero()
+			if hero then hero_stats = hero:FindAbilityByName("base_stats") end
 			if hero_stats == nil then return end
 
+			self.stat_base = hero_stats.stat_base
+			self.stat_bonus = hero_stats.stat_bonus
+			self.stat_percent = hero_stats.stat_percent
 			self.stat_total = hero_stats.stat_total
 
 			-- STR
@@ -251,6 +256,36 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.total_movespeed = hero_stats.total_movespeed
 			self.total_mana = hero_stats.total_mana
 			self.total_heal_amplify = hero_stats.total_heal_amplify
+		end
+
+		function base_stats:FindOriginalHero()
+			local maxPlayers = 4
+			local teams = {
+				[1] = DOTA_TEAM_CUSTOM_1,
+				[2] = DOTA_TEAM_CUSTOM_2,
+				[3] = DOTA_TEAM_CUSTOM_3,
+				[4] = DOTA_TEAM_CUSTOM_4,
+				[5] = DOTA_TEAM_CUSTOM_5,
+			}
+		
+			for _, teamNum in pairs(teams) do
+				for i = 1, maxPlayers do
+					local playerID = PlayerResource:GetNthPlayerIDOnTeam(teamNum, i)
+					if playerID ~= nil then
+						local hPlayer = PlayerResource:GetPlayer(playerID)
+						if hPlayer ~= nil then
+							local assigned_hero = hPlayer:GetAssignedHero()
+							if assigned_hero ~= nil then
+								if assigned_hero:IsIllusion() == false then
+									if assigned_hero:GetUnitName() == self:GetCaster():GetUnitName() then
+										return assigned_hero
+									end
+								end
+							end
+						end
+					end
+				end
+			end
 		end
 
 ---- ATTRIBUTES POINTS
@@ -316,6 +351,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 			local void = self:GetCaster():FindAbilityByName("_void")
 			if void then void:SetLevel(1) end
+
+			if self:GetCaster():IsIllusion() then return end
 
 			self:UpdatePanoramaStat(stat)
 		end

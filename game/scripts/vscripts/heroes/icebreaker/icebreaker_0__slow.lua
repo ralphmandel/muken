@@ -1,11 +1,13 @@
 icebreaker_0__slow = class({})
+LinkLuaModifier( "icebreaker_0_modifier_passive_effect", "heroes/icebreaker/icebreaker_0_modifier_passive_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_0_modifier_passive_status_efx", "heroes/icebreaker/icebreaker_0_modifier_passive_status_efx", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_0_modifier_slow", "heroes/icebreaker/icebreaker_0_modifier_slow", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_0_modifier_freeze", "heroes/icebreaker/icebreaker_0_modifier_freeze", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_0_modifier_illusion", "heroes/icebreaker/icebreaker_0_modifier_illusion", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "icebreaker_1_modifier_instant", "heroes/icebreaker/icebreaker_1_modifier_instant", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_0_modifier_slow_status_effect", "heroes/icebreaker/icebreaker_0_modifier_slow_status_effect", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_0_modifier_freeze_status_effect", "heroes/icebreaker/icebreaker_0_modifier_freeze_status_effect", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "icebreaker_1_modifier_instant_status_effect", "heroes/icebreaker/icebreaker_1_modifier_instant_status_effect", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_0_modifier_slow_status_efx", "heroes/icebreaker/icebreaker_0_modifier_slow_status_efx", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_0_modifier_freeze_status_efx", "heroes/icebreaker/icebreaker_0_modifier_freeze_status_efx", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "icebreaker_1_modifier_instant_status_efx", "heroes/icebreaker/icebreaker_1_modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 
@@ -76,6 +78,10 @@ LinkLuaModifier( "_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MO
     end
 
 -- SPELL START
+
+    function icebreaker_0__slow:GetIntrinsicModifierName()
+        return "icebreaker_0_modifier_passive_effect"
+    end
 
     function icebreaker_0__slow:AddSlow(target, ability)
         if target == nil then return end

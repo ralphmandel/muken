@@ -3,63 +3,17 @@
 {
 	"Version"		"1"
 
-	"icebreaker__attributes"
+	"icebreaker__precache"
 	{
-
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/icebreaker/icebreaker__attributes"
-
+		"ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
+        "AbilityTextureName"    		"icebreaker__precache"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"30"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-		"AbilityCastPoint"				"0"
+		"MaxLevel"						"99"
+		"RequiredLevel"         	 	"-200"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"8"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"1"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.4"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.6"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.8"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.2"
-			}
-		}
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
 	"icebreaker_u__shard"

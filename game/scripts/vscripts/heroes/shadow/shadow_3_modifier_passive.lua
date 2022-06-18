@@ -48,7 +48,7 @@ function shadow_3_modifier_passive:OnAttackLanded(keys)
 	if self.ability:GetRank(22)
 	and RandomInt(1, 100) <= 12
 	and self.parent == keys.attacker then
-		self.ability:CreateShadow(keys.target, 5, 1)
+		self.ability:CreateShadow(keys.target, 5, 1, false)
 	end
 
 	self.ability:StartRechargeTime()
