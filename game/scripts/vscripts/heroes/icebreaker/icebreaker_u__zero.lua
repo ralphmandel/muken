@@ -90,19 +90,14 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
 
         local charges = 1
 
-        -- UP 4.11
-        if self:GetRank(11) then
+        -- UP 4.21
+        if self:GetRank(21) then
             charges = charges * 2
         end
 
-        -- UP 4.21
-        if self:GetRank(21) then
+        -- UP 4.22
+        if self:GetRank(22) then
             charges = charges * 3
-        end
-
-	    -- UP 4.32
-	    if self:GetRank(32) then
-            charges = charges * 5
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -110,6 +105,7 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
 
     function icebreaker_u__zero:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.shard_alive = false
     end
 
 -- SPELL START
@@ -122,8 +118,11 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
         self:DestroyShard()
         local shard = CreateUnitByName("ice_shard", point, true, caster, caster, caster:GetTeamNumber())
         shard:CreatureLevelUp(self:GetLevel() - 1)
-        shard:AddNewModifier(caster, self, "icebreaker_u_modifier_zero", {duration = duration})
+        shard:AddNewModifier(caster, self, "icebreaker_u_modifier_zero", {
+            duration = self:CalcStatus(duration, caster, nil)
+        })
 
+        self.shard_alive = true
         if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.ColdFeetCast") end
     end
 
@@ -136,6 +135,8 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
                 shard:RemoveModifierByName("icebreaker_u_modifier_zero")
             end
         end
+
+        self.shard_alive = false
     end
 
     function icebreaker_u__zero:CastFilterResultLocation( vec )
@@ -157,18 +158,15 @@ LinkLuaModifier( "_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff
         if self.fail == 1 then return "No Range" end
     end
 
-    function icebreaker_u__zero:GetCooldown(iLevel)
-        if self:GetCurrentAbilityCharges() == 0 then return 120 end
-        if self:GetCurrentAbilityCharges() == 1 then return 120 end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return 90 end
-        return 120
+    function icebreaker_u__zero:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
-    function icebreaker_u__zero:GetAOERadius()
-        if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
-        if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-        if self:GetCurrentAbilityCharges() % 5 == 0 then return self:GetSpecialValueFor("radius") + 500 end
-        return self:GetSpecialValueFor("radius")
+    function icebreaker_u__zero:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cooldown - 60 end
+        return 120
     end
 
     function icebreaker_u__zero:GetManaCost(iLevel)

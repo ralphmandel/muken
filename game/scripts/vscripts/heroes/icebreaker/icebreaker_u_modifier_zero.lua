@@ -27,7 +27,7 @@ end
 function icebreaker_u_modifier_zero:GetAuraSearchFlags()
 	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return DOTA_UNIT_TARGET_FLAG_NONE  end
 	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return DOTA_UNIT_TARGET_FLAG_NONE  end
-	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
+	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
@@ -45,10 +45,10 @@ function icebreaker_u_modifier_zero:OnCreated( kv )
 	self.true_vision = false
 	local vision_bonus = 0
 
-	-- UP 4.32
-	if self.ability:GetRank(32) then
+	-- UP 4.31
+	if self.ability:GetRank(31) then
 		self.true_vision = true
-		vision_bonus = 100
+		vision_bonus = 50
 	end
 
 	if IsServer() then
@@ -56,7 +56,7 @@ function icebreaker_u_modifier_zero:OnCreated( kv )
 
 		-- UP 4.41
 		if self.ability:GetRank(41) then
-			self:StartIntervalThink(300 / self.ability:GetAOERadius())
+			self:StartIntervalThink(0.3)
 		end
 	end
 
@@ -136,7 +136,7 @@ end
 
 function icebreaker_u_modifier_zero:StartExplosionThink(radius)
 	local point = self.parent:GetOrigin()
-	local explosion_damage = 30
+	local explosion_damage = 25
 	local explosion_radius = (radius * 0.2)
 
 	local random_x
