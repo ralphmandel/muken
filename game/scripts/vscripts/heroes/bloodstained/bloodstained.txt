@@ -3,64 +3,19 @@
 {
 	"Version"		"1"
 
-	"bloodstained__attributes"
+    "bloodstained__precache"
 	{
-
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/bloodstained/bloodstained__attributes"
-
+		"ScriptFile"					"heroes/bloodstained/bloodstained-ranks_lua"
+        "AbilityTextureName"    		"bloodstained__precache"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"30"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-		"AbilityCastPoint"				"0"
+		"MaxLevel"						"99"
+		"RequiredLevel"         	 	"-200"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"7"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"3"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.7"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.6"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.3"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.4"
-			}
-		}
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
+
 
 	"bloodstained_1__rage"
 	{
@@ -77,9 +32,6 @@
 
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-
-		// Stats
-		"AbilityManaCost"         		"90 99 108 117 126 135 144 153 162 171 180 189 198 207 216 225"
 		"AbilityCooldown"				"8"
 
 		"AbilitySpecial"
@@ -98,6 +50,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"consume"			"25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40"
+			}
+            "14"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"manacost"			"90"
 			}
 			"15"
 			{
@@ -162,11 +119,7 @@
 
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-
-		// Stats
-		"AbilityManaCost"				"110 121 132 143 154 165 176 187 198 209 220 231"
 		"AbilityCooldown"				"20"
-		"AbilityCastRange"				"375 400 425 450 475 500 525 550 575 600 625 650"
 
 		"AbilitySpecial"
 		{
@@ -175,20 +128,25 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"12"
 			}
-			"02"
+            "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"tooltip_range"	"375 400 425 450 475 500 525 550 575 600 625 650"
+				"shared_damage"	"50"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_range"		"625 650 675 700 725 750 775 800 825 850 875 900"
+				"cast_range"	"375 400 425 450 475 500 525 550 575 600 625 650"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"shared_damage"	"50"
+				"max_range"		"625 650 675 700 725 750 775 800 825 850 875 900"
+			}
+            "14"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"manacost"			"110"
 			}
 			"15"
 			{
@@ -213,25 +171,20 @@
 
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
-		"AnimationPlaybackRate"  		"1"
-		"AnimationIgnoresModelScale"	"1"
-
-		// Stats
-		"AbilityCooldown"				"175 170 165 160 155 150 145 140 135 130 125 120"
 		"AbilityCastRange"    	   		"450"
-		"AoERadius"               		"500"
+        "AbilityCooldown"				"150"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"radius"			"500"
+				"duration"			"12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5"
 			}
-			"02"
+            "02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"12"
+				"radius"			"500"
 			}
 			"03"
 			{
@@ -279,7 +232,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats
-		"AbilityManaCost"         		"125"
+		"AbilityManaCost"         		"120"
 		"AbilityCooldown"				"17"
 		"AbilityCastRange"    		   	"1000"
 
@@ -327,7 +280,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 
 		// Stats
-		"AbilityManaCost"         		"75"
+		"AbilityManaCost"         		"50"
         "AbilityCooldown"				"60"
 
 		"AbilitySpecial"
@@ -354,7 +307,7 @@
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 
-		"AbilityManaCost"         		"0"
+		"AbilityManaCost"         		"150"
 		"AbilityCooldown"				"1"
 
 		"AbilitySpecial"

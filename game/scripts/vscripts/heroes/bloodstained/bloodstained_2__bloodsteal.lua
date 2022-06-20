@@ -69,13 +69,11 @@ LinkLuaModifier("base_stats_mod_crit_bonus", "modifiers/base_stats_mod_crit_bonu
 
     function bloodstained_2__bloodsteal:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        return att.talents[2][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[2][upgrade] end
     end
 
     function bloodstained_2__bloodsteal:OnUpgrade()
@@ -83,21 +81,8 @@ LinkLuaModifier("base_stats_mod_crit_bonus", "modifiers/base_stats_mod_crit_bonu
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[2][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[2][0] = true end
 
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
@@ -111,19 +96,6 @@ LinkLuaModifier("base_stats_mod_crit_bonus", "modifiers/base_stats_mod_crit_bonu
 
     function bloodstained_2__bloodsteal:GetIntrinsicModifierName()
         return "bloodstained_2_modifier_bloodsteal"
-    end
-
-    function bloodstained_2__bloodsteal:OnOwnerSpawned()
-        local caster = self:GetCaster()
-        local mod = caster:FindAllModifiersByName("base_stats_mod_crit_bonus")
-        for _,modifier in pairs(mod) do
-            if modifier:GetAbility() == self then modifier:Destroy() end
-        end
-    
-        -- UP 2.41
-        if self:GetRank(41) then
-            caster:AddNewModifier(caster, self, "base_stats_mod_crit_bonus", {crit_damage = -20})
-        end
     end
 
 -- EFFECTS

@@ -18,12 +18,9 @@ function base_hero_mod:OnCreated(kv)
 	self.ability:LoadHeroNames()
 	self.activity = ""
 
-	if self.ability.hero_name == "genuine" then
-		self.activity = "ti6"
-	end
-	if self.ability.hero_name == "dasdingo" then
-		self.activity = "fall20"
-	end
+	if self.ability.hero_name == "genuine" then self.activity = "ti6" end
+	if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
+
 	if self.ability.hero_name == "shadow" then
 		self.model = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
 		self.parent:SetOriginalModel(self.model)
@@ -42,8 +39,6 @@ function base_hero_mod:OnCreated(kv)
 			end
 		end
 	end)
-
-	--self:StartIntervalThink(1)
 end
 
 function base_hero_mod:OnRefresh(kv)
@@ -105,6 +100,7 @@ function base_hero_mod:OnAttackLanded(keys)
 		if self.ability.hero_name == "shadow" then attack_sound = "Hero_Spectre.Attack" end
 		if self.ability.hero_name == "icebreaker" then attack_sound = "Hero_Riki.Attack" end
 		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.ProjectileImpact" end
+		if self.ability.hero_name == "bloodstained" then attack_sound = "Hero_Nightstalker.Attack" end
 
 		self.parent:EmitSound(attack_sound)
 	end

@@ -78,6 +78,21 @@ LinkLuaModifier( "bloodstained_x2_modifier_blood", "heroes/bloodstained/bloodsta
         return "bloodstained_x2_modifier_soulsteal"
     end
 
+    function bloodstained_x2__soulsteal:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+        for _,blood in pairs(thinkers) do
+            if blood:GetOwner() == caster and blood:HasModifier("bloodstained_x2_modifier_blood") then
+                local mod = blood:FindModifierByName("bloodstained_x2_modifier_blood")
+                if mod ~= nil then
+                    return true
+                end
+            end
+        end
+
+        return false
+    end
+
     function bloodstained_x2__soulsteal:OnSpellStart()
         local caster = self:GetCaster()
         local heal = 0
@@ -87,14 +102,15 @@ LinkLuaModifier( "bloodstained_x2_modifier_blood", "heroes/bloodstained/bloodsta
             if blood:GetOwner() == caster and blood:HasModifier("bloodstained_x2_modifier_blood") then
                 local mod = blood:FindModifierByName("bloodstained_x2_modifier_blood")
                 if mod ~= nil then
-                    if mod.damage ~= nil then heal = heal + (mod.damage * 0.5) end
+                    if mod.damage ~= nil then heal = heal + (mod.damage * 0.25) end
                     self:PlayEfxBlood(blood)
                     blood:Destroy()
                 end
             end
         end
 
-        --heal = heal * 0.5 --reduces only 5v5 game
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then heal = heal * base_stats:GetHealPower() end
 
         if heal >= 1 then
             caster:Heal(heal, self)

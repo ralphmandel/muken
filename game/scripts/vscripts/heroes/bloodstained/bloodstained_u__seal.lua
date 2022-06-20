@@ -74,13 +74,11 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
 
     function bloodstained_u__seal:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        return att.talents[4][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
     function bloodstained_u__seal:OnUpgrade()
@@ -88,21 +86,8 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[4][0] = true end
 
         local charges = 1
 
@@ -136,9 +121,9 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
             end
         end
 
-        CreateModifierThinker(
-            caster, self, "bloodstained_u_modifier_seal", {duration = duration}, point, caster:GetTeamNumber(), false
-        )
+        CreateModifierThinker(caster, self, "bloodstained_u_modifier_seal", {
+            duration = duration
+        }, point, caster:GetTeamNumber(), false)
 
         if IsServer() then
             caster:EmitSound("hero_bloodseeker.bloodRite")
@@ -205,8 +190,7 @@ LinkLuaModifier( "_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIE
         local manacost = self:GetSpecialValueFor("manacost")
         local level =  (1 + ((self:GetLevel() - 1) * 0.1))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return manacost * level end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost - 60) * level end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost - 60 end
         return manacost * level
     end
 

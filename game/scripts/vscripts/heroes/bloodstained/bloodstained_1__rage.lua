@@ -68,13 +68,11 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
 
     function bloodstained_1__rage:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        return att.talents[1][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[1][upgrade] end
     end
 
     function bloodstained_1__rage:OnUpgrade()
@@ -82,21 +80,8 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_demon" then return end
 
-        local att = caster:FindAbilityByName("bloodstained__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[1][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[1][0] = true end
 
         local charges = 1
 
@@ -151,6 +136,13 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
         if self:GetCurrentAbilityCharges() == 1 then return 0 end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return 400 end
         return 0
+    end
+
+    function bloodstained_1__rage:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
     end
 
 -- EFFECTS

@@ -19,7 +19,7 @@ function bloodstained_2_modifier_bloodsteal:OnCreated( kv )
 
 	if IsServer() then
 		self:SetStackCount(self.extra_life)
-		self:StartIntervalThink(0.2)
+		self:StartIntervalThink(FrameTime())
 		local void = self.parent:FindAbilityByName("_void")
 		if void ~= nil then void:SetLevel(1) end
 	end
@@ -31,21 +31,10 @@ function bloodstained_2_modifier_bloodsteal:OnRefresh( kv )
 		self.lifesteal_base = (self:GetAbility():GetSpecialValueFor("lifesteal_base") + 5) * 0.01
 		self.lifesteal_bonus = (self:GetAbility():GetSpecialValueFor("lifesteal_bonus") - 5) * 0.01
 	end
-
-	local mod = self.parent:FindAllModifiersByName("base_stats_mod_crit_bonus")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	-- UP 2.41
-	if self.ability:GetRank(41) then
-		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -20})
-	end
 end
 
 function bloodstained_2_modifier_bloodsteal:OnRemoved()
 	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_2_LCK", self.parent)
 end
 
 --------------------------------------------------------------------------------------------------------------------------
@@ -88,6 +77,12 @@ function bloodstained_2_modifier_bloodsteal:GetModifierPreAttack(keys)
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 
 	local agi_bonus = self.ability:GetSpecialValueFor("agi_bonus")
+
+	-- UP 2.12
+	if self.ability:GetRank(12) then
+		agi_bonus = agi_bonus + 10
+	end
+
 	local agi_total = math.ceil(agi_bonus * (100 - self.parent:GetHealthPercent()) * 0.01)
 
 	if agi_total > 0 then
@@ -106,18 +101,6 @@ function bloodstained_2_modifier_bloodsteal:OnAttacked(keys)
 	end
 
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-
-	-- UP 2.41
-	if self.ability:GetRank(41)
-	and keys.attacker == self.parent then
-		local base_stats = keys.attacker:FindAbilityByName("base_stats")
-		if base_stats then
-			if base_stats.has_crit then
-				local heal = keys.attacker:GetMaxHealth() * 0.02
-				if heal > 0 then keys.attacker:Heal(heal, self.ability) end			
-			end
-		end
-	end
 
 	-- UP 2.21
 	if self.ability:GetRank(21) == false then
@@ -183,18 +166,18 @@ function bloodstained_2_modifier_bloodsteal:OnDeath(keys)
 end
 
 function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
-	-- UP 2.12
-	if self.ability:GetRank(12) then
+	-- UP 2.13
+	if self.ability:GetRank(13) then
 		local enemies = FindUnitsInRadius(
-			self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
+			self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 5000,
 			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-			0, 0, false
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,
+			0, false
 		)
 
 		for _,enemy in pairs(enemies) do
-			if enemy:GetHealthPercent() <= 20
-			and enemy:IsInvisible() == false then
-				enemy:AddNewModifier(self.caster, self.ability, "bloodstained_2_modifier_track", {duration = 0.5})
+			if enemy:GetHealthPercent() <= 20 then
+				AddFOWViewer(self.caster:GetTeamNumber(), enemy:GetOrigin(), 75, 0.2, false)
 			end
 		end
 	end
@@ -204,10 +187,10 @@ function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	-- UP 2.13
-	if self.ability:GetRank(13)
+	-- UP 2.41
+	if self.ability:GetRank(41)
 	and self.parent:PassivesDisabled() == false then
-		local percent = math.ceil((100 - self.parent:GetHealthPercent()) * 0.5)
+		local percent = math.ceil((100 - self.parent:GetHealthPercent()))
 		if percent > 0 then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 				percent = percent
@@ -215,16 +198,8 @@ function bloodstained_2_modifier_bloodsteal:OnIntervalThink()
 		end
 	end
 
-	self.ability:RemoveBonus("_2_LCK", self.parent)
-
-	-- UP 2.41
-	if self.ability:GetRank(41)
-	and self.parent:PassivesDisabled() == false then
-		local luck = math.ceil((100 - self.parent:GetHealthPercent()) * 0.5)
-		if luck > 0 then
-			self.ability:AddBonus("_2_LCK", self.parent, luck, 0, nil)
-		end
-	end
+	self:StartIntervalThink(-1)
+	self:StartIntervalThink(FrameTime())
 end
 
 --------------------------------------------------------------------------------------------------------------------------
