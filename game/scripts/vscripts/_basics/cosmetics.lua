@@ -114,13 +114,34 @@ function cosmetics:FindCosmeticByModel(model)
 	end
 end
 
-function cosmetics:ChangeActivity()
+function cosmetics:ChangeCosmeticsActivity(bClear)
 	if self.cosmetic == nil then return end
 	local base_hero_mod = self:GetCaster():FindModifierByName("base_hero_mod")
 	if base_hero_mod == nil then return end
 
 	for i = 1, #self.cosmetic, 1 do
+		if bClear then self.cosmetic[i]:ClearActivityModifiers() end
 		self.cosmetic[i]:AddActivityModifier(base_hero_mod.activity)
+	end
+end
+
+function cosmetics:StartCosmeticGesture(model, gesture)
+	if self.cosmetic == nil then return end
+
+	for i = 1, #self.cosmetic, 1 do
+		if self.cosmetic[i]:GetModelName() == model then
+			self.cosmetic[i]:StartGesture(gesture)
+		end
+	end
+end
+
+function cosmetics:FadeCosmeticsGesture(model, gesture)
+	if self.cosmetic == nil then return end
+
+	for i = 1, #self.cosmetic, 1 do
+		if self.cosmetic[i]:GetModelName() == model then
+			self.cosmetic[i]:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_3)
+		end
 	end
 end
 

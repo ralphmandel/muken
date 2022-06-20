@@ -31,6 +31,12 @@ end
 function dasdingo_x2_modifier_lash:OnRemoved(kv)
 	self.caster:Interrupt()
 	if IsServer() then self.parent:StopSound("Hero_ShadowShaman.Shackles") end
+
+	local cosmetics = self.caster:FindAbilityByName("cosmetics")
+	if cosmetics.cosmetic == nil then return end
+
+	local model_name = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
+	cosmetics:FadeCosmeticsGesture(model_name, ACT_DOTA_CHANNEL_ABILITY_3)
 end
 
 --------------------------------------------------------------------------------
@@ -50,10 +56,7 @@ end
 function dasdingo_x2_modifier_lash:OnIntervalThink()
 	local amount = self.parent:GetMaxHealth() * self.drain
 	self.parent:ModifyHealth(self.parent:GetHealth() - amount, self.ability, true, 0)
-
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then amount = amount * base_stats:GetHealPower() end
-    if amount > 0 then self.caster:Heal(amount, self.ability) end
+	self.caster:ModifyHealth(self.caster:GetHealth() + amount, self.ability, false, 0)
 end
 
 --------------------------------------------------------------------------------
@@ -61,10 +64,13 @@ end
 function dasdingo_x2_modifier_lash:PlayEfxStart()
 	local cosmetics = self.caster:FindAbilityByName("cosmetics")
 	if cosmetics.cosmetic == nil then return end
-	cosmetics:ChangeActivity()
-	
-	local head = cosmetics:FindCosmeticByModel("models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl")
+
+	local model_name = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
+	local head = cosmetics:FindCosmeticByModel(model_name)
 	if head == nil then return end
+
+	cosmetics:ChangeCosmeticsActivity(true)
+	cosmetics:StartCosmeticGesture(model_name, ACT_DOTA_CHANNEL_ABILITY_3)
 
 	local string = "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_crimson_shackle.vpcf"
 	local shackle_particle = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, head)
