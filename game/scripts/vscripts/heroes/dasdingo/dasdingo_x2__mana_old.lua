@@ -1,5 +1,5 @@
 dasdingo_x2__mana = class({})
-LinkLuaModifier("dasdingo_x2_modifier_lash", "heroes/dasdingo/dasdingo_x2_modifier_lash", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_x2_modifier_mana", "heroes/dasdingo/dasdingo_x2_modifier_mana", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -77,22 +77,47 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     function dasdingo_x2__mana:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
+        local mana = self:GetSpecialValueFor("mana")
+        local ms = self:GetSpecialValueFor("ms")
+        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
-        if target:TriggerSpellAbsorb(self) then
-            caster:Interrupt()
-        else
-            target:AddNewModifier(caster, self, "dasdingo_x2_modifier_lash", {duration = self:GetChannelTime()})
-            if IsServer() then target:EmitSound("Hero_ShadowShaman.Shackles.Cast") end
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then mana = mana * base_stats:GetHealPower() end
+        target:GiveMana(mana)
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, mana, caster)
+
+        caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {percent = ms, duration = duration})
+        target:AddNewModifier(caster, self, "_modifier_movespeed_buff", {percent = ms, duration = duration})
+
+        self:PlayEfxStart(target)
+    end
+
+    function dasdingo_x2__mana:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+
+        if caster == hTarget then
+            return UF_FAIL_CUSTOM
         end
+
+        local result = UnitFilter(
+            hTarget,	-- Target Filter
+            DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- Team Filter
+            DOTA_UNIT_TARGET_HERO,	-- Unit Filter
+            0,	-- Unit Flag
+            caster:GetTeamNumber()	-- Team reference
+        )
+        
+        if result ~= UF_SUCCESS then
+            return result
+        end
+
+        return UF_SUCCESS
     end
 
-    function dasdingo_x2__mana:OnChannelFinish(bInterrupted)
-        local target = self:GetCursorTarget()
-        if target then target:RemoveModifierByName("dasdingo_x2_modifier_lash") end
-    end
-
-    function dasdingo_x2__mana:GetChannelTime()
-        return self:CalcStatus(self:GetSpecialValueFor("channel_time"), self:GetCaster(), self:GetCursorTarget())
+    function dasdingo_x2__mana:GetCustomCastErrorTarget( hTarget )
+        if self:GetCaster() == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
     end
 
 -- EFFECTS

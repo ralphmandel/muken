@@ -21,6 +21,9 @@ function base_hero_mod:OnCreated(kv)
 	if self.ability.hero_name == "genuine" then
 		self.activity = "ti6"
 	end
+	if self.ability.hero_name == "dasdingo" then
+		self.activity = "fall20"
+	end
 	if self.ability.hero_name == "shadow" then
 		self.model = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
 		self.parent:SetOriginalModel(self.model)
@@ -86,6 +89,7 @@ function base_hero_mod:OnAttack(keys)
 	if IsServer() then
 		local attack_sound = ""
 		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.Attack" end
+		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.Attack" end
 
 		self.parent:EmitSound(attack_sound)
 	end
@@ -100,6 +104,7 @@ function base_hero_mod:OnAttackLanded(keys)
 		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.ProjectileImpact" end
 		if self.ability.hero_name == "shadow" then attack_sound = "Hero_Spectre.Attack" end
 		if self.ability.hero_name == "icebreaker" then attack_sound = "Hero_Riki.Attack" end
+		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.ProjectileImpact" end
 
 		self.parent:EmitSound(attack_sound)
 	end

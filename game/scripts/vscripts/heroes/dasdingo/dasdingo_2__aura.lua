@@ -66,13 +66,11 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 
     function dasdingo_2__aura:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        return att.talents[2][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[2][upgrade] end
     end
 
     function dasdingo_2__aura:OnUpgrade()
@@ -80,21 +78,8 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[2][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[2][0] = true end
 
         local charges = 1
 
@@ -108,6 +93,7 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 
     function dasdingo_2__aura:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.total_regen = 0
     end
 
 -- SPELL START

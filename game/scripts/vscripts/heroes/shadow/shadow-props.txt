@@ -71,6 +71,6 @@
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"600"
-			"StatusManaRegen"          	"4"
+			"StatusManaRegen"          	"10"
 	}
 }

@@ -72,13 +72,11 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
     function dasdingo_1__heal:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        return att.talents[1][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[1][upgrade] end
     end
 
     function dasdingo_1__heal:OnUpgrade()
@@ -86,21 +84,8 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[1][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[1][0] = true end
 
         local charges = 1
 
@@ -133,6 +118,13 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         end
 
         CreateModifierThinker(caster, self, "dasdingo_1_modifier_heal", {duration = duration}, point, caster:GetTeamNumber(), false)
+    end
+
+    function dasdingo_1__heal:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
     end
 
 -- EFFECTS

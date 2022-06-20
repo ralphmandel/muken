@@ -9,7 +9,6 @@ function dasdingo_2_modifier_aura:IsPurgable()
 end
 
 --------------------------------------------------------------------------------
--- Aura
 
 function dasdingo_2_modifier_aura:IsAura()
 	return (not self:GetCaster():PassivesDisabled())
@@ -31,4 +30,17 @@ end
 
 function dasdingo_2_modifier_aura:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+
+--------------------------------------------------------------------------------
+
+function dasdingo_2_modifier_aura:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+	}
+	return funcs
+end
+
+function dasdingo_2_modifier_aura:GetModifierConstantHealthRegen()
+	return self:GetAbility():GetSpecialValueFor("regen_per_hero") * self:GetAbility().total_regen
 end

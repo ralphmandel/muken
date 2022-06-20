@@ -3,63 +3,17 @@
 {
 	"Version"		"1"
 
-	"dasdingo__attributes"
+    "dasdingo__precache"
 	{
-
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/dasdingo/dasdingo__attributes"
-
+		"ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+        "AbilityTextureName"    		"dasdingo__precache"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"30"
-		
-		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-		"AbilityCastPoint"				"0"
+		"MaxLevel"						"99"
+		"RequiredLevel"         	 	"-200"
 
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_STR"				"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_AGI"				"4"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_INT"				"7"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_CON"				"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"STR"					"0.4"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"AGI"					"0.3"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"INT"					"0.8"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"CON"					"0.5"
-			}
-		}
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
 	"dasdingo_1__heal"
@@ -76,7 +30,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilityManaCost"         		"120 132 144 156 168 180 192 204 216 228 240 252 264 276 288"
 		"AbilityCooldown"				"12"
 		"AbilityCastRange"      		"700"
 
@@ -101,6 +54,11 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"heal"			"15"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"120"
 			}
 			"15"
 			{
@@ -132,7 +90,12 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"defense"		"24"
+				"defense"		"15"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"regen_per_hero"	"5"
 			}
 			"15"
 			{
@@ -158,7 +121,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.1"
 
-		"AbilityManaCost"         		"130 143 156 169 182 195 208 221 234 247 260 273 286 299 312 325"
 		"AbilityCooldown"				"14"
 		"AbilityCastRange"      		"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440 450"
 
@@ -189,6 +151,11 @@
 				"var_type"		"FIELD_FLOAT"
 				"range_tooltip"	"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440 450"
 			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"130"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -211,8 +178,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityManaCost"         		"160 176 192 208 224 240 256 272 288 304 320 336 352 368"
-		"AbilityCooldown"				"60"
 		"AbilityCastRange"      		"550"
 
 		"AbilitySpecial"
@@ -241,6 +206,16 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"tick_max"			"5"
+			}
+            "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cooldown"		    "60"
+			}
+            "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "160"
 			}
 			"15"
 			{
@@ -310,38 +285,33 @@
 		// General  
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/dasdingo/dasdingo_x2__mana"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"     		"dasdingo_mana"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"5"
 		"RequiredLevel"         	 	"0"
 
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		// Stats
-		"AbilityCooldown"				"7"
-		"AbilityManaCost"         		"200"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"         		"150"
 
 		"AbilitySpecial"
 		{
-			"01"
+            "01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"mana"			"200"
+				"var_type"		    "FIELD_FLOAT"
+				"channel_time"		"4"
 			}
-            "02"
+            "01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"1"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"ms"			"70"
+				"var_type"		    "FIELD_FLOAT"
+				"drain_percent"		"10"
 			}
 			"12"
 			{

@@ -68,13 +68,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function dasdingo_u__maledict:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        return att.talents[4][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
     function dasdingo_u__maledict:OnUpgrade()
@@ -82,21 +80,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
-        local att = caster:FindAbilityByName("dasdingo__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
-        end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then base_hero.ranks[4][0] = true end
 
         local charges = 1
 
@@ -143,10 +128,18 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
 	function dasdingo_u__maledict:GetCooldown(iLevel)
-		if self:GetCurrentAbilityCharges() == 0 then return 60 end
-		if self:GetCurrentAbilityCharges() == 1 then return 60 end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return 45 end
+        local cooldown = self:GetSpecialValueFor("cooldown")
+        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 15 end
+        return cooldown
 	end
+
+    function dasdingo_u__maledict:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
+    end
 
 -- EFFECTS
 

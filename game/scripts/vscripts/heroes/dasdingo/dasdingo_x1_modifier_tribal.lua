@@ -15,8 +15,8 @@ function dasdingo_x1_modifier_tribal:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local int = self.caster:FindModifierByName("_1_INT_modifier")
-	if int then self.parent:CreatureLevelUp(int:GetStackCount()) end
+	local base_stats = self.caster:FindModifierByName("base_stats")
+	if base_stats then self.parent:CreatureLevelUp(base_stats.stat_total["INT"]) end
 
 	self.parent:StartGesture(ACT_IDLE)
 	self:PlayEfxRegen()

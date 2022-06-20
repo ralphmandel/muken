@@ -16,17 +16,11 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local defense = self.ability:GetSpecialValueFor("defense")
-	local resistance = 8
 	local special = 0
 
 	-- UP 2.21
 	if self.ability:GetRank(21) then
-		defense = defense + 8
-	end
-
-	if self.caster ~= self.parent then
-		defense = defense * 0.5
-		resistance = resistance * 0.5
+		defense = defense + 10
 	end
 
 	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
@@ -35,8 +29,12 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 
 	-- UP 2.22
 	if self.ability:GetRank(22) then
-		self.ability:AddBonus("_2_RES", self.parent, resistance, 0, nil)
-		self.res = resistance
+		self.ability:AddBonus("_2_RES", self.parent, 10, 0, nil)
+		self.res = 10
+	end
+
+	if self.parent:IsHero() and self.parent:IsIllusion() == false then
+		self.ability.total_regen = self.ability.total_regen + 1
 	end
 
 	self:PlayEfxStart()
@@ -48,6 +46,10 @@ end
 function dasdingo_2_modifier_aura_effect:OnRemoved(kv)
 	self.ability:RemoveBonus("_2_DEF", self.parent)
 	self.ability:RemoveBonus("_2_RES", self.parent)
+
+	if self.parent:IsHero() and self.parent:IsIllusion() == false then
+		self.ability.total_regen = self.ability.total_regen - 1
+	end
 end
 
 ------------------------------------------------------------
