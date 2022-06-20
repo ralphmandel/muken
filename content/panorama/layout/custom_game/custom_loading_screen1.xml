@@ -1,0 +1,11 @@
+<root> 
+  <styles>
+    <include src="file://{resources}/styles/custom_loading_screen.css" />
+  </styles>
+  <Panel class="AddonLoadingRoot">
+
+      <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/gamemode.png" />
+
+
+  </Panel>
+</root>
