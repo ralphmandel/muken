@@ -104,6 +104,26 @@ function cosmetics:HideCosmetic(model, bApply)
 	end
 end
 
+function cosmetics:FindCosmeticByModel(model)
+	if self.cosmetic == nil then return end
+
+	for i = 1, #self.cosmetic, 1 do
+		if self.cosmetic[i]:GetModelName() == model then
+			return self.cosmetic[i]
+		end
+	end
+end
+
+function cosmetics:ChangeActivity()
+	if self.cosmetic == nil then return end
+	local base_hero_mod = self:GetCaster():FindModifierByName("base_hero_mod")
+	if base_hero_mod == nil then return end
+
+	for i = 1, #self.cosmetic, 1 do
+		self.cosmetic[i]:AddActivityModifier(base_hero_mod.activity)
+	end
+end
+
 function cosmetics:ChangeTeam(team)
 	if self.cosmetic == nil then return end
 

@@ -96,19 +96,3 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     end
 
 -- EFFECTS
-
-    function dasdingo_x2__mana:PlayEfxStart(target)
-        local caster = self:GetCaster()
-        local particle = "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf"
-        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
-        ParticleManager:SetParticleControl(effect, 0, caster:GetOrigin())
-        ParticleManager:SetParticleControl(effect, 1, caster:GetOrigin())
-        ParticleManager:ReleaseParticleIndex(effect)
-
-        local effect2 = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect2, 0, target:GetOrigin())
-        ParticleManager:SetParticleControl(effect2, 1, target:GetOrigin())
-        ParticleManager:ReleaseParticleIndex(effect2)
-
-        if IsServer() then target:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target") end
-    end
