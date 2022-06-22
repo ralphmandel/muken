@@ -109,8 +109,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local radius = self:GetSpecialValueFor("radius")
         local flag = 0
 
-        -- UP 4.21
-        if self:GetRank(21) then
+        -- UP 4.41
+        if self:GetRank(41) then
             flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end
 

@@ -182,9 +182,13 @@ LinkLuaModifier("genuine_0_modifier_fear_status_efx", "heroes/genuine/genuine_0_
         self.spell_lifesteal = true
         ApplyDamage(damageTable)
 
+        local chance = 20
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
         -- UP 1.41
         if self:GetRank(41) and target:IsAlive()
-        and RandomInt(1, 100) <= 25 then
+        and RandomFloat(1, 100) <= chance then
             target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
                 duration = self:CalcStatus(1.5, caster, target)
             })

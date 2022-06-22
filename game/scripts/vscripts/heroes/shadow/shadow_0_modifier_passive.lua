@@ -47,12 +47,15 @@ function shadow_0_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.ability == nil then return end
 
-	local chance = 15
-	if self.parent:IsIllusion() then chance = 10 end
+	local chance = 12
+	if self.parent:IsIllusion() then chance = 5 end
+
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	-- UP 0.31
 	if self.ability:GetRank(31)
-	and RandomInt(1, 100) <= chance then
+	and RandomFloat(1, 100) <= chance then
 		keys.attacker:AddNewModifier(self.caster, self.ability, "shadow_0_modifier_toxin", {})
 	end
 end

@@ -467,7 +467,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					critical_chance = (critical_chance * 0.5) + 25
 				end
 
-				if RandomInt(1, 10000) <= critical_chance * 100 then
+				if RandomFloat(1, 100) <= critical_chance * self.critical_chance then
 					return true
 				end
 				
@@ -504,9 +504,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-			local value = self.stat_total["LCK"] * self.critical_chance -- 0.25
-			local calc = (value * 6) / (1 +  (value * 0.04))
-			return calc
+			return 1 + (self.stat_total["LCK"] * 0.01)
+			-- local value = self.stat_total["LCK"] * self.critical_chance -- 0.25
+			-- local calc = (value * 6) / (1 +  (value * 0.04))
+			-- return calc
 		end
 
 	-- UTIL MND

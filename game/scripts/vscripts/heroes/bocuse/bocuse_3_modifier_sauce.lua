@@ -45,13 +45,16 @@ function bocuse_3_modifier_sauce:OnTakeDamage(keys)
         chance = chance + 10
 	end
 
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
     if keys.inflictor then
         if keys.inflictor:GetAbilityName() == "bocuse_1__julienne" then
             chance = 100
         end
     end
 
-	if RandomInt(1, 100) <= chance then
+	if RandomFloat(1, 100) <= chance then
 		keys.unit:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_mark", {})
 	end
 end

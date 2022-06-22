@@ -22,11 +22,30 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 
 	self.gain = self.ability:GetSpecialValueFor("gain")
 	local consume = self.ability:GetSpecialValueFor("consume") * 0.01
+	self.ability:RemoveBonus("_1_STR", self.parent)
+
+	-- UP 1.22
+	if self.ability:GetRank(22) then
+		consume = consume + 10
+		self.gain = 0.75
+	end
 
 	-- UP 1.31
 	if self.ability:GetRank(31) then
-		self.incoming = 10
-		self.gain = 1
+		local radius = self.ability:GetCastRange(self.caster:GetOrigin(), nil)
+		self:PlayEfxBerserk(radius)
+
+		self.units = FindUnitsInRadius(
+			self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			0, 2, false
+		)
+
+		for _,unit in pairs(self.units) do
+			unit:SetForceAttackTarget(self.parent)
+			unit:MoveToTargetToAttack(self.parent)
+			unit:AddNewModifier(self.caster, self.ability, "bloodstained_1_modifier_berserk", {})
+		end
 	end
 
 	-- UP 1.41
@@ -60,13 +79,12 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 
     self.gain = self.ability:GetSpecialValueFor("gain")
 	local consume = self.ability:GetSpecialValueFor("consume") * 0.01
-
 	self.ability:RemoveBonus("_1_STR", self.parent)
 
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		self.incoming = 10
-		self.gain = 1
+	-- UP 1.22
+	if self.ability:GetRank(22) then
+		consume = consume + 10
+		self.gain = 0.75
 	end
 
 	-- UP 1.41
@@ -94,10 +112,21 @@ end
 function bloodstained_1_modifier_rage:OnRemoved( kv )
 	if IsServer() then self.parent:StopSound("Bloodstained.rage") end
 	if self.efx_bkb then ParticleManager:DestroyParticle(self.efx_bkb, false) end
+	
+	local pos_time = self.ability:GetSpecialValueFor("pos_time")
 	self.ability:RemoveBonus("_1_STR", self.parent)
+	if self:GetStackCount() > 0 then self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, pos_time) end
 
 	self.ability:SetActivated(true)
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+
+	if self.units then
+		for _,unit in pairs(self.units) do
+			if IsValidEntity(unit) then
+				unit:RemoveModifierByName("bloodstained_1_modifier_berserk")
+			end
+		end
+	end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", false) end
@@ -137,7 +166,7 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 	-- UP 1.21
 	if self.ability:GetRank(21) then
 		local cleaveatk = DoCleaveAttack(
-			self.parent, keys.target, self.ability, keys.damage * 0.5, 100, 400, 500,
+			self.parent, keys.target, self.ability, keys.damage, 100, 400, 500,
 			"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
 		)
 	end
@@ -151,7 +180,7 @@ function bloodstained_1_modifier_rage:OnHeroKilled(keys)
 
 	-- UP 1.42
 	if self.ability:GetRank(42) then
-		local add_time = self:GetRemainingTime() + (self.ability:GetSpecialValueFor("duration") * 0.25)
+		local add_time = self:GetRemainingTime() + (self.ability:GetSpecialValueFor("duration") * 0.5)
 		self:SetDuration(self.ability:CalcStatus(add_time, self.caster, self.parent), true)
 	end
 end
@@ -227,4 +256,12 @@ function bloodstained_1_modifier_rage:PlayEfxBKB()
 	self.efx_bkb = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.efx_bkb, 0, self.parent:GetOrigin())
 	self:AddParticle(self.efx_bkb, false, false, -1, false, true)
+end
+
+function bloodstained_1_modifier_rage:PlayEfxBerserk(radius)
+	local particle_cast = "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 2, Vector(radius, radius, radius))
+	ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_mouth", Vector(0,0,0), true)
+	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

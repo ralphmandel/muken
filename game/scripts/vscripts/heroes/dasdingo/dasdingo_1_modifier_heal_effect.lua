@@ -22,18 +22,13 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	
 	self.heal = self.ability:GetSpecialValueFor("heal")
 	self.intervals = self.ability:GetSpecialValueFor("intervals") / 0.25
 	self.count = 0
-	self.regen = 0
 	self.min_health = 0
 	self.death = false
 	self.purge = 0
-
-	-- UP 1.12
-	if self.ability:GetRank(12) then
-		self.reset = 0
-	end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
@@ -70,8 +65,7 @@ function dasdingo_1_modifier_heal_effect:DeclareFunctions()
 
     local funcs = {
 		MODIFIER_PROPERTY_MIN_HEALTH,
-		MODIFIER_EVENT_ON_TAKEDAMAGE,
-        MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+		MODIFIER_EVENT_ON_TAKEDAMAGE
     }
     return funcs
 end
@@ -96,12 +90,18 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 		mod:SetKillData(info)
 	end
 
-	local chance = 15
+	local chance = 12.5
 	if keys.attacker:IsBaseNPC() then
-		if keys.attacker:IsHero() then chance = 30 end
+		if keys.attacker:IsHero()
+		and keys.attacker:IsIllusion() == false then
+			chance = 25
+		end
 	end
 
-	if RandomInt(1, 100) <= chance
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+	if RandomFloat(1, 100) <= chance
 	and keys.unit:IsMagicImmune() == false
 	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
 	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
@@ -110,16 +110,6 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 			effect = 4
 		})
 	end
-
-	if self.reset then
-		self.reset = 0
-		self.regen = 0
-		if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
-	end
-end
-
-function dasdingo_1_modifier_heal_effect:GetModifierConstantHealthRegen()
-    return self.parent:GetMaxHealth() * self.regen
 end
 
 function dasdingo_1_modifier_heal_effect:OnIntervalThink()
@@ -134,15 +124,6 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
 
 		if invi_bool == false then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_invisible", {delay = 3})
-		end
-	end
-
-	if self.reset then
-		self.reset = self.reset + 1
-		if self.reset > 11 then
-			self.reset = 0
-			self.regen = 0.05
-			self:PlayEfxRegen()
 		end
 	end
 

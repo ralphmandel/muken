@@ -85,8 +85,8 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
 
         local charges = 1
 
-        -- UP 1.22
-        if self:GetRank(22) then
+        -- UP 1.31
+        if self:GetRank(31) then
             charges = charges * 2
         end
 
@@ -109,26 +109,6 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
 
         self:EndCooldown()
         self:SetActivated(false)
-
-        -- UP 1.22
-        if self:GetRank(22) then
-            local radius = self:GetCastRange(caster:GetOrigin(), nil)
-            self:PlayEfxBerserk(radius)
-
-            local units = FindUnitsInRadius(
-                caster:GetTeamNumber(), caster:GetOrigin(), nil, radius,
-                DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-                0, 2, false
-            )
-
-            for _,unit in pairs(units) do
-                unit:SetForceAttackTarget(caster)
-                unit:MoveToTargetToAttack(caster)
-                unit:AddNewModifier(caster, self, "bloodstained_1_modifier_berserk", {
-                    duration = self:CalcStatus(4, caster, unit)
-                })
-            end
-        end
     end
 
     function bloodstained_1__rage:GetCastRange(vLocation, hTarget)
@@ -146,12 +126,3 @@ LinkLuaModifier( "bloodstained_1_modifier_berserk_status_efx", "heroes/bloodstai
     end
 
 -- EFFECTS
-
-    function bloodstained_1__rage:PlayEfxBerserk(radius)
-        local caster = self:GetCaster()
-        local particle_cast = "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
-        ParticleManager:SetParticleControl(effect_cast, 2, Vector(radius, radius, radius))
-        ParticleManager:SetParticleControlEnt(effect_cast, 1, caster, PATTACH_POINT_FOLLOW, "attach_mouth", Vector(0,0,0), true)
-        ParticleManager:ReleaseParticleIndex(effect_cast)
-    end

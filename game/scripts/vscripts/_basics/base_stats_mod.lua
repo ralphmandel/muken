@@ -156,7 +156,7 @@ base_stats_mod = class ({})
                 self.ability.force_crit_spell[keys.damage_type] = false
                 self.ability.has_crit = false
             else
-                if ((RandomInt(1, 10000) <= critical_chance * 100)
+                if ((RandomFloat(1, 100) <= critical_chance * self.ability.critical_chance)
                 or self.ability.force_crit_spell[keys.damage_type] == true)
                 and not keys.target:IsBuilding() then
                     calc = calc + crit + (calc * crit * 0.01)

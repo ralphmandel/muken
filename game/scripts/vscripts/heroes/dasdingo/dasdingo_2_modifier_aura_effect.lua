@@ -18,20 +18,13 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	local defense = self.ability:GetSpecialValueFor("defense")
 	local special = 0
 
-	-- UP 2.21
-	if self.ability:GetRank(21) then
+	-- UP 2.31
+	if self.ability:GetRank(31) then
 		defense = defense + 10
 	end
 
 	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
 	self.def = defense
-	self.res = 0
-
-	-- UP 2.22
-	if self.ability:GetRank(22) then
-		self.ability:AddBonus("_2_RES", self.parent, 10, 0, nil)
-		self.res = 10
-	end
 
 	if self.parent:IsHero() and self.parent:IsIllusion() == false then
 		self.ability.total_regen = self.ability.total_regen + 1
@@ -45,7 +38,6 @@ end
 
 function dasdingo_2_modifier_aura_effect:OnRemoved(kv)
 	self.ability:RemoveBonus("_2_DEF", self.parent)
-	self.ability:RemoveBonus("_2_RES", self.parent)
 
 	if self.parent:IsHero() and self.parent:IsIllusion() == false then
 		self.ability.total_regen = self.ability.total_regen - 1
@@ -58,8 +50,7 @@ function dasdingo_2_modifier_aura_effect:DeclareFunctions()
 
     local funcs = {
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
     }
     return funcs
 end
@@ -68,13 +59,13 @@ function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(ke
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 
-	-- UP 2.31
-	if self.ability:GetRank(31) then
+	-- UP 2.21
+	if self.ability:GetRank(21) then
 		if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 			local damageTable = {
 				victim = keys.attacker,
 				attacker = self.parent,
-				damage = keys.original_damage * 0.4,
+				damage = keys.original_damage * 0.3,
 				damage_type = keys.damage_type,
 				ability = self.ability,
 				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
@@ -91,17 +82,10 @@ function dasdingo_2_modifier_aura_effect:GetModifierPhysicalArmorBonus()
 	return 0
 end
 
-function dasdingo_2_modifier_aura_effect:GetModifierMagicalResistanceBonus()
-	if self:GetParent():IsHero() == false then
-		return self.res
-	end
-	return 0
-end
-
 -----------------------------------------------------------
 
 function dasdingo_2_modifier_aura_effect:PlayEfxStart()
-	local special = (self.ability:GetLevel() - 1) * 10
+	local special = ((self.ability:GetLevel() - 1) * 12) + 8
 	local string = "particles/dasdingo/dasdingo_aura.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,0), true)

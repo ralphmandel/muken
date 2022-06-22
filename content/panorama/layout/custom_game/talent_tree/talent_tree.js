@@ -61,6 +61,7 @@ function BuildTalentTree(data) {
         {
             //CreateTalentPanel(talentRow, 0, data.talents[key].NeedLevel);
         }
+
         CreateTalentPanel(talentRow, talentColumn, key);
     }
 }

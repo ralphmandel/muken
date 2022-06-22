@@ -288,7 +288,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"critical_damage"	"225"
+				"critical_damage"	"300"
 			}
             "11"
 			{

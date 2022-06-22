@@ -120,6 +120,9 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         local gold_chance = self:GetSpecialValueFor("gold_chance")
         local gold_bonus = self:GetSpecialValueFor("gold_bonus")
 
+	    local base_stats = caster:FindAbilityByName("base_stats")
+	    if base_stats then gold_chance = gold_chance * base_stats:GetCriticalChance() end
+
         if target:TriggerSpellAbsorb(self) then return end
 
         if target:HasModifier("strider_1_modifier_spirit") == false
@@ -129,7 +132,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         end
 
         local level = target:GetLevel()
-        if RandomInt(1, 100) <= (gold_chance - (level * 3))
+        if RandomFloat(1, 100) <= (gold_chance - (level * 3))
         and target:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
             local gold = gold_bonus + (level * 3)
             target:Kill(self, caster)
@@ -173,9 +176,9 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             self:PlayEfxAoe(target, radius)
         end
 
-        -- UP 3.31
-        if self:GetRank(31) then
-            duration = duration + 1.5
+        -- UP 3.22
+        if self:GetRank(22) then
+            duration = duration + 1
         end
 
         if target:IsAlive() then

@@ -32,24 +32,29 @@
 
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"10"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"10"
+				"duration"			"6"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"gain"				"1.5"
+				"gain"				"1"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"consume"			"25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40"
+				"consume"			"25"
+			}
+            "04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"pos_time"			"6 6.2 6.4 6.6 6.8 7 7.2 7.4 7.6 7.8 8 8.2 8.4 8.6 8.8 9"
 			}
             "14"
 			{

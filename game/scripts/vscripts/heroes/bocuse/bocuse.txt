@@ -211,7 +211,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"chance"			"50"
+				"chance"			"30"
 			}
 			"15"
 			{

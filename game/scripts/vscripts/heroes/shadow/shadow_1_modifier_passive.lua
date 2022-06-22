@@ -87,8 +87,11 @@ function shadow_1_modifier_passive:OnAttackLanded(keys)
 			return
 		end
 	end
+
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 	
-	if RandomInt(1, 100) <= chance then
+	if RandomFloat(1, 100) <= chance then
 		keys.target:AddNewModifier(self.caster, toxin_ability, "shadow_0_modifier_toxin", {})
 
 		-- UP 1.11

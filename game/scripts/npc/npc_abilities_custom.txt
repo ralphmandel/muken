@@ -26,7 +26,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_damage"		"165"
+					"critical_damage"		"250"
 				}
 				"03"
 				{
@@ -129,7 +129,7 @@
 				"20"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"		"0.25"
+					"critical_chance"		"20" //0.25
 				}
 				"21"
 				{

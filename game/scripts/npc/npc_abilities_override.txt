@@ -283,7 +283,7 @@
 	{
 		"ItemStackable"					"1"
 		"AllowedInBackpack"             "0"
-		"ItemDroppable"                 "0"
+		"ItemDroppable"                 "1"
 		"ItemPermanent"					"0"
 		"ItemSellable"                  "0"
 		"ItemIsNeutralDrop"				"0"
@@ -298,7 +298,7 @@
 	{
 		"ItemStackable"					"1"
 		"AllowedInBackpack"             "0"
-		"ItemDroppable"                 "0"
+		"ItemDroppable"                 "1"
 		"ItemPermanent"					"0"
 		"ItemSellable"                  "0"
 		"ItemIsNeutralDrop"				"0"

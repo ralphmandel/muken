@@ -67,6 +67,7 @@
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     text-shadow: 0 0 2px #0bbbda;
     horizontal-align: middle;
+    max-width: 130px;
 }
 
 .TalentContainer {

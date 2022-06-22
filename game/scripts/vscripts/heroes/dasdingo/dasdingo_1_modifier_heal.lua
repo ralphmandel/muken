@@ -43,11 +43,6 @@ function dasdingo_1_modifier_heal:OnCreated(kv)
 
 	if IsServer() then
 		self:PlayEfxStart()
-
-		-- UP 1.12
-		if self.ability:GetRank(12) then
-			self:PlayEfxRegen()
-		end
 	end
 end
 

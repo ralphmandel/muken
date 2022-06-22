@@ -97,16 +97,24 @@ function icebreaker_1_modifier_frost:OnAttackLanded(keys)
 		ability_slow:AddSlow(keys.target, self.ability)
 	end
 
+	local chance = 12
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
 	-- UP 1.41
 	if self.ability:GetRank(41) 
-	and RandomInt(1, 100) <= 15
+	and RandomFloat(1, 100) <= chance
 	and self.parent:PassivesDisabled() == false then
 		ability_slow:CreateIceIllusions(keys.target, 7)
 	end
 
+	chance = 20
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
 	-- UP 1.42
 	if self.ability:GetRank(42) 
-	and RandomInt(1, 100) <= 25
+	and RandomFloat(1, 100) <= chance
 	and self.parent:PassivesDisabled() == false then
 		local direction = keys.target:GetForwardVector() * (-1)
 		local blink_point = keys.target:GetAbsOrigin() + direction * 130

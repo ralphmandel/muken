@@ -73,14 +73,13 @@ function item_rare_wild_axe:OnSpellStart()
 
 	local branches = {
 		[1] = "item_branch_blue",
-		[2] = "item_branch_yellow",
-		[3] = "item_branch_red",
-		[4] = "item_branch_green"
+		[2] = "item_branch_red",
+		[3] = "item_branch_green"
 	}
 
 	local chance = self:GetSpecialValueFor("chance")
 	if RandomInt(1, 100) <= chance then
-		local item = CreateItem(branches[RandomInt(1, 4)], nil, nil)
+		local item = CreateItem(branches[RandomInt(1, 3)], nil, nil)
 		local pos = tree:GetAbsOrigin()
 		local drop = CreateItemOnPositionSync(pos, item)
 		local pos_launch = pos + RandomVector(RandomFloat(150,200))

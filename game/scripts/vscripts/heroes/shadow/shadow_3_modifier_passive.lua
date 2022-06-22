@@ -44,9 +44,13 @@ end
 function shadow_3_modifier_passive:OnAttackLanded(keys)
 	if self.parent ~= keys.attacker and self.parent ~= keys.target then return end
 
+	local chance = 10
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
 	-- UP 3.22
 	if self.ability:GetRank(22)
-	and RandomInt(1, 100) <= 12
+	and RandomFloat(1, 100) <= chance
 	and self.parent == keys.attacker then
 		self.ability:CreateShadow(keys.target, 5, 1, false)
 	end

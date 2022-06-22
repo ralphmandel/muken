@@ -35,8 +35,8 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 4.22
-	if self.ability:GetRank(22) then
+	-- UP 4.21
+	if self.ability:GetRank(21) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
 	end
 
@@ -70,8 +70,8 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 4.22
-	if self.ability:GetRank(22) then
+	-- UP 4.21
+	if self.ability:GetRank(21) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
 	end
 
@@ -84,7 +84,7 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 	if IsServer() then
 		self:SetStackCount(tick_max)
 		self:PlayEfxStart(true)
-		self:StartIntervalThink(self.tick_intervals * 0.1)
+		self:StartIntervalThink(self.tick_intervals)
 	end
 end
 
@@ -99,32 +99,6 @@ end
 ------------------------------------------------------------
 
 function dasdingo_u_modifier_maledict:OnIntervalThink()
-	-- UP 4.12
-	if self.ability:GetRank(12) then
-		local units = FindUnitsInRadius(
-            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 300,
-            DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            16, 0, false
-        )
-
-		for _,unit in pairs(units) do
-			if unit ~= self.parent then
-				local mods = unit:FindAllModifiersByName(self:GetName())
-				for _,modifier in pairs(mods) do
-					if modifier:GetAbility() == self.ability then
-						self.parent:AddNewModifier(self.caster, self.ability, "dasdingo_u_modifier_overtime", {})
-						break
-					end
-				end
-			end
-		end
-	end
-
-	if not self.time then self.time = 0 end
-	self.time = self.time + 1
-	if self.time < (self.tick_intervals / (self.tick_intervals * 0.1)) then return end
-	self.time = 0
-
 	-- UP 4.41
 	if self.ability:GetRank(41) then
 		self.parent:Purge(true, false, false, false, false)

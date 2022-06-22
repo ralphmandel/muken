@@ -121,10 +121,14 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
 
+        local chance = 40
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
         -- UP 3.41
         if self:GetRank(41)
         and GameRules:IsDaytime()
-        and RandomInt(1, 100) <= 40 then
+        and RandomFloat(1, 100) <= chance then
             GameRules:BeginTemporaryNight(self:CalcStatus(duration, caster, caster))
         end
 

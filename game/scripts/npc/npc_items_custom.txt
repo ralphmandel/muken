@@ -948,7 +948,7 @@
 				"04"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"chance"		"20"
+					"chance"		"17"
 				}
 			}
 		}

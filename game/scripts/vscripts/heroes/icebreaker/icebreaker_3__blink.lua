@@ -111,7 +111,7 @@ icebreaker_3__blink = class({})
 		local target = self:GetCursorTarget()
 		local origin = caster:GetOrigin()
 		local point = self:GetCursorPosition()
-		local direction = (point - origin)
+		--local direction = (point - origin)
 
 		if target:GetTeamNumber()~=caster:GetTeamNumber() then
 			if target:TriggerSpellAbsorb(self) then
@@ -121,12 +121,12 @@ icebreaker_3__blink = class({})
 
 		if IsServer() then caster:EmitSound("Hero_QueenOfPain.Blink_out") end
 
-		local blinkDistance = 100
-		local blinkDirection = (caster:GetOrigin() - target:GetOrigin()):Normalized() * blinkDistance
-		local blinkPosition = target:GetOrigin() + blinkDirection
+		local direction = target:GetForwardVector() * (-1)
+		local blink_point = target:GetAbsOrigin() + direction * 130
+		caster:SetAbsOrigin(blink_point)
+		caster:SetForwardVector(-direction)
+		FindClearSpaceForUnit(caster, blink_point, true)
 
-		caster:SetOrigin( blinkPosition )
-		FindClearSpaceForUnit(caster, blinkPosition, true)
 		ProjectileManager:ProjectileDodge(caster)
 		caster:MoveToTargetToAttack(target)
 

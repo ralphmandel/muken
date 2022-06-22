@@ -50,10 +50,13 @@ end
 function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	local chance = self.chance
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	local ancient_mod = self.parent:FindModifierByName("ancient_1_modifier_berserk")
 	if ancient_mod then
-		if RandomInt(1, 100) <= self.chance then
+		if RandomFloat(1, 100) <= chance then
 			ancient_mod:SetMultipleHits(2)
 		end
 
@@ -71,7 +74,7 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 		self:StartIntervalThink(2)
 	end
 
-	if RandomInt(1, 100) <= self.chance then
+	if RandomInt(1, 100) <= chance then
 		self.ability:RemoveBonus("_1_AGI", self.parent)
 		self.ability:AddBonus("_1_AGI", self.parent, 999, 0, nil)
 		self.hits = 1

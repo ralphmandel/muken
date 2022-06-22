@@ -41,7 +41,11 @@ function dasdingo_3_modifier_passive:OnAttackLanded(keys)
 
 	-- UP 3.42
 	if self.ability:GetRank(42) then
-		if RandomInt(1, 100) <= 10
+		local chance = 10
+		local base_stats = self.caster:FindAbilityByName("base_stats")
+		if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+		if RandomFloat(1, 100) <= chance
 		and keys.target:IsAlive() then
 			keys.target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_hex", {
 				duration = self.ability:CalcStatus(duration, self.caster, keys.target)

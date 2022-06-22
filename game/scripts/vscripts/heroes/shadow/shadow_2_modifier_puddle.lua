@@ -104,7 +104,7 @@ function shadow_2_modifier_puddle:ApplyPulse()
 		if self.silence then
 			self.silence = false
 			enemy:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-				duration = self.ability:CalcStatus(5, self.caster, enemy),
+				duration = self.ability:CalcStatus(3, self.caster, enemy),
 			})
 		end
 	end

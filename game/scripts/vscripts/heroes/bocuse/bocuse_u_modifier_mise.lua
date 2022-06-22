@@ -223,9 +223,13 @@ function bocuse_u_modifier_mise:OnIntervalThink()
                     self.caster:FindAbilityByName("bocuse_1__julienne"):InflictBleeding(enemy)
                 end
 
+                local chance = 30
+                local base_stats = self.parent:FindAbilityByName("base_stats")
+                if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
                 -- UP 4.42
                 if self.ability:GetRank(42)
-                and RandomInt(1, 100) <= 35 then
+                and RandomFloat(1, 100) <= chance then
                     enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
                 end
             end

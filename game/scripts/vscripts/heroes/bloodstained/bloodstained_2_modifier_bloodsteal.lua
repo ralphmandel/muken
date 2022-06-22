@@ -138,9 +138,13 @@ function bloodstained_2_modifier_bloodsteal:OnAttackLanded(keys)
 	if keys.target:IsMagicImmune() then return end
 	if self.parent:PassivesDisabled() then return end
 
+	local chance = 15
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
 	-- UP 2.42
 	if self.ability:GetRank(42) then
-		if RandomInt(1, 100) <= 17 then
+		if RandomFloat(1, 100) <= chance then
 			keys.target:AddNewModifier(self.caster, self.ability, "bloodstained_0_modifier_bleeding", {
 				duration = self.ability:CalcStatus(5, self.caster, keys.target)
 			})

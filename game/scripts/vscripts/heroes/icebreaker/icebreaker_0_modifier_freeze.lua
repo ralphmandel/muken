@@ -69,6 +69,7 @@ end
 
 function icebreaker_0_modifier_freeze:BlinkStrike(break_damage)
 	local base_stats = self.caster:FindAbilityByName("base_stats")
+	local break_crit = self.ability_break:GetSpecialValueFor("break_crit")
 
 	-- UP 3.11
 	if self.ability_break:GetRank(11) then
@@ -111,7 +112,7 @@ function icebreaker_0_modifier_freeze:BlinkStrike(break_damage)
 				if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
 				if base_stats then
-					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					base_stats:SetForceCritSpell(break_crit, true, DAMAGE_TYPE_MAGICAL)
 					damageTableSplash.victim = unit
 					ApplyDamage(damageTableSplash)
 				end
@@ -131,7 +132,7 @@ function icebreaker_0_modifier_freeze:BlinkStrike(break_damage)
 		self.ability_break.blink_lifesteal = true
 	end
 
-	if base_stats then base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL) end
+	if base_stats then base_stats:SetForceCritSpell(break_crit, true, DAMAGE_TYPE_MAGICAL) end
 end
 
 --------------------------------------------------------------------------------
@@ -161,7 +162,8 @@ function icebreaker_0_modifier_freeze:OnAttackLanded(keys)
 	if not self.hits then self.hits = self.ability:GetSpecialValueFor("hits") end
 	self.hits = self.hits - 1
 
-	if self.hits < 1 then
+	if self.hits < 1
+	and self:GetElapsedTime() > 2 then
 		self.take_damage = true
 		self:Destroy()
 	end
