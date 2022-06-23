@@ -85,7 +85,10 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[1][0] = true end
+        if base_hero then
+            base_hero.ranks[1][0] = true
+            base_hero:CheckSkills(2)
+        end
 
         local charges = 1
 

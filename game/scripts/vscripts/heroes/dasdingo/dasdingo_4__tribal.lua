@@ -1,10 +1,10 @@
-dasdingo_x1__ward = class({})
-LinkLuaModifier("dasdingo_x1_modifier_tribal", "heroes/dasdingo/dasdingo_x1_modifier_tribal", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("dasdingo_x1_modifier_bounce", "heroes/dasdingo/dasdingo_x1_modifier_bounce", LUA_MODIFIER_MOTION_NONE)
+dasdingo_4__tribal = class({})
+LinkLuaModifier("dasdingo_4_modifier_tribal", "heroes/dasdingo/dasdingo_4_modifier_tribal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_4_modifier_bounce", "heroes/dasdingo/dasdingo_4_modifier_bounce", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function dasdingo_x1__ward:CalcStatus(duration, caster, target)
+    function dasdingo_4__tribal:CalcStatus(duration, caster, target)
         local time = duration
         local base_stats_caster = nil
         local base_stats_target = nil
@@ -51,12 +51,12 @@ LinkLuaModifier("dasdingo_x1_modifier_bounce", "heroes/dasdingo/dasdingo_x1_modi
         return time
     end
 
-    function dasdingo_x1__ward:AddBonus(string, target, const, percent, time)
+    function dasdingo_4__tribal:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function dasdingo_x1__ward:RemoveBonus(string, target)
+    function dasdingo_4__tribal:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -64,21 +64,41 @@ LinkLuaModifier("dasdingo_x1_modifier_bounce", "heroes/dasdingo/dasdingo_x1_modi
         end
     end
 
-    function dasdingo_x1__ward:OnUpgrade()
-        self:SetHidden(false)
+    function dasdingo_4__tribal:GetRank(upgrade)
+        local caster = self:GetCaster()
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
-    function dasdingo_x1__ward:Spawn()
+    function dasdingo_4__tribal:OnUpgrade()
+        local caster = self:GetCaster()
+        if caster:IsIllusion() then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then
+            base_hero.ranks[4][0] = true
+            base_hero:CheckSkills(2)
+        end
+
+        local charges = 1
+        self:SetCurrentAbilityCharges(charges)
+    end
+
+    function dasdingo_4__tribal:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function dasdingo_x1__ward:OnSpellStart()
+    function dasdingo_4__tribal:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
-    
+
         local summoned_unit = CreateUnitByName(
             "tribal_ward", -- name
             point, -- point
@@ -90,11 +110,18 @@ LinkLuaModifier("dasdingo_x1_modifier_bounce", "heroes/dasdingo/dasdingo_x1_modi
         -- dominate units
         --summoned_unit:SetControllableByPlayer(self.caster:GetPlayerID(), false) -- (playerID, bSkipAdjustingPosition)
         summoned_unit:SetOwner(caster)
-        summoned_unit:AddNewModifier(caster, self, "dasdingo_x1_modifier_tribal", {
+        summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {
             duration = self:CalcStatus(duration, caster, nil)
         })
 
         if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+    end
+
+    function dasdingo_4__tribal:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
     end
 
 -- EFFECTS

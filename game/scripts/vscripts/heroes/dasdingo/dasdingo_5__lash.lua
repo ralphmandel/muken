@@ -1,12 +1,9 @@
-dasdingo_u__maledict = class({})
-LinkLuaModifier("dasdingo_u_modifier_maledict", "heroes/dasdingo/dasdingo_u_modifier_maledict", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("dasdingo_u_modifier_overtime", "heroes/dasdingo/dasdingo_u_modifier_overtime", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
-
+dasdingo_5__lash = class({})
+LinkLuaModifier("dasdingo_5_modifier_lash", "heroes/dasdingo/dasdingo_5_modifier_lash", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function dasdingo_u__maledict:CalcStatus(duration, caster, target)
+    function dasdingo_5__lash:CalcStatus(duration, caster, target)
         local time = duration
         local base_stats_caster = nil
         local base_stats_target = nil
@@ -53,12 +50,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         return time
     end
 
-    function dasdingo_u__maledict:AddBonus(string, target, const, percent, time)
+    function dasdingo_5__lash:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function dasdingo_u__maledict:RemoveBonus(string, target)
+    function dasdingo_5__lash:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -66,75 +63,58 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
-    function dasdingo_u__maledict:GetRank(upgrade)
+    function dasdingo_5__lash:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[7][upgrade] end
+        if base_hero then return base_hero.ranks[5][upgrade] end
     end
 
-    function dasdingo_u__maledict:OnUpgrade()
+    function dasdingo_5__lash:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[7][0] = true end
-
-        local charges = 1
-
-        -- UP 7.11
-        if self:GetRank(11) then
-            charges = charges * 2
+        if base_hero then
+            base_hero.ranks[5][0] = true
+            base_hero:CheckSkills(2)
         end
 
+        local charges = 1
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function dasdingo_u__maledict:Spawn()
+    function dasdingo_5__lash:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function dasdingo_u__maledict:GetAOERadius()
-        return self:GetSpecialValueFor("radius")
-    end
-
-    function dasdingo_u__maledict:OnSpellStart()
+    function dasdingo_5__lash:OnSpellStart()
         local caster = self:GetCaster()
-        local point = self:GetCursorPosition()
-        local radius = self:GetSpecialValueFor("radius")
-        local flag = 0
+        local target = self:GetCursorTarget()
 
-        -- UP 7.41
-        if self:GetRank(41) then
-            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+        if target:TriggerSpellAbsorb(self) then
+            caster:Interrupt()
+        else
+            target:AddNewModifier(caster, self, "dasdingo_5_modifier_lash", {duration = self:GetChannelTime()})
+            if IsServer() then target:EmitSound("Hero_ShadowShaman.Shackles.Cast") end
         end
-
-        local enemies = FindUnitsInRadius(
-            caster:GetTeamNumber(), point, nil, radius,
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            flag, 0, false
-        )
-
-        for _,enemy in pairs(enemies) do
-            enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_maledict", {})
-        end
-
-        self:PlayEfxStart(point, radius)
     end
 
-	function dasdingo_u__maledict:GetCooldown(iLevel)
-        local cooldown = self:GetSpecialValueFor("cooldown")
-        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 15 end
-        return cooldown
-	end
+    function dasdingo_5__lash:OnChannelFinish(bInterrupted)
+        local target = self:GetCursorTarget()
+        if target then target:RemoveModifierByName("dasdingo_5_modifier_lash") end
+    end
 
-    function dasdingo_u__maledict:GetManaCost(iLevel)
+    function dasdingo_5__lash:GetChannelTime()
+        return self:CalcStatus(self:GetSpecialValueFor("channel_time"), self:GetCaster(), self:GetCursorTarget())
+    end
+
+    function dasdingo_5__lash:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
@@ -142,21 +122,3 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
 -- EFFECTS
-
-    function dasdingo_u__maledict:PlayEfxStart(point, radius)
-        local caster = self:GetCaster()
-        local particle = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf"
-        local effect = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
-        ParticleManager:SetParticleControl(effect, 0, point)
-        ParticleManager:SetParticleControl(effect, 1, Vector(radius, 2, radius * 2))
-        ParticleManager:SetParticleControl(effect, 60, Vector(25, 5, 15))
-        ParticleManager:SetParticleControl(effect, 61, Vector(1, 0, 0))
-        ParticleManager:ReleaseParticleIndex(effect)
-
-        if IsServer() then
-            EmitSoundOnLocationWithCaster(point, "Hero_Dazzle.BadJuJu.Cast", caster)
-            EmitSoundOnLocationWithCaster(point, "Hero_Oracle.FalsePromise.Damaged", caster)
-        end
-
-        AddFOWViewer(caster:GetTeamNumber(), point, radius, 2, false)
-    end

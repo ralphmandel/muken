@@ -79,7 +79,10 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[3][0] = true end
+        if base_hero then
+            base_hero.ranks[3][0] = true
+            base_hero:CheckSkills(2)
+        end
 
         local charges = 1
 

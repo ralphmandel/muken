@@ -12,8 +12,11 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		if self:GetLevel() == 1 then
-			caster:SetAbilityPoints(1)
 			self:ResetRanksData()
+
+			Timers:CreateTimer(0.2, function()
+				caster:SetAbilityPoints(3)
+			end)
 		end
 	end
 
@@ -22,13 +25,33 @@ require("talent_tree")
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
 
+		if level == 7 then
+			local ultimate = caster:FindAbilityByName(self.skills[7])
+			if ultimate then ultimate:UpgradeAbility(true) end
+		end
+
 		local gain = 0
-		if level ~= 1 and level ~= 3 and level ~= 7 then gain = -1 end
+		if level ~= 12 and level ~= 20 then gain = -1 end
 		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
+		self:CheckSkills(1)
 	end
 
 	function base_hero:GetIntrinsicModifierName()
 		return "base_hero_mod"
+	end
+
+	function base_hero:CheckSkills(pts)
+		local caster = self:GetCaster()
+		local ability_points = caster:GetAbilityPoints()
+
+		for i = 1, 6, 1 do
+			local skill = caster:FindAbilityByName(self.skills[i])
+			if skill then
+				if skill:IsTrained() == false then
+					skill:SetHidden(ability_points < pts)
+				end
+			end
+		end
 	end
 
 -- LOAD DATA
@@ -46,26 +69,34 @@ require("talent_tree")
 	end
 	
 	function base_hero:ResetRanksData()
+		local rank = {
+			[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+		}
+		
 		self.ranks = {
 			[0] = {
-				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
-				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			},
 			[1] = {
-				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
-				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			},
 			[2] = {
-				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
-				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			},
 			[3] = {
-				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
-				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			},
 			[4] = {
-				[0] = false, [11] = false, [12] = false, [13] = false, [21] = false, [22] = false,
-				[23] = false, [31] = false, [32] = false, [33] = false, [41] = false, [42] = false
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+			},
+			[5] = {
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+			},
+			[6] = {
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+			},
+			[7] = {
+				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			}
 		}
 
@@ -105,15 +136,7 @@ require("talent_tree")
 		local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-skills.txt")
 		if skills_data ~= nil then
 			for skill, skill_name in pairs(skills_data) do
-				if tonumber(skill) < 5 then
-					self.skills[tonumber(skill)] = skill_name
-				else
-					self.skills[tonumber(skill)] = {}
-					
-					for id, extra_skill_name in pairs(skill_name) do
-						self.skills[tonumber(skill)][tonumber(id)] = extra_skill_name
-					end
-				end
+				self.skills[tonumber(skill)] = skill_name
 			end
 		end
 	end
@@ -125,18 +148,12 @@ require("talent_tree")
 
 		for _,unit in pairs(ranks_data) do
 			if not unit["min_level"] then
-				for i = 0, 5, 1 do
+				for i = 0, 7, 1 do
 					for tabName, tabData in pairs(unit) do
 						local isTab = false
-						if i == 5 then
-							if tabName == "extras" then
+						if self.skills[i] then
+							if tabName == self.skills[i] then
 								isTab = true
-							end
-						else
-							if self.skills[i] then
-								if tabName == self.skills[i] then
-									isTab = true
-								end
 							end
 						end
 
@@ -247,16 +264,10 @@ require("talent_tree")
 		local caster = self:GetCaster()
 		local ability = nil
 		
-		if skill == 5 then
-			self.extras_unlocked = self.extras_unlocked + 1
-			ability = caster:FindAbilityByName(self.skills[skill][id])
-			if not ability then return end
-		else
-			self.ranks[skill][id] = true
-			ability = caster:FindAbilityByName(self.skills[skill])
-			if not ability then return end
-			if not ability:IsTrained() then return end
-		end
+		self.ranks[skill][id] = true
+		ability = caster:FindAbilityByName(self.skills[skill])
+		if not ability then return end
+		if not ability:IsTrained() then return end
 
 		ability:SetLevel(ability:GetLevel() + level)
 		caster:AddExperience(level * 10, 0, false, false)
@@ -342,9 +353,13 @@ require("talent_tree")
 		if self.talentsData then
 			for talentId,talent in pairs(self.talentsData) do
 				if (self:GetHeroTalentLevel(talentId) < self:GetTalentMaxLevel(talentId)) then
-					if self:GetTalentRankLevel(talentId) == level
-					and talent.Ability ~= "empty" then
-						total = total + 1
+					if self:GetTalentRankLevel(talentId) == level and talent.Ability ~= "empty" then
+						local ability = self:GetCaster():FindAbilityByName(talent.Tab)
+						if ability then
+							if ability:IsTrained() then
+								total = total + 1
+							end
+						end
 					end
 				end
 			end
@@ -359,7 +374,7 @@ require("talent_tree")
 		local points_level = self:GetHeroRankLevel()
 		local left = self.max_level - points_level - level
 
-		if left < 5 and self:GetTotalTalents(left) == 0 then
+		if left < 5 and (self:GetTotalTalents(left) == 0 or (self:GetTotalTalents(left) == 1 and level == left)) then
 			if left == 1 then return false end
 			if left == 2 then
 				if self:GetTotalTalents(1) < 2 then return false end
@@ -408,26 +423,10 @@ require("talent_tree")
 			if mise:GetSpecialValueFor("rank") < 21 then return false end
 		end
 
-		for i = 1, 4, 1 do
+		for i = 1, 7, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
 			and (not self.ranks[i][0]) then
 				return false
-			end
-		end
-
-		if self.talentsData[talentId].Tab == "extras" then
-			if (not self.ranks[1][0]) or (not self.ranks[2][0]) or (not self.ranks[3][0]) or (not self.ranks[4][0]) then
-				return false
-			else
-				if self.extras_unlocked > 0 then
-					if self:GetCaster():GetLevel() < 15 then
-						return false
-					end
-				else
-					if self:GetCaster():GetLevel() < 8 then
-						return false
-					end
-				end
 			end
 		end
 

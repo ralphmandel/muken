@@ -1,10 +1,8 @@
-dasdingo_x2__mana = class({})
-LinkLuaModifier("dasdingo_x2_modifier_lash", "heroes/dasdingo/dasdingo_x2_modifier_lash", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+dasdingo_6__fire = class({})
 
 -- INIT
 
-    function dasdingo_x2__mana:CalcStatus(duration, caster, target)
+    function dasdingo_6__fire:CalcStatus(duration, caster, target)
         local time = duration
         local base_stats_caster = nil
         local base_stats_target = nil
@@ -51,12 +49,12 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         return time
     end
 
-    function dasdingo_x2__mana:AddBonus(string, target, const, percent, time)
+    function dasdingo_6__fire:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function dasdingo_x2__mana:RemoveBonus(string, target)
+    function dasdingo_6__fire:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -64,35 +62,45 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         end
     end
 
-    function dasdingo_x2__mana:OnUpgrade()
-        self:SetHidden(false)
+    function dasdingo_6__fire:GetRank(upgrade)
+        local caster = self:GetCaster()
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
-    function dasdingo_x2__mana:Spawn()
+    function dasdingo_6__fire:OnUpgrade()
+        local caster = self:GetCaster()
+        if caster:IsIllusion() then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
+
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then
+            base_hero.ranks[6][0] = true
+            base_hero:CheckSkills(2)
+        end
+
+        local charges = 1
+        self:SetCurrentAbilityCharges(charges)
+    end
+
+    function dasdingo_6__fire:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function dasdingo_x2__mana:OnSpellStart()
+    function dasdingo_6__fire:OnSpellStart()
         local caster = self:GetCaster()
-        local target = self:GetCursorTarget()
-
-        if target:TriggerSpellAbsorb(self) then
-            caster:Interrupt()
-        else
-            target:AddNewModifier(caster, self, "dasdingo_x2_modifier_lash", {duration = self:GetChannelTime()})
-            if IsServer() then target:EmitSound("Hero_ShadowShaman.Shackles.Cast") end
-        end
     end
 
-    function dasdingo_x2__mana:OnChannelFinish(bInterrupted)
-        local target = self:GetCursorTarget()
-        if target then target:RemoveModifierByName("dasdingo_x2_modifier_lash") end
-    end
-
-    function dasdingo_x2__mana:GetChannelTime()
-        return self:CalcStatus(self:GetSpecialValueFor("channel_time"), self:GetCaster(), self:GetCursorTarget())
+    function dasdingo_6__fire:GetManaCost(iLevel)
+        local manacost = self:GetSpecialValueFor("manacost")
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return manacost * level
     end
 
 -- EFFECTS

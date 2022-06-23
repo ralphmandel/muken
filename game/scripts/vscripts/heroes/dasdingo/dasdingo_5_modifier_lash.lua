@@ -1,16 +1,16 @@
-dasdingo_x2_modifier_lash = class({})
+dasdingo_5_modifier_lash = class({})
 
-function dasdingo_x2_modifier_lash:IsHidden()
+function dasdingo_5_modifier_lash:IsHidden()
 	return false
 end
 
-function dasdingo_x2_modifier_lash:IsPurgable()
+function dasdingo_5_modifier_lash:IsPurgable()
 	return true
 end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x2_modifier_lash:OnCreated(kv)
+function dasdingo_5_modifier_lash:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
@@ -25,10 +25,10 @@ function dasdingo_x2_modifier_lash:OnCreated(kv)
 	end
 end
 
-function dasdingo_x2_modifier_lash:OnRefresh(kv)
+function dasdingo_5_modifier_lash:OnRefresh(kv)
 end
 
-function dasdingo_x2_modifier_lash:OnRemoved(kv)
+function dasdingo_5_modifier_lash:OnRemoved(kv)
 	self.caster:Interrupt()
 	if IsServer() then self.parent:StopSound("Hero_ShadowShaman.Shackles") end
 
@@ -41,19 +41,19 @@ end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x2_modifier_lash:CheckState()
+function dasdingo_5_modifier_lash:CheckState()
 	return {[MODIFIER_STATE_STUNNED] = true}
 end
 
-function dasdingo_x2_modifier_lash:DeclareFunctions()
+function dasdingo_5_modifier_lash:DeclareFunctions()
 	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
 end
 
-function dasdingo_x2_modifier_lash:GetOverrideAnimation()
+function dasdingo_5_modifier_lash:GetOverrideAnimation()
 	return ACT_DOTA_DISABLED
 end
 
-function dasdingo_x2_modifier_lash:OnIntervalThink()
+function dasdingo_5_modifier_lash:OnIntervalThink()
 	local amount = self.parent:GetMaxHealth() * self.drain
 	self.parent:ModifyHealth(self.parent:GetHealth() - amount, self.ability, true, 0)
 	self.caster:ModifyHealth(self.caster:GetHealth() + amount, self.ability, false, 0)
@@ -61,7 +61,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x2_modifier_lash:PlayEfxStart()
+function dasdingo_5_modifier_lash:PlayEfxStart()
 	local cosmetics = self.caster:FindAbilityByName("cosmetics")
 	if cosmetics.cosmetic == nil then return end
 

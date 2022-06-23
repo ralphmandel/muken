@@ -1,16 +1,16 @@
-dasdingo_x1_modifier_bounce = class({})
+dasdingo_4_modifier_bounce = class({})
 
-function dasdingo_x1_modifier_bounce:IsHidden()
+function dasdingo_4_modifier_bounce:IsHidden()
 	return true
 end
 
-function dasdingo_x1_modifier_bounce:IsPurgable()
+function dasdingo_4_modifier_bounce:IsPurgable()
 	return false
 end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x1_modifier_bounce:OnCreated( kv )
+function dasdingo_4_modifier_bounce:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -39,17 +39,17 @@ function dasdingo_x1_modifier_bounce:OnCreated( kv )
 	self:Attack()
 end
 
-function dasdingo_x1_modifier_bounce:OnRemoved()
+function dasdingo_4_modifier_bounce:OnRemoved()
 end
 
-function dasdingo_x1_modifier_bounce:OnDestroy()
+function dasdingo_4_modifier_bounce:OnDestroy()
 	if not IsServer() then return end
 	UTIL_Remove(self:GetParent())
 end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x1_modifier_bounce:DeclareFunctions()
+function dasdingo_4_modifier_bounce:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
@@ -59,11 +59,11 @@ function dasdingo_x1_modifier_bounce:DeclareFunctions()
 	return funcs
 end
 
-function dasdingo_x1_modifier_bounce:GetModifierProjectileSpeedBonus()
+function dasdingo_4_modifier_bounce:GetModifierProjectileSpeedBonus()
 	return 600
 end
 
-function dasdingo_x1_modifier_bounce:GetModifierProcAttack_Feedback(keys)
+function dasdingo_4_modifier_bounce:GetModifierProcAttack_Feedback(keys)
 	self.ability.sound = true
 	--self.ability.outgoing = math.pow(self.reduction, 2 + self.bounce)*100 - 100
 	self.caster:PerformAttack(keys.target, false, false, true, true, false, false, true)
@@ -80,7 +80,7 @@ function dasdingo_x1_modifier_bounce:GetModifierProcAttack_Feedback(keys)
 	end
 end
 
-function dasdingo_x1_modifier_bounce:OnAttackFail(keys)
+function dasdingo_4_modifier_bounce:OnAttackFail(keys)
 	if keys.attacker == self.parent then
 		if keys.target ~= nil then
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MISS, keys.target, 0, keys.target)
@@ -89,7 +89,7 @@ function dasdingo_x1_modifier_bounce:OnAttackFail(keys)
 	end
 end
 
-function dasdingo_x1_modifier_bounce:CheckState()
+function dasdingo_4_modifier_bounce:CheckState()
 	local state = {
 		[MODIFIER_STATE_DISARMED] = true,
 	}
@@ -98,14 +98,14 @@ function dasdingo_x1_modifier_bounce:CheckState()
 end
 
 
-function dasdingo_x1_modifier_bounce:OnIntervalThink()
+function dasdingo_4_modifier_bounce:OnIntervalThink()
 	self:StartIntervalThink(-1)
 	self:Attack()
 end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_x1_modifier_bounce:Attack()
+function dasdingo_4_modifier_bounce:Attack()
 	self.bounce = self.bounce+1
 
 	local units = FindUnitsInRadius(

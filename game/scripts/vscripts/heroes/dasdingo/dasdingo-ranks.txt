@@ -74,6 +74,63 @@
 				"2"   "dasdingo_3__hex_rank_42"
 			}
 		}
+		"dasdingo_4__tribal"
+		{
+			"0"
+			{
+				"1"   "dasdingo_4__tribal_rank_11"
+			}
+			"1"
+			{
+				"1"   "dasdingo_4__tribal_rank_21"
+			}
+			"2"
+			{
+				"1"   "dasdingo_4__tribal_rank_31"
+			}
+			"3"
+			{
+				"1"   "dasdingo_4__tribal_rank_41"
+			}
+		}
+		"dasdingo_5__lash"
+		{
+			"0"
+			{
+				"1"   "dasdingo_5__lash_rank_11"
+			}
+			"1"
+			{
+				"1"   "dasdingo_5__lash_rank_21"
+			}
+			"2"
+			{
+				"1"   "dasdingo_5__lash_rank_31"
+			}
+			"3"
+			{
+				"1"   "dasdingo_5__lash_rank_41"
+			}
+		}
+		"dasdingo_6__fire"
+		{
+			"0"
+			{
+				"1"   "dasdingo_6__fire_rank_11"
+			}
+			"1"
+			{
+				"1"   "dasdingo_6__fire_rank_21"
+			}
+			"2"
+			{
+				"1"   "dasdingo_6__fire_rank_31"
+			}
+			"3"
+			{
+				"1"   "dasdingo_6__fire_rank_41"
+			}
+		}
 		"dasdingo_u__maledict"
 		{
 			"0"
