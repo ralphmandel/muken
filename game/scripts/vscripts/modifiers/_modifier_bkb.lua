@@ -1,30 +1,30 @@
-_modifier_immunity = class({})
+_modifier_bkb = class({})
 
 --------------------------------------------------------------------------------
-function _modifier_immunity:IsHidden()
+function _modifier_bkb:IsHidden()
 	return false
 end
 
-function _modifier_immunity:IsPurgable()
+function _modifier_bkb:IsPurgable()
 	return true
 end
 
-function _modifier_immunity:GetTexture()
-	return "_modifier_immunity"
+function _modifier_bkb:GetTexture()
+	return "_modifier_bkb"
 end
 
-function _modifier_immunity:GetAttributes()
+function _modifier_bkb:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 --------------------------------------------------------------------------------
 
-function _modifier_immunity:OnCreated( kv )
+function _modifier_bkb:OnCreated( kv )
 end
 
 --------------------------------------------------------------------------------
 
-function _modifier_immunity:CheckState()
+function _modifier_bkb:CheckState()
 	local state = {
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 	}
@@ -34,10 +34,10 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_immunity:GetEffectName()
-	return "particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf"
+function _modifier_bkb:GetEffectName()
+	return "particles/items_fx/black_king_bar_avatar.vpcf"
 end
 
-function _modifier_immunity:GetEffectAttachType()
+function _modifier_bkb:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end

@@ -38,7 +38,7 @@ function bocuse_2_modifier_flambee_buff:OnCreated(kv)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bocuse_2_modifier_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_2_modifier_status_efx", true) end
 
 	self:PlayEfxStart()
     self:StartIntervalThink(intervals)
@@ -75,7 +75,7 @@ function bocuse_2_modifier_flambee_buff:OnRemoved()
 	if IsServer() then self.parent:StopSound("Bocuse.Flambee.Buff") end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bocuse_2_modifier_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_2_modifier_status_efx", false) end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do

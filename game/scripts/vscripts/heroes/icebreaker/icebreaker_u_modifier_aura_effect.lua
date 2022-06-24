@@ -23,7 +23,7 @@ function icebreaker_u_modifier_aura_effect:OnCreated( kv )
 
 		if self.caster == self.parent then
 			local cosmetics = self.parent:FindAbilityByName("cosmetics")
-			if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_efx", true) end
+			if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_u_modifier_status_efx", true) end
 
 			local res = self.ability:GetSpecialValueFor("res")
 			self.ability:AddBonus("_2_RES", self.parent, res, 0, nil)
@@ -42,7 +42,7 @@ function icebreaker_u_modifier_aura_effect:OnRemoved()
 
 		if self.caster == self.parent then
 			local cosmetics = self.parent:FindAbilityByName("cosmetics")
-			if cosmetics then cosmetics:SetStatusEffect("icebreaker_u_modifier_status_efx", false) end
+			if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_u_modifier_status_efx", false) end
 			self.ability:RemoveBonus("_2_RES", self.parent)
 			self.ability:DestroyShard()
 		end

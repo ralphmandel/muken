@@ -31,7 +31,7 @@ function icebreaker_1_modifier_instant:OnCreated( kv )
 
 	self:PlayEfxStart()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_1_modifier_instant_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_1_modifier_instant_status_efx", true) end
 end
 
 function icebreaker_1_modifier_instant:OnRefresh( kv )
@@ -39,7 +39,7 @@ end
 
 function icebreaker_1_modifier_instant:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_1_modifier_instant_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_1_modifier_instant_status_efx", false) end
 end
 
 --------------------------------------------------------------------------------

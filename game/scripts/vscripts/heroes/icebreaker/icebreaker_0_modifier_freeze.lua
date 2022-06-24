@@ -34,7 +34,7 @@ function icebreaker_0_modifier_freeze:OnCreated( kv )
 	self.heal = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_0_modifier_freeze_status_efx", true) end
 
 	if IsServer() then
 		self:PlayEfxStart()
@@ -47,7 +47,7 @@ end
 
 function icebreaker_0_modifier_freeze:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("icebreaker_0_modifier_freeze_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_0_modifier_freeze_status_efx", false) end
 	local break_damage = self.ability_break:GetSpecialValueFor("break_damage")
 
 	local damageTable = {

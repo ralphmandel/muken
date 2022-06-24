@@ -23,7 +23,7 @@ function shadow_0_modifier_toxin:OnCreated(kv)
 	self.purge = true
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("shadow_0_modifier_toxin_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "shadow_0_modifier_toxin_status_efx", true) end
 
 	local lifetime = self.ability:GetSpecialValueFor("lifetime")
 	local intervals = self.ability:GetSpecialValueFor("intervals")
@@ -77,7 +77,7 @@ end
 
 function shadow_0_modifier_toxin:OnRemoved(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("shadow_0_modifier_toxin_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "shadow_0_modifier_toxin_status_efx", false) end
 	self:ApplyWeakness(false)
 end
 

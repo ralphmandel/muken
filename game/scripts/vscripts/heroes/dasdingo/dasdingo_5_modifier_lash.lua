@@ -15,13 +15,30 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	-- UP 5.12
+	if self.ability:GetRank(12) then
+		self.caster:AddNewModifier(self.caster, self.ability, "_modifier_ethereal", {})        
+	end
+
+	-- UP 5.21
+	if self.ability:GetRank(21) then
+		self.caster:AddNewModifier(self.caster, self.ability, "_modifier_bkb", {})        
+	end
+
 	if IsServer() then
-		local ticks = 0.5
-		local drain_percent = self.ability:GetSpecialValueFor("drain_percent") * 0.01
-		self.drain = drain_percent * ticks
+		self.ticks = 0.25
+		local drain_percent = self.ability:GetSpecialValueFor("drain_percent")
+
+		-- UP 5.32
+		if self.ability:GetRank(32) then
+			drain_percent = drain_percent + 3
+		end
+
+		self.drain = drain_percent * self.ticks * 0.01
+		self.mp_drain = self.ticks * 0.06
 
 		self:PlayEfxStart()
-		self:StartIntervalThink(ticks)
+		self:StartIntervalThink(self.ticks)
 	end
 end
 
@@ -37,6 +54,16 @@ function dasdingo_5_modifier_lash:OnRemoved(kv)
 
 	local model_name = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
 	cosmetics:FadeCosmeticsGesture(model_name, ACT_DOTA_CHANNEL_ABILITY_3)
+
+	local mod = self.caster:FindAllModifiersByName("_modifier_ethereal")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	local mod = self.caster:FindAllModifiersByName("_modifier_bkb")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -57,6 +84,21 @@ function dasdingo_5_modifier_lash:OnIntervalThink()
 	local amount = self.parent:GetMaxHealth() * self.drain
 	self.parent:ModifyHealth(self.parent:GetHealth() - amount, self.ability, true, 0)
 	self.caster:ModifyHealth(self.caster:GetHealth() + amount, self.ability, false, 0)
+
+	-- UP 5.31
+	if self.ability:GetRank(31) then
+		local mp_amount = math.floor(self.parent:GetMaxMana() * self.mp_drain)
+		if mp_amount > self.parent:GetMana() then mp_amount = self.parent:GetMana() end
+        if mp_amount > 0 then
+            self.parent:ReduceMana(mp_amount)
+            self.caster:GiveMana(mp_amount)
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, mp_amount, self.caster)
+            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.caster, mp_amount, self.caster)
+        end
+	end
+
+	self:StartIntervalThink(-1)
+	self:StartIntervalThink(self.ticks)
 end
 
 --------------------------------------------------------------------------------
