@@ -199,7 +199,7 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
     local damageTable = {
         attacker = self.parent,
-        damage_type = DAMAGE_TYPE_PHYSICAL,
+        damage_type = self.ability:GetAbilityDamageType(),
         ability = self.ability
     }
 

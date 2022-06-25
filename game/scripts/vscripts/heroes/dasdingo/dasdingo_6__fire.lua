@@ -1,4 +1,7 @@
 dasdingo_6__fire = class({})
+LinkLuaModifier("dasdingo_6_modifier_passive", "heroes/dasdingo/dasdingo_6_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_6_modifier_fire", "heroes/dasdingo/dasdingo_6_modifier_fire", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -92,8 +95,8 @@ dasdingo_6__fire = class({})
 
 -- SPELL START
 
-    function dasdingo_6__fire:OnSpellStart()
-        local caster = self:GetCaster()
+    function dasdingo_6__fire:GetIntrinsicModifierName()
+        return "dasdingo_6_modifier_passive"
     end
 
     function dasdingo_6__fire:GetManaCost(iLevel)

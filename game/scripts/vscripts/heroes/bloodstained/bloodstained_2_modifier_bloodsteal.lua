@@ -162,7 +162,7 @@ function bloodstained_2_modifier_bloodsteal:OnDeath(keys)
 	-- UP 2.11
 	if self.ability:GetRank(11) then
 		local heal = self.parent:GetMaxHealth() * 0.1
-		if keys.unit:IsHero() then heal = heal * 2 end
+		if keys.unit:IsHero() then heal = self.parent:GetMaxHealth() * 0.15 end
 
 		self.parent:Heal(heal, self.ability)
 		self:PlayEfxKillHeal(keys.unit)

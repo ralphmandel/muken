@@ -79,14 +79,15 @@
 			"0"
 			{
 				"1"   "dasdingo_4__tribal_rank_11"
+				"2"   "dasdingo_4__tribal_rank_12"
 			}
 			"1"
 			{
-				"1"   "dasdingo_4__tribal_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "dasdingo_4__tribal_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -118,11 +119,12 @@
 		{
 			"0"
 			{
-				"1"   "dasdingo_6__fire_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
 				"1"   "dasdingo_6__fire_rank_21"
+				"2"   "dasdingo_6__fire_rank_22"
 			}
 			"2"
 			{

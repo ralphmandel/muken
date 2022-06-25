@@ -27,7 +27,7 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	-- UP 1.22
 	if self.ability:GetRank(22) then
 		consume = consume + 10
-		self.gain = 0.75
+		self.gain = 0.6
 	end
 
 	-- UP 1.31
@@ -84,7 +84,7 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 	-- UP 1.22
 	if self.ability:GetRank(22) then
 		consume = consume + 10
-		self.gain = 0.75
+		self.gain = 0.6
 	end
 
 	-- UP 1.41

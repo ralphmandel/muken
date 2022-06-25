@@ -43,7 +43,7 @@ function bocuse_2_modifier_flambee_debuff:OnCreated(kv)
 
 	-- UP 2.23
 	if self.ability:GetRank(23) then
-		intervals = self.ability:GetSpecialValueFor("intervals") - 0.2
+		intervals = self.ability:GetSpecialValueFor("intervals") - 0.25
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5)
 	end
 
@@ -74,7 +74,7 @@ function bocuse_2_modifier_flambee_debuff:OnRefresh(kv)
 
 	-- UP 2.23
 	if self.ability:GetRank(23) then
-		local intervals = self.ability:GetSpecialValueFor("intervals") - 0.2
+		local intervals = self.ability:GetSpecialValueFor("intervals") - 0.25
 		self.percent = (self.ability:GetSpecialValueFor("percent_per_sec") + 0.5)
 		self:StartIntervalThink(intervals)
 	end
