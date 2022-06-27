@@ -277,7 +277,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "4"
+				"max_stack"		    "5"
 			}
             "04"
 			{

@@ -68,6 +68,8 @@ function dasdingo__precache:Spawn()
 end
 
 function dasdingo__precache:Precache(context)
+    PrecacheResource("soundfile", "soundevents/soundevent_dasdingo.vsndevts", context)
+
     PrecacheResource( "particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti10_immortal_weapon_gold/wd_ti10_immortal_voodoo_gold.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healing_ward_fortunes_tout_ward_gold_flame.vpcf", context )

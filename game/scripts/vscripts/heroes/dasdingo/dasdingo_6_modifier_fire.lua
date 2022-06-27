@@ -34,12 +34,19 @@ function dasdingo_6_modifier_fire:OnCreated(kv)
 	if IsServer() then
 		self:SetStackCount(1)
 		self:StartIntervalThink(intervals)
+		self.parent:EmitSound("Dasdingo.Fire.Loop")
 	end
 end
 
 function dasdingo_6_modifier_fire:OnRefresh(kv)
-	if IsServer() then self:IncrementStackCount() end
-	if self:GetStackCount() < self.max_stack then return end
+	if IsServer() then
+		self:IncrementStackCount()
+		if self:GetStackCount() < self.max_stack then
+			self.parent:StopSound("Dasdingo.Fire.Loop")
+			self.parent:EmitSound("Dasdingo.Fire.Loop")
+			return
+		end		
+	end
 
 	local stun_duration = self.ability:GetSpecialValueFor("stun_duration")
 	local blast_damage = self.ability:GetSpecialValueFor("blast_damage")
@@ -53,10 +60,12 @@ function dasdingo_6_modifier_fire:OnRefresh(kv)
 		duration = self.ability:CalcStatus(stun_duration, self.caster, self.parent)
 	})
 
+	self:PlayEfxBlast()
 	self:Destroy()
 end
 
 function dasdingo_6_modifier_fire:OnRemoved()
+	if IsServer() then self.parent:StopSound("Dasdingo.Fire.Loop") end
 end
 
 --------------------------------------------------------------------------------
@@ -78,10 +87,19 @@ end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_6_modifier_fire:PlayEfxStart(target)
-	local particle_cast = "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
+function dasdingo_6_modifier_fire:GetEffectName()
+	return "particles/dasdingo/dasdingo_fire_debuff.vpcf"
+end
+
+function dasdingo_6_modifier_fire:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function dasdingo_6_modifier_fire:PlayEfxBlast()
+	local particle_cast = "particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	if IsServer() then target:EmitSound("Hero_Lion.Voodoo") end
+	if IsServer() then self.parent:EmitSound("Hero_Batrider.Flamebreak.Impact") end
 end
