@@ -272,7 +272,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_damage"	    "10"
+				"fire_damage"	    "15"
 			}
             "03"
 			{
@@ -287,7 +287,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"50"
+				"blast_damage"		"30"
 			}
 			"14"
 			{

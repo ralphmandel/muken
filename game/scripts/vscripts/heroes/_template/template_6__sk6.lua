@@ -1,9 +1,10 @@
-template_u__sk4 = class({})
-LinkLuaModifier("template_u_modifier_sk4", "heroes/template/template_u_modifier_sk4", LUA_MODIFIER_MOTION_NONE)
+template_6__sk6 = class({})
+LinkLuaModifier("template_6_modifier_sk6", "heroes/template/template_6_modifier_sk6", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function template_u__sk4:CalcStatus(duration, caster, target)
+    function template_6__sk6:CalcStatus(duration, caster, target)
         local time = duration
         local base_stats_caster = nil
         local base_stats_target = nil
@@ -50,12 +51,12 @@ LinkLuaModifier("template_u_modifier_sk4", "heroes/template/template_u_modifier_
         return time
     end
 
-    function template_u__sk4:AddBonus(string, target, const, percent, time)
+    function template_6__sk6:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function template_u__sk4:RemoveBonus(string, target)
+    function template_6__sk6:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -63,55 +64,43 @@ LinkLuaModifier("template_u_modifier_sk4", "heroes/template/template_u_modifier_
         end
     end
 
-    function template_u__sk4:GetRank(upgrade)
+    function template_6__sk6:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("template__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
 
-        return att.talents[4][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
-    function template_u__sk4:OnUpgrade()
+    function template_6__sk6:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
 
-        local att = caster:FindAbilityByName("template__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[4][0] = true
-            end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then
+            base_hero.ranks[6][0] = true
+            base_hero:CheckSkills(2)
         end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
 
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function template_u__sk4:Spawn()
+    function template_6__sk6:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function template_u__sk4:OnSpellStart()
+    function template_6__sk6:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function template_u__sk4:GetManaCost(iLevel)
+    function template_6__sk6:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
