@@ -1,9 +1,4 @@
 "Cosmetics"
 {
-	"cosmetic_string" "nil" // COSMETIC WITHOUT AMBIENT EXAMPLE
-
-	"cosmetic_string"
-	{
-		"ambient_string" "attach_type" // COSMETIC WITH AMBIENT EXAMPLE
-	}
+    
 }

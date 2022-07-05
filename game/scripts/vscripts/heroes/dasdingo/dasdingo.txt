@@ -117,7 +117,6 @@
 		"AbilityCastPoint"       		"0.1"
 
 		"AbilityCooldown"				"14"
-		"AbilityCastRange"      		"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440 450"
 
 		"AbilitySpecial"
 		{
@@ -144,7 +143,7 @@
 			"05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"range_tooltip"	"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440"
+				"cast_range"	"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440"
 			}
             "14"
 			{
@@ -211,14 +210,13 @@
 		"AbilityTextureName"     		"dasdingo_lash"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"5"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"				"0.3"
         "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		"AbilityCastRange"				"500"
 		"AbilityCooldown"				"18"
 
 		"AbilitySpecial"
@@ -226,12 +224,17 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4"
+				"channel_time"		"4 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5"
 			}
-            "01"
+            "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"drain_percent"		"5"
+				"drain_percent"		"3"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"		"500"
 			}
 			"14"
 			{
@@ -241,7 +244,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -251,32 +254,40 @@
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/dasdingo/dasdingo_6__fire"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"     		"dasdingo_fire"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"5"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityCastPoint"				"0.3"
-        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
-
-		"AbilityCastRange"				"500"
-		"AbilityCooldown"				"18"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4"
+				"fire_duration"		"3"
 			}
-            "01"
+            "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"drain_percent"		"5"
+				"fire_damage"	    "15"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_stack"		    "5"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stun_duration" 	"1"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"blast_damage"		"30"
 			}
 			"14"
 			{
@@ -286,7 +297,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -301,6 +312,7 @@
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"

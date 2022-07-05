@@ -16,7 +16,7 @@ function shadow_3_modifier_walk:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	-- if cosmetics then cosmetics:SetStatusEffect("shadow_3_modifier_walk_cosmetic", true) end
+	-- if cosmetics then cosmetics:SetStatusEffect(nil, "shadow_3_modifier_walk_cosmetic", true) end
 
 	self.invi = false
 	self.hits = 1
@@ -46,7 +46,7 @@ function shadow_3_modifier_walk:OnRemoved()
 	if IsServer() then self.parent:EmitSound("Hero_PhantomAssassin.Blur.Break") end
 
 	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	-- if cosmetics then cosmetics:SetStatusEffect("shadow_3_modifier_walk_cosmetic", false) end
+	-- if cosmetics then cosmetics:SetStatusEffect(nil, "shadow_3_modifier_walk_cosmetic", false) end
 
 	self.ability:SetActivated(true)
 	self.ability:StartRechargeTime()

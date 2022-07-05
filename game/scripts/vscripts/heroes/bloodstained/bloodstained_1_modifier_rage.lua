@@ -27,7 +27,7 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	-- UP 1.22
 	if self.ability:GetRank(22) then
 		consume = consume + 10
-		self.gain = 0.75
+		self.gain = 0.6
 	end
 
 	-- UP 1.31
@@ -70,7 +70,7 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	self:ApplyGain()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_1_modifier_rage_status_efx", true) end
 end
 
 function bloodstained_1_modifier_rage:OnRefresh( kv )
@@ -84,7 +84,7 @@ function bloodstained_1_modifier_rage:OnRefresh( kv )
 	-- UP 1.22
 	if self.ability:GetRank(22) then
 		consume = consume + 10
-		self.gain = 0.75
+		self.gain = 0.6
 	end
 
 	-- UP 1.41
@@ -129,7 +129,7 @@ function bloodstained_1_modifier_rage:OnRemoved( kv )
 	end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bloodstained_1_modifier_rage_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_1_modifier_rage_status_efx", false) end
 end
 ---------------------------------------------------------------------------------------------------
 

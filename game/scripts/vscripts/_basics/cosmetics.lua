@@ -60,16 +60,26 @@ function cosmetics:ApplyAmbient(ambients, unit, modifier)
 	end
 end
 
-function cosmetics:SetStatusEffect(string, enable)
+function cosmetics:SetStatusEffect(ability, string, enable)
 	local caster = self:GetCaster()
 	if self.cosmetic == nil then return end
+
+	local inflictor = self
+	if ability then inflictor = ability end
 
 	for i = 1, #self.cosmetic, 1 do
 		if self:CheckFlags(self.cosmetic[i]) then
 			if enable == true then
-				self.cosmetic[i]:AddNewModifier(caster, self, string, {})
+				self.cosmetic[i]:AddNewModifier(caster, inflictor, string, {})
 			else
-				self.cosmetic[i]:RemoveModifierByName(string)
+				if ability then
+					local mod = self.cosmetic[i]:FindAllModifiersByName(string)
+					for _,modifier in pairs(mod) do
+						if modifier:GetAbility() == ability then modifier:Destroy() end
+					end
+				else
+					self.cosmetic[i]:RemoveModifierByName(string)
+				end
 			end
 		end
 	end

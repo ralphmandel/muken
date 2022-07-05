@@ -46,7 +46,7 @@ function bloodstained_0_modifier_bleeding:OnIntervalThink()
 
 	if self.parent:IsMoving() then
 		local health = self.parent:GetMaxHealth() * 0.01
-		local calc = self.parent:GetHealth() - (math.floor(health * 0.7))
+		local calc = self.parent:GetHealth() - (math.floor(health * 0.5))
 		self.parent:ModifyHealth(calc, self.ability, false, 0)
 		self.disable = 1
 		self:StartBleeding()

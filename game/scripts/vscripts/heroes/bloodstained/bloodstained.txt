@@ -44,7 +44,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"gain"				"1"
+				"gain"				"0.8"
 			}
 			"03"
 			{
@@ -199,7 +199,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"blood_extraction"	"15"
+				"blood_extraction"	"10"
 			}
 			"05"
 			{

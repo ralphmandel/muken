@@ -1,5 +1,6 @@
 template_1__sk1 = class({})
 LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_sk1", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -65,13 +66,11 @@ LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_
 
     function template_1__sk1:GetRank(upgrade)
         local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        local att = caster:FindAbilityByName("template__attributes")
-        if not att then return end
-        if not att:IsTrained() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
+		if caster:IsIllusion() then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
 
-        return att.talents[1][upgrade]
+		local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then return base_hero.ranks[1][upgrade] end
     end
 
     function template_1__sk1:OnUpgrade()
@@ -79,21 +78,11 @@ LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_id_name" then return end
 
-        local att = caster:FindAbilityByName("template__attributes")
-        if att then
-            if att:IsTrained() then
-                att.talents[1][0] = true
-            end
+        local base_hero = caster:FindAbilityByName("base_hero")
+        if base_hero then
+            base_hero.ranks[1][0] = true
+            base_hero:CheckSkills(2)
         end
-        
-        if self:GetLevel() == 1 then
-			caster:FindAbilityByName("_2_DEX"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_DEF"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_RES"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_REC"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_MND"):CheckLevelUp(true)
-			caster:FindAbilityByName("_2_LCK"):CheckLevelUp(true)
-		end
 
         local charges = 1
         self:SetCurrentAbilityCharges(charges)
@@ -111,7 +100,7 @@ LinkLuaModifier("template_1_modifier_sk1", "heroes/template/template_1_modifier_
 
     function template_1__sk1:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
-        local level =  (1 + ((self:GetLevel() - 1) * 0.05))
+        local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end

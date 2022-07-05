@@ -29,7 +29,7 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 		victim = self.parent,
 		attacker = self.caster,
 		damage = initial_damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage_type = self.ability:GetAbilityDamageType(),
 		ability = self.ability
 	}
 
@@ -64,7 +64,7 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 		victim = self.parent,
 		attacker = self.caster,
 		damage = initial_damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage_type = self.ability:GetAbilityDamageType(),
 		ability = self.ability
 	}
 

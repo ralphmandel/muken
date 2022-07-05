@@ -26,6 +26,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
@@ -138,7 +139,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"intervals"			"1.2"
+				"intervals"			"1.75"
 			}
 			"06"
 			{
@@ -229,6 +230,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"     		"bocuse_mise"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"17"
 		"RequiredLevel"         	 	"7"

@@ -79,14 +79,15 @@
 			"0"
 			{
 				"1"   "dasdingo_4__tribal_rank_11"
+				"2"   "dasdingo_4__tribal_rank_12"
 			}
 			"1"
 			{
-				"1"   "dasdingo_4__tribal_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "dasdingo_4__tribal_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -98,6 +99,7 @@
 			"0"
 			{
 				"1"   "dasdingo_5__lash_rank_11"
+				"2"   "dasdingo_5__lash_rank_12"
 			}
 			"1"
 			{
@@ -106,21 +108,23 @@
 			"2"
 			{
 				"1"   "dasdingo_5__lash_rank_31"
+				"2"   "dasdingo_5__lash_rank_32"
 			}
 			"3"
 			{
-				"1"   "dasdingo_5__lash_rank_41"
+				"1"   "empty"
 			}
 		}
 		"dasdingo_6__fire"
 		{
 			"0"
 			{
-				"1"   "dasdingo_6__fire_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
 				"1"   "dasdingo_6__fire_rank_21"
+				"2"   "dasdingo_6__fire_rank_22"
 			}
 			"2"
 			{

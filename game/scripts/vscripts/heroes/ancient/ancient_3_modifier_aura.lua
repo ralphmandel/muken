@@ -84,7 +84,7 @@ function ancient_3_modifier_aura:OnCreated(kv)
 	end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("ancient_3_modifier_aura_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "ancient_3_modifier_aura_status_efx", true) end
 
 	if IsServer() then
 		self:StartIntervalThink(intervals)
@@ -98,7 +98,7 @@ end
 
 function ancient_3_modifier_aura:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("ancient_3_modifier_aura_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "ancient_3_modifier_aura_status_efx", false) end
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)

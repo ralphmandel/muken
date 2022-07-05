@@ -234,6 +234,12 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
     end
 
+    function dasdingo_3__hex:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        return cast_range
+    end
+
     function dasdingo_3__hex:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))

@@ -267,7 +267,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             victim = target,
             attacker = caster,
             damage = damage,
-            damage_type = DAMAGE_TYPE_PHYSICAL,
+            damage_type = self:GetAbilityDamageType(),
             ability = self
         }
 

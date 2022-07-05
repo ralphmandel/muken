@@ -41,7 +41,7 @@ function bloodstained_u_modifier_debuff_slow:OnCreated( kv )
 	if self.ability:GetRank(31)
 	and source == self.ability:GetAbilityName() then
 		blood_extraction = (self.ability:GetSpecialValueFor("blood_extraction") + 5) * 0.01
-		outgoing = 20
+		outgoing = 15
 	end
 
     self.total_blood = self.parent:GetMaxHealth() * blood_extraction

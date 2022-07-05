@@ -42,7 +42,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     self:PlayEfxStart()
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bocuse_u_modifier_mise_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_mise_status_efx", true) end
 end
 
 function bocuse_u_modifier_mise:OnRefresh(kv)
@@ -53,7 +53,7 @@ function bocuse_u_modifier_mise:OnRemoved()
     self.ability:SetActivated(true)
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect("bocuse_u_modifier_mise_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_mise_status_efx", false) end
 
     if self.reset == 1 then return end
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
@@ -199,7 +199,7 @@ function bocuse_u_modifier_mise:OnIntervalThink()
 
     local damageTable = {
         attacker = self.parent,
-        damage_type = DAMAGE_TYPE_PHYSICAL,
+        damage_type = self.ability:GetAbilityDamageType(),
         ability = self.ability
     }
 
