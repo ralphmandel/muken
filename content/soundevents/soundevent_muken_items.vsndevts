@@ -19,8 +19,8 @@
 						}
 					}
 
-					"volume_rand_min" 	 	{ "value"   "-0.099976" }
-					"volume_rand_max" 		{ "value"   "0.099976" }
+					"volume_rand_min" 	 	{ "value"   "-0.059976" }
+					"volume_rand_max" 		{ "value"   "0.059976" }
 					"pitch_rand_min" 		{ "value"   "-0.050000" }
 					"pitch_rand_max"  		{ "value"   "0.050000" }
 					"pitch"  				{ "value"   "1.000000" }

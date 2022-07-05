@@ -998,7 +998,7 @@
 		if unit == nil then return end
 		if unit:IsReincarnating() then return end
 		if unit:IsHero() and unit:IsIllusion() == false then
-			self:RandomizePlayerSpawn(unit)
+			--self:RandomizePlayerSpawn(unit)
 			
 			local playerID = unit:GetPlayerOwnerID()
 			if playerID ~= nil then

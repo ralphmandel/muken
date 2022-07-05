@@ -23,6 +23,9 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
+	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	-- if cosmetics then cosmetics:SetStatusEffect(nil, "krieger_1_modifier_fury_status_efx", true) end
+
 	self:StartIntervalThink(FrameTime())
 	self:PlayEfxBuff()
 end
@@ -38,6 +41,9 @@ function item_legend_serluc_mod_berserk:OnRemoved( kv )
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
+
+	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	-- if cosmetics then cosmetics:SetStatusEffect(nil, "krieger_1_modifier_fury_status_efx", false) end
 
 	--self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	--self.ability:SetActivated(true)
@@ -116,11 +122,10 @@ end
 
 function item_legend_serluc_mod_berserk:GetStatusEffectName()
 	return "particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
-	--return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
 end
 
 function item_legend_serluc_mod_berserk:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
+	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 function item_legend_serluc_mod_berserk:PlayEfxBuff()

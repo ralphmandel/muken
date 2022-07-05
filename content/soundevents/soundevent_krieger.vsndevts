@@ -1,0 +1,72 @@
+"Krieger.Attack"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/krieger_attack_1.vsnd"
+							"value1"	"sounds/krieger_attack_2.vsnd"
+							"value2"	"sounds/krieger_attack_3.vsnd"
+						}
+					}
+
+					"mixgroup"			{ "value"	"BaseAttacks"	}
+					"volume"            { "value"   "0.50000"	}
+					"pitch_rand_min" 	{ "value"   "-0.050000" }
+					"pitch_rand_max"  	{ "value"   "0.050000"	}
+					"pitch"  			{ "value"   "1.000000"	}
+					"soundlevel"  		{ "value"   "78.000000"	}
+					"distance_max"  	{ "value"   "2500.000000"	}
+				}
+			}
+		}
+	}
+}
+
+"Krieger.Pre.Attack"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/krieger_attack_swing.vsnd"
+						}
+					}
+					"volume"            { "value"   "0.50000"	}
+					"pitch_rand_min" 	{ "value"   "-0.050000" }
+					"pitch_rand_max"  	{ "value"   "0.050000"	}
+					"pitch"  			{ "value"   "1.000000"	}
+					"soundlevel"  		{ "value"   "78.000000"	}
+					"distance_max"  	{ "value"   "2500.000000"	}
+				}
+			}
+		}
+	}
+}
+
+// Hero_Sven.WarCry
+// Hero_Sven.WarCry.Shield
+// Hero_Sven.WarCry.Signet
+// Hero_Sven.GodsStrength
+// Hero_Sven.GreatCleave.ti7
+//"SoundSet"	""
