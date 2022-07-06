@@ -106,4 +106,79 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return manacost * level
     end
 
+    function dasdingo_6__fire:Explode(target, lines)
+        local caster = self:GetCaster()
+        local particle_line = "particles/dasdingo/dasdingo_fire_proj.vpcf"
+        local line_length = 275
+        local width_start = 50
+        local width_end = 50
+        local line_speed = 600
+
+        local initial_angle_deg = target:GetAnglesAsVector().y
+        local delta_angle = 360/lines
+        for i=0,lines-1 do
+            -- Determine velocity
+            local facing_angle_deg = initial_angle_deg + delta_angle * i
+            if facing_angle_deg>360 then facing_angle_deg = facing_angle_deg - 360 end
+            local facing_angle = math.rad(facing_angle_deg)
+            local facing_vector = Vector( math.cos(facing_angle), math.sin(facing_angle), 0 ):Normalized()
+            local velocity = facing_vector * line_speed
+    
+            -- create projectile
+            local info = {
+                Source = caster,
+                Ability = self,
+                EffectName = particle_line,
+                vSpawnOrigin = target:GetOrigin(),
+                fDistance = line_length,
+                vVelocity = velocity,
+                fStartRadius = width_start,
+                fEndRadius = width_end,
+                iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+                iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_SPELL_IMMUNE_ENEMIES,
+                iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+                bReplaceExisting = false,
+                bProvidesVision = false,
+            }
+
+            info.ExtraData = {source = target:entindex()}
+            ProjectileManager:CreateLinearProjectile(info)
+        end
+    
+        self:PlayEfxExplosion(target, lines)
+    end
+
+    function dasdingo_6__fire:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
+        local source = EntIndexToHScript(ExtraData.source)
+
+        for k, v in pairs(ExtraData) do
+            print(k, v)
+        end
+
+        if hTarget == nil then return end
+        if hTarget == source then return end
+
+        local caster = self:GetCaster()
+        local damageTable = {
+            victim = hTarget,
+            attacker = caster,
+            damage = 50,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+
+        ApplyDamage(damageTable)
+        if IsServer() then hTarget:EmitSound("Hero_Huskar.Life_Break.Impact") end
+    end
+
 -- EFFECTS
+
+    function dasdingo_6__fire:PlayEfxExplosion(target, lines)
+        local particle_cast = "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 1, Vector( lines, 0, 0 ))
+        ParticleManager:SetParticleControlForward(effect_cast, 2, target:GetForwardVector())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound("Ability.LightStrikeArray") end
+    end

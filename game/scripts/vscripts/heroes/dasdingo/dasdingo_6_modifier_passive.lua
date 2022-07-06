@@ -26,17 +26,38 @@ end
 
 function dasdingo_6_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
 end
 
+function dasdingo_6_modifier_passive:OnAttackFail(keys)
+	if keys.attacker ~= self.parent then return end
+	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:PassivesDisabled() then return end
+
+	-- UP 6.22
+	if self.ability:GetRank(22) then
+		local fire_duration = self.ability:GetSpecialValueFor("fire_duration")
+
+		keys.target:AddNewModifier(self.caster, self.ability, "dasdingo_6_modifier_fire", {
+			duration = self.ability:CalcStatus(fire_duration, self.caster, keys.target)
+		})
+	end
+end
+
 function dasdingo_6_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
-	if keys.target:IsMagicImmune() then return end
+
+	-- UP 6.22
+	if self.ability:GetRank(22) == false 
+	and keys.target:IsMagicImmune() then
+		return
+	end
 
 	local fire_duration = self.ability:GetSpecialValueFor("fire_duration")
 

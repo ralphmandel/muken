@@ -32,7 +32,13 @@ function dasdingo_6_modifier_fire:OnCreated(kv)
 	}
 
 	if IsServer() then
-		self:SetStackCount(1)
+		local stack_init = 1
+		local mod = self.parent:FindAllModifiersByName("_modifier_stun")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then stack_init = 0 end
+		end
+
+		self:SetStackCount(stack_init)
 		self:StartIntervalThink(intervals)
 		self.parent:EmitSound("Dasdingo.Fire.Loop")
 	end
@@ -40,7 +46,14 @@ end
 
 function dasdingo_6_modifier_fire:OnRefresh(kv)
 	if IsServer() then
-		self:IncrementStackCount()
+		local stunned = false
+		local mod = self.parent:FindAllModifiersByName("_modifier_stun")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then stunned = true end
+		end
+
+		if stunned == false then self:IncrementStackCount() end
+
 		if self:GetStackCount() < self.max_stack then
 			self.parent:StopSound("Dasdingo.Fire.Loop")
 			self.parent:EmitSound("Dasdingo.Fire.Loop")
@@ -55,6 +68,16 @@ function dasdingo_6_modifier_fire:OnRefresh(kv)
 
 	self.damageTable.damage = blast_damage
 	ApplyDamage(self.damageTable)
+
+	-- UP 6.21
+	if self.ability:GetRank(21) then
+		stun_duration = stun_duration + 1
+	end
+
+	-- UP 6.31
+	if self.ability:GetRank(31) then
+		self.ability:Explode(self.parent, 12)
+	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
 		duration = self.ability:CalcStatus(stun_duration, self.caster, self.parent)

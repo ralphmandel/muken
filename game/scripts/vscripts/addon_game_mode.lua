@@ -103,6 +103,7 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context )
@@ -1038,7 +1039,7 @@
 -- ON THINK
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			self:GenerateEvent(true)
+			--self:GenerateEvent(true)
 			self:SpawnPlayerCosmetics(true)
 		end
 
@@ -1052,8 +1053,8 @@
 				CustomNetTables:SetTableValue("game_state", "round_data", { value = nextValue })
 			end
 
-			self:CalculateNeutralQuantity()
-			self:GenerateEvent(false)
+			--self:CalculateNeutralQuantity()
+			--self:GenerateEvent(false)
 		end
 		
 		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
