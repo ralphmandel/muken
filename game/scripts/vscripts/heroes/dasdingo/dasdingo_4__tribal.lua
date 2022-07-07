@@ -1,6 +1,7 @@
 dasdingo_4__tribal = class({})
 LinkLuaModifier("dasdingo_4_modifier_tribal", "heroes/dasdingo/dasdingo_4_modifier_tribal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_4_modifier_bounce", "heroes/dasdingo/dasdingo_4_modifier_bounce", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifier_poison", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -85,6 +86,12 @@ LinkLuaModifier("dasdingo_4_modifier_bounce", "heroes/dasdingo/dasdingo_4_modifi
         end
 
         local charges = 1
+
+        -- UP 4.11
+        if self:GetRank(11) then
+            charges = charges * 2           
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -115,6 +122,13 @@ LinkLuaModifier("dasdingo_4_modifier_bounce", "heroes/dasdingo/dasdingo_4_modifi
         })
 
         if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+    end
+
+    function dasdingo_4__tribal:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range = cast_range * 2 end
+        return cast_range
     end
 
     function dasdingo_4__tribal:GetManaCost(iLevel)

@@ -65,13 +65,3 @@ function dasdingo_6_modifier_passive:OnAttackLanded(keys)
 		duration = self.ability:CalcStatus(fire_duration, self.caster, keys.target)
 	})
 end
-
---------------------------------------------------------------------------------
-
-function dasdingo_6_modifier_passive:PlayEfxStart(target)
-	local particle_cast = "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-
-	if IsServer() then target:EmitSound("Hero_Lion.Voodoo") end
-end

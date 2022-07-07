@@ -25,7 +25,7 @@
 			_class = "C_OP_ContinuousEmitter"
 			m_flOpStartFadeOutTime = 0.15
 			m_flOpEndFadeOutTime = 0.15
-			m_flOpFadeOscillatePeriod = 0.5
+			m_flOpFadeOscillatePeriod = 0.6
 		},
 	]
 	m_Initializers = 

@@ -163,6 +163,39 @@
 	}
 }
 
+"Vo.Kill.4"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/v07.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.700000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
 "Vo.Suicide"
 {
 	"operator_stacks"

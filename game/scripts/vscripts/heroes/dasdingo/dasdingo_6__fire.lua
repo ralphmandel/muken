@@ -1,6 +1,7 @@
 dasdingo_6__fire = class({})
 LinkLuaModifier("dasdingo_6_modifier_passive", "heroes/dasdingo/dasdingo_6_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_6_modifier_fire", "heroes/dasdingo/dasdingo_6_modifier_fire", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_6_modifier_ignition", "heroes/dasdingo/dasdingo_6_modifier_ignition", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -108,11 +109,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function dasdingo_6__fire:Explode(target, lines)
         local caster = self:GetCaster()
-        local particle_line = "particles/dasdingo/dasdingo_fire_proj.vpcf"
-        local line_length = 275
+        local particle_line = "particles/dasdingo/requiem/dasdingo_requiemofsouls_line.vpcf"
+        local line_length = 600
         local width_start = 50
         local width_end = 50
-        local line_speed = 600
+        local line_speed = 750
 
         local initial_angle_deg = target:GetAnglesAsVector().y
         local delta_angle = 360/lines
@@ -143,6 +144,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
             info.ExtraData = {source = target:entindex()}
             ProjectileManager:CreateLinearProjectile(info)
+
+            -- Create the particle
+            local particle_lines_fx = ParticleManager:CreateParticle(particle_line, PATTACH_ABSORIGIN, target)
+            ParticleManager:SetParticleControl(particle_lines_fx, 0, target:GetAbsOrigin())
+            ParticleManager:SetParticleControl(particle_lines_fx, 1, velocity)
+            ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, (line_length / line_speed), 0))
+            ParticleManager:ReleaseParticleIndex(particle_lines_fx)
         end
     
         self:PlayEfxExplosion(target, lines)
@@ -162,13 +170,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local damageTable = {
             victim = hTarget,
             attacker = caster,
-            damage = 50,
+            damage = 70,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = self
         }
 
         ApplyDamage(damageTable)
-        if IsServer() then hTarget:EmitSound("Hero_Huskar.Life_Break.Impact") end
+        if IsServer() then hTarget:EmitSound("Hero_Clinkz.SearingArrows.Impact") end
     end
 
 -- EFFECTS

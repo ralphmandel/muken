@@ -37,8 +37,8 @@ function dasdingo_1_modifier_heal_effect:OnCreated(kv)
 
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
 
-	-- UP 1.31
-	if self.ability:GetRank(31) then
+	-- UP 1.12
+	if self.ability:GetRank(12) then
 		self.min_health = 1
 	end
 
@@ -81,7 +81,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	and keys.unit:GetHealth() == 1
 	and keys.unit:HasModifier("dasdingo_1_modifier_immortal") == false then		
 		local mod = keys.unit:AddNewModifier(self.caster, self.ability, "dasdingo_1_modifier_immortal", {
-			duration = self.ability:CalcStatus(10, self.caster, keys.unit)
+			duration = self.ability:CalcStatus(5, self.caster, keys.unit)
 		})
 
 		local info = {}

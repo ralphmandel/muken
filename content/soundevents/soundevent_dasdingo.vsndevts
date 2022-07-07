@@ -18,14 +18,75 @@
 						}
 					}
 
-					"memory_type"
-					{
-						"value"			"0"
-					}
+					"memory_type"		{ "value"	"0"			}
 					"mixgroup"			{ "value"	"Weapons"	}
 					"volume"            { "value"   "1.20000"	}
 					"volume_fade_out"	{ "value"	"1.00000"	}
-					"stop_at_time" 		{ "value"	"7.000000"	}
+					"stop_at_time" 		{ "value"	"11.000000"	}
+				}
+			}
+		}
+	}
+}
+
+"Dasdingo.Ignite.Loop"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/dasdingo_fire_loop.vsnd"
+						}
+					}
+
+					"memory_type"		{ "value"	"0"			}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.20000"	}
+					"volume_fade_out"	{ "value"	"1.00000"	}
+					"stop_at_time" 		{ "value"	"11.000000"	}
+				}
+			}
+		}
+	}
+}
+
+"Dasdingo.Maledict.Loop"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/weapons/hero/witch_doctor/maledict_loop.vsnd"
+						}
+					}
+
+					"memory_type"		{ "value"	"0"			}
+					"pitch_rand_min" 	{ "value"   "-0.050000" }
+					"pitch_rand_max"  	{ "value"   "0.050000"	}
+					"pitch"  			{ "value"   "1.000000"	}
+					"volume"            { "value"   "0.60000"	}
+					"volume_fade_out"	{ "value"	"0.5"		}
+					"stop_at_time" 		{ "value"	"12.000000" }
 				}
 			}
 		}

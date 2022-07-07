@@ -18,6 +18,7 @@
 			"0"
 			{
 				"1"   "dasdingo_1__heal_rank_11"
+				"2"   "dasdingo_1__heal_rank_12"
 			}
 			"1"
 			{
@@ -26,7 +27,6 @@
 			"2"
 			{
 				"1"   "dasdingo_1__heal_rank_31"
-				"2"   "dasdingo_1__heal_rank_32"
 			}
 			"3"
 			{
@@ -79,7 +79,6 @@
 			"0"
 			{
 				"1"   "dasdingo_4__tribal_rank_11"
-				"2"   "dasdingo_4__tribal_rank_12"
 			}
 			"1"
 			{
@@ -87,7 +86,7 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "dasdingo_4__tribal_rank_31"
 			}
 			"3"
 			{

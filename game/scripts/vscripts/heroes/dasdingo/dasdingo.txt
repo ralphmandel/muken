@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/dasdingo/dasdingo_1__heal"
 		"AbilityTextureName"     		"dasdingo_heal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"14"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -38,7 +38,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"275 280 285 290 295 300 305 310 315 320 325 330 335 340"
+				"radius"		"275 280 285 290 295 300 305 310 315 320 325 330"
 			}
             "02"
 			{
@@ -63,7 +63,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -166,36 +166,35 @@
 		"AbilityTextureName"     		"dasdingo_tribal"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"5"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"				"15"
-		"AbilityCastRange"    		   	"275"
+		"AbilityCooldown"				"16"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"20"
+				"duration"		"12 13 14 15 16 17 18 19 20"
 			}
-            "02"
+            "13"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bounces"		"5"
+				"cast_range"    "275"
 			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"      "110"
+				"manacost"      "100"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
@@ -272,7 +271,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_damage"	    "15"
+				"fire_damage"	    "10"
 			}
             "03"
 			{
@@ -287,7 +286,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"30"
+				"blast_damage"		"25"
 			}
 			"14"
 			{
@@ -334,7 +333,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"amplification"		"12"
+				"amplification"		"8"
 			}
 			"04"
 			{
@@ -1826,7 +1825,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -1856,7 +1855,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -1886,7 +1885,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -1916,7 +1915,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -1946,7 +1945,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -1976,7 +1975,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -2006,7 +2005,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {
@@ -2036,7 +2035,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"4"
+                    "skill"					"7"
                 }
                 "02"
                 {

@@ -19,7 +19,7 @@ function dasdingo_6_modifier_fire:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local intervals = 0.5
+	local intervals = 0.6
 	local fire_damage = self.ability:GetSpecialValueFor("fire_damage") * intervals
 	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
 
@@ -77,6 +77,13 @@ function dasdingo_6_modifier_fire:OnRefresh(kv)
 	-- UP 6.31
 	if self.ability:GetRank(31) then
 		self.ability:Explode(self.parent, 12)
+	end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self.parent:AddNewModifier(self.caster, self.ability, "dasdingo_6_modifier_ignition", {
+			duration = self.ability:CalcStatus(10, self.caster, self.parent)
+		})
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {

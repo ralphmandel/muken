@@ -959,16 +959,19 @@
 				Timers:CreateTimer((2), function()
 					self.vo = self.vo - 1
 					if self.vo == 0 then
-						local rand_vo = RandomInt(1, 5)
-						if rand_vo == 1 or rand_vo == 2 then
+						local rand_vo = RandomInt(1, 4)
+						if rand_vo == 1 then
 							EmitAnnouncerSound("Vo.Kill.1")
 							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
-						elseif rand_vo == 3 or rand_vo == 4 then
+						elseif rand_vo == 2 then
 							EmitAnnouncerSound("Vo.Kill.2")
 							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-						else
+						elseif rand_vo == 3 then
 							EmitAnnouncerSound("Vo.Kill.3")
 							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 28
+						else
+							EmitAnnouncerSound("Vo.Kill.4")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
 						end
 					end
 				end)

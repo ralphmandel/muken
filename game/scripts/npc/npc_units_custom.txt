@@ -464,12 +464,12 @@
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackDamageMin"			"28"		// Damage range min.
-			"AttackDamageMax"			"32"		// Damage range max.
-			"AttackRate"				"0.5"		// Speed of attack.
+			"AttackDamageMin"			"38"		// Damage range min.
+			"AttackDamageMax"			"42"		// Damage range max.
+			"AttackRate"				"0.6"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
-			"AttackRange"				"700"		// Range within a target can be attacked.
+			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
+			"AttackRange"				"600"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"1500"		// Speed of projectile.		     
 
@@ -491,15 +491,15 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"225"		// Base health.
-			"StatusHealthRegen"			"0"		// Health regeneration rate.
+			"StatusHealth"				"275"		// Base health.
+			"StatusHealthRegen"			"0"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"400"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"VisionDaytimeRange"		"550"		// Range of vision during day light.
+			"VisionNighttimeRange"		"450"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------

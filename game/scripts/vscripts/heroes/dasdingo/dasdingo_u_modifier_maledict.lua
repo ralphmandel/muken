@@ -37,7 +37,7 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	-- UP 7.21
 	if self.ability:GetRank(21) then
-		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
+		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
 	end
 
 	-- UP 7.31
@@ -49,7 +49,7 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 	if IsServer() then
 		self:SetStackCount(tick_max)
 		self:PlayEfxStart(true)
-		self:StartIntervalThink(self.tick_intervals * 0.1)
+		self:StartIntervalThink(self.tick_intervals)
 	end
 end
 
@@ -72,7 +72,7 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	-- UP 7.21
 	if self.ability:GetRank(21) then
-		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 3) * 0.01
+		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
 	end
 
 	-- UP 7.31
@@ -89,7 +89,7 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 end
 
 function dasdingo_u_modifier_maledict:OnRemoved(kv)
-	if IsServer() then self.parent:StopSound("Hero_WitchDoctor.Maledict_Loop") end
+	if IsServer() then self.parent:StopSound("Dasdingo.Maledict.Loop") end
 	local mod = self.parent:FindAllModifiersByName("dasdingo_u_modifier_overtime")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
@@ -136,7 +136,7 @@ function dasdingo_u_modifier_maledict:PlayEfxStart(bStart)
 		if IsServer() then
 			self.parent:EmitSound("Hero_WitchDoctor.Maledict_Cast")
 			if self.parent:GetPlayerOwnerID() and self.parent:IsAlive() then
-				EmitSoundOnEntityForPlayer("Hero_WitchDoctor.Maledict_Loop", self.parent, self.parent:GetPlayerOwnerID())
+				EmitSoundOnEntityForPlayer("Dasdingo.Maledict.Loop", self.parent, self.parent:GetPlayerOwnerID())
 			end
 		end
 	else
