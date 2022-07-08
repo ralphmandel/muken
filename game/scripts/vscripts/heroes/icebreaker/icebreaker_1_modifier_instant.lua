@@ -14,10 +14,6 @@ function icebreaker_1_modifier_instant:IsStunDebuff()
 	return true
 end
 
-function icebreaker_1_modifier_instant:GetTexture()
-	return "icebreaker_frozen"
-end
-
 function icebreaker_1_modifier_instant:GetPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
@@ -53,10 +49,6 @@ function icebreaker_1_modifier_instant:CheckState()
 	}
 
 	return state
-end
-
-function icebreaker_1_modifier_instant:OnIntervalThink()
-	if self.parent:IsStunned() == false then self:Destroy() end
 end
 
 --------------------------------------------------------------------------------

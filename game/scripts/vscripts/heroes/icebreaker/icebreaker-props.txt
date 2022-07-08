@@ -3,29 +3,30 @@
 	"icebreaker"
 	{
 		"override_hero"					"npc_dota_hero_riki"
+		//"SoundSet"						""
 		"DisableWearables" "1"
-		
+
 		//ABILITIES
-			"Ability1"						"icebreaker_1__frost"
-			"Ability2"						"icebreaker_2__discus"
-			"Ability3"						"icebreaker_3__blink"
-			"Ability4"						"null"
-			"Ability5"						"null"
-			"Ability6"						"icebreaker_u__zero"
-			"Ability7"						"icebreaker_0__slow"
-			"Ability8"						"null"
-			"Ability9"						"null"
-			"Ability10"						"null"
+			"Ability1"						"cosmetics"
+			"Ability2"						"base_hero"
+			"Ability3"						"base_stats"
+			"Ability4"						"icebreaker_1__hypo"
+			"Ability5"						"icebreaker_2__puff"
+			"Ability6"						"icebreaker_3__skin"
+			"Ability7"						"icebreaker_4__mirror"
+			"Ability8"						"icebreaker_5__wave"
+			"Ability9"						"icebreaker_6__zero"
+			"Ability10"						"icebreaker_u__blink"
 			"Ability11"						"null"
 			"Ability12"						"null"
 			"Ability13"						"null"
-			"Ability14"						"icebreaker_x1__skin"
-			"Ability15"						"icebreaker_x2__sight"
-			"Ability16"						"cosmetics"
-			"Ability17"						"base_hero"
-			"Ability18"						"base_stats"
-			"Ability19"						"_channel"
-			"Ability20"						"_void"
+			"Ability14"						"null"
+			"Ability15"						"null"
+			"Ability16"						"null"
+			"Ability17"						"null"
+			"Ability18"						"null"
+			"Ability19"						"null"
+			"Ability20"						"null"
 			"Ability21"						"null"
 			"Ability22"						"null"
 			"Ability23"						"null"
@@ -35,8 +36,8 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"null"
-			"Ability31"						"null"
+			"Ability30"						"_channel"
+			"Ability31"						"_void"
 			"Ability32"						"icebreaker__precache"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
@@ -51,7 +52,7 @@
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
 		"AttackRange"                   "100"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
-		//"ProjectileModel"          	"particles/econ/items/windrunner/windranger_arcana/windranger_arcana_base_attack.vpcf"
+		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
 		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
 		"VisionNighttimeRange"      	"900"        // Range of vision at night time.

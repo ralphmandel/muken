@@ -13,107 +13,142 @@
 	
 	"npc_dota_hero_riki"
 	{
-		"icebreaker_1__frost"
+		"icebreaker_1__hypo"
 		{
 			"0"
 			{
-				"1"   "icebreaker_1__frost_rank_11"
+				"1"   "icebreaker_1__hypo_rank_11"
 			}
 			"1"
 			{
-				"1"   "icebreaker_1__frost_rank_21"
-				"2"   "icebreaker_1__frost_rank_22"
+				"1"   "icebreaker_1__hypo_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_1__frost_rank_31"
+				"1"   "icebreaker_1__hypo_rank_31"
 			}
 			"3"
 			{
-				"1"   "icebreaker_1__frost_rank_41"
-				"2"   "icebreaker_1__frost_rank_42"
+				"1"   "icebreaker_1__hypo_rank_41"
+				"2"   "icebreaker_1__hypo_rank_42"
 			}
 		}
-		"icebreaker_2__discus"
+		"icebreaker_2__puff"
 		{
 			"0"
 			{
-				"1"   "icebreaker_2__discus_rank_11"
-				"2"   "icebreaker_2__discus_rank_12"
+				"1"   "icebreaker_2__puff_rank_11"
 			}
 			"1"
 			{
-				"1"   "icebreaker_2__discus_rank_21"
-				"2"   "icebreaker_2__discus_rank_22"
+				"1"   "icebreaker_2__puff_rank_21"
+				"2"   "icebreaker_2__puff_rank_22"
 			}
 			"2"
 			{
-				"1"   "icebreaker_2__discus_rank_31"
-				"2"   "icebreaker_2__discus_rank_32"
+				"1"   "icebreaker_2__puff_rank_31"
+			}
+			"3"
+			{
+				"1"   "icebreaker_2__puff_rank_41"
+			}
+		}
+		"icebreaker_3__skin"
+		{
+			"0"
+			{
+				"1"   "icebreaker_3__skin_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_3__skin_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_3__skin_rank_31"
 			}
 			"3"
 			{
 				"1"   "empty"
 			}
 		}
-		"icebreaker_3__blink"
+		"icebreaker_4__mirror"
 		{
 			"0"
 			{
-				"1"   "icebreaker_3__blink_rank_11"
-				"2"   "icebreaker_3__blink_rank_12"
-				"3"   "icebreaker_3__blink_rank_13"
+				"1"   "icebreaker_4__mirror_rank_11"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_4__mirror_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_3__blink_rank_31"
+				"1"   "icebreaker_4__mirror_rank_31"
 			}
 			"3"
 			{
-				"1"   "icebreaker_3__blink_rank_41"
+				"1"   "icebreaker_4__mirror_rank_41"
 			}
 		}
-		"icebreaker_u__zero"
+		"icebreaker_5__wave"
 		{
 			"0"
 			{
-				"1"   "icebreaker_u__zero_rank_11"
+				"1"   "icebreaker_5__wave_rank_11"
+				"2"   "icebreaker_5__wave_rank_12"
 			}
 			"1"
 			{
-				"1"   "icebreaker_u__zero_rank_21"
-				"2"   "icebreaker_u__zero_rank_22"
+				"1"   "icebreaker_5__wave_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_u__zero_rank_31"
+				"1"   "icebreaker_5__wave_rank_31"
 			}
 			"3"
 			{
-				"1"   "icebreaker_u__zero_rank_41"
+				"1"   "empty"
 			}
 		}
-		"extras"
+		"icebreaker_6__zero"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_6__zero_rank_11"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_6__zero_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_x1__skin"
+				"1"   "icebreaker_6__zero_rank_31"
+				"2"   "icebreaker_6__zero_rank_32"
 			}
 			"3"
 			{
-				"1"   "icebreaker_x2__sight"
+				"1"   "icebreaker_6__zero_rank_41"
+			}
+		}
+		"icebreaker_u__blink"
+		{
+			"0"
+			{
+				"1"   "icebreaker_u__blink_rank_11"
+				"2"   "icebreaker_u__blink_rank_12"
+			}
+			"1"
+			{
+				"1"   "icebreaker_u__blink_rank_21"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "icebreaker_u__blink_rank_41"
 			}
 		}
 	}	

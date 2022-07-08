@@ -3,11 +3,12 @@
 }
 
 //RELEASES
-#base "../vscripts/heroes/bocuse/bocuse-props.txt"
+#base "../vscripts/heroes/dasdingo/dasdingo-props.txt"
 #base "../vscripts/heroes/icebreaker/icebreaker-props.txt"
+
+#base "../vscripts/heroes/bocuse/bocuse-props.txt"
 #base "../vscripts/heroes/bloodstained/bloodstained-props.txt"
 #base "../vscripts/heroes/druid/druid-props.txt"
-#base "../vscripts/heroes/dasdingo/dasdingo-props.txt"
 #base "../vscripts/heroes/ancient/ancient-props.txt"
 #base "../vscripts/heroes/genuine/genuine-props.txt"
 #base "../vscripts/heroes/shadow/shadow-props.txt"

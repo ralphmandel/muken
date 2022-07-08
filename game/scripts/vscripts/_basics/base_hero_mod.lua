@@ -95,11 +95,12 @@ function base_hero_mod:OnAttackLanded(keys)
 	
 	if IsServer() then
 		local attack_sound = ""
+		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.ProjectileImpact" end
+		if self.ability.hero_name == "icebreaker" then attack_sound = "Hero_Riki.Attack" end
+
 		if self.ability.hero_name == "bocuse" then attack_sound = "Hero_Pudge.Attack" end
 		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.ProjectileImpact" end
 		if self.ability.hero_name == "shadow" then attack_sound = "Hero_Spectre.Attack" end
-		if self.ability.hero_name == "icebreaker" then attack_sound = "Hero_Riki.Attack" end
-		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.ProjectileImpact" end
 		if self.ability.hero_name == "bloodstained" then attack_sound = "Hero_Nightstalker.Attack" end
 
 		self.parent:EmitSound(attack_sound)

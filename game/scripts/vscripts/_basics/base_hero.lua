@@ -15,6 +15,10 @@ require("talent_tree")
 			self:ResetRanksData()
 
 			Timers:CreateTimer(0.2, function()
+				if self.hero_name == "icebreaker" then
+					caster:SetAbilityPoints(2)
+					return
+				end
 				caster:SetAbilityPoints(3)
 			end)
 		end
@@ -59,10 +63,11 @@ require("talent_tree")
 		local caster = self:GetCaster()
 		local unit_name = caster:GetUnitName()
 		if unit_name == "npc_dota_hero_shadow_shaman" then self.hero_name = "dasdingo" end
+		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
+
 		if unit_name == "npc_dota_hero_elder_titan" then self.hero_name = "ancient" end
 		if unit_name == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
 		if unit_name == "npc_dota_hero_shadow_demon" then self.hero_name = "bloodstained" end
-		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
 		if unit_name == "npc_dota_hero_furion" then self.hero_name = "druid" end
 		if unit_name == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
 		if unit_name == "npc_dota_hero_spectre" then self.hero_name = "shadow" end	

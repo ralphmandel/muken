@@ -459,7 +459,7 @@
 			if cosmetics then
 				cosmetics:LoadCosmetics()
 				if unit:GetUnitName() == "npc_dota_hero_riki" then
-					cosmetics:SetStatusEffect(nil, "icebreaker_0_modifier_passive_status_efx", true)
+					cosmetics:SetStatusEffect(nil, "icebreaker_1_modifier_passive_status_efx", true)
 				end
 			end
 		end
