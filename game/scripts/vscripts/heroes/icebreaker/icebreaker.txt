@@ -238,10 +238,20 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"8 7.5 7 6.5 6 5.5 5 4.5 4"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"break_damage"		"150"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"		"500"
+			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"

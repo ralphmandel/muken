@@ -16,7 +16,7 @@ function icebreaker_1_modifier_frozen:GetPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
 
---------------------------------------------------------------------------------
+-- CONSTRUCTORS -----------------------------------------------------------
 
 function icebreaker_1_modifier_frozen:OnCreated( kv )
 	self.caster = self:GetCaster()
@@ -49,14 +49,17 @@ function icebreaker_1_modifier_frozen:OnRemoved( kv )
 		ability = self.ability_break
 	}
 
-	--if self.ability_break:GetAbilityName() == "icebreaker_u__blink" then self:BlinkStrike(break_damage) end
+	if self.ability_break:GetAbilityName() == "icebreaker_u__blink" then
+		self:BlinkStrike(self.break_damage)
+	end
+
 	if damageTable.damage > 0 then
 		ApplyDamage(damageTable)
 		self:PlayEfxDestroy()
 	end
 end
 
---------------------------------------------------------------------------------
+-- API FUNCTIONS -----------------------------------------------------------
 
 function icebreaker_1_modifier_frozen:CheckState()
 	local state = {
@@ -128,7 +131,84 @@ function icebreaker_1_modifier_frozen:OnAbilityExecuted(keys)
 	self:Destroy()
 end
 
---------------------------------------------------------------------------------
+-- UTILS -----------------------------------------------------------
+
+function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+
+	-- UP 7.12
+	if self.ability_break:GetRank(12) then
+		local knockbackProperties =
+		{
+			duration = 0.5,
+			knockback_duration = 0.5,
+			knockback_distance = 125,
+			center_x = self.caster:GetAbsOrigin().x + 1,
+			center_y = self.caster:GetAbsOrigin().y + 1,
+			center_z = self.caster:GetAbsOrigin().z,
+			knockback_height = 12,
+		}
+
+		self.parent:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)
+		if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
+	end
+
+	-- UP 7.41
+	if self.ability_break:GetRank(41) then
+		self:PlayEfxSpread()
+
+		local damageTableSplash = {
+			attacker = self.caster,
+			damage = break_damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self.ability_break
+		}
+
+		local units = FindUnitsInRadius(
+			self.caster:GetTeamNumber(), self.parent:GetOrigin(),
+			nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+		)
+	
+		for _,unit in pairs(units) do
+			if base_stats and unit ~= self.parent then
+				if unit:HasModifier("icebreaker_1_modifier_frozen") then
+					unit:RemoveModifierByName("icebreaker_1_modifier_frozen")
+					self:PlayEfxBlink((unit:GetOrigin() - self.caster:GetOrigin()), self.caster:GetOrigin(), unit)
+				end
+
+				base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+				damageTableSplash.victim = unit
+				ApplyDamage(damageTableSplash)
+			end
+		end
+	end
+
+	if base_stats then base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL) end
+end
+
+function icebreaker_1_modifier_frozen:ApplySpreadHypo()
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(),
+		nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, 0, 0, false
+	)
+
+	for _,unit in pairs(units) do
+		if unit ~= self.parent then
+			if unit:IsAlive() then
+				if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+				unit:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
+					duration = self.ability:CalcStatus(1.5, self.caster, unit)
+				})
+				self.ability:AddSlow(unit, self.ability)
+			end
+		end
+	end
+end
+
+-- EFFECTS -----------------------------------------------------------
 
 function icebreaker_1_modifier_frozen:GetEffectName()
 	return "particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf"

@@ -82,6 +82,22 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if base_hero then base_hero.ranks[7][0] = true end
 
         local charges = 1
+
+        -- UP 7.11
+        if self:GetRank(11) then
+            charges = charges * 2 -- manacost
+        end
+
+		-- UP 7.21
+        if self:GetRank(21) then
+            charges = charges * 3 -- range
+        end
+
+		-- UP 7.41
+        if self:GetRank(41) then
+            charges = charges * 5 -- aoe
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -93,13 +109,118 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function icebreaker_u__blink:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local origin = caster:GetOrigin()
+        local point = self:GetCursorPosition()
+        --local direction = (point - origin)
+
+        if target:GetTeamNumber()~=caster:GetTeamNumber() then
+            if target:TriggerSpellAbsorb(self) then
+                return
+            end
+        end
+
+        if IsServer() then caster:EmitSound("Hero_QueenOfPain.Blink_out") end
+
+        local direction = target:GetForwardVector() * (-1)
+        local blink_point = target:GetAbsOrigin() + direction * 130
+        caster:SetAbsOrigin(blink_point)
+        caster:SetForwardVector(-direction)
+        FindClearSpaceForUnit(caster, blink_point, true)
+
+        ProjectileManager:ProjectileDodge(caster)
+        caster:MoveToTargetToAttack(target)
+
+        self:PlayEfxBlink(direction, origin, target)
+    end
+
+    function icebreaker_u__blink:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+        if caster == hTarget then return UF_FAIL_CUSTOM end
+
+        if caster:HasModifier("icebreaker_3_modifier_skin") then
+            if caster:GetRangeToUnit(hTarget) > self:GetCastRange(caster:GetOrigin(), hTarget) then
+                return UF_FAIL_CUSTOM
+            end
+        end
+
+        if hTarget:GetTeamNumber() ~= caster:GetTeamNumber()
+        and hTarget:HasModifier("icebreaker_1_modifier_frozen") then
+            return UF_SUCCESS
+        end
+
+        local result = UnitFilter(
+            hTarget, DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+            0, caster:GetTeamNumber()
+        )
+        
+        if result ~= UF_SUCCESS then return result end
+
+        return UF_SUCCESS
+    end
+
+    function icebreaker_u__blink:GetCustomCastErrorTarget(hTarget)
+        if self:GetCaster() == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
+
+        return "No Range"
+    end
+
+    function icebreaker_u__blink:GetBehavior()
+        local behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+        if self:GetCurrentAbilityCharges() == 0 then return behavior end
+
+        if self:GetCurrentAbilityCharges() % 3 == 0 then
+            behavior = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+        end
+
+        if self:GetCurrentAbilityCharges() % 5 == 0 then
+            behavior = behavior + DOTA_ABILITY_BEHAVIOR_AOE
+        end
+
+        return behavior
+    end
+
+    function icebreaker_u__blink:GetAOERadius()
+        local radius = 0
+        if self:GetCurrentAbilityCharges() == 0 then return radius end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 275 end
+        return radius
+    end
+
+    function icebreaker_u__blink:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_range + 1000 end
+        return cast_range
     end
 
     function icebreaker_u__blink:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost - 15 end
         return manacost * level
     end
 
 -- EFFECTS
+
+    function icebreaker_u__blink:PlayEfxBlink(direction, origin, target)
+        local caster = self:GetCaster()
+        local particle_cast_a = "particles/econ/events/winter_major_2017/blink_dagger_start_wm07.vpcf" 
+        local particle_cast_b = "particles/econ/events/winter_major_2017/blink_dagger_end_wm07.vpcf"
+
+        local effect_cast_a = ParticleManager:CreateParticle(particle_cast_a, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(effect_cast_a, 0, origin)
+        ParticleManager:SetParticleControlForward(effect_cast_a, 0, direction:Normalized())
+        ParticleManager:SetParticleControl(effect_cast_a, 1, origin + direction)
+        ParticleManager:ReleaseParticleIndex(effect_cast_a)
+
+        local effect_cast_b = ParticleManager:CreateParticle(particle_cast_b, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(effect_cast_b, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControlForward(effect_cast_b, 0, direction:Normalized())
+        ParticleManager:ReleaseParticleIndex(effect_cast_b)
+
+        if IsServer() then caster:EmitSound("Hero_Antimage.Blink_in.Persona") end
+    end
