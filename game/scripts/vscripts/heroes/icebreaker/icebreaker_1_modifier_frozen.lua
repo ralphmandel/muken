@@ -155,7 +155,7 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 
 	-- UP 7.41
 	if self.ability_break:GetRank(41) then
-		self:PlayEfxSpread()
+		--self:PlayEfxSpread()
 
 		local damageTableSplash = {
 			attacker = self.caster,

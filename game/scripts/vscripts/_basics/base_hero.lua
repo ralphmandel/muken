@@ -15,11 +15,7 @@ require("talent_tree")
 			self:ResetRanksData()
 
 			Timers:CreateTimer(0.2, function()
-				if self.hero_name == "icebreaker" then
-					caster:SetAbilityPoints(2)
-					return
-				end
-				caster:SetAbilityPoints(3)
+				self:CheckSkills(0)
 			end)
 		end
 	end
@@ -34,10 +30,7 @@ require("talent_tree")
 			if ultimate then ultimate:UpgradeAbility(true) end
 		end
 
-		local gain = 0
-		if level ~= 12 and level ~= 20 then gain = -1 end
-		caster:SetAbilityPoints((caster:GetAbilityPoints() + gain))
-		self:CheckSkills(1)
+		self:CheckSkills(0)
 	end
 
 	function base_hero:GetIntrinsicModifierName()
@@ -46,13 +39,26 @@ require("talent_tree")
 
 	function base_hero:CheckSkills(pts)
 		local caster = self:GetCaster()
-		local ability_points = caster:GetAbilityPoints()
+		local level = caster:GetLevel()
+		local points = 3
+
+		if level >= 12 then points = points + 1 end
+		if level >= 20 then points = points + 1 end
+
+		for i = 1, 6, 1 do
+			local skill = caster:FindAbilityByName(self.skills[i])
+			if skill then
+				if skill:IsTrained() then points = points - 1 end
+			end
+		end
+
+		caster:SetAbilityPoints(points + pts)
 
 		for i = 1, 6, 1 do
 			local skill = caster:FindAbilityByName(self.skills[i])
 			if skill then
 				if skill:IsTrained() == false then
-					skill:SetHidden(ability_points < pts)
+					skill:SetHidden(points < 1)
 				end
 			end
 		end
@@ -394,6 +400,14 @@ require("talent_tree")
 				and self:GetTotalTalents(2) < 2
 				and self:GetTotalTalents(1) < 4 then return false end
 			end
+		end
+
+		-- Icebreaker 2.41 requires rank level 14
+		if self.talentsData[talentId].Ability == "icebreaker_2__puff_rank_41" then
+			local puff = self:GetCaster():FindAbilityByName("icebreaker_2__puff")
+			if puff == nil then return false end
+			if puff:IsTrained() == false then return false end
+			if puff:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
 		-- Ancient 1.11 requires skill 4

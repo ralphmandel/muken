@@ -82,7 +82,7 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[4][0] = true
-            base_hero:CheckSkills(2)
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
         end
 
         local charges = 1
