@@ -146,15 +146,40 @@
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_layer"		    "15"
+			}
+            "02"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"def_layer"		    "2"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"delay_layer"		"15"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"4"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage_reduction"	"60 62.5 65 67.5 70 72.5 75"
+			}
 			"14"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"120"
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "120"
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			    "6 7 8 9 10 11 12"
 			}
 		}
 	}

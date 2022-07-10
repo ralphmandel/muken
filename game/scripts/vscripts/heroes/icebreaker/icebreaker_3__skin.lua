@@ -1,4 +1,5 @@
 icebreaker_3__skin = class({})
+LinkLuaModifier("icebreaker_3_modifier_passive", "heroes/icebreaker/icebreaker_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_3_modifier_skin", "heroes/icebreaker/icebreaker_3_modifier_skin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
@@ -85,6 +86,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
 
         local charges = 1
+
+        self.def_layer = self:GetSpecialValueFor("def_layer")
+
+        -- UP 3.21
+        if self:GetRank(21) then
+            self.def_layer = self.def_layer + 1
+            caster:FindModifierByName(self:GetIntrinsicModifierName()):UpdateBonusLayer()
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -94,8 +104,20 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function icebreaker_3__skin:GetIntrinsicModifierName()
+        return "icebreaker_3_modifier_passive"
+    end
+
     function icebreaker_3__skin:OnSpellStart()
         local caster = self:GetCaster()
+        local frozen_duration = self:CalcStatus(self:GetSpecialValueFor("frozen_duration"), caster, caster) 
+        caster:AddNewModifier(caster, self, "icebreaker_3_modifier_skin", {duration = frozen_duration})
+    end
+
+    function icebreaker_3__skin:ResetLayers()
+        local caster = self:GetCaster()
+        local max_layer = self:GetSpecialValueFor("max_layer")
+        caster:FindModifierByName(self:GetIntrinsicModifierName()):SetStackCount(max_layer)
     end
 
     function icebreaker_3__skin:GetManaCost(iLevel)
