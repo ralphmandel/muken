@@ -62,6 +62,7 @@ end
 
 function icebreaker_1_modifier_hypo:OnIntervalThink()
 	self.damageTable.damage = self.parent:GetMaxHealth() * self.damage_mult
+	if self.parent:GetUnitName() == "boss_gorillaz" then self.damageTable.damage = self.damageTable.damage * 0.5 end
 	ApplyDamage(self.damageTable)
 end
 

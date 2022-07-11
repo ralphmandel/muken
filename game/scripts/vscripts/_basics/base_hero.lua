@@ -410,6 +410,12 @@ require("talent_tree")
 			if puff:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
+		-- Icebreaker 5.31 requires ultimate
+		if self.talentsData[talentId].Ability == "icebreaker_5__wave_rank_31"
+		and (not self.ranks[7][0]) then
+			return false
+		end
+
 		-- Ancient 1.11 requires skill 4
 		if self.talentsData[talentId].Ability == "ancient_1__berserk_rank_11"
 		and (not self.ranks[4][0]) then
