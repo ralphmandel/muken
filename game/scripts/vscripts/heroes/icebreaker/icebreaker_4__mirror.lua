@@ -1,5 +1,6 @@
 icebreaker_4__mirror = class({})
-LinkLuaModifier("icebreaker_4_modifier_mirror", "heroes/icebreaker/icebreaker_4_modifier_mirror", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_4_modifier_passive", "heroes/icebreaker/icebreaker_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_4_modifier_illusion", "heroes/icebreaker/icebreaker_4_modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -94,8 +95,29 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function icebreaker_4__mirror:OnSpellStart()
+    function icebreaker_4__mirror:GetIntrinsicModifierName()
+        return "icebreaker_4_modifier_passive"
+    end
+
+    function icebreaker_4__mirror:CreateMirrors(target, number)
         local caster = self:GetCaster()
+        local illusion_duration = self:GetSpecialValueFor("illusion_duration")
+        local illu_array = CreateIllusions(caster, caster, {
+            outgoing_damage = -100,
+            incoming_damage = 0,
+            bounty_base = 0,
+            bounty_growth = 0,
+            duration = illusion_duration
+        }, number, 64, false, true)
+
+        for _,illu in pairs(illu_array) do
+            illu:AddNewModifier(caster, self, "icebreaker_4_modifier_illusion", {})
+
+            local loc = target:GetAbsOrigin() + RandomVector(130)
+            illu:SetAbsOrigin(loc)
+            illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
+            FindClearSpaceForUnit(illu, loc, true)
+        end		
     end
 
     function icebreaker_4__mirror:GetManaCost(iLevel)

@@ -112,6 +112,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local frozen_duration = self:CalcStatus(self:GetSpecialValueFor("frozen_duration"), caster, caster) 
         caster:AddNewModifier(caster, self, "icebreaker_3_modifier_skin", {duration = frozen_duration})
+
+        -- UP 4.11
+        local mirror = caster:FindAbilityByName("icebreaker_4__mirror")
+        if mirror ~= nil then
+            if mirror:GetRank(11) then
+                mirror:CreateMirrors(caster, 3)
+            end
+        end
     end
 
     function icebreaker_3__skin:ResetLayers()

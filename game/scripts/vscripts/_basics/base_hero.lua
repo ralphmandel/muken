@@ -410,6 +410,31 @@ require("talent_tree")
 			if puff:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
+		-- Icebreaker 4.11 requires skill 3
+		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_11"
+		and (not self.ranks[3][0]) then
+			return false
+		end
+
+		-- Icebreaker 4.21 requires skill 5
+		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_21"
+		and (not self.ranks[5][0]) then
+			return false
+		end
+
+		-- Icebreaker 4.31 requires skill 2
+		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_31"
+		and (not self.ranks[2][0]) then
+			return false
+		end
+
+		-- Icebreaker 4.41 requires skill 6
+		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_41"
+		and (not self.ranks[6][0]) then
+			return false
+		end
+
+
 		-- Icebreaker 5.31 requires ultimate
 		if self.talentsData[talentId].Ability == "icebreaker_5__wave_rank_31"
 		and (not self.ranks[7][0]) then

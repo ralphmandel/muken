@@ -30,10 +30,6 @@ function dasdingo_3_modifier_hex:OnCreated(kv)
 	self.ms_limit = self:GetAbility():GetSpecialValueFor("ms_limit")
 	self.model = "models/props_gameplay/pig.vmdl"
 
-    if self.parent:IsIllusion() then
-        self.parent:Kill(self.ability, self.caster)
-    end
-
 	-- UP 3.11
 	if self.ability:GetRank(11) then
 		self:StartIntervalThink(0.1)

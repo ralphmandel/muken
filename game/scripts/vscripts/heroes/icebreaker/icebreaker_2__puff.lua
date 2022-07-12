@@ -221,9 +221,19 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             if distance > 0 then
                 self.knockbackProperties.duration = 0.25
                 self.knockbackProperties.knockback_duration = 0.25
-                self.knockbackProperties.knockback_distance = self:CalcStatus(distance / 2, caster, target)
+                self.knockbackProperties.knockback_distance = self:CalcStatus(distance / 3, caster, target)
 
                 target:AddNewModifier(caster, nil, "modifier_knockback", self.knockbackProperties)
+            end
+        end
+
+        -- UP 4.31
+        local mirror = caster:FindAbilityByName("icebreaker_4__mirror")
+        if mirror ~= nil then
+            if mirror:GetRank(31)
+            and target:IsMagicImmune() == false
+            and target:IsAlive() then
+                mirror:CreateMirrors(target, 1)
             end
         end
 

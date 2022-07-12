@@ -157,9 +157,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                             if base_stats then heal = heal * base_stats:GetHealPower() end
                             if heal > 0 then enemy:Heal(heal, self) end
                         else
-                            enemy:AddNewModifier(caster, hypo, "icebreaker_1_modifier_frozen", {
-                                duration = self:CalcStatus(frozen_duration, caster, enemy) 
-                            })
+                            if enemy:HasModifier("strider_1_modifier_spirit") == false
+                            and enemy:HasModifier("bloodstained_u_modifier_copy") == false
+                            and enemy:IsIllusion() then
+                                enemy:Kill(self, caster)
+                            elseif enemy:IsHero() then
+                                enemy:AddNewModifier(caster, hypo, "icebreaker_1_modifier_frozen", {
+                                    duration = self:CalcStatus(frozen_duration, caster, enemy) 
+                                })
+                            else
+                                hypo:AddSlow(enemy, self, 5, true)
+                            end
                         end
                         
                         self:PlayEfxHit(enemy)

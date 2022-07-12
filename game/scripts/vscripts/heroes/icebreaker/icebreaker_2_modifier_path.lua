@@ -19,7 +19,7 @@ function icebreaker_2_modifier_path:OnCreated( kv )
 	self.vision_radius = self.ability:GetSpecialValueFor("radius")
 	self.radius = self.ability:GetSpecialValueFor("radius")
     self.delay = 0.5
-	self.duration = 10
+	self.duration = 5
 	
 	-- set up data
 	self.delayed = true

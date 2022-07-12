@@ -49,7 +49,7 @@ end
 
 function icebreaker_2_modifier_recharge:OnAbilityExecuted(keys)
 	if keys.unit == nil then return end
-	if keys.unit ~= self.caster then return end
+	if keys.unit ~= self.parent then return end
 	if keys.ability == nil then return end
 	if keys.ability:GetAbilityName() ~= self.ability:GetAbilityName() then return end
 

@@ -55,8 +55,7 @@ function icebreaker_1_modifier_frozen:OnRemoved( kv )
 
 	if damageTable.damage > 0 then
 		ApplyDamage(damageTable)
-		self:ApplySpreadHypo(self.parent)
-		self:WaveRechargeCount()
+		self:IceBreak(self.parent)
 		self:PlayEfxDestroy()
 	end
 end
@@ -132,64 +131,70 @@ function icebreaker_1_modifier_frozen:OnAbilityExecuted(keys)
 	self:PlayEfxBlink((keys.target:GetOrigin() - keys.unit:GetOrigin()), keys.unit:GetOrigin(), keys.target)
 	self.break_damage = self.ability_break:GetSpecialValueFor("break_damage")
 	self:BlinkStrike(self.break_damage)
-	self:BreakHeal()
 	self:Destroy()
 end
 
 -- UTILS -----------------------------------------------------------
 
-function icebreaker_1_modifier_frozen:WaveRechargeCount()
+function icebreaker_1_modifier_frozen:IceBreak(target)
+	local mirror = self.caster:FindAbilityByName("icebreaker_4__mirror")
 	local ability_wave = self.caster:FindAbilityByName("icebreaker_5__wave")
+
+	-- UP 4.21
+	if mirror ~= nil then
+		if mirror:GetRank(21)
+		and target:IsAlive() then
+			mirror:CreateMirrors(target, 1)
+		end
+	end
+	
 	if ability_wave == nil then return end
 	if ability_wave:IsTrained() == false then return end
 
 	self.caster:FindModifierByName(ability_wave:GetIntrinsicModifierName()):DecrementStackCount()
-end
-
-function icebreaker_1_modifier_frozen:BreakHeal()
-	local ability_wave = self.caster:FindAbilityByName("icebreaker_5__wave")
-	if ability_wave == nil then return end
-	if ability_wave:IsTrained() == false then return end
-
-	-- UP 5.31
-	if ability_wave:GetRank(31) then
-		local heal = self.parent:GetMaxHealth() * 0.1
-		if self.parent:GetUnitName() == "boss_gorillaz" then heal = heal * 0.5 end
-	
-		local base_stats = self.caster:FindAbilityByName("base_stats")
-		if base_stats then heal = heal * base_stats:GetHealPower() end
-		if heal > 0 then self.caster:Heal(heal, ability_wave) end
-	end
-end
-
-function icebreaker_1_modifier_frozen:ApplySpreadHypo(target)
-	local ability_wave = self.caster:FindAbilityByName("icebreaker_5__wave")
-	if ability_wave == nil then return end
-	if ability_wave:IsTrained() == false then return end
 
 	-- UP 5.12
 	if ability_wave:GetRank(12) then
-		self:PlayEfxSpread(target)
+		self:ApplySpreadHypo(target)
+	end
 
-		Timers:CreateTimer((0.1), function()
-			if target ~= nil then
-				if IsValidEntity(target) then
-					local units = FindUnitsInRadius(
-						self.caster:GetTeamNumber(), target:GetOrigin(),
-						nil, 350, DOTA_UNIT_TARGET_TEAM_ENEMY,
-						DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, 0, 0, false
-					)
-					for _,unit in pairs(units) do
-						if unit ~= target
-						and unit:IsAlive() then
-							if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-							self.ability:AddSlow(unit, self.ability, 2, true)
-						end
+	-- UP 5.31
+	if ability_wave:GetRank(31)
+	and self.ability_break:GetAbilityName() == "icebreaker_u__blink" then
+		self:BreakHeal(target)
+	end
+end
+
+function icebreaker_1_modifier_frozen:BreakHeal(target)
+	local heal = target:GetMaxHealth() * 0.1
+	if target:GetUnitName() == "boss_gorillaz" then heal = heal * 0.5 end
+
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then heal = heal * base_stats:GetHealPower() end
+	if heal > 0 then self.caster:Heal(heal, self.ability_break) end
+end
+
+function icebreaker_1_modifier_frozen:ApplySpreadHypo(target)
+	self:PlayEfxSpread(target)
+
+	Timers:CreateTimer((0.1), function()
+		if target ~= nil then
+			if IsValidEntity(target) then
+				local units = FindUnitsInRadius(
+					self.caster:GetTeamNumber(), target:GetOrigin(),
+					nil, 350, DOTA_UNIT_TARGET_TEAM_ENEMY,
+					DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, 0, 0, false
+				)
+				for _,unit in pairs(units) do
+					if unit ~= target
+					and unit:IsAlive() then
+						if IsServer() then unit:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+						self.ability:AddSlow(unit, self.ability, 2, true)
 					end
 				end
 			end
-		end)
-	end
+		end
+	end)
 end
 
 function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
@@ -232,14 +237,17 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 			if base_stats and unit ~= self.parent then
 				if unit:HasModifier("icebreaker_1_modifier_frozen") then
 					unit:RemoveModifierByName("icebreaker_1_modifier_frozen")
-					self:PlayEfxBlink((unit:GetOrigin() - self.caster:GetOrigin()), self.caster:GetOrigin(), unit)
-					self:ApplySpreadHypo(unit)
-					self:WaveRechargeCount()
-				end
+					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					damageTableSplash.victim = unit
+					ApplyDamage(damageTableSplash)
 
-				base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
-				damageTableSplash.victim = unit
-				ApplyDamage(damageTableSplash)
+					self:PlayEfxBlink((unit:GetOrigin() - self.caster:GetOrigin()), self.caster:GetOrigin(), unit)
+					self:IceBreak(unit)
+				else
+					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					damageTableSplash.victim = unit
+					ApplyDamage(damageTableSplash)
+				end
 			end
 		end
 	end

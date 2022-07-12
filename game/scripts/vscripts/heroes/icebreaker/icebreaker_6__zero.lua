@@ -1,5 +1,8 @@
 icebreaker_6__zero = class({})
-LinkLuaModifier("icebreaker_6_modifier_zero", "heroes/icebreaker/icebreaker_6_modifier_zero", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_6_modifier_charges", "heroes/icebreaker/icebreaker_6_modifier_charges", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_6_modifier_shard", "heroes/icebreaker/icebreaker_6_modifier_shard", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_6_modifier_aura_effect", "heroes/icebreaker/icebreaker_6_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_6_modifier_aura_effect_status_efx", "heroes/icebreaker/icebreaker_6_modifier_aura_effect_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -84,18 +87,76 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
         end
 
+        -- UP 6.21
+        if self:GetRank(21) then
+            self.charges = self:GetSpecialValueFor("charges") + 1
+        end
+
         local charges = 1
+
+        -- UP 6.32
+        if self:GetRank(32) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
     function icebreaker_6__zero:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.shard = false
     end
 
 -- SPELL START
 
+    function icebreaker_6__zero:GetIntrinsicModifierName()
+        return "icebreaker_6_modifier_charges"
+    end
+
     function icebreaker_6__zero:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+        local shard_duration = self:GetSpecialValueFor("shard_duration")
+
+        self:DestroyShard()
+        local shard = CreateUnitByName("ice_shard", point, true, caster, caster, caster:GetTeamNumber())
+        shard:AddNewModifier(caster, self, "icebreaker_6_modifier_shard", {duration = shard_duration})
+
+        caster:FindModifierByName(self:GetIntrinsicModifierName()):DecrementStackCount()
+
+        self.shard = true
+        if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.ColdFeetCast") end
+    end
+
+    function icebreaker_6__zero:DestroyShard()
+        local caster = self:GetCaster()
+        local units = Entities:FindAllByClassname("npc_dota_creature")
+        for _,shard in pairs(units) do
+            if shard:GetPlayerOwner() == caster:GetPlayerOwner()
+            and shard:IsAlive() and shard:GetUnitName() == "ice_shard" then
+                shard:RemoveModifierByName("icebreaker_6_modifier_shard")
+            end
+        end
+
+        self.shard = false
+    end
+
+    function icebreaker_6__zero:CastFilterResultLocation( vec )
+        local caster = self:GetCaster()
+
+        if caster:HasModifier("icebreaker_3_modifier_skin") then
+            return UF_FAIL_CUSTOM
+        end
+
+        return UF_SUCCESS
+    end
+
+    function icebreaker_6__zero:GetCustomCastErrorLocation( vec )
+        return "FROZEN"
+    end
+
+    function icebreaker_6__zero:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
     function icebreaker_6__zero:GetManaCost(iLevel)
