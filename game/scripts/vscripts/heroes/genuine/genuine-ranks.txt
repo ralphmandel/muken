@@ -1,0 +1,153 @@
+"TalentTree_genuine"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_drow"
+	{
+		"genuine_1__shooting"
+		{
+			"0"
+			{
+				"1"   "genuine_1__shooting_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_1__shooting_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_1__shooting_rank_31"
+				"2"   "genuine_1__shooting_rank_32"
+			}
+			"3"
+			{
+				"1"   "genuine_1__shooting_rank_41"
+			}
+		}
+		"genuine_2__fallen"
+		{
+			"0"
+			{
+				"1"   "genuine_2__fallen_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_2__fallen_rank_21"
+				"2"   "genuine_2__fallen_rank_22"
+			}
+			"2"
+			{
+				"1"   "genuine_2__fallen_rank_31"
+				"2"   "genuine_2__fallen_rank_32"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"genuine_3__sk3"
+		{
+			"0"
+			{
+				"1"   "genuine_3__sk3_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_3__sk3_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_3__sk3_rank_31"
+			}
+			"3"
+			{
+				"1"   "genuine_3__sk3_rank_41"
+			}
+		}
+		"genuine_4__sk4"
+		{
+			"0"
+			{
+				"1"   "genuine_4__sk4_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_4__sk4_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_4__sk4_rank_31"
+			}
+			"3"
+			{
+				"1"   "genuine_4__sk4_rank_41"
+			}
+		}
+		"genuine_5__sk5"
+		{
+			"0"
+			{
+				"1"   "genuine_5__sk5_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_5__sk5_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_5__sk5_rank_31"
+			}
+			"3"
+			{
+				"1"   "genuine_5__sk5_rank_41"
+			}
+		}
+		"genuine_6__sk6"
+		{
+			"0"
+			{
+				"1"   "genuine_6__sk6_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_6__sk6_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_6__sk6_rank_31"
+			}
+			"3"
+			{
+				"1"   "genuine_6__sk6_rank_41"
+			}
+		}
+		"genuine_u__sk7"
+		{
+			"0"
+			{
+				"1"   "genuine_u__sk7_rank_11"
+			}
+			"1"
+			{
+				"1"   "genuine_u__sk7_rank_21"
+			}
+			"2"
+			{
+				"1"   "genuine_u__sk7_rank_31"
+			}
+			"3"
+			{
+				"1"   "genuine_u__sk7_rank_41"
+			}
+		}
+	}	
+}

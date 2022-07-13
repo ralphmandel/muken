@@ -16,12 +16,12 @@ function cosmetics:LoadCosmetics()
 
 	if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
 	if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
+	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 
 	if caster:GetUnitName() == "npc_dota_hero_elder_titan" then hero_name = "ancient" end
 	if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
 	if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then hero_name = "bloodstained" end
 	if caster:GetUnitName() == "npc_dota_hero_furion" then hero_name = "druid" end
-	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 	if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
 
 	if hero_name ~= nil then

@@ -115,9 +115,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
 				if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
+				if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 
 				if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
-				if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 				if caster:GetUnitName() == "npc_dota_hero_spectre" then hero_name = "shadow" end
 				if caster:GetUnitName() == "npc_dota_hero_elder_titan" then hero_name = "ancient" end
 				if caster:GetUnitName() == "npc_dota_hero_shadow_demon" then hero_name = "bloodstained" end
