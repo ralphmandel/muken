@@ -15,7 +15,7 @@ require("talent_tree")
 			self:ResetRanksData()
 
 			Timers:CreateTimer(0.2, function()
-				self:CheckSkills(0)
+				self:CheckSkills(0, nil)
 			end)
 		end
 	end
@@ -30,14 +30,34 @@ require("talent_tree")
 			if ultimate then ultimate:UpgradeAbility(true) end
 		end
 
-		self:CheckSkills(0)
+		self:CheckSkills(0, nil)
 	end
 
 	function base_hero:GetIntrinsicModifierName()
 		return "base_hero_mod"
 	end
 
-	function base_hero:CheckSkills(pts)
+-- ABILITY SETTINGS
+
+	function base_hero:SetHotkeys(ability, bUltimate)
+		if not self.slot_index then self.slot_index = 1 end
+		print(self.slot_keys[self.slot_index])
+
+		local caster = self:GetCaster()
+		local slot = self.slot_keys[self.slot_index]
+
+		if bUltimate then
+			slot = self.slot_keys[6]
+		else
+			self.slot_index = self.slot_index + 1
+		end
+
+		caster:SwapAbilities(ability:GetAbilityName(), slot, true, false)
+	end
+
+	function base_hero:CheckSkills(pts, ability)
+		if ability then self:SetHotkeys(ability, false) end
+
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		local points = 3
@@ -80,6 +100,8 @@ require("talent_tree")
 	end
 	
 	function base_hero:ResetRanksData()
+		self.slot_keys = {[1] = "slot_1", [2] = "slot_2", [3] = "slot_3", [4] = "slot_4", [5] = "slot_5", [6] = "slot_6"}
+		
 		local rank = {
 			[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 		}

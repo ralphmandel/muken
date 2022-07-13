@@ -88,7 +88,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[1][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            Timers:CreateTimer(0.2, function()
+				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+			end)
         end
 
         local charges = 1
@@ -97,7 +99,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function icebreaker_1__hypo:Spawn()
         self.kills = 0
-        self:UpgradeAbility(true)
+        if self:IsTrained() == false then self:UpgradeAbility(true) end
         self:SetCurrentAbilityCharges(0)
     end
 

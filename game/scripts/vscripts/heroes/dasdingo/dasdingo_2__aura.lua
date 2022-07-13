@@ -81,7 +81,7 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[2][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         local charges = 1

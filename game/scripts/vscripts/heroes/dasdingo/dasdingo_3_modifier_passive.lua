@@ -37,18 +37,16 @@ function dasdingo_3_modifier_passive:OnAttackLanded(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	local duration = self.ability:GetSpecialValueFor("duration")
-
 	-- UP 3.42
 	if self.ability:GetRank(42) then
-		local chance = 10
+		local chance = 15
 		local base_stats = self.caster:FindAbilityByName("base_stats")
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance
 		and keys.target:IsAlive() then
 			keys.target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_hex", {
-				duration = self.ability:CalcStatus(duration, self.caster, keys.target)
+				duration = self.ability:CalcStatus(1, self.caster, keys.target)
 			})
 	
 			self:PlayEfxStart(keys.target)

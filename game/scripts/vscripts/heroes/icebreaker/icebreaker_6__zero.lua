@@ -84,7 +84,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[6][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         -- UP 6.21

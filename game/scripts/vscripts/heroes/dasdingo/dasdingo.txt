@@ -116,14 +116,14 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.1"
 
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"17"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"3"
+				"duration"		"2.5"
 			}
 			"02"
 			{
@@ -148,7 +148,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"130"
+				"manacost"		"145"
 			}
 			"15"
 			{
@@ -172,7 +172,7 @@
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
@@ -189,7 +189,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"      "100"
+				"manacost"      "125"
 			}
 			"15"
 			{
@@ -216,7 +216,7 @@
 		"AbilityCastPoint"				"0.3"
         "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"20"
 
 		"AbilitySpecial"
 		{
@@ -238,7 +238,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"135"
+				"manacost"		"130"
 			}
 			"15"
 			{
@@ -271,12 +271,12 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_damage"	    "10"
+				"fire_damage"	    "12"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "5"
+				"max_stack"		    "6"
 			}
             "04"
 			{
@@ -286,7 +286,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"25"
+				"blast_damage"		"30"
 			}
 			"14"
 			{

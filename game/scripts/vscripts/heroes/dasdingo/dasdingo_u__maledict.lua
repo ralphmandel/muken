@@ -81,7 +81,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[7][0] = true end
+        if base_hero then
+            base_hero.ranks[7][0] = true
+            if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
+        end
 
         local charges = 1
 

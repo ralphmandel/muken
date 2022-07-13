@@ -81,7 +81,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[5][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         local charges = 1

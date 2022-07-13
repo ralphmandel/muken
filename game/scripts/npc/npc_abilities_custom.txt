@@ -176,7 +176,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_gold"			"60"
+				"starting_gold"			"99999" //60
 			}		
 		}
 	}
@@ -221,6 +221,78 @@
 	}
 
 	"_void"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_1"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_2"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_3"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_4"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_5"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"slot_6"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"_basics/_void"

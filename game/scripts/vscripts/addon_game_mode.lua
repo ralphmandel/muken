@@ -1002,7 +1002,7 @@
 		if unit == nil then return end
 		if unit:IsReincarnating() then return end
 		if unit:IsHero() and unit:IsIllusion() == false then
-			--self:RandomizePlayerSpawn(unit)
+			self:RandomizePlayerSpawn(unit)
 			
 			local playerID = unit:GetPlayerOwnerID()
 			if playerID ~= nil then
@@ -1042,7 +1042,7 @@
 -- ON THINK
 	function BattleArena:OnThink()
 		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			--self:GenerateEvent(true)
+			self:GenerateEvent(true)
 			self:SpawnPlayerCosmetics(true)
 		end
 
@@ -1056,8 +1056,8 @@
 				CustomNetTables:SetTableValue("game_state", "round_data", { value = nextValue })
 			end
 
-			--self:CalculateNeutralQuantity()
-			--self:GenerateEvent(false)
+			self:CalculateNeutralQuantity()
+			self:GenerateEvent(false)
 		end
 		
 		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then

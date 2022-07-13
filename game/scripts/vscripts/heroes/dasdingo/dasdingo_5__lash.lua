@@ -83,7 +83,7 @@ LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[5][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         local charges = 1

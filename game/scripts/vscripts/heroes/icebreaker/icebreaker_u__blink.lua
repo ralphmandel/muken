@@ -79,7 +79,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[7][0] = true end
+        if base_hero then
+            base_hero.ranks[7][0] = true
+            if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
+        end
 
         local charges = 1
 

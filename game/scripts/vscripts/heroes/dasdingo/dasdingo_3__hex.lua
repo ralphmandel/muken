@@ -81,7 +81,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[3][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1) end
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         local charges = 1
@@ -181,7 +181,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         -- UP 3.22
         if self:GetRank(22) then
-            duration = duration + 1
+            duration = duration + 0.75
         end
 
         if target:IsAlive() then

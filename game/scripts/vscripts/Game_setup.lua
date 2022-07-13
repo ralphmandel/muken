@@ -13,11 +13,11 @@ require('libraries/wearables')
 require('libraries/wearables_warmful_ancient')
 
 function GameSetup:init()
-    if IsInToolsMode() then -- debug build
+    --if IsInToolsMode() then -- debug build
         GameRules:SetStartingGold(9999)
-    else
-        GameRules:SetStartingGold(60)
-    end
+    --else
+        --GameRules:SetStartingGold(60)
+    --end
     -- skip all the starting game mode stages e.g picking screen, showcase, etc
     --GameRules:EnableCustomGameSetupAutoLaunch(true)
     --GameRules:SetCustomGameSetupAutoLaunchDelay(0)
@@ -85,7 +85,7 @@ function GameSetup:init()
     GameRules:SetCustomGameAllowBattleMusic(false)
 
     -- multiple players can pick the same hero
-    GameRules:SetSameHeroSelectionEnabled(false)
+    GameRules:SetSameHeroSelectionEnabled(true)
 
     -- force single hero selection (optional)
     if forceHero ~= nil then
