@@ -31,15 +31,11 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
+        "AbilityDamage"					"40 41 42 43 44 45 46 47 48 49 50 51 52 53"
 		"AbilityCooldown"				"2.5"
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"      "FIELD_FLOAT"
-				"bonus_damage"  "40 41 42 43 44 45 46 47 48 49 50 51 52 53"
-			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -115,37 +111,58 @@
 		}
 	}
 
-	"genuine_3__sk3"
+	"genuine_3__morning"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/genuine/genuine_3__sk3"
+		"ScriptFile"            		"heroes/genuine/genuine_3__morning"
+		"AbilityTextureName"     		"genuine_morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_sk3"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+		"LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastPoint"       		"0.1"
+        "AbilityCooldown"				"21 20 19 18 17 16 15"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"agi_bonus"	    "15"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rec_bonus"	    "30"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"star_damage"	"60"
+			}
+            "04"
+			{
+				"var_type"      "FIELD_FLOAT"
+				"star_radius"   "225"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"	    "15"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"	    "80"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
@@ -220,28 +237,61 @@
 		}
 	}
 
-    "genuine_6__sk6"
+    "genuine_6__travel"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/genuine/genuine_6__sk6"
+		"ScriptFile"            		"heroes/genuine/genuine_6__travel"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_sk6"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"genuine_travel"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"18"
+        "AbilityDamage"					"90"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"projectile_speed"		"401 411 421 431 441 451 461 471 481 491 501"
+			}
+            "02"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"projectile_distance"	"1200 1230 1260 1290 1320 1350 1380 1410 1440 1470 1500"
+			}
+            "03"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"projectile_radius"		"225"
+			}
+            "04"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"vision_radius"		    "400"
+			}
+            "05"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"vision_duration"		"3"
+			}
+            "06"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"silence_duration"		"0.5"
+			}
+            "07"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"silence_radius"		"350"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -250,42 +300,56 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
 
-	"genuine_u__sk7"
+    "genuine_u__star"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/genuine/genuine_u__sk7"
-		"AbilityTextureName"     		"genuine_sk7"
+		"ScriptFile"            		"heroes/genuine/genuine_u__star"
+		"AbilityTextureName"     		"genuine_star"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
+
+		"AbilityCooldown"				"45"
 		"AbilityCastRange"      		"500"
 
 		"AbilitySpecial"
 		{
-            "14"
+            "01"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "100"
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"10 10.25 10.5 10.75 11 11.25 11.5 11.75 12 12.25 12.5"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"vision"		"60"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"    "450"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"130"
 			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"9 10 11 12 13 14 15 16 17 18 19"
 			}
 		}
 	}
@@ -773,10 +837,10 @@
         }
 
     //RANKS 3
-        "genuine_3__sk3_rank_11"{
+        "genuine_3__morning_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -803,10 +867,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_12"{
+        "genuine_3__morning_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -833,10 +897,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_21"{
+        "genuine_3__morning_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -863,10 +927,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_22"{
+        "genuine_3__morning_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -893,10 +957,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_31"{
+        "genuine_3__morning_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -923,10 +987,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_32"{
+        "genuine_3__morning_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -953,10 +1017,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_41"{
+        "genuine_3__morning_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -983,10 +1047,10 @@
             }
         }
 
-        "genuine_3__sk3_rank_42"{
+        "genuine_3__morning_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk3"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1496,10 +1560,10 @@
         }
 
     //RANKS 6
-        "genuine_6__sk6_rank_11"{
+        "genuine_6__travel_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1526,10 +1590,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_12"{
+        "genuine_6__travel_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1556,10 +1620,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_21"{
+        "genuine_6__travel_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1586,10 +1650,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_22"{
+        "genuine_6__travel_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1616,10 +1680,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_31"{
+        "genuine_6__travel_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1646,10 +1710,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_32"{
+        "genuine_6__travel_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1676,10 +1740,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_41"{
+        "genuine_6__travel_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1706,10 +1770,10 @@
             }
         }
 
-        "genuine_6__sk6_rank_42"{
+        "genuine_6__travel_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk6"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1737,10 +1801,10 @@
         }
 
     //RANKS U
-        "genuine_u__sk7_rank_11"{
+        "genuine_u__star_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1767,10 +1831,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_12"{
+        "genuine_u__star_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1797,10 +1861,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_21"{
+        "genuine_u__star_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1827,10 +1891,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_22"{
+        "genuine_u__star_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1857,10 +1921,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_31"{
+        "genuine_u__star_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1887,10 +1951,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_32"{
+        "genuine_u__star_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1917,10 +1981,10 @@
             }
         }
         
-        "genuine_u__sk7_rank_41"{
+        "genuine_u__star_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1947,10 +2011,10 @@
             }
         }
 
-        "genuine_u__sk7_rank_42"{
+        "genuine_u__star_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_sk7"
+            "AbilityTextureName"    		"genuine_star"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

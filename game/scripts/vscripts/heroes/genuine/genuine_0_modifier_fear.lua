@@ -55,7 +55,10 @@ end
 -----------------------------------------------------------
 
 function genuine_0_modifier_fear:CheckState()
-	local state = {[MODIFIER_STATE_COMMAND_RESTRICTED] = true}
+	local state = {
+        [MODIFIER_STATE_FEARED] = true,
+        [MODIFIER_STATE_COMMAND_RESTRICTED] = true
+    }
 
 	return state
 end

@@ -69,7 +69,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function genuine_2__fallen:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_drow" then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then return base_hero.ranks[2][upgrade] end
@@ -78,7 +78,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function genuine_2__fallen:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_drow" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
@@ -207,8 +207,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function genuine_2__fallen:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 50
-        local starfall_radius = 175
+        local starfall_damage = 60
+        local starfall_radius = 225
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,

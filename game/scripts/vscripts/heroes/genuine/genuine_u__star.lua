@@ -1,7 +1,6 @@
 genuine_u__star = class({})
 LinkLuaModifier("genuine_u_modifier_caster", "heroes/genuine/genuine_u_modifier_caster", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_u_modifier_target", "heroes/genuine/genuine_u_modifier_target", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
@@ -73,7 +72,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[4][upgrade] end
+        if base_hero then return base_hero.ranks[7][upgrade] end
     end
 
     function genuine_u__star:OnUpgrade()
@@ -82,12 +81,15 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then base_hero.ranks[4][0] = true end
+        if base_hero then
+            base_hero.ranks[7][0] = true
+            if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
+        end
 
         local charges = 1
 
-        -- UP 4.31
-        if self:GetRank(31) == false then
+        -- UP 7.11
+        if self:GetRank(11) == false then
             charges = charges * 2
         end
 
@@ -105,7 +107,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
         
         local particle_cast = "particles/genuine/ult_caster/genuine_ult_caster.vpcf"
-	    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
         return true
@@ -119,26 +121,19 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
-        local duration = self:GetSpecialValueFor("duration")
+        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
 
-        -- UP 4.31
-        if self:GetRank(31) == false then
+        -- UP 7.21
+        if self:GetRank(21) == false then
             if target:TriggerSpellAbsorb(self) then return end
         end
         
         self:PlayEfxStart(caster, target)
         self:PlayEfxStart(target, caster)
+
         if IsServer() then target:EmitSound("Hero_Terrorblade.DemonZeal.Cast") end
-
-        -- UP 4.11
-        if self:GetRank(11) then
-            duration = duration + 1.5
-        end
-
-        target:AddNewModifier(caster, self, "genuine_u_modifier_target", {
-            duration = self:CalcStatus(duration, caster, target)
-        })
+        target:AddNewModifier(caster, self, "genuine_u_modifier_target", {duration = duration})
     end
 
     function genuine_u__star:CreateStarfall(target)
@@ -178,6 +173,25 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
     end
 
+    function genuine_u__star:ApplyDarkness(target, vision)
+        if GameRules:IsDaytime() and GameRules:IsTemporaryNight() == false then return end
+
+        local caster = self:GetCaster()
+        local units = FindUnitsInRadius(
+            target:GetTeamNumber(), target:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
+            DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES, 0, false
+        )
+
+        for _,unit in pairs(units) do
+            unit:AddNewModifier(caster, self, "_modifier_blind", {
+                percent = vision,
+                miss_chance = 0,
+                duration = 3
+            })
+        end
+    end
+
     function genuine_u__star:CastFilterResultTarget(hTarget)
         local caster = self:GetCaster()
         local flag = 0
@@ -186,7 +200,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
             return UF_FAIL_CUSTOM
         end
 
-        -- UP 4.31
+        -- UP 7.11
         if self:GetCurrentAbilityCharges() % 2 == 0 then
             flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end
@@ -207,6 +221,13 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if self:GetCaster() == hTarget then
             return "#dota_hud_error_cant_cast_on_self"
         end
+    end
+
+    function genuine_u__star:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 150 end
+        return cast_range
     end
 
     function genuine_u__star:GetManaCost(iLevel)
@@ -233,6 +254,6 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
         ParticleManager:ReleaseParticleIndex(effect_cast)
-    
+
         if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
     end

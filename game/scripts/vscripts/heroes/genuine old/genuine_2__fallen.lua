@@ -209,8 +209,8 @@ LinkLuaModifier("genuine_2_modifier_dispel", "heroes/genuine/genuine_2_modifier_
 
     function genuine_2__fallen:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 50
-        local starfall_radius = 175
+        local starfall_damage = 60
+        local starfall_radius = 225
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,

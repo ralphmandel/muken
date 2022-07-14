@@ -67,7 +67,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function genuine_5__sk5:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_drow" then return end
+		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then return base_hero.ranks[5][upgrade] end
@@ -76,7 +76,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function genuine_5__sk5:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_drow" then return end
+        if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then

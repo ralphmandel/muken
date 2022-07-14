@@ -316,7 +316,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityCastRange"      		"550"
+		"AbilityCastRange"      		"300"
 
 		"AbilitySpecial"
 		{
@@ -328,7 +328,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"radius"			"375"
+				"radius"			"350"
 			}
 			"03"
 			{

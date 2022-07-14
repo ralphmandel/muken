@@ -150,12 +150,12 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"star_damage"	"50"
+				"star_damage"	"60"
 			}
             "04"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"star_radius"   "175"
+				"star_radius"   "225"
 			}
             "05"
 			{

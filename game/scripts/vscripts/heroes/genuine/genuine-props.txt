@@ -2,7 +2,7 @@
 {
 	"genuine"
 	{
-		"override_hero"					"npc_dota_hero_drow"
+		"override_hero"					"npc_dota_hero_drow_ranger"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
@@ -18,11 +18,11 @@
 			"Ability9"						"base_stats"
 			"Ability10"						"genuine_1__shooting"
 			"Ability11"						"genuine_2__fallen"
-			"Ability12"						"genuine_3__sk3"
+			"Ability12"						"genuine_3__morning"
 			"Ability13"						"genuine_4__sk4"
 			"Ability14"						"genuine_5__sk5"
-			"Ability15"						"genuine_6__sk6"
-			"Ability16"						"genuine_u__sk7"
+			"Ability15"						"genuine_6__travel"
+			"Ability16"						"genuine_u__star"
 			"Ability17"						"null"
 			"Ability18"						"null"
 			"Ability19"						"null"
