@@ -214,7 +214,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function genuine_1__shooting:ApplyStarfall(target)
         local caster = self:GetCaster()
         local starfall_damage = 60
-        local starfall_radius = 225
+        local starfall_radius = 250
         local damageTable = {
             attacker = caster,
             damage = starfall_damage,

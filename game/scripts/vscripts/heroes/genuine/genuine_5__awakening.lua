@@ -1,10 +1,10 @@
-genuine_4__sk4 = class({})
-LinkLuaModifier("genuine_4_modifier_sk4", "heroes/genuine/genuine_4_modifier_sk4", LUA_MODIFIER_MOTION_NONE)
+genuine_5__awakening = class({})
+LinkLuaModifier("genuine_5_modifier_awakening", "heroes/genuine/genuine_5_modifier_awakening", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function genuine_4__sk4:CalcStatus(duration, caster, target)
+    function genuine_5__awakening:CalcStatus(duration, caster, target)
         local time = duration
         local base_stats_caster = nil
         local base_stats_target = nil
@@ -51,12 +51,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return time
     end
 
-    function genuine_4__sk4:AddBonus(string, target, const, percent, time)
+    function genuine_5__awakening:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function genuine_4__sk4:RemoveBonus(string, target)
+    function genuine_5__awakening:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -64,23 +64,23 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function genuine_4__sk4:GetRank(upgrade)
+    function genuine_5__awakening:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[4][upgrade] end
+        if base_hero then return base_hero.ranks[5][upgrade] end
     end
 
-    function genuine_4__sk4:OnUpgrade()
+    function genuine_5__awakening:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_drow_ranger" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[4][0] = true
+            base_hero.ranks[5][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
@@ -88,17 +88,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function genuine_4__sk4:Spawn()
+    function genuine_5__awakening:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function genuine_4__sk4:OnSpellStart()
+    function genuine_5__awakening:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function genuine_4__sk4:GetManaCost(iLevel)
+    function genuine_5__awakening:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end

@@ -1,6 +1,9 @@
 genuine_6__travel = class({})
 LinkLuaModifier("genuine_6_modifier_orb", "heroes/genuine/genuine_6_modifier_orb", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_ethereal", "modifiers/_modifier_ethereal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_status_efx", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -84,8 +87,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        local charges = 1
-        self:SetCurrentAbilityCharges(charges)
+        if self:GetLevel() == 1 then self:SetCurrentAbilityCharges(1) end
     end
 
     function genuine_6__travel:Spawn()
@@ -93,6 +95,31 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- SPELL START
+
+    function genuine_6__travel:ApplyStarfall()
+        local caster = self:GetCaster()
+        local starfall_damage = 75
+        local starfall_radius = 250
+        local damageTable = {
+            attacker = caster,
+            damage = starfall_damage,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self
+        }
+        
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), caster:GetOrigin(), nil, starfall_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            0, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            damageTable.victim = enemy
+            ApplyDamage(damageTable)
+        end
+
+        if IsServer() then caster:EmitSound("Hero_Mirana.Starstorm.Impact") end
+    end
 
     function genuine_6__travel:ResetAbility()
         if self.projectileData then self.projectileData.modifier:Destroy() end
@@ -109,7 +136,28 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local old_pos = caster:GetOrigin()
         local traveled_distance = (self.point - self.projectileData.location):Length2D()
         local silence_radius = self:GetSpecialValueFor("silence_radius")
-        local silence_duration = traveled_distance * self:GetSpecialValueFor("silence_duration") * 0.01
+        local silence_min = self:GetSpecialValueFor("silence_min")
+        local silence_duration = silence_min + (traveled_distance * self:GetSpecialValueFor("silence_duration") * 0.01)
+
+        -- UP 6.11
+        if self:GetRank(11) then
+            self:PlayEfxStarfall()
+            Timers:CreateTimer((0.5), function()
+                self:ApplyStarfall()
+            end)
+        end
+
+        -- UP 6.12
+        if self:GetRank(12) then
+            silence_radius = silence_radius + 125
+        end
+
+        -- UP 6.41
+        if self:GetRank(41) then
+            caster:AddNewModifier(caster, self, "_modifier_ethereal", {
+                duration = self:CalcStatus(silence_duration, caster, caster)
+            })
+        end
 
         FindClearSpaceForUnit(caster, ProjectileManager:GetLinearProjectileLocation(self.projectile), true)
         ProjectileManager:ProjectileDodge(caster)
@@ -136,17 +184,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             return
         end
 
+        print(self:GetBehavior())
+
         local caster = self:GetCaster()
-        self.point = self:GetCursorPosition()
+        local point = self:GetCursorPosition()
         local damage = self:GetAbilityDamage()
         local projectile_speed = self:GetSpecialValueFor("projectile_speed")
         local projectile_distance = self:GetSpecialValueFor("projectile_distance")
         local projectile_radius = self:GetSpecialValueFor("projectile_radius")
         local vision_radius = self:GetSpecialValueFor("vision_radius")
-        local vision_duration = self:GetSpecialValueFor("vision_duration")
+        local charges = 2
 
-        local projectile_direction = self.point-caster:GetOrigin()
-        projectile_direction = Vector( projectile_direction.x, projectile_direction.y, 0 ):Normalized()
+        local projectile_direction = point - caster:GetOrigin()
+        projectile_direction = Vector(projectile_direction.x, projectile_direction.y, 0):Normalized()
         local projectile_name = "particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_merry_wanderer.vpcf"
 
         local info = {
@@ -174,8 +224,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self.projectile = ProjectileManager:CreateLinearProjectile(info)
 
         local modifier = CreateModifierThinker(
-            caster, self, "genuine_6_modifier_orb",
-            {duration = 20}, caster:GetOrigin(), caster:GetTeamNumber(), false		
+            caster, self, "genuine_6_modifier_orb", {duration = 20},
+            caster:GetOrigin(), caster:GetTeamNumber(), false		
         )
 
         modifier = modifier:FindModifierByName("genuine_6_modifier_orb")
@@ -186,8 +236,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         extraData.time = GameRules:GetGameTime()
         extraData.modifier = modifier
         self.projectileData = extraData
+        self.point = caster:GetOrigin()
 
-        self:SetCurrentAbilityCharges(2)
+        -- UP 6.21
+        if self:GetRank(21) then
+            charges = 3
+        end
+
+        self:SetCurrentAbilityCharges(charges)
         self:EndCooldown()
     end
 
@@ -202,18 +258,46 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             self:ResetAbility()
             return true
         end
-    
+        
+        local caster = self:GetCaster()
         local damageTable = {
             victim = target,
-            attacker = self:GetCaster(),
+            attacker = caster,
             damage = self.projectileData.damage,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = self,
         }
         ApplyDamage(damageTable)
+
+        if target:IsAlive() then
+            -- UP 6.22
+            if self:GetRank(22) then
+                target:AddNewModifier(caster, self, "_modifier_stun", {
+                    duration = self:CalcStatus(1, caster, target)
+                })
+            end
+        end
     
         self:PlayEfxHit(target)
         return false
+    end
+
+    function genuine_6__travel:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 3 then
+            return 137474607108
+        end
+
+        if self:GetCurrentAbilityCharges() == 2 then
+            return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+        end
+
+        if self:GetCurrentAbilityCharges() == 1 then
+            return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
+        end
+
+        if self:GetCurrentAbilityCharges() == 0 then
+            return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
+        end
     end
 
     function genuine_6__travel:GetAbilityTextureName()
@@ -224,25 +308,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function genuine_6__travel:GetCastAnimation()
         if self:GetCurrentAbilityCharges() > 1 then return ACT_DOTA_SPAWN end
         return ACT_DOTA_CAST_ABILITY_2
-    end
-
-    function genuine_6__travel:GetCastPoint()
-        if self:GetCurrentAbilityCharges() > 1 then return 0 end
-        return 0.3
-    end
-
-    function genuine_6__travel:GetBehavior()
-        local behavior = DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
-
-        if self:GetCurrentAbilityCharges() > 1 then
-            behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
-        end
-
-        if self:GetCurrentAbilityCharges() == 3 then
-            behavior = behavior + DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE + DOTA_ABILITY_BEHAVIOR_UNRESTRICTED
-        end
-
-        return behavior
     end
 
     function genuine_6__travel:GetManaCost(iLevel)
@@ -276,4 +341,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
         if IsServer() then self:GetCaster():EmitSound("Hero_Puck.Waning_Rift") end
+    end
+
+    function genuine_6__travel:PlayEfxStarfall()
+        local caster = self:GetCaster()
+        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then caster:EmitSound("Hero_Mirana.Starstorm.Cast") end
     end

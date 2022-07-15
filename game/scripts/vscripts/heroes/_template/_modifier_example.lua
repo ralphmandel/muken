@@ -28,6 +28,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function _modifier_example:CheckState()
+	local state = {
+		[MODIFIER_STATE_STUNNED] = true
+	}
+
+	return state
+end
+
 function _modifier_example:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED
@@ -70,7 +78,7 @@ function _modifier_example:PlayEfxStart(target)
 	local string_2 = ""
 	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(particle_2, 0, target:GetOrigin())
-	self:AddParticle(particle_2, false, false, -1, false, true)
+	self:AddParticle(particle_2, false, false, -1, false, false)
 
 	if IsServer() then target:EmitSound("") end
 end

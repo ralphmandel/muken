@@ -31,7 +31,7 @@ function genuine_u_modifier_target:OnCreated(kv)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = vision, miss_chance = 0})
 
 	if IsServer() then
-		self:StartIntervalThink(1.5)
+		self:StartIntervalThink(2.5)
 		self:PlayEfxDebuff()
 		self:PlayEfxSpecial()
 	end

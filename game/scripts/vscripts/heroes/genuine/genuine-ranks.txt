@@ -74,42 +74,43 @@
 				"1"   "genuine_3__morning_rank_41"
 			}
 		}
-		"genuine_4__sk4"
+		"genuine_4__nightfall"
 		{
 			"0"
 			{
-				"1"   "genuine_4__sk4_rank_11"
+				"1"   "genuine_4__nightfall_rank_11"
 			}
 			"1"
 			{
-				"1"   "genuine_4__sk4_rank_21"
+				"1"   "genuine_4__nightfall_rank_21"
+				"2"   "genuine_4__nightfall_rank_22"
 			}
 			"2"
 			{
-				"1"   "genuine_4__sk4_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "genuine_4__sk4_rank_41"
+				"1"   "genuine_4__nightfall_rank_41"
 			}
 		}
-		"genuine_5__sk5"
+		"genuine_5__awakening"
 		{
 			"0"
 			{
-				"1"   "genuine_5__sk5_rank_11"
+				"1"   "genuine_5__awakening_rank_11"
 			}
 			"1"
 			{
-				"1"   "genuine_5__sk5_rank_21"
+				"1"   "genuine_5__awakening_rank_21"
 			}
 			"2"
 			{
-				"1"   "genuine_5__sk5_rank_31"
+				"1"   "genuine_5__awakening_rank_31"
 			}
 			"3"
 			{
-				"1"   "genuine_5__sk5_rank_41"
+				"1"   "genuine_5__awakening_rank_41"
 			}
 		}
 		"genuine_6__travel"

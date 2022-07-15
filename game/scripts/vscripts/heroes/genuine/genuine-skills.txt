@@ -3,8 +3,8 @@
 	"1" "genuine_1__shooting"
 	"2" "genuine_2__fallen"
 	"3" "genuine_3__morning"
-	"4" "genuine_4__sk4"
-	"5" "genuine_5__sk5"
+	"4" "genuine_4__nightfall"
+	"5" "genuine_5__awakening"
 	"6" "genuine_6__travel"
 	"7" "genuine_u__star"
 }
