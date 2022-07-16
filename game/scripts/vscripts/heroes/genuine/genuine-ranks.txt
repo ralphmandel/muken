@@ -102,11 +102,12 @@
 			}
 			"1"
 			{
-				"1"   "genuine_5__awakening_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "genuine_5__awakening_rank_31"
+				"2"   "genuine_5__awakening_rank_32"
 			}
 			"3"
 			{

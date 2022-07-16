@@ -20,7 +20,7 @@ function icebreaker_3_modifier_skin:OnCreated( kv )
 
 	-- UP 3.11
 	if self.ability:GetRank(11) then
-		self.regen = 50
+		self.regen = 75
 	end
 
 	self.ability:SetActivated(false)

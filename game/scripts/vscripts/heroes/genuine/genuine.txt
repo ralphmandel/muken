@@ -220,22 +220,70 @@
 		"ScriptFile"            		"heroes/genuine/genuine_5__awakening"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_awakening"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityDamage"					"120 123 126 129 132 135 138 141 144 147 150 153"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+        "AbilityCastPoint"				"0.0"
+        "AbilityCooldown"				"0"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charges"		        "3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_reduction"		"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_width"			"125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_range"			"2400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_speed"			"3000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tree_width"			"75"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_radius"			"400"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"3.34"
+			}
+            "09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_time"		    "3.0"
+			}
+            "10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"recharge_time"		    "25"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -244,7 +292,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -265,7 +313,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 		"AbilityCooldown"				"18"
-        "AbilityDamage"					"90"
+        "AbilityDamage"					"75"
 
 		"AbilitySpecial"
 		{

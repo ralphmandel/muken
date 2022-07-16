@@ -35,7 +35,7 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 		end
 
 		self.drain = drain_percent * self.ticks * 0.01
-		self.mp_drain = self.ticks * 0.06
+		self.mp_drain = self.ticks * 0.05
 
 		self:PlayEfxStart()
 		self:StartIntervalThink(self.ticks)

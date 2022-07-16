@@ -97,7 +97,6 @@ function icebreaker_3_modifier_passive:DecrementLayer(target)
 
 	-- UP 3.31
 	if self.ability:GetRank(31) then
-		delay_layer = delay_layer - 10
 		self:AddFrost(target, self.parent:IsIllusion())
 	end
 

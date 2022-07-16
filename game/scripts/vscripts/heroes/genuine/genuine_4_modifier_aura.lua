@@ -1,7 +1,7 @@
 genuine_4_modifier_aura = class({})
 
 function genuine_4_modifier_aura:IsHidden()
-	return false
+	return true
 end
 
 function genuine_4_modifier_aura:IsPurgable()

@@ -91,6 +91,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_3__morning:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.kills = 0
     end
 
 -- SPELL START

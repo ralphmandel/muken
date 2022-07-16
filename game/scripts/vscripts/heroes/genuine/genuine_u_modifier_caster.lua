@@ -76,15 +76,3 @@ function genuine_u_modifier_caster:OnHeroKilled(keys)
 		self.ability:EndCooldown()
 	end
 end
-
------------------------------------------------------------
-
-function genuine_u_modifier_caster:PlayEfxBuff()
-	if self.effect_caster then ParticleManager:DestroyParticle(self.effect_caster, true) end
-
-	local particle = "particles/genuine/morning_star/genuine_morning_star.vpcf"
-	self.effect_caster = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.effect_caster, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_caster, 1, self.parent:GetOrigin())
-	self:AddParticle(self.effect_caster, false, false, -1, false, false)
-end

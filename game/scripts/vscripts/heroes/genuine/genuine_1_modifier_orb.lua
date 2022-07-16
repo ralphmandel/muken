@@ -36,9 +36,7 @@ end
 
 function genuine_1_modifier_orb:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_EVENT_ON_ATTACK,
@@ -50,19 +48,6 @@ function genuine_1_modifier_orb:DeclareFunctions()
 	}
 
 	return funcs
-end
-
-function genuine_1_modifier_orb:OnDeath(keys)
-	-- if keys.attacker == nil then return end
-	-- if keys.attacker:IsBaseNPC() == false then return end
-    -- if keys.attacker ~= self.parent then return end
-    -- if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-	-- if keys.unit:IsIllusion() then return end
-
-	-- local mana = 50
-	-- if keys.unit:IsHero() then mana = 200 end
-	-- self.parent:GiveMana(mana)
-	-- SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
 end
 
 function genuine_1_modifier_orb:OnTakeDamage(keys)
