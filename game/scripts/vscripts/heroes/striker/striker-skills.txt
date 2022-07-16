@@ -1,0 +1,10 @@
+"skills"
+{
+	"1" "striker_1__blow"
+	"2" "striker_2__shield"
+	"3" "striker_3__portal"
+	"4" "striker_4__hammer"
+	"5" "striker_5__clone"
+	"6" "striker_6__tremor"
+	"7" "striker_u__auto"
+}

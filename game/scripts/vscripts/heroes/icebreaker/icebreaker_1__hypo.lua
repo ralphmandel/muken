@@ -99,8 +99,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function icebreaker_1__hypo:Spawn()
         self.kills = 0
-        if self:IsTrained() == false then self:UpgradeAbility(true) end
         self:SetCurrentAbilityCharges(0)
+        if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
 -- SPELL START

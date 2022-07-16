@@ -90,12 +90,7 @@ require("talent_tree")
 		if unit_name == "npc_dota_hero_shadow_shaman" then self.hero_name = "dasdingo" end
 		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
 		if unit_name == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
-
-		if unit_name == "npc_dota_hero_elder_titan" then self.hero_name = "ancient" end
-		if unit_name == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
-		if unit_name == "npc_dota_hero_shadow_demon" then self.hero_name = "bloodstained" end
-		if unit_name == "npc_dota_hero_furion" then self.hero_name = "druid" end
-		if unit_name == "npc_dota_hero_spectre" then self.hero_name = "shadow" end	
+		if unit_name == "npc_dota_hero_dawnbreaker" then self.hero_name = "striker" end
 	end
 	
 	function base_hero:ResetRanksData()

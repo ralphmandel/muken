@@ -1,0 +1,150 @@
+"TalentTree_striker"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_dawnbreaker"
+	{
+		"striker_1__blow"
+		{
+			"0"
+			{
+				"1"   "striker_1__blow_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_1__blow_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_1__blow_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_1__blow_rank_41"
+			}
+		}
+		"striker_2__shield"
+		{
+			"0"
+			{
+				"1"   "striker_2__shield_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_2__shield_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_2__shield_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_2__shield_rank_41"
+			}
+		}
+		"striker_3__portal"
+		{
+			"0"
+			{
+				"1"   "striker_3__portal_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_3__portal_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_3__portal_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_3__portal_rank_41"
+			}
+		}
+		"striker_4__hammer"
+		{
+			"0"
+			{
+				"1"   "striker_4__hammer_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_4__hammer_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_4__hammer_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_4__hammer_rank_41"
+			}
+		}
+		"striker_5__clone"
+		{
+			"0"
+			{
+				"1"   "striker_5__clone_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_5__clone_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_5__clone_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_5__clone_rank_41"
+			}
+		}
+		"striker_6__tremor"
+		{
+			"0"
+			{
+				"1"   "striker_6__tremor_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_6__tremor_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_6__tremor_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_6__tremor_rank_41"
+			}
+		}
+		"striker_u__auto"
+		{
+			"0"
+			{
+				"1"   "striker_u__auto_rank_11"
+			}
+			"1"
+			{
+				"1"   "striker_u__auto_rank_21"
+			}
+			"2"
+			{
+				"1"   "striker_u__auto_rank_31"
+			}
+			"3"
+			{
+				"1"   "striker_u__auto_rank_41"
+			}
+		}
+	}	
+}

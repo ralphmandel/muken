@@ -1,0 +1,10 @@
+"Cosmetics"
+{
+    "models/items/dawnbreaker/first_light_armor/first_light_armor.vmdl" "nil"
+
+    "models/items/dawnbreaker/first_light_arms/first_light_arms.vmdl" "nil"
+
+    "models/items/dawnbreaker/first_light_head/first_light_head.vmdl" "nil"
+
+    "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl" "nil"
+}
