@@ -31,7 +31,7 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 
 		-- UP 5.32
 		if self.ability:GetRank(32) then
-			drain_percent = drain_percent + 3
+			drain_percent = drain_percent + 2.5
 		end
 
 		self.drain = drain_percent * self.ticks * 0.01
