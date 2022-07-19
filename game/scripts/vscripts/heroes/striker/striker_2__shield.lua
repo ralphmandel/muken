@@ -94,8 +94,42 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function striker_2__shield:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+
+        if target == caster then
+            caster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
+        else
+            caster:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+        end
+
+        return true
+    end
+
+    function striker_2__shield:OnAbilityPhaseInterrupted()
+        local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+
+        if target then
+            if target == caster then
+                caster:FadeGesture(ACT_DOTA_CAST_ABILITY_6)
+            else
+                caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+            end
+        end
+    end
+
     function striker_2__shield:OnSpellStart()
         local caster = self:GetCaster()
+		local target = self:GetCursorTarget()
+		local duration = self:GetSpecialValueFor("duration")
+
+        if caster ~= target then caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1) end
+
+		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {
+            duration = self:CalcStatus(duration, caster, target)
+        })
     end
 
     function striker_2__shield:GetManaCost(iLevel)

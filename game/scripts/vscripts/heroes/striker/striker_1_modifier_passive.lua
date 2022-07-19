@@ -49,14 +49,12 @@ function striker_1_modifier_passive:OnStateChanged(keys)
 	if self.parent:IsStunned()
 	or self.parent:IsFrozen()
 	or self.parent:IsDisarmed() then
-		print("state")
 		self:CancelCombo()
 	end
 end
 
 function striker_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
-	print("moved")
 	self:CancelCombo()
 end
 
@@ -71,7 +69,6 @@ function striker_1_modifier_passive:OnOrder(keys)
 		end
 	end
 
-	print("order")
 	self:CancelCombo()
 end
 
@@ -90,10 +87,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_1_modifier_passive:CheckHits(target)
-	if target ~= self.last_hit_target then print("target") self:CancelCombo() return end
+	if target ~= self.last_hit_target then self:CancelCombo() return end
 	if self.hits < 1 then return end
 	self.hits = self.hits - 1
-	if self.hits < 1 then print("hits") self:CancelCombo() end
+	if self.hits < 1 then self:CancelCombo() end
 end
 
 function striker_1_modifier_passive:TryCombo(target)
@@ -104,7 +101,6 @@ function striker_1_modifier_passive:TryCombo(target)
 	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	if RandomFloat(1, 100) <= chance then
-		print("starts")
 		self:CancelCombo()
 		self:PerformBlink(target)
 	end
