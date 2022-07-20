@@ -164,7 +164,7 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 		center_x = self.parent:GetAbsOrigin().x + 1,
 		center_y = self.parent:GetAbsOrigin().y + 1,
 		center_z = self.parent:GetAbsOrigin().z,
-		knockback_height = 15,
+		knockback_height = 10,
 	}
 
 	target:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)

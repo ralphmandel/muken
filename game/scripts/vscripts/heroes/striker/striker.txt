@@ -64,7 +64,7 @@
 		"ScriptFile"            		"heroes/striker/striker_2__shield"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_shield"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -73,7 +73,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 
 		"AbilityCastPoint"       		"0.5"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"15"
 		"AbilityCastRange"      		"750"
 
 		"AbilitySpecial"
@@ -81,17 +81,22 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"		    "5"
+				"chance_hero"	"70 68 66 64 62 60 58 56 54 52 50"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"70"
+				"chance"		"35"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"12"
+				"hits"		    "5"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"15"
 			}
 			"14"
 			{
@@ -101,7 +106,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -112,31 +117,71 @@
 		"ScriptFile"            		"heroes/striker/striker_3__portal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_portal"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCooldown"				"8"
+		"AbilityCastRange"      		"600"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"portal_duration"	"20"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"portal_radius"	    "120"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"pull_radius"	    "180"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"fow_radius"	    "240"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"tick_interval"	    "0.625"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_ticks"	        "9"
+			}
+            "07"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"amount_reduction"	"20"
+			}
+            "08"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"init_amount"	    "40 41 42 43 44 45 46 47 48 49 50" // x4.31
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"75"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -147,7 +192,7 @@
 		"ScriptFile"            		"heroes/striker/striker_4__hammer"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_hammer"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -171,7 +216,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -182,7 +227,7 @@
 		"ScriptFile"            		"heroes/striker/striker_5__clone"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_clone"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -206,18 +251,18 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
 
-    "striker_6__tremor"
+    "striker_6__sof"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/striker/striker_6__tremor"
+		"ScriptFile"            		"heroes/striker/striker_6__sof"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"striker_tremor"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"striker_sof"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -241,7 +286,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -1487,10 +1532,10 @@
         }
 
     //RANKS 6
-        "striker_6__tremor_rank_11"{
+        "striker_6__sof_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1517,10 +1562,10 @@
             }
         }
 
-        "striker_6__tremor_rank_12"{
+        "striker_6__sof_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1547,10 +1592,10 @@
             }
         }
 
-        "striker_6__tremor_rank_21"{
+        "striker_6__sof_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1577,10 +1622,10 @@
             }
         }
 
-        "striker_6__tremor_rank_22"{
+        "striker_6__sof_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1607,10 +1652,10 @@
             }
         }
 
-        "striker_6__tremor_rank_31"{
+        "striker_6__sof_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1637,10 +1682,10 @@
             }
         }
 
-        "striker_6__tremor_rank_32"{
+        "striker_6__sof_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1667,10 +1712,10 @@
             }
         }
 
-        "striker_6__tremor_rank_41"{
+        "striker_6__sof_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1697,10 +1742,10 @@
             }
         }
 
-        "striker_6__tremor_rank_42"{
+        "striker_6__sof_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_tremor"
+            "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

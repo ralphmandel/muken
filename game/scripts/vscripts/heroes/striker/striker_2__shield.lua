@@ -98,6 +98,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
 
+        if IsServer() then caster:EmitSound("Hero_Dawnbreaker.PreAttack") end
+
         if target == caster then
             caster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
         else
@@ -110,6 +112,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function striker_2__shield:OnAbilityPhaseInterrupted()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
+
+        if IsServer() then caster:StopSound("Hero_Dawnbreaker.PreAttack") end
 
         if target then
             if target == caster then

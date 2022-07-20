@@ -27,21 +27,36 @@ function genuine_4_modifier_aura_effect:OnCreated(kv)
 	end
 
 	self.ability:AddBonus("_2_RES", self.parent, -res, 0, nil)
+
+	if IsServer() then
+		self:PlayEfxRadiance()
+		self:StartIntervalThink(FrameTime())
+	end
 end
 
 function genuine_4_modifier_aura_effect:OnRefresh(kv)
 end
 
 function genuine_4_modifier_aura_effect:OnRemoved(kv)
+	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
 	self.ability:RemoveBonus("_2_RES", self.parent)
 end
 
 -----------------------------------------------------------
 
-function genuine_4_modifier_aura_effect:GetEffectName()
-	return "particles/econ/events/ti9/radiance_ti9.vpcf"
+function genuine_4_modifier_aura_effect:OnIntervalThink()
+	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.caster:GetAbsOrigin()) end
+	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
 
-function genuine_4_modifier_aura_effect:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
+-----------------------------------------------------------
+
+function genuine_4_modifier_aura_effect:PlayEfxRadiance()
+	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
+
+	local string_2 = "particles/econ/events/ti9/radiance_ti9.vpcf"
+	self.particle = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.particle, 1, self.caster:GetAbsOrigin())
+	self:AddParticle(self.particle, false, false, -1, false, false)
 end

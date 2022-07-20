@@ -55,19 +55,21 @@
 		{
 			"0"
 			{
-				"1"   "striker_3__portal_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
 				"1"   "striker_3__portal_rank_21"
+				"2"   "striker_3__portal_rank_22"
 			}
 			"2"
 			{
 				"1"   "striker_3__portal_rank_31"
+				"2"   "striker_3__portal_rank_32"
 			}
 			"3"
 			{
-				"1"   "striker_3__portal_rank_41"
+				"1"   "empty"
 			}
 		}
 		"striker_4__hammer"
@@ -108,23 +110,23 @@
 				"1"   "striker_5__clone_rank_41"
 			}
 		}
-		"striker_6__tremor"
+		"striker_6__sof"
 		{
 			"0"
 			{
-				"1"   "striker_6__tremor_rank_11"
+				"1"   "striker_6__sof_rank_11"
 			}
 			"1"
 			{
-				"1"   "striker_6__tremor_rank_21"
+				"1"   "striker_6__sof_rank_21"
 			}
 			"2"
 			{
-				"1"   "striker_6__tremor_rank_31"
+				"1"   "striker_6__sof_rank_31"
 			}
 			"3"
 			{
-				"1"   "striker_6__tremor_rank_41"
+				"1"   "striker_6__sof_rank_41"
 			}
 		}
 		"striker_u__auto"

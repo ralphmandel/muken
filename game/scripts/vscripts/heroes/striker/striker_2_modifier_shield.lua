@@ -20,6 +20,7 @@ function striker_2_modifier_shield:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local hits = self.ability:GetSpecialValueFor("hits")
+	self.chance_hero = self.ability:GetSpecialValueFor("chance_hero")
 	self.chance = self.ability:GetSpecialValueFor("chance")
 
 	if IsServer() then
@@ -30,7 +31,9 @@ end
 
 function striker_2_modifier_shield:OnRefresh(kv)
 	local hits = self.ability:GetSpecialValueFor("hits")
-
+	self.chance_hero = self.ability:GetSpecialValueFor("chance_hero")
+	self.chance = self.ability:GetSpecialValueFor("chance")
+	
 	if IsServer() then
         self:SetStackCount(hits)
         self:PlayEfxStart()
@@ -83,11 +86,11 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_2_modifier_shield:DecrementLayer(attacker)
-	local chance = self.chance
+	local chance = self.chance_hero
 
 	if attacker:IsIllusion()
 	or attacker:IsHero() == false then
-		chance = chance * 0.5
+		chance = self.chance
 	end
 	
 	if RandomFloat(1, 100) <= chance then
@@ -116,5 +119,5 @@ function striker_2_modifier_shield:PlayEfxBlocked(damage)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(damage, 0, 0 ))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-    if IsServer() then self.parent:EmitSound("Hero_Inquisitor.Shield.Block") end
+    if IsServer() then self.parent:EmitSound("Hero_Striker.Shield.Block") end
 end

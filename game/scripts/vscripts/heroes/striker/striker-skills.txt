@@ -5,6 +5,6 @@
 	"3" "striker_3__portal"
 	"4" "striker_4__hammer"
 	"5" "striker_5__clone"
-	"6" "striker_6__tremor"
+	"6" "striker_6__sof"
 	"7" "striker_u__auto"
 }

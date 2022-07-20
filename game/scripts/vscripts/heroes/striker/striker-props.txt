@@ -21,7 +21,7 @@
 			"Ability12"						"striker_3__portal"
 			"Ability13"						"striker_4__hammer"
 			"Ability14"						"striker_5__clone"
-			"Ability15"						"striker_6__tremor"
+			"Ability15"						"striker_6__sof"
 			"Ability16"						"striker_u__auto"
 			"Ability17"						"null"
 			"Ability18"						"null"
