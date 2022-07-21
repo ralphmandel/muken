@@ -5,7 +5,6 @@ LinkLuaModifier("striker_3_modifier_debuff", "heroes/striker/striker_3_modifier_
 LinkLuaModifier("_modifier_pull", "modifiers/_modifier_pull", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

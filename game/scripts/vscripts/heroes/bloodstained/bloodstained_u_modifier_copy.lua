@@ -20,7 +20,7 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
 	self.target = self.parent:GetForceAttackTarget()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_u_modifier_copy_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bloodstained_u_modifier_copy_status_efx", true) end
 end
 
 function bloodstained_u_modifier_copy:OnRefresh(kv)
@@ -28,11 +28,11 @@ end
 
 function bloodstained_u_modifier_copy:OnRemoved(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_u_modifier_copy_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bloodstained_u_modifier_copy_status_efx", false) end
 
 	if self.target ~= nil then
 		if IsValidEntity(self.target) then
-			self.target:RemoveModifierByName("bloodstained_u_modifier_debuff_slow")
+			self.target:RemoveModifierByNameAndCaster("bloodstained_u_modifier_debuff_slow", self.caster)
 		end
 	end
 end

@@ -39,17 +39,14 @@ end
 
 function striker_3_modifier_buff:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
--- function striker_3_modifier_buff:CheckState()
--- 	local state = {
--- 		[MODIFIER_STATE_STUNNED] = true
--- 	}
-
--- 	return state
--- end
 
 function striker_3_modifier_buff:DeclareFunctions()
 	local funcs = {
@@ -76,8 +73,19 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_3_modifier_buff:ApplyTick()
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+
+	-- UP 3.31
+	if self.ability:GetRank(31) then
+		self:ApplyPurge()
+	end
+
+	-- UP 3.22
+	if self.ability:GetRank(22) then
+		self:ApplyMana(base_stats)
+	end
+
 	local heal = self.amount
-    local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end
     if heal > 0 then self.parent:Heal(heal, self.ability) end
 
@@ -96,7 +104,46 @@ function striker_3_modifier_buff:ModifyStack(value, bModifyAmount)
 	self.ticks = self.ticks + value
 	if bModifyAmount then self.amount = self.amount * (100 - self.amount_reduction) * 0.01 end
 
+	-- UP 3.21
+	if self.ability:GetRank(21) then
+		self:ApplyMS()
+	end
+
 	if IsServer() then self:SetStackCount(self.ticks) end
+end
+
+function striker_3_modifier_buff:ApplyMana(base_stats)
+	local mana = self.amount * 0.25
+	if base_stats then mana = mana * base_stats:GetHealPower() end
+
+	if mana > 0 then
+		self.parent:GiveMana(mana)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
+	end
+end
+
+function striker_3_modifier_buff:ApplyMS()
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	if self.ticks > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+			percent = self.ticks * 5
+		})
+	end
+end
+
+function striker_3_modifier_buff:ApplyPurge()
+	local chance = 15
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+	if RandomFloat(1, 100) <= chance then
+		self.parent:Purge(false, true, false, true, false)
+		self:PlayEfxPurge()
+	end
 end
 
 -- EFFECTS -----------------------------------------------------------
@@ -115,4 +162,13 @@ function striker_3_modifier_buff:PlayEfxStart()
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_Striker.Portal.Buff") end
+end
+
+function striker_3_modifier_buff:PlayEfxPurge()
+	local string = "particles/striker/portal_purge/striker_portal_purge_hit.vpcf"
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	if IsServer() then self.parent:EmitSound("Hero_Leshrac.Diabolic_Edict") end
 end

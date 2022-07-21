@@ -25,14 +25,14 @@ function _modifier_ethereal:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.ability, "_modifier_ethereal_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "_modifier_ethereal_status_efx", true) end
 
 	--if IsServer() then self.parent:EmitSound("DOTA_Item.GhostScepter.Activate") end
 end
 
 function _modifier_ethereal:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.ability, "_modifier_ethereal_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "_modifier_ethereal_status_efx", false) end
 end
 
 --------------------------------------------------------------------------------

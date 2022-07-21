@@ -17,7 +17,7 @@ function bocuse_u_modifier_exhaustion:OnCreated(kv)
 
     self:PlayEfxStart()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_exhaustion_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_u_modifier_exhaustion_status_efx", true) end
 end
 
 function bocuse_u_modifier_exhaustion:OnRefresh(kv)
@@ -25,7 +25,7 @@ end
 
 function bocuse_u_modifier_exhaustion:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_exhaustion_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_u_modifier_exhaustion_status_efx", false) end
 end
 
 ------------------------------------------------------------

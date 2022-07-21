@@ -76,7 +76,7 @@ bloodstained_x1__blink = class({})
 		local caster = self:GetCaster()
 		local origin = caster:GetOrigin()
 		local target = self:GetCursorTarget()
-		target:RemoveModifierByName("bloodstained_u_modifier_copy")
+		target:RemoveModifierByNameAndCaster("bloodstained_u_modifier_copy", caster)
 
 		local point = target:GetOrigin()
 		local direction = (point - origin)

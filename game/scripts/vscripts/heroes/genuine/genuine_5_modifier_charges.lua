@@ -55,7 +55,10 @@ function genuine_5_modifier_charges:OnDeath(keys)
 	if self.ability:GetRank(11) then
 		local mana = 50
 		if keys.unit:IsHero() then mana = 200 end
-		self.parent:GiveMana(mana)
+		local base_stats = self.caster:FindAbilityByName("base_stats")
+		if base_stats then mana = mana * base_stats:GetHealPower() end
+		if mana > 0 then self.parent:GiveMana(mana) end
+		
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
 	end
 end

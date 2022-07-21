@@ -1,5 +1,7 @@
 striker_2__shield = class({})
 LinkLuaModifier("striker_2_modifier_shield", "heroes/striker/striker_2_modifier_shield", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_2_modifier_burn_aura", "heroes/striker/striker_2_modifier_burn_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_2_modifier_burn_aura_effect", "heroes/striker/striker_2_modifier_burn_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -127,13 +129,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function striker_2__shield:OnSpellStart()
         local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
-		local duration = self:GetSpecialValueFor("duration")
+		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
 
         if caster ~= target then caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1) end
 
-		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {
-            duration = self:CalcStatus(duration, caster, target)
-        })
+		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
     end
 
     function striker_2__shield:GetManaCost(iLevel)

@@ -24,7 +24,7 @@ function icebreaker_6_modifier_aura_effect:OnCreated( kv )
 
 	if self.caster == self.parent then
 		local cosmetics = self.parent:FindAbilityByName("cosmetics")
-		if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_6_modifier_aura_effect_status_efx", true) end
+		if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_6_modifier_aura_effect_status_efx", true) end
 	end
 
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
@@ -38,7 +38,7 @@ end
 function icebreaker_6_modifier_aura_effect:OnRemoved()
 	if self.caster == self.parent then
 		local cosmetics = self.parent:FindAbilityByName("cosmetics")
-		if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_6_modifier_aura_effect_status_efx", false) end
+		if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_6_modifier_aura_effect_status_efx", false) end
 		self.ability:DestroyShard()
 	end
 

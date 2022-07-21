@@ -109,7 +109,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 	function bocuse_2__flambee:OnAbilityPhaseStart()
 		local caster = self:GetCaster()
 		self.target = self:GetCursorTarget()
-		caster:RemoveModifierByName("bocuse_2_modifier_casting")
+		caster:RemoveModifierByNameAndCaster("bocuse_2_modifier_casting", caster)
 		caster:AddNewModifier(caster, self, "bocuse_2_modifier_casting", {duration = 1})
 		return true
 	end

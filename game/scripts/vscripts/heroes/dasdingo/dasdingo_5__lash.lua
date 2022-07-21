@@ -115,8 +115,9 @@ LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_
     end
 
     function dasdingo_5__lash:OnChannelFinish(bInterrupted)
+        local caster = self:GetCaster()
         local target = self:GetCursorTarget()
-        if target then target:RemoveModifierByName("dasdingo_5_modifier_lash") end
+        if target then target:RemoveModifierByNameAndCaster("dasdingo_5_modifier_lash", caster) end
     end
 
     function dasdingo_5__lash:GetChannelTime()

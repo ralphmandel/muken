@@ -70,7 +70,7 @@ function bloodstained_1_modifier_rage:OnCreated( kv )
 	self:ApplyGain()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_1_modifier_rage_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bloodstained_1_modifier_rage_status_efx", true) end
 end
 
 function bloodstained_1_modifier_rage:OnRefresh( kv )
@@ -123,13 +123,13 @@ function bloodstained_1_modifier_rage:OnRemoved( kv )
 	if self.units then
 		for _,unit in pairs(self.units) do
 			if IsValidEntity(unit) then
-				unit:RemoveModifierByName("bloodstained_1_modifier_berserk")
+				unit:RemoveModifierByNameAndCaster("bloodstained_1_modifier_berserk", self.caster)
 			end
 		end
 	end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bloodstained_1_modifier_rage_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bloodstained_1_modifier_rage_status_efx", false) end
 end
 ---------------------------------------------------------------------------------------------------
 

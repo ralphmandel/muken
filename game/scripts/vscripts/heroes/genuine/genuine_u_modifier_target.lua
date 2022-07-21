@@ -41,7 +41,7 @@ function genuine_u_modifier_target:OnRefresh(kv)
 end
 
 function genuine_u_modifier_target:OnRemoved(kv)
-	self.caster:RemoveModifierByName("genuine_u_modifier_caster")
+	self.caster:RemoveModifierByNameAndCaster("genuine_u_modifier_caster", self.caster)
 	if IsServer() then self.parent:StopSound("Hero_DeathProphet.Exorcism") end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
@@ -51,7 +51,7 @@ function genuine_u_modifier_target:OnRemoved(kv)
 end
 
 function genuine_u_modifier_target:OnDestroy(kv)
-	self.caster:RemoveModifierByName("genuine_u_modifier_caster")
+	self.caster:RemoveModifierByNameAndCaster("genuine_u_modifier_caster", self.caster)
 	if IsServer() then self.parent:StopSound("Hero_DeathProphet.Exorcism") end
 end
 

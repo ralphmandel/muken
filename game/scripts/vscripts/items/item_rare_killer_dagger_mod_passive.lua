@@ -74,7 +74,7 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 		self:StartIntervalThink(2)
 	end
 
-	if RandomInt(1, 100) <= chance then
+	if RandomFloat(1, 100) <= chance then
 		self.ability:RemoveBonus("_1_AGI", self.parent)
 		self.ability:AddBonus("_1_AGI", self.parent, 999, 0, nil)
 		self.hits = 1

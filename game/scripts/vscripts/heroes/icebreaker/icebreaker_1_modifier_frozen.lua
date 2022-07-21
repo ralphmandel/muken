@@ -27,9 +27,9 @@ function icebreaker_1_modifier_frozen:OnCreated( kv )
 	self.break_damage = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_1_modifier_frozen_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_frozen_status_efx", true) end
 
-	self.parent:RemoveModifierByName("icebreaker_1_modifier_hypo")
+	self.parent:RemoveModifierByNameAndCaster("icebreaker_1_modifier_hypo", self.caster)
 
 	if IsServer() then self:PlayEfxStart() end
 end
@@ -39,7 +39,7 @@ end
 
 function icebreaker_1_modifier_frozen:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "icebreaker_1_modifier_frozen_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_frozen_status_efx", false) end
 
 	local damageTable = {
 		victim = self.parent,
@@ -236,7 +236,7 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 		for _,unit in pairs(units) do
 			if base_stats and unit ~= self.parent then
 				if unit:HasModifier("icebreaker_1_modifier_frozen") then
-					unit:RemoveModifierByName("icebreaker_1_modifier_frozen")
+					unit:RemoveModifierByNameAndCaster("icebreaker_1_modifier_frozen", self.caster)
 					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
 					damageTableSplash.victim = unit
 					ApplyDamage(damageTableSplash)

@@ -56,8 +56,7 @@ function cosmetics:ApplyAmbient(ambients, unit, modifier)
 	end
 end
 
-function cosmetics:SetStatusEffect(ability, string, enable)
-	local caster = self:GetCaster()
+function cosmetics:SetStatusEffect(caster, ability, string, enable)
 	if self.cosmetic == nil then return end
 
 	local inflictor = self
@@ -74,7 +73,7 @@ function cosmetics:SetStatusEffect(ability, string, enable)
 						if modifier:GetAbility() == ability then modifier:Destroy() end
 					end
 				else
-					self.cosmetic[i]:RemoveModifierByName(string)
+					self.cosmetic[i]:RemoveModifierByNameAndCaster(string, caster)
 				end
 			end
 		end

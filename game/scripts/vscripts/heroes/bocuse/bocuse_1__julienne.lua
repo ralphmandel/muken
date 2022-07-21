@@ -229,7 +229,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
 
         if self.cancel then
-            caster:RemoveModifierByName("bocuse_1_modifier_julienne")
+            caster:RemoveModifierByNameAndCaster("bocuse_1_modifier_julienne", caster)
         else
             Timers:CreateTimer((0.25), function()
                 if self.target ~= nil then

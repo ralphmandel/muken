@@ -79,7 +79,7 @@ LinkLuaModifier("bocuse_x2_modifier_end", "heroes/bocuse/bocuse_x2_modifier_end"
         local caster = self:GetCaster()
         local time = self:GetChannelTime()
 
-        caster:RemoveModifierByName("bocuse_x2_modifier_channel")
+        caster:RemoveModifierByNameAndCaster("bocuse_x2_modifier_channel", caster)
         if IsServer() then
             caster:EmitSound("DOTA_Item.Cheese.Activate")
             caster:EmitSound("DOTA_Item.RepairKit.Target")
@@ -95,7 +95,7 @@ LinkLuaModifier("bocuse_x2_modifier_end", "heroes/bocuse/bocuse_x2_modifier_end"
         local duration = self:GetSpecialValueFor("duration")
         
         if bInterrupted == true then
-            caster:RemoveModifierByName("bocuse_x2_modifier_channel")
+            caster:RemoveModifierByNameAndCaster("bocuse_x2_modifier_channel", caster)
             self:StartCooldown(5)
             self:SetActivated(true)
             return

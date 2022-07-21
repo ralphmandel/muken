@@ -62,7 +62,7 @@ function bloodstained_3_modifier_curse:OnRemoved()
 	if self.caster == self.parent then
 		if self.target then
 			if IsValidEntity(self.target) then
-				self.target:RemoveModifierByName(self:GetName())
+				self.target:RemoveModifierByNameAndCaster(self:GetName(), self.caster)
 			end
 		end
 	else
@@ -71,7 +71,7 @@ function bloodstained_3_modifier_curse:OnRemoved()
 			if self.parent:IsAlive() == false then self.ability:EndCooldown() end
 		end
 		
-		self.caster:RemoveModifierByName(self:GetName())
+		self.caster:RemoveModifierByNameAndCaster(self:GetName(), self.caster)
 	end
 end
 

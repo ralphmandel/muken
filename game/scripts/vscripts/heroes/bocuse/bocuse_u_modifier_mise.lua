@@ -42,7 +42,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     self:PlayEfxStart()
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_mise_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_u_modifier_mise_status_efx", true) end
 end
 
 function bocuse_u_modifier_mise:OnRefresh(kv)
@@ -53,7 +53,7 @@ function bocuse_u_modifier_mise:OnRemoved()
     self.ability:SetActivated(true)
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(nil, "bocuse_u_modifier_mise_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_u_modifier_mise_status_efx", false) end
 
     if self.reset == 1 then return end
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

@@ -25,6 +25,8 @@ end
 
 function _modifier_movespeed_debuff:OnCreated(kv)
 	self.percent = kv.percent
+
+	if IsServer() then self:SetStackCount(self.percent) end
 end
 
 --------------------------------------------------------------------------------

@@ -51,7 +51,7 @@ end
 function dasdingo_1_modifier_heal_effect:OnRemoved(kv)
 	if self.particle_regen then ParticleManager:DestroyParticle(self.particle_regen, false) end
 
-	self.parent:RemoveModifierByName("dasdingo_1_modifier_immortal")
+	self.parent:RemoveModifierByNameAndCaster("dasdingo_1_modifier_immortal", self.caster)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
 	for _,modifier in pairs(mod) do
