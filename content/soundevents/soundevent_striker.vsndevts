@@ -23,7 +23,7 @@
 						"value"			"0"
 					}
 					"mixgroup"			{ "value"	"ambient"	}
-					"volume"            { "value"   "0.7"	}
+					"volume"            { "value"   "0.9"	}
 				}
 			}
 		}
@@ -88,6 +88,38 @@
 					}
 					"mixgroup"			{ "value"	"ambient"	}
 					"volume"            { "value"   "0.7"	}
+				}
+			}
+		}
+	}
+}
+
+"Hero_Striker.Hammer.Strike"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/striker_hammer_strike.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.0000"	}
 				}
 			}
 		}

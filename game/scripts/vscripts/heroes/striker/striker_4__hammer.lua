@@ -85,6 +85,22 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
 
         local charges = 1
+
+        -- UP 4.11
+        if self:GetRank(11) then
+            charges = charges * 2 -- cast range
+        end
+
+        -- UP 4.12
+        if self:GetRank(12) then
+            charges = charges * 3 -- cast point
+        end
+
+        -- UP 4.21
+        if self:GetRank(21) then
+            charges = charges * 5 -- pierces magic immunity
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -94,8 +110,123 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function striker_4__hammer:OnAbilityPhaseStart()
+        local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+
+        if target:TriggerSpellAbsorb(self) then return false end
+
+        self:PlayEfxStart(self:GetCursorTarget())
+
+        return true
+    end
+
+    function striker_4__hammer:OnAbilityPhaseInterrupted()
+        self:PlayEfxInterrupted()
+    end
+
     function striker_4__hammer:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local level = self:CalculateLevel(caster, target)
+        local isDamageRadius = false
+
+        if target:IsIllusion() then target:ForceKill(false) return end
+
+        local hammer_radius = self:GetSpecialValueFor("hammer_radius")
+        local stun_duration = self:GetSpecialValueFor("stun_duration") * level
+        local damage = self:GetAbilityDamage() * level
+
+        -- UP 4.22
+        if self:GetRank(22) then
+            stun_duration = (self:GetSpecialValueFor("stun_duration") + 0.5) * level
+        end
+
+        -- UP 4.41
+        if self:GetRank(41) then
+            damage = (self:GetAbilityDamage() + 25) * level
+            isDamageRadius = true
+        end
+
+        local damageTable = {
+            victim = target,
+            attacker = caster,
+            damage = damage,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self,
+        }
+
+        if isDamageRadius == false then ApplyDamage(damageTable) end
+    
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, hammer_radius,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            0, 0, false
+        )
+
+        for _,enemy in pairs(enemies) do
+            if isDamageRadius then
+                damageTable.victim = enemy
+                ApplyDamage(damageTable)
+            end
+
+            if enemy:IsAlive() then
+                enemy:AddNewModifier(caster, self, "_modifier_stun", {duration = stun_duration})
+            end
+        end
+    
+        GridNav:DestroyTreesAroundPoint(target:GetOrigin(), hammer_radius, true)
+
+        self:PlayEfxInterrupted()
+        self:PlayEfxEnd(target, level, hammer_radius)
+    end
+
+    function striker_4__hammer:CalculateLevel(caster, target)
+        local level = 1
+        if caster:GetLevel() % 2 == 0 and target:GetLevel() % 3 == 0 then level = level + 1 end
+        if caster:GetLevel() % 3 == 0 and target:GetLevel() % 2 == 0 then level = level + 1 end
+        if caster:GetLevel() == target:GetLevel() then return 2 end
+        if target:IsHero() == false then return 1 end
+
+        return level
+    end
+
+    function striker_4__hammer:GetAOERadius()
+        return self:GetSpecialValueFor("hammer_radius")
+    end
+
+    function striker_4__hammer:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+        local flag = 0
+
+        -- UP 4.21
+        if self:GetCurrentAbilityCharges() % 5 == 0 then
+            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+        end
+
+        local result = UnitFilter(
+            hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+            flag, caster:GetTeamNumber()
+        )
+        
+        if result ~= UF_SUCCESS then return result end
+
+        return UF_SUCCESS
+    end
+
+    function striker_4__hammer:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 200 end
+        return cast_range
+    end
+
+    function striker_4__hammer:GetCastPoint()
+        local cast_point = self:GetSpecialValueFor("cast_point")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_point end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_point - 1 end
+        return cast_point
     end
 
     function striker_4__hammer:GetManaCost(iLevel)
@@ -106,3 +237,46 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function striker_4__hammer:PlayEfxStart(target)
+        local caster = self:GetCaster()
+        local particle = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_solar_guardian_beam_shaft.vpcf"
+        self.efx_light = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(self.efx_light, 0, target:GetOrigin())
+
+        caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+
+        if IsServer() then caster:EmitSound("Hero_Nevermore.RequiemOfSoulsCast") end
+    end
+
+    function striker_4__hammer:PlayEfxInterrupted()
+        local caster = self:GetCaster()
+        if self.efx_light then ParticleManager:DestroyParticle(self.efx_light, false) end
+
+        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+
+        if IsServer() then caster:StopSound("Hero_Nevermore.RequiemOfSoulsCast") end
+    end
+
+    function striker_4__hammer:PlayEfxEnd(target, level, radius)
+        local caster = self:GetCaster()
+        local particle = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
+        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+    
+        local particle2 = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_immortal_cast.vpcf"
+        local effect2 = ParticleManager:CreateParticle(particle2, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControl(effect2, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControl(effect2, 1, target:GetOrigin())
+    
+        local particle3 = "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_call.vpcf"
+        local effect3 = ParticleManager:CreateParticle(particle3, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect3, 0, target:GetOrigin() )
+        ParticleManager:SetParticleControl(effect3, 2, Vector(radius, radius, radius))
+    
+        local particle_cast = "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 1, Vector(level, 1, level))
+    
+        if IsServer() then target:EmitSound("Hero_Striker.Hammer.Strike") end
+    end

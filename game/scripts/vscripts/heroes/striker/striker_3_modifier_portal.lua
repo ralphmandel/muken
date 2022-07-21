@@ -19,14 +19,24 @@ function striker_3_modifier_portal:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	self.expire = true
+	self.hidden = false
+	self.hidden_level = 0
 
 	self.portal_radius = self.ability:GetSpecialValueFor("portal_radius")
-	local pull_radius = self.ability:GetSpecialValueFor("pull_radius")
 	local fow_radius = self.ability:GetSpecialValueFor("fow_radius")
+
+	-- UP 3.32
+	if self.ability:GetRank(32) then
+		fow_radius = fow_radius + 160
+
+		Timers:CreateTimer((3), function()
+			if self then self:HiddenPortal() end
+		end)
+	end
 
 	if IsServer() then
 		self:StartIntervalThink(0.4)
-		self:PullEnemies(pull_radius)
+		self:PullEnemies()
 		self:PlayEfxStart(fow_radius)
 	end
 end
@@ -40,8 +50,29 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function striker_3_modifier_portal:CheckState()
+	local state = {
+		[MODIFIER_STATE_INVISIBLE] = self.hidden,
+	}
+
+	return state
+end
+
+function striker_3_modifier_portal:DeclareFunctions()
+	local funcs = {
+        MODIFIER_PROPERTY_INVISIBILITY_LEVEL
+	}
+
+	return funcs
+end
+
+function striker_3_modifier_portal:GetModifierInvisibilityLevel()
+	return self.hidden_level
+end
+
 function striker_3_modifier_portal:OnIntervalThink()
 	if IsServer() then
+		if self.hidden == true then self:PullEnemies() end
 		self:FindHeroes()
 		self:StartIntervalThink(FrameTime())
 	end
@@ -49,7 +80,23 @@ end
 
 -- UTILS -----------------------------------------------------------
 
+function striker_3_modifier_portal:HiddenPortal()
+	if self.parent == nil then return end
+	if IsValidEntity(self.parent) == false then return end
+
+	self.hidden = true
+	self.hidden_level = 2
+
+	local string = "particles/econ/events/fall_2021/blink_dagger_fall_2021_end.vpcf"
+	local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, self.parent)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+
+	if IsServer() then self.parent:EmitSound("Hero_PhantomAssassin.Blur.Break") end
+end
+
 function striker_3_modifier_portal:PullEnemies(pull_radius)
+	local pull_radius = self.ability:GetSpecialValueFor("pull_radius")
+
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, pull_radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false
@@ -57,7 +104,7 @@ function striker_3_modifier_portal:PullEnemies(pull_radius)
 
     for _,enemy in pairs(enemies) do
 		enemy:AddNewModifier(self.caster, self.ability, "_modifier_pull", {
-            duration = 0.2,
+            duration = 0.3,
             x = self.parent:GetOrigin().x,
             y = self.parent:GetOrigin().y,
         })

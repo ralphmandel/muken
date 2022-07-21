@@ -107,6 +107,11 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         local loc = self:GetCursorPosition()
         local portal_duration = self:GetSpecialValueFor("portal_duration")
 
+        -- UP 3.32
+        if self:GetRank(32) then
+            portal_duration = portal_duration + 40
+        end
+
         CreateModifierThinker(
             caster, self, "striker_3_modifier_portal",
             {duration = portal_duration},

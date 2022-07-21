@@ -18,6 +18,7 @@
 			"0"
 			{
 				"1"   "striker_1__blow_rank_11"
+				"2"   "striker_1__blow_rank_12"
 			}
 			"1"
 			{
@@ -25,11 +26,12 @@
 			}
 			"2"
 			{
-				"1"   "striker_1__blow_rank_31"
+				"3"   "striker_1__blow_rank_31"
+				"2"   "striker_1__blow_rank_32"
 			}
 			"3"
 			{
-				"1"   "striker_1__blow_rank_41"
+				"4"   "striker_1__blow_rank_41"
 			}
 		}
 		"striker_2__shield"
@@ -77,14 +79,16 @@
 			"0"
 			{
 				"1"   "striker_4__hammer_rank_11"
+				"2"   "striker_4__hammer_rank_12"
 			}
 			"1"
 			{
 				"1"   "striker_4__hammer_rank_21"
+				"2"   "striker_4__hammer_rank_22"
 			}
 			"2"
 			{
-				"1"   "striker_4__hammer_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -96,33 +100,36 @@
 			"0"
 			{
 				"1"   "striker_5__clone_rank_11"
+				"2"   "striker_5__clone_rank_12"
 			}
 			"1"
 			{
-				"1"   "striker_5__clone_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "striker_5__clone_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
 				"1"   "striker_5__clone_rank_41"
+				"2"   "striker_5__clone_rank_42"
 			}
 		}
 		"striker_6__sof"
 		{
 			"0"
 			{
-				"1"   "striker_6__sof_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "striker_6__sof_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "striker_6__sof_rank_31"
+				"2"   "striker_6__sof_rank_32"
 			}
 			"3"
 			{
@@ -134,18 +141,20 @@
 			"0"
 			{
 				"1"   "striker_u__auto_rank_11"
+				"2"   "striker_u__auto_rank_11"
 			}
 			"1"
 			{
 				"1"   "striker_u__auto_rank_21"
+				"2"   "striker_u__auto_rank_22"
 			}
 			"2"
 			{
-				"1"   "striker_u__auto_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "striker_u__auto_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	
