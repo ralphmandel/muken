@@ -122,7 +122,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function striker_4__hammer:OnAbilityPhaseInterrupted()
-        self:PlayEfxInterrupted()
+        self:PlayEfxEnd(true)
     end
 
     function striker_4__hammer:OnSpellStart()
@@ -177,8 +177,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     
         GridNav:DestroyTreesAroundPoint(target:GetOrigin(), hammer_radius, true)
 
-        self:PlayEfxInterrupted()
-        self:PlayEfxEnd(target, level, hammer_radius)
+        self:PlayEfxEnd(false)
+        self:PlayEfxHammer(target, level, hammer_radius)
     end
 
     function striker_4__hammer:CalculateLevel(caster, target)
@@ -240,25 +240,38 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function striker_4__hammer:PlayEfxStart(target)
         local caster = self:GetCaster()
+        local flRate = 0.85
+
         local particle = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_solar_guardian_beam_shaft.vpcf"
         self.efx_light = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(self.efx_light, 0, target:GetOrigin())
 
-        caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+        -- UP 4.12
+        if self:GetRank(12) then
+            flRate = 1.7
+        end
+
+        caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, flRate)
 
         if IsServer() then caster:EmitSound("Hero_Nevermore.RequiemOfSoulsCast") end
     end
 
-    function striker_4__hammer:PlayEfxInterrupted()
+    function striker_4__hammer:PlayEfxEnd(bInterrupted)
         local caster = self:GetCaster()
         if self.efx_light then ParticleManager:DestroyParticle(self.efx_light, false) end
 
-        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+        if bInterrupted then
+            caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+        else
+            Timers:CreateTimer((0.3), function()
+                caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+            end)
+        end
 
         if IsServer() then caster:StopSound("Hero_Nevermore.RequiemOfSoulsCast") end
     end
 
-    function striker_4__hammer:PlayEfxEnd(target, level, radius)
+    function striker_4__hammer:PlayEfxHammer(target, level, radius)
         local caster = self:GetCaster()
         local particle = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
         local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)

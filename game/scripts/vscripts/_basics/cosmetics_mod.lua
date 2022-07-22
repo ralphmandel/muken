@@ -24,6 +24,7 @@ function cosmetics_mod:OnCreated( kv )
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.no_draw = 0
 	self.invi = false
 	self.model = kv.model
 	self.parent:SetOriginalModel(self.model)
@@ -78,19 +79,22 @@ function cosmetics_mod:OnStateChanged(keys)
 	else
 		self.invi = false
 	end
-
-	if self.caster:IsHexed()
-	or self.caster:IsOutOfGame() then
-		self.parent:AddNoDraw()
-	else
-		self.parent:RemoveNoDraw()
-	end
 end
 
 function cosmetics_mod:OnDeath(keys)
 	if keys.unit == self.caster
 	and keys.unit:IsIllusion() then
 		self:Destroy()
+	end
+end
+
+function cosmetics_mod:ChangeHidden(stack)
+	self.no_draw = self.no_draw + stack
+
+	if self.no_draw > 0 then
+		self.parent:AddNoDraw()
+	else
+		self.parent:RemoveNoDraw()
 	end
 end
 

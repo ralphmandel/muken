@@ -9,7 +9,9 @@ function item_rare_serluc_armor_mod_aura:IsPurgable()
 end
 
 function item_rare_serluc_armor_mod_aura:IsAura()
-	return (not self:GetCaster():PassivesDisabled())
+	if self:GetParent():PassivesDisabled() then return false end
+	if self:GetParent():IsIllusion() then return false end
+	return true
 end
 
 function item_rare_serluc_armor_mod_aura:GetModifierAura()

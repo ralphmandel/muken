@@ -17,7 +17,12 @@ end
 function genuine_4_modifier_aura_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+
+	if self.caster:IsIllusion() then
+		self:SetupAbility()
+	else
+		self.ability = self:GetAbility()
+	end
 
 	local res = self.ability:GetSpecialValueFor("res")
 
@@ -47,6 +52,16 @@ end
 function genuine_4_modifier_aura_effect:OnIntervalThink()
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.caster:GetAbsOrigin()) end
 	if IsServer() then self:StartIntervalThink(FrameTime()) end
+end
+
+function genuine_4_modifier_aura_effect:SetupAbility()
+	local original_hero = nil
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then original_hero = base_stats:FindOriginalHero() end
+	
+	if original_hero then
+		self.ability = original_hero:FindAbilityByName(self:GetAbility():GetAbilityName())
+	end
 end
 
 -----------------------------------------------------------

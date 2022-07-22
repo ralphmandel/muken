@@ -86,8 +86,7 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
 			end)
         end
 
-        local charges = 1
-        self:SetCurrentAbilityCharges(charges)
+        self:CheckAbilityCharges(1)
     end
 
     function striker_1__blow:Spawn()
@@ -99,6 +98,16 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
 
     function striker_1__blow:GetIntrinsicModifierName()
         return "striker_1_modifier_passive"
+    end
+
+    function striker_1__blow:CheckAbilityCharges(charges)
+        self:SetCurrentAbilityCharges(charges)
+    end
+
+    function striker_1__blow:GetAbilityTextureName()
+        if self:GetCurrentAbilityCharges() == 0 then return "striker_blow" end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return "striker_blow_alter" end
+        return "striker_blow"
     end
 
     function striker_1__blow:GetManaCost(iLevel)

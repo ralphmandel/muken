@@ -11,7 +11,9 @@ end
 --------------------------------------------------------------------------------
 
 function dasdingo_2_modifier_aura:IsAura()
-	return (not self:GetCaster():PassivesDisabled())
+	if self:GetParent():PassivesDisabled() then return false end
+	if self:GetParent():IsIllusion() then return false end
+	return true
 end
 
 function dasdingo_2_modifier_aura:GetModifierAura()

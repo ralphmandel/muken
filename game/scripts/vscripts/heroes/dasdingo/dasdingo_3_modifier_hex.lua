@@ -30,6 +30,9 @@ function dasdingo_3_modifier_hex:OnCreated(kv)
 	self.ms_limit = self:GetAbility():GetSpecialValueFor("ms_limit")
 	self.model = "models/props_gameplay/pig.vmdl"
 
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:HideCosmetic(nil, true) end
+
 	-- UP 3.11
 	if self.ability:GetRank(11) then
 		self:StartIntervalThink(0.1)
@@ -48,15 +51,14 @@ end
 function dasdingo_3_modifier_hex:OnRefresh(kv)
 	self.ms_limit = self:GetAbility():GetSpecialValueFor("ms_limit")
 
-	if IsServer() then
-		self:PlayEfxStart(true)
-	end
+	if IsServer() then self:PlayEfxStart(true) end
 end
 
 function dasdingo_3_modifier_hex:OnRemoved()
-	if IsServer() then
-		self:PlayEfxStart(false)
-	end
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:HideCosmetic(nil, false) end
+
+	if IsServer() then self:PlayEfxStart(false) end
 end
 
 --------------------------------------------------------------------------------

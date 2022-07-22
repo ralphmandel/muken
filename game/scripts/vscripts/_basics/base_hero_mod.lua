@@ -16,11 +16,94 @@ function base_hero_mod:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.ability:LoadHeroNames()
-	self.activity = ""
+	self:LoadActivity()
+	self:LoadModel()
+	self:LoadSounds()
+end
 
+function base_hero_mod:OnRefresh(kv)
+end
+
+------------------------------------------------------------
+
+function base_hero_mod:DeclareFunctions()
+	local funcs = {}
+	
+	if self:GetCaster():GetUnitName() == "npc_dota_hero_spectre" then
+		funcs = {
+			MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PRE_ATTACK,
+			MODIFIER_EVENT_ON_ATTACK,
+			MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+			MODIFIER_PROPERTY_MODEL_CHANGE,
+			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+		}
+	else
+		funcs = {
+			MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PRE_ATTACK,
+			MODIFIER_EVENT_ON_ATTACK,
+			MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+		}
+	end
+
+	return funcs
+end
+
+function base_hero_mod:OnTakeDamage(keys)
+	if self.parent:IsIllusion() then return end
+	if keys.unit ~= self.parent then return end
+	local tp = self.parent:FindItemInInventory("item_tp")
+	if tp then tp:StartCooldown(5) end
+end
+
+function base_hero_mod:GetModifierPreAttack(keys)
+	if keys.attacker ~= self.parent then return end
+	if IsServer() then self.parent:EmitSound(self.pre_attack_sound) end
+end
+
+function base_hero_mod:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+	if IsServer() then self.parent:EmitSound(self.attack_sound) end
+end
+
+function base_hero_mod:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if IsServer() then self.parent:EmitSound(self.attack_landed_sound) end
+end
+
+function base_hero_mod:GetAttackSound(keys)
+    return ""
+end
+
+function base_hero_mod:GetModifierModelChange()
+	return self.model
+end
+
+function base_hero_mod:GetActivityTranslationModifiers()
+    return self.activity
+end
+
+function base_hero_mod:ChangeActivity(string)
+    self.activity = string
+end
+
+function base_hero_mod:ChangeSounds(pre_attack, attack, attack_landed)
+	if pre_attack then self.pre_attack_sound = pre_attack end
+	if attack then self.attack_sound = attack end
+	if attack_landed then self.attack_landed_sound = attack_landed end
+end
+
+function base_hero_mod:LoadActivity()
+	self.activity = ""
 	if self.ability.hero_name == "genuine" then self.activity = "ti6" end
 	if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
+end
 
+function base_hero_mod:LoadModel()
 	if self.ability.hero_name == "shadow" then
 		self.model = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
 		self.parent:SetOriginalModel(self.model)
@@ -41,87 +124,22 @@ function base_hero_mod:OnCreated(kv)
 	end)
 end
 
-function base_hero_mod:OnRefresh(kv)
-end
+function base_hero_mod:LoadSounds()
+	self.pre_attack_sound = ""
+	if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
 
-------------------------------------------------------------
+	self.attack_sound = ""
+	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
+	if self.ability.hero_name == "dasdingo" then self.attack_sound = "Hero_ShadowShaman.Attack" end
 
-function base_hero_mod:DeclareFunctions()
-	local funcs = {}
-	
-	if self:GetCaster():GetUnitName() == "npc_dota_hero_spectre" then
-		funcs = {
-			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_EVENT_ON_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-			MODIFIER_PROPERTY_MODEL_CHANGE,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-		}
-	else
-		funcs = {
-			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_EVENT_ON_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-		}
-	end
-
-	return funcs
-end
-
-function base_hero_mod:OnTakeDamage(keys)
-	if self.parent:IsIllusion() then return end
-	if keys.unit ~= self.parent then return end
-	local tp = self.parent:FindItemInInventory("item_tp")
-	if tp then tp:StartCooldown(5) end
-end
-
-function base_hero_mod:OnAttack(keys)
-	if keys.attacker ~= self.parent then return end
-
-	if IsServer() then
-		local attack_sound = ""
-		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.Attack" end
-		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.Attack" end
-
-		self.parent:EmitSound(attack_sound)
-	end
-end
-
-function base_hero_mod:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-	
-	if IsServer() then
-		local attack_sound = ""
-		if self.ability.hero_name == "dasdingo" then attack_sound = "Hero_ShadowShaman.ProjectileImpact" end
-		if self.ability.hero_name == "icebreaker" then attack_sound = "Hero_Riki.Attack" end
-		if self.ability.hero_name == "genuine" then attack_sound = "Hero_DrowRanger.ProjectileImpact" end
-		if self.ability.hero_name == "striker" then attack_sound = "Hero_Dawnbreaker.Attack" end
-
-		if self.ability.hero_name == "bocuse" then attack_sound = "Hero_Pudge.Attack" end
-		if self.ability.hero_name == "shadow" then attack_sound = "Hero_Spectre.Attack" end
-		if self.ability.hero_name == "bloodstained" then attack_sound = "Hero_Nightstalker.Attack" end
-
-		self.parent:EmitSound(attack_sound)
-	end
-end
-
-function base_hero_mod:GetAttackSound(keys)
-    return ""
-end
-
-function base_hero_mod:GetModifierModelChange()
-	return self.model
-end
-
-function base_hero_mod:GetActivityTranslationModifiers()
-    return self.activity
-end
-
-function base_hero_mod:ChangeActivity(string)
-    self.activity = string
+	self.attack_landed_sound = ""
+	if self.ability.hero_name == "dasdingo" then self.attack_landed_sound = "Hero_ShadowShaman.ProjectileImpact" end
+	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end
+	if self.ability.hero_name == "genuine" then self.attack_landed_sound = "Hero_DrowRanger.ProjectileImpact" end
+	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
+	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
+	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end
+	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 end
 
 -----------------------------------------------------------

@@ -103,6 +103,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if IsServer() then caster:EmitSound("Hero_Dawnbreaker.PreAttack") end
 
         if target == caster then
+            caster:StartGesture(ACT_DOTA_CAST_ABILITY_2)
             caster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
         else
             caster:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
@@ -119,6 +120,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         if target then
             if target == caster then
+                caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
                 caster:FadeGesture(ACT_DOTA_CAST_ABILITY_6)
             else
                 caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
@@ -131,7 +133,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		local target = self:GetCursorTarget()
 		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
 
-        if target ~= caster then caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1) end
+        if target then
+            if target == caster then
+                Timers:CreateTimer((0.2), function()
+                    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
+                    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_6)
+                end)
+            else
+                caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+            end
+        end
 
 		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
     end

@@ -19,11 +19,17 @@ end
 function _modifier_ban:OnCreated( kv )
     local parent = self:GetParent()
     parent:AddNoDraw()
+
+    local cosmetics = parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:HideCosmetic(nil, true) end
 end
 
 function _modifier_ban:OnRemoved()
     local parent = self:GetParent()
     parent:RemoveNoDraw()
+
+    local cosmetics = parent:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:HideCosmetic(nil, false) end
 end
 
 ---------------------------------------------------------------------------------

@@ -99,11 +99,12 @@ function cosmetics:HideCosmetic(model, bApply)
 	if self.cosmetic == nil then return end
 
 	for i = 1, #self.cosmetic, 1 do
-		if self.cosmetic[i]:GetModelName() == model then
+		if self.cosmetic[i]:GetModelName() == model 
+		or model == nil then
 			if bApply then
-				self.cosmetic[i]:AddNoDraw()
+				self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(1)
 			else
-				self.cosmetic[i]:RemoveNoDraw()
+				self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(-1)
 			end
 		end
 	end
