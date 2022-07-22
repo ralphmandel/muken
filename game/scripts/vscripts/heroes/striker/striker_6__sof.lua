@@ -96,6 +96,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function striker_6__sof:OnSpellStart()
         local caster = self:GetCaster()
+        local buff_duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
+
+        caster:AddNewModifier(caster, self, "striker_6_modifier_sof", {duration = buff_duration})
     end
 
     function striker_6__sof:GetManaCost(iLevel)

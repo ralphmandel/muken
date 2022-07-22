@@ -131,7 +131,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		local target = self:GetCursorTarget()
 		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
 
-        if caster ~= target then caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1) end
+        if target ~= caster then caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1) end
 
 		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
     end
