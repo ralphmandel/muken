@@ -1,5 +1,6 @@
 striker_6__sof = class({})
 LinkLuaModifier("striker_6_modifier_sof", "heroes/striker/striker_6_modifier_sof", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_6_modifier_sof_effect", "heroes/striker/striker_6_modifier_sof_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

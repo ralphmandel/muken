@@ -20,6 +20,7 @@ function striker_6_modifier_sof:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.swap = self.ability:GetSpecialValueFor("swap")
+	self.sof_duration = self.ability:GetSpecialValueFor("sof_duration")
 
 	if IsServer() then
 		self:SetHammer(2, true, "no_hammer")
@@ -30,6 +31,7 @@ end
 
 function striker_6_modifier_sof:OnRefresh(kv)
 	self.swap = self.ability:GetSpecialValueFor("swap")
+	self.sof_duration = self.ability:GetSpecialValueFor("sof_duration")
 
 	if IsServer() then self:PlayEfxStart() end
 end
@@ -62,7 +64,12 @@ function striker_6_modifier_sof:GetModifierAttackSpeedPercentage(keys)
 end
 
 function striker_6_modifier_sof:OnIntervalThink()
-	if self.parent:IsAttacking() then self:SetDuration(self:GetRemainingTime() - 0.1, false) end
+	if self.parent:IsAttacking() then
+		self:SetDuration(self:GetRemainingTime() - 0.1, false)
+		self.parent:AddNewModifier(self.caster, self.ability, "striker_6_modifier_sof_effect", {
+			duration = self.sof_duration
+		})
+	end
 
 	if IsServer() then self:StartIntervalThink(0.1) end
 end
@@ -91,7 +98,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function striker_6_modifier_sof:GetEffectName()
-	return "particles/units/heroes/hero_arc_warden/arc_warden_tempest_buff.vpcf"
+	return "particles/striker/ein_sof/striker_ein_sof_buff.vpcf"
 end
 
 function striker_6_modifier_sof:GetEffectAttachType()
