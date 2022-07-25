@@ -18,6 +18,12 @@ function striker_6_modifier_sof_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.min_health = 0
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self.min_health = 1
+	end
 
 	local stats = self.ability:GetSpecialValueFor("stats")
 	local luck = -self.ability:GetSpecialValueFor("luck")
@@ -42,16 +48,17 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
--- function striker_6_modifier_sof_effect:DeclareFunctions()
--- 	local funcs = {
--- 	}
+function striker_6_modifier_sof_effect:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MIN_HEALTH
+	}
 
--- 	return funcs
--- end
+	return funcs
+end
 
--- function striker_6_modifier_sof_effect:min(keys)
--- 	return -self.swap
--- end
+function striker_6_modifier_sof_effect:GetMinHealth(keys)
+	return self.min_health
+end
 
 -- UTILS -----------------------------------------------------------
 

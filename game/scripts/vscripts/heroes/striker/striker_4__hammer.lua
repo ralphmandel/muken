@@ -116,6 +116,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         if target:TriggerSpellAbsorb(self) then return false end
 
+        self.hammer_radius = self:GetSpecialValueFor("hammer_radius")
         self:PlayEfxStart(self:GetCursorTarget())
 
         return true
@@ -133,7 +134,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         if target:IsIllusion() then target:ForceKill(false) return end
 
-        local hammer_radius = self:GetSpecialValueFor("hammer_radius")
         local stun_duration = self:GetSpecialValueFor("stun_duration") * level
         local damage = self:GetAbilityDamage() * level
 
@@ -159,7 +159,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if isDamageRadius == false then ApplyDamage(damageTable) end
     
         local enemies = FindUnitsInRadius(
-            caster:GetTeamNumber(), target:GetOrigin(), nil, hammer_radius,
+            caster:GetTeamNumber(), target:GetOrigin(), nil, self.hammer_radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             0, 0, false
         )
@@ -175,10 +175,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             end
         end
     
-        GridNav:DestroyTreesAroundPoint(target:GetOrigin(), hammer_radius, true)
+        GridNav:DestroyTreesAroundPoint(target:GetOrigin(), self.hammer_radius, true)
 
         self:PlayEfxEnd(false)
-        self:PlayEfxHammer(target, level, hammer_radius)
+        self:PlayEfxHammer(target, level)
     end
 
     function striker_4__hammer:CalculateLevel(caster, target)
@@ -242,9 +242,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local flRate = 0.85
 
-        local particle = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_solar_guardian_beam_shaft.vpcf"
+        local particle = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_solar_guardian_aoe.vpcf"
         self.efx_light = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(self.efx_light, 0, target:GetOrigin())
+        ParticleManager:SetParticleControl(self.efx_light, 1, target:GetOrigin())
+        ParticleManager:SetParticleControl(self.efx_light, 2, Vector(self.hammer_radius, self.hammer_radius, 0))
 
         -- UP 4.12
         if self:GetRank(12) then
@@ -253,7 +255,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, flRate)
 
-        if IsServer() then caster:EmitSound("Hero_Nevermore.RequiemOfSoulsCast") end
+        if IsServer() then caster:EmitSound("Hero_Dawnbreaker.Solar_Guardian.Channel") end
     end
 
     function striker_4__hammer:PlayEfxEnd(bInterrupted)
@@ -268,10 +270,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             end)
         end
 
-        if IsServer() then caster:StopSound("Hero_Nevermore.RequiemOfSoulsCast") end
+        if IsServer() then caster:StopSound("Hero_Dawnbreaker.Solar_Guardian.Channel") end
     end
 
-    function striker_4__hammer:PlayEfxHammer(target, level, radius)
+    function striker_4__hammer:PlayEfxHammer(target, level)
         local caster = self:GetCaster()
         local particle = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
         local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
@@ -285,7 +287,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local particle3 = "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_call.vpcf"
         local effect3 = ParticleManager:CreateParticle(particle3, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(effect3, 0, target:GetOrigin() )
-        ParticleManager:SetParticleControl(effect3, 2, Vector(radius, radius, radius))
+        ParticleManager:SetParticleControl(effect3, 2, Vector(self.hammer_radius, self.hammer_radius, self.hammer_radius))
     
         local particle_cast = "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)

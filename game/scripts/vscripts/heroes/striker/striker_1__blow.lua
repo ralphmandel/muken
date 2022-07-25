@@ -1,5 +1,6 @@
 striker_1__blow = class({})
 LinkLuaModifier("striker_1_modifier_passive", "heroes/striker/striker_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_1_modifier_immune", "heroes/striker/striker_1_modifier_immune", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -100,10 +101,6 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
         return "striker_1_modifier_passive"
     end
 
-    function striker_1__blow:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
-    end
-
     function striker_1__blow:GetAbilityTextureName()
         if self:GetCurrentAbilityCharges() == 0 then return "striker_blow" end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return "striker_blow_alter" end
@@ -115,6 +112,10 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
+    end
+
+    function striker_1__blow:CheckAbilityCharges(charges)
+        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

@@ -18,14 +18,17 @@ function striker_6_modifier_sof:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.ability.damage_taken = 0
 
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self.sof_duration = self.ability:GetSpecialValueFor("sof_duration")
+	self:SetHammer(2, true, "no_hammer")
 
 	if IsServer() then
-		self:SetHammer(2, true, "no_hammer")
 		self:StartIntervalThink(0.1)
-		self:PlayEfxStart()
+		self.parent:EmitSound("Hero_Striker.Sof.Start")
+		self.ability:EndCooldown()
+		self.ability:SetActivated(false)
 	end
 end
 
@@ -33,14 +36,22 @@ function striker_6_modifier_sof:OnRefresh(kv)
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self.sof_duration = self.ability:GetSpecialValueFor("sof_duration")
 
-	if IsServer() then self:PlayEfxStart() end
+	if IsServer() then self.parent:EmitSound("Hero_Striker.Sof.Start") end
 end
 
 function striker_6_modifier_sof:OnRemoved()
-	if IsServer() then
+	self.parent:RemoveModifierByNameAndCaster("striker_6_modifier_sof_effect", self.caster)
+
+	if self.parent:IsAlive() then
+		self.parent:AddNewModifier(self.caster, self.ability, "striker_6_modifier_return", {duration = 5})
+	else
+		self.ability:SetActivated(true)
+		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+		self.ability:ResetHammer()
 		self:SetHammer(1, false, "")
-		self:PlayEfxEnd()
 	end
+
+	if IsServer() then self.parent:EmitSound("Hero_Striker.Sof.End") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -48,7 +59,9 @@ end
 function striker_6_modifier_sof:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE
+		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
@@ -58,9 +71,30 @@ function striker_6_modifier_sof:GetModifierDamageOutgoing_Percentage(keys)
 	return -self.swap
 end
 
-
 function striker_6_modifier_sof:GetModifierAttackSpeedPercentage(keys)
 	return self.swap
+end
+
+function striker_6_modifier_sof:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+
+	-- UP 6.32
+	if self.ability:GetRank(32) then
+		ApplyDamage({
+			victim = keys.target, attacker = self.caster,
+			damage = RandomInt(10, 15), damage_type = DAMAGE_TYPE_PURE,
+			ability = self.ability
+		})
+	end
+end
+
+function striker_6_modifier_sof:OnTakeDamage(keys)
+	if keys.unit ~= self.parent then return end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self.ability.damage_taken = self.ability.damage_taken + keys.damage
+	end
 end
 
 function striker_6_modifier_sof:OnIntervalThink()
@@ -103,12 +137,4 @@ end
 
 function striker_6_modifier_sof:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function striker_6_modifier_sof:PlayEfxStart()
-	if IsServer() then self.parent:EmitSound("Hero_Striker.Sof.Start") end
-end
-
-function striker_6_modifier_sof:PlayEfxEnd()
-	if IsServer() then self.parent:EmitSound("Hero_Striker.Sof.End") end
 end

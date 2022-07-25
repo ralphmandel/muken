@@ -49,13 +49,13 @@ function striker_1_modifier_passive:OnStateChanged(keys)
 	if self.parent:IsStunned()
 	or self.parent:IsFrozen()
 	or self.parent:IsDisarmed() then
-		self:CancelCombo()
+		self:CancelCombo(false)
 	end
 end
 
 function striker_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
-	self:CancelCombo()
+	self:CancelCombo(false)
 end
 
 function striker_1_modifier_passive:OnOrder(keys)
@@ -69,7 +69,7 @@ function striker_1_modifier_passive:OnOrder(keys)
 		end
 	end
 
-	self:CancelCombo()
+	self:CancelCombo(false)
 end
 
 function striker_1_modifier_passive:OnAttack(keys)
@@ -87,10 +87,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_1_modifier_passive:CheckHits(target)
-	if target ~= self.last_hit_target then self:CancelCombo() return end
+	if target ~= self.last_hit_target then self:CancelCombo(false) return end
 	if self.hits < 1 then return end
 	self.hits = self.hits - 1
-	if self.hits < 1 then self:CancelCombo() end
+	if self.hits < 1 then self:CancelCombo(false) end
 end
 
 function striker_1_modifier_passive:TryCombo(target)
@@ -101,12 +101,17 @@ function striker_1_modifier_passive:TryCombo(target)
 	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	if RandomFloat(1, 100) <= chance then
-		self:CancelCombo()
+		self:CancelCombo(true)
 		self:PerformBlink(target)
 	end
 end
 
 function striker_1_modifier_passive:PerformBlink(target)
+	-- UP 1.21
+	if self.ability:GetRank(21) then
+		self.parent:AddNewModifier(self.caster, self.ability, "striker_1_modifier_immune", {})
+	end
+
 	local agi = self.ability:GetSpecialValueFor("agi")
 	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
 	self.parent:Stop()
@@ -148,18 +153,34 @@ function striker_1_modifier_passive:PerformCombo(target)
 end
 
 
-function striker_1_modifier_passive:CancelCombo()
+function striker_1_modifier_passive:CancelCombo(bRepeat)
 	if self.sonicblow == false then return end
+	if bRepeat == false then self.parent:RemoveModifierByNameAndCaster("striker_1_modifier_immune", self.caster) end
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.hits = 0
 	self.sonicblow = false
 end
 
 function striker_1_modifier_passive:ApplyKnockback(target)
+	local knockback_duration = 0.25
+
+	-- UP 1.12
+	if self.ability:GetRank(12) then
+		local chance = 20
+		local base_stats = self.parent:FindAbilityByName("base_stats")
+		if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+		if RandomFloat(1, 100) <= chance then
+			knockback_duration = knockback_duration + 0.5
+		end
+	else
+		if target:IsMagicImmune() then return end
+	end
+
 	local knockbackProperties =
 	{
-		duration = 0.25,
-		knockback_duration = 0.25,
+		duration = knockback_duration,
+		knockback_duration = knockback_duration,
 		knockback_distance = 75,
 		center_x = self.parent:GetAbsOrigin().x + 1,
 		center_y = self.parent:GetAbsOrigin().y + 1,
