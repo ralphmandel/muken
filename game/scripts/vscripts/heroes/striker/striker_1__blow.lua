@@ -101,20 +101,71 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
         return "striker_1_modifier_passive"
     end
 
+    function striker_1__blow:OnSpellStart()
+        local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+
+        if target:TriggerSpellAbsorb(self) then return false end
+
+        caster:FindModifierByName(self:GetIntrinsicModifierName()):PerformBlink(target)
+    end
+
     function striker_1__blow:GetAbilityTextureName()
         if self:GetCurrentAbilityCharges() == 0 then return "striker_blow" end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return "striker_blow_alter" end
         return "striker_blow"
     end
 
+    -- function striker_1__blow:GetCastPoint()
+    --     if self:GetCurrentAbilityCharges() == 0 then return 0 end
+    --     if self:GetCurrentAbilityCharges() % 3 == 0 then return 0.5 end
+    --     return 0
+    -- end
+
+    -- function striker_1__blow:GetCastAnimation()
+    --     if self:GetCurrentAbilityCharges() == 0 then return 0 end
+    --     if self:GetCurrentAbilityCharges() % 3 == 0 then return ACT_DOTA_CAST_ABILITY_4 end
+    --     return 0
+    -- end
+
+    function striker_1__blow:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 450 end
+        return 0
+    end
+
+    function striker_1__blow:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_PASSIVE end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE end
+        return DOTA_ABILITY_BEHAVIOR_PASSIVE
+    end
+
+    function striker_1__blow:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+
+        local result = UnitFilter(
+            hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+            0, caster:GetTeamNumber()
+        )
+
+        return result
+    end
+
     function striker_1__blow:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then manacost = 125 end
         return manacost * level
     end
 
     function striker_1__blow:CheckAbilityCharges(charges)
+        -- UP 1.31
+        if self:GetRank(31) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

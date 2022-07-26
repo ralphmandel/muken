@@ -25,6 +25,8 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 		self.caster:AddNewModifier(self.caster, self.ability, "_modifier_bkb", {})        
 	end
 
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {})
+
 	if IsServer() then
 		self.ticks = 0.25
 		local drain_percent = self.ability:GetSpecialValueFor("drain_percent")
@@ -64,21 +66,26 @@ function dasdingo_5_modifier_lash:OnRemoved(kv)
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_stun")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_5_modifier_lash:CheckState()
-	return {[MODIFIER_STATE_STUNNED] = true}
-end
+-- function dasdingo_5_modifier_lash:CheckState()
+-- 	return {[MODIFIER_STATE_STUNNED] = true}
+-- end
 
-function dasdingo_5_modifier_lash:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
-end
+-- function dasdingo_5_modifier_lash:DeclareFunctions()
+-- 	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+-- end
 
-function dasdingo_5_modifier_lash:GetOverrideAnimation()
-	return ACT_DOTA_DISABLED
-end
+-- function dasdingo_5_modifier_lash:GetOverrideAnimation()
+-- 	return ACT_DOTA_DISABLED
+-- end
 
 function dasdingo_5_modifier_lash:OnIntervalThink()
 	local amount = self.parent:GetMaxHealth() * self.drain
