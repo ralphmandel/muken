@@ -334,7 +334,7 @@ LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_s
         ParticleManager:SetParticleControl(effect_cast, 0, point)
         ParticleManager:ReleaseParticleIndex(effect_cast)
 
-        particle_cast = "particles/econ/items/puck/puck_alliance_set/puck_waning_rift_aproset.vpcf"
+        particle_cast = "particles/genuine/genuine_travel_silence/genuine_silence_aproset.vpcf"
         effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, self:GetCaster())
         ParticleManager:SetParticleControl(effect_cast, 0, self:GetCaster():GetOrigin())
         ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))

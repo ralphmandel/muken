@@ -96,17 +96,22 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 -- SPELL START
 
     function striker_5__clone:OnSpellStart()
+        self:PerformAbility(self:GetCursorTarget())
+    end
+
+    function striker_5__clone:PerformAbility(target)
         local caster = self:GetCaster()
-        local target = self:GetCursorTarget()
         local owner = target
 
         if target:GetTeamNumber() ~= caster:GetTeamNumber() then
-            if target:TriggerSpellAbsorb(self) then return end
+            if target:TriggerSpellAbsorb(self) then return true end
             owner = caster
         end
 
         self:CreateClone(owner, target)
         caster:MoveToPositionAggressive(target:GetOrigin())
+
+        return true
     end
 
     function striker_5__clone:CreateClone(owner, target)

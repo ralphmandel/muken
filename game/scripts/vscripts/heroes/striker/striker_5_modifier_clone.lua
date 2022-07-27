@@ -40,6 +40,12 @@ function striker_5_modifier_clone:OnRemoved()
 	if self.parent:IsAlive() then
 		self.parent:Kill(self.ability, self.caster)
 	end
+
+	if self.target then
+		if IsValidEntity(self.target) then
+			self.target:RemoveModifierByNameAndCaster("striker_5_modifier_hero", self.caster)
+		end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

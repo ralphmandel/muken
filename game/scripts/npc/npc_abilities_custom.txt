@@ -176,7 +176,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_gold"			"99999" //60
+				"starting_gold"			"60" //60
 			}		
 		}
 	}

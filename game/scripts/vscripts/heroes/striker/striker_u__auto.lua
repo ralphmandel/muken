@@ -1,6 +1,5 @@
 striker_u__auto = class({})
-LinkLuaModifier("striker_u_modifier_auto", "heroes/striker/striker_u_modifier_auto", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifier_autocast", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -94,8 +93,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function striker_u__auto:GetIntrinsicModifierName()
+        return "striker_u_modifier_autocast"
+    end
+
     function striker_u__auto:OnSpellStart()
         local caster = self:GetCaster()
+        self:ToggleAutoCast()
+
+        local void = caster:FindAbilityByName("_void")
+        if void then void:SetLevel(1) end
     end
 
     function striker_u__auto:GetManaCost(iLevel)

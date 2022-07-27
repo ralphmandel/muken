@@ -45,8 +45,11 @@ function striker_6_modifier_sof:OnRemoved()
 	if self.parent:IsAlive() then
 		self.parent:AddNewModifier(self.caster, self.ability, "striker_6_modifier_return", {duration = 5})
 	else
+		if self.ability.autocast == false then
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+		end
+
 		self.ability:SetActivated(true)
-		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 		self.ability:ResetHammer()
 		self:SetHammer(1, false, "")
 	end

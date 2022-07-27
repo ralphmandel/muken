@@ -1,7 +1,7 @@
 striker_5_modifier_hero = class({})
 
 function striker_5_modifier_hero:IsHidden()
-	return true
+	return false
 end
 
 function striker_5_modifier_hero:IsPurgable()

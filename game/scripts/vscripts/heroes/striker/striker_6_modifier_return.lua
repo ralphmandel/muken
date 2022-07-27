@@ -28,8 +28,11 @@ function striker_6_modifier_return:OnRefresh(kv)
 end
 
 function striker_6_modifier_return:OnRemoved()
+	if self.ability.autocast == false then
+		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	end
+
 	self.ability:SetActivated(true)
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:ResetHammer()
 	self:CheckHeal()
 	self:SetHammer(1, false, "")

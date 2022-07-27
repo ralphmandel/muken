@@ -125,7 +125,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 
 	-- UP 1.31
 	if self.ability:GetRank(31) then
-		self.ability:StartCooldown(10)
+		self.ability:StartCooldown(12)
 	end
 
 	-- UP 1.32
@@ -302,6 +302,10 @@ function striker_1_modifier_passive:CreateCopy(target)
 				illu:AddNewModifier(self.caster, ein_sof, "striker_6_modifier_illusion_sof", {})
 			end
 		end
+
+		local caster_ult = self.caster:FindAbilityByName("striker_u__auto")
+		local illu_ult = illu:FindAbilityByName("striker_u__auto")
+		if illu_ult and caster_ult then illu_ult:SetLevel(caster_ult:GetLevel()) end
 
 		local passive = illu:FindModifierByName("striker_1_modifier_passive")
 		passive.last_hit_target = target

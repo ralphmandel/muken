@@ -103,13 +103,16 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
     end
 
     function striker_3__portal:OnSpellStart()
+        self:PerformAbility(self:GetCursorPosition())
+    end
+
+    function striker_3__portal:PerformAbility(loc)
         local caster = self:GetCaster()
-        local loc = self:GetCursorPosition()
         local portal_duration = self:GetSpecialValueFor("portal_duration")
 
         -- UP 3.32
         if self:GetRank(32) then
-            portal_duration = portal_duration + 40
+            portal_duration = portal_duration + 15
         end
 
         CreateModifierThinker(
@@ -117,6 +120,8 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
             {duration = portal_duration},
             loc, caster:GetTeamNumber(), false
         )
+
+        return true
     end
 
     function striker_3__portal:GetManaCost(iLevel)

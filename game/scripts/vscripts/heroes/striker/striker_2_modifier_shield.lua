@@ -36,7 +36,7 @@ function striker_2_modifier_shield:OnCreated(kv)
 
 	-- UP 2.31
 	if self.ability:GetRank(31) then
-		self.parent:AddNewModifier(self.caster, self.ability, "striker_2_modifier_burn_aura", {})
+		self.parent:AddNewModifier(self.parent, self.ability, "striker_2_modifier_burn_aura", {})
 	end
 
 	-- UP 2.41
@@ -91,7 +91,11 @@ function striker_2_modifier_shield:OnRemoved()
 	if IsServer() then self.parent:EmitSound("Hero_Medusa.ManaShield.Off") end
 
 	self.ability:RemoveBonus("_2_DEF", self.parent)
-	self.parent:RemoveModifierByNameAndCaster("striker_2_modifier_burn_aura", self.caster)
+
+	local mod = self.parent:FindAllModifiersByName("striker_2_modifier_burn_aura")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

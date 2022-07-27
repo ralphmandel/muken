@@ -141,7 +141,7 @@
 			"0"
 			{
 				"1"   "striker_u__auto_rank_11"
-				"2"   "striker_u__auto_rank_11"
+				"2"   "striker_u__auto_rank_12"
 			}
 			"1"
 			{

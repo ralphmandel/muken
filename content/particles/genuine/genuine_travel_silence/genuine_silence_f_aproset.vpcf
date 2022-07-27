@@ -57,8 +57,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 255, 90, 0, 255 ]
-			m_ColorMin = [ 255, 150, 0, 255 ]
+			m_ColorMax = [ 255, 25, 0 ]
+			m_ColorMin = [ 255, 85, 0 ]
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
@@ -105,7 +105,7 @@
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 255, 116, 240, 255 ]
+			m_ColorFade = [ 222, 115, 255 ]
 			m_flFadeStartTime = 0.3
 		},
 	]

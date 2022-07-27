@@ -113,7 +113,7 @@ function striker_3_modifier_buff:ModifyStack(value, bModifyAmount)
 end
 
 function striker_3_modifier_buff:ApplyMana(base_stats)
-	local mana = self.amount * 0.25
+	local mana = self.amount * 0.15
 	if base_stats then mana = mana * base_stats:GetHealPower() end
 
 	if mana > 0 then

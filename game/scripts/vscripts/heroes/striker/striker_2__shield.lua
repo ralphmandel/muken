@@ -131,7 +131,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function striker_2__shield:OnSpellStart()
         local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
-		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
 
         if target then
             if target == caster then
@@ -144,7 +143,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             end
         end
 
-		target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
+        self:PerformAbility(target)
+    end
+
+    function striker_2__shield:PerformAbility(target)
+        local caster = self:GetCaster()
+		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
+        target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
+
+        return true
     end
 
     function striker_2__shield:GetManaCost(iLevel)

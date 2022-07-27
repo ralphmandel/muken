@@ -134,6 +134,7 @@ function striker_3_modifier_portal:PlayEfxStart(fow_radius)
 	self.particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.particle, 20, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(self.particle)
 
 	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), fow_radius, self:GetDuration(), false)

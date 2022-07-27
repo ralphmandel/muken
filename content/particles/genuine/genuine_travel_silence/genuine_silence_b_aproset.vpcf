@@ -94,8 +94,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 248, 47, 208, 255 ]
-			m_ColorMax = [ 255, 174, 0, 255 ]
+			m_ColorMin = [ 217, 46, 248 ]
+			m_ColorMax = [ 255, 106, 0 ]
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
@@ -149,7 +149,7 @@
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 177, 107, 221, 255 ]
+			m_ColorFade = [ 137, 106, 221 ]
 		},
 	]
 	m_Renderers = 

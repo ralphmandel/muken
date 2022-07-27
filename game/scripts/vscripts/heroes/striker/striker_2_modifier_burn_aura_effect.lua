@@ -22,7 +22,7 @@ function striker_2_modifier_burn_aura_effect:OnCreated(kv)
 	self.intervals = 0.3
 	self.damageTable = {
 		victim = self.parent,
-		attacker = self.caster,
+		attacker = self.ability:GetCaster(),
 		damage = 0,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self.ability
@@ -44,6 +44,8 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function striker_2_modifier_burn_aura_effect:OnIntervalThink()
+	if self.caster == nil then self:Destroy() return end
+	if IsValidEntity(self.caster) == false then self:Destroy() return end
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.caster:GetAbsOrigin()) end
 
 	local damage = 20

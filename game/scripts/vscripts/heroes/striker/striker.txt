@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/striker/striker_1__blow"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_blow"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -53,7 +53,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -92,7 +92,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"		    "5"
+				"hits"		    "4"
 			}
             "04"
 			{
@@ -137,7 +137,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"portal_duration"	"20"
+				"portal_duration"	"15"
 			}
             "02"
 			{
@@ -167,12 +167,12 @@
             "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount_reduction"	"20"
+				"amount_reduction"	"20 20.5 21 21.5 22 22.5 23 23.5 24 24.5 25"
 			}
             "08"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"init_amount"	    "40 41 42 43 44 45 46 47 48 49 50" // x4.31
+				"init_amount"	    "30 31 32 33 34 35 36 37 38 39 40" // x4.31
 			}
 			"14"
 			{
@@ -258,7 +258,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"25"
 		"AbilityCastRange"      		"900"
 
 		"AbilitySpecial"
@@ -266,7 +266,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"illu_duration"		"30"
+				"illu_duration"		"25"
 			}
             "02"
 			{
@@ -304,7 +304,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"18"
 
 		"AbilitySpecial"
 		{
@@ -336,7 +336,7 @@
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"		"15"
+				"buff_duration"		"18"
 			}
             "07"
 			{
@@ -351,7 +351,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "90"
+				"manacost"		    "125"
 			}
 			"15"
 			{
@@ -367,22 +367,29 @@
 		"ScriptFile"            		"heroes/striker/striker_u__auto"
 		"AbilityTextureName"     		"striker_auto"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"autocast_manacost"		"100"
+			}
+            "02"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"chance_cooldown"		"70"
+			}
+            "03"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"max_mana"		        "140 150 160 170 180 190 200"
+			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -391,7 +398,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"				"9 10 11 12 13 14 15"
 			}
 		}
 	}

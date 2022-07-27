@@ -94,17 +94,25 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function striker_6__sof:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.autocast = false
     end
 
 -- SPELL START
 
     function striker_6__sof:OnSpellStart()
+        self.autocast = false
+        self:PerformAbility()
+    end
+
+    function striker_6__sof:PerformAbility()
         self:ResetHammer()
         self:Throw_hammer()
 
         local caster = self:GetCaster()
         local buff_duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
         caster:AddNewModifier(caster, self, "striker_6_modifier_sof", {duration = buff_duration})
+        
+        return true
     end
 
     function striker_6__sof:Throw_hammer()
