@@ -29,6 +29,11 @@ function striker_2_modifier_shield:OnCreated(kv)
 		self.ability:AddBonus("_2_DEF", self.parent, 25, 0, nil)
 	end
 
+	-- UP 2.21
+	if self.ability:GetRank(21) then
+		self:PlayEfxKnives()
+	end
+
 	-- UP 2.31
 	if self.ability:GetRank(31) then
 		self.parent:AddNewModifier(self.caster, self.ability, "striker_2_modifier_burn_aura", {})
@@ -57,6 +62,11 @@ function striker_2_modifier_shield:OnRefresh(kv)
 		self.ability:AddBonus("_2_DEF", self.parent, 25, 0, nil)
 	end
 
+	-- UP 2.21
+	if self.ability:GetRank(21) then
+		self:PlayEfxKnives()
+	end
+
 	-- UP 2.31
 	if self.ability:GetRank(31) then
 		self.parent:AddNewModifier(self.caster, self.ability, "striker_2_modifier_burn_aura", {})
@@ -77,6 +87,7 @@ end
 function striker_2_modifier_shield:OnRemoved()
 	if self.shield_particle then ParticleManager:DestroyParticle(self.shield_particle, false) end
 	if self.bkb_particle then ParticleManager:DestroyParticle(self.bkb_particle, false) end
+	if self.knives_particle then ParticleManager:DestroyParticle(self.knives_particle, false) end
 	if IsServer() then self.parent:EmitSound("Hero_Medusa.ManaShield.Off") end
 
 	self.ability:RemoveBonus("_2_DEF", self.parent)
@@ -194,4 +205,12 @@ function striker_2_modifier_shield:PlayEfxBKB()
 	self.bkb_particle = ParticleManager:CreateParticle("particles/items_fx/black_king_bar_avatar.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(self.bkb_particle, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
 	self:AddParticle(self.bkb_particle, false, false, -1, true, false)
+end
+
+function striker_2_modifier_shield:PlayEfxKnives()
+	if self.knives_particle then ParticleManager:DestroyParticle(self.knives_particle, false) end
+	self.knives_particle = ParticleManager:CreateParticle("particles/econ/items/spectre/spectre_arcana/spectre_arcana_radiance_owner_body.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(self.knives_particle, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(self.knives_particle, 1, self.parent:GetOrigin())
+	self:AddParticle(self.knives_particle, false, false, -1, true, false)
 end

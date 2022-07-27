@@ -1,6 +1,7 @@
 striker_6__sof = class({})
 LinkLuaModifier("striker_6_modifier_sof", "heroes/striker/striker_6_modifier_sof", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_6_modifier_sof_effect", "heroes/striker/striker_6_modifier_sof_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_6_modifier_illusion_sof", "heroes/striker/striker_6_modifier_illusion_sof", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_6_modifier_return", "heroes/striker/striker_6_modifier_return", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_6_modifier_debuff", "heroes/striker/striker_6_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)

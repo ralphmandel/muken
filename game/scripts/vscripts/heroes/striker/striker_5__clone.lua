@@ -1,6 +1,7 @@
 striker_5__clone = class({})
 LinkLuaModifier("striker_5_modifier_clone", "heroes/striker/striker_5_modifier_clone", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_hero", "heroes/striker/striker_5_modifier_hero", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,6 +97,92 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function striker_5__clone:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local owner = target
+
+        if target:GetTeamNumber() ~= caster:GetTeamNumber() then
+            if target:TriggerSpellAbsorb(self) then return end
+            owner = caster
+        end
+
+        self:CreateClone(owner, target)
+        caster:MoveToPositionAggressive(target:GetOrigin())
+    end
+
+    function striker_5__clone:CreateClone(owner, target)
+        local caster = self:GetCaster()
+        local illu_duration = self:GetSpecialValueFor("illu_duration")
+        local incoming = self:GetSpecialValueFor("incoming")
+        local outgoing = self:GetSpecialValueFor("outgoing")
+
+        target:RemoveModifierByNameAndCaster("striker_5_modifier_hero", caster)
+
+        -- UP 5.41
+        if self:GetRank(41) then
+            illu_duration = illu_duration - 10
+        end
+
+        local illu = CreateIllusions(owner, target, {
+            outgoing_damage = -outgoing, incoming_damage = incoming,
+            bounty_base = 0, bounty_growth = 0,
+            duration = illu_duration
+        }, 1, 64, false, true)
+        illu = illu[1]
+
+        local loc = target:GetAbsOrigin() + RandomVector(150)
+        illu:SetAbsOrigin(loc)
+        illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
+        FindClearSpaceForUnit(illu, loc, true)
+        illu:MoveToPositionAggressive(loc)
+        illu:ModifyHealth(illu:GetMaxHealth(), self, false, 0)
+
+        local mod_clone = illu:AddNewModifier(caster, self, "striker_5_modifier_clone", {})
+        mod_clone.target = target
+
+        local mod_hero = target:AddNewModifier(caster, self, "striker_5_modifier_hero", {})
+        mod_hero.clone = illu
+
+        if IsServer() then target:EmitSound("Blink_Layer.Overwhelming") end
+
+        self:UpgradeCloneAbility(target, illu)
+        self:PlayEfxStart(target)
+        self:PlayEfxStart(illu)
+    end
+
+    function striker_5__clone:UpgradeCloneAbility(target, illu)
+        for i = 0, 16, 1 do
+            local target_ability = target:GetAbilityByIndex(i)
+            if target_ability then
+                if target_ability:IsTrained() then
+                    local illu_ability = illu:FindAbilityByName(target_ability:GetAbilityName())
+                    if illu_ability then
+                        if illu_ability:IsTrained() == false then
+                            illu_ability:UpgradeAbility(true)
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    function striker_5__clone:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+        if caster == hTarget then return UF_FAIL_CUSTOM end
+        if hTarget:IsIllusion() then return UF_FAIL_CUSTOM end
+
+        local result = UnitFilter(
+            hTarget, self:GetAbilityTargetTeam(),
+            self:GetAbilityTargetType(),
+            self:GetAbilityTargetFlags(),
+            caster:GetTeamNumber()
+        )
+
+        return result
+    end
+
+    function striker_5__clone:GetCustomCastErrorTarget(hTarget)
+        if hTarget:IsIllusion() then return "Ability Can't Target Illusion" end
+        if self:GetCaster() == hTarget then return "#dota_hud_error_cant_cast_on_self" end
     end
 
     function striker_5__clone:GetManaCost(iLevel)
@@ -106,3 +193,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function striker_5__clone:PlayEfxStart(target)
+        local string_1 = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_v2.vpcf"
+        local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(particle_1, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(particle_1)
+    end

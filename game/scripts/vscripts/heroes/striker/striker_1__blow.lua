@@ -2,6 +2,7 @@ striker_1__blow = class({})
 LinkLuaModifier("striker_1_modifier_passive", "heroes/striker/striker_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_1_modifier_immune", "heroes/striker/striker_1_modifier_immune", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -116,18 +117,6 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
         return "striker_blow"
     end
 
-    -- function striker_1__blow:GetCastPoint()
-    --     if self:GetCurrentAbilityCharges() == 0 then return 0 end
-    --     if self:GetCurrentAbilityCharges() % 3 == 0 then return 0.5 end
-    --     return 0
-    -- end
-
-    -- function striker_1__blow:GetCastAnimation()
-    --     if self:GetCurrentAbilityCharges() == 0 then return 0 end
-    --     if self:GetCurrentAbilityCharges() % 3 == 0 then return ACT_DOTA_CAST_ABILITY_4 end
-    --     return 0
-    -- end
-
     function striker_1__blow:GetCastRange(vLocation, hTarget)
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         if self:GetCurrentAbilityCharges() % 3 == 0 then return 450 end
@@ -156,7 +145,7 @@ LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then manacost = 125 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then manacost = 100 end
         return manacost * level
     end
 

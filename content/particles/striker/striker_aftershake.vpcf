@@ -1,0 +1,83 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_projected_dark.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_projected.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_warp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_ring_progressive.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_ring_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_shockwave.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_streak.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_ring_elec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold_sparkle.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_volume.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_shake.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_warp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2_flek.vpcf"
+		},
+	]
+}

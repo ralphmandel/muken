@@ -1,7 +1,7 @@
 dasdingo_6_modifier_passive = class({})
 
 function dasdingo_6_modifier_passive:IsHidden()
-	return true
+	return false
 end
 
 function dasdingo_6_modifier_passive:IsPurgable()
@@ -35,7 +35,6 @@ end
 
 function dasdingo_6_modifier_passive:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
-	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
 	-- UP 6.22
@@ -50,7 +49,6 @@ end
 
 function dasdingo_6_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
 	-- UP 6.22

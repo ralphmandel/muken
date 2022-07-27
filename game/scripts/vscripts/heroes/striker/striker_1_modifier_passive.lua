@@ -22,6 +22,7 @@ function striker_1_modifier_passive:OnCreated(kv)
 	self.hits = 0
 	self.last_hit_target = nil
 	self.sonicblow = false
+	self.sonic_mirror = false
 end
 
 function striker_1_modifier_passive:OnRefresh(kv)
@@ -50,12 +51,14 @@ function striker_1_modifier_passive:OnStateChanged(keys)
 	or self.parent:IsHexed()
 	or self.parent:IsFrozen()
 	or self.parent:IsDisarmed() then
+		if self.parent:IsIllusion() then print("1") end
 		self:CancelCombo(false)
 	end
 end
 
 function striker_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
+	if self.parent:IsIllusion() then print("2") end
 	self:CancelCombo(false)
 end
 
@@ -70,6 +73,7 @@ function striker_1_modifier_passive:OnOrder(keys)
 		end
 	end
 
+	if self.parent:IsIllusion() then print("3") end
 	self:CancelCombo(false)
 end
 
@@ -88,10 +92,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_1_modifier_passive:CheckHits(target)
-	if target ~= self.last_hit_target then self:CancelCombo(false) return end
+	if target ~= self.last_hit_target then if self.parent:IsIllusion() then print("4") end self:CancelCombo(false) return end
 	if self.hits < 1 then return end
 	self.hits = self.hits - 1
-	if self.hits < 1 then self:CancelCombo(false) end
+	if self.hits < 1 then if self.parent:IsIllusion() then print("5") end self:CancelCombo(false) end
 end
 
 function striker_1_modifier_passive:TryCombo(target)
@@ -124,6 +128,16 @@ function striker_1_modifier_passive:PerformBlink(target)
 		self.ability:StartCooldown(10)
 	end
 
+	-- UP 1.32
+	if self.ability:GetRank(32) then
+		self:PerformAfterShake()
+	end
+
+	-- UP 1.41
+	if self.ability:GetRank(41) then
+		self:PerformMirrorSonic(RandomInt(0, 2), target)
+	end
+
 	local agi = self.ability:GetSpecialValueFor("agi")
 	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
 	self.parent:Stop()
@@ -131,7 +145,14 @@ function striker_1_modifier_passive:PerformBlink(target)
 	self:PlayEfxBlinkStart(target:GetOrigin() - self.parent:GetOrigin(), target)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_ban", {})
 
-	Timers:CreateTimer((0.3), function()
+	local delay = 0.3
+	if self.parent:HasModifier("striker_6_modifier_sof")
+	or self.parent:HasModifier("striker_6_modifier_return")
+	or self.parent:HasModifier("striker_6_modifier_illusion_sof") then
+		delay = 0.1
+	end
+
+	Timers:CreateTimer((delay), function()
 		if target then
 			if IsValidEntity(target) then
 				local point = target:GetAbsOrigin() + RandomVector(350)
@@ -164,10 +185,16 @@ function striker_1_modifier_passive:PerformCombo(target)
 	self:PlayEfxComboStart()
 end
 
-
 function striker_1_modifier_passive:CancelCombo(bRepeat)
 	if self.sonicblow == false then return end
-	if bRepeat == false then self.parent:RemoveModifierByNameAndCaster("striker_1_modifier_immune", self.caster) end
+	if bRepeat == false then
+		self.parent:RemoveModifierByNameAndCaster("striker_1_modifier_immune", self.caster)
+
+		if self.parent:IsIllusion() and self.sonic_mirror == true then
+			self.parent:Kill(self.ability, self.caster)
+		end
+	end
+
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_LCK", self.parent)
 	self.hits = 0
@@ -205,6 +232,83 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 	if IsServer() then target:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
 end
 
+function striker_1_modifier_passive:PerformAfterShake(target)
+	local radius = 300
+
+	local damageTable = {
+		victim = nil,
+		attacker = self.parent,
+		damage = 50,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability
+	}
+
+	local enemies = FindUnitsInRadius(
+        self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        0, 0, false
+    )
+
+    for _,enemy in pairs(enemies) do
+		damageTable.victim = enemy
+		ApplyDamage(damageTable)
+
+		if enemy:IsAlive() then
+			enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.3})
+		end
+    end
+
+    GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)
+	self:PlayEfxAfterShake(radius)
+end
+
+function striker_1_modifier_passive:PerformMirrorSonic(number, target)
+	if self.parent:IsIllusion() then return end
+	if number == 0 then return end
+
+	local enemies = FindUnitsInRadius(
+        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 500,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+    )
+
+    for _,enemy in pairs(enemies) do
+		if number > 0 and enemy:IsHero()
+		and enemy ~= target then
+			self:CreateCopy(enemy)
+			number = number - 1			
+		end
+	end
+
+	for _,enemy in pairs(enemies) do
+		if number > 0 and enemy ~= target then
+			self:CreateCopy(enemy)
+			number = number - 1
+		end
+	end
+end
+
+function striker_1_modifier_passive:CreateCopy(target)
+	local ein_sof = self.parent:FindAbilityByName("striker_6__sof")
+
+	local illu_array = CreateIllusions(self.caster, self.parent, {
+		outgoing_damage = 0, incoming_damage = 200,
+		bounty_base = 0, bounty_growth = 0, duration = -1
+	}, 1, 64, false, true)
+
+	for _,illu in pairs(illu_array) do
+		if ein_sof and self.parent:HasModifier("striker_6_modifier_sof") then
+			if ein_sof:IsTrained() then
+				illu:AddNewModifier(self.caster, ein_sof, "striker_6_modifier_illusion_sof", {})
+			end
+		end
+
+		local passive = illu:FindModifierByName("striker_1_modifier_passive")
+		passive.last_hit_target = target
+		passive.sonic_mirror = true
+		passive:PerformBlink(target)
+	end	
+end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -244,4 +348,13 @@ function striker_1_modifier_passive:PlayEfxComboStart()
     ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 
 	if IsServer() then self.parent:EmitSound("Hero_Centaur.DoubleEdge") end
+end
+
+function striker_1_modifier_passive:PlayEfxAfterShake(radius)
+	local particle_cast = "particles/striker/striker_aftershake.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
+    ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
+
+	if IsServer() then self.parent:EmitSound("Hero_EarthShaker.Totem") end
 end

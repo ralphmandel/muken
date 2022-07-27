@@ -31,7 +31,7 @@ function dasdingo_4_modifier_poison:OnCreated(kv)
 		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION
 	}
 
-	self.ability:AddBonus("_1_AGI", self.parent, -15, 0, 10)
+	self.ability:AddBonus("_1_AGI", self.parent, -20, 0, 10)
 
 	if IsServer() then
 		self:StartIntervalThink(intervals)

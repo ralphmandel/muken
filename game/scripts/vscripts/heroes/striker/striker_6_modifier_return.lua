@@ -19,6 +19,8 @@ function striker_6_modifier_return:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.swap = self.ability:GetSpecialValueFor("swap")
+
 	self:ReturnHammer()
 end
 
@@ -34,6 +36,23 @@ function striker_6_modifier_return:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function striker_6_modifier_return:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE
+	}
+
+	return funcs
+end
+
+function striker_6_modifier_return:GetModifierDamageOutgoing_Percentage(keys)
+	return -self.swap
+end
+
+function striker_6_modifier_return:GetModifierAttackSpeedPercentage(keys)
+	return self.swap
+end
 
 -- UTILS -----------------------------------------------------------
 

@@ -205,61 +205,29 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if hero then hero_stats = hero:FindAbilityByName("base_stats") end
 				if hero_stats == nil then return end
 
-				self.stat_base = hero_stats.stat_base
-				self.stat_bonus = hero_stats.stat_bonus
-				self.stat_percent = hero_stats.stat_percent
-				self.stat_total = hero_stats.stat_total
+				self.stat_init = {}
+				self.stat_base = {}
+				self.stat_bonus = {}
+				self.stat_total = {}
+				self.stat_percent = {}
+				self.stats_primary = {"STR", "AGI", "INT", "CON"}
+				self.stats_secondary = {"DEX", "DEF", "RES", "REC", "LCK", "MND"}
 
-				-- STR
-				self.damage = hero_stats.damage
-				self.critical_damage = hero_stats.critical_damage
-				self.range = hero_stats.range
-				self.base_block_damage = hero_stats.base_block_damage
-				self.block_damage = hero_stats.block_damage
-				self.block_chance = hero_stats.block_chance
-				self.physical_block = hero_stats.physical_block
-				self.magical_block = hero_stats.magical_block
+				for _, stat in pairs(self.stats_primary) do
+					self.stat_init[stat] = hero_stats:GetStatInit(stat)
+					self.stat_base[stat] = hero_stats:GetStatBase(stat)
+					self.stat_bonus[stat] = hero_stats:GetStatBonus(stat)
+					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
+					self.stat_percent[stat] = hero_stats:GetStatPercent(stat)
+				end
 
-				-- AGI
-				self.movespeed = hero_stats.movespeed
-				self.base_movespeed = hero_stats.base_movespeed
-				self.attack_speed = hero_stats.attack_speed
-				self.base_attack_time = hero_stats.base_attack_time
-				self.attack_time = hero_stats.attack_time
-
-				-- INT
-				self.mana = hero_stats.mana
-				self.spell_amp = hero_stats.spell_amp
-
-				-- CON
-				self.health_bonus = hero_stats.health_bonus
-				self.health_regen = hero_stats.health_regen
-				self.heal_amplify = hero_stats.heal_amplify
-				self.regen_state = hero_stats.regen_state
-
-				-- SECONDARY
-				self.evade = hero_stats.evade
-				self.armor = hero_stats.armor
-				self.resistance = hero_stats.resistance
-				self.mana_regen = hero_stats.mana_regen
-				self.cooldown = hero_stats.cooldown
-				self.heal_power = hero_stats.heal_power
-				self.buff_amp = hero_stats.buff_amp
-
-				-- CRITICAL
-				self.critical_chance = hero_stats.critical_chance
-				self.crit_damage_spell = hero_stats.crit_damage_spell
-				self.force_crit_spell = hero_stats.force_crit_spell
-				self.total_crit_damage = hero_stats.total_crit_damage
-				self.force_crit_hit = hero_stats.force_crit_hit
-				self.has_crit = hero_stats.has_crit
-
-				-- INIT
-				self.total_range = hero_stats.total_range
-				self.total_block_damage = hero_stats.total_block_damage
-				self.total_movespeed = hero_stats.total_movespeed
-				self.total_mana = hero_stats.total_mana
-				self.total_heal_amplify = hero_stats.total_heal_amplify
+				for _, stat in pairs(self.stats_secondary) do
+					self.stat_init[stat] = hero_stats:GetStatInit(stat)
+					self.stat_base[stat] = hero_stats:GetStatBase(stat)
+					self.stat_bonus[stat] = hero_stats:GetStatBonus(stat)
+					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
+					self.stat_percent[stat] = hero_stats:GetStatPercent(stat)
+				end
 			end
 		end
 
@@ -293,6 +261,32 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					end
 				end
 			end
+		end
+
+	-- GET STATS
+		function base_stats:GetStatInit(stat)
+			local value = self.stat_init[stat]
+			return value
+		end
+
+		function base_stats:GetStatBase(stat)
+			local value = self.stat_base[stat]
+			return value
+		end
+
+		function base_stats:GetStatBonus(stat)
+			local value = self.stat_bonus[stat]
+			return value
+		end
+
+		function base_stats:GetStatTotal(stat)
+			local value = self.stat_total[stat]
+			return value
+		end
+
+		function base_stats:GetStatPercent(stat)
+			local value = self.stat_percent[stat]
+			return value
 		end
 
 ---- ATTRIBUTES POINTS

@@ -102,7 +102,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"120"
 			}
 			"15"
 			{
@@ -251,22 +251,37 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"20"
+		"AbilityCastRange"      		"900"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"illu_duration"		"30"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"incoming"		    "250 245 240 235 230 225 220 215 210 205 200"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"outgoing"		    "25 22.5 20 17.5 15 12.5 10 7.5 5 2.5 0"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"135"
 			}
 			"15"
 			{
@@ -336,7 +351,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "120"
+				"manacost"		    "90"
 			}
 			"15"
 			{
@@ -371,7 +386,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "100"
+				"manacost"		    "0"
 			}
 			"15"
 			{

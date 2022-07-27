@@ -210,7 +210,8 @@ function _boss_modifier__ai:OnTakeDamage(keys)
     if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
 
     if keys.inflictor ~= nil then
-        if keys.inflictor == "shadow_0__toxin" then
+        if keys.inflictor == "shadow_0__toxin" 
+        or keys.inflictor == "dasdingo_4__tribal" then
             efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
         end
     end
