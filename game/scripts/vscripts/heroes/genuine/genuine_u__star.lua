@@ -89,7 +89,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         local charges = 1
 
         -- UP 7.11
-        if self:GetRank(11) == false then
+        if self:GetRank(11) then
             charges = charges * 2
         end
 
