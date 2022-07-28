@@ -119,6 +119,9 @@ function base_hero_mod:LoadModel()
 				if self.ability.hero_name == "shadow" then
 					self.parent:SetModelScale(1)
 				end
+				if self.ability.hero_name == "krieger" then
+					self.parent:SetModelScale(1.10)
+				end
 			end
 		end
 	end)
@@ -127,6 +130,7 @@ end
 function base_hero_mod:LoadSounds()
 	self.pre_attack_sound = ""
 	if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
+	if self.ability.hero_name == "krieger" then self.pre_attack_sound = "Krieger.Pre.Attack" end
 
 	self.attack_sound = ""
 	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
@@ -137,6 +141,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end
 	if self.ability.hero_name == "genuine" then self.attack_landed_sound = "Hero_DrowRanger.ProjectileImpact" end
 	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
+	if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end

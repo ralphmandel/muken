@@ -21,12 +21,16 @@
 					}
 
 					"mixgroup"			{ "value"	"BaseAttacks"	}
-					"volume"            { "value"   "0.50000"	}
+					"volume"            { "value"   "0.7500000"	}
 					"pitch_rand_min" 	{ "value"   "-0.050000" }
 					"pitch_rand_max"  	{ "value"   "0.050000"	}
 					"pitch"  			{ "value"   "1.000000"	}
 					"soundlevel"  		{ "value"   "78.000000"	}
 					"distance_max"  	{ "value"   "2500.000000"	}
+					"soundevent_layer2" 	{ "value" "Hero_Sven.Attack.Impact" }
+					"soundevent_layer2_on" 	{ "value" "1.000000" }
+					//"soundevent_layer3" 	{ "value" "Hero_Sven.Attack.Ring" }
+					//"soundevent_layer3_on" 	{ "value" "1.000000" }
 				}
 			}
 		}

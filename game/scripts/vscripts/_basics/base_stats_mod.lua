@@ -331,6 +331,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierConstantManaRegen()
         if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" 
+        or self.parent:GetUnitName() == "npc_dota_hero_sven" 
         or self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then
             return 0
         end

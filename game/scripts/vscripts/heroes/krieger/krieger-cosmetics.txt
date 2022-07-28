@@ -1,0 +1,17 @@
+"Cosmetics"
+{
+    "models/items/sven/endless_fury_sven_arms/endless_fury_sven_arms.vmdl" "nil"
+
+    "models/items/sven/endless_fury_sven_back/endless_fury_sven_back.vmdl" "nil"
+    
+    "models/items/sven/endless_fury_sven_belt/endless_fury_sven_belt.vmdl" "nil"
+
+    "models/items/sven/endless_fury_sven_head/endless_fury_sven_head.vmdl" "nil"
+
+    "models/items/sven/endless_fury_sven_shoulder/endless_fury_sven_shoulder.vmdl" "nil"
+
+    "models/items/sven/endless_fury_sven_weapon/endless_fury_sven_weapon.vmdl"
+    {
+        "particles/krieger/endless_fury/krieger_endless_fury_weapon.vpcf" "attach_sword_fx"
+    } 
+}

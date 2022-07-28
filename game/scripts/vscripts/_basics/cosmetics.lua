@@ -18,6 +18,7 @@ function cosmetics:LoadCosmetics()
 	if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
 	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 	if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
+	if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
 
 	if hero_name ~= nil then
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")

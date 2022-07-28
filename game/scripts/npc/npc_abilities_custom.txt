@@ -311,6 +311,8 @@
 #base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/striker/striker.txt"
 
+#base "../vscripts/heroes/krieger/krieger.txt"
+
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"
 #base "../vscripts/bosses/_bosses.txt"

@@ -464,6 +464,9 @@
 				if unit:GetUnitName() == "npc_dota_hero_riki" then
 					cosmetics:SetStatusEffect(unit, nil, "icebreaker_1_modifier_passive_status_efx", true)
 				end
+				if unit:GetUnitName() == "npc_dota_hero_sven" then
+					cosmetics:SetStatusEffect(unit, nil, "krieger_1_modifier_passive_status_efx", true)
+				end
 			end
 		end
 

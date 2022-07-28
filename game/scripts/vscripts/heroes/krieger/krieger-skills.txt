@@ -1,0 +1,10 @@
+"skills"
+{
+	"1" "krieger_1__fury"
+	"2" "krieger_2__slash"
+	"3" "krieger_3__rush"
+	"4" "krieger_4__death"
+	"5" "krieger_5__sk5"
+	"6" "krieger_6__sk6"
+	"7" "krieger_u__rage"
+}
