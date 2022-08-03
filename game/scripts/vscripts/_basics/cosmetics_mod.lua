@@ -113,13 +113,23 @@ function cosmetics_mod:PlayEfxAmbient(ambient, attach)
 	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
 end
 
-function cosmetics_mod:ResetAmbientEfx()
+function cosmetics_mod:StopAmbientEfx(ambient, bDestroyImmediately)
 	if self.index == nil then return end
 	if self.ambient == nil then return end
 	if self.particle == nil then return end
 	
-	self.particle[self.index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.particle[self.index], 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControlEnt(self.particle[self.index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
-	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
+	for i = 1, self.index, 1 do
+		if ambient == self.ambient[i] or ambient == nil then
+			if self.particle[i] then
+				ParticleManager:DestroyParticle(self.particle[i], bDestroyImmediately)
+				ParticleManager:ReleaseParticleIndex(self.particle[i])
+			end
+		end
+	end
+
+	if ambient == nil then
+		self.index = nil
+		self.ambient = nil
+		self.particle = nil
+	end
 end

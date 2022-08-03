@@ -91,6 +91,7 @@ require("talent_tree")
 		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
 		if unit_name == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
 		if unit_name == "npc_dota_hero_dawnbreaker" then self.hero_name = "striker" end
+		if unit_name == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
 		if unit_name == "npc_dota_hero_sven" then self.hero_name = "krieger" end
 	end
 	

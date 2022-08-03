@@ -5,157 +5,212 @@ function cosmetics:Spawn()
 	self:UpgradeAbility(true)
 end
 
-function cosmetics:LoadCosmetics()
-	self.status_efx_flags = {
-		[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
-	}
-	self.cosmetic = {}
+-- ADD COSMETICS
 
-	local caster = self:GetCaster()
-	local hero_name = nil
+	function cosmetics:LoadCosmetics()
+		self.status_efx_flags = {
+			[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
+		}
+		self.cosmetic = {}
 
-	if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
-	if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
-	if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
-	if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
-	if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
+		local caster = self:GetCaster()
+		local hero_name = nil
 
-	if hero_name ~= nil then
-		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
-		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
-	end
-end
+		if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
+		if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
+		if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
+		if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
+		if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
+		if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
 
-function cosmetics:ApplyCosmetics(cosmetics_data)
-	local caster = self:GetCaster()
-	local index = 0
-
-	for cosmetic, ambients in pairs(cosmetics_data) do
-		local unit = caster
-		local modifier = caster:FindModifierByName(cosmetic)
-
-		if modifier == nil then
-			index = index + 1
-			self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
-			modifier = self.cosmetic[index]:AddNewModifier(caster, self, "cosmetics_mod", {model = cosmetic})
-			unit = self.cosmetic[index]
-		end
-
-		if ambients ~= "nil" then
-			self:ApplyAmbient(ambients, unit, modifier)
+		if hero_name ~= nil then
+			local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
+			if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
 		end
 	end
-end
 
-function cosmetics:ApplyAmbient(ambients, unit, modifier)
-	for ambient, attach in pairs(ambients) do
-		if ambient == "material" then
-			unit:SetMaterialGroup(tostring(attach))
-		else
-			modifier:PlayEfxAmbient(ambient, attach)
+	function cosmetics:ApplyCosmetics(cosmetics_data)
+		local caster = self:GetCaster()
+		local index = 0
+
+		for cosmetic, ambients in pairs(cosmetics_data) do
+			local unit = caster
+			local modifier = caster:FindModifierByName(cosmetic)
+
+			if modifier == nil then
+				index = index + 1
+				self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
+				modifier = self.cosmetic[index]:AddNewModifier(caster, self, "cosmetics_mod", {model = cosmetic})
+				unit = self.cosmetic[index]
+			end
+
+			if ambients ~= "nil" then
+				self:ApplyAmbient(ambients, unit, modifier)
+			end
 		end
 	end
-end
 
-function cosmetics:SetStatusEffect(caster, ability, string, enable)
-	if self.cosmetic == nil then return end
+	function cosmetics:ApplyAmbient(ambients, unit, modifier)
+		if modifier == nil or ambients == nil or unit == nil then return end
 
-	local inflictor = self
-	if ability then inflictor = ability end
-
-	for i = 1, #self.cosmetic, 1 do
-		if self:CheckFlags(self.cosmetic[i]) then
-			if enable == true then
-				self.cosmetic[i]:AddNewModifier(caster, inflictor, string, {})
+		for ambient, attach in pairs(ambients) do
+			if ambient == "material" then
+				unit:SetMaterialGroup(tostring(attach))
 			else
-				if ability then
-					local mod = self.cosmetic[i]:FindAllModifiersByName(string)
-					for _,modifier in pairs(mod) do
-						if modifier:GetAbility() == ability then modifier:Destroy() end
-					end
+				modifier:PlayEfxAmbient(ambient, attach)
+			end
+		end
+	end
+
+	function cosmetics:ChangeTeam(team)
+		if self.cosmetic == nil then return end
+	
+		for i = 1, #self.cosmetic, 1 do
+			self.cosmetic[i]:SetTeam(team)
+		end
+	end
+
+-- STATUS EFX / BAN
+
+	function cosmetics:SetStatusEffect(caster, ability, string, enable)
+		if self.cosmetic == nil then return end
+
+		local inflictor = self
+		if ability then inflictor = ability end
+
+		for i = 1, #self.cosmetic, 1 do
+			if self:CheckFlags(self.cosmetic[i]) then
+				if enable == true then
+					self.cosmetic[i]:AddNewModifier(caster, inflictor, string, {})
 				else
-					self.cosmetic[i]:RemoveModifierByNameAndCaster(string, caster)
+					if ability then
+						local mod = self.cosmetic[i]:FindAllModifiersByName(string)
+						for _,modifier in pairs(mod) do
+							if modifier:GetAbility() == ability then modifier:Destroy() end
+						end
+					else
+						self.cosmetic[i]:RemoveModifierByNameAndCaster(string, caster)
+					end
 				end
 			end
 		end
 	end
-end
 
-function cosmetics:CheckFlags(cosmetic)
-	if cosmetic == nil then return end
-	if IsValidEntity(cosmetic) == false then return end
-	local mod = cosmetic:FindModifierByName("cosmetics_mod")
-	if mod then
-		for i = 1, #self.status_efx_flags, 1 do
-			if mod.model == self.status_efx_flags[i] then
-				return false
+	function cosmetics:CheckFlags(cosmetic)
+		if cosmetic == nil then return end
+		if IsValidEntity(cosmetic) == false then return end
+		local mod = cosmetic:FindModifierByName("cosmetics_mod")
+		if mod then
+			for i = 1, #self.status_efx_flags, 1 do
+				if mod.model == self.status_efx_flags[i] then
+					return false
+				end
+			end
+		end
+
+		return true
+	end
+
+	function cosmetics:HideCosmetic(model, bApply)
+		if self.cosmetic == nil then return end
+
+		for i = 1, #self.cosmetic, 1 do
+			if self.cosmetic[i]:GetModelName() == model 
+			or model == nil then
+				if bApply then
+					self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(1)
+				else
+					self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(-1)
+				end
 			end
 		end
 	end
 
-	return true
-end
+-- ACTIVITY / GESTURE
 
-function cosmetics:HideCosmetic(model, bApply)
-	if self.cosmetic == nil then return end
+	function cosmetics:ChangeCosmeticsActivity(bClear)
+		if self.cosmetic == nil then return end
+		local base_hero_mod = self:GetCaster():FindModifierByName("base_hero_mod")
+		if base_hero_mod == nil then return end
 
-	for i = 1, #self.cosmetic, 1 do
-		if self.cosmetic[i]:GetModelName() == model 
-		or model == nil then
-			if bApply then
-				self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(1)
-			else
-				self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(-1)
+		for i = 1, #self.cosmetic, 1 do
+			if bClear then self.cosmetic[i]:ClearActivityModifiers() end
+			self.cosmetic[i]:AddActivityModifier(base_hero_mod.activity)
+		end
+	end
+
+	function cosmetics:StartCosmeticGesture(model, gesture)
+		if self.cosmetic == nil then return end
+
+		for i = 1, #self.cosmetic, 1 do
+			if self.cosmetic[i]:GetModelName() == model then
+				self.cosmetic[i]:StartGesture(gesture)
 			end
 		end
 	end
-end
 
-function cosmetics:FindCosmeticByModel(model)
-	if self.cosmetic == nil then return end
+	function cosmetics:FadeCosmeticsGesture(model, gesture)
+		if self.cosmetic == nil then return end
 
-	for i = 1, #self.cosmetic, 1 do
-		if self.cosmetic[i]:GetModelName() == model then
-			return self.cosmetic[i]
+		for i = 1, #self.cosmetic, 1 do
+			if self.cosmetic[i]:GetModelName() == model then
+				self.cosmetic[i]:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_3)
+			end
 		end
 	end
-end
 
-function cosmetics:ChangeCosmeticsActivity(bClear)
-	if self.cosmetic == nil then return end
-	local base_hero_mod = self:GetCaster():FindModifierByName("base_hero_mod")
-	if base_hero_mod == nil then return end
+-- FIND / MODIFY: COSMETIC / AMBIENT
 
-	for i = 1, #self.cosmetic, 1 do
-		if bClear then self.cosmetic[i]:ClearActivityModifiers() end
-		self.cosmetic[i]:AddActivityModifier(base_hero_mod.activity)
+	function cosmetics:FindModifierByModel(model)
+		local cosmetic = self:FindCosmeticByModel(model)
+		if cosmetic then return cosmetic:FindModifierByName("cosmetics_mod") end
 	end
-end
 
-function cosmetics:StartCosmeticGesture(model, gesture)
-	if self.cosmetic == nil then return end
-
-	for i = 1, #self.cosmetic, 1 do
-		if self.cosmetic[i]:GetModelName() == model then
-			self.cosmetic[i]:StartGesture(gesture)
+	function cosmetics:FindCosmeticByModel(model)
+		if self.cosmetic == nil then return end
+		if model == nil then return end
+	
+		for i = 1, #self.cosmetic, 1 do
+			if self.cosmetic[i]:GetModelName() == model then
+				return self.cosmetic[i]
+			end
 		end
 	end
-end
 
-function cosmetics:FadeCosmeticsGesture(model, gesture)
-	if self.cosmetic == nil then return end
+	function cosmetics:GetAmbient(ambient)
+		if self.cosmetic == nil then return end
 
-	for i = 1, #self.cosmetic, 1 do
-		if self.cosmetic[i]:GetModelName() == model then
-			self.cosmetic[i]:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_3)
+		for i = 1, #self.cosmetic, 1 do
+			local mod_cosmetic = self.cosmetic[i]:FindModifierByName("cosmetics_mod")
+			if mod_cosmetic then
+				if mod_cosmetic.index ~= nil then
+					for i = 1, mod_cosmetic.index, 1 do
+						if mod_cosmetic.ambient[i] == ambient then
+							return mod_cosmetic.particle[i]
+						end
+					end
+				end
+			end
 		end
 	end
-end
 
-function cosmetics:ChangeTeam(team)
-	if self.cosmetic == nil then return end
+	function cosmetics:DestroyAmbient(model, ambient, bDestroyImmediately)
+		if self.cosmetic == nil then return end
 
-	for i = 1, #self.cosmetic, 1 do
-		self.cosmetic[i]:SetTeam(team)
+		if model then
+			local mod_cosmetic = self:FindModifierByModel(model)
+			if mod_cosmetic then mod_cosmetic:StopAmbientEfx(ambient, bDestroyImmediately) end
+		else
+			for i = 1, #self.cosmetic, 1 do
+				local mod_cosmetic = self.cosmetic[i]:FindModifierByName("cosmetics_mod")
+				if mod_cosmetic then mod_cosmetic:StopAmbientEfx(ambient, bDestroyImmediately) end
+			end
+		end
 	end
-end
+
+	function cosmetics:ReloadAmbients(unit, models, bDestroyImmediately)
+		self:DestroyAmbient(nil, nil, false)
+		for model, ambients in pairs(models) do
+			self:ApplyAmbient(ambients, unit, self:FindModifierByModel(model))
+		end
+	end

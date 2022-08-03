@@ -57,7 +57,7 @@ function icebreaker_2_modifier_recharge:OnAbilityExecuted(keys)
 
 	-- UP 2.41
 	if self.ability:GetRank(41) then
-		recharge = recharge / 2
+		recharge = recharge - 4
 	end
 
 	self.ability:SetActivated(false)

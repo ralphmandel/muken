@@ -18,13 +18,13 @@ function striker_u_modifier_autocast:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.cd_reduction = 0
+	self.max_mana = 0
 end
 
 function striker_u_modifier_autocast:OnRefresh(kv)
 	-- UP 7.12
 	if self.ability:GetRank(12) then
-		self.cd_reduction = 10
+		self.max_mana = 100
 	end
 
 	local void = self.caster:FindAbilityByName("_void")
@@ -39,7 +39,6 @@ end
 function striker_u_modifier_autocast:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ORDER,
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
@@ -56,17 +55,9 @@ function striker_u_modifier_autocast:OnOrder(keys)
 	self.ability:ToggleAutoCast()
 end
 
-function striker_u_modifier_autocast:GetModifierPercentageCooldown()
-	if self:GetAbility():GetAutoCastState() then
-		return self.cd_reduction
-	end
-
-	return 0
-end
-
 function striker_u_modifier_autocast:GetModifierManaBonus()
 	if self:GetAbility():GetAutoCastState() then
-		return self:GetAbility():GetSpecialValueFor("max_mana")
+		return self.max_mana
 	end
 
 	return 0
@@ -98,7 +89,7 @@ function striker_u_modifier_autocast:BurnMana(attacker, target)
 	if attacker ~= self.parent and attacker:IsIllusion() == false then return end
 	if attacker:IsSilenced() then return end
 
-	local mana = target:GetMaxMana() * 0.01
+	local mana = 5
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then mana = mana * (base_stats:GetSpellAmp() + 1) end
 
@@ -130,17 +121,18 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 	if ability:IsTrained() == false then return end
 
 	local autocast_manacost = self.ability:GetSpecialValueFor("autocast_manacost")
+	local cd_mult = 0.5
 
 	-- UP 7.11
 	if self.ability:GetRank(11) then
-		autocast_manacost = autocast_manacost - 10
+		cd_mult = cd_mult + 0.2
 	end
 	
 	self.manacost = ability:GetManaCost(ability:GetLevel()) * autocast_manacost * 0.01
 	if self.parent:GetMana() < self.manacost then return end
 
 	local chance_cooldown = self.ability:GetSpecialValueFor("chance_cooldown")
-	if ability:IsCooldownReady() == false then chance_cooldown = chance_cooldown * 0.5 end
+	if ability:IsCooldownReady() == false then chance_cooldown = chance_cooldown * cd_mult end
 
 	local chance = (1 / ability:GetEffectiveCooldown(ability:GetLevel())) * chance_cooldown
 	if RandomFloat(1, 100) > chance then return end

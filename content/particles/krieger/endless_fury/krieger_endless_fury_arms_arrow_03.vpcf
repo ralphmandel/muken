@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 12
@@ -7,16 +7,14 @@
 	m_hSnapshot = resource:"particles/models/items/sven/endless_fury_sven_arms/endless_fury_sven_arms_arrow_fx_03.vsnap"
 	m_controlPointConfigurations = 
 	[
-		
 		{
 			m_name = "preview"
 		},
 	]
 	m_Children = 
 	[
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_arrow_trace.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_arrow_trace.vpcf"
 		},
 	]
 }

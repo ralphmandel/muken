@@ -92,7 +92,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function striker_1__blow:Spawn()
-        self:SetCurrentAbilityCharges(0)
+        self:CheckAbilityCharges(0)
         if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 

@@ -99,6 +99,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         Timers:CreateTimer((0.2), function()
 			if caster:IsIllusion() == false then
 				caster:SetMana(0)
+                self:UpdateParticle(0)
 			end
 		end)
     end
@@ -117,6 +118,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             caster:ReduceMana(-value)
         end
 
+        self:UpdateParticle(caster:GetMana())
+
         if caster:GetMaxMana() == caster:GetMana()
         and caster:HasModifier("krieger_1_modifier_fury") == false then
             caster:AddNewModifier(caster, self, "krieger_1_modifier_fury", {})
@@ -133,6 +136,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function krieger_1__fury:OnOwnerSpawned()
         local caster = self:GetCaster()
         caster:SetMana(0)
+        self:UpdateParticle(0)
     end
 
     function krieger_1__fury:GetManaCost(iLevel)
@@ -143,3 +147,30 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function krieger_1__fury:UpdateParticle(amount)
+        local caster = self:GetCaster()
+        local cosmetics = caster:FindAbilityByName("cosmetics")
+
+        if cosmetics then
+            if caster:HasModifier("krieger_1_modifier_fury") then
+                self.pfx_weapon = cosmetics:GetAmbient("particles/krieger/dark_fury/krieger_dark_fury_weapon.vpcf")
+                self.pfx_shoulder = cosmetics:GetAmbient("particles/krieger/dark_fury/krieger_dark_fury_shoulder.vpcf")
+                self.pfx_head = cosmetics:GetAmbient("particles/krieger/dark_fury/krieger_dark_fury_head.vpcf")
+                self.pfx_belt = cosmetics:GetAmbient("particles/krieger/dark_fury/krieger_dark_fury_belt.vpcf")
+            else
+                self.pfx_weapon = cosmetics:GetAmbient("particles/krieger/endless_fury/krieger_endless_fury_weapon.vpcf")
+                self.pfx_shoulder = cosmetics:GetAmbient("particles/krieger/endless_fury/krieger_endless_fury_shoulder.vpcf")
+                self.pfx_head = cosmetics:GetAmbient("particles/krieger/endless_fury/krieger_endless_fury_head.vpcf")
+                self.pfx_belt = cosmetics:GetAmbient("particles/krieger/endless_fury/krieger_endless_fury_belt.vpcf")
+            end
+        end
+
+        if self.pfx_weapon then ParticleManager:SetParticleControl(self.pfx_weapon, 10, Vector(amount, 0, 0)) end
+        if self.pfx_shoulder then ParticleManager:SetParticleControl(self.pfx_shoulder, 10, Vector(amount, 0, 0)) end
+        if self.pfx_head then ParticleManager:SetParticleControl(self.pfx_head, 10, Vector(amount, 0, 0)) end
+        if self.pfx_belt then ParticleManager:SetParticleControl(self.pfx_belt, 10, Vector(amount, 0, 0)) end
+
+        local fury = caster:FindModifierByNameAndCaster("krieger_1_modifier_fury", caster)
+        if fury then if fury.pfx_fury then ParticleManager:SetParticleControl(fury.pfx_fury, 10, Vector(amount, 0, 0)) end end
+    end

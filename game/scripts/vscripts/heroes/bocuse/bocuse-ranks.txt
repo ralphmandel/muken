@@ -13,108 +13,137 @@
 	
 	"npc_dota_hero_pudge"
 	{
-		"bocuse_1__julienne"
+		"bocuse_1__cut"
 		{
 			"0"
 			{
-				"1"   "bocuse_1__julienne_rank_11"
-				"2"   "bocuse_1__julienne_rank_12"
-				"3"   "bocuse_1__julienne_rank_13"
+				"1"   "bocuse_1__cut_rank_11"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "bocuse_1__cut_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_1__julienne_rank_31"
+				"1"   "bocuse_1__cut_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_1__julienne_rank_41"
+				"1"   "bocuse_1__cut_rank_41"
 			}
 		}
-		"bocuse_2__flambee"
+		"bocuse_2__flask"
 		{
 			"0"
 			{
-				"1"   "bocuse_2__flambee_rank_11"
-				"2"   "bocuse_2__flambee_rank_12"
+				"1"   "bocuse_2__flask_rank_11"
 			}
 			"1"
 			{
-				"1"   "bocuse_2__flambee_rank_21"
-				"2"   "bocuse_2__flambee_rank_22"
-				"3"   "bocuse_2__flambee_rank_23"
+				"1"   "bocuse_2__flask_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_2__flambee_rank_31"
+				"1"   "bocuse_2__flask_rank_31"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "bocuse_2__flask_rank_41"
 			}
 		}
-		"bocuse_3__sauce"
+		"bocuse_3__mark"
 		{
 			"0"
 			{
-				"1"   "bocuse_3__sauce_rank_11"
+				"1"   "bocuse_3__mark_rank_11"
 			}
 			"1"
 			{
-				"1"   "bocuse_3__sauce_rank_21"
+				"1"   "bocuse_3__mark_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_3__sauce_rank_31"
-				"2"   "bocuse_3__sauce_rank_32"
+				"1"   "bocuse_3__mark_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_3__sauce_rank_41"
+				"1"   "bocuse_3__mark_rank_41"
 			}
 		}
-		"bocuse_u__mise"
+		"bocuse_4__enhance"
 		{
 			"0"
 			{
-				"1"   "bocuse_u__mise_rank_11"
-
+				"1"   "bocuse_4__enhance_rank_11"
 			}
 			"1"
 			{
-				"1"   "bocuse_u__mise_rank_21"
-				"2"   "bocuse_u__mise_rank_22"
+				"1"   "bocuse_4__enhance_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_u__mise_rank_31"
+				"1"   "bocuse_4__enhance_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_u__mise_rank_41"
-				"2"   "bocuse_u__mise_rank_42"
+				"1"   "bocuse_4__enhance_rank_41"
 			}
 		}
-		"extras"
+		"bocuse_5__puddle"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "bocuse_5__puddle_rank_11"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "bocuse_5__puddle_rank_21"
 			}
 			"2"
 			{
-				"1"   "bocuse_x1__roux"
+				"1"   "bocuse_5__puddle_rank_31"
 			}
 			"3"
 			{
-				"1"   "bocuse_x2__mirepoix"			
+				"1"   "bocuse_5__puddle_rank_41"
+			}
+		}
+		"bocuse_6__triad"
+		{
+			"0"
+			{
+				"1"   "bocuse_6__triad_rank_11"
+			}
+			"1"
+			{
+				"1"   "bocuse_6__triad_rank_21"
+			}
+			"2"
+			{
+				"1"   "bocuse_6__triad_rank_31"
+			}
+			"3"
+			{
+				"1"   "bocuse_6__triad_rank_41"
+			}
+		}
+		"bocuse_u__rage"
+		{
+			"0"
+			{
+				"1"   "bocuse_u__rage_rank_11"
+			}
+			"1"
+			{
+				"1"   "bocuse_u__rage_rank_21"
+			}
+			"2"
+			{
+				"1"   "bocuse_u__rage_rank_31"
+			}
+			"3"
+			{
+				"1"   "bocuse_u__rage_rank_41"
 			}
 		}
 	}	

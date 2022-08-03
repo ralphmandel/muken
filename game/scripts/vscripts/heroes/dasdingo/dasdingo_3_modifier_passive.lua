@@ -39,7 +39,7 @@ function dasdingo_3_modifier_passive:OnAttackLanded(keys)
 
 	-- UP 3.42
 	if self.ability:GetRank(42) then
-		local chance = 15
+		local chance = 7
 		local base_stats = self.caster:FindAbilityByName("base_stats")
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 

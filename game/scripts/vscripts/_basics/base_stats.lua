@@ -117,6 +117,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
 				if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
 				if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
+				if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
 				if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
 
 				if hero_name == nil then return end

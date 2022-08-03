@@ -378,17 +378,12 @@
             "01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"autocast_manacost"		"100"
-			}
-            "02"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"chance_cooldown"		"70"
+				"autocast_manacost"		"75 72.5 70 67.5 65 62.5 60"
 			}
             "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"max_mana"		        "140 150 160 170 180 190 200"
+				"chance_cooldown"		"70"
 			}
             "14"
 			{

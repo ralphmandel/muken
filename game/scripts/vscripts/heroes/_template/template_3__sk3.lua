@@ -84,12 +84,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        local charges = 1
-        self:SetCurrentAbilityCharges(charges)
+        self:CheckAbilityCharges(1)
     end
 
     function template_3__sk3:Spawn()
-        self:SetCurrentAbilityCharges(0)
+        self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
@@ -103,6 +102,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
+    end
+
+    function template_3__sk3:CheckAbilityCharges(charges)
+        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

@@ -115,6 +115,7 @@ function base_hero_mod:LoadModel()
 				if self.ability.hero_name == "bocuse" then
 					self.parent:SetModelScale(1.15)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+					self.parent:SetMaterialGroup("1")
 				end
 				if self.ability.hero_name == "shadow" then
 					self.parent:SetModelScale(1)

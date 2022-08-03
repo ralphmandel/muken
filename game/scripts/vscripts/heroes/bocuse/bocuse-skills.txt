@@ -1,12 +1,10 @@
 "skills"
 {
-	"1" "bocuse_1__julienne"
-	"2" "bocuse_2__flambee"
-	"3" "bocuse_3__sauce"
-	"4" "bocuse_u__mise"
-	"5"
-	{
-		"1" "bocuse_x1__roux"
-		"2" "bocuse_x2__mirepoix"
-	}
+	"1" "bocuse_1__cut"
+	"2" "bocuse_2__flask"
+	"3" "bocuse_3__mark"
+	"4" "bocuse_4__enhance"
+	"5" "bocuse_5__puddle"
+	"6" "bocuse_6__triad"
+	"7" "bocuse_u__rage"
 }

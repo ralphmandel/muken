@@ -1,45 +1,34 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 12
 	m_nMaxParticles = 0
 	m_controlPointConfigurations = 
 	[
-		
 		{
 			m_name = "preview"
 			m_drivers = 
 			[
-				
 				{
 					m_entityName = "self"
 				},
-				
 				{
 					m_iControlPoint = 1
 					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = 
-					[
-						255.000000,
-						255.000000,
-						255.000000,
-					]
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
 					m_entityName = "self"
 				},
-				
 				{
 					m_iControlPoint = 2
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
 				},
-				
 				{
 					m_iControlPoint = 5
 					m_iAttachType = "PATTACH_POINT_FOLLOW"
 					m_attachmentName = "attach_drawstring_fx_01"
 					m_entityName = "self_with_wearables"
 				},
-				
 				{
 					m_iControlPoint = 6
 					m_iAttachType = "PATTACH_POINT_FOLLOW"
@@ -59,45 +48,35 @@
 	]
 	m_Children = 
 	[
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_bow_left.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_bow_left.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_bow_right.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_bow_right.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_bow_01.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_bow_01.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_bow_02.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_bow_02.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_bow_03.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_bow_03.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_arrow_01.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_arrow_01.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_arrow_02.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_arrow_02.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_arrow_03.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_arrow_03.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_arrow_tips.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_arrow_tips.vpcf"
 		},
-		
 		{
-			m_ChildRef = resource:"particles/econ/items/sven/sven_endless_fury/sven_endless_fury_arms_drawstring.vpcf"
+			m_ChildRef = resource:"particles/krieger/endless_fury/krieger_endless_fury_arms_drawstring.vpcf"
 		},
 	]
 }

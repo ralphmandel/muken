@@ -216,14 +216,14 @@
 		"AbilityCastPoint"				"0.3"
         "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		"AbilityCooldown"				"24"
+		"AbilityCooldown"				"25 24.5 24 23.5 23 22.5 22 21.5 21 20.5 20"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5"
+				"channel_time"		"4"
 			}
             "02"
 			{
@@ -266,17 +266,17 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_duration"		"3"
+				"fire_duration"		"5"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_damage"	    "12"
+				"fire_damage"	    "10"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "6"
+				"max_stack"		    "7"
 			}
             "04"
 			{
@@ -286,7 +286,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"30"
+				"blast_damage"		"50"
 			}
 			"14"
 			{

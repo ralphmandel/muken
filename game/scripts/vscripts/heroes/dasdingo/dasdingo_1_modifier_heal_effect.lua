@@ -90,11 +90,11 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 		mod:SetKillData(info)
 	end
 
-	local chance = 12.5
+	local chance = 5
 	if keys.attacker:IsBaseNPC() then
 		if keys.attacker:IsHero()
 		and keys.attacker:IsIllusion() == false then
-			chance = 25
+			chance = 10
 		end
 	end
 

@@ -124,7 +124,7 @@
 				"19"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"cooldown"				"0.6"
+					"cooldown"				"0.5"
 				}
 				"20"
 				{
@@ -310,6 +310,7 @@
 #base "../vscripts/heroes/icebreaker/icebreaker.txt"
 #base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/striker/striker.txt"
+#base "../vscripts/heroes/bocuse/bocuse.txt"
 
 #base "../vscripts/heroes/krieger/krieger.txt"
 
