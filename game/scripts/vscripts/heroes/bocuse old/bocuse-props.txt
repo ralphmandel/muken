@@ -65,8 +65,8 @@
 			"MovementTurnRate"          "0.5"
 			"MovementSpeed"           	"50"
 		//VITALITY
-			"StatusHealth"            	"1500"
-			"StatusHealthRegen"        	"15"
+			"StatusHealth"            	"2499"
+			"StatusHealthRegen"        	"10"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
 			"StatusMana"              	"550"

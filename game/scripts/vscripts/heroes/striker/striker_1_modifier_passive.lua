@@ -51,14 +51,12 @@ function striker_1_modifier_passive:OnStateChanged(keys)
 	or self.parent:IsHexed()
 	or self.parent:IsFrozen()
 	or self.parent:IsDisarmed() then
-		if self.parent:IsIllusion() then print("1") end
 		self:CancelCombo(false)
 	end
 end
 
 function striker_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
-	if self.parent:IsIllusion() then print("2") end
 	self:CancelCombo(false)
 end
 
@@ -73,7 +71,6 @@ function striker_1_modifier_passive:OnOrder(keys)
 		end
 	end
 
-	if self.parent:IsIllusion() then print("3") end
 	self:CancelCombo(false)
 end
 
@@ -92,10 +89,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_1_modifier_passive:CheckHits(target)
-	if target ~= self.last_hit_target then if self.parent:IsIllusion() then print("4") end self:CancelCombo(false) return end
+	if target ~= self.last_hit_target then self:CancelCombo(false) return end
 	if self.hits < 1 then return end
 	self.hits = self.hits - 1
-	if self.hits < 1 then if self.parent:IsIllusion() then print("5") end self:CancelCombo(false) end
+	if self.hits < 1 then self:CancelCombo(false) end
 end
 
 function striker_1_modifier_passive:TryCombo(target)

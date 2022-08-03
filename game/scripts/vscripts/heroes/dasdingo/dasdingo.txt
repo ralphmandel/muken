@@ -228,7 +228,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"drain_percent"		"2.5"
+				"drain_percent"		"1"
 			}
             "03"
 			{

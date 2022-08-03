@@ -27,15 +27,14 @@
         "LevelsBetweenUpgrades"  		"25"
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE"
 
-		"AbilityCastAnimation"   		"ACT_RESET"
-		"AbilityCastPoint"       		"1"
+		"AbilityCastAnimation"   		""
 		"AbilityCooldown"				"12"
-        "AbilityDamage"					"30"
+        "AbilityDamage"					"40"
 
 		"AbilitySpecial"
 		{
@@ -57,17 +56,17 @@
             "02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cut_intervals"		"0.3"
+				"cut_intervals"		"0.266"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bleeding_damage"	"15"
+				"bleeding_damage"	"10"
 			}
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bleeding_duration"	"3"
+				"bleeding_duration"	"5"
 			}
 			"07"
 			{

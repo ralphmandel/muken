@@ -228,7 +228,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_percent"	"200"
+				"return_percent"	"175"
 			}
 		}
 	}
@@ -276,7 +276,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_damage"		"300"
+				"strike_damage"		"400"
 			}
 		}
 	}
@@ -341,7 +341,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"40"
+				"damage"				"50"
 			}
 			"04"
 			{
@@ -380,7 +380,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fireball_damage"		"150"
+				"fireball_damage"		"200"
 			}
 			"03"
 			{
@@ -390,7 +390,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"flame_damage"			"25"
+				"flame_damage"			"40"
 			}
 		}
 	}

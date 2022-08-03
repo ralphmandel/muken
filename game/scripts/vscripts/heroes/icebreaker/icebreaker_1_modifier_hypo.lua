@@ -62,7 +62,6 @@ end
 
 function icebreaker_1_modifier_hypo:OnIntervalThink()
 	self.damageTable.damage = self.parent:GetMaxHealth() * self.damage_mult
-	if self.parent:GetUnitName() == "boss_gorillaz" then self.damageTable.damage = self.damageTable.damage * 0.5 end
 	ApplyDamage(self.damageTable)
 end
 
@@ -103,7 +102,7 @@ function icebreaker_1_modifier_hypo:ModifySlow(stack_count)
 end
 
 function icebreaker_1_modifier_hypo:EnablePureDamageThinker(intervals)
-	self.damage_mult = intervals * 0.01
+	self.damage_mult = intervals * 0.005
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,

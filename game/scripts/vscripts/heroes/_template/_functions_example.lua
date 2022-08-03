@@ -2,6 +2,10 @@
 -- PROJECTILES
 
     function functions_example:OnSpellStart()
+        Timers:CreateTimer(0.2, function()
+            print()
+        end)
+
         local caster = self:GetCaster()
 
         -- TRACKING

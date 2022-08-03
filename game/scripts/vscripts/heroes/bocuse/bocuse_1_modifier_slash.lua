@@ -18,13 +18,13 @@ function bocuse_1_modifier_slash:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.target = nil
+	self.interrupted = false
 
-	self.stun_duration = self:GetSpecialValueFor("stun_duration")
-	self.cut_intervals = self.ability:GetSpecialValueFor("cut_intervals")
 	self.chance = self.ability:GetSpecialValueFor("init_chance") + kv.bonus_chance
-	self.parent:AttackNoEarlierThan(10, 20)
-
+	self.cut_intervals = self.ability:GetSpecialValueFor("cut_intervals")
+	self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	self.total_stun = self.stun_duration
+	
 	self.cut_direction = {
 		[1] = Vector(90, 0, 180),
 		[2] = Vector(0, 0, 200),
@@ -33,10 +33,8 @@ function bocuse_1_modifier_slash:OnCreated(kv)
 		[5] = Vector(90, 0, 135)
 	}
 
-	if IsServer() then
-		self.total_stun = self.stun_duration
-		self:StartIntervalThink(0.1)
-	end
+	self.parent:AttackNoEarlierThan(10, 20)
+	self:PrepareSlash(self.ability.target)
 end
 
 function bocuse_1_modifier_slash:OnRefresh(kv)
@@ -44,37 +42,86 @@ end
 
 function bocuse_1_modifier_slash:OnRemoved()
 	self.parent:AttackNoEarlierThan(1, 1)
+	if self.interrupted then self.parent:FadeGesture(ACT_DOTA_ATTACK) end
+
+	if self.ability.target then
+		if IsValidEntity(self.ability.target) then
+			self.parent:MoveToTargetToAttack(self.ability.target)	
+		end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function _modifier_example:DeclareFunctions()
+function bocuse_1_modifier_slash:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
 end
 
-function _modifier_example:OnStateChanged(keys)
+function bocuse_1_modifier_slash:GetModifierMoveSpeed_Limit()
+	return 250
+end
+
+function bocuse_1_modifier_slash:GetModifierDisableTurning()
+	return 1
+end
+
+function bocuse_1_modifier_slash:OnOrder(keys)
 	if keys.unit ~= self.parent then return end
-	if self.parent:IsStunned() or self.parent:IsDisarmed()
-	or self.parent:IsHexed() or self.parent:IsFrozen() then
+	if keys.order_type > 4 and keys.order_type < 9 then
+		self.interrupted = true
+		self:Destroy()
+	end
+end
+
+function bocuse_1_modifier_slash:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+
+	-- UP 1.31
+	if (self.ability:GetRank(31) == false and self.parent:IsDisarmed())
+	or self.parent:IsStunned() or self.parent:IsHexed()
+	or self.parent:IsFrozen() then
+		self.interrupted = true
 		self:Destroy()
 	end
 end
 
 function bocuse_1_modifier_slash:OnIntervalThink()
+	self:PrepareSlash(self.ability.target)
+end
+
+-- UTILS -----------------------------------------------------------
+
+function bocuse_1_modifier_slash:PrepareSlash(target)
 	if IsServer() then 
-		if self:IsValidTarget(self.target) then
-			self:ApplyCut(self.target)
+		if self:IsValidTarget(target) then
+			local vector = (target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
+			self.parent:SetForwardVector(vector)
+
+			local enemies = FindUnitsInRadius(
+				self.caster:GetTeamNumber(), target:GetOrigin(), nil, self.ability:GetAOERadius(),
+				self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
+				self.ability:GetAbilityTargetFlags(), 0, false
+			)
+
+			for _,enemy in pairs(enemies) do
+				self:ApplyCut(enemy)
+			end
 
 			if self:CalculateChance() then
-				self.total_stun = self.total_stun + self.stun_duration
+				self:PrepareGesture(self.parent)
 				self:StartIntervalThink(self.cut_intervals)
 				return
 			else
-				self:ApplyStun(self.target)
+				for _,enemy in pairs(enemies) do
+					self:ApplyStun(enemy)
+				end
 			end
 		end
 
@@ -83,7 +130,21 @@ function bocuse_1_modifier_slash:OnIntervalThink()
 	end
 end
 
--- UTILS -----------------------------------------------------------
+function bocuse_1_modifier_slash:PrepareGesture(caster)
+	self.total_stun = self.total_stun + self.stun_duration
+
+	Timers:CreateTimer(0.16, function()
+		if caster then
+			if IsValidEntity(caster) then
+				if caster:HasModifier("bocuse_1_modifier_slash") then
+					caster:FadeGesture(ACT_DOTA_ATTACK)
+					caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 5)
+					if IsServer() then caster:EmitSound("Hero_Pudge.PreAttack") end
+				end		
+			end
+		end
+	end)
+end
 
 function bocuse_1_modifier_slash:IsValidTarget(target)
 	if target == nil then return false end
@@ -92,7 +153,18 @@ function bocuse_1_modifier_slash:IsValidTarget(target)
 	local cast_range = self.ability:GetCastRange(self.parent:GetOrigin(), target)
 	local max_distance = self.ability:GetSpecialValueFor("max_range") + cast_range
     local distance = CalcDistanceBetweenEntityOBB(self.parent, target)
-	if distance > max_distance then return false end
+
+	-- UP 1.11
+	if self.ability:GetRank(11) == false
+	and distance > max_distance then
+		return false
+	end
+
+	-- UP 1.31
+	if self.ability:GetRank(31) == false
+	and target:IsInvisible() then
+		return false
+	end
 
 	local target_result = UnitFilter(
 		target, self.ability:GetAbilityTargetTeam(),
@@ -116,21 +188,48 @@ function bocuse_1_modifier_slash:CalculateChance()
 end
 
 function bocuse_1_modifier_slash:ApplyCut(target)
-	local bleeding_duration = self.ability:GetSpecialValueFor("bleeding_duration")
-
 	ApplyDamage({
 		victim = target, attacker = self.caster,
-		damage = self:GetAbilityDamage(),
-		damage_type = self:GetAbilityDamageType(),
+		damage = self.ability:GetAbilityDamage(),
+		damage_type = self.ability:GetAbilityDamageType(),
 		ability = self.ability
 	})
 
-	self:PlayEfxCut(target)
+	-- UP 1.22
+	if self.ability:GetRank(22) then
+		self:ApplyDisarm(target)
+	end
 
-	if target:IsAlive() then
-		target:AddNewModifier(self.caster, self.ability, "bocuse_1_modifier_bleeding", {
-			duration = self.ability:CalcStatus(bleeding_duration, self.caster, target)
-		})
+	self:ApplyBleeding(target)
+	self:PlayEfxCut(target)
+end
+
+function bocuse_1_modifier_slash:ApplyBleeding(target)
+	if target:IsAlive() == false then return end
+
+	local bleeding_duration = self.ability:GetSpecialValueFor("bleeding_duration")
+
+	-- UP 1.21
+	if self.ability:GetRank(21) then
+		bleeding_duration = bleeding_duration + 3
+	end
+	
+	target:AddNewModifier(self.caster, self.ability, "bocuse_1_modifier_bleeding", {
+		duration = self.ability:CalcStatus(bleeding_duration, self.caster, target)
+	})
+end
+
+function bocuse_1_modifier_slash:ApplyDisarm(target)
+	if target:IsAlive() == false or target:IsMagicImmune() then return end
+
+	local chance = 10
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+	if RandomFloat(1, 100) <= chance then
+		target:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
+			duration = self.ability:CalcStatus(5, self.caster, target)
+		})		
 	end
 end
 
@@ -138,7 +237,7 @@ function bocuse_1_modifier_slash:ApplyStun(target)
 	if target:IsAlive() == false or target:IsMagicImmune() then return end
 	
 	target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		self.ability:CalcStatus(self.total_stun, self.caster, target)
+		duration = self.ability:CalcStatus(self.total_stun, self.caster, target)
 	})
 end
 

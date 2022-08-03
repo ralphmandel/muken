@@ -171,7 +171,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				-- CON
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
 				self.health_regen = self:GetSpecialValueFor("health_regen")
-				self.heal_amplify = self:GetSpecialValueFor("heal_amplify")
 				self.regen_state = 1	
 
 				-- SECONDARY
@@ -196,7 +195,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["STR"])
 				self.total_movespeed = self.base_movespeed + (self.movespeed * self.stat_init["AGI"])
 				self.total_mana = self.mana * self.stat_init["INT"]
-				self.total_heal_amplify = self.heal_amplify * self.stat_init["CON"]
+				self.total_health_regen = self.health_regen * self.stat_init["CON"]
 			end
 		end
 

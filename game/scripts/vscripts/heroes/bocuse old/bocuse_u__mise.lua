@@ -16,8 +16,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local base_stats_caster = nil
         local base_stats_target = nil
 
-        print("calc")
-
         if caster ~= nil then
             base_stats_caster = caster:FindAbilityByName("base_stats")
         end

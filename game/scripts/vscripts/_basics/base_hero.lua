@@ -420,7 +420,7 @@ require("talent_tree")
 			end
 		end
 
-		-- Icebreaker 2.41 requires rank level 14
+		-- Icebreaker 2.41 requires skill rank level 14
 		if self.talentsData[talentId].Ability == "icebreaker_2__puff_rank_41" then
 			local puff = self:GetCaster():FindAbilityByName("icebreaker_2__puff")
 			if puff == nil then return false end
@@ -452,7 +452,6 @@ require("talent_tree")
 			return false
 		end
 
-
 		-- Icebreaker 5.31 requires ultimate
 		if self.talentsData[talentId].Ability == "icebreaker_5__wave_rank_31"
 		and (not self.ranks[7][0]) then
@@ -477,18 +476,12 @@ require("talent_tree")
 			return false
 		end
 
-		-- Bocuse 4.31 requires skill 1
-		if self.talentsData[talentId].Ability == "bocuse_u__mise_rank_31"
-		and (not self.ranks[1][0]) then
-			return false
-		end
-
-		-- Bocuse 4.42 requires rank level 21
-		if self.talentsData[talentId].Ability == "bocuse_u__mise_rank_42" then
-			local mise = self:GetCaster():FindAbilityByName("bocuse_u__mise")
-			if mise == nil then return false end
-			if mise:IsTrained() == false then return false end
-			if mise:GetSpecialValueFor("rank") < 21 then return false end
+		-- Bocuse 1.41 requires skill rank level 14
+		if self.talentsData[talentId].Ability == "bocuse_1__cut_rank_41" then
+			local cut = self:GetCaster():FindAbilityByName("bocuse_1__cut")
+			if cut == nil then return false end
+			if cut:IsTrained() == false then return false end
+			if cut:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
 		for i = 1, 7, 1 do

@@ -125,7 +125,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.1"
-        "AbilityCooldown"				"21 20 19 18 17 16 15"
+        "AbilityCooldown"				"24 23 22 21 20 19 18"
 
 		"AbilitySpecial"
 		{
@@ -142,7 +142,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"star_damage"	"75"
+				"star_damage"	"60"
 			}
             "04"
 			{
@@ -282,7 +282,7 @@
             "10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"recharge_time"		    "25"
+				"recharge_time"		    "21"
 			}
 			"14"
 			{

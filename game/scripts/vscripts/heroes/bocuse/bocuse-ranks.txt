@@ -22,6 +22,7 @@
 			"1"
 			{
 				"1"   "bocuse_1__cut_rank_21"
+				"2"   "bocuse_1__cut_rank_22"
 			}
 			"2"
 			{

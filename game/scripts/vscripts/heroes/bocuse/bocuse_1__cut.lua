@@ -1,6 +1,9 @@
 bocuse_1__cut = class({})
 LinkLuaModifier("bocuse_1_modifier_slash", "heroes/bocuse/bocuse_1_modifier_slash", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_1_modifier_bleeding", "heroes/bocuse/bocuse_1_modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -96,7 +99,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function bocuse_1__cut:OnAbilityPhaseStart()
         local caster = self:GetCaster()
         caster:FadeGesture(ACT_DOTA_ATTACK)
-        caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 0.5)
+
+        if self:GetCurrentAbilityCharges() % 3 == 0 then
+            caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 5)
+        else
+            caster:StartGesture(ACT_DOTA_ATTACK)
+        end
+
+        if IsServer() then caster:EmitSound("Hero_Pudge.PreAttack") end
 
         return true
     end
@@ -108,7 +118,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bocuse_1__cut:OnSpellStart()
         local caster = self:GetCaster()
-        local target = self:GetCursorTarget() 
+        self.target = self:GetCursorTarget() 
         caster:FadeGesture(ACT_DOTA_ATTACK)
 
         local max_bonus_chance = self:GetSpecialValueFor("max_bonus_chance")
@@ -123,13 +133,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
 
         local mod = caster:AddNewModifier(caster, self, "bocuse_1_modifier_slash", {bonus_chance = bonus_chance})
-        mod.target = target
     end
 
     function bocuse_1__cut:CastFilterResultTarget(hTarget)
         local caster = self:GetCaster()
 
-        if caster:IsDisarmed() then return UF_FAIL_CUSTOM end
+        if caster:IsDisarmed()
+        and self:GetCurrentAbilityCharges() % 3 ~= 0 then
+            return UF_FAIL_CUSTOM
+        end
 
         local result = UnitFilter(
             hTarget, self:GetAbilityTargetTeam(),
@@ -151,6 +163,27 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
+    function bocuse_1__cut:GetAOERadius()
+        local radius = 1
+        if self:GetCurrentAbilityCharges() == 0 then return radius end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 200 end
+        return radius
+    end
+
+    function bocuse_1__cut:GetCastPoint()
+        local cast_point = 0.55
+        if self:GetCurrentAbilityCharges() == 0 then return cast_point end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then cast_point = 0.1 end
+        return cast_point
+    end
+
+    function bocuse_1__cut:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range = cast_range + 100 end
+        return cast_range
+    end
+
     function bocuse_1__cut:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -159,6 +192,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function bocuse_1__cut:CheckAbilityCharges(charges)
+        -- UP 1.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            charges = charges * 3
+        end
+
+        -- UP 1.41
+        if self:GetRank(41) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

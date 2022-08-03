@@ -167,7 +167,6 @@ end
 
 function icebreaker_1_modifier_frozen:BreakHeal(target)
 	local heal = target:GetMaxHealth() * 0.1
-	if target:GetUnitName() == "boss_gorillaz" then heal = heal * 0.5 end
 
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end

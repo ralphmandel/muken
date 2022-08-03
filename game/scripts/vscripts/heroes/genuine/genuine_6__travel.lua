@@ -184,8 +184,6 @@ LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_s
             return
         end
 
-        print(self:GetBehavior())
-
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local damage = self:GetAbilityDamage()

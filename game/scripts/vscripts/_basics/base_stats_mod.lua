@@ -83,7 +83,6 @@ base_stats_mod = class ({})
             -- CON
             MODIFIER_PROPERTY_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-            MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
             MODIFIER_EVENT_ON_HEAL_RECEIVED,
 
             --SECONDARY
@@ -293,13 +292,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierConstantHealthRegen()
         if IsServer() then
-            return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.regen_state
-        end
-    end
-
-    function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
-        if IsServer() then
-            return self.ability.total_heal_amplify
+            return self.ability.total_health_regen * self.ability.regen_state
         end
     end
 

@@ -158,11 +158,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function dasdingo_6__fire:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
         local source = EntIndexToHScript(ExtraData.source)
-
-        for k, v in pairs(ExtraData) do
-            print(k, v)
-        end
-
         if hTarget == nil then return end
         if hTarget == source then return end
 

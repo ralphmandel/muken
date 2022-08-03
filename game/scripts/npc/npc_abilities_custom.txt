@@ -87,17 +87,12 @@
 				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"health_bonus"			"20"
+					"health_bonus"			"50"
 				}
 				"11"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"health_regen"			"0.2"
-				}
-				"23"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"heal_amplify"			"2.5"
+					"health_regen"			"1"
 				}
 
 			// SECONDARIES
