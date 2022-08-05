@@ -33,105 +33,110 @@
 					"var_type"				"FIELD_FLOAT"
 					"range"					"40"
 				}
-				"12"
+				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"base_block_damage"		"15"
+					"status_resist"			"2.5"
 				}
-				"13"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"block_damage"			"1.5"
-				}
-				"14"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"block_chance"			"100"
-				}
+				// "12"
+				// {
+				// 	"var_type"				"FIELD_FLOAT"
+				// 	"base_block_damage"		"15"
+				// }
+				// "13"
+				// {
+				// 	"var_type"				"FIELD_FLOAT"
+				// 	"block_damage"			"1.5"
+				// }
+				// "14"
+				// {
+				// 	"var_type"				"FIELD_FLOAT"
+				// 	"block_chance"			"100"
+				// }
 			
 			// AGI
-				"04"
+				"06"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"movespeed"				"5"
 				}
-				"05"
+				"07"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"base_movespeed"		"175"
 				}
-				"06"
+				"08"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"attack_speed"			"2.5" //2
 				}
-				"07"
+				"09"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"base_attack_time"		"1.2" //0.85
 				}
 
 			// INT
-				"08"
+				"12"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					"20"
+					"debuff_amp"			"4"
 				}
-				"09"
+				"12"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"spell_amp"				"2.5"
+					"mana"					"5"
+				}
+				"13"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"spell_amp"				"1.5"
 				}
 
 			// CON
-				"10"
+				"16"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"health_bonus"			"50"
 				}
-				"11"
+				"17"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"health_regen"			"1"
 				}
 
 			// SECONDARIES
-				"15"
+				"21"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"evade"					"0.4"
 				}
-				"16"
+				"22"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"armor"					"0.4"
 				}
-				"17"
+				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"resistance"			"0.4"
+					"magic_resist"			"0.4"
 				}
-				"18"
+				"25"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.3"
+					"cooldown"				"0.3"
 				}
-				"19"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"cooldown"				"0.5"
-				}
-				"20"
+				"26"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"critical_chance"		"20" //0.25
 				}
-				"21"
+				"27"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"heal_power"			"2.5"
 				}
-				"22"
+				"28"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"buff_amp"				"1.25"

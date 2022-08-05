@@ -2,11 +2,16 @@
 -- PROJECTILES
 
     function functions_example:OnSpellStart()
+        local caster = self:GetCaster()
+
+        -- TIMERS
         Timers:CreateTimer(0.2, function()
             print()
         end)
 
-        local caster = self:GetCaster()
+        -- DOMINATE UNITS
+        local summoned_unit = nil
+        summoned_unit:SetControllableByPlayer(self.caster:GetPlayerID(), false) -- (playerID, bSkipAdjustingPosition)
 
         -- TRACKING
         local tracking_info = {

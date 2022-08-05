@@ -44,8 +44,8 @@ function genuine_4_modifier_aura:OnCreated(kv)
 end
 
 function genuine_4_modifier_aura:OnRefresh(kv)
-	-- UP 4.22
-	if self.ability:GetRank(22) then
+	-- UP 4.31
+	if self.ability:GetRank(31) then
 		self.fly_vision = true
 	end
 end
@@ -120,11 +120,6 @@ function genuine_4_modifier_aura:CheckInviMode()
 		if self.ability.invi == false then
 			charges = 2
 		end
-	end
-
-	-- UP 4.41
-	if self.ability:GetRank(41) then
-		charges = charges * 3
 	end
 
 	self.ability:SetCurrentAbilityCharges(charges)

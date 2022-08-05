@@ -6,50 +6,18 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
 -- INIT
 
     function dasdingo_4__tribal:CalcStatus(duration, caster, target)
-        local time = duration
-        local base_stats_caster = nil
-        local base_stats_target = nil
+        if caster == nil or target == nil then return end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        local base_stats = caster:FindAbilityByName("base_stats")
 
-        if caster ~= nil then
-            base_stats_caster = caster:FindAbilityByName("base_stats")
-        end
-
-        if target ~= nil then
-            base_stats_target = target:FindAbilityByName("base_stats")
-        end
-
-        if caster == nil then
-            if target ~= nil then
-                if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.4
-                    local calc = (value * 6) / (1 +  (value * 0.06))
-                    time = time * (1 - (calc * 0.01))
-                end
-            end
+        if caster:GetTeamNumber() == target:GetTeamNumber() then
+            if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
         else
-            if target == nil then
-                if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
-            else
-                if caster:GetTeamNumber() == target:GetTeamNumber() then
-                    if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
-                else
-                    if base_stats_caster and base_stats_target then
-                        local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
-                        if value > 0 then
-                            local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 + (calc * 0.01))
-                        else
-                            value = -1 * value
-                            local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 - (calc * 0.01))
-                        end
-                    end
-                end
-            end
+            if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
+            duration = duration * (1 - target:GetStatusResistance())
         end
-
-        if time < 0 then time = 0 end
-        return time
+        
+        return duration
     end
 
     function dasdingo_4__tribal:AddBonus(string, target, const, percent, time)
@@ -93,6 +61,7 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
         end
 
         self:SetCurrentAbilityCharges(charges)
+        self:CreateTribalTable()
     end
 
     function dasdingo_4__tribal:Spawn()
@@ -104,24 +73,67 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
     function dasdingo_4__tribal:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
-        local duration = self:GetSpecialValueFor("duration")
-
-        local summoned_unit = CreateUnitByName(
-            "tribal_ward", -- name
-            point, -- point
-            true, -- bFindClearSpace,
-            caster, -- hNPCOwner,
-            caster, -- hUnitOwner,
-            caster:GetTeamNumber() -- iTeamNumber
+        local summoned_unit = self:InsertTribal(
+            CreateUnitByName("tribal_ward", point, true, caster, caster, caster:GetTeamNumber())
         )
-        -- dominate units
-        --summoned_unit:SetControllableByPlayer(self.caster:GetPlayerID(), false) -- (playerID, bSkipAdjustingPosition)
-        summoned_unit:SetOwner(caster)
-        summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {
-            duration = self:CalcStatus(duration, caster, nil)
-        })
 
-        if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+        --summoned_unit:SetOwner(caster)
+        if summoned_unit then
+            summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {})
+            if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+        end
+    end
+
+    function dasdingo_4__tribal:CreateTribalTable()
+        if self.tribals then return end
+        self.tribals = {}
+
+        for i = 1, self:GetSpecialValueFor("max"), 1 do table.insert(self.tribals, i, nil) end
+    end
+
+    function dasdingo_4__tribal:InsertTribal(summoned_unit)
+        print(summoned_unit:GetUnitName(), #self.tribals)
+        for i = 1, #self.tribals, 1 do
+            print("oi", i)
+            if self.tribals[i] == nil then
+                print("é nil")
+                self.tribals[i] = summoned_unit
+                self:SortTribals()
+                return summoned_unit
+            end
+        end
+
+        for i = 1, #self.tribals, 1 do
+            if self.tribals[i] then
+                if IsValidEntity(self.tribals[i]) then
+                    self.tribals[i]:RemoveModifierByNameAndCaster("dasdingo_4_modifier_tribal", self:GetCaster())
+                    self.tribals[i] = nil
+                    return self:InsertTribal(summoned_unit)
+                end
+            end
+        end
+    end
+
+    function dasdingo_4__tribal:RemoveTribal(unit)
+        for i = 1, #self.tribals, 1 do
+            if self.tribals[i] == unit then
+                self.tribals[i] = nil
+                return
+            end
+        end
+    end
+
+    function dasdingo_4__tribal:SortTribals()
+        local temp_table = {}
+        for i = 1, #self.tribals, 1 do
+            if #self.tribals == i then
+                temp_table[1] = self.tribals[i]
+            else
+                temp_table[i + 1] = self.tribals[i]
+            end
+        end
+
+        self.tribals = temp_table
     end
 
     function dasdingo_4__tribal:GetCastRange(vLocation, hTarget)

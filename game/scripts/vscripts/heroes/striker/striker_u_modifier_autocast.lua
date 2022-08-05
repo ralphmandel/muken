@@ -24,11 +24,9 @@ end
 function striker_u_modifier_autocast:OnRefresh(kv)
 	-- UP 7.12
 	if self.ability:GetRank(12) then
-		self.max_mana = 100
+		self.ability:RemoveBonus("_1_INT", self.parent)
+		if self.ability:GetAutoCastState() then self.ability:AddBonus("_1_INT", self.parent, 10, 0, nil) end
 	end
-
-	local void = self.caster:FindAbilityByName("_void")
-	if void then void:SetLevel(1) end
 end
 
 function striker_u_modifier_autocast:OnRemoved()
@@ -49,10 +47,12 @@ end
 
 function striker_u_modifier_autocast:OnOrder(keys)
 	if keys.order_type ~= 20 or keys.unit ~= self.parent then return end
-	self.ability:ToggleAutoCast()
-	local void = self.caster:FindAbilityByName("_void")
-	if void then void:SetLevel(1) end
-	self.ability:ToggleAutoCast()
+
+	-- UP 7.12
+	if self.ability:GetRank(12) then
+		self.ability:RemoveBonus("_1_INT", self.parent)
+		if self.ability:GetAutoCastState() == false then self.ability:AddBonus("_1_INT", self.parent, 10, 0, nil) end
+	end
 end
 
 function striker_u_modifier_autocast:GetModifierManaBonus()
@@ -90,13 +90,8 @@ function striker_u_modifier_autocast:BurnMana(attacker, target)
 	if attacker:IsSilenced() then return end
 
 	local mana = 5
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then mana = mana * (base_stats:GetSpellAmp() + 1) end
-
-	if mana >= 1 then
-		target:ReduceMana(mana)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, mana, self.caster)
-	end
+	target:ReduceMana(mana)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, mana, self.caster)
 end
 
 function striker_u_modifier_autocast:PerformAutoCast()

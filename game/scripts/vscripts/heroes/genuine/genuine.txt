@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_1__shooting"
 		"AbilityTextureName"     		"genuine_shooting"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"14"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -30,16 +30,17 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
         "AbilityDamage"					"30"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"2.5"
 
 		"AbilitySpecial"
 		{
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"atk_range"		"0 25 50 75 100 125 150 175 200 225 250 275 300 325"
+				"atk_range"		"0 25 50 75 100 125 150 175 200 225 250 275 300"
 			}
             "03"
 			{
@@ -49,7 +50,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -60,7 +61,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_2__fallen"
 		"AbilityTextureName"     		"genuine_fallen"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"12"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -96,7 +97,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"120 125 130 135 140 145 150 155 160 165 170 175"
+				"mana_steal"	"150 155 160 165 170 175 180 185 190 195 200"
 			}
             "14"
 			{
@@ -106,7 +107,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -129,15 +130,15 @@
 
 		"AbilitySpecial"
 		{
-			// "01"
-			// {
-			// 	"var_type"		"FIELD_FLOAT"
-			// 	"agi_bonus"	    "20"
-			// }
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"int_bonus"	    "30"
+			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rec_bonus"	    "50"
+				"rec_bonus"	    "30"
 			}
             "03"
 			{
@@ -173,7 +174,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_4__nightfall"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_nightfall"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -194,7 +195,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"day_radius"	"450"
+				"day_radius"	"300"
 			}
             "04"
 			{
@@ -209,7 +210,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}

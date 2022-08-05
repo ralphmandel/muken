@@ -7,50 +7,18 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 -- INIT
 
     function genuine_2__fallen:CalcStatus(duration, caster, target)
-        local time = duration
-        local base_stats_caster = nil
-        local base_stats_target = nil
+        if caster == nil or target == nil then return end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        local base_stats = caster:FindAbilityByName("base_stats")
 
-        if caster ~= nil then
-            base_stats_caster = caster:FindAbilityByName("base_stats")
-        end
-
-        if target ~= nil then
-            base_stats_target = target:FindAbilityByName("base_stats")
-        end
-
-        if caster == nil then
-            if target ~= nil then
-                if base_stats_target then
-                    local value = base_stats_target.stat_total["RES"] * 0.4
-                    local calc = (value * 6) / (1 +  (value * 0.06))
-                    time = time * (1 - (calc * 0.01))
-                end
-            end
+        if caster:GetTeamNumber() == target:GetTeamNumber() then
+            if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
         else
-            if target == nil then
-                if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
-            else
-                if caster:GetTeamNumber() == target:GetTeamNumber() then
-                    if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
-                else
-                    if base_stats_caster and base_stats_target then
-                        local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
-                        if value > 0 then
-                            local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 + (calc * 0.01))
-                        else
-                            value = -1 * value
-                            local calc = (value * 6) / (1 +  (value * 0.06))
-                            time = time * (1 - (calc * 0.01))
-                        end
-                    end
-                end
-            end
+            if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
+            duration = duration * (1 - target:GetStatusResistance())
         end
-
-        if time < 0 then time = 0 end
-        return time
+        
+        return duration
     end
 
     function genuine_2__fallen:AddBonus(string, target, const, percent, time)
@@ -100,7 +68,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
 
-        local flags = DOTA_UNIT_TARGET_FLAG_NONE
         local projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf"
         local speed = self:GetSpecialValueFor("speed")
         local distance = self:GetSpecialValueFor("distance")
@@ -108,11 +75,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local direction = point - caster:GetOrigin()
         direction.z = 0
         direction = direction:Normalized()
-
-        -- UP 2.11
-        if self:GetRank(11) then
-            flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-        end
 
         -- UP 2.22
         if self:GetRank(22) then
@@ -130,7 +92,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             bDeleteOnHit = false,
             
             iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-            iUnitTargetFlags = flags,
+            iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
             iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             
             EffectName = projectile_name,

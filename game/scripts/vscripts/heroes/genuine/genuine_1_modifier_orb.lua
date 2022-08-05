@@ -80,8 +80,8 @@ function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
-	-- UP 1.32
-	if self.ability:GetRank(32)
+	-- UP 1.22
+	if self.ability:GetRank(22)
 	and RandomFloat(1, 100) <= chance then
 		self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), true)
 
@@ -155,14 +155,11 @@ end
 
 function genuine_1_modifier_orb:ShouldLaunch(target, pierce)
 	if self.ability:GetAutoCastState() then
-		local flags = self.ability:GetAbilityTargetFlags()
-		if pierce then flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
-
 		local nResult = UnitFilter(
 			target,
 			self.ability:GetAbilityTargetTeam(),
 			self.ability:GetAbilityTargetType(),
-			flags,
+			self.ability:GetAbilityTargetFlags(),
 			self.caster:GetTeamNumber()
 		)
 		if nResult == UF_SUCCESS then

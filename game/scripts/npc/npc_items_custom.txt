@@ -1090,12 +1090,7 @@
 				"01"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_int"	"15"
-				}
-				"02"
-				{
-					"var_type"		"FIELD_FLOAT"
-					"passive_mana"	"100"
+					"passive_int"	"20"
 				}
 				"03"
 				{

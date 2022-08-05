@@ -60,12 +60,13 @@ base_stats_mod = class ({})
 
             -- STR
             MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+            MODIFIER_PROPERTY_STATUS_RESISTANCE,
             MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
             MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
             MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
             MODIFIER_PROPERTY_PRE_ATTACK,
-            MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
-            MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
+            --MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+            --MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
             -- AGI
             MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE,
@@ -78,7 +79,7 @@ base_stats_mod = class ({})
 
             -- INT
             MODIFIER_PROPERTY_MANA_BONUS,
-            MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+            MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 
             -- CON
             MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -89,7 +90,6 @@ base_stats_mod = class ({})
             MODIFIER_PROPERTY_EVASION_CONSTANT,
             MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
             MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-            MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
             MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
         }
         return funcs
@@ -178,10 +178,20 @@ base_stats_mod = class ({})
         return self.ability.stat_total["STR"] * self.ability.damage
     end
 
+    function base_stats_mod:GetModifierStatusResistance()
+        if self.parent:GetAttackCapability() == 1 then
+            return self.ability.total_status_resist
+        end
+
+        return 0
+    end
+
     function base_stats_mod:GetModifierAttackRangeBonus()
         if self.parent:GetAttackCapability() == 2 then
             return self.ability.total_range
         end
+        
+        return 0
     end
 
     function base_stats_mod:GetModifierProcAttack_Feedback(keys)
@@ -221,26 +231,26 @@ base_stats_mod = class ({})
         end
     end
 
-    function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-        if RandomInt(1, 100) <= self.ability.block_chance
-        and self.parent:GetAttackCapability() == 1 then
-            local total_block_percent = self.ability.total_block_damage + self.ability.physical_block
-            local random_block = RandomFloat(1, total_block_percent)
-            local calc = math.floor(keys.damage * random_block * 0.01)
-            if calc > 0 then return calc end
-        end
-    end
+    -- function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
+    --     if RandomInt(1, 100) <= self.ability.block_chance
+    --     and self.parent:GetAttackCapability() == 1 then
+    --         local total_block_percent = self.ability.total_block_damage + self.ability.physical_block
+    --         local random_block = RandomFloat(1, total_block_percent)
+    --         local calc = math.floor(keys.damage * random_block * 0.01)
+    --         if calc > 0 then return calc end
+    --     end
+    -- end
 
-    function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
-        if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
-        if RandomInt(1, 100) <= self.ability.block_chance
-        and self.parent:GetAttackCapability() == 1 then
-            local total_block_percent = self.ability.total_block_damage + self.ability.magical_block
-            local random_block = RandomFloat(1, total_block_percent)
-            local calc = math.floor(keys.damage * random_block * 0.01)
-            if calc > 0 then return calc end
-        end
-    end
+    -- function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
+    --     if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
+    --     if RandomInt(1, 100) <= self.ability.block_chance
+    --     and self.parent:GetAttackCapability() == 1 then
+    --         local total_block_percent = self.ability.total_block_damage + self.ability.magical_block
+    --         local random_block = RandomFloat(1, total_block_percent)
+    --         local calc = math.floor(keys.damage * random_block * 0.01)
+    --         if calc > 0 then return calc end
+    --     end
+    -- end
     
 
 -- AGI
@@ -279,7 +289,16 @@ base_stats_mod = class ({})
 -- INT
 
     function base_stats_mod:GetModifierManaBonus()
-        return self.ability.total_mana
+        return self.ability.stat_total["INT"] * self.ability.mana
+    end
+
+    function base_stats_mod:GetModifierConstantManaRegen()
+        if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" 
+        or self.parent:GetUnitName() == "npc_dota_hero_sven" 
+        or self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then
+            return 0
+        end
+        return self.ability.stat_total["INT"] * 0.1
     end
 
 -- CON
@@ -317,25 +336,15 @@ base_stats_mod = class ({})
     end
 
     function base_stats_mod:GetModifierMagicalResistanceBonus()
-        local value = self.ability.stat_total["RES"] * self.ability.resistance
+        local value = self.ability.stat_total["RES"] * self.ability.magic_resist
         local calc = (value * 6) / (1 +  (value * 0.06))
         return calc
     end
-
-    function base_stats_mod:GetModifierConstantManaRegen()
-        if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" 
-        or self.parent:GetUnitName() == "npc_dota_hero_sven" 
-        or self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then
-            return 0
-        end
-        return self.ability.stat_total["REC"] * self.ability.mana_regen
-    end
     
     function base_stats_mod:GetModifierPercentageCooldown()
-        if self.parent:GetUnitName() == "npc_dota_hero_bloodseeker" then
-            return self.ability.stat_total["REC"] * 1
-        end
-        return self.ability.stat_total["REC"] * self.ability.cooldown
+        local value = self.ability.stat_total["REC"] * self.ability.cooldown
+        local calc = (value * 6) / (1 +  (value * 0.06))
+        return calc
     end
 
 -- EFFECTS

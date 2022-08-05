@@ -26,9 +26,14 @@ function genuine_4_modifier_aura_effect:OnCreated(kv)
 
 	local res = self.ability:GetSpecialValueFor("res")
 
+	-- UP 4.12
+	if self.ability:GetRank(12) then
+		self.ability:AddBonus("_2_MND", self.parent, -10, 0, nil)
+	end
+
 	-- UP 4.41
 	if self.ability:GetRank(41) then
-		res = res + 10
+		self:ApplyMagicalDamage(self.caster, self.parent, self.ability)
 	end
 
 	self.ability:AddBonus("_2_RES", self.parent, -res, 0, nil)
@@ -45,6 +50,7 @@ end
 function genuine_4_modifier_aura_effect:OnRemoved(kv)
 	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
 	self.ability:RemoveBonus("_2_RES", self.parent)
+	self.ability:RemoveBonus("_2_MND", self.parent)
 end
 
 -----------------------------------------------------------
@@ -62,6 +68,23 @@ function genuine_4_modifier_aura_effect:SetupAbility()
 	if original_hero then
 		self.ability = original_hero:FindAbilityByName(self:GetAbility():GetAbilityName())
 	end
+end
+
+function genuine_4_modifier_aura_effect:ApplyMagicalDamage(caster, target, ability)
+	ApplyDamage({
+		victim = target, attacker = caster,
+		damage = 4, damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = ability
+	})
+
+	Timers:CreateTimer((0.4), function()
+		if caster and target then
+			if IsValidEntity(caster) and IsValidEntity(target) then
+				local mod = target:FindModifierByName("genuine_4_modifier_aura_effect")
+				if mod then mod:ApplyMagicalDamage(caster, target, ability) end
+			end
+		end
+	end)
 end
 
 -----------------------------------------------------------

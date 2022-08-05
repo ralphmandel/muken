@@ -15,10 +15,10 @@ function genuine_3_modifier_morning:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local agi_bonus = self.ability:GetSpecialValueFor("agi_bonus")
+	local int_bonus = self.ability:GetSpecialValueFor("int_bonus")
 	local rec_bonus = self.ability:GetSpecialValueFor("rec_bonus")
 
-	self.ability:AddBonus("_1_AGI", self.parent, agi_bonus, 0, nil)
+	self.ability:AddBonus("_1_INT", self.parent, int_bonus, 0, nil)
 	self.ability:AddBonus("_2_REC", self.parent, rec_bonus, 0, nil)
 
 	self.purge = true
@@ -47,7 +47,7 @@ function genuine_3_modifier_morning:OnRefresh(kv)
 end
 
 function genuine_3_modifier_morning:OnRemoved(kv)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	self.ability:RemoveBonus("_1_INT", self.parent)
 	self.ability:RemoveBonus("_2_REC", self.parent)
 
 	local passive = self.caster:FindModifierByName("genuine_3_modifier_passive")

@@ -151,11 +151,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.damage = self:GetSpecialValueFor("damage")
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.range = self:GetSpecialValueFor("range")
-				self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
-				self.block_damage = self:GetSpecialValueFor("block_damage")
-				self.block_chance = self:GetSpecialValueFor("block_chance")
-				self.physical_block = 0
-				self.magical_block = 0
+				self.status_resist = self:GetSpecialValueFor("status_resist")
+				-- self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
+				-- self.block_damage = self:GetSpecialValueFor("block_damage")
+				-- self.block_chance = self:GetSpecialValueFor("block_chance")
+				-- self.physical_block = 0
+				-- self.magical_block = 0
 
 				-- AGI
 				self.movespeed = self:GetSpecialValueFor("movespeed")
@@ -167,6 +168,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				-- INT
 				self.mana = self:GetSpecialValueFor("mana")
 				self.spell_amp = self:GetSpecialValueFor("spell_amp")
+				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
 
 				-- CON
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
@@ -176,8 +178,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				-- SECONDARY
 				self.evade = self:GetSpecialValueFor("evade") 
 				self.armor = self:GetSpecialValueFor("armor")
-				self.resistance = self:GetSpecialValueFor("resistance")
-				self.mana_regen = self:GetSpecialValueFor("mana_regen")
+				self.magic_resist = self:GetSpecialValueFor("magic_resist")
 				self.cooldown = self:GetSpecialValueFor("cooldown")
 				self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
@@ -192,9 +193,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				-- INIT
 				self.total_range = self.range * self.stat_init["STR"]
-				self.total_block_damage = self.base_block_damage + (self.block_damage * self.stat_init["STR"])
+				self.total_status_resist = self.status_resist * self.stat_init["STR"]
 				self.total_movespeed = self.base_movespeed + (self.movespeed * self.stat_init["AGI"])
-				self.total_mana = self.mana * self.stat_init["INT"]
+				self.total_debuff_amp = self.debuff_amp * self.stat_init["INT"]
 				self.total_health_regen = self.health_regen * self.stat_init["CON"]
 			end
 		end
@@ -483,8 +484,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- UTIL INT
 
-		function base_stats:GetSpellAmp()
-			return self.stat_total["INT"] * self.spell_amp * 0.01
+		function base_stats:GetDebuffAmp()
+			return self.total_debuff_amp * 0.01
 		end
 
 	-- UTIL CON

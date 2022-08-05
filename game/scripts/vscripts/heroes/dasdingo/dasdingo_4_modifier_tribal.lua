@@ -16,7 +16,7 @@ function dasdingo_4_modifier_tribal:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then self.parent:CreatureLevelUp(base_stats.stat_total["INT"]) end
+	if base_stats then self.parent:CreatureLevelUp(base_stats.stat_total["MND"]) end
 
 	self.parent:StartGesture(ACT_IDLE)
 	self:PlayEfxRegen()
@@ -28,6 +28,7 @@ end
 function dasdingo_4_modifier_tribal:OnRemoved()
 	if IsValidEntity(self.parent) then
 		if self.parent:IsAlive() then
+			self.ability:RemoveTribal(self.parent)
 			self.parent:Kill(self.ability, nil)
 		end
 	end

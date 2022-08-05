@@ -87,16 +87,6 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
         end
 
         if self:GetLevel() == 1 then self:SetCurrentAbilityCharges(1) return end
-
-        local charges = self:GetCurrentAbilityCharges()
-
-        if charges < 3 then
-            -- UP 4.41
-            if self:GetRank(41) then
-                charges = charges * 3
-                self:SetCurrentAbilityCharges(charges)
-            end
-        end
     end
 
     function genuine_4__nightfall:Spawn()
@@ -115,11 +105,6 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
         local caster = self:GetCaster()
         local charges = 1
 
-        -- UP 4.41
-        if self:GetRank(41) then
-            charges = charges * 3
-        end
-
         self:SetCurrentAbilityCharges(charges)
         caster:AddNewModifier(caster, self, "_modifier_invisible", {delay = 1})
         if IsServer() then caster:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
@@ -130,10 +115,6 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
         local night_radius = self:GetSpecialValueFor("night_radius")
 
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then
-            day_radius = day_radius + 150
-            night_radius = night_radius + 300
-        end
 
         if GameRules:IsDaytime() then return day_radius else return night_radius end
     end

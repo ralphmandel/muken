@@ -94,7 +94,7 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"15"
+		"Level"						"30"
 		"ModelScale" 				"1.4"
 
 		"Ability1"					"_boss__ai"
@@ -108,8 +108,8 @@
 		"MagicalResistance"        	"30"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"175"		// Damage range min.
-		"AttackDamageMax"			"200"		// Damage range max.
+		"AttackDamageMin"			"225"		// Damage range min.
+		"AttackDamageMax"			"250"		// Damage range max.
 		"AttackRate"				"1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
