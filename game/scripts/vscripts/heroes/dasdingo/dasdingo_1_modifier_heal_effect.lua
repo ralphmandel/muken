@@ -106,7 +106,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
 	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 		keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-			duration = self.ability:CalcStatus(1.5, self.caster, keys.unit),
+			duration = self.ability:CalcStatus(1.25, self.caster, keys.unit),
 			effect = 4
 		})
 	end

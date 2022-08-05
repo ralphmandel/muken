@@ -28,11 +28,16 @@ end
 
 function _boss_gorillaz_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
+end
+
+function _boss_gorillaz_modifier_passive:GetModifierEvasion_Constant()
+	return 20
 end
 
 function _boss_gorillaz_modifier_passive:OnDeath(keys)

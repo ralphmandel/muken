@@ -133,7 +133,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local damageTable = {
             victim = hTarget,
             attacker = caster,
-            damage = 70,
+            damage = 100,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = self
         }

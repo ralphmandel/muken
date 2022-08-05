@@ -145,7 +145,7 @@ end
 
 function icebreaker_6_modifier_shard:StartExplosionThink(radius)
 	local point = self.parent:GetOrigin()
-	local explosion_damage = 50
+	local explosion_damage = 70
 	local explosion_radius = (radius * 0.2)
 
 	local random_x

@@ -53,6 +53,8 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
+        self.max = self:GetSpecialValueFor("max")
+
         local charges = 1
 
         -- UP 4.11
@@ -61,7 +63,6 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
         end
 
         self:SetCurrentAbilityCharges(charges)
-        self:CreateTribalTable()
     end
 
     function dasdingo_4__tribal:Spawn()
@@ -77,63 +78,51 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
             CreateUnitByName("tribal_ward", point, true, caster, caster, caster:GetTeamNumber())
         )
 
-        --summoned_unit:SetOwner(caster)
         if summoned_unit then
             summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {})
             if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
         end
     end
 
-    function dasdingo_4__tribal:CreateTribalTable()
-        if self.tribals then return end
-        self.tribals = {}
-
-        for i = 1, self:GetSpecialValueFor("max"), 1 do table.insert(self.tribals, i, nil) end
-    end
-
     function dasdingo_4__tribal:InsertTribal(summoned_unit)
-        print(summoned_unit:GetUnitName(), #self.tribals)
-        for i = 1, #self.tribals, 1 do
-            print("oi", i)
+        if not self.tribals then self.tribals = {} end
+        local slot = 0
+        local time = 0
+
+        for i = 1, self.max, 1 do
             if self.tribals[i] == nil then
-                print("é nil")
-                self.tribals[i] = summoned_unit
-                self:SortTribals()
+                self.tribals[i] = {["unit"] = summoned_unit, ["time"] = GameRules:GetGameTime()}
                 return summoned_unit
             end
         end
 
-        for i = 1, #self.tribals, 1 do
+        for i = 1, self.max, 1 do
             if self.tribals[i] then
-                if IsValidEntity(self.tribals[i]) then
-                    self.tribals[i]:RemoveModifierByNameAndCaster("dasdingo_4_modifier_tribal", self:GetCaster())
-                    self.tribals[i] = nil
-                    return self:InsertTribal(summoned_unit)
+                if time == 0 or self.tribals[i]["time"] < time then
+                    time = self.tribals[i]["time"]
+                    slot = i
                 end
+            end
+        end
+
+        if self.tribals[slot] then
+            if IsValidEntity(self.tribals[slot]["unit"]) then
+                self.tribals[slot]["unit"]:RemoveModifierByNameAndCaster("dasdingo_4_modifier_tribal", self:GetCaster())
+                self.tribals[slot] = nil
+                return self:InsertTribal(summoned_unit)
             end
         end
     end
 
     function dasdingo_4__tribal:RemoveTribal(unit)
-        for i = 1, #self.tribals, 1 do
-            if self.tribals[i] == unit then
-                self.tribals[i] = nil
-                return
+        for i = 1, self.max, 1 do
+            if self.tribals[i] then
+                if self.tribals[i]["unit"] == unit then
+                    self.tribals[i] = nil
+                    return
+                end
             end
         end
-    end
-
-    function dasdingo_4__tribal:SortTribals()
-        local temp_table = {}
-        for i = 1, #self.tribals, 1 do
-            if #self.tribals == i then
-                temp_table[1] = self.tribals[i]
-            else
-                temp_table[i + 1] = self.tribals[i]
-            end
-        end
-
-        self.tribals = temp_table
     end
 
     function dasdingo_4__tribal:GetCastRange(vLocation, hTarget)

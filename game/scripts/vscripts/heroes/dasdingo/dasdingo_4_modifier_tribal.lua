@@ -28,8 +28,9 @@ end
 function dasdingo_4_modifier_tribal:OnRemoved()
 	if IsValidEntity(self.parent) then
 		if self.parent:IsAlive() then
-			self.ability:RemoveTribal(self.parent)
 			self.parent:Kill(self.ability, nil)
+		else
+			self.ability:RemoveTribal(self.parent)
 		end
 	end
 end
@@ -46,6 +47,7 @@ end
 
 function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_MISS_PERCENTAGE,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK,
@@ -55,6 +57,10 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
+end
+
+function dasdingo_4_modifier_tribal:GetModifierMiss_Percentage(keys)
+	return 25
 end
 
 function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)

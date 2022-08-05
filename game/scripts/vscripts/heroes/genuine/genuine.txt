@@ -32,7 +32,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-        "AbilityDamage"					"30"
+        "AbilityDamage"					"50"
 		"AbilityCooldown"				"2.5"
 
 		"AbilitySpecial"
@@ -133,17 +133,17 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"int_bonus"	    "30"
+				"int_bonus"	    "25"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rec_bonus"	    "30"
+				"rec_bonus"	    "25"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"star_damage"	"60"
+				"star_damage"	"75"
 			}
             "04"
 			{
@@ -225,7 +225,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"120 123 126 129 132 135 138 141 144 147 150 153"
+        "AbilityDamage"					"155 159 163 167 171 175 179 183 187 191 195 199"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 
@@ -313,7 +313,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"10"
         "AbilityDamage"					"75"
 
 		"AbilitySpecial"

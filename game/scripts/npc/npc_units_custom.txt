@@ -459,7 +459,7 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"0"			// Physical protection.
+			"ArmorPhysical"				"5"			// Physical protection.
 
 			// Attack
 			//----------------------------------------------------------------
@@ -491,7 +491,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"275"		// Base health.
+			"StatusHealth"				"300"		// Base health.
 			"StatusHealthRegen"			"0"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -515,8 +515,8 @@
 				//Level Up
 				"HPGain"					"2"
 				"DamageGain"				"1"
-				"ArmorGain"					"0"
-				"MagicResistGain"			"0"
+				"ArmorGain"					"0.1"
+				"MagicResistGain"			"0.5"
 				"MoveSpeedGain"				"0"
 				"BountyGain"				"0"
 				"XPGain"					"0"

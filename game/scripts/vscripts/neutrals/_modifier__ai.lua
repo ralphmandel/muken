@@ -157,6 +157,7 @@ end
 
 function _modifier__ai:DeclareFunctions()
 	local funcs = {
+        MODIFIER_PROPERTY_EVASION_CONSTANT,
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
@@ -167,12 +168,16 @@ function _modifier__ai:DeclareFunctions()
 	return funcs
 end
 
-function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
-    if keys.attacker:IsBaseNPC() == false then return -50 end
-    if self.unit:IsDominated() then return 0 end
-    if keys.attacker:IsHero() and keys.attacker:IsIllusion() == false then return 0 end
-    return -50
+function _modifier__ai:GetModifierEvasion_Constant()
+	return 15
 end
+
+-- function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
+--     if keys.attacker:IsBaseNPC() == false then return -50 end
+--     if self.unit:IsDominated() then return 0 end
+--     if keys.attacker:IsHero() and keys.attacker:IsIllusion() == false then return 0 end
+--     return -50
+-- end
 
 function _modifier__ai:OnAttackLanded(keys)
 	if keys.attacker ~= self.unit then return end

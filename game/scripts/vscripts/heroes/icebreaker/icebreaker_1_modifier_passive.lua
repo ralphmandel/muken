@@ -119,7 +119,7 @@ function icebreaker_1_modifier_passive:ApplyBonusMagicalDamage(target, bIllusion
 	local damageTable = {
 		victim = target,
 		attacker = self.caster,
-		damage = 10,
+		damage = 12,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self.ability
 	}

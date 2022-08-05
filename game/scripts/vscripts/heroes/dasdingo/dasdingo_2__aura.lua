@@ -64,7 +64,7 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 
     function dasdingo_2__aura:Spawn()
         self:SetCurrentAbilityCharges(0)
-        self.total_regen = 0
+        --self.total_regen = 0
     end
 
 -- SPELL START

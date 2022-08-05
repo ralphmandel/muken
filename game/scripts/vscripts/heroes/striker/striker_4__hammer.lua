@@ -145,8 +145,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             damage_type = self:GetAbilityDamageType(),
             ability = self,
         }
-
-        if isDamageRadius == false then ApplyDamage(damageTable) end
     
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), target:GetOrigin(), nil, hammer_radius,
@@ -155,7 +153,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         )
 
         for _,enemy in pairs(enemies) do
-            if isDamageRadius then
+            if isDamageRadius or enemy == target then
                 damageTable.victim = enemy
                 ApplyDamage(damageTable)
             end

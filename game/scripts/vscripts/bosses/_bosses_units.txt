@@ -105,7 +105,7 @@
 		//"Ability6"					"mk_bite"
 
 		"ArmorPhysical"				"30"			// Physical protection.
-		"MagicalResistance"        	"30"
+		"MagicalResistance"        	"20"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"225"		// Damage range min.
@@ -126,7 +126,7 @@
 		"MovementSpeed"				"450"		// Speed.			
 
 		"StatusHealth"				"4500"		// Base health.
-		"StatusHealthRegen"			"15"			// Health regeneration rate.
+		"StatusHealthRegen"			"10"			// Health regeneration rate.
 		"StatusMana"				"750"			// Base mana.
 		"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 		"VisionDaytimeRange"		"700"		// Range of vision during day light.

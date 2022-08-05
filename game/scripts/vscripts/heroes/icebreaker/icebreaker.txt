@@ -348,7 +348,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"break_damage"		"150"
+				"break_damage"		"350"
 			}
             "02"
 			{

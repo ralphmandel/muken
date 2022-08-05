@@ -197,8 +197,6 @@ function icebreaker_1_modifier_frozen:ApplySpreadHypo(target)
 end
 
 function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-
 	-- UP 7.12
 	if self.ability_break:GetRank(12) then
 		local knockbackProperties =
@@ -233,17 +231,17 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 		)
 	
 		for _,unit in pairs(units) do
-			if base_stats and unit ~= self.parent then
+			if unit ~= self.parent then
 				if unit:HasModifier("icebreaker_1_modifier_frozen") then
 					unit:RemoveModifierByNameAndCaster("icebreaker_1_modifier_frozen", self.caster)
-					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					--base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
 					damageTableSplash.victim = unit
 					ApplyDamage(damageTableSplash)
 
 					self:PlayEfxBlink((unit:GetOrigin() - self.caster:GetOrigin()), self.caster:GetOrigin(), unit)
 					self:IceBreak(unit)
 				else
-					base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
+					--base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL)
 					damageTableSplash.victim = unit
 					ApplyDamage(damageTableSplash)
 				end
@@ -251,7 +249,7 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 		end
 	end
 
-	if base_stats then base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL) end
+	--if base_stats then base_stats:SetForceCritSpell(0, true, DAMAGE_TYPE_MAGICAL) end
 end
 
 -- EFFECTS -----------------------------------------------------------

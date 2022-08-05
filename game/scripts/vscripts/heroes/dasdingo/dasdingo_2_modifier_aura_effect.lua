@@ -26,9 +26,9 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
 	self.def = defense
 
-	if self.parent:IsHero() and self.parent:IsIllusion() == false then
-		self.ability.total_regen = self.ability.total_regen + 1
-	end
+	-- if self.parent:IsHero() and self.parent:IsIllusion() == false then
+	-- 	self.ability.total_regen = self.ability.total_regen + 1
+	-- end
 
 	self:PlayEfxStart()
 end
@@ -39,9 +39,9 @@ end
 function dasdingo_2_modifier_aura_effect:OnRemoved(kv)
 	self.ability:RemoveBonus("_2_DEF", self.parent)
 
-	if self.parent:IsHero() and self.parent:IsIllusion() == false then
-		self.ability.total_regen = self.ability.total_regen - 1
-	end
+	-- if self.parent:IsHero() and self.parent:IsIllusion() == false then
+	-- 	self.ability.total_regen = self.ability.total_regen - 1
+	-- end
 end
 
 ------------------------------------------------------------

@@ -49,7 +49,7 @@ function striker_2_modifier_burn_aura_effect:OnIntervalThink()
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.caster:GetAbsOrigin()) end
 
 	local damage = 20
-	if self.parent:IsAttacking() then damage = 30 end
+	if self.parent:IsAttacking() then damage = 40 end
 	self.damageTable.damage = self.intervals * damage
 	ApplyDamage(self.damageTable)
 

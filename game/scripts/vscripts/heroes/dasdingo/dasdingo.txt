@@ -85,7 +85,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"550"
+				"radius"		"500"
 			}
 			"02"
 			{
@@ -189,7 +189,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"      "100"
+				"manacost"      "150"
 			}
 			"15"
 			{
@@ -271,7 +271,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fire_damage"	    "10"
+				"fire_damage"	    "15"
 			}
             "03"
 			{
@@ -286,7 +286,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"50"
+				"blast_damage"		"60"
 			}
 			"14"
 			{
@@ -323,7 +323,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"initial_damage"	"100 105 110 115 120 125 130 135 140 145 150"
+				"initial_damage"	"100 110 120 130 140 150 160 170 180 190 200"
 			}
 			"02"
 			{

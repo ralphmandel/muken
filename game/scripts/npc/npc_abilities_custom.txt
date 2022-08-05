@@ -38,21 +38,16 @@
 					"var_type"				"FIELD_FLOAT"
 					"status_resist"			"2.5"
 				}
-				// "12"
-				// {
-				// 	"var_type"				"FIELD_FLOAT"
-				// 	"base_block_damage"		"15"
-				// }
-				// "13"
-				// {
-				// 	"var_type"				"FIELD_FLOAT"
-				// 	"block_damage"			"1.5"
-				// }
-				// "14"
-				// {
-				// 	"var_type"				"FIELD_FLOAT"
-				// 	"block_chance"			"100"
-				// }
+				"31"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"base_block_damage"		"20"
+				}
+				"32"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"block_chance"			"75"
+				}
 			
 			// AGI
 				"06"

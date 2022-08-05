@@ -5,10 +5,10 @@ var labels_name = {
     "DEX": "DEXTERITY", "DEF": "DEFENSE", "RES": "RESISTANCE", "REC": "RECOVERY", "LCK": "LUCK", "MND": "MIND",
 }
 var stats_group = {
-    "STR": {1: "LCK", 2: "DEF", 3: "DEX"}, "AGI": {1: "MND", 2: "REC", 3: "DEX"},
-    "INT": {1: "LCK", 2: "RES", 3: "REC"}, "CON": {1: "MND", 2: "DEF", 3: "RES"},
-    "DEX": {1: "STR", 2: "AGI"}, "DEF": {1: "STR", 2: "CON"}, "RES": {1: "INT", 2: "CON"},
-    "REC": {1: "INT", 2: "AGI"}, "LCK": {1: "STR", 2: "INT"}, "MND": {1: "CON", 2: "AGI"}
+    "STR": {1: "LCK", 2: "DEF", 3: "RES"}, "AGI": {1: "LCK", 2: "REC", 3: "DEX"},
+    "INT": {1: "MND", 2: "RES", 3: "REC"}, "CON": {1: "MND", 2: "DEF", 3: "DEX"},
+    "DEX": {1: "CON", 2: "AGI"}, "DEF": {1: "STR", 2: "CON"}, "RES": {1: "INT", 2: "STR"},
+    "REC": {1: "INT", 2: "AGI"}, "LCK": {1: "STR", 2: "AGI"}, "MND": {1: "CON", 2: "INT"}
 }
 var primary_stats = {
     1: "STR", 2: "AGI", 3: "INT", 4: "CON"
@@ -140,7 +140,7 @@ var isWindowOpened = false;
         for (let index = 1; index <= 4; index++) {
             var enabled = (event.primary > 0)
             var stat_level = event.stats_level[primary_stats[index]]
-            if (enabled) {enabled = (event.hero_level * 2 > stat_level) && (stat_level < 30)}
+            if (enabled) {enabled = (event.hero_level * 1.5 > stat_level) && (stat_level < 30)}
 
             STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].hittest = enabled
             STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("PlusBox", enabled);

@@ -253,7 +253,7 @@ function striker_1_modifier_passive:PerformAfterShake(target)
 		ApplyDamage(damageTable)
 
 		if enemy:IsAlive() then
-			enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.3})
+			enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.5})
 		end
     end
 

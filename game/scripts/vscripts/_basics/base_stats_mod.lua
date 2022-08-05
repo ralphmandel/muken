@@ -65,8 +65,8 @@ base_stats_mod = class ({})
             MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
             MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
             MODIFIER_PROPERTY_PRE_ATTACK,
-            --MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
-            --MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
+            MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+            MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
             -- AGI
             MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE,
@@ -136,16 +136,14 @@ base_stats_mod = class ({})
                 calc = self.ability.stat_total["STR"] * self.ability.damage * 2.5
             elseif keys.damage_type == DAMAGE_TYPE_MAGICAL then
                 calc = self.ability.stat_total["INT"] * self.ability.spell_amp
-            else return end
+                return calc
+            else
+                return
+            end
 
             self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type)
             local crit = self.ability.total_crit_damage - 100
             local critical_chance = self.ability:GetCriticalChance()
-            
-            if self.parent:HasModifier("ancient_1_modifier_berserk")
-            and keys.damage_type == DAMAGE_TYPE_PHYSICAL then
-                critical_chance = (critical_chance * 0.5) + 25
-            end
 
             if self.ability.crit_damage_spell[keys.damage_type] > 0 then
                 crit = self.ability.crit_damage_spell[keys.damage_type] - 100
@@ -231,26 +229,24 @@ base_stats_mod = class ({})
         end
     end
 
-    -- function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-    --     if RandomInt(1, 100) <= self.ability.block_chance
-    --     and self.parent:GetAttackCapability() == 1 then
-    --         local total_block_percent = self.ability.total_block_damage + self.ability.physical_block
-    --         local random_block = RandomFloat(1, total_block_percent)
-    --         local calc = math.floor(keys.damage * random_block * 0.01)
-    --         if calc > 0 then return calc end
-    --     end
-    -- end
+    function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
+        if RandomInt(1, 100) <= self.ability.block_chance then
+            local total_block_percent = self.ability.base_block_damage + self.ability.physical_block
+            local random_block = RandomFloat(1, total_block_percent)
+            local calc = math.floor(keys.damage * random_block * 0.01)
+            if calc > 0 then return calc end
+        end
+    end
 
-    -- function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
-    --     if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
-    --     if RandomInt(1, 100) <= self.ability.block_chance
-    --     and self.parent:GetAttackCapability() == 1 then
-    --         local total_block_percent = self.ability.total_block_damage + self.ability.magical_block
-    --         local random_block = RandomFloat(1, total_block_percent)
-    --         local calc = math.floor(keys.damage * random_block * 0.01)
-    --         if calc > 0 then return calc end
-    --     end
-    -- end
+    function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
+        if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
+        if RandomInt(1, 100) <= self.ability.block_chance then
+            local total_block_percent = self.ability.base_block_damage + self.ability.magical_block
+            local random_block = RandomFloat(1, total_block_percent)
+            local calc = math.floor(keys.damage * random_block * 0.01)
+            if calc > 0 then return calc end
+        end
+    end
     
 
 -- AGI

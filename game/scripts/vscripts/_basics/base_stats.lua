@@ -36,7 +36,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local level = caster:GetLevel()
 				if caster:IsIllusion() then return end
 
-				self:IncrementSpenderPoints(1, 3)
+				self:IncrementSpenderPoints(2, 3)
 				for _, stat in pairs(self.stats_primary) do
 					self:IncrementSubLevel(stat, self.bonus_level[stat])
 				end
@@ -94,16 +94,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_levelup[stat] = 0
 				end
 
-				self.stat_fraction["STR"] = {["value"] = 0, "DEF", "LCK", "DEX"}
-				self.stat_fraction["AGI"] = {["value"] = 0, "DEX", "REC", "MND"}
-				self.stat_fraction["INT"] = {["value"] = 0, "LCK", "REC", "RES"}
-				self.stat_fraction["CON"] = {["value"] = 0, "DEF", "RES", "MND"}
-				self.stat_fraction["DEX"] = {["value"] = 0, "AGI", "STR"}
+				self.stat_fraction["STR"] = {["value"] = 0, "DEF", "RES", "LCK"}
+				self.stat_fraction["AGI"] = {["value"] = 0, "DEX", "REC", "LCK"}
+				self.stat_fraction["INT"] = {["value"] = 0, "MND", "REC", "RES"}
+				self.stat_fraction["CON"] = {["value"] = 0, "DEF", "DEX", "MND"}
+				self.stat_fraction["DEX"] = {["value"] = 0, "AGI", "CON"}
 				self.stat_fraction["DEF"] = {["value"] = 0, "CON", "STR"}
-				self.stat_fraction["RES"] = {["value"] = 0, "INT", "CON"}
+				self.stat_fraction["RES"] = {["value"] = 0, "INT", "STR"}
 				self.stat_fraction["REC"] = {["value"] = 0, "AGI", "INT"}
-				self.stat_fraction["LCK"] = {["value"] = 0, "INT", "STR"}
-				self.stat_fraction["MND"] = {["value"] = 0, "AGI", "CON"}
+				self.stat_fraction["LCK"] = {["value"] = 0, "AGI", "STR"}
+				self.stat_fraction["MND"] = {["value"] = 0, "INT", "CON"}
 			end
 		end
 
@@ -152,11 +152,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.range = self:GetSpecialValueFor("range")
 				self.status_resist = self:GetSpecialValueFor("status_resist")
-				-- self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
-				-- self.block_damage = self:GetSpecialValueFor("block_damage")
-				-- self.block_chance = self:GetSpecialValueFor("block_chance")
-				-- self.physical_block = 0
-				-- self.magical_block = 0
+				self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
+				self.block_chance = self:GetSpecialValueFor("block_chance")
+				self.physical_block = 0
+				self.magical_block = 0
 
 				-- AGI
 				self.movespeed = self:GetSpecialValueFor("movespeed")
