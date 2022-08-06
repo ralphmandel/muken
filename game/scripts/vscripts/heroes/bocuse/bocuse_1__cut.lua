@@ -89,6 +89,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self.target = self:GetCursorTarget() 
         caster:FadeGesture(ACT_DOTA_ATTACK)
 
+        if self.target:TriggerSpellAbsorb(self) then return end
+
         local max_bonus_chance = self:GetSpecialValueFor("max_bonus_chance")
         local bonus_chance = max_bonus_chance
 

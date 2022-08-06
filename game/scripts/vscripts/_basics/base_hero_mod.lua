@@ -98,9 +98,12 @@ function base_hero_mod:ChangeSounds(pre_attack, attack, attack_landed)
 end
 
 function base_hero_mod:LoadActivity()
-	self.activity = ""
-	if self.ability.hero_name == "genuine" then self.activity = "ti6" end
-	if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
+	Timers:CreateTimer((0.5), function()
+		self.activity = ""
+		if self.ability.hero_name == "genuine" then self.activity = "ti6" end
+		if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
+		if self.ability.hero_name == "bocuse" then self.activity = "trapper" end
+	end)
 end
 
 function base_hero_mod:LoadModel()
