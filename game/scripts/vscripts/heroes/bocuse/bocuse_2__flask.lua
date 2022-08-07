@@ -129,7 +129,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bocuse_2__flask:BreakFlask(target)
 		local caster = self:GetCaster()
-		local duration = self:GetSpecialValueFor("duration")
 		local radius = self:GetSpecialValueFor("radius")
 
 		local units = FindUnitsInRadius(
@@ -141,9 +140,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         for _,unit in pairs(units) do
             self:PlayEfxHit(unit)
             if target:GetTeamNumber() == caster:GetTeamNumber() then
-                --unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {
-                --    duration = self:CalcStatus(duration, caster, unit)
-                --})
+                unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {})
             else
                 --unit:AddNewModifier(caster, self, "bocuse_2_modifier_debuff", {
                 --    duration = self:CalcStatus(duration, caster, unit)
@@ -179,10 +176,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
         ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
+        ParticleManager:ReleaseParticleIndex(effect_cast)
 
         particle_cast = "particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf"
         effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
         ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect_cast)
 
         if IsServer() then
             if caster == target then
