@@ -243,7 +243,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"duration"		    "20"
+				"duration"		    "25"
 			}
             "02"
 			{

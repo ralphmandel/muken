@@ -1,6 +1,6 @@
 bocuse_4__enhance = class({})
 LinkLuaModifier("bocuse_4_modifier_enhance", "heroes/bocuse/bocuse_4_modifier_enhance", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bocuse_4_modifier_pos", "heroes/bocuse/bocuse_4_modifier_pos", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_4_modifier_end", "heroes/bocuse/bocuse_4_modifier_end", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -77,7 +77,7 @@ LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFI
         self:SetActivated(false)
     end
 
-    function bocuse_4__enhance:OnChannelFinish( bInterrupted )
+    function bocuse_4__enhance:OnChannelFinish(bInterrupted)
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
 
