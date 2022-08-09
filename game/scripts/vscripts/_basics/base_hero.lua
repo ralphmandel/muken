@@ -484,6 +484,14 @@ require("talent_tree")
 			if cut:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
+		-- Bocuse 2.41 requires skill rank level 14
+		if self.talentsData[talentId].Ability == "bocuse_2__flask_rank_41" then
+			local cut = self:GetCaster():FindAbilityByName("bocuse_2__flask")
+			if cut == nil then return false end
+			if cut:IsTrained() == false then return false end
+			if cut:GetSpecialValueFor("rank") < 14 then return false end
+		end
+
 		for i = 1, 7, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
 			and (not self.ranks[i][0]) then

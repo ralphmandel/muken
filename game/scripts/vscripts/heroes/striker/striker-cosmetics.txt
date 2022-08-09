@@ -4,10 +4,10 @@
 
     "models/items/dawnbreaker/first_light_arms/first_light_arms.vmdl" "nil"
 
-    "models/items/dawnbreaker/first_light_head/first_light_head.vmdl" "nil"
-
-    "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl"
+    "models/items/dawnbreaker/first_light_head/first_light_head.vmdl"
     {
-        "particles/units/heroes/hero_dawnbreaker/dawnbreaker_ambient_weapon.vpcf" "attach_weapon_end_fx"
+        "particles/econ/items/dawnbreaker/dawnbreaker_2022_cc/dawnbreaker_2022_cc_head.vpcf" ""
     }
+
+    "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl" "nil"
 }

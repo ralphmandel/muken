@@ -22,11 +22,7 @@ function striker_u_modifier_autocast:OnCreated(kv)
 end
 
 function striker_u_modifier_autocast:OnRefresh(kv)
-	-- UP 7.12
-	if self.ability:GetRank(12) then
-		self.ability:RemoveBonus("_1_INT", self.parent)
-		if self.ability:GetAutoCastState() then self.ability:AddBonus("_1_INT", self.parent, 10, 0, nil) end
-	end
+	self.ability:OnAutoCastChange(true)
 end
 
 function striker_u_modifier_autocast:OnRemoved()
@@ -47,12 +43,7 @@ end
 
 function striker_u_modifier_autocast:OnOrder(keys)
 	if keys.order_type ~= 20 or keys.unit ~= self.parent then return end
-
-	-- UP 7.12
-	if self.ability:GetRank(12) then
-		self.ability:RemoveBonus("_1_INT", self.parent)
-		if self.ability:GetAutoCastState() == false then self.ability:AddBonus("_1_INT", self.parent, 10, 0, nil) end
-	end
+	self.ability:OnAutoCastChange(false)
 end
 
 function striker_u_modifier_autocast:GetModifierManaBonus()

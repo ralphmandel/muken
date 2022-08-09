@@ -68,11 +68,34 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
     function striker_u__auto:OnSpellStart()
         local caster = self:GetCaster()
         self:ToggleAutoCast()
+        self:OnAutoCastChange(true)
+    end
 
-        -- UP 7.12
-        if self:GetRank(12) then
-            self:RemoveBonus("_1_INT", caster)
-            if self:GetAutoCastState() then self:AddBonus("_1_INT", caster, 10, 0, nil) end
+    function striker_u__auto:OnAutoCastChange(state)
+        local caster = self:GetCaster()
+        local cosmetics = caster:FindAbilityByName("cosmetics")
+
+        self:RemoveBonus("_1_INT", caster)
+
+        if self:GetAutoCastState() == state then
+            -- UP 7.12
+            if self:GetRank(12) then
+                self:AddBonus("_1_INT", caster, 10, 0, nil)
+            end
+
+            if cosmetics then
+                local model = "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl"
+                local ambients = {["particles/striker/weapon/striker_weapon.vpcf"] = "nil"}
+                cosmetics:ApplyAmbient(ambients, caster, cosmetics:FindModifierByModel(model))
+            end
+        else
+            if cosmetics then
+                cosmetics:DestroyAmbient(
+                    "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl",
+                    "particles/striker/weapon/striker_weapon.vpcf",
+                    false
+                )
+            end
         end
     end
 

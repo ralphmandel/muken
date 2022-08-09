@@ -69,7 +69,6 @@ end
 
 function striker__precache:Precache(context)
     PrecacheResource("soundfile", "soundevents/soundevent_striker.vsndevts", context)
-    PrecacheResource("particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_ambient_weapon.vpcf", context)
     PrecacheResource("particle", "particles/econ/events/ti10/blink_dagger_start_ti10_splash.vpcf", context)
     PrecacheResource("particle", "particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_blur_start.vpcf", context)
     PrecacheResource("particle", "particles/econ/events/ti10/blink_dagger_end_ti10_lvl2.vpcf", context)
@@ -105,6 +104,8 @@ function striker__precache:Precache(context)
     PrecacheResource("particle", "particles/striker/ein_sof/striker_ein_sof_2_buff.vpcf", context)
     PrecacheResource("particle", "particles/striker/ein_sof/striker_ein_sof_buff.vpcf", context)
     PrecacheResource("particle", "particles/econ/items/windrunner/windranger_arcana/windranger_arcana_javelin_tgt_v2.vpcf", context)
+    PrecacheResource("particle", "particles/striker/weapon/striker_weapon.vpcf", context)
+    PrecacheResource("particle", "particles/econ/items/dawnbreaker/dawnbreaker_2022_cc/dawnbreaker_2022_cc_head.vpcf", context)
 
     PrecacheResource("model", "models/items/dawnbreaker/first_light_armor/first_light_armor.vmdl", context)
     PrecacheResource("model", "models/items/dawnbreaker/first_light_arms/first_light_arms.vmdl", context)

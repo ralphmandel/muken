@@ -42,6 +42,7 @@
 			"1"
 			{
 				"1"   "bocuse_2__flask_rank_21"
+				"2"   "bocuse_2__flask_rank_22"
 			}
 			"2"
 			{

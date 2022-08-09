@@ -102,7 +102,7 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_2__flask"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_flask"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -118,10 +118,10 @@
 
 		"AbilitySpecial"
 		{
-            "0"
+            "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"225 235 245 255 265 275 285 295 305 315 325"
+				"radius"		"240 250 260 270 280 290 300 310 320 330 340 350 360"
 			}
             "02"
 			{
@@ -153,6 +153,16 @@
 				"var_type"		    "FIELD_FLOAT"
 				"amount_time_loss"	"1.25"
 			}
+            "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"mana_gain"		"10"
+			}
+            "09"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"blind"		    "25"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -161,7 +171,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}

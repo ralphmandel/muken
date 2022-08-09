@@ -101,34 +101,46 @@ end
 --------------------------------------------------------------------------------
 
 function cosmetics_mod:PlayEfxAmbient(ambient, attach)
-	if self.index == nil then self.index = 0 end
 	if self.ambient == nil then self.ambient = {} end
 	if self.particle == nil then self.particle = {} end
-	self.index = self.index + 1
-	self.ambient[self.index] = ambient
+	local index = 0
+	local x = 1
 
-	self.particle[self.index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.particle[self.index], 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControlEnt(self.particle[self.index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
-	self:AddParticle(self.particle[self.index], false, false, -1, false, false)
+	while index == 0 do
+		if self.ambient[x] == nil then
+			self.ambient[x] = ambient
+			index = x
+		end
+		x = x + 1
+	end
+
+	self.particle[index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle[index], 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(self.particle[index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+	self:AddParticle(self.particle[index], false, false, -1, false, false)
 end
 
 function cosmetics_mod:StopAmbientEfx(ambient, bDestroyImmediately)
-	if self.index == nil then return end
 	if self.ambient == nil then return end
 	if self.particle == nil then return end
-	
-	for i = 1, self.index, 1 do
-		if ambient == self.ambient[i] or ambient == nil then
-			if self.particle[i] then
-				ParticleManager:DestroyParticle(self.particle[i], bDestroyImmediately)
-				ParticleManager:ReleaseParticleIndex(self.particle[i])
+	local i
+
+	for index, string in pairs(self.ambient) do
+		if ambient == string or ambient == nil then
+			if self.particle[index] then
+				ParticleManager:DestroyParticle(self.particle[index], bDestroyImmediately)
+				ParticleManager:ReleaseParticleIndex(self.particle[index])
+				i = index
 			end
 		end
 	end
 
+	if ambient and i then
+		self.ambient[i] = nil
+		self.particle[i] = nil
+	end
+
 	if ambient == nil then
-		self.index = nil
 		self.ambient = nil
 		self.particle = nil
 	end

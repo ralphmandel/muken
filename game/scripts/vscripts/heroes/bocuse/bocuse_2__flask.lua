@@ -1,7 +1,11 @@
 bocuse_2__flask = class({})
 LinkLuaModifier("bocuse_2_modifier_buff", "heroes/bocuse/bocuse_2_modifier_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_2_modifier_debuff", "heroes/bocuse/bocuse_2_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_2_modifier_status_efx", "heroes/bocuse/bocuse_2_modifier_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -117,6 +121,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		}
 
 		ProjectileManager:CreateTrackingProjectile(info)
+
+        -- UP 2.41
+        if self:GetRank(41) then
+            self:ThrowSecondFlask(target)
+        end
+
 		if IsServer() then caster:EmitSound("Hero_OgreMagi.Ignite.Cast") end
     end
 
@@ -127,31 +137,121 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		self:BreakFlask(hTarget)
 	end
 
+    function bocuse_2__flask:ThrowSecondFlask(target)
+        local caster = self:GetCaster()
+        local target_team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
+
+        if caster:GetTeamNumber() == target:GetTeamNumber() then
+            target_team = DOTA_UNIT_TARGET_TEAM_ENEMY
+        end
+
+        local info = {
+			Target = target,
+			Source = caster,
+			Ability = self,	
+			
+			EffectName = "particles/bocuse/bocuse_flambee.vpcf",
+			iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
+			bDodgeable = true
+		}
+
+        local units = FindUnitsInRadius(
+            caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
+            target_team, self:GetAbilityTargetType(),
+            self:GetAbilityTargetFlags(), 0, false
+        )
+
+        for _,unit in pairs(units) do
+            if unit ~= caster then
+                info.Target = unit
+                ProjectileManager:CreateTrackingProjectile(info)
+                break
+            end
+        end
+    end
+
     function bocuse_2__flask:BreakFlask(target)
 		local caster = self:GetCaster()
-		local radius = self:GetSpecialValueFor("radius")
+		local radius = self:GetAOERadius()
+        local target_team = DOTA_UNIT_TARGET_TEAM_ENEMY
+
+        if caster:GetTeamNumber() == target:GetTeamNumber() then
+            target_team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
+        end
 
 		local units = FindUnitsInRadius(
 			caster:GetTeamNumber(), target:GetOrigin(), nil, radius,
-            DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            target_team, self:GetAbilityTargetType(),
             0, 0, false
 		)
 
         for _,unit in pairs(units) do
-            self:PlayEfxHit(unit)
-            if target:GetTeamNumber() == caster:GetTeamNumber() then
-                unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {})
-            else
-                --unit:AddNewModifier(caster, self, "bocuse_2_modifier_debuff", {
-                --    duration = self:CalcStatus(duration, caster, unit)
-                --})
-            end
+            self:AddEffect(caster, target, unit)
         end
 
 		self:PlayEfxImpact(target, radius)
 		GridNav:DestroyTreesAroundPoint(target:GetOrigin(), radius , false)
         AddFOWViewer(caster:GetTeamNumber(), caster:GetOrigin(), radius, 1, true)
 	end
+
+    function bocuse_2__flask:AddEffect(caster, target, unit)
+        local init_amount = 0
+        self:PlayEfxHit(unit)
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            init_amount = 125
+        end
+
+        if target:GetTeamNumber() == caster:GetTeamNumber() then
+            -- UP 2.31
+            if self:GetRank(31) then
+                unit:Purge(false, true, false, true, false)
+            end
+
+            if init_amount > 0 then
+                local base_stats = caster:FindAbilityByName("base_stats")
+                if base_stats then init_amount = init_amount * base_stats:GetHealPower() end
+                if init_amount > 0 then unit:Heal(init_amount, self) end
+            end
+
+            -- UP 2.22
+            if self:GetRank(22) then
+                unit:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
+                    duration = self:CalcStatus(1, caster, unit),
+                    percent = 100
+                })
+            end
+
+            unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {})
+        end
+
+        if target:GetTeamNumber() ~= caster:GetTeamNumber() then
+            -- UP 2.31
+            if self:GetRank(31) then
+                unit:Purge(true, false, false, false, false)
+            end
+
+            if init_amount > 0 then
+                ApplyDamage({
+                    victim = unit, attacker = caster,
+                    damage = init_amount, damage_type = self:GetAbilityDamageType(),
+                    ability = self
+                })
+            end
+
+            if unit:IsAlive() then
+                -- UP 2.22
+                if self:GetRank(22) then
+                    unit:AddNewModifier(caster, self, "_modifier_stun", {
+                        duration = self:CalcStatus(1, caster, unit)
+                    })
+                end
+
+                unit:AddNewModifier(caster, self, "bocuse_2_modifier_debuff", {})
+            end
+        end
+    end
 
     function bocuse_2__flask:GetAOERadius()
         return self:GetSpecialValueFor("radius")
