@@ -211,7 +211,7 @@ function bocuse_1_modifier_slash:ApplyBleeding(target)
 
 	-- UP 1.21
 	if self.ability:GetRank(21) then
-		bleeding_duration = bleeding_duration + 3
+		bleeding_duration = bleeding_duration + 7
 	end
 	
 	target:AddNewModifier(self.caster, self.ability, "bocuse_1_modifier_bleeding", {

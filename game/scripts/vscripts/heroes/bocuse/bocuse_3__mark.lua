@@ -1,6 +1,9 @@
 bocuse_3__mark = class({})
+LinkLuaModifier("bocuse_3_modifier_passive", "heroes/bocuse/bocuse_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_3_modifier_mark", "heroes/bocuse/bocuse_3_modifier_mark", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -61,8 +64,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bocuse_3__mark:OnSpellStart()
-        local caster = self:GetCaster()
+    function bocuse_3__mark:GetIntrinsicModifierName()
+        return "bocuse_3_modifier_passive"
     end
 
     function bocuse_3__mark:GetManaCost(iLevel)

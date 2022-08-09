@@ -38,11 +38,11 @@
 			"0"
 			{
 				"1"   "bocuse_2__flask_rank_11"
+				"2"   "bocuse_2__flask_rank_12"
 			}
 			"1"
 			{
 				"1"   "bocuse_2__flask_rank_21"
-				"2"   "bocuse_2__flask_rank_22"
 			}
 			"2"
 			{
@@ -61,7 +61,7 @@
 			}
 			"1"
 			{
-				"1"   "bocuse_3__mark_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
@@ -70,6 +70,7 @@
 			"3"
 			{
 				"1"   "bocuse_3__mark_rank_41"
+				"2"   "bocuse_3__mark_rank_42"
 			}
 		}
 		"bocuse_4__enhance"
@@ -81,6 +82,7 @@
 			"1"
 			{
 				"1"   "bocuse_4__enhance_rank_21"
+				"2"   "bocuse_4__enhance_rank_22"
 			}
 			"2"
 			{
@@ -88,7 +90,7 @@
 			}
 			"3"
 			{
-				"1"   "bocuse_4__enhance_rank_41"
+				"1"   "empty"
 			}
 		}
 		"bocuse_5__puddle"

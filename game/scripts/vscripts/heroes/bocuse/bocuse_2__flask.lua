@@ -76,9 +76,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         else
             local rand = RandomInt(1,3)
             --if rand == 1 then self.parent:AddActivityModifier("ti10_pudge") end
-            if rand == 1 then caster:AddActivityModifier("") end
-            if rand == 2 then caster:AddActivityModifier("ftp_dendi_back") end
-            if rand == 3 then caster:AddActivityModifier("trapper") end
+            if rand == 1 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("") end
+            if rand == 2 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("ftp_dendi_back") end
+            if rand == 3 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper") end
             caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
         end
 
@@ -132,7 +132,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function bocuse_2__flask:OnProjectileHit(hTarget, vLocation)
 		if not hTarget then return end
-		if hTarget:TriggerSpellAbsorb(self) then return end
+		
+        if hTarget:GetTeamNumber() ~= self:GetCaster():GetTeamNumber()
+        and hTarget:TriggerSpellAbsorb(self) then
+            return
+        end
 
 		self:BreakFlask(hTarget)
 	end
@@ -215,8 +219,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                 if init_amount > 0 then unit:Heal(init_amount, self) end
             end
 
-            -- UP 2.22
-            if self:GetRank(22) then
+            -- UP 2.12
+            if self:GetRank(12) then
                 unit:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
                     duration = self:CalcStatus(1, caster, unit),
                     percent = 100
@@ -241,8 +245,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
             end
 
             if unit:IsAlive() then
-                -- UP 2.22
-                if self:GetRank(22) then
+                -- UP 2.12
+                if self:GetRank(12) then
                     unit:AddNewModifier(caster, self, "_modifier_stun", {
                         duration = self:CalcStatus(1, caster, unit)
                     })

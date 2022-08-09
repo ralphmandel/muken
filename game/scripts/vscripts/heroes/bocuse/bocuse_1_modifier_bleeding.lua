@@ -35,11 +35,6 @@ function bocuse_1_modifier_bleeding:OnCreated(kv)
 		ability = self.ability
 	}
 
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 25})
-	end
-
 	if IsServer() then
 		self:StartIntervalThink(self.intervals)
 		self:PlayEfxStart()
@@ -53,18 +48,16 @@ function bocuse_1_modifier_bleeding:OnRefresh(kv)
 end
 
 function bocuse_1_modifier_bleeding:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bocuse_1_modifier_bleeding:OnIntervalThink()
 	if IsServer() then
-		local apply_damage = math.floor(ApplyDamage(self.damageTable))
-		if apply_damage > 0 then self:PopupBleeding(apply_damage) end
+		if self.parent:IsMoving() then
+			local apply_damage = math.floor(ApplyDamage(self.damageTable))
+			if apply_damage > 0 then self:PopupBleeding(apply_damage) end
+		end
 
 		self:StartIntervalThink(self.intervals)
 	end

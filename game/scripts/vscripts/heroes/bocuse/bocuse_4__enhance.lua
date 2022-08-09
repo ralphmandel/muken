@@ -1,6 +1,7 @@
 bocuse_4__enhance = class({})
 LinkLuaModifier("bocuse_4_modifier_enhance", "heroes/bocuse/bocuse_4_modifier_enhance", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_4_modifier_pos", "heroes/bocuse/bocuse_4_modifier_pos", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -63,6 +64,41 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bocuse_4__enhance:OnSpellStart()
         local caster = self:GetCaster()
+
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("ftp_dendi_back")
+        caster:StartGesture(ACT_DOTA_VICTORY)
+
+        if IsServer() then
+            caster:EmitSound("DOTA_Item.Cheese.Activate")
+            caster:EmitSound("DOTA_Item.RepairKit.Target")
+        end
+
+        self:EndCooldown()
+        self:SetActivated(false)
+    end
+
+    function bocuse_4__enhance:OnChannelFinish( bInterrupted )
+        local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
+        caster:FadeGesture(ACT_DOTA_VICTORY)
+
+        if bInterrupted == true then
+            self:SetActivated(true)
+            self:StartCooldown(5)
+            return
+        end
+
+        caster:AddNewModifier(caster, self, "bocuse_4_modifier_enhance", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
+    end
+
+    function bocuse_4__enhance:GetChannelTime()
+        local channel = self:GetCaster():FindAbilityByName("_channel")
+        local channel_time = self:GetSpecialValueFor("channel_time")
+        return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
     end
 
     function bocuse_4__enhance:GetManaCost(iLevel)
