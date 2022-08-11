@@ -1,7 +1,7 @@
 bocuse_4__enhance = class({})
 LinkLuaModifier("bocuse_4_modifier_enhance", "heroes/bocuse/bocuse_4_modifier_enhance", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_4_modifier_end", "heroes/bocuse/bocuse_4_modifier_end", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -53,18 +53,42 @@ LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFI
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_4__enhance:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
     function bocuse_4__enhance:OnSpellStart()
+        -- UP 4.22
+        if self:GetRank(22) then
+            self:StartBuff()
+        else
+            self:StartPreBuff()
+        end
+    end
+
+    function bocuse_4__enhance:OnChannelFinish(bInterrupted)
         local caster = self:GetCaster()
 
+        caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
+        caster:FadeGesture(ACT_DOTA_VICTORY)
+
+        if bInterrupted == true then
+            self:SetActivated(true)
+            self:StartCooldown(5)
+            return
+        end
+
+        self:StartBuff()
+    end
+
+    function bocuse_4__enhance:StartPreBuff()
+        local caster = self:GetCaster()
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("ftp_dendi_back")
         caster:StartGesture(ACT_DOTA_VICTORY)
 
@@ -77,22 +101,25 @@ LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFI
         self:SetActivated(false)
     end
 
-    function bocuse_4__enhance:OnChannelFinish(bInterrupted)
+    function bocuse_4__enhance:StartBuff()
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
-
-        caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
-        caster:FadeGesture(ACT_DOTA_VICTORY)
-
-        if bInterrupted == true then
-            self:SetActivated(true)
-            self:StartCooldown(5)
-            return
-        end
 
         caster:AddNewModifier(caster, self, "bocuse_4_modifier_enhance", {
             duration = self:CalcStatus(duration, caster, caster)
         })
+    end
+
+    function bocuse_4__enhance:GetBehavior()
+        local behavior = DOTA_ABILITY_BEHAVIOR_CHANNELLED + DOTA_ABILITY_BEHAVIOR_NO_TARGET
+
+        if self:GetCurrentAbilityCharges() == 0 then return behavior end
+
+        if self:GetCurrentAbilityCharges() % 2 == 0 then
+            behavior = DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET
+        end
+
+        return behavior
     end
 
     function bocuse_4__enhance:GetChannelTime()
@@ -109,6 +136,11 @@ LinkLuaModifier("_modifier_immunity", "modifiers/_modifier_immunity", LUA_MODIFI
     end
 
     function bocuse_4__enhance:CheckAbilityCharges(charges)
+        -- UP 4.22
+        if self:GetRank(22) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

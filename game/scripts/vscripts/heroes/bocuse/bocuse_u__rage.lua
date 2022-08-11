@@ -1,5 +1,10 @@
 bocuse_u__rage = class({})
 LinkLuaModifier("bocuse_u_modifier_rage", "heroes/bocuse/bocuse_u_modifier_rage", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_u_modifier_rage_status_efx", "heroes/bocuse/bocuse_u_modifier_rage_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_u_modifier_exhaustion", "heroes/bocuse/bocuse_u_modifier_exhaustion", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("bocuse_u_modifier_exhaustion_status_efx", "heroes/bocuse/bocuse_u_modifier_exhaustion_status_efx", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("bocuse_u_modifier_passive", "heroes/bocuse/bocuse_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_u_modifier_jump", "heroes/bocuse/bocuse_u_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -52,17 +57,42 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
 
+        self:CheckAbilityCharges(self.base_charges)
         self:CheckAbilityCharges(1)
     end
 
     function bocuse_u__rage:Spawn()
+        self.kills = 0
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
+    function bocuse_u__rage:GetIntrinsicModifierName()
+        return "bocuse_u_modifier_passive"
+    end
+
     function bocuse_u__rage:OnSpellStart()
         local caster = self:GetCaster()
+        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
+
+        -- UP 7.11
+        if self:GetRank(11) then
+            caster:AddNewModifier(caster, self, "bocuse_u_modifier_jump", {duration = 0.5})
+        end
+
+        caster:AddNewModifier(caster, self, "bocuse_u_modifier_rage", {duration = duration})
+    end
+
+    function bocuse_u__rage:AddKillPoint(pts)
+        local caster = self:GetCaster()
+        self.kills = self.kills + pts
+
+        local base_stats = caster:FindAbilityByName("base_stats")
+	    if base_stats then base_stats:AddBaseStat("CON", 1) end
+
+        self:PlayEfxKill(caster)
     end
 
     function bocuse_u__rage:GetManaCost(iLevel)
@@ -77,3 +107,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function bocuse_u__rage:PlayEfxKill(target)
+        local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+        ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+        ParticleManager:ReleaseParticleIndex(nFXIndex)
+    end

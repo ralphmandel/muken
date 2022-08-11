@@ -57,10 +57,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_2__flask:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
@@ -266,6 +267,13 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
+    end
+
+    function bocuse_2__flask:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 7 == 0 then cast_range = cast_range * 1.5 end
+        return cast_range
     end
 
     function bocuse_2__flask:CheckAbilityCharges(charges)

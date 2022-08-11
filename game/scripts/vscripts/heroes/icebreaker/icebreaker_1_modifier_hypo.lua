@@ -25,7 +25,7 @@ function icebreaker_1_modifier_hypo:OnCreated(kv)
 	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_hypo_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_hypo_status_efx", true) end
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -42,7 +42,7 @@ end
 
 function icebreaker_1_modifier_hypo:OnRemoved(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_hypo_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_hypo_status_efx", false) end
 
 	self:ModifySlow(0)
 end

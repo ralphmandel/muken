@@ -484,12 +484,26 @@ require("talent_tree")
 			if cut:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
-		-- Bocuse 2.41 requires skill rank level 14
+		-- Bocuse 2.41 requires skill rank level 13
 		if self.talentsData[talentId].Ability == "bocuse_2__flask_rank_41" then
-			local cut = self:GetCaster():FindAbilityByName("bocuse_2__flask")
-			if cut == nil then return false end
-			if cut:IsTrained() == false then return false end
-			if cut:GetSpecialValueFor("rank") < 14 then return false end
+			local flask = self:GetCaster():FindAbilityByName("bocuse_2__flask")
+			if flask == nil then return false end
+			if flask:IsTrained() == false then return false end
+			if flask:GetSpecialValueFor("rank") < 13 then return false end
+		end
+
+		-- Bocuse 7.21 requires skill 1
+		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_21"
+		and (not self.ranks[1][0]) then
+			return false
+		end
+
+		-- Bocuse 7.41 requires skill rank level 19
+		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_41" then
+			local rage = self:GetCaster():FindAbilityByName("bocuse_u__rage")
+			if rage == nil then return false end
+			if rage:IsTrained() == false then return false end
+			if rage:GetSpecialValueFor("rank") < 19 then return false end
 		end
 
 		for i = 1, 7, 1 do

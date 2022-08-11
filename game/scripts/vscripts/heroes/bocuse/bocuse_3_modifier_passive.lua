@@ -41,8 +41,7 @@ function bocuse_3_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker:PassivesDisabled() then return end
 	if keys.target:IsMagicImmune() then return end
 
-	keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_mark", {})
-	if IsServer() then keys.target:EmitSound("Hero_Bocuse.Sauce") end
+	self.ability:ApplyMark(keys.target)
 end
 
 -- UTILS -----------------------------------------------------------

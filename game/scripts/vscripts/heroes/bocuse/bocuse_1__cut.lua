@@ -55,10 +55,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_1__cut:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
@@ -86,7 +87,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function bocuse_1__cut:OnSpellStart()
         local caster = self:GetCaster()
-        self.target = self:GetCursorTarget() 
+        self.target = self:GetCursorTarget()
         caster:FadeGesture(ACT_DOTA_ATTACK)
 
         if self.target:TriggerSpellAbsorb(self) then return end
@@ -103,6 +104,22 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
 
         local mod = caster:AddNewModifier(caster, self, "bocuse_1_modifier_slash", {bonus_chance = bonus_chance})
+    end
+
+    function bocuse_1__cut:ApplyBleeding(target)
+        if target:IsAlive() == false then return end
+
+        local caster = self:GetCaster()
+        local bleeding_duration = self:GetSpecialValueFor("bleeding_duration")
+    
+        -- UP 1.21
+        if self:GetRank(21) then
+            bleeding_duration = bleeding_duration + 7
+        end
+        
+        target:AddNewModifier(caster, self, "bocuse_1_modifier_bleeding", {
+            duration = self:CalcStatus(bleeding_duration, caster, target)
+        })
     end
 
     function bocuse_1__cut:CastFilterResultTarget(hTarget)
@@ -150,6 +167,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function bocuse_1__cut:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 7 == 0 then cast_range = cast_range * 1.5 end
         if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range = cast_range + 100 end
         return cast_range
     end

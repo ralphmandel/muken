@@ -27,7 +27,7 @@ function icebreaker_1_modifier_frozen:OnCreated( kv )
 	self.break_damage = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_frozen_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_frozen_status_efx", true) end
 
 	self.parent:RemoveModifierByNameAndCaster("icebreaker_1_modifier_hypo", self.caster)
 
@@ -39,7 +39,7 @@ end
 
 function icebreaker_1_modifier_frozen:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "icebreaker_1_modifier_frozen_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_frozen_status_efx", false) end
 
 	local damageTable = {
 		victim = self.parent,

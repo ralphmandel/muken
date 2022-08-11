@@ -311,12 +311,12 @@
 			"01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stats"		        "25"
+				"stats"		        "20"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"luck"		        "25"
+				"luck"		        "20"
 			}
             "03"
 			{

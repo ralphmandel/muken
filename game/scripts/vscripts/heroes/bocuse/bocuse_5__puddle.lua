@@ -1,6 +1,8 @@
 bocuse_5__puddle = class({})
 LinkLuaModifier("bocuse_5_modifier_puddle", "heroes/bocuse/bocuse_5_modifier_puddle", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_5_modifier_aura_effect", "heroes/bocuse/bocuse_5_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -52,10 +54,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_5__puddle:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
@@ -63,6 +66,31 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bocuse_5__puddle:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+        local duration = self:GetSpecialValueFor("duration")
+        if IsServer() then caster:EmitSound("Hero_Bocuse.Roux") end
+
+        -- UP 5.11
+        if self:GetRank(11) then
+            duration = duration + 5
+        end
+
+        Timers:CreateTimer((0.25), function()
+            CreateModifierThinker(caster, self, "bocuse_5_modifier_puddle", {
+                duration = duration
+            }, point, caster:GetTeamNumber(), false)
+        end)
+    end
+
+    function bocuse_5__puddle:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
+    end
+
+    function bocuse_5__puddle:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 7 == 0 then cast_range = cast_range * 1.5 end
+        return cast_range
     end
 
     function bocuse_5__puddle:GetManaCost(iLevel)

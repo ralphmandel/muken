@@ -52,10 +52,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_6__triad:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 

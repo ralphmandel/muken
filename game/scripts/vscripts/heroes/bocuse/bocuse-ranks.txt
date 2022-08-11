@@ -109,7 +109,7 @@
 			}
 			"3"
 			{
-				"1"   "bocuse_5__puddle_rank_41"
+				"1"   "empty"
 			}
 		}
 		"bocuse_6__triad"
@@ -124,7 +124,7 @@
 			}
 			"2"
 			{
-				"1"   "bocuse_6__triad_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -136,6 +136,7 @@
 			"0"
 			{
 				"1"   "bocuse_u__rage_rank_11"
+				"2"   "bocuse_u__rage_rank_12"
 			}
 			"1"
 			{
@@ -144,6 +145,7 @@
 			"2"
 			{
 				"1"   "bocuse_u__rage_rank_31"
+				"2"   "bocuse_u__rage_rank_32"
 			}
 			"3"
 			{

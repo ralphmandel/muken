@@ -32,7 +32,7 @@ function krieger_1_modifier_fury:OnCreated(kv)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then
-		cosmetics:SetStatusEffect(self.caster, nil, "krieger_1_modifier_fury_status_efx", true)
+		cosmetics:SetStatusEffect(self.caster, self.ability, "krieger_1_modifier_fury_status_efx", true)
 		cosmetics:ReloadAmbients(self.parent, models, false)
 	end
 
@@ -56,7 +56,7 @@ function krieger_1_modifier_fury:OnRemoved()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then
-		cosmetics:SetStatusEffect(self.caster, nil, "krieger_1_modifier_fury_status_efx", false)
+		cosmetics:SetStatusEffect(self.caster, self.ability, "krieger_1_modifier_fury_status_efx", false)
 		cosmetics:ReloadAmbients(self.parent, models, false)
 	end
 end

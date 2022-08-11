@@ -200,23 +200,8 @@ function bocuse_1_modifier_slash:ApplyCut(target)
 		self:ApplyDisarm(target)
 	end
 
-	self:ApplyBleeding(target)
+	self.ability:ApplyBleeding(target)
 	self:PlayEfxCut(target)
-end
-
-function bocuse_1_modifier_slash:ApplyBleeding(target)
-	if target:IsAlive() == false then return end
-
-	local bleeding_duration = self.ability:GetSpecialValueFor("bleeding_duration")
-
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		bleeding_duration = bleeding_duration + 7
-	end
-	
-	target:AddNewModifier(self.caster, self.ability, "bocuse_1_modifier_bleeding", {
-		duration = self.ability:CalcStatus(bleeding_duration, self.caster, target)
-	})
 end
 
 function bocuse_1_modifier_slash:ApplyDisarm(target)

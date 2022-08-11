@@ -55,10 +55,11 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        self:CheckAbilityCharges(self.base_charges)
     end
 
     function bocuse_3__mark:Spawn()
+        self.base_charges = 1
         self:CheckAbilityCharges(0)
     end
 
@@ -66,6 +67,14 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
     function bocuse_3__mark:GetIntrinsicModifierName()
         return "bocuse_3_modifier_passive"
+    end
+
+    function bocuse_3__mark:ApplyMark(target)
+        if target:IsAlive() == false then return end
+        local caster = self:GetCaster()
+        
+        target:AddNewModifier(caster, self, "bocuse_3_modifier_mark", {})
+        if IsServer() then target:EmitSound("Hero_Bocuse.Sauce") end
     end
 
     function bocuse_3__mark:GetManaCost(iLevel)

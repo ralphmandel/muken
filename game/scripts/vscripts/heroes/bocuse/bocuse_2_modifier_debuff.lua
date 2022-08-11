@@ -21,7 +21,7 @@ function bocuse_2_modifier_debuff:OnCreated(kv)
 	self.bonus_amount = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_2_modifier_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", true) end
 
 	local blind = self.ability:GetSpecialValueFor("blind")
 	local init_duration = self.ability:GetSpecialValueFor("init_duration")
@@ -68,7 +68,7 @@ function bocuse_2_modifier_debuff:OnRemoved()
 	if IsServer() then self.parent:StopSound("Hero_OgreMagi.Ignite.Damage") end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_2_modifier_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", false) end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
 	for _,modifier in pairs(mod) do

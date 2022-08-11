@@ -21,7 +21,7 @@ function bocuse_2_modifier_buff:OnCreated(kv)
 	self.bonus_amount = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_2_modifier_status_efx", true) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", true) end
 
 	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
@@ -50,7 +50,7 @@ function bocuse_2_modifier_buff:OnRemoved()
 	if IsServer() then self.parent:StopSound("Bocuse.Flambee.Buff") end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, nil, "bocuse_2_modifier_status_efx", false) end
+	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", false) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
