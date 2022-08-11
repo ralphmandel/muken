@@ -51,6 +51,7 @@ end
 
 function bocuse_5_modifier_puddle:PlayEfxStart()
 	local radius = self.ability:GetAOERadius()
+	AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius, self:GetDuration() + 1, false)
 
 	local particle_cast = "particles/bocuse/bocuse_roux_aoe_mass.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, self.parent)
