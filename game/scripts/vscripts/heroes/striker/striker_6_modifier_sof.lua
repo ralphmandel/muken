@@ -94,10 +94,7 @@ end
 function striker_6_modifier_sof:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 
-	-- UP 6.41
-	if self.ability:GetRank(41) then
-		self.ability.damage_taken = self.ability.damage_taken + keys.damage
-	end
+	self.ability.damage_taken = self.ability.damage_taken + keys.damage
 end
 
 function striker_6_modifier_sof:OnIntervalThink()

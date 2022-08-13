@@ -1,7 +1,8 @@
 bocuse_5__puddle = class({})
 LinkLuaModifier("bocuse_5_modifier_puddle", "heroes/bocuse/bocuse_5_modifier_puddle", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_5_modifier_aura_effect", "heroes/bocuse/bocuse_5_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_5_modifier_pull", "heroes/bocuse/bocuse_5_modifier_pull", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -66,19 +67,27 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
     function bocuse_5__puddle:OnSpellStart()
         local caster = self:GetCaster()
-        local point = self:GetCursorPosition()
+        self.point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
         if IsServer() then caster:EmitSound("Hero_Bocuse.Roux") end
 
-        -- UP 5.11
-        if self:GetRank(11) then
-            duration = duration + 5
+        -- UP 5.31
+        if self:GetRank(31) then
+            duration = -1
         end
+
+        local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+		for _,smoke in pairs(thinkers) do
+			if smoke:GetOwner() == caster and smoke:HasModifier("bocuse_5_modifier_puddle") then
+                smoke:FindModifierByName("bocuse_5_modifier_puddle"):Destroy()
+				--smoke:Kill(self, nil)
+			end
+		end
 
         Timers:CreateTimer((0.25), function()
             CreateModifierThinker(caster, self, "bocuse_5_modifier_puddle", {
                 duration = duration
-            }, point, caster:GetTeamNumber(), false)
+            }, self.point, caster:GetTeamNumber(), false)
         end)
     end
 

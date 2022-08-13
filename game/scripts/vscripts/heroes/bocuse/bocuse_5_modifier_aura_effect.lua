@@ -20,23 +20,14 @@ function bocuse_5_modifier_aura_effect:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.rooted = false
 
-	self.time_to_root = self.ability:GetSpecialValueFor("time_to_root")
-	local slow = self.ability:GetSpecialValueFor("slow")
-    local agi = self.ability:GetSpecialValueFor("agi")
+	self.time_to_root = self.ability:GetSpecialValueFor("time_to_root")	
 
-	-- UP 5.21
-	if self.ability:GetRank(21) then
-		slow = slow + 20
-		agi = agi + 5
-	end
+	self.parent:AddNewModifier(self.caster, self.ability, "bocuse_5_modifier_pull", {})
 
-	-- UP 5.31
-	if self.ability:GetRank(31) then
+	-- UP 5.11
+	if self.ability:GetRank(11) then
 		self:DrainHealth(self.parent, self.ability)
 	end
-
-	self.ability:AddBonus("_1_AGI", self.parent, -agi, 0, nil)
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
 
 	if IsServer() then
     	self:PlayEfxStart()
@@ -48,12 +39,7 @@ function bocuse_5_modifier_aura_effect:OnRefresh(kv)
 end
 
 function bocuse_5_modifier_aura_effect:OnRemoved(kv)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+	self.parent:RemoveModifierByNameAndCaster("bocuse_5_modifier_pull", self.caster)
 end
 
 ------------------------------------------------------------
@@ -65,15 +51,18 @@ function bocuse_5_modifier_aura_effect:OnIntervalThink()
 		interval = self.time_to_root
 		self.rooted = false
 	else
-		local root_duration = self.ability:CalcStatus(
-			self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent
-		)
+		local root_duration = self.ability:GetSpecialValueFor("root_duration")
 
-		interval = root_duration
+		-- UP 5.21
+		if self.ability:GetRank(21) then
+			root_duration = root_duration + 1
+		end
+
+		interval = self.ability:CalcStatus(root_duration, self.caster, self.parent)
 		self.rooted = true
 
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-			duration = root_duration,
+			duration = interval,
 			effect = 3
 		})
 	end
@@ -82,7 +71,7 @@ function bocuse_5_modifier_aura_effect:OnIntervalThink()
 end
 
 function bocuse_5_modifier_aura_effect:DrainHealth(target, ability)
-	target:ModifyHealth(target:GetHealth() - 10, ability, true, 0)
+	target:ModifyHealth(target:GetHealth() - 8, ability, true, 0)
 
 	Timers:CreateTimer((0.2), function()
 		if target then

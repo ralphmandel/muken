@@ -18,32 +18,23 @@ function striker_6_modifier_sof_effect:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.min_health = 0
+	self.min_health = 1
+
+	local luck = self.ability:GetSpecialValueFor("luck")
+	self.ability:AddBonus("_2_LCK", self.parent, -luck, 0, nil)
 
 	-- UP 6.41
 	if self.ability:GetRank(41) then
-		self.min_health = 1
+		self.ability:AddBonus("_2_DEX", self.parent, luck, 0, nil)
 	end
-
-	local stats = self.ability:GetSpecialValueFor("stats")
-	local luck = -self.ability:GetSpecialValueFor("luck")
-
-	self.ability:AddBonus("_1_CON", self.parent, stats, 0, nil)
-	self.ability:AddBonus("_2_DEX", self.parent, stats, 0, nil)
-	self.ability:AddBonus("_2_MND", self.parent, stats, 0, nil)
-	self.ability:AddBonus("_2_RES", self.parent, stats, 0, nil)
-	self.ability:AddBonus("_2_LCK", self.parent, luck, 0, nil)
 end
 
 function striker_6_modifier_sof_effect:OnRefresh(kv)
 end
 
 function striker_6_modifier_sof_effect:OnRemoved()
-	self.ability:RemoveBonus("_1_CON", self.parent)
-	self.ability:RemoveBonus("_2_DEX", self.parent)
-	self.ability:RemoveBonus("_2_MND", self.parent)
-	self.ability:RemoveBonus("_2_RES", self.parent)
 	self.ability:RemoveBonus("_2_LCK", self.parent)
+	self.ability:RemoveBonus("_2_DEX", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

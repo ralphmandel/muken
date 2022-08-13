@@ -60,7 +60,14 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_6_modifier_return:CheckHeal()
-	local heal = self.ability.damage_taken * 0.25
+	local heal_return = self.ability:GetSpecialValueFor("heal_return")
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		heal_return = heal_return + 15
+	end
+
+	local heal = self.ability.damage_taken * heal_return * 0.01
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end
     if heal >= 1 then self.parent:Heal(heal, self.ability) end

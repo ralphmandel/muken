@@ -323,22 +323,12 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"time_to_root"	"3"
+				"time_to_root"	"3.5"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"root_duration"	"1.5"
-			}
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"slow"			"30"
-			}
-            "06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"			"15"
 			}
             "13"
 			{
