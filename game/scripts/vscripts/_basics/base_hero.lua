@@ -85,14 +85,13 @@ require("talent_tree")
 
 -- LOAD DATA
 	function base_hero:LoadHeroNames()
-		local caster = self:GetCaster()
-		local unit_name = caster:GetUnitName()
-		if unit_name == "npc_dota_hero_shadow_shaman" then self.hero_name = "dasdingo" end
-		if unit_name == "npc_dota_hero_riki" then self.hero_name = "icebreaker" end
-		if unit_name == "npc_dota_hero_drow_ranger" then self.hero_name = "genuine" end
-		if unit_name == "npc_dota_hero_dawnbreaker" then self.hero_name = "striker" end
-		if unit_name == "npc_dota_hero_pudge" then self.hero_name = "bocuse" end
-		if unit_name == "npc_dota_hero_sven" then self.hero_name = "krieger" end
+		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
+		if heroes_name_data == nil then return end
+		for name, id_name in pairs(heroes_name_data) do
+			if self:GetCaster():GetUnitName() == id_name then
+				self.hero_name = name
+			end
+		end
 	end
 	
 	function base_hero:ResetRanksData()

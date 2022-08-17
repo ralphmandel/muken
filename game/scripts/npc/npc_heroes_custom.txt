@@ -8,4 +8,5 @@
 #base "../vscripts/heroes/striker/striker-props.txt"
 #base "../vscripts/heroes/bocuse/bocuse-props.txt"
 
+#base "../vscripts/heroes/druid/druid-props.txt"
 #base "../vscripts/heroes/krieger/krieger-props.txt"

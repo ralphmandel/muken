@@ -103,6 +103,7 @@ function base_hero_mod:LoadActivity()
 		if self.ability.hero_name == "genuine" then self.activity = "ti6" end
 		if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
 		if self.ability.hero_name == "bocuse" then self.activity = "trapper" end
+		if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 	end)
 end
 
@@ -135,6 +136,7 @@ function base_hero_mod:LoadSounds()
 	self.pre_attack_sound = ""
 	if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
 	if self.ability.hero_name == "krieger" then self.pre_attack_sound = "Krieger.Pre.Attack" end
+	if self.ability.hero_name == "druid" then self.pre_attack_sound = "Hero_OgreMagi.PreAttack" end
 
 	self.attack_sound = ""
 	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
@@ -149,6 +151,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
+	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_OgreMagi.Attack.TI8" end
 end
 
 -----------------------------------------------------------

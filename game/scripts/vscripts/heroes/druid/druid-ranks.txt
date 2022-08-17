@@ -1,0 +1,150 @@
+"TalentTree_druid"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_furion"
+	{
+		"druid_1__root"
+		{
+			"0"
+			{
+				"1"   "druid_1__root_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_1__root_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_1__root_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_1__root_rank_41"
+			}
+		}
+		"druid_2__sk2"
+		{
+			"0"
+			{
+				"1"   "druid_2__sk2_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_2__sk2_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_2__sk2_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_2__sk2_rank_41"
+			}
+		}
+		"druid_3__sk3"
+		{
+			"0"
+			{
+				"1"   "druid_3__sk3_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_3__sk3_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_3__sk3_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_3__sk3_rank_41"
+			}
+		}
+		"druid_4__sk4"
+		{
+			"0"
+			{
+				"1"   "druid_4__sk4_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_4__sk4_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_4__sk4_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_4__sk4_rank_41"
+			}
+		}
+		"druid_5__sk5"
+		{
+			"0"
+			{
+				"1"   "druid_5__sk5_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_5__sk5_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_5__sk5_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_5__sk5_rank_41"
+			}
+		}
+		"druid_6__sk6"
+		{
+			"0"
+			{
+				"1"   "druid_6__sk6_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_6__sk6_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_6__sk6_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_6__sk6_rank_41"
+			}
+		}
+		"druid_u__sk7"
+		{
+			"0"
+			{
+				"1"   "druid_u__sk7_rank_11"
+			}
+			"1"
+			{
+				"1"   "druid_u__sk7_rank_21"
+			}
+			"2"
+			{
+				"1"   "druid_u__sk7_rank_31"
+			}
+			"3"
+			{
+				"1"   "druid_u__sk7_rank_41"
+			}
+		}
+	}	
+}

@@ -307,6 +307,7 @@
 #base "../vscripts/heroes/striker/striker.txt"
 #base "../vscripts/heroes/bocuse/bocuse.txt"
 
+#base "../vscripts/heroes/druid/druid.txt"
 #base "../vscripts/heroes/krieger/krieger.txt"
 
 //NEUTRALS

@@ -110,15 +110,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:AddBaseStatsPoints()
 			if IsServer() then
 				local caster = self:GetCaster()
-				local heroes_stats_data = LoadKeyValues("scripts/npc/heroes_stats.kv")
 				local hero_name = nil
+				local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
+				local heroes_stats_data = LoadKeyValues("scripts/npc/heroes_stats.kv")
 
-				if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
-				if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
-				if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
-				if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
-				if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
-				if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
+				if heroes_name_data == nil then return end
+				for name, id_name in pairs(heroes_name_data) do
+					if caster:GetUnitName() == id_name then
+						hero_name = name
+					end
+				end
 
 				if hero_name == nil then return end
 				if heroes_stats_data == nil then return end

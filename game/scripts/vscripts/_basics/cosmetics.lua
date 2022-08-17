@@ -7,26 +7,24 @@ end
 
 -- ADD COSMETICS
 
+	function cosmetics:LoadHeroNames()
+		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
+		if heroes_name_data == nil then return end
+		for name, id_name in pairs(heroes_name_data) do
+			if self:GetCaster():GetUnitName() == id_name then
+				return name
+			end
+		end
+	end
+
 	function cosmetics:LoadCosmetics()
+		self.cosmetic = {}
 		self.status_efx_flags = {
 			[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
 		}
-		self.cosmetic = {}
 
-		local caster = self:GetCaster()
-		local hero_name = nil
-
-		if caster:GetUnitName() == "npc_dota_hero_shadow_shaman" then hero_name = "dasdingo" end
-		if caster:GetUnitName() == "npc_dota_hero_riki" then hero_name = "icebreaker" end
-		if caster:GetUnitName() == "npc_dota_hero_drow_ranger" then hero_name = "genuine" end
-		if caster:GetUnitName() == "npc_dota_hero_dawnbreaker" then hero_name = "striker" end
-		if caster:GetUnitName() == "npc_dota_hero_pudge" then hero_name = "bocuse" end
-		if caster:GetUnitName() == "npc_dota_hero_sven" then hero_name = "krieger" end
-
-		if hero_name ~= nil then
-			local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_name.."/"..hero_name.."-cosmetics.txt")
-			if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
-		end
+		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroNames().."/"..self:LoadHeroNames().."-cosmetics.txt")
+		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
 	end
 
 	function cosmetics:ApplyCosmetics(cosmetics_data)
