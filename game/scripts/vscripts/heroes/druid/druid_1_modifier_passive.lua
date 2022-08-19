@@ -41,6 +41,7 @@ end
 function druid_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
 	if self.parent:PassivesDisabled() then return end
+	if self.parent:IsInvisible() then return end
 
 	-- UP 1.41
 	if self.ability:GetRank(41) then
@@ -64,11 +65,11 @@ end
 function druid_1_modifier_passive:CreateBushPath()
 	local origin = self.parent:GetOrigin()
 	local distance = (origin - self.location):Length2D()
-	local radius = self.ability:GetSpecialValueFor("radius") * 0.75
+	local radius = self.ability:GetSpecialValueFor("radius") * 0.6
 	local bush_duration = RandomFloat(3, 5)
 
 	if distance >= radius / 3 then
-		self.ability:CreateBush(self.ability:RandomizeLocation(self.location, origin, radius), bush_duration, 2)
+		self.ability:CreateBush(self.ability:RandomizeLocation(self.location, origin, radius), bush_duration, "druid_1_modifier_miniroot")
 		self.location = origin
 	end
 end
@@ -82,7 +83,7 @@ function druid_1_modifier_passive:ApplyBushAttack(target)
 	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	if RandomFloat(1, 100) <= chance then
-		self.ability:CreateBush(point, bush_duration, 1)
+		self.ability:CreateBush(point, bush_duration, "druid_1_modifier_root")
 	end
 end
 -- EFFECTS -----------------------------------------------------------

@@ -3,6 +3,8 @@ LinkLuaModifier("druid_1_modifier_passive", "heroes/druid/druid_1_modifier_passi
 LinkLuaModifier("druid_1_modifier_root", "heroes/druid/druid_1_modifier_root", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root_effect", "heroes/druid/druid_1_modifier_root_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root_damage", "heroes/druid/druid_1_modifier_root_damage", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_1_modifier_miniroot", "heroes/druid/druid_1_modifier_miniroot", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_1_modifier_miniroot_effect", "heroes/druid/druid_1_modifier_miniroot_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -132,7 +134,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local bramble_duration = self:GetSpecialValueFor("bramble_duration") + bonus_duration
 
         if distance >= radius / 3 then
-            self:CreateBush(self:RandomizeLocation(self.origin, vLocation, radius), bramble_duration, 1)
+            self:CreateBush(self:RandomizeLocation(self.origin, vLocation, radius), bramble_duration, "druid_1_modifier_root")
             self.location = vLocation
         end
     end
@@ -143,16 +145,32 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         return point + cross
     end
 
-    function druid_1__root:CreateBush(point, duration, type)
+    function druid_1__root:CreateBush(point, duration, string)
         local caster = self:GetCaster()
         CreateModifierThinker(
-            caster, self, "druid_1_modifier_root", {duration = duration, type = type}, point, caster:GetTeamNumber(), false
+            caster, self, string, {duration = duration}, point, caster:GetTeamNumber(), false
         )
+    end
+
+    function druid_1__root:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cooldown = cooldown - 6 end
+        return cooldown
     end
 
     function druid_1__root:GetCastRange(vLocation, hTarget)
         local distance = self:GetSpecialValueFor("distance")
+        if self:GetCurrentAbilityCharges() == 0 then return distance end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then distance = distance + 600 end
         return distance
+    end
+
+    function druid_1__root:GetAbilityTargetTeam()
+        local target_team = DOTA_UNIT_TARGET_TEAM_ENEMY
+        if self:GetCurrentAbilityCharges() == 0 then return target_team end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then target_team = DOTA_UNIT_TARGET_TEAM_BOTH end
+        return target_team
     end
 
     function druid_1__root:GetManaCost(iLevel)
@@ -163,6 +181,16 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     end
 
     function druid_1__root:CheckAbilityCharges(charges)
+        -- UP 1.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
+        -- UP 1.32
+        if self:GetRank(32) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

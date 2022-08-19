@@ -19,7 +19,7 @@ end
 
 function _modifier_path:CheckState()
 	local state = {
-    [MODIFIER_STATE_ALLOW_PATHING_THROUGH_CLIFFS] = true,
+    	[MODIFIER_STATE_ALLOW_PATHING_THROUGH_CLIFFS] = true,
 	}
 
 	return state

@@ -1,0 +1,61 @@
+druid_1_modifier_miniroot_effect = class({})
+
+function druid_1_modifier_miniroot_effect:IsHidden()
+	return true
+end
+
+function druid_1_modifier_miniroot_effect:IsPurgable()
+	return false
+end
+
+function druid_1_modifier_miniroot_effect:IsDebuff()
+	return true
+end
+
+-- CONSTRUCTORS -----------------------------------------------------------
+
+function druid_1_modifier_miniroot_effect:OnCreated(kv)
+    self.caster = self:GetCaster()
+    self.parent = self:GetParent()
+    self.ability = self:GetAbility()
+
+	self.parent:AddNewModifier(self.caster, self.ability, "druid_1_modifier_root_damage", {})
+	
+	if IsServer() then
+		self:ApplyRoot()
+		self:StartIntervalThink(1)
+	end
+end
+
+function druid_1_modifier_miniroot_effect:OnRefresh(kv)
+end
+
+function druid_1_modifier_miniroot_effect:OnRemoved()
+	if self.parent:HasModifier("druid_1_modifier_root_effect") then return end
+	local mod = self.parent:FindAllModifiersByName("druid_1_modifier_root_damage")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+end
+
+-- API FUNCTIONS -----------------------------------------------------------
+
+function druid_1_modifier_miniroot_effect:OnIntervalThink()
+	if IsServer() then
+		self:ApplyRoot()
+		self:StartIntervalThink(1)
+	end
+end
+
+-- UTILS -----------------------------------------------------------
+
+function druid_1_modifier_miniroot_effect:ApplyRoot()
+	if RandomInt(1, 100) <= 20 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
+			duration = self.ability:CalcStatus(0.5, self.caster, self.parent),
+			effect = 5
+		})
+	end
+end
+
+-- EFFECTS -----------------------------------------------------------

@@ -67,8 +67,8 @@
 		{
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusRandExponent = 5.0
-			m_flRadiusMax = 32.0
-			m_flRadiusMin = 8.0
+			m_flRadiusMax = 40.0
+			m_flRadiusMin = 10.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -89,7 +89,7 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 35.0
+				m_flLiteralValue = 40.0
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6

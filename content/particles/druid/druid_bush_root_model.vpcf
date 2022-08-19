@@ -43,9 +43,9 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 0.6
+			m_flRadiusMax = 0.7
 			m_flRadiusRandExponent = 2.0
-			m_flRadiusMin = 0.5
+			m_flRadiusMin = 0.55
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -70,7 +70,7 @@
 			m_OffsetMin = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, -25.0, -5.0 ]
+				m_vLiteralValue = [ 0.0, -36.0, -8.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_nVectorAttribute = 6
 				m_vVectorAttributeScale = [ 1.0, 1.0, 1.0 ]
@@ -270,7 +270,7 @@
 			m_OffsetMax = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, 25.0, 10.0 ]
+				m_vLiteralValue = [ 0.0, 36.0, 15.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_nVectorAttribute = 6
 				m_vVectorAttributeScale = [ 1.0, 1.0, 1.0 ]

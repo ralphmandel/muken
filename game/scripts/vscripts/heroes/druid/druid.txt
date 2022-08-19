@@ -22,16 +22,15 @@
 		"ScriptFile"            		"heroes/druid/druid_1__root"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_root"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"25"
+        "AbilityDamage"					"30 31 32 33 34 35 36 37 38 39 40 41 42"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.5"
-		"AbilityCooldown"				"18"
 
 		"AbilitySpecial"
 		{
@@ -53,7 +52,7 @@
             "04"
 			{
 				"var_type"          "FIELD_FLOAT"
-				"bramble_duration"  "20"
+				"bramble_duration"  "10"
 			}
             "05"
 			{
@@ -65,6 +64,11 @@
 				"var_type"		    "FIELD_FLOAT"
 				"root_interval"	    "5"
 			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cooldown"		"18"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -73,7 +77,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}

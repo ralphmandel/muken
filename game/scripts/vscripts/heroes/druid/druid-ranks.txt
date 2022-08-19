@@ -17,7 +17,7 @@
 		{
 			"0"
 			{
-				"1"   "druid_1__root_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
@@ -26,6 +26,7 @@
 			"2"
 			{
 				"1"   "druid_1__root_rank_31"
+				"2"   "druid_1__root_rank_32"
 			}
 			"3"
 			{

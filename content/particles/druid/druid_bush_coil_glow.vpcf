@@ -57,8 +57,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 25.0
-			m_flRadiusMax = 35.0
+			m_flRadiusMin = 30.0
+			m_flRadiusMax = 40.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
