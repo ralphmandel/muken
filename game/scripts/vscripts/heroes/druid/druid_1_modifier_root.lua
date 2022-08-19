@@ -29,7 +29,7 @@ function druid_1_modifier_root:GetAuraSearchType()
 end
 
 function druid_1_modifier_root:GetAuraRadius()
-	return self:GetAbility():GetSpecialValueFor("radius")
+	return 50
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
@@ -39,7 +39,7 @@ function druid_1_modifier_root:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	if IsServer() then self:PlayEfxStart() end
+	if IsServer() then self:PlayEfxStart(kv.type) end
 end
 
 function druid_1_modifier_root:OnRefresh(kv)
@@ -55,14 +55,16 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function druid_1_modifier_root:PlayEfxStart()
+function druid_1_modifier_root:PlayEfxStart(type)
 	local radius = self.ability:GetSpecialValueFor("radius")
 	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 50, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_skill2_ground_root.vpcf"
+	if type == 2 then string = "particles/druid/druid_bush.vpcf" end
+
 	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.caster)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-    ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, 0, 0 ))
+    ParticleManager:SetParticleControl(effect_cast, 10, Vector(self:GetDuration(), 0, 0 ))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
     
 	if IsServer() then self.parent:EmitSound("Druid.Bramble_" .. RandomInt(1, 3)) end

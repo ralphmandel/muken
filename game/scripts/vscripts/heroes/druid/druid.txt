@@ -53,7 +53,7 @@
             "04"
 			{
 				"var_type"          "FIELD_FLOAT"
-				"bramble_duration"  "10"
+				"bramble_duration"  "20"
 			}
             "05"
 			{

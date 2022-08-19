@@ -82,26 +82,22 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_ground_dark.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_base.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_dust.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_bushes.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_model.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_coil_glow.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_base.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_dust.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_coil_glow.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_ground_dark.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_ground_root_coil.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/druid/druid_skill2_root_bushes.vpcf"
+			m_ChildRef = resource:"particles/druid/druid_bush_root_model.vpcf"
 		},
 	]
 }

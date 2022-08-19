@@ -19,38 +19,33 @@ function druid_1_modifier_root_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.interval = 0.3
-	local root_interval = self.ability:GetSpecialValueFor("root_duration")
+	local root_interval = self.ability:GetSpecialValueFor("root_interval")
 	local root_duration = self.ability:GetSpecialValueFor("root_duration")
+
+	self.parent:AddNewModifier(self.caster, self.ability, "druid_1_modifier_root_damage", {})
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
 		duration = self.ability:CalcStatus(root_duration, self.caster, self.parent),
 		effect = 5
 	})
 	
-	if IsServer() then
-		self:SetDuration(root_interval, true)
-		self:StartIntervalThink(self.interval)
-	end
+	if IsServer() then self:StartIntervalThink(root_interval) end
 end
 
 function druid_1_modifier_root_effect:OnRefresh(kv)
 end
 
 function druid_1_modifier_root_effect:OnRemoved()
+	local mod = self.parent:FindAllModifiersByName("druid_1_modifier_root_damage")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function druid_1_modifier_root_effect:OnIntervalThink()
-	ApplyDamage({
-		victim = self.parent, attacker = self.caster,
-		damage = self.ability:GetAbilityDamage() * self.interval,
-		damage_type = self.ability:GetAbilityDamageType(),
-        ability = self.ability
-	})
-
-	if IsServer() then self:StartIntervalThink(self.interval) end
+	self:Destroy()
 end
 
 -- UTILS -----------------------------------------------------------

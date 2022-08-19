@@ -2,6 +2,7 @@ druid_1__root = class({})
 LinkLuaModifier("druid_1_modifier_passive", "heroes/druid/druid_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root", "heroes/druid/druid_1_modifier_root", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root_effect", "heroes/druid/druid_1_modifier_root_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_1_modifier_root_damage", "heroes/druid/druid_1_modifier_root_damage", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -125,25 +126,28 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_1__root:OnProjectileThink(vLocation)
         if self.location == nil then self.location = vLocation end
 
-        local caster = self:GetCaster()
         local distance = (vLocation - self.location):Length2D()
         local radius = self:GetSpecialValueFor("radius")
-        local bramble_duration = self:GetSpecialValueFor("bramble_duration") + ((vLocation - self.origin):Length2D() / 300)
+        local bonus_duration = ((vLocation - self.origin):Length2D() / 300) - RandomFloat(0, 3)
+        local bramble_duration = self:GetSpecialValueFor("bramble_duration") + bonus_duration
 
         if distance >= radius / 3 then
-            CreateModifierThinker(
-                caster, self, "druid_1_modifier_root", {duration = bramble_duration},
-                self:RandomizeLocation(vLocation), caster:GetTeamNumber(), false
-            )
+            self:CreateBush(self:RandomizeLocation(self.origin, vLocation, radius), bramble_duration, 1)
             self.location = vLocation
         end
     end
 
-    function druid_1__root:RandomizeLocation(point)
-        local radius = self:GetSpecialValueFor("radius")
+    function druid_1__root:RandomizeLocation(origin, point, radius)
         local distance = RandomInt(-radius, radius)
-        local cross = CrossVectors(self.origin - point, Vector(0, 0, 1)):Normalized() * distance
+        local cross = CrossVectors(origin - point, Vector(0, 0, 1)):Normalized() * distance
         return point + cross
+    end
+
+    function druid_1__root:CreateBush(point, duration, type)
+        local caster = self:GetCaster()
+        CreateModifierThinker(
+            caster, self, "druid_1_modifier_root", {duration = duration, type = type}, point, caster:GetTeamNumber(), false
+        )
     end
 
     function druid_1__root:GetCastRange(vLocation, hTarget)
