@@ -5,6 +5,6 @@
 	"3" "druid_3__sk3"
 	"4" "druid_4__sk4"
 	"5" "druid_5__sk5"
-	"6" "druid_6__sk6"
+	"6" "druid_6__entangled"
 	"7" "druid_u__sk7"
 }

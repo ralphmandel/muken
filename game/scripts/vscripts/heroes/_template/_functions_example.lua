@@ -4,6 +4,18 @@
     function functions_example:OnSpellStart()
         local caster = self:GetCaster()
 
+        if target:TriggerSpellAbsorb(self) then
+            return
+        end
+
+        local units = FindUnitsInRadius(
+			caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
+            self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
+            self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
+		)
+
+        for _,unit in pairs(units) do end
+
         -- TIMERS
         Timers:CreateTimer(0.2, function()
             print()

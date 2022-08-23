@@ -1,4 +1,4 @@
-"Druid.Bramble_1"
+"Druid.Move_1"
 {
 	"operator_stacks"
 	{
@@ -14,7 +14,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/druid_root_bramble_1.vsnd"
+							"value0"	"sounds/druid_move_1.vsnd"
 						}
 					}
 
@@ -30,7 +30,7 @@
 	}
 }
 
-"Druid.Bramble_2"
+"Druid.Move_2"
 {
 	"operator_stacks"
 	{
@@ -46,7 +46,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/druid_root_bramble_2.vsnd"
+							"value0"	"sounds/druid_move_2.vsnd"
 						}
 					}
 
@@ -62,7 +62,7 @@
 	}
 }
 
-"Druid.Bramble_3"
+"Druid.Move_3"
 {
 	"operator_stacks"
 	{
@@ -78,7 +78,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/druid_root_bramble_3.vsnd"
+							"value0"	"sounds/druid_move_3.vsnd"
 						}
 					}
 
@@ -88,6 +88,108 @@
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
 					"volume"            { "value"   "1.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"Druid.Foot_1"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_foot_1.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"				{ "value"	"Weapons"	}
+					"volume"            	{ "value"   "1.00000"	}
+					//"soundevent_layer2" 	{ "value"	"Druid.Move_1"	} 
+					//"soundevent_layer2_on"	{ "value"	"1.000000"	} 
+				}
+			}
+		}
+	}
+}
+
+"Druid.Foot_2"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_foot_2.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.00000"	}
+					//"soundevent_layer2" 	{ "value"	"Druid.Move_2"	} 
+					//"soundevent_layer2_on"	{ "value"	"1.000000"	} 
+				}
+			}
+		}
+	}
+}
+
+"Druid.Foot_3"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_foot_3.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"            { "value"   "1.00000"	}
+					//"soundevent_layer2" 	{ "value"	"Druid.Move_3"	} 
+					//"soundevent_layer2_on"	{ "value"	"1.000000"	} 
 				}
 			}
 		}

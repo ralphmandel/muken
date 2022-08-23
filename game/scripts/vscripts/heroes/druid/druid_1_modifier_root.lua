@@ -65,5 +65,5 @@ function druid_1_modifier_root:PlayEfxStart()
     ParticleManager:SetParticleControl(effect_cast, 10, Vector(self:GetDuration(), 0, 0 ))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
     
-	if IsServer() then self.parent:EmitSound("Druid.Bramble_" .. RandomInt(1, 3)) end
+	if IsServer() then self.parent:EmitSound("Druid.Move_" .. RandomInt(1, 3)) end
 end

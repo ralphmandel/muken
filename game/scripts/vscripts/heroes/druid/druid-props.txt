@@ -21,7 +21,7 @@
 			"Ability12"						"druid_3__sk3"
 			"Ability13"						"druid_4__sk4"
 			"Ability14"						"druid_5__sk5"
-			"Ability15"						"druid_6__sk6"
+			"Ability15"						"druid_6__entangled"
 			"Ability16"						"druid_u__sk7"
 			"Ability17"						"null"
 			"Ability18"						"null"

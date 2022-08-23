@@ -1025,6 +1025,7 @@
 						self.temp = 6
 					else
 						self.temp = self.temp + 1
+						if self.temp > 7 then self.temp = 8 end
 						unit:SetTeam(self.temp)
 					end
 				end
