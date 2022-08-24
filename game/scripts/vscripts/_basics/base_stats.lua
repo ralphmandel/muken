@@ -169,11 +169,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.mana = self:GetSpecialValueFor("mana")
 				self.spell_amp = self:GetSpecialValueFor("spell_amp")
 				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
+				self:SetMPRegenState(0)
 
 				-- CON
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
 				self.health_regen = self:GetSpecialValueFor("health_regen")
-				self.regen_state = 1	
+				self.hp_regen_state = 1	
 
 				-- SECONDARY
 				self.evade = self:GetSpecialValueFor("evade") 
@@ -488,10 +489,23 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			return self.total_debuff_amp * 0.01
 		end
 
+		function base_stats:SetMPRegenState(stack)
+			if not self.mp_regen_stack then self.mp_regen_stack = 1 end
+			self.mp_regen_stack = self.mp_regen_stack + stack
+			
+			if self.mp_regen_stack > 0 then
+				self.mp_regen_state = 1
+				self:GetCaster():SetBaseManaRegen(12)
+			else
+				self.mp_regen_state = 0
+				self:GetCaster():SetBaseManaRegen(0)
+			end
+		end
+
 	-- UTIL CON
 
-		function base_stats:SetRegenState(bool)
-			if bool == true then self.regen_state = 1 else self.regen_state = 0 end
+		function base_stats:SetHPRegenState(bool)
+			if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
 		end
 
 	-- UTIL LCK

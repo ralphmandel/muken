@@ -52,7 +52,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[1][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            if self:GetLevel() == 1 then
+                base_hero:CheckSkills(1, self)
+                self:DisableManaSystem()
+            end
         end
 
         local charges = 1
@@ -73,6 +76,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- SPELL START
+
+    function krieger_1__fury:DisableManaSystem()
+        local base_stats = self:GetCaster():FindAbilityByName("base_stats")
+        if base_stats then base_stats:SetMPRegenState(-1) end
+    end
 
     function krieger_1__fury:GetIntrinsicModifierName()
         return "krieger_1_modifier_passive"

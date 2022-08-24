@@ -18,11 +18,17 @@ function druid_6_modifier_entangled:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.mana_disabled = false
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
 	self.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
 	self.max_targets = self.ability:GetSpecialValueFor("max_targets")
 	self.leech_amount = self.ability:GetSpecialValueFor("leech_amount")
+
+	-- UP 1.11
+	if self.ability:GetRank(11) then
+		self:SetManaRegen(true)
+	end
 
 	if IsServer() then
 		self:StartIntervalThink(self.interval - 0.1)
@@ -34,6 +40,7 @@ function druid_6_modifier_entangled:OnRefresh(kv)
 end
 
 function druid_6_modifier_entangled:OnRemoved()
+	if self.mana_disabled then self:SetManaRegen(false) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -70,6 +77,19 @@ function druid_6_modifier_entangled:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function druid_6_modifier_entangled:SetManaRegen(bool)
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then
+		if bool then
+			base_stats:SetMPRegenState(-1)
+		else
+			base_stats:SetMPRegenState(1)
+		end
+
+		self.mana_disabled = bool
+	end
+end
 
 function druid_6_modifier_entangled:ApplyLeech()
 	self.damage_reduction = 0
