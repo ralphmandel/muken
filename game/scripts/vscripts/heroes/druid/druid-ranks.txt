@@ -52,23 +52,23 @@
 				"1"   "druid_2__sk2_rank_41"
 			}
 		}
-		"druid_3__sk3"
+		"druid_3__totem"
 		{
 			"0"
 			{
-				"1"   "druid_3__sk3_rank_11"
+				"1"   "druid_3__totem_rank_11"
 			}
 			"1"
 			{
-				"1"   "druid_3__sk3_rank_21"
+				"1"   "druid_3__totem_rank_21"
 			}
 			"2"
 			{
-				"1"   "druid_3__sk3_rank_31"
+				"1"   "druid_3__totem_rank_31"
 			}
 			"3"
 			{
-				"1"   "druid_3__sk3_rank_41"
+				"1"   "druid_3__totem_rank_41"
 			}
 		}
 		"druid_4__sk4"
@@ -126,6 +126,7 @@
 			"3"
 			{
 				"1"   "druid_6__entangled_rank_41"
+				"2"   "druid_6__entangled_rank_42"
 			}
 		}
 		"druid_u__sk7"

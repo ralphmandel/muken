@@ -2,7 +2,7 @@
 {
 	"1" "druid_1__root"
 	"2" "druid_2__sk2"
-	"3" "druid_3__sk3"
+	"3" "druid_3__totem"
 	"4" "druid_4__sk4"
 	"5" "druid_5__sk5"
 	"6" "druid_6__entangled"

@@ -19,18 +19,31 @@ function druid_6_modifier_entangled:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	self.mana_disabled = false
+	self.broken = false
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
-	self.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
+	self.incoming = self.ability:GetSpecialValueFor("incoming")
 	self.max_targets = self.ability:GetSpecialValueFor("max_targets")
 	self.leech_amount = self.ability:GetSpecialValueFor("leech_amount")
 
-	-- UP 1.11
+	-- UP 6.11
 	if self.ability:GetRank(11) then
 		self:SetManaRegen(true)
 	end
 
+	-- UP 6.31
+	if self.ability:GetRank(31) then
+		self.incoming = self.incoming - 20
+		self.broken = true
+	end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self.max_targets = self.max_targets + 2
+	end
+
 	if IsServer() then
+		self.current_incoming = self.incoming
 		self:StartIntervalThink(self.interval - 0.1)
 		self:PlayEfxStart()
 	end
@@ -50,6 +63,13 @@ function druid_6_modifier_entangled:CheckState()
 		[MODIFIER_STATE_STUNNED] = true
 	}
 
+	if self.broken == true then
+		state = {
+			[MODIFIER_STATE_STUNNED] = true,
+			[MODIFIER_STATE_PASSIVES_DISABLED] = true
+		}
+	end
+
 	return state
 end
 
@@ -67,7 +87,7 @@ function druid_6_modifier_entangled:GetOverrideAnimation()
 end
 
 function druid_6_modifier_entangled:GetModifierIncomingDamage_Percentage(keys)
-	return -self.damage_reduction
+	return -self.current_incoming
 end
 
 function druid_6_modifier_entangled:OnIntervalThink()
@@ -92,7 +112,7 @@ function druid_6_modifier_entangled:SetManaRegen(bool)
 end
 
 function druid_6_modifier_entangled:ApplyLeech()
-	self.damage_reduction = 0
+	self.current_incoming = 0
 	local targets = self.max_targets
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
@@ -113,8 +133,8 @@ function druid_6_modifier_entangled:ApplyLeech()
 		end
 	end
 
-	self.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
-	self:PlayEfxLeech()
+	self.current_incoming = self.incoming
+	if self.max_targets > targets then self:PlayEfxLeech() end
 end
 -- EFFECTS -----------------------------------------------------------
 

@@ -117,12 +117,12 @@
 		}
 	}
 
-	"druid_3__sk3"
+	"druid_3__totem"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_3__sk3"
+		"ScriptFile"            		"heroes/druid/druid_3__totem"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_sk3"
+		"AbilityTextureName"     		"druid_totem"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -228,7 +228,7 @@
 		"ScriptFile"            		"heroes/druid/druid_6__entangled"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_entangled"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -239,7 +239,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"80 78 76 74 72 70 68 66 64 62 60"
+		"AbilityCooldown"				"75 72 70 67 65 62 60 57 55 52 50 47 45 42 40"
 
 		"AbilitySpecial"
 		{
@@ -265,8 +265,8 @@
 			}
             "05"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"damage_reduction"  "70"
+				"var_type"		"FIELD_FLOAT"
+				"incoming"      "70"
 			}
             "12"
 			{
@@ -281,12 +281,12 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"225"
+				"manacost"		"220"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -809,10 +809,10 @@
         }
 
     //RANKS 3
-        "druid_3__sk3_rank_11"{
+        "druid_3__totem_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -839,10 +839,10 @@
             }
         }
 
-        "druid_3__sk3_rank_12"{
+        "druid_3__totem_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -869,10 +869,10 @@
             }
         }
 
-        "druid_3__sk3_rank_21"{
+        "druid_3__totem_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -899,10 +899,10 @@
             }
         }
 
-        "druid_3__sk3_rank_22"{
+        "druid_3__totem_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -929,10 +929,10 @@
             }
         }
 
-        "druid_3__sk3_rank_31"{
+        "druid_3__totem_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -959,10 +959,10 @@
             }
         }
 
-        "druid_3__sk3_rank_32"{
+        "druid_3__totem_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -989,10 +989,10 @@
             }
         }
 
-        "druid_3__sk3_rank_41"{
+        "druid_3__totem_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1019,10 +1019,10 @@
             }
         }
 
-        "druid_3__sk3_rank_42"{
+        "druid_3__totem_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk3"
+            "AbilityTextureName"    		"druid_totem"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

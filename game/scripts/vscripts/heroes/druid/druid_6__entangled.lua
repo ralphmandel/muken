@@ -1,6 +1,6 @@
 druid_6__entangled = class({})
 LinkLuaModifier("druid_6_modifier_entangled", "heroes/druid/druid_6_modifier_entangled", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -69,7 +69,38 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if target:TriggerSpellAbsorb(self) then return end
 
         target:AddNewModifier(caster, self, "druid_6_modifier_entangled", {duration = duration})
+
+        -- UP 6.42
+        if self:GetRank(42) then
+            self:ApplySuperRoot(target)
+            self:PlayEfxSuperRoot(target)
+        end
+
         if IsServer() then caster:EmitSound("Hero_Treant.LeechSeed.Cast") end
+    end
+
+    function druid_6__entangled:ApplySuperRoot(target)
+        local caster = self:GetCaster()
+        local damageTable = {attacker = caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self}
+
+        local units = FindUnitsInRadius(
+            caster:GetTeamNumber(), target:GetOrigin(), nil, 600,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+        )
+    
+        for _,unit in pairs(units) do
+            if unit ~= target then
+                damageTable.damage = RandomInt(250, 350)
+                damageTable.victim = unit
+                ApplyDamage(damageTable)
+
+                unit:AddNewModifier(caster, self, "_modifier_root", {
+                    duration = self:CalcStatus(4, caster, unit),
+                    effect = 6
+                })
+            end
+        end
     end
 
     function druid_6__entangled:CreateSeedProj(target, source, leech_amount)
@@ -100,11 +131,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_6__entangled:GetAOERadius()
-        return self:GetSpecialValueFor("radius")
+        local radius = self:GetSpecialValueFor("radius")
+        if self:GetCurrentAbilityCharges() == 0 then return radius end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return radius + 100 end
+        return radius
     end
 
     function druid_6__entangled:GetCastRange(vLocation, hTarget)
-        return self:GetSpecialValueFor("cast_range")
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
+        return cast_range
     end
 
     function druid_6__entangled:GetManaCost(iLevel)
@@ -115,6 +152,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_6__entangled:CheckAbilityCharges(charges)
+        -- UP 6.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
+        -- UP 6.41
+        if self:GetRank(41) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -126,4 +173,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
         ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
         ParticleManager:ReleaseParticleIndex(effect)
+    end
+
+    function druid_6__entangled:PlayEfxSuperRoot(target)
+        local particle = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect)
+
+        if IsServer() then target:EmitSound("Hero_EarthShaker.EchoSlamSmall") end
     end
