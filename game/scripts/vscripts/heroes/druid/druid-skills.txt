@@ -1,7 +1,7 @@
 "skills"
 {
 	"1" "druid_1__root"
-	"2" "druid_2__sk2"
+	"2" "druid_2__armor"
 	"3" "druid_3__totem"
 	"4" "druid_4__sk4"
 	"5" "druid_5__sk5"

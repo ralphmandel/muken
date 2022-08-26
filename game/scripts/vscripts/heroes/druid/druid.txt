@@ -72,7 +72,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"125"
+				"manacost"		"120"
 			}
 			"15"
 			{
@@ -82,32 +82,56 @@
 		}
 	}
 
-	"druid_2__sk2"
+	"druid_2__armor"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_2__sk2"
+		"ScriptFile"            		"heroes/druid/druid_2__armor"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_sk2"
+		"AbilityTextureName"     		"druid_armor"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"16"
+		"AbilityCastRange"      		"1200"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"8 8.5 9 9.5 10 10.5 11 11.5 12"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"def"		    "20"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal_per_sec"	"15"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"interval"	    "0.5"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"bonus_per_atk"	"0.25"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"130"
 			}
 			"15"
 			{
@@ -580,10 +604,10 @@
         }
 
     //RANKS 2
-        "druid_2__sk2_rank_11"{
+        "druid_2__armor_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -610,10 +634,10 @@
             }
         }
 
-        "druid_2__sk2_rank_12"{
+        "druid_2__armor_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -640,10 +664,10 @@
             }
         }
 
-        "druid_2__sk2_rank_21"{
+        "druid_2__armor_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -670,10 +694,10 @@
             }
         }
 
-        "druid_2__sk2_rank_22"{
+        "druid_2__armor_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -700,10 +724,10 @@
             }
         }
 
-        "druid_2__sk2_rank_31"{
+        "druid_2__armor_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -730,10 +754,10 @@
             }
         }
 
-        "druid_2__sk2_rank_32"{
+        "druid_2__armor_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -760,10 +784,10 @@
             }
         }
 
-        "druid_2__sk2_rank_41"{
+        "druid_2__armor_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -790,10 +814,10 @@
             }
         }
 
-        "druid_2__sk2_rank_42"{
+        "druid_2__armor_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk2"
+            "AbilityTextureName"    		"druid_armor"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

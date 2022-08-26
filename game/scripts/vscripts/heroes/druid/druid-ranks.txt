@@ -33,23 +33,23 @@
 				"1"   "druid_1__root_rank_41"
 			}
 		}
-		"druid_2__sk2"
+		"druid_2__armor"
 		{
 			"0"
 			{
-				"1"   "druid_2__sk2_rank_11"
+				"1"   "druid_2__armor_rank_11"
 			}
 			"1"
 			{
-				"1"   "druid_2__sk2_rank_21"
+				"1"   "druid_2__armor_rank_21"
 			}
 			"2"
 			{
-				"1"   "druid_2__sk2_rank_31"
+				"1"   "druid_2__armor_rank_31"
 			}
 			"3"
 			{
-				"1"   "druid_2__sk2_rank_41"
+				"1"   "druid_2__armor_rank_41"
 			}
 		}
 		"druid_3__totem"

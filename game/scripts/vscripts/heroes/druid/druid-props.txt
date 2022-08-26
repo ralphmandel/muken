@@ -17,7 +17,7 @@
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
 			"Ability10"						"druid_1__root"
-			"Ability11"						"druid_2__sk2"
+			"Ability11"						"druid_2__armor"
 			"Ability12"						"druid_3__totem"
 			"Ability13"						"druid_4__sk4"
 			"Ability14"						"druid_5__sk5"
