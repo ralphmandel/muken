@@ -1,5 +1,7 @@
 druid_3__totem = class({})
 LinkLuaModifier("druid_3_modifier_totem", "heroes/druid/druid_3_modifier_totem", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_3_modifier_totem_effect", "heroes/druid/druid_3_modifier_totem_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_3_modifier_quill", "heroes/druid/druid_3_modifier_quill", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -63,6 +65,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function druid_3__totem:OnSpellStart()
         local caster = self:GetCaster()
+        local point = self:GetCursorPosition()
+        local duration = self:GetSpecialValueFor("duration")
+    
+        local totem = CreateUnitByName("npc_druid_totem", point, true, caster, caster, caster:GetTeamNumber())        
+        totem:AddNewModifier(caster, self, "druid_3_modifier_totem", {duration = duration})        
+        totem:SetControllableByPlayer(caster:GetPlayerID(), true)
+        totem:CreatureLevelUp(self:GetSpecialValueFor("rank") - 1)
+
+        if IsServer() then caster:EmitSound("Hero_Juggernaut.HealingWard.Cast") end
+    end
+
+    function druid_3__totem:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
     function druid_3__totem:GetManaCost(iLevel)

@@ -523,7 +523,7 @@
 			}
 		}
 
-		"druid_totem"	
+		"npc_druid_totem"	
 		{
 			// General
 			//----------------------------------------------------------------
@@ -532,7 +532,7 @@
 			"SoundSet"				""
 			"GameSoundsFile"		""
 			"Level"					"1"
-			"ModelScale" 			"0.5"
+			"ModelScale" 			"1.2"
 
 			// Abilities
 			//----------------------------------------------------------------
@@ -574,7 +574,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"1"		// Base health.
+			"StatusHealth"				"5"		// Base health.
 			"StatusHealthRegen"			"0"		// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 

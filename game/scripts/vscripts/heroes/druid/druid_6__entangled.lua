@@ -123,11 +123,24 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local heal = ExtraData.damage
         local base_stats = self:GetCaster():FindAbilityByName("base_stats")
         if base_stats then heal = heal * base_stats:GetHealPower() end
-    
-        if heal > 0 then
-            hTarget:Heal(heal, self)
-            self:PlayEfxHeal(hTarget)
+        if heal < 1 then return end
+
+        local lotus_mod = hTarget:FindModifierByName("druid_3_modifier_totem")
+        if lotus_mod then
+            if lotus_mod.min_health < hTarget:GetMaxHealth() then
+                lotus_mod.disable_heal = 0
+                lotus_mod.min_health = lotus_mod.min_health + 1
+
+                hTarget:Heal(1, self)
+                self:PlayEfxHeal(hTarget)
+
+                lotus_mod.disable_heal = 1
+            end
+            return
         end
+
+        hTarget:Heal(heal, self)
+        self:PlayEfxHeal(hTarget)
     end
 
     function druid_6__entangled:GetAOERadius()

@@ -119,7 +119,7 @@
 				"25"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"cooldown"				"0.3"
+					"cooldown"				"0.25"
 				}
 				"26"
 				{
