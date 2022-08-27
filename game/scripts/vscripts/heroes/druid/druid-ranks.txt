@@ -72,7 +72,7 @@
 				"1"   "druid_3__totem_rank_41"
 			}
 		}
-		"druid_4__sk4"
+		"druid_4__teleport"
 		{
 			"0"
 			{
@@ -91,7 +91,7 @@
 				"1"   "empty"
 			}
 		}
-		"druid_5__sk5"
+		"druid_5__metamorphosis"
 		{
 			"0"
 			{
@@ -130,7 +130,7 @@
 				"2"   "druid_6__entangled_rank_42"
 			}
 		}
-		"druid_u__sk7"
+		"druid_u__conversion"
 		{
 			"0"
 			{

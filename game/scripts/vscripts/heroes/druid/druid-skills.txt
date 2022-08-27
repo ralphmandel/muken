@@ -3,8 +3,8 @@
 	"1" "druid_1__root"
 	"2" "druid_2__armor"
 	"3" "druid_3__totem"
-	"4" "druid_4__sk4"
-	"5" "druid_5__sk5"
+	"4" "druid_4__teleport"
+	"5" "druid_5__metamorphosis"
 	"6" "druid_6__entangled"
-	"7" "druid_u__sk7"
+	"7" "druid_u__conversion"
 }

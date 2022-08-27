@@ -193,12 +193,12 @@
 		}
 	}
 
-	"druid_4__sk4"
+	"druid_4__teleport"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_4__sk4"
+		"ScriptFile"            		"heroes/druid/druid_4__teleport"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_sk4"
+		"AbilityTextureName"     		"druid_teleport"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -228,12 +228,12 @@
 		}
 	}
 
-	"druid_5__sk5"
+	"druid_5__metamorphosis"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_5__sk5"
+		"ScriptFile"            		"heroes/druid/druid_5__metamorphosis"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_sk5"
+		"AbilityTextureName"     		"druid_metamorphosis"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -332,11 +332,11 @@
 		}
 	}
 
-	"druid_u__sk7"
+	"druid_u__conversion"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_u__sk7"
-		"AbilityTextureName"     		"druid_sk7"
+		"ScriptFile"            		"heroes/druid/druid_u__conversion"
+		"AbilityTextureName"     		"druid_conversion"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"7"
@@ -1091,10 +1091,10 @@
         }
 
     //RANKS 4
-        "druid_4__sk4_rank_11"{
+        "druid_4__teleport_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1121,10 +1121,10 @@
             }
         }
 
-        "druid_4__sk4_rank_12"{
+        "druid_4__teleport_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1151,10 +1151,10 @@
             }
         }
 
-        "druid_4__sk4_rank_21"{
+        "druid_4__teleport_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1181,10 +1181,10 @@
             }
         }
 
-        "druid_4__sk4_rank_22"{
+        "druid_4__teleport_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1211,10 +1211,10 @@
             }
         }
 
-        "druid_4__sk4_rank_31"{
+        "druid_4__teleport_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1241,10 +1241,10 @@
             }
         }
 
-        "druid_4__sk4_rank_32"{
+        "druid_4__teleport_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1271,10 +1271,10 @@
             }
         }
 
-        "druid_4__sk4_rank_41"{
+        "druid_4__teleport_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1301,10 +1301,10 @@
             }
         }
 
-        "druid_4__sk4_rank_42"{
+        "druid_4__teleport_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk4"
+            "AbilityTextureName"    		"druid_teleport"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1332,10 +1332,10 @@
         }
 
     //RANKS 5
-        "druid_5__sk5_rank_11"{
+        "druid_5__metamorphosis_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1362,10 +1362,10 @@
             }
         }
 
-        "druid_5__sk5_rank_12"{
+        "druid_5__metamorphosis_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1392,10 +1392,10 @@
             }
         }
 
-        "druid_5__sk5_rank_21"{
+        "druid_5__metamorphosis_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1422,10 +1422,10 @@
             }
         }
 
-        "druid_5__sk5_rank_22"{
+        "druid_5__metamorphosis_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1452,10 +1452,10 @@
             }
         }
 
-        "druid_5__sk5_rank_31"{
+        "druid_5__metamorphosis_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1482,10 +1482,10 @@
             }
         }
 
-        "druid_5__sk5_rank_32"{
+        "druid_5__metamorphosis_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1512,10 +1512,10 @@
             }
         }
 
-        "druid_5__sk5_rank_41"{
+        "druid_5__metamorphosis_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1542,10 +1542,10 @@
             }
         }
 
-        "druid_5__sk5_rank_42"{
+        "druid_5__metamorphosis_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk5"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1814,10 +1814,10 @@
         }
 
     //RANKS U
-        "druid_u__sk7_rank_11"{
+        "druid_u__conversion_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1844,10 +1844,10 @@
             }
         }
 
-        "druid_u__sk7_rank_12"{
+        "druid_u__conversion_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1874,10 +1874,10 @@
             }
         }
 
-        "druid_u__sk7_rank_21"{
+        "druid_u__conversion_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1904,10 +1904,10 @@
             }
         }
 
-        "druid_u__sk7_rank_22"{
+        "druid_u__conversion_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1934,10 +1934,10 @@
             }
         }
 
-        "druid_u__sk7_rank_31"{
+        "druid_u__conversion_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1964,10 +1964,10 @@
             }
         }
 
-        "druid_u__sk7_rank_32"{
+        "druid_u__conversion_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1994,10 +1994,10 @@
             }
         }
         
-        "druid_u__sk7_rank_41"{
+        "druid_u__conversion_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -2024,10 +2024,10 @@
             }
         }
 
-        "druid_u__sk7_rank_42"{
+        "druid_u__conversion_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_sk7"
+            "AbilityTextureName"    		"druid_conversion"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

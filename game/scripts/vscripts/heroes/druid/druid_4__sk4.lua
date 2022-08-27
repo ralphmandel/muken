@@ -1,10 +1,10 @@
-druid_4__sk4 = class({})
-LinkLuaModifier("druid_4_modifier_sk4", "heroes/druid/druid_4_modifier_sk4", LUA_MODIFIER_MOTION_NONE)
+druid_4__teleport = class({})
+LinkLuaModifier("druid_4_modifier_teleport", "heroes/druid/druid_4_modifier_teleport", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function druid_4__sk4:CalcStatus(duration, caster, target)
+    function druid_4__teleport:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function druid_4__sk4:AddBonus(string, target, const, percent, time)
+    function druid_4__teleport:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function druid_4__sk4:RemoveBonus(string, target)
+    function druid_4__teleport:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,7 +32,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function druid_4__sk4:GetRank(upgrade)
+    function druid_4__teleport:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
@@ -41,7 +41,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
-    function druid_4__sk4:OnUpgrade()
+    function druid_4__teleport:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
@@ -55,24 +55,24 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:CheckAbilityCharges(1)
     end
 
-    function druid_4__sk4:Spawn()
+    function druid_4__teleport:Spawn()
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function druid_4__sk4:OnSpellStart()
+    function druid_4__teleport:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function druid_4__sk4:GetManaCost(iLevel)
+    function druid_4__teleport:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function druid_4__sk4:CheckAbilityCharges(charges)
+    function druid_4__teleport:CheckAbilityCharges(charges)
         self:SetCurrentAbilityCharges(charges)
     end
 
