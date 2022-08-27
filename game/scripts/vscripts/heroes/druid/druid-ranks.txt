@@ -42,10 +42,11 @@
 			"1"
 			{
 				"1"   "druid_2__armor_rank_21"
+				"2"   "druid_2__armor_rank_22"
 			}
 			"2"
 			{
-				"1"   "druid_2__armor_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -75,38 +76,38 @@
 		{
 			"0"
 			{
-				"1"   "druid_4__sk4_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "druid_4__sk4_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "druid_4__sk4_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "druid_4__sk4_rank_41"
+				"1"   "empty"
 			}
 		}
 		"druid_5__sk5"
 		{
 			"0"
 			{
-				"1"   "druid_5__sk5_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "druid_5__sk5_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "druid_5__sk5_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "druid_5__sk5_rank_41"
+				"1"   "empty"
 			}
 		}
 		"druid_6__entangled"
@@ -133,19 +134,19 @@
 		{
 			"0"
 			{
-				"1"   "druid_u__sk7_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "druid_u__sk7_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "druid_u__sk7_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "druid_u__sk7_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	

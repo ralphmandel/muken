@@ -90,6 +90,45 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
+    function druid_2__armor:CreateSeedProj(target, source, heal)
+        if IsServer() then source:EmitSound("Hero_Treant.LeechSeed.Target") end
+
+        ProjectileManager:CreateTrackingProjectile({
+            Target = target,
+            Source = source,
+            Ability = self,	
+            EffectName = "particles/druid/druid_ult_projectile.vpcf",
+            iMoveSpeed = 250,
+            bReplaceExisting = false,
+            bProvidesVision = true,
+            iVisionRadius = 75,
+            iVisionTeamNumber = target:GetTeamNumber(),
+            ExtraData = {damage = heal}
+        })
+    end
+
+    function druid_2__armor:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
+        if not hTarget then return end
+        local heal = ExtraData.damage
+
+        local lotus_mod = hTarget:FindModifierByName("druid_3_modifier_totem")
+        if lotus_mod then
+            if lotus_mod.min_health < hTarget:GetMaxHealth() then
+                lotus_mod.disable_heal = 0
+                lotus_mod.min_health = lotus_mod.min_health + 1
+
+                hTarget:Heal(1, self)
+                self:PlayEfxHeal(hTarget)
+
+                lotus_mod.disable_heal = 1
+            end
+            return
+        end
+
+        hTarget:Heal(heal, self)
+        self:PlayEfxHeal(hTarget)
+    end
+
     function druid_2__armor:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -102,3 +141,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function druid_2__armor:PlayEfxHeal(target)
+        local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+        local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+        ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
+        ParticleManager:ReleaseParticleIndex(effect)
+    end

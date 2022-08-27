@@ -16,7 +16,7 @@ function dasdingo_4_modifier_tribal:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then self.parent:CreatureLevelUp(base_stats.stat_total["MND"]) end
+	if base_stats then self.parent:CreatureLevelUp(base_stats:GetStatTotal("MND")) end
 
 	self.parent:StartGesture(ACT_IDLE)
 	self:PlayEfxRegen()

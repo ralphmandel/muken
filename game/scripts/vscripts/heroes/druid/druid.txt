@@ -88,7 +88,7 @@
 		"ScriptFile"            		"heroes/druid/druid_2__armor"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_armor"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -106,24 +106,29 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"8 8.5 9 9.5 10 10.5 11 11.5 12"
+				"duration"		"8 8.5 9 9.5 10 10.5 11 11.5 12 12.5"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"def"		    "20"
+				"armor"		    "10"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_per_sec"	"15"
+				"def"		    "20"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"	    "0.5"
+				"heal_per_sec"	"15"
 			}
             "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"interval"	    "0.5"
+			}
+            "06"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"bonus_per_atk"	"0.25"
@@ -136,7 +141,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}

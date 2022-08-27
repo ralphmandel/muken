@@ -157,6 +157,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.block_chance = self:GetSpecialValueFor("block_chance")
 				self.physical_block = 0
 				self.magical_block = 0
+				self.bonus_status_resist = 0
 
 				-- AGI
 				self.movespeed = self:GetSpecialValueFor("movespeed")
@@ -413,6 +414,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 ---- ATTRIBUTES UTILS
 	-- UTIL STR
+
+		function base_stats:SetBonusStatusRes(amount)
+			self.bonus_status_resist = self.bonus_status_resist + amount
+		end
 
 		function base_stats:SetForceCritSpell(value, state, damage_type)
 			if value > 0 then self.crit_damage_spell[damage_type] = value end

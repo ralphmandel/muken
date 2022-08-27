@@ -178,7 +178,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierStatusResistance()
         if self.parent:GetAttackCapability() == 1 then
-            return self.ability.total_status_resist
+            return self.ability.total_status_resist + self.ability.bonus_status_resist
         end
 
         return 0
