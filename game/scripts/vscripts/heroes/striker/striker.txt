@@ -129,7 +129,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.2"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"9"
 		"AbilityCastRange"      		"600"
 
 		"AbilitySpecial"
@@ -197,14 +197,14 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"100"
+        "AbilityDamage"					"150"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_IDLE"
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"75"
 
 		"AbilitySpecial"
 		{
@@ -216,7 +216,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stun_duration"		"1.25"
+				"stun_duration"		"1.5"
 			}
             "12"
 			{
@@ -231,7 +231,7 @@
 			"14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "150"
+				"manacost"		    "175"
 			}
 			"15"
 			{
@@ -258,7 +258,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"30"
 		"AbilityCastRange"      		"900"
 
 		"AbilitySpecial"
@@ -281,7 +281,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"135"
+				"manacost"		"140"
 			}
 			"15"
 			{
@@ -304,7 +304,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"24"
 
 		"AbilitySpecial"
 		{
@@ -336,7 +336,7 @@
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"		"18"
+				"buff_duration"		"16"
 			}
             "07"
 			{
@@ -351,7 +351,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "125"
+				"manacost"		    "130"
 			}
 			"15"
 			{

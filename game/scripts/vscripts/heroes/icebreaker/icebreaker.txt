@@ -118,7 +118,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"120"
 			}
 			"15"
 			{
@@ -174,7 +174,7 @@
 			"14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "120"
+				"manacost"		    "135"
 			}
 			"15"
 			{
@@ -212,7 +212,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"50"
+				"manacost"		"75"
 			}
 			"15"
 			{
@@ -259,7 +259,7 @@
 			"14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "150"
+				"manacost"		    "170"
 			}
 			"15"
 			{
@@ -314,7 +314,7 @@
 			"14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "175"
+				"manacost"		    "225"
 			}
 			"15"
 			{
@@ -358,7 +358,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "75"
+				"manacost"		    "100"
 			}
 			"15"
 			{
