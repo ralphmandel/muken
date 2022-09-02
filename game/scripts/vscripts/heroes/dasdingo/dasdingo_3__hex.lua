@@ -54,11 +54,6 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         local charges = 1
 
-        -- UP 3.21
-        if self:GetRank(21) then
-            charges = charges * 2           
-        end
-
         -- UP 3.41
         if self:GetRank(41) then
             charges = charges * 3
@@ -119,7 +114,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             local damageTable = {
                 victim = target,
                 attacker = caster,
-                damage = target:GetMaxHealth() * 0.05,
+                damage = target:GetMaxHealth() * 0.1,
                 damage_type = DAMAGE_TYPE_MAGICAL,
                 ability = self
             }
@@ -166,11 +161,6 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
 
         if caster == hTarget then
             return UF_FAIL_CUSTOM
-        end
-
-        -- UP 3.21
-        if self:GetCurrentAbilityCharges() % 2 == 0 then
-            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
         end
 
         local result = UnitFilter(

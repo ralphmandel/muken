@@ -381,9 +381,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-
 		"AbilityCooldown"				"45"
-		"AbilityCastRange"      		"500"
 
 		"AbilitySpecial"
 		{

@@ -17,7 +17,7 @@
 		{
 			"0"
 			{
-				"1"   "icebreaker_1__hypo_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
@@ -116,6 +116,7 @@
 			"0"
 			{
 				"1"   "icebreaker_6__zero_rank_11"
+				"2"   "icebreaker_6__zero_rank_12"
 			}
 			"1"
 			{

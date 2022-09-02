@@ -168,11 +168,6 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
             return UF_FAIL_CUSTOM
         end
 
-        -- UP 7.11
-        if self:GetCurrentAbilityCharges() % 2 == 0 then
-            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-        end
-
         local result = UnitFilter(
             hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
             flag, caster:GetTeamNumber()
@@ -194,7 +189,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 150 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 300 end
         return cast_range
     end
 

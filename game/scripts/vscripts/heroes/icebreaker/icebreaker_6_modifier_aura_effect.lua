@@ -17,14 +17,19 @@ function icebreaker_6_modifier_aura_effect:OnCreated( kv )
 
 	self.min_stack = self.ability:GetSpecialValueFor("min_stack")
 
-	-- UP 6.32
-	if self.ability:GetRank(32) then
+	-- UP 6.21
+	if self.ability:GetRank(21) then
 		self.min_stack = self.min_stack + 1
 	end
 
 	if self.caster == self.parent then
 		local cosmetics = self.parent:FindAbilityByName("cosmetics")
 		if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_6_modifier_aura_effect_status_efx", true) end
+		
+		-- UP 6.12
+		if self.ability:GetRank(12) then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 50})
+		end
 	end
 
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
@@ -36,6 +41,11 @@ function icebreaker_6_modifier_aura_effect:OnRefresh( kv )
 end
 
 function icebreaker_6_modifier_aura_effect:OnRemoved()
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
 	if self.caster == self.parent then
 		local cosmetics = self.parent:FindAbilityByName("cosmetics")
 		if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_6_modifier_aura_effect_status_efx", false) end

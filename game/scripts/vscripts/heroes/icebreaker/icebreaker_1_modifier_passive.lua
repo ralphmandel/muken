@@ -71,8 +71,8 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 		self:ApplyBonusMagicalDamage(keys.target, self.parent:IsIllusion())
 	end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
+	-- UP 1.31
+	if self.ability:GetRank(31) then
 		self:ApplyInstantFrozen(keys.target, self.parent:IsIllusion())
 	end
 
@@ -98,16 +98,6 @@ function icebreaker_1_modifier_passive:ApplyHypothermia(target, bIllusion)
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if target:IsMagicImmune() or self.parent:PassivesDisabled() then hypo_chance = 0 end
 
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		if target:IsMagicImmune() then
-			hypo_chance = 40
-		else
-			hypo_chance = 100
-		end
-	end
-
-	if bIllusion then hypo_chance = 100 end
 	if base_stats then hypo_chance = hypo_chance * base_stats:GetCriticalChance() end
 	if RandomFloat(1, 100) <= hypo_chance then self.ability:AddSlow(target, self.ability, 1, true) end
 end
@@ -139,7 +129,9 @@ function icebreaker_1_modifier_passive:ApplyInstantFrozen(target, bIllusion)
 	if base_stats then instant_chance = instant_chance * base_stats:GetCriticalChance() end
 	
 	if RandomFloat(1, 100) <= instant_chance then
-		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.5})
+		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
+			duration = self.ability:CalcStatus(1, self.caster, target)
+		})
 	end
 end
 

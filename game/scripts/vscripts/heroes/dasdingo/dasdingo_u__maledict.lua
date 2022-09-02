@@ -78,17 +78,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local radius = self:GetSpecialValueFor("radius")
-        local flag = 0
-
-        -- UP 7.41
-        if self:GetRank(41) then
-            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-        end
 
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), point, nil, radius,
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            flag, 0, false
+            0, 0, false
         )
 
         for _,enemy in pairs(enemies) do

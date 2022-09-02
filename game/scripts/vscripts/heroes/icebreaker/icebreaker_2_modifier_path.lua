@@ -69,19 +69,7 @@ function icebreaker_2_modifier_path:OnIntervalThink()
 	)
 
     for _,hero in pairs(heroes) do
-		if hero:IsIllusion() == false then
-			hero:AddNewModifier(self.caster, self.ability, "_modifier_path", {duration = 0.3})
-
-			local mod = hero:FindAllModifiersByName("_modifier_movespeed_buff")
-			for _,modifier in pairs(mod) do
-				if modifier:GetAbility() == self.ability then modifier:Destroy() end
-			end
-
-			hero:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-				duration = 0.3,
-				percent = 30
-			})
-		end
+		hero:AddNewModifier(self.caster, self.ability, "_modifier_path", {duration = 0.3})
 	end
 end
 

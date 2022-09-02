@@ -1,6 +1,7 @@
 striker_4__hammer = class({})
 LinkLuaModifier("striker_4_modifier_hammer", "heroes/striker/striker_4_modifier_hammer", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -62,11 +63,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         -- UP 4.12
         if self:GetRank(12) then
             charges = charges * 3 -- cast point
-        end
-
-        -- UP 4.21
-        if self:GetRank(21) then
-            charges = charges * 5 -- pierces magic immunity
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -160,6 +156,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
             if enemy:IsAlive() then
                 enemy:AddNewModifier(caster, self, "_modifier_stun", {duration = stun_duration})
+
+                -- UP 4.21
+                if self:GetRank(21) then
+                    enemy:AddNewModifier(caster, self, "_modifier_silence", {duration = stun_duration * 2})
+                end
             end
         end
     
@@ -186,11 +187,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function striker_4__hammer:CastFilterResultTarget(hTarget)
         local caster = self:GetCaster()
         local flag = 0
-
-        -- UP 4.21
-        if self:GetCurrentAbilityCharges() % 5 == 0 then
-            flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-        end
 
         local result = UnitFilter(
             hTarget, DOTA_UNIT_TARGET_TEAM_ENEMY,

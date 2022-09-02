@@ -162,11 +162,6 @@ function striker_u_modifier_autocast:CastHammer()
 	
 	local flags = hammer:GetAbilityTargetFlags()
 
-	-- UP 4.21
-	if hammer:GetRank(21) then
-		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	end
-
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
 		hammer:GetCastRange(self.parent:GetOrigin(), nil),

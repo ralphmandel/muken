@@ -25,10 +25,7 @@ function icebreaker_6_modifier_shard:GetAuraSearchType()
 end
 
 function icebreaker_6_modifier_shard:GetAuraSearchFlags()
-	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return DOTA_UNIT_TARGET_FLAG_NONE  end
-	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return DOTA_UNIT_TARGET_FLAG_NONE  end
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
-	return DOTA_UNIT_TARGET_FLAG_NONE
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 end
 
 function icebreaker_6_modifier_shard:GetAuraRadius()
@@ -145,7 +142,7 @@ end
 
 function icebreaker_6_modifier_shard:StartExplosionThink(radius)
 	local point = self.parent:GetOrigin()
-	local explosion_damage = 70
+	local explosion_damage = 100
 	local explosion_radius = (radius * 0.2)
 
 	local random_x

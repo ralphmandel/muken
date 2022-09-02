@@ -32,15 +32,15 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function striker_1_modifier_immune:CheckState()
-	local state = {
-		[MODIFIER_STATE_STUNNED] = false,
-		[MODIFIER_STATE_PASSIVES_DISABLED] = false,
-		[MODIFIER_STATE_DISARMED] = false
-	}
+-- function striker_1_modifier_immune:CheckState()
+-- 	local state = {
+-- 		[MODIFIER_STATE_STUNNED] = false,
+-- 		[MODIFIER_STATE_PASSIVES_DISABLED] = false,
+-- 		[MODIFIER_STATE_DISARMED] = false
+-- 	}
 
-	return state
-end
+-- 	return state
+-- end
 
 function striker_1_modifier_immune:DeclareFunctions()
 	local funcs = {
@@ -51,7 +51,7 @@ function striker_1_modifier_immune:DeclareFunctions()
 end
 
 function striker_1_modifier_immune:GetModifierAttackRangeBonus(keys)
-	return 200
+	return 300
 end
 
 -- UTILS -----------------------------------------------------------

@@ -199,12 +199,14 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 end
 
 function striker_1_modifier_passive:ApplyKnockback(target)
-	local knockback_duration = 0.15
+	if target:IsMagicImmune() then return end
+
+	local knockback_duration = 0.1
 	local knockback_distance = 25
 
 	-- UP 1.21
 	if self.ability:GetRank(21) then
-		local chance = 20
+		local chance = 25
 		local base_stats = self.parent:FindAbilityByName("base_stats")
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
@@ -212,8 +214,6 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 			knockback_duration = knockback_duration + 0.5
 			knockback_distance = 75
 		end
-	else
-		if target:IsMagicImmune() then return end
 	end
 
 	local knockbackProperties =

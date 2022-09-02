@@ -47,6 +47,8 @@ end
 
 function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_MISS_PERCENTAGE,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
@@ -59,8 +61,16 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
 	return funcs
 end
 
-function dasdingo_4_modifier_tribal:GetModifierMiss_Percentage(keys)
-	return 25
+function dasdingo_4_modifier_tribal:GetModifierExtraHealthPercentage()
+	return self:GetParent():GetLevel() * 2
+end
+
+function dasdingo_4_modifier_tribal:GetModifierBaseDamageOutgoing_Percentage()
+	return self:GetParent():GetLevel() * 2
+end
+
+function dasdingo_4_modifier_tribal:GetModifierMiss_Percentage()
+	return 20
 end
 
 function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)

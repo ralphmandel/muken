@@ -55,17 +55,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        -- UP 6.21
-        if self:GetRank(21) then
-            self.charges = self:GetSpecialValueFor("charges") + 1
+        -- UP 6.32
+        if self:GetRank(32) then
+            self.charges = self:GetSpecialValueFor("charges") + 2
         end
 
         local charges = 1
-
-        -- UP 6.32
-        if self:GetRank(32) then
-            charges = charges * 2
-        end
 
         self:SetCurrentAbilityCharges(charges)
     end
