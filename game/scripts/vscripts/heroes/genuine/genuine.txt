@@ -45,7 +45,7 @@
             "03"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"manacost"	    "60"
+				"manacost"	    "50"
 			}
 			"15"
 			{
@@ -70,7 +70,7 @@
 		"AbilityCastPoint"       		"0.3"
         "AbilityCastRange"              "0"
 
-        "AbilityCooldown"				"15"
+        "AbilityCooldown"				"18"
 
 		"AbilitySpecial"
 		{
@@ -97,12 +97,12 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"150 155 160 165 170 175 180 185 190 195 200"
+				"mana_steal"	"175 180 185 190 195 200 205 210 215 220 225"
 			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"  	"130"
+				"manacost"  	"150"
 			}
 			"15"
 			{
@@ -158,7 +158,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"	    "90"
+				"manacost"	    "100"
 			}
 			"15"
 			{
@@ -225,7 +225,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"155 159 163 167 171 175 179 183 187 191 195 199"
+        "AbilityDamage"					"175 180 185 190 195 200 205 210 215 220 225 230"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 
@@ -283,12 +283,12 @@
             "10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"recharge_time"		    "21"
+				"recharge_time"		    "30"
 			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"125"
 			}
 			"15"
 			{
@@ -313,7 +313,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"12"
         "AbilityDamage"					"75"
 
 		"AbilitySpecial"
@@ -356,7 +356,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"120"
+				"manacost"		"135"
 			}
 			"15"
 			{
@@ -390,7 +390,7 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10 10.25 10.5 10.75 11 11.25 11.5 11.75 12 12.25 12.5"
+				"duration"		"10 10.2 10.4 10.6 10.8 11 11.2 11.4 11.6 11.8 12"
 			}
             "02"
 			{
@@ -405,7 +405,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"145"
+				"manacost"		"180"
 			}
 			"15"
 			{

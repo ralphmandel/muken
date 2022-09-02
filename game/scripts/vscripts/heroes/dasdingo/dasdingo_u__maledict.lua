@@ -101,7 +101,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 	function dasdingo_u__maledict:GetCooldown(iLevel)
         local cooldown = self:GetSpecialValueFor("cooldown")
         if self:GetCurrentAbilityCharges() == 0 then return cooldown end
-		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 15 end
+		if self:GetCurrentAbilityCharges() % 2 == 0 then return cooldown - 25 end
         return cooldown
 	end
 

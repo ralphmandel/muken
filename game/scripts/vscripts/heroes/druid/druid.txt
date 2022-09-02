@@ -160,7 +160,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"34"
 		"AbilityCastRange"      		"800"
 
 		"AbilitySpecial"
@@ -280,7 +280,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"75 72 70 67 65 62 60 57 55 52 50 47 45 42 40"
+		"AbilityCooldown"				"70 68 66 64 62 60 58 56 54 52 50 48 46 44 42"
 
 		"AbilitySpecial"
 		{

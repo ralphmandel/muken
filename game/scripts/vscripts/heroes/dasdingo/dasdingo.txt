@@ -148,7 +148,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"130"
+				"manacost"		"160"
 			}
 			"15"
 			{
@@ -172,7 +172,7 @@
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"24"
 
 		"AbilitySpecial"
 		{
@@ -189,7 +189,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"      "150"
+				"manacost"      "180"
 			}
 			"15"
 			{
@@ -216,19 +216,19 @@
 		"AbilityCastPoint"				"0.3"
         "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		"AbilityCooldown"				"25 24.5 24 23.5 23 22.5 22 21.5 21 20.5 20"
+		"AbilityCooldown"				"40 39 38 37 36 35 34 33 32 31 30"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4"
+				"channel_time"		"5"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"drain_percent"		"1"
+				"drain_percent"		"1.5"
 			}
             "03"
 			{
@@ -238,7 +238,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"140"
+				"manacost"		"200"
 			}
 			"15"
 			{
@@ -348,12 +348,12 @@
             "13"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cooldown"		    "60"
+				"cooldown"		    "100"
 			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "160"
+				"manacost"		    "250"
 			}
 			"15"
 			{

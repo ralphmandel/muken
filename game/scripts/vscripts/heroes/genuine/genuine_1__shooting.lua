@@ -212,7 +212,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost - 20 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost * level) - 20 end
         return manacost * level
     end
 
