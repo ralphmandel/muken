@@ -4,6 +4,7 @@ LinkLuaModifier("icebreaker_6_modifier_shard", "heroes/icebreaker/icebreaker_6_m
 LinkLuaModifier("icebreaker_6_modifier_aura_effect", "heroes/icebreaker/icebreaker_6_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_6_modifier_aura_effect_status_efx", "heroes/icebreaker/icebreaker_6_modifier_aura_effect_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

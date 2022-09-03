@@ -309,6 +309,7 @@
 
 #base "../vscripts/heroes/druid/druid.txt"
 #base "../vscripts/heroes/krieger/krieger.txt"
+#base "../vscripts/heroes/ancient/ancient.txt"
 
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"

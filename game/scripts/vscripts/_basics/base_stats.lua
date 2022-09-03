@@ -442,16 +442,21 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				if caster:HasModifier("ancient_1_modifier_berserk")
 				and damage_type == DAMAGE_TYPE_PHYSICAL then
-					local chance_base = 0.25
-					local chance_luck = self:GetCriticalChance() * 0.005
-					local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
-					local time = 0
-
-					if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
-
-					local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
-					total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
+					total_crit_dmg = total_crit_dmg + self.stat_total["AGI"]
 				end
+
+				-- if caster:HasModifier("ancient_1_modifier_berserk")
+				-- and damage_type == DAMAGE_TYPE_PHYSICAL then
+				-- 	local chance_base = 0.25
+				-- 	local chance_luck = self:GetCriticalChance() * 0.005
+				-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
+				-- 	local time = 0
+
+				-- 	if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
+
+				-- 	local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
+				-- 	total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
+				-- end
 
 				return total_crit_dmg + bonus_value
 			end
@@ -461,10 +466,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			if IsServer() then
 				local caster = self:GetCaster()
 				local critical_chance = self:GetCriticalChance()
-
-				if caster:HasModifier("ancient_1_modifier_berserk") then
-					critical_chance = (critical_chance * 0.5) + 25
-				end
 
 				if RandomFloat(1, 100) <= critical_chance * self.critical_chance then
 					return true
@@ -480,7 +481,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			if IsServer() then
 				local caster = self:GetCaster()
 				if caster:HasModifier("ancient_1_modifier_berserk") then
-					self.attack_time = 2.25 + bonus
+					self.attack_time = 2.5 + bonus
 					return
 				end
 

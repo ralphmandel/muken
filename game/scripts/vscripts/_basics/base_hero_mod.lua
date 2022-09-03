@@ -152,6 +152,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_OgreMagi.Attack.TI8" end
+	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Ancient.Attack" end
 end
 
 -----------------------------------------------------------

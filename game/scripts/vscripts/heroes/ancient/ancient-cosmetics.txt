@@ -1,0 +1,18 @@
+"Cosmetics"
+{
+    "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl" "nil"
+
+	"models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl" "nil"
+
+	"models/items/elder_titan/harness_of_the_soulforged_shoulder/harness_of_the_soulforged_shoulder.vmdl" "nil"
+
+	"models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl"
+	{
+		"particles/ancient/ancient_weapon.vpcf" "attach_weapon"
+	}
+
+	"models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl"
+	{
+		"particles/ancient/ancient_back.vpcf" "attach_back"
+	}	
+}

@@ -1,0 +1,10 @@
+"skills"
+{
+	"1" "ancient_1__berserk"
+	"2" "ancient_2__bash"
+	"3" "ancient_3__leap"
+	"4" "ancient_4__walk"
+	"5" "ancient_5__stone"
+	"6" "ancient_6__sk6"
+	"7" "ancient_u__final"
+}

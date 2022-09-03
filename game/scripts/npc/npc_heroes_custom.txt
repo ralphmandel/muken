@@ -10,3 +10,4 @@
 
 #base "../vscripts/heroes/druid/druid-props.txt"
 #base "../vscripts/heroes/krieger/krieger-props.txt"
+#base "../vscripts/heroes/ancient/ancient-props.txt"
