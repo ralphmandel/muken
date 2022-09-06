@@ -1036,8 +1036,14 @@
 				table.insert(self.players, player)
 
 				local channel = unit:FindAbilityByName("_channel")
-				unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 5})
-				unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 5})
+
+				if IsInToolsMode() then
+					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 2})
+					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 2})
+				else
+					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 7})
+					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 7})
+				end
 			end
 		end
 

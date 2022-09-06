@@ -268,7 +268,7 @@ base_stats_mod = class ({})
     end
 
     function base_stats_mod:GetModifierAttackSpeedBonus_Constant()
-        if self.parent:HasModifier("ancient_1_modifier_berserk") then return 0 end
+        if self.parent:HasModifier("ancient_1_modifier_passive") then return 0 end
         return self.ability.stat_total["AGI"] * self.ability.attack_speed
     end
 

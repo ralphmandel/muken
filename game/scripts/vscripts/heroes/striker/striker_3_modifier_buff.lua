@@ -116,7 +116,7 @@ function striker_3_modifier_buff:ApplyMana(base_stats)
 	local mana = self.amount * 0.15
 	if base_stats then mana = mana * base_stats:GetHealPower() end
 
-	if mana > 0 then
+	if mana > 0 and self.parent:GetUnitName() ~= "npc_dota_hero_elder_titan" then
 		self.parent:GiveMana(mana)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
 	end

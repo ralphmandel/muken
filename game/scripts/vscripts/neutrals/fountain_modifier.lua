@@ -62,6 +62,7 @@ function fountain_modifier:OnIntervalThink()
 			self:PlayEfxHeal(unit)
 		else
 			local recovery = self.mp_percent * unit:GetMaxMana() * 0.3
+			if unit:GetUnitName() == "npc_dota_hero_elder_titan" then recovery = 1 end
 			unit:GiveMana(recovery)
 			self:PlayEfxMana(unit)
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, unit, recovery, unit)

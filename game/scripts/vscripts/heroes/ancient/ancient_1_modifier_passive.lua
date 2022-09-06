@@ -1,40 +1,40 @@
-ancient_1_modifier_berserk = class({})
+ancient_1_modifier_passive = class({})
 
-function ancient_1_modifier_berserk:IsHidden()
+function ancient_1_modifier_passive:IsHidden()
 	return true
 end
 
-function ancient_1_modifier_berserk:IsPurgable()
+function ancient_1_modifier_passive:IsPurgable()
 	return false
 end
 
-function ancient_1_modifier_berserk:IsDebuff()
+function ancient_1_modifier_passive:IsDebuff()
 	return false
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function ancient_1_modifier_berserk:OnCreated(kv)
+function ancient_1_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.bonus_damage_hit = self.ability:GetSpecialValueFor("bonus_damage_hit")
+	self.damage = self.ability:GetSpecialValueFor("damage")
 	self.stun_multiplier = self.ability:GetSpecialValueFor("stun_multiplier")
 
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetBaseAttackTime(0) end
 end
 
-function ancient_1_modifier_berserk:OnRefresh(kv)
+function ancient_1_modifier_passive:OnRefresh(kv)
 end
 
-function ancient_1_modifier_berserk:OnRemoved()
+function ancient_1_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function ancient_1_modifier_berserk:DeclareFunctions()
+function ancient_1_modifier_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
@@ -43,11 +43,11 @@ function ancient_1_modifier_berserk:DeclareFunctions()
 	return funcs
 end
 
-function ancient_1_modifier_berserk:GetModifierBaseDamageOutgoing_Percentage()
-	return self.bonus_damage_hit
+function ancient_1_modifier_passive:GetModifierBaseDamageOutgoing_Percentage()
+	return self.damage
 end
 
-function ancient_1_modifier_berserk:OnTakeDamage(keys)
+function ancient_1_modifier_passive:OnTakeDamage(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end

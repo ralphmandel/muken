@@ -54,7 +54,7 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
-	local ancient_mod = self.parent:FindModifierByName("ancient_1_modifier_berserk")
+	local ancient_mod = self.parent:FindModifierByName("ancient_1_modifier_passive")
 	if ancient_mod then
 		if RandomFloat(1, 100) <= chance then
 			ancient_mod:SetMultipleHits(2)

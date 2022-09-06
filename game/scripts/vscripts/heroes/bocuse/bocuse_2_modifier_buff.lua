@@ -97,7 +97,7 @@ function bocuse_2_modifier_buff:ApplyMana()
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then mana_gain = mana_gain * base_stats:GetHealPower() end
 
-	if mana_gain > 0 then
+	if mana_gain > 0 and self.parent:GetUnitName() ~= "npc_dota_hero_elder_titan" then
 		self.parent:GiveMana(mana_gain)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana_gain, self.caster)
 	end

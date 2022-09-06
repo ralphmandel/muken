@@ -44,6 +44,8 @@ end
 
 function item_potion_recover_modifier:OnIntervalThink()
 	local mana = self.mana
+	if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then mana = 10 end
+	
 	self.parent:GiveMana(mana)
 	SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
 end

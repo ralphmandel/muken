@@ -27,7 +27,11 @@ require("talent_tree")
 
 		if level == 7 then
 			local ultimate = caster:FindAbilityByName(self.skills[7])
-			if ultimate then ultimate:UpgradeAbility(true) end
+			if ultimate then
+				if ultimate:IsTrained() == false then
+					ultimate:UpgradeAbility(true)
+				end
+			end
 		end
 
 		self:CheckSkills(0, nil)

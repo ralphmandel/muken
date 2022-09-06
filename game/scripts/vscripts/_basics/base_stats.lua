@@ -440,12 +440,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				local total_crit_dmg = self.critical_damage
 
-				if caster:HasModifier("ancient_1_modifier_berserk")
+				if caster:HasModifier("ancient_1_modifier_passive")
 				and damage_type == DAMAGE_TYPE_PHYSICAL then
 					total_crit_dmg = total_crit_dmg + self.stat_total["AGI"]
 				end
 
-				-- if caster:HasModifier("ancient_1_modifier_berserk")
+				-- if caster:HasModifier("ancient_1_modifier_passive")
 				-- and damage_type == DAMAGE_TYPE_PHYSICAL then
 				-- 	local chance_base = 0.25
 				-- 	local chance_luck = self:GetCriticalChance() * 0.005
@@ -480,7 +480,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:SetBaseAttackTime(bonus)
 			if IsServer() then
 				local caster = self:GetCaster()
-				if caster:HasModifier("ancient_1_modifier_berserk") then
+				if caster:HasModifier("ancient_1_modifier_passive") then
 					self.attack_time = 2.5 + bonus
 					return
 				end
