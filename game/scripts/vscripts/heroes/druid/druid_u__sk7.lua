@@ -38,7 +38,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[7][upgrade] end
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
     function druid_u__conversion:OnUpgrade()
@@ -48,7 +48,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[7][0] = true
+            base_hero.ranks[6][0] = true
             if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
 

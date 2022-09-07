@@ -37,7 +37,7 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
 		if caster:GetUnitName() ~= "npc_dota_hero_dawnbreaker" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[7][upgrade] end
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
     function striker_u__auto:OnUpgrade()
@@ -47,7 +47,7 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[7][0] = true
+            base_hero.ranks[6][0] = true
             if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
 

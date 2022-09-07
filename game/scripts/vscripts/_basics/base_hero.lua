@@ -26,7 +26,7 @@ require("talent_tree")
 		if caster:IsIllusion() then return end
 
 		if level == 7 then
-			local ultimate = caster:FindAbilityByName(self.skills[7])
+			local ultimate = caster:FindAbilityByName(self.skills[6])
 			if ultimate then
 				if ultimate:IsTrained() == false then
 					ultimate:UpgradeAbility(true)
@@ -126,9 +126,6 @@ require("talent_tree")
 			},
 			[6] = {
 				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
-			},
-			[7] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
 			}
 		}
 
@@ -180,7 +177,7 @@ require("talent_tree")
 
 		for _,unit in pairs(ranks_data) do
 			if not unit["min_level"] then
-				for i = 0, 7, 1 do
+				for i = 0, 6, 1 do
 					for tabName, tabData in pairs(unit) do
 						local isTab = false
 						if self.skills[i] then
@@ -457,16 +454,8 @@ require("talent_tree")
 
 		-- Icebreaker 5.31 requires ultimate
 		if self.talentsData[talentId].Ability == "icebreaker_5__wave_rank_31"
-		and (not self.ranks[7][0]) then
+		and (not self.ranks[6][0]) then
 			return false
-		end
-
-		-- Bocuse 1.41 requires skill rank level 14
-		if self.talentsData[talentId].Ability == "bocuse_1__cut_rank_41" then
-			local cut = self:GetCaster():FindAbilityByName("bocuse_1__cut")
-			if cut == nil then return false end
-			if cut:IsTrained() == false then return false end
-			if cut:GetSpecialValueFor("rank") < 14 then return false end
 		end
 
 		-- Bocuse 2.41 requires skill rank level 13
@@ -477,13 +466,13 @@ require("talent_tree")
 			if flask:GetSpecialValueFor("rank") < 13 then return false end
 		end
 
-		-- Bocuse 7.21 requires skill 1
+		-- Bocuse 6.21 requires skill 1
 		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_21"
 		and (not self.ranks[1][0]) then
 			return false
 		end
 
-		-- Bocuse 7.41 requires skill rank level 19
+		-- Bocuse 6.41 requires skill rank level 19
 		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_41" then
 			local rage = self:GetCaster():FindAbilityByName("bocuse_u__rage")
 			if rage == nil then return false end
@@ -491,7 +480,7 @@ require("talent_tree")
 			if rage:GetSpecialValueFor("rank") < 19 then return false end
 		end
 
-		for i = 1, 7, 1 do
+		for i = 1, 6, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
 			and (not self.ranks[i][0]) then
 				return false

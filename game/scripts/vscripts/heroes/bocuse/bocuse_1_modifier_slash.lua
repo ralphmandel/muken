@@ -83,10 +83,8 @@ end
 function bocuse_1_modifier_slash:OnStateChanged(keys)
 	if keys.unit ~= self.parent then return end
 
-	-- UP 1.31
-	if (self.ability:GetRank(31) == false and self.parent:IsDisarmed())
-	or self.parent:IsStunned() or self.parent:IsHexed()
-	or self.parent:IsFrozen() then
+	if self.parent:IsDisarmed() or self.parent:IsStunned()
+	or self.parent:IsHexed() or self.parent:IsFrozen() then
 		self.interrupted = true
 		self:Destroy()
 	end
@@ -160,8 +158,8 @@ function bocuse_1_modifier_slash:IsValidTarget(target)
 		return false
 	end
 
-	-- UP 1.31
-	if self.ability:GetRank(31) == false
+	-- UP 1.22
+	if self.ability:GetRank(22) == false
 	and target:IsInvisible() then
 		return false
 	end
@@ -194,11 +192,6 @@ function bocuse_1_modifier_slash:ApplyCut(target)
 		damage_type = self.ability:GetAbilityDamageType(),
 		ability = self.ability
 	})
-
-	-- UP 1.22
-	if self.ability:GetRank(22) then
-		self:ApplyDisarm(target)
-	end
 
 	self.ability:ApplyBleeding(target)
 	self:PlayEfxCut(target)

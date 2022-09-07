@@ -156,22 +156,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_level"				"30"
+				"max_level"				"24"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_init"				"25"
+				"gold_init"				"36"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_mult"				"5"
+				"gold_mult"				"6"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_gold"			"60" //60
+				"starting_gold"			"54"
 			}		
 		}
 	}

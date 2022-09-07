@@ -2,9 +2,8 @@
 {
 	"1" "dasdingo_1__heal"
 	"2" "dasdingo_2__aura"
-	"3" "dasdingo_3__hex"
+	"3" "dasdingo_3__fire"
 	"4" "dasdingo_4__tribal"
 	"5" "dasdingo_5__lash"
-	"6" "dasdingo_6__fire"
-	"7" "dasdingo_u__maledict"
+	"6" "dasdingo_u__maledict"
 }

@@ -61,7 +61,7 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
 
     if RandomFloat(1, 100) > chance then return end
 
-    -- UP 7.32
+    -- UP 6.32
     if self.ability:GetRank(32) then
         self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_rage", {
             duration = self.ability:CalcStatus(1.5, self.caster, self.parent),

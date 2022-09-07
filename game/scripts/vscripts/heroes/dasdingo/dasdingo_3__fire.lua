@@ -1,12 +1,12 @@
-dasdingo_6__fire = class({})
-LinkLuaModifier("dasdingo_6_modifier_passive", "heroes/dasdingo/dasdingo_6_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("dasdingo_6_modifier_fire", "heroes/dasdingo/dasdingo_6_modifier_fire", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("dasdingo_6_modifier_ignition", "heroes/dasdingo/dasdingo_6_modifier_ignition", LUA_MODIFIER_MOTION_NONE)
+dasdingo_3__fire = class({})
+LinkLuaModifier("dasdingo_3_modifier_passive", "heroes/dasdingo/dasdingo_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_3_modifier_fire", "heroes/dasdingo/dasdingo_3_modifier_fire", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_3_modifier_ignition", "heroes/dasdingo/dasdingo_3_modifier_ignition", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function dasdingo_6__fire:CalcStatus(duration, caster, target)
+    function dasdingo_3__fire:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -21,12 +21,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function dasdingo_6__fire:AddBonus(string, target, const, percent, time)
+    function dasdingo_3__fire:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function dasdingo_6__fire:RemoveBonus(string, target)
+    function dasdingo_3__fire:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -34,7 +34,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function dasdingo_6__fire:GetRank(upgrade)
+    function dasdingo_3__fire:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
@@ -43,7 +43,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
-    function dasdingo_6__fire:OnUpgrade()
+    function dasdingo_3__fire:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
@@ -58,24 +58,24 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function dasdingo_6__fire:Spawn()
+    function dasdingo_3__fire:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function dasdingo_6__fire:GetIntrinsicModifierName()
-        return "dasdingo_6_modifier_passive"
+    function dasdingo_3__fire:GetIntrinsicModifierName()
+        return "dasdingo_3_modifier_passive"
     end
 
-    function dasdingo_6__fire:GetManaCost(iLevel)
+    function dasdingo_3__fire:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function dasdingo_6__fire:Explode(target, lines)
+    function dasdingo_3__fire:Explode(target, lines)
         local caster = self:GetCaster()
         local particle_line = "particles/dasdingo/requiem/dasdingo_requiemofsouls_line.vpcf"
         local line_length = 600
@@ -124,7 +124,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:PlayEfxExplosion(target, lines)
     end
 
-    function dasdingo_6__fire:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
+    function dasdingo_3__fire:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
         local source = EntIndexToHScript(ExtraData.source)
         if hTarget == nil then return end
         if hTarget == source then return end
@@ -144,7 +144,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- EFFECTS
 
-    function dasdingo_6__fire:PlayEfxExplosion(target, lines)
+    function dasdingo_3__fire:PlayEfxExplosion(target, lines)
         local particle_cast = "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControl(effect_cast, 1, Vector( lines, 0, 0 ))

@@ -1,7 +1,7 @@
 bocuse_4__enhance = class({})
 LinkLuaModifier("bocuse_4_modifier_enhance", "heroes/bocuse/bocuse_4_modifier_enhance", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_4_modifier_end", "heroes/bocuse/bocuse_4_modifier_end", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

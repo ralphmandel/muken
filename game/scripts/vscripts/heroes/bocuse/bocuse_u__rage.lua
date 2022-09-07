@@ -43,7 +43,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		if caster:GetUnitName() ~= "npc_dota_hero_pudge" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[7][upgrade] end
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
     function bocuse_u__rage:OnUpgrade()
@@ -53,7 +53,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[7][0] = true
+            base_hero.ranks[6][0] = true
             if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
 
@@ -77,7 +77,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
-        -- UP 7.11
+        -- UP 6.11
         if self:GetRank(11) then
             caster:AddNewModifier(caster, self, "bocuse_u_modifier_jump", {duration = 0.5})
         end

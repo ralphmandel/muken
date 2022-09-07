@@ -26,6 +26,7 @@ function bocuse_u_modifier_rage:OnCreated(kv)
 	self.stop = false
 	self.extra_damage = 0
 	self.autocasted = kv.autocasted or 0
+	self.status = self.ability:GetSpecialValueFor("status")
 
 	self.ability:SetActivated(false)
 	self.ability:EndCooldown()
@@ -70,12 +71,17 @@ end
 
 function bocuse_u_modifier_rage:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_DEATH,
         MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
+end
+
+function bocuse_u_modifier_rage:GetModifierStatusResistance()
+	return self.status
 end
 
 function bocuse_u_modifier_rage:OnOrder(keys)
@@ -105,7 +111,7 @@ function bocuse_u_modifier_rage:OnDeath(keys)
 	if keys.unit:IsIllusion() then return end
 	if self.autocasted == 1 then return end
 
-	-- UP 7.31
+	-- UP 6.31
 	if self.ability:GetRank(31) then
 		local duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("duration"), self.parent, self.parent)
 		self:SetDuration(duration, true)
@@ -241,12 +247,12 @@ function bocuse_u_modifier_rage:HitTarget(target, direction)
 	self:ApplyMark(target)
 	self:PlayEfxHit(target, self.parent:GetOrigin(), direction)
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self:ApplyBleeding(target)
 	end
 
-	-- UP 7.41
+	-- UP 6.41
 	if self.ability:GetRank(41) then
 		self:ApplyStun(target)
 	end
@@ -281,7 +287,7 @@ function bocuse_u_modifier_rage:ApplyStun(target)
 end
 
 function bocuse_u_modifier_rage:StartExhaustion()
-	-- UP 7.12
+	-- UP 6.12
 	if self.ability:GetRank(12) then
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_exhaustion", {
 			duration = 4 * (1 - self.parent:GetStatusResistance())

@@ -63,27 +63,14 @@ end
 
 function bocuse_3_modifier_mark:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
-
-	-- UP 3.41
-	if self.ability:GetRank(41) then
-		self:CalcLifesteal(keys.original_damage, keys.attacker)
-	end
+	--self:CalcLifesteal(keys.original_damage, keys.attacker)
 end
 
 function bocuse_3_modifier_mark:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
-
-	-- UP 3.31
-	if self.ability:GetRank(31) then
-		self:CalcDamageStack(keys.damage, keys.attacker)
-	end
-
-	-- UP 3.41
-	if self.ability:GetRank(41) then
-		if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
-			self:CalcLifesteal(keys.original_damage, keys.attacker)
-		end
-	end
+	-- if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+	-- 	self:CalcLifesteal(keys.original_damage, keys.attacker)
+	-- end
 end
 
 function bocuse_3_modifier_mark:OnStackCountChanged(old)
@@ -92,31 +79,33 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function bocuse_3_modifier_mark:CalcDamageStack(damage, attacker)
-	if attacker == nil then return end
-	if attacker:IsBaseNPC() == false then return end
-	if attacker:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
+-- function bocuse_3_modifier_mark:CalcDamageStack(damage, attacker)
+-- 	if attacker == nil then return end
+-- 	if attacker:IsBaseNPC() == false then return end
+-- 	if attacker:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
 
-	local calc = damage * 0.05 * self:GetStackCount()
-	self.damage_stack = self.damage_stack + calc
-end
+-- 	local calc = damage * 0.05 * self:GetStackCount()
+-- 	self.damage_stack = self.damage_stack + calc
+-- end
 
-function bocuse_3_modifier_mark:CalcLifesteal(damage, attacker)
-	if attacker == nil then return end
-	if attacker:IsBaseNPC() == false then return end
-	if attacker:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
-	if self:GetStackCount() ~= self.max_stack then return end
+-- function bocuse_3_modifier_mark:CalcLifesteal(damage, attacker)
+-- 	if attacker == nil then return end
+-- 	if attacker:IsBaseNPC() == false then return end
+-- 	if attacker:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
+-- 	if self:GetStackCount() ~= self.max_stack then return end
 
-	local heal = damage * 0.25
-	attacker:Heal(heal, self.ability)
-	self:PlayEfxLifesteal(attacker)
-end
+-- 	local heal = damage * 0.25
+-- 	attacker:Heal(heal, self.ability)
+-- 	self:PlayEfxLifesteal(attacker)
+-- end
 
 function bocuse_3_modifier_mark:ChangeDuration()
+	local stack = self:GetStackCount()
+	local damage_stack = self.ability:GetSpecialValueFor("damage_stack")
 	local slow = self.ability:GetSpecialValueFor("slow")
 	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	local duration_reduction = self.ability:GetSpecialValueFor("duration_reduction")
-	local duration = init_duration - (duration_reduction * (self:GetStackCount() - 1))
+	local duration = init_duration - (duration_reduction * (stack - 1))
 
 	self:SetDuration(duration, true)
 	self:PopupSauce(false)
@@ -125,13 +114,29 @@ function bocuse_3_modifier_mark:ChangeDuration()
 	if self.ability:GetRank(11) then
 		slow = slow + 25
 	end
+	
+	-- UP 3.41
+	if self.ability:GetRank(41) then
+		damage_stack = damage_stack + 10
+	end
 
-	if self:GetStackCount() == self.max_stack then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {duration = self:GetRemainingTime()})
+	ApplyDamage({
+		attacker = self.caster, victim = self.parent, ability = self.ability,
+		damage = damage_stack * stack, damage_type = self.ability:GetAbilityDamageType()
+	})
+
+	if stack == self.max_stack then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 			duration = self:GetRemainingTime(),
 			percent = slow
 		})
+
+		-- UP 3.31
+		if self.ability:GetRank(31) then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {
+				duration = self:GetRemainingTime()
+			})
+		end
 
 		-- UP 3.42
 		if self.ability:GetRank(42) then

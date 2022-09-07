@@ -191,46 +191,11 @@
 		}
 	}
 
-    "template_6__sk6"
+	"template_u__sk6"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_6__sk6"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"ScriptFile"            		"heroes/template/template_u__sk6"
 		"AbilityTextureName"     		"template_sk6"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-
-		"AbilitySpecial"
-		{
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
-			}
-		}
-	}
-
-	"template_u__sk7"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/template/template_u__sk7"
-		"AbilityTextureName"     		"template_sk7"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"7"
@@ -1466,252 +1431,11 @@
             }
         }
 
-    //RANKS 6
-        "template_6__sk6_rank_11"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"11"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_12"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"12"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_21"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"21"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_22"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"22"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_31"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"31"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_32"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"32"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_41"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"41"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "template_6__sk6_rank_42"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"42"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
     //RANKS U
-        "template_u__sk7_rank_11"{
+        "template_u__sk6_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1723,7 +1447,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1738,10 +1462,10 @@
             }
         }
 
-        "template_u__sk7_rank_12"{
+        "template_u__sk6_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1753,7 +1477,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1768,10 +1492,10 @@
             }
         }
 
-        "template_u__sk7_rank_21"{
+        "template_u__sk6_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1783,7 +1507,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1798,10 +1522,10 @@
             }
         }
 
-        "template_u__sk7_rank_22"{
+        "template_u__sk6_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1813,7 +1537,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1828,10 +1552,10 @@
             }
         }
 
-        "template_u__sk7_rank_31"{
+        "template_u__sk6_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1843,7 +1567,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1858,10 +1582,10 @@
             }
         }
 
-        "template_u__sk7_rank_32"{
+        "template_u__sk6_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1873,7 +1597,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1888,10 +1612,10 @@
             }
         }
         
-        "template_u__sk7_rank_41"{
+        "template_u__sk6_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1903,7 +1627,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1918,10 +1642,10 @@
             }
         }
 
-        "template_u__sk7_rank_42"{
+        "template_u__sk6_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/template/template-ranks_lua"
-            "AbilityTextureName"    		"template_sk7"
+            "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1933,7 +1657,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {

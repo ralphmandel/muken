@@ -108,42 +108,23 @@
 				"1"   "template_5__sk5_rank_41"
 			}
 		}
-		"template_6__sk6"
+		"template_u__sk6"
 		{
 			"0"
 			{
-				"1"   "template_6__sk6_rank_11"
+				"1"   "template_u__sk6_rank_11"
 			}
 			"1"
 			{
-				"1"   "template_6__sk6_rank_21"
+				"1"   "template_u__sk6_rank_21"
 			}
 			"2"
 			{
-				"1"   "template_6__sk6_rank_31"
+				"1"   "template_u__sk6_rank_31"
 			}
 			"3"
 			{
-				"1"   "template_6__sk6_rank_41"
-			}
-		}
-		"template_u__sk7"
-		{
-			"0"
-			{
-				"1"   "template_u__sk7_rank_11"
-			}
-			"1"
-			{
-				"1"   "template_u__sk7_rank_21"
-			}
-			"2"
-			{
-				"1"   "template_u__sk7_rank_31"
-			}
-			"3"
-			{
-				"1"   "template_u__sk7_rank_41"
+				"1"   "template_u__sk6_rank_41"
 			}
 		}
 	}	

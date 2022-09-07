@@ -1,0 +1,63 @@
+// Dota Ability dasdingo
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"dasdingo_3__hex"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_3__hex"
+		"AbilityTextureName"     		"dasdingo_hex"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"15"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.1"
+
+		"AbilityCooldown"				"18"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"2.5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms_limit"		"150"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"gold_chance"	"40"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"gold_bonus"	"15"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"300 310 320 330 340 350 360 370 380 390 400 410 420 430 440"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"160"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+			}
+		}
+	}
+}

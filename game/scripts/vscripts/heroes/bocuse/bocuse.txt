@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_1__cut"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_cut"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -41,7 +41,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"init_chance"		"100 101 102 103 104 105 106 107 108 109 110 111 112"
+				"init_chance"		"100 101 102 103 104 105 106 107 108 109"
 			}
             "02"
 			{
@@ -91,7 +91,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}
@@ -210,6 +210,11 @@
 				"max_stack"		"5"
 			}
             "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage_stack"  "10"
+			}
+            "05"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"slow"		    "75"
@@ -348,41 +353,6 @@
 		}
 	}
 
-    "bocuse_6__triad"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_6__triad"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_red"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-
-		"AbilitySpecial"
-		{
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
-			}
-		}
-	}
-
 	"bocuse_u__rage"
 	{
 		"BaseClass"              		"ability_lua"
@@ -409,12 +379,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_min"		"30"
+				"damage_min"		"25"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_max"		"40"
+				"damage_max"		"35"
 			}
 			"04"
 			{
@@ -422,6 +392,11 @@
 				"duration"			"7"
 			}
             "05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"status"			"70"
+			}
+            "06"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"speed_mult"		"100 102.5 105 107.5 110 112.5 115 117.5 120 122.5 125 127.5 130 132.5 135"
@@ -1644,247 +1619,6 @@
             }
         }
 
-    //RANKS 6
-        "bocuse_6__triad_rank_11"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"11"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_12"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"12"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_21"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"21"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_22"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"22"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_31"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"31"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_32"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"32"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_41"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"41"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "bocuse_6__triad_rank_42"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_triad"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"42"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
     //RANKS U
         "bocuse_u__rage_rank_11"{
             "BaseClass"						"ability_lua"
@@ -1901,7 +1635,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1931,7 +1665,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1961,7 +1695,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1991,7 +1725,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2021,7 +1755,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2051,7 +1785,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2081,7 +1815,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2111,7 +1845,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {

@@ -153,7 +153,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function bocuse_1__cut:GetAOERadius()
         local radius = 1
         if self:GetCurrentAbilityCharges() == 0 then return radius end
-        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 200 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 225 end
         return radius
     end
 
@@ -176,6 +176,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then manacost = manacost + 25 end
         return manacost * level
     end
 
@@ -185,8 +186,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             charges = charges * 2
         end
 
-        -- UP 1.31
-        if self:GetRank(31) then
+        -- UP 1.22
+        if self:GetRank(22) then
             charges = charges * 3
         end
 

@@ -19,9 +19,11 @@ function bocuse_4_modifier_enhance:OnCreated(kv)
 	self.atk_range_bonus = self.ability:GetSpecialValueFor("atk_range_bonus") * 100
     self.range = 0
 
-	-- UP 4.21
-	if self.ability:GetRank(21) then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_bkb", {duration = self:GetDuration() * 0.3})
+	-- UP 4.11
+	if self.ability:GetRank(11) then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+			percent = 15
+		})
 	end
 
 	if IsServer() then
@@ -37,8 +39,14 @@ end
 function bocuse_4_modifier_enhance:OnRemoved()
 	self.ability:RemoveBonus("_1_CON", self.parent)
 	self.ability:RemoveBonus("_1_AGI", self.parent)
+	self.ability:RemoveBonus("_2_RES", self.parent)
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_1__cut"), 1)
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_2__flask"), 1)
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
@@ -95,14 +103,13 @@ end
 function bocuse_4_modifier_enhance:AddEffects()
 	local con = self.ability:GetSpecialValueFor("con")
 	local agi = self.ability:GetSpecialValueFor("agi")
-
-	-- UP 4.11
-	if self.ability:GetRank(11) then
-		con = con + 10
-	end
-
 	self.ability:AddBonus("_1_CON", self.parent, con, 0, nil)
 	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+
+	-- UP 4.21
+	if self.ability:GetRank(21) then
+		self.ability:AddBonus("_2_RES", self.parent, 25, 0, nil)
+	end
 
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_1__cut"), 7)
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_2__flask"), 7)

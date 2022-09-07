@@ -60,8 +60,8 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 1.31
-        if self:GetRank(31) then
+        -- UP 1.42
+        if self:GetRank(42) then
             charges = charges * 2
         end
 
