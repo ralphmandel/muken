@@ -14,9 +14,15 @@ function dasdingo_3_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	self.atk_range = 0
 end
 
 function dasdingo_3_modifier_passive:OnRefresh(kv)
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.atk_range = 200
+	end
 end
 
 function dasdingo_3_modifier_passive:OnRemoved()
@@ -26,11 +32,16 @@ end
 
 function dasdingo_3_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
+end
+
+function dasdingo_3_modifier_passive:GetModifierAttackRangeBonus()
+	return self.atk_range
 end
 
 function dasdingo_3_modifier_passive:OnAttackFail(keys)

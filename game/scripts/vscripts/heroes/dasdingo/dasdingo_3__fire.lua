@@ -40,7 +40,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		if caster:GetUnitName() ~= "npc_dota_hero_shadow_shaman" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[6][upgrade] end
+        if base_hero then return base_hero.ranks[3][upgrade] end
     end
 
     function dasdingo_3__fire:OnUpgrade()
@@ -50,7 +50,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[6][0] = true
+            base_hero.ranks[3][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 

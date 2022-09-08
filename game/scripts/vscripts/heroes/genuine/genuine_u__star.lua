@@ -55,12 +55,6 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         end
 
         local charges = 1
-
-        -- UP 7.11
-        if self:GetRank(11) then
-            charges = charges * 2
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -92,10 +86,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
 
-        -- UP 7.21
-        if self:GetRank(21) == false then
-            if target:TriggerSpellAbsorb(self) then return end
-        end
+        if target:TriggerSpellAbsorb(self) then return end
         
         self:PlayEfxStart(caster, target)
         self:PlayEfxStart(target, caster)
@@ -141,7 +132,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
         if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
     end
 
-    function genuine_u__star:ApplyDarkness(target, vision)
+    function genuine_u__star:ApplyDarkness(target, vision, duration)
         if GameRules:IsDaytime() and GameRules:IsTemporaryNight() == false then return end
 
         local caster = self:GetCaster()
@@ -155,7 +146,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
             unit:AddNewModifier(caster, self, "_modifier_blind", {
                 percent = vision,
                 miss_chance = 0,
-                duration = 3
+                duration = duration
             })
         end
     end
@@ -189,7 +180,6 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 300 end
         return cast_range
     end
 

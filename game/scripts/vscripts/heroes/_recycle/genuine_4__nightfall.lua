@@ -1,23 +1,56 @@
 genuine_4__nightfall = class({})
-LinkLuaModifier("genuine_4_modifier_passive", "heroes/genuine/genuine_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_4_modifier_aura", "heroes/genuine/genuine_4_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_4_modifier_aura_effect", "heroes/genuine/genuine_4_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
     function genuine_4__nightfall:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
-        local base_stats = caster:FindAbilityByName("base_stats")
+        local time = duration
+        local base_stats_caster = nil
+        local base_stats_target = nil
 
-        if caster:GetTeamNumber() == target:GetTeamNumber() then
-            if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
-        else
-            if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
-            duration = duration * (1 - target:GetStatusResistance())
+        if caster ~= nil then
+            base_stats_caster = caster:FindAbilityByName("base_stats")
         end
-        
-        return duration
+
+        if target ~= nil then
+            base_stats_target = target:FindAbilityByName("base_stats")
+        end
+
+        if caster == nil then
+            if target ~= nil then
+                if base_stats_target then
+                    local value = base_stats_target.stat_total["RES"] * 0.4
+                    local calc = (value * 6) / (1 +  (value * 0.06))
+                    time = time * (1 - (calc * 0.01))
+                end
+            end
+        else
+            if target == nil then
+                if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
+            else
+                if caster:GetTeamNumber() == target:GetTeamNumber() then
+                    if base_stats_caster then time = duration * (1 + base_stats_caster:GetBuffAmp()) end
+                else
+                    if base_stats_caster and base_stats_target then
+                        local value = (base_stats_caster.stat_total["INT"] - base_stats_target.stat_total["RES"]) * 0.7
+                        if value > 0 then
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 + (calc * 0.01))
+                        else
+                            value = -1 * value
+                            local calc = (value * 6) / (1 +  (value * 0.06))
+                            time = time * (1 - (calc * 0.01))
+                        end
+                    end
+                end
+            end
+        end
+
+        if time < 0 then time = 0 end
+        return time
     end
 
     function genuine_4__nightfall:AddBonus(string, target, const, percent, time)
@@ -64,7 +97,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 -- SPELL START
 
 function genuine_4__nightfall:GetIntrinsicModifierName()
-        return "genuine_4_modifier_passive"
+        return "genuine_4_modifier_aura"
     end
 
     function genuine_4__nightfall:OnSpellStart()
@@ -77,48 +110,20 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
         if IsServer() then caster:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
     end
 
-    function genuine_4__nightfall:CreateStarfall(target)
-        self:PlayEfxStarfall(target)
+    function genuine_4__nightfall:GetCastRange(vLocation, hTarget)
+        local day_radius = self:GetSpecialValueFor("day_radius")
+        local night_radius = self:GetSpecialValueFor("night_radius")
 
-		Timers:CreateTimer((0.5), function()
-			if target ~= nil then
-				if IsValidEntity(target) then
-					self:ApplyStarfall(target)
-				end
-			end
-		end)
-    end
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
 
-    function genuine_4__nightfall:ApplyStarfall(target)
-        local caster = self:GetCaster()
-        local starfall_damage = 75
-        local starfall_radius = 250
-        local damageTable = {
-            attacker = caster,
-            damage = starfall_damage,
-            damage_type = DAMAGE_TYPE_MAGICAL,
-            ability = self
-        }
-        
-        local enemies = FindUnitsInRadius(
-            caster:GetTeamNumber(), target:GetOrigin(), nil, starfall_radius,
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            0, 0, false
-        )
-
-        for _,enemy in pairs(enemies) do
-            damageTable.victim = enemy
-            ApplyDamage(damageTable)
-        end
-
-        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Impact") end
+        if GameRules:IsDaytime() then return day_radius else return night_radius end
     end
 
     function genuine_4__nightfall:GetBehavior()
-        local behavior = DOTA_ABILITY_BEHAVIOR_PASSIVE
+        local behavior = DOTA_ABILITY_BEHAVIOR_AURA + DOTA_ABILITY_BEHAVIOR_PASSIVE
         if self:GetCurrentAbilityCharges() == 0 then return behavior end
         if self:GetCurrentAbilityCharges() % 2 == 0 then
-            behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET
+            behavior = DOTA_ABILITY_BEHAVIOR_AURA + DOTA_ABILITY_BEHAVIOR_NO_TARGET
         end
 
         return behavior
@@ -133,12 +138,3 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
     end
 
 -- EFFECTS
-
-    function genuine_4__nightfall:PlayEfxStarfall(target)
-        local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
-        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-        ParticleManager:ReleaseParticleIndex(effect_cast)
-
-        if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
-    end

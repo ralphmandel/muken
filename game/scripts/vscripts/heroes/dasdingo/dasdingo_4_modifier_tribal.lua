@@ -18,6 +18,8 @@ function dasdingo_4_modifier_tribal:OnCreated( kv )
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then self.parent:CreatureLevelUp(base_stats:GetStatTotal("MND")) end
 
+	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
+
 	self.parent:StartGesture(ACT_IDLE)
 	self:PlayEfxRegen()
 end
@@ -47,6 +49,7 @@ end
 
 function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_MISS_PERCENTAGE,
@@ -59,6 +62,10 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
+end
+
+function dasdingo_4_modifier_tribal:GetModifierAttackRangeBonus()
+	return self.atk_range
 end
 
 function dasdingo_4_modifier_tribal:GetModifierExtraHealthPercentage()
@@ -114,8 +121,8 @@ end
 function dasdingo_4_modifier_tribal:OnTakeDamage(keys)
     if keys.unit ~= self.parent then return end
 
-	-- UP 4.31
-	if self.ability:GetRank(31)
+	-- UP 4.21
+	if self.ability:GetRank(21)
 	and self.parent:PassivesDisabled() == false then
 		if IsServer() then
 			local units = FindUnitsInRadius(

@@ -55,6 +55,11 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
 
         self.max = self:GetSpecialValueFor("max")
 
+        -- UP 4.31
+        if self:GetRank(31) then
+            self.max = self.max + 1          
+        end
+
         local charges = 1
 
         -- UP 4.11

@@ -56,7 +56,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local charges = 1
 
-        -- UP 7.11
+        -- UP 6.11
         if self:GetRank(11) then
             charges = charges * 2
         end

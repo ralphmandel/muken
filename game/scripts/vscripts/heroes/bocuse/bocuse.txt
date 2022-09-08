@@ -191,6 +191,7 @@
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 
 		"AbilitySpecial"
 		{

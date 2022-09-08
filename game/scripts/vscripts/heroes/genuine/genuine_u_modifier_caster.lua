@@ -71,7 +71,7 @@ function genuine_u_modifier_caster:OnHeroKilled(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.target:HasModifier("genuine_u_modifier_target") == false then return end
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self.ability:EndCooldown()
 	end

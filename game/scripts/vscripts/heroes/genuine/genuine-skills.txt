@@ -5,6 +5,5 @@
 	"3" "genuine_3__morning"
 	"4" "genuine_4__nightfall"
 	"5" "genuine_5__awakening"
-	"6" "genuine_6__travel"
-	"7" "genuine_u__star"
+	"6" "genuine_u__star"
 }

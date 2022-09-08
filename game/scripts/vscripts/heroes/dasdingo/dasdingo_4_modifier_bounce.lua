@@ -109,7 +109,7 @@ function dasdingo_4_modifier_bounce:Attack()
 	self.bounce = self.bounce+1
 
 	local units = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.caster:GetBaseAttackRange(),
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_BUILDING,
 		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
 	)

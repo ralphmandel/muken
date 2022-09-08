@@ -20,7 +20,7 @@ function dasdingo_4_modifier_poison:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local intervals = 0.75
-	local damage = 30 * intervals
+	local damage = 20 * intervals
 
 	self.damageTable = {
 		victim = self.parent,

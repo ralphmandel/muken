@@ -115,24 +115,23 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         
         local caster = self:GetCaster()
         local fear_duration = self:GetSpecialValueFor("fear_duration")
-        local mana_steal = self:GetSpecialValueFor("mana_steal")
-
-        -- UP 2.31
-        if self:GetRank(31) then
-            fear_duration = fear_duration + 1
-        end
-
-        if mana_steal > hTarget:GetMana() then mana_steal = hTarget:GetMana() end
-        if mana_steal > 0 then
-            hTarget:ReduceMana(mana_steal)
-            caster:GiveMana(mana_steal)
-            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, hTarget, mana_steal, caster)
-            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_steal, caster)
-        end
 
         hTarget:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
             duration = self:CalcStatus(fear_duration, caster, hTarget)
         })
+
+        -- UP 2.11
+        if self:GetRank(11) then
+            local mana_steal = 100
+            if mana_steal > hTarget:GetMana() then mana_steal = hTarget:GetMana() end
+            
+            if mana_steal > 0 then
+                hTarget:ReduceMana(mana_steal)
+                caster:GiveMana(mana_steal)
+                SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, hTarget, mana_steal, caster)
+                SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_steal, caster)
+            end
+        end
 
         -- UP 2.21
         if self:GetRank(21) then
@@ -141,7 +140,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             })
         end
 
-        -- UP 2.32
+        -- UP 2.31
         local starfall_chance = 40
         if hTarget:IsHero() then starfall_chance = 100 end
         if hTarget:IsIllusion() then starfall_chance = 20 end
@@ -149,7 +148,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local base_stats = caster:FindAbilityByName("base_stats")
         if base_stats then starfall_chance = starfall_chance * base_stats:GetCriticalChance() end
 
-        if self:GetRank(32) and RandomFloat(1, 100) <= starfall_chance then
+        if self:GetRank(31) and RandomFloat(1, 100) <= starfall_chance then
             if caster:HasModifier("genuine_u_modifier_caster") == false 
             or hTarget:HasModifier("genuine_u_modifier_target") then
                 self:PlayEfxStarfall(hTarget)

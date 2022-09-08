@@ -18,20 +18,32 @@ function genuine_u_modifier_target:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.passives_break = false
 
 	local vision = self.ability:GetSpecialValueFor("vision")
 
-	-- UP 7.31
-	if self.ability:GetRank(31) == false then
-		vision = vision + 10
-		self.ability:ApplyDarkness(self.parent, vision)
+	-- UP 6.42
+	if self.ability:GetRank(42) then
+		vision = vision + 20
+		self.ability:ApplyDarkness(self.parent, vision, self:GetDuration())
+	else
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = vision, miss_chance = 0})
+	end
+
+	-- UP 6.11
+	if self.ability:GetRank(11) then
+		self.ability:AddBonus("_2_RES", self.parent, -15, 0, nil)
+	end
+
+	-- UP 6.22
+	if self.ability:GetRank(22) then
+		self.passives_break = true
 	end
 
 	self.caster:AddNewModifier(self.caster, self.ability, "genuine_u_modifier_caster", {})
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = vision, miss_chance = 0})
 
 	if IsServer() then
-		self:StartIntervalThink(2.5)
+		self:StartIntervalThink(2)
 		self:PlayEfxDebuff()
 		self:PlayEfxSpecial()
 	end
@@ -42,6 +54,8 @@ end
 
 function genuine_u_modifier_target:OnRemoved(kv)
 	self.caster:RemoveModifierByNameAndCaster("genuine_u_modifier_caster", self.caster)
+	self.ability:RemoveBonus("_2_RES", self.parent)
+
 	if IsServer() then self.parent:StopSound("Hero_DeathProphet.Exorcism") end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
@@ -58,7 +72,11 @@ end
 ----------------------------------------------------------
 
 function genuine_u_modifier_target:CheckState()
-	local state = {[MODIFIER_STATE_PROVIDES_VISION] = true}
+	local state = {}
+
+	if self.passives_break == true then
+		local state = {[MODIFIER_STATE_PASSIVES_DISABLED] = true}
+	end
 
 	return state
 end
@@ -66,7 +84,7 @@ end
 function genuine_u_modifier_target:OnIntervalThink()
 	self:PlayEfxSpecial()
 
-	-- UP 7.41
+	-- UP 6.41
 	if self.ability:GetRank(41) then
 		self.ability:CreateStarfall(self.parent)
 	end

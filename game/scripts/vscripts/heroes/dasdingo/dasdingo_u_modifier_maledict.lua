@@ -35,12 +35,12 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
 	end
 
-	-- UP 7.31
+	-- UP 6.31
 	if self.ability:GetRank(31) then
 		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
@@ -70,12 +70,12 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	ApplyDamage(self.damageTable)
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
 	end
 
-	-- UP 7.31
+	-- UP 6.31
 	if self.ability:GetRank(31) then
 		self.tick_intervals = self.tick_intervals - 0.5
 		tick_max = tick_max + 2
@@ -99,7 +99,7 @@ end
 ------------------------------------------------------------
 
 function dasdingo_u_modifier_maledict:OnIntervalThink()
-	-- UP 7.41
+	-- UP 6.41
 	if self.ability:GetRank(41) then
 		self.parent:Purge(true, false, false, false, false)
 	end

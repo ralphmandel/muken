@@ -117,7 +117,7 @@ function bocuse_3_modifier_mark:ChangeDuration()
 	
 	-- UP 3.41
 	if self.ability:GetRank(41) then
-		damage_stack = damage_stack + 10
+		damage_stack = damage_stack + 8
 	end
 
 	ApplyDamage({
