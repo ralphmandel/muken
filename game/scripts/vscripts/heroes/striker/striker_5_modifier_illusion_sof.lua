@@ -21,6 +21,11 @@ function striker_5_modifier_illusion_sof:OnCreated(kv)
 
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self:SetHammer(2, true, "no_hammer")
+
+	-- UP 5.31
+	if self.ability:GetRank(31) then
+		self.swap = self.swap + 20
+	end
 end
 
 function striker_5_modifier_illusion_sof:OnRefresh(kv)
@@ -76,7 +81,7 @@ function striker_5_modifier_illusion_sof:SetHammer(iMode, bHide, activity)
 		base_hero_mod:ChangeActivity(activity)
 
 		if bHide then
-			base_hero_mod:ChangeSounds("Hero_Marci.Flurry.PreAttack", nil, "Hero_Marci.Flurry.Attack")
+			base_hero_mod:ChangeSounds("Hero_Ursa.PreAttack", nil, "Hero_Ursa.Attack")
 		else
 			base_hero_mod:LoadSounds()
 		end

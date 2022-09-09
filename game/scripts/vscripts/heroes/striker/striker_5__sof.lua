@@ -1,6 +1,8 @@
 striker_5__sof = class({})
 LinkLuaModifier("striker_5_modifier_sof", "heroes/striker/striker_5_modifier_sof", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_illusion_sof", "heroes/striker/striker_5_modifier_illusion_sof", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_trail", "heroes/striker/striker_5_modifier_trail", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_trail_effect", "heroes/striker/striker_5_modifier_trail_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_return", "heroes/striker/striker_5_modifier_return", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_debuff", "heroes/striker/striker_5_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
@@ -68,6 +70,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function striker_5__sof:OnSpellStart()
         self.autocast = false
         self:PerformAbility()
+
+        -- UP 5.11
+        self.fisrt_strike = self:GetRank(11)
     end
 
     function striker_5__sof:PerformAbility()
@@ -75,8 +80,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self:Throw_hammer()
 
         local caster = self:GetCaster()
-        local buff_duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
-        caster:AddNewModifier(caster, self, "striker_5_modifier_sof", {duration = buff_duration})
+        self.buff_duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
+        caster:AddNewModifier(caster, self, "striker_5_modifier_sof", {duration = self.buff_duration})
         
         return true
     end
@@ -84,8 +89,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function striker_5__sof:Throw_hammer()
         local caster = self:GetCaster()
         local distance = self:GetSpecialValueFor("distance")
-        local radius = 150
+        local radius = 175
         local speed = 1500
+
+        -- UP 5.21
+        if self:GetRank(21) then
+            distance = distance + 500
+        end
         
         local point = caster:GetOrigin() + caster:GetForwardVector():Normalized() * 100
         local hammer_direction = point - caster:GetOrigin()
@@ -101,7 +111,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             bDeleteOnHit = false,
             iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
             iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
 
             bProvidesVision = true,
             iVisionRadius = 150,
@@ -122,6 +132,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self.hammer == iProjectileHandle then
             local point = ProjectileManager:GetLinearProjectileLocation(iProjectileHandle)
             GridNav:DestroyTreesAroundPoint(point, 150, true)
+
+            -- UP 5.21
+            if self:GetRank(21) then
+                self:CreateTrail(point)
+            end
         end
     end
 
@@ -131,7 +146,20 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self.hammer == iProjectileHandle then
             if target then
                 self:HammerHit(target)
-                if target:IsHero() then
+
+                if self.fisrt_strike then
+                    self.fisrt_strike = false
+                    ApplyDamage({
+                        victim = target, attacker = self:GetCaster(),
+                        damage = RandomInt(100, 150),
+                        damage_type = self:GetAbilityDamageType(),
+                        ability = self
+                    })
+                end
+
+                -- UP 5.21
+                if self:GetRank(21) == false
+                and target:IsHero() then
                     self:PlayEfxHammerGround(target:GetOrigin())
                     self.hammer_loc = location
                     self.hammer = nil
@@ -148,6 +176,15 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             self.hammer_return = nil
             target:RemoveModifierByNameAndCaster("striker_5_modifier_return", self:GetCaster())
         end
+    end
+
+    function striker_5__sof:CreateTrail(loc)
+        local caster = self:GetCaster()
+        local thinker = CreateModifierThinker(
+            caster, self, "striker_5_modifier_trail",{
+                duration = self.buff_duration, x = loc.x, y = loc.y,
+            }, loc, caster:GetTeamNumber(), false
+        )
     end
 
     function striker_5__sof:HammerHit(target)

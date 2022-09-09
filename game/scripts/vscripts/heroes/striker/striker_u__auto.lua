@@ -78,7 +78,7 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
         self:RemoveBonus("_1_INT", caster)
 
         if self:GetAutoCastState() == state then
-            -- UP 7.12
+            -- UP 6.12
             if self:GetRank(12) then
                 self:AddBonus("_1_INT", caster, 10, 0, nil)
             end

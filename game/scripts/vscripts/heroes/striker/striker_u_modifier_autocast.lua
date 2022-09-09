@@ -57,7 +57,7 @@ end
 function striker_u_modifier_autocast:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self:PerformAutoCast()
 	end
@@ -66,7 +66,7 @@ end
 function striker_u_modifier_autocast:OnAttackLanded(keys)
 	if keys.attacker == self.parent then self:PerformAutoCast() end
 
-	-- UP 7.22
+	-- UP 6.22
 	if self.ability:GetRank(22) then
 		self:BurnMana(keys.attacker, keys.target)
 	end
@@ -89,14 +89,13 @@ function striker_u_modifier_autocast:PerformAutoCast()
 	if self.ability:GetAutoCastState() == false then return end
 	if self.parent:IsIllusion() then return end
 
-	-- UP 7.21
+	-- UP 6.21
 	if self.ability:GetRank(21) == false 
 	and self.parent:IsSilenced() then
 		return
 	end
 
-	if self:CastShield() or self:CastPortal() or self:CastHammer()
-	or self:CastDoppel() or self:CastEinSof() then
+	if self:CastShield() or self:CastPortal() or self:CastHammer() or self:CastEinSof() then
 		self:PlayEfxAutoCast()
 	end
 end
@@ -109,7 +108,7 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 	local autocast_manacost = self.ability:GetSpecialValueFor("autocast_manacost")
 	local cd_mult = 0.5
 
-	-- UP 7.11
+	-- UP 6.11
 	if self.ability:GetRank(11) then
 		cd_mult = cd_mult + 0.2
 	end
@@ -126,7 +125,7 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 
 	if ability:IsCooldownReady() == false then chance_cooldown = chance_cooldown * cd_mult end
 
-	local chance = (1 / ability:GetEffectiveCooldown(ability:GetLevel())) * chance_cooldown
+	local chance = (1 / ability:GetCooldown(ability:GetLevel())) * chance_cooldown
 	if RandomFloat(1, 100) > chance then return end
 
 	return ability
@@ -235,11 +234,10 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function striker_u_modifier_autocast:PlayEfxAutoCast()
-	local string_1 = "particles/econ/items/windrunner/windranger_arcana/windranger_arcana_javelin_tgt_v2.vpcf"
-	local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle_1, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(particle_1, 1, self.parent:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(particle_1)
+	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_converge.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(effect_cast, 3, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
+	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	--if IsServer() then self.parent:EmitSound("Hero_Striker.Autocast") end
+	if IsServer() then self.parent:EmitSound("Hero_Dawnbreaker.Converge.Cast") end
 end

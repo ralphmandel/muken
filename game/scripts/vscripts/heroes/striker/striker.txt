@@ -74,7 +74,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_IDLE"
 		"AbilityCastPoint"       		"0.5"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"20 19.5 19 18.5 18 17.5 17 16.5 16 15.5 15"
 		"AbilityCastRange"      		"750"
 
 		"AbilitySpecial"
@@ -82,12 +82,12 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance_hero"	"70 68 66 64 62 60 58 56 54 52 50"
+				"chance_hero"	"60"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"35"
+				"chance"		"30"
 			}
             "03"
 			{
@@ -129,7 +129,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.2"
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"12 11.7 11.4 11.1 10.8 10.5 10.2 9.9 9.6 9.3 9"
 		"AbilityCastRange"      		"600"
 
 		"AbilitySpecial"
@@ -172,12 +172,12 @@
             "08"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"init_amount"	    "40 41 42 43 44 45 46 47 48 49 50" // x4.31
+				"init_amount"	    "50" // x4.31
 			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"75"
+				"manacost"		"80"
 			}
 			"15"
 			{
@@ -204,7 +204,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_IDLE"
-		"AbilityCooldown"				"75"
+		"AbilityCooldown"				"60 58.5 57 55.5 54 52.5 51 49.5 48 46.5 45"
 
 		"AbilitySpecial"
 		{
@@ -252,23 +252,23 @@
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"20"
         "AbilityDamage"					"15"
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
+		"AbilityCooldown"				"24 23.4 22.8 22.2 21.6 21 20.4 19.8 19.2 18.6 18"
 
 		"AbilitySpecial"
 		{
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"distance"		    "750 775 800 825 850 875 900 925 950 975 1000"
+				"distance"		    "750"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "75"
+				"slow"		        "70"
 			}
             "04"
 			{
@@ -278,7 +278,7 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"		"10"
+				"buff_duration"		"12"
 			}
             "08"
 			{
@@ -288,7 +288,7 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "100"
+				"manacost"		    "150"
 			}
 			"15"
 			{
@@ -320,7 +320,7 @@
             "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"chance_cooldown"		"60"
+				"chance_cooldown"		"75"
 			}
             "14"
 			{

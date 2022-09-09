@@ -21,6 +21,11 @@ function striker_5_modifier_return:OnCreated(kv)
 
 	self.swap = self.ability:GetSpecialValueFor("swap")
 
+	-- UP 5.31
+	if self.ability:GetRank(31) then
+		self.swap = self.swap + 20
+	end
+
 	self:ReturnHammer()
 end
 
@@ -30,6 +35,15 @@ end
 function striker_5_modifier_return:OnRemoved()
 	if self.ability.autocast == false then
 		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	end
+	
+	if self.ability.total_damage > 0 then
+		if self.ability.total_damage > self.parent:GetHealth() then
+			self.parent:Kill(self.ability, self.ability.last_attacker)
+		else
+			local hp = self.parent:GetHealth() - self.ability.total_damage
+			self.parent:ModifyHealth(hp, self.ability, false, 0)
+		end
 	end
 
 	self.ability:SetActivated(true)
@@ -42,7 +56,10 @@ end
 function striker_5_modifier_return:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE
+		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
@@ -54,6 +71,41 @@ end
 
 function striker_5_modifier_return:GetModifierAttackSpeedPercentage(keys)
 	return self.swap
+end
+
+function striker_5_modifier_return:GetModifierIncomingDamage_Percentage(keys)
+	-- UP 5.41
+	if self.ability:GetRank(41) then
+		self.ability.last_attacker = keys.attacker
+		self.ability.total_damage = self.ability.total_damage + keys.damage
+		return -99999999
+	end
+	
+	return 0
+end
+
+function striker_5_modifier_return:OnAttacked(keys)
+	if keys.attacker ~= self.parent then return end
+
+	-- UP 5.41
+	if self.ability:GetRank(41) then
+		local heal = keys.original_damage * 0.25
+		keys.attacker:Heal(heal, self.ability)
+		self:PlayEfxLifesteal(keys.attacker)
+	end
+end
+
+function striker_5_modifier_return:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	local min_dmg = self.ability:GetAbilityDamage() - 2
+	local max_dmg = self.ability:GetAbilityDamage() + 2
+
+	ApplyDamage({
+		victim = keys.target, attacker = self.caster,
+		damage = RandomInt(min_dmg, max_dmg),
+		damage_type = self.ability:GetAbilityDamageType(),
+		ability = self.ability
+	})
 end
 
 -- UTILS -----------------------------------------------------------
@@ -88,9 +140,26 @@ function striker_5_modifier_return:SetHammer(iMode, bHide, activity)
 		base_hero_mod:ChangeActivity(activity)
 
 		if bHide then
-			base_hero_mod:ChangeSounds("Hero_Marci.Flurry.PreAttack", nil, "Hero_Marci.Flurry.Attack")
+			base_hero_mod:ChangeSounds("Hero_Ursa.PreAttack", nil, "Hero_Ursa.Attack")
 		else
 			base_hero_mod:LoadSounds()
 		end
 	end
+end
+
+-- EFFECTS -----------------------------------------------------------
+
+function striker_5_modifier_return:GetEffectName()
+	return "particles/striker/ein_sof/striker_ein_sof_buff.vpcf"
+end
+
+function striker_5_modifier_return:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function striker_5_modifier_return:PlayEfxLifesteal(attacker)
+	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
+	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

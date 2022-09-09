@@ -35,15 +35,15 @@
     width: fit-children;
     height: fit-children;
     flow-children: right;
-    margin: 5px;
+    margin: 10px;
 }
 
 .TalentTreeColumn
 {
-    width: fit-children;
+    width: 150px;
     height: fit-children;
     flow-children: up;
-    margin-right: 20px;
+    /* margin-right: 2px; */
 }
 
 .TalentTreeColumn.last
