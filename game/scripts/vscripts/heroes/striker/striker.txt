@@ -33,7 +33,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"10"
+				"chance"		"12"
 			}
             "02"
 			{
@@ -211,7 +211,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hammer_radius"		"300 310 320 330 340 350 360 370 380 390 400"
+				"hammer_radius"		"275"
 			}
             "02"
 			{
@@ -226,7 +226,7 @@
             "13"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cast_range"		"550"
+				"cast_range"		"900"
 			}
 			"14"
 			{
@@ -241,60 +241,10 @@
 		}
 	}
 
-	"striker_5__clone"
+    "striker_5__sof"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/striker/striker_5__clone"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"striker_clone"
-		"MaxLevel"               		"11"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"30"
-		"AbilityCastRange"      		"900"
-
-		"AbilitySpecial"
-		{
-            "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"illu_duration"		"25"
-			}
-            "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"incoming"		    "250 245 240 235 230 225 220 215 210 205 200"
-			}
-            "03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"outgoing"		    "25 22.5 20 17.5 15 12.5 10 7.5 5 2.5 0"
-			}
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"140"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
-			}
-		}
-	}
-
-    "striker_6__sof"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/striker/striker_6__sof"
+		"ScriptFile"            		"heroes/striker/striker_5__sof"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_sof"
 		"MaxLevel"               		"11"
@@ -304,54 +254,41 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"24"
+		"AbilityCooldown"				"20"
+        "AbilityDamage"					"15"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"heal_return"		"25"
-			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"luck"		        "20"
+				"distance"		    "750 775 800 825 850 875 900 925 950 975 1000"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"distance"		    "750"
+				"slow"		        "75"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "75"
+				"slow_duration"		"3"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow_duration"		"3"
-			}
-            "06"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"		"16"
-			}
-            "07"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"sof_duration"		"1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2"
+				"buff_duration"		"10"
 			}
             "08"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"swap"		        "25 26 27 28 29 30 31 32 33 34 35"
+				"swap"		        "30"
 			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "130"
+				"manacost"		    "100"
 			}
 			"15"
 			{
@@ -383,7 +320,7 @@
             "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"chance_cooldown"		"70"
+				"chance_cooldown"		"60"
 			}
             "14"
 			{
@@ -1362,249 +1299,8 @@
             }
         }
 
-    //RANKS 5
-        "striker_5__clone_rank_11"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"11"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_12"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"12"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_21"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"21"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_22"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"22"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_31"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"31"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_32"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"32"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_41"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"41"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "striker_5__clone_rank_42"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/striker/striker-ranks_lua"
-            "AbilityTextureName"    		"striker_clone"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"42"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
     //RANKS 6
-        "striker_6__sof_rank_11"{
+        "striker_5__sof_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1619,7 +1315,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1634,7 +1330,7 @@
             }
         }
 
-        "striker_6__sof_rank_12"{
+        "striker_5__sof_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1649,7 +1345,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1664,7 +1360,7 @@
             }
         }
 
-        "striker_6__sof_rank_21"{
+        "striker_5__sof_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1679,7 +1375,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1694,7 +1390,7 @@
             }
         }
 
-        "striker_6__sof_rank_22"{
+        "striker_5__sof_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1709,7 +1405,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1724,7 +1420,7 @@
             }
         }
 
-        "striker_6__sof_rank_31"{
+        "striker_5__sof_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1739,7 +1435,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1754,7 +1450,7 @@
             }
         }
 
-        "striker_6__sof_rank_32"{
+        "striker_5__sof_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1769,7 +1465,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1784,7 +1480,7 @@
             }
         }
 
-        "striker_6__sof_rank_41"{
+        "striker_5__sof_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1799,7 +1495,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1814,7 +1510,7 @@
             }
         }
 
-        "striker_6__sof_rank_42"{
+        "striker_5__sof_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
@@ -1829,7 +1525,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
+                    "skill"					"5"
                 }
                 "02"
                 {
@@ -1860,7 +1556,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1890,7 +1586,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1920,7 +1616,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1950,7 +1646,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1980,7 +1676,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2010,7 +1706,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2040,7 +1736,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -2070,7 +1766,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {

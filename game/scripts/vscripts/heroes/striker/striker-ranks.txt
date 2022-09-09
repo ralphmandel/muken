@@ -57,21 +57,19 @@
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "striker_3__portal_rank_21"
 			}
 			"1"
 			{
 				"1"   "striker_3__portal_rank_21"
-				"2"   "striker_3__portal_rank_22"
 			}
 			"2"
 			{
 				"1"   "striker_3__portal_rank_31"
-				"2"   "striker_3__portal_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "striker_3__portal_rank_41"
 			}
 		}
 		"striker_4__hammer"
@@ -79,61 +77,37 @@
 			"0"
 			{
 				"1"   "striker_4__hammer_rank_11"
-				"2"   "striker_4__hammer_rank_12"
 			}
 			"1"
 			{
 				"1"   "striker_4__hammer_rank_21"
-				"2"   "striker_4__hammer_rank_22"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "striker_4__hammer_rank_31"
 			}
 			"3"
 			{
 				"1"   "striker_4__hammer_rank_41"
 			}
 		}
-		"striker_5__clone"
+		"striker_5__sof"
 		{
 			"0"
 			{
-				"1"   "striker_5__clone_rank_11"
-				"2"   "striker_5__clone_rank_12"
+				"1"   "striker_5__sof_rank_11"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "striker_5__sof_rank_21"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "striker_5__sof_rank_31"
 			}
 			"3"
 			{
-				"1"   "striker_5__clone_rank_41"
-				"2"   "striker_5__clone_rank_42"
-			}
-		}
-		"striker_6__sof"
-		{
-			"0"
-			{
-				"1"   "empty"
-			}
-			"1"
-			{
-				"1"   "empty"
-			}
-			"2"
-			{
-				"1"   "striker_6__sof_rank_31"
-				"2"   "striker_6__sof_rank_32"
-			}
-			"3"
-			{
-				"1"   "striker_6__sof_rank_41"
+				"1"   "striker_5__sof_rank_41"
 			}
 		}
 		"striker_u__auto"

@@ -25,9 +25,9 @@ function striker_3_modifier_portal:OnCreated(kv)
 	self.portal_radius = self.ability:GetSpecialValueFor("portal_radius")
 	local fow_radius = self.ability:GetSpecialValueFor("fow_radius")
 
-	-- UP 3.32
-	if self.ability:GetRank(32) then
-		fow_radius = fow_radius + 160
+	-- UP 3.41
+	if self.ability:GetRank(41) then
+		fow_radius = fow_radius + 200
 
 		Timers:CreateTimer((3), function()
 			if self then self:HiddenPortal() end

@@ -26,15 +26,15 @@ function striker_3_modifier_debuff:OnCreated(kv)
 	self.amount_reduction = self.ability:GetSpecialValueFor("amount_reduction")
 	self.tick_interval = self.ability:GetSpecialValueFor("tick_interval")
 
-	-- UP 3.21
-	if self.ability:GetRank(21) then
-		self.root_count = 4
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.root_count = 2
 		self.root = true
 		self:PlayEfxRoot()
 	end
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
+	-- UP 3.21
+	if self.ability:GetRank(21) then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {})
 	end
 
@@ -45,15 +45,15 @@ function striker_3_modifier_debuff:OnCreated(kv)
 end
 
 function striker_3_modifier_debuff:OnRefresh(kv)
-	-- UP 3.21
-	if self.ability:GetRank(21) then
-		self.root_count = 4
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.root_count = 2
 		self.root = true
 		self:PlayEfxRoot()
 	end
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
+	-- UP 3.21
+	if self.ability:GetRank(21) then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {})
 	end
 

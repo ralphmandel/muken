@@ -80,8 +80,8 @@ function striker_3_modifier_buff:ApplyTick()
 		self:ApplyPurge()
 	end
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
+	-- UP 3.21
+	if self.ability:GetRank(21) then
 		self:ApplyMana(base_stats)
 	end
 
@@ -104,8 +104,8 @@ function striker_3_modifier_buff:ModifyStack(value, bModifyAmount)
 	self.ticks = self.ticks + value
 	if bModifyAmount then self.amount = self.amount * (100 - self.amount_reduction) * 0.01 end
 
-	-- UP 3.21
-	if self.ability:GetRank(21) then
+	-- UP 3.11
+	if self.ability:GetRank(11) then
 		self:ApplyMS()
 	end
 
@@ -130,7 +130,7 @@ function striker_3_modifier_buff:ApplyMS()
 
 	if self.ticks > 0 then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-			percent = self.ticks * 5
+			percent = self.ticks * 3
 		})
 	end
 end

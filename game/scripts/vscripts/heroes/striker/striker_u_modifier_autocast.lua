@@ -118,12 +118,25 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 	if self.parent:GetMana() < self.manacost then return end
 
 	local chance_cooldown = self.ability:GetSpecialValueFor("chance_cooldown")
+
+	local chance_sof = self:CheckSof("striker_5_modifier_sof")
+	if chance_sof == 0 then self:CheckSof("striker_5_modifier_return") end
+	if chance_sof == 0 then self:CheckSof("striker_5_modifier_illusion_sof") end
+	chance_cooldown = chance_cooldown - chance_sof
+
 	if ability:IsCooldownReady() == false then chance_cooldown = chance_cooldown * cd_mult end
 
 	local chance = (1 / ability:GetEffectiveCooldown(ability:GetLevel())) * chance_cooldown
 	if RandomFloat(1, 100) > chance then return end
 
 	return ability
+end
+
+function striker_u_modifier_autocast:CheckSof(string)
+	local mod = self.parent:FindModifierByNameAndCaster(string, self.caster)
+	if mod then return mod.swap * 0.5 end
+
+	return 0
 end
 
 function striker_u_modifier_autocast:CastShield()
@@ -182,35 +195,35 @@ function striker_u_modifier_autocast:CastHammer()
 	end
 end
 
-function striker_u_modifier_autocast:CastDoppel()
-	local doppel = self:CheckAbility("striker_5__clone")
-	if doppel == nil then return end
+-- function striker_u_modifier_autocast:CastDoppel()
+-- 	local doppel = self:CheckAbility("striker_5__clone")
+-- 	if doppel == nil then return end
 
-	local units = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
-		doppel:GetCastRange(self.parent:GetOrigin(), nil),
-		doppel:GetAbilityTargetTeam(), doppel:GetAbilityTargetType(),
-		doppel:GetAbilityTargetFlags(), 0, false
-	)
+-- 	local units = FindUnitsInRadius(
+-- 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
+-- 		doppel:GetCastRange(self.parent:GetOrigin(), nil),
+-- 		doppel:GetAbilityTargetTeam(), doppel:GetAbilityTargetType(),
+-- 		doppel:GetAbilityTargetFlags(), 0, false
+-- 	)
 
-    for _,unit in pairs(units) do
-		if unit:HasModifier("striker_5_modifier_hero") == false
-		and unit ~= self.parent then
-			self.parent:SpendMana(self.manacost, doppel)
-			return doppel:PerformAbility(unit)
-		end
-	end
+--     for _,unit in pairs(units) do
+-- 		if unit:HasModifier("striker_5_modifier_hero") == false
+-- 		and unit ~= self.parent then
+-- 			self.parent:SpendMana(self.manacost, doppel)
+-- 			return doppel:PerformAbility(unit)
+-- 		end
+-- 	end
 
-	for _,unit in pairs(units) do
-		if unit ~= self.parent then
-			self.parent:SpendMana(self.manacost, doppel)
-			return doppel:PerformAbility(unit)
-		end
-	end
-end
+-- 	for _,unit in pairs(units) do
+-- 		if unit ~= self.parent then
+-- 			self.parent:SpendMana(self.manacost, doppel)
+-- 			return doppel:PerformAbility(unit)
+-- 		end
+-- 	end
+-- end
 
 function striker_u_modifier_autocast:CastEinSof()
-	local einsof = self:CheckAbility("striker_6__sof")
+	local einsof = self:CheckAbility("striker_5__sof")
 	if einsof == nil then return end
 	if einsof:IsActivated() then
 		einsof.autocast = true

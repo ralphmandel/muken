@@ -143,9 +143,9 @@ function striker_1_modifier_passive:PerformBlink(target)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_ban", {})
 
 	local delay = 0.3
-	if self.parent:HasModifier("striker_6_modifier_sof")
-	or self.parent:HasModifier("striker_6_modifier_return")
-	or self.parent:HasModifier("striker_6_modifier_illusion_sof") then
+	if self.parent:HasModifier("striker_5_modifier_sof")
+	or self.parent:HasModifier("striker_5_modifier_return")
+	or self.parent:HasModifier("striker_5_modifier_illusion_sof") then
 		delay = 0.1
 	end
 
@@ -288,7 +288,7 @@ function striker_1_modifier_passive:PerformMirrorSonic(number, target)
 end
 
 function striker_1_modifier_passive:CreateCopy(target)
-	local ein_sof = self.parent:FindAbilityByName("striker_6__sof")
+	local ein_sof = self.parent:FindAbilityByName("striker_5__sof")
 
 	local illu_array = CreateIllusions(self.caster, self.parent, {
 		outgoing_damage = 0, incoming_damage = 200,
@@ -296,9 +296,9 @@ function striker_1_modifier_passive:CreateCopy(target)
 	}, 1, 64, false, true)
 
 	for _,illu in pairs(illu_array) do
-		if ein_sof and self.parent:HasModifier("striker_6_modifier_sof") then
+		if ein_sof and self.parent:HasModifier("striker_5_modifier_sof") then
 			if ein_sof:IsTrained() then
-				illu:AddNewModifier(self.caster, ein_sof, "striker_6_modifier_illusion_sof", {})
+				illu:AddNewModifier(self.caster, ein_sof, "striker_5_modifier_illusion_sof", {})
 			end
 		end
 

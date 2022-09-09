@@ -57,12 +57,12 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
         -- UP 4.11
         if self:GetRank(11) then
-            charges = charges * 2 -- cast range
+            charges = charges * 2 -- cast point
         end
 
-        -- UP 4.12
-        if self:GetRank(12) then
-            charges = charges * 3 -- cast point
+        -- UP 4.31
+        if self:GetRank(31) then
+            charges = charges * 3 -- AoE radius
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -123,9 +123,9 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         local stun_duration = self:GetSpecialValueFor("stun_duration") * level
         local damage = self:GetAbilityDamage() * level
 
-        -- UP 4.22
-        if self:GetRank(22) then
-            stun_duration = (self:GetSpecialValueFor("stun_duration") + 0.5) * level
+        -- UP 4.21
+        if self:GetRank(21) then
+            stun_duration = (self:GetSpecialValueFor("stun_duration") + 0.75) * level
         end
 
         -- UP 4.41
@@ -156,11 +156,6 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
             if enemy:IsAlive() then
                 enemy:AddNewModifier(caster, self, "_modifier_stun", {duration = stun_duration})
-
-                -- UP 4.21
-                if self:GetRank(21) then
-                    enemy:AddNewModifier(caster, self, "_modifier_silence", {duration = stun_duration * 2})
-                end
             end
         end
     
@@ -180,10 +175,6 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         return level
     end
 
-    function striker_4__hammer:GetAOERadius()
-        return self:GetSpecialValueFor("hammer_radius")
-    end
-
     function striker_4__hammer:CastFilterResultTarget(hTarget)
         local caster = self:GetCaster()
         local flag = 0
@@ -200,23 +191,28 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
     end
 
     function striker_4__hammer:GetCastRange(vLocation, hTarget)
-        local cast_range = self:GetSpecialValueFor("cast_range")
-        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 200 end
-        return cast_range
+        return self:GetSpecialValueFor("cast_range")
     end
 
     function striker_4__hammer:GetCastPoint()
         local cast_point = self:GetSpecialValueFor("cast_point")
         if self:GetCurrentAbilityCharges() == 0 then return cast_point end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_point - 1 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_point - 1 end
         return cast_point
+    end
+
+    function striker_4__hammer:GetAOERadius()
+        local hammer_radius = self:GetSpecialValueFor("hammer_radius")
+        if self:GetCurrentAbilityCharges() == 0 then return hammer_radius end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return hammer_radius + 125 end
+        return hammer_radius
     end
 
     function striker_4__hammer:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return (manacost + 25) * level end
         return manacost * level
     end
 
@@ -233,8 +229,8 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         ParticleManager:SetParticleControl(self.efx_light, 1, target:GetOrigin())
         ParticleManager:SetParticleControl(self.efx_light, 2, Vector(radius, radius, 0))
 
-        -- UP 4.12
-        if self:GetRank(12) then
+        -- UP 4.11
+        if self:GetRank(11) then
             flRate = 1.7
         end
 
