@@ -66,14 +66,14 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 
 	self:ApplyHypothermia(keys.target, self.parent:IsIllusion())
 
+	-- UP 1.11
+	if self.ability:GetRank(11) then
+		self:ApplyInstantFrozen(keys.target, self.parent:IsIllusion())
+	end
+
 	-- UP 1.21
 	if self.ability:GetRank(21) then
 		self:ApplyBonusMagicalDamage(keys.target, self.parent:IsIllusion())
-	end
-
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		self:ApplyInstantFrozen(keys.target, self.parent:IsIllusion())
 	end
 
 	-- UP 1.42
@@ -130,7 +130,7 @@ function icebreaker_1_modifier_passive:ApplyInstantFrozen(target, bIllusion)
 	
 	if RandomFloat(1, 100) <= instant_chance then
 		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
-			duration = self.ability:CalcStatus(1, self.caster, target)
+			duration = 0.1
 		})
 	end
 end
@@ -204,7 +204,7 @@ function icebreaker_1_modifier_passive:PlayEfxAmbient()
 end
 
 function icebreaker_1_modifier_passive:PlayEfxAutoBlink()
-	local particle_cast = "particles/econ/events/winter_major_2017/blink_dagger_start_wm07.vpcf" 
+	local particle_cast = "particles/econ/events/winter_major_2017/blink_dagger_start_wm06.vpcf" 
 	local effect_cast_a = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, self.parent)
 	ParticleManager:SetParticleControl(effect_cast_a, 0, self.parent:GetOrigin())
 	--ParticleManager:SetParticleControlForward(effect_cast_a, 0, direction:Normalized())

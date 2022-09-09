@@ -46,6 +46,11 @@ function icebreaker_5_modifier_recharge:OnAbilityExecuted(keys)
 
 	local recharge = self.ability:GetSpecialValueFor("recharge")
 
+	-- UP 5.31
+	if self.ability:GetRank(31) then
+		recharge = recharge - 2
+	end
+
 	self.ability:SetActivated(false)
 	self:SetStackCount(recharge)
 end

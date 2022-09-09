@@ -2,9 +2,8 @@
 {
 	"1" "icebreaker_1__hypo"
 	"2" "icebreaker_2__puff"
-	"3" "icebreaker_3__skin"
+	"3" "icebreaker_3__zero"
 	"4" "icebreaker_4__mirror"
 	"5" "icebreaker_5__wave"
-	"6" "icebreaker_6__zero"
-	"7" "icebreaker_u__blink"
+	"6" "icebreaker_u__blink"
 }

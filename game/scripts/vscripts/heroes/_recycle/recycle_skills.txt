@@ -248,4 +248,60 @@
 			}
 		}
 	}
+
+	"icebreaker_3__skin"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/icebreaker/icebreaker_3__skin"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_skin"
+		"MaxLevel"               		"7"
+		"RequiredLevel"         	 	"0"
+        "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.8"
+        "AnimationPlaybackRate"         "0.5"
+
+		"AbilitySpecial"
+		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_layer"		    "10"
+			}
+            "02"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"def_layer"		    "3"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"delay_layer"		"10"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"4"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage_reduction"	"75 77.5 80 82.5 85 87.5 90"
+			}
+			"14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "135"
+			}
+			"15"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			    "6 7 8 9 10 11 12"
+			}
+		}
+	}
 }

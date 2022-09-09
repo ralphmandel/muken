@@ -1,5 +1,5 @@
 icebreaker_u__blink = class({})
-LinkLuaModifier("icebreaker_u_modifier_blink", "heroes/icebreaker/icebreaker_u_modifier_blink", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_u_modifier_passive", "heroes/icebreaker/icebreaker_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -54,17 +54,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         local charges = 1
 
-        -- UP 7.11
+        -- UP 6.11
         if self:GetRank(11) then
             charges = charges * 2 -- manacost
         end
 
-		-- UP 7.21
+		-- UP 6.21
         if self:GetRank(21) then
             charges = charges * 3 -- range
         end
 
-		-- UP 7.41
+		-- UP 6.41
         if self:GetRank(41) then
             charges = charges * 5 -- aoe
         end
@@ -74,9 +74,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function icebreaker_u__blink:Spawn()
         self:SetCurrentAbilityCharges(0)
+        self.spell_lifesteal = false
     end
 
 -- SPELL START
+
+    function icebreaker_u__blink:GetIntrinsicModifierName()
+        return "icebreaker_u_modifier_passive"
+    end
 
     function icebreaker_u__blink:OnSpellStart()
         local caster = self:GetCaster()
@@ -109,11 +114,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         if caster == hTarget then return UF_FAIL_CUSTOM end
 
-        if caster:HasModifier("icebreaker_3_modifier_skin") then
-            if caster:GetRangeToUnit(hTarget) > self:GetCastRange(caster:GetOrigin(), hTarget) then
-                return UF_FAIL_CUSTOM
-            end
-        end
+        -- if caster:HasModifier("icebreaker__modifier_skin") then
+        --     if caster:GetRangeToUnit(hTarget) > self:GetCastRange(caster:GetOrigin(), hTarget) then
+        --         return UF_FAIL_CUSTOM
+        --     end
+        -- end
 
         if hTarget:GetTeamNumber() ~= caster:GetTeamNumber()
         and hTarget:HasModifier("icebreaker_1_modifier_frozen") then
@@ -156,7 +161,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function icebreaker_u__blink:GetAOERadius()
         local radius = 0
         if self:GetCurrentAbilityCharges() == 0 then return radius end
-        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 275 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then radius = 250 end
         return radius
     end
 

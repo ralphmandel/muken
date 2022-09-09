@@ -106,7 +106,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
             local nearby_enemies = FindUnitsInRadius(
                 caster:GetTeamNumber(), current_loc, nil, current_radius, DOTA_UNIT_TARGET_TEAM_ENEMY,
-                DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false
+                DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, self:GetAbilityTargetFlags(), 0, false
             )
 
             for _,enemy in pairs(nearby_enemies) do

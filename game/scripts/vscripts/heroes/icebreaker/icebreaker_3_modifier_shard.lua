@@ -1,40 +1,40 @@
-icebreaker_6_modifier_shard = class({})
+icebreaker_3_modifier_shard = class({})
 
-function icebreaker_6_modifier_shard:IsHidden()
+function icebreaker_3_modifier_shard:IsHidden()
 	return false
 end
 
-function icebreaker_6_modifier_shard:IsPurgable()
+function icebreaker_3_modifier_shard:IsPurgable()
 	return false
 end
 
-function icebreaker_6_modifier_shard:IsAura()
+function icebreaker_3_modifier_shard:IsAura()
 	return true
 end
 
-function icebreaker_6_modifier_shard:GetModifierAura()
-	return "icebreaker_6_modifier_aura_effect"
+function icebreaker_3_modifier_shard:GetModifierAura()
+	return "icebreaker_3_modifier_aura_effect"
 end
 
-function icebreaker_6_modifier_shard:GetAuraSearchTeam()
+function icebreaker_3_modifier_shard:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_BOTH
 end
 
-function icebreaker_6_modifier_shard:GetAuraSearchType()
+function icebreaker_3_modifier_shard:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
-function icebreaker_6_modifier_shard:GetAuraSearchFlags()
+function icebreaker_3_modifier_shard:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 end
 
-function icebreaker_6_modifier_shard:GetAuraRadius()
+function icebreaker_3_modifier_shard:GetAuraRadius()
 	return self:GetAbility():GetAOERadius()
 end
 
 --------------------------------------------------------------------------------
 
-function icebreaker_6_modifier_shard:OnCreated( kv )
+function icebreaker_3_modifier_shard:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -42,12 +42,12 @@ function icebreaker_6_modifier_shard:OnCreated( kv )
 	self.true_vision = false
 	local vision_bonus = 0
 
-	-- UP 6.11
+	-- UP 3.11
 	if self.ability:GetRank(11) then
 		self.parent:CreatureLevelUp(5)
 	end
 
-	-- UP 6.31
+	-- UP 3.31
 	if self.ability:GetRank(31) then
 		self.true_vision = true
 		vision_bonus = 50
@@ -56,7 +56,7 @@ function icebreaker_6_modifier_shard:OnCreated( kv )
 	if IsServer() then
 		self:SetStackCount(vision_bonus)
 
-		-- UP 6.41
+		-- UP 3.41
 		if self.ability:GetRank(41) then
 			self:StartIntervalThink(0.1)
 		end
@@ -70,10 +70,10 @@ function icebreaker_6_modifier_shard:OnCreated( kv )
 	self:PlayEfxStart(self.ability:GetAOERadius())
 end
 
-function icebreaker_6_modifier_shard:OnRefresh( kv )
+function icebreaker_3_modifier_shard:OnRefresh( kv )
 end
 
-function icebreaker_6_modifier_shard:OnRemoved()
+function icebreaker_3_modifier_shard:OnRemoved()
 	if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, false) end
 
 	if IsValidEntity(self.parent) then
@@ -91,7 +91,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function icebreaker_6_modifier_shard:CheckState()
+function icebreaker_3_modifier_shard:CheckState()
 	local state = {
 		[MODIFIER_STATE_FORCED_FLYING_VISION] = self.true_vision,
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
@@ -100,7 +100,7 @@ function icebreaker_6_modifier_shard:CheckState()
 	return state
 end
 
-function icebreaker_6_modifier_shard:DeclareFunctions()
+function icebreaker_3_modifier_shard:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE,
 		MODIFIER_PROPERTY_VISUAL_Z_DELTA,
@@ -111,36 +111,36 @@ function icebreaker_6_modifier_shard:DeclareFunctions()
 	return funcs
 end
 
-function icebreaker_6_modifier_shard:GetBonusVisionPercentage()
+function icebreaker_3_modifier_shard:GetBonusVisionPercentage()
 	return self:GetStackCount()
 end
 
-function icebreaker_6_modifier_shard:GetVisualZDelta()
+function icebreaker_3_modifier_shard:GetVisualZDelta()
 	return 350
 end
 
-function icebreaker_6_modifier_shard:GetDisableHealing()
+function icebreaker_3_modifier_shard:GetDisableHealing()
 	return 1
 end
 
-function icebreaker_6_modifier_shard:GetMinHealth(keys)
+function icebreaker_3_modifier_shard:GetMinHealth(keys)
 	return self.min_health or 0
 end
 
-function icebreaker_6_modifier_shard:OnAttackLanded(keys)
+function icebreaker_3_modifier_shard:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
 	self.min_health = self.min_health - 1
 
 	if self.min_health == 0 then self.ability:DestroyShard() end
 end
 
-function icebreaker_6_modifier_shard:OnIntervalThink()
+function icebreaker_3_modifier_shard:OnIntervalThink()
 	self:StartExplosionThink(self.ability:GetAOERadius())
 
 	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
-function icebreaker_6_modifier_shard:StartExplosionThink(radius)
+function icebreaker_3_modifier_shard:StartExplosionThink(radius)
 	local point = self.parent:GetOrigin()
 	local explosion_damage = 100
 	local explosion_radius = (radius * 0.2)
@@ -207,7 +207,7 @@ function icebreaker_6_modifier_shard:StartExplosionThink(radius)
 	self:PlayEfxExplosion(point)
 end
 
-function icebreaker_6_modifier_shard:CalculateAngle(a, b)
+function icebreaker_3_modifier_shard:CalculateAngle(a, b)
     if a < 0 then
         if b > 0 then b = -b end
     else
@@ -218,15 +218,15 @@ end
 
 --------------------------------------------------------------------------------
 
-function icebreaker_6_modifier_shard:GetEffectName()
+function icebreaker_3_modifier_shard:GetEffectName()
 	return "particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"
 end
 
-function icebreaker_6_modifier_shard:GetEffectAttachType()
+function icebreaker_3_modifier_shard:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function icebreaker_6_modifier_shard:PlayEfxStart(radius)
+function icebreaker_3_modifier_shard:PlayEfxStart(radius)
 	local particle_1 = "particles/icebreaker/icebreaker_zero.vpcf"
 
 	self.effect_cast = ParticleManager:CreateParticle(particle_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -241,7 +241,7 @@ function icebreaker_6_modifier_shard:PlayEfxStart(radius)
 	if IsServer() then self.parent:EmitSound("Hero_Icebreaker.Zero.Loop") end
 end
 
-function icebreaker_6_modifier_shard:PlayEfxExplosion(point)
+function icebreaker_3_modifier_shard:PlayEfxExplosion(point)
 	local particle_cast = "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, point)
@@ -249,7 +249,7 @@ function icebreaker_6_modifier_shard:PlayEfxExplosion(point)
 	if IsServer() then self.parent:EmitSoundParams("hero_Crystal.freezingField.explosion", 1, 0.6, 0) end
 end
 
-function icebreaker_6_modifier_shard:PlayEfxHit(enemy)
+function icebreaker_3_modifier_shard:PlayEfxHit(enemy)
 	local caster = self:GetCaster()
 	local hit_pfx = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
 	ParticleManager:SetParticleControl(hit_pfx, 0, enemy:GetAbsOrigin())

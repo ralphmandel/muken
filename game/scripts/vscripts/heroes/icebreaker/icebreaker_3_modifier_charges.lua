@@ -1,16 +1,16 @@
-icebreaker_6_modifier_charges = class({})
+icebreaker_3_modifier_charges = class({})
 
-function icebreaker_6_modifier_charges:IsHidden()
+function icebreaker_3_modifier_charges:IsHidden()
 	return false
 end
 
-function icebreaker_6_modifier_charges:IsPurgable()
+function icebreaker_3_modifier_charges:IsPurgable()
     return false
 end
 
 --------------------------------------------------------------------------------
 
-function icebreaker_6_modifier_charges:OnCreated( kv )
+function icebreaker_3_modifier_charges:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -24,15 +24,15 @@ function icebreaker_6_modifier_charges:OnCreated( kv )
 	end
 end
 
-function icebreaker_6_modifier_charges:OnRefresh( kv )
+function icebreaker_3_modifier_charges:OnRefresh( kv )
 end
 
-function icebreaker_6_modifier_charges:OnRemoved()
+function icebreaker_3_modifier_charges:OnRemoved()
 end
 
 --------------------------------------------------------------------------------
 
-function icebreaker_6_modifier_charges:OnIntervalThink()
+function icebreaker_3_modifier_charges:OnIntervalThink()
 	if GameRules:IsDaytime() then
 		self.ability:SetActivated(false)
 		self.ability:DestroyShard()

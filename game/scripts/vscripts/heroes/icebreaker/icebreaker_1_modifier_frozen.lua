@@ -24,7 +24,7 @@ function icebreaker_1_modifier_frozen:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	self.ability_break = self:GetAbility()
-	self.break_damage = 0
+	self.break_damage = self.ability:GetSpecialValueFor("break_damage")
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_frozen_status_efx", true) end
@@ -41,23 +41,22 @@ function icebreaker_1_modifier_frozen:OnRemoved( kv )
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker_1_modifier_frozen_status_efx", false) end
 
-	local damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		damage = self.break_damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
+	if self.ability_break:GetAbilityName() == "icebreaker_u__blink" then
+		self.ability_break.spell_lifesteal = true
+	end
+
+	ApplyDamage({
+		victim = self.parent, attacker = self.caster,
+		damage = self.break_damage, damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self.ability_break
-	}
+	})
+
+	self:IceBreak(self.parent)
+	self:PlayEfxDestroy()
 
 	-- if self.ability_break:GetAbilityName() == "icebreaker_u__blink" then
 	-- 	self:BlinkStrike(self.break_damage)
 	-- end
-
-	if damageTable.damage > 0 then
-		ApplyDamage(damageTable)
-		self:IceBreak(self.parent)
-		self:PlayEfxDestroy()
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -78,7 +77,6 @@ end
 function icebreaker_1_modifier_frozen:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_STATE_CHANGED,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_AVOID_DAMAGE,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
 	}
@@ -88,17 +86,6 @@ end
 function icebreaker_1_modifier_frozen:OnStateChanged(keys)
 	if keys.unit ~= self.parent then return end
 	if self.parent:IsStunned() == false then self:Destroy() end
-end
-
-function icebreaker_1_modifier_frozen:OnAttackLanded(keys)
-	if keys.target ~= self.parent then return end
-	if keys.attacker:IsIllusion() then return end
-	if keys.attacker:IsHero() == false then return end
-
-	if self:GetElapsedTime() > (self:GetDuration() / 2) then
-		self.break_damage = self.ability:GetSpecialValueFor("break_damage")
-		self:Destroy()
-	end
 end
 
 function icebreaker_1_modifier_frozen:GetModifierAvoidDamage(keys)
@@ -137,17 +124,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function icebreaker_1_modifier_frozen:IceBreak(target)
-	local mirror = self.caster:FindAbilityByName("icebreaker_4__mirror")
 	local ability_wave = self.caster:FindAbilityByName("icebreaker_5__wave")
-
-	-- UP 4.21
-	if mirror ~= nil then
-		if mirror:GetRank(21)
-		and target:IsAlive() then
-			mirror:CreateMirrors(target, 1)
-		end
-	end
-	
 	if ability_wave == nil then return end
 	if ability_wave:IsTrained() == false then return end
 
@@ -157,20 +134,17 @@ function icebreaker_1_modifier_frozen:IceBreak(target)
 	if ability_wave:GetRank(12) then
 		self:ApplySpreadHypo(target)
 	end
-
-	-- UP 5.31
-	if ability_wave:GetRank(31)
-	and self.ability_break:GetAbilityName() == "icebreaker_u__blink" then
-		self:BreakHeal(target)
-	end
 end
 
-function icebreaker_1_modifier_frozen:BreakHeal(target)
-	local heal = target:GetMaxHealth() * 0.1
+function icebreaker_1_modifier_frozen:ApplyMirror()
+	local mirror = self.caster:FindAbilityByName("icebreaker_4__mirror")
+	if mirror == nil then return end
+	if mirror:IsTrained() == false then return end
 
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then heal = heal * base_stats:GetHealPower() end
-	if heal > 0 then self.caster:Heal(heal, self.ability_break) end
+	-- UP 4.32
+	if mirror:GetRank(32) then
+		mirror:CreateMirrors(self.parent, 1)
+	end
 end
 
 function icebreaker_1_modifier_frozen:ApplySpreadHypo(target)
@@ -197,7 +171,9 @@ function icebreaker_1_modifier_frozen:ApplySpreadHypo(target)
 end
 
 function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
-	-- UP 7.12
+	self:ApplyMirror()
+
+	-- UP 6.12
 	if self.ability_break:GetRank(12) then
 		local knockbackProperties =
 		{
@@ -214,7 +190,7 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 		if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
 	end
 
-	-- UP 7.41
+	-- UP 6.41
 	if self.ability_break:GetRank(41) then
 		local damageTableSplash = {
 			attacker = self.caster,
@@ -224,8 +200,8 @@ function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 		}
 
 		local units = FindUnitsInRadius(
-			self.caster:GetTeamNumber(), self.parent:GetOrigin(),
-			nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY,
+			self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
+			self.ability_break:GetAOERadius(), DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
 			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
 		)
