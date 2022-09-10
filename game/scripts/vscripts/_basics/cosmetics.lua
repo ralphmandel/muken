@@ -181,10 +181,10 @@ end
 		for i = 1, #self.cosmetic, 1 do
 			local mod_cosmetic = self.cosmetic[i]:FindModifierByName("cosmetics_mod")
 			if mod_cosmetic then
-				if mod_cosmetic.index ~= nil then
-					for i = 1, mod_cosmetic.index, 1 do
-						if mod_cosmetic.ambient[i] == ambient then
-							return mod_cosmetic.particle[i]
+				for i = #mod_cosmetic.ambient_table, 1, -1 do
+					for string, particle in pairs(mod_cosmetic.ambient_table[i]) do
+						if ambient == string then
+							return particle
 						end
 					end
 				end

@@ -20,7 +20,11 @@ function ancient_u_modifier_passive:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local energy_loss = self.ability:GetSpecialValueFor("energy_loss")
-	if IsServer() then self:StartIntervalThink(1 / energy_loss) end
+
+	if IsServer() then
+		self:StartIntervalThink(1 / energy_loss)
+		self:PlayEfxBuff()
+	end
 end
 
 function ancient_u_modifier_passive:OnRefresh(kv)
@@ -60,3 +64,28 @@ end
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
+
+function ancient_u_modifier_passive:PlayEfxBuff()
+	if self.ambient_aura then ParticleManager:DestroyParticle(self.ambient_aura, false) end
+	self.ambient_aura = ParticleManager:CreateParticle("particles/ancient/ancient_aura_alt.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.ambient_aura, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.ambient_aura, 1, Vector(0, 0, 0))
+	self:AddParticle(self.ambient_aura, false, false, -1, false, false)
+end
+
+function ancient_u_modifier_passive:UpdateAmbients()
+	local cosmetics = self.parent:FindAbilityByName("cosmetics")
+	if cosmetics == nil then return end
+	local ambient_back = cosmetics:GetAmbient("particles/ancient/ancient_back.vpcf")
+	local ambient_weapon = cosmetics:GetAmbient("particles/ancient/ancient_weapon.vpcf")
+
+	local value = self.parent:GetMana()
+	if self.ability.casting == true then value = 0 end
+
+	if self.ambient_aura then ParticleManager:SetParticleControl(self.ambient_aura, 1, Vector(value, 0, 0)) end
+	if ambient_back then ParticleManager:SetParticleControl(ambient_back, 20, Vector(value, 0, 0)) end
+	if ambient_weapon then
+		ParticleManager:SetParticleControl(ambient_weapon, 20, Vector(value, 30, 12))
+		ParticleManager:SetParticleControl(ambient_weapon, 21, Vector(value * 0.01, 0, 0))
+	end
+end

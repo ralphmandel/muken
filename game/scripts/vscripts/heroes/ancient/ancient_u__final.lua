@@ -61,6 +61,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_u__final:Spawn()
         local caster = self:GetCaster()
         self:CheckAbilityCharges(0)
+        self.casting = false
 
         Timers:CreateTimer((0.3), function()
             if self:IsTrained() == false then self:UpgradeAbility(true) end
@@ -142,8 +143,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_u__final:OnOwnerSpawned()
-        local caster = self:GetCaster()
-        caster:SetMana(0)
+        self:GetCaster():SetMana(0)
+        self:UpdateResistance()
     end
 
     function ancient_u__final:AddEnergy(ability)
@@ -173,6 +174,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         self:RemoveBonus("_2_RES", caster)
         if caster:IsAlive() and total_res > 0 then self:AddBonus("_2_RES", caster, total_res, 0, nil) end
+        caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):UpdateAmbients()
     end
 
     function ancient_u__final:GetCastRange(vLocation, hTarget)
@@ -214,6 +216,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
         ParticleManager:SetParticleControlEnt(effect_cast, 1, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
         self.effect_cast = effect_cast
+        self.casting = true
 
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
 
@@ -224,6 +227,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         ParticleManager:DestroyParticle(self.effect_cast, interrupted)
         ParticleManager:ReleaseParticleIndex(self.effect_cast)
+        self.casting = false
 
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("et_2021")
     end

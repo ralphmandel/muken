@@ -32,99 +32,80 @@
 				"1"   "ancient_1__berserk_rank_41"
 			}
 		}
-		"ancient_2__bash"
+		"ancient_2__leap"
 		{
 			"0"
 			{
-				"1"   "ancient_2__bash_rank_11"
+				"1"   "ancient_2__leap_rank_11"
 			}
 			"1"
 			{
-				"1"   "ancient_2__bash_rank_21"
+				"1"   "ancient_2__leap_rank_21"
 			}
 			"2"
 			{
-				"1"   "ancient_2__bash_rank_31"
+				"1"   "ancient_2__leap_rank_31"
 			}
 			"3"
 			{
-				"1"   "ancient_2__bash_rank_41"
+				"1"   "ancient_2__leap_rank_41"
 			}
 		}
-		"ancient_3__leap"
+		"ancient_3__walk"
 		{
 			"0"
 			{
-				"1"   "ancient_3__leap_rank_11"
+				"1"   "ancient_3__walk_rank_11"
 			}
 			"1"
 			{
-				"1"   "ancient_3__leap_rank_21"
+				"1"   "ancient_3__walk_rank_21"
 			}
 			"2"
 			{
-				"1"   "ancient_3__leap_rank_31"
+				"1"   "ancient_3__walk_rank_31"
 			}
 			"3"
 			{
-				"1"   "ancient_3__leap_rank_41"
+				"1"   "ancient_3__walk_rank_41"
 			}
 		}
-		"ancient_4__walk"
+		"ancient_4__lotus"
 		{
 			"0"
 			{
-				"1"   "ancient_4__walk_rank_11"
+				"1"   "ancient_4__lotus_rank_11"
 			}
 			"1"
 			{
-				"1"   "ancient_4__walk_rank_21"
+				"1"   "ancient_4__lotus_rank_21"
 			}
 			"2"
 			{
-				"1"   "ancient_4__walk_rank_31"
+				"1"   "ancient_4__lotus_rank_31"
 			}
 			"3"
 			{
-				"1"   "ancient_4__walk_rank_41"
+				"1"   "ancient_4__lotus_rank_41"
 			}
 		}
-		"ancient_5__stone"
+		"ancient_5__heal"
 		{
 			"0"
 			{
-				"1"   "ancient_5__stone_rank_11"
+				"1"   "ancient_5__heal_rank_11"
 			}
 			"1"
 			{
-				"1"   "ancient_5__stone_rank_21"
+				"1"   "ancient_5__heal_rank_21"
 			}
 			"2"
 			{
-				"1"   "ancient_5__stone_rank_31"
+				"1"   "ancient_5__heal_rank_31"
 			}
 			"3"
 			{
-				"1"   "ancient_5__stone_rank_41"
-			}
-		}
-		"ancient_6__sk6"
-		{
-			"0"
-			{
-				"1"   "ancient_6__sk6_rank_11"
-			}
-			"1"
-			{
-				"1"   "ancient_6__sk6_rank_21"
-			}
-			"2"
-			{
-				"1"   "ancient_6__sk6_rank_31"
-			}
-			"3"
-			{
-				"1"   "ancient_6__sk6_rank_41"
+				"1"   "ancient_5__heal_rank_41"
 			}
 		}
 		"ancient_u__final"

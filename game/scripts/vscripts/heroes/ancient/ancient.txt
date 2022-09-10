@@ -54,45 +54,10 @@
 		}
 	}
 
-	"ancient_2__bash"
+	"ancient_2__leap"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/ancient/ancient_2__bash"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"ancient_bash"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
-
-		"AbilitySpecial"
-		{
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
-			}
-		}
-	}
-
-	"ancient_3__leap"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/ancient/ancient_3__leap"
+		"ScriptFile"            		"heroes/ancient/ancient_2__leap"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"ancient_leap"
 		"MaxLevel"               		"1"
@@ -124,10 +89,10 @@
 		}
 	}
 
-	"ancient_4__walk"
-	{ 
+	"ancient_3__walk"
+	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/ancient/ancient_4__walk"
+		"ScriptFile"            		"heroes/ancient/ancient_3__walk"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"ancient_walk"
 		"MaxLevel"               		"1"
@@ -159,12 +124,12 @@
 		}
 	}
 
-	"ancient_5__stone"
-	{
+	"ancient_4__lotus"
+	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/ancient/ancient_5__stone"
+		"ScriptFile"            		"heroes/ancient/ancient_4__lotus"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"ancient_stone"
+		"AbilityTextureName"     		"ancient_lotus"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -194,12 +159,12 @@
 		}
 	}
 
-    "ancient_6__sk6"
+	"ancient_5__heal"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/ancient/ancient_6__sk6"
+		"ScriptFile"            		"heroes/ancient/ancient_5__heal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"ancient_sk6"
+		"AbilityTextureName"     		"ancient_heal"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -537,10 +502,10 @@
         }
 
     //RANKS 2
-        "ancient_2__bash_rank_11"{
+        "ancient_2__leap_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -567,10 +532,10 @@
             }
         }
 
-        "ancient_2__bash_rank_12"{
+        "ancient_2__leap_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -597,10 +562,10 @@
             }
         }
 
-        "ancient_2__bash_rank_21"{
+        "ancient_2__leap_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -627,10 +592,10 @@
             }
         }
 
-        "ancient_2__bash_rank_22"{
+        "ancient_2__leap_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -657,10 +622,10 @@
             }
         }
 
-        "ancient_2__bash_rank_31"{
+        "ancient_2__leap_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -687,10 +652,10 @@
             }
         }
 
-        "ancient_2__bash_rank_32"{
+        "ancient_2__leap_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -717,10 +682,10 @@
             }
         }
 
-        "ancient_2__bash_rank_41"{
+        "ancient_2__leap_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -747,10 +712,10 @@
             }
         }
 
-        "ancient_2__bash_rank_42"{
+        "ancient_2__leap_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_bash"
+            "AbilityTextureName"    		"ancient_leap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -778,10 +743,10 @@
         }
 
     //RANKS 3
-        "ancient_3__leap_rank_11"{
+        "ancient_3__walk_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -808,10 +773,10 @@
             }
         }
 
-        "ancient_3__leap_rank_12"{
+        "ancient_3__walk_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -838,10 +803,10 @@
             }
         }
 
-        "ancient_3__leap_rank_21"{
+        "ancient_3__walk_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -868,10 +833,10 @@
             }
         }
 
-        "ancient_3__leap_rank_22"{
+        "ancient_3__walk_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -898,10 +863,10 @@
             }
         }
 
-        "ancient_3__leap_rank_31"{
+        "ancient_3__walk_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -928,10 +893,10 @@
             }
         }
 
-        "ancient_3__leap_rank_32"{
+        "ancient_3__walk_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -958,10 +923,10 @@
             }
         }
 
-        "ancient_3__leap_rank_41"{
+        "ancient_3__walk_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -988,10 +953,10 @@
             }
         }
 
-        "ancient_3__leap_rank_42"{
+        "ancient_3__walk_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_leap"
+            "AbilityTextureName"    		"ancient_walk"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1019,10 +984,10 @@
         }
 
     //RANKS 4
-        "ancient_4__walk_rank_11"{
+        "ancient_4__lotus_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1049,10 +1014,10 @@
             }
         }
 
-        "ancient_4__walk_rank_12"{
+        "ancient_4__lotus_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1079,10 +1044,10 @@
             }
         }
 
-        "ancient_4__walk_rank_21"{
+        "ancient_4__lotus_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1109,10 +1074,10 @@
             }
         }
 
-        "ancient_4__walk_rank_22"{
+        "ancient_4__lotus_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1139,10 +1104,10 @@
             }
         }
 
-        "ancient_4__walk_rank_31"{
+        "ancient_4__lotus_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1169,10 +1134,10 @@
             }
         }
 
-        "ancient_4__walk_rank_32"{
+        "ancient_4__lotus_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1199,10 +1164,10 @@
             }
         }
 
-        "ancient_4__walk_rank_41"{
+        "ancient_4__lotus_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1229,10 +1194,10 @@
             }
         }
 
-        "ancient_4__walk_rank_42"{
+        "ancient_4__lotus_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_walk"
+            "AbilityTextureName"    		"ancient_lotus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1260,10 +1225,10 @@
         }
 
     //RANKS 5
-        "ancient_5__stone_rank_11"{
+        "ancient_5__heal_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1290,10 +1255,10 @@
             }
         }
 
-        "ancient_5__stone_rank_12"{
+        "ancient_5__heal_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1320,10 +1285,10 @@
             }
         }
 
-        "ancient_5__stone_rank_21"{
+        "ancient_5__heal_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1350,10 +1315,10 @@
             }
         }
 
-        "ancient_5__stone_rank_22"{
+        "ancient_5__heal_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1380,10 +1345,10 @@
             }
         }
 
-        "ancient_5__stone_rank_31"{
+        "ancient_5__heal_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1410,10 +1375,10 @@
             }
         }
 
-        "ancient_5__stone_rank_32"{
+        "ancient_5__heal_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1440,10 +1405,10 @@
             }
         }
 
-        "ancient_5__stone_rank_41"{
+        "ancient_5__heal_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1470,10 +1435,10 @@
             }
         }
 
-        "ancient_5__stone_rank_42"{
+        "ancient_5__heal_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_stone"
+            "AbilityTextureName"    		"ancient_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1486,247 +1451,6 @@
                 {
                     "var_type"				"FIELD_FLOAT"
                     "skill"					"5"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"42"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-    //RANKS 6
-        "ancient_6__sk6_rank_11"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"11"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_12"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"1"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"12"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_21"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"21"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_22"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"2"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"22"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_31"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"31"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_32"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"3"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"32"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_41"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
-                }
-                "02"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "id"					"41"
-                }
-                "03"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "permanent"				"0"
-                }
-            }
-        }
-
-        "ancient_6__sk6_rank_42"{
-            "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/ancient/ancient-ranks_lua"
-            "AbilityTextureName"    		"ancient_sk6"
-            "FightRecapLevel"				"1"
-            "MaxLevel"						"4"	
-            
-            "AbilityType"					"ABILITY_TYPE_BASIC"
-            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"				"FIELD_FLOAT"
-                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1757,7 +1481,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1787,7 +1511,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1817,7 +1541,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1847,7 +1571,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1877,7 +1601,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1907,7 +1631,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1937,7 +1661,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {
@@ -1967,7 +1691,7 @@
                 "01"
                 {
                     "var_type"				"FIELD_FLOAT"
-                    "skill"					"7"
+                    "skill"					"6"
                 }
                 "02"
                 {

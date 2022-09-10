@@ -23,6 +23,7 @@ function cosmetics_mod:OnCreated( kv )
 	self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.ambient_table = {}
 
 	self.no_draw = 0
 	self.invi = false
@@ -101,47 +102,28 @@ end
 --------------------------------------------------------------------------------
 
 function cosmetics_mod:PlayEfxAmbient(ambient, attach)
-	if self.ambient == nil then self.ambient = {} end
-	if self.particle == nil then self.particle = {} end
-	local index = 0
-	local x = 1
+	local particle = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+	self:AddParticle(particle, false, false, -1, false, false)
 
-	while index == 0 do
-		if self.ambient[x] == nil then
-			self.ambient[x] = ambient
-			index = x
-		end
-		x = x + 1
-	end
-
-	self.particle[index] = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.particle[index], 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControlEnt(self.particle[index], 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
-	self:AddParticle(self.particle[index], false, false, -1, false, false)
+	table.insert(self.ambient_table, {[ambient] = particle})
 end
 
 function cosmetics_mod:StopAmbientEfx(ambient, bDestroyImmediately)
-	if self.ambient == nil then return end
-	if self.particle == nil then return end
-	local i
+	for i = #self.ambient_table, 1, -1 do
+		for string, particle in pairs(self.ambient_table[i]) do
+			if ambient == string or ambient == nil then
+				ParticleManager:DestroyParticle(particle, bDestroyImmediately)
+				ParticleManager:ReleaseParticleIndex(particle)
 
-	for index, string in pairs(self.ambient) do
-		if ambient == string or ambient == nil then
-			if self.particle[index] then
-				ParticleManager:DestroyParticle(self.particle[index], bDestroyImmediately)
-				ParticleManager:ReleaseParticleIndex(self.particle[index])
-				i = index
+				if ambient then
+					table.remove(self.ambient_table, i)
+					break
+				end
 			end
 		end
 	end
 
-	if ambient and i then
-		self.ambient[i] = nil
-		self.particle[i] = nil
-	end
-
-	if ambient == nil then
-		self.ambient = nil
-		self.particle = nil
-	end
+	if ambient == nil then self.ambient_table = {} end
 end

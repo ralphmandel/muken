@@ -17,12 +17,12 @@
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
 			"Ability10"						"ancient_1__berserk"
-			"Ability11"						"ancient_2__bash"
-			"Ability12"						"ancient_3__leap"
-			"Ability13"						"ancient_4__walk"
-			"Ability14"						"ancient_5__stone"
-			"Ability15"						"ancient_6__sk6"
-			"Ability16"						"ancient_u__final"
+			"Ability11"						"ancient_2__leap"
+			"Ability12"						"ancient_3__walk"
+			"Ability13"						"ancient_4__lotus"
+			"Ability14"						"ancient_5__heal"
+			"Ability15"						"ancient_u__final"
+			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
 			"Ability19"						"null"
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "140"     // Range within a target can be attacked.
+		"AttackRange"                   "175"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
