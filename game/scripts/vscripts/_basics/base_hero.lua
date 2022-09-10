@@ -381,12 +381,14 @@ require("talent_tree")
 		local total = 0
 		if self.talentsData then
 			for talentId,talent in pairs(self.talentsData) do
-				if (self:GetHeroTalentLevel(talentId) < self:GetTalentMaxLevel(talentId)) then
-					if self:GetTalentRankLevel(talentId) == level and talent.Ability ~= "empty" then
-						local ability = self:GetCaster():FindAbilityByName(talent.Tab)
-						if ability then
-							if ability:IsTrained() then
-								total = total + 1
+				if self:CheckRequirements(self.talentsData[talentId].Ability) then
+					if (self:GetHeroTalentLevel(talentId) < self:GetTalentMaxLevel(talentId)) then
+						if self:GetTalentRankLevel(talentId) == level and talent.Ability ~= "empty" then
+							local ability = self:GetCaster():FindAbilityByName(talent.Tab)
+							if ability then
+								if ability:IsTrained() then
+									total = total + 1
+								end
 							end
 						end
 					end
@@ -397,11 +399,72 @@ require("talent_tree")
 		return total
 	end
 
+	function base_hero:CheckRequirements(talentName)
+		-- Icebreaker 2.41 requires skill rank level 14
+		if talentName == "icebreaker_2__puff_rank_41" then
+			local puff = self:GetCaster():FindAbilityByName("icebreaker_2__puff")
+			if puff == nil then return false end
+			if puff:IsTrained() == false then return false end
+			if puff:GetSpecialValueFor("rank") < 14 then return false end
+		end
+
+		-- Icebreaker 4.21 requires skill 3
+		if talentName == "icebreaker_4__mirror_rank_21"
+		and (not self.ranks[3][0]) then
+			return false
+		end
+
+		-- Icebreaker 4.31 requires skill 2
+		if talentName == "icebreaker_4__mirror_rank_31"
+		and (not self.ranks[2][0]) then
+			return false
+		end
+
+		-- Icebreaker 4.32 requires skill 5 and ultimate
+		if talentName == "icebreaker_4__mirror_rank_32"
+		and (not self.ranks[5][0]) and (not self.ranks[6][0]) then
+			return false
+		end
+
+		-- Icebreaker 5.31 requires skill rank level 10
+		if talentName == "icebreaker_5__wave_rank_31" then
+			local wave = self:GetCaster():FindAbilityByName("icebreaker_5__wave")
+			if wave == nil then return false end
+			if wave:IsTrained() == false then return false end
+			if wave:GetSpecialValueFor("rank") < 10 then return false end
+		end
+
+		-- Bocuse 2.41 requires skill rank level 13
+		if talentName == "bocuse_2__flask_rank_41" then
+			local flask = self:GetCaster():FindAbilityByName("bocuse_2__flask")
+			if flask == nil then return false end
+			if flask:IsTrained() == false then return false end
+			if flask:GetSpecialValueFor("rank") < 13 then return false end
+		end
+
+		-- Bocuse 6.21 requires skill 1
+		if talentName == "bocuse_u__rage_rank_21"
+		and (not self.ranks[1][0]) then
+			return false
+		end
+
+		-- Bocuse 6.41 requires skill rank level 19
+		if talentName == "bocuse_u__rage_rank_41" then
+			local rage = self:GetCaster():FindAbilityByName("bocuse_u__rage")
+			if rage == nil then return false end
+			if rage:IsTrained() == false then return false end
+			if rage:GetSpecialValueFor("rank") < 19 then return false end
+		end
+
+		return true
+	end
+
 	function base_hero:IsHeroCanLevelUpTalent(talentId)
 		if (not self.talentsData[talentId]) then return false end
 		local level = self:GetTalentRankLevel(talentId)
 		local points_level = self:GetHeroRankLevel()
 		local left = self.max_level - points_level - level
+		print(left)
 
 		if left < 5 and (self:GetTotalTalents(left) == 0 or (self:GetTotalTalents(left) == 1 and level == left)) then
 			if left == 1 then return false end
@@ -420,60 +483,8 @@ require("talent_tree")
 			end
 		end
 
-		-- Icebreaker 2.41 requires skill rank level 14
-		if self.talentsData[talentId].Ability == "icebreaker_2__puff_rank_41" then
-			local puff = self:GetCaster():FindAbilityByName("icebreaker_2__puff")
-			if puff == nil then return false end
-			if puff:IsTrained() == false then return false end
-			if puff:GetSpecialValueFor("rank") < 14 then return false end
-		end
-
-		-- Icebreaker 4.21 requires skill 3
-		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_21"
-		and (not self.ranks[3][0]) then
+		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then
 			return false
-		end
-
-		-- Icebreaker 4.31 requires skill 2
-		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_31"
-		and (not self.ranks[2][0]) then
-			return false
-		end
-
-		-- Icebreaker 4.32 requires skill 5 and ultimate
-		if self.talentsData[talentId].Ability == "icebreaker_4__mirror_rank_32"
-		and (not self.ranks[5][0]) and (not self.ranks[6][0]) then
-			return false
-		end
-
-		-- Icebreaker 5.31 requires skill rank level 10
-		if self.talentsData[talentId].Ability == "icebreaker_5__wave_rank_31" then
-			local wave = self:GetCaster():FindAbilityByName("icebreaker_5__wave")
-			if wave == nil then return false end
-			if wave:IsTrained() == false then return false end
-			if wave:GetSpecialValueFor("rank") < 10 then return false end
-		end
-
-		-- Bocuse 2.41 requires skill rank level 13
-		if self.talentsData[talentId].Ability == "bocuse_2__flask_rank_41" then
-			local flask = self:GetCaster():FindAbilityByName("bocuse_2__flask")
-			if flask == nil then return false end
-			if flask:IsTrained() == false then return false end
-			if flask:GetSpecialValueFor("rank") < 13 then return false end
-		end
-
-		-- Bocuse 6.21 requires skill 1
-		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_21"
-		and (not self.ranks[1][0]) then
-			return false
-		end
-
-		-- Bocuse 6.41 requires skill rank level 19
-		if self.talentsData[talentId].Ability == "bocuse_u__rage_rank_41" then
-			local rage = self:GetCaster():FindAbilityByName("bocuse_u__rage")
-			if rage == nil then return false end
-			if rage:IsTrained() == false then return false end
-			if rage:GetSpecialValueFor("rank") < 19 then return false end
 		end
 
 		for i = 1, 6, 1 do

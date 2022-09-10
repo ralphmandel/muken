@@ -171,7 +171,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_gold"			"54"
+				"starting_gold"			"54" //54
 			}		
 		}
 	}
