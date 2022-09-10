@@ -377,26 +377,38 @@ require("talent_tree")
 		return rank
 	end
 
-	function base_hero:GetTotalTalents(level)
+	function base_hero:GetTotalTalents(level, flag)
 		local total = 0
 		if self.talentsData then
 			for talentId,talent in pairs(self.talentsData) do
-				if self:CheckRequirements(self.talentsData[talentId].Ability) then
-					if (self:GetHeroTalentLevel(talentId) < self:GetTalentMaxLevel(talentId)) then
-						if self:GetTalentRankLevel(talentId) == level and talent.Ability ~= "empty" then
-							local ability = self:GetCaster():FindAbilityByName(talent.Tab)
-							if ability then
-								if ability:IsTrained() then
-									total = total + 1
-								end
-							end
+				if flag then
+					if self.talentsData[talentId] ~= flag then
+						if self:IsTalentAvailable(talentId, level) then
+							total = total + 1
 						end
+					end
+				else
+					if self:IsTalentAvailable(talentId, level) then
+						total = total + 1
 					end
 				end
 			end
 		end
 
 		return total
+	end
+
+	function base_hero:IsTalentAvailable(talentId, level)
+		if self.talentsData[talentId].Ability == "empty" then return false end
+		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then return false end
+		if (self:GetHeroTalentLevel(talentId) >= self:GetTalentMaxLevel(talentId)) then return false end
+		if level == -1 and self:GetTalentRankLevel(talentId) % 2 == 0 then return false end
+		if level > 0 and self:GetTalentRankLevel(talentId) ~= level then return false end
+		local ability = self:GetCaster():FindAbilityByName(self.talentsData[talentId].Tab)
+		if ability == nil then return end
+		if ability:IsTrained() == false then return end
+
+		return true
 	end
 
 	function base_hero:CheckRequirements(talentName)
@@ -459,33 +471,80 @@ require("talent_tree")
 		return true
 	end
 
-	function base_hero:IsHeroCanLevelUpTalent(talentId)
-		if (not self.talentsData[talentId]) then return false end
+	function base_hero:CalculateLeft(talentId)
 		local level = self:GetTalentRankLevel(talentId)
 		local points_level = self:GetHeroRankLevel()
-		local left = self.max_level - points_level - level
-		print(left)
+		local left = self.max_level - level - points_level
+		local flag = self.talentsData[talentId]
 
-		if left < 5 and (self:GetTotalTalents(left) == 0 or (self:GetTotalTalents(left) == 1 and level == left)) then
-			if left == 1 then return false end
-			if left == 2 then
-				if self:GetTotalTalents(1) < 2 then return false end
-			end
-			if left == 3 then
-				if (self:GetTotalTalents(2) == 0 or self:GetTotalTalents(1) == 0)
-				and self:GetTotalTalents(1) < 3 then return false end
-			end
-			if left == 4 then
-				if (self:GetTotalTalents(3) == 0 or self:GetTotalTalents(1) == 0)
-				and (self:GetTotalTalents(2) == 0 or self:GetTotalTalents(1) < 2)
-				and self:GetTotalTalents(2) < 2
-				and self:GetTotalTalents(1) < 4 then return false end
-			end
+		if left == 0 then return true end
+		if self:GetTotalTalents(left, flag) >= 1 then return true end
+		if self:GetTotalTalents(1, flag) >= left then return true end
+		if (left % 2 == 1) and (self:GetTotalTalents(-1, flag) == 0) then return false end
+
+		local i = 2
+		while left > i do
+			if (self:GetTotalTalents(i, flag) >= 1 and self:GetTotalTalents(1, flag) >= left - i) then return true end			
+			i = i + 1
 		end
 
-		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then
-			return false
+		if left == 4 then
+			if self:GetTotalTalents(2, flag) >= 2 then return true end
 		end
+
+		if left == 5 then
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 then return true end
+			if self:GetTotalTalents(2, flag) >= 2 and self:GetTotalTalents(1, flag) >= 1 then return true end
+		end
+
+		if left == 6 then
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 then return true end
+
+			if self:GetTotalTalents(3, flag) >= 2 then return true end
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 and self:GetTotalTalents(1, flag) >= 1 then return true end
+
+			if self:GetTotalTalents(2, flag) >= 3 then return true end
+			if self:GetTotalTalents(2, flag) >= 2 and self:GetTotalTalents(1, flag) >= 2 then return true end
+		end
+
+		if left == 7 then
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(3, flag) >= 1 then return true end
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 and self:GetTotalTalents(1, flag) >= 1 then return true end
+			
+			if self:GetTotalTalents(3, flag) >= 2 and self:GetTotalTalents(1, flag) >= 1 then return true end
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 2 then return true end
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 and self:GetTotalTalents(1, flag) >= 2 then return true end
+
+			if self:GetTotalTalents(2, flag) >= 3 and self:GetTotalTalents(1, flag) >= 1 then return true end
+			if self:GetTotalTalents(2, flag) >= 2 and self:GetTotalTalents(1, flag) >= 3 then return true end
+		end
+
+		if left == 8 then
+			if self:GetTotalTalents(4, flag) >= 2 then return true end
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(1, flag) >= 1 then return true end
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(2, flag) >= 2 then return true end
+			if self:GetTotalTalents(4, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 and self:GetTotalTalents(1, flag) >= 2 then return true end
+
+			if self:GetTotalTalents(3, flag) >= 2 and self:GetTotalTalents(2, flag) >= 1 then return true end
+			if self:GetTotalTalents(3, flag) >= 2 and self:GetTotalTalents(1, flag) >= 2 then return true end
+
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 2 and self:GetTotalTalents(1, flag) >= 1 then return true end
+			if self:GetTotalTalents(3, flag) >= 1 and self:GetTotalTalents(2, flag) >= 1 and self:GetTotalTalents(1, flag) >= 3 then return true end
+
+			if self:GetTotalTalents(2, flag) >= 4 then return true end
+			if self:GetTotalTalents(2, flag) >= 3 and self:GetTotalTalents(1, flag) >= 2 then return true end
+			if self:GetTotalTalents(2, flag) >= 2 and self:GetTotalTalents(1, flag) >= 4 then return true end
+		end
+
+		if left > 8 then return true end
+
+		return false
+	end
+
+	function base_hero:IsHeroCanLevelUpTalent(talentId)
+		if (not self.talentsData[talentId]) then return false end
+		if self.talentsData[talentId].Ability == "empty" then return false end
+		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then return false end
 
 		for i = 1, 6, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
@@ -497,9 +556,15 @@ require("talent_tree")
 		if (self:GetHeroTalentLevel(talentId) >= self:GetTalentMaxLevel(talentId)) then
 			return false
 		end
+
 		if self.current_points < self:GetTalentMaxLevel(talentId) then
 			return false
 		end
+
+		if self:CalculateLeft(talentId) == false then
+			return false
+		end
+
 		return true
 	end
 
