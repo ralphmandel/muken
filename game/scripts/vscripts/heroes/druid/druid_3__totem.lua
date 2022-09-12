@@ -80,6 +80,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return self:GetSpecialValueFor("radius")
     end
 
+    function druid_3__totem:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range = cast_range + 750 end
+        return cast_range
+    end
+
     function druid_3__totem:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -88,6 +95,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_3__totem:CheckAbilityCharges(charges)
+        -- UP 3.12
+        if self:GetRank(12) then
+            charges = charges * 2 --cast range
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

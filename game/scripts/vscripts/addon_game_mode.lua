@@ -844,29 +844,10 @@
 
 -- LISTENERS
 	function BattleArena:OnUnitKilled(args)
+		if args.entindex_killed == nil then return end
 		local unit = EntIndexToHScript(args.entindex_killed)
-		local killer = EntIndexToHScript(args.entindex_attacker)
-		if unit == nil or killer == nil then return end
-		if killer:IsBaseNPC() == false then return end
+
 		if unit:IsReincarnating() then return end
-
-		for _,player in pairs(self.players) do
-			if player[1]:GetAssignedHero() == unit then
-				player[2] = 0
-
-				if killer:GetTeamNumber() == DOTA_TEAM_NEUTRALS
-				and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-					self.vo = self.vo + 1
-					Timers:CreateTimer((1.5), function()
-						self.vo = self.vo - 1
-						if self.vo == 0 then
-							EmitAnnouncerSound("Vo.Suicide")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-						end
-					end)
-				end
-			end
-		end
 
 		if unit == self.boss[1] then
 			self.boss[1] = nil
@@ -897,7 +878,28 @@
 		local gold = 0
 		local number = 1
 
+		if args.entindex_attacker == nil then return end
+		local killer = EntIndexToHScript(args.entindex_attacker)
+		if killer:IsBaseNPC() == false then return end
 		if killer:GetClassname() == "ability_lua" then return end
+
+		for _,player in pairs(self.players) do
+			if player[1]:GetAssignedHero() == unit then
+				player[2] = 0
+
+				if killer:GetTeamNumber() == DOTA_TEAM_NEUTRALS
+				and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
+					self.vo = self.vo + 1
+					Timers:CreateTimer((1.5), function()
+						self.vo = self.vo - 1
+						if self.vo == 0 then
+							EmitAnnouncerSound("Vo.Suicide")
+							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+						end
+					end)
+				end
+			end
+		end
 
 		local player_owner = killer:GetPlayerOwner()
 		if player_owner == nil then return end

@@ -91,13 +91,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_2__armor:CreateSeedProj(target, source, heal)
-        if IsServer() then source:EmitSound("Hero_Treant.LeechSeed.Target") end
+        if IsServer() then source:EmitSound("Hero_Treant.LeechSeed.Tick") end
 
         ProjectileManager:CreateTrackingProjectile({
             Target = target,
             Source = source,
             Ability = self,	
             EffectName = "particles/druid/druid_ult_projectile.vpcf",
+            iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
             iMoveSpeed = 250,
             bReplaceExisting = false,
             bProvidesVision = true,

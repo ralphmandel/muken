@@ -174,8 +174,8 @@ function _boss_modifier__ai:DeclareFunctions()
 end
 
 function _boss_modifier__ai:GetModifierIncomingDamage_Percentage(keys)
-    if keys.attacker:IsBaseNPC() == false then return -50 end
     if self.unit:IsDominated() then return 0 end
+    if keys.attacker:IsBaseNPC() == false then return -50 end
     if keys.attacker:IsHero() and keys.attacker:IsIllusion() == false then return 0 end
     return -50
 end

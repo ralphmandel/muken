@@ -133,7 +133,7 @@
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stun_duration" 	"1.25"
+				"stun_duration" 	"1"
 			}
             "05"
 			{
@@ -216,14 +216,14 @@
 		"AbilityCastPoint"				"0.3"
         "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
 
-		"AbilityCooldown"				"20 19.5 19 18.5 18 17.5 17 16.5 16 15.5 15"
+		"AbilityCooldown"				"25"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4"
+				"channel_time"		"4 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5"
 			}
             "02"
 			{
@@ -238,7 +238,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"150"
+				"manacost"		"160"
 			}
 			"15"
 			{

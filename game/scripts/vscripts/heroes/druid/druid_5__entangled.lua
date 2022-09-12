@@ -1,10 +1,10 @@
-druid_6__entangled = class({})
-LinkLuaModifier("druid_6_modifier_entangled", "heroes/druid/druid_6_modifier_entangled", LUA_MODIFIER_MOTION_NONE)
+druid_5__entangled = class({})
+LinkLuaModifier("druid_5_modifier_entangled", "heroes/druid/druid_5_modifier_entangled", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function druid_6__entangled:CalcStatus(duration, caster, target)
+    function druid_5__entangled:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function druid_6__entangled:AddBonus(string, target, const, percent, time)
+    function druid_5__entangled:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function druid_6__entangled:RemoveBonus(string, target)
+    function druid_5__entangled:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,43 +32,43 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         end
     end
 
-    function druid_6__entangled:GetRank(upgrade)
+    function druid_5__entangled:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[6][upgrade] end
+        if base_hero then return base_hero.ranks[5][upgrade] end
     end
 
-    function druid_6__entangled:OnUpgrade()
+    function druid_5__entangled:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[6][0] = true
+            base_hero.ranks[5][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         self:CheckAbilityCharges(1)
     end
 
-    function druid_6__entangled:Spawn()
+    function druid_5__entangled:Spawn()
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function druid_6__entangled:OnSpellStart()
+    function druid_5__entangled:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local duration = self:CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, target)
 
         if target:TriggerSpellAbsorb(self) then return end
 
-        target:AddNewModifier(caster, self, "druid_6_modifier_entangled", {duration = duration})
+        target:AddNewModifier(caster, self, "druid_5_modifier_entangled", {duration = duration})
 
         -- UP 6.42
         if self:GetRank(42) then
@@ -79,7 +79,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         if IsServer() then caster:EmitSound("Hero_Treant.LeechSeed.Cast") end
     end
 
-    function druid_6__entangled:ApplySuperRoot(target)
+    function druid_5__entangled:ApplySuperRoot(target)
         local caster = self:GetCaster()
         local damageTable = {attacker = caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self}
 
@@ -103,12 +103,13 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         end
     end
 
-    function druid_6__entangled:CreateSeedProj(target, source, leech_amount)
+    function druid_5__entangled:CreateSeedProj(target, source, leech_amount)
         ProjectileManager:CreateTrackingProjectile({
             Target = target,
             Source = source,
             Ability = self,	
             EffectName = "particles/druid/druid_ult_projectile.vpcf",
+            iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
             iMoveSpeed = 250,
             bReplaceExisting = false,
             bProvidesVision = true,
@@ -118,7 +119,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         })
     end
 
-    function druid_6__entangled:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
+    function druid_5__entangled:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
         if not hTarget then return end
         local heal = ExtraData.damage
         local base_stats = self:GetCaster():FindAbilityByName("base_stats")
@@ -143,28 +144,28 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         self:PlayEfxHeal(hTarget)
     end
 
-    function druid_6__entangled:GetAOERadius()
+    function druid_5__entangled:GetAOERadius()
         local radius = self:GetSpecialValueFor("radius")
         if self:GetCurrentAbilityCharges() == 0 then return radius end
         if self:GetCurrentAbilityCharges() % 3 == 0 then return radius + 100 end
         return radius
     end
 
-    function druid_6__entangled:GetCastRange(vLocation, hTarget)
+    function druid_5__entangled:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return cast_range end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
         return cast_range
     end
 
-    function druid_6__entangled:GetManaCost(iLevel)
+    function druid_5__entangled:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function druid_6__entangled:CheckAbilityCharges(charges)
+    function druid_5__entangled:CheckAbilityCharges(charges)
         -- UP 6.21
         if self:GetRank(21) then
             charges = charges * 2
@@ -180,7 +181,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
 -- EFFECTS
 
-    function druid_6__entangled:PlayEfxHeal(target)
+    function druid_5__entangled:PlayEfxHeal(target)
         local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
         local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
         ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
@@ -188,7 +189,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         ParticleManager:ReleaseParticleIndex(effect)
     end
 
-    function druid_6__entangled:PlayEfxSuperRoot(target)
+    function druid_5__entangled:PlayEfxSuperRoot(target)
         local particle = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
         local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
         ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())

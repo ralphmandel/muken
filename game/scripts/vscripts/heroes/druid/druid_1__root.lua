@@ -155,7 +155,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_1__root:GetCooldown(iLevel)
         local cooldown = self:GetSpecialValueFor("cooldown")
         if self:GetCurrentAbilityCharges() == 0 then return cooldown end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then cooldown = cooldown - 6 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cooldown = cooldown - 4 end
         return cooldown
     end
 
@@ -177,18 +177,19 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then manacost = manacost + 20 end
         return manacost * level
     end
 
     function druid_1__root:CheckAbilityCharges(charges)
-        -- UP 1.21
-        if self:GetRank(21) then
-            charges = charges * 2
+        -- UP 1.11
+        if self:GetRank(11) then
+            charges = charges * 2 --manacost and cooldown
         end
 
         -- UP 1.32
         if self:GetRank(32) then
-            charges = charges * 3
+            charges = charges * 3 --cast range and cliff walk
         end
 
         self:SetCurrentAbilityCharges(charges)

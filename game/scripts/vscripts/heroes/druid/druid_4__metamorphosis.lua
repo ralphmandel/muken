@@ -1,10 +1,10 @@
-druid_5__metamorphosis = class({})
-LinkLuaModifier("druid_5_modifier_metamorphosis", "heroes/druid/druid_5_modifier_metamorphosis", LUA_MODIFIER_MOTION_NONE)
+druid_4__metamorphosis = class({})
+LinkLuaModifier("druid_4_modifier_metamorphosis", "heroes/druid/druid_4_modifier_metamorphosis", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function druid_5__metamorphosis:CalcStatus(duration, caster, target)
+    function druid_4__metamorphosis:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function druid_5__metamorphosis:AddBonus(string, target, const, percent, time)
+    function druid_4__metamorphosis:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function druid_5__metamorphosis:RemoveBonus(string, target)
+    function druid_4__metamorphosis:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,47 +32,47 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function druid_5__metamorphosis:GetRank(upgrade)
+    function druid_4__metamorphosis:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[5][upgrade] end
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
-    function druid_5__metamorphosis:OnUpgrade()
+    function druid_4__metamorphosis:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[5][0] = true
+            base_hero.ranks[4][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         self:CheckAbilityCharges(1)
     end
 
-    function druid_5__metamorphosis:Spawn()
+    function druid_4__metamorphosis:Spawn()
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function druid_5__metamorphosis:OnSpellStart()
+    function druid_4__metamorphosis:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function druid_5__metamorphosis:GetManaCost(iLevel)
+    function druid_4__metamorphosis:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function druid_5__metamorphosis:CheckAbilityCharges(charges)
+    function druid_4__metamorphosis:CheckAbilityCharges(charges)
         self:SetCurrentAbilityCharges(charges)
     end
 

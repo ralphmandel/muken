@@ -71,7 +71,7 @@ function dasdingo_3_modifier_fire:OnRefresh(kv)
 
 	-- UP 3.21
 	if self.ability:GetRank(21) then
-		stun_duration = stun_duration + 0.6
+		stun_duration = stun_duration + 0.4
 	end
 
 	-- UP 3.31

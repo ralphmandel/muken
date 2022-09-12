@@ -126,18 +126,19 @@ function druid_2_modifier_armor:ChangeStats(bonus, stat_convert, add, remove)
 end
 
 function druid_2_modifier_armor:FindAllies(heal)
-	local chance = 75
+	local chance = 70
 
 	local units = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 400,
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 800,
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
 	)
 
 	for _,unit in pairs(units) do
-		if RandomFloat(1, 100) <= chance then
+		if RandomFloat(1, 100) <= chance
+		and unit ~= self.parent then
 			self.ability:CreateSeedProj(unit, self.parent, heal)
-			chance = chance / 1.5
+			chance = chance / 2.5
 		end
 	end
 end

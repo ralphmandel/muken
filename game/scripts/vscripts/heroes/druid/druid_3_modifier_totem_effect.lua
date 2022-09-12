@@ -22,8 +22,8 @@ function druid_3_modifier_totem_effect:OnCreated(kv)
 
 	self.regen = self.ability:GetSpecialValueFor("regen")
 
-	-- UP 3.31
-	if self.ability:GetRank(31) then
+	-- UP 3.21
+	if self.ability:GetRank(21) then
 		self:ApplyINT()
 	end
 
@@ -59,10 +59,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function druid_3_modifier_totem_effect:ApplyINT()
-	self.ability:AddBonus("_1_INT", self.parent, 25, 0, nil)
+	self.ability:AddBonus("_1_INT", self.parent, 16, 0, nil)
 
 	if self.parent:IsHero() == false then
-		self.mp_regen = 10
+		self.mp_regen = 8
 	end
 end
 
