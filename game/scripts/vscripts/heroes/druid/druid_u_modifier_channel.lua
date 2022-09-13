@@ -62,6 +62,21 @@ function druid_u_modifier_channel:OnIntervalThink()
 		end
 	end
 
+	-- UP 6.11
+	if self.ability:GetRank(11) then
+		self:ApplySlow()
+	end
+
+	-- UP 6.12
+	if self.ability:GetRank(12) then
+		self:ApplyHeal()
+	end
+
+	-- UP 6.21
+	if self.ability:GetRank(21) then
+		self:ConvertTrees()
+	end
+
 	self.parent:SpendMana(self.ability:GetManaCost(self.ability:GetLevel()), self.ability)
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
@@ -69,6 +84,74 @@ function druid_u_modifier_channel:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function druid_u_modifier_channel:ApplySlow()
+	local enemies = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
+	)
+
+	for _,enemy in pairs(enemies) do
+		local mod = enemy:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			duration = self.interval,
+			percent = 40
+		})
+
+		mod:AddParticle(
+			ParticleManager:CreateParticle(
+				"particles/units/heroes/hero_enchantress/enchantress_enchant_slow.vpcf",
+				PATTACH_ABSORIGIN_FOLLOW, enemy
+			),
+			false, false, -1, false, false
+		)
+	end
+end
+
+function druid_u_modifier_channel:ApplyHeal()
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+
+	local allies = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
+	)
+
+	for _,ally in pairs(allies) do
+		local heal = 10
+		if base_stats then heal = heal * base_stats:GetHealPower() end
+		ally:Heal(heal, self.ability)
+		self:PlayEfxHeal(ally)
+	end
+end
+
+function druid_u_modifier_channel:ConvertTrees()
+	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+
+	local treants = {
+		[1] = "npc_druid_treant_lv1",
+		[2] = "npc_druid_treant_lv2",
+		[3] = "npc_druid_treant_lv3",
+	}
+
+	local trees = GridNav:GetAllTreesAroundPoint(self.ability.point, self.ability:GetAOERadius(), false)
+	if trees == nil then return end
+
+	for _,tree in pairs(trees) do
+		local unit_lvl = RandomInt(1, 3)
+		local chance = 100 / (unit_lvl * chance_lvl * 4)
+		if base_stats then chance = chance * base_stats:GetCriticalChance() end
+
+		if RandomFloat(1, 100) <= chance then
+			local origin = tree:GetOrigin()
+			tree:CutDown(self.parent:GetTeamNumber())
+
+			local treant = CreateUnitByName(treants[unit_lvl], origin, true, self.caster, self.caster, self.caster:GetTeamNumber())
+			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
+		end
+	end
+end
 
 function druid_u_modifier_channel:SoundLoop(target)
 	self.fow = AddFOWViewer(target:GetTeamNumber(), self.ability.point, self.ability:GetAOERadius(), 3, true)
@@ -93,4 +176,13 @@ function druid_u_modifier_channel:PlayEfxStart()
 	self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.efx_channel2, 0, self.ability.point)
 	ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.ability:GetAOERadius() * 0.1), 0, 0))
+end
+
+function druid_u_modifier_channel:PlayEfxHeal(target)
+	local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect_parent = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(effect_parent, 1, target:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_parent)
+
+	if IsServer() then target:EmitSound("Hero_Dasdingo.Heal") end
 end

@@ -26,18 +26,18 @@ function druid_5_modifier_entangled:OnCreated(kv)
 	self.max_targets = self.ability:GetSpecialValueFor("max_targets")
 	self.leech_amount = self.ability:GetSpecialValueFor("leech_amount")
 
-	-- UP 6.11
+	-- UP 5.11
 	if self.ability:GetRank(11) then
 		self:SetManaRegen(true)
 	end
 
-	-- UP 6.31
+	-- UP 5.31
 	if self.ability:GetRank(31) then
 		self.incoming = self.incoming - 20
 		self.broken = true
 	end
 
-	-- UP 6.41
+	-- UP 5.41
 	if self.ability:GetRank(41) then
 		self.max_targets = self.max_targets + 2
 	end

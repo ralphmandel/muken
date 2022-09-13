@@ -47,6 +47,68 @@ function druid_u_modifier_conversion:CheckState()
 	return state
 end
 
+function druid_u_modifier_conversion:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MISS_PERCENTAGE,
+        MODIFIER_EVENT_ON_HEAL_RECEIVED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+	}
+
+	return funcs
+end
+
+function druid_u_modifier_conversion:GetModifierMiss_Percentage()
+	if self.parent:GetUnitName() ~= "npc_druid_treant_lv2"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv4"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv6" then
+		return 0
+	end
+	
+	return 15
+end
+
+function druid_u_modifier_conversion:OnHealReceived(keys)
+	if self.parent:GetUnitName() ~= "npc_druid_treant_lv2"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv4"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv6" then
+		return
+	end
+
+    if keys.unit ~= self.parent then return end
+    if keys.inflictor == nil then return end
+    if keys.gain < 1 then return end
+
+    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
+end
+
+function druid_u_modifier_conversion:OnTakeDamage(keys)
+	if self.parent:GetUnitName() ~= "npc_druid_treant_lv2"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv4"
+	and self.parent:GetUnitName() ~= "npc_druid_treant_lv6" then
+		return
+	end
+
+    if keys.unit ~= self.parent then return end
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
+
+    local efx = nil
+    --if keys.damage_type == DAMAGE_TYPE_PHYSICAL then efx = OVERHEAD_ALERT_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
+    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
+
+    if keys.inflictor ~= nil then
+        if keys.inflictor:GetClassname() == "ability_lua" then
+            if keys.inflictor:GetAbilityName() == "shadow_0__toxin" 
+            or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
+                efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
+            end
+        end
+    end
+
+    if efx == nil then return end
+    SendOverheadEventMessage(nil, efx, self.self.parent, keys.damage, self.self.parent)
+end
+
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------

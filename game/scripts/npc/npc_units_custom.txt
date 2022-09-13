@@ -606,6 +606,213 @@
 			}
 		}
 
+		"npc_druid_treant_lv2"	
+		{
+			"Model"					"models/items/furion/treant/np_desert_traveller_treant/np_desert_traveller_treant.vmdl"	// Model.
+			"BaseClass"				"npc_dota_creature"
+			"SoundSet"				""
+			"GameSoundsFile"		""
+			"Level"					"2"
+			//"ModelScale" 			"1.2"
+
+			// Abilities
+			//----------------------------------------------------------------
+			"Ability1"					""			// Ability 1
+			"Ability2"					""			// Ability 2
+			"Ability3"					""			// Ability 3
+			"Ability4"					""			// Ability 4
+
+			// Armor
+			//----------------------------------------------------------------
+			"ArmorPhysical"				"8"			// Physical protection.
+			"MagicalResistance"        	"0"
+
+			// Attack
+			//----------------------------------------------------------------
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"			"80"		// Damage range min.
+			"AttackDamageMax"			"90"		// Damage range max.
+			"AttackRate"				"1"		// Speed of attack.
+			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
+			"AttackRange"				"120"		// Range within a target can be attacked.
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+			// Bounds
+			//----------------------------------------------------------------
+			"RingRadius"				"40"
+			"HealthBarOffset"			"170"
+
+			// Bounty
+			//----------------------------------------------------------------
+			"BountyXP"					"0"		// Experience earn.
+			"BountyGoldMin"				"0"	// Gold earned min.
+			"BountyGoldMax"				"0"		// Gold earned max.
+
+			// Movement
+			//----------------------------------------------------------------
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementSpeed"				"275"		// Speed.			
+
+			// Status
+			//----------------------------------------------------------------
+			"StatusHealth"				"400"		// Base health.
+			"StatusHealthRegen"			"5"			// Health regeneration rate.
+			"StatusMana"				"0"			// Base mana.
+			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+			
+			// Vision
+			//----------------------------------------------------------------
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+
+			// Team
+			//----------------------------------------------------------------
+			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		}
+
+		"npc_druid_treant_lv4"	
+		{
+			"Model"					"models/items/furion/treant/allfather_of_nature_treant/allfather_of_nature_treant.vmdl"	// Model.
+			"BaseClass"				"npc_dota_creature"
+			"SoundSet"				""
+			"GameSoundsFile"		""
+			"Level"					"4"
+			"ModelScale" 			"1.1"
+
+			// Abilities
+			//----------------------------------------------------------------
+			"Ability1"					""			// Ability 1
+			"Ability2"					""			// Ability 2
+			"Ability3"					""			// Ability 3
+			"Ability4"					""			// Ability 4
+
+			// Armor
+			//----------------------------------------------------------------
+			"ArmorPhysical"				"10"			// Physical protection.
+			"MagicalResistance"        	"10"
+
+			// Attack
+			//----------------------------------------------------------------
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"			"110"		// Damage range min.
+			"AttackDamageMax"			"120"		// Damage range max.
+			"AttackRate"				"1.2"		// Speed of attack.
+			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
+			"AttackRange"				"120"		// Range within a target can be attacked.
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+			// Bounds
+			//----------------------------------------------------------------
+			"RingRadius"				"40"
+			"HealthBarOffset"			"170"
+
+			// Bounty
+			//----------------------------------------------------------------
+			"BountyXP"					"0"		// Experience earn.
+			"BountyGoldMin"				"0"	// Gold earned min.
+			"BountyGoldMax"				"0"		// Gold earned max.
+
+			// Movement
+			//----------------------------------------------------------------
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementSpeed"				"300"		// Speed.			
+
+			// Status
+			//----------------------------------------------------------------
+			"StatusHealth"				"700"		// Base health.
+			"StatusHealthRegen"			"15"			// Health regeneration rate.
+			"StatusMana"				"0"			// Base mana.
+			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+			
+			// Vision
+			//----------------------------------------------------------------
+			"VisionDaytimeRange"		"400"		// Range of vision during day light.
+			"VisionNighttimeRange"		"1000"		// Range of vision at night time.
+
+			// Team
+			//----------------------------------------------------------------
+			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		}
+
+		"npc_druid_treant_lv6"	
+		{
+			"Model"					"models/items/furion/treant/fungal_lord_shroomthing/fungal_lord_shroomthing.vmdl"	// Model.
+			"BaseClass"				"npc_dota_creature"
+			"SoundSet"				""
+			"GameSoundsFile"		""
+			"Level"					"6"
+			"ModelScale" 			"1.3"
+
+			// Abilities
+			//----------------------------------------------------------------
+			"Ability1"					""			// Ability 1
+			"Ability2"					""			// Ability 2
+			"Ability3"					""			// Ability 3
+			"Ability4"					""			// Ability 4
+
+			// Armor
+			//----------------------------------------------------------------
+			"ArmorPhysical"				"15"			// Physical protection.
+			"MagicalResistance"        	"50"
+
+			// Attack
+			//----------------------------------------------------------------
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"			"250"		// Damage range min.
+			"AttackDamageMax"			"300"		// Damage range max.
+			"AttackRate"				"1.6"		// Speed of attack.
+			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
+			"AttackRange"				"140"		// Range within a target can be attacked.
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+			// Bounds
+			//----------------------------------------------------------------
+			"RingRadius"				"40"
+			"HealthBarOffset"			"170"
+
+			// Bounty
+			//----------------------------------------------------------------
+			"BountyXP"					"0"		// Experience earn.
+			"BountyGoldMin"				"0"	// Gold earned min.
+			"BountyGoldMax"				"0"		// Gold earned max.
+
+			// Movement
+			//----------------------------------------------------------------
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"MovementSpeed"				"275"		// Speed.			
+
+			// Status
+			//----------------------------------------------------------------
+			"StatusHealth"				"1250"		// Base health.
+			"StatusHealthRegen"			"7.5"			// Health regeneration rate.
+			"StatusMana"				"0"			// Base mana.
+			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+			
+			// Vision
+			//----------------------------------------------------------------
+			"VisionDaytimeRange"		"450"		// Range of vision during day light.
+			"VisionNighttimeRange"		"350"		// Range of vision at night time.
+
+			// Team
+			//----------------------------------------------------------------
+			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		}
+
 	"fountain_building"	
 	{
 		// General

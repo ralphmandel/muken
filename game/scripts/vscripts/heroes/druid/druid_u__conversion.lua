@@ -2,7 +2,7 @@ druid_u__conversion = class({})
 LinkLuaModifier("druid_u_modifier_channel", "heroes/druid/druid_u_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_conversion", "heroes/druid/druid_u_modifier_conversion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_passive", "heroes/druid/druid_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

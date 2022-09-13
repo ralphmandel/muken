@@ -65,8 +65,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"450"		// Range of vision during day light.
+			"VisionNighttimeRange"		"350"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -151,8 +151,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"600"		// Range of vision during day light.
+			"VisionNighttimeRange"		"600"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -236,8 +236,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"300"		// Range of vision during day light.
+			"VisionNighttimeRange"		"300"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -321,8 +321,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"400"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -406,8 +406,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"450"		// Range of vision during day light.
+			"VisionNighttimeRange"		"450"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -463,7 +463,7 @@
 			"AttackRate"				"0.8"		// Speed of attack.
 			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"350"		// Range within a target can be attacked.
+			"AttackRange"				"450"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"950"		// Speed of projectile.
 
@@ -492,8 +492,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"500"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -577,8 +577,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"350"		// Range of vision during day light.
+			"VisionNighttimeRange"		"300"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -662,8 +662,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"400"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -748,8 +748,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"375"		// Range of vision during day light.
+			"VisionNighttimeRange"		"275"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -833,8 +833,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"375"		// Range of vision during day light.
+			"VisionNighttimeRange"		"275"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -918,8 +918,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"450"		// Range of vision during day light.
+			"VisionNighttimeRange"		"350"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1003,8 +1003,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"450"		// Range of vision during day light.
+			"VisionNighttimeRange"		"350"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1088,8 +1088,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"700"		// Range of vision during day light.
+			"VisionNighttimeRange"		"600"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------
@@ -1173,8 +1173,8 @@
 			
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"900"		// Range of vision during day light.
-			"VisionNighttimeRange"		"900"		// Range of vision at night time.
+			"VisionDaytimeRange"		"500"		// Range of vision during day light.
+			"VisionNighttimeRange"		"400"		// Range of vision at night time.
 
 			// Team
 			//----------------------------------------------------------------

@@ -70,7 +70,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
         target:AddNewModifier(caster, self, "druid_5_modifier_entangled", {duration = duration})
 
-        -- UP 6.42
+        -- UP 5.42
         if self:GetRank(42) then
             self:ApplySuperRoot(target)
             self:PlayEfxSuperRoot(target)
@@ -166,12 +166,12 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     end
 
     function druid_5__entangled:CheckAbilityCharges(charges)
-        -- UP 6.21
+        -- UP 5.21
         if self:GetRank(21) then
             charges = charges * 2
         end
 
-        -- UP 6.41
+        -- UP 5.41
         if self:GetRank(41) then
             charges = charges * 3
         end
