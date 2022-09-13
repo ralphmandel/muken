@@ -103,7 +103,19 @@ function druid_2_modifier_armor:OnIntervalThink()
 	local heal = self.heal
 	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end
-	if heal >= 1 then self.parent:Heal(heal, self.ability) end
+
+	local lotus_mod = self.parent:FindModifierByName("druid_3_modifier_totem")
+	if lotus_mod then
+		if lotus_mod.min_health < self.parent:GetMaxHealth() then
+			lotus_mod.disable_heal = 0
+			lotus_mod.min_health = lotus_mod.min_health + 1
+
+			self.parent:Heal(1, self.ability)
+			lotus_mod.disable_heal = 1
+		end
+	else
+		self.parent:Heal(heal, self.ability)
+	end
 
 	-- UP 2.41
 	if self.ability:GetRank(41) then
@@ -126,7 +138,7 @@ function druid_2_modifier_armor:ChangeStats(bonus, stat_convert, add, remove)
 end
 
 function druid_2_modifier_armor:FindAllies(heal)
-	local chance = 70
+	local chance = 50
 
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 800,

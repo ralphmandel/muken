@@ -154,7 +154,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_5__entangled:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range = cast_range + 1200 end
         return cast_range
     end
 

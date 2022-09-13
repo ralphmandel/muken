@@ -104,8 +104,8 @@
 		//"Ability5"					"mk_roar"
 		//"Ability6"					"mk_bite"
 
-		"ArmorPhysical"				"30"			// Physical protection.
-		"MagicalResistance"        	"20"
+		"ArmorPhysical"				"15"			// Physical protection.
+		"MagicalResistance"        	"25"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"225"		// Damage range min.
@@ -125,12 +125,12 @@
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"450"		// Speed.			
 
-		"StatusHealth"				"4500"		// Base health.
+		"StatusHealth"				"5000"		// Base health.
 		"StatusHealthRegen"			"10"			// Health regeneration rate.
 		"StatusMana"				"750"			// Base mana.
 		"StatusManaRegen"			"5"		// Mana regeneration rate.		 
-		"VisionDaytimeRange"		"700"		// Range of vision during day light.
-		"VisionNighttimeRange"		"500"		// Range of vision at night time.
+		"VisionDaytimeRange"		"550"		// Range of vision during day light.
+		"VisionNighttimeRange"		"450"		// Range of vision at night time.
 
 		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"

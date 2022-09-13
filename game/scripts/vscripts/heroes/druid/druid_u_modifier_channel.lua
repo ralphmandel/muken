@@ -40,9 +40,24 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function druid_u_modifier_channel:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
+	}
+
+	return funcs
+end
+
+function druid_u_modifier_channel:GetModifierConstantManaRegen()
+	return -self:GetAbility():GetManaCost(self:GetAbility():GetLevel())
+end
+
 function druid_u_modifier_channel:OnIntervalThink()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
+	local mana_loss = self.ability:GetSpecialValueFor("mana_loss")
 	local base_stats = self.parent:FindAbilityByName("base_stats")
+
+	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
@@ -59,6 +74,8 @@ function druid_u_modifier_channel:OnIntervalThink()
 		and unit:GetUnitName() ~= "summoner_spider" then
 			unit:Purge(false, true, false, false, false)
 			unit:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
+			
+			if IsServer() then unit:EmitSound("Druid.Finish") end
 		end
 	end
 
@@ -67,18 +84,10 @@ function druid_u_modifier_channel:OnIntervalThink()
 		self:ApplySlow()
 	end
 
-	-- UP 6.12
-	if self.ability:GetRank(12) then
-		self:ApplyHeal()
-	end
-
 	-- UP 6.21
 	if self.ability:GetRank(21) then
 		self:ConvertTrees()
 	end
-
-	self.parent:SpendMana(self.ability:GetManaCost(self.ability:GetLevel()), self.ability)
-	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
 	if IsServer() then self:StartIntervalThink(self.interval) end
 end
@@ -95,7 +104,7 @@ function druid_u_modifier_channel:ApplySlow()
 	for _,enemy in pairs(enemies) do
 		local mod = enemy:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 			duration = self.interval,
-			percent = 40
+			percent = 70
 		})
 
 		mod:AddParticle(
@@ -105,23 +114,6 @@ function druid_u_modifier_channel:ApplySlow()
 			),
 			false, false, -1, false, false
 		)
-	end
-end
-
-function druid_u_modifier_channel:ApplyHeal()
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-
-	local allies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
-	)
-
-	for _,ally in pairs(allies) do
-		local heal = 10
-		if base_stats then heal = heal * base_stats:GetHealPower() end
-		ally:Heal(heal, self.ability)
-		self:PlayEfxHeal(ally)
 	end
 end
 
@@ -140,7 +132,7 @@ function druid_u_modifier_channel:ConvertTrees()
 
 	for _,tree in pairs(trees) do
 		local unit_lvl = RandomInt(1, 3)
-		local chance = 100 / (unit_lvl * chance_lvl * 4)
+		local chance = 100 / (unit_lvl * chance_lvl * 2)
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance then
@@ -148,7 +140,11 @@ function druid_u_modifier_channel:ConvertTrees()
 			tree:CutDown(self.parent:GetTeamNumber())
 
 			local treant = CreateUnitByName(treants[unit_lvl], origin, true, self.caster, self.caster, self.caster:GetTeamNumber())
-			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
+			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {
+				duration = self.ability:CalcStatus(30, self.caster, self.parent)
+			})
+
+			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end
 		end
 	end
 end

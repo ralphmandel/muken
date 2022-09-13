@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"15"
+				"percent"		"20"
 			}
 		}
 	}
@@ -215,7 +215,7 @@
 		"AbilityCastPoint"       		"0.0"
 
 		"AbilityManaCost"         		"100"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"15"
 
 
 		"AbilitySpecial"
@@ -223,12 +223,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"10"
+				"duration"			"12"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_percent"	"175"
+				"return_percent"	"225"
 			}
 		}
 	}
@@ -245,14 +245,14 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityManaCost"         		"35"
+		"AbilityManaCost"         		"40"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"slow"				"50"
+				"slow"				"70"
 			}
 		}
 	}
@@ -341,7 +341,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"50"
+				"damage"				"75"
 			}
 			"04"
 			{
@@ -367,7 +367,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
 		"AbilityManaCost"         		"60"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"10"
 		"AbilityCastRange"    		   	"550"
 
 		"AbilitySpecial"
@@ -375,7 +375,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2"
+				"stun_duration"			"2.5"
 			}
 			"02"
 			{
@@ -385,12 +385,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"flame_duration"		"7"
+				"flame_duration"		"7.5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"flame_damage"			"40"
+				"flame_damage"			"50"
 			}
 		}
 	}

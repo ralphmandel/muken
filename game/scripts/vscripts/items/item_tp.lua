@@ -67,6 +67,7 @@ function item_tp:OnChannelFinish( bInterrupted )
 		self:StartCooldown(5)
 	else -- successful
 		caster:StartGesture(ACT_DOTA_TELEPORT_END)
+
 		self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
 
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Disappear", caster)
@@ -88,6 +89,10 @@ end
 
 function item_tp:GetCooldown(iLevel)
 	return self.cooldown
+end
+
+function item_tp:SetCooldown(cd)
+	self.cooldown = cd
 end
 
 function item_tp:GetChannelTime()

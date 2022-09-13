@@ -130,6 +130,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:PlayEfxHeal(hTarget)
     end
 
+    function druid_2__armor:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 0 end
+        return cast_range
+    end
+
     function druid_2__armor:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -138,6 +145,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_2__armor:CheckAbilityCharges(charges)
+       -- UP 2.31
+        if self:GetRank(31) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

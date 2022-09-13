@@ -86,6 +86,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local max_dominate = self:GetSpecialValueFor("max_dominate")
         local unit_lvl = unit:GetLevel()
 
+        -- UP 6.32
+        if self:GetRank(32) then
+            max_dominate = max_dominate + 10
+        end
+
         if self:GetCurrentTableLvl() + unit_lvl > max_dominate then
             self:GetWeakerUnit():Kill(nil, nil)
             self:AddUnit(unit)
@@ -140,6 +145,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         return self:GetSpecialValueFor("radius")
     end
 
+    function druid_u__conversion:GetCastRange(vLocation, hTarget)
+        return self:GetSpecialValueFor("cast_range")
+    end
+
     function druid_u__conversion:GetChannelAnimation()
         return ACT_DOTA_VICTORY
     end
@@ -152,6 +161,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function druid_u__conversion:CheckAbilityCharges(charges)
+        -- UP 6.31
+        if self:GetRank(31) then
+            local item_tp = self:GetCaster():FindItemInInventory("item_tp")
+            if item_tp then item_tp:SetCooldown(0) end
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

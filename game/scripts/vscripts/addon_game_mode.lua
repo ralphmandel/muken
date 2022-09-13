@@ -75,6 +75,9 @@
 				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_bramble_root.vpcf", context )
 				PrecacheResource( "particle", "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf", context )
 				PrecacheResource( "particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_bear_entangle_retro_cauldron.vpcf", context )
 
 			--creatures
 				PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_chemical_rage_aurelian.vpcf", context )

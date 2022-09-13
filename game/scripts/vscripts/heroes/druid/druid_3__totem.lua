@@ -67,6 +67,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
+
+        -- UP 3.12
+        if self:GetRank(12) then
+            duration = duration + 10
+        end
     
         local totem = CreateUnitByName("npc_druid_totem", point, true, caster, caster, caster:GetTeamNumber())        
         totem:AddNewModifier(caster, self, "druid_3_modifier_totem", {duration = duration})        
@@ -95,11 +100,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_3__totem:CheckAbilityCharges(charges)
-        -- UP 3.12
-        if self:GetRank(12) then
-            charges = charges * 2 --cast range
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
