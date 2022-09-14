@@ -3,6 +3,7 @@ LinkLuaModifier("dasdingo_3_modifier_passive", "heroes/dasdingo/dasdingo_3_modif
 LinkLuaModifier("dasdingo_3_modifier_fire", "heroes/dasdingo/dasdingo_3_modifier_fire", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_3_modifier_ignition", "heroes/dasdingo/dasdingo_3_modifier_ignition", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

@@ -57,7 +57,7 @@
 		{
 			"0"
 			{
-				"1"   "striker_3__portal_rank_21"
+				"1"   "striker_3__portal_rank_11"
 			}
 			"1"
 			{

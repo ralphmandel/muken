@@ -55,9 +55,8 @@ function GameSetup:init()
     GameMode:SetDaynightCycleDisabled(false)
 	XP_PER_LEVEL_TABLE = {
         10, 20, 30, 40, 50, 60,
-        70, 80, 90, 100, 110, 120,
-        135, 150, 165, 180,
-        195, 210, 225, 240
+        75, 90, 105, 120, 135, 150,
+        170, 190, 210, 230, 250, 270
 	}
     GameMode:SetCustomXPRequiredToReachNextLevel(XP_PER_LEVEL_TABLE)
     GameMode:SetUseCustomHeroLevels(true)

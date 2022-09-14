@@ -156,7 +156,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_level"				"24"
+				"max_level"				"27"
 			}
 			"02"
 			{

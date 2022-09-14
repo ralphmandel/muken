@@ -36,7 +36,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local level = caster:GetLevel()
 				if caster:IsIllusion() then return end
 
-				self:IncrementSpenderPoints(2, 3)
+				self:IncrementSpenderPoints(2, 2)
 				for _, stat in pairs(self.stats_primary) do
 					self:IncrementSubLevel(stat, self.bonus_level[stat])
 				end
@@ -137,7 +137,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 									self:IncrementFraction(stat, value * 3)
 								elseif stat_type == "bonus_level" then
 									self.bonus_level[stat] = value
-									self:IncrementSubLevel(stat, value)
+									--self:IncrementSubLevel(stat, value)
 								end
 							end
 						end
@@ -194,11 +194,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.has_crit = false
 
 				-- INIT
-				self.total_range = self.range * self.stat_init["STR"]
-				self.total_status_resist = self.status_resist * self.stat_init["STR"]
-				self.total_movespeed = self.base_movespeed + (self.movespeed * self.stat_init["AGI"])
-				self.total_debuff_amp = self.debuff_amp * self.stat_init["INT"]
-				self.total_health_regen = self.health_regen * self.stat_init["CON"]
+				self.total_range = self.range * (self.stat_init["STR"] + 1)
+				self.total_status_resist = self.status_resist * (self.stat_init["STR"] + 1)
+				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"] + 1))
+				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"] + 1)
+				self.total_health_regen = self.health_regen * (self.stat_init["CON"] + 1)
 			end
 		end
 
@@ -383,11 +383,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:IncrementSubLevel(stat, value)
 			if IsServer() then
 				self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
-				if self.stat_sub_level[stat] > 1 then
+				if self.stat_sub_level[stat] >= 1 then
 					self.stat_sub_level[stat] = self.stat_sub_level[stat] - 1
 					self.stat_base[stat] = self.stat_base[stat] + 1
 					self:IncrementFraction(stat, 3)
 					self:CalculateStats(0, 0, stat)
+					self:IncrementSubLevel(stat, 0)
 				end
 			end
 		end

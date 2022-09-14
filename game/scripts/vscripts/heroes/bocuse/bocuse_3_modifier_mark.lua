@@ -48,6 +48,21 @@ function bocuse_3_modifier_mark:OnRemoved()
 			ability = self.ability
 		})
 	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_break")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_silence")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

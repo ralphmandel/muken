@@ -60,8 +60,8 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
             charges = charges * 2 -- cast point
         end
 
-        -- UP 4.31
-        if self:GetRank(31) then
+        -- UP 4.41
+        if self:GetRank(41) then
             charges = charges * 3 -- AoE radius
         end
 
@@ -80,7 +80,7 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
         if target:TriggerSpellAbsorb(self) then return false end
 
-        self.hammer_radius = self:GetSpecialValueFor("hammer_radius")
+        self.hammer_radius = self:GetAOERadius()
         self:PlayEfxStart(target, self.hammer_radius, true)
 
         return true
@@ -99,7 +99,7 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
         if target:TriggerSpellAbsorb(self) then return true end
 
-        local hammer_radius = self:GetSpecialValueFor("hammer_radius")
+        local hammer_radius = self:GetAOERadius()
         self:PlayEfxStart(target, hammer_radius, false)
 
         Timers:CreateTimer((self:GetCastPoint()), function()
@@ -128,9 +128,8 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
             stun_duration = (self:GetSpecialValueFor("stun_duration") + 0.75) * level
         end
 
-        -- UP 4.41
-        if self:GetRank(41) then
-            damage = (self:GetAbilityDamage() + 25) * level
+        -- UP 4.31
+        if self:GetRank(31) then
             isDamageRadius = true
         end
 
@@ -204,7 +203,7 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
     function striker_4__hammer:GetAOERadius()
         local hammer_radius = self:GetSpecialValueFor("hammer_radius")
         if self:GetCurrentAbilityCharges() == 0 then return hammer_radius end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return hammer_radius + 125 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return hammer_radius + 100 end
         return hammer_radius
     end
 
@@ -212,7 +211,6 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return (manacost + 25) * level end
         return manacost * level
     end
 

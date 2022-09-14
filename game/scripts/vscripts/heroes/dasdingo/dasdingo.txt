@@ -128,17 +128,22 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "5"
+				"min_stack"		    "5"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stun_duration" 	"1"
+				"stun_base" 	    "1"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stun_mult" 	    "0.1"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blast_damage"		"50"
+				"blast_damage"		"40"
 			}
 			"14"
 			{

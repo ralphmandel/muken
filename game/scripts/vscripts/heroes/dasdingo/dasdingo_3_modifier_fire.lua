@@ -21,7 +21,6 @@ function dasdingo_3_modifier_fire:OnCreated(kv)
 
 	local intervals = 0.6
 	local fire_damage = self.ability:GetSpecialValueFor("fire_damage") * intervals
-	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
 
 	self.damageTable = {
 		victim = self.parent,
@@ -31,14 +30,15 @@ function dasdingo_3_modifier_fire:OnCreated(kv)
 		ability = self.ability
 	}
 
-	if IsServer() then
-		local stack_init = 1
-		local mod = self.parent:FindAllModifiersByName("_modifier_stun")
-		for _,modifier in pairs(mod) do
-			if modifier:GetAbility() == self.ability then stack_init = 0 end
-		end
+	-- UP 3.11
+	if self.ability:GetRank(11) then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			percent = 15
+		})
+	end
 
-		self:SetStackCount(stack_init)
+	if IsServer() then
+		self:SetStackCount(1)
 		self:StartIntervalThink(intervals)
 		self.parent:EmitSound("Dasdingo.Fire.Loop")
 	end
@@ -46,32 +46,36 @@ end
 
 function dasdingo_3_modifier_fire:OnRefresh(kv)
 	if IsServer() then
-		local stunned = false
-		local mod = self.parent:FindAllModifiersByName("_modifier_stun")
-		for _,modifier in pairs(mod) do
-			if modifier:GetAbility() == self.ability then stunned = true end
-		end
+		self.parent:StopSound("Dasdingo.Fire.Loop")
+		self.parent:EmitSound("Dasdingo.Fire.Loop")
+	end
+end
 
-		if stunned == false then self:IncrementStackCount() end
+function dasdingo_3_modifier_fire:OnRemoved()
+	if IsServer() then self.parent:StopSound("Dasdingo.Fire.Loop") end
 
-		if self:GetStackCount() < self.max_stack then
-			self.parent:StopSound("Dasdingo.Fire.Loop")
-			self.parent:EmitSound("Dasdingo.Fire.Loop")
-			return
-		end		
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	local stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	local min_stack = self.ability:GetSpecialValueFor("min_stack")
 	local blast_damage = self.ability:GetSpecialValueFor("blast_damage")
+	local stun_base = self.ability:GetSpecialValueFor("stun_base")
+	local stun_mult = self.ability:GetSpecialValueFor("stun_mult") * self:GetStackCount()
+	local stun_total = stun_base + stun_mult
+
+	if self:GetStackCount() < min_stack then return end
 
 	self.parent:Purge(true, false, false, false, false)
-
 	self.damageTable.damage = blast_damage
 	ApplyDamage(self.damageTable)
 
+	if self.parent:IsAlive() == false then return end
+
 	-- UP 3.21
 	if self.ability:GetRank(21) then
-		stun_duration = stun_duration + 0.4
+		stun_total = stun_total * 1.25
 	end
 
 	-- UP 3.31
@@ -82,20 +86,15 @@ function dasdingo_3_modifier_fire:OnRefresh(kv)
 	-- UP 3.41
 	if self.ability:GetRank(41) then
 		self.parent:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_ignition", {
-			duration = self.ability:CalcStatus(10, self.caster, self.parent)
+			duration = self.ability:CalcStatus(7, self.caster, self.parent)
 		})
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		duration = self.ability:CalcStatus(stun_duration, self.caster, self.parent)
+		duration = self.ability:CalcStatus(stun_total, self.caster, self.parent)
 	})
 
 	self:PlayEfxBlast()
-	self:Destroy()
-end
-
-function dasdingo_3_modifier_fire:OnRemoved()
-	if IsServer() then self.parent:StopSound("Dasdingo.Fire.Loop") end
 end
 
 --------------------------------------------------------------------------------

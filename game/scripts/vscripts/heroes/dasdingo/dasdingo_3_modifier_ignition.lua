@@ -19,8 +19,8 @@ function dasdingo_3_modifier_ignition:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local intervals = 0.4
-	local fire_damage = 20 * intervals
+	local intervals = 0.95
+	local fire_damage = 20
 
 	self.damageTable = {
 		victim = self.parent,

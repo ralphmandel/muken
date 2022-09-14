@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"20"
+				"percent"		"15"
 			}
 		}
 	}
@@ -215,7 +215,7 @@
 		"AbilityCastPoint"       		"0.0"
 
 		"AbilityManaCost"         		"100"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"18"
 
 
 		"AbilitySpecial"
@@ -228,7 +228,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_percent"	"225"
+				"return_percent"	"220"
 			}
 		}
 	}

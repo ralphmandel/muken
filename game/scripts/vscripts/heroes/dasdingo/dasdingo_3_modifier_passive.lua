@@ -14,13 +14,14 @@ function dasdingo_3_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-
 	self.atk_range = 0
+
+	self.fire_duration = self.ability:GetSpecialValueFor("fire_duration")
 end
 
 function dasdingo_3_modifier_passive:OnRefresh(kv)
-	-- UP 3.11
-	if self.ability:GetRank(11) then
+	-- UP 3.22
+	if self.ability:GetRank(22) then
 		self.atk_range = 200
 	end
 end
@@ -50,11 +51,7 @@ function dasdingo_3_modifier_passive:OnAttackFail(keys)
 
 	-- UP 3.22
 	if self.ability:GetRank(22) then
-		local fire_duration = self.ability:GetSpecialValueFor("fire_duration") + 5
-
-		keys.target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
-			duration = self.ability:CalcStatus(fire_duration, self.caster, keys.target)
-		})
+		self:AddFire(keys.target)
 	end
 end
 
@@ -62,14 +59,25 @@ function dasdingo_3_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if self.parent:PassivesDisabled() then return end
 
-	local fire_duration = self.ability:GetSpecialValueFor("fire_duration")
+	self:AddFire(keys.target)
+end
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
-		fire_duration = fire_duration + 5
+function dasdingo_3_modifier_passive:AddFire(target)
+	local bStunned = false
+
+	local mod = target:FindAllModifiersByName("_modifier_stun")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then bStunned = true end
 	end
 
-	keys.target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
-		duration = self.ability:CalcStatus(fire_duration, self.caster, keys.target)
-	})
+	if bStunned == false then
+		local mod = target:FindModifierByNameAndCaster("dasdingo_3_modifier_fire", self.caster)
+		if mod then
+			mod:IncrementStackCount()
+		else
+			target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
+				duration = self.ability:CalcStatus(self.fire_duration, self.caster, target)
+			})
+		end
+	end
 end
