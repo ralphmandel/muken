@@ -64,8 +64,8 @@
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"bosses/_boss_gorillaz"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"     		"spellicon"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"bosses/mk_rage"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"4"

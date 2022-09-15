@@ -185,7 +185,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_crit"			"300"
+				"stun_crit"			"200"
 			}
 			"02"
 			{
@@ -228,7 +228,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_percent"	"220"
+				"return_percent"	"200"
 			}
 		}
 	}
@@ -341,12 +341,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"75"
+				"damage"				"70"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"12"
+				"armor_reduction"		"10"
 			}
 		}
 	}

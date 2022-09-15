@@ -164,7 +164,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         -- UP 6.31
         if self:GetRank(31) then
             local item_tp = self:GetCaster():FindItemInInventory("item_tp")
-            if item_tp then item_tp:SetCooldown(0) end
+            if item_tp then
+                item_tp:SetCooldown(0)
+                item_tp:SetCurrentAbilityCharges(2)
+            end
         end
 
         self:SetCurrentAbilityCharges(charges)

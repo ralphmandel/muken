@@ -35,7 +35,7 @@ function druid_2_modifier_armor:OnCreated(kv)
 
 	-- UP 2.21
 	if self.ability:GetRank(21) then
-		self.status_resist = 50
+		self.status_resist = 35
 	end
 
 	-- UP 2.22

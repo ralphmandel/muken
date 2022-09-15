@@ -624,15 +624,15 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"8"			// Physical protection.
+			"ArmorPhysical"				"5"			// Physical protection.
 			"MagicalResistance"        	"0"
 
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"25"		// Damage range min.
-			"AttackDamageMax"			"30"		// Damage range max.
-			"AttackRate"				"1.1"		// Speed of attack.
+			"AttackDamageMin"			"30"		// Damage range min.
+			"AttackDamageMax"			"35"		// Damage range max.
+			"AttackRate"				"0.9"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"120"		// Range within a target can be attacked.
@@ -657,7 +657,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"325"		// Base health.
+			"StatusHealth"				"350"		// Base health.
 			"StatusHealthRegen"			"3"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
@@ -693,15 +693,15 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"10"			// Physical protection.
+			"ArmorPhysical"				"8"			// Physical protection.
 			"MagicalResistance"        	"10"
 
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"35"		// Damage range min.
-			"AttackDamageMax"			"40"		// Damage range max.
-			"AttackRate"				"0.9"		// Speed of attack.
+			"AttackDamageMin"			"40"		// Damage range min.
+			"AttackDamageMax"			"45"		// Damage range max.
+			"AttackRate"				"0.7"		// Speed of attack.
 			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
 			"AttackRange"				"120"		// Range within a target can be attacked.
@@ -726,7 +726,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"400"		// Base health.
+			"StatusHealth"				"500"		// Base health.
 			"StatusHealthRegen"			"5"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
@@ -762,7 +762,7 @@
 
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"12"			// Physical protection.
+			"ArmorPhysical"				"15"			// Physical protection.
 			"MagicalResistance"        	"50"
 
 			// Attack
@@ -795,7 +795,7 @@
 
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"600"		// Base health.
+			"StatusHealth"				"700"		// Base health.
 			"StatusHealthRegen"			"6"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"		// Mana regeneration rate.		 

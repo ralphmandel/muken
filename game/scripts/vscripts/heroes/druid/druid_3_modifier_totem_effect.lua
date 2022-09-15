@@ -59,10 +59,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function druid_3_modifier_totem_effect:ApplyINT()
-	self.ability:AddBonus("_1_INT", self.parent, 16, 0, nil)
+	self.ability:AddBonus("_1_INT", self.parent, 20, 0, nil)
 
 	if self.parent:IsHero() == false then
-		self.mp_regen = 8
+		self.mp_regen = 10
 	end
 end
 

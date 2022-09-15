@@ -104,7 +104,7 @@
 		//"Ability5"					"mk_roar"
 		//"Ability6"					"mk_bite"
 
-		"ArmorPhysical"				"15"			// Physical protection.
+		"ArmorPhysical"				"40"			// Physical protection.
 		"MagicalResistance"        	"25"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
@@ -126,7 +126,7 @@
 		"MovementSpeed"				"450"		// Speed.			
 
 		"StatusHealth"				"5000"		// Base health.
-		"StatusHealthRegen"			"10"			// Health regeneration rate.
+		"StatusHealthRegen"			"25"			// Health regeneration rate.
 		"StatusMana"				"750"			// Base mana.
 		"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 		"VisionDaytimeRange"		"550"		// Range of vision during day light.

@@ -2,15 +2,17 @@ item_tp = class({})
 
 function item_tp:Spawn()
 	self.cooldown = 60
+	self:SetCurrentAbilityCharges(1)
 end
 
 -----------------------------------------------------------
 
 function item_tp:OnSpellStart()
 	local caster = self:GetCaster()
+	self.location = self:GetCursorPosition()
 	local start_pfx_name = "particles/items2_fx/teleport_start.vpcf"
 	local end_pfx_name = "particles/items2_fx/teleport_end.vpcf"
-	self.location = self:RandomizePlayerSpawn(caster)
+	if self.location == nil then self.location = self:RandomizePlayerSpawn(caster) end
 
 	self.gesture = ACT_DOTA_TELEPORT
 	if caster:GetUnitName() == "npc_dota_hero_furion" then
@@ -59,7 +61,7 @@ function item_tp:OnChannelThink( fInterval )
 end
 
 function item_tp:OnChannelFinish( bInterrupted )
-	local caster = self:GetCaster()
+	local caster = self:GetCaster()	
 	self:SetActivated(true)
 	caster:FadeGesture(self.gesture)
 
@@ -67,7 +69,6 @@ function item_tp:OnChannelFinish( bInterrupted )
 		self:StartCooldown(5)
 	else -- successful
 		caster:StartGesture(ACT_DOTA_TELEPORT_END)
-
 		self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
 
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Disappear", caster)
@@ -99,4 +100,10 @@ function item_tp:GetChannelTime()
 	local channel = self:GetCaster():FindAbilityByName("_channel")
 	local channel_time = self:GetSpecialValueFor("channel_time")
 	return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
+end
+
+function item_tp:GetBehavior()
+	local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	if self:GetCurrentAbilityCharges() == 2 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED end
+	return behavior + DOTA_ABILITY_BEHAVIOR_CHANNELLED
 end

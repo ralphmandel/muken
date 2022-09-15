@@ -55,9 +55,15 @@ end
 function druid_u_modifier_channel:OnIntervalThink()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
 	local mana_loss = self.ability:GetSpecialValueFor("mana_loss")
+	local max_dominate = self:GetSpecialValueFor("max_dominate")
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
+
+	-- UP 6.32
+	if self.ability:GetRank(32) then
+		max_dominate = max_dominate + 10
+	end
 
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
@@ -71,6 +77,7 @@ function druid_u_modifier_channel:OnIntervalThink()
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance
+		and unit_lvl <= max_dominate
 		and unit:GetUnitName() ~= "summoner_spider" then
 			unit:Purge(false, true, false, false, false)
 			unit:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})

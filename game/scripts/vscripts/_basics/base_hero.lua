@@ -66,7 +66,7 @@ require("talent_tree")
 		local points = 3
 
 		--if level >= 7 then points = points + 1 end
-		if level >= 15 then points = points + 1 end
+		if level >= 12 then points = points + 1 end
 
 		for i = 1, 5, 1 do
 			local skill = caster:FindAbilityByName(self.skills[i])
