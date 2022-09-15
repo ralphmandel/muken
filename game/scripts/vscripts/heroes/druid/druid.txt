@@ -328,7 +328,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"chance_lvl"		"4"
+				"chance_lvl"		"2.5"
 			}
             "03"
 			{

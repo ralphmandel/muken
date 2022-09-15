@@ -77,6 +77,8 @@ function druid_u_modifier_channel:OnIntervalThink()
 			
 			if IsServer() then unit:EmitSound("Druid.Finish") end
 		end
+
+		break
 	end
 
 	-- UP 6.11
@@ -132,7 +134,7 @@ function druid_u_modifier_channel:ConvertTrees()
 
 	for _,tree in pairs(trees) do
 		local unit_lvl = RandomInt(1, 3)
-		local chance = 100 / (unit_lvl * chance_lvl * 2)
+		local chance = 100 / (unit_lvl * chance_lvl)
 		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance then
@@ -146,6 +148,8 @@ function druid_u_modifier_channel:ConvertTrees()
 
 			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end
 		end
+
+		break
 	end
 end
 
