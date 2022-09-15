@@ -30,10 +30,6 @@ end
 
 function druid_1_modifier_root_effect:OnRemoved()
 	if self.parent:HasModifier("druid_1_modifier_miniroot_effect") then return end
-	local mod = self.parent:FindAllModifiersByName("druid_1_modifier_root_damage")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -58,7 +54,6 @@ function druid_1_modifier_root_effect:ApplyDebuff()
 	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	local root_duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent)
 
-	self.parent:AddNewModifier(self.caster, self.ability, "druid_1_modifier_root_damage", {})
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {duration = root_duration, effect = 5})
 end
 

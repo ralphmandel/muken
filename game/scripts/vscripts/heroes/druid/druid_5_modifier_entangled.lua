@@ -33,7 +33,7 @@ function druid_5_modifier_entangled:OnCreated(kv)
 
 	-- UP 5.31
 	if self.ability:GetRank(31) then
-		self.incoming = self.incoming - 20
+		self.incoming = self.incoming - 25
 		self.broken = true
 	end
 

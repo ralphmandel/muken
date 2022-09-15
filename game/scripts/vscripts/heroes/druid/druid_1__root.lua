@@ -162,7 +162,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_1__root:GetCastRange(vLocation, hTarget)
         local distance = self:GetSpecialValueFor("distance")
         if self:GetCurrentAbilityCharges() == 0 then return distance end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then distance = distance + 600 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then distance = distance + 900 end
         return distance
     end
 

@@ -96,7 +96,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
                 ApplyDamage(damageTable)
 
                 unit:AddNewModifier(caster, self, "_modifier_root", {
-                    duration = self:CalcStatus(4, caster, unit),
+                    duration = self:CalcStatus(5, caster, unit),
                     effect = 6
                 })
             end

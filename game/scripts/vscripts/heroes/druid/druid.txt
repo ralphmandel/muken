@@ -26,7 +26,6 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"25 26 27 28 29 30 31 32 33 34 35 36"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
@@ -62,7 +61,7 @@
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"root_interval"	    "5"
+				"root_interval"	    "4"
 			}
             "13"
 			{
@@ -260,7 +259,7 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stun_duration"	"6"
+				"stun_duration"	"7.5"
 			}
             "02"
 			{
@@ -270,7 +269,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"leech_amount"	"25"
+				"leech_amount"	"20"
 			}
             "04"
 			{
@@ -280,7 +279,7 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"incoming"      "70"
+				"incoming"      "75"
 			}
             "12"
 			{
