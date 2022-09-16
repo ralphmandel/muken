@@ -65,8 +65,8 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
         local duration = self:CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, target)
-
         if target:TriggerSpellAbsorb(self) then return end
+        local sound = "Hero_Treant.LeechSeed.Cast"
 
         target:AddNewModifier(caster, self, "druid_5_modifier_entangled", {duration = duration})
 
@@ -76,7 +76,8 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
             self:PlayEfxSuperRoot(target)
         end
 
-        if IsServer() then caster:EmitSound("Hero_Treant.LeechSeed.Cast") end
+        if caster:HasModifier("druid_4_modifier_metamorphosis") then sound = "Hero_LoneDruid.SavageRoar.Cast" end
+        if IsServer() then caster:EmitSound(sound) end
     end
 
     function druid_5__entangled:ApplySuperRoot(target)
@@ -158,6 +159,18 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         return cast_range
     end
 
+    function druid_5__entangled:GetCastAnimation()
+        if self:GetCurrentAbilityCharges() == 0 then return ACT_DOTA_CAST_ABILITY_4 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return ACT_DOTA_CAST_ABILITY_3 end
+        return ACT_DOTA_CAST_ABILITY_4
+    end
+
+    function druid_5__entangled:GetCastPoint()
+        if self:GetCurrentAbilityCharges() == 0 then return 0.3 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return 0.2 end
+        return 0.3
+    end
+
     function druid_5__entangled:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -174,6 +187,10 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         -- UP 5.41
         if self:GetRank(41) then
             charges = charges * 3
+        end
+
+        if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") then
+            charges = charges * 5 --true form
         end
 
         self:SetCurrentAbilityCharges(charges)

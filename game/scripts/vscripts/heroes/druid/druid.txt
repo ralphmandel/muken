@@ -28,8 +28,8 @@
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityCastPoint"       		"0.5"
+		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		//"AbilityCastPoint"       		"0.5"
 
 		"AbilitySpecial"
 		{
@@ -162,7 +162,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		//"AbilityCastPoint"       		"0.3"
 		"AbilityCooldown"				"34"
 
 		"AbilitySpecial"
@@ -210,11 +210,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityCooldown"				"90"
 
 		"AbilitySpecial"
@@ -233,6 +229,16 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"heal_power"    "30 31 32 33 34 35 36"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"aspd"          "25"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"aura_radius"   "700"
 			}
             "14"
 			{
@@ -262,8 +268,8 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"       		"0.3"
+		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		//"AbilityCastPoint"       		"0.3"
 		"AbilityCooldown"				"70 68 66 64 62 60 58 56 54 52 50 48 46 44 42"
 
 		"AbilitySpecial"

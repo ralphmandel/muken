@@ -1,5 +1,6 @@
 druid_4__metamorphosis = class({})
 LinkLuaModifier("druid_4_modifier_metamorphosis", "heroes/druid/druid_4_modifier_metamorphosis", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_4_modifier_aura_effect", "heroes/druid/druid_4_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -68,6 +69,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:AddNewModifier(caster, self, "druid_4_modifier_metamorphosis", {
             duration = duration
         })
+    end
+
+    function druid_4__metamorphosis:GetAOERadius()
+        return self:GetSpecialValueFor("aura_radius")
     end
 
     function druid_4__metamorphosis:GetManaCost(iLevel)

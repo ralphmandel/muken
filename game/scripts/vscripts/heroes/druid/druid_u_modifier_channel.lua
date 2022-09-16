@@ -55,7 +55,7 @@ end
 function druid_u_modifier_channel:OnIntervalThink()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
 	local mana_loss = self.ability:GetSpecialValueFor("mana_loss")
-	local max_dominate = self:GetSpecialValueFor("max_dominate")
+	local max_dominate = self.ability:GetSpecialValueFor("max_dominate")
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end

@@ -63,15 +63,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function druid_2__armor:OnAbilityPhaseStart()
         local caster = self:GetCaster()
+        local gesture = ACT_DOTA_CAST_ABILITY_4
+        if caster:HasModifier("druid_4_modifier_metamorphosis") then gesture = ACT_DOTA_OVERRIDE_ABILITY_2 end
+
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("suffer")
-        caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+        caster:StartGesture(gesture)
         return true
     end
 
     function druid_2__armor:OnAbilityPhaseInterrupted()
         local caster = self:GetCaster()
+        local gesture = ACT_DOTA_CAST_ABILITY_4
+        if caster:HasModifier("druid_4_modifier_metamorphosis") then gesture = ACT_DOTA_OVERRIDE_ABILITY_2 end
+
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
-        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+        caster:FadeGesture(gesture)
     end
 
     function druid_2__armor:OnSpellStart()

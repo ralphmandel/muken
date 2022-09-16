@@ -72,17 +72,21 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
     function druid_1__root:OnAbilityPhaseStart()
         if IsServer() then
-            self:GetCaster():EmitSound("Druid.Root.Cast")
-            self:GetCaster():EmitSound("Hero_EarthShaker.Whoosh")
+            if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") == false then
+                self:GetCaster():EmitSound("Druid.Root.Cast")
+                self:GetCaster():EmitSound("Hero_EarthShaker.Whoosh")
+            end
         end
-        
+
         return true
     end
 
     function druid_1__root:OnAbilityPhaseInterrupted()
         if IsServer() then
-            self:GetCaster():StopSound("Druid.Root.Cast")
-            self:GetCaster():StopSound("Hero_EarthShaker.Whoosh")
+            if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") == false then
+                self:GetCaster():StopSound("Druid.Root.Cast")
+                self:GetCaster():StopSound("Hero_EarthShaker.Whoosh")
+            end
         end
     end
 
@@ -173,6 +177,18 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         return target_team
     end
 
+    function druid_1__root:GetCastAnimation()
+        if self:GetCurrentAbilityCharges() == 0 then return ACT_DOTA_CAST_ABILITY_3 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return ACT_DOTA_CAST_ABILITY_4 end
+        return ACT_DOTA_CAST_ABILITY_3
+    end
+
+    function druid_1__root:GetCastPoint()
+        if self:GetCurrentAbilityCharges() == 0 then return 0.5 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return 0.25 end
+        return 0.5
+    end
+
     function druid_1__root:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -190,6 +206,10 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
         -- UP 1.32
         if self:GetRank(32) then
             charges = charges * 3 --cast range and cliff walk
+        end
+
+        if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") then
+            charges = charges * 5 --true form
         end
 
         self:SetCurrentAbilityCharges(charges)

@@ -92,6 +92,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return cast_range
     end
 
+    function druid_3__totem:GetCastPoint()
+        if self:GetCurrentAbilityCharges() == 0 then return 0.3 end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return 0.5 end
+        return 0.3
+    end
+
     function druid_3__totem:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -100,6 +106,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function druid_3__totem:CheckAbilityCharges(charges)
+        if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") then
+            charges = charges * 5 --true form
+        end
+        
         self:SetCurrentAbilityCharges(charges)
     end
 
