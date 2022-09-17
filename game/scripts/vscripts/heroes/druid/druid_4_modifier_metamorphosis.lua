@@ -131,7 +131,7 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 		})
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(2.5, self.caster, keys.target)
+			duration = self.ability:CalcStatus(2, self.caster, keys.target)
 		})
 	end
 end

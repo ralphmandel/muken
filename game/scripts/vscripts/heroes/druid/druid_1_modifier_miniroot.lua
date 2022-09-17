@@ -60,7 +60,7 @@ function druid_1_modifier_miniroot:PlayEfxStart()
 	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 50, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_bush.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.caster)
+	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
     ParticleManager:SetParticleControl(effect_cast, 10, Vector(self:GetDuration(), 0, 0 ))
 	self:AddParticle(effect_cast, false, false, -1, false, false)

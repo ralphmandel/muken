@@ -17,7 +17,7 @@
 	}
 
 	"druid_1__root"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/druid/druid_1__root"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -41,7 +41,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"125"
+				"radius"		"150"
 			}
             "03"
 			{
@@ -82,7 +82,7 @@
 	}
 
 	"druid_2__armor"
-	{  
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/druid/druid_2__armor"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -201,7 +201,7 @@
 	}
 
 	"druid_4__metamorphosis"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/druid/druid_4__metamorphosis"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"

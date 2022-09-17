@@ -367,7 +367,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
 		"AbilityManaCost"         		"60"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"12"
 		"AbilityCastRange"    		   	"550"
 
 		"AbilitySpecial"
@@ -375,7 +375,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.5"
+				"stun_duration"			"1.5"
 			}
 			"02"
 			{
