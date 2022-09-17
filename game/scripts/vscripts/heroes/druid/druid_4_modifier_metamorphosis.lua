@@ -40,6 +40,8 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.same_target = nil
+	self.stun = false
 
 	self.heal_power = self.ability:GetSpecialValueFor("heal_power")
 	local con = self.ability:GetSpecialValueFor("con")
@@ -70,7 +72,8 @@ function druid_4_modifier_metamorphosis:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_MODEL_CHANGE
+		MODIFIER_PROPERTY_MODEL_CHANGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
@@ -86,6 +89,44 @@ end
 
 function druid_4_modifier_metamorphosis:GetModifierModelChange()
 	return "models/items/lone_druid/true_form/form_of_the_atniw/form_of_the_atniw.vmdl"
+end
+
+function druid_4_modifier_metamorphosis:OnIntervalThink()
+	self.stun = false
+	self:StartIntervalThink(-1)
+end
+
+function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if self.parent:PassivesDisabled() then return end
+
+	if self.same_target ~= keys.target then
+		self.parent:RemoveModifierByNameAndCaster("druid_4_modifier_strenght", self.caster)
+		self.same_target = keys.target
+	end
+
+	-- UP 4.12
+	if self.ability:GetRank(12) then
+		self.parent:AddNewModifier(self.caster, self.ability, "druid_4_modifier_strenght", {
+			duration = 10
+		})
+	end
+
+	-- UP 4.22
+	if self.ability:GetRank(22) and self.stun == false then
+		self:StartIntervalThink(-1)
+		self:StartIntervalThink(10)
+		self.stun = true
+
+		ApplyDamage({
+			attacker = self.caster, victim = keys.target, ability = self.ability,
+			damage = self.parent:GetMaxHealth() * 0.04, damage_type = DAMAGE_TYPE_PHYSICAL
+		})
+
+		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+			duration = self.ability:CalcStatus(2.5, self.caster, keys.target)
+		})
+	end
 end
 
 -- UTILS -----------------------------------------------------------

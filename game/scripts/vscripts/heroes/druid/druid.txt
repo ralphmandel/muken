@@ -129,7 +129,7 @@
             "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bonus_per_atk"	"0.25"
+				"bonus_per_atk"	"0.2"
 			}
             "13"
 			{
@@ -238,7 +238,7 @@
             "13"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"aura_radius"   "700"
+				"aura_radius"   "700 800 900 1000 1100 1200 -1"
 			}
             "14"
 			{

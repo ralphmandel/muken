@@ -20,7 +20,7 @@ function druid_2_modifier_armor:OnCreated(kv)
     self.ability = self:GetAbility()
 	self.status_resist = 0
 	self.armor = 0
-	self.bonus_damage = 0
+	--self.bonus_damage = 0
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
 	self.heal = self.ability:GetSpecialValueFor("heal_per_sec") * self.interval
@@ -40,10 +40,9 @@ function druid_2_modifier_armor:OnCreated(kv)
 
 	-- UP 2.22
 	if self.ability:GetRank(22) then
-		self:ChangeStats(15, "AGI", "_1_STR", "_1_AGI")
-		if self.parent:IsHero() == false then
-			self.bonus_damage = 20
-		end
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+			percent = 15
+		})
 	end
 
 	if self.parent:IsHero() == false then
@@ -65,6 +64,11 @@ function druid_2_modifier_armor:OnRemoved()
 	self.ability:RemoveBonus("_2_DEF", self.parent)
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_1_STR", self.parent)
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -84,9 +88,9 @@ function druid_2_modifier_armor:GetModifierBaseAttack_BonusDamage()
 	return self.armor
 end
 
-function druid_2_modifier_armor:GetModifierPhysicalArmorBonus()
-	return self.bonus_damage
-end
+-- function druid_2_modifier_armor:GetModifierPhysicalArmorBonus()
+-- 	return self.bonus_damage
+-- end
 
 function druid_2_modifier_armor:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
