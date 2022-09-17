@@ -2,6 +2,8 @@ druid_4__metamorphosis = class({})
 LinkLuaModifier("druid_4_modifier_metamorphosis", "heroes/druid/druid_4_modifier_metamorphosis", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_4_modifier_aura_effect", "heroes/druid/druid_4_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_4_modifier_strenght", "heroes/druid/druid_4_modifier_strenght", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_4_modifier_fear", "heroes/druid/druid_4_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_4_modifier_fear_status_efx", "heroes/druid/druid_4_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

@@ -154,10 +154,12 @@ require("talent_tree")
 			self:UpdatePanoramaPanels()
 		end
 
-		if IsInToolsMode() then
-			self:AddGold(9999)
-		else
+		if GetMapName() == "arena_temple_sm" then
 			self:AddGold(self:GetSpecialValueFor("starting_gold"))
+		end
+
+		if GetMapName() == "arena_turbo" then
+			self:AddGold(99999)
 		end
 	end
 

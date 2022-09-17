@@ -153,6 +153,20 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         return ACT_DOTA_VICTORY
     end
 
+    function druid_u__conversion:GetBehavior()
+        local behavior = DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE + DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_CHANNELLED
+
+        if self:GetCurrentAbilityCharges() == 0 then
+            return behavior
+        end
+
+        if self:GetCurrentAbilityCharges() % 5 == 0 then
+            return DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE + DOTA_ABILITY_BEHAVIOR_PASSIVE
+        end
+
+        return behavior
+    end
+
     function druid_u__conversion:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
@@ -168,6 +182,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
                 item_tp:SetCooldown(0)
                 item_tp:SetCurrentAbilityCharges(2)
             end
+        end
+
+        if self:GetCaster():HasModifier("druid_4_modifier_metamorphosis") then
+            charges = charges * 5 --true form
         end
 
         self:SetCurrentAbilityCharges(charges)

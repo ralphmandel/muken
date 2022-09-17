@@ -2,106 +2,24 @@
 {
     //"TeamCount" "10"
     "PenaltiesEnabled"				"0"
-    "maps"      "arena_temple_sm"
+    "maps"      "arena_temple_sm arena_turbo"
+    "addonauthor"					"-Kubo"
+	"addonauthorSteamID"			"76561198347761617"
+
     "IsPlayable"  "1"
     
     "arena_temple_sm"
     {
-        "MaxPlayers"    "6"
+        "MaxPlayers"    "20"
+    }
+
+    "arena_turbo"
+    {
+        "MaxPlayers"    "20"
     }
     
     // "Default_Keys"
     // {
-    //     "01"
-    //     {
-    //         "Key"       "Q"
-    //         "Command"   "+ExecuteAbility1"
-    //         "Name"      "Execute Ability 1"
-    //     }
-    //     "02"
-    //     {
-    //         "Key"       "W"
-    //         "Command"   "+ExecuteAbility2"
-    //         "Name"      "Execute Ability 2"
-    //     }
-    //     "03"
-    //     {
-    //         "Key"       "E"
-    //         "Command"   "+ExecuteAbility3"
-    //         "Name"      "Execute Ability 3"
-    //     }
-    //     "04"
-    //     {
-    //         "Key"       "R"
-    //         "Command"   "+ExecuteAbility4"
-    //         "Name"      "Execute Ultimate Ability"
-    //     }
-    //     "05"
-    //     {
-    //         "Key"       "D"
-    //         "Command"   "+ExecuteAbility5"
-    //         "Name"      "Execute Ability 5"
-    //     }
-    //     "06"
-    //     {
-    //         "Key"       "F"
-    //         "Command"   "+ExecuteAbility6"
-    //         "Name"      "Execute Ability 6"
-    //     }
-    //     "07"
-    //     {
-    //         "Key"       "C"
-    //         "Command"   "+ExecuteAbility7"
-    //         "Name"      "Execute Ability 7"
-    //     }
-    //     "08"
-    //     {
-    //         "Key"       "V"
-    //         "Command"   "+ExecuteAbility8"
-    //         "Name"      "Execute Ability 8"
-    //     }
-    //     "09"
-    //     {
-    //         "Key"       "T"
-    //         "Command"   "+ExecuteTeleport"
-    //         "Name"      "Execute Teleport"
-    //     }
-    //     "10"
-    //     {
-    //         "Key"       "1"
-    //         "Command"   "+ExecuteItem1"
-    //         "Name"      "Execute Item 1"
-    //     }
-    //     "11"
-    //     {
-    //         "Key"       "2"
-    //         "Command"   "+ExecuteItem2"
-    //         "Name"      "Execute Item 2"
-    //     }
-    //     "12"
-    //     {
-    //         "Key"       "3"
-    //         "Command"   "+ExecuteItem3"
-    //         "Name"      "Execute Item 3"
-    //     }
-    //     "13"
-    //     {
-    //         "Key"       "4"
-    //         "Command"   "+ExecuteItem4"
-    //         "Name"      "Execute Item 4"
-    //     }
-    //     "14"
-    //     {
-    //         "Key"       "5"
-    //         "Command"   "+ExecuteItem5"
-    //         "Name"      "Execute Item 5"
-    //     }
-    //     "15"
-    //     {
-    //         "Key"       "6"
-    //         "Command"   "+ExecuteItem6"
-    //         "Name"      "Execute Item 6"
-    //     }
     //     "16"
     //     {
     //         "Key"       "'"

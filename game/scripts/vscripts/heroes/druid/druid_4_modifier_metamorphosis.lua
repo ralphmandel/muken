@@ -42,16 +42,23 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
     self.ability = self:GetAbility()
 	self.same_target = nil
 	self.stun = false
+	local fear = false
 
 	self.heal_power = self.ability:GetSpecialValueFor("heal_power")
 	local con = self.ability:GetSpecialValueFor("con")
+
+	-- UP 4.11
+	if self.ability:GetRank(11) then
+		self:ApplyFear()
+		fear = true
+	end
 
 	self.ability:AddBonus("_1_CON", self.parent, con, 0, nil)
 	self.ability:SetActivated(false)
 	self.ability:EndCooldown()
 	self:HideItens(true)
 
-	if IsServer() then self:PlayEfxStart() end
+	if IsServer() then self:PlayEfxStart(fear) end
 end
 
 function druid_4_modifier_metamorphosis:OnRefresh(kv)
@@ -175,13 +182,37 @@ function druid_4_modifier_metamorphosis:HideItens(bool)
 		end
 	end
 end
+
+function druid_4_modifier_metamorphosis:ApplyFear()
+	if IsServer() then self.parent:EmitSound("Hero_LoneDruid.SavageRoar.Cast") end
+	
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 350,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
+	)
+
+	for _,unit in pairs(units) do		
+		unit:AddNewModifier(self.caster, self.ability, "druid_4_modifier_fear", {
+			duration = self.ability:CalcStatus(4, self.caster, unit)
+		})
+	end
+end
+
 -- EFFECTS -----------------------------------------------------------
 
-function druid_4_modifier_metamorphosis:PlayEfxStart()
+function druid_4_modifier_metamorphosis:PlayEfxStart(bFear)
 	local string = "particles/units/heroes/hero_lycan/lycan_shapeshift_cast.vpcf"
 	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
+
+	if bFear then
+		local string2 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
+		local particle2 = ParticleManager:CreateParticle(string2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(particle2, 0, self.parent:GetOrigin())
+		ParticleManager:ReleaseParticleIndex(particle2)		
+	end
 
 	if IsServer() then self.parent:EmitSound("Hero_Lycan.Shapeshift.Cast") end
 end

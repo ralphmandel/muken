@@ -239,20 +239,22 @@
 					end)				
 				end
 
-				for _,player in pairs(self.players) do
-					if player[1]:GetPlayerID() == event.player_id_const then
-						local team_index = self:GetTeamIndex(player[1]:GetTeamNumber())
-						--local score = self.score_bounty / self.teams[team_index][4]
-						local score = 50
-						self.teams[team_index][2] = self.teams[team_index][2] + score
-						local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
-						GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
+				if GetMapName() == "arena_temple_sm" then
+					for _,player in pairs(self.players) do
+						if player[1]:GetPlayerID() == event.player_id_const then
+							local team_index = self:GetTeamIndex(player[1]:GetTeamNumber())
+							--local score = self.score_bounty / self.teams[team_index][4]
+							local score = 50
+							self.teams[team_index][2] = self.teams[team_index][2] + score
+							local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
+							GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
 
-						if self.teams[team_index][2] >= self.score then
-							local message = self.teams[team_index][3] .. " VICTORY!"
-							GameRules:SetCustomVictoryMessage(message)
-							GameRules:SetGameWinner(self.teams[team_index][1])
-							return
+							if self.teams[team_index][2] >= self.score then
+								local message = self.teams[team_index][3] .. " VICTORY!"
+								GameRules:SetCustomVictoryMessage(message)
+								GameRules:SetGameWinner(self.teams[team_index][1])
+								return
+							end
 						end
 					end
 				end
@@ -318,6 +320,8 @@
 		self.first_blood = true
 		self.vo = 0
 		self.vo_time = -60
+
+		if GetMapName() == "arena_turbo" then self.score = 15 end
 
 		self.players = {}
 		self.teams = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
@@ -999,6 +1003,8 @@
 				end
 			end
 		end
+
+		if GetMapName() == "arena_turbo" then score = 1 end
 
 		self.teams[team_index][2] = self.teams[team_index][2] + score
 		local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
