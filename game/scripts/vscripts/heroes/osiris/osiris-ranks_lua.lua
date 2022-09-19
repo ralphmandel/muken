@@ -1,0 +1,63 @@
+osiris_1__poison_rank_11 = class ({})
+osiris_1__poison_rank_12 = class ({})
+osiris_1__poison_rank_21 = class ({})
+osiris_1__poison_rank_22 = class ({})
+osiris_1__poison_rank_31 = class ({})
+osiris_1__poison_rank_32 = class ({})
+osiris_1__poison_rank_41 = class ({})
+osiris_1__poison_rank_42 = class ({})
+
+osiris_2__wave_rank_11 = class ({})
+osiris_2__wave_rank_12 = class ({})
+osiris_2__wave_rank_21 = class ({})
+osiris_2__wave_rank_22 = class ({})
+osiris_2__wave_rank_31 = class ({})
+osiris_2__wave_rank_32 = class ({})
+osiris_2__wave_rank_41 = class ({})
+osiris_2__wave_rank_42 = class ({})
+
+osiris_3__storm_rank_11 = class ({})
+osiris_3__storm_rank_12 = class ({})
+osiris_3__storm_rank_21 = class ({})
+osiris_3__storm_rank_22 = class ({})
+osiris_3__storm_rank_31 = class ({})
+osiris_3__storm_rank_32 = class ({})
+osiris_3__storm_rank_41 = class ({})
+osiris_3__storm_rank_42 = class ({})
+
+osiris_4__rot_rank_11 = class ({})
+osiris_4__rot_rank_12 = class ({})
+osiris_4__rot_rank_21 = class ({})
+osiris_4__rot_rank_22 = class ({})
+osiris_4__rot_rank_31 = class ({})
+osiris_4__rot_rank_32 = class ({})
+osiris_4__rot_rank_41 = class ({})
+osiris_4__rot_rank_42 = class ({})
+
+osiris_5__vitality_rank_11 = class ({})
+osiris_5__vitality_rank_12 = class ({})
+osiris_5__vitality_rank_21 = class ({})
+osiris_5__vitality_rank_22 = class ({})
+osiris_5__vitality_rank_31 = class ({})
+osiris_5__vitality_rank_32 = class ({})
+osiris_5__vitality_rank_41 = class ({})
+osiris_5__vitality_rank_42 = class ({})
+
+osiris_u__ankh_rank_11 = class ({})
+osiris_u__ankh_rank_12 = class ({})
+osiris_u__ankh_rank_21 = class ({})
+osiris_u__ankh_rank_22 = class ({})
+osiris_u__ankh_rank_31 = class ({})
+osiris_u__ankh_rank_32 = class ({})
+osiris_u__ankh_rank_41 = class ({})
+osiris_u__ankh_rank_42 = class ({})
+
+osiris__precache = class ({})
+
+function osiris__precache:Spawn()
+    if self:IsTrained() == false then self:UpgradeAbility(true) end
+end
+
+function osiris__precache:Precache(context)
+    --PrecacheResource("soundfile", "soundevents/soundevent_osiris.vsndevts", context)
+end

@@ -1,9 +1,9 @@
 "DOTAHeroes"
 {
-	"striker"
+	"osiris"
 	{
-		"override_hero"					"npc_dota_hero_dawnbreaker"
-		"SoundSet"						""
+		"override_hero"					"npc_dota_hero_undying"
+		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
@@ -16,12 +16,12 @@
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"striker_1__blow"
-			"Ability11"						"striker_2__shield"
-			"Ability12"						"striker_3__portal"
-			"Ability13"						"striker_4__hammer"
-			"Ability14"						"striker_5__sof"
-			"Ability15"						"striker_u__auto"
+			"Ability10"						"osiris_1__poison"
+			"Ability11"						"osiris_2__wave"
+			"Ability12"						"osiris_3__storm"
+			"Ability13"						"osiris_4__rot"
+			"Ability14"						"osiris_5__vitality"
+			"Ability15"						"osiris_u__ankh"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -38,7 +38,7 @@
 			"Ability29"						"null"		
 			"Ability30"						"_channel"
 			"Ability31"						"_void"
-			"Ability32"						"striker__precache"
+			"Ability32"						"osiris__precache"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "150"     // Range within a target can be attacked.
+		"AttackRange"                   "140"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"

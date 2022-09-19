@@ -1,0 +1,131 @@
+"TalentTree_osiris"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_undying"
+	{
+		"osiris_1__poison"
+		{
+			"0"
+			{
+				"1"   "osiris_1__poison_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_1__poison_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_1__poison_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_1__poison_rank_41"
+			}
+		}
+		"osiris_2__wave"
+		{
+			"0"
+			{
+				"1"   "osiris_2__wave_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_2__wave_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_2__wave_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_2__wave_rank_41"
+			}
+		}
+		"osiris_3__storm"
+		{
+			"0"
+			{
+				"1"   "osiris_3__storm_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_3__storm_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_3__storm_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_3__storm_rank_41"
+			}
+		}
+		"osiris_4__rot"
+		{
+			"0"
+			{
+				"1"   "osiris_4__rot_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_4__rot_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_4__rot_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_4__rot_rank_41"
+			}
+		}
+		"osiris_5__vitality"
+		{
+			"0"
+			{
+				"1"   "osiris_5__vitality_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_5__vitality_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_5__vitality_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_5__vitality_rank_41"
+			}
+		}
+		"osiris_u__ankh"
+		{
+			"0"
+			{
+				"1"   "osiris_u__ankh_rank_11"
+			}
+			"1"
+			{
+				"1"   "osiris_u__ankh_rank_21"
+			}
+			"2"
+			{
+				"1"   "osiris_u__ankh_rank_31"
+			}
+			"3"
+			{
+				"1"   "osiris_u__ankh_rank_41"
+			}
+		}
+	}	
+}

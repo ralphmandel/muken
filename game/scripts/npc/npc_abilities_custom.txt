@@ -306,10 +306,12 @@
 #base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/striker/striker.txt"
 #base "../vscripts/heroes/bocuse/bocuse.txt"
-
 #base "../vscripts/heroes/druid/druid.txt"
+
+
 #base "../vscripts/heroes/krieger/krieger.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
+#base "../vscripts/heroes/osiris/osiris.txt"
 
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"

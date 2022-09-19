@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "osiris_1__poison"
+	"2" "osiris_2__wave"
+	"3" "osiris_3__storm"
+	"4" "osiris_4__rot"
+	"5" "osiris_5__vitality"
+	"6" "osiris_u__ankh"
+}

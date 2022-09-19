@@ -5,5 +5,5 @@
 	"3" "template_3__sk3"
 	"4" "template_4__sk4"
 	"5" "template_5__sk5"
-	"7" "template_u__sk6"
+	"6" "template_u__sk6"
 }
