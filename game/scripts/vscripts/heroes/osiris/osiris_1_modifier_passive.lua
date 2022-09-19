@@ -32,15 +32,15 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function _modifier_example:DeclareFunctions()
+function osiris_1_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
 end
 
-function _modifier_example:OnTakeDamage(keys)
+function osiris_1_modifier_passive:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 	self.current_hp = self.current_hp + keys.damage
 
@@ -55,6 +55,7 @@ end
 function osiris_1_modifier_passive:Release()
 	local poison_duration = self.ability:GetSpecialValueFor("poison_duration")
 	self.parent:Purge(false, true, false, false, false)
+	self:PlayEfxRelease()
 
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.poison_radius,
@@ -71,17 +72,17 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function osiris_1_modifier_passive:PlayEffects( modifier, speed )
-	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+function osiris_1_modifier_passive:PlayEfxRelease()
+	-- local particle_cast = "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf"
+	-- local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	-- ParticleManager:SetParticleControl(effect_cast, 1, Vector(100, 0.5, 100))
+	-- ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	-- get data
-	local duration = 1
+	local string = "particles/osiris/osiris_poison.vpcf"
+	local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(particle, 1, self.parent:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
 
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
-	ParticleManager:SetParticleControl( effect_cast, 1, Vector( speed, duration, speed ) )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	if IsServer() then
+	if IsServer() then self.parent:EmitSound("Hero_Venomancer.VenomousGale") end
 end
