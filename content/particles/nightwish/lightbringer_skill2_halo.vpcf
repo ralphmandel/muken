@@ -1,0 +1,84 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1400.0, 1400.0, 1400.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1400.0, 1400.0, 1400.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ground_proj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ground.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ground_bright.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ring_color_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ring_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_ring_thin.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_start.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_purification.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nightwish/lightbringer_skill2_halo_rings.vpcf"
+		},
+	]
+}

@@ -1,0 +1,7 @@
+"Layer0"
+{
+	"shader"	"projected_dota.vfx"
+	"F_MOD_2X"	"1"
+	"TextureColor"	"[1 1 1 1]"
+	"g_tColor"	"materials/particle/kotl/kotl_dazzle_proj_trans_tga_35cec54d.vtex"
+}
