@@ -12,6 +12,10 @@ function bocuse_u_modifier_exhaustion:IsDebuff()
 	return true
 end
 
+function bocuse_u_modifier_exhaustion:IsStunDebuff()
+	return true
+end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bocuse_u_modifier_exhaustion:OnCreated(kv)

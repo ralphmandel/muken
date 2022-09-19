@@ -21,7 +21,6 @@ function osiris_4_modifier_rot:OnCreated(kv)
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.tick = self.ability:GetSpecialValueFor("tick")
-	self.slow = self.ability:GetSpecialValueFor("slow")
 
 	if IsServer() then
 		self:StartIntervalThink(self.tick)
@@ -39,9 +38,25 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function osiris_4_modifier_rot:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_STATE_CHANGED
+	}
+
+	return funcs
+end
+
+function osiris_4_modifier_rot:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+	if self.parent:IsSilenced() and self.ability:GetToggleState() then self.ability:ToggleAbility() end
+end
+
 function osiris_4_modifier_rot:OnIntervalThink()
 	local damage = self.ability:GetSpecialValueFor("hp_lost") * self.tick
 	self.parent:ModifyHealth(self.parent:GetHealth() - damage, self.ability, true, 0)
+
+	--local poison_ability = self.parent:FindAbilityByName("osiris_1__poison")
+	--if poison_ability then poison_ability:CalcHPLost(damage) end
 
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
@@ -50,24 +65,15 @@ function osiris_4_modifier_rot:OnIntervalThink()
 	)
 
 	for _,enemy in pairs(enemies) do
-		self:ApplyRot(enemy)
+		enemy:AddNewModifier(self.caster, self.ability, "osiris_4_modifier_debuff", {
+			duration = 0.4
+		})
 	end
 
 	if IsServer() then self:StartIntervalThink(self.tick) end
 end
 
 -- UTILS -----------------------------------------------------------
-
-function osiris_4_modifier_rot:ApplyRot(target)
-	local mod = target:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	target:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		duration = 0.5, percent = self.slow
-	})
-end
 
 -- EFFECTS -----------------------------------------------------------
 

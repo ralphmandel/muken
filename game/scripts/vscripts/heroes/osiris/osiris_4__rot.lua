@@ -1,6 +1,8 @@
 osiris_4__rot = class({})
 LinkLuaModifier("osiris_4_modifier_rot", "heroes/osiris/osiris_4_modifier_rot", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("osiris_4_modifier_debuff", "heroes/osiris/osiris_4_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

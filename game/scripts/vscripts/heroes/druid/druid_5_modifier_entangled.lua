@@ -12,6 +12,10 @@ function druid_5_modifier_entangled:IsDebuff()
 	return true
 end
 
+function druid_5_modifier_entangled:IsStunDebuff()
+	return true
+end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function druid_5_modifier_entangled:OnCreated(kv)

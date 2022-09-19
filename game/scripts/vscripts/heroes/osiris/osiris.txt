@@ -34,32 +34,32 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hp"		    "150"
+				"hp"		    "250"
 			}
             "02"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"poison_radius" "350"
+				"poison_radius" "300"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"poison_duration"	"8"
+				"poison_duration"	"12"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"base_heal_degen"    "40"
+				"base_heal_degen"    "50"
 			}
             "05"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"base_poison_damage"	"15"
+				"base_poison_damage"	"30"
 			}
             "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"tick"          "1.6"
+				"tick"          "1.5"
 			}
             "07"
 			{
@@ -179,7 +179,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"		    "60"
+				"slow"		    "40"
 			}
             "05"
 			{

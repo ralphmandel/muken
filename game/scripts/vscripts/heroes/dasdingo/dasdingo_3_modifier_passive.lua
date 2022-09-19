@@ -67,7 +67,7 @@ function dasdingo_3_modifier_passive:AddFire(target)
 
 	local mod = target:FindAllModifiersByName("_modifier_stun")
 	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then bStunned = true end
+		if modifier:GetAbility() == self.ability then b = true end
 	end
 
 	if bStunned == false then

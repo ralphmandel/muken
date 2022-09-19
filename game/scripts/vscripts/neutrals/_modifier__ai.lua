@@ -222,7 +222,8 @@ function _modifier__ai:OnTakeDamage(keys)
 
     if keys.inflictor ~= nil then
         if keys.inflictor:GetClassname() == "ability_lua" then
-            if keys.inflictor:GetAbilityName() == "shadow_0__toxin" 
+            if keys.inflictor:GetAbilityName() == "shadow_0__toxin"
+            or keys.inflictor:GetAbilityName() == "osiris_1__poison"
             or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
                 efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
             end
