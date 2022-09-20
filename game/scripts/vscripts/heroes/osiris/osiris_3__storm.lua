@@ -1,6 +1,9 @@
 osiris_3__storm = class({})
 LinkLuaModifier("osiris_3_modifier_storm", "heroes/osiris/osiris_3_modifier_storm", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("osiris_3_modifier_aura_effect", "heroes/osiris/osiris_3_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -63,6 +66,25 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function osiris_3__storm:OnSpellStart()
         local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+		for _,storm in pairs(thinkers) do
+			if storm:GetOwner() == caster and storm:HasModifier("osiris_3_modifier_storm") then
+                storm:FindModifierByName("osiris_3_modifier_storm"):Destroy()
+			end
+		end
+
+        self.mod_thinker = CreateModifierThinker(
+            caster, self, "osiris_3_modifier_storm", {duration = duration},
+            caster:GetOrigin(), caster:GetTeamNumber(), false
+        )
+
+        if IsServer() then caster:EmitSound("Ability.SandKing_SandStorm.start") end
+    end
+
+    function osiris_3__storm:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
     function osiris_3__storm:GetManaCost(iLevel)

@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/osiris/osiris_1__poison"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"osiris_poison"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -75,7 +75,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
@@ -121,31 +121,51 @@
 		"ScriptFile"            		"heroes/osiris/osiris_3__storm"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"osiris_storm"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"   		"ACT_DOTA_UNDYING_TOMBSTONE"
+		"AbilityCastPoint"       		"0.5"
+		"AbilityCooldown"				"60"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"duration"		"15 15.5 16 16.5 17 17.5 18"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"750"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"regen"		    "1"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"blind"		    "50"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"		    "25"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"180"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
