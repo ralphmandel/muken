@@ -83,9 +83,11 @@ function osiris_1_modifier_poison:OnStackCountChanged(old)
 	--local base_heal_degen = self.ability:GetSpecialValueFor("base_heal_degen")
 	--self.heal_degen = 0
 
-	for i = 1, self:GetStackCount(), 1 do
-		self.poison_damage = self.poison_damage * (1 + (base_poison_damage * 0.01))
-		--self.heal_degen = self.heal_degen + ((100 - self.heal_degen) * base_heal_degen * 0.01)
+	if self:GetStackCount() > 1 then
+		for i = 1, self:GetStackCount() - 1, 1 do
+			self.poison_damage = self.poison_damage * (1 + (base_poison_damage * 0.01))
+			--self.heal_degen = self.heal_degen + ((100 - self.heal_degen) * base_heal_degen * 0.01)
+		end
 	end
 end
 
