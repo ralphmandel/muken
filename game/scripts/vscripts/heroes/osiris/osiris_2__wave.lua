@@ -61,8 +61,46 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function osiris_2__wave:OnAbilityPhaseStart()
+        if not self:CheckVectorTargetPosition() then return false end
+        return true
+    end
+
     function osiris_2__wave:OnSpellStart()
         local caster = self:GetCaster()
+        local vect_targets = self:GetVectorTargetPosition()
+        local direction = vect_targets.direction
+        local init_pos = vect_targets.init_pos
+        local end_pos = vect_targets.end_pos
+
+        caster:SetForwardVector(direction)
+        self:CreateWave(caster, init_pos, direction)
+    end
+
+    function osiris_2__wave:CreateWave(caster, origin, direction)
+        local info = {
+            Source = caster,
+            Ability = self,
+            vSpawnOrigin = origin,
+            
+            bDeleteOnHit = false,
+            
+            iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            
+            EffectName = "particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_merry_wanderer.vpcf",
+            fDistance = 1000,
+            fStartRadius = 100,
+            fEndRadius = 100,
+            vVelocity = direction * 500,
+        
+            bReplaceExisting = false,
+            
+            bProvidesVision = true,
+            iVisionRadius = 150,
+            iVisionTeamNumber = caster:GetTeamNumber(),
+        }
+        self.projectile = ProjectileManager:CreateLinearProjectile(info)
     end
 
     function osiris_2__wave:GetManaCost(iLevel)

@@ -6,6 +6,7 @@
 	require("game_setup")
 	require("talent_tree")
 	require("hero_stats_table")
+	require('libraries/vector_target/vector_target')
 
 	function Precache(context)
 		--[[

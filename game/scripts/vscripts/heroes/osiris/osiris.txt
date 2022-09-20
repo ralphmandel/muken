@@ -86,19 +86,15 @@
 		"ScriptFile"            		"heroes/osiris/osiris_2__wave"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"osiris_wave"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityCastAnimation"   		"ACT_DOTA_UNDYING_SOUL_RIP"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"1"
+		"AbilityCastRange"      		"700"
 
 		"AbilitySpecial"
 		{
@@ -110,7 +106,12 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
+			}
+            "16"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"vector_target"	"1"
 			}
 		}
 	}
