@@ -39,7 +39,7 @@
             "02"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"poison_radius" "300"
+				"poison_radius" "250"
 			}
             "03"
 			{

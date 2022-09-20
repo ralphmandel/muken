@@ -104,7 +104,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function osiris_1_modifier_poison:GetEffectName()
-	return "particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf"
+	return "particles/osiris/poison_debuff_alt/osiris_poison_debuff.vpcf"
 end
 
 function osiris_1_modifier_poison:GetEffectAttachType()
@@ -112,7 +112,7 @@ function osiris_1_modifier_poison:GetEffectAttachType()
 end
 
 function osiris_1_modifier_poison:GetStatusEffectName()
-	return "particles/status_fx/status_effect_poison_viper.vpcf"
+	return "particles/osiris/poison_debuff_alt/osiris_poison_status_efx.vpcf"
 end
 
 function osiris_1_modifier_poison:StatusEffectPriority()

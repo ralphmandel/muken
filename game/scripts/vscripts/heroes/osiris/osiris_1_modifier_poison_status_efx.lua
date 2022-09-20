@@ -22,7 +22,7 @@ end
 -----------------------------------------------------------
 
 function osiris_1_modifier_poison_status_efx:GetStatusEffectName()
-    return "particles/status_fx/status_effect_poison_viper.vpcf"
+    return "particles/osiris/poison_debuff_alt/osiris_poison_status_efx.vpcf"
 end
 
 function osiris_1_modifier_poison_status_efx:StatusEffectPriority()

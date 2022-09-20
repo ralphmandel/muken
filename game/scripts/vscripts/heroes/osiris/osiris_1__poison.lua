@@ -69,12 +69,30 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function osiris_1__poison:CalcHPLost(amount)
+        local caster = self:GetCaster()
         if not self.current_hp then self.current_hp = 0 end
+        if not self.delay then self.delay = false end
+
         self.current_hp = self.current_hp + amount
 
-        if self.current_hp >= self:GetSpecialValueFor("hp") then
+        if self.current_hp >= self:GetSpecialValueFor("hp") and self.delay == false then
             self.current_hp = 0
-            self:Release()
+            self.delay = true
+
+            caster:AttackNoEarlierThan(10, 20)
+            caster:FadeGesture(ACT_DOTA_UNDYING_TOMBSTONE)
+            caster:StartGesture(ACT_DOTA_UNDYING_TOMBSTONE)
+
+            Timers:CreateTimer(0.5, function()
+                self.delay = false
+                self:Release()
+            end)
+
+            Timers:CreateTimer(1.2, function()
+                if self.delay == false then
+                    caster:AttackNoEarlierThan(1, 1)
+                end
+            end)
         end
     end
 
