@@ -155,10 +155,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if ability == nil then
             local berserk = caster:FindAbilityByName("ancient_1__berserk")
             if berserk then
-                local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage") * 0.01))
+                local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage_percent") * 0.01))
+                damage = damage + berserk:GetSpecialValueFor("damage")
                 energy = damage * energy_gain
             end
         end
+
+        local leap = caster:FindAbilityByName("ancient_2__leap")
+        if leap and ability == leap then energy = leap:GetAbilityDamage() * energy_gain end
 
         if energy > 0 then
             caster:GiveMana(energy)

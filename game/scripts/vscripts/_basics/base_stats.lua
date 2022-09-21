@@ -189,7 +189,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.critical_chance = self:GetSpecialValueFor("critical_chance")
 				self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
 				self.force_crit_spell = {[DAMAGE_TYPE_PHYSICAL] = false, [DAMAGE_TYPE_MAGICAL] = false}
-				self.total_crit_damage = self:CalcCritDamage(nil)
+				self.total_crit_damage = self:CalcCritDamage(nil, nil)
 				self.force_crit_hit = false
 				self.has_crit = false
 
@@ -430,7 +430,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			self.force_crit_hit = true
 		end
 
-		function base_stats:CalcCritDamage(damage_type)
+		function base_stats:CalcCritDamage(damage_type, bSpellCrit)
 			if IsServer() then
 				local caster = self:GetCaster()
 				local bonus_value = 0
@@ -442,7 +442,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local total_crit_dmg = self.critical_damage
 
 				if caster:HasModifier("ancient_1_modifier_passive")
-				and damage_type == DAMAGE_TYPE_PHYSICAL then
+				and bSpellCrit ~= true and damage_type == DAMAGE_TYPE_PHYSICAL then
 					total_crit_dmg = total_crit_dmg + self.stat_total["AGI"]
 				end
 

@@ -40,11 +40,12 @@
 			}
 			"1"
 			{
-				"1"   "ancient_2__leap_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "ancient_2__leap_rank_31"
+				"2"   "ancient_2__leap_rank_32"
 			}
 			"3"
 			{

@@ -41,7 +41,7 @@ function osiris_1_modifier_passive:OnTakeDamage(keys)
 	if self.parent:PassivesDisabled() then return end
 
 	self.ability:CalcHPLost(keys.damage)
-	if IsServer() then self:StartIntervalThink(7) end
+	if IsServer() then self:StartIntervalThink(10) end
 end
 
 function osiris_1_modifier_passive:OnIntervalThink()

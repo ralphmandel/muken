@@ -39,7 +39,12 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stun_multiplier"	"0.4"
+				"damage_percent"    "100"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stun_multiplier"	"0.25"
 			}
             "14"
 			{
@@ -60,31 +65,38 @@
 		"ScriptFile"            		"heroes/ancient/ancient_2__leap"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"ancient_leap"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+        "AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCooldown"				"12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5"
+		"AbilityCastPoint"       		"0.4"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"damage"		"180"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"300"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"0"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -215,7 +227,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"energy_gain"	    "25"
+				"energy_gain"	    "10"
 			}
             "02"
 			{

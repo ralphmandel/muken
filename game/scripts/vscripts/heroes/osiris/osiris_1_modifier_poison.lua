@@ -122,5 +122,9 @@ function osiris_1_modifier_poison:StatusEffectPriority()
 end
 
 function osiris_1_modifier_poison:PlayEfxRelease(bStart)
+	local effect = ParticleManager:CreateParticle("particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect, 1, Vector(150, 0, 0))
+
 	if IsServer() then self.parent:EmitSound("Hero_Venomancer.VenomousGaleImpact") end
 end

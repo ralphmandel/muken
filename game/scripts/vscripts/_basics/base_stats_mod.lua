@@ -142,7 +142,7 @@ base_stats_mod = class ({})
                 return
             end
 
-            self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type)
+            self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type, true)
             local crit = self.ability.total_crit_damage - 100
             local critical_chance = self.ability:GetCriticalChance()
 
@@ -210,7 +210,7 @@ base_stats_mod = class ({})
             if not keys.target:IsBuilding() then
                 self.record = keys.record
                 self.ability.has_crit = true
-                self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL)
+                self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false)
                 return self.ability.total_crit_damage
             else
                 self.ability.has_crit = false

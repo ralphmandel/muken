@@ -5,6 +5,16 @@ function cosmetics:Spawn()
 	self:UpgradeAbility(true)
 end
 
+function cosmetics:OnUpgrade()
+	if self:GetCaster():IsIllusion() then
+		self:LoadCosmetics()
+	else
+		Timers:CreateTimer(10, function()
+			self:LoadCosmetics()
+		end)
+	end
+end
+
 -- ADD COSMETICS
 
 	function cosmetics:LoadHeroNames()
@@ -22,9 +32,21 @@ end
 		self.status_efx_flags = {
 			[1] = "models/items/rikimaru/haze_atrocity_weapon/haze_atrocity_weapon.vmdl"
 		}
-
+	
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroNames().."/"..self:LoadHeroNames().."-cosmetics.txt")
 		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
+	
+		if self:LoadHeroNames() == "icebreaker" then
+			self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
+		end
+		
+		if self:LoadHeroNames() == "krieger" then
+			self:SetStatusEffect(self:GetCaster(), nil, "krieger_1_modifier_passive_status_efx", true)
+		end
+
+		if IsInToolsMode() then
+			self:ChangeTeam(self:GetCaster():GetTeamNumber())
+		end
 	end
 
 	function cosmetics:ApplyCosmetics(cosmetics_data)
