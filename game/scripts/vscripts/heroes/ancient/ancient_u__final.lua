@@ -62,6 +62,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         self:CheckAbilityCharges(0)
         self.casting = false
+        self.energy = 0
 
         Timers:CreateTimer((0.3), function()
             if self:IsTrained() == false then self:UpgradeAbility(true) end
@@ -150,25 +151,27 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_u__final:AddEnergy(ability)
         local caster = self:GetCaster()
         local energy_gain = self:GetSpecialValueFor("energy_gain") * 0.01
-        local energy = 0
         
         if ability == nil then
             local berserk = caster:FindAbilityByName("ancient_1__berserk")
             if berserk then
                 local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage_percent") * 0.01))
                 damage = damage + berserk:GetSpecialValueFor("damage")
-                energy = damage * energy_gain
+                self.energy = self.energy + (damage * energy_gain)
             end
         end
 
         local leap = caster:FindAbilityByName("ancient_2__leap")
-        if leap and ability == leap then energy = leap:GetAbilityDamage() * energy_gain end
+        if leap and ability == leap then self.energy = self.energy + (leap:GetAbilityDamage() * energy_gain) end
 
-        if energy > 0 then
-            caster:GiveMana(energy)
-            SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, energy, caster)
-            self:UpdateResistance()
-        end
+        Timers:CreateTimer(0.1, function()
+            if self.energy > 0 then
+                caster:GiveMana(self.energy)
+                SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, self.energy, caster)
+                self:UpdateResistance()
+                self.energy = 0
+            end
+        end)
     end
 
     function ancient_u__final:UpdateResistance()

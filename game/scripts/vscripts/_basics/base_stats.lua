@@ -165,6 +165,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.attack_speed = self:GetSpecialValueFor("attack_speed")
 				self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
 				self.attack_time = self.base_attack_time
+				self.bonus_attack_time = 0
 
 				-- INT
 				self.mana = self:GetSpecialValueFor("mana")
@@ -480,13 +481,24 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:SetBaseAttackTime(bonus)
 			if IsServer() then
+				self.bonus_attack_time = bonus
+				self:UpdateBaseAttackTime()
+			end
+		end
+
+		function base_stats:UpdateBaseAttackTime()
+			if IsServer() then
 				local caster = self:GetCaster()
-				if caster:HasModifier("ancient_1_modifier_passive") then
-					self.attack_time = 2.5 + bonus
-					return
+				local attack_time = 0
+				local ancient_mod = caster:FindModifierByName("ancient_1_modifier_passive")
+
+				if ancient_mod then
+					if ancient_mod:GetStackCount() > 0 then attack_time = 2.5 else attack_time = 1 end
+				else
+					attack_time = self.base_attack_time
 				end
 
-				self.attack_time = self.base_attack_time + bonus
+				self.attack_time = attack_time + self.bonus_attack_time
 			end
 		end
 

@@ -415,8 +415,8 @@ require("talent_tree")
 
 	function base_hero:CheckRequirements(talentName)
 		-- ANCIENT ONE
-			-- Ancient 2.31 requires skill 1.31
-			if talentName == "ancient_2__leap_rank_31"
+			-- Ancient 2.31 requires skill 1.21
+			if talentName == "ancient_2__leap_rank_21"
 			and (not self.ranks[1][31]) then
 				return false
 			end

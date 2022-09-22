@@ -76,6 +76,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_1__berserk:CheckAbilityCharges(charges)
+        -- UP 1.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

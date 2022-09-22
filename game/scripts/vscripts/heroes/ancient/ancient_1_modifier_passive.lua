@@ -1,7 +1,8 @@
 ancient_1_modifier_passive = class({})
+HITS_TO_DOUBLE_ATTACK = 5
 
 function ancient_1_modifier_passive:IsHidden()
-	return true
+	return self:GetAbility():GetCurrentAbilityCharges() % 2 ~= 0
 end
 
 function ancient_1_modifier_passive:IsPurgable()
@@ -18,6 +19,7 @@ function ancient_1_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.hidden = true
 
 	self.damage = self.ability:GetSpecialValueFor("damage")
 	self.damage_percent = self.ability:GetSpecialValueFor("damage_percent")
@@ -25,9 +27,15 @@ function ancient_1_modifier_passive:OnCreated(kv)
 
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetBaseAttackTime(0) end
+
+	if IsServer() then self:SetStackCount(HITS_TO_DOUBLE_ATTACK) end
 end
 
 function ancient_1_modifier_passive:OnRefresh(kv)
+	-- UP 1.41
+	if self.ability:GetRank(41) then
+		self.damage = self.ability:GetSpecialValueFor("damage") + 50
+	end
 end
 
 function ancient_1_modifier_passive:OnRemoved()
@@ -37,12 +45,20 @@ end
 
 function ancient_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
+end
+
+function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
+	if self:GetStackCount() > 0 then return 0 end
+
+	return 400
 end
 
 function ancient_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical()
@@ -51,6 +67,17 @@ end
 
 function ancient_1_modifier_passive:GetModifierBaseDamageOutgoing_Percentage()
 	return self.damage_percent
+end
+
+function ancient_1_modifier_passive:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+
+	-- UP 1.21
+	if self.ability:GetRank(21) then
+		self:CheckDoubleHit()
+	else
+		self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
+	end
 end
 
 function ancient_1_modifier_passive:OnTakeDamage(keys)
@@ -68,7 +95,30 @@ function ancient_1_modifier_passive:OnTakeDamage(keys)
 	})
 end
 
+function ancient_1_modifier_passive:OnStackCountChanged(old)
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:UpdateBaseAttackTime() end
+end
+
 -- UTILS -----------------------------------------------------------
+
+function ancient_1_modifier_passive:CheckDoubleHit()
+	if not IsServer() then return end
+
+	if self.parent:PassivesDisabled() then
+		if self:GetStackCount() > 0 then
+			return
+		else
+			self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
+		end
+	end
+
+	if self:GetStackCount() == 0 then
+		self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
+	else
+		self:DecrementStackCount()
+	end
+end
 
 function ancient_1_modifier_passive:CheckCritStrike(target, damage_category)
 	local base_stats = self.parent:FindAbilityByName("base_stats")
@@ -79,6 +129,7 @@ function ancient_1_modifier_passive:CheckCritStrike(target, damage_category)
 		self:PlayEfxCrit(self.parent, base_stats.has_crit)
 	end
 end
+
 -- EFFECTS -----------------------------------------------------------
 
 function ancient_1_modifier_passive:PlayEfxCrit(target, crit)
