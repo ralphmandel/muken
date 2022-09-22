@@ -415,6 +415,14 @@ require("talent_tree")
 
 	function base_hero:CheckRequirements(talentName)
 		-- ANCIENT ONE
+			-- Ancient 1.41 requires skill rank level 12
+			if talentName == "ancient_1__berserk_rank_41" then
+				local berserk = self:GetCaster():FindAbilityByName("ancient_1__berserk")
+				if berserk == nil then return false end
+				if berserk:IsTrained() == false then return false end
+				if berserk:GetSpecialValueFor("rank") < 12 then return false end
+			end
+
 			-- Ancient 2.31 requires skill 1.21
 			if talentName == "ancient_2__leap_rank_21"
 			and (not self.ranks[1][31]) then

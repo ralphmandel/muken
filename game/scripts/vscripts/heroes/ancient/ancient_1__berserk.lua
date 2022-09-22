@@ -1,5 +1,6 @@
 ancient_1__berserk = class({})
 LinkLuaModifier("ancient_1_modifier_passive", "heroes/ancient/ancient_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_1_modifier_punch", "heroes/ancient/ancient_1_modifier_punch", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -68,17 +69,47 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return "ancient_1_modifier_passive"
     end
 
+    function ancient_1__berserk:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then
+            return DOTA_ABILITY_BEHAVIOR_PASSIVE
+        end
+
+        if self:GetCurrentAbilityCharges() % 3 == 0 then
+            return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST + DOTA_ABILITY_BEHAVIOR_ATTACK
+        end
+
+        return DOTA_ABILITY_BEHAVIOR_PASSIVE
+    end
+
+    function ancient_1__berserk:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return self:GetCaster():Script_GetAttackRange() + 50 end
+        return 0
+    end
+
+    function ancient_1__berserk:GetCooldown(iLevel)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 20 end
+        return 0
+    end
+
     function ancient_1__berserk:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 100 end
         return manacost * level
     end
 
     function ancient_1__berserk:CheckAbilityCharges(charges)
         -- UP 1.21
         if self:GetRank(21) then
-            charges = charges * 2
+            charges = charges * 2 -- unhide modifier
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            charges = charges * 3 -- autocast ability
         end
 
         self:SetCurrentAbilityCharges(charges)

@@ -428,6 +428,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:SetForceCritHit(value)
 			if value > 0 then self.total_crit_damage = value end
+			if value == -1 then self.force_crit_hit = false return end
 			self.force_crit_hit = true
 		end
 

@@ -75,7 +75,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         self.current_hp = self.current_hp + amount
 
-        if self.current_hp >= self:GetSpecialValueFor("hp") and self.delay == false then
+        if self.current_hp >= self:GetSpecialValueFor("hp")
+        and caster:IsAlive() and self.delay == false then
             self.current_hp = 0
             self.delay = true
 
@@ -85,7 +86,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
             Timers:CreateTimer(0.5, function()
                 self.delay = false
-                self:Release()
+                if caster:IsAlive() then
+                    self:Release()
+                end
             end)
 
             Timers:CreateTimer(1.2, function()

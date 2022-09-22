@@ -45,7 +45,11 @@ base_stats_mod = class ({})
     function base_stats_mod:CheckState()
         local state = {}
         
-        if self.ability.total_crit_damage > 0 and self.pierce_proc then
+        -- if self.ability.total_crit_damage > 0 and self.pierce_proc then
+        --     state = {[MODIFIER_STATE_CANNOT_MISS] = true}
+        -- end
+
+        if self.ability.total_crit_damage > 0 then
             state = {[MODIFIER_STATE_CANNOT_MISS] = true}
         end
 
@@ -203,6 +207,7 @@ base_stats_mod = class ({})
     end
 
     function base_stats_mod:GetModifierPreAttack_CriticalStrike(keys)
+        print("FORCE CRIT", self.ability.force_crit_hit)
         if self.pierce_proc == true or self.ability.force_crit_hit == true then
             self.pierce_proc = false
             self.ability.force_crit_hit = false

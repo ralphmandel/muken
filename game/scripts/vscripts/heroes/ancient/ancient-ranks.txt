@@ -114,6 +114,7 @@
 			"0"
 			{
 				"1"   "ancient_u__final_rank_11"
+				"2"   "ancient_u__final_rank_12"
 			}
 			"1"
 			{
@@ -122,10 +123,11 @@
 			"2"
 			{
 				"1"   "ancient_u__final_rank_31"
+				"2"   "ancient_u__final_rank_32"
 			}
 			"3"
 			{
-				"1"   "ancient_u__final_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	
