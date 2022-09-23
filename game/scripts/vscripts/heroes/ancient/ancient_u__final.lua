@@ -144,7 +144,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_u__final:OnOwnerSpawned()
-        self:GetCaster():SetMana(0)
+        local mana = 0
+        
+        -- UP 6.11
+        if self:GetRank(11) then
+            mana = self:GetCaster():GetMaxMana() * 0.5
+        end
+
+        self:GetCaster():SetMana(mana)
         self:UpdateResistance()
     end
 
@@ -185,13 +192,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_u__final:GetCastRange(vLocation, hTarget)
-        local min_cost = self:GetSpecialValueFor("min_cost")
-        local current = self:GetCaster():GetMana()
-
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if min_cost > current then return min_cost * self:GetSpecialValueFor("cast_range_mult") * 0.01 end
+        
+        local cast_range_mult = self:GetSpecialValueFor("cast_range_mult")
+        if self:GetCurrentAbilityCharges() % 2 == 0 then cast_range_mult = cast_range_mult + 200 end
+        return self:GetManaCost(self:GetLevel()) * cast_range_mult * 0.01
 
-        return current * self:GetSpecialValueFor("cast_range_mult") * 0.01
+        --local current = self:GetCaster():GetMana()
+        --local min_cost = self:GetSpecialValueFor("min_cost")
+        --if self:GetCurrentAbilityCharges() % 3 == 0 then min_cost = min_cost - 10 end
+
+        --local manacost = self:GetCaster():GetMaxMana() * min_cost * 0.01
+        --if manacost > current then return manacost * cast_range_mult * 0.01 end
+        --return current * cast_range_mult * 0.01
     end
 
     function ancient_u__final:GetBehavior()
@@ -200,10 +213,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_u__final:GetManaCost(iLevel)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
         local min_cost = self:GetSpecialValueFor("min_cost")
         local current = self:GetCaster():GetMana()
 
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then min_cost = min_cost - 10 end
         if min_cost > current then return min_cost end
         
         return current

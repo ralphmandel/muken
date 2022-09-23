@@ -241,7 +241,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"min_cost"	        "300"
+				"min_cost"	        "40"
 			}
             "04"
 			{
