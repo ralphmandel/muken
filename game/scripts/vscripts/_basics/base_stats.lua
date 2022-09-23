@@ -2,6 +2,7 @@ base_stats = class ({})
 require("hero_stats_table")
 LinkLuaModifier("base_stats_mod", "_basics/base_stats_mod", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_1_STR_modifier_stack", "modifiers/_1_STR_modifier_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_1_AGI_modifier_stack", "modifiers/_1_AGI_modifier_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_1_INT_modifier_stack", "modifiers/_1_INT_modifier_stack", LUA_MODIFIER_MOTION_NONE)
@@ -153,11 +154,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.range = self:GetSpecialValueFor("range")
 				self.status_resist = self:GetSpecialValueFor("status_resist")
-				self.base_block_damage = self:GetSpecialValueFor("base_block_damage")
-				self.block_chance = self:GetSpecialValueFor("block_chance")
-				self.physical_block = 0
-				self.magical_block = 0
 				self.bonus_status_resist = 0
+
+				-- BLOCK
+				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
+				self.magical_block_max_percent = self:GetSpecialValueFor("magical_block_max_percent")
 
 				-- AGI
 				self.movespeed = self:GetSpecialValueFor("movespeed")

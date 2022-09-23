@@ -90,16 +90,13 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 		mod:SetKillData(info)
 	end
 
-	local chance = 5
+	local chance = 10
 	if keys.attacker:IsBaseNPC() then
 		if keys.attacker:IsHero()
 		and keys.attacker:IsIllusion() == false then
-			chance = 15
+			chance = 20
 		end
 	end
-
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 	if RandomFloat(1, 100) <= chance
 	and keys.unit:IsMagicImmune() == false

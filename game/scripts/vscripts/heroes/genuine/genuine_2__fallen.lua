@@ -141,12 +141,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
 
         -- UP 2.31
-        local starfall_chance = 40
+        local starfall_chance = 50
         if hTarget:IsHero() then starfall_chance = 100 end
-        if hTarget:IsIllusion() then starfall_chance = 20 end
-
-        local base_stats = caster:FindAbilityByName("base_stats")
-        if base_stats then starfall_chance = starfall_chance * base_stats:GetCriticalChance() end
+        if hTarget:IsIllusion() then starfall_chance = 25 end
 
         if self:GetRank(31) and RandomFloat(1, 100) <= starfall_chance then
             if caster:HasModifier("genuine_u_modifier_caster") == false 

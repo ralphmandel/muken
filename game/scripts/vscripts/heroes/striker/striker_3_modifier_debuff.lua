@@ -156,11 +156,7 @@ function striker_3_modifier_debuff:CheckRoot()
 end
 
 function striker_3_modifier_debuff:ApplyPurge()
-	local chance = 12
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= chance then
+	if RandomFloat(1, 100) <= 10 then
 		self.parent:Purge(true, false, false, false, false)
 		self:PlayEfxPurge()
 	end

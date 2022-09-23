@@ -40,13 +40,13 @@
 				}
 				"31"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"base_block_damage"		"20"
+					"var_type"						"FIELD_FLOAT"
+					"physical_block_max_percent"	"15"
 				}
 				"32"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"block_chance"			"75"
+					"var_type"						"FIELD_FLOAT"
+					"magical_block_max_percent"		"15"
 				}
 			
 			// AGI

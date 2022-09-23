@@ -424,9 +424,18 @@ require("talent_tree")
 			end
 
 			-- Ancient 2.31 requires skill 1.21
-			if talentName == "ancient_2__leap_rank_21"
-			and (not self.ranks[1][31]) then
+			if talentName == "ancient_2__leap_rank_31"
+			and (not self.ranks[1][21]) then
 				return false
+			end
+
+			-- Ancient Ultimate requires Hero level 7
+			if self:GetCaster():GetLevel() < 7 then
+				if talentName == "ancient_u__final_rank_12"
+				or talentName == "ancient_u__final_rank_21"
+				or talentName == "ancient_u__final_rank_41" then
+					return false
+				end
 			end
 
 		-- ICEBREAKER

@@ -68,14 +68,10 @@ function genuine_4_modifier_passive:OnAbilityStart(keys)
 end
 
 function genuine_4_modifier_passive:GetAbsorbSpell(keys)
-	local chance = 15
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
 	-- UP 4.21
 	if self.ability:GetRank(21)
 	and GameRules:IsDaytime() == false
-	and RandomFloat(1, 100) <= chance
+	and RandomFloat(1, 100) <= 20
 	and self.parent:PassivesDisabled() == false then
 		self:PlayEfxBlockSpell()
 		return 1

@@ -86,9 +86,6 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
         local gold_chance = self:GetSpecialValueFor("gold_chance")
         local gold_bonus = self:GetSpecialValueFor("gold_bonus")
 
-	    local base_stats = caster:FindAbilityByName("base_stats")
-	    if base_stats then gold_chance = gold_chance * base_stats:GetCriticalChance() end
-
         if target:TriggerSpellAbsorb(self) then return end
 
         if target:HasModifier("strider_1_modifier_spirit") == false

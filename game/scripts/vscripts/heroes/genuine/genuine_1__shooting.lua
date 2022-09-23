@@ -154,13 +154,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self.spell_lifesteal = true
         ApplyDamage(damageTable)
 
-        local chance = 20
-        local base_stats = caster:FindAbilityByName("base_stats")
-        if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
         -- UP 1.41
         if self:GetRank(41) and target:IsAlive()
-        and RandomFloat(1, 100) <= chance then
+        and RandomFloat(1, 100) <= 25 then
             target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
                 duration = self:CalcStatus(1.5, caster, target)
             })

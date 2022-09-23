@@ -56,7 +56,6 @@ function druid_u_modifier_channel:OnIntervalThink()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
 	local mana_loss = self.ability:GetSpecialValueFor("mana_loss")
 	local max_dominate = self.ability:GetSpecialValueFor("max_dominate")
-	local base_stats = self.parent:FindAbilityByName("base_stats")
 
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
@@ -74,7 +73,6 @@ function druid_u_modifier_channel:OnIntervalThink()
 	for _,unit in pairs(units) do
 		local unit_lvl = unit:GetLevel()
 		local chance = 100 / (unit_lvl * chance_lvl)
-		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance
 		and unit_lvl <= max_dominate
@@ -128,8 +126,6 @@ end
 
 function druid_u_modifier_channel:ConvertTrees()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-
 	local treants = {
 		[1] = "npc_druid_treant_lv1",
 		[2] = "npc_druid_treant_lv2",
@@ -142,7 +138,6 @@ function druid_u_modifier_channel:ConvertTrees()
 	for _,tree in pairs(trees) do
 		local unit_lvl = RandomInt(1, 3)
 		local chance = 100 / (unit_lvl * chance_lvl)
-		if base_stats then chance = chance * base_stats:GetCriticalChance() end
 
 		if RandomFloat(1, 100) <= chance then
 			local origin = tree:GetOrigin()
@@ -150,7 +145,7 @@ function druid_u_modifier_channel:ConvertTrees()
 
 			local treant = CreateUnitByName(treants[unit_lvl], origin, true, self.caster, self.caster, self.caster:GetTeamNumber())
 			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {
-				duration = self.ability:CalcStatus(30, self.caster, self.parent)
+				duration = self.ability:CalcStatus(60, self.caster, self.parent)
 			})
 
 			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end

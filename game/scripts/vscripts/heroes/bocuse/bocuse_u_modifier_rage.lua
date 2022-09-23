@@ -277,11 +277,7 @@ end
 function bocuse_u_modifier_rage:ApplyStun(target)
 	if target:IsAlive() == false then return end
 
-	local chance = 30
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= chance then
+	if RandomFloat(1, 100) <= 50 then
 		target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
 	end
 end

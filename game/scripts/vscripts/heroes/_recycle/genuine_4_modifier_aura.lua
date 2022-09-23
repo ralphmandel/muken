@@ -81,9 +81,7 @@ function genuine_4_modifier_aura:GetBonusNightVisionUnique()
 end
 
 function genuine_4_modifier_aura:GetAbsorbSpell(keys)
-	local chance = 15
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
+	local chance = 20
 
 	-- UP 4.21
 	if self.ability:GetRank(21)

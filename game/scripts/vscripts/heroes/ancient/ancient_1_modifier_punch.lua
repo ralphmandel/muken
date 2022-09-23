@@ -59,6 +59,8 @@ function ancient_1_modifier_punch:OnRemoved()
 
 		self.ability.pinned = false
 	end
+
+	FindClearSpaceForUnit(self.parent, self.parent:GetOrigin(), false)
 end
 
 function ancient_1_modifier_punch:OnDestroy()

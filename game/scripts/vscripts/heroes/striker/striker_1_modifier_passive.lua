@@ -98,11 +98,7 @@ end
 function striker_1_modifier_passive:TryCombo(target)
 	if self.parent:PassivesDisabled() then return end
 
-	local chance = self.ability:GetSpecialValueFor("chance")
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= chance then
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
 		self:PerformBlink(target)
 	end
 end
@@ -205,15 +201,10 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 	local knockback_distance = 25
 
 	-- UP 1.21
-	if self.ability:GetRank(21) then
-		local chance = 25
-		local base_stats = self.parent:FindAbilityByName("base_stats")
-		if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-		if RandomFloat(1, 100) <= chance then
-			knockback_duration = knockback_duration + 0.5
-			knockback_distance = 75
-		end
+	if self.ability:GetRank(21) 
+	and RandomFloat(1, 100) <= 20 then
+		knockback_duration = 1
+		knockback_distance = 75
 	end
 
 	local knockbackProperties =

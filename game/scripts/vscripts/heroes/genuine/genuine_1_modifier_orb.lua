@@ -76,13 +76,9 @@ function genuine_1_modifier_orb:GetModifierAttackRangeBonus(keys)
 end
 
 function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)
-	local chance = 40
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
 	-- UP 1.22
 	if self.ability:GetRank(22)
-	and RandomFloat(1, 100) <= chance then
+	and RandomFloat(1, 100) <= 75 then
 		self.proj = self:ShouldLaunch(self.caster:GetAggroTarget(), true)
 
 		if self.proj then

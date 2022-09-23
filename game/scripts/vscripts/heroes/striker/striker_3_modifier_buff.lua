@@ -136,11 +136,7 @@ function striker_3_modifier_buff:ApplyMS()
 end
 
 function striker_3_modifier_buff:ApplyPurge()
-	local chance = 12
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= chance then
+	if RandomFloat(1, 100) <= 10 then
 		self.parent:Purge(false, true, false, true, false)
 		self:PlayEfxPurge()
 	end

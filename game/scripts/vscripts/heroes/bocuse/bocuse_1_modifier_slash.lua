@@ -200,11 +200,7 @@ end
 function bocuse_1_modifier_slash:ApplyDisarm(target)
 	if target:IsAlive() == false or target:IsMagicImmune() then return end
 
-	local chance = 10
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= chance then
+	if RandomFloat(1, 100) <= 10 then
 		target:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
 			duration = self.ability:CalcStatus(5, self.caster, target)
 		})		

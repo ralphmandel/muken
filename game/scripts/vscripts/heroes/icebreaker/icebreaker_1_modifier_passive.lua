@@ -94,11 +94,10 @@ end
 -- UTILS -----------------------------------------------------------
 
 function icebreaker_1_modifier_passive:ApplyHypothermia(target, bIllusion)
-	local hypo_chance = 100
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if target:IsMagicImmune() or self.parent:PassivesDisabled() then hypo_chance = 0 end
-
-	if base_stats then hypo_chance = hypo_chance * base_stats:GetCriticalChance() end
+	local hypo_chance = 75
+	if bIllusion then hypo_chance = 100 end
+	if target:IsMagicImmune() then hypo_chance = 25 end
+	if self.parent:PassivesDisabled() then hypo_chance = 0 end
 	if RandomFloat(1, 100) <= hypo_chance then self.ability:AddSlow(target, self.ability, 1, true) end
 end
 
@@ -123,12 +122,8 @@ function icebreaker_1_modifier_passive:ApplyInstantFrozen(target, bIllusion)
 	if target:IsAlive() == false then return end
 	if target:IsMagicImmune() then return end
 	if bIllusion then return end  
-
-	local instant_chance = 10
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then instant_chance = instant_chance * base_stats:GetCriticalChance() end
 	
-	if RandomFloat(1, 100) <= instant_chance then
+	if RandomFloat(1, 100) <= 10 then
 		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
 			duration = 0.1
 		})
@@ -144,11 +139,7 @@ function icebreaker_1_modifier_passive:ApplyAutoBlink(target, bIllusion)
 	if self.parent:PassivesDisabled() then return end
 	if bIllusion then return end
 
-	local blink_chance = 17
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then blink_chance = blink_chance * base_stats:GetCriticalChance() end
-
-	if RandomFloat(1, 100) <= blink_chance then
+	if RandomFloat(1, 100) <= 15 then
 		local direction = target:GetForwardVector() * (-1)
 		local blink_point = target:GetAbsOrigin() + direction * 130
 

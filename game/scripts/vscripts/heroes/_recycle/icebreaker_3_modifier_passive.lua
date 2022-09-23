@@ -114,8 +114,6 @@ function icebreaker_3_modifier_passive:AddFrost(target, bIllusion)
 	if hypo:IsTrained() == false then return end
 
 	local chance = 20
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then chance = chance * base_stats:GetCriticalChance() end
 	
 	if RandomFloat(1, 100) <= chance then
 		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {duration = 0.5})

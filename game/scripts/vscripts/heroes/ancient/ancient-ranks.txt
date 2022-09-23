@@ -123,11 +123,10 @@
 			"2"
 			{
 				"1"   "ancient_u__final_rank_31"
-				"2"   "ancient_u__final_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "ancient_u__final_rank_41"
 			}
 		}
 	}	

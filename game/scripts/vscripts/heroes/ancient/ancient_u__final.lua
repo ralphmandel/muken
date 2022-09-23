@@ -1,6 +1,7 @@
 ancient_u__final = class({})
 LinkLuaModifier("ancient_u_modifier_passive", "heroes/ancient/ancient_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -125,6 +126,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
                 enemy:Interrupt()
                 local closest_point = self:FindNearestPointFromLine(caster_position, caster_fw, enemy:GetAbsOrigin())
                 FindClearSpaceForUnit(enemy, closest_point, false)
+
+                -- UP 6.21
+                if self:GetRank(21) and enemy:IsAlive() then
+                    enemy:AddNewModifier(caster, self, "_modifier_movespeed_debuff", {
+                        duration = self:CalcStatus(10, caster, enemy),
+                        percent = 50
+                    })
+                    enemy:AddNewModifier(caster, self, "_modifier_break", {
+                        duration = self:CalcStatus(10, caster, enemy)
+                    })
+                end
             end
     
             self:PlayEfxDestroy()
@@ -155,21 +167,28 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:UpdateResistance()
     end
 
-    function ancient_u__final:AddEnergy(ability)
+    function ancient_u__final:AddEnergy(ability, target)
         local caster = self:GetCaster()
+        local berserk = caster:FindAbilityByName("ancient_1__berserk")
+        local leap = caster:FindAbilityByName("ancient_2__leap")
         local energy_gain = self:GetSpecialValueFor("energy_gain") * 0.01
+
+        if ability == self then
+            local percent = 5
+            if target:IsHero() then percent = 20 end
+            self.energy = self.energy + (caster:GetMaxMana() * percent * 0.01)
+            caster:Heal(caster:GetMaxHealth() * percent * 0.01, self)
+        end
         
-        if ability == nil then
-            local berserk = caster:FindAbilityByName("ancient_1__berserk")
-            if berserk then
-                local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage_percent") * 0.01))
-                damage = damage + berserk:GetSpecialValueFor("damage")
-                self.energy = self.energy + (damage * energy_gain)
-            end
+        if ability == nil and berserk then
+            local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage_percent") * 0.01))
+            damage = damage + berserk:GetSpecialValueFor("damage")
+            self.energy = self.energy + (damage * energy_gain)
         end
 
-        local leap = caster:FindAbilityByName("ancient_2__leap")
-        if leap and ability == leap then self.energy = self.energy + (leap:GetAbilityDamage() * energy_gain) end
+        if ability == leap and leap then
+            self.energy = self.energy + (leap:GetAbilityDamage() * energy_gain)
+        end
 
         Timers:CreateTimer(0.1, function()
             if self.energy > 0 then
@@ -183,8 +202,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_u__final:UpdateResistance()
         local caster = self:GetCaster()
-        local res = self:GetSpecialValueFor("res") * 0.01
-        local total_res = math.floor(caster:GetMana() * res)
+        local res = self:GetSpecialValueFor("res")
+        local mana_percent = (caster:GetMana() * 100) / caster:GetMaxMana()
+
+        -- UP 6.31
+        if self:GetRank(31) then
+            res = res + 0.3
+        end
+
+        local total_res = math.floor(mana_percent * res)
 
         self:RemoveBonus("_2_RES", caster)
         if caster:IsAlive() and total_res > 0 then self:AddBonus("_2_RES", caster, total_res, 0, nil) end
@@ -218,6 +244,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local current = self:GetCaster():GetMana()
 
         if self:GetCurrentAbilityCharges() % 3 == 0 then min_cost = min_cost - 10 end
+        min_cost = self:GetCaster():GetMaxMana() * min_cost * 0.01
         if min_cost > current then return min_cost end
         
         return current
@@ -225,6 +252,18 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_u__final:CheckAbilityCharges(charges)
         if self:GetCaster():GetLevel() >= 7 then charges = 1 end
+
+        -- UP 6.12
+        if self:GetRank(12) then
+            charges = charges * 2 -- cast range
+        end
+
+        -- UP 6.21
+        if self:GetRank(21) then
+            charges = charges * 3 -- manacost
+        end
+
+
         self:SetCurrentAbilityCharges(charges)
     end
 

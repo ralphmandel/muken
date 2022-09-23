@@ -115,22 +115,49 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"channel_time"  "3.75"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"        "450"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max_ms"        "175"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"tick"          "1.75"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"debuff_duration"   "3.5"
+			}
+            "06"
+			{
+				"var_type"      "FIELD_FLOAT"
+				"block"         "50"
+			}
+            "07"
+			{
+				"var_type"      "FIELD_FLOAT"
+				"energy_loss"   "1.5"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"0"
 			}
 			"15"
 			{
@@ -216,7 +243,7 @@
 		"ScriptFile"            		"heroes/ancient/ancient_u__final"
 		"AbilityTextureName"     		"ancient_final"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -236,7 +263,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"energy_loss"	    "2.5"
+				"energy_loss"	    "3"
 			}
             "03"
 			{
@@ -261,7 +288,7 @@
             "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"res"	            "5"
+				"res"	            "0.3"
 			}
             "14"
 			{
@@ -271,7 +298,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16 17 18 19"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}

@@ -37,7 +37,8 @@ end
 
 function ancient_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_DEATH
 	}
 
 	return funcs
@@ -50,14 +51,29 @@ function ancient_u_modifier_passive:OnTakeDamage(keys)
 	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 	if self.parent:PassivesDisabled() then return end
 
-	self.ability:AddEnergy(keys.inflictor)
+	self.ability:AddEnergy(keys.inflictor, keys.unit)
+end
+
+function ancient_u_modifier_passive:OnDeath(keys)
+	if keys.inflictor ~= self.ability then return end
+	if keys.unit:GetTeamNumber() == self.caster:GetTeamNumber() then return end
+	if keys.unit:IsIllusion() then return end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self.ability:AddEnergy(self.ability, keys.unit)
+	end
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
 	self.parent:ReduceMana(1)
 	self.ability:UpdateResistance()
 
-	local energy_loss = self.ability:GetSpecialValueFor("energy_loss")
+	local ability = self.ability
+	local walk_buff = self.parent:FindModifierByNameAndCaster("ancient_3_modifier_walk", self.caster)
+	if walk_buff then ability = walk_buff:GetAbility() end
+	local energy_loss = ability:GetSpecialValueFor("energy_loss")
+
 	if IsServer() then self:StartIntervalThink(1 / energy_loss) end
 end
 
