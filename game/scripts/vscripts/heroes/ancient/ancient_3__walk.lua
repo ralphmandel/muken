@@ -1,11 +1,13 @@
 ancient_3__walk = class({})
 LinkLuaModifier("ancient_3_modifier_walk", "heroes/ancient/ancient_3_modifier_walk", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_debuff", "heroes/ancient/ancient_3_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_3_modifier_avatar", "heroes/ancient/ancient_3_modifier_avatar", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_channel", "heroes/ancient/ancient_3_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_efx_hands", "heroes/ancient/ancient_3_modifier_efx_hands", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_walk_status_efx", "heroes/ancient/ancient_3_modifier_walk_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified", "modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified_status_efx", "modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -71,7 +73,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local time = self:GetChannelTime()
 
         if caster:HasModifier("ancient_3_modifier_walk") then
-            caster:RemoveModifierByName("ancient_3_modifier_walk")
             caster:Interrupt()
             return
         end
@@ -86,9 +87,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_3__walk:OnChannelFinish(bInterrupted)
         local caster = self:GetCaster()
-        caster:RemoveModifierByName("ancient_3_modifier_channel")
         self:SetActivated(true)
         self:StartCooldown(5)
+
+        caster:RemoveModifierByName("ancient_3_modifier_channel")
+        caster:RemoveModifierByName("ancient_3_modifier_walk")
 
         if bInterrupted == false then
             caster:AddNewModifier(caster, self, "ancient_3_modifier_walk", {})
@@ -105,6 +108,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local channel = self:GetCaster():FindAbilityByName("_channel")
         local channel_time = self:GetSpecialValueFor("channel_time")
         return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
+    end
+
+    function ancient_3__walk:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
     function ancient_3__walk:GetManaCost(iLevel)

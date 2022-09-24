@@ -429,6 +429,12 @@ require("talent_tree")
 				return false
 			end
 
+			-- Ancient 3.31 requires skill 4
+			if talentName == "ancient_3__walk_rank_31"
+			and (not self.ranks[4][0]) then
+				return false
+			end
+
 			-- Ancient Ultimate requires Hero level 7
 			if self:GetCaster():GetLevel() < 7 then
 				if talentName == "ancient_u__final_rank_12"

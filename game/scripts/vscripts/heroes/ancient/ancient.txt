@@ -111,7 +111,7 @@
 		"ScriptFile"            		"heroes/ancient/ancient_3__walk"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"ancient_walk"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -127,17 +127,17 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"        "450"
+				"radius"        "425"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_ms"        "175"
+				"tick"          "1.75"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"tick"          "1.75"
+				"max_ms"        "175"
 			}
             "05"
 			{
@@ -162,7 +162,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
