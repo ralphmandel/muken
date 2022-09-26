@@ -172,7 +172,7 @@
             "08"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"init_amount"	    "50" // x4.31
+				"init_amount"	    "40" // x4.31
 			}
 			"14"
 			{

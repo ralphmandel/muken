@@ -24,16 +24,10 @@ function ancient_3_modifier_walk:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.stun_immunity = false
 
-	local block = self.ability:GetSpecialValueFor("block")
 	self.max_ms = self.ability:GetSpecialValueFor("max_ms")
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "ancient_3_modifier_walk_status_efx", true) end
-
-	self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_block_bonus", {
-		physical_block_min_percent = block,
-		physical_block_max_percent = block
-	})
 
 	-- UP 3.31
 	if self.ability:GetRank(31) then
@@ -51,11 +45,6 @@ function ancient_3_modifier_walk:OnRemoved()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "ancient_3_modifier_walk_status_efx", false) end
-
-	local mod = self.parent:FindAllModifiersByName("base_stats_mod_block_bonus")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -94,16 +83,20 @@ end
 function ancient_3_modifier_walk:GetModifierPhysical_ConstantBlock(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
-
-	local base_stats = keys.attacker:FindAbilityByName("base_stats")
-	if base_stats == nil then return end
-	if base_stats.has_crit ~= true then return end
+	local base_stats_attacker = keys.attacker:FindAbilityByName("base_stats")
+	local block = self.ability:GetSpecialValueFor("block") * 0.01
 
 	-- UP 3.11
 	if self.ability:GetRank(11)
 	and RandomFloat(1, 100) <= 25 then
-		return keys.damage
+		if base_stats_attacker then
+			if base_stats_attacker.has_crit == true then
+				return keys.damage
+			end
+		end
 	end
+
+	return keys.damage * block
 end
 
 function ancient_3_modifier_walk:OnIntervalThink()

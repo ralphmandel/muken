@@ -54,8 +54,8 @@
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		"ProjectileModel"				"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
 		
-		"VisionDaytimeRange"        	"1200"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"800"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
 
 		//STRENGHT
 			"AttackDamageMax"			"45"
@@ -67,7 +67,7 @@
 			"MovementTurnRate"          "0.5"
 			"MovementSpeed"           	"50"
 		//VITALITY
-			"StatusHealth"            	"2499"
+			"StatusHealth"            	"2500"
 			"StatusHealthRegen"        	"10"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"

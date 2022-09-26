@@ -57,7 +57,7 @@ function fountain_modifier:OnIntervalThink()
 	for _,unit in pairs(units) do
 		if GameRules:IsDaytime() then
 			unit:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {duration = 0.3})
-			local heal = self.hp_percent * unit:GetMaxHealth() * 0.2
+			local heal = self.hp_percent * unit:GetBaseMaxHealth() * 0.2
 			unit:Heal(heal, self.ability)
 			self:PlayEfxHeal(unit)
 		else

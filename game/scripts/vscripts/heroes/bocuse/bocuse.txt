@@ -140,12 +140,12 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"min_amount"		"0.5"
+				"min_amount"		"0.4"
 			}
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount_scale"		"0.5"
+				"amount_scale"		"0.4"
 			}
             "07"
 			{
@@ -395,7 +395,7 @@
             "05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"status"			"70"
+				"status"			"50"
 			}
             "06"
 			{

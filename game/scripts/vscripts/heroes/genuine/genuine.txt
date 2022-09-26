@@ -180,7 +180,7 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bonus_vision"	"300"
+				"bonus_vision"	"250"
 			}
 			"14"
 			{

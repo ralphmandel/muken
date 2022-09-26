@@ -88,7 +88,7 @@ end
 -- end
 
 function dasdingo_5_modifier_lash:OnIntervalThink()
-	local amount = self.parent:GetMaxHealth() * self.drain
+	local amount = self.parent:GetBaseMaxHealth() * self.drain
 	self.parent:ModifyHealth(self.parent:GetHealth() - amount, self.ability, true, 0)
 	self.caster:ModifyHealth(self.caster:GetHealth() + amount, self.ability, false, 0)
 

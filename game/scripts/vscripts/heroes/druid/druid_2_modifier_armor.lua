@@ -35,7 +35,7 @@ function druid_2_modifier_armor:OnCreated(kv)
 
 	-- UP 2.21
 	if self.ability:GetRank(21) then
-		self.status_resist = 35
+		self.status_resist = 25
 	end
 
 	-- UP 2.22
@@ -78,7 +78,7 @@ function druid_2_modifier_armor:DeclareFunctions()
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
 	}
 
 	return funcs
@@ -99,7 +99,7 @@ function druid_2_modifier_armor:OnAttackLanded(keys)
 	self:SetDuration(self:GetRemainingTime() + bonus_per_atk, true)
 end
 
-function druid_2_modifier_armor:GetModifierStatusResistance()
+function druid_2_modifier_armor:GetModifierStatusResistanceStacking()
 	return self.status_resist
 end
 

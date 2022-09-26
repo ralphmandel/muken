@@ -1,5 +1,7 @@
 ancient_4__lotus = class({})
-LinkLuaModifier("ancient_4_modifier_lotus", "heroes/ancient/ancient_4_modifier_lotus", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_4_modifier_passive", "heroes/ancient/ancient_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_4_modifier_radiance_aura", "heroes/ancient/ancient_4_modifier_radiance_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_4_modifier_radiance_aura_effect", "heroes/ancient/ancient_4_modifier_radiance_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +63,28 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function ancient_4__lotus:OnSpellStart()
+    function ancient_4__lotus:GetIntrinsicModifierName()
+        return "ancient_4_modifier_passive"
+    end
+
+    function ancient_4__lotus:ApplyRadiance()
         local caster = self:GetCaster()
+        local mana = caster:GetMana()
+        local modifier_name = "ancient_4_modifier_radiance_aura"
+
+        if caster:IsIllusion() then return end
+
+        if mana > 0 and caster:IsAlive() then
+            caster:AddNewModifier(caster, self, modifier_name, {})
+        else
+            caster:RemoveModifierByNameAndCaster(modifier_name, caster)
+        end
+    end
+
+    function ancient_4__lotus:GetAOERadius()
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 and self:GetCaster():GetMana() > 0 then return 250 end
+        return 0
     end
 
     function ancient_4__lotus:GetManaCost(iLevel)
@@ -73,6 +95,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_4__lotus:CheckAbilityCharges(charges)
+        -- UP 4.22
+        if self:GetRank(22) then
+            charges = charges * 2
+        end
+
+        -- UP 4.31
+        if self:GetRank(31) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

@@ -123,7 +123,8 @@ function striker_3_modifier_debuff:ApplyTick()
 		attacker = self.caster,
 		damage = self.amount,
 		damage_type = self.ability:GetAbilityDamageType(),
-		ability = self.ability
+		ability = self.ability,
+		damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
 	}
 	ApplyDamage(damageTable)
 

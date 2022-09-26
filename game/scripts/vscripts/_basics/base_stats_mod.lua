@@ -183,7 +183,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierStatusResistance()
         if self.parent:GetAttackCapability() == 1 then
-            return self.ability.total_status_resist + self.ability.bonus_status_resist
+            return self.ability.total_status_resist
         end
 
         return 0
@@ -207,7 +207,6 @@ base_stats_mod = class ({})
     end
 
     function base_stats_mod:GetModifierPreAttack_CriticalStrike(keys)
-        print("FORCE CRIT", self.ability.force_crit_hit)
         if self.pierce_proc == true or self.ability.force_crit_hit == true then
             self.pierce_proc = false
             self.ability.force_crit_hit = false

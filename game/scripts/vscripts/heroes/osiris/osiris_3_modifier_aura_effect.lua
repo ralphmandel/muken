@@ -71,7 +71,7 @@ end
 
 function osiris_3_modifier_aura_effect:GetModifierConstantHealthRegen()
 	if self:GetCaster() == self:GetParent() then
-		return self:GetCaster():GetMaxHealth() * self.regen * 0.01
+		return self:GetCaster():GetBaseMaxHealth() * self.regen * 0.01
 	end
 
 	return 0

@@ -154,7 +154,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.range = self:GetSpecialValueFor("range")
 				self.status_resist = self:GetSpecialValueFor("status_resist")
-				self.bonus_status_resist = 0
 
 				-- BLOCK
 				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
@@ -417,11 +416,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 ---- ATTRIBUTES UTILS
 	-- UTIL STR
-
-		function base_stats:SetBonusStatusRes(amount)
-			self.bonus_status_resist = self.bonus_status_resist + amount
-		end
-
 		function base_stats:SetForceCritSpell(value, state, damage_type)
 			if value > 0 then self.crit_damage_spell[damage_type] = value end
 			self.force_crit_spell[damage_type] = state -- NIL == force no crit

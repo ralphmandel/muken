@@ -61,6 +61,23 @@ function _modifier_petrified:CheckState()
 	return state
 end
 
+function _modifier_petrified:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+		MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
+	}
+	return funcs
+end
+
+function _modifier_petrified:GetModifierPhysical_ConstantBlock(keys)
+	return keys.damage * 0.5
+end
+
+function _modifier_petrified:GetModifierMagical_ConstantBlock(keys)
+	if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
+	return keys.damage * 0.5
+end
+
 --------------------------------------------------------------------------------
 
 function _modifier_petrified:OnIntervalThink()

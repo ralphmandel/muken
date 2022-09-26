@@ -126,14 +126,13 @@ function druid_5_modifier_entangled:ApplyLeech()
 
 	for _,unit in pairs(units) do
 		if self.parent:IsAlive() and targets > 0 then
-			self.ability:CreateSeedProj(unit, self.parent, self.leech_amount)
-
-			targets = targets - 1
-
-			ApplyDamage({
+			local total_damage = ApplyDamage({
 				damage = self.leech_amount, attacker = self.caster, victim = self.parent,
 				damage_type = self.ability:GetAbilityDamageType(), ability = self.ability
 			})
+
+			self.ability:CreateSeedProj(unit, self.parent, total_damage)
+			targets = targets - 1
 		end
 	end
 

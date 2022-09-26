@@ -105,18 +105,18 @@ end
 
 function bocuse_2_modifier_debuff:AddBonusAmount(damage)
 	local amount_scale = self.ability:GetSpecialValueFor("amount_scale")
-	local result = self.bonus_amount + ((damage * 100) / self.parent:GetMaxHealth())
+	local result = self.bonus_amount + ((damage * 100) / self.parent:GetBaseMaxHealth())
 	return result * amount_scale
 end
 
 function bocuse_2_modifier_debuff:ApplyDamage()
 	local min_amount = self.ability:GetSpecialValueFor("min_amount")
-	local amount = (min_amount + self.bonus_amount) * self.parent:GetMaxHealth() * 0.01
+	local amount = (min_amount + self.bonus_amount) * self.parent:GetBaseMaxHealth() * 0.01
 
 	ApplyDamage({
 		victim = self.parent, attacker = self.caster,
 		damage = amount, damage_type = self.ability:GetAbilityDamageType(),
-		ability = self.ability
+		ability = self.ability, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
 	})
 
 	self.bonus_amount = 0

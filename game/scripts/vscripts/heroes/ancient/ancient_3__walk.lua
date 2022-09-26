@@ -5,7 +5,6 @@ LinkLuaModifier("ancient_3_modifier_avatar", "heroes/ancient/ancient_3_modifier_
 LinkLuaModifier("ancient_3_modifier_channel", "heroes/ancient/ancient_3_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_efx_hands", "heroes/ancient/ancient_3_modifier_efx_hands", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_walk_status_efx", "heroes/ancient/ancient_3_modifier_walk_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_petrified", "modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_petrified_status_efx", "modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
 

@@ -120,7 +120,8 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
             for _, enemy in pairs(enemies) do
                 ApplyDamage({
                     victim = enemy, attacker = caster, damage = self.damage,
-                    damage_type = self:GetAbilityDamageType(), ability = self
+                    damage_type = self:GetAbilityDamageType(), ability = self,
+                    damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
                 })
 
                 enemy:Interrupt()
@@ -171,13 +172,15 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
         local caster = self:GetCaster()
         local berserk = caster:FindAbilityByName("ancient_1__berserk")
         local leap = caster:FindAbilityByName("ancient_2__leap")
+        local lotus = caster:FindAbilityByName("ancient_4__lotus")
+        local heal = caster:FindAbilityByName("ancient_5__heal")
         local energy_gain = self:GetSpecialValueFor("energy_gain") * 0.01
 
-        if ability == self then
+        if ability == self and target then
             local percent = 5
             if target:IsHero() then percent = 20 end
             self.energy = self.energy + (caster:GetMaxMana() * percent * 0.01)
-            caster:Heal(caster:GetMaxHealth() * percent * 0.01, self)
+            caster:Heal(caster:GetBaseMaxHealth() * percent * 0.01, self)
         end
         
         if ability == nil and berserk then
@@ -189,6 +192,17 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
         if ability == leap and leap then
             self.energy = self.energy + (leap:GetAbilityDamage() * energy_gain)
         end
+
+        if ability == lotus and lotus then
+            self.energy = self.energy + 1
+        end
+
+        if ability == heal and heal then
+            local energy_deficit = caster:GetMaxMana() - caster:GetMana()
+            self.energy = self.energy + (energy_deficit * 0.15)
+        end
+
+        self.energy = math.floor(self.energy)
 
         Timers:CreateTimer(0.1, function()
             if self.energy > 0 then
@@ -204,6 +218,15 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
         local caster = self:GetCaster()
         local res = self:GetSpecialValueFor("res")
         local mana_percent = (caster:GetMana() * 100) / caster:GetMaxMana()
+        local lotus = caster:FindAbilityByName("ancient_4__lotus")
+
+        -- UP 4.31
+        if lotus then
+            if lotus:GetRank(31)
+            and lotus:IsTrained() then
+                lotus:ApplyRadiance()
+            end
+        end
 
         -- UP 6.31
         if self:GetRank(31) then

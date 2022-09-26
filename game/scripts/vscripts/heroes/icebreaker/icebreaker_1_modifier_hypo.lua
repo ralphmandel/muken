@@ -61,7 +61,7 @@ function icebreaker_1_modifier_hypo:GetModifierAttackSpeedBonus_Constant()
 end
 
 function icebreaker_1_modifier_hypo:OnIntervalThink()
-	self.damageTable.damage = self.parent:GetMaxHealth() * self.damage_mult
+	self.damageTable.damage = self.parent:GetBaseMaxHealth() * self.damage_mult
 	ApplyDamage(self.damageTable)
 end
 

@@ -148,7 +148,11 @@ function ancient_1_modifier_passive:ApplyStuns(keys)
 		if self.base_stats then self.base_stats:SetForceCritHit(-1) end
 		
 		local ult = self.parent:FindAbilityByName("ancient_u__final")
-		if ult then ult:UpdateResistance() end
+		if ult then
+			if ult:IsTrained() then
+				ult:UpdateResistance()
+			end
+		end
 		
 		keys.unit:AddNewModifier(self.caster, self.ability, "ancient_1_modifier_punch", {
             duration = stun_duration * 1.5

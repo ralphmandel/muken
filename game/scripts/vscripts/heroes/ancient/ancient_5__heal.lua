@@ -1,5 +1,5 @@
 ancient_5__heal = class({})
-LinkLuaModifier("ancient_5_modifier_heal", "heroes/ancient/ancient_5_modifier_heal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_5_modifier_buff", "heroes/ancient/ancient_5_modifier_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +61,50 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
+    function ancient_5__heal:OnAbilityPhaseStart()
+        self:GetCaster():RemoveModifierByName("ancient_5_modifier_buff")
+        self:PlayEfxStart(self:GetCaster())
+        return true
+    end
+
     function ancient_5__heal:OnSpellStart()
         local caster = self:GetCaster()
+        local hp_min = self:GetSpecialValueFor("hp_min")
+        local percent = self:GetSpecialValueFor("percent")
+        
+        local deficit = caster:GetBaseMaxHealth() - caster:GetHealth()
+        local extra_health = math.floor(deficit * percent * 0.01)
+        local sound = "Hero_Omniknight.Purification"
+
+        -- UP 5.21
+        if self:GetRank(21) then
+            extra_health = extra_health + (caster:GetBaseMaxHealth() * 0.1)
+        end
+
+        -- UP 5.22
+        if self:GetRank(22) then
+            local ult = caster:FindAbilityByName("ancient_u__final")
+            if ult then
+                if ult:IsTrained() then
+                    ult:AddEnergy(self, nil)
+                end
+            end
+        end
+
+        caster:Purge(false, true, false, false, false)
+        
+        if extra_health > hp_min then
+            caster:AddNewModifier(caster, self, "ancient_5_modifier_buff", {extra_health = extra_health})
+            sound = "Hero_Omniknight.Purification.Wingfall"
+        end
+
+        self:PlayEfxEnd(caster, sound)
+    end
+
+    function ancient_5__heal:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return 4 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return 137438953476 end
+        return 4
     end
 
     function ancient_5__heal:GetManaCost(iLevel)
@@ -73,7 +115,29 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function ancient_5__heal:CheckAbilityCharges(charges)
+        -- UP 5.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS
+
+    function ancient_5__heal:PlayEfxStart(target)
+        if IsServer() then target:EmitSound("Hero_ElderTitan.PreAttack") end
+    end
+
+    function ancient_5__heal:StopEfxStart(bImmediate)
+        if self.pfx then ParticleManager:DestroyParticle(self.pfx, bImmediate) end
+    end
+
+    function ancient_5__heal:PlayEfxEnd(target, sound)
+        local string = "particles/units/heroes/hero_chen/chen_holy_persuasion.vpcf"
+        local pfx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControlEnt(pfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+        ParticleManager:ReleaseParticleIndex(pfx)
+
+        if IsServer() then target:EmitSound(sound) end
+    end

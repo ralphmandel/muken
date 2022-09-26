@@ -127,7 +127,7 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 
 		ApplyDamage({
 			attacker = self.caster, victim = keys.target, ability = self.ability,
-			damage = self.parent:GetMaxHealth() * 0.04, damage_type = DAMAGE_TYPE_PHYSICAL
+			damage = self.parent:GetBaseMaxHealth() * 0.04, damage_type = DAMAGE_TYPE_PHYSICAL
 		})
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {

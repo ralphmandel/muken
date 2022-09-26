@@ -130,7 +130,7 @@ function base_hero_mod:LoadModel()
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "ancient" then
-					self.parent:SetModelScale(1.10)
+					self.parent:SetModelScale(1.07)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "osiris" then

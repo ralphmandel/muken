@@ -29,7 +29,7 @@ function bocuse_3_modifier_mark:OnCreated(kv)
 	end
 end
 
-function bocuse_3_modifier_mark:OnRefresh(kv)
+function bocuse_3_modifier_mark:OnRefresh(kv)	
 	if IsServer() then
 		if self:GetStackCount() < self.max_stack then
 			self:IncrementStackCount()

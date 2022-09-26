@@ -80,7 +80,7 @@ function _modifier__ai:IdleThink()
         return
     end
 
-    self.unit:Heal(self.unit:GetMaxHealth() * 0.025, nil)
+    self.unit:Heal(self.unit:GetBaseMaxHealth() * 0.025, nil)
     -- Nothing else to do in Idle state
 end
 

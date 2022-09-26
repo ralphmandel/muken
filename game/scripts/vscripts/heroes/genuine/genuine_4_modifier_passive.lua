@@ -49,7 +49,7 @@ end
 
 function genuine_4_modifier_passive:GetBonusNightVisionUnique()
 	if self.ability:GetCurrentAbilityCharges() % 3 == 0 then
-		return self.bonus_vision + 300
+		return self.bonus_vision + 250
 	end
 
 	return self.bonus_vision

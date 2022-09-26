@@ -71,7 +71,7 @@ end
 
 function bocuse_u_modifier_rage:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_STATUS_RESISTANCE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_DEATH,
         MODIFIER_EVENT_ON_STATE_CHANGED
@@ -80,7 +80,7 @@ function bocuse_u_modifier_rage:DeclareFunctions()
 	return funcs
 end
 
-function bocuse_u_modifier_rage:GetModifierStatusResistance()
+function bocuse_u_modifier_rage:GetModifierStatusResistanceStacking()
 	return self.status
 end
 
