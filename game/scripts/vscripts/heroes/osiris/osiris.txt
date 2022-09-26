@@ -39,34 +39,38 @@
             "02"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"poison_radius" "250"
+				"slow_duration" "0.5"
 			}
             "03"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"poison_duration"	"12"
+				"var_type"      "FIELD_FLOAT"
+				"poison_radius" "250"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"base_heal_degen"    "50"
+				"poison_duration"	"12"
 			}
             "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"base_heal_degen"    "50"
+			}
+            "06"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"base_poison_damage"	"30"
 			}
-            "06"
+            "07"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"tick"          "1.5"
 			}
-            "07"
+            "08"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"poison_cap"    "25"
 			}
-            
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"

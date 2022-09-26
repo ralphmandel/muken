@@ -1,0 +1,77 @@
+"DOTAHeroes"
+{
+	"shadow"
+	{
+		"override_hero"					"npc_dota_hero_spectre"
+		//"SoundSet"						""
+		"DisableWearables" "1"
+
+		//ABILITIES
+			"Ability1"						"slot_1"
+			"Ability2"						"slot_2"
+			"Ability3"						"slot_3"
+			"Ability4"						"slot_4"
+			"Ability5"						"slot_5"
+			"Ability6"						"slot_6"
+			"Ability7"						"cosmetics"
+			"Ability8"						"base_hero"
+			"Ability9"						"base_stats"
+			"Ability10"						"shadow_1__sk1"
+			"Ability11"						"shadow_2__sk2"
+			"Ability12"						"shadow_3__sk3"
+			"Ability13"						"shadow_4__sk4"
+			"Ability14"						"shadow_5__sk5"
+			"Ability15"						"shadow_u__sk6"
+			"Ability16"						"null"
+			"Ability17"						"null"
+			"Ability18"						"null"
+			"Ability19"						"null"
+			"Ability20"						"null"
+			"Ability21"						"null"
+			"Ability22"						"null"
+			"Ability23"						"null"
+			"Ability24"						"null"
+			"Ability25"						"null"
+			"Ability26"						"null"
+			"Ability27"						"null"		
+			"Ability28"						"null"		
+			"Ability29"						"null"		
+			"Ability30"						"_channel"
+			"Ability31"						"_void"
+			"Ability32"						"shadow__precache"
+
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"0"            // Base strength
+		"AttributeStrengthGain"			"0"            // Strength bonus per level.
+		"AttributeBaseAgility"			"0"            // Base agility
+		"AttributeAgilityGain"			"0"            // Agility bonus per level.
+		"AttributeBaseIntelligence"		"0"            // Base intelligence
+		"AttributeIntelligenceGain"		"0"            // Intelligence bonus per level.
+		"Level"							"0"
+
+		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
+		"AttackRange"                   "125"     // Range within a target can be attacked.
+		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
+		//"ProjectileModel"          	""
+		//"ProjectileSpeed"          	"900"
+		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
+
+		//STRENGHT
+			"AttackDamageMax"			"45"
+			"AttackDamageMin"         	"35"
+			"ArmorPhysical"           	"0"
+		//AGILITY
+			"BaseAttackSpeed"			"100"
+			"AttackRate"              	"1"
+			"MovementTurnRate"          "0.5"
+			"MovementSpeed"           	"50"
+		//VITALITY
+			"StatusHealth"            	"2500"
+			"StatusHealthRegen"        	"10"
+		//INTELLIGENCE
+			"MagicalResistance"        	"0"
+			"StatusMana"              	"600"
+			"StatusManaRegen"          	"0"
+	}
+}

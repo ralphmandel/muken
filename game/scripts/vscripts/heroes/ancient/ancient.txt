@@ -212,7 +212,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_ANCESTRAL_SPIRIT"
 		"AbilityCastPoint"       		"0.45"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{

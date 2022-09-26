@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "shadow_1__sk1"
+	"2" "shadow_2__sk2"
+	"3" "shadow_3__sk3"
+	"4" "shadow_4__sk4"
+	"5" "shadow_5__sk5"
+	"6" "shadow_u__sk6"
+}

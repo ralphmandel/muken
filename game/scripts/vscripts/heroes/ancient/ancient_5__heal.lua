@@ -94,8 +94,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:Purge(false, true, false, false, false)
         
         if extra_health > hp_min then
-            caster:AddNewModifier(caster, self, "ancient_5_modifier_buff", {extra_health = extra_health})
             sound = "Hero_Omniknight.Purification.Wingfall"
+            caster:AddNewModifier(caster, self, "ancient_5_modifier_buff", {
+                extra_health = extra_health,
+                duration = extra_health * 0.04
+            })
         end
 
         self:PlayEfxEnd(caster, sound)

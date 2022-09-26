@@ -24,6 +24,9 @@ function ancient_5_modifier_buff:OnCreated(kv)
 	local iDesiredHealthValue = self.parent:GetHealth() + kv.extra_health
 	self.parent:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
 
+	self.ability:EndCooldown()
+	self.ability:SetActivated(false)
+
 	-- UP 5.12
 	if self.ability:GetRank(12) then
 		self.decrease = false
@@ -41,6 +44,9 @@ function ancient_5_modifier_buff:OnRefresh(kv)
 end
 
 function ancient_5_modifier_buff:OnRemoved()
+	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	self.ability:SetActivated(true)
+
 	if self:GetStackCount() > 0 then
 		local iDesiredHealthValue = self.parent:GetHealth() - self:GetStackCount()
 		self.parent:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)

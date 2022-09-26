@@ -3,6 +3,7 @@ LinkLuaModifier("osiris_1_modifier_passive", "heroes/osiris/osiris_1_modifier_pa
 LinkLuaModifier("osiris_1_modifier_poison", "heroes/osiris/osiris_1_modifier_poison", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("osiris_1_modifier_poison_stack", "heroes/osiris/osiris_1_modifier_poison_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("osiris_1_modifier_poison_status_efx", "heroes/osiris/osiris_1_modifier_poison_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -101,6 +102,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function osiris_1__poison:Release()
         local caster = self:GetCaster()
+        local slow_duration = self:GetSpecialValueFor("slow_duration")
         local poison_duration = self:GetSpecialValueFor("poison_duration")
         local poison_radius = self:GetSpecialValueFor("poison_radius")
 
@@ -114,6 +116,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         )
     
         for _,enemy in pairs(enemies) do
+            enemy:AddNewModifier(caster, self, "_modifier_movespeed_debuff", {
+                duration = self:CalcStatus(slow_duration, caster, enemy),
+                percent = 9999
+            })
             enemy:AddNewModifier(caster, self, "osiris_1_modifier_poison", {
                 duration = self:CalcStatus(poison_duration, caster, enemy)
             })

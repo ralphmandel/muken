@@ -85,7 +85,7 @@ function GameSetup:init()
     GameRules:SetCustomGameAllowBattleMusic(false)
 
     -- multiple players can pick the same hero
-    GameRules:SetSameHeroSelectionEnabled(true)
+    GameRules:SetSameHeroSelectionEnabled(false)
 
     -- force single hero selection (optional)
     if forceHero ~= nil then
