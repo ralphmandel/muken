@@ -1,0 +1,131 @@
+"TalentTree_bloodstained"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_shadow_demon"
+	{
+		"bloodstained_1__rage"
+		{
+			"0"
+			{
+				"1"   "bloodstained_1__rage_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_1__rage_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_1__rage_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_1__rage_rank_41"
+			}
+		}
+		"bloodstained_2__lifesteal"
+		{
+			"0"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_41"
+			}
+		}
+		"bloodstained_3__curse"
+		{
+			"0"
+			{
+				"1"   "bloodstained_3__curse_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_3__curse_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_3__curse_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_3__curse_rank_41"
+			}
+		}
+		"bloodstained_4__frenzy"
+		{
+			"0"
+			{
+				"1"   "bloodstained_4__frenzy_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_4__frenzy_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_4__frenzy_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_4__frenzy_rank_41"
+			}
+		}
+		"bloodstained_5__tear"
+		{
+			"0"
+			{
+				"1"   "bloodstained_5__tear_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_5__tear_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_5__tear_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_5__tear_rank_41"
+			}
+		}
+		"bloodstained_u__seal"
+		{
+			"0"
+			{
+				"1"   "bloodstained_u__seal_rank_11"
+			}
+			"1"
+			{
+				"1"   "bloodstained_u__seal_rank_21"
+			}
+			"2"
+			{
+				"1"   "bloodstained_u__seal_rank_31"
+			}
+			"3"
+			{
+				"1"   "bloodstained_u__seal_rank_41"
+			}
+		}
+	}	
+}

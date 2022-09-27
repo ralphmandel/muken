@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "bloodstained_1__rage"
+	"2" "bloodstained_2__lifesteal"
+	"3" "bloodstained_3__curse"
+	"4" "bloodstained_4__frenzy"
+	"5" "bloodstained_5__tear"
+	"6" "bloodstained_u__seal"
+}

@@ -1,0 +1,63 @@
+bloodstained_1__rage_rank_11 = class ({})
+bloodstained_1__rage_rank_12 = class ({})
+bloodstained_1__rage_rank_21 = class ({})
+bloodstained_1__rage_rank_22 = class ({})
+bloodstained_1__rage_rank_31 = class ({})
+bloodstained_1__rage_rank_32 = class ({})
+bloodstained_1__rage_rank_41 = class ({})
+bloodstained_1__rage_rank_42 = class ({})
+
+bloodstained_2__lifesteal_rank_11 = class ({})
+bloodstained_2__lifesteal_rank_12 = class ({})
+bloodstained_2__lifesteal_rank_21 = class ({})
+bloodstained_2__lifesteal_rank_22 = class ({})
+bloodstained_2__lifesteal_rank_31 = class ({})
+bloodstained_2__lifesteal_rank_32 = class ({})
+bloodstained_2__lifesteal_rank_41 = class ({})
+bloodstained_2__lifesteal_rank_42 = class ({})
+
+bloodstained_3__curse_rank_11 = class ({})
+bloodstained_3__curse_rank_12 = class ({})
+bloodstained_3__curse_rank_21 = class ({})
+bloodstained_3__curse_rank_22 = class ({})
+bloodstained_3__curse_rank_31 = class ({})
+bloodstained_3__curse_rank_32 = class ({})
+bloodstained_3__curse_rank_41 = class ({})
+bloodstained_3__curse_rank_42 = class ({})
+
+bloodstained_4__frenzy_rank_11 = class ({})
+bloodstained_4__frenzy_rank_12 = class ({})
+bloodstained_4__frenzy_rank_21 = class ({})
+bloodstained_4__frenzy_rank_22 = class ({})
+bloodstained_4__frenzy_rank_31 = class ({})
+bloodstained_4__frenzy_rank_32 = class ({})
+bloodstained_4__frenzy_rank_41 = class ({})
+bloodstained_4__frenzy_rank_42 = class ({})
+
+bloodstained_5__tear_rank_11 = class ({})
+bloodstained_5__tear_rank_12 = class ({})
+bloodstained_5__tear_rank_21 = class ({})
+bloodstained_5__tear_rank_22 = class ({})
+bloodstained_5__tear_rank_31 = class ({})
+bloodstained_5__tear_rank_32 = class ({})
+bloodstained_5__tear_rank_41 = class ({})
+bloodstained_5__tear_rank_42 = class ({})
+
+bloodstained_u__seal_rank_11 = class ({})
+bloodstained_u__seal_rank_12 = class ({})
+bloodstained_u__seal_rank_21 = class ({})
+bloodstained_u__seal_rank_22 = class ({})
+bloodstained_u__seal_rank_31 = class ({})
+bloodstained_u__seal_rank_32 = class ({})
+bloodstained_u__seal_rank_41 = class ({})
+bloodstained_u__seal_rank_42 = class ({})
+
+bloodstained__precache = class ({})
+
+function bloodstained__precache:Spawn()
+    if self:IsTrained() == false then self:UpgradeAbility(true) end
+end
+
+function bloodstained__precache:Precache(context)
+    --PrecacheResource("soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
+end
