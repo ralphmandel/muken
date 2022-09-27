@@ -1,11 +1,11 @@
-icebreaker_4__mirror = class({})
-LinkLuaModifier("icebreaker_4_modifier_passive", "heroes/icebreaker/icebreaker_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker_4_modifier_illusion", "heroes/icebreaker/icebreaker_4_modifier_illusion", LUA_MODIFIER_MOTION_NONE)
+icebreaker_5__mirror = class({})
+LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/icebreaker/icebreaker_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_5_modifier_illusion", "heroes/icebreaker/icebreaker_5_modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function icebreaker_4__mirror:CalcStatus(duration, caster, target)
+    function icebreaker_5__mirror:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -20,12 +20,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function icebreaker_4__mirror:AddBonus(string, target, const, percent, time)
+    function icebreaker_5__mirror:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function icebreaker_4__mirror:RemoveBonus(string, target)
+    function icebreaker_5__mirror:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -33,23 +33,23 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function icebreaker_4__mirror:GetRank(upgrade)
+    function icebreaker_5__mirror:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[4][upgrade] end
+        if base_hero then return base_hero.ranks[5][upgrade] end
     end
 
-    function icebreaker_4__mirror:OnUpgrade()
+    function icebreaker_5__mirror:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[4][0] = true
+            base_hero.ranks[5][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
@@ -57,17 +57,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function icebreaker_4__mirror:Spawn()
+    function icebreaker_5__mirror:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function icebreaker_4__mirror:GetIntrinsicModifierName()
-        return "icebreaker_4_modifier_passive"
+    function icebreaker_5__mirror:GetIntrinsicModifierName()
+        return "icebreaker_5_modifier_passive"
     end
 
-    function icebreaker_4__mirror:CreateMirrors(target, number)
+    function icebreaker_5__mirror:CreateMirrors(target, number)
         local caster = self:GetCaster()
         local illusion_duration = self:GetSpecialValueFor("illusion_duration")
         local illu_array = CreateIllusions(caster, caster, {
@@ -79,7 +79,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         }, number, 64, false, true)
 
         for _,illu in pairs(illu_array) do
-            illu:AddNewModifier(caster, self, "icebreaker_4_modifier_illusion", {})
+            illu:AddNewModifier(caster, self, "icebreaker_5_modifier_illusion", {})
 
             local loc = target:GetAbsOrigin() + RandomVector(130)
             illu:SetAbsOrigin(loc)
@@ -88,7 +88,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end		
     end
 
-    function icebreaker_4__mirror:GetManaCost(iLevel)
+    function icebreaker_5__mirror:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end

@@ -1,34 +1,34 @@
-icebreaker_4_modifier_passive = class({})
+icebreaker_5_modifier_passive = class({})
 
-function icebreaker_4_modifier_passive:IsHidden()
+function icebreaker_5_modifier_passive:IsHidden()
 	return true
 end
 
-function icebreaker_4_modifier_passive:IsPurgable()
+function icebreaker_5_modifier_passive:IsPurgable()
 	return false
 end
 
-function icebreaker_4_modifier_passive:IsDebuff()
+function icebreaker_5_modifier_passive:IsDebuff()
 	return false
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function icebreaker_4_modifier_passive:OnCreated(kv)
+function icebreaker_5_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 end
 
-function icebreaker_4_modifier_passive:OnRefresh(kv)
+function icebreaker_5_modifier_passive:OnRefresh(kv)
 end
 
-function icebreaker_4_modifier_passive:OnRemoved()
+function icebreaker_5_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function icebreaker_4_modifier_passive:DeclareFunctions()
+function icebreaker_5_modifier_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ORDER
@@ -37,7 +37,7 @@ function icebreaker_4_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function icebreaker_4_modifier_passive:OnAttackLanded(keys)
+function icebreaker_5_modifier_passive:OnAttackLanded(keys)
 	if self.parent:IsIllusion() then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
@@ -47,7 +47,7 @@ function icebreaker_4_modifier_passive:OnAttackLanded(keys)
 	end
 end
 
-function icebreaker_4_modifier_passive:OnOrder(keys)
+function icebreaker_5_modifier_passive:OnOrder(keys)
 	if keys.unit ~= self.parent then return end
 
 	if keys.ability then
@@ -62,7 +62,7 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function icebreaker_4_modifier_passive:ShouldLaunch(target)
+function icebreaker_5_modifier_passive:ShouldLaunch(target)
 	if self.ability:GetAutoCastState() then
 		local flags = self.ability:GetAbilityTargetFlags()
 

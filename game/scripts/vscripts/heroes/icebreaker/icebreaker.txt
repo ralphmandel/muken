@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/icebreaker/icebreaker_1__hypo"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"icebreaker_hypo"
-		"MaxLevel"               		"12"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -69,7 +69,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -183,48 +183,10 @@
 		}
 	}
 
-	"icebreaker_4__mirror"
-	{ 
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/icebreaker/icebreaker_4__mirror"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"icebreaker_mirror"
-		"MaxLevel"               		"9"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        //"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-
-		"AbilityCooldown"				"8"
-        "AbilityCastRange"				"100"
-
-		"AbilitySpecial"
-		{
-            "01"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"illusion_duration"		"8 8.25 8.5 8.75 9 9.25 9.5 9.75 10"
-			}
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"75"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14"
-			}
-		}
-	}
-
-	"icebreaker_5__wave"
+	"icebreaker_4__wave"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/icebreaker/icebreaker_5__wave"
+		"ScriptFile"            		"heroes/icebreaker/icebreaker_4__wave"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"icebreaker_wave"
 		"MaxLevel"               		"8"
@@ -269,13 +231,51 @@
 		}
 	}
 
+	"icebreaker_5__mirror"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/icebreaker/icebreaker_5__mirror"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_mirror"
+		"MaxLevel"               		"11"
+		"RequiredLevel"         	 	"0"
+        "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        //"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCooldown"				"8"
+        "AbilityCastRange"				"100"
+
+		"AbilitySpecial"
+		{
+            "01"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"illusion_duration"		"8 8.2 8.4 8.6 8.8 9 9.2 9.4 9.6 9.8 10"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"75"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+			}
+		}
+	}
+
 	"icebreaker_u__blink"
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/icebreaker/icebreaker_u__blink"
 		"AbilityTextureName"     		"icebreaker_blink"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -303,7 +303,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"lifesteal"		    "27 28 29 30 31 32 33 34 35"
+				"lifesteal"		    "25 26 27 28 29 30 31 32"
 			}
             "14"
 			{
@@ -1042,10 +1042,10 @@
         }
 
     //RANKS 4
-        "icebreaker_4__mirror_rank_11"{
+        "icebreaker_4__wave_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1072,10 +1072,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_12"{
+        "icebreaker_4__wave_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1102,10 +1102,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_21"{
+        "icebreaker_4__wave_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1132,10 +1132,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_22"{
+        "icebreaker_4__wave_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1162,10 +1162,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_31"{
+        "icebreaker_4__wave_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1192,10 +1192,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_32"{
+        "icebreaker_4__wave_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1222,10 +1222,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_41"{
+        "icebreaker_4__wave_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1252,10 +1252,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_42"{
+        "icebreaker_4__wave_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_wave"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1283,10 +1283,10 @@
         }
 
     //RANKS 5
-        "icebreaker_5__wave_rank_11"{
+        "icebreaker_5__mirror_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1313,10 +1313,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_12"{
+        "icebreaker_5__mirror_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1343,10 +1343,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_21"{
+        "icebreaker_5__mirror_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1373,10 +1373,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_22"{
+        "icebreaker_5__mirror_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1403,10 +1403,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_31"{
+        "icebreaker_5__mirror_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1433,10 +1433,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_32"{
+        "icebreaker_5__mirror_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1463,10 +1463,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_41"{
+        "icebreaker_5__mirror_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1493,10 +1493,10 @@
             }
         }
 
-        "icebreaker_5__wave_rank_42"{
+        "icebreaker_5__mirror_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_wave"
+            "AbilityTextureName"    		"icebreaker_mirror"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

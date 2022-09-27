@@ -108,11 +108,11 @@ function icebreaker_3_modifier_aura_effect:AddFrozenState()
 end
 
 function icebreaker_3_modifier_aura_effect:ApplyMirror()
-	local mirror = self.caster:FindAbilityByName("icebreaker_4__mirror")
+	local mirror = self.caster:FindAbilityByName("icebreaker_5__mirror")
 	if mirror == nil then return end
 
-	-- UP 4.21
-	if mirror:GetRank(21) then
+	-- UP 5.11
+	if mirror:GetRank(11) then
 		mirror:CreateMirrors(self.parent, 1)
 	end
 end

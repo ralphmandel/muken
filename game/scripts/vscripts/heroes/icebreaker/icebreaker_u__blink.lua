@@ -88,7 +88,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local target = self:GetCursorTarget()
         local origin = caster:GetOrigin()
         local point = self:GetCursorPosition()
-        --local direction = (point - origin)
+        local distance = CalcDistanceBetweenEntityOBB(caster, target)
 
         if target:GetTeamNumber()~=caster:GetTeamNumber() then
             if target:TriggerSpellAbsorb(self) then
@@ -108,6 +108,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:MoveToTargetToAttack(target)
 
         self:PlayEfxBlink(direction, origin, target)
+
+        -- UP 6.21
+        if self:GetRank(21) and distance >= 150 then
+            if IsServer() then target:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
+
+            target:AddNewModifier(caster, nil, "modifier_knockback", {
+                duration = distance * 0.002,
+                knockback_duration = distance * 0.002,
+                knockback_distance = math.floor(distance / 3),
+                center_x = caster:GetAbsOrigin().x + 1,
+                center_y = caster:GetAbsOrigin().y + 1,
+                center_z = caster:GetAbsOrigin().z,
+                knockback_height = math.floor(distance / 50)
+            })
+        end
     end
 
     function icebreaker_u__blink:CastFilterResultTarget(hTarget)
@@ -168,7 +183,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function icebreaker_u__blink:GetCastRange(vLocation, hTarget)
         local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_range + 1000 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cast_range + 250 end
         return cast_range
     end
 

@@ -76,8 +76,8 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 		self:ApplyBonusMagicalDamage(keys.target, self.parent:IsIllusion())
 	end
 
-	-- UP 1.42
-	if self.ability:GetRank(42) then
+	-- UP 1.41
+	if self.ability:GetRank(41) then
 		self:ApplyAutoBlink(keys.target, self.parent:IsIllusion())
 	end
 end

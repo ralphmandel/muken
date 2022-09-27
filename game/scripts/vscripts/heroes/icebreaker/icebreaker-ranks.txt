@@ -25,12 +25,11 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_1__hypo_rank_31"
 			}
 			"3"
 			{
 				"1"   "icebreaker_1__hypo_rank_41"
-				"2"   "icebreaker_1__hypo_rank_42"
 			}
 		}
 		"icebreaker_2__puff"
@@ -74,44 +73,43 @@
 				"1"   "icebreaker_3__zero_rank_41"
 			}
 		}
-		"icebreaker_4__mirror"
+		"icebreaker_4__wave"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_4__wave_rank_11"
+				"2"   "icebreaker_4__wave_rank_12"
 			}
 			"1"
 			{
-				"1"   "icebreaker_4__mirror_rank_21"
+				"1"   "icebreaker_4__wave_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_4__mirror_rank_31"
-				"2"   "icebreaker_4__mirror_rank_32"
+				"1"   "icebreaker_4__wave_rank_31"
 			}
 			"3"
 			{
 				"1"   "empty"
 			}
 		}
-		"icebreaker_5__wave"
+		"icebreaker_5__mirror"
 		{
 			"0"
 			{
-				"1"   "icebreaker_5__wave_rank_11"
-				"2"   "icebreaker_5__wave_rank_12"
+				"1"   "icebreaker_5__mirror_rank_11"
 			}
 			"1"
 			{
-				"1"   "icebreaker_5__wave_rank_21"
+				"1"   "icebreaker_5__mirror_rank_21"
 			}
 			"2"
 			{
-				"1"   "icebreaker_5__wave_rank_31"
+				"1"   "icebreaker_5__mirror_rank_31"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_5__mirror_rank_41"
 			}
 		}
 		"icebreaker_u__blink"
@@ -119,7 +117,6 @@
 			"0"
 			{
 				"1"   "icebreaker_u__blink_rank_11"
-				"2"   "icebreaker_u__blink_rank_12"
 			}
 			"1"
 			{

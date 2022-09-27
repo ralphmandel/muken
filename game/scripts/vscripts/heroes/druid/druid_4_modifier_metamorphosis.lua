@@ -58,6 +58,8 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
 	self.ability:EndCooldown()
 	self:HideItens(true)
 
+	self.parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+
 	if IsServer() then self:PlayEfxStart(fear) end
 end
 
@@ -71,12 +73,15 @@ function druid_4_modifier_metamorphosis:OnRemoved()
 	self.ability:SetActivated(true)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self:HideItens(false)
+
+	self.parent:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function druid_4_modifier_metamorphosis:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
@@ -84,6 +89,10 @@ function druid_4_modifier_metamorphosis:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function druid_4_modifier_metamorphosis:GetModifierAttackRangeOverride()
+    return 130
 end
 
 function druid_4_modifier_metamorphosis:GetModifierHealAmplify_PercentageTarget()

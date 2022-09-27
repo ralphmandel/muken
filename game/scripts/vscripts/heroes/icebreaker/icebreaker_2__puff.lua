@@ -195,8 +195,8 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             end
         end
 
-        -- UP 4.31
-        local mirror = caster:FindAbilityByName("icebreaker_4__mirror")
+        -- UP 5.31
+        local mirror = caster:FindAbilityByName("icebreaker_5__mirror")
         if mirror ~= nil then
             if mirror:GetRank(31)
             and target:IsMagicImmune() == false

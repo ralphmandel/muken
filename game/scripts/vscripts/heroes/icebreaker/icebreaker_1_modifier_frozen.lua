@@ -124,25 +124,25 @@ end
 -- UTILS -----------------------------------------------------------
 
 function icebreaker_1_modifier_frozen:IceBreak(target)
-	local ability_wave = self.caster:FindAbilityByName("icebreaker_5__wave")
+	local ability_wave = self.caster:FindAbilityByName("icebreaker_4__wave")
 	if ability_wave == nil then return end
 	if ability_wave:IsTrained() == false then return end
 
 	self.caster:FindModifierByName(ability_wave:GetIntrinsicModifierName()):DecrementStackCount()
 
-	-- UP 5.12
+	-- UP 4.12
 	if ability_wave:GetRank(12) then
 		self:ApplySpreadHypo(target)
 	end
 end
 
 function icebreaker_1_modifier_frozen:ApplyMirror()
-	local mirror = self.caster:FindAbilityByName("icebreaker_4__mirror")
+	local mirror = self.caster:FindAbilityByName("icebreaker_5__mirror")
 	if mirror == nil then return end
 	if mirror:IsTrained() == false then return end
 
-	-- UP 4.32
-	if mirror:GetRank(32) then
+	-- UP 5.41
+	if mirror:GetRank(41) then
 		mirror:CreateMirrors(self.parent, 1)
 	end
 end
@@ -172,23 +172,6 @@ end
 
 function icebreaker_1_modifier_frozen:BlinkStrike(break_damage)
 	self:ApplyMirror()
-
-	-- UP 6.12
-	if self.ability_break:GetRank(12) then
-		local knockbackProperties =
-		{
-			duration = 0.5,
-			knockback_duration = 0.5,
-			knockback_distance = 125,
-			center_x = self.caster:GetAbsOrigin().x + 1,
-			center_y = self.caster:GetAbsOrigin().y + 1,
-			center_z = self.caster:GetAbsOrigin().z,
-			knockback_height = 12,
-		}
-
-		self.parent:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)
-		if IsServer() then self.parent:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
-	end
 
 	-- UP 6.41
 	if self.ability_break:GetRank(41) then

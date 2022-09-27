@@ -87,8 +87,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local hypo_duration = self:GetSpecialValueFor("hypo_duration")
         local modifier_hypo = target:FindModifierByName("icebreaker_1_modifier_hypo")
 
-        -- UP 1.41
-	    if self:GetRank(41) then
+        -- UP 1.31
+	    if self:GetRank(31) then
             hypo_duration = hypo_duration + 5
         end
 

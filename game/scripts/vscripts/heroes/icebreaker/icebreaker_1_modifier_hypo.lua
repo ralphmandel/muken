@@ -30,8 +30,8 @@ function icebreaker_1_modifier_hypo:OnCreated(kv)
 	if IsServer() then
 		self:SetStackCount(0)
 
-		-- UP 1.41
-	    if self.ability:GetRank(41) then
+		-- UP 1.31
+	    if self.ability:GetRank(31) then
 			self:EnablePureDamageThinker(1.2)
         end
 	end
@@ -102,7 +102,7 @@ function icebreaker_1_modifier_hypo:ModifySlow(stack_count)
 end
 
 function icebreaker_1_modifier_hypo:EnablePureDamageThinker(intervals)
-	self.damage_mult = intervals * 0.005
+	self.damage_mult = intervals * 0.003
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,

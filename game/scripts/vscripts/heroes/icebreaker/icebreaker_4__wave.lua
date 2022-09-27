@@ -1,10 +1,10 @@
-icebreaker_5__wave = class({})
-LinkLuaModifier("icebreaker_5_modifier_recharge", "heroes/icebreaker/icebreaker_5_modifier_recharge", LUA_MODIFIER_MOTION_NONE)
+icebreaker_4__wave = class({})
+LinkLuaModifier("icebreaker_4_modifier_recharge", "heroes/icebreaker/icebreaker_4_modifier_recharge", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function icebreaker_5__wave:CalcStatus(duration, caster, target)
+    function icebreaker_4__wave:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         return duration
     end
 
-    function icebreaker_5__wave:AddBonus(string, target, const, percent, time)
+    function icebreaker_4__wave:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function icebreaker_5__wave:RemoveBonus(string, target)
+    function icebreaker_4__wave:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,23 +32,23 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         end
     end
 
-    function icebreaker_5__wave:GetRank(upgrade)
+    function icebreaker_4__wave:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[5][upgrade] end
+        if base_hero then return base_hero.ranks[4][upgrade] end
     end
 
-    function icebreaker_5__wave:OnUpgrade()
+    function icebreaker_4__wave:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_riki" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[5][0] = true
+            base_hero.ranks[4][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
@@ -56,17 +56,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         self:SetCurrentAbilityCharges(charges)
     end
 
-    function icebreaker_5__wave:Spawn()
+    function icebreaker_4__wave:Spawn()
         self:SetCurrentAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function icebreaker_5__wave:GetIntrinsicModifierName()
-        return "icebreaker_5_modifier_recharge"
+    function icebreaker_4__wave:GetIntrinsicModifierName()
+        return "icebreaker_4_modifier_recharge"
     end
 
-    function icebreaker_5__wave:OnSpellStart()
+    function icebreaker_4__wave:OnSpellStart()
         local caster = self:GetCaster()
         local frozen_duration = self:GetSpecialValueFor("frozen_duration")
         local blast_radius = self:GetSpecialValueFor("blast_radius")
@@ -81,12 +81,12 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
         self:PlayEfxActive(blast_radius, blast_duration, blast_speed)
 
-        -- UP 5.11
+        -- UP 4.11
         if self:GetRank(11) then
             frozen_duration = frozen_duration * 2
         end
 
-        -- UP 5.21
+        -- UP 4.21
         if self:GetRank(21) then
             target_type = DOTA_UNIT_TARGET_TEAM_BOTH
             caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
@@ -149,7 +149,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         end)
     end
 
-    function icebreaker_5__wave:GetManaCost(iLevel)
+    function icebreaker_4__wave:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
@@ -158,7 +158,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 -- EFFECTS
 
-    function icebreaker_5__wave:PlayEfxActive(blast_radius, blast_duration, blast_speed)
+    function icebreaker_4__wave:PlayEfxActive(blast_radius, blast_duration, blast_speed)
         local caster = self:GetCaster()
         local blast_pfx = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
         ParticleManager:SetParticleControl(blast_pfx, 0, caster:GetAbsOrigin())
@@ -168,7 +168,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if IsServer() then caster:EmitSound("DOTA_Item.ShivasGuard.Activate") end
     end
 
-    function icebreaker_5__wave:PlayEfxHit(enemy)
+    function icebreaker_4__wave:PlayEfxHit(enemy)
         local caster = self:GetCaster()
         local hit_pfx = ParticleManager:CreateParticle("particles/items2_fx/shivas_guard_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
         ParticleManager:SetParticleControl(hit_pfx, 0, enemy:GetAbsOrigin())
