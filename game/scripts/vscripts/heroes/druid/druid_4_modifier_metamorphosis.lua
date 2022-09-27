@@ -58,7 +58,10 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
 	self.ability:EndCooldown()
 	self:HideItens(true)
 
+	local group = {[1] = "0", [2] = "1", [3] = "2"}
+	self.parent:SetMaterialGroup(group[RandomInt(1, 3)])
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+	self.parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
 
 	if IsServer() then self:PlayEfxStart(fear) end
 end
@@ -104,7 +107,7 @@ function druid_4_modifier_metamorphosis:GetModifierHPRegenAmplify_Percentage(key
 end
 
 function druid_4_modifier_metamorphosis:GetModifierModelChange()
-	return "models/items/lone_druid/true_form/form_of_the_atniw/form_of_the_atniw.vmdl"
+	return "models/items/lone_druid/true_form/dark_wood_true_form/dark_wood_true_form.vmdl"
 end
 
 function druid_4_modifier_metamorphosis:OnIntervalThink()
@@ -216,9 +219,20 @@ function druid_4_modifier_metamorphosis:PlayEfxStart(bFear)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
 
+	local string_2 = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
+	local shake = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(shake, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(shake, 1, Vector(500, 0, 0))
+
+	local string_3 = "particles/druid/druid_ult_passive.vpcf"
+	local effect_aura = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_aura, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect_aura, 1, Vector(self.ability:GetAOERadius(), 0, 0))
+	self:AddParticle(effect_aura, false, false, -1, false, false)
+
 	if bFear then
-		local string2 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
-		local particle2 = ParticleManager:CreateParticle(string2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local string_4 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
+		local particle2 = ParticleManager:CreateParticle(string_4, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 		ParticleManager:SetParticleControl(particle2, 0, self.parent:GetOrigin())
 		ParticleManager:ReleaseParticleIndex(particle2)		
 	end

@@ -152,6 +152,7 @@ function base_hero_mod:LoadSounds()
 	self.attack_sound = ""
 	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
 	if self.ability.hero_name == "dasdingo" then self.attack_sound = "Hero_ShadowShaman.Attack" end
+	if self.ability.hero_name == "druid" then self.attack_sound = "Hero_Furion.Attack" end
 
 	self.attack_landed_sound = ""
 	if self.ability.hero_name == "dasdingo" then self.attack_landed_sound = "Hero_ShadowShaman.ProjectileImpact" end
@@ -159,7 +160,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "genuine" then self.attack_landed_sound = "Hero_DrowRanger.ProjectileImpact" end
 	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
-	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_OgreMagi.Attack.TI8" end
+	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_Furion.ProjectileImpact" end
 
 	if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end

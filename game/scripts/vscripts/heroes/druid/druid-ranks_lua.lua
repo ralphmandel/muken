@@ -85,6 +85,8 @@ function druid__precache:Precache(context)
     PrecacheResource("particle", "particles/units/heroes/hero_lycan/lycan_shapeshift_cast.vpcf", context)
     PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", context)
     PrecacheResource("particle", "particles/units/heroes/hero_lycan/lycan_shapeshift_revert.vpcf", context)
+    PrecacheResource("particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
+    PrecacheResource("particle", "particles/druid/druid_ult_passive.vpcf", context)
 
     PrecacheResource("model", "models/items/furion/supreme_gardener_neck/supreme_gardener_neck.vmdl", context)
     PrecacheResource("model", "models/items/furion/fluttering_staff/fluttering_staff.vmdl", context)

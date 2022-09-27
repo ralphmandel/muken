@@ -3,7 +3,7 @@
 	"druid"
 	{
 		"override_hero"					"npc_dota_hero_furion"
-		"SoundSet"						""
+		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
@@ -40,7 +40,7 @@
 			"Ability31"						"_void"
 			"Ability32"						"druid__precache"
 
-		//"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
+		//"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK_DIRECTIONAL"
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
 		"AttributeStrengthGain"			"0"            // Strength bonus per level.

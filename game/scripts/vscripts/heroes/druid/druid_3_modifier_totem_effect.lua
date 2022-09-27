@@ -24,7 +24,7 @@ function druid_3_modifier_totem_effect:OnCreated(kv)
 
 	-- UP 3.21
 	if self.ability:GetRank(21) then
-		self:ApplyINT()
+		self.mp_regen = 10
 	end
 
 	if IsServer() then self:PlayEfxStart() end
@@ -57,14 +57,6 @@ function druid_3_modifier_totem_effect:GetModifierConstantManaRegen()
 end
 
 -- UTILS -----------------------------------------------------------
-
-function druid_3_modifier_totem_effect:ApplyINT()
-	self.ability:AddBonus("_1_INT", self.parent, 20, 0, nil)
-
-	if self.parent:IsHero() == false then
-		self.mp_regen = 10
-	end
-end
 
 -- EFFECTS -----------------------------------------------------------
 

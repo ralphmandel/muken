@@ -223,12 +223,12 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"con"		    "30 31 32 33 34 35 36"
+				"con"		    "25"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_power"    "30 31 32 33 34 35 36"
+				"heal_power"    "35"
 			}
             "04"
 			{
@@ -238,7 +238,7 @@
             "13"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"aura_radius"   "700 800 900 1000 1100 1200 -1"
+				"aura_radius"   "700 750 800 850 900 950 1000"
 			}
             "14"
 			{
