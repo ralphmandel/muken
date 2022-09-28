@@ -20,6 +20,7 @@ function _boss_modifier__ai:OnCreated(params)
         -- unit:AddNewModifier(caster, ability, "_boss_modifier__ai", { aggroRange = X, leashRange = Y })
         self.aggroRange = 400
         self.leashRange = 1200
+        self.no_miss = false
 
         -- Store unit handle so we don't have to call self:GetParent() every time
         self.unit = self:GetParent() 
@@ -154,6 +155,10 @@ end
 function _boss_modifier__ai:CheckState()
 	local state = {}
 
+    if self.no_miss == true then
+        state = {[MODIFIER_STATE_CANNOT_MISS] = true}
+    end
+
     if self.state == AI_STATE_IDLE then
         state = {[MODIFIER_STATE_MAGIC_IMMUNE] = true}
     end
@@ -163,6 +168,7 @@ end
 
 function _boss_modifier__ai:DeclareFunctions()
 	local funcs = {
+        MODIFIER_PROPERTY_PRE_ATTACK,
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
@@ -171,6 +177,10 @@ function _boss_modifier__ai:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function _boss_modifier__ai:GetModifierPreAttack()
+	self.no_miss = (RandomInt(1, 100) <= 40)
 end
 
 function _boss_modifier__ai:GetModifierIncomingDamage_Percentage(keys)

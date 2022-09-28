@@ -9,9 +9,15 @@ function cosmetics:OnUpgrade()
 	if self:GetCaster():IsIllusion() then
 		self:LoadCosmetics()
 	else
-		Timers:CreateTimer(10, function()
-			self:LoadCosmetics()
-		end)
+		if IsInToolsMode() then
+			Timers:CreateTimer(1, function()
+				self:LoadCosmetics()
+			end)
+		else
+			Timers:CreateTimer(10, function()
+				self:LoadCosmetics()
+			end)
+		end
 	end
 end
 

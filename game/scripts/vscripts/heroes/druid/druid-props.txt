@@ -58,7 +58,7 @@
 		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
 		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
 
-		//STRENGHT
+		//STRENGTH
 			"AttackDamageMax"			"45"
 			"AttackDamageMin"         	"35"
 			"ArmorPhysical"           	"0"

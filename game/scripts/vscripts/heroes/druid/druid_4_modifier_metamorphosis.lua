@@ -120,13 +120,13 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 	if self.parent:PassivesDisabled() then return end
 
 	if self.same_target ~= keys.target then
-		self.parent:RemoveModifierByNameAndCaster("druid_4_modifier_strenght", self.caster)
+		self.parent:RemoveModifierByNameAndCaster("druid_4_modifier_strength", self.caster)
 		self.same_target = keys.target
 	end
 
 	-- UP 4.12
 	if self.ability:GetRank(12) then
-		self.parent:AddNewModifier(self.caster, self.ability, "druid_4_modifier_strenght", {
+		self.parent:AddNewModifier(self.caster, self.ability, "druid_4_modifier_strength", {
 			duration = 10
 		})
 	end

@@ -9,7 +9,7 @@ function item_branch_red:OnSpellStart()
 			local item_slot = caster:GetItemInSlot(i)
 			if self:CanCombine(item_slot, "item_branch_green", "item_recipe_potion_heal") then return end
 			if self:CanCombine(item_slot, "item_branch_blue", "item_recipe_potion_recover") then return end
-			if self:CanCombine(item_slot, "item_branch_yellow", "item_recipe_potion_strenght") then return end
+			if self:CanCombine(item_slot, "item_branch_yellow", "item_recipe_potion_strength") then return end
 		end
 	else
 		self:SetCombineLocked(true)

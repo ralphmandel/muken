@@ -8,7 +8,7 @@ function item_branch_yellow:OnSpellStart()
 		for i = 0, 8, 1 do
 			local item_slot = caster:GetItemInSlot(i)
 			if self:CanCombine(item_slot, "item_branch_green", "item_recipe_potion_defense") then return end
-			if self:CanCombine(item_slot, "item_branch_red", "item_recipe_potion_strenght") then return end
+			if self:CanCombine(item_slot, "item_branch_red", "item_recipe_potion_strength") then return end
 			if self:CanCombine(item_slot, "item_branch_blue", "item_recipe_potion_resistance") then return end
 		end
 	else

@@ -48,7 +48,7 @@ function mk_gorillaz_buff:DeclareFunctions()
 end
 
 function mk_gorillaz_buff:GetModifierAttackSpeedBonus_Constant(keys)
-	return 100
+	return 120
 end
 
 function mk_gorillaz_buff:GetModifierProcAttack_BonusDamage_Physical(keys)

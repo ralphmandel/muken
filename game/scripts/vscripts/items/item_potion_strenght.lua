@@ -1,7 +1,7 @@
-item_potion_strenght = class({})
-LinkLuaModifier("item_potion_strenght_modifier", "items/item_potion_strenght_modifier", LUA_MODIFIER_MOTION_NONE)
+item_potion_strength = class({})
+LinkLuaModifier("item_potion_strength_modifier", "items/item_potion_strength_modifier", LUA_MODIFIER_MOTION_NONE)
 
-function item_potion_strenght:OnSpellStart()
+function item_potion_strength:OnSpellStart()
 	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
 
@@ -10,9 +10,9 @@ function item_potion_strenght:OnSpellStart()
 	caster:RemoveModifierByName("item_potion_recover_modifier")
 	caster:RemoveModifierByName("item_potion_resistance_modifier")
 	caster:RemoveModifierByName("item_potion_speed_modifier")
-	--caster:RemoveModifierByName("item_potion_strenght_modifier")
+	--caster:RemoveModifierByName("item_potion_strength_modifier")
 
-	caster:AddNewModifier(caster, self, "item_potion_strenght_modifier", {duration = duration})
+	caster:AddNewModifier(caster, self, "item_potion_strength_modifier", {duration = duration})
 	if IsServer() then caster:EmitSound("DOTA_Item.HealingSalve.Activate") end
 
 	self:StartCooldown(duration)

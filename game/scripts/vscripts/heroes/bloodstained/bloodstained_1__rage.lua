@@ -1,5 +1,8 @@
 bloodstained_1__rage = class({})
 LinkLuaModifier("bloodstained_1_modifier_rage", "heroes/bloodstained/bloodstained_1_modifier_rage", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_1_modifier_rage_status_efx", "heroes/bloodstained/bloodstained_1_modifier_rage_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_1_modifier_call", "heroes/bloodstained/bloodstained_1_modifier_call", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_1_modifier_call_status_efx", "heroes/bloodstained/bloodstained_1_modifier_call_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -49,7 +52,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[1][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            Timers:CreateTimer(0.2, function()
+				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+			end)
         end
 
         self:CheckAbilityCharges(1)
@@ -57,12 +62,94 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bloodstained_1__rage:Spawn()
         self:CheckAbilityCharges(0)
+        if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
 -- SPELL START
 
     function bloodstained_1__rage:OnSpellStart()
         local caster = self:GetCaster()
+
+        caster:StartGesture(ACT_DOTA_CAST2_STATUE)
+        caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
+        caster:AttackNoEarlierThan(0.7, 99)
+
+        self:EndCooldown()
+        self:SetActivated(false)
+
+        Timers:CreateTimer(0.7, function()
+            caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_GROUND)
+        end)
+
+        Timers:CreateTimer(0.38, function()
+            if caster:IsAlive() then
+                self:ApllyBuff()
+            else
+                self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
+                self:SetActivated(true)
+            end
+        end)
+    end
+
+    function bloodstained_1__rage:ApllyBuff()
+        local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        -- UP 1.21
+        if self:GetRank(21) then
+            caster:Purge(false, true, false, true, false)
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            self:PerformCall()
+        end
+
+        caster:AddNewModifier(caster, self, "bloodstained_1_modifier_rage", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
+
+        if IsServer() then
+            caster:EmitSound("Hero_PhantomAssassin.CoupDeGrace")
+            caster:EmitSound("Bloodstained.fury")
+            caster:EmitSound("Bloodstained.rage")
+        end
+    end
+
+    function bloodstained_1__rage:PerformCall()
+        local caster = self:GetCaster()
+        self:PlayEfxCall(self:GetAOERadius())
+
+        local units = FindUnitsInRadius(
+			caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+		)
+
+        for _,unit in pairs(units) do
+            unit:AddNewModifier(caster, self, "bloodstained_1_modifier_call", {
+                duration = self:CalcStatus(5, caster, unit)
+            })
+        end
+    end
+
+    function bloodstained_1__rage:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE end
+        return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+    end
+
+    function bloodstained_1__rage:GetAOERadius()
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return 375 end
+        return 0
+    end
+
+    function bloodstained_1__rage:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+        if self:GetCurrentAbilityCharges() % 5 == 0 then return 0 end
+        return cooldown
     end
 
     function bloodstained_1__rage:GetManaCost(iLevel)
@@ -73,7 +160,31 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function bloodstained_1__rage:CheckAbilityCharges(charges)
+        -- UP 1.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
+        -- UP 1.31
+        if self:GetRank(31) then
+            charges = charges * 3
+        end
+
+        -- UP 1.32
+        if self:GetRank(32) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS
+
+    function bloodstained_1__rage:PlayEfxCall(radius)
+        local caster = self:GetCaster()
+        local particle_cast = "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
+        ParticleManager:SetParticleControl(effect_cast, 2, Vector(radius, radius, radius))
+        ParticleManager:SetParticleControlEnt(effect_cast, 1, caster, PATTACH_POINT_FOLLOW, "attach_mouth", Vector(0,0,0), true)
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+    end

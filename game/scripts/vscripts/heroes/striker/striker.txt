@@ -33,7 +33,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"10"
+				"chance"		"12"
 			}
             "02"
 			{
@@ -320,7 +320,7 @@
             "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"chance_cooldown"		"75"
+				"chance_cooldown"		"100"
 			}
             "14"
 			{

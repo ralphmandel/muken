@@ -305,11 +305,11 @@
 			}
 		}
 
-		"item_potion_strenght"
+		"item_potion_strength"
 		{
 			"BaseClass"						"item_lua"
-			"ScriptFile"					"items/item_potion_strenght"
-			"AbilityTextureName"			"item_potion_strenght"
+			"ScriptFile"					"items/item_potion_strength"
+			"AbilityTextureName"			"item_potion_strength"
 			"ID"							"1624"
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 			"Model"							"models/props_gameplay/bottle_blue.vmdl"
@@ -492,16 +492,16 @@
 			}
 		}
 
-		"item_recipe_potion_strenght"
+		"item_recipe_potion_strength"
 		{
 			"ID"							"1634"
 			"BaseClass"						"item_datadriven"
-			"AbilityTextureName" 			"item_potion_strenght"
+			"AbilityTextureName" 			"item_potion_strength"
 			"Model"							"models/props_gameplay/recipe.vmdl"
 			"ItemCost"						"0"
 			"ItemShopTags"					""
 			"ItemRecipe"					"1"
-			"ItemResult"					"item_potion_strenght"
+			"ItemResult"					"item_potion_strength"
 
 			"ItemRequirements"
 			{

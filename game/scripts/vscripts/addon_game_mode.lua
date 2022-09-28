@@ -1021,12 +1021,9 @@
 
 				local channel = unit:FindAbilityByName("_channel")
 
-				if IsInToolsMode() then
-					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 2})
-					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 2})
-				else
-					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 7})
-					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 7})
+				if IsInToolsMode() == false then
+					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 10})
+					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 10})
 				end
 			end
 		end

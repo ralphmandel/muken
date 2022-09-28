@@ -10,7 +10,7 @@ function item_potion_heal:OnSpellStart()
 	caster:RemoveModifierByName("item_potion_recover_modifier")
 	caster:RemoveModifierByName("item_potion_resistance_modifier")
 	caster:RemoveModifierByName("item_potion_speed_modifier")
-	caster:RemoveModifierByName("item_potion_strenght_modifier")
+	caster:RemoveModifierByName("item_potion_strength_modifier")
 
 	caster:AddNewModifier(caster, self, "item_potion_heal_modifier", {duration = duration})
 	if IsServer() then caster:EmitSound("DOTA_Item.HealingSalve.Activate") end

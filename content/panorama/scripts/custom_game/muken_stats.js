@@ -1,7 +1,7 @@
 var STATS_WINDOW, STATS_CONTAINER;
 var STATS_LAYOUT = {};
 var labels_name = {
-    "STR": "STRENGHT", "AGI": "AGILITY", "INT": "INTELLIGENCE", "CON": "CONSTITUTION",
+    "STR": "STRENGTH", "AGI": "AGILITY", "INT": "INTELLIGENCE", "CON": "CONSTITUTION",
     "DEX": "DEXTERITY", "DEF": "DEFENSE", "RES": "RESISTANCE", "REC": "RECOVERY", "LCK": "LUCK", "MND": "MIND",
 }
 var stats_group = {
