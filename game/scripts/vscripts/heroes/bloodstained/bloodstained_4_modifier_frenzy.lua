@@ -18,9 +18,27 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.unslow = false
+	self.min_health = 0
 
 	local agi = self.ability:GetSpecialValueFor("agi")
 	local ms = self.ability:GetSpecialValueFor("ms")
+
+	-- UP 4.11
+	if self.ability:GetRank(11) then
+		self.unslow = true
+		ms = ms + 25
+	end
+
+	-- UP 4.31
+	if self.ability:GetRank(31) then
+		self.min_health = 1
+	end
+
+	-- UP 4.41
+	if self.ability:GetRank(41) then
+		agi = agi + 10
+	end
 
 	self.parent:SetForceAttackTarget(self.ability.target)
 	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
@@ -50,10 +68,50 @@ end
 
 function bloodstained_4_modifier_frenzy:CheckState()
 	local state = {
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 	}
 
+	if self.unslow == true then
+		state = {
+			[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+			[MODIFIER_STATE_UNSLOWABLE] = true
+		}
+	end
+
 	return state
+end
+
+function bloodstained_4_modifier_frenzy:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE,
+		MODIFIER_PROPERTY_MIN_HEALTH,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+
+	return funcs
+end
+
+function bloodstained_4_modifier_frenzy:GetModifierStatusResistance()
+	if self:GetAbility():GetCurrentAbilityCharges() % 2 ==0 then
+		return 75
+	end
+end
+
+function bloodstained_4_modifier_frenzy:GetMinHealth()
+	return self.min_health
+end
+
+function bloodstained_4_modifier_frenzy:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if self.parent:GetTeamNumber() == keys.target:GetTeamNumber() then return end
+
+	-- UP 4.41
+	if self.ability:GetRank(41)
+	and RandomFloat(1, 100) <= 15 then
+		keys.target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {
+			duration = self.ability:CalcStatus(10, self.caster, keys.target)
+		})
+	end
 end
 
 function bloodstained_4_modifier_frenzy:OnIntervalThink()
@@ -65,13 +123,13 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
--- function bloodstained_4_modifier_frenzy:GetEffectName()
--- 	return "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_debuff.vpcf"
--- end
+function bloodstained_4_modifier_frenzy:GetEffectName()
+	return "particles/bloodstained/frenzy/bloodstained_hands_v2.vpcf"
+end
 
--- function bloodstained_4_modifier_frenzy:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function bloodstained_4_modifier_frenzy:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
 function bloodstained_4_modifier_frenzy:PlayEfxStart()
 	local particle_cast = "particles/bloodstained/frenzy/bloodstained_frenzy.vpcf"
@@ -83,7 +141,7 @@ function bloodstained_4_modifier_frenzy:PlayEfxStart()
 		effect_cast, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack2", self.parent:GetOrigin(), true
 	)
 	ParticleManager:SetParticleControlEnt(
-		effect_cast, 2, self.parent, PATTACH_CENTER_FOLLOW, "attach_hitloc", self.parent:GetOrigin(), true
+		effect_cast, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetOrigin(), true
 	)
 	self:AddParticle(effect_cast, false, false, -1, false, true)
 

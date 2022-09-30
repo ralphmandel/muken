@@ -38,6 +38,7 @@ end
 
 function bloodstained_4_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
+	if self.parent:GetTeamNumber() == keys.target:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 	if self.parent:HasModifier("bloodstained_4_modifier_frenzy") then return end
 	if self.ability:IsCooldownReady() == false then return end
@@ -45,7 +46,12 @@ function bloodstained_4_modifier_passive:OnAttackLanded(keys)
 	local chance = self.ability:GetSpecialValueFor("chance")
 	local duration = self.ability:GetSpecialValueFor("duration")
 
-	if RandomInt(1, 100) <= chance then
+	-- UP 4.21
+	if self.ability:GetRank(21) then
+		chance = chance + 5
+	end
+
+	if RandomFloat(1, 100) <= chance then
 		self.ability.target = keys.target
 		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_4_modifier_frenzy", {
 			duration = self.ability:CalcStatus(duration, self.caster, self.parent)

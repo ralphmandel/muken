@@ -59,6 +59,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/bloodstained/frenzy/bloodstained_frenzy_dome.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/bloodstained/frenzy/bloodstained_frenzy_swirl.vpcf"

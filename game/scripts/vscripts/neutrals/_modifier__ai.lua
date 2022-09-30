@@ -228,7 +228,6 @@ function _modifier__ai:OnTakeDamage(keys)
     local efx = nil
     --if keys.damage_type == DAMAGE_TYPE_PHYSICAL then efx = OVERHEAD_ALERT_DAMAGE end
     if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
-    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
 
     if keys.inflictor ~= nil then
         if keys.inflictor:GetClassname() == "ability_lua" then
@@ -237,8 +236,14 @@ function _modifier__ai:OnTakeDamage(keys)
             or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
                 efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
             end
+
+            if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
+                return
+            end
         end
     end
+
+    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
 
     if efx == nil then return end
     SendOverheadEventMessage(nil, efx, self.unit, keys.damage, self.unit)

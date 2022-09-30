@@ -78,7 +78,7 @@ function bloodstained_2_modifier_passive:OnDeath(keys)
 		if base_stats then heal = heal * base_stats:GetHealPower() end
 
 		self.parent:Heal(heal, self.parent)
-		self:PlayEfxSpellLifesteal(self.parent)
+		self:PlayEfxDeathHeal(keys.unit)
 	end
 end
 
@@ -145,6 +145,14 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
+function bloodstained_2_modifier_passive:GetEffectName()
+	return "particles/bioshadow/bioshadow_drain.vpcf"
+end
+
+function bloodstained_2_modifier_passive:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
 function bloodstained_2_modifier_passive:PlayEfxLifesteal(target)
 	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf"
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
@@ -157,9 +165,15 @@ function bloodstained_2_modifier_passive:PlayEfxLifesteal(target)
 	if IsServer() then self.parent:EmitSound("Bloodstained.Lifesteal") end
 end
 
-function bloodstained_2_modifier_passive:PlayEfxSpellLifesteal(target)
+function bloodstained_2_modifier_passive:PlayEfxDeathHeal(target)
 	local particle = "particles/items3_fx/octarine_core_lifesteal.vpcf"
-	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
-	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
+
+	local particle_cast2 = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+	local effect_cast2 = ParticleManager:CreateParticle(particle_cast2, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(effect_cast2, 0, target:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast2, 1, target:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast2)
 end

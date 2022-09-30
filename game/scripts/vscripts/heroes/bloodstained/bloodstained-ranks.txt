@@ -84,6 +84,7 @@
 			"2"
 			{
 				"1"   "bloodstained_4__frenzy_rank_31"
+				"2"   "bloodstained_4__frenzy_rank_32"
 			}
 			"3"
 			{
