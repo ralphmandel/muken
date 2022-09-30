@@ -19,11 +19,11 @@ function bloodstained__modifier_extra_hp:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	self.cap = kv.cap * 0.01
-	self.tick = 0.2
+	self.tick = 0.3
 
 	if IsServer() then
 		self:SetStackCount(kv.extra_life)
-		self:StartIntervalThink(self.tick)
+		self:StartIntervalThink(1)
 	end
 end
 
@@ -57,7 +57,9 @@ end
 function bloodstained__modifier_extra_hp:OnStackCountChanged(old)
 	local cap = self.parent:GetBaseMaxHealth() * self.cap
 	if self:GetStackCount() > cap then self:SetStackCount(cap) end
-	if self:GetStackCount() <= 0 then self:Destroy() end
+	if self:GetStackCount() <= 0 then self:Destroy() return end
+
+	if old < self:GetStackCount() then self:StartIntervalThink(1) end
 
 	local void = self:GetCaster():FindAbilityByName("_void")
 	if void then void:SetLevel(1) end

@@ -40,6 +40,7 @@ function bloodstained_4_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if self.parent:PassivesDisabled() then return end
 	if self.parent:HasModifier("bloodstained_4_modifier_frenzy") then return end
+	if self.ability:IsCooldownReady() == false then return end
 
 	local chance = self.ability:GetSpecialValueFor("chance")
 	local duration = self.ability:GetSpecialValueFor("duration")

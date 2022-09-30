@@ -111,18 +111,9 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function bloodstained_2_modifier_passive:ApplyExtraLife(heal)
-	if heal < 1 then return end
-
-	local health_percent = self.parent:GetHealth() / self.parent:GetMaxHealth()
-
-	local mult = 1
-	if health_percent < 0.75 then mult = 0.5 end
-	if health_percent < 0.5 then mult = 0.25 end
-	if health_percent < 0.25 then return end
-
-	local extra_life = math.floor(heal * mult)
-	if extra_life <= 0 then return end
+function bloodstained_2_modifier_passive:ApplyExtraLife(extra_life)
+	if self.parent:GetHealth() < self.parent:GetBaseMaxHealth() * 0.9 then return end
+	if extra_life < 1 then return end
 
 	local mod = self.parent:FindAllModifiersByName("bloodstained__modifier_extra_hp")
 	for _,modifier in pairs(mod) do
@@ -145,8 +136,8 @@ function bloodstained_2_modifier_passive:GetLifestealPercent()
 
 	-- UP 2.41
 	if self.ability:GetRank(41) then
-		base_heal = base_heal + 5
-		bonus_heal = bonus_heal - 5
+		base_heal = base_heal + 10
+		bonus_heal = bonus_heal - 10
 	end
 
 	return (bonus_heal * deficit_percent) + base_heal
