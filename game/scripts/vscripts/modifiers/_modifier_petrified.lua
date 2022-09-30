@@ -63,13 +63,20 @@ end
 
 function _modifier_petrified:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
 	}
 	return funcs
 end
 
+function _modifier_petrified:GetModifierHPRegenAmplify_Percentage()
+    return -99999
+end
+
 function _modifier_petrified:GetModifierPhysical_ConstantBlock(keys)
+	if IsServer() then self:GetParent():EmitSound("Generic.Petrified.Block") end
+
 	return keys.damage * 0.5
 end
 

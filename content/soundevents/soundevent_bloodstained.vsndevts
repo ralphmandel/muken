@@ -1,3 +1,44 @@
+"Bloodstained.Lifesteal"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/blood_lifesteal_1.vsnd"
+							"value1"	"sounds/blood_lifesteal_2.vsnd"
+							"value2"	"sounds/blood_lifesteal_3.vsnd"
+							"value3"	"sounds/blood_lifesteal_4.vsnd"
+							"value4"	"sounds/blood_lifesteal_5.vsnd"
+						}
+					}
+
+					"mixgroup"			{ "value"	"BaseAttacks"	}
+					"volume"            { "value"   "0.5000000"	}
+					"pitch_rand_min" 	{ "value"   "-0.050000" }
+					"pitch_rand_max"  	{ "value"   "0.050000"	}
+					"pitch"  			{ "value"   "1.000000"	}
+					"soundlevel"  		{ "value"   "78.000000"	}
+					"distance_max"  	{ "value"   "2500.000000"	}
+					//"soundevent_layer2" 	{ "value" "Hero_Sven.Attack.Impact" }
+					//"soundevent_layer2_on" 	{ "value" "1.000000" }
+					//"soundevent_layer3" 	{ "value" "Hero_Sven.Attack.Ring" }
+					//"soundevent_layer3_on" 	{ "value" "1.000000" }
+				}
+			}
+		}
+	}
+}
+
 "Bloodstained.rage"
 {
 	"operator_stacks"
@@ -17,14 +58,9 @@
 							"value0"	"sounds/ambient/soundscapes/diretide/dt_blood_river_lp.vsnd"
 						}
 					}
-					"volume"            
-					{   
-						"value"     "0.60000"  
-					}
-					"memory_type"
-					{
-						"value"			"0"
-					}
+					"volume"			{ "value"	"0.60000" }
+					"volume_fade_out"	{ "value"	"1" }
+					"memory_type"		{ "value"	"0" }
 				}
 			}
 		}
@@ -101,7 +137,7 @@
 	}
 }
 
-"Hero_Bloodstained.Bleed"
+"Bloodstained.Bleed"
 {
 	"operator_stacks"
 	{

@@ -1,5 +1,6 @@
 bloodstained_2__lifesteal = class({})
-LinkLuaModifier("bloodstained_2_modifier_lifesteal", "heroes/bloodstained/bloodstained_2_modifier_lifesteal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_2_modifier_passive", "heroes/bloodstained/bloodstained_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +62,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bloodstained_2__lifesteal:OnSpellStart()
-        local caster = self:GetCaster()
+    function bloodstained_2__lifesteal:GetIntrinsicModifierName()
+        return "bloodstained_2_modifier_passive"
     end
 
     function bloodstained_2__lifesteal:GetManaCost(iLevel)
@@ -73,6 +74,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function bloodstained_2__lifesteal:CheckAbilityCharges(charges)
+        -- UP 2.31
+        if self:GetRank(31) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

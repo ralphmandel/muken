@@ -59,5 +59,5 @@ function bloodstained__precache:Spawn()
 end
 
 function bloodstained__precache:Precache(context)
-    --PrecacheResource("soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
 end

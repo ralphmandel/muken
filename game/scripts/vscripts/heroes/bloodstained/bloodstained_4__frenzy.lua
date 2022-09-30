@@ -1,6 +1,7 @@
 bloodstained_4__frenzy = class({})
+LinkLuaModifier("bloodstained_4_modifier_passive", "heroes/bloodstained/bloodstained_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_4_modifier_frenzy", "heroes/bloodstained/bloodstained_4_modifier_frenzy", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -61,8 +62,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bloodstained_4__frenzy:OnSpellStart()
-        local caster = self:GetCaster()
+    function bloodstained_4__frenzy:GetIntrinsicModifierName()
+        return "bloodstained_4_modifier_passive"
     end
 
     function bloodstained_4__frenzy:GetManaCost(iLevel)

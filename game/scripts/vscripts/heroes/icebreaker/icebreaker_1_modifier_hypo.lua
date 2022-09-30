@@ -102,7 +102,7 @@ function icebreaker_1_modifier_hypo:ModifySlow(stack_count)
 end
 
 function icebreaker_1_modifier_hypo:EnablePureDamageThinker(intervals)
-	self.damage_mult = intervals * 0.003
+	self.damage_mult = intervals * 0.005
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,

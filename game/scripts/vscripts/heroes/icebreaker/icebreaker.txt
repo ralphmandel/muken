@@ -49,12 +49,12 @@
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hypo_duration"	    "2.5"
+				"hypo_duration"	    "3"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"2.5"
+				"frozen_duration"	"3"
 			}
             "06"
 			{
@@ -206,7 +206,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"5"
+				"frozen_duration"	"6"
 			}
             "03"
 			{

@@ -22,7 +22,6 @@
 			"1"
 			{
 				"1"   "bloodstained_1__rage_rank_21"
-				"2"   "bloodstained_1__rage_rank_22"
 			}
 			"2"
 			{
@@ -42,7 +41,7 @@
 			}
 			"1"
 			{
-				"1"   "bloodstained_2__lifesteal_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{

@@ -86,6 +86,8 @@ function ancient_3_modifier_walk:GetModifierPhysical_ConstantBlock(keys)
 	local base_stats_attacker = keys.attacker:FindAbilityByName("base_stats")
 	local block = self.ability:GetSpecialValueFor("block") * 0.01
 
+	if IsServer() then self.parent:EmitSound("Generic.Petrified.Block") end
+
 	-- UP 3.11
 	if self.ability:GetRank(11)
 	and RandomFloat(1, 100) <= 25 then

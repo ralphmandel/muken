@@ -186,7 +186,6 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
 			PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)

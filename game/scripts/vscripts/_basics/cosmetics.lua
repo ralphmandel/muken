@@ -45,6 +45,10 @@ end
 		if self:LoadHeroNames() == "icebreaker" then
 			self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
 		end
+
+		if self:LoadHeroNames() == "bloodstained" then
+			self:SetStatusEffect(self:GetCaster(), nil, "bloodstained_1_modifier_passive_status_efx", true)
+		end
 		
 		if self:LoadHeroNames() == "krieger" then
 			self:SetStatusEffect(self:GetCaster(), nil, "krieger_1_modifier_passive_status_efx", true)

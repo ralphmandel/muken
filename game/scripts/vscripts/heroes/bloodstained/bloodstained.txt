@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_1__rage"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_rage"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -33,7 +33,7 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"15 15.25 15.5 15.75 16 16.25 16.5 16.75 17 17.25 17.5 17.75 18 18.25 18.5"
+				"duration"		"15 15.25 15.5 15.75 16 16.25 16.5 16.75 17 17.25 17.5 17.75 18"
 			}
             "02"
 			{
@@ -48,12 +48,12 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"130"
+				"manacost"		"125"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -64,31 +64,33 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_2__lifesteal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_lifesteal"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"base_heal"		"5"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"bonus_heal"	"25"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"0"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
@@ -99,31 +101,55 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_3__curse"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_curse"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_ALL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCastPoint"       		"0.4"
+		"AbilityCooldown"				"45"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"25"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"		    "20"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"shared_damage"		"40"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_range"		    "800 825 850 875 900 925 950"
+			}
+            "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"		"400 425 450 475 500 525 550"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"140"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
@@ -138,22 +164,34 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"chance"		"15"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"agi"		    "50"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms"		    "75"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"0"
 			}
 			"15"
 			{

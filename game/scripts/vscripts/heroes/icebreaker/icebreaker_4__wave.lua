@@ -83,7 +83,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
         -- UP 4.11
         if self:GetRank(11) then
-            frozen_duration = frozen_duration * 2
+            frozen_duration = frozen_duration + 4
         end
 
         -- UP 4.21

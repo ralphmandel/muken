@@ -1,6 +1,6 @@
 bloodstained_3__curse = class({})
 LinkLuaModifier("bloodstained_3_modifier_curse", "heroes/bloodstained/bloodstained_3_modifier_curse", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -63,6 +63,25 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bloodstained_3__curse:OnSpellStart()
         local caster = self:GetCaster()
+        self.target = self:GetCursorTarget()
+        local duration = self:GetSpecialValueFor("duration")
+
+        if self.target:TriggerSpellAbsorb(self) then return end
+
+        if IsServer() then
+            caster:EmitSound("Hero_ShadowDemon.DemonicPurge.Cast")
+            self.target:EmitSound("Hero_Oracle.FortunesEnd.Attack")
+        end
+
+        self.target:AddNewModifier(caster, self, "bloodstained_3_modifier_curse", {
+            duration = self:CalcStatus(duration, caster, self.target)
+        })
+    end
+
+    function bloodstained_3__curse:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        return cast_range
     end
 
     function bloodstained_3__curse:GetManaCost(iLevel)

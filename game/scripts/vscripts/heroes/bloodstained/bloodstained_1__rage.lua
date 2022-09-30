@@ -3,6 +3,7 @@ LinkLuaModifier("bloodstained_1_modifier_rage", "heroes/bloodstained/bloodstaine
 LinkLuaModifier("bloodstained_1_modifier_rage_status_efx", "heroes/bloodstained/bloodstained_1_modifier_rage_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_1_modifier_call", "heroes/bloodstained/bloodstained_1_modifier_call", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_1_modifier_call_status_efx", "heroes/bloodstained/bloodstained_1_modifier_call_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_1_modifier_passive_status_efx", "heroes/bloodstained/bloodstained_1_modifier_passive_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -66,6 +67,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- SPELL START
+
+    function bloodstained_1__rage:GetIntrinsicModifierName()
+        return "bloodstained_1_modifier_passive_status_efx"
+    end
 
     function bloodstained_1__rage:OnSpellStart()
         local caster = self:GetCaster()

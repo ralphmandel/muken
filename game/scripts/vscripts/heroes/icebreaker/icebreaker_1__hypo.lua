@@ -89,7 +89,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         -- UP 1.31
 	    if self:GetRank(31) then
-            hypo_duration = hypo_duration + 5
+            hypo_duration = hypo_duration + 3
         end
 
         hypo_duration = self:CalcStatus(hypo_duration, caster, target)

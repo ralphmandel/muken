@@ -65,9 +65,7 @@ function ancient_5_modifier_buff:DeclareFunctions()
 end
 
 function ancient_5_modifier_buff:GetModifierExtraHealthBonus()
-	if IsServer() then
-		return self:GetStackCount()
-	end
+	if IsServer() then return self:GetStackCount() end
 end
 
 function ancient_5_modifier_buff:OnTakeDamage(keys)

@@ -1,3 +1,35 @@
+"Generic.Petrified.Block"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/acient_atk_stone.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Physics"	}
+					"volume"            { "value"   "2"	}
+				}
+			}
+		}
+	}
+}
+
 "Bocuse.Cut"
 {
 	"operator_stacks"
