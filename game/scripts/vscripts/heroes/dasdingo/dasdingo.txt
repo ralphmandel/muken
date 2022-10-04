@@ -228,7 +228,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5"
+				"channel_time"		"4"
 			}
             "02"
 			{
@@ -238,7 +238,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cast_range"		"450"
+				"cast_range"		"450 465 480 495 510 525 540 555 570 585 600"
 			}
 			"14"
 			{

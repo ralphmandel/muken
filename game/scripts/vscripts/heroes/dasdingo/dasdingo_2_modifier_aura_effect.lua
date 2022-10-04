@@ -18,9 +18,9 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	local defense = self.ability:GetSpecialValueFor("defense")
 	local special = 0
 
-	-- UP 2.31
-	if self.ability:GetRank(31) then
-		defense = defense + 10
+	-- UP 2.21
+	if self.ability:GetRank(21) then
+		defense = defense + 5
 	end
 
 	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
@@ -59,13 +59,13 @@ function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(ke
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 
-	-- UP 2.21
-	if self.ability:GetRank(21) then
+	-- UP 2.11
+	if self.ability:GetRank(11) then
 		if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
 			local damageTable = {
 				victim = keys.attacker,
 				attacker = self.parent,
-				damage = keys.original_damage * 0.3,
+				damage = keys.original_damage * 0.15,
 				damage_type = keys.damage_type,
 				ability = self.ability,
 				damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,

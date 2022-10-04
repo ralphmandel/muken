@@ -485,6 +485,15 @@ require("talent_tree")
 				return false
 			end
 
+		-- GENUINE
+			-- Genuine 1.41 requires skill rank level 14
+			if talentName == "genuine_1__shooting_rank_41" then
+				local shooting = self:GetCaster():FindAbilityByName("genuine_1__shooting")
+				if shooting == nil then return false end
+				if shooting:IsTrained() == false then return false end
+				if shooting:GetSpecialValueFor("rank") < 14 then return false end
+			end
+
 		-- BOCUSE
 			-- Bocuse 2.41 requires skill rank level 13
 			if talentName == "bocuse_2__flask_rank_41" then

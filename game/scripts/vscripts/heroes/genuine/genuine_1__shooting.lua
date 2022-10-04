@@ -90,8 +90,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local target = keys.target
         
-        -- UP 1.31
-        if self:GetRank(31) then
+        -- UP 1.41
+        if self:GetRank(41) then
             local stacks = 0
             local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
             for _,mod in pairs(starfall_stack_mods) do
@@ -120,8 +120,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local bonus_damage = self:GetAbilityDamage()
         local target = keys.target
 
-        -- UP 1.31
-        if self:GetRank(31) then
+        -- UP 1.41
+        if self:GetRank(41) then
             local stacks = 0
             local starfall_stack_mods = target:FindAllModifiersByName("genuine_1_modifier_starfall_stack")
             for _,mod in pairs(starfall_stack_mods) do
@@ -155,8 +155,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self.spell_lifesteal = true
         ApplyDamage(damageTable)
 
-        -- UP 1.41
-        if self:GetRank(41) and target:IsAlive() and self.fear == false then
+        -- UP 1.31
+        if self:GetRank(31) and target:IsAlive()
+        and self.fear == false and RandomFloat(1, 100) <= 25 then
             caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):StartIntervalThink(5)
             self.fear = true
 
