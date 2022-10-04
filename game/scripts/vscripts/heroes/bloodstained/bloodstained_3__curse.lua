@@ -67,20 +67,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bloodstained_3__curse:OnSpellStart()
         local caster = self:GetCaster()
-        self.target = self:GetCursorTarget()
         local duration = self:GetSpecialValueFor("duration")
-
-        if self.target:TriggerSpellAbsorb(self) then return end
         caster:RemoveModifierByNameAndCaster("bloodstained_3_modifier_curse", caster)
 
-        if IsServer() then
-            caster:EmitSound("Hero_ShadowDemon.DemonicPurge.Cast")
-            self.target:EmitSound("Hero_Oracle.FortunesEnd.Attack")
-        end
+        self.target = self:GetCursorTarget()
+        
+        if self.target:TriggerSpellAbsorb(self) then return end
 
         self.target:AddNewModifier(caster, self, "bloodstained_3_modifier_curse", {
             duration = self:CalcStatus(duration, caster, self.target)
         })
+
+        if IsServer() then
+            caster:EmitSound("Hero_ShadowDemon.DemonicPurge.Cast")
+            if self.target then self.target:EmitSound("Hero_Oracle.FortunesEnd.Attack") end
+        end
     end
 
     function bloodstained_3__curse:GetCastRange(vLocation, hTarget)

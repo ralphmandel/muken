@@ -98,37 +98,39 @@
 			"0"
 			{
 				"1"   "bloodstained_5__tear_rank_11"
+				"2"   "bloodstained_5__tear_rank_12"
 			}
 			"1"
 			{
 				"1"   "bloodstained_5__tear_rank_21"
+				"2"   "bloodstained_5__tear_rank_22"
 			}
 			"2"
 			{
-				"1"   "bloodstained_5__tear_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "bloodstained_5__tear_rank_41"
+				"1"   "empty"
 			}
 		}
 		"bloodstained_u__seal"
 		{
 			"0"
 			{
-				"1"   "bloodstained_u__seal_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "bloodstained_u__seal_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "bloodstained_u__seal_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "bloodstained_u__seal_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	

@@ -12,6 +12,10 @@ function bloodstained__modifier_extra_hp:IsDebuff()
 	return false
 end
 
+function bloodstained__modifier_extra_hp:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained__modifier_extra_hp:OnCreated(kv)

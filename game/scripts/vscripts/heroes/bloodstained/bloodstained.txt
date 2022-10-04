@@ -124,7 +124,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"		    "20"
+				"slow"		    "15"
 			}
             "03"
 			{
@@ -208,31 +208,55 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_5__tear"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_tear"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityCastPoint"       		"0"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"blood_duration"	"18 19 20 21 22 23 24"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"blood_percent"	    "10"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hp_lost"		"2"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"tick"		    "1"
+			}
+            "12"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"refresh"		"20"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"350"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"75"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
@@ -243,28 +267,48 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_u__seal"
 		"AbilityTextureName"     		"bloodstained_seal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"       		"0.5"
+		"AbilityCooldown"				"150"
+		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"12 12.25 12.5 12.75 13 13.25 13.5 13.75 14 14.25 14.5 14.75 15"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"copy_duration"     "15"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hp_stolen"         "30"
+			}
+            "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"radius"		    "500"
+			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "100"
+				"manacost"		    "200"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20 21"
 			}
 		}
 	}

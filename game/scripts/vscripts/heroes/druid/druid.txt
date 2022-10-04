@@ -346,7 +346,7 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"chance_lvl"		"3"
+				"chance_lvl"		"3 2.95 2.9 2.85 2.8 2.75 2.7 2.65 2.6 2.55"
 			}
             "03"
 			{
@@ -361,12 +361,12 @@
             "12"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cast_range"		"360 370 380 390 400 410 420 430 440 450"
+				"cast_range"		"450"
 			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "40"
+				"manacost"		    "30"
 			}
 			"15"
 			{

@@ -39,8 +39,8 @@ function genuine_3_modifier_morning:OnCreated(kv)
 		self.purge = false
 	end
 
-	self.ability:EndCooldown()
-	self.ability:SetActivated(false)
+	--self.ability:EndCooldown()
+	--self.ability:SetActivated(false)
 end
 
 function genuine_3_modifier_morning:OnRefresh(kv)
@@ -58,8 +58,8 @@ function genuine_3_modifier_morning:OnRemoved(kv)
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	self.ability:SetActivated(true)
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	--self.ability:SetActivated(true)
+	--self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -----------------------------------------------------------

@@ -26,7 +26,10 @@ function genuine_1_modifier_orb:OnCreated(kv)
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
-	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
+	-- UP 1.21
+	if self.ability:GetRank(21) then
+		self.atk_range = self.ability:GetSpecialValueFor("atk_range") + 150
+	end
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
@@ -147,6 +150,10 @@ function genuine_1_modifier_orb:GetModifierProjectileName()
 	if self.proj == true then
 		return self.ability:GetProjectileName()
 	end
+end
+
+function genuine_1_modifier_orb:OnIntervalThink()
+	self.ability.fear = false
 end
 
 function genuine_1_modifier_orb:ShouldLaunch(target, pierce)

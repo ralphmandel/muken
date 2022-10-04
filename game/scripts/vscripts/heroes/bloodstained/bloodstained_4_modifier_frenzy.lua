@@ -124,6 +124,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function bloodstained_4_modifier_frenzy:GetEffectName()
+	--return "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodrage.vpcf"
 	return "particles/bloodstained/frenzy/bloodstained_hands_v2.vpcf"
 end
 

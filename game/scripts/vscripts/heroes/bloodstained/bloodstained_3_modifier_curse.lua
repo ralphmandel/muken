@@ -21,8 +21,8 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
 	self.debuffs = nil
 	self.damage = 0
 
-	-- UP 3.12
-	if self.ability:GetRank(12) then
+	-- UP 3.22
+	if self.ability:GetRank(22) then
 		self.debuffs = {
 			["_modifier_break"] = false, ["_modifier_disarm"] = false, ["_modifier_silence"] = false, ["_modifier_stun"] = false
 		}
@@ -76,11 +76,12 @@ function bloodstained_3_modifier_curse:OnStateChanged(keys)
 	if keys.unit ~= self.caster then return end
 	if self.parent == self.caster then return end
 	if self.debuffs == nil then return end
+	if RandomFloat(1, 100) > 30 then return end
 
-	self:CheckReflect(self.caster:PassivesDisabled(), self.debuffs["_modifier_break"])
-	self:CheckReflect(self.caster:IsDisarmed(), self.debuffs["_modifier_disarm"])
-	self:CheckReflect(self.caster:IsSilenced(), self.debuffs["_modifier_silence"])
-	self:CheckReflect(self.caster:IsStunned(), self.debuffs["_modifier_stun"])
+	self:CheckReflect(self.caster:PassivesDisabled(), "_modifier_break")
+	self:CheckReflect(self.caster:IsDisarmed(), "_modifier_disarm")
+	self:CheckReflect(self.caster:IsSilenced(), "_modifier_silence")
+	self:CheckReflect(self.caster:IsStunned(), "_modifier_stun")
 end
 
 function bloodstained_3_modifier_curse:OnTakeDamage(keys)
@@ -101,8 +102,8 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 	local iDesiredHealthValue = target:GetHealth() - total_damage
 	target:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
 
-	-- UP 3.22
-	if self.ability:GetRank(22) then
+	-- UP 3.12
+	if self.ability:GetRank(12) then
 		if target == self.caster then
 			self:ApplyPurge(total_damage)
 		else
@@ -128,7 +129,7 @@ end
 function bloodstained_3_modifier_curse:ApplyPurge(damage)
 	self.damage = self.damage + damage
 
-	if self.damage >= 300 then
+	if self.damage >= 350 then
 		self.parent:Purge(true, false, false, false, false)
 		self.damage = 0
 	end
@@ -136,10 +137,10 @@ end
 
 function bloodstained_3_modifier_curse:CheckReflect(state, string)
 	if state == true then
-		if string == false then
+		if self.debuffs[string] == false then
 			self.debuffs[string] = true
 			self.parent:AddNewModifier(self.caster, self.ability, string, {
-				duration = self.ability:CalcStatus(2, self.caster, self.parent)
+				duration = self.ability:CalcStatus(2.5, self.caster, self.parent)
 			})
 		end
 	else
@@ -157,7 +158,7 @@ function bloodstained_3_modifier_curse:ApplyDebuff()
 
 	-- UP 3.31
 	if self.ability:GetRank(31) then
-		slow = slow + (current_distance * 0.02)
+		slow = slow + (current_distance * 0.01)
 	else
 		if current_distance > max_range then
 			self:Destroy()

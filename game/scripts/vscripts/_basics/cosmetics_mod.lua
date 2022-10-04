@@ -30,9 +30,9 @@ function cosmetics_mod:OnCreated( kv )
 	self.model = kv.model
 	self.parent:SetOriginalModel(self.model)
 
-	--Timers:CreateTimer((0.2), function()
+	Timers:CreateTimer((FrameTime()), function()
 		self.parent:FollowEntity(self.caster, true)
-	--end)
+	end)
 end
 
 function cosmetics_mod:OnRefresh( kv )

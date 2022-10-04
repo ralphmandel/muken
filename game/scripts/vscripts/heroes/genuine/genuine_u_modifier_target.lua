@@ -24,7 +24,7 @@ function genuine_u_modifier_target:OnCreated(kv)
 
 	-- UP 6.42
 	if self.ability:GetRank(42) then
-		vision = vision + 20
+		vision = vision + 25
 		self.ability:ApplyDarkness(self.parent, vision, self:GetDuration())
 	else
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = vision, miss_chance = 0})

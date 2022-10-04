@@ -68,6 +68,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function genuine_1__shooting:Spawn()
         self:SetCurrentAbilityCharges(0)
         self.spell_lifesteal = false
+        self.fear = false
     end
 
 -- SPELL START
@@ -155,10 +156,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         ApplyDamage(damageTable)
 
         -- UP 1.41
-        if self:GetRank(41) and target:IsAlive()
-        and RandomFloat(1, 100) <= 25 then
+        if self:GetRank(41) and target:IsAlive() and self.fear == false then
+            caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):StartIntervalThink(5)
+            self.fear = true
+
             target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
-                duration = self:CalcStatus(1.5, caster, target)
+                duration = self:CalcStatus(1, caster, target)
             })
 
             Timers:CreateTimer((0.25), function()
@@ -201,6 +204,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function genuine_1__shooting:GetCastRange(vLocation, hTarget)
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("atk_range") + 750 end
         return self:GetSpecialValueFor("atk_range") + 600
     end
 
@@ -208,7 +213,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost * level) - 20 end
         return manacost * level
     end
 

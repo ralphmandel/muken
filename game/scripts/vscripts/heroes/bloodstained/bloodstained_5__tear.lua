@@ -1,5 +1,6 @@
 bloodstained_5__tear = class({})
 LinkLuaModifier("bloodstained_5_modifier_tear", "heroes/bloodstained/bloodstained_5_modifier_tear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_5_modifier_blood", "heroes/bloodstained/bloodstained_5_modifier_blood", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +62,38 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bloodstained_5__tear:OnSpellStart()
+    function bloodstained_5__tear:OnToggle()
         local caster = self:GetCaster()
+
+        if self:GetToggleState() then
+            caster:AddNewModifier(caster, self, "bloodstained_5_modifier_tear", {})
+            self:SetActivated(false)
+
+            Timers:CreateTimer(1.5, function()
+                self:SetActivated(true)
+            end)
+        else
+            local refresh = self:GetSpecialValueFor("refresh")
+
+            -- UP 5.12
+            if self:GetRank(12) then
+                refresh = refresh - 10
+            end
+
+            self:StartCooldown(refresh)
+
+            caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+            caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
+            caster:AttackNoEarlierThan(0.6, 99)
+
+            Timers:CreateTimer(0.6, function()
+                caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_GROUND)
+            end)
+
+            Timers:CreateTimer(0.45, function()
+                caster:RemoveModifierByName("bloodstained_5_modifier_tear")
+            end)
+        end
     end
 
     function bloodstained_5__tear:GetManaCost(iLevel)
@@ -72,7 +103,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return manacost * level
     end
 
+    function bloodstained_5__tear:GetAOERadius()
+        local radius = self:GetSpecialValueFor("radius")
+        if self:GetCurrentAbilityCharges() == 0 then return radius end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then radius = radius + 100 end
+        return radius
+    end
+
     function bloodstained_5__tear:CheckAbilityCharges(charges)
+        -- UP 5.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

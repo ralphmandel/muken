@@ -117,6 +117,10 @@ base_stats_mod = class ({})
                     if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
                         return
                     end
+
+                    if keys.inflictor:GetAbilityName() == "bloodstained_5__tear" then
+                        return
+                    end
                 end
             end
 

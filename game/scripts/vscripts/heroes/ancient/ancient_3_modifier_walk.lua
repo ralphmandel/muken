@@ -34,6 +34,9 @@ function ancient_3_modifier_walk:OnCreated(kv)
 		self.stun_immunity = true
 	end
 
+	local leap = self.parent:FindAbilityByName("ancient_2__leap")
+	if leap then leap:CheckAbilityCharges(1) end
+
 	if IsServer() then self:OnIntervalThink() end
 end
 
@@ -42,6 +45,9 @@ end
 
 function ancient_3_modifier_walk:OnRemoved()
 	self.ability:SetActivated(true)
+
+	local leap = self.parent:FindAbilityByName("ancient_2__leap")
+	if leap then leap:CheckAbilityCharges(1) end
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "ancient_3_modifier_walk_status_efx", false) end

@@ -50,9 +50,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[3][0] = true
-            Timers:CreateTimer(0.2, function()
-				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
-			end)
+            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
         local charges = 1
@@ -60,7 +58,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     end
 
     function genuine_3__morning:Spawn()
-        if self:IsTrained() == false then self:UpgradeAbility(true) end
         self.kills = 0
     end
 
