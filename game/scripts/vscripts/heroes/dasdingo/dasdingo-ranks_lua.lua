@@ -87,6 +87,8 @@ function dasdingo__precache:Precache(context)
     PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_hero_heal.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_chakra_magic.vpcf", context )
     PrecacheResource( "particle", "particles/msg_fx/msg_mana_add.vpcf", context )
+    PrecacheResource( "particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context )
 
     PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", context )
     PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", context )

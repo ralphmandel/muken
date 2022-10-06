@@ -15,9 +15,9 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	-- UP 5.12
-	if self.ability:GetRank(12) then
-		self.caster:AddNewModifier(self.caster, self.ability, "_modifier_ethereal", {})        
+	-- UP 5.11
+	if self.ability:GetRank(11) then
+		self.ability:AddBonus("_2_DEX", self.caster, 30, 0, nil)   
 	end
 
 	-- UP 5.21
@@ -33,7 +33,7 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 
 		-- UP 5.32
 		if self.ability:GetRank(32) then
-			drain_percent = drain_percent + 1
+			drain_percent = drain_percent + 1.5
 		end
 
 		self.drain = drain_percent * self.ticks * 0.01
@@ -57,10 +57,7 @@ function dasdingo_5_modifier_lash:OnRemoved(kv)
 	local model_name = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
 	cosmetics:FadeCosmeticsGesture(model_name, ACT_DOTA_CHANNEL_ABILITY_3)
 
-	local mod = self.caster:FindAllModifiersByName("_modifier_ethereal")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+	self.ability:RemoveBonus("_2_DEX", self.caster)
 
 	local mod = self.caster:FindAllModifiersByName("_modifier_bkb")
 	for _,modifier in pairs(mod) do

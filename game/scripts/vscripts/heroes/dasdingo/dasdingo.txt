@@ -214,7 +214,7 @@
 		"AbilityTextureName"     		"dasdingo_lash"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -228,17 +228,17 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"channel_time"		"4"
+				"channel_time"		"4.5"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"drain_percent"		"1.5"
+				"drain_percent"		"1"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cast_range"		"450 465 480 495 510 525 540 555 570 585 600"
+				"cast_range"		"330 360 390 420 450 480 510 540 570 600"
 			}
 			"14"
 			{
@@ -248,7 +248,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}
@@ -259,7 +259,7 @@
 		"ScriptFile"            		"heroes/dasdingo/dasdingo_u__maledict"
 		"AbilityTextureName"     		"dasdingo_maledict"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -275,7 +275,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"initial_damage"	"100 105 110 115 120 125 130 135 140 145 150"
+				"initial_damage"	"120 125 130 135 140 145 150 155 160 165 170 175"
 			}
 			"02"
 			{
@@ -310,7 +310,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16 17 18 19"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}

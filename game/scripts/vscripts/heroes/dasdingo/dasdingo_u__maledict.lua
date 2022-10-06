@@ -1,8 +1,9 @@
 dasdingo_u__maledict = class({})
 LinkLuaModifier("dasdingo_u_modifier_maledict", "heroes/dasdingo/dasdingo_u_modifier_maledict", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_u_modifier_overtime", "heroes/dasdingo/dasdingo_u_modifier_overtime", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_u_modifier_fear", "heroes/dasdingo/dasdingo_u_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_u_modifier_fear_status_efx", "heroes/dasdingo/dasdingo_u_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
-
 
 -- INIT
 
@@ -87,6 +88,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         for _,enemy in pairs(enemies) do
             enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_maledict", {})
+
+            -- UP 6.12
+            if self:GetRank(12) then
+                enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_fear", {
+                    duration = self:CalcStatus(1.5, caster, enemy)
+                })
+            end
         end
 
         self:PlayEfxStart(point, radius)

@@ -150,7 +150,7 @@ function bloodstained_2_modifier_passive:GetEffectName()
 end
 
 function bloodstained_2_modifier_passive:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
+	return PATTACH_POINT_FOLLOW
 end
 
 function bloodstained_2_modifier_passive:PlayEfxLifesteal(target)

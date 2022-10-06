@@ -1,6 +1,5 @@
 dasdingo_5__lash = class({})
 LinkLuaModifier("dasdingo_5_modifier_lash", "heroes/dasdingo/dasdingo_5_modifier_lash", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_ethereal", "modifiers/_modifier_ethereal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
@@ -56,12 +55,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
 
         local charges = 1
-
-        -- UP 5.11
-        if self:GetRank(11) then
-            charges = charges * 2           
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 
@@ -94,10 +87,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function dasdingo_5__lash:GetCastRange(vLocation, hTarget)
-        local cast_range = self:GetSpecialValueFor("cast_range")
-        if self:GetCurrentAbilityCharges() == 0 then return cast_range end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_range + 200 end
-        return cast_range
+        return self:GetSpecialValueFor("cast_range")
     end
 
     function dasdingo_5__lash:GetManaCost(iLevel)

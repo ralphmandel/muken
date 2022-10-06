@@ -39,8 +39,6 @@ function genuine_0_modifier_fear:OnRemoved(kv)
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "genuine_0_modifier_fear_status_efx", false) end
 
     if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
-
-    self.parent:Stop()
 end
 
 function genuine_0_modifier_fear:OnDestroy()

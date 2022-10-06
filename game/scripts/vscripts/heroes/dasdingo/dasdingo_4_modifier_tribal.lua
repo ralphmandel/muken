@@ -77,7 +77,7 @@ function dasdingo_4_modifier_tribal:GetModifierBaseDamageOutgoing_Percentage()
 end
 
 function dasdingo_4_modifier_tribal:GetModifierMiss_Percentage()
-	return 20
+	return 15
 end
 
 function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)

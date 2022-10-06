@@ -97,7 +97,6 @@
 			"0"
 			{
 				"1"   "dasdingo_5__lash_rank_11"
-				"2"   "dasdingo_5__lash_rank_12"
 			}
 			"1"
 			{
@@ -118,6 +117,7 @@
 			"0"
 			{
 				"1"   "dasdingo_u__maledict_rank_11"
+				"2"   "dasdingo_u__maledict_rank_12"
 			}
 			"1"
 			{

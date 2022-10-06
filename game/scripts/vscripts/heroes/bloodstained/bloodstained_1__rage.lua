@@ -72,10 +72,14 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return "bloodstained_1_modifier_passive_status_efx"
     end
 
+    function bloodstained_1__rage:OnOwnerSpawned()
+        self:SetActivated(true)
+    end
+
     function bloodstained_1__rage:OnSpellStart()
         local caster = self:GetCaster()
 
-        caster:StartGesture(ACT_DOTA_CAST2_STATUE)
+        caster:StartGesture(1784)
         caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
         caster:AttackNoEarlierThan(0.7, 99)
 
@@ -86,7 +90,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_GROUND)
         end)
 
-        Timers:CreateTimer(0.38, function()
+        Timers:CreateTimer(0.35, function()
             if caster:IsAlive() then
                 self:ApllyBuff()
             else

@@ -208,7 +208,7 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_5__tear"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_tear"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -221,12 +221,12 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blood_duration"	"18 19 20 21 22 23 24"
+				"blood_percent"	    "10 10.5 11 11.5 12 12.5 13 13.5 14 14.5 15"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"blood_percent"	    "10"
+				"blood_duration"	"20"
 			}
             "03"
 			{
@@ -256,7 +256,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -267,7 +267,7 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_u__seal"
 		"AbilityTextureName"     		"bloodstained_seal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"7"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -283,7 +283,7 @@
             "01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"12 12.25 12.5 12.75 13 13.25 13.5 13.75 14 14.25 14.5 14.75 15"
+				"duration"			"12 12.5 13 13.5 14 14.5 15 15.5 16"
 			}
             "02"
 			{
@@ -308,7 +308,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20 21"
+				"rank"				"9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
