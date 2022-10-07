@@ -7,8 +7,8 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 -- INIT
 
     function genuine_4__nightfall:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

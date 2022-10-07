@@ -10,8 +10,8 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 -- INIT
 
     function bocuse_2__flask:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

@@ -4,8 +4,8 @@ LinkLuaModifier("item_legend_serluc_mod_berserk", "items/item_legend_serluc_mod_
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 function item_legend_serluc:CalcStatus(duration, caster, target)
-	if caster == nil or target == nil then return end
-	if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+	if caster == nil or target == nil then return duration end
+	if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
 	local base_stats = caster:FindAbilityByName("base_stats")
 
 	if caster:GetTeamNumber() == target:GetTeamNumber() then

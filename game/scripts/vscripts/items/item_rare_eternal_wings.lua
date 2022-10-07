@@ -3,8 +3,8 @@ LinkLuaModifier("item_rare_eternal_wings_mod_passive", "items/item_rare_eternal_
 LinkLuaModifier("item_rare_eternal_wings_mod_buff", "items/item_rare_eternal_wings_mod_buff", LUA_MODIFIER_MOTION_NONE)
 
 function item_rare_eternal_wings:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

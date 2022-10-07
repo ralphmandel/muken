@@ -6,8 +6,8 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
 -- INIT
 
     function ancient_u__final:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

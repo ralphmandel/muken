@@ -108,6 +108,11 @@ function bloodstained_4_modifier_frenzy:OnAttackLanded(keys)
 	-- UP 4.41
 	if self.ability:GetRank(41)
 	and RandomFloat(1, 100) <= 15 then
+		local mod = self.parent:FindAllModifiersByName("bloodstained__modifier_bleeding")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then modifier:Destroy() end
+		end
+
 		keys.target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {
 			duration = self.ability:CalcStatus(10, self.caster, keys.target)
 		})

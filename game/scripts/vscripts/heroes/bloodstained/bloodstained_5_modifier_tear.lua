@@ -18,16 +18,31 @@ function bloodstained_5_modifier_tear:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	local time = 0
 
 	self.tick = self.ability:GetSpecialValueFor("tick")
+	self.blood_duration = self.ability:GetSpecialValueFor("blood_duration")
 
 	-- UP 5.22
 	if self.ability:GetRank(22) then
 		self.ability:AddBonus("_2_LCK", self.parent, 10, 0, nil)	
 	end
 
+	-- UP 5.41
+	if self.ability:GetRank(41) then
+		self.blood_duration = self.blood_duration + 10
+		time = self.blood_duration
+
+		self.start = true
+		ApplyDamage({
+			attacker = self.caster, victim = self.parent, ability = self.ability,
+			damage = 500, damage_type = DAMAGE_TYPE_PURE,
+			damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
+		})
+	end
+
 	if IsServer() then
-		self:PlayEfxStart(self.ability:GetAOERadius())
+		self:PlayEfxStart(self.ability:GetAOERadius(), time)
 		self:StartIntervalThink(self.tick)
 	end
 end
@@ -36,6 +51,7 @@ function bloodstained_5_modifier_tear:OnRefresh(kv)
 end
 
 function bloodstained_5_modifier_tear:OnRemoved()
+	if self.particle then ParticleManager:DestroyParticle(self.particle, true) end
 	self.ability:RemoveBonus("_2_LCK", self.parent)
 	self:PullBlood()
 
@@ -117,14 +133,17 @@ function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
 end
 
 function bloodstained_5_modifier_tear:CreateBlood(target, damage, origin)
-	local blood_duration = self.ability:GetSpecialValueFor("blood_duration")
+	if self.start then damage = damage * 5 end
 	local point = origin + RandomVector(RandomInt(0, 75))
 
-	CreateModifierThinker(
+	local blood_thinker = CreateModifierThinker(
 		self.caster, self.ability, "bloodstained_5_modifier_blood",
-		{duration = blood_duration, damage = damage},
+		{duration = self.blood_duration, damage = damage},
 		point, self.parent:GetTeamNumber(), false
 	)
+
+	if self.start then self.start = nil return end
+	self:PlayEfxStartBlood(blood_thinker, point, damage)
 end
 
 function bloodstained_5_modifier_tear:PullBlood()
@@ -134,7 +153,7 @@ function bloodstained_5_modifier_tear:PullBlood()
 	for _,blood in pairs(thinkers) do
 		if blood:GetOwner() == self.caster then
 			total_blood = total_blood + self:ProcessBlood(blood)
-			self:PlayEfxBlood(blood)
+			self:PlayEfxPull(blood)
 			blood:Destroy()
 		end
 	end
@@ -156,11 +175,12 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:PlayEfxStart(radius)
-	local string_1 = "particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_initial.vpcf"
-	local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle_1, 0, self.parent:GetOrigin())
-	self:AddParticle(particle_1, false, false, -1, false, false)
+function bloodstained_5_modifier_tear:PlayEfxStart(radius, time)
+	local string_1 = "particles/bloodstained/tear/bloodstained_tear_initial.vpcf"
+	self.particle = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.particle, 10, Vector(time, 0, 0))
+	self:AddParticle(self.particle, false, false, -1, false, false)
 
 	local string_2 = "particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_aoe.vpcf"
 	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -171,7 +191,20 @@ function bloodstained_5_modifier_tear:PlayEfxStart(radius)
 	if IsServer() then self.parent:EmitSound("Hero_Boodseeker.Bloodmist") end
 end
 
-function bloodstained_5_modifier_tear:PlayEfxBlood(blood)
+function bloodstained_5_modifier_tear:PlayEfxStartBlood(blood_thinker, point, damage)
+	local blood_mod = blood_thinker:FindModifierByNameAndCaster("bloodstained_5_modifier_blood", self.caster)
+	local blood_percent = self.ability:GetSpecialValueFor("blood_percent") * 0.01
+	local amount = math.floor(damage * blood_percent * 0.6)
+
+	local particle_cast = "particles/bloodstained/bloodstained_x2_blood.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, blood_thinker)
+    ParticleManager:SetParticleControl(effect_cast, 1, point)
+    ParticleManager:SetParticleControl(effect_cast, 5, Vector(amount, amount, point.z))
+
+	if blood_mod then blood_mod:AddParticle(effect_cast, false, false, -1, false, false) end
+end
+
+function bloodstained_5_modifier_tear:PlayEfxPull(blood)
 	local particle_cast = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())

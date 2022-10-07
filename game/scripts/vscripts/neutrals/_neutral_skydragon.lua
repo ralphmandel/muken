@@ -2,8 +2,8 @@ _neutral_skydragon = class({})
 LinkLuaModifier( "_modifier_neutral_skydragon", "neutrals/_modifier_neutral_skydragon", LUA_MODIFIER_MOTION_NONE )
 
 function _neutral_skydragon:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

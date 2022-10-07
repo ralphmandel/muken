@@ -9,8 +9,8 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 -- INIT
 
     function icebreaker_2__puff:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

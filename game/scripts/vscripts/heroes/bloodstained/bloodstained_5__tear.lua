@@ -6,8 +6,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 -- INIT
 
     function bloodstained_5__tear:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then
@@ -69,6 +69,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             caster:AddNewModifier(caster, self, "bloodstained_5_modifier_tear", {})
             self:SetActivated(false)
 
+            -- UP 5.41
+            if self:GetRank(41) then
+                Timers:CreateTimer(0.35, function()
+                    self:PlayEfxShake()
+                end)             
+            end
+
             Timers:CreateTimer(1.5, function()
                 self:SetActivated(true)
             end)
@@ -120,3 +127,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function bloodstained_5__tear:PlayEfxShake()
+        local caster = self:GetCaster()
+        local string_3 = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
+        local particle_3 = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN, caster)
+        ParticleManager:SetParticleControl(particle_3, 0, caster:GetOrigin())
+        ParticleManager:SetParticleControl(particle_3, 1, Vector(500, 0, 0))
+    end
+

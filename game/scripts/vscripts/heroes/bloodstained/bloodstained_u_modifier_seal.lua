@@ -58,7 +58,7 @@ function bloodstained_u_modifier_seal:OnRemoved()
 	if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, false) end
 	if IsServer() then self.parent:StopSound("bloodstained.seal") end
 
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	if self.ability.cooldown > 0 then self.ability:StartCooldown(self.ability.cooldown) end
 	self.ability:SetActivated(true)
 end
 

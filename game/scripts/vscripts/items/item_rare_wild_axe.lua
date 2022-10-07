@@ -2,8 +2,8 @@ item_rare_wild_axe = class({})
 LinkLuaModifier("item_rare_wild_axe_mod_passive", "items/item_rare_wild_axe_mod_passive", LUA_MODIFIER_MOTION_NONE)
 
 function item_rare_wild_axe:CalcStatus(duration, caster, target)
-	if caster == nil or target == nil then return end
-	if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+	if caster == nil or target == nil then return duration end
+	if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
 	local base_stats = caster:FindAbilityByName("base_stats")
 
 	if caster:GetTeamNumber() == target:GetTeamNumber() then

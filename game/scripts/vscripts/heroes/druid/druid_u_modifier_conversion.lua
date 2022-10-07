@@ -133,6 +133,10 @@ function druid_u_modifier_conversion:OnTakeDamage(keys)
 			if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
 				return
 			end
+
+			if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
+				return
+			end
         end
     end
 

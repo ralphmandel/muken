@@ -4,14 +4,17 @@ LinkLuaModifier("bloodstained_u_modifier_aura_effect", "heroes/bloodstained/bloo
 LinkLuaModifier("bloodstained_u_modifier_copy", "heroes/bloodstained/bloodstained_u_modifier_copy", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_u_modifier_copy_status_efx", "heroes/bloodstained/bloodstained_u_modifier_copy_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained__modifier_bleeding", "heroes/bloodstained/bloodstained__modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained__modifier_bleeding_status_efx", "heroes/bloodstained/bloodstained__modifier_bleeding_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_generic_custom_indicator", "modifiers/_modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
     function bloodstained_u__seal:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then
@@ -74,6 +77,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local duration = self:GetSpecialValueFor("duration")
+        self.cooldown = self:GetEffectiveCooldown(self:GetLevel())
 
         CreateModifierThinker(
             caster, self, "bloodstained_u_modifier_seal", {duration = duration},

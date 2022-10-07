@@ -53,7 +53,7 @@ function item_rare_eternal_wings_mod_passive:OnAbilityFullyCast(keys)
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:AddNewModifier(self.caster, self.ability, "item_rare_eternal_wings_mod_buff", {
-		duration = self.ability:CalcStatus(self.wings_duration, self.caster, nil)
+		duration = self.ability:CalcStatus(self.wings_duration, self.caster, self.parent)
 	})
 end
 

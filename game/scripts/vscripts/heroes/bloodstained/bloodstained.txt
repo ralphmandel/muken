@@ -293,7 +293,12 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hp_stolen"         "30"
+				"hp_stolen"         "15"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"slow_duration"     "1"
 			}
             "13"
 			{

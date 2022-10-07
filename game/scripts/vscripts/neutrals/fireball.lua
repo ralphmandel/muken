@@ -3,8 +3,8 @@ LinkLuaModifier("fireball_modifier", "neutrals/fireball_modifier", LUA_MODIFIER_
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 function fireball:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

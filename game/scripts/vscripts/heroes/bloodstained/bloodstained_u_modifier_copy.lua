@@ -24,6 +24,10 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", true) end
 
+	Timers:CreateTimer(FrameTime(), function()
+		self.parent:ModifyHealth(self.parent:GetBaseMaxHealth(), self.ability, false, 0)
+	end)
+
 	if IsServer() then self:SetStackCount(self.hp) end
 end
 
@@ -64,7 +68,7 @@ end
 function bloodstained_u_modifier_copy:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_DEATH
 	}
 
@@ -79,7 +83,9 @@ function bloodstained_u_modifier_copy:OnDeath(keys)
 	if keys.unit == self.target then self.parent:Kill(self.ability, nil) end
 end
 
-function bloodstained_u_modifier_copy:OnAttackLanded(keys)
+function bloodstained_u_modifier_copy:OnTakeDamage(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
 
 	self.hp = self.hp + keys.damage

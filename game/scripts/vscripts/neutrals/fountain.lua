@@ -3,8 +3,8 @@ LinkLuaModifier( "fountain_modifier", "neutrals/fountain_modifier", LUA_MODIFIER
 LinkLuaModifier("_modifier_truesight", "modifiers/_modifier_truesight", LUA_MODIFIER_MOTION_NONE)
 
 function fountain:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

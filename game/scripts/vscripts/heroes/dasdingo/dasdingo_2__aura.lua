@@ -5,8 +5,8 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 -- INIT
 
     function dasdingo_2__aura:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

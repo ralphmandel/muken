@@ -8,6 +8,10 @@ function bloodstained__modifier_bleeding_status_efx:IsPurgable()
 	return false
 end
 
+function bloodstained__modifier_bleeding_status_efx:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 -----------------------------------------------------------
 
 function bloodstained__modifier_bleeding_status_efx:OnCreated(kv)

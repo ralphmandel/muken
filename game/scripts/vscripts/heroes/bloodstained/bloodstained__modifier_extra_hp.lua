@@ -23,7 +23,7 @@ function bloodstained__modifier_extra_hp:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	self.cap = kv.cap * 0.01
-	self.tick = 0.3
+	self.tick = 0.2
 
 	if IsServer() then
 		self:SetStackCount(kv.extra_life)

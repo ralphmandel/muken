@@ -118,7 +118,12 @@ base_stats_mod = class ({})
                         return
                     end
 
-                    if keys.inflictor:GetAbilityName() == "bloodstained_5__tear" then
+                    if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
+                        return
+                    end
+
+                    if keys.inflictor:GetAbilityName() == "bloodstained_5__tear"
+                    and keys.damage_type == DAMAGE_TYPE_PURE then
                         return
                     end
                 end

@@ -8,8 +8,8 @@ LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_s
 -- INIT
 
     function genuine_6__travel:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then

@@ -2,8 +2,8 @@ _neutral__ai = class({})
 LinkLuaModifier( "_modifier__ai", "neutrals/_modifier__ai", LUA_MODIFIER_MOTION_NONE )
 
 function _neutral__ai:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

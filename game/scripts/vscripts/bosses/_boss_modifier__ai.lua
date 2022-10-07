@@ -228,6 +228,10 @@ function _boss_modifier__ai:OnTakeDamage(keys)
         if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
             return
         end
+
+        if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
+            return
+        end
     end
 
     if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end

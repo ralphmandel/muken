@@ -3,8 +3,8 @@ LinkLuaModifier("item_rare_serluc_armor_mod_aura", "items/item_rare_serluc_armor
 LinkLuaModifier("item_rare_serluc_armor_mod_effect", "items/item_rare_serluc_armor_mod_effect", LUA_MODIFIER_MOTION_NONE)
 
 function item_rare_serluc_armor:CalcStatus(duration, caster, target)
-    if caster == nil or target == nil then return end
-    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
     local base_stats = caster:FindAbilityByName("base_stats")
 
     if caster:GetTeamNumber() == target:GetTeamNumber() then

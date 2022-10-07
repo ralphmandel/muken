@@ -12,8 +12,8 @@ function bloodstained__modifier_bleeding:IsDebuff()
 	return true
 end
 
-function bloodstained__modifier_bleeding:GetTexture()
-	return "bleeding"
+function bloodstained__modifier_bleeding:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
@@ -43,9 +43,6 @@ function bloodstained__modifier_bleeding:OnCreated(kv)
 end
 
 function bloodstained__modifier_bleeding:OnRefresh(kv)
-	if IsServer() then
-		self:PlayEfxStart()
-	end
 end
 
 function bloodstained__modifier_bleeding:OnRemoved()

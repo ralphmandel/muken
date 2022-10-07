@@ -7,8 +7,8 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 -- INIT
 
     function osiris_4__rot:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return end
+        if caster == nil or target == nil then return duration end
+        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
 
         if caster:GetTeamNumber() == target:GetTeamNumber() then
