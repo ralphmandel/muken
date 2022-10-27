@@ -20,7 +20,8 @@ function icebreaker_5_modifier_illusion:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	self.stop = false
-	self.min_health = 1
+	self.min_health = kv.min_health
+	self.no_order = kv.no_order
 
 	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
@@ -42,6 +43,10 @@ function icebreaker_5_modifier_illusion:CheckState()
         [MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true
 	}
+
+	if self.no_order == 0 then
+		state[MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS] = false
+	end
 
 	return state
 end
@@ -77,13 +82,17 @@ end
 
 function icebreaker_5_modifier_illusion:OnAttackLanded(keys)
 	if keys.target == self.parent then
-		self.min_health = 0
+		self.min_health = self.min_health - 1
+	end
+
+	if self.min_health < 1 then
 		self.parent:ForceKill(false)
-		return
 	end
 end
 
 function icebreaker_5_modifier_illusion:OnIntervalThink()
+	if self.no_order == 0 then return end
+	
 	local found = false
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_ENEMY,

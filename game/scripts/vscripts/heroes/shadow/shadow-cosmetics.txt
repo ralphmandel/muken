@@ -1,4 +1,0 @@
-"Cosmetics"
-{
-    "models/heroes/phantom_assassin/pa_arcana.vmdl" "nil"
-}

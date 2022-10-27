@@ -113,7 +113,7 @@ function icebreaker_3_modifier_aura_effect:ApplyMirror()
 
 	-- UP 5.11
 	if mirror:GetRank(11) then
-		mirror:CreateMirrors(self.parent, 1)
+		mirror:CreateMirrors(self.parent, 1, 0, 1, 1)
 	end
 end
 

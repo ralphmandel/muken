@@ -101,7 +101,7 @@
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "icebreaker_5__mirror_rank_21"
 			}
 			"2"
 			{

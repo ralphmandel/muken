@@ -43,7 +43,7 @@ function icebreaker_5_modifier_passive:OnAttackLanded(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self:ShouldLaunch(keys.target) then
 		self.ability:UseResources(true, false, true)
-		self.ability:CreateMirrors(keys.target, 1)
+		self.ability:CreateMirrors(keys.target, 1, 0, 1, 1)
 	end
 end
 

@@ -201,7 +201,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             if mirror:GetRank(31)
             and target:IsMagicImmune() == false
             and target:IsAlive() then
-                mirror:CreateMirrors(target, 1)
+                mirror:CreateMirrors(target, 1, 0, 1, 1)
             end
         end
 

@@ -49,7 +49,7 @@ base_stats_mod = class ({})
         --     state = {[MODIFIER_STATE_CANNOT_MISS] = true}
         -- end
 
-        if self.ability.total_crit_damage > 0 then
+        if self.pierce_proc then
             state = {[MODIFIER_STATE_CANNOT_MISS] = true}
         end
 

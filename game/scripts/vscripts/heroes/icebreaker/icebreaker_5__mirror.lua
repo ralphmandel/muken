@@ -67,9 +67,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return "icebreaker_5_modifier_passive"
     end
 
-    function icebreaker_5__mirror:CreateMirrors(target, number)
+    function icebreaker_5__mirror:CreateMirrors(target, number, extra_time, min_health, no_order)
         local caster = self:GetCaster()
-        local illusion_duration = self:GetSpecialValueFor("illusion_duration")
+        local illusion_duration = self:GetSpecialValueFor("illusion_duration") + extra_time
         local illu_array = CreateIllusions(caster, caster, {
             outgoing_damage = -100,
             incoming_damage = 0,
@@ -79,7 +79,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         }, number, 64, false, true)
 
         for _,illu in pairs(illu_array) do
-            illu:AddNewModifier(caster, self, "icebreaker_5_modifier_illusion", {})
+            illu:AddNewModifier(caster, self, "icebreaker_5_modifier_illusion", {
+                min_health = min_health,
+                no_order = no_order
+            })
 
             local loc = target:GetAbsOrigin() + RandomVector(130)
             illu:SetAbsOrigin(loc)

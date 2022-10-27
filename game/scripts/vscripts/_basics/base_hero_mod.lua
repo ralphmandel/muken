@@ -27,28 +27,14 @@ end
 ------------------------------------------------------------
 
 function base_hero_mod:DeclareFunctions()
-	local funcs = {}
-	
-	if self:GetCaster():GetUnitName() == "npc_dota_hero_spectre" then
-		funcs = {
-			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_PROPERTY_PRE_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-			MODIFIER_PROPERTY_MODEL_CHANGE,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-		}
-	else
-		funcs = {
-			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_PROPERTY_PRE_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-		}
-	end
+	local funcs = {
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_PRE_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+	}
 
 	return funcs
 end
@@ -79,10 +65,6 @@ function base_hero_mod:GetAttackSound(keys)
     return ""
 end
 
-function base_hero_mod:GetModifierModelChange()
-	return self.model
-end
-
 function base_hero_mod:GetActivityTranslationModifiers()
     return self.activity
 end
@@ -105,15 +87,13 @@ function base_hero_mod:LoadActivity()
 		if self.ability.hero_name == "bocuse" then self.activity = "trapper" end
 		if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 		if self.ability.hero_name == "ancient" then self.activity = "et_2021" end
-		if self.ability.hero_name == "bloodstained" then self.activity = "ti7" end
-		if self.ability.hero_name == "shadow" then self.activity = "arcana" end
+		if self.ability.hero_name == "flea" then self.activity = "latch" end
 	end)
 end
 
 function base_hero_mod:LoadModel()
 	if self.ability.hero_name == "shadow" then
-		self.model = "models/heroes/phantom_assassin/phantom_assassin.vmdl"
-		self.parent:SetOriginalModel(self.model)
+		--self:PlayEfxAmbient("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf", "attach_hitloc")
 	end
 
 	Timers:CreateTimer((0.5), function()
@@ -123,9 +103,6 @@ function base_hero_mod:LoadModel()
 					self.parent:SetModelScale(1.15)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 					self.parent:SetMaterialGroup("1")
-				end
-				if self.ability.hero_name == "shadow" then
-					self.parent:SetModelScale(1)
 				end
 				if self.ability.hero_name == "krieger" then
 					self.parent:SetModelScale(1.10)
@@ -164,21 +141,18 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_Furion.ProjectileImpact" end
 
 	if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
-	if self.ability.hero_name == "shadow" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
-	if self.ability.hero_name == "osiris" then self.attack_landed_sound = "Hero_Undying.Attack" end
+	if self.ability.hero_name == "flea" then self.attack_landed_sound = "Hero_Slark.Attack" end
 end
 
 -----------------------------------------------------------
 
 function base_hero_mod:PlayEfxAmbient(ambient, attach)
-	if self.ability.hero_name == "shadow" then
-		local effect_cast = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
-		self:AddParticle(effect_cast, false, false, -1, false, false)
-	end
+	local effect_cast = ParticleManager:CreateParticle(ambient, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
+	self:AddParticle(effect_cast, false, false, -1, false, false)
 end
 
 -- function base_hero_mod:OnIntervalThink()

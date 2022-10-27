@@ -66,11 +66,16 @@ end
 		for cosmetic, ambients in pairs(cosmetics_data) do
 			local unit = caster
 			local modifier = caster:FindModifierByName(cosmetic)
+			local activity = nil
+
+			if cosmetic == "models/items/slark/hydrakan_latch/mesh/hydrkan_latch_model.vmdl" then
+				activity = "latch"
+			end
 
 			if modifier == nil then
 				index = index + 1
 				self.cosmetic[index] = CreateUnitByName("npc_dummy", caster:GetOrigin(), false, nil, nil, caster:GetTeamNumber())
-				modifier = self.cosmetic[index]:AddNewModifier(caster, self, "cosmetics_mod", {model = cosmetic})
+				modifier = self.cosmetic[index]:AddNewModifier(caster, self, "cosmetics_mod", {model = cosmetic, activity = activity})
 				unit = self.cosmetic[index]
 			end
 

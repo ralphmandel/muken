@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "flea_1__precision"
+	"2" "flea_2__sk2"
+	"3" "flea_3__sk3"
+	"4" "flea_4__sk4"
+	"5" "flea_5__sk5"
+	"6" "flea_u__sk6"
+}

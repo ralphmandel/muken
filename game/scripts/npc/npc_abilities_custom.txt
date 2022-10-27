@@ -310,9 +310,7 @@
 #base "../vscripts/heroes/ancient/ancient.txt"
 #base "../vscripts/heroes/bloodstained/bloodstained.txt"
 
-#base "../vscripts/heroes/shadow/shadow.txt"
-#base "../vscripts/heroes/krieger/krieger.txt"
-#base "../vscripts/heroes/osiris/osiris.txt"
+#base "../vscripts/heroes/flea/flea.txt"
 
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"

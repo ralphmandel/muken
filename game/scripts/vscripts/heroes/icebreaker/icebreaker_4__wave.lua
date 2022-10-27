@@ -80,6 +80,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         if hypo:IsTrained() == false then return end
 
         self:PlayEfxActive(blast_radius, blast_duration, blast_speed)
+        self:ApplyMirror()
 
         -- UP 4.11
         if self:GetRank(11) then
@@ -147,6 +148,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                 return tick_interval
             end
         end)
+    end
+
+    function icebreaker_4__wave:ApplyMirror()
+        local caster = self:GetCaster()
+        local mirror = caster:FindAbilityByName("icebreaker_5__mirror")
+        if mirror == nil then return end
+    
+        -- UP 5.21
+        if mirror:GetRank(21) then
+            mirror:CreateMirrors(caster, 1, 40, 5, 0)
+        end
     end
 
     function icebreaker_4__wave:GetManaCost(iLevel)

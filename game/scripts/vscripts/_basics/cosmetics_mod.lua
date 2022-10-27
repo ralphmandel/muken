@@ -28,6 +28,7 @@ function cosmetics_mod:OnCreated( kv )
 	self.no_draw = 0
 	self.invi = false
 	self.model = kv.model
+	self.activity = kv.activity
 	self.parent:SetOriginalModel(self.model)
 
 	Timers:CreateTimer((FrameTime()), function()
@@ -59,6 +60,7 @@ end
 
 function cosmetics_mod:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_DEATH
@@ -66,6 +68,10 @@ function cosmetics_mod:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function cosmetics_mod:GetActivityTranslationModifiers()
+    return self.activity
 end
 
 function cosmetics_mod:GetModifierModelChange()

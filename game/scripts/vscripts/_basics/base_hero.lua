@@ -101,31 +101,36 @@ require("talent_tree")
 	function base_hero:ResetRanksData()
 		self.slot_keys = {[1] = "slot_1", [2] = "slot_2", [3] = "slot_3", [4] = "slot_4", [5] = "slot_5", [6] = "slot_6"}
 		
-		local rank = {
-			[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
-		}
+		local state_skills = false
+		local state_ranks = false
+
+		if IsInToolsMode() then
+			-- if self:GetCaster():GetUnitName() == "npc_dota_hero_dawnbreaker" then
+			-- 	state_ranks = true
+			-- end
+		end
 		
 		self.ranks = {
 			[0] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[1] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[2] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[3] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[4] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[5] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			},
 			[6] = {
-				[0] = false, [11] = false, [12] = false, [21] = false, [22] = false, [31] = false, [32] = false, [41] = false, [42] = false		
+				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
 			}
 		}
 

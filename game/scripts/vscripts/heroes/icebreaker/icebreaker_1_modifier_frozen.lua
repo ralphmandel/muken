@@ -143,7 +143,7 @@ function icebreaker_1_modifier_frozen:ApplyMirror()
 
 	-- UP 5.41
 	if mirror:GetRank(41) then
-		mirror:CreateMirrors(self.parent, 1)
+		mirror:CreateMirrors(self.parent, 1, 0, 1, 1)
 	end
 end
 
