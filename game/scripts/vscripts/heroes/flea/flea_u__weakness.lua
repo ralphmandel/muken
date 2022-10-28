@@ -1,10 +1,10 @@
-flea_3__sk3 = class({})
-LinkLuaModifier("flea_3_modifier_sk3", "heroes/flea/flea_3_modifier_sk3", LUA_MODIFIER_MOTION_NONE)
+flea_u__weakness = class({})
+LinkLuaModifier("flea_u_modifier_weakness", "heroes/flea/flea_u_modifier_weakness", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function flea_3__sk3:CalcStatus(duration, caster, target)
+    function flea_u__weakness:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return duration end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function flea_3__sk3:AddBonus(string, target, const, percent, time)
+    function flea_u__weakness:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function flea_3__sk3:RemoveBonus(string, target)
+    function flea_u__weakness:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,47 +32,47 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function flea_3__sk3:GetRank(upgrade)
+    function flea_u__weakness:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_slark" then return end
 
 		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[3][upgrade] end
+        if base_hero then return base_hero.ranks[6][upgrade] end
     end
 
-    function flea_3__sk3:OnUpgrade()
+    function flea_u__weakness:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_slark" then return end
 
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
-            base_hero.ranks[3][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            base_hero.ranks[6][0] = true
+            if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
 
         self:CheckAbilityCharges(1)
     end
 
-    function flea_3__sk3:Spawn()
+    function flea_u__weakness:Spawn()
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function flea_3__sk3:OnSpellStart()
+    function flea_u__weakness:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function flea_3__sk3:GetManaCost(iLevel)
+    function flea_u__weakness:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function flea_3__sk3:CheckAbilityCharges(charges)
+    function flea_u__weakness:CheckAbilityCharges(charges)
         self:SetCurrentAbilityCharges(charges)
     end
 

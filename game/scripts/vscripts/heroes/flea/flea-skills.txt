@@ -1,9 +1,9 @@
 "skills"
 {
 	"1" "flea_1__precision"
-	"2" "flea_2__sk2"
-	"3" "flea_3__sk3"
-	"4" "flea_4__sk4"
-	"5" "flea_5__sk5"
-	"6" "flea_u__sk6"
+	"2" "flea_2__speed"
+	"3" "flea_3__jump"
+	"4" "flea_4__smoke"
+	"5" "flea_5__desolator"
+	"6" "flea_u__weakness"
 }

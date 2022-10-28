@@ -69,47 +69,54 @@
 		}
 	}
 
-	"flea_2__sk2"
+	"flea_2__speed"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/flea/flea_2__sk2"
+		"ScriptFile"            		"heroes/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"flea_sk2"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"flea_speed"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"max_speed"		"40"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"speed_hit"		"4"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"4"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"0"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
 
-	"flea_3__sk3"
+	"flea_3__jump"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/flea/flea_3__sk3"
+		"ScriptFile"            		"heroes/flea/flea_3__jump"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"flea_sk3"
+		"AbilityTextureName"     		"flea_jump"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -139,12 +146,12 @@
 		}
 	}
 
-	"flea_4__sk4"
+	"flea_4__smoke"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/flea/flea_4__sk4"
+		"ScriptFile"            		"heroes/flea/flea_4__smoke"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"flea_sk4"
+		"AbilityTextureName"     		"flea_smoke"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -174,12 +181,12 @@
 		}
 	}
 
-	"flea_5__sk5"
+	"flea_5__desolator"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/flea/flea_5__sk5"
+		"ScriptFile"            		"heroes/flea/flea_5__desolator"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"flea_sk5"
+		"AbilityTextureName"     		"flea_desolator"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
@@ -209,11 +216,11 @@
 		}
 	}
 
-	"flea_u__sk6"
+	"flea_u__weakness"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/flea/flea_u__sk6"
-		"AbilityTextureName"     		"flea_sk6"
+		"ScriptFile"            		"heroes/flea/flea_u__weakness"
+		"AbilityTextureName"     		"flea_weakness"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"7"
@@ -486,10 +493,10 @@
         }
 
     //RANKS 2
-        "flea_2__sk2_rank_11"{
+        "flea_2__speed_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -516,10 +523,10 @@
             }
         }
 
-        "flea_2__sk2_rank_12"{
+        "flea_2__speed_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -546,10 +553,10 @@
             }
         }
 
-        "flea_2__sk2_rank_21"{
+        "flea_2__speed_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -576,10 +583,10 @@
             }
         }
 
-        "flea_2__sk2_rank_22"{
+        "flea_2__speed_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -606,10 +613,10 @@
             }
         }
 
-        "flea_2__sk2_rank_31"{
+        "flea_2__speed_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -636,10 +643,10 @@
             }
         }
 
-        "flea_2__sk2_rank_32"{
+        "flea_2__speed_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -666,10 +673,10 @@
             }
         }
 
-        "flea_2__sk2_rank_41"{
+        "flea_2__speed_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -696,10 +703,10 @@
             }
         }
 
-        "flea_2__sk2_rank_42"{
+        "flea_2__speed_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk2"
+            "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -727,10 +734,10 @@
         }
 
     //RANKS 3
-        "flea_3__sk3_rank_11"{
+        "flea_3__jump_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -757,10 +764,10 @@
             }
         }
 
-        "flea_3__sk3_rank_12"{
+        "flea_3__jump_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -787,10 +794,10 @@
             }
         }
 
-        "flea_3__sk3_rank_21"{
+        "flea_3__jump_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -817,10 +824,10 @@
             }
         }
 
-        "flea_3__sk3_rank_22"{
+        "flea_3__jump_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -847,10 +854,10 @@
             }
         }
 
-        "flea_3__sk3_rank_31"{
+        "flea_3__jump_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -877,10 +884,10 @@
             }
         }
 
-        "flea_3__sk3_rank_32"{
+        "flea_3__jump_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -907,10 +914,10 @@
             }
         }
 
-        "flea_3__sk3_rank_41"{
+        "flea_3__jump_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -937,10 +944,10 @@
             }
         }
 
-        "flea_3__sk3_rank_42"{
+        "flea_3__jump_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk3"
+            "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -968,10 +975,10 @@
         }
 
     //RANKS 4
-        "flea_4__sk4_rank_11"{
+        "flea_4__smoke_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -998,10 +1005,10 @@
             }
         }
 
-        "flea_4__sk4_rank_12"{
+        "flea_4__smoke_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1028,10 +1035,10 @@
             }
         }
 
-        "flea_4__sk4_rank_21"{
+        "flea_4__smoke_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1058,10 +1065,10 @@
             }
         }
 
-        "flea_4__sk4_rank_22"{
+        "flea_4__smoke_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1088,10 +1095,10 @@
             }
         }
 
-        "flea_4__sk4_rank_31"{
+        "flea_4__smoke_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1118,10 +1125,10 @@
             }
         }
 
-        "flea_4__sk4_rank_32"{
+        "flea_4__smoke_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1148,10 +1155,10 @@
             }
         }
 
-        "flea_4__sk4_rank_41"{
+        "flea_4__smoke_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1178,10 +1185,10 @@
             }
         }
 
-        "flea_4__sk4_rank_42"{
+        "flea_4__smoke_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk4"
+            "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1209,10 +1216,10 @@
         }
 
     //RANKS 5
-        "flea_5__sk5_rank_11"{
+        "flea_5__desolator_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1239,10 +1246,10 @@
             }
         }
 
-        "flea_5__sk5_rank_12"{
+        "flea_5__desolator_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1269,10 +1276,10 @@
             }
         }
 
-        "flea_5__sk5_rank_21"{
+        "flea_5__desolator_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1299,10 +1306,10 @@
             }
         }
 
-        "flea_5__sk5_rank_22"{
+        "flea_5__desolator_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1329,10 +1336,10 @@
             }
         }
 
-        "flea_5__sk5_rank_31"{
+        "flea_5__desolator_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1359,10 +1366,10 @@
             }
         }
 
-        "flea_5__sk5_rank_32"{
+        "flea_5__desolator_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1389,10 +1396,10 @@
             }
         }
 
-        "flea_5__sk5_rank_41"{
+        "flea_5__desolator_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1419,10 +1426,10 @@
             }
         }
 
-        "flea_5__sk5_rank_42"{
+        "flea_5__desolator_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk5"
+            "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1450,10 +1457,10 @@
         }
 
     //RANKS U
-        "flea_u__sk6_rank_11"{
+        "flea_u__weakness_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1480,10 +1487,10 @@
             }
         }
 
-        "flea_u__sk6_rank_12"{
+        "flea_u__weakness_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1510,10 +1517,10 @@
             }
         }
 
-        "flea_u__sk6_rank_21"{
+        "flea_u__weakness_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1540,10 +1547,10 @@
             }
         }
 
-        "flea_u__sk6_rank_22"{
+        "flea_u__weakness_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1570,10 +1577,10 @@
             }
         }
 
-        "flea_u__sk6_rank_31"{
+        "flea_u__weakness_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1600,10 +1607,10 @@
             }
         }
 
-        "flea_u__sk6_rank_32"{
+        "flea_u__weakness_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1630,10 +1637,10 @@
             }
         }
         
-        "flea_u__sk6_rank_41"{
+        "flea_u__weakness_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1660,10 +1667,10 @@
             }
         }
 
-        "flea_u__sk6_rank_42"{
+        "flea_u__weakness_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/flea/flea-ranks_lua"
-            "AbilityTextureName"    		"flea_sk6"
+            "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

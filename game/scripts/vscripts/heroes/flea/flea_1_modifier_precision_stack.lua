@@ -43,7 +43,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function flea_1_modifier_precision_stack:GetEffectName()
-	return "particles/econ/items/slark/slark_barb_of_skadi/slark_regen_barb_of_skadi.vpcf"
+	return "particles/fleaman/fleaman_precision.vpcf"
 end
 
 function flea_1_modifier_precision_stack:GetEffectAttachType()

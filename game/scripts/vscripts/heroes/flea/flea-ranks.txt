@@ -32,99 +32,99 @@
 				"1"   "flea_1__precision_rank_41"
 			}
 		}
-		"flea_2__sk2"
+		"flea_2__speed"
 		{
 			"0"
 			{
-				"1"   "flea_2__sk2_rank_11"
+				"1"   "flea_2__speed_rank_11"
 			}
 			"1"
 			{
-				"1"   "flea_2__sk2_rank_21"
+				"1"   "flea_2__speed_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_2__sk2_rank_31"
+				"1"   "flea_2__speed_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_2__sk2_rank_41"
+				"1"   "flea_2__speed_rank_41"
 			}
 		}
-		"flea_3__sk3"
+		"flea_3__jump"
 		{
 			"0"
 			{
-				"1"   "flea_3__sk3_rank_11"
+				"1"   "flea_3__jump_rank_11"
 			}
 			"1"
 			{
-				"1"   "flea_3__sk3_rank_21"
+				"1"   "flea_3__jump_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_3__sk3_rank_31"
+				"1"   "flea_3__jump_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_3__sk3_rank_41"
+				"1"   "flea_3__jump_rank_41"
 			}
 		}
-		"flea_4__sk4"
+		"flea_4__smoke"
 		{
 			"0"
 			{
-				"1"   "flea_4__sk4_rank_11"
+				"1"   "flea_4__smoke_rank_11"
 			}
 			"1"
 			{
-				"1"   "flea_4__sk4_rank_21"
+				"1"   "flea_4__smoke_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_4__sk4_rank_31"
+				"1"   "flea_4__smoke_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_4__sk4_rank_41"
+				"1"   "flea_4__smoke_rank_41"
 			}
 		}
-		"flea_5__sk5"
+		"flea_5__desolator"
 		{
 			"0"
 			{
-				"1"   "flea_5__sk5_rank_11"
+				"1"   "flea_5__desolator_rank_11"
 			}
 			"1"
 			{
-				"1"   "flea_5__sk5_rank_21"
+				"1"   "flea_5__desolator_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_5__sk5_rank_31"
+				"1"   "flea_5__desolator_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_5__sk5_rank_41"
+				"1"   "flea_5__desolator_rank_41"
 			}
 		}
-		"flea_u__sk6"
+		"flea_u__weakness"
 		{
 			"0"
 			{
-				"1"   "flea_u__sk6_rank_11"
+				"1"   "flea_u__weakness_rank_11"
 			}
 			"1"
 			{
-				"1"   "flea_u__sk6_rank_21"
+				"1"   "flea_u__weakness_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_u__sk6_rank_31"
+				"1"   "flea_u__weakness_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_u__sk6_rank_41"
+				"1"   "flea_u__weakness_rank_41"
 			}
 		}
 	}	

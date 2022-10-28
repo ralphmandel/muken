@@ -1,10 +1,10 @@
-flea_5__sk5 = class({})
-LinkLuaModifier("flea_5_modifier_sk5", "heroes/flea/flea_5_modifier_sk5", LUA_MODIFIER_MOTION_NONE)
+flea_5__desolator = class({})
+LinkLuaModifier("flea_5_modifier_desolator", "heroes/flea/flea_5_modifier_desolator", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function flea_5__sk5:CalcStatus(duration, caster, target)
+    function flea_5__desolator:CalcStatus(duration, caster, target)
         if caster == nil or target == nil then return duration end
         if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
         local base_stats = caster:FindAbilityByName("base_stats")
@@ -19,12 +19,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return duration
     end
 
-    function flea_5__sk5:AddBonus(string, target, const, percent, time)
+    function flea_5__desolator:AddBonus(string, target, const, percent, time)
         local base_stats = target:FindAbilityByName("base_stats")
         if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
     end
 
-    function flea_5__sk5:RemoveBonus(string, target)
+    function flea_5__desolator:RemoveBonus(string, target)
         local stringFormat = string.format("%s_modifier_stack", string)
         local mod = target:FindAllModifiersByName(stringFormat)
         for _,modifier in pairs(mod) do
@@ -32,7 +32,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function flea_5__sk5:GetRank(upgrade)
+    function flea_5__desolator:GetRank(upgrade)
         local caster = self:GetCaster()
 		if caster:IsIllusion() then return end
 		if caster:GetUnitName() ~= "npc_dota_hero_slark" then return end
@@ -41,7 +41,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if base_hero then return base_hero.ranks[5][upgrade] end
     end
 
-    function flea_5__sk5:OnUpgrade()
+    function flea_5__desolator:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_slark" then return end
@@ -55,24 +55,24 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         self:CheckAbilityCharges(1)
     end
 
-    function flea_5__sk5:Spawn()
+    function flea_5__desolator:Spawn()
         self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
 
-    function flea_5__sk5:OnSpellStart()
+    function flea_5__desolator:OnSpellStart()
         local caster = self:GetCaster()
     end
 
-    function flea_5__sk5:GetManaCost(iLevel)
+    function flea_5__desolator:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
         return manacost * level
     end
 
-    function flea_5__sk5:CheckAbilityCharges(charges)
+    function flea_5__desolator:CheckAbilityCharges(charges)
         self:SetCurrentAbilityCharges(charges)
     end
 
