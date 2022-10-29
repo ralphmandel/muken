@@ -19,14 +19,11 @@ function flea_3_modifier_jump:OnCreated( kv )
 	self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local speed_base = self.ability:GetSpecialValueFor("speed_base")
-	local speed_mult = self.ability:GetSpecialValueFor("speed_mult") * (self.parent:GetIdealSpeed() - 150)
-	local jump_speed = speed_base + speed_mult
+	local movespeed = self.parent:GetIdealSpeed() - 175
+	if movespeed < 25 then movespeed = 25 end
 
-	local distance_base = self.ability:GetSpecialValueFor("distance_base")
-	local distance_mult = self.ability:GetSpecialValueFor("distance_mult") * (self.parent:GetIdealSpeed() - 150)
-	local jump_distance = distance_base + distance_mult
-
+	local jump_speed = ((self.ability:GetSpecialValueFor("speed_mult") * movespeed)) + 150
+	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") * movespeed
 	local duration = jump_distance/jump_speed
 	local height = 160
 
@@ -55,7 +52,7 @@ function flea_3_modifier_jump:OnCreated( kv )
 		self.ability:SetActivated(false)
 		self:StartIntervalThink(0.1)
 		self:OnIntervalThink()
-		self:PlayEfxStart()
+		self:PlayEfxStart(duration)
 	end
 end
 
@@ -145,11 +142,11 @@ function flea_3_modifier_jump:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function flea_3_modifier_jump:PlayEfxStart()
+function flea_3_modifier_jump:PlayEfxStart(duration)
 	local particle_cast = "particles/econ/items/slark/slark_ti6_blade/slark_ti6_pounce_start.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then self.parent:EmitSound("Hero_Slark.Pounce.Cast.Immortal") end
-	self.parent:StartGesture(ACT_DOTA_SLARK_POUNCE)
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_SLARK_POUNCE, (0.68 / duration))
 end

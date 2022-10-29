@@ -1,5 +1,6 @@
 flea_1__precision = class({})
 LinkLuaModifier("flea_1_modifier_passive", "heroes/flea/flea_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_gesture", "heroes/flea/flea_1_modifier_gesture", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_1_modifier_precision", "heroes/flea/flea_1_modifier_precision", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_1_modifier_precision_stack", "heroes/flea/flea_1_modifier_precision_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_1_modifier_precision_status_efx", "heroes/flea/flea_1_modifier_precision_status_efx", LUA_MODIFIER_MOTION_NONE)
@@ -70,11 +71,26 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function flea_1__precision:OnSpellStart()
         local caster = self:GetCaster()
-
         caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
-        caster:AddNewModifier(caster, self, "flea_1_modifier_precision", {})
+        caster:RemoveModifierByNameAndCaster("flea_1_modifier_gesture", self.caster)
 
-        if IsServer() then caster:EmitSound("Fleaman.Precision") end
+        caster:AttackNoEarlierThan(10, 20)
+        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+        caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+
+        Timers:CreateTimer(0.15, function()
+            if caster:IsAlive() then
+                caster:AddNewModifier(caster, self, "flea_1_modifier_precision", {})
+                if IsServer() then caster:EmitSound("Fleaman.Precision") end
+            end
+        end)
+
+        Timers:CreateTimer(0.7, function()
+            if caster:IsAlive() then
+                caster:AttackNoEarlierThan(1, 1)
+                caster:AddNewModifier(caster, self, "flea_1_modifier_gesture", {duration = 1.2}) 
+            end
+        end)
     end
 
     function flea_1__precision:GetManaCost(iLevel)

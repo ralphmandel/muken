@@ -40,14 +40,14 @@ function flea_1_modifier_passive:OnStackCountChanged(old)
 	local refresh = self.ability:GetSpecialValueFor("refresh")
 
 	if self:GetStackCount() == 0 then
-		self:StartIntervalThink(-1)
 		self.ability:StartCooldown(refresh)
+		self:StartIntervalThink(-1)
 		self:ResetCharges()
 		return
 	end
 
 	if self:GetStackCount() < charges then
-		self.ability:StartCooldown(1)
+		--self.ability:StartCooldown(1)
 		self:StartIntervalThink(refresh)
 	end
 end
