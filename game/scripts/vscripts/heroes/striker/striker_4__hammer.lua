@@ -118,7 +118,10 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         local level = self:CalculateLevel(caster, target)
         local isDamageRadius = false
 
-        if target:IsIllusion() then target:ForceKill(false) end
+        if target:HasModifier("bloodstained_u_modifier_copy") == false
+		and target:IsIllusion() then
+			target:ForceKill(false)
+		end
 
         local stun_duration = self:GetSpecialValueFor("stun_duration") * level
         local damage = self:GetAbilityDamage() * level

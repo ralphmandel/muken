@@ -86,17 +86,27 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_speed"		"40"
+				"max_speed"		"55"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_hit"		"4"
+				"speed_hit"		"5"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"4"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"min_speed"		"200"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"regen"		    "20"
 			}
             "14"
 			{
@@ -117,31 +127,65 @@
 		"ScriptFile"            		"heroes/flea/flea_3__jump"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_jump"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"speed_base"	"150"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"speed_mult"	"3.5"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"distance_base"	"100"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"distance_mult"	"2.25"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"agi_mult"	    "3"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"silence_duration"	"4"
+			}
+            "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"95"
+			}
+            "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius_impact"	"325 330 335 340 345 350 355"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"130"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}

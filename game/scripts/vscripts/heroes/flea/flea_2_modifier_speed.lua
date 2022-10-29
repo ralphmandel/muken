@@ -27,8 +27,9 @@ function flea_2_modifier_speed:OnCreated(kv)
 end
 
 function flea_2_modifier_speed:OnRefresh(kv)
-	if self.speed < self.max_speed then
-		self.speed = self.speed + self.speed_hit
+	self.speed = self.speed + self.speed_hit
+	if self.speed > self.max_speed then
+		self.speed = self.max_speed
 	end
 
 	self:IncreaseSpeed()

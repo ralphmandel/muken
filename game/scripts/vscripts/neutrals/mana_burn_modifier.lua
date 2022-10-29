@@ -75,6 +75,11 @@ function mana_burn_modifier:InflictBurn(target)
 		ApplyDamage(damageTable)
 	end
 
+	local mod = target:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
 	target:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		percent = self.slow,
 		duration = 1.5

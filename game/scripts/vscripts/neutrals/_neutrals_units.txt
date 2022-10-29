@@ -493,8 +493,8 @@
 			//----------------------------------------------------------------
 			"StatusHealth"				"900"		// Base health.
 			"StatusHealthRegen"			"3"			// Health regeneration rate.
-			"StatusMana"				"600"		// Base mana.
-			"StatusManaRegen"			"10"		// Mana regeneration rate.		 
+			"StatusMana"				"500"		// Base mana.
+			"StatusManaRegen"			"20"		// Mana regeneration rate.		 
 			
 			// Vision
 			//----------------------------------------------------------------
