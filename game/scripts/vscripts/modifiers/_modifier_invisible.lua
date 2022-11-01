@@ -19,10 +19,11 @@ end
 
 --------------------------------------------------------------------------------
 
--- Initializations
 function _modifier_invisible:OnCreated( kv )
 	self.delay = false
     self.hidden = false
+	self.spell_break = (kv.spell_break == 1)
+	self.attack_break = (kv.attack_break == 1)
 
 	if IsServer() then
 		local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
@@ -60,6 +61,14 @@ end
 
 -------------------------------------------------------------
 
+function _modifier_invisible:CheckState()
+	local state = {
+		[MODIFIER_STATE_INVISIBLE] = self.hidden,
+	}
+
+	return state
+end
+
 function _modifier_invisible:DeclareFunctions()
 	local funcs = {
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
@@ -76,26 +85,16 @@ end
 
 function _modifier_invisible:GetModifierProcAttack_Feedback(keys)
     if IsServer() then
-        if keys.attacker == self:GetParent() then
+        if keys.attacker == self:GetParent() and self.attack_break then
 			self:Destroy()
         end
     end
 end
 
 function _modifier_invisible:OnAbilityStart(keys)
-	if keys.unit == self:GetParent() then self:Destroy() end
+	if keys.unit == self:GetParent() and self.spell_break then self:Destroy() end
 end
 
-function _modifier_invisible:CheckState()
-	local state = {
-		[MODIFIER_STATE_INVISIBLE] = self.hidden,
-	}
-
-	return state
-end
-
---------------------------------------------------------------------------------
--- Interval Effects
 function _modifier_invisible:OnIntervalThink()
 	if self.delay == false then
 		self.delay = true
@@ -108,16 +107,14 @@ function _modifier_invisible:OnIntervalThink()
 end
 
 --------------------------------------------------------------------------------
---||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||--
---------------------------------------------------------------------------------
 
-function _modifier_invisible:GetEffectName()
-	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
-end
+-- function _modifier_invisible:GetEffectName()
+-- 	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+-- end
 
-function _modifier_invisible:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
+-- function _modifier_invisible:GetEffectAttachType()
+-- 	return PATTACH_ABSORIGIN_FOLLOW
+-- end
 
 function _modifier_invisible:PlayEffects()
 	local particle_cast = "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf"

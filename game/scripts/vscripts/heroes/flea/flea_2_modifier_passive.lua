@@ -40,21 +40,30 @@ end
 
 function flea_2_modifier_passive:GetModifierMoveSpeed_AbsoluteMin()
 	if IsServer() then
-		return self:GetAbility():GetSpecialValueFor("min_speed")
+		if self:GetParent():PassivesDisabled() then
+			return 0
+		else
+			return self:GetAbility():GetSpecialValueFor("min_speed")
+		end
 	end
 end
 
 function flea_2_modifier_passive:GetModifierConstantHealthRegen()
 	if IsServer() then
-		local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
-		local regen = self:GetAbility():GetSpecialValueFor("regen") * 0.01
-		return (self:GetParent():GetIdealSpeed() - min_speed - 50) * regen
+		if self:GetParent():PassivesDisabled() then
+			return 0
+		else
+			local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
+			local regen = self:GetAbility():GetSpecialValueFor("regen") * 0.01
+			return (self:GetParent():GetIdealSpeed() - min_speed - 50) * regen
+		end
 	end
 end
 
 function flea_2_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:PassivesDisabled() then return end
 
 	local duration = self.ability:GetSpecialValueFor("duration")
 

@@ -120,7 +120,7 @@ function dasdingo_1_modifier_heal_effect:OnIntervalThink()
 		end
 
 		if invi_bool == false then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_invisible", {delay = 3})
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_invisible", {delay = 3, spell_break = 1, attack_break = 1})
 		end
 	end
 

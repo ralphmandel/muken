@@ -1,6 +1,8 @@
 flea_4__smoke = class({})
 LinkLuaModifier("flea_4_modifier_smoke", "heroes/flea/flea_4_modifier_smoke", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_4_modifier_smoke_effect", "heroes/flea/flea_4_modifier_smoke_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)

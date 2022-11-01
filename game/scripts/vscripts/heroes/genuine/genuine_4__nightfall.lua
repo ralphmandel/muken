@@ -73,7 +73,7 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
         local charges = 1
 
         self:SetCurrentAbilityCharges(charges)
-        caster:AddNewModifier(caster, self, "_modifier_invisible", {delay = 1})
+        caster:AddNewModifier(caster, self, "_modifier_invisible", {delay = 1, spell_break = 1, attack_break = 1})
         if IsServer() then caster:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
     end
 
