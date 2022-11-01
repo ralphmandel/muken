@@ -47,7 +47,7 @@ function flea_1_modifier_passive:OnStackCountChanged(old)
 	end
 
 	if self:GetStackCount() < charges then
-		--self.ability:StartCooldown(1)
+		self.ability:StartCooldown(0.8)
 		self:StartIntervalThink(refresh)
 	end
 end

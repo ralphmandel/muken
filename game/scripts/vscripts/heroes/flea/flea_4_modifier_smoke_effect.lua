@@ -21,7 +21,7 @@ function flea_4_modifier_smoke_effect:OnCreated(kv)
 	self.tick = 0
 
 	if IsServer() then
-		if self.parent == self.caster then
+		if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 			self:PlayEfxStart()			
 		end
 
@@ -33,7 +33,7 @@ function flea_4_modifier_smoke_effect:OnRefresh(kv)
 end
 
 function flea_4_modifier_smoke_effect:OnRemoved()
-	if self.parent == self.caster then
+	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 		self:StopEfxStart()
 	else
 		self:RemoveDebuff()
@@ -51,7 +51,7 @@ function flea_4_modifier_smoke_effect:DeclareFunctions()
 end
 
 function flea_4_modifier_smoke_effect:OnAttackLanded(keys)
-	if self.parent ~= self.caster then return end
+	if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
 	if keys.attacker ~= self.parent then return end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
@@ -67,7 +67,7 @@ function flea_4_modifier_smoke_effect:OnAttackLanded(keys)
 end
 
 function flea_4_modifier_smoke_effect:OnIntervalThink()
-	if self.caster == self.parent then
+	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
 		ParticleManager:SetParticleControl(self.effect_cast, 1, self.parent:GetOrigin())
 		if IsServer() then self:StartIntervalThink(FrameTime()) end
 	else

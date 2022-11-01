@@ -38,6 +38,15 @@ function flea_4_modifier_smoke:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 end
 
+function flea_4_modifier_smoke:GetAuraEntityReject(hEntity)
+	if hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber()
+	and hEntity ~= self:GetCaster() then
+		return true
+	end
+
+	return false
+end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_4_modifier_smoke:OnCreated(kv)

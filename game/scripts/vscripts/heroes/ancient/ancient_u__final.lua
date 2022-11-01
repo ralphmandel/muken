@@ -274,7 +274,7 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
     end
 
     function ancient_u__final:CheckAbilityCharges(charges)
-        if self:GetCaster():GetLevel() >= 7 then charges = 1 end
+        if self:GetCaster():GetLevel() >= 8 then charges = 1 end
 
         -- UP 6.12
         if self:GetRank(12) then

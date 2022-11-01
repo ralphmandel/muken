@@ -17,6 +17,19 @@ function _boss_gorillaz:CalcStatus(duration, caster, target)
 	return duration
 end
 
+function _boss_gorillaz:AddBonus(string, target, const, percent, time)
+	local base_stats = target:FindAbilityByName("base_stats")
+	if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
+end
+
+function _boss_gorillaz:RemoveBonus(string, target)
+	local stringFormat = string.format("%s_modifier_stack", string)
+	local mod = target:FindAllModifiersByName(stringFormat)
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self then modifier:Destroy() end
+	end
+end
+
 function _boss_gorillaz:GetIntrinsicModifierName()
 	return "_boss_gorillaz_modifier_passive"
 end

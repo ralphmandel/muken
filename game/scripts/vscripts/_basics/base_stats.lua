@@ -36,8 +36,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local caster = self:GetCaster()
 				local level = caster:GetLevel()
 				if caster:IsIllusion() then return end
+				if caster:IsHero() == false then return end
 
-				self:IncrementSpenderPoints(2, 2)
+				self:IncrementSpenderPoints(1, 1.5)
 				for _, stat in pairs(self.stats_primary) do
 					self:IncrementSubLevel(stat, self.bonus_level[stat])
 				end
@@ -122,6 +123,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					end
 				end
 
+				if caster:IsHero() == false then
+					hero_name = caster:GetUnitName()
+					heroes_stats_data = LoadKeyValues("scripts/vscripts/bosses/bosses_stats.kv")
+				end
+
 				if hero_name == nil then return end
 				if heroes_stats_data == nil then return end
 
@@ -137,8 +143,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 									self:CalculateStats(0, 0, stat)
 									self:IncrementFraction(stat, value * 3)
 								elseif stat_type == "bonus_level" then
-									self.bonus_level[stat] = value
-									--self:IncrementSubLevel(stat, value)
+									if caster:IsHero() then
+										self.bonus_level[stat] = value * 0.05
+									else
+										self:IncrementSubLevel(stat, value)
+									end
 								end
 							end
 						end
@@ -195,11 +204,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.has_crit = false
 
 				-- INIT
-				self.total_range = self.range * (self.stat_init["STR"] + 1)
-				self.total_status_resist = self.status_resist * (self.stat_init["STR"] + 1)
-				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"] + 1))
-				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"] + 1)
-				self.total_health_regen = self.health_regen * (self.stat_init["CON"] + 1)
+				self.total_range = self.range * (self.stat_init["STR"])
+				self.total_status_resist = self.status_resist * (self.stat_init["STR"])
+				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"]))
+				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"])
+				self.total_health_regen = self.health_regen * (self.stat_init["CON"])
 			end
 		end
 
@@ -356,7 +365,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_total[stat] * self.stat_percent[stat] * 0.01
 				)
 
-				if self.stat_total[stat] > 150 then self.stat_total[stat] = 150 end
+				if self.stat_total[stat] > 99 then self.stat_total[stat] = 99 end
 				if self.stat_total[stat] < 0 then self.stat_total[stat] = 0 end
 
 				if stat == "REC" then
@@ -368,6 +377,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if void then void:SetLevel(1) end
 
 				if self:GetCaster():IsIllusion() then return end
+				if self:GetCaster():IsHero() == false then return end
 
 				self:UpdatePanoramaStat(stat)
 			end
@@ -526,7 +536,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-			return 1 + (self.stat_total["LCK"] * 0.01)
+			return 1 + (self.stat_total["LCK"] * 0.04)
 			-- local value = self.stat_total["LCK"] * self.critical_chance -- 0.25
 			-- local calc = (value * 6) / (1 +  (value * 0.04))
 			-- return calc

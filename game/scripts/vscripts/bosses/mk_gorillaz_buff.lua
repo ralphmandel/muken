@@ -10,20 +10,22 @@ end
 
 --------------------------------------------------------------------------------
 
-function mk_gorillaz_buff:OnCreated( kv )
+function mk_gorillaz_buff:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.bonus_damage = 0
 	if IsServer() then self.parent:EmitSound("Hero_LoneDruid.BattleCry.Bear") end
-	--if IsServer() then self.parent:EmitSound("Hero_LoneDruid.BattleCry") end
+
+	self.ability:AddBonus("_1_AGI", self.parent, 50, 0, nil)
 end
 
-function mk_gorillaz_buff:OnRefresh( kv )
+function mk_gorillaz_buff:OnRefresh(kv)
 end
 
 function mk_gorillaz_buff:OnRemoved()
+	self.ability:RemoveBonus("_1_AGI", self.parent)
 end
 
 --------------------------------------------------------------------------------
@@ -38,17 +40,12 @@ end
 
 function mk_gorillaz_buff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_DEATH
 	}
 
 	return funcs
-end
-
-function mk_gorillaz_buff:GetModifierAttackSpeedBonus_Constant(keys)
-	return 120
 end
 
 function mk_gorillaz_buff:GetModifierProcAttack_BonusDamage_Physical(keys)
@@ -71,7 +68,6 @@ function mk_gorillaz_buff:GetEffectAttachType()
 end
 
 function mk_gorillaz_buff:GetStatusEffectName()
-	--return "particles/status_fx/status_effect_chemical_rage.vpcf"
 	return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
 end
 

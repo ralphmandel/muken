@@ -25,7 +25,7 @@ require("talent_tree")
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
 
-		if level == 7 then
+		if level == 8 then
 			local ultimate = caster:FindAbilityByName(self.skills[6])
 			if ultimate then
 				if ultimate:IsTrained() == false then
@@ -440,8 +440,8 @@ require("talent_tree")
 				return false
 			end
 
-			-- Ancient Ultimate requires Hero level 7
-			if self:GetCaster():GetLevel() < 7 then
+			-- Ancient Ultimate requires Hero level 8
+			if self:GetCaster():GetLevel() < 8 then
 				if talentName == "ancient_u__final_rank_12"
 				or talentName == "ancient_u__final_rank_21"
 				or talentName == "ancient_u__final_rank_41" then

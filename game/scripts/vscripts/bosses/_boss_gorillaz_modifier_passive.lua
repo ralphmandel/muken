@@ -15,7 +15,7 @@ function _boss_gorillaz_modifier_passive:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self:StartIntervalThink(1)
+	self:StartIntervalThink(1.5)
 end
 
 function _boss_gorillaz_modifier_passive:OnRefresh( kv )
@@ -28,7 +28,6 @@ end
 
 function _boss_gorillaz_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
@@ -36,13 +35,8 @@ function _boss_gorillaz_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function _boss_gorillaz_modifier_passive:GetModifierEvasion_Constant()
-	return 20
-end
-
 function _boss_gorillaz_modifier_passive:OnDeath(keys)
 	if keys.unit ~= self.caster then return end
-	
 end
 
 function _boss_gorillaz_modifier_passive:OnAttackLanded(keys)
@@ -50,7 +44,9 @@ function _boss_gorillaz_modifier_passive:OnAttackLanded(keys)
 	if RandomInt(1, 100) > 10 then return end
 	if self.parent:HasModifier("mk_gorillaz_buff") then return end
 
-	self.parent:AddNewModifier(self.caster, self.ability, "mk_gorillaz_buff", {duration = 5})
+	self.parent:AddNewModifier(self.caster, self.ability, "mk_gorillaz_buff", {
+		duration = self.ability:CalcStatus(4, self.caster, self.parent)
+	})
 end
 
 function _boss_gorillaz_modifier_passive:OnIntervalThink()

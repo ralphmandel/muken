@@ -29,7 +29,12 @@ base_stats_mod = class ({})
                 self.ability:LoadDataForIllusion()
             else
                 self.ability:AddBaseStatsPoints()
-                self.ability:IncrementSpenderPoints(0, 0)
+                
+                if self.parent:IsHero() then
+                    self.ability:UpdatePanoramaPoints()
+                else
+                    self.ability:IncrementSpenderPoints(0, 0)
+                end
             end
 
 			self.ability:LoadSpecialValues()
@@ -86,6 +91,7 @@ base_stats_mod = class ({})
             MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 
             -- CON
+            MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
             MODIFIER_EVENT_ON_HEAL_RECEIVED,
@@ -371,9 +377,19 @@ base_stats_mod = class ({})
 
 -- CON
 
+    function base_stats_mod:GetModifierExtraHealthBonus()
+        if IsServer() then
+            if self:GetParent():IsHero() == false then
+                return self.ability.stat_total["CON"] * self.ability.health_bonus
+            end
+        end
+    end
+
     function base_stats_mod:GetModifierHealthBonus()
         if IsServer() then
-            return self.ability.stat_total["CON"] * self.ability.health_bonus
+            if self:GetParent():IsHero() then
+                return self.ability.stat_total["CON"] * self.ability.health_bonus
+            end
         end
     end
 

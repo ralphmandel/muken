@@ -446,10 +446,18 @@
 			if sync_time == 180 then self:EventBountyRune() end
 			if sync_time == 320 then self:EventPreBounty() end
 			if sync_time == 360 then self:EventBountyRune() end
-			if sync_time == 520 then self:EventBoss(1) end
-			if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
-			if sync_time == 580 then self:EventBoss(2) end
-			if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
+
+			if IsInToolsMode() then
+				if sync_time == 15 then self:EventBoss(1) end
+				if sync_time == 25 then self:CreateBoss("boss_gorillaz", 1) end
+				if sync_time == 40 then self:EventBoss(2) end
+				if sync_time == 50 then self:CreateBoss("boss_gorillaz", 2) end
+			else
+				if sync_time == 520 then self:EventBoss(1) end
+				if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
+				if sync_time == 580 then self:EventBoss(2) end
+				if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
+			end
 		end
 
 	-- SPOTS
