@@ -106,16 +106,6 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"9 9.25 9.5 9.75 10 10.25 10.5 10.75 11 11.25 11.5 11.75 12"
 			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"armor"		    "10"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"def"		    "20"
-			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -124,12 +114,12 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"	    "0.8"
+				"interval"	    "1"
 			}
             "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bonus_per_atk"	"0.2"
+				"bonus_per_atk"	"0.3"
 			}
             "13"
 			{
@@ -211,29 +201,29 @@
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"240"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"45"
+				"duration"		"60"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"con"		    "25"
+				"con"		    "15"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_power"    "35"
+				"heal_power"    "30"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"aspd"          "25"
+				"stats"         "10"
 			}
             "13"
 			{

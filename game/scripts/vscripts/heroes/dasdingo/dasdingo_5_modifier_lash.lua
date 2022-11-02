@@ -17,7 +17,7 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 
 	-- UP 5.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_DEX", self.caster, 30, 0, nil)   
+		self.ability:AddBonus("_2_DEX", self.caster, 15, 0, nil)   
 	end
 
 	-- UP 5.21

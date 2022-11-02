@@ -3,6 +3,7 @@ LinkLuaModifier("striker_1_modifier_passive", "heroes/striker/striker_1_modifier
 LinkLuaModifier("striker_1_modifier_immune", "heroes/striker/striker_1_modifier_immune", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_ban", "modifiers/_modifier_ban", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

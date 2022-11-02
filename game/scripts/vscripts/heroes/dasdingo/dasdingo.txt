@@ -85,12 +85,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"500"
+				"radius"		"550"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"defense"		"20"
+				"defense"		"10"
 			}
 			"15"
 			{

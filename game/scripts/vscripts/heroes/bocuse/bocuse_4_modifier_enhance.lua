@@ -108,7 +108,7 @@ function bocuse_4_modifier_enhance:AddEffects()
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then
-		self.ability:AddBonus("_2_RES", self.parent, 25, 0, nil)
+		self.ability:AddBonus("_2_RES", self.parent, 10, 0, nil)
 	end
 
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_1__cut"), 7)

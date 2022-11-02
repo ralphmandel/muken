@@ -125,7 +125,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				if caster:IsHero() == false then
 					hero_name = caster:GetUnitName()
-					heroes_stats_data = LoadKeyValues("scripts/vscripts/bosses/_bosses_stats.kv")
+					heroes_stats_data = LoadKeyValues("scripts/npc/_neutrals_stats.kv")
 				end
 
 				if hero_name == nil then return end
@@ -443,7 +443,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local bonus_value = 0
 				local mods = caster:FindAllModifiersByName("base_stats_mod_crit_bonus")
 				for _,mod in pairs(mods) do
-					bonus_value = bonus_value + mod:GetStackCount()
+					bonus_value = bonus_value + mod.crit_damage
 				end
 
 				local total_crit_dmg = self.critical_damage

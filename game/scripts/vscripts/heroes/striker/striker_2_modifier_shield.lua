@@ -26,7 +26,7 @@ function striker_2_modifier_shield:OnCreated(kv)
 
 	-- UP 2.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_DEF", self.parent, 25, 0, nil)
+		self.ability:AddBonus("_2_DEF", self.parent, 12, 0, nil)
 	end
 
 	-- UP 2.21
@@ -59,7 +59,7 @@ function striker_2_modifier_shield:OnRefresh(kv)
 	-- UP 2.11
 	if self.ability:GetRank(11) then
 		self.ability:RemoveBonus("_2_DEF", self.parent)
-		self.ability:AddBonus("_2_DEF", self.parent, 25, 0, nil)
+		self.ability:AddBonus("_2_DEF", self.parent, 12, 0, nil)
 	end
 
 	-- UP 2.21

@@ -113,7 +113,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 
 	-- UP 1.12
 	if self.ability:GetRank(12) then
-		self.ability:AddBonus("_2_LCK", self.parent, 10, 0, nil)
+		self:PerformAfterShake()
 	end
 
 	-- UP 1.31
@@ -123,7 +123,8 @@ function striker_1_modifier_passive:PerformBlink(target)
 
 	-- UP 1.32
 	if self.ability:GetRank(32) then
-		self:PerformAfterShake()
+		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -50})
+		self.ability:AddBonus("_2_LCK", self.parent, 999, 0, nil)
 	end
 
 	-- UP 1.41
@@ -188,6 +189,11 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 		end
 	end
 
+	local mod = self.parent:FindAllModifiersByName("base_stats_mod_crit_bonus")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_LCK", self.parent)
 	self.hits = 0
@@ -223,16 +229,7 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 end
 
 function striker_1_modifier_passive:PerformAfterShake(target)
-	local radius = 300
-
-	local damageTable = {
-		victim = nil,
-		attacker = self.parent,
-		damage = 50,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability
-	}
-
+	local radius = 275
 	local enemies = FindUnitsInRadius(
         self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -240,12 +237,7 @@ function striker_1_modifier_passive:PerformAfterShake(target)
     )
 
     for _,enemy in pairs(enemies) do
-		damageTable.victim = enemy
-		ApplyDamage(damageTable)
-
-		if enemy:IsAlive() then
-			enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.5})
-		end
+		enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.5})
     end
 
     GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)

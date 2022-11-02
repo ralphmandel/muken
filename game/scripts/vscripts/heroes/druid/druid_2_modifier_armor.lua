@@ -19,18 +19,14 @@ function druid_2_modifier_armor:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	self.status_resist = 0
-	self.armor = 0
-	--self.bonus_damage = 0
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
 	self.heal = self.ability:GetSpecialValueFor("heal_per_sec") * self.interval
-	local def = self.ability:GetSpecialValueFor("def")
-	local armor = self.ability:GetSpecialValueFor("armor")
+	local def = 0
 
 	-- UP 2.11
 	if self.ability:GetRank(11) then
-		def = def + 10
-		armor = armor + 5
+		def = def + 5
 	end
 
 	-- UP 2.21
@@ -43,10 +39,6 @@ function druid_2_modifier_armor:OnCreated(kv)
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 			percent = 15
 		})
-	end
-
-	if self.parent:IsHero() == false then
-		self.armor = armor
 	end
 
 	if IsServer() then
@@ -62,8 +54,6 @@ end
 function druid_2_modifier_armor:OnRemoved()
 	self.ability:RemoveBonus("_2_DEX", self.parent)
 	self.ability:RemoveBonus("_2_DEF", self.parent)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_1_STR", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do
@@ -75,22 +65,12 @@ end
 
 function druid_2_modifier_armor:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
 	}
 
 	return funcs
 end
-
-function druid_2_modifier_armor:GetModifierBaseAttack_BonusDamage()
-	return self.armor
-end
-
--- function druid_2_modifier_armor:GetModifierPhysicalArmorBonus()
--- 	return self.bonus_damage
--- end
 
 function druid_2_modifier_armor:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
@@ -134,11 +114,13 @@ end
 function druid_2_modifier_armor:ChangeStats(bonus, stat_convert, add, remove)
 	local convert = 0
 	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then convert = math.floor(base_stats:GetStatTotal(stat_convert) * 0.5) end
+	if base_stats then convert = base_stats:GetStatTotal(stat_convert) end
 	local total = convert + bonus
 
-	self.ability:AddBonus(remove, self.parent, -convert, 0, nil)
-	self.ability:AddBonus(add, self.parent, total, 0, nil)
+	if total > 0 then
+		self.ability:AddBonus(remove, self.parent, -convert, 0, nil)
+		self.ability:AddBonus(add, self.parent, total, 0, nil)
+	end
 end
 
 function druid_2_modifier_armor:FindAllies(heal)

@@ -54,8 +54,6 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
 	end
 
 	self.ability:AddBonus("_1_CON", self.parent, con, 0, nil)
-	self.ability:SetActivated(false)
-	self.ability:EndCooldown()
 	self:HideItens(true)
 
 	local group = {[1] = "0", [2] = "1", [3] = "2"}
@@ -67,14 +65,25 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
 end
 
 function druid_4_modifier_metamorphosis:OnRefresh(kv)
+	local fear = false
+
+	-- UP 4.11
+	if self.ability:GetRank(11) then
+		self:ApplyFear()
+		fear = true
+	end
+
+	local group = {[1] = "0", [2] = "1", [3] = "2"}
+	self.parent:SetMaterialGroup(group[RandomInt(1, 3)])
+	self.parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
+
+	if IsServer() then self:PlayEfxStart(fear) end
 end
 
 function druid_4_modifier_metamorphosis:OnRemoved()
 	if IsServer() then self:PlayEfxEnd() end
 
 	self.ability:RemoveBonus("_1_CON", self.parent)
-	self.ability:SetActivated(true)
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self:HideItens(false)
 
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
@@ -127,7 +136,7 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 	-- UP 4.12
 	if self.ability:GetRank(12) then
 		self.parent:AddNewModifier(self.caster, self.ability, "druid_4_modifier_strength", {
-			duration = 10
+			duration = 5
 		})
 	end
 

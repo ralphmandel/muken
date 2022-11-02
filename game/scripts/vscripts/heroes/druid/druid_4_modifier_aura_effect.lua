@@ -19,11 +19,16 @@ function druid_4_modifier_aura_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.aspd = self.ability:GetSpecialValueFor("aspd")
+	local stats = self.ability:GetSpecialValueFor("stats")
+	self.stats_string = {"_1_STR", "_1_AGI", "_1_INT", "_1_CON", "_2_DEF", "_2_DEX", "_2_LCK", "_2_RES", "_2_REC", "_2_MND"}
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then
-		self.aspd = self.aspd + 10
+		stats = stats + 5
+	end
+
+	for _,string in pairs(self.stats_string) do
+		self:IncrementStat(string, stats)
 	end
 end
 
@@ -31,35 +36,22 @@ function druid_4_modifier_aura_effect:OnRefresh(kv)
 end
 
 function druid_4_modifier_aura_effect:OnRemoved()
+	for _,string in pairs(self.stats_string) do
+		self:DecrementStat(string)
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function druid_4_modifier_aura_effect:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
-		MODIFIER_EVENT_ON_ATTACKED
-	}
-
-	return funcs
-end
-
-function druid_4_modifier_aura_effect:GetModifierAttackSpeedPercentage()
-    return self.aspd
-end
-
-function druid_4_modifier_aura_effect:OnAttacked(keys)
-	if keys.attacker ~= self.parent then return end
-
-	-- UP 4.21
-	if self.ability:GetRank(21) then
-		local heal = keys.original_damage * 0.1
-		keys.attacker:Heal(heal, self.ability)
-		self:PlayEfxLifesteal(keys.attacker)
-	end
-end
-
 -- UTILS -----------------------------------------------------------
+
+function druid_4_modifier_aura_effect:IncrementStat(string, amount)
+	self.ability:AddBonus(string, self.parent, amount, 0, nil)
+end
+
+function druid_4_modifier_aura_effect:DecrementStat(string)
+	self.ability:RemoveBonus(string, self.parent)
+end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -69,11 +61,4 @@ end
 
 function druid_4_modifier_aura_effect:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function druid_4_modifier_aura_effect:PlayEfxLifesteal(attacker)
-	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
-	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

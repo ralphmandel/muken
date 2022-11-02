@@ -20,7 +20,6 @@ function _modifier__ai:OnCreated(params)
         -- unit:AddNewModifier(caster, ability, "_modifier__ai", { aggroRange = X, leashRange = Y })
         self.aggroRange = 450
         self.leashRange = 750
-        self.no_miss = false
 
         -- Store unit handle so we don't have to call self:GetParent() every time
         self.unit = self:GetParent() 
@@ -149,10 +148,6 @@ end
 function _modifier__ai:CheckState()
 	local state = {}
 
-    if self.no_miss == true then
-        state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-    end
-
     if self.state == AI_STATE_IDLE then
         state = {[MODIFIER_STATE_MAGIC_IMMUNE] = true}
     end
@@ -162,9 +157,6 @@ end
 
 function _modifier__ai:DeclareFunctions()
 	local funcs = {
-        MODIFIER_PROPERTY_PRE_ATTACK,
-        MODIFIER_PROPERTY_EVASION_CONSTANT,
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
         MODIFIER_EVENT_ON_HEAL_RECEIVED,
@@ -173,21 +165,6 @@ function _modifier__ai:DeclareFunctions()
 
 	return funcs
 end
-
-function _modifier__ai:GetModifierPreAttack()
-	self.no_miss = (RandomInt(1, 100) <= 40)
-end
-
-function _modifier__ai:GetModifierEvasion_Constant()
-	return 15
-end
-
--- function _modifier__ai:GetModifierIncomingDamage_Percentage(keys)
---     if keys.attacker:IsBaseNPC() == false then return -50 end
---     if self.unit:IsDominated() then return 0 end
---     if keys.attacker:IsHero() and keys.attacker:IsIllusion() == false then return 0 end
---     return -50
--- end
 
 function _modifier__ai:OnAttackLanded(keys)
 	if keys.attacker ~= self.unit then return end

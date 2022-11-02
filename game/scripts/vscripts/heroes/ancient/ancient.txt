@@ -290,7 +290,7 @@
             "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"res"	            "0.3"
+				"res"	            "15"
 			}
             "14"
 			{

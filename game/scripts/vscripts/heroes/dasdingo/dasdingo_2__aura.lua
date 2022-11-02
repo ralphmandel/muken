@@ -54,8 +54,8 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
 
         local charges = 1
 
-        -- UP 2.31
-        if self:GetRank(31) then
+        -- UP 2.21
+        if self:GetRank(21) then
             charges = charges * 2
         end
 
@@ -80,7 +80,7 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/dasdingo/dasdingo_2_m
     function dasdingo_2__aura:GetCastRange(vLocation, hTarget)
         if self:GetCurrentAbilityCharges() == 0 then return self:GetSpecialValueFor("radius") end
         if self:GetCurrentAbilityCharges() == 1 then return self:GetSpecialValueFor("radius") end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") * 2 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return self:GetSpecialValueFor("radius") * 1.5 end
     end
 
 -- EFFECTS

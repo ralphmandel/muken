@@ -32,7 +32,7 @@ function genuine_u_modifier_target:OnCreated(kv)
 
 	-- UP 6.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_RES", self.parent, -15, 0, nil)
+		self.ability:AddBonus("_2_RES", self.parent, -10, 0, nil)
 	end
 
 	-- UP 6.22

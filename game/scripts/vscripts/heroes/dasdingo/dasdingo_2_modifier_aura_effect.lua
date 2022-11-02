@@ -18,8 +18,8 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	local defense = self.ability:GetSpecialValueFor("defense")
 	local special = 0
 
-	-- UP 2.21
-	if self.ability:GetRank(21) then
+	-- UP 2.31
+	if self.ability:GetRank(31) then
 		defense = defense + 5
 	end
 

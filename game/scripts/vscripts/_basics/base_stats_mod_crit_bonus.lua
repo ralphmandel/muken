@@ -16,7 +16,7 @@ end
 
 function base_stats_mod_crit_bonus:OnCreated( kv )
 	if IsServer() then
-		self:SetStackCount(kv.crit_damage)
+		self.crit_damage = kv.crit_damage
 	end
 end
 

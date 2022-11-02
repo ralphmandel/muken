@@ -230,10 +230,10 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
 
         -- UP 6.31
         if self:GetRank(31) then
-            res = res + 0.3
+            res = res + 15
         end
 
-        local total_res = math.floor(mana_percent * res)
+        local total_res = math.ceil(mana_percent * res * 0.01)
 
         self:RemoveBonus("_2_RES", caster)
         if caster:IsAlive() and total_res > 0 then self:AddBonus("_2_RES", caster, total_res, 0, nil) end

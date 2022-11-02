@@ -128,12 +128,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"int_bonus"	    "30"
+				"int_bonus"	    "20"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rec_bonus"	    "30"
+				"rec_bonus"	    "20"
 			}
             "03"
 			{
@@ -148,7 +148,7 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"	    "14 15 16 17 18 19 20"
+				"duration"	    "12 12.5 13 13.5 14 14.5 15"
 			}
             "14"
 			{
