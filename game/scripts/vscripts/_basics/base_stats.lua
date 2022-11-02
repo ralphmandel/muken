@@ -125,7 +125,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				if caster:IsHero() == false then
 					hero_name = caster:GetUnitName()
-					heroes_stats_data = LoadKeyValues("scripts/vscripts/bosses/bosses_stats.kv")
+					heroes_stats_data = LoadKeyValues("scripts/vscripts/bosses/_bosses_stats.kv")
 				end
 
 				if hero_name == nil then return end

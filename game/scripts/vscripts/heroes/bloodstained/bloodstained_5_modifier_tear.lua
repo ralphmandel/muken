@@ -25,7 +25,7 @@ function bloodstained_5_modifier_tear:OnCreated(kv)
 
 	-- UP 5.22
 	if self.ability:GetRank(22) then
-		self.ability:AddBonus("_2_LCK", self.parent, 10, 0, nil)	
+		self.ability:AddBonus("_2_LCK", self.parent, 5, 0, nil)	
 	end
 
 	-- UP 5.41
@@ -126,9 +126,8 @@ function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
 	if base_stats_target.has_crit ~= true then return end
 
 	local point = (self.parent:GetAbsOrigin() - keys.unit:GetAbsOrigin()):Normalized()
-	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 125))
-	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 250))
-	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 375))
+	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 175))
+	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 350))
 	self:PlayEfxHaemorrhage(self.parent, keys.unit)
 end
 

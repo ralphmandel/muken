@@ -37,7 +37,7 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
 
 	-- UP 4.41
 	if self.ability:GetRank(41) then
-		agi = agi + 10
+		agi = agi + 5
 	end
 
 	self.parent:SetForceAttackTarget(self.ability.target)
