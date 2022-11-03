@@ -245,7 +245,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityManaCost"         		"40"
+		"AbilityManaCost"         		"25"
 
 		"AbilitySpecial"
 		{
@@ -276,7 +276,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_damage"		"500"
+				"strike_damage"		"750"
 			}
 		}
 	}

@@ -45,6 +45,7 @@ function strike_modifier:GetModifierProcAttack_BonusDamage_Physical(keys)
 end
 
 function strike_modifier:GetModifierMoveSpeedBonus_Percentage()
+	if self.parent:PassivesDisabled() then return -25 end
 	if self.ability:IsCooldownReady() then return 100 end
-	return 0
+	return -25
 end

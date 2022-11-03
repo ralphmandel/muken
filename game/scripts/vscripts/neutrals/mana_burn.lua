@@ -17,6 +17,19 @@ function mana_burn:CalcStatus(duration, caster, target)
     return duration
 end
 
+function mana_burn:AddBonus(string, target, const, percent, time)
+	local base_stats = target:FindAbilityByName("base_stats")
+	if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
+end
+
+function mana_burn:RemoveBonus(string, target)
+	local stringFormat = string.format("%s_modifier_stack", string)
+	local mod = target:FindAllModifiersByName(stringFormat)
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self then modifier:Destroy() end
+	end
+end
+
 function mana_burn:GetIntrinsicModifierName()
 	return "mana_burn_modifier"
 end
