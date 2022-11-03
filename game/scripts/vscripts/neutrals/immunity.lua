@@ -16,6 +16,19 @@ function immunity:CalcStatus(duration, caster, target)
     return duration
 end
 
+function immunity:AddBonus(string, target, const, percent, time)
+	local base_stats = target:FindAbilityByName("base_stats")
+	if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
+end
+
+function immunity:RemoveBonus(string, target)
+	local stringFormat = string.format("%s_modifier_stack", string)
+	local mod = target:FindAllModifiersByName(stringFormat)
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self then modifier:Destroy() end
+	end
+end
+
 function immunity:OnSpellStart()
     local caster = self:GetCaster()
     local radius = self:GetSpecialValueFor("radius")
@@ -34,7 +47,9 @@ function immunity:OnSpellStart()
 	)
 
 	for _,ally in pairs(allies) do
-		ally:AddNewModifier(caster, self, "_modifier_immunity", {duration = duration})
+		ally:AddNewModifier(caster, self, "_modifier_immunity", {
+            duration = self:CalcStatus(duration, caster, ally)
+        })
 	end
 
     if IsServer() then caster:EmitSound("Hero_Omniknight.GuardianAngel.Cast") end

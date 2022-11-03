@@ -28,6 +28,18 @@ end
 
 --------------------------------------------------------------------------------
 
+function _modifier_neutral_spider:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+	}
+
+	return funcs
+end
+
+function _modifier_neutral_spider:GetModifierMoveSpeedBonus_Percentage()
+	return -50
+end
+
 function _modifier_neutral_spider:OnIntervalThink()
 	local target = self.parent:GetAggroTarget()
 	if target == nil then return end

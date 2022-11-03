@@ -234,7 +234,8 @@ base_stats_mod = class ({})
             if not keys.target:IsBuilding() then
                 self.record = keys.record
                 self.ability.has_crit = true
-                self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false)
+                self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false) + self.ability.force_crit_damage
+                self.ability.force_crit_damage = 0
                 return self.ability.total_crit_damage
             else
                 self.ability.has_crit = false

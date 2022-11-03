@@ -324,6 +324,8 @@
 		self.first_blood = true
 		self.vo = 0
 		self.vo_time = -60
+		self.gold_bounty_min = 12
+		self.gold_bounty_max = 15
 
 		if GetMapName() == "arena_turbo" then self.score = 15 end
 
@@ -439,6 +441,10 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
+			if time == -45 then
+				local unit = CreateUnitByName("neutral_spider", Vector(-400, -1400, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				unit:FindModifierByName("_modifier__ai").spot_origin = Vector(-400, -1400, 0, 0)
+			end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end
@@ -895,29 +901,23 @@
 		if assigned_hero == nil then return end
 
 		if unit:IsCreature()
-		and unit:IsDominated() == false
-		and unit:IsIllusion() == false
+		and unit:IsDominated() == false and unit:IsIllusion() == false
 		and assigned_hero:GetTeamNumber() ~= unit:GetTeamNumber() then
 			number = 0
 
 			local allies = FindUnitsInRadius(
-				assigned_hero:GetTeamNumber(),	-- int, your team number
-				unit:GetOrigin(),	-- point, center point
-				nil,	-- handle, cacheUnit. (not known)
-				750,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-				DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- int, team filter
-				DOTA_UNIT_TARGET_HERO,	-- int, type filter
-				0,	-- int, flag filter
-				0,	-- int, order filter
-				false	-- bool, can grow cache
+				assigned_hero:GetTeamNumber(), unit:GetOrigin(), nil, 750,
+				DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
+				0, 0, false
 			)
+
 			for _,unit in pairs(allies) do
 				if unit:IsIllusion() == false then
 					number = number + 1
 				end
 			end
 
-			local average_gold_bounty = RandomInt(unit:GetMinimumGoldBounty(), unit:GetMaximumGoldBounty())
+			local average_gold_bounty = RandomInt(self.gold_bounty_min * unit:GetLevel(), self.gold_bounty_max * unit:GetLevel())
 			gold = average_gold_bounty / number
 
 			if math.floor(gold) > 0 and number > 0 then

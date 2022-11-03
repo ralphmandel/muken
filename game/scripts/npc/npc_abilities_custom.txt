@@ -124,7 +124,7 @@
 				"26"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"		"20" //0.25
+					"critical_chance"		"10" //0.25
 				}
 				"27"
 				{
@@ -161,17 +161,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_init"				"36"
+				"gold_init"				"40"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_mult"				"6"
+				"gold_mult"				"10"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"starting_gold"			"54" //54
+				"starting_gold"			"0" //54
 			}		
 		}
 	}

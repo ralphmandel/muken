@@ -35,13 +35,17 @@ end
 
 function lifesteal_modifier:DeclareFunctions()
     local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_EVENT_ON_ATTACK_LANDED
     }    
     return funcs
 end
 
-function lifesteal_modifier:OnAttackLanded(keys)
+function lifesteal_modifier:GetModifierMoveSpeedBonus_Percentage()
+	return 75
+end
 
+function lifesteal_modifier:OnAttackLanded(keys)
 	if self.parent:PassivesDisabled() then return end
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
@@ -49,7 +53,7 @@ function lifesteal_modifier:OnAttackLanded(keys)
 	local heal = keys.damage * self.percent * 0.01
 
 	self.parent:Heal(heal, self.ability)
-	self:PlayEfxHeal(keys.attacker)
+	--self:PlayEfxHeal(keys.attacker)
 end
 
 --------------------------------------------------------------------------------------------------------------------------

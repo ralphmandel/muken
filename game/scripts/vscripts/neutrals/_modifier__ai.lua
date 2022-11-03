@@ -80,7 +80,7 @@ function _modifier__ai:IdleThink()
         return
     end
 
-    self.unit:Heal(self.unit:GetBaseMaxHealth() * 0.025, nil)
+    -- self.unit:Heal(self.unit:GetBaseMaxHealth() * 0.025, nil)
     -- Nothing else to do in Idle state
 end
 
@@ -157,13 +157,23 @@ end
 
 function _modifier__ai:DeclareFunctions()
 	local funcs = {
+        MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-        MODIFIER_EVENT_ON_HEAL_RECEIVED,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 
 	return funcs
+end
+
+function _modifier__ai:OnAttack(keys)
+	if keys.attacker ~= self.unit then return end
+    local sound = ""
+    if self.unit:GetUnitName() == "neutral_spider" then sound = "hero_viper.attack" end
+    if self.unit:GetUnitName() == "neutral_igor" then sound = "Hero_Ancient_Apparition.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle" then sound = "Hero_LoneDruid.Attack" end
+    if self.unit:GetUnitName() == "neutral_basic_gargoyle_b" then sound = "Hero_LoneDruid.Attack" end
+
+	if IsServer() then self.unit:EmitSound(sound) end
 end
 
 function _modifier__ai:OnAttackLanded(keys)
@@ -173,7 +183,7 @@ function _modifier__ai:OnAttackLanded(keys)
     if self.unit:GetUnitName() == "neutral_lamp" then sound = "Hero_Spirit_Breaker.Attack" end
     if self.unit:GetUnitName() == "neutral_skydragon" then sound = "Hero_Magnataur.Attack" end
     if self.unit:GetUnitName() == "neutral_dragon" then sound = "Hero_Magnataur.Attack" end
-    if self.unit:GetUnitName() == "neutral_igor" then sound = "hero_Crystal.attack" end
+    if self.unit:GetUnitName() == "neutral_igor" then sound = "Hero_Ancient_Apparition.ProjectileImpact" end
     if self.unit:GetUnitName() == "neutral_frostbitten" then sound = "Hero_DarkSeer.Attack" end
     if self.unit:GetUnitName() == "neutral_crocodile" then sound = "Hero_Slardar.Attack" end
     if self.unit:GetUnitName() == "neutral_basic_chameleon" then sound = "Hero_Meepo.Attack" end
@@ -190,46 +200,6 @@ function _modifier__ai:GetAttackSound(keys)
     return ""
 end
 
-function _modifier__ai:OnHealReceived(keys)
-    if keys.unit ~= self.unit then return end
-    if keys.inflictor == nil then return end
-    if keys.gain < 1 then return end
-
-    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
-end
-
-function _modifier__ai:OnTakeDamage(keys)
-    if keys.unit ~= self.unit then return end
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
-
-    local efx = nil
-    --if keys.damage_type == DAMAGE_TYPE_PHYSICAL then efx = OVERHEAD_ALERT_DAMAGE end
-    if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
-
-    if keys.inflictor ~= nil then
-        if keys.inflictor:GetClassname() == "ability_lua" then
-            if keys.inflictor:GetAbilityName() == "shadow_0__toxin"
-            or keys.inflictor:GetAbilityName() == "osiris_1__poison"
-            or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
-                efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
-            end
-
-            if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
-                return
-            end
-
-            if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
-                return
-            end
-        end
-    end
-
-    if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupCustom(math.floor(keys.damage), Vector(255, 225, 175)) end
-
-    if efx == nil then return end
-    SendOverheadEventMessage(nil, efx, self.unit, keys.damage, self.unit)
-end
-
 function _modifier__ai:ChangeModelScale()
     if self.unit:GetUnitName() == "neutral_spider" then self.unit:SetModelScale(1) end
     if self.unit:GetUnitName() == "neutral_lamp" then self.unit:SetModelScale(1.4) end
@@ -244,19 +214,4 @@ function _modifier__ai:ChangeModelScale()
     if self.unit:GetUnitName() == "neutral_basic_crocodilian_b" then self.unit:SetModelScale(1.3) end
     if self.unit:GetUnitName() == "neutral_basic_gargoyle" then self.unit:SetModelScale(1) end
     if self.unit:GetUnitName() == "neutral_basic_gargoyle_b" then self.unit:SetModelScale(0.8) end
-end
-
--------------------------------------------------------------
-
-function _modifier__ai:PopupCustom(damage, color)
-	local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
-    local digits = 1
-	if damage < 10 then digits = 2 end
-    if damage > 9 and damage < 100 then digits = 3 end
-    if damage > 99 and damage < 1000 then digits = 4 end
-    if damage > 999 then digits = 5 end
-
-    ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 6))
-    ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
-    ParticleManager:SetParticleControl(pidx, 3, color)
 end

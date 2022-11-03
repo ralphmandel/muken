@@ -29,6 +29,7 @@ end
 function _boss_gorillaz_modifier_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_DEATH,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
@@ -37,6 +38,10 @@ end
 
 function _boss_gorillaz_modifier_passive:OnDeath(keys)
 	if keys.unit ~= self.caster then return end
+end
+
+function _boss_gorillaz_modifier_passive:GetModifierMoveSpeedBonus_Percentage(keys)
+	return 40
 end
 
 function _boss_gorillaz_modifier_passive:OnAttackLanded(keys)

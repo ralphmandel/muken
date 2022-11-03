@@ -41,6 +41,8 @@ function flea_5_modifier_passive:OnAttackLanded(keys)
 	if self.parent:PassivesDisabled() then return end
 	if keys.target:HasModifier("flea_5_modifier_desolator") then return end
 
+	self:Tests(keys.target)
+
 	local chance = self.ability:GetSpecialValueFor("chance")
 	local duration = self.ability:GetSpecialValueFor("duration")
 
@@ -52,5 +54,39 @@ function flea_5_modifier_passive:OnAttackLanded(keys)
 end
 
 -- UTILS -----------------------------------------------------------
+
+function flea_5_modifier_passive:Tests(target)
+	print(target:IsHero(), "IsHero")
+
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, 500,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+		0, 0, false
+	)
+
+	for _,unit in pairs(units) do
+		print(unit:GetUnitName(), "DOTA_UNIT_TARGET_HERO")
+	end
+
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, 500,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
+		0, 0, false
+	)
+
+	for _,unit in pairs(units) do
+		print(unit:GetUnitName(), "DOTA_UNIT_TARGET_BASIC")
+	end
+
+	local units = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, 500,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
+		0, 0, false
+	)
+
+	for _,unit in pairs(units) do
+		print(unit:GetUnitName(), "DOTA_UNIT_TARGET_CREEP")
+	end
+end
 
 -- EFFECTS -----------------------------------------------------------

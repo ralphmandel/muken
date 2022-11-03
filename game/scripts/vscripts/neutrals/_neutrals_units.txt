@@ -4,170 +4,80 @@
 	"Version"	"1"
 
 	//NEUTRALS TIER 3
-		"neutral_lamp"	
+		"neutral_lamp"
 		{
-			// General
-			//----------------------------------------------------------------
-			"Model"						"models/creeps/neutral_creeps/n_creep_eimermole/n_creep_eimermole_lamp.vmdl"	// Model.
+			"Model"						"models/creeps/neutral_creeps/n_creep_eimermole/n_creep_eimermole_lamp.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
-			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"10"
-			//"ModelScale" 				"1.5"
-
-			// Abilities
-			//----------------------------------------------------------------
-			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					"_neutral_lamp"		// Ability 2
-			"Ability3"					"stun_hits"			// Ability 3
-			"Ability4"					"lifesteal"			// Ability 4
-			"Ability5"					"spike_armor"		// Ability 5
-
-			// Armor
-			//----------------------------------------------------------------
-			"ArmorPhysical"				"30"			// Physical protection.
-			"MagicalResistance"        	"25"
-
-			// Attack
-			//----------------------------------------------------------------
-			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"200"		// Damage range min.
-			"AttackDamageMax"			"225"		// Damage range max.
-			"AttackRate"				"1.3"		// Speed of attack.
-			"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"140"		// Range within a target can be attacked.
-			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-
-			// Bounds
-			//----------------------------------------------------------------
-			"RingRadius"				"40"
-			"HealthBarOffset"			"170"
-			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-
-			// Bounty
-			//----------------------------------------------------------------
-			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"150"	// Gold earned min.
-			"BountyGoldMax"				"180"		// Gold earned max.
-
-			// Movement
-			//----------------------------------------------------------------
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"400"		// Speed.			
-
-			// Status
-			//----------------------------------------------------------------
-			"StatusHealth"				"2000"		// Base health.
-			"StatusHealthRegen"			"1"			// Health regeneration rate.
-			"StatusMana"				"450"			// Base mana.
-			"StatusManaRegen"			"3"		// Mana regeneration rate. 
-			
-			// Vision
-			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"450"		// Range of vision during day light.
-			"VisionNighttimeRange"		"350"		// Range of vision at night time.
-
-			// Team
-			//----------------------------------------------------------------
-			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
-			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-			// Creature Data
-			//----------------------------------------------------------------
-			"Creature"
-			{
-				//Level Up
-				"HPGain"					"0"
-				"DamageGain"				"0"
-				"ArmorGain"					"0"
-				"MagicResistGain"			"0"
-				"MoveSpeedGain"				"0"
-				"BountyGain"				"0"
-				"XPGain"					"0"
-			}
-		}
-
-		"neutral_spider"	
-		{
-			// General
-			//----------------------------------------------------------------
-			"Model"						"models/items/broodmother/spiderling/elder_blood_heir_of_elder_blood/elder_blood_heir_of_elder_blood.vmdl"	// Model.
-			"BaseClass"					"npc_dota_creature"
-			"SoundSet"					"n_creep_Ranged"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"12"
-			//"ModelScale" 				"1"
-
-			// Abilities
-			//----------------------------------------------------------------
-			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					"_neutral_spider"		// Ability 2
-			"Ability3"					"summon_spiders"			// Ability 3
-			"Ability4"					"venom_aoe"			// Ability 4
-			"Ability5"					""					// Ability 5
-
-			// Armor
-			//----------------------------------------------------------------
-			"ArmorPhysical"				"35"			// Physical protection.
-			"MagicalResistance"        	"40"
-
-			// Attack
-			//----------------------------------------------------------------
-			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackDamageMin"			"130"		// Damage range min.
-			"AttackDamageMax"			"140"		// Damage range max.
-			"AttackRate"				"1.4"		// Speed of attack.
-			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"350"		// Range within a target can be attacked.
-			"ProjectileModel"			"particles/units/heroes/hero_viper/viper_poison_attack.vpcf" // Particle system model for projectile.
-			"ProjectileSpeed"			"400"		// Speed of projectile.		     
-
-			// Bounds
-			//----------------------------------------------------------------
-			"RingRadius"				"100"
-			"HealthBarOffset"			"170"
 			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-
-			// Bounty
-			//----------------------------------------------------------------
-			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"240"	// Gold earned min.
-			"BountyGoldMax"				"250"		// Gold earned max.
-
-			// Movement
-			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"200"		// Speed.			
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"140"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"250"
 
-			// Status
-			//----------------------------------------------------------------
-			"StatusHealth"				"2500"		// Base health.
-			"StatusHealthRegen"			"6"			// Health regeneration rate.
-			"StatusMana"				"500"			// Base mana.
-			"StatusManaRegen"			"5"		// Mana regeneration rate.		 
-			
-			// Vision
-			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"600"		// Range of vision during day light.
-			"VisionNighttimeRange"		"600"		// Range of vision at night time.
+			"Ability1"					"base_stats"
+			"Ability2"					"_void"
+			"Ability3"					"_neutral__ai"
+			"Ability4"					"_neutral_lamp"
+			"Ability5"					"stun_hits"
+			"Ability6"					"lifesteal"
+			"Ability7"					"spike_armor"
 
-			// Team
-			//----------------------------------------------------------------
-			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
-			// Creature Data
-			//----------------------------------------------------------------
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"600" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"25"
+					"bonus_level"	"0"
+				}
+				"AGI"
+				{
+					"initial"	"10"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"30"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"22"
+				}
+			}
+
 			"Creature"
 			{
-				//Level Up
 				"HPGain"					"0"
 				"DamageGain"				"0"
 				"ArmorGain"					"0"
@@ -178,82 +88,159 @@
 			}
 		}
 
-		"summoner_spider"	
+		"neutral_spider"
 		{
-			// General
-			//----------------------------------------------------------------
-			"Model"						"models/items/broodmother/spiderling/dplus_malevolent_mother_malevoling/dplus_malevolent_mother_malevoling.vmdl"	// Model.
+			"Model"						"models/items/broodmother/spiderling/elder_blood_heir_of_elder_blood/elder_blood_heir_of_elder_blood.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"2"
-			"ModelScale" 				"0.5"
-
-			// Abilities
-			//----------------------------------------------------------------
-			"Ability1"					"_neutral_spider"		// Ability 1
-			"Ability2"					""			// Ability 2
-			"Ability3"					""			// Ability 3
-			"Ability4"					""					// Ability 4
-
-			// Armor
-			//----------------------------------------------------------------
-			"ArmorPhysical"				"15"			// Physical protection.
-			"MagicalResistance"        	"35"
-
-			// Attack
-			//----------------------------------------------------------------
-			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"60"		// Damage range min.
-			"AttackDamageMax"			"75"		// Damage range max.
-			"AttackRate"				"0.8"		// Speed of attack.
-			"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"50"		// Range within a target can be attacked.
-			//"ProjectileModel"			"particles/units/heroes/hero_viper/viper_poison_attack.vpcf" // Particle system model for projectile.
-			//"ProjectileSpeed"			"400"		// Speed of projectile.		     
-
-			// Bounds
-			//----------------------------------------------------------------
-			"RingRadius"				"25"
-			"HealthBarOffset"			"170"
+			"Level"						"16"
 			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-
-			// Bounty
-			//----------------------------------------------------------------
-			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"0"	// Gold earned min.
-			"BountyGoldMax"				"0"		// Gold earned max.
-
-			// Movement
-			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"175"		// Speed.			
+			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+			"AttackRange"				"400"
+			"ProjectileModel"			"particles/units/heroes/hero_viper/viper_poison_attack.vpcf"
+			"ProjectileSpeed"			"400"
+			"HealthBarOffset"			"225"
 
-			// Status
-			//----------------------------------------------------------------
-			"StatusHealth"				"375"		// Base health.
-			"StatusHealthRegen"			"2"			// Health regeneration rate.
-			"StatusMana"				"0"			// Base mana.
-			"StatusManaRegen"			"0"		// Mana regeneration rate.		 
-			
-			// Vision
-			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"300"		// Range of vision during day light.
-			"VisionNighttimeRange"		"300"		// Range of vision at night time.
+			"Ability1"					"base_stats"
+			"Ability2"					"_void"
+			"Ability3"					"_neutral__ai"
+			"Ability4"					"_neutral_spider"
+			"Ability5"					"summon_spiders"
+			"Ability6"					"venom_aoe"
 
-			// Team
-			//----------------------------------------------------------------
-			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
-			// Creature Data
-			//----------------------------------------------------------------
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"600" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"20"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"15"
+				}
+				"CON"
+				{
+					"initial"	"10"
+					"bonus_level"	"30"
+				}
+			}
+
 			"Creature"
 			{
-				//Level Up
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+		"summoner_spider"
+		{
+			"Model"						"models/items/broodmother/spiderling/dplus_malevolent_mother_malevoling/dplus_malevolent_mother_malevoling.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"3"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"75"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"140"
+			"ModelScale" 				"0.5"
+
+			"Ability1"					"base_stats"
+			"Ability2"					"_void"
+			"Ability3"					"_neutral_spider"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"18"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"15"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"4"
+				}
+			}
+
+			"Creature"
+			{
 				"HPGain"					"0"
 				"DamageGain"				"0"
 				"ArmorGain"					"0"
@@ -266,80 +253,75 @@
 
 		"neutral_skydragon"	
 		{
-			// General
-			//----------------------------------------------------------------
-			"Model"						"models/creeps/neutral_creeps/n_creep_dragonspawn_a/n_creep_dragonspawn_a.vmdl"	// Model.
+			"Model"						"models/creeps/neutral_creeps/n_creep_dragonspawn_a/n_creep_dragonspawn_a.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"7"
-			//"ModelScale" 				"1.2"
-
-			// Abilities
-			//----------------------------------------------------------------
-			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					"_neutral_skydragon"		// Ability 2
-			"Ability3"					"fireball"			// Ability 3
-			"Ability4"					""			// Ability 4
-
-			// Armor
-			//----------------------------------------------------------------
-			"ArmorPhysical"				"15"			// Physical protection.
-			"MagicalResistance"        	"25"
-
-			// Attack
-			//----------------------------------------------------------------
-			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"160"		// Damage range min.
-			"AttackDamageMax"			"175"		// Damage range max.
-			"AttackRate"				"1.1"		// Speed of attack.
-			"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"140"		// Range within a target can be attacked.
-			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-			//"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-
-			// Bounds
-			//----------------------------------------------------------------
-			"RingRadius"				"75"
-			"HealthBarOffset"			"170"
 			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-
-			// Bounty
-			//----------------------------------------------------------------
-			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"120"	// Gold earned min.
-			"BountyGoldMax"				"140"		// Gold earned max.
-
-			// Movement
-			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"300"		// Speed.			
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"145"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"275"
 
-			// Status
-			//----------------------------------------------------------------
-			"StatusHealth"				"1800"		// Base health.
-			"StatusHealthRegen"			"25"			// Health regeneration rate.
-			"StatusMana"				"450"			// Base mana.
-			"StatusManaRegen"			"3"		// Mana regeneration rate.		 
-			
-			// Vision
-			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"500"		// Range of vision during day light.
-			"VisionNighttimeRange"		"400"		// Range of vision at night time.
+			"Ability1"					"base_stats"
+			"Ability2"					"_void"
+			"Ability3"					"_neutral__ai"
+			"Ability4"					"fireball"
 
-			// Team
-			//----------------------------------------------------------------
-			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
-			// Creature Data
-			//----------------------------------------------------------------
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"600" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"5"
+					"bonus_level"	"30"
+				}
+				"AGI"
+				{
+					"initial"	"5"
+					"bonus_level"	"5"
+				}
+				"INT"
+				{
+					"initial"	"5"
+					"bonus_level"	"15"
+				}
+				"CON"
+				{
+					"initial"	"10"
+					"bonus_level"	"10"
+				}
+			}
+
 			"Creature"
 			{
-				//Level Up
 				"HPGain"					"0"
 				"DamageGain"				"0"
 				"ArmorGain"					"0"
@@ -350,82 +332,77 @@
 			}
 		}
 
-		"neutral_dragon"	
+		"neutral_dragon"
 		{
-			// General
-			//----------------------------------------------------------------
-			"Model"						"models/creeps/neutral_creeps/n_creep_dragonspawn_b/n_creep_dragonspawn_b.vmdl"	// Model.
+			"Model"						"models/creeps/neutral_creeps/n_creep_dragonspawn_b/n_creep_dragonspawn_b.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"4"
-			//"ModelScale" 				"1"
-
-			// Abilities
-			//----------------------------------------------------------------
-			"Ability1"					"_neutral__ai"		// Ability 1
-			"Ability2"					"_neutral_dragon"		// Ability 2
-			"Ability3"					"immunity"			// Ability 3
-			"Ability4"					""			// Ability 4
-
-			// Armor
-			//----------------------------------------------------------------
-			"ArmorPhysical"				"12"			// Physical protection.
-			"MagicalResistance"        	"70"
-
-			// Attack
-			//----------------------------------------------------------------
-			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackDamageMin"			"65"		// Damage range min.
-			"AttackDamageMax"			"75"		// Damage range max.
-			"AttackRate"				"1.2"		// Speed of attack.
-			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
-			"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-			"AttackRange"				"135"		// Range within a target can be attacked.
-			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-			//"ProjectileSpeed"			"1500"		// Speed of projectile.
-
-			// Bounds
-			//----------------------------------------------------------------
-			"RingRadius"				"70"
-			"HealthBarOffset"			"170"
+			"Level"						"5"
 			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-
-			// Bounty
-			//----------------------------------------------------------------
-			"BountyXP"					"0"		// Experience earn.
-			"BountyGoldMin"				"80"	// Gold earned min.
-			"BountyGoldMax"				"90"		// Gold earned max.
-
-			// Movement
-			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"MovementSpeed"				"500"		// Speed.			
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"135"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"240"
 
-			// Status
-			//----------------------------------------------------------------
-			"StatusHealth"				"1000"		// Base health.
-			"StatusHealthRegen"			"10"			// Health regeneration rate.
-			"StatusMana"				"400"			// Base mana.
-			"StatusManaRegen"			"8"		// Mana regeneration rate.		 
-			
-			// Vision
-			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"450"		// Range of vision during day light.
-			"VisionNighttimeRange"		"450"		// Range of vision at night time.
+			"Ability1"					"base_stats"
+			"Ability2"					"_void"
+			"Ability3"					"_neutral__ai"
+			"Ability4"					"immunity"
 
-			// Team
-			//----------------------------------------------------------------
-			"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
-			// Creature Data
-			//----------------------------------------------------------------
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"600" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+				"AGI"
+				{
+					"initial"	"15"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"15"
+				}
+				"CON"
+				{
+					"initial"	"18"
+					"bonus_level"	"0"
+				}
+			}
+
 			"Creature"
 			{
-				//Level Up
 				"HPGain"					"0"
 				"DamageGain"				"0"
 				"ArmorGain"					"0"
@@ -444,13 +421,13 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"6"
-			"BountyGoldMin"				"80"
-			"BountyGoldMax"				"100"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 			"AttackRange"				"400"
 			"ProjectileModel"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
 			"ProjectileSpeed"			"975"
+			"HealthBarOffset"			"275"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
@@ -458,17 +435,19 @@
 			"Ability4"					"mana_burn"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"275"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"600" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -478,7 +457,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+				"AGI"
+				{
+					"initial"	"4"
+					"bonus_level"	"12"
+				}
+				"INT"
+				{
+					"initial"	"5"
+					"bonus_level"	"25"
+				}
+				"CON"
+				{
+					"initial"	"2"
+					"bonus_level"	"12"
+				}
+			}
 
 			"Creature"
 			{
@@ -499,30 +502,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"3"
-			"BountyGoldMin"				"25"
-			"BountyGoldMax"				"35"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"120"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"200"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"200"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -532,7 +537,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"10"
+					"bonus_level"	"0"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"18"
+				}
+			}
 
 			"Creature"
 			{
@@ -553,13 +582,13 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"4"
-			"BountyGoldMin"				"70"
-			"BountyGoldMax"				"80"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"120"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"215"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
@@ -567,17 +596,19 @@
 			"Ability4"					"strike"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"215"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -587,7 +618,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"15"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"5"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"15"
+				}
+			}
 
 			"Creature"
 			{
@@ -609,30 +664,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"BountyGoldMin"				"15"
-			"BountyGoldMax"				"20"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"100"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"175"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"175"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -644,6 +701,30 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"  
 
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"4"
+				}
+				"AGI"
+				{
+					"initial"	"2"
+					"bonus_level"	"3"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"2"
+				}
+			}
+			
 			"Creature"
 			{
 				"HPGain"					"0"
@@ -663,30 +744,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"BountyGoldMin"				"12"
-			"BountyGoldMax"				"16"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"90"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"160"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"160"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -696,7 +779,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"2"
+				}
+				"AGI"
+				{
+					"initial"	"2"
+					"bonus_level"	"4"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"1"
+				}
+			}
 
 			"Creature"
 			{
@@ -717,30 +824,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"BountyGoldMin"				"25"
-			"BountyGoldMax"				"30"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"120"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"190"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"190"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -750,7 +859,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"5"
+					"bonus_level"	"7"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+			}
 
 			"Creature"
 			{
@@ -771,30 +904,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"BountyGoldMin"				"25"
-			"BountyGoldMax"				"30"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 			"AttackRange"				"120"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"190"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"190"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -804,7 +939,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"5"
+					"bonus_level"	"7"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+			}
 
 			"Creature"
 			{
@@ -825,30 +984,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"2"
-			"BountyGoldMin"				"25"
-			"BountyGoldMax"				"35"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 			"AttackRange"				"400"
 			"ProjectileModel"			"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"1200"
+			"HealthBarOffset"			"250"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"250"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -858,7 +1019,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"10"
+				}
+				"AGI"
+				{
+					"initial"	"5"
+					"bonus_level"	"5"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"2"
+					"bonus_level"	"3"
+				}
+			}
 
 			"Creature"
 			{
@@ -879,30 +1064,32 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 			"Level"						"1"
-			"BountyGoldMin"				"10"
-			"BountyGoldMax"				"15"
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 			"AttackRange"				"400"
 			"ProjectileModel"			"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf" // Particle system model for projectile.
 			"ProjectileSpeed"			"1200"
+			"HealthBarOffset"			"225"
 
 			"Ability1"					"base_stats"
 			"Ability2"					"_void"
 			"Ability3"					"_neutral__ai"
 
 			"RingRadius"				"100"
-			"HealthBarOffset"			"225"
 			"BountyXP"					"0"
 			"TeamName"					"DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"250"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -912,7 +1099,31 @@
 			"AttackDamageMax"			"45"
 			"AttackRate"				"1.2"
 			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"  
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"3"
+				}
+				"AGI"
+				{
+					"initial"	"3"
+					"bonus_level"	"2"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"1"
+				}
+			}
 
 			"Creature"
 			{
@@ -925,6 +1136,4 @@
 				"XPGain"					"0"
 			}
 		}
-
-
 }

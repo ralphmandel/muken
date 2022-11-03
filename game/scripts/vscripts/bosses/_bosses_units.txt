@@ -8,18 +8,17 @@
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"30"
 		"ModelScale" 				"1.4"
-		"RingRadius"				"100"
-		"HealthBarOffset"			"275"
-		"BountyXP"					"0"
-		"BountyGoldMin"				"75"
-		"BountyGoldMax"				"80"
-
-		"TeamName"					"DOTA_TEAM_NEUTRALS"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Level"						"32"
+		"BountyGoldMin"				"80"
+		"BountyGoldMax"				"100"
+		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRange"				"200"
+		//"ProjectileModel"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
+		//"ProjectileSpeed"			"975"
+		"HealthBarOffset"			"250"
 
 		"Ability1"					"base_stats"
 		"Ability2"					"_void"
@@ -27,25 +26,55 @@
 		"Ability4"					"_boss_gorillaz"
 		"Ability5"					"mk_root"
 
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"50"	// 450
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"35"	// 225
-		"AttackDamageMax"			"45"	// 250
+		"RingRadius"				"100"
+		
+		"BountyXP"					"0"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"ConsideredHero" 	"1"
+		"IsNeutralUnitType" "1"
+		"WakesNeutrals" 	"1"
+
+		"ArmorPhysical"				"0"
+		"MagicalResistance"        	"0"
+		"StatusHealth"				"250"
+		"StatusHealthRegen"			"5"
+		"StatusMana"				"600" //600
+		"StatusManaRegen"			"0"
+		"VisionDaytimeRange"		"600"
+		"VisionNighttimeRange"		"500"
+		"MovementSpeed"				"50"
+		"AttackDamageMin"			"35"
+		"AttackDamageMax"			"45"
 		"AttackRate"				"1.2"
 		"AttackAnimationPoint"		"0.5"
 		"AttackAcquisitionRange"	"50"
-		"AttackRange"				"200"
-		"ArmorPhysical"				"0"		// 40
-		"MagicalResistance"        	"0"		// 25
-		"StatusHealth"				"250"	// 5000
-		"StatusHealthRegen"			"10"	// 25
-		"StatusMana"				"600"	// 750
-		"StatusManaRegen"			"0"		// 5		 
-		"VisionDaytimeRange"		"600"
-		"VisionNighttimeRange"		"500"
-		//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
-		//"ProjectileSpeed"			"1500"     
+
+		"Stats"
+		{
+			"STR"
+			{
+				"initial"	"20"
+				"bonus_level"	"40"
+			}
+			"AGI"
+			{
+				"initial"	"10"
+				"bonus_level"	"10"
+			}
+			"INT"
+			{
+				"initial"	"5"
+				"bonus_level"	"10"
+			}
+			"CON"
+			{
+				"initial"	"20"
+				"bonus_level"	"40"
+			}
+		}
 
 		"Creature"
 		{
@@ -56,7 +85,7 @@
 			"MoveSpeedGain"				"0"
 			"BountyGain"				"0"
 			"XPGain"					"0"
-		}
+		}	
 	}
 
 }

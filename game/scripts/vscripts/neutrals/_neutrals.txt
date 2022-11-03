@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"15"
+				"percent"		"10"
 			}
 		}
 	}
@@ -185,7 +185,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_crit"			"200"
+				"stun_crit"			"225"
 			}
 			"02"
 			{
@@ -214,16 +214,15 @@
 
 		"AbilityCastPoint"       		"0.0"
 
-		"AbilityManaCost"         		"100"
-		"AbilityCooldown"				"18"
-
+		"AbilityManaCost"         		"125"
+		"AbilityCooldown"				"20"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"12"
+				"duration"			"10"
 			}
 			"02"
 			{
@@ -296,7 +295,7 @@
 		"AbilityCastPoint"       		"0.5"
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
-		"AbilityManaCost"         		"50"
+		"AbilityManaCost"         		"100"
 		"AbilityCooldown"				"20"
 
 		"AbilitySpecial"
@@ -323,7 +322,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
 		"AbilityManaCost"         		"80"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"15"
 		"AbilityCastRange"    		   	"300"
 
 		"AbilitySpecial"
@@ -346,7 +345,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"10"
+				"def_reduction"			"10"
 			}
 		}
 	}
@@ -366,8 +365,8 @@
 		"AbilityCastPoint"       		"0.5"
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
-		"AbilityManaCost"         		"60"
-		"AbilityCooldown"				"12"
+		"AbilityManaCost"         		"150"
+		"AbilityCooldown"				"15"
 		"AbilityCastRange"    		   	"550"
 
 		"AbilitySpecial"
@@ -390,7 +389,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"flame_damage"			"50"
+				"flame_damage"			"75"
 			}
 		}
 	}
@@ -408,15 +407,15 @@
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
-		"AbilityManaCost"         		"75"
-		"AbilityCooldown"				"20"
+		"AbilityManaCost"         		"200"
+		"AbilityCooldown"				"25"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
+				"duration"				"10"
 			}
 			"02"
 			{

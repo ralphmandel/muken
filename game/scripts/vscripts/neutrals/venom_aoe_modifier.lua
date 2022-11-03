@@ -20,11 +20,13 @@ function venom_aoe_modifier:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.armor = self.ability:GetSpecialValueFor("armor_reduction")
+	local def_reduction = self.ability:GetSpecialValueFor("def_reduction")
 	local damage = self.ability:GetSpecialValueFor("damage")
 
 	self.thinker = kv.isProvidedByAura~=1
 	if not self.thinker then return end
+
+	self.ability:AddBonus("_2_DEF", self.parent, -def_reduction, 0, nil)
 
 	self.damageTable = {
 		victim = nil,
@@ -43,6 +45,7 @@ end
 
 function venom_aoe_modifier:OnRemoved()
 	if IsServer() then self.parent:StopSound("Hero_Alchemist.AcidSpray") end
+	self.ability:RemoveBonus("_2_DEF", self.parent)
 end
 
 function venom_aoe_modifier:OnDestroy()
@@ -52,18 +55,6 @@ function venom_aoe_modifier:OnDestroy()
 end
 
 --------------------------------------------------------------------------------
-
-function venom_aoe_modifier:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
-	}
-
-	return funcs
-end
-
-function venom_aoe_modifier:GetModifierPhysicalArmorBonus()
-	return -self.armor
-end
 
 function venom_aoe_modifier:OnIntervalThink()
 	local enemies = FindUnitsInRadius(

@@ -140,7 +140,7 @@ var isWindowOpened = false;
         for (let index = 1; index <= 4; index++) {
             var enabled = (event.primary > 0)
             var stat_level = event.stats_level[primary_stats[index]]
-            if (enabled) {enabled = (event.hero_level > stat_level) && (stat_level < 10)}
+            if (enabled) {enabled = (event.hero_level > stat_level * 2) && (stat_level < 10)}
 
             STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].hittest = enabled
             STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("PlusBox", enabled);

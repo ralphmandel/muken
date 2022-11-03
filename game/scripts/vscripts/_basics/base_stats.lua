@@ -112,43 +112,64 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:AddBaseStatsPoints()
 			if IsServer() then
 				local caster = self:GetCaster()
-				local hero_name = nil
+				local unit_stats = nil
 				local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
 				local heroes_stats_data = LoadKeyValues("scripts/npc/heroes_stats.kv")
+				local boss_list = LoadKeyValues("scripts/vscripts/bosses/_bosses_units.txt")
+				local neutral_list = LoadKeyValues("scripts/vscripts/neutrals/_neutrals_units.txt")
 
-				if heroes_name_data == nil then return end
-				for name, id_name in pairs(heroes_name_data) do
-					if caster:GetUnitName() == id_name then
-						hero_name = name
+				if heroes_name_data then
+					for name, id_name in pairs(heroes_name_data) do
+						if caster:GetUnitName() == id_name then
+							for hero, hero_stats in pairs(heroes_stats_data) do
+								if hero == name then
+									unit_stats = hero_stats
+								end
+							end
+						end
+					end
+				end	
+
+				if unit_stats == nil then
+					for name, table in pairs(boss_list) do
+						if name == caster:GetUnitName() then
+							for info, stats in pairs(table) do
+								if info == "Stats" then
+									unit_stats = stats
+								end
+							end
+						end
 					end
 				end
 
-				if caster:IsHero() == false then
-					hero_name = caster:GetUnitName()
-					heroes_stats_data = LoadKeyValues("scripts/npc/_neutrals_stats.kv")
+				if unit_stats == nil then
+					for name, table in pairs(neutral_list) do
+						if name == caster:GetUnitName() then
+							for info, stats in pairs(table) do
+								if info == "Stats" then
+									unit_stats = stats
+								end
+							end
+						end
+					end
 				end
 
-				if hero_name == nil then return end
-				if heroes_stats_data == nil then return end
+				if unit_stats == nil then return end
 
 				self:ResetAllStats()
 
-				for hero, hero_stats in pairs(heroes_stats_data) do
-					if hero == hero_name then
-						for stat, stats_type in pairs(hero_stats) do
-							for stat_type, value in pairs(stats_type) do
-								if stat_type == "initial" then
-									self.stat_init[stat] = value
-									self.stat_base[stat] = self.stat_base[stat] + value
-									self:CalculateStats(0, 0, stat)
-									self:IncrementFraction(stat, value * 3)
-								elseif stat_type == "bonus_level" then
-									if caster:IsHero() then
-										self.bonus_level[stat] = value * 0.05
-									else
-										self:IncrementSubLevel(stat, value)
-									end
-								end
+				for stat, stats_type in pairs(unit_stats) do
+					for stat_type, value in pairs(stats_type) do
+						if stat_type == "initial" then
+							self.stat_init[stat] = value
+							self.stat_base[stat] = self.stat_base[stat] + value
+							self:CalculateStats(0, 0, stat)
+							self:IncrementFraction(stat, value * 3)
+						elseif stat_type == "bonus_level" then
+							if caster:IsHero() then
+								self.bonus_level[stat] = value * 0.05
+							else
+								self:IncrementSubLevel(stat, value)
 							end
 						end
 					end
@@ -200,6 +221,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
 				self.force_crit_spell = {[DAMAGE_TYPE_PHYSICAL] = false, [DAMAGE_TYPE_MAGICAL] = false}
 				self.total_crit_damage = self:CalcCritDamage(nil, nil)
+				self.force_crit_damage = 0
 				self.force_crit_hit = false
 				self.has_crit = false
 
@@ -432,7 +454,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:SetForceCritHit(value)
-			if value > 0 then self.total_crit_damage = value end
+			if value > 0 then self.force_crit_damage = value end
 			if value == -1 then self.force_crit_hit = false return end
 			self.force_crit_hit = true
 		end
@@ -536,7 +558,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-			return 1 + (self.stat_total["LCK"] * 0.04)
+			return 1 + (self.stat_total["LCK"] * 0.08)
 			-- local value = self.stat_total["LCK"] * self.critical_chance -- 0.25
 			-- local calc = (value * 6) / (1 +  (value * 0.04))
 			-- return calc
