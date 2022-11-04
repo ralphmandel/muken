@@ -124,7 +124,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 	-- UP 1.32
 	if self.ability:GetRank(32) then
 		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -50})
-		self.ability:AddBonus("_2_LCK", self.parent, 999, 0, nil)
+		self.ability:AddBonus("_2_LCK", self.parent, 100, 0, nil)
 	end
 
 	-- UP 1.41

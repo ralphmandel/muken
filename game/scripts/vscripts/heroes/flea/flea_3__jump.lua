@@ -72,6 +72,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         local caster = self:GetCaster()
         self.point = self:GetCursorPosition()
 
+        ProjectileManager:ProjectileDodge(caster)
         caster:RemoveModifierByName("flea_3_modifier_jump")
         caster:AddNewModifier(caster, self, "flea_3_modifier_jump", {})
     end

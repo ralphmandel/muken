@@ -345,34 +345,69 @@
 		end)
 		
 		self.boss = {[1] = nil, [2] = nil}
-		self.spots = {
-			[1] = { [1] = {}, [2] = Vector(3960, -2963, 0), [3] = -30, [4] = 1},
-			[2] = { [1] = {}, [2] = Vector(1604, -4734, 0), [3] = -30, [4] = 1},
-			[3] = { [1] = {}, [2] = Vector(509, -3086, 0), [3] = -30, [4] = 1},
-			[4] = { [1] = {}, [2] = Vector(-2429, -3974, 0), [3] = -30, [4] = 1},
-			[5] = { [1] = {}, [2] = Vector(-3011, -1664, 0), [3] = -30, [4] = 1},
-			[6] = { [1] = {}, [2] = Vector(-4274, -455, 0), [3] = -30, [4] = 1},
-			[7] = { [1] = {}, [2] = Vector(-4017, 1468, 0), [3] = -30, [4] = 1},
-			[8] = { [1] = {}, [2] = Vector(-2820, 2420, 0), [3] = -30, [4] = 1},
-			[9] = { [1] = {}, [2] = Vector(-1410, 2232, 0), [3] = -30, [4] = 1},
-			[10] = { [1] = {}, [2] = Vector(-3515, 3128, 0), [3] = -30, [4] = 1},
-			[11] = { [1] = {}, [2] = Vector(-1796, 3575, 0), [3] = -30, [4] = 1},
-			[12] = { [1] = {}, [2] = Vector(-1727, 5223, 0), [3] = -30, [4] = 1},
-			[13] = { [1] = {}, [2] = Vector(65, 5298, 0), [3] = -30, [4] = 1},
-			[14] = { [1] = {}, [2] = Vector(3459, 4393, 0), [3] = -30, [4] = 1},
-			[15] = { [1] = {}, [2] = Vector(4269, 2743, 0), [3] = -30, [4] = 1},
-			[16] = { [1] = {}, [2] = Vector(1457, 1858, 0), [3] = -30, [4] = 1},
-			[17] = { [1] = {}, [2] = Vector(4728, 1130, 0), [3] = -30, [4] = 1},
-			[18] = { [1] = {}, [2] = Vector(4412, -1042, 0), [3] = -30, [4] = 1},
-			[19] = { [1] = {}, [2] = Vector(2624, -896, 0), [3] = -30, [4] = 1},
-			[20] = { [1] = {}, [2] = Vector(2188, -2578, 0), [3] = -30, [4] = 1}
+		self.mobs = {
+		-- TIER 1
+			{["tier"] = 1, ["units"] = {
+				"neutral_basic_chameleon", "neutral_basic_chameleon",
+				"neutral_basic_chameleon_b", "neutral_basic_chameleon_b"
+			}},
+			{["tier"] = 1, ["units"] = {
+				"neutral_basic_crocodilian", "neutral_basic_crocodilian_b"
+			}},
+			{["tier"] = 1, ["units"] = {
+				"neutral_basic_gargoyle", "neutral_basic_gargoyle_b", "neutral_basic_gargoyle_b"
+			}},
+			{["tier"] = 1, ["units"] = {
+				"neutral_crocodile"
+			}},
+		-- TIER 2
+			{["tier"] = 2, ["units"] = {
+				"neutral_crocodile", "neutral_crocodile"
+			}},
+			{["tier"] = 2, ["units"] = {
+				"neutral_basic_crocodilian", "neutral_basic_crocodilian",
+				"neutral_basic_crocodilian_b", "neutral_basic_crocodilian_b"
+			}},
+		-- TIER 3
+			{["tier"] = 3, ["units"] = {
+				"neutral_crocodile", "neutral_crocodile", "neutral_crocodile"
+			}},
+			{["tier"] = 3, ["units"] = {
+				"neutral_igor", "neutral_frostbitten", "neutral_frostbitten"
+			}},
+			{["tier"] = 3, ["units"] = {
+				"neutral_skydragon", "neutral_dragon"
+			}},
+			{["tier"] = 3, ["units"] = {
+				"neutral_lamp"
+			}},
+		-- TIER 4
+			{["tier"] = 4, ["units"] = {
+				"neutral_spider"
+			}},
 		}
-
-		local count = 0
-		for _,spot in pairs(self.spots) do
-			count = count + 1
-			self:CreateSpot(count)
-		end
+		self.spots = {
+			[1] = { ["mob"] = {}, ["origin"] = Vector(3960, -2963, 0), ["respawn"] = -60},
+			[2] = { ["mob"] = {}, ["origin"] = Vector(1604, -4734, 0), ["respawn"] = -60},
+			[3] = { ["mob"] = {}, ["origin"] = Vector(509, -3086, 0), ["respawn"] = -60},
+			[4] = { ["mob"] = {}, ["origin"] = Vector(-2429, -3974, 0), ["respawn"] = -60},
+			[5] = { ["mob"] = {}, ["origin"] = Vector(-3011, -1664, 0), ["respawn"] = -60},
+			[6] = { ["mob"] = {}, ["origin"] = Vector(-4274, -455, 0), ["respawn"] = -60},
+			[7] = { ["mob"] = {}, ["origin"] = Vector(-4017, 1468, 0), ["respawn"] = -60},
+			[8] = { ["mob"] = {}, ["origin"] = Vector(-2820, 2420, 0), ["respawn"] = -60},
+			[9] = { ["mob"] = {}, ["origin"] = Vector(-1410, 2232, 0), ["respawn"] = -60},
+			[10] = { ["mob"] = {}, ["origin"] = Vector(-3515, 3128, 0), ["respawn"] = -60},
+			[11] = { ["mob"] = {}, ["origin"] = Vector(-1796, 3575, 0), ["respawn"] = -60},
+			[12] = { ["mob"] = {}, ["origin"] = Vector(-1727, 5223, 0), ["respawn"] = -60},
+			[13] = { ["mob"] = {}, ["origin"] = Vector(65, 5298, 0), ["respawn"] = -60},
+			[14] = { ["mob"] = {}, ["origin"] = Vector(3459, 4393, 0), ["respawn"] = -60},
+			[15] = { ["mob"] = {}, ["origin"] = Vector(4269, 2743, 0), ["respawn"] = -60},
+			[16] = { ["mob"] = {}, ["origin"] = Vector(1457, 1858, 0), ["respawn"] = -60},
+			[17] = { ["mob"] = {}, ["origin"] = Vector(4728, 1130, 0), ["respawn"] = -60},
+			[18] = { ["mob"] = {}, ["origin"] = Vector(4412, -1042, 0), ["respawn"] = -60},
+			[19] = { ["mob"] = {}, ["origin"] = Vector(2624, -896, 0), ["respawn"] = -60},
+			[20] = { ["mob"] = {}, ["origin"] = Vector(2188, -2578, 0), ["respawn"] = -60}
+		}
 	end
 
 -- UTIL FUNCTIONS
@@ -441,10 +476,6 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
-			if time == -45 then
-				local unit = CreateUnitByName("neutral_spider", Vector(-400, -1400, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				unit:FindModifierByName("_modifier__ai").spot_origin = Vector(-400, -1400, 0, 0)
-			end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end
@@ -467,215 +498,109 @@
 		end
 
 	-- SPOTS
-		function BattleArena:CalculateNeutralQuantity()
-			local quantity = 0
-			for i = 1, 20, 1 do
-				local empty = true
-				for _,unit in pairs(self.spots[i][1]) do
-					if unit ~= nil then
+		function BattleArena:RespawnEnemies()
+			local time = GameRules:GetDOTATime(false, false)
+			local current_mobs = 0
+			local free_spots = {}
+
+			while current_mobs < 20 do
+				for i = 1, 20, 1 do
+					local spot_blocked = self:IsSpotAlive(i)
+					if not spot_blocked then spot_blocked = self:IsSpotCooldown(i) end
+					if spot_blocked then current_mobs = current_mobs + 1 end
+					free_spots[i] = not spot_blocked
+				end
+
+				self:CheckSpots(free_spots)
+			end
+		end
+
+		function BattleArena:IsSpotAlive(spot)
+			for category, units in pairs(self.spots[spot]["mob"]) do
+				if category == "units" then
+					for _,unit in pairs(units) do
 						if IsValidEntity(unit) then
 							if unit:IsAlive() then
-								empty = false
+								return true
 							end
 						end
 					end
 				end
-				if empty == false then quantity = quantity + 1 end
 			end
 
-			if quantity >= 12 then return end
+			return false
+		end
 
+		function BattleArena:IsSpotCooldown(spot)
+			local current_time = GameRules:GetDOTATime(false, false)
+			local respawn_time = 45
+
+			if self.spots[spot]["respawn"] == nil then
+				self.spots[spot]["respawn"] = current_time
+				return true
+			end
+
+			return (respawn_time > (current_time - self.spots[spot]["respawn"]))
+		end
+
+		function BattleArena:CheckSpots(free_spots)
+			for i = 1, 20, 1 do
+				if free_spots[i] then
+					self:CreateMob(i)
+					return
+				end
+			end
+		end
+
+		function BattleArena:CreateMob(spot)
+			local tier = self:RandomizeTier()
+			local mob = self:RandomizeMob(tier)
+			self:SpawnMobs(spot, tier, mob)
+		end
+
+		function BattleArena:RandomizeTier()
+			local time = GameRules:GetDOTATime(false, false)
+
+			for i = 4, 2, -1 do
+				local chance = ((time + 300)/ i) * 0.1
+				if chance > 75 then chance = 75 end
+				if RandomFloat(1, 100) <= chance then
+					return i
+				end
+			end
+
+			return 1
+		end
+
+		function BattleArena:RandomizeMob(tier)
+			local rand_mobs = {}
 			local index = 0
-			for _,spot in pairs(self.spots) do
-				index = index + 1
-				self:CreateSpot(index)
+			for _,mob in pairs(self.mobs) do
+				if mob["tier"] == tier then
+					print(mob["tier"], mob["units"], "pass")
+					index = index + 1
+					rand_mobs[index] = mob["units"]
+				end
 			end
+
+			print(rand_mobs[RandomInt(1, index)], index, "index")
+
+			return rand_mobs[RandomInt(1, index)]
 		end
 
-		function BattleArena:CreateSpot(number)
-			local time = GameRules:GetDOTATime(false, false)
-			local spawn_time = 30
-			local respawn_time = 60
-			local new = true
-			for _,unit in pairs(self.spots[number][1]) do
-				if unit ~= nil then
-					if IsValidEntity(unit) then
-						if unit:IsAlive() then
-							new = false
-						end
-					end
-				end
-			end
-			
-			if new then
-				if self.spots[number][3] == nil then
-					self.spots[number][3] = time
-				end
-
-				if time >= spawn_time and time - self.spots[number][3] >= respawn_time then
-					self:RandomizeNeutrals(number)
-				end
-			end
-		end
-
-		function BattleArena:RandomizeNeutrals(number)
-			local time = GameRules:GetDOTATime(false, false)
-			local factor_quantity = 1 + math.floor(time / 150)
-			if factor_quantity > 16 then factor_quantity = 16 end
-
-			local tier_3 = RandomInt(1, 100)
-
-			local total = 0
-			local t3_quantity = 0
-			for _,spot in pairs(self.spots) do
-				if spot[4] == 3 then
-					t3_quantity = t3_quantity + 1
-				end
+		function BattleArena:SpawnMobs(spot, tier, mob)
+			local spawned_units = {}
+			for _,unit in pairs(mob) do
+				local spawned_unit = CreateUnitByName(unit, self.spots[spot]["origin"], true, nil, nil, DOTA_TEAM_NEUTRALS)
+				table.insert(spawned_units, spawned_unit)
+				local ai = spawned_unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = self.spots[spot]["origin"] end
 			end
 
-			if tier_3 <= 50 and t3_quantity < factor_quantity then
-				local rand_3 = RandomInt(1,3)
-
-				if rand_3 == 1 then
-					local unit = CreateUnitByName("neutral_lamp", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-					table.insert(self.spots[number][1], unit)
-					local ai = unit:FindModifierByName("_modifier__ai")
-					if ai then ai.spot_origin = self.spots[number][2] end
-				
-					self.spots[number][3] = nil
-					self.spots[number][4] = 3
-					return
-				end
-
-				if rand_3 == 2 then
-					local unit = CreateUnitByName("neutral_spider", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-					table.insert(self.spots[number][1], unit)
-					local ai = unit:FindModifierByName("_modifier__ai")
-					if ai then ai.spot_origin = self.spots[number][2] end
-					
-					self.spots[number][3] = nil
-					self.spots[number][4] = 3
-					return
-				end
-			
-				if rand_3 == 3 then
-					local unit = CreateUnitByName("neutral_skydragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-					table.insert(self.spots[number][1], unit)
-					local ai = unit:FindModifierByName("_modifier__ai")
-					if ai then ai.spot_origin = self.spots[number][2] end
-					
-					unit = CreateUnitByName("neutral_dragon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-					table.insert(self.spots[number][1], unit)
-					ai = unit:FindModifierByName("_modifier__ai")
-					if ai then ai.spot_origin = self.spots[number][2] end
-					
-					self.spots[number][3] = nil
-					self.spots[number][4] = 3
-					return
-				end
-			end
-
-			local tier_1 = RandomInt(1,5)
-
-			if tier_1 == 1 then
-				local unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				local ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				unit = CreateUnitByName("neutral_basic_chameleon", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				unit = CreateUnitByName("neutral_basic_chameleon_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				self.spots[number][3] = nil
-				self.spots[number][4] = 1
-				return
-			end
-
-			if tier_1 == 2 then
-				local unit = CreateUnitByName("neutral_basic_crocodilian", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				local ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				unit = CreateUnitByName("neutral_basic_crocodilian_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				self.spots[number][3] = nil
-				self.spots[number][4] = 1
-				return
-			end
-
-			if tier_1 == 3 then
-				local unit = CreateUnitByName("neutral_basic_gargoyle", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				local ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				unit = CreateUnitByName("neutral_basic_gargoyle_b", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				self.spots[number][3] = nil
-				self.spots[number][4] = 1
-				return
-			end
-
-			if tier_1 == 4 then
-				local unit = CreateUnitByName("neutral_igor", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				local ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				unit = CreateUnitByName("neutral_frostbitten", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				self.spots[number][3] = nil
-				self.spots[number][4] = 2
-				return
-			end
-
-			if tier_1 == 5 then
-				local unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				local ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-				
-				unit = CreateUnitByName("neutral_crocodile", self.spots[number][2], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(self.spots[number][1], unit)
-				ai = unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[number][2] end
-
-				self.spots[number][3] = nil
-				self.spots[number][4] = 2
-				return
-			end
+			self.spots[spot]["respawn"] = nil
+			self.spots[spot]["mob"] = {
+				["tier"] = tier, ["units"] = spawned_units
+			}
 		end
 
 	-- PLAYERS
@@ -858,15 +783,15 @@
 				self:RollDrops(unit)
 			end
 			
-			for _,spot in pairs(self.spots) do
-				for i = #spot[1], 1, -1 do
-					local neutral = spot[1][i]
-					if neutral == unit then
-						table.remove(spot[1],i)
-						break
-					end
-				end
-			end
+			-- for _,spot in pairs(self.spots) do
+			-- 	for i = #spot[1], 1, -1 do
+			-- 		local neutral = spot[1][i]
+			-- 		if neutral == unit then
+			-- 			table.remove(spot[1],i)
+			-- 			break
+			-- 		end
+			-- 	end
+			-- end
 		end
 
 		local gold = 0
@@ -1055,7 +980,7 @@
 				CustomNetTables:SetTableValue("game_state", "round_data", { value = nextValue })
 			end
 
-			self:CalculateNeutralQuantity()
+			self:RespawnEnemies()
 			self:GenerateEvent(false)
 		end
 		

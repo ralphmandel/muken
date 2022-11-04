@@ -53,7 +53,7 @@ function summon_spiders:OnSpellStart()
     local spiders_number = self:GetSpecialValueFor("spiders_number")
     for i = 1, spiders_number, 1 do
         local spider = CreateUnitByName("summoner_spider", point, true, nil, nil, caster:GetTeamNumber())
-        spider:AddNewModifier(caster, self, "summon_spiders_modifier", {duration = 20})
+        spider:AddNewModifier(caster, self, "summon_spiders_modifier", {duration = 60})
         spider:SetForceAttackTarget(target)
     end
 end

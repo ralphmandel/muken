@@ -275,7 +275,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_damage"		"750"
+				"strike_damage"		"1000"
 			}
 		}
 	}
@@ -296,7 +296,7 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
 		"AbilityManaCost"         		"100"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"35"
 
 		"AbilitySpecial"
 		{
