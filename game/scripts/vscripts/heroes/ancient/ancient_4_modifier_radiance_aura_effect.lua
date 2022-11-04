@@ -35,7 +35,7 @@ end
 -----------------------------------------------------------
 
 function ancient_4_modifier_radiance_aura_effect:OnIntervalThink()
-	local damage = self.caster:GetMana() * 0.05
+	local damage = self.caster:GetMana() * 0.04
 	local intervals = 0.6
 
 	ApplyDamage({

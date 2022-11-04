@@ -91,7 +91,7 @@ function genuine_4__nightfall:GetIntrinsicModifierName()
 
     function genuine_4__nightfall:ApplyStarfall(target)
         local caster = self:GetCaster()
-        local starfall_damage = 75
+        local starfall_damage = 100
         local starfall_radius = 250
         local damageTable = {
             attacker = caster,

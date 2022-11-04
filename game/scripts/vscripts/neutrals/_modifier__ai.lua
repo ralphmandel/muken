@@ -26,6 +26,7 @@ function _modifier__ai:OnCreated(params)
         Timers:CreateTimer((0.2), function()
 			self.spawnPos = self.unit:GetOrigin()
             self:ChangeModelScale()
+            self.unit:GiveMana(9999)
 		end)
 
         -- Set state -> action mapping
@@ -179,6 +180,7 @@ end
 function _modifier__ai:OnAttackLanded(keys)
 	if keys.attacker ~= self.unit then return end
     local sound = ""
+    if self.unit:GetUnitName() == "neutral_igneo" then sound = "Hero_WarlockGolem.Attack" end
     if self.unit:GetUnitName() == "neutral_spider" then sound = "hero_viper.projectileImpact" end
     if self.unit:GetUnitName() == "neutral_lamp" then sound = "Hero_Spirit_Breaker.Attack" end
     if self.unit:GetUnitName() == "neutral_skydragon" then sound = "Hero_Magnataur.Attack" end

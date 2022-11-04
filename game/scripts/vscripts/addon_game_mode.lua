@@ -28,6 +28,7 @@
 
 		--precache particle
 			--general
+				PrecacheResource( "model", "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl", context )
 				PrecacheResource( "model", "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_crystal.vmdl", context )
 				PrecacheResource( "model", "models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl", context )
 				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_ranged_mega.vmdl", context )
@@ -93,7 +94,11 @@
 				PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
 				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
 				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )	
+				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )
+				PrecacheResource( "particle", "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf", context )
+				PrecacheResource( "particle", "particles/items_fx/abyssal_blink_start.vpcf", context )
+				PrecacheResource( "particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context )
+				PrecacheResource( "particle", "particles/status_fx/status_effect_doom.vpcf", context )
 
 		--precache soundfile
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context )
@@ -110,6 +115,7 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context )
@@ -362,6 +368,9 @@
 			}},
 		-- TIER 2
 			{["tier"] = 2, ["units"] = {
+				"neutral_igneo"
+			}},
+			{["tier"] = 2, ["units"] = {
 				"neutral_crocodile", "neutral_crocodile"
 			}},
 			{["tier"] = 2, ["units"] = {
@@ -385,6 +394,9 @@
 			{["tier"] = 4, ["units"] = {
 				"neutral_spider"
 			}},
+			{["tier"] = 4, ["units"] = {
+				"neutral_igneo", "neutral_igneo"
+			}}
 		}
 		self.spots = {
 			[1] = { ["mob"] = {}, ["origin"] = Vector(3960, -2963, 0), ["respawn"] = -60},
@@ -476,6 +488,15 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
+			if time == -45 then
+				local spawned_unit = CreateUnitByName("neutral_skydragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				local ai = spawned_unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
+
+				spawned_unit = CreateUnitByName("neutral_dragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				local ai = spawned_unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
+			end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end
@@ -503,7 +524,7 @@
 			local current_mobs = 0
 			local free_spots = {}
 
-			while current_mobs < 20 do
+			while current_mobs < 12 do
 				for i = 1, 20, 1 do
 					local spot_blocked = self:IsSpotAlive(i)
 					if not spot_blocked then spot_blocked = self:IsSpotCooldown(i) end
@@ -511,7 +532,9 @@
 					free_spots[i] = not spot_blocked
 				end
 
-				self:CheckSpots(free_spots)
+				if current_mobs < 12 then
+					self:CheckSpots(free_spots)
+				end
 			end
 		end
 
@@ -562,7 +585,7 @@
 			local time = GameRules:GetDOTATime(false, false)
 
 			for i = 4, 2, -1 do
-				local chance = ((time + 300)/ i) * 0.1
+				local chance = ((time + 100)/ i) * 0.1
 				if chance > 75 then chance = 75 end
 				if RandomFloat(1, 100) <= chance then
 					return i

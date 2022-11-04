@@ -25,14 +25,6 @@ end
 
 --------------------------------------------------------------------------------------------------------------------------
 
-function lifesteal_modifier:CheckState()
-	local state = {
-		[MODIFIER_STATE_CANNOT_MISS] = true,
-	}
-
-	return state
-end
-
 function lifesteal_modifier:DeclareFunctions()
     local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,

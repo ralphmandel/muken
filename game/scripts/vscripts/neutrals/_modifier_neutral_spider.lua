@@ -66,7 +66,7 @@ function _modifier_neutral_spider:TryCast_Skill_1(target)
 	if ability:IsOwnersManaEnough() == false then return end
 
 	self.parent:SetCursorCastTarget(target)
-	ability:CastAbility()
+	self.parent:CastAbilityOnTarget(target, ability, self.parent:GetPlayerOwnerID())
 end
 
 function _modifier_neutral_spider:TryCast_Skill_2(target)
@@ -81,5 +81,5 @@ function _modifier_neutral_spider:TryCast_Skill_2(target)
 	if distance > cast_range then return end
 
 	self.parent:SetCursorPosition(target:GetOrigin())
-	ability:CastAbility()
+	self.parent:CastAbilityOnPosition(target:GetOrigin(), ability, self.parent:GetPlayerOwnerID())
 end

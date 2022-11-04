@@ -53,13 +53,12 @@ function _modifier_neutral_skydragon:TryCast_Skill_1(target)
 	if ability:IsCooldownReady() == false then return end
 	if ability:IsOwnersManaEnough() == false then return end
 
-	local distance = CalcDistanceBetweenEntityOBB( self.parent, target)
+	local distance = CalcDistanceBetweenEntityOBB(self.parent, target)
 	local cast_range = ability:GetCastRange(self.parent:GetOrigin(), target)
 	if distance > cast_range then return end
 
-	if target:IsHero() == false then return end
 	if target:IsMagicImmune() then return end
 
 	self.parent:SetCursorCastTarget(target)
-	ability:CastAbility()
+	self.parent:CastAbilityOnTarget(target, ability, self.parent:GetPlayerOwnerID())
 end
