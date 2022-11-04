@@ -30,6 +30,10 @@ function item_rare_serluc_armor_mod_aura:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO
 end
 
+function item_rare_serluc_armor_mod_aura:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
+end
+
 ---------------------------------------------------------------------------------------------------
 
 function item_rare_serluc_armor_mod_aura:OnCreated( kv )

@@ -67,7 +67,7 @@ function _modifier_hide:OnIntervalThink()
 		500,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO,	-- int, type filter
-		0,	-- int, flag filter
+		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,	-- int, flag filter
 		0,	-- int, order filter
 		false	-- bool, can grow cache
 	)

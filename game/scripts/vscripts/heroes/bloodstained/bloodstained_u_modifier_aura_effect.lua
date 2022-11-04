@@ -128,7 +128,7 @@ function bloodstained_u_modifier_aura_effect:ApplyDebuffs()
 end
 
 function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_duration)
-	local total_hp_stolen = self.parent:GetBaseMaxHealth() * hp_stolen * number * 0.01
+	local total_hp_stolen = self.parent:GetMaxHealthealth() * hp_stolen * number * 0.01
 	if total_hp_stolen > self.parent:GetHealth() then total_hp_stolen = self.parent:GetHealth() end
 
 	local iDesiredHealthValue = self.parent:GetHealth() - total_hp_stolen

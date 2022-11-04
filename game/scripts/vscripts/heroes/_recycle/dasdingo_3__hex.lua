@@ -111,7 +111,7 @@ LinkLuaModifier("dasdingo_3_modifier_hex", "heroes/dasdingo/dasdingo_3_modifier_
             local damageTable = {
                 victim = target,
                 attacker = caster,
-                damage = target:GetBaseMaxHealth() * 0.1,
+                damage = target:GetMaxHealth() * 0.1,
                 damage_type = DAMAGE_TYPE_MAGICAL,
                 ability = self
             }

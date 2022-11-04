@@ -99,7 +99,7 @@ function striker_3_modifier_portal:PullEnemies(pull_radius)
 
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, pull_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
 	)
 
     for _,enemy in pairs(enemies) do
@@ -114,7 +114,7 @@ end
 function striker_3_modifier_portal:FindHeroes()
 	local heroes = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.portal_radius,
-		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, 0, 1, false
+		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 1, false
 	)
 
     for _,hero in pairs(heroes) do

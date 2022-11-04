@@ -63,7 +63,7 @@ function striker_5_modifier_hero:OnRemoved()
 	-- UP 5.41
 	if self.ability:GetRank(41)
 	and self.parent:IsAlive() then
-		local health = self.parent:GetBaseMaxHealth() * 0.15
+		local health = self.parent:GetMaxHealth() * 0.15
 		if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
 			health = -health
 		end

@@ -488,15 +488,11 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
-			if time == -45 then
-				local spawned_unit = CreateUnitByName("neutral_skydragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				local ai = spawned_unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
-
-				spawned_unit = CreateUnitByName("neutral_dragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				local ai = spawned_unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
-			end
+			-- if time == -45 then
+			-- 	local spawned_unit = CreateUnitByName("neutral_skydragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			-- 	local ai = spawned_unit:FindModifierByName("_modifier__ai")
+			-- 	if ai then ai.spot_origin = Vector(-300, -1000, 0) end
+			-- end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end
@@ -649,7 +645,7 @@
 				[15] = Vector(2175, -3259, 0)
 			}
 
-			local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+			local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
 			local enemies = FindUnitsInRadius(
 				unit:GetTeamNumber(),	-- int, your team number
 				unit:GetOrigin(),	-- point, center point
@@ -856,7 +852,7 @@
 			local allies = FindUnitsInRadius(
 				assigned_hero:GetTeamNumber(), unit:GetOrigin(), nil, 750,
 				DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-				0, 0, false
+				DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
 			)
 
 			for _,unit in pairs(allies) do

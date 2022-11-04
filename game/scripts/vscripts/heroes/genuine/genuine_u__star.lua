@@ -153,7 +153,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
     function genuine_u__star:CastFilterResultTarget(hTarget)
         local caster = self:GetCaster()
-        local flag = 0
+        local flag = DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
 
         if caster == hTarget then
             return UF_FAIL_CUSTOM

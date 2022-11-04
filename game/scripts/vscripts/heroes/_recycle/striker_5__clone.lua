@@ -107,7 +107,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
         FindClearSpaceForUnit(illu, loc, true)
         illu:MoveToPositionAggressive(loc)
-        illu:ModifyHealth(illu:GetBaseMaxHealth(), self, false, 0)
+        illu:ModifyHealth(illu:GetMaxHealth(), self, false, 0)
 
         local mod_clone = illu:AddNewModifier(caster, self, "striker_5_modifier_clone", {})
         mod_clone.target = target

@@ -76,9 +76,6 @@ function _boss_modifier__ai:IdleThink()
         self.state = AI_STATE_AGGRESSIVE
         return
     end
-
-    --self.unit:Heal(self.unit:GetBaseMaxHealth() * 0.025, nil)
-    -- Nothing else to do in Idle state
 end
 
 function _boss_modifier__ai:AggressiveThink()

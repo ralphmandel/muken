@@ -25,7 +25,7 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", true) end
 
 	Timers:CreateTimer(FrameTime(), function()
-		self.parent:ModifyHealth(self.parent:GetBaseMaxHealth(), self.ability, false, 0)
+		self.parent:ModifyHealth(self.parent:GetMaxHealthealth(), self.ability, false, 0)
 	end)
 
 	if IsServer() then self:SetStackCount(self.hp) end

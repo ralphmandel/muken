@@ -180,7 +180,7 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
             local percent = 5
             if target:IsHero() then percent = 20 end
             self.energy = self.energy + (caster:GetMaxMana() * percent * 0.01)
-            caster:Heal(caster:GetBaseMaxHealth() * percent * 0.01, self)
+            caster:Heal(caster:GetMaxHealth() * percent * 0.01, self)
         end
         
         if ability == nil and berserk then

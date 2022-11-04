@@ -154,7 +154,7 @@ function ancient_3_modifier_walk:ApplyHeal()
 	local allies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-		DOTA_DAMAGE_FLAG_NONE, FIND_ANY_ORDER, false
+		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, FIND_ANY_ORDER, false
 	)
 
 	for _,ally in pairs(allies) do

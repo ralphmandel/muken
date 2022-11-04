@@ -42,7 +42,7 @@ function fountain_modifier:OnIntervalThink()
 	-- end
 
 	if self.pfx == nil then self:PlayEfxStart() end
-	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
 	local units = FindUnitsInRadius(
 		self.parent:GetTeamNumber(),	-- int, your team number
 		self.parent:GetOrigin(),	-- point, center point
@@ -57,7 +57,7 @@ function fountain_modifier:OnIntervalThink()
 	for _,unit in pairs(units) do
 		if GameRules:IsDaytime() then
 			unit:AddNewModifier(self.caster, self.ability, "_modifier_truesight", {duration = 0.3})
-			local heal = self.hp_percent * unit:GetBaseMaxHealth() * 0.2
+			local heal = self.hp_percent * unit:GetMaxHealthealth() * 0.2
 			unit:Heal(heal, self.ability)
 			self:PlayEfxHeal(unit)
 		else
