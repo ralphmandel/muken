@@ -34,9 +34,23 @@ function burning_armor_modifier:OnRefresh(kv)
 end
 
 function burning_armor_modifier:OnRemoved()
+	if IsServer() then self.parent:StopSound("Hero_WarlockGolem.Spawn_Loop") end
 end
 
 --------------------------------------------------------------------------------------------------------------------------
+
+function burning_armor_modifier:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_DEATH
+	}
+
+	return funcs
+end
+
+function burning_armor_modifier:OnDeath(keys)
+	if keys.unit ~= self.caster then return end
+	self:Destroy()
+end 
 
 function burning_armor_modifier:OnIntervalThink()
 	if self.parent:PassivesDisabled() then return end
@@ -52,9 +66,22 @@ function burning_armor_modifier:OnIntervalThink()
 		self.damageTable.victim = enemy
 		ApplyDamage(self.damageTable)
 	end
+
+	if IsServer() then
+		self.parent:StopSound("Hero_WarlockGolem.Spawn_Loop")
+		self.parent:EmitSound("Hero_WarlockGolem.Spawn_Loop")
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------------------
+
+function burning_armor_modifier:GetEffectName()
+	return "particles/units/heroes/hero_ember_spirit/ember_spirit_flameguard.vpcf"
+end
+
+function burning_armor_modifier:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
 function burning_armor_modifier:PlayEfxAmbient()
 	local ambient = "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
@@ -62,6 +89,4 @@ function burning_armor_modifier:PlayEfxAmbient()
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControlEnt(particle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	self:AddParticle(particle, false, false, -1, false, false)
-
-	if IsServer() then self.parent:EmitSound("Hero_WarlockGolem.Spawn_Loop") end
 end

@@ -22,10 +22,11 @@ function flea_4_modifier_smoke_effect:OnCreated(kv)
 
 	if IsServer() then
 		if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-			self:PlayEfxStart()			
+			self:PlayEfxStart()
+			self:OnIntervalThink()
+		else
+			self:ApplyDebuff()
 		end
-
-		self:OnIntervalThink()
 	end
 end
 
@@ -80,16 +81,16 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_4_modifier_smoke_effect:ApplyDebuff()
+	--local debuff_decrease = self.ability:GetSpecialValueFor("debuff_decrease")
+	--local percent = debuff_init - (debuff_decrease * self.tick)
+	--if percent <= 0 then return end
+
+	--self.tick = self.tick + 1
+	--self:RemoveDebuff()
+
 	local debuff_init = self.ability:GetSpecialValueFor("debuff_init")
-	local debuff_decrease = self.ability:GetSpecialValueFor("debuff_decrease")
-	local percent = debuff_init - (debuff_decrease * self.tick)
-	if percent <= 0 then return end
-
-	self.tick = self.tick + 1
-
-	self:RemoveDebuff()	
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = percent})
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = percent})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = debuff_init})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = debuff_init})
 end
 
 function flea_4_modifier_smoke_effect:RemoveDebuff()

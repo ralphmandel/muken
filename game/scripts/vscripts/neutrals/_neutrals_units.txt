@@ -19,12 +19,12 @@
 			"ProjectileSpeed"			"400"
 			"HealthBarOffset"			"200"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"_neutral_spider"
-			"Ability5"					"summon_spiders"
-			"Ability6"					"venom_aoe"
+			"Ability1"					"summon_spiders"
+			"Ability2"					"venom_aoe"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_spider"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -103,9 +103,9 @@
 			"HealthBarOffset"			"140"
 			"ModelScale" 				"0.5"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral_spider"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability10"					"_neutral_spider"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -117,13 +117,13 @@
 			"WakesNeutrals" 	"1"
 
 			"ArmorPhysical"				"0"
-			"MagicalResistance"        	"0"
+			"MagicalResistance"        	"25"
 			"StatusHealth"				"250"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
-			"VisionDaytimeRange"		"600"
-			"VisionNighttimeRange"		"500"
+			"VisionDaytimeRange"		"300"
+			"VisionNighttimeRange"		"250"
 			"MovementSpeed"				"50"
 			"AttackDamageMin"			"35"
 			"AttackDamageMax"			"45"
@@ -136,7 +136,7 @@
 				"STR"
 				{
 					"initial"	"0"
-					"bonus_level"	"18"
+					"bonus_level"	"15"
 				}
 				"AGI"
 				{
@@ -151,7 +151,7 @@
 				"CON"
 				{
 					"initial"	"0"
-					"bonus_level"	"4"
+					"bonus_level"	"3"
 				}
 			}
 
@@ -183,13 +183,13 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"250"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"_neutral_lamp"
-			"Ability5"					"stun_hits"
-			"Ability6"					"lifesteal"
-			"Ability7"					"spike_armor"
+			"Ability1"					"stun_hits"
+			"Ability2"					"lifesteal"
+			"Ability3"					"spike_armor"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_lamp"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -268,12 +268,12 @@
 			//"ProjectileSpeed"			"800"
 			"HealthBarOffset"			"275"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"_neutral_igneo"
-			"Ability5"					"burning_armor"
-			"Ability6"					"doom"
+			"Ability1"					"burning_armor"
+			"Ability2"					"doom"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_igneo"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -315,7 +315,7 @@
 				"INT"
 				{
 					"initial"	"10"
-					"bonus_level"	"30"
+					"bonus_level"	"20"
 				}
 				"CON"
 				{
@@ -352,11 +352,11 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"255"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"_neutral_skydragon"
-			"Ability5"					"fireball"
+			"Ability1"					"fireball"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_skydragon"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -435,10 +435,10 @@
 			"ProjectileSpeed"			"975"
 			"HealthBarOffset"			"275"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"mana_burn"
+			"Ability1"					"mana_burn"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -517,11 +517,11 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"235"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"_neutral_dragon"
-			"Ability5"					"immunity"
+			"Ability1"					"immunity"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_dragon"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -600,10 +600,10 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"215"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
-			"Ability4"					"strike"
+			"Ability1"					"strike"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -682,9 +682,9 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"200"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -763,9 +763,9 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"190"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -843,9 +843,9 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"190"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -923,9 +923,9 @@
 			"ProjectileSpeed"			"1200"
 			"HealthBarOffset"			"250"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -1004,9 +1004,9 @@
 			"ProjectileSpeed"			"1200"
 			"HealthBarOffset"			"225"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -1084,9 +1084,9 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"175"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"
@@ -1164,9 +1164,9 @@
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"160"
 
-			"Ability1"					"base_stats"
-			"Ability2"					"_void"
-			"Ability3"					"_neutral__ai"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
 
 			"RingRadius"				"100"
 			"BountyXP"					"0"

@@ -50,7 +50,7 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function icebreaker_1_modifier_hypo:OnIntervalThink()
-	self.damageTable.damage = self.parent:GetMaxHealthealth() * self.damage_mult
+	self.damageTable.damage = self.parent:GetMaxHealth() * self.damage_mult
 	ApplyDamage(self.damageTable)
 end
 

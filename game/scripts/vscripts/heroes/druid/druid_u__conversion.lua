@@ -88,7 +88,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         -- UP 6.32
         if self:GetRank(32) then
-            max_dominate = max_dominate + 10
+            max_dominate = max_dominate + 8
         end
 
         if self:GetCurrentTableLvl() + unit_lvl > max_dominate then

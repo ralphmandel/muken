@@ -24,56 +24,45 @@ function venom_aoe_modifier:OnCreated( kv )
 	local damage = self.ability:GetSpecialValueFor("damage")
 
 	self.thinker = kv.isProvidedByAura~=1
-	if not self.thinker then return end
 
-	self.ability:AddBonus("_2_DEF", self.parent, -def_reduction, 0, nil)
+	if not self.thinker then
+		self.ability:AddBonus("_2_DEF", self.parent, -def_reduction, 0, nil)
 
-	self.damageTable = {
-		victim = nil,
-		attacker = self.caster,
-		damage = damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability
-	}
-
-	self:StartIntervalThink(1)
-	self:PlayEfxStart()
+		self.damageTable = {
+			victim = self.parent,
+			attacker = self.caster,
+			damage = damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self.ability
+		}
+	
+		self:StartIntervalThink(1)		
+	else
+		self:PlayEfxStart()
+	end
 end
 
 function venom_aoe_modifier:OnRefresh( kv )
 end
 
 function venom_aoe_modifier:OnRemoved()
-	if IsServer() then self.parent:StopSound("Hero_Alchemist.AcidSpray") end
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	if not self.thinker then
+		self.ability:RemoveBonus("_2_DEF", self.parent)	
+	else
+		if IsServer() then self.parent:StopSound("Hero_Alchemist.AcidSpray") end
+	end
 end
 
 function venom_aoe_modifier:OnDestroy()
 	if not self.thinker then return end
-
 	UTIL_Remove(self.parent)
 end
 
 --------------------------------------------------------------------------------
 
 function venom_aoe_modifier:OnIntervalThink()
-	local enemies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(),	-- int, your team number
-		self.parent:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		0,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-
-	for _,enemy in pairs(enemies) do
-		self.damageTable.victim = enemy
-		ApplyDamage( self.damageTable )
-		self:PlayEfxSound(enemy)
-	end
+	ApplyDamage(self.damageTable)
+	self:PlayEfxSound(self.parent)
 end
 
 --------------------------------------------------------------------------------
@@ -90,10 +79,6 @@ end
 function venom_aoe_modifier:GetAuraRadius()
 	return self.radius
 end
-
--- function venom_aoe_modifier:GetAuraDuration()
--- 	return 0.5
--- end
 
 function venom_aoe_modifier:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_ENEMY
@@ -122,16 +107,7 @@ function venom_aoe_modifier:PlayEfxStart()
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl( effect_cast, 0, self.parent:GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 1, 1 ) )
-
-	-- buff particle
-	self:AddParticle(
-		effect_cast,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
+	self:AddParticle(effect_cast, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_Alchemist.AcidSpray") end
 end

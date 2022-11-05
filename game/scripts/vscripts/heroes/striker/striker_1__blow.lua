@@ -77,6 +77,7 @@ LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus"
 
         if target:TriggerSpellAbsorb(self) then return false end
 
+        caster:FindModifierByName(self:GetIntrinsicModifierName()).last_hit_target = target
         caster:FindModifierByName(self:GetIntrinsicModifierName()):PerformBlink(target)
     end
 

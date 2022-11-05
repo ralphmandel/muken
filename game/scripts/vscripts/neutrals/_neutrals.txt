@@ -201,17 +201,17 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"		"50"
+				"damage"		"40"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"tick"			"0.5"
+				"tick"			"0.75"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"200"
+				"radius"		"250"
 			}
 		}
 	}
@@ -400,7 +400,7 @@
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"neutrals/venom_aoe"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"     		"neutrals/venom_aoe"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -512,58 +512,4 @@
 			}
 		}
 	}
-
-
-	//UNUSED ABILITIES
-
-	"rage"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"neutrals/rage"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"     		"neutrals/rage"
-
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"4"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"damage_bonus"		"20"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"damage_duration"	"5 6 7 8"
-			}
-		}
-	}
-
-	"critical"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"neutrals/critical"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"     		"neutrals/critical"
-
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"MaxLevel"               		"4"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"crit_chance"	"20 25 30 35"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"crit_bonus"	"225 250 275 300"
-			}
-		}
-	}
-
 }

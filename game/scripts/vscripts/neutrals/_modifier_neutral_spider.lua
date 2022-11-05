@@ -37,7 +37,7 @@ function _modifier_neutral_spider:DeclareFunctions()
 end
 
 function _modifier_neutral_spider:GetModifierMoveSpeedBonus_Percentage()
-	return -50
+	return -40
 end
 
 function _modifier_neutral_spider:OnIntervalThink()

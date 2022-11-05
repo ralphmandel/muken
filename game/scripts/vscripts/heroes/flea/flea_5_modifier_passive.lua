@@ -41,8 +41,6 @@ function flea_5_modifier_passive:OnAttackLanded(keys)
 	if self.parent:PassivesDisabled() then return end
 	if keys.target:HasModifier("flea_5_modifier_desolator") then return end
 
-	self:Tests(keys.target)
-
 	local chance = self.ability:GetSpecialValueFor("chance")
 	local duration = self.ability:GetSpecialValueFor("duration")
 

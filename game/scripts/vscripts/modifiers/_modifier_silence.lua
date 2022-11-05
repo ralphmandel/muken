@@ -34,6 +34,8 @@ function _modifier_silence:OnCreated( kv )
 			path = "particles/basics/silence.vpcf"
 		elseif str == 2 then
 			path = "particles/basics/silence__red.vpcf"
+		elseif str == 3 then
+			path = "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf"
 		end
 		
 		self:PlayEfxStart(path)
@@ -57,7 +59,7 @@ end
 --------------------------------------------------------------------------------
 
 -- function _modifier_silence:GetEffectName()
--- 	return "particles/econ/items/drow/drow_arcana/drow_arcana_silenced.vpcf"
+-- 	return self.pfx
 -- end
 
 -- function _modifier_silence:GetEffectAttachType()
@@ -68,7 +70,8 @@ function _modifier_silence:PlayEfxStart(path)
 	if path == nil then return end
 
     self.effect = ParticleManager:CreateParticle(path, PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.effect, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControlEnt(self.effect, 0, self.parent, PATTACH_OVERHEAD_FOLLOW, "", Vector(0,0,0), true)
+	--ParticleManager:SetParticleControl(self.effect, 0, self.parent:GetOrigin())
 	
 	-- buff particle
 	self:AddParticle(

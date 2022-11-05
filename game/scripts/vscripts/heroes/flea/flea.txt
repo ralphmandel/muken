@@ -34,12 +34,12 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"10 10.4 10.8 11.2 11.6 12 12.4"
+				"duration"		"10"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"refresh"		"36"
+				"refresh"		"30 29 28 27 26 25 24"
 			}
             "03"
 			{
@@ -54,7 +54,7 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stats_bonus"   "4"
+				"stats_bonus"   "6"
 			}
 			"14"
 			{
@@ -133,10 +133,15 @@
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityCooldown"				"16 15.5 15 14.5 14 13.5 13"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"silence_duration"	"2 2.1 2.2 2.3 2.4 2.5 2.6"
+			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -151,11 +156,6 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"agi_mult"	    "3"
-			}
-            "06"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"silence_duration"	"2"
 			}
             "07"
 			{
@@ -193,7 +193,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"24"
+		"AbilityCooldown"				"45"
 		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
@@ -206,12 +206,12 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"8"
+				"duration"		"15"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"debuff_init"		"80"
+				"debuff_init"		"35"
 			}
             "04"
 			{

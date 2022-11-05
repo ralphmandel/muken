@@ -105,13 +105,13 @@ end
 
 function bocuse_2_modifier_debuff:AddBonusAmount(damage)
 	local amount_scale = self.ability:GetSpecialValueFor("amount_scale")
-	local result = self.bonus_amount + ((damage * 100) / self.parent:GetMaxHealthealth())
+	local result = self.bonus_amount + ((damage * 100) / self.parent:GetMaxHealth())
 	return result * amount_scale
 end
 
 function bocuse_2_modifier_debuff:ApplyDamage()
 	local min_amount = self.ability:GetSpecialValueFor("min_amount")
-	local amount = (min_amount + self.bonus_amount) * self.parent:GetMaxHealthealth() * 0.01
+	local amount = (min_amount + self.bonus_amount) * self.parent:GetMaxHealth() * 0.01
 
 	ApplyDamage({
 		victim = self.parent, attacker = self.caster,

@@ -223,7 +223,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stats"         "10"
+				"stats"         "7"
 			}
             "13"
 			{
@@ -341,7 +341,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_dominate"		"25"
+				"max_dominate"		"24"
 			}
             "11"
 			{

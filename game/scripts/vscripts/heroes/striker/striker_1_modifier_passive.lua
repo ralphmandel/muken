@@ -23,6 +23,7 @@ function striker_1_modifier_passive:OnCreated(kv)
 	self.last_hit_target = nil
 	self.sonicblow = false
 	self.sonic_mirror = false
+	self.illu_array = {}
 end
 
 function striker_1_modifier_passive:OnRefresh(kv)
@@ -57,6 +58,7 @@ end
 
 function striker_1_modifier_passive:OnUnitMoved(keys)
 	if keys.unit ~= self.parent then return end
+
 	self:CancelCombo(false)
 end
 
@@ -185,7 +187,15 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 		self.parent:RemoveModifierByNameAndCaster("striker_1_modifier_immune", self.caster)
 
 		if self.parent:IsIllusion() and self.sonic_mirror == true then
+			local caster_mod = self.owner:FindModifierByName("striker_1_modifier_passive")
+			for i = #caster_mod.illu_array, 1, -1 do
+				if caster_mod.illu_array[i] == self.parent then
+					table.remove(caster_mod.illu_array, i)
+				end
+			end
+
 			self.parent:Kill(self.ability, self.caster)
+			return
 		end
 	end
 
@@ -208,7 +218,7 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 
 	-- UP 1.21
 	if self.ability:GetRank(21) 
-	and RandomFloat(1, 100) <= 20 then
+	and RandomFloat(1, 100) <= 25 then
 		knockback_duration = 1
 		knockback_distance = 75
 	end
@@ -246,26 +256,28 @@ end
 
 function striker_1_modifier_passive:PerformMirrorSonic(number, target)
 	if self.parent:IsIllusion() then return end
-	if number == 0 then return end
 
+	if number <= 0 then return end
 	local enemies = FindUnitsInRadius(
-        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 500,
+        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 750,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
     )
 
-    for _,enemy in pairs(enemies) do
-		if number > 0 and enemy:IsHero()
-		and enemy ~= target then
-			self:CreateCopy(enemy)
-			number = number - 1			
-		end
-	end
-
 	for _,enemy in pairs(enemies) do
 		if number > 0 and enemy ~= target then
-			self:CreateCopy(enemy)
-			number = number - 1
+			local pass = true
+			for _,illu in pairs(self.illu_array) do
+				local passive = illu:FindModifierByName("striker_1_modifier_passive")
+				if passive.last_hit_target == enemy then
+					pass = false
+				end
+			end
+
+			if pass then
+				self:CreateCopy(enemy)
+				number = number - 1
+			end
 		end
 	end
 end
@@ -292,7 +304,10 @@ function striker_1_modifier_passive:CreateCopy(target)
 		local passive = illu:FindModifierByName("striker_1_modifier_passive")
 		passive.last_hit_target = target
 		passive.sonic_mirror = true
+		passive.owner = self.caster
 		passive:PerformBlink(target)
+
+		table.insert(self.illu_array, illu)
 	end	
 end
 

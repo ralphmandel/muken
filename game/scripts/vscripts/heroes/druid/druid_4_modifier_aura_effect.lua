@@ -20,7 +20,7 @@ function druid_4_modifier_aura_effect:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local stats = self.ability:GetSpecialValueFor("stats")
-	self.stats_string = {"_1_STR", "_1_AGI", "_1_INT", "_1_CON", "_2_DEF", "_2_DEX", "_2_LCK", "_2_RES", "_2_REC", "_2_MND"}
+	self.stats_string = {"_1_STR", "_1_AGI", "_1_CON"}
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then

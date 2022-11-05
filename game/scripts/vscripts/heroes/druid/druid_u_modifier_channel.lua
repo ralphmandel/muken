@@ -61,7 +61,7 @@ function druid_u_modifier_channel:OnIntervalThink()
 
 	-- UP 6.32
 	if self.ability:GetRank(32) then
-		max_dominate = max_dominate + 10
+		max_dominate = max_dominate + 8
 	end
 
 	local units = FindUnitsInRadius(

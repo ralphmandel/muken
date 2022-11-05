@@ -172,6 +172,7 @@
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts", context )
+			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_night_stalker.vsndevts", context )
 			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts", context )
@@ -488,11 +489,11 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
-			-- if time == -45 then
-			-- 	local spawned_unit = CreateUnitByName("neutral_skydragon", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-			-- 	local ai = spawned_unit:FindModifierByName("_modifier__ai")
-			-- 	if ai then ai.spot_origin = Vector(-300, -1000, 0) end
-			-- end
+			if time == -45 then
+				local spawned_unit = CreateUnitByName("neutral_spider", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+				local ai = spawned_unit:FindModifierByName("_modifier__ai")
+				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
+			end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end

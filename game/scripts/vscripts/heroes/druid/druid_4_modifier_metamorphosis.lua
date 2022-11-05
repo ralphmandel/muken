@@ -27,11 +27,15 @@ function druid_4_modifier_metamorphosis:GetAuraSearchTeam()
 end
 
 function druid_4_modifier_metamorphosis:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_CREEP
+	return DOTA_UNIT_TARGET_HERO
 end
 
 function druid_4_modifier_metamorphosis:GetAuraRadius()
 	return self:GetAbility():GetAOERadius()
+end
+
+function druid_4_modifier_metamorphosis:GetAuraEntityReject(hEntity)
+	return hEntity:IsHero()
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
@@ -148,7 +152,7 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 
 		ApplyDamage({
 			attacker = self.caster, victim = keys.target, ability = self.ability,
-			damage = self.parent:GetMaxHealthealth() * 0.04, damage_type = DAMAGE_TYPE_PHYSICAL
+			damage = self.parent:GetMaxHealth() * 0.04, damage_type = DAMAGE_TYPE_PHYSICAL
 		})
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
