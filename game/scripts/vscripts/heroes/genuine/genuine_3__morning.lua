@@ -117,44 +117,42 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-            DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
-        )
-
-        for _,enemy in pairs(enemies) do
-            self:PlayEfxStarfall(enemy)
-
-            Timers:CreateTimer((0.5), function()
-                if enemy ~= nil then
-                    if IsValidEntity(enemy) then
-                        self:ApplyStarfall(enemy)
-                    end
-                end
-            end)
-
-            number = number - 1
-            if number < 1 then return end
-        end
-
-        enemies = FindUnitsInRadius(
-            caster:GetTeamNumber(), caster:GetOrigin(), nil, FIND_UNITS_EVERYWHERE,
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 0, false
         )
 
         for _,enemy in pairs(enemies) do
-            self:PlayEfxStarfall(enemy)
+            if enemy:IsHero() then
+                self:PlayEfxStarfall(enemy)
 
-            Timers:CreateTimer((0.5), function()
-                if enemy ~= nil then
-                    if IsValidEntity(enemy) then
-                        self:ApplyStarfall(enemy)
+                Timers:CreateTimer((0.5), function()
+                    if enemy ~= nil then
+                        if IsValidEntity(enemy) then
+                            self:ApplyStarfall(enemy)
+                        end
                     end
-                end
-            end)
+                end)
 
-            number = number - 1
-            if number < 1 then return end
+                number = number - 1
+                if number < 1 then return end
+            end
+        end
+
+        for _,enemy in pairs(enemies) do
+            if enemy:IsHero() == false then
+                self:PlayEfxStarfall(enemy)
+
+                Timers:CreateTimer((0.5), function()
+                    if enemy ~= nil then
+                        if IsValidEntity(enemy) then
+                            self:ApplyStarfall(enemy)
+                        end
+                    end
+                end)
+
+                number = number - 1
+                if number < 1 then return end
+            end
         end
     end
 

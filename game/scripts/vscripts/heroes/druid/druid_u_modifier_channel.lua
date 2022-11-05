@@ -66,24 +66,26 @@ function druid_u_modifier_channel:OnIntervalThink()
 
 	local units = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.ability.point, nil, self.ability:GetAOERadius(),
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
 		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
 	)
 
 	for _,unit in pairs(units) do
-		local unit_lvl = unit:GetLevel()
-		local chance = 100 / (unit_lvl * chance_lvl)
+		if not unit:IsHero() then
+			local unit_lvl = unit:GetLevel()
+			local chance = 100 / (unit_lvl * chance_lvl)
 
-		if RandomFloat(1, 100) <= chance
-		and unit_lvl <= max_dominate
-		and unit:GetUnitName() ~= "summoner_spider" then
-			unit:Purge(false, true, false, false, false)
-			unit:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
-			
-			if IsServer() then unit:EmitSound("Druid.Finish") end
+			if RandomFloat(1, 100) <= chance
+			and unit_lvl <= max_dominate
+			and unit:GetUnitName() ~= "summoner_spider" then
+				unit:Purge(false, true, false, false, false)
+				unit:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
+				
+				if IsServer() then unit:EmitSound("Druid.Finish") end
+			end
+
+			break
 		end
-
-		break
 	end
 
 	-- UP 6.11

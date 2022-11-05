@@ -49,17 +49,6 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function icebreaker_1_modifier_hypo:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
-	}
-	return funcs
-end
-
-function icebreaker_1_modifier_hypo:GetModifierAttackSpeedBonus_Constant()
-	if self:GetParent():IsCreep() then return -self:GetStackCount() * 10 end
-end
-
 function icebreaker_1_modifier_hypo:OnIntervalThink()
 	self.damageTable.damage = self.parent:GetMaxHealthealth() * self.damage_mult
 	ApplyDamage(self.damageTable)

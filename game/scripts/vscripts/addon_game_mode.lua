@@ -518,14 +518,21 @@
 		function BattleArena:RespawnEnemies()
 			local time = GameRules:GetDOTATime(false, false)
 			local current_mobs = 0
-			local free_spots = {}
 
 			while current_mobs < 12 do
+				local free_spots = {}
+				local free_spot_index = 1
+				current_mobs = 0
+
 				for i = 1, 20, 1 do
 					local spot_blocked = self:IsSpotAlive(i)
 					if not spot_blocked then spot_blocked = self:IsSpotCooldown(i) end
-					if spot_blocked then current_mobs = current_mobs + 1 end
-					free_spots[i] = not spot_blocked
+					if spot_blocked then
+						current_mobs = current_mobs + 1
+					else
+						free_spots[free_spot_index] = i
+						free_spot_index = free_spot_index + 1
+					end
 				end
 
 				if current_mobs < 12 then
@@ -563,12 +570,7 @@
 		end
 
 		function BattleArena:CheckSpots(free_spots)
-			for i = 1, 20, 1 do
-				if free_spots[i] then
-					self:CreateMob(i)
-					return
-				end
-			end
+			self:CreateMob(free_spots[RandomInt(1, #free_spots)])
 		end
 
 		function BattleArena:CreateMob(spot)
