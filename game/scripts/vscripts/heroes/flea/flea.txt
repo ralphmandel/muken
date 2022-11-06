@@ -253,12 +253,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"5"
+				"chance"		"20"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"5"
+				"duration"		"15"
 			}
             "14"
 			{

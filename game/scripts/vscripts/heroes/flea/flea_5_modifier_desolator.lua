@@ -19,8 +19,6 @@ function flea_5_modifier_desolator:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.ability:AddBonus("_2_DEF", self.parent, -9999, 0, nil)
-
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -32,6 +30,17 @@ function flea_5_modifier_desolator:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function flea_5_modifier_desolator:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+	}
+
+	return funcs
+end
+
+function flea_5_modifier_desolator:OnTakeDamage(keys)
+end
 
 -- UTILS -----------------------------------------------------------
 
