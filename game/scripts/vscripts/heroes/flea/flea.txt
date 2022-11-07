@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/flea/flea_1__precision"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_precision"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -39,7 +39,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"refresh"		"30 29 28 27 26 25 24"
+				"refresh"		"30 29.5 29 28.5 28 27.5 27 26.5 26 25.5 25 24.5 24 23.5"
 			}
             "03"
 			{
@@ -64,7 +64,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
 			}
 		}
 	}
@@ -75,7 +75,7 @@
 		"ScriptFile"            		"heroes/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_speed"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -101,12 +101,12 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"min_speed"		"200"
+				"min_speed"		"175"
 			}
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"regen"		    "20"
+				"regen"		    "10"
 			}
             "14"
 			{
@@ -116,7 +116,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13"
 			}
 		}
 	}
@@ -140,17 +140,17 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"silence_duration"	"2 2.1 2.2 2.3 2.4 2.5 2.6"
+				"silence_duration"	"2.4 2.6 2.8 3 3.2 3.4 3.6"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_mult"	"4"
+				"speed_mult"	"2.5"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"distance_mult"	"3.25"
+				"distance_mult"	"2"
 			}
             "05"
 			{
@@ -165,7 +165,7 @@
             "08"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius_impact"	"325"
+				"radius_impact"	"275"
 			}
             "14"
 			{
@@ -181,19 +181,19 @@
 	}
 
 	"flea_4__smoke"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/flea/flea_4__smoke"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_smoke"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"40"
 		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
@@ -201,17 +201,17 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"		"400 410 420 430 440 450 460"
+				"radius"		"375 385 395 405 415 425 435 445 455 465 475"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"15"
+				"duration"		"12"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"debuff_init"		"35"
+				"debuff_init"		"50"
 			}
             "04"
 			{
@@ -231,7 +231,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -242,7 +242,7 @@
 		"ScriptFile"            		"heroes/flea/flea_5__desolator"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_desolator"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -253,12 +253,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"20"
+				"chance"		"5"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"15"
+				"duration"		"5"
 			}
             "14"
 			{
@@ -268,7 +268,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -279,31 +279,39 @@
 		"ScriptFile"            		"heroes/flea/flea_u__weakness"
 		"AbilityTextureName"     		"flea_weakness"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"				"0"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_stack"		    "6"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"target_duration"   "30"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"caster_duration"   "10"
+			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "100"
+				"manacost"		    "0"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19"
 			}
 		}
 	}

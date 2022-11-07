@@ -489,11 +489,11 @@
 			self.event_time = math.floor(time)
 
 			if time == -40 then self:EventPreBounty() end
-			if time == -45 then
-				local spawned_unit = CreateUnitByName("neutral_spider", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-				local ai = spawned_unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = Vector(-300, -1000, 0) end
-			end
+			-- if time == -45 then
+			-- 	local spawned_unit = CreateUnitByName("neutral_spider", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
+			-- 	local ai = spawned_unit:FindModifierByName("_modifier__ai")
+			-- 	if ai then ai.spot_origin = Vector(-300, -1000, 0) end
+			-- end
 			if includeNegativeTime then return end
 
 			if time == 0 then self:EventBountyRune() return end

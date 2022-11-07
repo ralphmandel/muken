@@ -74,6 +74,21 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     end
 
     function flea_2__speed:CheckAbilityCharges(charges)
+        -- UP 2.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
+        -- UP 2.21
+        if self:GetRank(21) then
+            charges = charges * 3
+        end
+
+        -- UP 2.31
+        if self:GetRank(31) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

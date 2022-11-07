@@ -4,6 +4,7 @@ LinkLuaModifier("flea_1_modifier_gesture", "heroes/flea/flea_1_modifier_gesture"
 LinkLuaModifier("flea_1_modifier_precision", "heroes/flea/flea_1_modifier_precision", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_1_modifier_precision_stack", "heroes/flea/flea_1_modifier_precision_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_1_modifier_precision_status_efx", "heroes/flea/flea_1_modifier_precision_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_dark_pact", "heroes/flea/flea_1_modifier_dark_pact", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -81,8 +82,18 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
         caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 
+        -- UP 1.11
+        if self:GetRank(11) then
+            caster:AddNewModifier(caster, self, "flea_1_modifier_dark_pact", {})
+        end
+
         Timers:CreateTimer(0.15, function()
             if caster:IsAlive() then
+                -- UP 1.21
+                if self:GetRank(21) then
+                    caster:Purge(false, true, false, true, false)
+                end
+
                 caster:AddNewModifier(caster, self, "flea_1_modifier_precision", {})
                 if IsServer() then caster:EmitSound("Fleaman.Precision") end
             end

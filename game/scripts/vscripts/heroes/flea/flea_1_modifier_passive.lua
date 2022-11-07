@@ -39,6 +39,11 @@ function flea_1_modifier_passive:OnStackCountChanged(old)
 	local charges = self.ability:GetSpecialValueFor("charges")
 	local refresh = self.ability:GetSpecialValueFor("refresh")
 
+	-- UP 1.32
+	if self.ability:GetRank(32) then
+		charges = charges + 1
+	end
+
 	if self:GetStackCount() == 0 then
 		self.ability:StartCooldown(refresh)
 		self:StartIntervalThink(-1)
@@ -56,6 +61,12 @@ end
 
 function flea_1_modifier_passive:ResetCharges()
 	local charges = self.ability:GetSpecialValueFor("charges")
+
+	-- UP 1.32
+	if self.ability:GetRank(32) then
+		charges = charges + 1
+	end
+
 	self:SetStackCount(charges)
 end
 

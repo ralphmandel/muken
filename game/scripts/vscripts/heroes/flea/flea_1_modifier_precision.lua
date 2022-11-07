@@ -38,12 +38,32 @@ end
 function flea_1_modifier_precision:OnRemoved()
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_DEX", self.parent)
+	self.ability:RemoveBonus("_2_LCK", self.parent)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", false) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function flea_1_modifier_precision:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+
+	return funcs
+end
+
+function flea_1_modifier_precision:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+
+	-- UP 1.41
+	if self.ability:GetRank(41) then
+		self:BurnMana(keys.target)
+	end
+end
 
 function flea_1_modifier_precision:OnStackCountChanged(iStackCount)
 	if iStackCount == self:GetStackCount() then return end
@@ -72,8 +92,35 @@ function flea_1_modifier_precision:ApplyBuff()
 
 	self.ability:RemoveBonus("_1_AGI", self.parent)
 	self.ability:RemoveBonus("_2_DEX", self.parent)
+	self.ability:RemoveBonus("_2_LCK", self.parent)
 	self.ability:AddBonus("_1_AGI", self.parent, stats_total, 0, nil)
 	self.ability:AddBonus("_2_DEX", self.parent, stats_total, 0, nil)
+
+	-- UP 1.31
+	if self.ability:GetRank(31) then
+		self.ability:AddBonus("_2_LCK", self.parent, stats_total, 0, nil)
+	end
+end
+
+function flea_1_modifier_precision:BurnMana(target)
+	if target:IsAlive() == false then return end
+	if target:IsMagicImmune() then return end
+
+	local init_mana = target:GetMana()
+	target:ReduceMana(init_mana * 0.04)
+	local mana_burn = init_mana - target:GetMana()
+
+	if mana_burn > 0 then
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, mana_burn, self.caster)
+
+		ApplyDamage({
+			damage = mana_burn * 0.5,
+            attacker = self.caster,
+            victim = target,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self.ability
+		})
+	end
 end
 
 -- EFFECTS -----------------------------------------------------------

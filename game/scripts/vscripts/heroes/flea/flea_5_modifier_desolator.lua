@@ -26,20 +26,20 @@ function flea_5_modifier_desolator:OnRefresh(kv)
 end
 
 function flea_5_modifier_desolator:OnRemoved()
-	self.ability:RemoveBonus("_2_DEF", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function flea_5_modifier_desolator:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR
 	}
 
 	return funcs
 end
 
-function flea_5_modifier_desolator:OnTakeDamage(keys)
+function flea_5_modifier_desolator:GetModifierIgnorePhysicalArmor()
+	return 1
 end
 
 -- UTILS -----------------------------------------------------------

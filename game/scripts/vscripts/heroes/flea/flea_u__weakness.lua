@@ -1,6 +1,7 @@
 flea_u__weakness = class({})
 LinkLuaModifier("flea_u_modifier_passive", "heroes/flea/flea_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_u_modifier_weakness", "heroes/flea/flea_u_modifier_weakness", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_target", "heroes/flea/flea_u_modifier_target", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_caster", "heroes/flea/flea_u_modifier_caster", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,6 +62,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- SPELL START
+
+    function flea_u__weakness:GetIntrinsicModifierName()
+        return "flea_u_modifier_passive"
+    end
 
     function flea_u__weakness:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")

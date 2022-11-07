@@ -19,13 +19,12 @@ function flea_3_modifier_jump:OnCreated( kv )
 	self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local movespeed = self.parent:GetIdealSpeed() - 175
-	if movespeed < 25 then movespeed = 25 end
+	local movespeed = self.parent:GetIdealSpeed()
 
-	local jump_speed = ((self.ability:GetSpecialValueFor("speed_mult") * movespeed)) + 150
+	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") * movespeed
 	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") * movespeed
 	local duration = jump_distance/jump_speed
-	local height = 160
+	local height = 80 + math.floor(movespeed / 3)
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.radius_impact = self.ability:GetSpecialValueFor("radius_impact")
@@ -148,5 +147,5 @@ function flea_3_modifier_jump:PlayEfxStart(duration)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then self.parent:EmitSound("Hero_Slark.Pounce.Cast.Immortal") end
-	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_SLARK_POUNCE, (0.68 / duration))
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_SLARK_POUNCE, (0.85 / duration))
 end

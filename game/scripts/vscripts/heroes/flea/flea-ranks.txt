@@ -26,6 +26,7 @@
 			"2"
 			{
 				"1"   "flea_1__precision_rank_31"
+				"2"   "flea_1__precision_rank_32"
 			}
 			"3"
 			{
@@ -37,6 +38,7 @@
 			"0"
 			{
 				"1"   "flea_2__speed_rank_11"
+				"2"   "flea_2__speed_rank_12"
 			}
 			"1"
 			{
@@ -48,7 +50,7 @@
 			}
 			"3"
 			{
-				"1"   "flea_2__speed_rank_41"
+				"1"   "empty"
 			}
 		}
 		"flea_3__jump"
@@ -56,18 +58,20 @@
 			"0"
 			{
 				"1"   "flea_3__jump_rank_11"
+				"2"   "flea_3__jump_rank_12"
 			}
 			"1"
 			{
 				"1"   "flea_3__jump_rank_21"
+				"2"   "flea_3__jump_rank_22"
 			}
 			"2"
 			{
-				"1"   "flea_3__jump_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "flea_3__jump_rank_41"
+				"1"   "empty"
 			}
 		}
 		"flea_4__smoke"
@@ -75,14 +79,16 @@
 			"0"
 			{
 				"1"   "flea_4__smoke_rank_11"
+				"2"   "flea_4__smoke_rank_12"
 			}
 			"1"
 			{
 				"1"   "flea_4__smoke_rank_21"
+				"2"   "flea_4__smoke_rank_22"
 			}
 			"2"
 			{
-				"1"   "flea_4__smoke_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -93,19 +99,21 @@
 		{
 			"0"
 			{
-				"1"   "flea_5__desolator_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "flea_5__desolator_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "flea_5__desolator_rank_31"
+				"2"   "flea_5__desolator_rank_32"
 			}
 			"3"
 			{
 				"1"   "flea_5__desolator_rank_41"
+				"2"   "flea_5__desolator_rank_42"
 			}
 		}
 		"flea_u__weakness"
