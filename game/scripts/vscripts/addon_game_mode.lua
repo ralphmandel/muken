@@ -582,9 +582,11 @@
 
 		function BattleArena:RandomizeTier()
 			local time = GameRules:GetDOTATime(false, false)
+			local start_time = 100
+			if GetMapName() == "arena_turbo" then start_time = 300 end
 
 			for i = 4, 2, -1 do
-				local chance = ((time + 100)/ i) * 0.1
+				local chance = ((time + start_time)/ i) * 0.1
 				if chance > 75 then chance = 75 end
 				if RandomFloat(1, 100) <= chance then
 					return i

@@ -1,4 +1,5 @@
 flea_3__jump = class({})
+LinkLuaModifier("flea_3_modifier_passive", "heroes/flea/flea_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_3_modifier_jump", "heroes/flea/flea_3_modifier_jump", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_3_modifier_effect", "heroes/flea/flea_3_modifier_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_3_modifier_attack", "heroes/flea/flea_3_modifier_attack", LUA_MODIFIER_MOTION_NONE)
@@ -68,6 +69,10 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         self:SetActivated(true)
     end
 
+    function flea_3__jump:GetIntrinsicModifierName()
+        return "flea_3_modifier_passive"
+    end
+
     function flea_3__jump:OnSpellStart()
         local caster = self:GetCaster()
         self.point = self:GetCursorPosition()
@@ -75,6 +80,34 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
         ProjectileManager:ProjectileDodge(caster)
         caster:RemoveModifierByName("flea_3_modifier_jump")
         caster:AddNewModifier(caster, self, "flea_3_modifier_jump", {})
+    end
+
+    function flea_3__jump:FindTargets(radius_impact, point)
+        local caster = self:GetCaster()
+        local mod = caster:AddNewModifier(caster, self, "flea_3_modifier_attack", {})
+
+        local enemies = FindUnitsInRadius(
+            caster:GetTeamNumber(), point, nil, radius_impact,
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+        )
+    
+        for _,enemy in pairs(enemies) do
+            if enemy:HasModifier("bloodstained_u_modifier_copy") == false
+            and enemy:IsIllusion() then
+                enemy:ForceKill(false)
+            else
+                caster:PerformAttack(enemy, false, true, true, true, false, false, false)
+            end
+        end
+    
+        mod:Destroy()
+    end
+
+    function flea_3__jump:GetBehavior()
+        local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+        if self:GetCurrentAbilityCharges() % 2 == 0 then behavior = behavior + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE end
+        return behavior
     end
 
     function flea_3__jump:GetManaCost(iLevel)
@@ -85,6 +118,11 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
     end
 
     function flea_3__jump:CheckAbilityCharges(charges)
+        -- UP 3.11
+        if self:GetRank(11) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

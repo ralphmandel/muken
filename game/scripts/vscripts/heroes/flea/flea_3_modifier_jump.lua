@@ -20,7 +20,6 @@ function flea_3_modifier_jump:OnCreated( kv )
     self.ability = self:GetAbility()
 
 	local movespeed = self.parent:GetIdealSpeed()
-
 	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") * movespeed
 	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") * movespeed
 	local duration = jump_distance/jump_speed
@@ -28,6 +27,11 @@ function flea_3_modifier_jump:OnCreated( kv )
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.radius_impact = self.ability:GetSpecialValueFor("radius_impact")
+
+	-- UP 3.12
+	if self.ability:GetRank(12) then
+		self.radius_impact = self.radius_impact + 75
+	end
 
 	self.arc = self.parent:AddNewModifier(
 		self.parent, self.ability,
@@ -105,25 +109,21 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_3_modifier_jump:PerformImpact()
-	local mod = self.parent:AddNewModifier(self.caster, self.ability, "flea_3_modifier_attack", {})
 	self.parent:FadeGesture(ACT_DOTA_SLARK_POUNCE)
 
-	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius_impact,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0, 0, false
-	)
+	local point = self.parent:GetOrigin()
+	local ability = self.ability
+	local radius_impact = self.radius_impact
 
-	for _,enemy in pairs(enemies) do
-		if enemy:HasModifier("bloodstained_u_modifier_copy") == false
-		and enemy:IsIllusion() then
-			enemy:ForceKill(false)
-		else
-			self.parent:PerformAttack(enemy, false, true, true, true, false, false, false)
-		end
+	ability:FindTargets(radius_impact, point)
+
+	-- UP 3.22
+	if self.ability:GetRank(22) then
+		-- TIMERS
+        Timers:CreateTimer(0.75, function()
+            ability:FindTargets(radius_impact, point)
+        end)
 	end
-
-	mod:Destroy()
 
 	CreateModifierThinker(
 		self.caster, self.ability, "flea_3_modifier_effect", {duration = 2, radius = self.radius_impact},

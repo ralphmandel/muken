@@ -25,7 +25,7 @@ function flea_2_modifier_speed:OnCreated(kv)
 
 	-- UP 2.12
 	if self.ability:GetRank(12) then
-		self.max_speed = self.max_speed + 10
+		self.max_speed = self.max_speed + 15
 	end
 
 	self:IncreaseSpeed()
@@ -36,7 +36,7 @@ function flea_2_modifier_speed:OnRefresh(kv)
 
 	-- UP 2.12
 	if self.ability:GetRank(12) then
-		self.max_speed = self.max_speed + 10
+		self.max_speed = self.max_speed + 15
 	end
 
 	self.speed = self.speed + self.speed_hit
