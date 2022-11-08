@@ -54,6 +54,7 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
     if not (keys.attacker == self.parent) then return end
     if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
     if self.parent:PassivesDisabled() then return end
+	if self.parent:HasModifier("bocuse_u_modifier_rage") then return end
 
     -- UP 6.32
     if self.ability:GetRank(32) and RandomFloat(1, 100) <= 10 then

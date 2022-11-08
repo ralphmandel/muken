@@ -81,5 +81,5 @@ function flea_4_modifier_smoke:PlayEfxStart(radius)
 	ParticleManager:SetParticleControl(particle_2, 10, Vector(self:GetDuration(), 0, 0))
 	self:AddParticle(particle_2, false, false, -1, false, false)
 
-	if IsServer() then self.caster:EmitSound("Hero_Riki.Smoke_Screen.ti8") end
+	if IsServer() then self.parent:EmitSound("Hero_Riki.Smoke_Screen.ti8") end
 end

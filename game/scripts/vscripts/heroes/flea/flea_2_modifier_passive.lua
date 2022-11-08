@@ -72,7 +72,7 @@ function flea_2_modifier_passive:OnAttackLanded(keys)
 
 	-- UP 2.31
 	if self.ability:GetRank(31) then
-		duration = duration + 4
+		duration = duration + 3
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "flea_2_modifier_speed", {

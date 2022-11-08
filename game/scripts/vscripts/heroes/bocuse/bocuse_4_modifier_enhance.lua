@@ -81,7 +81,7 @@ function bocuse_4_modifier_enhance:OnAttacked(keys)
 
 	-- UP 4.31
 	if self.ability:GetRank(31) then
-		local heal = keys.original_damage * 0.25
+		local heal = keys.original_damage * 0.2
 		keys.attacker:Heal(heal, self.ability)
 		self:PlayEfxLifesteal(keys.attacker)
 	end

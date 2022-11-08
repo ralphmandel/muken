@@ -72,6 +72,8 @@ end
 function bocuse_u_modifier_rage:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_DEATH,
         MODIFIER_EVENT_ON_STATE_CHANGED
@@ -82,6 +84,24 @@ end
 
 function bocuse_u_modifier_rage:GetModifierStatusResistanceStacking()
 	return self.status
+end
+
+function bocuse_u_modifier_rage:GetModifierProcAttack_BonusDamage_Physical()
+	return self.extra_damage
+end
+
+function bocuse_u_modifier_rage:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+
+	-- UP 6.21
+	if self.ability:GetRank(21) then
+		self:ApplyBleeding(keys.target)
+	end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		self:ApplyStun(keys.target)
+	end
 end
 
 function bocuse_u_modifier_rage:OnOrder(keys)
@@ -234,36 +254,8 @@ function bocuse_u_modifier_rage:HitTarget(target, direction)
 	if target:IsInvulnerable() then return end
 	if target:IsAttackImmune() then return end
 
-	local damage_min = self.ability:GetSpecialValueFor("damage_min")
-    local damage_max = self.ability:GetSpecialValueFor("damage_max")
-
-	ApplyDamage({
-		damage = RandomInt(damage_min, damage_max) + self.extra_damage,
-		attacker = self.parent, victim = target,
-		damage_type = self.ability:GetAbilityDamageType(),
-		ability = self.ability
-	})
-
-	self:ApplyMark(target)
+	self.parent:PerformAttack(target, false, true, true, false, false, false, true)
 	self:PlayEfxHit(target, self.parent:GetOrigin(), direction)
-
-	-- UP 6.21
-	if self.ability:GetRank(21) then
-		self:ApplyBleeding(target)
-	end
-
-	-- UP 6.41
-	if self.ability:GetRank(41) then
-		self:ApplyStun(target)
-	end
-end
-
-function bocuse_u_modifier_rage:ApplyMark(target)
-	local mark = self.parent:FindAbilityByName("bocuse_3__mark")
-	if mark == nil then return end
-	if mark:IsTrained() == false then return end
-	
-	mark:ApplyMark(target)
 end
 
 function bocuse_u_modifier_rage:ApplyBleeding(target)
@@ -278,7 +270,7 @@ function bocuse_u_modifier_rage:ApplyStun(target)
 	if target:IsAlive() == false then return end
 
 	if RandomFloat(1, 100) <= 50 then
-		target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
+		target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.2})
 	end
 end
 

@@ -192,13 +192,14 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"				"1.5"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"init_duration"		"7.5"
+				"init_duration"		"9"
 			}
             "02"
 			{
@@ -213,7 +214,7 @@
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage_stack"  "10"
+				"damage_stack"  "15"
 			}
             "05"
 			{
@@ -364,11 +365,9 @@
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-
 		"AbilityCastAnimation"   		""
-		"AbilityCooldown"				"37"
+		"AbilityCooldown"				"36"
 
 		"AbilitySpecial"
 		{
@@ -377,20 +376,10 @@
 				"var_type"			"FIELD_FLOAT"
 				"angle"				"60"
 			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"damage_min"		"25"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"damage_max"		"35"
-			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"7"
+				"duration"			"6"
 			}
             "05"
 			{
@@ -400,7 +389,7 @@
             "06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"speed_mult"		"100 102.5 105 107.5 110 112.5 115 117.5 120 122.5 125 127.5 130 132.5 135"
+				"speed_mult"		"100 101.5 103 104.5 106 107.5 109 110.5 112 113.5 115 116.5 118 119.5 121"
 			}
             "14"
 			{

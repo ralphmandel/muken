@@ -130,9 +130,9 @@ function bocuse_3_modifier_mark:ChangeDuration()
 		slow = slow + 25
 	end
 	
-	-- UP 3.41
-	if self.ability:GetRank(41) then
-		damage_stack = damage_stack + 8
+	-- UP 3.31
+	if self.ability:GetRank(31) then
+		damage_stack = damage_stack + 10
 	end
 
 	ApplyDamage({
@@ -146,9 +146,9 @@ function bocuse_3_modifier_mark:ChangeDuration()
 			percent = slow
 		})
 
-		-- UP 3.31
-		if self.ability:GetRank(31) then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {
+		-- UP 3.41
+		if self.ability:GetRank(41) then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
 				duration = self:GetRemainingTime()
 			})
 		end

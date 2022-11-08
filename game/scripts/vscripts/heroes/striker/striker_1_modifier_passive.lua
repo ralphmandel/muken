@@ -259,7 +259,7 @@ function striker_1_modifier_passive:PerformMirrorSonic(number, target)
 
 	if number <= 0 then return end
 	local enemies = FindUnitsInRadius(
-        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 750,
+        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 500,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
     )

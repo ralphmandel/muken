@@ -45,7 +45,8 @@ function flea_4_modifier_passive:OnAttackLanded(keys)
 	-- UP 4.22
 	if self.ability:GetRank(22)
 	and RandomFloat(1, 100) <= 10 then
-		
+		self.parent:AddNewModifier(self.caster, self.ability, "flea_4_modifier_invi", {duration = 1})
+		self.parent:MoveToTargetToAttack(keys.target)
 	end
 end
 

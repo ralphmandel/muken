@@ -192,7 +192,7 @@ function _modifier__ai:OnAttackLanded(keys)
     if self.unit:GetUnitName() == "neutral_basic_gargoyle" then sound = "Hero_LoneDruid.ProjectileImpact" end
     if self.unit:GetUnitName() == "neutral_basic_gargoyle_b" then sound = "Hero_LoneDruid.ProjectileImpact" end
 
-	if IsServer() then self.unit:EmitSound(sound) end
+	if IsServer() then keys.target:EmitSound(sound) end
 end
 
 function _modifier__ai:GetAttackSound(keys)

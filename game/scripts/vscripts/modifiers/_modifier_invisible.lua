@@ -26,6 +26,12 @@ function _modifier_invisible:OnCreated( kv )
 	self.attack_break = (kv.attack_break == 1)
 
 	if IsServer() then
+		if kv.delay == 0 then
+			self.hidden = true
+		else
+			self:StartIntervalThink(kv.delay)
+		end
+
 		local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
 		if cosmetics then
 			for i = 1, #cosmetics.cosmetic, 1 do
@@ -34,12 +40,6 @@ function _modifier_invisible:OnCreated( kv )
 				)
 			end
 		end
-
-		if kv.delay == 0 then
-			self.hidden = true
-		else
-			self:StartIntervalThink( kv.delay )
-		end		
 	end
 end
 

@@ -106,7 +106,7 @@ require("talent_tree")
 
 		if IsInToolsMode() then
 			-- if self:GetCaster():GetUnitName() == "npc_dota_hero_dawnbreaker" then
-			-- 	state_ranks = true
+			-- state_ranks = true
 			-- end
 		end
 		

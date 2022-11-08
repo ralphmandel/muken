@@ -37,3 +37,11 @@ function _modifier_disarm:CheckState()
 end
 
 --------------------------------------------------------------------------------
+
+function _modifier_disarm:GetEffectName()
+	return "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf"
+end
+
+function _modifier_disarm:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

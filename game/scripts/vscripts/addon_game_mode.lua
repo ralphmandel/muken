@@ -47,6 +47,7 @@
 				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 				
 				PrecacheResource( "particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
+				PrecacheResource( "particle", "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf", context)
 				PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
 				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
 				PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )

@@ -38,11 +38,3 @@ function _modifier_invisible_cosmetics:GetModifierInvisibilityLevel()
 end
 
 -----------------------------------------------------------
-
-function _modifier_invisible_cosmetics:GetEffectName()
-	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
-end
-
-function _modifier_invisible_cosmetics:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end

@@ -172,7 +172,7 @@ function _boss_modifier__ai:OnAttackLanded(keys)
     local sound = ""
     if self.unit:GetUnitName() == "boss_gorillaz" then sound = "Hero_LoneDruid.TrueForm.Attack" end
 
-	if IsServer() then self.unit:EmitSound(sound) end
+	if IsServer() then keys.target:EmitSound(sound) end
 end
 
 function _boss_modifier__ai:GetAttackSound(keys)

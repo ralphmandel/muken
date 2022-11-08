@@ -58,7 +58,7 @@ end
 
 function base_hero_mod:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	if IsServer() then self.parent:EmitSound(self.attack_landed_sound) end
+	if IsServer() then keys.target:EmitSound(self.attack_landed_sound) end
 end
 
 function base_hero_mod:GetAttackSound(keys)

@@ -102,5 +102,5 @@ function flea_u_modifier_passive:PlayEfxHit(target)
 	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin() + Vector(0, 0, 64))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	if IsServer() then self.parent:EmitSound("Hero_BountyHunter.Jinada") end
+	if IsServer() then target:EmitSound("Hero_BountyHunter.Jinada") end
 end

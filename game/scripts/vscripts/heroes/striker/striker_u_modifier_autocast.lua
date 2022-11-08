@@ -194,33 +194,6 @@ function striker_u_modifier_autocast:CastHammer()
 	end
 end
 
--- function striker_u_modifier_autocast:CastDoppel()
--- 	local doppel = self:CheckAbility("striker_5__clone")
--- 	if doppel == nil then return end
-
--- 	local units = FindUnitsInRadius(
--- 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
--- 		doppel:GetCastRange(self.parent:GetOrigin(), nil),
--- 		doppel:GetAbilityTargetTeam(), doppel:GetAbilityTargetType(),
--- 		doppel:GetAbilityTargetFlags(), 0, false
--- 	)
-
---     for _,unit in pairs(units) do
--- 		if unit:HasModifier("striker_5_modifier_hero") == false
--- 		and unit ~= self.parent then
--- 			self.parent:SpendMana(self.manacost, doppel)
--- 			return doppel:PerformAbility(unit)
--- 		end
--- 	end
-
--- 	for _,unit in pairs(units) do
--- 		if unit ~= self.parent then
--- 			self.parent:SpendMana(self.manacost, doppel)
--- 			return doppel:PerformAbility(unit)
--- 		end
--- 	end
--- end
-
 function striker_u_modifier_autocast:CastEinSof()
 	local einsof = self:CheckAbility("striker_5__sof")
 	if einsof == nil then return end
