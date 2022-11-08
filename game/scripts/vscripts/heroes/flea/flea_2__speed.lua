@@ -50,7 +50,10 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[2][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            if self:GetLevel() == 1 then
+                base_hero:CheckSkills(1, self)
+                self.origin = self:GetCaster():GetOrigin()
+            end
         end
 
         self:CheckAbilityCharges(1)
@@ -64,6 +67,10 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function flea_2__speed:GetIntrinsicModifierName()
         return "flea_2_modifier_passive"
+    end
+
+    function flea_2__speed:OnOwnerSpawned()
+        self.origin = self:GetCaster():GetOrigin()
     end
 
     function flea_2__speed:GetManaCost(iLevel)

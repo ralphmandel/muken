@@ -18,6 +18,10 @@ function flea_2_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.ability.origin = self:GetParent():GetOrigin()
+	self.energy = 0
+
+	if IsServer() then self:StartIntervalThink(0.5) end
 end
 
 function flea_2_modifier_passive:OnRefresh(kv)
@@ -78,6 +82,28 @@ function flea_2_modifier_passive:OnAttackLanded(keys)
 	self.parent:AddNewModifier(self.caster, self.ability, "flea_2_modifier_speed", {
 		duration = self.ability:CalcStatus(duration, self.caster, self.parent)
 	})
+
+	if self.energy > 1000 then
+		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+			duration = self.ability:CalcStatus(self.energy / 2000, self.caster, keys.target)
+		})
+	end
+
+	self.energy = 0
+end
+
+function flea_2_modifier_passive:OnIntervalThink()
+	local distance = (self.ability.origin - self.parent:GetOrigin()):Length2D()
+	self.ability.origin = self.parent:GetOrigin()
+
+	-- UP 2.32
+	if self.ability:GetRank(32) then
+		self.energy = self.energy + distance
+		if self.energy > 7000 then self.energy = 7000 end
+		--self:UpdateEnergyEfx()
+	end
+
+	if IsServer() then self:StartIntervalThink(0.5) end
 end
 
 -- UTILS -----------------------------------------------------------

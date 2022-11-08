@@ -111,10 +111,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return (manacost * level) - 15 end
         return manacost * level
     end
 
     function flea_1__precision:CheckAbilityCharges(charges)
+        -- UP 1.41
+        if self:GetRank(41) then
+            charges = charges * 2
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

@@ -59,8 +59,8 @@ end
 function flea_1_modifier_precision:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
-	-- UP 1.41
-	if self.ability:GetRank(41) then
+	-- UP 1.32
+	if self.ability:GetRank(32) then
 		self:BurnMana(keys.target)
 	end
 end
@@ -107,19 +107,19 @@ function flea_1_modifier_precision:BurnMana(target)
 	if target:IsMagicImmune() then return end
 
 	local init_mana = target:GetMana()
-	target:ReduceMana(init_mana * 0.04)
+	target:ReduceMana(init_mana * 0.05)
 	local mana_burn = init_mana - target:GetMana()
 
 	if mana_burn > 0 then
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, mana_burn, self.caster)
 
-		ApplyDamage({
-			damage = mana_burn * 0.5,
-            attacker = self.caster,
-            victim = target,
-            damage_type = DAMAGE_TYPE_MAGICAL,
-            ability = self.ability
-		})
+		-- ApplyDamage({
+		-- 	damage = mana_burn * 0.5,
+        --     attacker = self.caster,
+        --     victim = target,
+        --     damage_type = DAMAGE_TYPE_MAGICAL,
+        --     ability = self.ability
+		-- })
 	end
 end
 

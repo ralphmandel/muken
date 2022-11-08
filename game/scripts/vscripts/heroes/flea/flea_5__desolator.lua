@@ -74,6 +74,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function flea_5__desolator:CheckAbilityCharges(charges)
+        -- UP 5.31
+        if self:GetRank(31) then
+            charges = charges * 2
+        end
+
+        -- UP 5.32
+        if self:GetRank(32) then
+            charges = charges * 3
+        end
+
+        -- UP 5.41
+        if self:GetRank(41) then
+            charges = charges * 5
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

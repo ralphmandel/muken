@@ -74,6 +74,13 @@ function item_tp:OnChannelFinish( bInterrupted )
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Disappear", caster)
 		FindClearSpaceForUnit(caster, self.location, true)
 		EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Portal.Hero_Appear", caster)
+		
+		local flea_speed = caster:FindAbilityByName("flea_2__speed")
+		if flea_speed then
+			if flea_speed:IsTrained() then
+				flea_speed.origin = self.location	
+			end
+		end
 
 		local playerID = caster:GetPlayerOwnerID()
 		if playerID ~= nil then

@@ -59,7 +59,7 @@
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"120"
+				"manacost"		"100"
 			}
 			"15"
 			{
@@ -75,7 +75,7 @@
 		"ScriptFile"            		"heroes/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_speed"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -116,7 +116,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -170,7 +170,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"130"
+				"manacost"		"125"
 			}
 			"15"
 			{
@@ -226,7 +226,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"140"
+				"manacost"		"175"
 			}
 			"15"
 			{
@@ -279,12 +279,12 @@
 		"ScriptFile"            		"heroes/flea/flea_u__weakness"
 		"AbilityTextureName"     		"flea_weakness"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"1.5"
 
 		"AbilitySpecial"
 		{
@@ -311,7 +311,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16 17 18 19"
+				"rank"				"9 10 11 12 13 14 15 16"
 			}
 		}
 	}

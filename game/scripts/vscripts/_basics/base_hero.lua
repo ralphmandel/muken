@@ -420,20 +420,12 @@ require("talent_tree")
 
 	function base_hero:CheckRequirements(talentName)
 		-- FLEAMAN
-			-- Fleaman 1.32 requires skill rank level 16
-			if talentName == "flea_1__precision_rank_32" then
+			-- Fleaman 1.41 requires skill rank level 15
+			if talentName == "flea_1__precision_rank_41" then
 				local precision = self:GetCaster():FindAbilityByName("flea_1__precision")
 				if precision == nil then return false end
 				if precision:IsTrained() == false then return false end
-				if precision:GetSpecialValueFor("rank") < 16 then return false end
-			end
-
-			-- Fleaman 6.41 requires skill rank level 15
-			if talentName == "flea_u__weakness_rank_41" then
-				local weakness = self:GetCaster():FindAbilityByName("flea_u__weakness")
-				if weakness == nil then return false end
-				if weakness:IsTrained() == false then return false end
-				if weakness:GetSpecialValueFor("rank") < 15 then return false end
+				if precision:GetSpecialValueFor("rank") < 15 then return false end
 			end
 
 		-- ANCIENT ONE

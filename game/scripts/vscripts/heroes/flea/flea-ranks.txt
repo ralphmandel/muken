@@ -47,6 +47,7 @@
 			"2"
 			{
 				"1"   "flea_2__speed_rank_31"
+				"2"   "flea_2__speed_rank_32"
 			}
 			"3"
 			{
@@ -128,7 +129,7 @@
 			}
 			"2"
 			{
-				"1"   "flea_u__weakness_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
