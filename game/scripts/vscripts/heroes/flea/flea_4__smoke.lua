@@ -1,4 +1,5 @@
 flea_4__smoke = class({})
+LinkLuaModifier("flea_4_modifier_passive", "heroes/flea/flea_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_4_modifier_smoke", "heroes/flea/flea_4_modifier_smoke", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_4_modifier_smoke_effect", "heroes/flea/flea_4_modifier_smoke_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
@@ -66,10 +67,19 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
 -- SPELL START
 
+    function flea_4__smoke:GetIntrinsicModifierName()
+        return "flea_4_modifier_passive"
+    end
+
     function flea_4__smoke:OnSpellStart()
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
         local point = self:GetCursorPosition()
+
+        -- UP 4.12
+        if self:GetRank(12) then
+            duration = duration + 3
+        end
 
         local smoke = CreateModifierThinker(
             caster, self, "flea_4_modifier_smoke", {duration = duration},
@@ -89,6 +99,16 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function flea_4__smoke:CheckAbilityCharges(charges)
+        -- UP 4.21
+        if self:GetRank(21) then
+            charges = charges * 2
+        end
+
+        -- UP 4.41
+        if self:GetRank(41) then
+            charges = charges * 3
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 

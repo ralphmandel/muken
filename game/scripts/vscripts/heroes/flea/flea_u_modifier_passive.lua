@@ -43,6 +43,7 @@ function flea_u_modifier_passive:OnAttackLanded(keys)
 	if keys.target:IsHero() == false then return end
 	if keys.attacker:IsAlive() == false or keys.target:IsAlive() == false then return end
 	if self.parent:PassivesDisabled() then return end
+	if self.ability:IsCooldownReady() == false then return end
 
 	local max_stack = self.ability:GetSpecialValueFor("max_stack")
 	local target_duration = self.ability:GetSpecialValueFor("target_duration")
@@ -60,6 +61,7 @@ function flea_u_modifier_passive:OnAttackLanded(keys)
 	})
 
 	self:AddTarget(keys.target)
+	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
 	if IsServer() then self:PlayEfxHit(keys.target) end
 end

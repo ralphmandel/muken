@@ -63,7 +63,7 @@ function flea_2_modifier_speed:CheckState()
 	if self:GetAbility():GetCurrentAbilityCharges() % 5 == 0 then
 		state = {
 			[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+			[MODIFIER_STATE_NO_UNIT_COLLISION] = true
 		}
 	end
 

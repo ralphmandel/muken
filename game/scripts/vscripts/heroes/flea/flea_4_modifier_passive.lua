@@ -1,34 +1,34 @@
-flea_3_modifier_passive = class({})
+flea_4_modifier_passive = class({})
 
-function flea_3_modifier_passive:IsHidden()
+function flea_4_modifier_passive:IsHidden()
 	return true
 end
 
-function flea_3_modifier_passive:IsPurgable()
+function flea_4_modifier_passive:IsPurgable()
 	return false
 end
 
-function flea_3_modifier_passive:IsDebuff()
+function flea_4_modifier_passive:IsDebuff()
 	return false
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function flea_3_modifier_passive:OnCreated(kv)
+function flea_4_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 end
 
-function flea_3_modifier_passive:OnRefresh(kv)
+function flea_4_modifier_passive:OnRefresh(kv)
 end
 
-function flea_3_modifier_passive:OnRemoved()
+function flea_4_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function flea_3_modifier_passive:DeclareFunctions()
+function flea_4_modifier_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
@@ -36,15 +36,16 @@ function flea_3_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function flea_3_modifier_passive:OnAttackLanded(keys)
+function flea_4_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:HasModifier("flea_4_modifier_smoke_effect") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	-- UP 3.21
-	if self.ability:GetRank(21)
-	and RandomFloat(1, 100) <= 2.5 then
-		self.ability:EndCooldown()
+	-- UP 4.22
+	if self.ability:GetRank(22)
+	and RandomFloat(1, 100) <= 10 then
+		
 	end
 end
 

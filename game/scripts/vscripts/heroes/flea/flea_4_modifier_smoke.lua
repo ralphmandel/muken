@@ -39,6 +39,10 @@ function flea_4_modifier_smoke:GetAuraSearchFlags()
 end
 
 function flea_4_modifier_smoke:GetAuraEntityReject(hEntity)
+	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then
+		return false	
+	end
+
 	if hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber()
 	and hEntity ~= self:GetCaster() then
 		return true
