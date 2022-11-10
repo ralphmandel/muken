@@ -20,6 +20,7 @@ function flea_u_modifier_passive:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	self.enemies = {}
+	if IsServer() then self:OnIntervalThink() end
 end
 
 function flea_u_modifier_passive:OnRefresh(kv)
@@ -49,6 +50,17 @@ function flea_u_modifier_passive:OnAttackLanded(keys)
 	local target_duration = self.ability:GetSpecialValueFor("target_duration")
 	local caster_duration = self.ability:GetSpecialValueFor("caster_duration")
 
+	-- UP 6.21
+	if self.ability:GetRank(21) then
+		target_duration = target_duration + 30
+		caster_duration = caster_duration + 5
+	end
+
+	-- UP 6.41
+	if self.ability:GetRank(41) then
+		max_stack = max_stack + 3
+	end
+
 	local target_mod = keys.target:FindModifierByNameAndCaster("flea_u_modifier_target", self.caster)
 	if target_mod then if target_mod:GetStackCount() >= max_stack then return end end
 
@@ -61,9 +73,18 @@ function flea_u_modifier_passive:OnAttackLanded(keys)
 	})
 
 	self:AddTarget(keys.target)
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	self.add_weakness = true
 
 	if IsServer() then self:PlayEfxHit(keys.target) end
+end
+
+function flea_u_modifier_passive:OnIntervalThink()
+	if self.add_weakness == true then
+		self.add_weakness = false
+		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	end
+
+	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
 
 -- UTILS -----------------------------------------------------------

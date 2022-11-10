@@ -175,8 +175,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function druid_u__conversion:CheckAbilityCharges(charges)
-        -- UP 6.31
-        if self:GetRank(31) then
+        -- UP 6.21
+        if self:GetRank(21) then
             local item_tp = self:GetCaster():FindItemInInventory("item_tp")
             if item_tp then
                 item_tp:SetCooldown(0)

@@ -2,6 +2,326 @@
 "DOTAUnits"
 {
 	"Version"	"1"
+	// SUMMONS
+		"tribal_ward"
+		{
+			"Model"						"models/items/witchdoctor/wd_ward/wd_father_of_spirits_death_ward/wd_father_of_spirits_death_ward.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"1"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+			"AttackRange"				"400"
+			"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
+			"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"160"
+			"ModelScale" 				"1"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"4"
+				}
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+		"npc_druid_treant_lv1"
+		{
+			"Model"						"models/items/furion/treant/np_desert_traveller_treant/np_desert_traveller_treant.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"1"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"175"
+			"ModelScale" 				"0.9"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"2"
+					"bonus_level"	"2"
+				}
+				"AGI"
+				{
+					"initial"	"2"
+					"bonus_level"	"2"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"4"
+				}
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+		"npc_druid_treant_lv2"
+		{
+			"Model"						"models/items/furion/treant/allfather_of_nature_treant/allfather_of_nature_treant.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"2"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"175"
+			"ModelScale" 				"1.2"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"AGI"
+				{
+					"initial"	"12"
+					"bonus_level"	"6"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"0"
+					"bonus_level"	"8"
+				}
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+		"npc_druid_treant_lv3"	
+		{
+			"Model"						"models/items/furion/treant/fungal_lord_shroomthing/fungal_lord_shroomthing.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"3"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"200"
+			"ModelScale" 				"1.5"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"250"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"				"50"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR"
+				{
+					"initial"	"12"
+					"bonus_level"	"5"
+				}
+				"AGI"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"INT"
+				{
+					"initial"	"0"
+					"bonus_level"	"0"
+				}
+				"CON"
+				{
+					"initial"	"7"
+					"bonus_level"	"12"
+				}
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
 
 	// LVL 16
 		"neutral_spider"
@@ -56,22 +376,22 @@
 				"STR"
 				{
 					"initial"	"0"
-					"bonus_level"	"20"
+					"bonus_level"	"25"
 				}
 				"AGI"
 				{
 					"initial"	"0"
-					"bonus_level"	"10"
+					"bonus_level"	"15"
 				}
 				"INT"
 				{
 					"initial"	"0"
-					"bonus_level"	"15"
+					"bonus_level"	"35"
 				}
 				"CON"
 				{
 					"initial"	"10"
-					"bonus_level"	"30"
+					"bonus_level"	"40"
 				}
 			}
 
@@ -221,11 +541,11 @@
 				"STR"
 				{
 					"initial"	"25"
-					"bonus_level"	"0"
+					"bonus_level"	"5"
 				}
 				"AGI"
 				{
-					"initial"	"10"
+					"initial"	"12"
 					"bonus_level"	"0"
 				}
 				"INT"
@@ -236,7 +556,7 @@
 				"CON"
 				{
 					"initial"	"0"
-					"bonus_level"	"22"
+					"bonus_level"	"32"
 				}
 			}
 
@@ -315,7 +635,7 @@
 				"INT"
 				{
 					"initial"	"10"
-					"bonus_level"	"20"
+					"bonus_level"	"25"
 				}
 				"CON"
 				{
@@ -398,7 +718,7 @@
 				"INT"
 				{
 					"initial"	"5"
-					"bonus_level"	"15"
+					"bonus_level"	"10"
 				}
 				"CON"
 				{
@@ -470,7 +790,7 @@
 				"STR"
 				{
 					"initial"	"0"
-					"bonus_level"	"10"
+					"bonus_level"	"5"
 				}
 				"AGI"
 				{
@@ -587,7 +907,7 @@
 	// LVL 4
 		"neutral_crocodile"	
 		{
-			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_ranged_mega.vmdl"	// Model.
+			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_ranged_mega.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -669,7 +989,7 @@
 	// LVL 3
 		"neutral_frostbitten"	
 		{
-			"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"	// Model.
+			"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -715,13 +1035,13 @@
 			{
 				"STR"
 				{
-					"initial"	"10"
-					"bonus_level"	"0"
+					"initial"	"9"
+					"bonus_level"	"5"
 				}
 				"AGI"
 				{
 					"initial"	"0"
-					"bonus_level"	"0"
+					"bonus_level"	"5"
 				}
 				"INT"
 				{
@@ -731,7 +1051,7 @@
 				"CON"
 				{
 					"initial"	"0"
-					"bonus_level"	"18"
+					"bonus_level"	"17"
 				}
 			}
 
@@ -750,7 +1070,7 @@
 	// LVL 2
 		"neutral_basic_crocodilian"	
 		{
-			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee_mega.vmdl"	// Model.
+			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee_mega.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -801,7 +1121,7 @@
 				}
 				"AGI"
 				{
-					"initial"	"0"
+					"initial"	"2"
 					"bonus_level"	"0"
 				}
 				"INT"
@@ -830,7 +1150,7 @@
 
 		"neutral_basic_crocodilian_b"	
 		{
-			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee.vmdl"	// Model.
+			"Model"						"models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -881,7 +1201,7 @@
 				}
 				"AGI"
 				{
-					"initial"	"0"
+					"initial"	"2"
 					"bonus_level"	"0"
 				}
 				"INT"
@@ -910,7 +1230,7 @@
 
 		"neutral_basic_gargoyle"	
 		{
-			"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"	// Model.			
+			"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -991,7 +1311,7 @@
 	// LVL 1
 		"neutral_basic_gargoyle_b"	
 		{
-			"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"	// Model.
+			"Model"						"models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -1071,7 +1391,7 @@
 
 		"neutral_basic_chameleon"	
 		{
-			"Model"						"models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee_mega.vmdl"	// Model.
+			"Model"						"models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee_mega.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -1151,7 +1471,7 @@
 
 		"neutral_basic_chameleon_b"	
 		{
-			"Model"						"models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee.vmdl"	// Model.
+			"Model"						"models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"

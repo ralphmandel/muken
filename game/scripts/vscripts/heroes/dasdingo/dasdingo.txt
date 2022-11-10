@@ -172,7 +172,7 @@
 
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"40"
 
 		"AbilitySpecial"
 		{
@@ -275,7 +275,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"initial_damage"	"120 125 130 135 140 145 150 155 160 165 170 175"
+				"initial_damage"	"100 105 110 115 120 125 130 135 140 145 150 155"
 			}
 			"02"
 			{
@@ -285,7 +285,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"amplification"		"8"
+				"amplification"		"5"
 			}
 			"04"
 			{
@@ -296,6 +296,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"tick_max"			"5"
+			}
+            "06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"fear_duration"		"2"
 			}
             "13"
 			{

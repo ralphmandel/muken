@@ -35,6 +35,10 @@ function item_rare_lacerator:GetIntrinsicModifierName()
 	return "item_rare_lacerator_mod_passive"
 end
 
+function item_rare_lacerator:Spawn()
+	self.stacks = 0
+end
+
 function item_rare_lacerator:OnAbilityPhaseStart()
 	if IsServer() then
 		local caster = self:GetCaster()

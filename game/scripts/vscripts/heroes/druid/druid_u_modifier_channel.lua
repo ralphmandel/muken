@@ -59,6 +59,11 @@ function druid_u_modifier_channel:OnIntervalThink()
 
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
+	-- UP 6.11
+	if self.ability:GetRank(11) then
+		self:ApplySlow()
+	end
+
 	-- UP 6.32
 	if self.ability:GetRank(32) then
 		max_dominate = max_dominate + 8
@@ -84,17 +89,13 @@ function druid_u_modifier_channel:OnIntervalThink()
 				if IsServer() then unit:EmitSound("Druid.Finish") end
 			end
 
-			break
+			if IsServer() then self:StartIntervalThink(self.interval) end
+			return
 		end
 	end
 
-	-- UP 6.11
-	if self.ability:GetRank(11) then
-		self:ApplySlow()
-	end
-
-	-- UP 6.21
-	if self.ability:GetRank(21) then
+	-- UP 6.31
+	if self.ability:GetRank(31) then
 		self:ConvertTrees()
 	end
 
@@ -146,9 +147,7 @@ function druid_u_modifier_channel:ConvertTrees()
 			tree:CutDown(self.parent:GetTeamNumber())
 
 			local treant = CreateUnitByName(treants[unit_lvl], origin, true, self.caster, self.caster, self.caster:GetTeamNumber())
-			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {
-				duration = self.ability:CalcStatus(60, self.caster, self.parent)
-			})
+			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})
 
 			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end
 		end

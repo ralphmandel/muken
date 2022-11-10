@@ -331,7 +331,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			if IsServer() then
 				self.primary_points = self.primary_points + primary
 				self.secondary_points = self.secondary_points + secondary
-				self:UpdatePanoramaPoints()
+				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints() end
 			end
 		end
 
@@ -352,6 +352,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:UpdatePanoramaPoints()
 			if IsServer() then
 				local player = self:GetCaster():GetPlayerOwner()
+				print(self:GetCaster():IsHero(), "nani")
 				if (not player) then return end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
@@ -522,6 +523,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				if ancient_mod then
 					if ancient_mod:GetStackCount() > 0 then attack_time = 2.5 else attack_time = 1 end
+				elseif caster:GetUnitName() == "tribal_ward" then
+					attack_time = 1.5
 				else
 					attack_time = self.base_attack_time
 				end

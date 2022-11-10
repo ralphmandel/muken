@@ -18,7 +18,7 @@ function mk_gorillaz_buff:OnCreated(kv)
 	self.bonus_damage = 0
 	if IsServer() then self.parent:EmitSound("Hero_LoneDruid.BattleCry.Bear") end
 
-	self.ability:AddBonus("_1_AGI", self.parent, 20, 0, nil)
+	self.ability:AddBonus("_1_AGI", self.parent, 25, 0, nil)
 end
 
 function mk_gorillaz_buff:OnRefresh(kv)
@@ -54,7 +54,7 @@ end
 
 function mk_gorillaz_buff:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	self.bonus_damage = self.bonus_damage + 25
+	self.bonus_damage = self.bonus_damage + 20
 end
 
 --------------------------------------------------------------------------------

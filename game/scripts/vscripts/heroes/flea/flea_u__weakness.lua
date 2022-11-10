@@ -67,6 +67,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return "flea_u_modifier_passive"
     end
 
+    function flea_u__weakness:OnHeroDiedNearby(unit, attacker, keys)
+        local caster = self:GetCaster()
+        if unit:GetTeamNumber() == caster:GetTeamNumber() then return end
+
+        local weakness = unit:FindModifierByNameAndCaster("flea_u_modifier_target", caster)
+        if weakness == nil then return end
+
+        -- UP 6.11
+        if self:GetRank(11) then
+            unit:SetTimeUntilRespawn(unit:GetRespawnTime() + weakness:GetStackCount() * 3)
+        end
+    end
+
     function flea_u__weakness:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))

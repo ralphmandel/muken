@@ -39,7 +39,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"refresh"		"30 29.5 29 28.5 28 27.5 27 26.5 26 25.5 25 24.5 24 23.5"
+				"refresh"		"36.5 36 35.5 35 34.5 34 33.5 33 32.5 32 31.5 31 30.5 30"
 			}
             "03"
 			{
@@ -193,7 +193,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"40"
+		"AbilityCooldown"				"45"
 		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
@@ -291,7 +291,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "5"
+				"max_stack"		    "7"
 			}
             "02"
 			{

@@ -79,6 +79,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
         local radius = self:GetSpecialValueFor("radius")
+        local fear_duration = self:GetSpecialValueFor("fear_duration")
+
+        -- UP 6.12
+        if self:GetRank(12) then
+            fear_duration = fear_duration + 1
+        end
 
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), point, nil, radius,
@@ -88,13 +94,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         for _,enemy in pairs(enemies) do
             enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_maledict", {})
-
-            -- UP 6.12
-            if self:GetRank(12) then
-                enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_fear", {
-                    duration = self:CalcStatus(1.5, caster, enemy)
-                })
-            end
+            enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_fear", {
+                duration = self:CalcStatus(fear_duration, caster, enemy)
+            })
         end
 
         self:PlayEfxStart(point, radius)

@@ -90,9 +90,9 @@ function dasdingo_3_modifier_fire:OnRemoved()
 		})
 	end
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		duration = self.ability:CalcStatus(stun_total, self.caster, self.parent)
-	})
+	stun_total = self.ability:CalcStatus(stun_total, self.caster, self.parent)
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = stun_total})
+	self.ability:StartCooldown(stun_total)
 
 	self:PlayEfxBlast()
 end

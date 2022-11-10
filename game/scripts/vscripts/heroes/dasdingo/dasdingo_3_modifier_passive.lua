@@ -63,21 +63,19 @@ function dasdingo_3_modifier_passive:OnAttackLanded(keys)
 end
 
 function dasdingo_3_modifier_passive:AddFire(target)
-	local bStunned = false
+	--local bStunned = false
+	-- local mod = target:FindAllModifiersByName("_modifier_stun")
+	-- for _,modifier in pairs(mod) do
+	-- 	if modifier:GetAbility() == self.ability then bStunned = true end
+	-- end
+	if self.ability:IsCooldownReady() == false then return end
 
-	local mod = target:FindAllModifiersByName("_modifier_stun")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then b = true end
-	end
-
-	if bStunned == false then
-		local mod = target:FindModifierByNameAndCaster("dasdingo_3_modifier_fire", self.caster)
-		if mod then
-			mod:IncrementStackCount()
-		else
-			target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
-				duration = self.ability:CalcStatus(self.fire_duration, self.caster, target)
-			})
-		end
+	local mod = target:FindModifierByNameAndCaster("dasdingo_3_modifier_fire", self.caster)
+	if mod then
+		mod:IncrementStackCount()
+	else
+		target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
+			duration = self.ability:CalcStatus(self.fire_duration, self.caster, target)
+		})
 	end
 end

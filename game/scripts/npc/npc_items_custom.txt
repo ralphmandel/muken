@@ -733,7 +733,7 @@
 			"SideShop"			"0"
 			"SecretShop"		"0"
 			
-			"AbilityCooldown"		"20.0"
+			"AbilityCooldown"		"24"
 			//"AbilityManaCost"				"75"
 			
 			"precache"
@@ -750,12 +750,12 @@
 				"01"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_rec"	"20"
+					"passive_rec"	"15"
 				}
 				"02"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"wings_duration"	"7"
+					"wings_duration"	"8"
 				}
 				"03"
 				{
@@ -838,6 +838,7 @@
 			"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 			//"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
+		    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 
 			"Model"							"models/props_gameplay/treasure_chest001b.vmdl"
 
@@ -887,7 +888,7 @@
 				"05"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"damage_stack"	"1000"
+					"damage_stack"	"15"
 				}
 			}
 		}
@@ -992,52 +993,52 @@
 				"01"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_str"	"5"
+					"passive_str"	"4"
 				}
 				"02"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_agi"	"5"
+					"passive_agi"	"4"
 				}
 				"03"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_int"	"5"
+					"passive_int"	"4"
 				}
 				"04"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_con"	"5"
+					"passive_con"	"4"
 				}
 				"05"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_dex"	"5"
+					"passive_dex"	"4"
 				}
 				"06"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_def"	"5"
+					"passive_def"	"4"
 				}
 				"07"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_res"	"5"
+					"passive_res"	"4"
 				}
 				"08"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_rec"	"5"
+					"passive_rec"	"4"
 				}
 				"09"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_mnd"	"5"
+					"passive_mnd"	"4"
 				}
 				"10"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_lck"	"5"
+					"passive_lck"	"4"
 				}
 			}
 		}
@@ -1075,7 +1076,7 @@
 			"SideShop"			"0"
 			"SecretShop"		"0"
 			
-			"AbilityCooldown"		"25"
+			"AbilityCooldown"		"60"
 			"AbilityManaCost"		"200"
 			"AbilityCastRange"		"600"
 			"AbilityCastPoint"		"0.1"
@@ -1090,17 +1091,17 @@
 				"01"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_int"	"20"
+					"passive_int"	"12"
 				}
 				"03"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"duration"		"4"
+					"duration"		"5"
 				}
 				"04"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"damage_percent"	"30"
+					"damage_percent"	"25"
 				}
 			}
 		}
@@ -1133,6 +1134,8 @@
 			"ItemInitial"		"0"
 			"SideShop"			"0"
 			"SecretShop"		"0"
+
+			"AbilityCooldown"	"5"
 			
 			"precache"
 			{
@@ -1144,17 +1147,17 @@
 				"01"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_dex"	"15"
+					"passive_con"	"10"
 				}
 				"02"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"passive_mnd"	"15"
+					"passive_mnd"	"10"
 				}
 				"03"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"regen"			"10"
+					"heal"			"1.5"
 				}
 			}
 		}

@@ -17,6 +17,7 @@ function item_rare_arcane_hammer_mod_passive:OnCreated( kv )
 
 	local passive_int = self.ability:GetSpecialValueFor("passive_int")
 	self.ability:AddBonus("_1_INT", self.parent, passive_int, 0, nil)
+	self.ability:SetFrozenCooldown(false)
 end
 
 function item_rare_arcane_hammer_mod_passive:OnRefresh( kv )
@@ -24,6 +25,7 @@ end
 
 function item_rare_arcane_hammer_mod_passive:OnRemoved( kv )
 	self.ability:RemoveBonus("_1_INT", self.parent)
+	self.ability:SetFrozenCooldown(true)
 end
 
 ---------------------------------------------------------------------------------------------------

@@ -184,13 +184,27 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
         end
         
         if ability == nil and berserk then
-            local damage = 40 * (1 + (berserk:GetSpecialValueFor("damage_percent") * 0.01))
-            damage = damage + berserk:GetSpecialValueFor("damage")
-            self.energy = self.energy + (damage * energy_gain)
-        end
+            local damage = berserk:GetSpecialValueFor("damage")
+            local damage_percent = berserk:GetSpecialValueFor("damage_percent")
+            local isLeap = false
 
-        if ability == leap and leap then
-            self.energy = self.energy + (leap:GetAbilityDamage() * energy_gain)
+            if leap then
+                if leap:IsTrained() then
+                    damage_percent = damage_percent + leap.damage_percent
+                    damage = damage + leap.damage
+                    isLeap = leap.isLeap
+                end
+            end
+
+            -- UP 1.41
+            if berserk:GetRank(41)
+            and isLeap == false then
+                damage = damage + 50
+            end
+            
+            local total = 40 * (1 + (damage_percent * 0.01))
+            total = total + damage
+            self.energy = self.energy + (total * energy_gain)
         end
 
         if ability == lotus and lotus then

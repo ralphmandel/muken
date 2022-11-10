@@ -15,9 +15,6 @@ function dasdingo_4_modifier_tribal:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then self.parent:CreatureLevelUp(base_stats:GetStatTotal("MND")) end
-
 	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
 
 	self.parent:StartGesture(ACT_IDLE)
@@ -39,27 +36,14 @@ end
 
 --------------------------------------------------------------------------------
 
-function dasdingo_4_modifier_tribal:CheckState()
-	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-	}
-
-	return state
-end
-
 function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_MISS_PERCENTAGE,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
 	}
 	return funcs
 end
@@ -68,16 +52,8 @@ function dasdingo_4_modifier_tribal:GetModifierAttackRangeBonus()
 	return self.atk_range
 end
 
-function dasdingo_4_modifier_tribal:GetModifierExtraHealthPercentage()
-	return self:GetParent():GetLevel() * 2
-end
-
 function dasdingo_4_modifier_tribal:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetParent():GetLevel() * 2
-end
-
-function dasdingo_4_modifier_tribal:GetModifierMiss_Percentage()
-	return 15
+	return -50
 end
 
 function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)
@@ -92,10 +68,6 @@ function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)
 	end
 end
 
-function dasdingo_4_modifier_tribal:GetModifierAttackSpeedPercentage()
-	return 100
-end
-
 function dasdingo_4_modifier_tribal:OnAttack(keys)
 	if keys.attacker == self.parent then
 		if self.ability.sound == nil then
@@ -106,16 +78,8 @@ end
 
 function dasdingo_4_modifier_tribal:OnAttackLanded(keys)
 	if keys.attacker == self.parent then
-		if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
+		if IsServer() then keys.target:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
 	end
-end
-
-function dasdingo_4_modifier_tribal:OnHealReceived(keys)
-    if keys.unit ~= self.parent then return end
-    if keys.inflictor == nil then return end
-    if keys.gain < 1 then return end
-
-    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
 end
 
 function dasdingo_4_modifier_tribal:OnTakeDamage(keys)
@@ -139,42 +103,6 @@ function dasdingo_4_modifier_tribal:OnTakeDamage(keys)
 			end
 		end
 	end
-
-
-	if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
-    
-	if keys.unit == self.parent then
-		local efx = nil
-		if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
-	
-		if keys.inflictor ~= nil then
-			if keys.inflictor:GetClassname() == "ability_lua" then
-				if keys.inflictor:GetAbilityName() == "shadow_0__toxin"
-				or keys.inflictor:GetAbilityName() == "osiris_1__poison"
-				or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
-					efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
-				end
-
-				if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
-					return
-				end
-
-				if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
-					return
-				end
-			end
-		end
-
-		if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent) end
-	
-		if efx ~= nil then
-			SendOverheadEventMessage(nil, efx, self.parent, keys.damage, self.parent)
-		end
-	end
-end
-
-function dasdingo_4_modifier_tribal:GetAttackSound(keys)
-    return ""
 end
 
 --------------------------------------------------------------------------------

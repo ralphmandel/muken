@@ -84,8 +84,8 @@
 		{
 			"01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"		"180"
+				"var_type"		    "FIELD_FLOAT"
+				"damage_percent"	"150"
 			}
             "02"
 			{

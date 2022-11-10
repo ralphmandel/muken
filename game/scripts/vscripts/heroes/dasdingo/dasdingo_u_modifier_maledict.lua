@@ -37,7 +37,7 @@ function dasdingo_u_modifier_maledict:OnCreated(kv)
 
 	-- UP 6.21
 	if self.ability:GetRank(21) then
-		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
+		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 1) * 0.01
 	end
 
 	-- UP 6.31
@@ -72,7 +72,7 @@ function dasdingo_u_modifier_maledict:OnRefresh(kv)
 
 	-- UP 6.21
 	if self.ability:GetRank(21) then
-		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 2) * 0.01
+		self.amplification = (self.ability:GetSpecialValueFor("amplification") + 1) * 0.01
 	end
 
 	-- UP 6.31

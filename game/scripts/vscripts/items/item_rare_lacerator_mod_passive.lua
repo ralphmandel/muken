@@ -15,13 +15,7 @@ function item_rare_lacerator_mod_passive:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
-	self.distance = self.ability:GetSpecialValueFor("distance")
-	self.damage_stack = self.ability:GetSpecialValueFor("damage_stack") * 0.01
-
-	if IsServer() then
-		self:SetStackCount(0)
-	end
+	if IsServer() then self:SetStackCount(self.ability.stacks) end
 end
 
 function item_rare_lacerator_mod_passive:OnRefresh( kv )
@@ -47,9 +41,18 @@ function item_rare_lacerator_mod_passive:OnDeath(keys)
 	if keys.unit == self.parent then self:SetStackCount(0) end
 	if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.unit:IsHero() then return end
-	if CalcDistanceBetweenEntityOBB(keys.unit, self.parent) > self.distance then return end
 
-	self:IncrementStackCount()
+	local distance = self.ability:GetSpecialValueFor("distance")
+	local max_stack = self.ability:GetSpecialValueFor("max_stack")
+	if CalcDistanceBetweenEntityOBB(keys.unit, self.parent) > distance then return end
+
+	self.ability.stacks = self.ability.stacks + 1
+	if self.ability.stacks > max_stack then
+		self.ability.stacks = max_stack
+	end
+
+	if IsServer() then self:SetStackCount(self.ability.stacks) end
+	self.ability:SetActivated(self:GetStackCount() >= max_stack)
 end
 
 function item_rare_lacerator_mod_passive:OnAbilityFullyCast(keys)
@@ -58,31 +61,25 @@ function item_rare_lacerator_mod_passive:OnAbilityFullyCast(keys)
 	if keys.ability ~= self.ability then return end
 	if keys.target == nil then return end
 
-	local damage = self.damage_stack * self:GetStackCount()
-	local damageTable = {
+	ApplyDamage({
 		victim = keys.target,
 		attacker = self.caster,
-		damage = damage,
-		damage_type = DAMAGE_TYPE_PURE,
-		ability = keys.ability
-	}
+		damage = self.ability:GetSpecialValueFor("damage_stack") * self:GetStackCount(),
+		damage_type = self.ability:GetAbilityDamageType(),
+		ability = self.ability
+	})
 
-	ApplyDamage(damageTable)
-	self:SetStackCount(0)
+	self.ability.stacks = 0
+	if IsServer() then self:SetStackCount(self.ability.stacks) end
 
 	if self.ability:GetLevel() < self.ability:GetMaxLevel() then
 		self.ability:UpgradeAbility(true)
-		self.max_stack = self.ability:GetSpecialValueFor("max_stack")
 	end
 end
 
 function item_rare_lacerator_mod_passive:OnStackCountChanged(iStackCount)
-	if self:GetStackCount() > self.max_stack then
-		self:SetStackCount(self.max_stack)
-	end
-
+	local str = math.floor(self:GetStackCount() / 3)
 	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, nil)
 
-	self.ability:SetActivated(self:GetStackCount() >= self.max_stack)
+	if str > 0 then self.ability:AddBonus("_1_STR", self.parent, str, 0, nil) end
 end

@@ -79,12 +79,24 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
     function dasdingo_4__tribal:OnSpellStart()
         local caster = self:GetCaster()
         local point = self:GetCursorPosition()
+        local level_up = math.floor(self:GetSpecialValueFor("rank") / 2) - 1
+        
         local summoned_unit = self:InsertTribal(
             CreateUnitByName("tribal_ward", point, true, caster, caster, caster:GetTeamNumber())
         )
 
         if summoned_unit then
             summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {})
+            summoned_unit:CreatureLevelUp(level_up)
+
+            self:AddBonus("_1_AGI", summoned_unit, 999, 0, nil)
+            
+	        local base_stats = caster:FindAbilityByName("base_stats")
+	        if base_stats then self:AddBonus("_1_STR", summoned_unit, base_stats:GetStatTotal("MND"), 0, nil) end
+
+            local base_stats_tribal = summoned_unit:FindAbilityByName("base_stats")
+            if base_stats_tribal then base_stats_tribal:UpdateBaseAttackTime() end
+
             if IsServer() then summoned_unit:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
         end
     end

@@ -46,6 +46,9 @@
 				PrecacheResource( "model", "models/props_structures/good_fountain001.vmdl", context )
 				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 				
+				PrecacheResource( "particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf", context)
+				PrecacheResource( "particle", "particles/status_fx/status_effect_medusa_stone_gaze.vpcf", context)
+				PrecacheResource( "particle", "particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff_stoned.vpcf", context)
 				PrecacheResource( "particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
 				PrecacheResource( "particle", "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf", context)
 				PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
@@ -214,14 +217,11 @@
 
 		GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
 		self.rare_item_bundle = {
-			[1] = "item_rare_serluc_armor",
-			[2] = "item_rare_eternal_wings",
-			[3] = "item_rare_wild_axe",
-			[4] = "item_rare_lacerator",
-			[5] = "item_rare_killer_dagger",
-			[6] = "item_rare_emperor_crown",
-			[7] = "item_rare_arcane_hammer",
-			[8] = "item_rare_mystic_brooch"
+			[1] = "item_rare_eternal_wings",
+			[2] = "item_rare_lacerator",
+			[3] = "item_rare_emperor_crown",
+			[4] = "item_rare_arcane_hammer",
+			[5] = "item_rare_mystic_brooch"
 		}
 
 		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
@@ -584,7 +584,7 @@
 		function BattleArena:RandomizeTier()
 			local time = GameRules:GetDOTATime(false, false)
 			local start_time = 100
-			if GetMapName() == "arena_turbo" then start_time = 300 end
+			if GetMapName() == "arena_turbo" then start_time = 900 end
 
 			for i = 4, 2, -1 do
 				local chance = ((time + start_time)/ i) * 0.1
@@ -602,7 +602,7 @@
 			local index = 0
 			for _,mob in pairs(self.mobs) do
 				if mob["tier"] == tier then
-					print(mob["tier"], mob["units"], "pass")
+					--print(mob["tier"], mob["units"], "pass")
 					index = index + 1
 					rand_mobs[index] = mob["units"]
 				end

@@ -234,7 +234,7 @@
 		"AbilityCastPoint"       		"0.9"
 		"AnimationPlaybackRate"  		"2"
 
-		"AbilityManaCost"         		"450"
+		"AbilityManaCost"         		"350"
 		"AbilityCooldown"				"30"
 		"AbilityCastRange"    		   	"750"
 
@@ -310,7 +310,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"12"
+				"duration"			"10"
 			}
 			"02"
 			{

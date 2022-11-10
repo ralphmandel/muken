@@ -18,11 +18,17 @@ function dasdingo_u_modifier_fear:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+    local percent = 50
+
+    -- UP 6.12
+    if self.ability:GetRank(12) then
+        percent = percent + 20
+    end
 
     local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "dasdingo_u_modifier_fear_status_efx", true) end
 
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 25})
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = percent})
     self:ApplyFear()
 end
 

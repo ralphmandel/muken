@@ -1,5 +1,6 @@
 ancient_2__leap = class({})
 LinkLuaModifier("ancient_2_modifier_passive", "heroes/ancient/ancient_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_2_modifier_damage", "heroes/ancient/ancient_2_modifier_damage", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_combo", "heroes/ancient/ancient_2_modifier_combo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_jump", "heroes/ancient/ancient_2_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
@@ -60,6 +61,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_2__leap:Spawn()
         self:CheckAbilityCharges(0)
+        self.damage_percent = 0
+        self.damage = 0
+        self.isLeap = false
     end
 
 -- SPELL START
@@ -137,17 +141,20 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_2__leap:DoImpact()
         local caster = self:GetCaster()
         local radius = self:GetAOERadius()
-        local crit = self:RollCritical()
-
-        self:PlayEfxStart(radius)
-        if crit then self:PlayEfxCrit(caster) end
+        
+        local damage_percent = self:GetSpecialValueFor("damage_percent") - 100
         GridNav:DestroyTreesAroundPoint(caster:GetOrigin(), radius, false)
+        self:PlayEfxStart(radius)
 
-        local damageTable = {
-            attacker = caster, ability = self,
-            damage = self:GetAbilityDamage(),
-            damage_type = self:GetAbilityDamageType()
-        }
+        -- UP 2.41
+        if self:GetRank(41) then
+            damage_percent = damage_percent - 50
+        end
+
+        self.isLeap = true
+        self.damage = self:GetBerserkDamage(damage_percent)
+        self.damage_percent = self:GetBerserkDamagePercent() * damage_percent * 0.01
+        caster:AddNewModifier(caster, self, "ancient_2_modifier_damage", {})
 
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), caster:GetOrigin(), nil, radius,
@@ -155,26 +162,30 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             self:GetAbilityTargetFlags(), 0, false
         )
 
-        for _,enemy in pairs(enemies) do
-            local base_stats = caster:FindAbilityByName("base_stats")
-            if base_stats then base_stats:SetForceCritSpell(0, crit, self:GetAbilityDamageType()) end         
-
-            damageTable.victim = enemy
-            ApplyDamage(damageTable)
+        for _,enemy in pairs(enemies) do       
+            caster:PerformAttack(enemy, false, true, true, false, false, false, true)
         end
+
+        caster:RemoveModifierByNameAndCaster("ancient_2_modifier_damage", caster)
+        self.damage_percent = 0
+        self.damage = 0
+        self.isLeap = false
     end
 
-    function ancient_2__leap:RollCritical()
-        local result = nil
-        local base_stats = self:GetCaster():FindAbilityByName("base_stats")
-        
-        if base_stats then
-            if base_stats:RollChance() then
-                return true
-            end
-        end
+    function ancient_2__leap:GetBerserkDamagePercent()
+        local berserk = self:GetCaster():FindAbilityByName("ancient_1__berserk")
+        if berserk == nil then return 0 end
+        if berserk:IsTrained() == false then return 0 end
 
-        return result
+        return berserk:GetSpecialValueFor("damage_percent") + 100
+    end
+
+    function ancient_2__leap:GetBerserkDamage(damage_percent)
+        local berserk = self:GetCaster():FindAbilityByName("ancient_1__berserk")
+        if berserk == nil then return 0 end
+        if berserk:IsTrained() == false then return 0 end
+
+        return berserk:GetSpecialValueFor("damage") * damage_percent * 0.01
     end
 
     function ancient_2__leap:GetAOERadius()
@@ -201,13 +212,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if self:GetCurrentAbilityCharges() == 0 then return ACT_DOTA_CAST_ABILITY_5 end
         if self:GetCurrentAbilityCharges() % 3 == 0 then return end
         return ACT_DOTA_CAST_ABILITY_5
-    end
-
-    function ancient_2__leap:GetAbilityDamage()
-        local damage = self:GetSpecialValueFor("damage")
-        if self:GetCurrentAbilityCharges() == 0 then return damage end
-        if self:GetCurrentAbilityCharges() % 5 == 0 then damage = damage - 60 end
-        return damage
     end
 
     function ancient_2__leap:GetManaCost(iLevel)

@@ -1,7 +1,7 @@
 flea_2_modifier_passive = class({})
 
 function flea_2_modifier_passive:IsHidden()
-	return true
+	return false
 end
 
 function flea_2_modifier_passive:IsPurgable()
@@ -21,7 +21,7 @@ function flea_2_modifier_passive:OnCreated(kv)
 	self.ability.origin = self:GetParent():GetOrigin()
 	self.energy = 0
 
-	if IsServer() then self:StartIntervalThink(0.5) end
+	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 function flea_2_modifier_passive:OnRefresh(kv)
@@ -83,13 +83,13 @@ function flea_2_modifier_passive:OnAttackLanded(keys)
 		duration = self.ability:CalcStatus(duration, self.caster, self.parent)
 	})
 
-	if self.energy > 1000 then
+	if self:GetStackCount() == 100 then
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(self.energy / 2000, self.caster, keys.target)
+			duration = self.ability:CalcStatus(3, self.caster, keys.target)
 		})
-	end
 
-	self.energy = 0
+		self.energy = 0
+	end
 end
 
 function flea_2_modifier_passive:OnIntervalThink()
@@ -99,11 +99,13 @@ function flea_2_modifier_passive:OnIntervalThink()
 	-- UP 2.32
 	if self.ability:GetRank(32) then
 		self.energy = self.energy + distance
-		if self.energy > 7000 then self.energy = 7000 end
-		--self:UpdateEnergyEfx()
+		if self.energy > 4000 then self.energy = 4000 end
 	end
 
-	if IsServer() then self:StartIntervalThink(0.5) end
+	if IsServer() then
+		self:SetStackCount(math.floor(self.energy * 0.025))
+		self:StartIntervalThink(0.1)
+	end
 end
 
 -- UTILS -----------------------------------------------------------
