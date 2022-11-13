@@ -1,8 +1,0 @@
-arena_survival_colosseum_sm
-{
-	material materials/overviews/arena_survival_colosseum_sm.vmat
-	pos_x -6144
-	pos_y 3328
-	scale 10.000
-}
-

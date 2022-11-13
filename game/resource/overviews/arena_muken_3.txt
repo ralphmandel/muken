@@ -1,8 +1,0 @@
-arena_muken_3
-{
-	material materials/overviews/arena_muken_3.vmat
-	pos_x -9472
-	pos_y 9472
-	scale 18.500
-}
-

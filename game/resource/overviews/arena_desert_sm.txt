@@ -1,8 +1,0 @@
-arena_desert_sm
-{
-	material materials/overviews/arena_desert_sm.vmat
-	pos_x -6400
-	pos_y 6400
-	scale 12.500
-}
-

@@ -1,5 +1,6 @@
 base_stats = class ({})
-require("hero_stats_table")
+require("internal/hero_stats_table")
+require("examples/worldpanelsExample")
 LinkLuaModifier("base_stats_mod", "_basics/base_stats_mod", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)
@@ -276,6 +277,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					[3] = DOTA_TEAM_CUSTOM_3,
 					[4] = DOTA_TEAM_CUSTOM_4,
 					[5] = DOTA_TEAM_CUSTOM_5,
+					[6] = DOTA_TEAM_CUSTOM_6,
+					[7] = DOTA_TEAM_CUSTOM_7,
+					[8] = DOTA_TEAM_CUSTOM_8
 				}
 			
 				for _, teamNum in pairs(teams) do
@@ -352,7 +356,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:UpdatePanoramaPoints()
 			if IsServer() then
 				local player = self:GetCaster():GetPlayerOwner()
-				print(self:GetCaster():IsHero(), "nani")
 				if (not player) then return end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {

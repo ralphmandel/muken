@@ -1,30 +1,26 @@
 "AddonInfo"
 {
-    //"TeamCount" "10"
-    "PenaltiesEnabled"				"0"
-    "maps"      "arena_temple_sm arena_turbo"
-    "addonauthor"					"-Kubo"
-	"addonauthorSteamID"			"76561198347761617"
-
-    "IsPlayable"  "1"
-    
-    "arena_temple_sm"
-    {
-        "MaxPlayers"    "20"
-    }
-
-    "arena_turbo"
-    {
-        "MaxPlayers"    "20"
-    }
-    
-    // "Default_Keys"
-    // {
-    //     "16"
-    //     {
-    //         "Key"       "'"
-    //         "Command"   "+ExecuteRelic"
-    //         "Name"      "Execute Relic"
-    //     }
-    // }
+  "TeamCount" "10"
+  "maps"      "arena_turbo arena_default"
+  "IsPlayable"  "1"
+  "arena_turbo"
+  {
+          "MaxPlayers"                    "12"
+  }
+//   "template_map"
+//   {
+//           "MaxPlayers"                    "10"
+//   }
+//   "playground"
+//   {
+//           "MaxPlayers"                    "10"
+//   }
+//  "desert_duo"
+//  {
+//          "MaxPlayers"                    "10"
+//  }
+//  "forest_solo"
+//  {
+//          "MaxPlayers"                    "10"
+//  }
 }

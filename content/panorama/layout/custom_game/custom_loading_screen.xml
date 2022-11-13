@@ -8,8 +8,7 @@
       <Image id="seq_created" class="SeqImg" src="file://{images}/custom_game/loading_screen/Muken_created.psd" />
       <Image id="seq_version" class="SeqImg" src="file://{images}/custom_game/loading_screen/Muken_version.psd" />
       <Image id="seq_six" class="SeqImg" src="file://{images}/custom_game/loading_screen/Muken_six.psd" />
-
-  </Panel>
-
+    </Panel> 
+      <!--Label id="AddonTitle" text="#addon_game_name" style="" /-->
   </Panel>
 </root>

@@ -1,1017 +1,217 @@
--- INIT
-	if BattleArena == nil then
-		BattleArena = class({})
-	end
-
-	require("game_setup")
-	require("talent_tree")
-	require("hero_stats_table")
-	require('libraries/vector_target/vector_target')
-
-	function Precache(context)
-		--[[
-			Precache things we know we'll use.  Possible file types include (but not limited to):
-				PrecacheResource( "model", "*.vmdl", context )
-				PrecacheResource( "soundfile", "*.vsndevts", context )
-				PrecacheResource( "particle", "*.vpcf", context )
-				PrecacheResource( "particle_folder", "particles/folder", context )
-		]]
-
-		XP_PER_LEVEL_TABLE = {
-			30, 40, 50, 60, 70,
-			83, 96, 109, 122, 135,
-			152, 169, 186, 203, 220,
-			242, 264, 286, 308, 330
-		}
-
-		LinkLuaModifier("modifier_wearable", "components/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE )
-
-		--precache particle
-			--general
-				PrecacheResource( "model", "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_crystal.vmdl", context )
-				PrecacheResource( "model", "models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_ranged_mega.vmdl", context )
-				PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_eimermole/n_creep_eimermole_lamp.vmdl", context )
-				PrecacheResource( "model", "models/items/broodmother/spiderling/elder_blood_heir_of_elder_blood/elder_blood_heir_of_elder_blood.vmdl", context )
-				PrecacheResource( "model", "models/items/broodmother/spiderling/dplus_malevolent_mother_malevoling/dplus_malevolent_mother_malevoling.vmdl", context )
-				PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_dragonspawn_a/n_creep_dragonspawn_a.vmdl", context )
-				PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_dragonspawn_b/n_creep_dragonspawn_b.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee_mega.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee_mega.vmdl", context )
-				PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee.vmdl", context )
-				PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl", context )
-				PrecacheResource( "model", "models/items/lone_druid/bear/tarzan_and_kingkong_spirit/tarzan_and_kingkong_spirit.vmdl", context )
-				PrecacheResource( "model", "models/props_structures/good_fountain001.vmdl", context )
-				PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
-				
-				PrecacheResource( "particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf", context)
-				PrecacheResource( "particle", "particles/status_fx/status_effect_medusa_stone_gaze.vpcf", context)
-				PrecacheResource( "particle", "particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff_stoned.vpcf", context)
-				PrecacheResource( "particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
-				PrecacheResource( "particle", "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf", context)
-				PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
-				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )
-				PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
-				PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
-				PrecacheResource( "particle", "particles/basics/restrict.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", context )
-				PrecacheResource( "particle", "particles/items2_fx/teleport_start.vpcf", context )
-				PrecacheResource( "particle", "particles/items2_fx/teleport_end.vpcf", context )
-				PrecacheResource( "particle", "particles/msg_fx/msg_heal.vpcf", context )
-				PrecacheResource( "particle", "particles/msg_fx/msg_gold.vpcf", context )
-				PrecacheResource( "particle", "particles/msg_fx/msg_crit.vpcf", context )
-				PrecacheResource( "particle", "particles/msg_fx/msg_blocked.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context )
-				PrecacheResource( "particle", "particles/generic/give_mana.vpcf", context )
-				PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_mars/mars_spear_impact_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning_impact.vpcf", context )
-				PrecacheResource( "particle", "particles/status_fx/status_effect_combo_breaker.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_centaur/centaur_double_edge.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_bramble_root.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_bear_entangle_retro_cauldron.vpcf", context )
-
-			--creatures
-				PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_chemical_rage_aurelian.vpcf", context )
-				PrecacheResource( "particle", "particles/status_fx/status_effect_life_stealer_rage.vpcf", context )
-				PrecacheResource( "particle", "particles/druid/druid_ult_projectile.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context )
-
-				PrecacheResource( "particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
-				PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )
-				PrecacheResource( "particle", "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf", context )
-				PrecacheResource( "particle", "particles/items_fx/abyssal_blink_start.vpcf", context )
-				PrecacheResource( "particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context )
-				PrecacheResource( "particle", "particles/status_fx/status_effect_doom.vpcf", context )
-
-		--precache soundfile
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_viper.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_marci.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_puck.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_void_spirit.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context ) 
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lion.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_night_stalker.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mars.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
-			PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
-			PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
-			PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
-			PrecacheResource( "soundfile", "soundevents/soundevent_muken_config.vsndevts", context)
-	end
-
-	function Activate()
-		GameRules.AddonTemplate = BattleArena()
-		GameRules.AddonTemplate:InitGameMode()
-	end
-
-	function BattleArena:InitGameMode()
-		GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
-		GameSetup:init()
-
-		GameRules.DropTable = LoadKeyValues("scripts/kv/item_drops.kv")
-		self.rare_item_bundle = {
-			[1] = "item_rare_eternal_wings",
-			[2] = "item_rare_lacerator",
-			[3] = "item_rare_emperor_crown",
-			[4] = "item_rare_arcane_hammer",
-			[5] = "item_rare_mystic_brooch"
-		}
-
-		ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnUnitKilled"), self)
-		ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap(self, "OnTeamKill"), self)
-		ListenToGameEvent("npc_spawned", Dynamic_Wrap(self, "OnUnitSpawn"), self)
-
-		local GameMode = GameRules:GetGameModeEntity()
-
-		GameMode:SetBountyRunePickupFilter(
-			function(ctx, event)
-				event.xp_bounty = 0
-				event.gold_bounty = 0
-
-				if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-					self.vo = self.vo + 1
-					Timers:CreateTimer((1), function()
-						self.vo = self.vo - 1
-						if self.vo == 0 then
-							if RandomInt(1,2) == 1 then
-								EmitAnnouncerSound("Vo.Rune.1")
-								self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
-							else
-								EmitAnnouncerSound("Vo.Rune.2")
-								self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 7
-							end
-						end
-					end)				
-				end
-
-				if GetMapName() == "arena_temple_sm" then
-					for _,player in pairs(self.players) do
-						if player[1]:GetPlayerID() == event.player_id_const then
-							local team_index = self:GetTeamIndex(player[1]:GetTeamNumber())
-							--local score = self.score_bounty / self.teams[team_index][4]
-							local score = 50
-							self.teams[team_index][2] = self.teams[team_index][2] + score
-							local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
-							GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
-
-							if self.teams[team_index][2] >= self.score then
-								local message = self.teams[team_index][3] .. " VICTORY!"
-								GameRules:SetCustomVictoryMessage(message)
-								GameRules:SetGameWinner(self.teams[team_index][1])
-								return
-							end
-						end
-					end
-				end
-				return true
-			end
-		, self)
-
-		GameMode:SetModifyExperienceFilter(
-			function(ctx, event)
-				return false
-			end
-		, self)
-
-		GameMode:SetModifyGoldFilter(
-			function(ctx, event)
-				if event.reason_const == 18 then
-					return true
-				end
-				return false
-			end
-		, self)
-
-		GameMode:SetItemAddedToInventoryFilter(
-			function(ctx, event)
-				local unit = EntIndexToHScript(event.inventory_parent_entindex_const)
-				local item = EntIndexToHScript(event.item_entindex_const)
-
-				if item:GetName() == "item_branch_green" then item:SetCombineLocked(true) end
-				if item:GetName() == "item_branch_red" then item:SetCombineLocked(true) end
-				if item:GetName() == "item_branch_blue" then item:SetCombineLocked(true) end
-				if item:GetName() == "item_branch_yellow" then item:SetCombineLocked(true) end
-
-				return true
-			-- 		if unit:IsHero() and unit:IsIllusion() == false then
-			-- 			local observer = 0
-			-- 			local sentry = 0
-			-- 			for i = 0, 8, 1 do
-			-- 				local item_slot = unit:GetItemInSlot(i)
-			-- 				if item_slot then
-			-- 					item_slot:SetCombineLocked(true)
-			-- 					if item_slot:GetName() == "item_ward_observer" then
-			-- 						observer = observer + 1
-			-- 					end
-			-- 					if item_slot:GetName() == "item_ward_sentry" then
-			-- 						sentry = sentry + 1
-			-- 					end
-			-- 				end
-			-- 			end
-			-- 			if item:GetName() == "item_ward_observer" then
-			-- 				if observer >= 2 then return false end
-			-- 			end
-			-- 			if item:GetName() == "item_ward_sentry" then
-			-- 				if sentry >= 2 then return false end
-			-- 			end
-			-- 		end
-			-- 		return true
-			end
-		, self)
-
-		self.score = 2000
-		self.score_kill = 60
-		self.score_bounty = 120
-		self.first_blood = true
-		self.vo = 0
-		self.vo_time = -60
-		self.gold_bounty_min = 12
-		self.gold_bounty_max = 15
-
-		if GetMapName() == "arena_turbo" then self.score = 15 end
-
-		self.players = {}
-		self.teams = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
-			[1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Green",  [4] = 0, [5] = "<font color='#009900'>"},
-			[2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Red",    [4] = 0, [5] = "<font color='#990000'>"},
-			[3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Yellow", [4] = 0, [5] = "<font color='#cc9900'>"},
-			[4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Cyan",   [4] = 0, [5] = "<font color='#0099cc'>"},
-			[5] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#9900cc'>"}
-		}
-
-		local fountain = CreateUnitByName("fountain_building", Vector(-250,-300,0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-		--fountain:RemoveModifierByName("modifier_invulnerable")
-		Timers:CreateTimer((0.2), function()
-			fountain:SetAbsOrigin(Vector(-250,-300,0))
-		end)
-		
-		self.boss = {[1] = nil, [2] = nil}
-		self.mobs = {
-		-- TIER 1
-			{["tier"] = 1, ["units"] = {
-				"neutral_basic_chameleon", "neutral_basic_chameleon",
-				"neutral_basic_chameleon_b", "neutral_basic_chameleon_b"
-			}},
-			{["tier"] = 1, ["units"] = {
-				"neutral_basic_crocodilian", "neutral_basic_crocodilian_b"
-			}},
-			{["tier"] = 1, ["units"] = {
-				"neutral_basic_gargoyle", "neutral_basic_gargoyle_b", "neutral_basic_gargoyle_b"
-			}},
-			{["tier"] = 1, ["units"] = {
-				"neutral_crocodile"
-			}},
-		-- TIER 2
-			{["tier"] = 2, ["units"] = {
-				"neutral_igneo"
-			}},
-			{["tier"] = 2, ["units"] = {
-				"neutral_crocodile", "neutral_crocodile"
-			}},
-			{["tier"] = 2, ["units"] = {
-				"neutral_basic_crocodilian", "neutral_basic_crocodilian",
-				"neutral_basic_crocodilian_b", "neutral_basic_crocodilian_b"
-			}},
-		-- TIER 3
-			{["tier"] = 3, ["units"] = {
-				"neutral_crocodile", "neutral_crocodile", "neutral_crocodile"
-			}},
-			{["tier"] = 3, ["units"] = {
-				"neutral_igor", "neutral_frostbitten", "neutral_frostbitten"
-			}},
-			{["tier"] = 3, ["units"] = {
-				"neutral_skydragon", "neutral_dragon"
-			}},
-			{["tier"] = 3, ["units"] = {
-				"neutral_lamp"
-			}},
-		-- TIER 4
-			{["tier"] = 4, ["units"] = {
-				"neutral_spider"
-			}},
-			{["tier"] = 4, ["units"] = {
-				"neutral_igneo", "neutral_igneo"
-			}}
-		}
-		self.spots = {
-			[1] = { ["mob"] = {}, ["origin"] = Vector(3960, -2963, 0), ["respawn"] = -60},
-			[2] = { ["mob"] = {}, ["origin"] = Vector(1604, -4734, 0), ["respawn"] = -60},
-			[3] = { ["mob"] = {}, ["origin"] = Vector(509, -3086, 0), ["respawn"] = -60},
-			[4] = { ["mob"] = {}, ["origin"] = Vector(-2429, -3974, 0), ["respawn"] = -60},
-			[5] = { ["mob"] = {}, ["origin"] = Vector(-3011, -1664, 0), ["respawn"] = -60},
-			[6] = { ["mob"] = {}, ["origin"] = Vector(-4274, -455, 0), ["respawn"] = -60},
-			[7] = { ["mob"] = {}, ["origin"] = Vector(-4017, 1468, 0), ["respawn"] = -60},
-			[8] = { ["mob"] = {}, ["origin"] = Vector(-2820, 2420, 0), ["respawn"] = -60},
-			[9] = { ["mob"] = {}, ["origin"] = Vector(-1410, 2232, 0), ["respawn"] = -60},
-			[10] = { ["mob"] = {}, ["origin"] = Vector(-3515, 3128, 0), ["respawn"] = -60},
-			[11] = { ["mob"] = {}, ["origin"] = Vector(-1796, 3575, 0), ["respawn"] = -60},
-			[12] = { ["mob"] = {}, ["origin"] = Vector(-1727, 5223, 0), ["respawn"] = -60},
-			[13] = { ["mob"] = {}, ["origin"] = Vector(65, 5298, 0), ["respawn"] = -60},
-			[14] = { ["mob"] = {}, ["origin"] = Vector(3459, 4393, 0), ["respawn"] = -60},
-			[15] = { ["mob"] = {}, ["origin"] = Vector(4269, 2743, 0), ["respawn"] = -60},
-			[16] = { ["mob"] = {}, ["origin"] = Vector(1457, 1858, 0), ["respawn"] = -60},
-			[17] = { ["mob"] = {}, ["origin"] = Vector(4728, 1130, 0), ["respawn"] = -60},
-			[18] = { ["mob"] = {}, ["origin"] = Vector(4412, -1042, 0), ["respawn"] = -60},
-			[19] = { ["mob"] = {}, ["origin"] = Vector(2624, -896, 0), ["respawn"] = -60},
-			[20] = { ["mob"] = {}, ["origin"] = Vector(2188, -2578, 0), ["respawn"] = -60}
-		}
-	end
-
--- UTIL FUNCTIONS
-	-- GAME EVENTS
-		function BattleArena:EventPreBounty()
-			local rand = RandomInt(1,6)
-			if rand == 1 then self.pos = Vector(-255,-2114,136) end
-			if rand == 2 then self.pos = Vector(2686,-4038,136) end
-			if rand == 3 then self.pos = Vector(-3197,61,136) end
-			if rand == 4 then self.pos = Vector(315,3317,8) end
-			if rand == 5 then self.pos = Vector(2558,2298,264) end
-			if rand == 6 then self.pos = Vector(-4606,-2052,392) end
-			
-			for _,player in pairs(self.players) do
-				MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 128, 40)
-			end
-
-			for _,team in pairs(self.teams) do
-				GameRules:ExecuteTeamPing(team[1], self.pos.x, self.pos.y, nil, 0)
-			end
-		end
-
-		function BattleArena:EventBountyRune()
-			CreateRune(self.pos, DOTA_RUNE_BOUNTY)
-
-			for _,player in pairs(self.players) do
-				MinimapEvent(player[1]:GetTeamNumber(), player[1]:GetAssignedHero(), self.pos.x, self.pos.y, 256, 0.5)
-			end
-		end
-
-		function BattleArena:EventBoss(ping)
-			local loc_x = {[1] = -3748, [2] = 5745}
-			local loc_y = {[1] = -3774, [2] = 2317}
-
-			if ping == 1 then
-				self.mini_boss_ping = RandomInt(1, 2)
-			else
-				if self.mini_boss_ping == 1 then self.mini_boss_ping = 2 else self.mini_boss_ping = 1 end
-			end
-
-			for _,player in pairs(self.players) do
-				MinimapEvent(
-					player[1]:GetTeamNumber(), player[1]:GetAssignedHero(),
-					loc_x[self.mini_boss_ping], loc_y[self.mini_boss_ping],
-					512, 20
-				)
-			end
-		end
-
-		function BattleArena:CreateBoss(boss_name, spot)
-			local spot_vec = {
-				[1] = Vector(-3748, -3774, 0),
-				[2] = Vector(5745, 2317, 0)
-			}
-
-			if self.boss[spot] == nil then
-				self.boss[spot] = CreateUnitByName(boss_name, spot_vec[spot], true, nil, nil, DOTA_TEAM_NEUTRALS)
-			end
-		end
-
-		function BattleArena:GenerateEvent(includeNegativeTime)
-			local time = math.floor(GameRules:GetDOTATime(false, includeNegativeTime))
-			local sync_time = time % 600
-			if self.event_time == nil then self.event_time = -60 end
-			if self.event_time == math.floor(time) then return end
-			self.event_time = math.floor(time)
-
-			if time == -40 then self:EventPreBounty() end
-			-- if time == -45 then
-			-- 	local spawned_unit = CreateUnitByName("neutral_spider", Vector(-300, -1500, 0), true, nil, nil, DOTA_TEAM_NEUTRALS)
-			-- 	local ai = spawned_unit:FindModifierByName("_modifier__ai")
-			-- 	if ai then ai.spot_origin = Vector(-300, -1000, 0) end
-			-- end
-			if includeNegativeTime then return end
-
-			if time == 0 then self:EventBountyRune() return end
-			if sync_time == 140 then self:EventPreBounty() end
-			if sync_time == 180 then self:EventBountyRune() end
-			if sync_time == 320 then self:EventPreBounty() end
-			if sync_time == 360 then self:EventBountyRune() end
-
-			if IsInToolsMode() then
-				if sync_time == 15 then self:EventBoss(1) end
-				if sync_time == 25 then self:CreateBoss("boss_gorillaz", 1) end
-				if sync_time == 40 then self:EventBoss(2) end
-				if sync_time == 50 then self:CreateBoss("boss_gorillaz", 2) end
-			else
-				if sync_time == 520 then self:EventBoss(1) end
-				if sync_time == 540 then self:CreateBoss("boss_gorillaz", 1) end
-				if sync_time == 580 then self:EventBoss(2) end
-				if sync_time == 0 then self:CreateBoss("boss_gorillaz", 2) end
-			end
-		end
-
-	-- SPOTS
-		function BattleArena:RespawnEnemies()
-			local time = GameRules:GetDOTATime(false, false)
-			local current_mobs = 0
-
-			while current_mobs < 12 do
-				local free_spots = {}
-				local free_spot_index = 1
-				current_mobs = 0
-
-				for i = 1, 20, 1 do
-					local spot_blocked = self:IsSpotAlive(i)
-					if not spot_blocked then spot_blocked = self:IsSpotCooldown(i) end
-					if spot_blocked then
-						current_mobs = current_mobs + 1
-					else
-						free_spots[free_spot_index] = i
-						free_spot_index = free_spot_index + 1
-					end
-				end
-
-				if current_mobs < 12 then
-					self:CheckSpots(free_spots)
-				end
-			end
-		end
-
-		function BattleArena:IsSpotAlive(spot)
-			for category, units in pairs(self.spots[spot]["mob"]) do
-				if category == "units" then
-					for _,unit in pairs(units) do
-						if IsValidEntity(unit) then
-							if unit:IsAlive() then
-								return true
-							end
-						end
-					end
-				end
-			end
-
-			return false
-		end
-
-		function BattleArena:IsSpotCooldown(spot)
-			local current_time = GameRules:GetDOTATime(false, false)
-			local respawn_time = 45
-
-			if self.spots[spot]["respawn"] == nil then
-				self.spots[spot]["respawn"] = current_time
-				return true
-			end
-
-			return (respawn_time > (current_time - self.spots[spot]["respawn"]))
-		end
-
-		function BattleArena:CheckSpots(free_spots)
-			self:CreateMob(free_spots[RandomInt(1, #free_spots)])
-		end
-
-		function BattleArena:CreateMob(spot)
-			local tier = self:RandomizeTier()
-			local mob = self:RandomizeMob(tier)
-			self:SpawnMobs(spot, tier, mob)
-		end
-
-		function BattleArena:RandomizeTier()
-			local time = GameRules:GetDOTATime(false, false)
-			local start_time = 100
-			if GetMapName() == "arena_turbo" then start_time = 900 end
-
-			for i = 4, 2, -1 do
-				local chance = ((time + start_time)/ i) * 0.1
-				if chance > 75 then chance = 75 end
-				if RandomFloat(1, 100) <= chance then
-					return i
-				end
-			end
-
-			return 1
-		end
-
-		function BattleArena:RandomizeMob(tier)
-			local rand_mobs = {}
-			local index = 0
-			for _,mob in pairs(self.mobs) do
-				if mob["tier"] == tier then
-					--print(mob["tier"], mob["units"], "pass")
-					index = index + 1
-					rand_mobs[index] = mob["units"]
-				end
-			end
-
-			print(rand_mobs[RandomInt(1, index)], index, "index")
-
-			return rand_mobs[RandomInt(1, index)]
-		end
-
-		function BattleArena:SpawnMobs(spot, tier, mob)
-			local spawned_units = {}
-			for _,unit in pairs(mob) do
-				local spawned_unit = CreateUnitByName(unit, self.spots[spot]["origin"], true, nil, nil, DOTA_TEAM_NEUTRALS)
-				table.insert(spawned_units, spawned_unit)
-				local ai = spawned_unit:FindModifierByName("_modifier__ai")
-				if ai then ai.spot_origin = self.spots[spot]["origin"] end
-			end
-
-			self.spots[spot]["respawn"] = nil
-			self.spots[spot]["mob"] = {
-				["tier"] = tier, ["units"] = spawned_units
-			}
-		end
-
-	-- PLAYERS
-		function BattleArena:RandomizePlayerSpawn(unit)
-			local further_loc = nil
-			local further_distance = nil
-
-			local spawn_pos = {
-				[1] = Vector(455, -1394, 0),
-				[2] = Vector(-1040, -3661, 0),
-				[3] = Vector(-2724, -2628, 0),
-				[4] = Vector(-2563, -923, 0),
-				[5] = Vector(-3144, 1596, 0),
-				[6] = Vector(-828, 1413, 0),
-				[7] = Vector(-2047, 4349, 0),
-				[8] = Vector(1858, 5903, 0),
-				[9] = Vector(935, 2619, 0),
-				[10] = Vector(3291, 2578, 0),
-				[11] = Vector(1084, 875, 0),
-				[12] = Vector(3587, -670, 0),
-				[13] = Vector(3848, -1969, 0),
-				[14] = Vector(3920, -3897, 0),
-				[15] = Vector(2175, -3259, 0)
-			}
-
-			local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
-			local enemies = FindUnitsInRadius(
-				unit:GetTeamNumber(),	-- int, your team number
-				unit:GetOrigin(),	-- point, center point
-				nil,	-- handle, cacheUnit. (not known)
-				FIND_UNITS_EVERYWHERE,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-				DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-				DOTA_UNIT_TARGET_HERO,	-- int, type filter
-				flags,	-- int, flag filter
-				0,	-- int, order filter
-				false	-- bool, can grow cache
-			)
-			for _,loc in pairs(spawn_pos) do
-				local closer = nil
-				local distance = 0
-				
-				for _,enemy in pairs(enemies) do
-					if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
-						if closer == nil then
-							closer = loc
-							distance = (loc - enemy:GetAbsOrigin()):Length()
-						end
-						if (loc - enemy:GetAbsOrigin()):Length() < distance then
-							closer = loc
-							distance = (loc - enemy:GetAbsOrigin()):Length()
-						end
-					end
-				end
-
-				if further_loc == nil then
-					further_loc = closer
-					further_distance = distance
-				else
-					if distance > further_distance then
-						further_loc = closer
-						further_distance = distance
-					end
-				end
-			end
-
-			if further_loc == nil then
-				further_loc = spawn_pos[RandomInt(1, 12)]
-			end
-
-			unit:SetOrigin(further_loc)
-			FindClearSpaceForUnit(unit, further_loc, true)
-		end
-
-		function BattleArena:GetTeamIndex(team_number)
-			for i = #self.teams, 1, -1 do
-				if team_number == self.teams[i][1] then
-					return i
-				end
-			end
-		end
-
-		function BattleArena:GetKillingSpreeAnnouncer(kills)
-			local rand = RandomInt(1,2)
-
-			if kills == 4 then
-				if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
-				if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
-			end
-			if kills == 5 then
-				if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
-				if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
-			end
-			if kills == 6 then
-				if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
-				if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
-			end
-			if kills >= 7 then
-				if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
-				if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
-			end
-
-			return "announcer_killing_spree_announcer_kill_spree_01"
-		end
-
-	-- DROPS
-		function BattleArena:RollDrops(unit)
-			local DropInfo = GameRules.DropTable[unit:GetUnitName()]
-			if DropInfo then
-				local chance = 0
-				local item_list = {}
-				for table_name, table_chance in pairs(DropInfo) do
-					if table_name == "chance" then
-						chance = table_chance
-					else
-						for i = 1, table_chance, 1 do
-							if #item_list then
-								item_list[#item_list + 1] = table_name
-							else
-								item_list[1] = table_name
-							end
-						end
-					end
-				end
-
-				if RandomInt(1, 100) <= chance then
-					local item_name = item_list[RandomInt(1, #item_list)]
-					local item = CreateItem(item_name, nil, nil)
-					local pos = unit:GetAbsOrigin()
-					local drop = CreateItemOnPositionSync(pos, item)
-					local pos_launch = pos + RandomVector(RandomFloat(150,200))
-					item:LaunchLoot(false, 200, 0.75, pos_launch)
-
-					Timers:CreateTimer((15), function()
-						if drop then
-							if IsValidEntity(drop) then
-								UTIL_Remove(drop)
-							end
-						end
-					end)
-				end
-			end
-		end
-
-		function BattleArena:RollBossDrops(unit)
-			local item_name = self:GetBundleItem("rare_item_bundle")
-			if item_name == nil then return end
-			local item = CreateItem(item_name, nil, nil)
-			local pos = unit:GetAbsOrigin()
-			local drop = CreateItemOnPositionSync( pos, item )
-			local pos_launch = pos+RandomVector(RandomFloat(150,200))
-			item:LaunchLoot(false, 200, 0.75, pos_launch)
-		end
-
-		function BattleArena:GetBundleItem(package_name)
-			if package_name == "rare_item_bundle" then
-				--if RandomInt(1, 100) <= 4 then return "item_legend_serluc" end
-				return self.rare_item_bundle[RandomInt(1, #self.rare_item_bundle)]
-			end
-		end
-
--- LISTENERS
-	function BattleArena:OnUnitKilled(args)
-		if args.entindex_killed == nil then return end
-		local unit = EntIndexToHScript(args.entindex_killed)
-
-		if unit:IsReincarnating() then return end
-
-		if unit == self.boss[1] then
-			self.boss[1] = nil
-			self:RollBossDrops(unit)
-		end
-		if unit == self.boss[2] then
-			self.boss[2] = nil
-			self:RollBossDrops(unit)
-		end
-
-		if unit:IsCreature() and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
-			if IsServer() then
-				unit:EmitSound("Creature.Kill")
-				self:RollDrops(unit)
-			end
-			
-			-- for _,spot in pairs(self.spots) do
-			-- 	for i = #spot[1], 1, -1 do
-			-- 		local neutral = spot[1][i]
-			-- 		if neutral == unit then
-			-- 			table.remove(spot[1],i)
-			-- 			break
-			-- 		end
-			-- 	end
-			-- end
-		end
-
-		local gold = 0
-		local number = 1
-
-		if args.entindex_attacker == nil then return end
-		local killer = EntIndexToHScript(args.entindex_attacker)
-		if killer:IsBaseNPC() == false then return end
-		if killer:GetClassname() == "ability_lua" then return end
-
-		for _,player in pairs(self.players) do
-			if player[1]:GetAssignedHero() == unit then
-				player[2] = 0
-
-				if killer:GetTeamNumber() == DOTA_TEAM_NEUTRALS
-				and math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-					self.vo = self.vo + 1
-					Timers:CreateTimer((1.5), function()
-						self.vo = self.vo - 1
-						if self.vo == 0 then
-							EmitAnnouncerSound("Vo.Suicide")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-						end
-					end)
-				end
-			end
-		end
-
-		local player_owner = killer:GetPlayerOwner()
-		if player_owner == nil then return end
-		local assigned_hero = player_owner:GetAssignedHero()
-		if assigned_hero == nil then return end
-
-		if unit:IsCreature()
-		and unit:IsDominated() == false and unit:IsIllusion() == false
-		and assigned_hero:GetTeamNumber() ~= unit:GetTeamNumber() then
-			number = 0
-
-			local allies = FindUnitsInRadius(
-				assigned_hero:GetTeamNumber(), unit:GetOrigin(), nil, 750,
-				DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO,
-				DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
-			)
-
-			for _,unit in pairs(allies) do
-				if unit:IsIllusion() == false then
-					number = number + 1
-				end
-			end
-
-			local average_gold_bounty = RandomInt(self.gold_bounty_min * unit:GetLevel(), self.gold_bounty_max * unit:GetLevel())
-			gold = average_gold_bounty / number
-
-			if math.floor(gold) > 0 and number > 0 then
-				for _,unit in pairs(allies) do
-					if unit:IsIllusion() == false then
-						unit:ModifyGold(math.floor(gold), false, 18)
-						SendOverheadEventMessage(unit:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, unit, gold, unit)
-						
-						local base_hero = unit:FindAbilityByName("base_hero")
-						if base_hero then base_hero:AddGold(gold) end
-					end
-				end
-			end
-		end
-	end
-
-	function BattleArena:OnTeamKill(args)
-		local killer = PlayerResource:GetPlayer(args.killer_userid)
-		local victim = PlayerResource:GetPlayer(args.victim_userid)
-		local team_number = args.teamnumber
-		local hero_kills = args.herokills
-
-		if victim:GetAssignedHero():IsReincarnating() then return end
-		local team_index = self:GetTeamIndex(team_number)
-		--local score = self.score_kill / self.teams[self:GetTeamIndex(victim:GetTeamNumber())][4]
-		local score = 25
-
-		if self.first_blood == true then
-			EmitAnnouncerSound("announcer_killing_spree_announcer_1stblood_01")
-			self.first_blood = false
-			score = 100
-		end
-
-		if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-			if RandomInt(1,2) > 1 then
-				self.vo = self.vo + 1
-				Timers:CreateTimer((2), function()
-					self.vo = self.vo - 1
-					if self.vo == 0 then
-						local rand_vo = RandomInt(1, 4)
-						if rand_vo == 1 then
-							EmitAnnouncerSound("Vo.Kill.1")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
-						elseif rand_vo == 2 then
-							EmitAnnouncerSound("Vo.Kill.2")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-						elseif rand_vo == 3 then
-							EmitAnnouncerSound("Vo.Kill.3")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 28
-						else
-							EmitAnnouncerSound("Vo.Kill.4")
-							self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
-						end
-					end
-				end)
-			end
-			for _,player in pairs(self.players) do
-				if player[1] == killer then
-					player[2] = player[2] + 1
-					local string = self:GetKillingSpreeAnnouncer(player[2])
-					if player[2] > 2 then EmitAnnouncerSound(string) end
-					break
-				end
-			end
-		end
-
-		if GetMapName() == "arena_turbo" then score = 1 end
-
-		self.teams[team_index][2] = self.teams[team_index][2] + score
-		local message = self.teams[team_index][3] .. " SCORE: " .. self.teams[team_index][2]
-		GameRules:SendCustomMessage(self.teams[team_index][5] .. message .."</font>",-1,0)
-
-		if self.teams[team_index][2] >= self.score then
-			local message = self.teams[team_index][3] .. " VICTORY!"
-			GameRules:SetCustomVictoryMessage(message)
-			GameRules:SetGameWinner(self.teams[team_index][1])
-		end
-	end
-
-	function BattleArena:OnUnitSpawn(args)
-		local unit = EntIndexToHScript(args.entindex)
-		if unit == nil then return end
-		if unit:IsReincarnating() then return end
-		if unit:IsHero() and unit:IsIllusion() == false then
-			self:RandomizePlayerSpawn(unit)
-			
-			local playerID = unit:GetPlayerOwnerID()
-			if playerID ~= nil then
-				CenterCameraOnUnit(playerID, unit)
-			end
-
-			if unit:HasItemInInventory("item_tp") == false then
-				unit:AddItemByName("item_tp")
-
-				if IsInToolsMode() then
-					--unit:AddItemByName("item_legend_serluc")
-
-					if self.temp == nil then
-						self.temp = 6
-					else
-						self.temp = self.temp + 1
-						if self.temp > 7 then self.temp = 8 end
-						unit:SetTeam(self.temp)
-					end
-				end
-
-				local team_index = self:GetTeamIndex(unit:GetTeamNumber())
-				self.teams[team_index][4] = self.teams[team_index][4] + 1
-				local player = {[1] = unit:GetPlayerOwner(), [2] = 0}
-				table.insert(self.players, player)
-
-				local channel = unit:FindAbilityByName("_channel")
-
-				if IsInToolsMode() == false then
-					unit:AddNewModifier(unit, channel, "_modifier_restrict", {duration = 10})
-					unit:AddNewModifier(unit, channel, "_modifier_no_bar", {duration = 10})
-				end
-			end
-		end
-	end
-
--- ON THINK
-	function BattleArena:OnThink()
-		if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then
-			self:GenerateEvent(true)
-		end
-
-		if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-			local myTable = CustomNetTables:GetTableValue("game_state", "round_data")
-
-			if myTable == nil then
-				CustomNetTables:SetTableValue("game_state", "round_data", { value = 0 })
-			else
-				local nextValue = myTable.value + 1
-				CustomNetTables:SetTableValue("game_state", "round_data", { value = nextValue })
-			end
-
-			self:RespawnEnemies()
-			self:GenerateEvent(false)
-		end
-		
-		if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
-			return nil
-		end
-		
-		return 1
-	end
+-- This is the entry-point to your game mode and should be used primarily to precache models/particles/sounds/etc
+
+require('internal/util')
+require('gamemode')
+
+function Precache( context )
+  --[[
+  This function is used to precache resources/units/items/abilities that will be needed
+  for sure in your game and that will not be precached by hero selection.  When a hero
+  is selected from the hero selection screen, the game will precache that hero's assets,
+  any equipped cosmetics, and perform the data-driven precaching defined in that hero's
+  precache{} block, as well as the precache{} block for any equipped abilities.
+
+  See GameMode:PostLoadPrecache() in gamemode.lua for more information
+  ]]
+
+  DebugPrint("[BAREBONES] Performing pre-load precache")
+
+  -- Particles can be precached individually or by folder
+    -- It it likely that precaching a single particle system will precache all of its children, but this may not be guaranteed
+    --PrecacheResource("particle_folder", "particles/test_particle", context)
+    PrecacheResource( "particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf", context)
+    PrecacheResource( "particle", "particles/status_fx/status_effect_medusa_stone_gaze.vpcf", context)
+    PrecacheResource( "particle", "particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff_stoned.vpcf", context)
+    PrecacheResource( "particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
+    PrecacheResource( "particle", "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf", context)
+    PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
+    PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )
+    PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
+    PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
+    PrecacheResource( "particle", "particles/basics/restrict.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", context )
+    PrecacheResource( "particle", "particles/items2_fx/teleport_start.vpcf", context )
+    PrecacheResource( "particle", "particles/items2_fx/teleport_end.vpcf", context )
+    PrecacheResource( "particle", "particles/msg_fx/msg_heal.vpcf", context )
+    PrecacheResource( "particle", "particles/msg_fx/msg_gold.vpcf", context )
+    PrecacheResource( "particle", "particles/msg_fx/msg_crit.vpcf", context )
+    PrecacheResource( "particle", "particles/msg_fx/msg_blocked.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context )
+    PrecacheResource( "particle", "particles/generic/give_mana.vpcf", context )
+    PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_mars/mars_spear_impact_debuff.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_cast_arc_lightning_impact.vpcf", context )
+    PrecacheResource( "particle", "particles/status_fx/status_effect_combo_breaker.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_centaur/centaur_double_edge.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_bramble_root.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_bear_entangle_retro_cauldron.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_aurelian_weapon/alchemist_chemical_rage_aurelian.vpcf", context )
+    PrecacheResource( "particle", "particles/status_fx/status_effect_life_stealer_rage.vpcf", context )
+    PrecacheResource( "particle", "particles/druid/druid_ult_projectile.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf", context )
+    PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf", context )
+    PrecacheResource( "particle", "particles/items_fx/abyssal_blink_start.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context )
+    PrecacheResource( "particle", "particles/status_fx/status_effect_doom.vpcf", context )
+
+  -- Models can also be precached by folder or individually
+    -- PrecacheModel should generally used over PrecacheResource for individual models
+    --PrecacheResource("model_folder", "particles/heroes/antimage", context)
+    --PrecacheModel("models/props_gameplay/treasure_chest001.vmdl", context)
+    --PrecacheModel("models/props_debris/merchant_debris_chest001.vmdl", context)
+    --PrecacheModel("models/props_debris/merchant_debris_chest002.vmdl", context)
+    PrecacheResource( "model", "models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_crystal.vmdl", context )
+    PrecacheResource( "model", "models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_ranged_mega.vmdl", context )
+    PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_eimermole/n_creep_eimermole_lamp.vmdl", context )
+    PrecacheResource( "model", "models/items/broodmother/spiderling/elder_blood_heir_of_elder_blood/elder_blood_heir_of_elder_blood.vmdl", context )
+    PrecacheResource( "model", "models/items/broodmother/spiderling/dplus_malevolent_mother_malevoling/dplus_malevolent_mother_malevoling.vmdl", context )
+    PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_dragonspawn_a/n_creep_dragonspawn_a.vmdl", context )
+    PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_dragonspawn_b/n_creep_dragonspawn_b.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee_mega.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee_mega.vmdl", context )
+    PrecacheResource( "model", "models/creeps/lane_creeps/ti9_crocodilian_dire/ti9_crocodilian_dire_melee.vmdl", context )
+    PrecacheResource( "model", "models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl", context )
+    PrecacheResource( "model", "models/items/lone_druid/bear/tarzan_and_kingkong_spirit/tarzan_and_kingkong_spirit.vmdl", context )
+    PrecacheResource( "model", "models/props_structures/good_fountain001.vmdl", context )
+    PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
+
+  -- Sounds can precached here like anything else
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_viper.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_marci.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_puck.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_void_spirit.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context ) 
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lion.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_night_stalker.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_spectre.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_mars.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_muken_config.vsndevts", context)
+
+  -- Entire items can be precached by name
+    -- Abilities can also be precached in this way despite the name
+    PrecacheItemByNameSync("example_ability", context)
+    PrecacheItemByNameSync("item_example_item", context)
+
+  -- Entire heroes (sound effects/voice/models/particles) can be precached with PrecacheUnitByNameSync
+    -- Custom units from npc_units_custom.txt can also have all of their abilities and precache{} blocks precached in this way
+    PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
+    PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
+end
+
+-- Create the game mode when we activate
+function Activate()
+  GameRules.GameMode = GameMode()
+  GameRules.GameMode:_InitGameMode()
+end

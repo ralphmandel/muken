@@ -1,6 +1,6 @@
 base_hero = class ({})
 LinkLuaModifier("base_hero_mod", "_basics/base_hero_mod", LUA_MODIFIER_MOTION_NONE)
-require("talent_tree")
+require("internal/talent_tree")
 
 -- ABILITY FUNCTIONS
 	function base_hero:Spawn()
