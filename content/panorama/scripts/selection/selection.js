@@ -66,7 +66,9 @@ function Selection_Reset(msg)
 // Filter & Sending
 function OnUpdateSelectedUnit()
 {
-    //$.Msg( "OnUpdateSelectedUnit ", Players.GetLocalPlayerPortraitUnit() );
+    var nEntityIndex = Players.GetLocalPlayerPortraitUnit()
+    $.Msg( "teste 00 ", Entities.GetUnitName(nEntityIndex) );
+    
     if (skip == true){
         skip = false;
         return
@@ -96,7 +98,10 @@ function GetSelectionOverride(entityIndex) {
 
 function OnUpdateQueryUnit()
 {
-    //$.Msg( "OnUpdateQueryUnit ", Players.GetQueryUnit(Players.GetLocalPlayer()));
+    var nEntityIndex = Players.GetLocalPlayerPortraitUnit()
+    $.Msg( "teste 00 ", Entities.GetUnitName(nEntityIndex) );
+
+    $.Msg( "OnUpdateQueryUnit ", Players.GetQueryUnit(Players.GetLocalPlayer()));
 }
 
 (function () {

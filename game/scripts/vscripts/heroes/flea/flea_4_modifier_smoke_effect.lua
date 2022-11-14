@@ -123,11 +123,11 @@ function flea_4_modifier_smoke_effect:PlayEfxStart()
 	self:AddParticle(effect_cast_1, false, false, -1, false, false)
 
 	self.effect_cast = effect_cast_1
-	--self.parent:StartGesture(ACT_DOTA_SHADOW_DANCE_STATUE)
+	self.parent:StartGesture(1807)
 
 	if IsServer() then self.parent:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
 end
 
 function flea_4_modifier_smoke_effect:StopEfxStart()
-	--self.parent:FadeGesture(ACT_DOTA_SHADOW_DANCE_STATUE)
+	self.parent:FadeGesture(1807)
 end

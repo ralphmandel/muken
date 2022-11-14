@@ -79,8 +79,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function bloodstained_1__rage:OnSpellStart()
         local caster = self:GetCaster()
 
+        --caster:StartGesture(1591)
         --caster:StartGesture(1784)
-        caster:StartGesture(ACT_DOTA_CAST_ABILITY_2)
+        caster:StartGesture(1784)
         caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
         caster:AttackNoEarlierThan(0.7, 99)
 

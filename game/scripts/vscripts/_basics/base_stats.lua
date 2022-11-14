@@ -1,6 +1,6 @@
 base_stats = class ({})
 require("internal/hero_stats_table")
-require("examples/worldpanelsExample")
+--require("examples/worldpanelsExample")
 LinkLuaModifier("base_stats_mod", "_basics/base_stats_mod", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)

@@ -89,8 +89,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         Timers:CreateTimer(0.15, function()
             if caster:IsAlive() then
-                -- UP 1.21
-                if self:GetRank(21) then
+                -- UP 1.32
+                if self:GetRank(32) then
                     caster:Purge(false, true, false, true, false)
                 end
 

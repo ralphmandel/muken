@@ -19,9 +19,15 @@ function base_hero_mod:OnCreated(kv)
 	self:LoadActivity()
 	self:LoadModel()
 	self:LoadSounds()
+
+	--if IsServer() then self:StartIntervalThink(1) end -- Loc finder
 end
 
 function base_hero_mod:OnRefresh(kv)
+end
+
+function base_hero_mod:OnIntervalThink()
+	--print(self.parent:GetOrigin().x, self.parent:GetOrigin().y, "loc")
 end
 
 ------------------------------------------------------------

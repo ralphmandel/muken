@@ -59,8 +59,8 @@ end
 function flea_1_modifier_precision:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
-	-- UP 1.32
-	if self.ability:GetRank(32) then
+	-- UP 1.21
+	if self.ability:GetRank(21) then
 		self:BurnMana(keys.target)
 	end
 end
@@ -74,12 +74,13 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_1_modifier_precision:AddMultStack()
-	local duration = self.ability:GetSpecialValueFor("duration")
+	local duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
+	self:SetDuration(duration, true)
 	self:IncrementStackCount()
 
 	local this = tempTable:AddATValue(self)
 	self.parent:AddNewModifier(self.caster, self.ability, "flea_1_modifier_precision_stack", {
-		duration = self.ability:CalcStatus(duration, self.caster, self.parent),
+		duration = duration,
 		modifier = this
 	})
 end
@@ -107,7 +108,7 @@ function flea_1_modifier_precision:BurnMana(target)
 	if target:IsMagicImmune() then return end
 
 	local init_mana = target:GetMana()
-	target:ReduceMana(init_mana * 0.05)
+	target:ReduceMana(init_mana * 0.03)
 	local mana_burn = init_mana - target:GetMana()
 
 	if mana_burn > 0 then

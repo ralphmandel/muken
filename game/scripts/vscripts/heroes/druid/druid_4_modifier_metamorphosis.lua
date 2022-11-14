@@ -81,6 +81,7 @@ function druid_4_modifier_metamorphosis:OnRefresh(kv)
 	self.parent:SetMaterialGroup(group[RandomInt(1, 3)])
 	self.parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
 
+	if self.effect_aura then ParticleManager:DestroyParticle(self.effect_aura, true) end
 	if IsServer() then self:PlayEfxStart(fear) end
 end
 
@@ -238,10 +239,10 @@ function druid_4_modifier_metamorphosis:PlayEfxStart(bFear)
 	ParticleManager:SetParticleControl(shake, 1, Vector(500, 0, 0))
 
 	local string_3 = "particles/druid/druid_ult_passive.vpcf"
-	local effect_aura = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_aura, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(effect_aura, 1, Vector(self.ability:GetAOERadius(), 0, 0))
-	self:AddParticle(effect_aura, false, false, -1, false, false)
+	self.effect_aura = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.effect_aura, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.effect_aura, 1, Vector(self.ability:GetAOERadius(), 0, 0))
+	self:AddParticle(self.effect_aura, false, false, -1, false, false)
 
 	if bFear then
 		local string_4 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"

@@ -27,6 +27,7 @@ function bloodstained_5_modifier_blood:OnRefresh(kv)
 end
 
 function bloodstained_5_modifier_blood:OnRemoved()
+	if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, true) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

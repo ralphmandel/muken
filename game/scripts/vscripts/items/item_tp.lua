@@ -5,6 +5,12 @@ function item_tp:Spawn()
 	self:SetCurrentAbilityCharges(1)
 end
 
+-- if not self.gesture then self.gesture = 1590 end --1591
+-- caster:FadeGesture(self.gesture - 1)
+-- caster:StartGesture(self.gesture)
+-- print("gesture", self.gesture)
+-- self.gesture = self.gesture + 1
+
 -----------------------------------------------------------
 
 function item_tp:OnSpellStart()
@@ -12,7 +18,13 @@ function item_tp:OnSpellStart()
 	self.location = self:GetCursorPosition()
 	local start_pfx_name = "particles/items2_fx/teleport_start.vpcf"
 	local end_pfx_name = "particles/items2_fx/teleport_end.vpcf"
-	if self.location == nil then self.location = self:RandomizePlayerSpawn(caster) end
+	if self.location == nil then
+		self.location = self:RandomizePlayerSpawn(caster)
+	else
+		if self.location == Vector(0, 0, 0) then
+			self.location = self:RandomizePlayerSpawn(caster)
+		end
+	end
 
 	self.gesture = ACT_DOTA_TELEPORT
 	if caster:GetUnitName() == "npc_dota_hero_furion" then

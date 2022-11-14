@@ -13,8 +13,8 @@ function Spawner:SpawnNeutrals()
     current_mobs = 0
 
     for i = 1, 20, 1 do
-      local spot_blocked = self:IsSpotAlive(i)
-      if not spot_blocked then spot_blocked = self:IsSpotCooldown(i) end
+      local spot_blocked = self:IsSpotAlive(SPAWNER_SPOTS, i)
+      if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_SPOTS, i, 45) end
       if spot_blocked then
         current_mobs = current_mobs + 1
       else
@@ -24,15 +24,28 @@ function Spawner:SpawnNeutrals()
     end
 
     if current_mobs < 12 then
-      self:CheckSpots(free_spots)
+      local spot = free_spots[RandomInt(1, #free_spots)]
+      local tier = self:RandomizeTier()
+      local mob = self:RandomizeMob(tier)
+      self:CreateMob(SPAWNER_SPOTS, spot, tier, mob, "_modifier__ai")
     end
   end
 end
 
-function Spawner:IsSpotAlive(spot)
-  for category, units in pairs(SPAWNER_SPOTS[spot]["mob"]) do
+function Spawner:SpawnBosses()
+  for i = 1, 2, 1 do
+    if self:IsSpotAlive(SPAWNER_BOSS_SPOTS, i) == false then
+      if self:IsSpotCooldown(SPAWNER_BOSS_SPOTS, i, 300) == false then
+        self:CreateMob(SPAWNER_BOSS_SPOTS, i, 8, self:RandomizeMob(8), "")
+      end
+    end
+  end
+end
+
+function Spawner:IsSpotAlive(spawner, spot)
+  for category, data in pairs(spawner[spot]["mob"]) do
     if category == "units" then
-      for _,unit in pairs(units) do
+      for _,unit in pairs(data) do
         if IsValidEntity(unit) then
           if unit:IsAlive() then
             return true
@@ -45,26 +58,15 @@ function Spawner:IsSpotAlive(spot)
   return false
 end
 
-function Spawner:IsSpotCooldown(spot)
+function Spawner:IsSpotCooldown(spawner, spot, respawn_time)
   local current_time = GameRules:GetDOTATime(false, false)
-  local respawn_time = 45
 
-  if SPAWNER_SPOTS[spot]["respawn"] == nil then
-    SPAWNER_SPOTS[spot]["respawn"] = current_time
+  if spawner[spot]["respawn"] == nil then
+    spawner[spot]["respawn"] = current_time
     return true
   end
 
-  return (respawn_time > (current_time - SPAWNER_SPOTS[spot]["respawn"]))
-end
-
-function Spawner:CheckSpots(free_spots)
-  self:CreateMob(free_spots[RandomInt(1, #free_spots)])
-end
-
-function Spawner:CreateMob(spot)
-  local tier = self:RandomizeTier()
-  local mob = self:RandomizeMob(tier)
-  self:SpawnMobs(spot, tier, mob)
+  return (respawn_time > (current_time - spawner[spot]["respawn"]))
 end
 
 function Spawner:RandomizeTier()
@@ -94,24 +96,23 @@ function Spawner:RandomizeMob(tier)
     end
   end
 
-  print(rand_mobs[RandomInt(1, index)], index, "index")
+  --print(rand_mobs[RandomInt(1, index)], index, "index")
 
   return rand_mobs[RandomInt(1, index)]
 end
 
-function Spawner:SpawnMobs(spot, tier, mob)
+function Spawner:CreateMob(spawner, spot, tier, mob, modifier)
   local spawned_units = {}
+
   for _,unit in pairs(mob) do
-    local spawned_unit = CreateUnitByName(unit, SPAWNER_SPOTS[spot]["origin"], true, nil, nil, DOTA_TEAM_NEUTRALS)
+    local spawned_unit = CreateUnitByName(unit, spawner[spot]["origin"], true, nil, nil, DOTA_TEAM_NEUTRALS)
     table.insert(spawned_units, spawned_unit)
-    local ai = spawned_unit:FindModifierByName("_modifier__ai")
-    if ai then ai.spot_origin = SPAWNER_SPOTS[spot]["origin"] end
+    local ai = spawned_unit:FindModifierByName(modifier)
+    if ai then ai.spot_origin = spawner[spot]["origin"] end
   end
 
-  SPAWNER_SPOTS[spot]["respawn"] = nil
-  SPAWNER_SPOTS[spot]["mob"] = {
-    ["tier"] = tier, ["units"] = spawned_units
-  }
+  spawner[spot]["respawn"] = nil
+  spawner[spot]["mob"] = {["tier"] = tier, ["units"] = spawned_units}
 end
 
 function Spawner:RandomizePlayerSpawn(unit)

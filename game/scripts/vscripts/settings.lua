@@ -164,6 +164,10 @@ SPAWNER_MOBS = {
   }},
   {["tier"] = 4, ["units"] = {
     "neutral_igneo", "neutral_igneo"
+  }},
+-- TIER BOSS
+  {["tier"] = 8, ["units"] = {
+    "boss_gorillaz"
   }}
 }
 
@@ -188,6 +192,11 @@ SPAWNER_SPOTS = {
   [18] = { ["mob"] = {}, ["origin"] = Vector(4412, -1042, 0), ["respawn"] = -60},
   [19] = { ["mob"] = {}, ["origin"] = Vector(2624, -896, 0), ["respawn"] = -60},
   [20] = { ["mob"] = {}, ["origin"] = Vector(2188, -2578, 0), ["respawn"] = -60}
+}
+
+SPAWNER_BOSS_SPOTS = {
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-4000, -4000, 0), ["respawn"] = -300},
+  [2] = { ["mob"] = {}, ["origin"] = Vector(5555, 2150, 0), ["respawn"] = -300},
 }
 
 SCORE = 100

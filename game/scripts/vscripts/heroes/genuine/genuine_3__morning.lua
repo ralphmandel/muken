@@ -183,16 +183,17 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     end
 
     function genuine_3__morning:AddKillPoint(pts)
-        local caster = self:GetCaster()
-        self.kills = self.kills + pts
+        self.kills = 0
+        -- local caster = self:GetCaster()
+        -- self.kills = self.kills + pts
 
-        local base_stats = caster:FindAbilityByName("base_stats")
-	    if base_stats then
-            base_stats:AddBaseStat("INT", 1)
-            base_stats:AddBaseStat("REC", 1)
-        end
+        -- local base_stats = caster:FindAbilityByName("base_stats")
+	    -- if base_stats then
+        --     base_stats:AddBaseStat("INT", 1)
+        --     base_stats:AddBaseStat("REC", 1)
+        -- end
 
-        self:PlayEfxKill(caster)
+        -- self:PlayEfxKill(caster)
     end
 
     function genuine_3__morning:GetManaCost(iLevel)

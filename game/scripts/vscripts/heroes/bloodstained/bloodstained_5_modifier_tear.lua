@@ -195,12 +195,14 @@ function bloodstained_5_modifier_tear:PlayEfxStartBlood(blood_thinker, point, da
 	local blood_percent = self.ability:GetSpecialValueFor("blood_percent") * 0.01
 	local amount = math.floor(damage * blood_percent * 0.6)
 
-	local particle_cast = "particles/bloodstained/bloodstained_x2_blood.vpcf"
-    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, blood_thinker)
-    ParticleManager:SetParticleControl(effect_cast, 1, point)
-    ParticleManager:SetParticleControl(effect_cast, 5, Vector(amount, amount, point.z))
+	if blood_mod then
+		local particle_cast = "particles/bloodstained/bloodstained_x2_blood.vpcf"
+		blood_mod.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, blood_thinker)
+		ParticleManager:SetParticleControl(blood_mod.effect_cast, 1, point)
+		ParticleManager:SetParticleControl(blood_mod.effect_cast, 5, Vector(amount, amount, point.z))
 
-	if blood_mod then blood_mod:AddParticle(effect_cast, false, false, -1, false, false) end
+		blood_mod:AddParticle(blood_mod.effect_cast, false, false, -1, false, false)
+	end
 end
 
 function bloodstained_5_modifier_tear:PlayEfxPull(blood)

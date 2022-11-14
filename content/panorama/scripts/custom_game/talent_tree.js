@@ -22,7 +22,7 @@ function OnTalentsData(event) {
     talentsData.talentsCount = Object.keys(event.talents).length;
     // if(talentsData.talentsCount >= event.count) {
 	    GameEvents.SendCustomGameEventToServer( "talent_tree_get_state", {});
-	    TALENTS_LAYOUT[TALENTS_LAYOUT["lastColumn"]].SetHasClass("last", true);
+	    //TALENTS_LAYOUT[TALENTS_LAYOUT["lastColumn"]].SetHasClass("last", true);
     // }
 }
 
