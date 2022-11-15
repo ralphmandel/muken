@@ -105,8 +105,3 @@ function GameMode:_OnConnectFull(keys)
   GameMode:OnConnectFull( keys )
   GameMode._reentrantCheck = false
 end
-
-function GameMode:On_dota_player_update_query_unit(data)
-  print("[BAREBONES] dota_player_update_query_unit")
-  PrintTable(data)
-end

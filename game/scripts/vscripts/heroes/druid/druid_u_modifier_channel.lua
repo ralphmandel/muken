@@ -55,7 +55,7 @@ end
 function druid_u_modifier_channel:OnIntervalThink()
 	local chance_lvl = self.ability:GetSpecialValueFor("chance_lvl")
 	local mana_loss = self.ability:GetSpecialValueFor("mana_loss")
-	local max_dominate = self.ability:GetSpecialValueFor("max_dominate")
+	local max_dominate = self.caster:GetLevel()
 
 	if self.parent:GetMana() == 0 then self.parent:InterruptChannel() return end
 
@@ -66,7 +66,7 @@ function druid_u_modifier_channel:OnIntervalThink()
 
 	-- UP 6.32
 	if self.ability:GetRank(32) then
-		max_dominate = max_dominate + 8
+		max_dominate = max_dominate + 10
 	end
 
 	local units = FindUnitsInRadius(

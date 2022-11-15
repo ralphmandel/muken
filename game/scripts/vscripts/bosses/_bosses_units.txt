@@ -9,7 +9,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"ModelScale" 				"1.4"
-		"Level"						"32"
+		"Level"						"30"
 		"BountyGoldMin"				"80"
 		"BountyGoldMax"				"100"
 		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
@@ -56,13 +56,13 @@
 		{
 			"STR"
 			{
-				"initial"	"20"
-				"bonus_level"	"50"
+				"initial"	"25"
+				"bonus_level"	"60"
 			}
 			"AGI"
 			{
 				"initial"	"10"
-				"bonus_level"	"5"
+				"bonus_level"	"6"
 			}
 			"INT"
 			{
@@ -72,7 +72,7 @@
 			"CON"
 			{
 				"initial"	"20"
-				"bonus_level"	"70"
+				"bonus_level"	"50"
 			}
 		}
 

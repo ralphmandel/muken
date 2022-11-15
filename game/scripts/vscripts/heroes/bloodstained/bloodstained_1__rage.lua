@@ -81,7 +81,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         --caster:StartGesture(1591)
         --caster:StartGesture(1784)
-        caster:StartGesture(1784)
+        if IsServer() then caster:StartGesture(1784) end
         caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
         caster:AttackNoEarlierThan(0.7, 99)
 

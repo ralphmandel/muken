@@ -83,12 +83,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function druid_u__conversion:AddUnit(unit)
         local caster = self:GetCaster()
-        local max_dominate = self:GetSpecialValueFor("max_dominate")
+        local max_dominate = caster:GetLevel()
         local unit_lvl = unit:GetLevel()
 
         -- UP 6.32
         if self:GetRank(32) then
-            max_dominate = max_dominate + 8
+            max_dominate = max_dominate + 10
         end
 
         if self:GetCurrentTableLvl() + unit_lvl > max_dominate then

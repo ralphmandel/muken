@@ -49,9 +49,11 @@ function _boss_gorillaz_modifier_passive:OnAttackLanded(keys)
 	if RandomInt(1, 100) > 10 then return end
 	if self.parent:HasModifier("mk_gorillaz_buff") then return end
 
-	self.parent:AddNewModifier(self.caster, self.ability, "mk_gorillaz_buff", {
-		duration = self.ability:CalcStatus(4, self.caster, self.parent)
-	})
+	if RandomFloat(1, 100) <= 10 then
+		self.parent:AddNewModifier(self.caster, self.ability, "mk_gorillaz_buff", {
+			duration = self.ability:CalcStatus(7, self.caster, self.parent)
+		})
+	end
 end
 
 function _boss_gorillaz_modifier_passive:OnIntervalThink()

@@ -97,12 +97,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"700"
+				"radius"				"500"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius_impact"			"300"
+				"radius_impact"			"500"
 			}
 			"03"
 			{
@@ -112,7 +112,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_impact"			"200"
+				"damage_impact"			"300"
 			}
 			"05"
 			{

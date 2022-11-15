@@ -273,7 +273,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_crit"			"275"
+				"stun_crit"			"300"
 			}
 			"02"
 			{
@@ -283,7 +283,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1"
+				"stun_duration"		"1.2"
 			}
 		}
 	}
@@ -356,7 +356,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"7"
 
 		"AbilitySpecial"
 		{
