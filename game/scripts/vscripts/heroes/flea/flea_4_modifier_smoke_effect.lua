@@ -34,7 +34,6 @@ function flea_4_modifier_smoke_effect:OnRefresh(kv)
 end
 
 function flea_4_modifier_smoke_effect:OnRemoved()
-	self:StopEfxStart()
 	self:RemoveDebuff()
 end
 
@@ -55,10 +54,17 @@ end
 
 function flea_4_modifier_smoke_effect:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
+end
+
+function flea_4_modifier_smoke_effect:GetActivityTranslationModifiers()
+	if self:GetCaster() == self:GetParent() then
+		return "shadow_dance"
+	end
 end
 
 function flea_4_modifier_smoke_effect:OnAttackLanded(keys)
@@ -123,11 +129,6 @@ function flea_4_modifier_smoke_effect:PlayEfxStart()
 	self:AddParticle(effect_cast_1, false, false, -1, false, false)
 
 	self.effect_cast = effect_cast_1
-	self.parent:StartGesture(1807)
 
 	if IsServer() then self.parent:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
-end
-
-function flea_4_modifier_smoke_effect:StopEfxStart()
-	self.parent:FadeGesture(1807)
 end

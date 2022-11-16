@@ -136,8 +136,8 @@ function bloodstained_2_modifier_passive:GetLifestealPercent()
 
 	-- UP 2.41
 	if self.ability:GetRank(41) then
-		base_heal = base_heal + 10
-		bonus_heal = bonus_heal - 10
+		base_heal = base_heal + 5
+		bonus_heal = bonus_heal - 5
 	end
 
 	return (bonus_heal * deficit_percent) + base_heal

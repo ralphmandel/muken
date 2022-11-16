@@ -5,10 +5,10 @@ function item_tp:Spawn()
 	self:SetCurrentAbilityCharges(1)
 end
 
--- if not self.gesture then self.gesture = 1590 end --1591
+-- if not self.gesture then self.gesture = 1500 end --1591
 -- caster:FadeGesture(self.gesture - 1)
 -- caster:StartGesture(self.gesture)
--- print("gesture", self.gesture)
+-- GameRules:SendCustomMessage("gesture" .. self.gesture, -1, 0)
 -- self.gesture = self.gesture + 1
 
 -----------------------------------------------------------

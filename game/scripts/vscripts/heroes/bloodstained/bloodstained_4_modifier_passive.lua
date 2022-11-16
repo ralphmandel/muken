@@ -48,10 +48,20 @@ function bloodstained_4_modifier_passive:OnAttackLanded(keys)
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then
-		chance = chance + 5
+		chance = chance + 2
+	end
+
+	-- UP 4.31
+	if self.ability:GetRank(31) then
+		duration = duration + 1
 	end
 
 	if RandomFloat(1, 100) <= chance then
+		-- UP 4.21
+		if self.ability:GetRank(21) then
+			self.parent:Purge(false, true, false, false, false)
+		end
+
 		self.ability.target = keys.target
 		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_4_modifier_frenzy", {
 			duration = self.ability:CalcStatus(duration, self.caster, self.parent)

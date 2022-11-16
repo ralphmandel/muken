@@ -273,7 +273,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_crit"			"300"
+				"stun_crit"			"350"
 			}
 			"02"
 			{
@@ -315,7 +315,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_percent"	"200"
+				"return_percent"	"250"
 			}
 		}
 	}

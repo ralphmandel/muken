@@ -20,12 +20,22 @@ function bloodstained_1_modifier_rage:OnCreated(kv)
     self.ability = self:GetAbility()
 	self.str = 0
 
+	-- UP 1.21
+	if self.ability:GetRank(21) and self.parent:IsStunned() then
+		self.str = 5
+	end
+
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", true) end
 end
 
 function bloodstained_1_modifier_rage:OnRefresh(kv)
 	self.str = 0
+
+	-- UP 1.21
+	if self.ability:GetRank(21) and self.parent:IsStunned() then
+		self.str = 5
+	end
 end
 
 function bloodstained_1_modifier_rage:OnRemoved()

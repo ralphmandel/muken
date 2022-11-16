@@ -38,6 +38,18 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function flea_4_modifier_invi:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+	}
+
+	return funcs
+end
+
+function flea_4_modifier_invi:GetActivityTranslationModifiers()
+	return "shadow_dance"
+end
+
 function flea_4_modifier_invi:OnIntervalThink()
 	if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 1, self.parent:GetOrigin()) end
 	if IsServer() then self:StartIntervalThink(FrameTime()) end

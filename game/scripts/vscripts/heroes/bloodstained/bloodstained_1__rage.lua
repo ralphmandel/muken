@@ -80,8 +80,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
 
         --caster:StartGesture(1591)
-        --caster:StartGesture(1784)
-        if IsServer() then caster:StartGesture(1784) end
+        caster:StartGesture(1783)
         caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
         caster:AttackNoEarlierThan(0.7, 99)
 
@@ -105,11 +104,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function bloodstained_1__rage:ApllyBuff()
         local caster = self:GetCaster()
         local duration = self:GetSpecialValueFor("duration")
-
-        -- UP 1.21
-        if self:GetRank(21) then
-            caster:Purge(false, true, false, true, false)
-        end
 
         -- UP 1.31
         if self:GetRank(31) then
