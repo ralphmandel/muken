@@ -3,6 +3,19 @@ if Spawner == nil then
   _G.Spawner = class({})
 end
 
+function Spawner:SpawnFountains()
+  if self.start == nil then
+    for i = 1, #TEAMS, 1 do
+      local loc = GetGroundPosition(TEAMS[i]["spawn"], nil)
+      local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, TEAMS[i][1])
+      fountain:SetOrigin(loc)
+      FindClearSpaceForUnit(fountain, loc, true)
+    end
+  end
+
+  self.start = true
+end
+
 function Spawner:SpawnNeutrals()
   local time = GameRules:GetDOTATime(false, false)
   local current_mobs = 0
@@ -12,7 +25,7 @@ function Spawner:SpawnNeutrals()
     local free_spot_index = 1
     current_mobs = 0
 
-    for i = 1, 20, 1 do
+    for i = 1, #SPAWNER_SPOTS, 1 do
       local spot_blocked = self:IsSpotAlive(SPAWNER_SPOTS, i)
       if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_SPOTS, i, 45) end
       if spot_blocked then
@@ -116,47 +129,60 @@ function Spawner:CreateMob(spawner, spot, tier, mob, modifier)
 end
 
 function Spawner:RandomizePlayerSpawn(unit)
-  local further_loc = nil
-  local further_distance = nil
- 
-  local enemies = FindUnitsInRadius(
-    unit:GetTeamNumber(), unit:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,
-    0, false
-  )
+  local loc = Vector(0, 0, 0)
 
-  for _,loc in pairs(SPAWN_POS) do
-    local closer = nil
-    local distance = 0
-    
-    for _,enemy in pairs(enemies) do
-      if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
-        if closer == nil then
-          closer = loc
-          distance = (loc - enemy:GetAbsOrigin()):Length()
-        end
-        if (loc - enemy:GetAbsOrigin()):Length() < distance then
-          closer = loc
-          distance = (loc - enemy:GetAbsOrigin()):Length()
-        end
-      end
-    end
+  for i = 1, #TEAMS, 1 do
+		if TEAMS[i][1] == unit:GetTeamNumber() then
+			loc = TEAMS[i]["spawn"]
+		end
+	end
 
-    if further_loc == nil then
-      further_loc = closer
-      further_distance = distance
-    else
-      if distance > further_distance then
-        further_loc = closer
-        further_distance = distance
-      end
-    end
-  end
-
-  if further_loc == nil then
-    further_loc = SPAWN_POS[RandomInt(1, 15)]
-  end
-
-  unit:SetOrigin(further_loc)
-  FindClearSpaceForUnit(unit, further_loc, true)
+  unit:SetOrigin(loc)
+  FindClearSpaceForUnit(unit, loc, true)
 end
+
+-- function Spawner:RandomizePlayerSpawn(unit)
+--   local further_loc = nil
+--   local further_distance = nil
+ 
+--   local enemies = FindUnitsInRadius(
+--     unit:GetTeamNumber(), unit:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+--     DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,
+--     0, false
+--   )
+
+--   for _,loc in pairs(SPAWN_POS) do
+--     local closer = nil
+--     local distance = 0
+    
+--     for _,enemy in pairs(enemies) do
+--       if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
+--         if closer == nil then
+--           closer = loc
+--           distance = (loc - enemy:GetAbsOrigin()):Length()
+--         end
+--         if (loc - enemy:GetAbsOrigin()):Length() < distance then
+--           closer = loc
+--           distance = (loc - enemy:GetAbsOrigin()):Length()
+--         end
+--       end
+--     end
+
+--     if further_loc == nil then
+--       further_loc = closer
+--       further_distance = distance
+--     else
+--       if distance > further_distance then
+--         further_loc = closer
+--         further_distance = distance
+--       end
+--     end
+--   end
+
+--   if further_loc == nil then
+--     further_loc = SPAWN_POS[RandomInt(1, 15)]
+--   end
+
+--   unit:SetOrigin(further_loc)
+--   FindClearSpaceForUnit(unit, further_loc, true)
+-- end

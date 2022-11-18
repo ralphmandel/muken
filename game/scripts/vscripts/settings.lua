@@ -33,7 +33,7 @@ USE_STANDARD_HERO_GOLD_BOUNTY = true    -- Should we give gold for hero kills th
 
 USE_CUSTOM_TOP_BAR_VALUES = true        -- Should we do customized top bar values or use the default kill count per team?
 TOP_BAR_VISIBLE = true                  -- Should we display the top bar score/count at all?
-SHOW_KILLS_ON_TOPBAR = true             -- Should we display kills only on the top bar? (No denies, suicides, kills by neutrals)  Requires USE_CUSTOM_TOP_BAR_VALUES
+SHOW_KILLS_ON_TOPBAR = false             -- Should we display kills only on the top bar? (No denies, suicides, kills by neutrals)  Requires USE_CUSTOM_TOP_BAR_VALUES
 
 ENABLE_TOWER_BACKDOOR_PROTECTION = false-- Should we enable backdoor protection for our towers?
 REMOVE_ILLUSIONS_ON_DEATH = false       -- Should we remove all illusions if the main hero dies?
@@ -176,26 +176,22 @@ SPAWNER_MOBS = {
 }
 
 SPAWNER_SPOTS = {
-  [1] = { ["mob"] = {}, ["origin"] = Vector(3960, -2963, 0), ["respawn"] = -60},
-  [2] = { ["mob"] = {}, ["origin"] = Vector(1604, -4734, 0), ["respawn"] = -60},
-  [3] = { ["mob"] = {}, ["origin"] = Vector(509, -3086, 0), ["respawn"] = -60},
-  [4] = { ["mob"] = {}, ["origin"] = Vector(-2429, -3974, 0), ["respawn"] = -60},
-  [5] = { ["mob"] = {}, ["origin"] = Vector(-3011, -1664, 0), ["respawn"] = -60},
-  [6] = { ["mob"] = {}, ["origin"] = Vector(-4274, -455, 0), ["respawn"] = -60},
-  [7] = { ["mob"] = {}, ["origin"] = Vector(-4017, 1468, 0), ["respawn"] = -60},
-  [8] = { ["mob"] = {}, ["origin"] = Vector(-2820, 2420, 0), ["respawn"] = -60},
-  [9] = { ["mob"] = {}, ["origin"] = Vector(-1410, 2232, 0), ["respawn"] = -60},
-  [10] = { ["mob"] = {}, ["origin"] = Vector(-3515, 3128, 0), ["respawn"] = -60},
-  [11] = { ["mob"] = {}, ["origin"] = Vector(-1796, 3575, 0), ["respawn"] = -60},
-  [12] = { ["mob"] = {}, ["origin"] = Vector(-1727, 5223, 0), ["respawn"] = -60},
-  [13] = { ["mob"] = {}, ["origin"] = Vector(65, 5298, 0), ["respawn"] = -60},
-  [14] = { ["mob"] = {}, ["origin"] = Vector(3459, 4393, 0), ["respawn"] = -60},
-  [15] = { ["mob"] = {}, ["origin"] = Vector(4269, 2743, 0), ["respawn"] = -60},
-  [16] = { ["mob"] = {}, ["origin"] = Vector(1457, 1858, 0), ["respawn"] = -60},
-  [17] = { ["mob"] = {}, ["origin"] = Vector(4728, 1130, 0), ["respawn"] = -60},
-  [18] = { ["mob"] = {}, ["origin"] = Vector(4412, -1042, 0), ["respawn"] = -60},
-  [19] = { ["mob"] = {}, ["origin"] = Vector(2624, -896, 0), ["respawn"] = -60},
-  [20] = { ["mob"] = {}, ["origin"] = Vector(2188, -2578, 0), ["respawn"] = -60}
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-3195, 379, 0), ["respawn"] = -60},
+  [2] = { ["mob"] = {}, ["origin"] = Vector(-2048, 2872, 0), ["respawn"] = -60},
+  [3] = { ["mob"] = {}, ["origin"] = Vector(-761, 1587, 0), ["respawn"] = -60},
+  [4] = { ["mob"] = {}, ["origin"] = Vector(-701, 3193, 0), ["respawn"] = -60},
+  [5] = { ["mob"] = {}, ["origin"] = Vector(507, 1276, 0), ["respawn"] = -60},
+  [6] = { ["mob"] = {}, ["origin"] = Vector(638, 3195, 0), ["respawn"] = -60},
+  [7] = { ["mob"] = {}, ["origin"] = Vector(2163, 2170, 0), ["respawn"] = -60},
+  [8] = { ["mob"] = {}, ["origin"] = Vector(3195, 1528, 0), ["respawn"] = -60},
+  [9] = { ["mob"] = {}, ["origin"] = Vector(1607, 386, 0), ["respawn"] = -60},
+  [10] = { ["mob"] = {}, ["origin"] = Vector(3203, -771, 0), ["respawn"] = -60},
+  [11] = { ["mob"] = {}, ["origin"] = Vector(1412, -1863, 0), ["respawn"] = -60},
+  [12] = { ["mob"] = {}, ["origin"] = Vector(1602, -3146, 0), ["respawn"] = -60},
+  [13] = { ["mob"] = {}, ["origin"] = Vector(329, -1352, 0), ["respawn"] = -60},
+  [14] = { ["mob"] = {}, ["origin"] = Vector(131, -2949, 0), ["respawn"] = -60},
+  [15] = { ["mob"] = {}, ["origin"] = Vector(-2621, -2115, 0), ["respawn"] = -60},
+  [16] = { ["mob"] = {}, ["origin"] = Vector(-1409, -835, 0), ["respawn"] = -60}
 }
 
 SPAWNER_BOSS_SPOTS = {
@@ -211,10 +207,10 @@ GOLD_BOUNTY_MAX = 15
 
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
-  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
-  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>"},
-  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
-  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"},
+  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>", ["spawn"] = Vector(-2550, 3850, 0)},
+  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>", ["spawn"] = Vector(2550, -3850, 0)},
+  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>", ["spawn"] = Vector(-3850, -2550, 0)},
+  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>", ["spawn"] = Vector(3850, 2550, 0)},
   -- [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
   -- [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
   -- [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},

@@ -27,7 +27,8 @@ function base_hero_mod:OnRefresh(kv)
 end
 
 function base_hero_mod:OnIntervalThink()
-	--print(self.parent:GetOrigin().x, self.parent:GetOrigin().y, "loc")
+	local message = "x:" .. self.parent:GetOrigin().x .. "; y:" .. self.parent:GetOrigin().y .. "; loc"
+	print(message)
 end
 
 ------------------------------------------------------------

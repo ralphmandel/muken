@@ -180,7 +180,7 @@ function GameMode:_CaptureGameMode()
     --mode:SetCustomBuybackCooldownEnabled( CUSTOM_BUYBACK_COOLDOWN_ENABLED )
     mode:SetBuybackEnabled(false)
     mode:SetTopBarTeamValuesOverride(USE_CUSTOM_TOP_BAR_VALUES)
-    mode:SetTopBarTeamValuesVisible(true)
+    mode:SetTopBarTeamValuesVisible(false)
     mode:SetUseCustomHeroLevels(true)
     --mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
     mode:SetCustomXPRequiredToReachNextLevel({

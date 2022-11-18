@@ -1,4 +1,5 @@
 item_tp = class({})
+require("settings")
 
 function item_tp:Spawn()
 	self.cooldown = 60
@@ -18,9 +19,14 @@ function item_tp:OnSpellStart()
 	self.location = self:GetCursorPosition()
 	local start_pfx_name = "particles/items2_fx/teleport_start.vpcf"
 	local end_pfx_name = "particles/items2_fx/teleport_end.vpcf"
+	
 	if self.location == nil then
 		self.location = self:RandomizePlayerSpawn(caster)
 	else
+		if self.location.x > 3200 or self.location.x < -3200
+		or self.location.y > 3200 or self.location.y < -3200 then
+			self.location = self:RandomizePlayerSpawn(caster)
+		end
 		if self.location == Vector(0, 0, 0) then
 			self.location = self:RandomizePlayerSpawn(caster)
 		end
@@ -46,25 +52,11 @@ function item_tp:OnSpellStart()
 end
 
 function item_tp:RandomizePlayerSpawn(unit)
-	local spawn_pos = {
-		[1] = Vector(455, -1394, 0),
-		[2] = Vector(-1040, -3661, 0),
-		[3] = Vector(-2724, -2628, 0),
-		[4] = Vector(-2563, -923, 0),
-		[5] = Vector(-3144, 1596, 0),
-		[6] = Vector(-828, 1413, 0),
-		[7] = Vector(-2047, 4349, 0),
-		[8] = Vector(1858, 5903, 0),
-		[9] = Vector(935, 2619, 0),
-		[10] = Vector(3291, 2578, 0),
-		[11] = Vector(1084, 875, 0),
-		[12] = Vector(3587, -670, 0),
-		[13] = Vector(3848, -1969, 0),
-		[14] = Vector(3920, -3897, 0),
-		[15] = Vector(2175, -3259, 0)
-	}
-
-	return spawn_pos[RandomInt(1, 15)]
+	for i = 1, #TEAMS, 1 do
+		if TEAMS[i][1] == unit:GetTeamNumber() then
+			return TEAMS[i]["spawn"]
+		end
+	end
 	-- unit:SetOrigin(further_loc)
 	-- FindClearSpaceForUnit(unit, further_loc, true)
 end

@@ -526,7 +526,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/props_structures/good_fountain001.vmdl"	// Model.
+		"Model"						"models/props_structures/radiant_fountain002_gold.vmdl"
 		"BaseClass"					"npc_dota_building"
 		"SoundSet"					"n_creep_Ranged"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -547,15 +547,15 @@
 
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"16"		// Damage range min.
-		"AttackDamageMax"			"20"		// Damage range max.
-		"AttackRate"				"1"		// Speed of attack.
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.
+		"AttackRate"				"0.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"50"		// Range within a target can be acquired.
-		"AttackRange"				"400"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/econ/items/visage/immortal_familiar/visage_immortal_ti5/visage_familiar_base_attack_ti5.vpcf" // Particle system model for projectile.
-		"ProjectileSpeed"			"1200"		// Speed of projectile.		     
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"800"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/base_attacks/fountain_attack.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"1600"		// Speed of projectile.		     
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -582,8 +582,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"500"		// Range of vision during day light.
-		"VisionNighttimeRange"		"300"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1500"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1500"		// Range of vision at night time.
 
 		// Team
 		//----------------------------------------------------------------
