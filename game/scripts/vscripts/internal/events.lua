@@ -73,8 +73,10 @@ function GameMode:_OnEntityKilled( keys )
 
     --PlayerResource:GetTeamKills
     if SHOW_KILLS_ON_TOPBAR then
-      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_BADGUYS, GetTeamHeroKills(DOTA_TEAM_BADGUYS) )
-      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_GOODGUYS, GetTeamHeroKills(DOTA_TEAM_GOODGUYS) )
+      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_CUSTOM_1, GetTeamHeroKills(DOTA_TEAM_CUSTOM_1) )
+      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_CUSTOM_2, GetTeamHeroKills(DOTA_TEAM_CUSTOM_2) )
+      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_CUSTOM_3, GetTeamHeroKills(DOTA_TEAM_CUSTOM_3) )
+      GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_CUSTOM_4, GetTeamHeroKills(DOTA_TEAM_CUSTOM_4) )
     end
   end
 

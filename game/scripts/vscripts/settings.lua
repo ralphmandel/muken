@@ -96,13 +96,17 @@ USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team 
 
 TEAM_COLORS = {}                        -- If USE_CUSTOM_TEAM_COLORS is set, use these colors.
 TEAM_COLORS[DOTA_TEAM_CUSTOM_1] = { 61, 210, 150 }  --    Teal
-TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 243, 201, 9 }   --    Yellow
-TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 197, 77, 168 }  --    Pink
-TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 255, 108, 0 }   --    Orange
-TEAM_COLORS[DOTA_TEAM_CUSTOM_5] = { 199, 228, 13 }   --   Olive
-TEAM_COLORS[DOTA_TEAM_CUSTOM_6] = { 140, 42, 244 }  --    Purple
-TEAM_COLORS[DOTA_TEAM_CUSTOM_7] = { 129, 83, 54 }   --    Brown
-TEAM_COLORS[DOTA_TEAM_CUSTOM_8] = { 27, 192, 216 }  --    Cyan
+TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 255, 108, 0 }   --    Orange
+TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 199, 228, 13 }   --   Olive
+TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 140, 42, 244 }  --    Purple
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_1] = { 61, 210, 150 }  --    Teal
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 243, 201, 9 }   --    Yellow
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 197, 77, 168 }  --    Pink
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 255, 108, 0 }   --    Orange
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_5] = { 199, 228, 13 }   --   Olive
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_6] = { 140, 42, 244 }  --    Purple
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_7] = { 129, 83, 54 }   --    Brown
+-- TEAM_COLORS[DOTA_TEAM_CUSTOM_8] = { 27, 192, 216 }  --    Cyan
 --TEAM_COLORS[DOTA_TEAM_CUSTOM_9] = { 199, 228, 13 }  --    Olive
 --TEAM_COLORS[DOTA_TEAM_CUSTOM_10] = { 140, 42, 244 }  --    Purple
 
@@ -114,10 +118,10 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 4
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 4
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 4
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 4
+-- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
+-- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
+-- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 4
+-- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 4
 
 SPAWNER_MOBS = {
 -- TIER 1
@@ -208,13 +212,17 @@ GOLD_BOUNTY_MAX = 15
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
   [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
-  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
-  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},
-  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>"},
-  [5] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
-  [6] = {[1] = DOTA_TEAM_CUSTOM_6, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"},
-  [7] = {[1] = DOTA_TEAM_CUSTOM_7, [2] = 0, [3] = "Team Brown", [4] = 0, [5] = "<font color='#815336'>"},
-  [8] = {[1] = DOTA_TEAM_CUSTOM_8, [2] = 0, [3] = "Team Cyan", [4] = 0, [5] = "<font color='#1bc0d8'>"},
+  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>"},
+  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
+  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"},
+  -- [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
+  -- [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
+  -- [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},
+  -- [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>"},
+  -- [5] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
+  -- [6] = {[1] = DOTA_TEAM_CUSTOM_6, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"},
+  -- [7] = {[1] = DOTA_TEAM_CUSTOM_7, [2] = 0, [3] = "Team Brown", [4] = 0, [5] = "<font color='#815336'>"},
+  -- [8] = {[1] = DOTA_TEAM_CUSTOM_8, [2] = 0, [3] = "Team Cyan", [4] = 0, [5] = "<font color='#1bc0d8'>"},
   --[9] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
   --[10] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"}
 }

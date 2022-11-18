@@ -74,7 +74,6 @@ function fountain_modifier:OnIntervalThink()
 		AddFOWViewer(DOTA_TEAM_CUSTOM_2, self.parent:GetOrigin(), self.radius, 1, true)
 		AddFOWViewer(DOTA_TEAM_CUSTOM_3, self.parent:GetOrigin(), self.radius, 1, true)
 		AddFOWViewer(DOTA_TEAM_CUSTOM_4, self.parent:GetOrigin(), self.radius, 1, true)
-		AddFOWViewer(DOTA_TEAM_CUSTOM_5, self.parent:GetOrigin(), self.radius, 1, true)
 	end
 end
 
