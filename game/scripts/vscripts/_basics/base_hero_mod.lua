@@ -20,7 +20,7 @@ function base_hero_mod:OnCreated(kv)
 	self:LoadModel()
 	self:LoadSounds()
 
-	--if IsServer() then self:StartIntervalThink(1) end -- Loc finder
+	if IsServer() then self:StartIntervalThink(1) end -- Loc finder
 end
 
 function base_hero_mod:OnRefresh(kv)
