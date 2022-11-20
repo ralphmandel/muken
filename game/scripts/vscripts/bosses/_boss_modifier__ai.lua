@@ -46,6 +46,12 @@ function _boss_modifier__ai:OnIntervalThink()
 end
 
 function _boss_modifier__ai:IdleThink()
+    if self.idle == nil then self.idle = false end
+    if self.idle == false then
+        self.unit:Stop()
+        self.idle = true
+    end
+
     -- Find any enemy units around the AI unit inside the aggroRange
     local units = FindUnitsInRadius(self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil,
         self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, 
@@ -69,7 +75,8 @@ function _boss_modifier__ai:IdleThink()
     --     return -- Stop processing this state
     -- end
 
-
+    local vector = (Vector(0, 0, 0) - self.unit:GetAbsOrigin()):Normalized()
+    self.unit:SetForwardVector(vector)
 
     if self.unit:GetAggroTarget() ~= nil then
         self.aggroTarget = self.unit:GetAggroTarget()
@@ -79,6 +86,8 @@ function _boss_modifier__ai:IdleThink()
 end
 
 function _boss_modifier__ai:AggressiveThink()
+    self.idle = false
+
     if self.aggroTarget == nil then
         self.unit:MoveToPosition(self.spawnPos)
         self.state = AI_STATE_RETURNING
@@ -136,7 +145,7 @@ end
 
 function _boss_modifier__ai:ReturningThink()
     -- Check if the AI unit has reached its spawn location yet
-    if (self.spawnPos - self.unit:GetAbsOrigin()):Length() < 10 then
+    if (self.spawnPos - self.unit:GetAbsOrigin()):Length() < 100 then
         self.state = AI_STATE_IDLE -- Transition the state to the 'Idle' state(!)
         return -- Stop processing this state
     end

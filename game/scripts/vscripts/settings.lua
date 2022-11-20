@@ -195,8 +195,8 @@ SPAWNER_SPOTS = {
 }
 
 SPAWNER_BOSS_SPOTS = {
-  [1] = { ["mob"] = {}, ["origin"] = Vector(-4000, -4000, 0), ["respawn"] = -300},
-  [2] = { ["mob"] = {}, ["origin"] = Vector(5555, 2150, 0), ["respawn"] = -300},
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-6750, 0, 0), ["respawn"] = -300},
+  [2] = { ["mob"] = {}, ["origin"] = Vector(6750, 0, 0), ["respawn"] = -300},
 }
 
 SCORE = 100
