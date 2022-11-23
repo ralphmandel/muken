@@ -20,7 +20,7 @@ function bocuse_1_modifier_slash:OnCreated(kv)
     self.ability = self:GetAbility()
 	self.interrupted = false
 
-	self.chance = self.ability:GetSpecialValueFor("init_chance") + kv.bonus_chance
+	self.chance = self.ability:GetSpecialValueFor("init_chance")
 	self.cut_intervals = self.ability:GetSpecialValueFor("cut_intervals")
 	self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
 	self.total_stun = self.stun_duration

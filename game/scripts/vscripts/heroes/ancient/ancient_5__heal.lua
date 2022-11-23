@@ -69,17 +69,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function ancient_5__heal:OnSpellStart()
         local caster = self:GetCaster()
-        local hp_min = self:GetSpecialValueFor("hp_min")
         local percent = self:GetSpecialValueFor("percent")
-        
-        local deficit = caster:GetBaseMaxHealth() - caster:GetHealth()
-        local extra_health = math.floor(deficit * percent * 0.01)
-        local sound = "Hero_Omniknight.Purification"
 
         -- UP 5.21
         if self:GetRank(21) then
-            extra_health = extra_health + (caster:GetBaseMaxHealth() * 0.1)
+            percent = percent + 5
         end
+        
+        local deficit = caster:GetMaxHealth() - caster:GetHealth()
+        local heal = math.floor(deficit * percent * 0.01)
 
         -- UP 5.22
         if self:GetRank(22) then
@@ -91,23 +89,28 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             end
         end
 
-        caster:Purge(false, true, false, false, false)
-        
-        if extra_health > hp_min then
-            sound = "Hero_Omniknight.Purification.Wingfall"
-            caster:AddNewModifier(caster, self, "ancient_5_modifier_buff", {
-                extra_health = extra_health,
-                duration = extra_health * 0.04
-            })
-        end
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then heal = heal * base_stats:GetHealPower() end
 
-        self:PlayEfxEnd(caster, sound)
+        caster:Purge(false, true, false, false, false)
+        caster:Heal(heal, self)
+
+        self:PlayEfxEnd(caster, "Hero_Omniknight.Purification")
     end
 
     function ancient_5__heal:GetBehavior()
         if self:GetCurrentAbilityCharges() == 0 then return 4 end
         if self:GetCurrentAbilityCharges() % 2 == 0 then return 137438953476 end
         return 4
+    end
+
+    function ancient_5__heal:GetCooldown(iLevel)
+        local cooldown = self:GetSpecialValueFor("cooldown")
+        local bonus_cooldown = (100 - self:GetCaster():GetHealthPercent()) * 0.25
+
+        if self:GetCurrentAbilityCharges() == 0 then return cooldown end
+        if self:GetCurrentAbilityCharges() % 3 == 0 then return cooldown + bonus_cooldown - 5 end
+        return cooldown + bonus_cooldown
     end
 
     function ancient_5__heal:GetManaCost(iLevel)
@@ -121,6 +124,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         -- UP 5.11
         if self:GetRank(11) then
             charges = charges * 2
+        end
+
+        -- UP 5.12
+        if self:GetRank(12) then
+            charges = charges * 3
         end
 
         self:SetCurrentAbilityCharges(charges)
@@ -140,6 +148,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local string = "particles/units/heroes/hero_chen/chen_holy_persuasion.vpcf"
         local pfx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
         ParticleManager:SetParticleControlEnt(pfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+        ParticleManager:ReleaseParticleIndex(pfx)
+
+        string = "particles/units/heroes/hero_chen/chen_penitence.vpcf"
+        pfx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(pfx, 0, target:GetOrigin())
         ParticleManager:ReleaseParticleIndex(pfx)
 
         if IsServer() then target:EmitSound(sound) end

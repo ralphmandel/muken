@@ -117,7 +117,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_sec"			"50"
+				"damage_sec"			"30"
 			}
 			"06"
 			{

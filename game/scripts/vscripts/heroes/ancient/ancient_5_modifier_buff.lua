@@ -105,10 +105,3 @@ end
 function ancient_5_modifier_buff:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
-
-function ancient_5_modifier_buff:PlayEfxStart()
-	local string = "particles/units/heroes/hero_chen/chen_penitence.vpcf"
-	local pfx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(pfx, 0, self.parent:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(pfx)
-end

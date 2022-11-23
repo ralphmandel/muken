@@ -162,7 +162,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_init"				"40"
+				"gold_init"				"50"
 			}
 			"03"
 			{

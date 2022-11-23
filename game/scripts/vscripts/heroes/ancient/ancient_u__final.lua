@@ -212,8 +212,8 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
         end
 
         if ability == heal and heal then
-            local energy_deficit = caster:GetMaxMana() - caster:GetMana()
-            self.energy = self.energy + (energy_deficit * 0.15)
+            local deficit = (100 - caster:GetHealthPercent()) * 2
+            self.energy = self.energy + deficit
         end
 
         self.energy = math.floor(self.energy)

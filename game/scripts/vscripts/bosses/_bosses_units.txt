@@ -57,12 +57,12 @@
 			"STR"
 			{
 				"initial"	"25"
-				"bonus_level"	"60"
+				"bonus_level"	"50"
 			}
 			"AGI"
 			{
 				"initial"	"10"
-				"bonus_level"	"6"
+				"bonus_level"	"10"
 			}
 			"INT"
 			{
@@ -71,8 +71,8 @@
 			}
 			"CON"
 			{
-				"initial"	"20"
-				"bonus_level"	"50"
+				"initial"	"10"
+				"bonus_level"	"60"
 			}
 		}
 

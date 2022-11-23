@@ -212,21 +212,20 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_ANCESTRAL_SPIRIT"
 		"AbilityCastPoint"       		"0.45"
-		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"40"
+				"percent"		"15"
 			}
-            "02"
+			"13"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hp_min"		"250"
+				"cooldown"		"10"
 			}
-			"14"
+            "14"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"manacost"		"0"

@@ -59,7 +59,7 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
     -- UP 6.32
     if self.ability:GetRank(32) and RandomFloat(1, 100) <= 10 then
         self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_rage", {
-            duration = self.ability:CalcStatus(1.5, self.caster, self.parent),
+            duration = self.ability:CalcStatus(1, self.caster, self.parent),
             autocasted = 1
         })
     end

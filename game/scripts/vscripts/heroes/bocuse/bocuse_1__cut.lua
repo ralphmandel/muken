@@ -92,7 +92,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         if self.target:TriggerSpellAbsorb(self) then return end
 
-        local max_bonus_chance = self:GetSpecialValueFor("max_bonus_chance")
+        --local max_bonus_chance = self:GetSpecialValueFor("max_bonus_chance")
+        local max_bonus_chance = 0
         local bonus_chance = max_bonus_chance
 
         if self.last_time_cast == nil then

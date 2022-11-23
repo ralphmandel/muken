@@ -29,7 +29,6 @@ function bocuse_u_modifier_rage:OnCreated(kv)
 	self.status = self.ability:GetSpecialValueFor("status")
 
 	self.ability:SetActivated(false)
-	self.ability:EndCooldown()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_rage_status_efx", true) end
@@ -47,10 +46,10 @@ function bocuse_u_modifier_rage:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_rage_status_efx", false) end
 
-	local cooldown = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
+	--local cooldown = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
 	self.ability:SetActivated(true)
     if self.autocasted == 0 then
-		self.ability:StartCooldown(cooldown)
+		--self.ability:StartCooldown(cooldown)
 		self:StartExhaustion()
 	end
 end
