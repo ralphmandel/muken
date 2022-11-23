@@ -163,7 +163,7 @@ require("internal/talent_tree")
 			self:AddGold(self:GetSpecialValueFor("starting_gold"))
 		end
 
-		if GetMapName() == "arena_turbo" then
+		if GetMapName() == "muken_arena_turbo" then
 			self:AddGold(99999)
 		end
 	end

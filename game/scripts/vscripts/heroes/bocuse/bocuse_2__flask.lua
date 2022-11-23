@@ -228,7 +228,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                 })
             end
 
-            unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {})
+            unit:AddNewModifier(caster, self, "bocuse_2_modifier_buff", {
+                duration = self:GetSpecialValueFor("init_duration")
+            })
         end
 
         if target:GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -253,7 +255,9 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                     })
                 end
 
-                unit:AddNewModifier(caster, self, "bocuse_2_modifier_debuff", {})
+                unit:AddNewModifier(caster, self, "bocuse_2_modifier_debuff", {
+                    duration = self:GetSpecialValueFor("init_duration")
+                })
             end
         end
     end

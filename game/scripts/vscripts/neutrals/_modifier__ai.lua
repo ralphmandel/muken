@@ -83,6 +83,17 @@ function _modifier__ai:IdleThink()
 end
 
 function _modifier__ai:AggressiveThink()
+    if self.aggroTarget == nil then
+        self.unit:MoveToPosition(self.spawnPos)
+        self.state = AI_STATE_RETURNING
+        return
+    end
+
+    if IsValidEntity(self.aggroTarget) == false then
+        self.unit:MoveToPosition(self.spawnPos)
+        self.state = AI_STATE_RETURNING
+        return
+    end
 
     local units = FindUnitsInRadius(self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil,
     self.leashRange, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, 

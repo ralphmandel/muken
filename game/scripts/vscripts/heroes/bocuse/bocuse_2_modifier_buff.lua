@@ -23,24 +23,18 @@ function bocuse_2_modifier_buff:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", true) end
 
-	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
 
 	if IsServer() then
-		self:SetDuration(init_duration, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
 		self:StartIntervalThink(self.intervals)
 		self.parent:EmitSound("Bocuse.Flambee.Buff")
 	end
 end
 
 function bocuse_2_modifier_buff:OnRefresh(kv)
-	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	self.bonus_amount = 0
 
 	if IsServer() then
-		self:SetDuration(init_duration, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
 		self.parent:StopSound("Bocuse.Flambee.Buff")
 		self.parent:EmitSound("Bocuse.Flambee.Buff")
 	end
@@ -71,7 +65,6 @@ end
 
 function bocuse_2_modifier_buff:OnIntervalThink()
 	if IsServer() then
-		self:CalcTime()
 		self:ApplyMana()
 		self:ApplyHeal()
 		self:StartIntervalThink(self.intervals)
@@ -94,9 +87,6 @@ function bocuse_2_modifier_buff:ApplyMana()
 		mana_gain = mana_gain + 5
 	end
 
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then mana_gain = mana_gain * base_stats:GetHealPower() end
-
 	if mana_gain > 0 and self.parent:GetUnitName() ~= "npc_dota_hero_elder_titan" then
 		self.parent:GiveMana(mana_gain)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana_gain, self.caster)
@@ -112,21 +102,6 @@ function bocuse_2_modifier_buff:ApplyHeal()
 	if amount > 0 then self.parent:Heal(amount, self.ability) end
 
 	self.bonus_amount = 0
-
-	if self.time > 0 then
-		self:SetDuration(self.time, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
-		return
-	end
-
-	self:Destroy()
-end
-
-function bocuse_2_modifier_buff:CalcTime()
-	local amount_time_loss = self.ability:GetSpecialValueFor("amount_time_loss")
-	self.time = self:GetRemainingTime() - (self.bonus_amount / amount_time_loss)
-
-	if self.time < 0 then self.bonus_amount = self:GetRemainingTime() * amount_time_loss end
 end
 
 -- EFFECTS -----------------------------------------------------------

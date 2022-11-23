@@ -1,11 +1,15 @@
 "AddonInfo"
 {
   "TeamCount" "10"
-  "maps"      "arena_turbo arena_default"
-  "IsPlayable"  "1"
-  "arena_turbo"
+  "maps"      "muken_arena_turbo muken_arena_default"
+  "IsPlayable"  "1 1"
+  "muken_arena_default"
   {
-          "MaxPlayers"                    "12"
+    "MaxPlayers"                    "12"
+  }
+  "muken_arena_turbo"
+  {
+    "MaxPlayers"                    "12"
   }
 //   "template_map"
 //   {

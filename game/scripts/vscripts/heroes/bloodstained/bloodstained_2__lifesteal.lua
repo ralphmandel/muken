@@ -50,7 +50,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then
             base_hero.ranks[2][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            Timers:CreateTimer(0.2, function()
+				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+			end)
         end
 
         self:CheckAbilityCharges(1)
@@ -58,6 +60,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bloodstained_2__lifesteal:Spawn()
         self:CheckAbilityCharges(0)
+        if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
 -- SPELL START

@@ -303,17 +303,23 @@ function GameMode:OnEntityKilled( keys )
   end
 
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
+  -- print("IsIllusion", killedUnit:IsIllusion())
+  -- print("IsConsideredHero", killedUnit:IsConsideredHero())
+  -- print("IsHero", killedUnit:IsHero())
+  -- print("IsCreature", killedUnit:IsCreature())
+  -- print("IsNeutralUnitType", killedUnit:IsNeutralUnitType())
 
   -- Put code here to handle when an entity gets killed
   if killedUnit:IsReincarnating() == false then
     if self.vo == nil then self.vo = 0 end
     if self.vo_time == nil then self.vo_time = -60 end
 
-    if killedUnit:IsCreature() then
-      if IsServer() then killedUnit:EmitSound("Creature.Kill") end
+    if killedUnit:IsHero() == false then
+      if killedUnit:IsNeutralUnitType() then
+        if IsServer() then killedUnit:EmitSound("Creature.Kill") end
+      end
 
-      if killedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS
-      and killedUnit:IsIllusion() == false then
+      if killedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
         RollDrops(killedUnit)
 
         if killerAbility == nil and killerEntity ~= nil then

@@ -39,7 +39,7 @@ function druid_u_modifier_conversion:OnRemoved()
 		or self.parent:GetUnitName() == "npc_druid_treant_lv3" then
 			self.parent:EmitSound("Hero_Furion.TreantDeath")
 		else
-			self.parent:EmitSound("Creature.Kill")
+			--self.parent:EmitSound("Creature.Kill")
 		end
 	end
 	

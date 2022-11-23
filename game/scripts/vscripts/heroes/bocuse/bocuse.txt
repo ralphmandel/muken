@@ -113,7 +113,7 @@
 
 		"AbilityCastAnimation"   		""
 		"AbilityCastPoint"       		"0.4"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"45"
 
 		"AbilitySpecial"
 		{
@@ -140,12 +140,12 @@
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"min_amount"		"0.4"
+				"min_amount"		"0.5"
 			}
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount_scale"		"0.4"
+				"amount_scale"		"0.2"
 			}
             "07"
 			{

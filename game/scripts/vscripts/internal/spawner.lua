@@ -85,7 +85,7 @@ end
 function Spawner:RandomizeTier()
   local time = GameRules:GetDOTATime(false, false)
   local start_time = 100
-  if GetMapName() == "arena_turbo" then start_time = 900 end
+  if GetMapName() == "muken_arena_turbo" then start_time = 900 end
 
   for i = 4, 2, -1 do
     local chance = ((time + start_time)/ i) * 0.1

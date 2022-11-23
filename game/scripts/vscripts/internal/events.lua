@@ -22,6 +22,8 @@ function GameMode:_OnGameRulesStateChange(keys)
         end
       end
     end
+  elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+    RandomForNoHeroSelected()
   elseif newState == DOTA_GAMERULES_STATE_PRE_GAME then
     GameMode:OnPreGame()
   elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then

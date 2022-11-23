@@ -24,7 +24,6 @@ function bocuse_2_modifier_debuff:OnCreated(kv)
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_status_efx", true) end
 
 	local blind = self.ability:GetSpecialValueFor("blind")
-	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
 
 	-- UP 2.21
@@ -35,15 +34,12 @@ function bocuse_2_modifier_debuff:OnCreated(kv)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind, miss_chance = blind})
 
 	if IsServer() then
-		self:SetDuration(init_duration, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
 		self:StartIntervalThink(self.intervals)
 	end
 end
 
 function bocuse_2_modifier_debuff:OnRefresh(kv)
 	local blind = self.ability:GetSpecialValueFor("blind")
-	local init_duration = self.ability:GetSpecialValueFor("init_duration")
 	self.bonus_amount = 0
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
@@ -57,11 +53,6 @@ function bocuse_2_modifier_debuff:OnRefresh(kv)
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind, miss_chance = blind})
-
-	if IsServer() then
-		self:SetDuration(init_duration, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
-	end
 end
 
 function bocuse_2_modifier_debuff:OnRemoved()
@@ -94,7 +85,6 @@ end
 
 function bocuse_2_modifier_debuff:OnIntervalThink()
 	if IsServer() then
-		self:CalcTime()
 		self:ApplyDamage()
 		self:StartIntervalThink(self.intervals)
 		self.parent:EmitSound("Hero_OgreMagi.Ignite.Damage")
@@ -120,21 +110,6 @@ function bocuse_2_modifier_debuff:ApplyDamage()
 	})
 
 	self.bonus_amount = 0
-
-	if self.time > 0 then
-		self:SetDuration(self.time, false)
-		self:SetStackCount(math.ceil(self:GetRemainingTime()))
-		return
-	end
-
-	self:Destroy()
-end
-
-function bocuse_2_modifier_debuff:CalcTime()
-	local amount_time_loss = self.ability:GetSpecialValueFor("amount_time_loss")
-	self.time = self:GetRemainingTime() - (self.bonus_amount / amount_time_loss)
-
-	if self.time < 0 then self.bonus_amount = self:GetRemainingTime() * amount_time_loss end
 end
 
 -- EFFECTS -----------------------------------------------------------
