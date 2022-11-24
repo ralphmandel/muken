@@ -237,7 +237,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             rate = rotation/duration
         end
 
-        local particle_cast = "particles/econ/items/dawnbreaker/dawnbreaker_2022_cc/dawnbreaker_2022_cc_celestial_hammer_projectile.vpcf"
+        local particle_cast = "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_hammer_projectile.vpcf"
         local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, caster)
         ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
         ParticleManager:SetParticleControl(effect_cast, 1, velocity)

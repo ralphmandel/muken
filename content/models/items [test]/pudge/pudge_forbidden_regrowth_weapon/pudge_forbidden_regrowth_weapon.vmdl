@@ -1,0 +1,152 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	m_name = "models/items/pudge/pudge_forbidden_regrowth_weapon/pudge_forbidden_regrowth_weapon.vmdl"
+	m_modelInfo = 
+	{
+		m_nFlags = 8389632
+		m_vHullMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vHullMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMass = 0.000000
+		m_vEyePosition = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMaxEyeDeflection = 0.000000
+		m_sSurfaceProperty = ""
+		m_keyValueText = ""
+	}
+	m_ExtParts = 
+	[
+	]
+	m_refMeshes = 
+	[
+		resource:"",
+		resource:"",
+	]
+	m_refMeshGroupMasks = 
+	[
+		18446744073709551615,
+		18446744073709551615,
+	]
+	m_refPhysGroupMasks = 
+	[
+	]
+	m_refLODGroupMasks = 
+	[
+		1,
+		2,
+	]
+	m_lodGroupSwitchDistances = 
+	[
+		0.000000,
+		1.000000,
+	]
+	m_refPhysicsData = 
+	[
+	]
+	m_refPhysicsHitboxData = 
+	[
+	]
+	m_refAnimGroups = 
+	[
+	]
+	m_refSequenceGroups = 
+	[
+	]
+	m_meshGroups = 
+	[
+	]
+	m_materialGroups = 
+	[
+	]
+	m_nDefaultMeshGroupMask = 18446744073709551615
+	m_modelSkeleton = 
+	{
+		m_boneName = 
+		[
+			"weapon_rt_1",
+		]
+		m_nParent = 
+		[
+			-1,
+		]
+		m_boneSphere = 
+		[
+			110.096092,
+		]
+		m_nFlag = 
+		[
+			3264,
+		]
+		m_bonePosParent = 
+		[
+			
+			[
+				0.632880,
+				-0.485503,
+				0.221107,
+			],
+		]
+		m_boneRotParent = 
+		[
+			
+			[
+				0.459274,
+				0.427045,
+				-0.519789,
+				0.580103,
+			],
+		]
+		m_boneScaleParent = 
+		[
+			0.999999,
+		]
+	}
+	m_remappingTable = 
+	[
+		0,
+		0,
+	]
+	m_remappingTableStarts = 
+	[
+		0,
+		1,
+	]
+	m_boneFlexDrivers = 
+	[
+	]
+	m_pModelConfigList = null
+	m_BodyGroupsHiddenInTools = 
+	[
+	]
+	m_refAnimIncludeModels = 
+	[
+	]
+	m_AnimatedMaterialAttributes = 
+	[
+	]
+}

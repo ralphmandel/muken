@@ -120,7 +120,11 @@ function base_hero_mod:LoadModel()
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "osiris" then
-					self.parent:SetModelScale(1.20)
+					self.parent:SetModelScale(1.30)
+					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+				end
+				if self.ability.hero_name == "shadowmancer" then
+					self.parent:SetModelScale(1)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 			end
@@ -145,12 +149,14 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "genuine" then self.attack_landed_sound = "Hero_DrowRanger.ProjectileImpact" end
 	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
+	if self.ability.hero_name == "osiris" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_Furion.ProjectileImpact" end
 
 	if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "flea" then self.attack_landed_sound = "Hero_Slark.Attack" end
+	if self.ability.hero_name == "shadowmancer" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 end
 
 -----------------------------------------------------------

@@ -1,0 +1,172 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	m_name = "models/items/pudge/pudge_forbidden_regrowth_head/pudge_forbidden_regrowth_head.vmdl"
+	m_modelInfo = 
+	{
+		m_nFlags = 8389632
+		m_vHullMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vHullMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMass = 0.000000
+		m_vEyePosition = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMaxEyeDeflection = 0.000000
+		m_sSurfaceProperty = ""
+		m_keyValueText = ""
+	}
+	m_ExtParts = 
+	[
+	]
+	m_refMeshes = 
+	[
+		resource:"",
+		resource:"",
+	]
+	m_refMeshGroupMasks = 
+	[
+		18446744073709551615,
+		18446744073709551615,
+	]
+	m_refPhysGroupMasks = 
+	[
+	]
+	m_refLODGroupMasks = 
+	[
+		1,
+		2,
+	]
+	m_lodGroupSwitchDistances = 
+	[
+		0.000000,
+		1.000000,
+	]
+	m_refPhysicsData = 
+	[
+	]
+	m_refPhysicsHitboxData = 
+	[
+	]
+	m_refAnimGroups = 
+	[
+	]
+	m_refSequenceGroups = 
+	[
+	]
+	m_meshGroups = 
+	[
+	]
+	m_materialGroups = 
+	[
+	]
+	m_nDefaultMeshGroupMask = 18446744073709551615
+	m_modelSkeleton = 
+	{
+		m_boneName = 
+		[
+			"head",
+			"jaw0_0",
+		]
+		m_nParent = 
+		[
+			-1,
+			0,
+		]
+		m_boneSphere = 
+		[
+			59.956013,
+			37.249821,
+		]
+		m_nFlag = 
+		[
+			3264,
+			3264,
+		]
+		m_bonePosParent = 
+		[
+			
+			[
+				25.986868,
+				0.000014,
+				150.137329,
+			],
+			
+			[
+				7.338135,
+				-0.000003,
+				-4.900223,
+			],
+		]
+		m_boneRotParent = 
+		[
+			
+			[
+				-0.000000,
+				0.000000,
+				-0.000000,
+				1.000000,
+			],
+			
+			[
+				0.000000,
+				0.000000,
+				0.000000,
+				1.000000,
+			],
+		]
+		m_boneScaleParent = 
+		[
+			1.000000,
+			0.999999,
+		]
+	}
+	m_remappingTable = 
+	[
+		0,
+		1,
+		0,
+		1,
+	]
+	m_remappingTableStarts = 
+	[
+		0,
+		2,
+	]
+	m_boneFlexDrivers = 
+	[
+	]
+	m_pModelConfigList = null
+	m_BodyGroupsHiddenInTools = 
+	[
+	]
+	m_refAnimIncludeModels = 
+	[
+	]
+	m_AnimatedMaterialAttributes = 
+	[
+	]
+}

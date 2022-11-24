@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "osiris_1__sk1"
+	"2" "osiris_2__sk2"
+	"3" "osiris_3__sk3"
+	"4" "osiris_4__sk4"
+	"5" "osiris_5__sk5"
+	"6" "osiris_u__sk6"
+}

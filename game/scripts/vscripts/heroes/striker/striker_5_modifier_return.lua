@@ -120,7 +120,7 @@ function striker_5_modifier_return:ReturnHammer()
 		vSourceLoc = self.ability.hammer_loc,
 		Ability = self.ability,	
 		
-		EffectName = "particles/econ/items/dawnbreaker/dawnbreaker_2022_cc/dawnbreaker_2022_cc_celestial_hammer_projectile_return.vpcf",
+		EffectName = "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_hammer_return.vpcf",
 		iMoveSpeed = 1500,
 		bDodgeable = false,
 	}
@@ -136,7 +136,7 @@ function striker_5_modifier_return:SetHammer(iMode, bHide, activity)
 
 	if sonicblow and base_hero_mod and cosmetics then
 		sonicblow:CheckAbilityCharges(iMode)
-		cosmetics:HideCosmetic("models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl", bHide)
+		cosmetics:HideCosmetic("models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", bHide)
 		base_hero_mod:ChangeActivity(activity)
 
 		if bHide then

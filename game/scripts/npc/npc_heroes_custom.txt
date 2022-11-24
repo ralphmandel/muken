@@ -66,5 +66,6 @@
 #base "../vscripts/heroes/druid/druid-props.txt"
 #base "../vscripts/heroes/ancient/ancient-props.txt"
 #base "../vscripts/heroes/bloodstained/bloodstained-props.txt"
-
 #base "../vscripts/heroes/flea/flea-props.txt"
+#base "../vscripts/heroes/osiris/osiris-props.txt"
+#base "../vscripts/heroes/shadowmancer/shadowmancer-props.txt"

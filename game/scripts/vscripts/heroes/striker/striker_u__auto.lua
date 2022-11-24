@@ -84,15 +84,15 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
             end
 
             if cosmetics then
-                local model = "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl"
-                local ambients = {["particles/striker/weapon/striker_weapon.vpcf"] = "nil"}
+                local model = "models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl"
+                local ambients = {["particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_weapon_ambient.vpcf"] = "nil"}
                 cosmetics:ApplyAmbient(ambients, caster, cosmetics:FindModifierByModel(model))
             end
         else
             if cosmetics then
                 cosmetics:DestroyAmbient(
-                    "models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl",
-                    "particles/striker/weapon/striker_weapon.vpcf",
+                    "models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl",
+                    "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_weapon_ambient.vpcf",
                     false
                 )
             end

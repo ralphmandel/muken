@@ -1,0 +1,10 @@
+"Cosmetics"
+{
+    "models/items/pudge/pudge_forbidden_regrowth_arms/pudge_forbidden_regrowth_arms.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_back/pudge_forbidden_regrowth_back.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_belt/pudge_forbidden_regrowth_belt.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_head/pudge_forbidden_regrowth_head.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_offhand_weapon/pudge_forbidden_regrowth_offhand_weapon.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_shoulder/pudge_forbidden_regrowth_shoulder.vmdl" "nil"
+    "models/items/pudge/pudge_forbidden_regrowth_weapon/pudge_forbidden_regrowth_weapon.vmdl" "nil"
+}

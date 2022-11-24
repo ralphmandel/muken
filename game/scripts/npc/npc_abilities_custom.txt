@@ -637,8 +637,9 @@
 #base "../vscripts/heroes/druid/druid.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
 #base "../vscripts/heroes/bloodstained/bloodstained.txt"
-
 #base "../vscripts/heroes/flea/flea.txt"
+#base "../vscripts/heroes/osiris/osiris.txt"
+#base "../vscripts/heroes/shadowmancer/shadowmancer.txt"
 
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"

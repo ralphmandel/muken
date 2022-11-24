@@ -1,0 +1,8 @@
+"Cosmetics"
+{
+    "models/items/phantom_assassin/creeping_shadow_back/creeping_shadow_back.vmdl" "nil"
+    "models/items/phantom_assassin/creeping_shadow_belt/creeping_shadow_belt.vmdl" "nil"
+    "models/items/phantom_assassin/creeping_shadow_head/creeping_shadow_head.vmdl" "nil"
+    "models/items/phantom_assassin/creeping_shadow_shoulder/creeping_shadow_shoulder.vmdl" "nil"
+    "models/items/phantom_assassin/evildoer/evildoer.vmdl" "nil"
+}

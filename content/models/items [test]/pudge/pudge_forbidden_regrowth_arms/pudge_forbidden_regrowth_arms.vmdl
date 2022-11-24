@@ -1,0 +1,292 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	m_name = "models/items/pudge/pudge_forbidden_regrowth_arms/pudge_forbidden_regrowth_arms.vmdl"
+	m_modelInfo = 
+	{
+		m_nFlags = 8389632
+		m_vHullMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vHullMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMin = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_vViewMax = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMass = 0.000000
+		m_vEyePosition = 
+		[
+			0.000000,
+			0.000000,
+			0.000000,
+		]
+		m_flMaxEyeDeflection = 0.000000
+		m_sSurfaceProperty = ""
+		m_keyValueText = ""
+	}
+	m_ExtParts = 
+	[
+	]
+	m_refMeshes = 
+	[
+		resource:"",
+		resource:"",
+	]
+	m_refMeshGroupMasks = 
+	[
+		18446744073709551615,
+		18446744073709551615,
+	]
+	m_refPhysGroupMasks = 
+	[
+	]
+	m_refLODGroupMasks = 
+	[
+		1,
+		2,
+	]
+	m_lodGroupSwitchDistances = 
+	[
+		0.000000,
+		1.000000,
+	]
+	m_refPhysicsData = 
+	[
+	]
+	m_refPhysicsHitboxData = 
+	[
+	]
+	m_refAnimGroups = 
+	[
+	]
+	m_refSequenceGroups = 
+	[
+	]
+	m_meshGroups = 
+	[
+	]
+	m_materialGroups = 
+	[
+	]
+	m_nDefaultMeshGroupMask = 18446744073709551615
+	m_modelSkeleton = 
+	{
+		m_boneName = 
+		[
+			"root",
+			"spine1",
+			"spine2",
+			"spine3",
+			"clavicle_R",
+			"bicep_R",
+			"elbow_R",
+			"wrist_R",
+		]
+		m_nParent = 
+		[
+			-1,
+			0,
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+		]
+		m_boneSphere = 
+		[
+			68.943977,
+			0.000000,
+			0.000000,
+			54.773876,
+			53.644749,
+			50.563747,
+			50.228748,
+			45.454227,
+		]
+		m_nFlag = 
+		[
+			3264,
+			3264,
+			3264,
+			3264,
+			3264,
+			3264,
+			3264,
+			3264,
+		]
+		m_bonePosParent = 
+		[
+			
+			[
+				-8.640757,
+				0.000009,
+				68.933792,
+			],
+			
+			[
+				-0.000014,
+				0.000001,
+				25.142120,
+			],
+			
+			[
+				-0.000006,
+				0.000000,
+				15.302780,
+			],
+			
+			[
+				15.721497,
+				0.000003,
+				0.000004,
+			],
+			
+			[
+				17.286606,
+				-21.066807,
+				17.806717,
+			],
+			
+			[
+				-15.407356,
+				-5.965797,
+				-5.552658,
+			],
+			
+			[
+				-33.555901,
+				-4.972397,
+				0.857634,
+			],
+			
+			[
+				-26.829432,
+				0.635803,
+				0.015535,
+			],
+		]
+		m_boneRotParent = 
+		[
+			
+			[
+				-0.000000,
+				0.000000,
+				-0.000000,
+				1.000000,
+			],
+			
+			[
+				-0.000000,
+				0.000000,
+				0.000000,
+				1.000000,
+			],
+			
+			[
+				-0.000000,
+				-0.707107,
+				-0.000000,
+				0.707107,
+			],
+			
+			[
+				-0.000000,
+				0.429007,
+				0.000000,
+				0.903301,
+			],
+			
+			[
+				-0.487779,
+				-0.511928,
+				0.292450,
+				0.643796,
+			],
+			
+			[
+				0.905101,
+				-0.029728,
+				-0.035590,
+				-0.422660,
+			],
+			
+			[
+				0.000000,
+				0.094419,
+				0.000000,
+				0.995533,
+			],
+			
+			[
+				-0.078395,
+				0.058444,
+				0.084958,
+				0.991575,
+			],
+		]
+		m_boneScaleParent = 
+		[
+			1.000000,
+			1.000000,
+			1.000000,
+			1.000000,
+			0.999999,
+			0.999999,
+			0.999999,
+			0.999999,
+		]
+	}
+	m_remappingTable = 
+	[
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+	]
+	m_remappingTableStarts = 
+	[
+		0,
+		8,
+	]
+	m_boneFlexDrivers = 
+	[
+	]
+	m_pModelConfigList = null
+	m_BodyGroupsHiddenInTools = 
+	[
+	]
+	m_refAnimIncludeModels = 
+	[
+	]
+	m_AnimatedMaterialAttributes = 
+	[
+	]
+}

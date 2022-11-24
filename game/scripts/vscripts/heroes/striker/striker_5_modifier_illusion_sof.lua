@@ -77,7 +77,7 @@ function striker_5_modifier_illusion_sof:SetHammer(iMode, bHide, activity)
 
 	if sonicblow and base_hero_mod and cosmetics then
 		sonicblow:CheckAbilityCharges(iMode)
-		cosmetics:HideCosmetic("models/items/dawnbreaker/first_light_weapon/first_light_weapon.vmdl", bHide)
+		cosmetics:HideCosmetic("models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", bHide)
 		base_hero_mod:ChangeActivity(activity)
 
 		if bHide then
