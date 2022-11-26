@@ -1,6 +1,8 @@
 shadowmancer_2__walk = class({})
+LinkLuaModifier("shadowmancer_2_modifier_passive", "heroes/shadowmancer/shadowmancer_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadowmancer_2_modifier_walk", "heroes/shadowmancer/shadowmancer_2_modifier_walk", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_2_modifier_invisibility", "heroes/shadowmancer/shadowmancer_2_modifier_invisibility", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -61,8 +63,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function shadowmancer_2__walk:OnSpellStart()
-        local caster = self:GetCaster()
+    function shadowmancer_2__walk:GetIntrinsicModifierName()
+        return "shadowmancer_2_modifier_passive"
     end
 
     function shadowmancer_2__walk:GetManaCost(iLevel)

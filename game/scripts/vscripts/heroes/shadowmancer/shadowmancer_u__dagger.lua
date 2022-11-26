@@ -1,5 +1,5 @@
 shadowmancer_u__dagger = class({})
-LinkLuaModifier("shadowmancer_u_modifier_dagger", "heroes/shadowmancer/shadowmancer_u_modifier_dagger", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_u_modifier_toxin", "heroes/shadowmancer/shadowmancer_u_modifier_toxin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -63,6 +63,62 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function shadowmancer_u__dagger:OnSpellStart()
         local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local dagger_speed = self:GetSpecialValueFor("dagger_speed")
+        local dagger_name = "particles/shadowmancer/dagger/shadowmancer_stifling_dagger_arcana_combined.vpcf"
+
+        local info = {
+			Target = target,
+			Source = caster,
+			Ability = self,	
+			EffectName = dagger_name,
+			iMoveSpeed = dagger_speed,
+			bReplaceExisting = false,
+			bProvidesVision = true,
+			iVisionRadius = 150,
+			iVisionTeamNumber = caster:GetTeamNumber()
+		}
+
+        ProjectileManager:CreateTrackingProjectile(info)
+		if IsServer() then caster:EmitSound("Hero_PhantomAssassin.Dagger.Cast") end
+    end
+
+    function shadowmancer_u__dagger:OnProjectileHit(hTarget, vLocation)
+        local caster = self:GetCaster()
+		if hTarget == nil then return end
+		if hTarget:IsInvulnerable() then return end
+		if hTarget:IsMagicImmune() then return end
+		if hTarget:TriggerSpellAbsorb(self) then return end
+
+        if IsServer() then hTarget:EmitSound("Hero_PhantomAssassin.Dagger.Target") end
+
+        local target_toxin = hTarget:FindModifierByName("shadowmancer_u_modifier_toxin")
+        if target_toxin == nil then return end
+
+        local damage_percent = self:GetSpecialValueFor("damage_percent") * 0.01
+
+		ApplyDamage({
+			victim = hTarget,
+			attacker = caster,
+			damage = target_toxin:GetStackCount() * damage_percent,
+			damage_type = self:GetAbilityDamageType(),
+			ability = self
+		})
+		
+		self:PlayEfxHit(hTarget)
+
+		if hTarget:IsAlive() then
+			hTarget:RemoveModifierByName("shadowmancer_u_modifier_toxin")
+		else
+			self:EndCooldown()
+		end
+	end
+
+    function shadowmancer_u__dagger:ApplyToxin(target, amount)
+        local caster = self:GetCaster()
+        target:AddNewModifier(caster, self, "shadowmancer_u_modifier_toxin", {
+            amount = math.floor(amount)
+        })
     end
 
     function shadowmancer_u__dagger:GetManaCost(iLevel)
@@ -77,3 +133,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function shadowmancer_u__dagger:PlayEfxHit(target)
+        local particle_cast = "particles/econ/items/void_spirit/void_spirit_immortal_2021/void_spirit_immortal_2021_astral_step_dmg.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, target)
+        ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+
+        AddFOWViewer(self:GetCaster():GetTeamNumber(), target:GetOrigin(), 150, 2, false)
+        if IsServer() then target:EmitSound("Hero_QueenOfPain.ShadowStrike") end
+    end

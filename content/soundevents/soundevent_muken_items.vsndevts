@@ -27,7 +27,7 @@
 					"soundlevel"  			{ "value"   "68.000000" }
 					"distance_max"  		{ "value"   "2500.000000" }
 					"limiter_on"  			{ "value"   "0.000000" }
-					"volume"           	 	{ "value"   "0.40000" }
+					"volume"           	 	{ "value"   "0.60000" }
 				}
 			}
 		}

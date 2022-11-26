@@ -1,6 +1,9 @@
 shadowmancer_1__weapon = class({})
 LinkLuaModifier("shadowmancer_1_modifier_passive", "heroes/shadowmancer/shadowmancer_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("shadowmancer_1_modifier_weapon", "heroes/shadowmancer/shadowmancer_1_modifier_weapon", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_1_modifier_debuff", "heroes/shadowmancer/shadowmancer_1_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_1_modifier_debuff_stack", "heroes/shadowmancer/shadowmancer_1_modifier_debuff_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_1_modifier_debuff_status_efx", "heroes/shadowmancer/shadowmancer_1_modifier_debuff_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -72,8 +75,52 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function shadowmancer_1__weapon:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
+        local duration = self:GetSpecialValueFor("duration")
 
-        target:AddNewModifier(caster, self, "shadowmancer_1_modifier_weapon", {duration = 15})
+        caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
+
+        target:AddNewModifier(caster, self, "shadowmancer_1_modifier_weapon", {
+            duration = self:CalcStatus(duration, caster, target)
+        })
+
+        if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
+    end
+
+    function shadowmancer_1__weapon:ApplyPoisonDamage(attacker, target, mult)
+        local caster = self:GetCaster()
+        local ultimate = caster:FindAbilityByName("shadowmancer_u__dagger")
+        local base_stats = attacker:FindAbilityByName("base_stats")
+        local poison_cap = self:GetSpecialValueFor("poison_cap")
+        local poison = self:GetSpecialValueFor("poison") * mult
+        local crit = false
+
+        if target:GetHealthPercent() < poison_cap then return end
+
+        if base_stats then
+            if base_stats:RollChance() then
+                poison = poison * base_stats.critical_damage * 0.01
+                crit = true
+            end
+        end
+    
+        local damage = ApplyDamage({
+            damage = poison,
+            attacker = attacker,
+            victim = target,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self,
+            damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL
+        })
+
+        if ultimate then
+            if ultimate:IsTrained() then
+                ultimate:ApplyToxin(target, damage)
+            end
+        end
+    
+        if crit == true then
+            self:PopupDamage(math.floor(damage), Vector(153, 0, 204), target)
+        end
     end
 
     function shadowmancer_1__weapon:GetManaCost(iLevel)
@@ -88,3 +135,18 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- EFFECTS
+
+    function shadowmancer_1__weapon:PopupDamage(damage, color, target)
+        local digits = 1
+        if damage < 10 then digits = 2 end
+        if damage > 9 and damage < 100 then digits = 3 end
+        if damage > 99 and damage < 1000 then digits = 4 end
+        if damage > 999 then digits = 5 end
+
+        local pidx = ParticleManager:CreateParticle("particles/msg_fx/msg_crit.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+        ParticleManager:SetParticleControl(pidx, 1, Vector(0, damage, 4))
+        ParticleManager:SetParticleControl(pidx, 2, Vector(3, digits, 0))
+        ParticleManager:SetParticleControl(pidx, 3, color)
+
+        if IsServer() then target:EmitSound("Crit_Magical") end
+    end

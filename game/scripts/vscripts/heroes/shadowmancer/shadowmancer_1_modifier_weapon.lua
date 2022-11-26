@@ -1,11 +1,11 @@
 shadowmancer_1_modifier_weapon = class({})
 
 function shadowmancer_1_modifier_weapon:IsHidden()
-	return true
+	return false
 end
 
 function shadowmancer_1_modifier_weapon:IsPurgable()
-	return false
+	return true
 end
 
 function shadowmancer_1_modifier_weapon:IsDebuff()
@@ -19,14 +19,24 @@ function shadowmancer_1_modifier_weapon:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	local agi = self.ability:GetSpecialValueFor("agi")
+
+	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function shadowmancer_1_modifier_weapon:OnRefresh(kv)
+	local agi = self.ability:GetSpecialValueFor("agi")
+
+	self.ability:RemoveBonus("_1_AGI", self.parent)
+	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function shadowmancer_1_modifier_weapon:OnRemoved()
+	self.ability:RemoveBonus("_1_AGI", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -40,6 +50,19 @@ function shadowmancer_1_modifier_weapon:DeclareFunctions()
 end
 
 function shadowmancer_1_modifier_weapon:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if keys.target:IsMagicImmune() then return end
+
+	local debuff_chance = self.ability:GetSpecialValueFor("debuff_chance")
+	local debuff_duration = self.ability:GetSpecialValueFor("debuff_duration")
+
+	self.ability:ApplyPoisonDamage(self.parent, keys.target, 1)
+
+	if RandomFloat(1, 100) <= debuff_chance then
+		keys.target:AddNewModifier(self.caster, self.ability, "shadowmancer_1_modifier_debuff", {
+			duration = self.ability:CalcStatus(debuff_duration, self.caster, keys.target)
+		})
+	end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -49,10 +72,15 @@ end
 function shadowmancer_1_modifier_weapon:PlayEfxStart()
 	if self.efx then ParticleManager:DestroyParticle(self.efx, false) end
 
-	local string = "particles/units/heroes/hero_marci/marci_unleash_buff.vpcf"
+	local string_1 = "particles/shadowmancer/bath_weapon/shadowmancer_bath_cast.vpcf"
+	local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(particle_1, 0, self.parent:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(particle_1)
+
+	local string = "particles/shadowmancer/bath_weapon/shadowmancer_bath_buff.vpcf"
 	self.efx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.efx, 0, self.parent:GetOrigin())
 	self:AddParticle(self.efx, false, false, -1, false, false)
 
-	--if IsServer() then self.parent:EmitSound("") end
+	if IsServer() then self.parent:EmitSound("Hero_Visage.SoulAssumption.Target") end
 end

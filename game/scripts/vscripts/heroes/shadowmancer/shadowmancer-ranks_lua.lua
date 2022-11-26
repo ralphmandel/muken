@@ -59,5 +59,5 @@ function shadowmancer__precache:Spawn()
 end
 
 function shadowmancer__precache:Precache(context)
-    --PrecacheResource("soundfile", "soundevents/soundevent_shadowmancer.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/soundevent_shadowmancer.vsndevts", context)
 end

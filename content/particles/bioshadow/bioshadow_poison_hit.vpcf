@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -14,11 +14,6 @@
 			m_drivers = 
 			[
 				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_entityName = "self"
-				},
-				{
-					m_iControlPoint = 5
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
 				},
@@ -39,20 +34,35 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 2.0
-			m_fLifetimeMin = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 2.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
 		},
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 99.0
-			m_flRadiusMin = 99.0
 			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 99.0
+			}
 		},
 		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMax = 150
-			m_nAlphaMin = 75
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.294118
+				m_flRandomMax = 0.588235
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -66,7 +76,16 @@
 			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
 		},
 		{
-			_class = "C_INIT_RandomRotation"
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -486,10 +505,18 @@
 			m_bDisableOperator = true
 		},
 		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_nCPInput = 1
-			m_flInputMax = 500.0
-			m_flOutputMax = 500.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.0
+				m_flInput1 = 500.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 500.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+			}
 		},
 	]
 	m_Operators = 
@@ -554,6 +581,9 @@
 			m_ChildRef = resource:"particles/units/heroes/hero_witchdoctor/witchdoctor_shard_switcheroo_end_glow.vpcf"
 			m_flDelay = 2.0
 			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bioshadow/bioshadow_poison_hit_shake.vpcf"
 		},
 	]
 }

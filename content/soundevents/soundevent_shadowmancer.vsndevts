@@ -55,7 +55,7 @@
 						"value"			"0"
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
-					"volume"            { "value"   "0.5000"	}
+					"volume"            { "value"   "0.3000"	}
 				}
 			}
 		}

@@ -50,7 +50,7 @@
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"neutrals/fountain"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"     		"spellicon"
+		"AbilityTextureName"     		"neutrals/fountain"
 
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"4"

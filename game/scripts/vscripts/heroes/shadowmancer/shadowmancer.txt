@@ -33,20 +33,70 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"0"
 		"AbilityCastRange"      		"500"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"15"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"charges"		"2"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"refresh"		"45"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"agi"		    "10"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"poison"		"5"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_chance" "10"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"debuff_duration"   "15"
+			}
+            "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"debuff_tick"   "0.8"
+			}
+            "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stats_loss"    "2"
+			}
 			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"manacost"		"120"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			"6"
+			}
+            "16"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"poison_cap"	"15"
 			}
 		}
 	}
@@ -61,22 +111,25 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"6"
 
 		"AbilitySpecial"
 		{
-			"14"
+            "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"delay"		    "0.6"
+			}
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms"		    "20"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"0"
 			}
 			"15"
 			{
@@ -197,22 +250,43 @@
 		"ScriptFile"            		"heroes/shadowmancer/shadowmancer_u__dagger"
 		"AbilityTextureName"     		"shadowmancer_dagger"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"30"
+		"AbilityCastRange"      		"900"
+
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage_percent"	"100 102 104 106 108 110 112"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"dagger_speed"		"1000"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay_delay"		"3"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay_tick"		"0.2"
+			}
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -221,7 +295,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"				"9 10 11 12 13 14 15"
 			}
 		}
 	}

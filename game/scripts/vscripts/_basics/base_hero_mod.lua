@@ -124,7 +124,7 @@ function base_hero_mod:LoadModel()
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "shadowmancer" then
-					self.parent:SetModelScale(1)
+					self.parent:SetModelScale(1.1)
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 			end

@@ -125,10 +125,22 @@ end
 					if ability then
 						local mod = self.cosmetic[i]:FindAllModifiersByName(string)
 						for _,modifier in pairs(mod) do
-							if modifier:GetAbility() == ability then modifier:Destroy() end
+							if modifier:GetAbility() then
+								if modifier:GetAbility() == ability then modifier:Destroy() end
+							else
+								self.cosmetic[i]:RemoveModifierByName(string)
+							end
 						end
 					else
-						self.cosmetic[i]:RemoveModifierByNameAndCaster(string, caster)
+						if caster then
+							if IsValidEntity(caster) then
+								self.cosmetic[i]:RemoveModifierByNameAndCaster(string, caster)
+							else
+								self.cosmetic[i]:RemoveModifierByName(string)
+							end
+						else
+							self.cosmetic[i]:RemoveModifierByName(string)
+						end
 					end
 				end
 			end
