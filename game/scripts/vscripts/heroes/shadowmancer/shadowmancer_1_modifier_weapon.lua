@@ -19,18 +19,20 @@ function shadowmancer_1_modifier_weapon:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local agi = self.ability:GetSpecialValueFor("agi")
-
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	if self.parent:IsIllusion() == false then
+		local agi = self.ability:GetSpecialValueFor("agi")
+		self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	end
 
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function shadowmancer_1_modifier_weapon:OnRefresh(kv)
-	local agi = self.ability:GetSpecialValueFor("agi")
-
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	if self.parent:IsIllusion() == false then
+		local agi = self.ability:GetSpecialValueFor("agi")
+		self.ability:RemoveBonus("_1_AGI", self.parent)
+		self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	end
 
 	if IsServer() then self:PlayEfxStart() end
 end
@@ -72,15 +74,17 @@ end
 function shadowmancer_1_modifier_weapon:PlayEfxStart()
 	if self.efx then ParticleManager:DestroyParticle(self.efx, false) end
 
-	local string_1 = "particles/shadowmancer/bath_weapon/shadowmancer_bath_cast.vpcf"
-	local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle_1, 0, self.parent:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(particle_1)
-
 	local string = "particles/shadowmancer/bath_weapon/shadowmancer_bath_buff.vpcf"
 	self.efx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.efx, 0, self.parent:GetOrigin())
 	self:AddParticle(self.efx, false, false, -1, false, false)
 
-	if IsServer() then self.parent:EmitSound("Hero_Visage.SoulAssumption.Target") end
+	if self.parent:IsIllusion() == false then
+		local string_1 = "particles/shadowmancer/bath_weapon/shadowmancer_bath_cast.vpcf"
+		local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(particle_1, 0, self.parent:GetOrigin())
+		ParticleManager:ReleaseParticleIndex(particle_1)
+
+		if IsServer() then self.parent:EmitSound("Hero_Visage.SoulAssumption.Target") end
+	end
 end

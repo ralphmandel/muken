@@ -1,5 +1,5 @@
 shadowmancer_3__assault = class({})
-LinkLuaModifier("shadowmancer_3_modifier_assault", "heroes/shadowmancer/shadowmancer_3_modifier_assault", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("shadowmancer_3_modifier_passive", "heroes/shadowmancer/shadowmancer_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +61,55 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function shadowmancer_3__assault:OnSpellStart()
+    function shadowmancer_3__assault:GetIntrinsicModifierName()
+        return "shadowmancer_3_modifier_passive"
+    end
+
+    function shadowmancer_3__assault:CreateShadow(target, shadow_duration, shadow_number, bSwapLoc, bIllusion)
         local caster = self:GetCaster()
+        local weapon = caster:FindModifierByNameAndCaster("shadowmancer_1_modifier_weapon", caster)
+        if bIllusion == false and caster:IsIllusion() then return end
+
+        ProjectileManager:ProjectileDodge(caster)
+        
+        local illu = CreateIllusions(
+			caster, caster,
+			{
+				outgoing_damage = -100,
+				incoming_damage = 400,
+				bounty_base = 0,
+				bounty_growth = 0,
+				duration = shadow_duration
+			},
+			shadow_number, 64, false, true
+		)
+
+        for i = 1, #illu, 1 do
+            local loc = target:GetAbsOrigin() + RandomVector(130)
+            illu[i]:SetAbsOrigin(loc)
+            illu[i]:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
+            illu[i]:SetControllableByPlayer(caster:GetPlayerID(), false)
+            FindClearSpaceForUnit(illu[i], loc, true)
+
+            if weapon then
+                illu[i]:AddNewModifier(caster, weapon:GetAbility(), "shadowmancer_1_modifier_weapon", {
+                    duration = weapon:GetRemainingTime()
+                })
+            end
+        end
+
+        if bSwapLoc then
+            local rand_pos = RandomInt(0, #illu)
+            if rand_pos > 0 then 
+                local caster_origin = caster:GetAbsOrigin()
+                caster:SetAbsOrigin(illu[rand_pos]:GetAbsOrigin())
+                caster:SetForwardVector((target:GetAbsOrigin() - illu[rand_pos]:GetAbsOrigin()):Normalized())
+                illu[rand_pos]:SetAbsOrigin(caster_origin)
+                illu[rand_pos]:SetForwardVector((target:GetAbsOrigin() - caster_origin):Normalized())
+
+                CenterCameraOnUnit(caster:GetPlayerID(), caster)
+            end
+        end
     end
 
     function shadowmancer_3__assault:GetManaCost(iLevel)

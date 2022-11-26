@@ -103,7 +103,7 @@ function base_hero_mod:LoadModel()
 		--self:PlayEfxAmbient("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf", "attach_hitloc")
 	end
 
-	Timers:CreateTimer((0.5), function()
+	Timers:CreateTimer((0.1), function()
 		if self.parent then
 			if IsValidEntity(self.parent) then
 				if self.ability.hero_name == "bocuse" then
