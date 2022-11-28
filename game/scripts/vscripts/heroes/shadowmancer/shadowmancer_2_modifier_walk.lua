@@ -51,15 +51,13 @@ end
 
 function shadowmancer_2_modifier_walk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_PROPERTY_PRE_ATTACK
 	}
 
 	return funcs
 end
 
-function shadowmancer_2_modifier_walk:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-
+function shadowmancer_2_modifier_walk:GetModifierPreAttack()
 	self:Destroy()
 end
 

@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "bald_1__power"
+	"2" "bald_2__bash"
+	"3" "bald_3__inner"
+	"4" "bald_4__clean"
+	"5" "bald_5__spike"
+	"6" "bald_u__vitality"
+}

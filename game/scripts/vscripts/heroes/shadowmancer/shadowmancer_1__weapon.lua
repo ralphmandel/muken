@@ -86,12 +86,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end
     end
 
-    function shadowmancer_1__weapon:ApplyPoisonDamage(attacker, target, mult)
+    function shadowmancer_1__weapon:ApplyPoisonDamage(attacker, target, poison)
         local caster = self:GetCaster()
         local ultimate = caster:FindAbilityByName("shadowmancer_u__dagger")
         local base_stats = attacker:FindAbilityByName("base_stats")
         local poison_cap = self:GetSpecialValueFor("poison_cap")
-        local poison = self:GetSpecialValueFor("poison") * mult
         local crit = false
 
         if target:GetHealthPercent() < poison_cap then return end
@@ -121,6 +120,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if crit == true then
             self:PopupDamage(math.floor(damage), Vector(153, 0, 204), target)
         end
+
+        if IsServer() then target:EmitSound("Shadowmancer.Poison.Damage") end
     end
 
     function shadowmancer_1__weapon:GetManaCost(iLevel)

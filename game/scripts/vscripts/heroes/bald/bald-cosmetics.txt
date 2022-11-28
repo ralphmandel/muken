@@ -1,0 +1,24 @@
+"Cosmetics"
+{
+    "models/items/bristleback/bristleback_warrior_of_arena_arms/bristleback_warrior_of_arena_arms.vmdl"
+    {
+        "particles/econ/items/bristleback/bristleback_warrior_of_arena/bristleback_warrior_of_arena_arms.vpcf" ""
+    }
+
+    "models/items/bristleback/bristleback_warrior_of_arena_back/bristleback_warrior_of_arena_back.vmdl"
+    {
+        "particles/econ/items/bristleback/bristleback_warrior_of_arena/bristleback_warrior_of_arena_back.vpcf" ""
+    }
+    
+    "models/items/bristleback/bristleback_warrior_of_arena_head/bristleback_warrior_of_arena_head.vmdl"
+    {
+        "particles/econ/items/bristleback/bristleback_warrior_of_arena/bristleback_warrior_of_arena_head.vpcf" ""
+    }
+
+    "models/items/bristleback/bristleback_warrior_of_arena_neck/bristleback_warrior_of_arena_neck.vmdl" "nil"
+
+    "models/items/bristleback/bristleback_warrior_of_arena_weapon/bristleback_warrior_of_arena_weapon.vmdl"
+    {
+        "particles/econ/items/bristleback/bristleback_warrior_of_arena/bristleback_warrior_of_arena_weapon.vpcf" ""
+    }
+}

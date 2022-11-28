@@ -157,6 +157,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "flea" then self.attack_landed_sound = "Hero_Slark.Attack" end
 	if self.ability.hero_name == "shadowmancer" then self.attack_landed_sound = "Hero_Spectre.Attack" end
+	if self.ability.hero_name == "bald" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
 end
 
 -----------------------------------------------------------

@@ -640,6 +640,7 @@
 #base "../vscripts/heroes/flea/flea.txt"
 #base "../vscripts/heroes/osiris/osiris.txt"
 #base "../vscripts/heroes/shadowmancer/shadowmancer.txt"
+#base "../vscripts/heroes/bald/bald.txt"
 
 //NEUTRALS
 #base "../vscripts/neutrals/_neutrals.txt"

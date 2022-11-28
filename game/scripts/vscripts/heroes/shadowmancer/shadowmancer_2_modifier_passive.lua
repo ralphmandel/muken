@@ -35,7 +35,7 @@ end
 function shadowmancer_2_modifier_passive:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_PROPERTY_PRE_ATTACK
 	}
 
 	return funcs
@@ -48,9 +48,7 @@ function shadowmancer_2_modifier_passive:OnTakeDamage(keys)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
-function shadowmancer_2_modifier_passive:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-
+function shadowmancer_2_modifier_passive:GetModifierPreAttack()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 

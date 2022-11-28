@@ -21,6 +21,8 @@ function shadowmancer_1_modifier_debuff:OnCreated(kv)
     self.ability = self:GetAbility()
 
 	local debuff_tick = self.ability:GetSpecialValueFor("debuff_tick")
+	local damage_start = self.ability:GetSpecialValueFor("damage_start")
+	self.ability:ApplyPoisonDamage(self.caster, self.parent, damage_start)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "shadowmancer_1_modifier_debuff_status_efx", true) end
@@ -34,6 +36,9 @@ function shadowmancer_1_modifier_debuff:OnCreated(kv)
 end
 
 function shadowmancer_1_modifier_debuff:OnRefresh(kv)
+	local damage_start = self.ability:GetSpecialValueFor("damage_start")
+	self.ability:ApplyPoisonDamage(self.caster, self.parent, damage_start)
+	
 	if IsServer() then
 		self:AddMultStack()
 		self:PlayEfxStart()
@@ -52,9 +57,10 @@ end
 
 function shadowmancer_1_modifier_debuff:OnIntervalThink()
 	local debuff_tick = self.ability:GetSpecialValueFor("debuff_tick")
+	local poison_damage = self.ability:GetSpecialValueFor("poison") * self:GetStackCount()
 
 	if self.parent:IsMagicImmune() == false then
-		self.ability:ApplyPoisonDamage(self.caster, self.parent, self:GetStackCount())
+		self.ability:ApplyPoisonDamage(self.caster, self.parent, poison_damage)
 	end
 
 	if IsServer() then
@@ -118,6 +124,4 @@ function shadowmancer_1_modifier_debuff:PlayEfxDamage()
 	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:SetParticleControl(effect_cast, 1, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast)
-
-	if IsServer() then self.parent:EmitSound("Shadowmancer.Poison.Damage") end
 end

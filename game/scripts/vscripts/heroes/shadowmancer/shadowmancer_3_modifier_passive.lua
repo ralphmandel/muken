@@ -18,6 +18,8 @@ function shadowmancer_3_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+
+	self.miss = 75
 end
 
 function shadowmancer_3_modifier_passive:OnRefresh(kv)

@@ -57,8 +57,9 @@ function shadowmancer_1_modifier_weapon:OnAttackLanded(keys)
 
 	local debuff_chance = self.ability:GetSpecialValueFor("debuff_chance")
 	local debuff_duration = self.ability:GetSpecialValueFor("debuff_duration")
+	local poison_damage = self.ability:GetSpecialValueFor("poison")
 
-	self.ability:ApplyPoisonDamage(self.parent, keys.target, 1)
+	self.ability:ApplyPoisonDamage(self.parent, keys.target, poison_damage)
 
 	if RandomFloat(1, 100) <= debuff_chance then
 		keys.target:AddNewModifier(self.caster, self.ability, "shadowmancer_1_modifier_debuff", {

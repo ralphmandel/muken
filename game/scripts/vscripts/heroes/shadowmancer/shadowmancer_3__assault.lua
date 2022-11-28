@@ -71,12 +71,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if bIllusion == false and caster:IsIllusion() then return end
 
         ProjectileManager:ProjectileDodge(caster)
-        
+
+        local incoming = self:GetSpecialValueFor("incoming") - 100
+        local outgoing = self:GetSpecialValueFor("outgoing") - 100
+
         local illu = CreateIllusions(
 			caster, caster,
 			{
-				outgoing_damage = -100,
-				incoming_damage = 400,
+				outgoing_damage = outgoing,
+				incoming_damage = incoming,
 				bounty_base = 0,
 				bounty_growth = 0,
 				duration = shadow_duration

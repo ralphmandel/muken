@@ -69,3 +69,4 @@
 #base "../vscripts/heroes/flea/flea-props.txt"
 #base "../vscripts/heroes/osiris/osiris-props.txt"
 #base "../vscripts/heroes/shadowmancer/shadowmancer-props.txt"
+#base "../vscripts/heroes/bald/bald-props.txt"

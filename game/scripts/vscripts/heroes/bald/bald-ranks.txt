@@ -1,0 +1,131 @@
+"TalentTree_bald"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_bristleback"
+	{
+		"bald_1__power"
+		{
+			"0"
+			{
+				"1"   "bald_1__power_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_1__power_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_1__power_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_1__power_rank_41"
+			}
+		}
+		"bald_2__bash"
+		{
+			"0"
+			{
+				"1"   "bald_2__bash_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_2__bash_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_2__bash_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_2__bash_rank_41"
+			}
+		}
+		"bald_3__inner"
+		{
+			"0"
+			{
+				"1"   "bald_3__inner_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_3__inner_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_3__inner_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_3__inner_rank_41"
+			}
+		}
+		"bald_4__clean"
+		{
+			"0"
+			{
+				"1"   "bald_4__clean_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_4__clean_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_4__clean_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_4__clean_rank_41"
+			}
+		}
+		"bald_5__spike"
+		{
+			"0"
+			{
+				"1"   "bald_5__spike_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_5__spike_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_5__spike_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_5__spike_rank_41"
+			}
+		}
+		"bald_u__vitality"
+		{
+			"0"
+			{
+				"1"   "bald_u__vitality_rank_11"
+			}
+			"1"
+			{
+				"1"   "bald_u__vitality_rank_21"
+			}
+			"2"
+			{
+				"1"   "bald_u__vitality_rank_31"
+			}
+			"3"
+			{
+				"1"   "bald_u__vitality_rank_41"
+			}
+		}
+	}	
+}
