@@ -65,7 +65,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"12"
 
 		"AbilitySpecial"
 		{
@@ -87,7 +87,7 @@
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"120"
+				"manacost"		"90"
 			}
 			"15"
 			{
@@ -103,31 +103,41 @@
 		"ScriptFile"            		"heroes/bald/bald_3__inner"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_inner"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"60"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"amount"		"100 98 96 94 92 90 88"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stack_duration"	"30"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"buff_duration"	    "15"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"150"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}

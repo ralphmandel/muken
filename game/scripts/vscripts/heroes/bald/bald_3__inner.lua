@@ -1,4 +1,5 @@
 bald_3__inner = class({})
+LinkLuaModifier("bald_3_modifier_passive", "heroes/bald/bald_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bald_3_modifier_inner", "heroes/bald/bald_3_modifier_inner", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
@@ -60,6 +61,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
 -- SPELL START
+
+    function bald_3__inner:GetIntrinsicModifierName()
+        return "bald_3_modifier_passive"
+    end
 
     function bald_3__inner:OnSpellStart()
         local caster = self:GetCaster()

@@ -26,7 +26,7 @@ function bald_2_modifier_dash:OnCreated(kv)
 	self.parent:SetForwardVector(vector)
 	self.angle = self.parent:GetForwardVector():Normalized()
 
-	local distance = self.ability:GetCastRange(self.parent:GetOrigin(), self.ability.target) + 150
+	local distance = self.ability:GetCastRange(self.parent:GetOrigin(), self.ability.target) + 200
 	local time = self:GetDuration() / FrameTime()
 	self.distance = distance / time
 
@@ -96,7 +96,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function bald_2_modifier_dash:GetEffectName()
-	return "particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
+	return "particles/bald/bald_dash/bald_dash.vpcf"
 end
 
 function bald_2_modifier_dash:GetEffectAttachType()
