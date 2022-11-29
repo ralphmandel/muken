@@ -59,5 +59,5 @@ function bald__precache:Spawn()
 end
 
 function bald__precache:Precache(context)
-    --PrecacheResource("soundfile", "soundevents/soundevent_bald.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/soundevent_bald.vsndevts", context)
 end

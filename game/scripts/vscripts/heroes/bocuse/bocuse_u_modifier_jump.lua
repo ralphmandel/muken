@@ -17,7 +17,7 @@ function bocuse_u_modifier_jump:OnCreated(kv)
 
 	self:StartIntervalThink(FrameTime())
 	self.angle = self.parent:GetForwardVector():Normalized()
-	self.distance = 600 / ( self:GetDuration() / FrameTime())
+	self.distance = 600 / (self:GetDuration() / FrameTime())
 end
 
 function bocuse_u_modifier_jump:OnRefresh(kv)
@@ -29,6 +29,7 @@ end
 function bocuse_u_modifier_jump:OnDestroy()
 	if not IsServer() then return end
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
+	self.parent:MoveToPosition(self.parent:GetOrigin())
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

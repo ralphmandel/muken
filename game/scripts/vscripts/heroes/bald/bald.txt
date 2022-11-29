@@ -28,7 +28,7 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilityCooldown"				"1.5"
+		"AbilityCooldown"				"1"
 
 		"AbilitySpecial"
 		{
@@ -61,21 +61,33 @@
         "LevelsBetweenUpgrades"  		"25"
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"10"
-		"AbilityCastRange"      		"500"
+		"AbilityCooldown"				"9"
 
 		"AbilitySpecial"
 		{
-			"14"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"100"
+				"max_charge"    "6"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_max"      "4"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage_max"    "250"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"120"
 			}
 			"15"
 			{
