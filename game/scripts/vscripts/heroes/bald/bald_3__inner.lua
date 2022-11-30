@@ -1,5 +1,6 @@
 bald_3__inner = class({})
 LinkLuaModifier("bald_3_modifier_passive", "heroes/bald/bald_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_3_modifier_passive_stack", "heroes/bald/bald_3_modifier_passive_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bald_3_modifier_inner", "heroes/bald/bald_3_modifier_inner", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
@@ -68,13 +69,32 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bald_3__inner:OnSpellStart()
         local caster = self:GetCaster()
+        local buff_duration = self:GetSpecialValueFor("buff_duration")
+        local def = caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):GetStackCount()
+
+        caster:AddNewModifier(caster, self, "bald_3_modifier_inner", {
+            duration = self:CalcStatus(buff_duration, caster, caster),
+            def = def
+        })
+
+        local mod = caster:FindAllModifiersByName("bald_3_modifier_passive_stack")
+        for _,modifier in pairs(mod) do
+            if modifier:GetAbility() == self then modifier:Destroy() end
+        end
+    end
+
+    function bald_3__inner:GetBehavior()
+        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_PASSIVE end
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
+        return DOTA_ABILITY_BEHAVIOR_PASSIVE
     end
 
     function bald_3__inner:GetManaCost(iLevel)
         local manacost = self:GetSpecialValueFor("manacost")
         local level = (1 + ((self:GetLevel() - 1) * 0.05))
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
+        if self:GetCurrentAbilityCharges() % 2 == 0 then return manacost * level end
+        return 0
     end
 
     function bald_3__inner:CheckAbilityCharges(charges)

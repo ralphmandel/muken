@@ -107,25 +107,32 @@ function base_hero_mod:LoadModel()
 		if self.parent then
 			if IsValidEntity(self.parent) then
 				if self.ability.hero_name == "bocuse" then
-					self.parent:SetModelScale(1.15)
+					self.model_scale = 1.15
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 					self.parent:SetMaterialGroup("1")
 				end
 				if self.ability.hero_name == "krieger" then
-					self.parent:SetModelScale(1.10)
+					self.model_scale = 1.10
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "ancient" then
-					self.parent:SetModelScale(1.07)
+					self.model_scale = 1.07
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "osiris" then
-					self.parent:SetModelScale(1.30)
+					self.model_scale = 1.30
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
 				if self.ability.hero_name == "shadowmancer" then
-					self.parent:SetModelScale(1.1)
+					self.model_scale = 1.1
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+				end
+				if self.ability.hero_name == "bald" then
+					self.model_scale = 1
+					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+				end
+				if self.model_scale ~= nil then
+					self.parent:SetModelScale(self.model_scale)
 				end
 			end
 		end

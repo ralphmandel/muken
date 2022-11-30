@@ -60,7 +60,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function bald_2__bash:Spawn()
-        self.spin_range = 0
         self:CheckAbilityCharges(0)
     end
 
@@ -118,7 +117,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function bald_2__bash:GetCastRange(vLocation, hTarget)
-        return self:GetCurrentAbilityCharges() * 50
+        local cast_range = self:GetSpecialValueFor("cast_range")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() == 1 then return cast_range end
+        return cast_range * (1 + (self:GetCurrentAbilityCharges() * 0.01))
     end
 
     function bald_2__bash:GetBehavior()
@@ -142,7 +144,14 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function bald_2__bash:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(self.spin_range + charges)
+        local model_scale = (self:GetCaster():GetModelScale() - 1) * 100
+
+        if model_scale > 0 then
+            self:SetCurrentAbilityCharges(model_scale)
+            return
+        end
+
+        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

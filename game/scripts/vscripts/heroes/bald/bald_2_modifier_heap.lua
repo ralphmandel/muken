@@ -39,8 +39,6 @@ function bald_2_modifier_heap:OnRemoved()
 
 	self.ability.damage = (damage_max * elapsed_time) / self:GetDuration()
 	self.ability.stun = (stun_max * elapsed_time) / self:GetDuration()
-	self.ability.spin_range = 0
-	self.ability:CheckAbilityCharges(1)
 
 	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
 
@@ -77,8 +75,6 @@ function bald_2_modifier_heap:OnIntervalThink()
 	local tick = 0.5
 	if self.time <= tick + 0.1 then tick = -1 end
 	self.time = self.time - tick
-	self.ability.spin_range = self.ability.spin_range + 1
-	self.ability:CheckAbilityCharges(1)
 
 	if IsServer() then self:StartIntervalThink(tick) end
 end
