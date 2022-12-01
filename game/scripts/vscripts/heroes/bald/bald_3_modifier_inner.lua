@@ -64,11 +64,15 @@ function bald_3_modifier_inner:ChangeModelScale(def)
 	if base_hero_mod.model_scale == nil then return end
 
 	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.02))
+	self:ChangeAbilityRange("bald_2__bash")
+	self:ChangeAbilityRange("bald_5__spike")
+end
 
-	local bash = self.parent:FindAbilityByName("bald_2__bash")
-	if bash then
-		if bash:IsTrained() then
-			bash:CheckAbilityCharges(1)
+function bald_3_modifier_inner:ChangeAbilityRange(ability_name)
+	local ability = self.parent:FindAbilityByName(ability_name)
+	if ability then
+		if ability:IsTrained() then
+			ability:CheckAbilityCharges(1)
 		end
 	end
 end

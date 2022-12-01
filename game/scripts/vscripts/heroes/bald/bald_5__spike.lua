@@ -1,5 +1,6 @@
 bald_5__spike = class({})
-LinkLuaModifier("bald_5_modifier_spike", "heroes/bald/bald_5_modifier_spike", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_5_modifier_aura", "heroes/bald/bald_5_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_5_modifier_aura_effect", "heroes/bald/bald_5_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -61,8 +62,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bald_5__spike:OnSpellStart()
-        local caster = self:GetCaster()
+    function bald_5__spike:GetIntrinsicModifierName()
+        return "bald_5_modifier_aura"
+    end
+
+    function bald_5__spike:GetAOERadius()
+        local radius = self:GetSpecialValueFor("radius")
+        if self:GetCurrentAbilityCharges() == 0 then return 0 end
+        if self:GetCurrentAbilityCharges() == 1 then return radius end
+        return radius * (1 + (self:GetCurrentAbilityCharges() * 0.01))
     end
 
     function bald_5__spike:GetManaCost(iLevel)
@@ -73,6 +81,16 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function bald_5__spike:CheckAbilityCharges(charges)
+        local caster = self:GetCaster()
+        local model_scale = (self:GetCaster():GetModelScale() - 1) * 100
+        local aura = caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster)
+        if aura then aura:PlayEfxStart() end
+
+        if model_scale > 0 then
+            self:SetCurrentAbilityCharges(model_scale)
+            return
+        end
+
         self:SetCurrentAbilityCharges(charges)
     end
 
