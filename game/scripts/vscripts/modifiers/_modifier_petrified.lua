@@ -9,10 +9,6 @@ function _modifier_petrified:IsStunDebuff()
 	return true
 end
 
-function _modifier_petrified:IsDebuff()
-	return true
-end
-
 function _modifier_petrified:IsHidden()
 	return false
 end

@@ -1,16 +1,7 @@
 bald_2_modifier_heap = class({})
 
-function bald_2_modifier_heap:IsHidden()
-	return true
-end
-
-function bald_2_modifier_heap:IsPurgable()
-	return false
-end
-
-function bald_2_modifier_heap:IsDebuff()
-	return false
-end
+function bald_2_modifier_heap:IsHidden() return true end
+function bald_2_modifier_heap:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

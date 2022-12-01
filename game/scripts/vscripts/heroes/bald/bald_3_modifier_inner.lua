@@ -1,17 +1,8 @@
 bald_3_modifier_inner = class({})
 local tempTable = require("libraries/tempTable")
 
-function bald_3_modifier_inner:IsHidden()
-	return false
-end
-
-function bald_3_modifier_inner:IsPurgable()
-	return true
-end
-
-function bald_3_modifier_inner:IsDebuff()
-	return false
-end
+function bald_3_modifier_inner:IsHidden() return false end
+function bald_3_modifier_inner:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

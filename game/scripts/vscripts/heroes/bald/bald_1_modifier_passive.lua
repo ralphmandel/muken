@@ -1,17 +1,8 @@
 bald_1_modifier_passive = class({})
 local tempTable = require("libraries/tempTable")
 
-function bald_1_modifier_passive:IsHidden()
-	return false
-end
-
-function bald_1_modifier_passive:IsPurgable()
-	return false
-end
-
-function bald_1_modifier_passive:IsDebuff()
-	return false
-end
+function bald_1_modifier_passive:IsHidden() return false end
+function bald_1_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

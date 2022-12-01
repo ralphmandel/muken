@@ -9,10 +9,6 @@ function _modifier_tracking:IsHidden()
 	return true
 end
 
-function _modifier_tracking:IsDebuff()
-	return true
-end
-
 --------------------------------------------------------------------------------
 
 function _modifier_tracking:OnCreated( kv )

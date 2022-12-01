@@ -1,12 +1,7 @@
 _status_efx_example = class({})
 
-function _status_efx_example:IsHidden()
-	return true
-end
-
-function _status_efx_example:IsPurgable()
-	return false
-end
+function _status_efx_example:IsHidden() return true end
+function _status_efx_example:IsPurgable() return false end
 
 -----------------------------------------------------------
 

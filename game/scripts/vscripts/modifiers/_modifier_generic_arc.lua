@@ -6,10 +6,6 @@ function _modifier_generic_arc:IsHidden()
 	return true
 end
 
-function _modifier_generic_arc:IsDebuff()
-	return false
-end
-
 function _modifier_generic_arc:IsStunDebuff()
 	return false
 end

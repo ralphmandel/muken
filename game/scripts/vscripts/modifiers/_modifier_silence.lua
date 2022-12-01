@@ -9,10 +9,6 @@ function _modifier_silence:IsPurgable()
 	return true
 end
 
-function _modifier_silence:IsDebuff()
-	return true
-end
-
 function _modifier_silence:GetTexture()
 	return "_modifier_silence"
 end

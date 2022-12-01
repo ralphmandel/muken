@@ -1,16 +1,7 @@
 bald_2_modifier_impact = class({})
 
-function bald_2_modifier_impact:IsHidden()
-	return true
-end
-
-function bald_2_modifier_impact:IsPurgable()
-	return false
-end
-
-function bald_2_modifier_impact:IsDebuff()
-	return false
-end
+function bald_2_modifier_impact:IsHidden() return true end
+function bald_2_modifier_impact:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

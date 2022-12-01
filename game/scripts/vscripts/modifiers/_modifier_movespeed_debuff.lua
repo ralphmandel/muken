@@ -13,10 +13,6 @@ function _modifier_movespeed_debuff:GetTexture()
 	return "_modifier_movespeed_debuff"
 end
 
-function _modifier_movespeed_debuff:IsDebuff()
-	return true
-end
-
 function _modifier_movespeed_debuff:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

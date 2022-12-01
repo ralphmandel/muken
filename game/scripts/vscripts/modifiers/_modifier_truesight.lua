@@ -10,10 +10,6 @@ function _modifier_truesight:IsPurgable()
 	return true
 end
 
-function _modifier_truesight:IsDebuff()
-	return true
-end
-
 function _modifier_truesight:GetTexture()
 	return "_modifier_truesight"
 end

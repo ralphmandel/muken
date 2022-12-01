@@ -9,10 +9,6 @@ function _modifier_untargetable:IsHidden()
 	return true
 end
 
-function _modifier_untargetable:IsDebuff()
-	return false
-end
-
 function _modifier_untargetable:GetTexture()
 	return "_modifier_untargetable"
 end

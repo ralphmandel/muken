@@ -16,6 +16,11 @@
 
         for _,unit in pairs(units) do end
 
+        local heal = 1
+        local base_stats = caster:FindAbilityByName("base_stats")
+        if base_stats then heal = heal * base_stats:GetHealPower() end
+        caster:Heal(heal, self)
+
         -- TIMERS
         Timers:CreateTimer(0.2, function()
             print()

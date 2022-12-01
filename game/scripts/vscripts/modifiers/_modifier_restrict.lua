@@ -9,10 +9,6 @@ function _modifier_restrict:IsPurgable()
 	return true
 end
 
-function _modifier_restrict:IsDebuff()
-	return true
-end
-
 function _modifier_restrict:GetTexture()
 	return "_modifier_restrict"
 end

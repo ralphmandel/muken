@@ -9,10 +9,6 @@ function _modifier_break:IsHidden()
 	return false
 end
 
-function _modifier_break:IsDebuff()
-	return true
-end
-
 function _modifier_break:GetTexture()
 	return "_modifier_break"
 end

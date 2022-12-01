@@ -9,10 +9,6 @@ function _modifier_blind:IsHidden()
 	return true
 end
 
-function _modifier_blind:IsDebuff()
-	return true
-end
-
 function _modifier_blind:GetTexture()
 	return "_modifier_blind"
 end

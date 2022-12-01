@@ -1,16 +1,7 @@
 bald_2_modifier_gesture = class({})
 
-function bald_2_modifier_gesture:IsHidden()
-	return true
-end
-
-function bald_2_modifier_gesture:IsPurgable()
-	return false
-end
-
-function bald_2_modifier_gesture:IsDebuff()
-	return false
-end
+function bald_2_modifier_gesture:IsHidden() return true end
+function bald_2_modifier_gesture:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

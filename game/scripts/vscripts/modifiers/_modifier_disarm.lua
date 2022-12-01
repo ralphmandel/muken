@@ -9,10 +9,6 @@ function _modifier_disarm:IsPurgable()
 	return true
 end
 
-function _modifier_disarm:IsDebuff()
-	return true
-end
-
 function _modifier_disarm:GetTexture()
 	return "_modifier_disarm"
 end

@@ -9,10 +9,6 @@ function _modifier_invulnerable:IsHidden()
 	return true
 end
 
-function _modifier_invulnerable:IsDebuff()
-	return false
-end
-
 function _modifier_invulnerable:GetTexture()
 	return "_modifier_invulnerable"
 end

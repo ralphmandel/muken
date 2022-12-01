@@ -1,16 +1,7 @@
 _modifier_example = class({})
 
-function _modifier_example:IsHidden()
-	return true
-end
-
-function _modifier_example:IsPurgable()
-	return false
-end
-
-function _modifier_example:IsDebuff()
-	return false
-end
+function _modifier_example:IsHidden() return true end
+function _modifier_example:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

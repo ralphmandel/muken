@@ -1,21 +1,9 @@
 bald_1_modifier_passive_stack = class({})
 local tempTable = require("libraries/tempTable")
 
-function bald_1_modifier_passive_stack:IsPurgable()
-	return true
-end
-
-function bald_1_modifier_passive_stack:IsHidden()
-	return true
-end
-
-function bald_1_modifier_passive_stack:IsDebuff()
-	return false
-end
-
-function bald_1_modifier_passive_stack:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
+function bald_1_modifier_passive_stack:IsHidden() return true end
+function bald_1_modifier_passive_stack:IsPurgable() return true end
+function bald_1_modifier_passive_stack:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

@@ -1,16 +1,7 @@
 bald_2_modifier_dash = class ({})
 
-function bald_2_modifier_dash:IsHidden()
-    return true
-end
-
-function bald_2_modifier_dash:IsPurgable()
-    return false
-end
-
-function bald_2_modifier_dash:IsDebuff()
-    return false
-end
+function bald_2_modifier_dash:IsHidden() return true end
+function bald_2_modifier_dash:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

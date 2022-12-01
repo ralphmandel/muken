@@ -68,6 +68,11 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bald_4__clean:OnSpellStart()
         local caster = self:GetCaster()
+        local duration = self:GetSpecialValueFor("duration")
+
+        caster:AddNewModifier(caster, self, "bald_4_modifier_clean", {
+            duration = self:CalcStatus(duration, caster, caster)
+        })
     end
 
     function bald_4__clean:GetManaCost(iLevel)

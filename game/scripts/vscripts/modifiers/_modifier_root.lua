@@ -13,10 +13,6 @@ function _modifier_root:GetTexture()
 	return "_modifier_root"
 end
 
-function _modifier_root:IsDebuff()
-	return true
-end
-
 function _modifier_root:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
