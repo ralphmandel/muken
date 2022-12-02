@@ -1,6 +1,6 @@
 bald_5__spike = class({})
-LinkLuaModifier("bald_5_modifier_aura", "heroes/bald/bald_5_modifier_aura", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bald_5_modifier_aura_effect", "heroes/bald/bald_5_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_5_modifier_spike_caster", "heroes/bald/bald_5_modifier_spike_caster", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_5_modifier_spike_target", "heroes/bald/bald_5_modifier_spike_target", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -62,15 +62,45 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-    function bald_5__spike:GetIntrinsicModifierName()
-        return "bald_5_modifier_aura"
+    function bald_5__spike:OnOwnerSpawned()
+        self:SetActivated(true)
     end
 
-    function bald_5__spike:GetAOERadius()
-        local radius = self:GetSpecialValueFor("radius")
+    function bald_5__spike:OnSpellStart()
+        local caster = self:GetCaster()
+        local target = self:GetCursorTarget()
+        local duration = self:GetSpecialValueFor("duration")
+
+        target:AddNewModifier(caster, self, "bald_5_modifier_spike_target", {
+            duration = self:CalcStatus(duration, caster, target)
+        })
+    end
+
+    function bald_5__spike:CastFilterResultTarget(hTarget)
+        local caster = self:GetCaster()
+        if caster == hTarget then return UF_FAIL_CUSTOM end
+
+        local result = UnitFilter(
+            hTarget, self:GetAbilityTargetTeam(),
+            self:GetAbilityTargetType(),
+            0, caster:GetTeamNumber()
+        )
+        
+        if result ~= UF_SUCCESS then return result end
+
+        return UF_SUCCESS
+    end
+
+    function bald_5__spike:GetCustomCastErrorTarget(hTarget)
+        if self:GetCaster() == hTarget then
+            return "#dota_hud_error_cant_cast_on_self"
+        end
+    end
+
+    function bald_5__spike:GetCastRange(vLocation, hTarget)
+        local cast_range = self:GetSpecialValueFor("cast_range")
         if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return radius end
-        return radius * (1 + (self:GetCurrentAbilityCharges() * 0.01))
+        return cast_range
     end
 
     function bald_5__spike:GetManaCost(iLevel)
@@ -81,16 +111,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function bald_5__spike:CheckAbilityCharges(charges)
-        local caster = self:GetCaster()
-        local model_scale = (self:GetCaster():GetModelScale() - 1) * 100
-        local aura = caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster)
-        if aura then aura:PlayEfxStart() end
-
-        if model_scale > 0 then
-            self:SetCurrentAbilityCharges(model_scale)
-            return
-        end
-
         self:SetCurrentAbilityCharges(charges)
     end
 

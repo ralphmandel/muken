@@ -11,14 +11,10 @@ function bald_3_modifier_passive:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.amount = self.ability:GetSpecialValueFor("amount")
-	self.total_amount = 0
-
 	if IsServer() then self:SetStackCount(0) end
 end
 
 function bald_3_modifier_passive:OnRefresh(kv)
-	self.amount = self.ability:GetSpecialValueFor("amount")
 end
 
 function bald_3_modifier_passive:OnRemoved()
@@ -29,26 +25,32 @@ end
 
 function bald_3_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
 end
 
-function bald_3_modifier_passive:OnTakeDamage(keys)
-	if keys.unit ~= self.parent then return end
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
+function bald_3_modifier_passive:OnAttackLanded(keys)
+	if keys.target ~= self.parent then return end
 	if self.parent:HasModifier("bald_3_modifier_inner") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	self:IncrementAmount(keys.damage)
+	local chance = self.ability:GetSpecialValueFor("creep_chance")
+	if keys.attacker:IsHero() then chance = self.ability:GetSpecialValueFor("hero_chance") end
+
+	if RandomFloat(1, 100) <= chance then
+		self:AddMultStack()
+	end
 end
 
 function bald_3_modifier_passive:OnStackCountChanged(old)
-	self.ability:RemoveBonus("_1_CON", self.parent)
 	local behavior = 1
+	local min_satck = self.ability:GetSpecialValueFor("min_satck")
 
-	if self:GetStackCount() > 0 then
+	self.ability:RemoveBonus("_1_CON", self.parent)
+
+	if self:GetStackCount() >= min_satck then
 		self.ability:AddBonus("_1_CON", self.parent, self:GetStackCount(), 0, nil)
 		behavior = 2
 	end
@@ -57,15 +59,6 @@ function bald_3_modifier_passive:OnStackCountChanged(old)
 end
 
 -- UTILS -----------------------------------------------------------
-
-function bald_3_modifier_passive:IncrementAmount(damage)
-	self.total_amount = self.total_amount + damage
-	if self.total_amount > self.amount then
-		self.total_amount = self.total_amount - self.amount
-		self:AddMultStack()
-		self:IncrementAmount(0)
-	end
-end
 
 function bald_3_modifier_passive:AddMultStack()
 	local duration = self.ability:GetSpecialValueFor("stack_duration")

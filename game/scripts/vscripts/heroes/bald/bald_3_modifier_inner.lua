@@ -65,7 +65,6 @@ function bald_3_modifier_inner:ChangeModelScale(def)
 
 	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.02))
 	self:ChangeAbilityRange("bald_2__bash")
-	self:ChangeAbilityRange("bald_5__spike")
 end
 
 function bald_3_modifier_inner:ChangeAbilityRange(ability_name)
