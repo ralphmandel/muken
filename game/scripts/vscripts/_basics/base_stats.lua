@@ -548,7 +548,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			
 			if self.mp_regen_stack > 0 then
 				self.mp_regen_state = 1
-				self:GetCaster():SetBaseManaRegen(12)
+				self:GetCaster():SetBaseManaRegen(9)
 			else
 				self.mp_regen_state = 0
 				self:GetCaster():SetBaseManaRegen(0)

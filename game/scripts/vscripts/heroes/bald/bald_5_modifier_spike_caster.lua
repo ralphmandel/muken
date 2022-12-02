@@ -129,10 +129,10 @@ function bald_5_modifier_spike_caster:PlayEfxStart()
 end
 
 function bald_5_modifier_spike_caster:PlayEfxQuill(radius)
-	local particle_cast = "particles/druid/druid_lotus/lotus_quill.vpcf"
+	local particle_cast = "particles/bald/bald_quill/bald_quill_spray.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 10, Vector(radius, 0, 0))
-	ParticleManager:SetParticleControl(effect_cast, 61, Vector(1, 0, 1))
+	ParticleManager:SetParticleControl(effect_cast, 10, Vector(radius * 1.5, 0, 0))
+	--ParticleManager:SetParticleControl(effect_cast, 61, Vector(1, 0, 1))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then self.parent:EmitSound("Hero_Bristleback.PistonProngs.QuillSpray.Cast") end

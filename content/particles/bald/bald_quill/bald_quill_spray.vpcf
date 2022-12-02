@@ -1,34 +1,18 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 0
 	m_nGroupID = 3
-	m_flMaxDrawDistance = 2000.000000
+	m_flMaxDrawDistance = 2000.0
 	m_bShouldSort = false
-	m_Children = 
-	[
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_quills.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_sparks.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/bristleback/bristle_spikey_spray/bristle_spikey_quill_spray_fow.vpcf"
-		},
-	]
+	m_nBehaviorVersion = 12
 	m_controlPointConfigurations = 
 	[
-		
 		{
 			m_name = "preview"
 			m_drivers = 
 			[
-				
 				{
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
@@ -36,5 +20,16 @@
 			]
 		},
 	]
-	m_nBehaviorVersion = 12
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/bald/bald_quill/bald_quill_spray_quills.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bald/bald_quill/bald_quill_spray_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bald/bald_quill/bald_quill_spray_fow.vpcf"
+		},
+	]
 }

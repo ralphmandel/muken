@@ -61,18 +61,18 @@ function _modifier_example:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function _modifier_example:PlayEfxStart(target)
+function _modifier_example:PlayEfxStart()
 	-- RELEASE PARTICLE
-	local string_1 = ""
-	local particle_1 = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(particle_1, 0, target:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(particle_1)
+	local string = ""
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
 
 	-- MOD PARTICLE
-	local string_2 = ""
-	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(particle_2, 0, target:GetOrigin())
-	self:AddParticle(particle_2, false, false, -1, false, false)
+	local string = ""
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+	self:AddParticle(particle, false, false, -1, false, false)
 
-	if IsServer() then target:EmitSound("") end
+	if IsServer() then self.parent:EmitSound("") end
 end
