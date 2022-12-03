@@ -53,6 +53,11 @@ bald_u__vitality_rank_41 = class ({})
 bald_u__vitality_rank_42 = class ({})
 
 bald__precache = class ({})
+LinkLuaModifier("bald__special_values", "heroes/bald/bald__special_values", LUA_MODIFIER_MOTION_NONE)
+
+function bald__precache:GetIntrinsicModifierName()
+    return "bald__special_values"
+end
 
 function bald__precache:Spawn()
     if self:IsTrained() == false then self:UpgradeAbility(true) end

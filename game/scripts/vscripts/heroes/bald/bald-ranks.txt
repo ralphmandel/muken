@@ -17,7 +17,7 @@
 		{
 			"0"
 			{
-				"1"   "bald_1__power_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
@@ -41,6 +41,7 @@
 			"1"
 			{
 				"1"   "bald_2__bash_rank_21"
+				"2"   "bald_2__bash_rank_22"
 			}
 			"2"
 			{
@@ -56,6 +57,7 @@
 			"0"
 			{
 				"1"   "bald_3__inner_rank_11"
+				"2"   "bald_3__inner_rank_12"
 			}
 			"1"
 			{
@@ -63,7 +65,7 @@
 			}
 			"2"
 			{
-				"1"   "bald_3__inner_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
@@ -94,6 +96,7 @@
 			"0"
 			{
 				"1"   "bald_5__spike_rank_11"
+				"2"   "bald_5__spike_rank_12"
 			}
 			"1"
 			{
@@ -102,6 +105,7 @@
 			"2"
 			{
 				"1"   "bald_5__spike_rank_31"
+				"2"   "bald_5__spike_rank_32"
 			}
 			"3"
 			{
@@ -113,6 +117,7 @@
 			"0"
 			{
 				"1"   "bald_u__vitality_rank_11"
+				"2"   "bald_u__vitality_rank_12"
 			}
 			"1"
 			{
@@ -124,7 +129,7 @@
 			}
 			"3"
 			{
-				"1"   "bald_u__vitality_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	

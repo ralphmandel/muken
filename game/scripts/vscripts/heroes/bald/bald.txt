@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/bald/bald_1__power"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_power"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -45,7 +45,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}
@@ -56,7 +56,7 @@
 		"ScriptFile"            		"heroes/bald/bald_2__bash"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_bash"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -88,17 +88,17 @@
             "13"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"325"
+				"cast_range"	"320 325 330 335 340 345 350 355 360 365 370 375 380"
 			}
             "14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"manacost"		"90"
+				"manacost"		"75"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -109,7 +109,7 @@
 		"ScriptFile"            		"heroes/bald/bald_3__inner"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_inner"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -120,15 +120,15 @@
 
 		"AbilitySpecial"
 		{
-			"01"
+            "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hero_chance"		"100"
+				"creep_chance"		"20 25 30 35 40 45 50 55 60"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"creep_chance"		"25"
+				"hero_chance"		"100"
 			}
             "03"
 			{
@@ -158,7 +158,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
@@ -169,7 +169,7 @@
 		"ScriptFile"            		"heroes/bald/bald_4__clean"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_clean"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -181,7 +181,7 @@
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"intervals"		"1.2 1.15 1.1 1.05 1 0.95 0.9 0.85 0.8 0.75"
+				"intervals"		"1.2 1.15 1.1 1.05 1 0.95 0.9 0.85 0.8 0.75 0.7"
 			}
             "02"
 			{
@@ -201,7 +201,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -212,7 +212,7 @@
 		"ScriptFile"            		"heroes/bald/bald_5__spike"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_spike"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -225,14 +225,14 @@
         "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"15"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"damage_percent"	"50 52.5 55 57.5 60 62.5 65"
+				"percent"	        "40 42.5 45 47.5 50 52.5 55 57.5 60 62.5 65 67.5 70 72.5 75"
 			}
             "02"
 			{
@@ -267,7 +267,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -278,21 +278,20 @@
 		"ScriptFile"            		"heroes/bald/bald_u__vitality"
 		"AbilityTextureName"     		"bald_vitality"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_TAUNT"
 		"AbilityCastPoint"       		"1.1"
-		"AbilityCooldown"				"120"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"con"		        "30 31 32 33 34 35 36"
+				"con"		        "25 26 27 28 29 30 31 32"
 			}
             "02"
 			{
@@ -309,15 +308,10 @@
 				"var_type"		    "FIELD_FLOAT"
 				"delay"	    	    "5"
 			}
-            "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "200"
-			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15"
+				"rank"				"9 10 11 12 13 14 15 16"
 			}
 		}
 	}
@@ -1767,5 +1761,4 @@
                 }
             }
         }
-
 }

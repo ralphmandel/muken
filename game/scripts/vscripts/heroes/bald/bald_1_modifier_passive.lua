@@ -53,6 +53,8 @@ end
 
 function bald_1_modifier_passive:AddMultStack()
 	local duration = self.ability:GetSpecialValueFor("duration")
+	print("testy", duration)
+
 	self:IncrementStackCount()
 
 	local this = tempTable:AddATValue(self)

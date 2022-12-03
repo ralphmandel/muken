@@ -52,12 +52,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             base_hero.ranks[6][0] = true
             if self:GetLevel() == 1 then base_hero:SetHotkeys(self, true) end
         end
-
-        self:CheckAbilityCharges(1)
     end
 
     function bald_u__vitality:Spawn()
-        self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
@@ -75,17 +72,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function bald_u__vitality:OnSpellStart()
         local caster = self:GetCaster()
         caster:AddNewModifier(caster, self, "bald_u_modifier_vitality", {})
-    end
-
-    function bald_u__vitality:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
-    end
-
-    function bald_u__vitality:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

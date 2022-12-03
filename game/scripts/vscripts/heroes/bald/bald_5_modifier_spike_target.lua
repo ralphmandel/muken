@@ -36,10 +36,10 @@ function bald_5_modifier_spike_target:DeclareFunctions()
 end
 
 function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
-	local damage_percent = self.ability:GetSpecialValueFor("damage_percent")
+	local percent = self.ability:GetSpecialValueFor("percent")
 
 	local total = ApplyDamage({
-		damage = keys.original_damage * damage_percent * 0.01,
+		damage = keys.original_damage * percent * 0.01,
 		attacker = keys.attacker,
 		victim = self.caster,
 		damage_type = keys.damage_type,
@@ -49,7 +49,7 @@ function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
 
 	self:PlayEfxHit()
 
-	return -damage_percent
+	return -percent
 end
 
 -- UTILS -----------------------------------------------------------

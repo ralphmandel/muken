@@ -13,6 +13,8 @@ function bald_2_modifier_heap:OnCreated(kv)
 	self.dash = false
 
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:SetMPRegenState(-1) end
 
 	if IsServer() then
 		self:OnIntervalThink()
@@ -32,6 +34,8 @@ function bald_2_modifier_heap:OnRemoved()
 	self.ability.stun = (stun_max * elapsed_time) / self:GetDuration()
 
 	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
+	local base_stats = self.parent:FindAbilityByName("base_stats")
+	if base_stats then base_stats:SetMPRegenState(1) end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do
