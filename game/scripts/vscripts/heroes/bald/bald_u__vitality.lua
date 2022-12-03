@@ -75,8 +75,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function bald_u__vitality:OnSpellStart()
         local caster = self:GetCaster()
         caster:AddNewModifier(caster, self, "bald_u_modifier_vitality", {})
-
-        if IsServer() then caster:EmitSound("Hero_OgreMagi.Bloodlust.Target") end
     end
 
     function bald_u__vitality:GetManaCost(iLevel)

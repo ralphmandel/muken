@@ -10,18 +10,30 @@ function bald_u_modifier_vitality:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local con = self.ability:GetSpecialValueFor("con")
+	self.con = self.ability:GetSpecialValueFor("con")
+	self.regen = self.ability:GetSpecialValueFor("regen_out")
+	self.delay = 0
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_u_modifier_vitality_status_efx", true) end
 
-	if IsServer() then self:SetStackCount(con) end
+	if IsServer() then
+		self:SetStackCount(self.con)
+		self:StartIntervalThink(1)
+		self:PlayEfxStart()
+	end
 end
 
 function bald_u_modifier_vitality:OnRefresh(kv)
-	local con = self.ability:GetSpecialValueFor("con")
+	self.con = self.ability:GetSpecialValueFor("con")
+	self.regen = self.ability:GetSpecialValueFor("regen_out")
+	self.delay = 0
 
-	if IsServer() then self:SetStackCount(con) end
+	if IsServer() then
+		self:SetStackCount(self.con)
+		self:StartIntervalThink(1)
+		self:PlayEfxStart()
+	end
 end
 
 function bald_u_modifier_vitality:OnRemoved()
@@ -35,20 +47,40 @@ end
 
 function bald_u_modifier_vitality:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
 end
 
+function bald_u_modifier_vitality:GetModifierConstantHealthRegen(keys)
+	return self:GetParent():GetMaxHealth() * self.regen * 0.01
+end
+
 function bald_u_modifier_vitality:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
+	self.delay = self.ability:GetSpecialValueFor("delay")
+	self.regen = self.ability:GetSpecialValueFor("regen_in")
+
+	if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(self.regen * 10, 0, 0)) end
 end
 
 function bald_u_modifier_vitality:OnIntervalThink()
+	if self.delay > 0 then
+		self.regen = self.ability:GetSpecialValueFor("regen_in")
+		self.delay = self.delay - 1
+		self.con = self.con - 0.5
+	else
+		self.regen = self.ability:GetSpecialValueFor("regen_out")
+		self.con = self.con - 1
+	end
+
+	if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(self.regen * 10, 0, 0)) end
+
 	if IsServer() then
-		self.parent:EmitSound("Hero_OgreMagi.Bloodlust.Target.FP")
-		self:DecrementStackCount()
+		self:SetStackCount(math.ceil(self.con))
+		self:StartIntervalThink(1)
 	end
 end
 
@@ -59,6 +91,11 @@ function bald_u_modifier_vitality:OnStackCountChanged(old)
 		self.ability:AddBonus("_1_CON", self.parent, self:GetStackCount(), 0, nil)
 	else
 		self:Destroy()
+		return
+	end
+
+	if old > self:GetStackCount() then
+		if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Bloodlust.Target.FP") end
 	end
 end
 
@@ -74,10 +111,13 @@ function bald_u_modifier_vitality:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ULTRA
 end
 
-function bald_u_modifier_vitality:GetEffectName()
-	return "particles/bald/bald_vitality/bald_vitality_buff.vpcf"
-end
+function bald_u_modifier_vitality:PlayEfxStart()
+	local particle_cast = "particles/bald/bald_vitality/bald_vitality_buff.vpcf"
+	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControlEnt(self.effect_cast, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(1,0,0), true)
+	ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(self.regen * 10, 0, 0))
+	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
-function bald_u_modifier_vitality:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
+	if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Bloodlust.Target") end
 end

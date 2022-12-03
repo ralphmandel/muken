@@ -45,8 +45,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 220, 20, 60 ]
-			m_ColorMin = [ 255, 215, 0 ]
+			m_ColorMax = [ 128, 0, 0 ]
+			m_ColorMin = [ 255, 69, 0 ]
 		},
 	]
 	m_Operators = 
@@ -60,7 +60,7 @@
 		{
 			_class = "C_OP_RenderStatusEffect"
 			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_electrical.vtex"
-			m_pTextureDetail2 = resource:"materials/models/heroes/statuseffects/burning.vtex"
+			m_pTextureDetail2 = resource:"materials/particle/lava/lava_cracks_large/lava_crack_large_bright.vtex"
 			m_pTextureFresnelColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_electrical.vtex"
 		},
 	]

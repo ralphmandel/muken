@@ -294,25 +294,20 @@
 				"var_type"		    "FIELD_FLOAT"
 				"con"		        "30 31 32 33 34 35 36"
 			}
-            "01"
+            "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"regen_in"		    "0.5"
 			}
-            "02"
+            "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"regen_out"		    "1.5"
 			}
-            "01"
+            "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"delay_in"	    	"2"
-			}
-            "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"delay_out"	    	"1"
+				"delay"	    	    "5"
 			}
             "14"
 			{
