@@ -60,7 +60,10 @@ function bald__precache:GetIntrinsicModifierName()
 end
 
 function bald__precache:Spawn()
-    if self:IsTrained() == false then self:UpgradeAbility(true) end
+    if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        self:SetLevel(100)
+    end
 end
 
 function bald__precache:Precache(context)

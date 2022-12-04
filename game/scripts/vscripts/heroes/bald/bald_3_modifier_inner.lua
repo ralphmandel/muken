@@ -11,6 +11,7 @@ function bald_3_modifier_inner:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.base_hull = 24
 	self:ChangeModelScale(kv.def)
 	self.atk_range = kv.def * 2
 
@@ -64,16 +65,7 @@ function bald_3_modifier_inner:ChangeModelScale(def)
 	if base_hero_mod.model_scale == nil then return end
 
 	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.02))
-	self:ChangeAbilityRange("bald_2__bash")
-end
-
-function bald_3_modifier_inner:ChangeAbilityRange(ability_name)
-	local ability = self.parent:FindAbilityByName(ability_name)
-	if ability then
-		if ability:IsTrained() then
-			ability:CheckAbilityCharges(1)
-		end
-	end
+	self.parent:FindAbilityByName("bald__precache"):SetLevel(self.parent:GetModelScale() * 100)
 end
 
 -- EFFECTS -----------------------------------------------------------

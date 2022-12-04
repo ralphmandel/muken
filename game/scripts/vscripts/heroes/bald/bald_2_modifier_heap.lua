@@ -9,8 +9,9 @@ function bald_2_modifier_heap:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.time = self:GetDuration()
-	self.dash = false
+
+	self.max_charge = self.ability:GetSpecialValueFor("max_charge")
+	self.time = self.max_charge
 
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
 	local base_stats = self.parent:FindAbilityByName("base_stats")
@@ -28,10 +29,10 @@ end
 function bald_2_modifier_heap:OnRemoved()
 	local stun_max = self.ability:GetSpecialValueFor("stun_max")
 	local damage_max = self.ability:GetSpecialValueFor("damage_max")
-	local elapsed_time = self:GetDuration() - self.time
+	local elapsed_time = self:GetElapsedTime()
 
-	self.ability.damage = (damage_max * elapsed_time) / self:GetDuration()
-	self.ability.stun = (stun_max * elapsed_time) / self:GetDuration()
+	self.ability.damage = (damage_max * elapsed_time) / self.max_charge
+	self.ability.stun = (stun_max * elapsed_time) / self.max_charge
 
 	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
 	local base_stats = self.parent:FindAbilityByName("base_stats")
@@ -40,10 +41,6 @@ function bald_2_modifier_heap:OnRemoved()
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	if self.dash == false then
-		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	end
 	
 	if IsServer() then self.parent:StopSound("Hero_Spirit_Breaker.Magnet.Cast") end
@@ -60,16 +57,20 @@ function bald_2_modifier_heap:CheckState()
 end
 
 function bald_2_modifier_heap:OnIntervalThink()
+	if self.time == 0 then
+		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+		self:Destroy()
+		return
+	end
+
+	local tick = 0.5
 	self:PlayEfxTimer()
+	self.time = self.time - tick
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		duration = 0.5,
+		duration = tick,
 		percent = (self:GetElapsedTime() * 12)
 	})
-	
-	local tick = 0.5
-	if self.time <= tick + 0.1 then tick = -1 end
-	self.time = self.time - tick
 
 	if IsServer() then self:StartIntervalThink(tick) end
 end

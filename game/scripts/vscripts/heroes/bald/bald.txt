@@ -28,19 +28,12 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilityCooldown"				"1"
-
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"60"
-			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"0"
 			}
 			"15"
 			{
@@ -66,8 +59,6 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCooldown"				"12"
-
 		"AbilitySpecial"
 		{
 			"01"
@@ -85,15 +76,10 @@
 				"var_type"		"FIELD_FLOAT"
 				"damage_max"    "250"
 			}
-            "13"
+            "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"320 325 330 335 340 345 350 355 360 365 370 375 380"
-			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"75"
+				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
 			"15"
 			{

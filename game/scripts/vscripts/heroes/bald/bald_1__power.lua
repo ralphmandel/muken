@@ -54,12 +54,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
 			end)
         end
-
-        self:CheckAbilityCharges(1)
     end
 
     function bald_1__power:Spawn()
-        self:CheckAbilityCharges(0)
         if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
@@ -67,21 +64,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bald_1__power:GetIntrinsicModifierName()
         return "bald_1_modifier_passive"
-    end
-
-    function bald_1__power:OnOwnerDied()
-        self:RemoveBonus("_1_STR", self:GetCaster())
-    end
-
-    function bald_1__power:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
-    end
-
-    function bald_1__power:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

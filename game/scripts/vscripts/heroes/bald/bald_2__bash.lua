@@ -55,12 +55,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             base_hero.ranks[2][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
-
-        self:CheckAbilityCharges(1)
     end
 
     function bald_2__bash:Spawn()
-        self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
@@ -79,12 +76,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local max_charge = self:GetSpecialValueFor("max_charge")
 
-        caster:AddNewModifier(caster, self, "bald_2_modifier_heap", {
-            duration = max_charge
-        })
-
-        self:EndCooldown()
-        self:StartCooldown(0.5)
+        caster:AddNewModifier(caster, self, "bald_2_modifier_heap", {})
     end
 
     function bald_2__bash:PerformDash()
@@ -93,13 +85,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         local heap = caster:FindModifierByName("bald_2_modifier_heap")
         if heap then
-            local elapsed_time = heap:GetDuration() - heap.time
-
             caster:AddNewModifier(caster, self, "bald_2_modifier_dash", {
-                duration = (elapsed_time + 1) * 0.1
+                duration = (heap:GetElapsedTime() + 1) * 0.1
             })
 
-            heap.dash = true
             heap:Destroy()
         end
     end
@@ -116,42 +105,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
-    function bald_2__bash:GetCastRange(vLocation, hTarget)
-        local cast_range = self:GetSpecialValueFor("cast_range")
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() == 1 then return cast_range end
-        return cast_range * (1 + (self:GetCurrentAbilityCharges() * 0.01))
-    end
-
     function bald_2__bash:GetBehavior()
         if self:GetCaster():HasModifier("bald_2_modifier_heap") then
             return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
         else
             return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
         end
-    end
-
-    function bald_2__bash:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-
-        if self:GetCaster():HasModifier("bald_2_modifier_heap") then
-            return 0
-        end
-
-        return manacost * level
-    end
-
-    function bald_2__bash:CheckAbilityCharges(charges)
-        local model_scale = (self:GetCaster():GetModelScale() - 1) * 100
-
-        if model_scale > 0 then
-            self:SetCurrentAbilityCharges(model_scale)
-            return
-        end
-
-        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS
