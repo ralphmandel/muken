@@ -21,7 +21,7 @@
 		"HealthBarOffset"			"250"
 
 		"Ability1"					"base_stats"
-		"Ability2"					"_void"
+		"Ability2"					"cosmetics"
 		"Ability3"					"_boss__ai"
 		"Ability4"					"_boss_gorillaz"
 		"Ability5"					"mk_root"

@@ -46,11 +46,11 @@ end
 
 function bald_3_modifier_passive:OnStackCountChanged(old)
 	local behavior = 1
-	local min_satck = self.ability:GetSpecialValueFor("min_satck")
+	local min_stack = self.ability:GetSpecialValueFor("min_stack")
 
 	self.ability:RemoveBonus("_1_CON", self.parent)
 
-	if self:GetStackCount() >= min_satck then
+	if self:GetStackCount() >= min_stack then
 		self.ability:AddBonus("_1_CON", self.parent, self:GetStackCount(), 0, nil)
 		behavior = 2
 	end

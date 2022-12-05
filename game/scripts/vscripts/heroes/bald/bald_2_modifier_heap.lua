@@ -2,6 +2,7 @@ bald_2_modifier_heap = class({})
 
 function bald_2_modifier_heap:IsHidden() return true end
 function bald_2_modifier_heap:IsPurgable() return false end
+function bald_2_modifier_heap:GetPriority() return MODIFIER_PRIORITY_ULTRA end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -16,6 +17,13 @@ function bald_2_modifier_heap:OnCreated(kv)
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetMPRegenState(-1) end
+
+	local bonus_ms = self.ability:GetSpecialValueFor("bonus_ms")
+	if bonus_ms > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+			percent = bonus_ms
+		})
+	end
 
 	if IsServer() then
 		self:OnIntervalThink()
@@ -42,6 +50,11 @@ function bald_2_modifier_heap:OnRemoved()
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 	
 	if IsServer() then self.parent:StopSound("Hero_Spirit_Breaker.Magnet.Cast") end
 end
@@ -52,6 +65,10 @@ function bald_2_modifier_heap:CheckState()
 	local state = {
 		[MODIFIER_STATE_DISARMED] = true
 	}
+
+	if self:GetAbility():GetSpecialValueFor("stun_immunity") == 1 then
+		table.insert(state, MODIFIER_STATE_STUNNED, false)
+	end
 
 	return state
 end
@@ -69,7 +86,7 @@ function bald_2_modifier_heap:OnIntervalThink()
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		duration = tick,
-		percent = (self:GetElapsedTime() * 12)
+		percent = (self:GetElapsedTime() * (75 / self.max_charge))
 	})
 
 	if IsServer() then self:StartIntervalThink(tick) end

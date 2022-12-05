@@ -16,6 +16,8 @@ require("internal/talent_tree")
 
 			Timers:CreateTimer(0.2, function()
 				self:CheckSkills(0, nil)
+				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
+				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
 			end)
 		end
 	end
@@ -44,18 +46,18 @@ require("internal/talent_tree")
 -- ABILITY SETTINGS
 
 	function base_hero:SetHotkeys(ability, bUltimate)
-		if not self.slot_index then self.slot_index = 1 end
+		-- if not self.slot_index then self.slot_index = 1 end
 
-		local caster = self:GetCaster()
-		local slot = self.slot_keys[self.slot_index]
+		-- local caster = self:GetCaster()
+		-- local slot = self.slot_keys[self.slot_index]
 
-		if bUltimate then
-			slot = self.slot_keys[6]
-		else
-			self.slot_index = self.slot_index + 1
-		end
+		-- if bUltimate then
+		-- 	slot = self.slot_keys[6]
+		-- else
+		-- 	self.slot_index = self.slot_index + 1
+		-- end
 
-		caster:SwapAbilities(ability:GetAbilityName(), slot, true, false)
+		-- caster:SwapAbilities(ability:GetAbilityName(), slot, true, false)
 	end
 
 	function base_hero:CheckSkills(pts, ability)
@@ -693,8 +695,8 @@ require("internal/talent_tree")
 					self:UpgradeRank(skill, id, level)
 
 					if permanent == 0 then
-						self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
-						self.talents.abilities[talentId] = nil
+						--self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
+						--self.talents.abilities[talentId] = nil
 					end
 
 				elseif(self.talents.abilities[talentId]) then

@@ -13,7 +13,7 @@ function bald_3_modifier_inner:OnCreated(kv)
 
 	self.base_hull = 24
 	self:ChangeModelScale(kv.def)
-	self.atk_range = kv.def * 2
+	self.atk_range = kv.def * 3
 
 	if IsServer() then
 		self:SetStackCount(kv.def)
@@ -64,7 +64,7 @@ function bald_3_modifier_inner:ChangeModelScale(def)
 	if base_hero_mod == nil then return end
 	if base_hero_mod.model_scale == nil then return end
 
-	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.02))
+	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.03))
 	self.parent:FindAbilityByName("bald__precache"):SetLevel(self.parent:GetModelScale() * 100)
 end
 

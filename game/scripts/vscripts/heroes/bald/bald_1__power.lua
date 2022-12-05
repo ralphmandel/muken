@@ -47,13 +47,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if caster:IsIllusion() then return end
         if caster:GetUnitName() ~= "npc_dota_hero_bristleback" then return end
 
-        local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then
-            base_hero.ranks[1][0] = true
-            Timers:CreateTimer(0.2, function()
-				if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
-			end)
-        end
+        Timers:CreateTimer(0.2, function()
+            local base_hero = caster:FindAbilityByName("base_hero")
+            if base_hero then
+                base_hero.ranks[1][0] = true
+                if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
+            end
+        end)
     end
 
     function bald_1__power:Spawn()

@@ -10,13 +10,14 @@ function bald_1_modifier_passive_stack:GetAttributes() return MODIFIER_ATTRIBUTE
 function bald_1_modifier_passive_stack:OnCreated( kv )
 	if IsServer() then
 		self.modifier = tempTable:RetATValue( kv.modifier )
+		self.stacks = kv.stacks
 	end
 end
 
 function bald_1_modifier_passive_stack:OnRemoved()
 	if IsServer() then
 		if not self.modifier:IsNull() then
-			self.modifier:DecrementStackCount()
+			self.modifier:SetStackCount(self.modifier:GetStackCount() - self.stacks)
 		end
 	end
 end

@@ -4,6 +4,7 @@ LinkLuaModifier("bald_2_modifier_dash", "heroes/bald/bald_2_modifier_dash", LUA_
 LinkLuaModifier("bald_2_modifier_impact", "heroes/bald/bald_2_modifier_impact", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("bald_2_modifier_gesture", "heroes/bald/bald_2_modifier_gesture", LUA_MODIFIER_MOTION_HORIZONTAL)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -86,11 +87,46 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local heap = caster:FindModifierByName("bald_2_modifier_heap")
         if heap then
             caster:AddNewModifier(caster, self, "bald_2_modifier_dash", {
-                duration = (heap:GetElapsedTime() + 1) * 0.1
+                duration = (heap.time + heap.max_charge) * 0.06
             })
 
             heap:Destroy()
         end
+    end
+
+    function bald_2__bash:ApplyImpact(target)
+        local caster = self:GetCaster()
+        if target:IsInvisible() then return end
+
+        local mod = target:FindAllModifiersByName("_modifier_stun")
+        for _,modifier in pairs(mod) do
+            if modifier:GetAbility() == self then return end
+        end
+
+        self:PlayEfxImpact(target)
+    
+        ApplyDamage({
+            damage = self.damage,
+            attacker = caster,
+            victim = target,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self,
+            damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
+        })
+        
+        target:AddNewModifier(caster, self, "_modifier_stun", {
+            duration = self:CalcStatus(self.stun, caster, target)
+        })
+    
+        target:AddNewModifier(caster, nil, "modifier_knockback", {
+            duration = 0.25,
+            knockback_duration = 0.25,
+            knockback_distance = self.stun * 50,
+            center_x = caster:GetAbsOrigin().x + 1,
+            center_y = caster:GetAbsOrigin().y + 1,
+            center_z = caster:GetAbsOrigin().z,
+            knockback_height = self.stun * 20,
+        })
     end
 
     function bald_2__bash:OnOwnerSpawned()
@@ -114,3 +150,15 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
 -- EFFECTS
+
+    function bald_2__bash:PlayEfxImpact(target)
+        local sound_cast = "Hero_Spirit_Breaker.GreaterBash.Creep"
+        if target:IsHero() then sound_cast = "Hero_Spirit_Breaker.GreaterBash" end 
+
+        local particle_cast = "particles/econ/items/spirit_breaker/spirit_breaker_weapon_ti8/spirit_breaker_bash_ti8.vpcf"
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
+        ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+        ParticleManager:ReleaseParticleIndex(effect_cast)
+
+        if IsServer() then target:EmitSound(sound_cast) end
+    end

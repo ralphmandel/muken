@@ -73,6 +73,18 @@ function bald_2_modifier_dash:HorizontalMotion(unit, time)
 
 	if self.ability.target then
 		if IsValidEntity(self.ability.target) then
+			local enemies = FindUnitsInRadius(
+				self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("bash_aoe"),
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+			)
+		
+			for _,enemy in pairs(enemies) do
+				if self.ability.target ~= enemy then
+					self.ability:ApplyImpact(enemy)
+				end
+			end
+
 			local distance = CalcDistanceBetweenEntityOBB(self.parent, self.ability.target)
 			if distance <= 100 then
 				self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_impact", {duration = 0.3})

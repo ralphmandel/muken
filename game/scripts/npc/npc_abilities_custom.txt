@@ -8,7 +8,7 @@
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"_basics/base_stats"
-        "AbilityTextureName"    		"base_stats"
+    "AbilityTextureName"    		"base_stats"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"	
 		"RequiredLevel"         	 	"-200"	

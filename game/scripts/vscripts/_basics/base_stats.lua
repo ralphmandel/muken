@@ -65,7 +65,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stat_levelup = {} -- LEVEL UP COUNT
 				self.bonus_level = {} -- CONST SPECIAL VALUE
 				
-
 				self.stats_primary = {
 					"STR", "AGI", "INT", "CON"
 				}
@@ -73,7 +72,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stats_secondary = {
 					"DEX", "DEF", "RES", "REC", "LCK", "MND"
 				}
-
 
 				for _, stat in pairs(self.stats_primary) do
 					self.stat_init[stat] = 0
