@@ -52,12 +52,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             base_hero.ranks[4][0] = true
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
-
-        self:CheckAbilityCharges(1)
     end
 
     function bald_4__clean:Spawn()
-        self:CheckAbilityCharges(0)
     end
 
 -- SPELL START
@@ -75,15 +72,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         })
     end
 
-    function bald_4__clean:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
-    end
-
-    function bald_4__clean:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
+    function bald_4__clean:GetAOERadius()
+        return self:GetSpecialValueFor("radius")
     end
 
 -- EFFECTS

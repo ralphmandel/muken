@@ -194,14 +194,13 @@
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"				"24"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"intervals"		"1.2 1.15 1.1 1.05 1 0.95 0.9 0.85 0.8 0.75 0.7"
+				"intervals"		"1.5 1.45 1.4 1.35 1.3 1.25 1.2 1.15 1.1 1.05 1"
 			}
             "02"
 			{
@@ -213,15 +212,20 @@
 				"var_type"		"FIELD_FLOAT"
 				"heal"		    "40"
 			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"130"
-			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+			}
+            "16"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"magical_damage""0"
+			}
+            "17"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"0"
 			}
 		}
 	}
@@ -332,6 +336,11 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"rank"				"9 10 11 12 13 14 15 16"
+			}
+            "16"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"lifesteal"			"0"
 			}
 		}
 	}

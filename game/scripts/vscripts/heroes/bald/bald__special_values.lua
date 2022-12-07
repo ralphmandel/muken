@@ -91,10 +91,21 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
-		if caster:FindAbilityByName("bald_4__clean_rank_11") then end
-		if caster:FindAbilityByName("bald_4__clean_rank_21") then end
-		if caster:FindAbilityByName("bald_4__clean_rank_31") then end
-		if caster:FindAbilityByName("bald_4__clean_rank_41") then end
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("bald_4__clean_rank_11") then
+			if value_name == "heal" then return 1 end
+		end
+		if caster:FindAbilityByName("bald_4__clean_rank_21") then
+			if value_name == "duration" then return 1 end
+		end
+		if caster:FindAbilityByName("bald_4__clean_rank_31") then
+			if value_name == "magical_damage" then return 1 end
+		end
+		if caster:FindAbilityByName("bald_4__clean_rank_41") then
+			if value_name == "radius" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
@@ -110,10 +121,16 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 
-		if caster:FindAbilityByName("bald_u__vitality_rank_11") then end
-		if caster:FindAbilityByName("bald_u__vitality_rank_12") then end
-		if caster:FindAbilityByName("bald_u__vitality_rank_21") then end
-		if caster:FindAbilityByName("bald_u__vitality_rank_31") then end
+		if caster:FindAbilityByName("bald_u__vitality_rank_12") then
+			if value_name == "regen_in" then return 1 end
+		end
+		if caster:FindAbilityByName("bald_u__vitality_rank_21") then
+			if value_name == "regen_out" then return 1 end
+			if value_name == "delay" then return 1 end
+		end
+		if caster:FindAbilityByName("bald_u__vitality_rank_31") then
+			if value_name == "lifesteal" then return 1 end
+		end
 	end
 
 	return 0
@@ -197,6 +214,19 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
+		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
+
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("bald_4__clean_rank_21") then
+				return 36
+			end
+			return 24
+		end
+
+		if value_name == "heal" then return 60 end
+		if value_name == "duration" then return 12 end
+		if value_name == "magical_damage" then return 150 end
+		if value_name == "radius" then return 175 end
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
@@ -204,7 +234,17 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "bald_u__vitality" then
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 120 end
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("bald_u__vitality_rank_11") then
+				return 100
+			end
+			return 120
+		end
+
+		if value_name == "regen_in" then return 0.6 end
+		if value_name == "regen_out" then return 1.75 end
+		if value_name == "delay" then return 3 end
+		if value_name == "lifesteal" then return 10 end
 	end
 
 	return 0

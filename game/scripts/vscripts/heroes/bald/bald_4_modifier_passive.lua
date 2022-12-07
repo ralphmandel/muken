@@ -10,7 +10,7 @@ function bald_4_modifier_passive:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.exeptions_old = {
+	self.exceptions_old = {
 		"_modifier_ban",
 		"_modifier_bkb",
 		"_modifier_blind",
@@ -43,7 +43,7 @@ function bald_4_modifier_passive:OnCreated(kv)
 		"_modifier_root",
 	}
 
-	self.exeptions = {
+	self.exceptions = {
 		"_1_AGI_modifier_stack", "_1_CON_modifier_stack",
 		"_1_INT_modifier_stack", "_1_STR_modifier_stack",
 		"_2_DEF_modifier_stack", "_2_DEX_modifier_stack",
@@ -74,7 +74,7 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 	if keys.added_buff:IsDebuff() == false then return end
 	if self.parent:PassivesDisabled() then return end
 
-	for _,mod_name in pairs(self.exeptions) do
+	for _,mod_name in pairs(self.exceptions) do
 		if mod_name == keys.added_buff:GetName() then
 			return
 		end
@@ -85,9 +85,33 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 	if base_stats then heal = heal * base_stats:GetHealPower() end
 
 	self.parent:Heal(heal, self.ability)
+
+	local damage = ApplyDamage({
+		damage = self.ability:GetSpecialValueFor("magical_damage"),
+		attacker = self.caster,
+		victim = keys.added_buff:GetCaster(),
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability
+	})
+
+	self:PlayEfxDamage(keys.added_buff:GetCaster(), damage)
 end
 
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
---print("IsDebuff", keys.added_buff:GetName(), keys.added_buff:IsDebuff())
+
+function bald_4_modifier_passive:PlayEfxDamage(target, damage)
+	if damage == 0 then return end
+
+	local particle = "particles/bald/bald_zap/bald_zap_attack_heavy_ti_5.vpcf"
+	local zap_pfx = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControlEnt(zap_pfx, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(zap_pfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(zap_pfx)
+
+	if IsServer() then
+		self.parent:EmitSound("Hero_Pugna.NetherWard.Attack")
+		target:EmitSound("Hero_Pugna.NetherWard.Target")
+	end
+end

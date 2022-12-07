@@ -34,18 +34,29 @@ end
 
 function bald_4_modifier_clean:OnIntervalThink()
 	local bRemoveStuns = false
-	self.parent:Purge(false, true, false, bRemoveStuns, false)
+	local radius = self.ability:GetSpecialValueFor("radius")
+	if radius > 0 then bRemoveStuns = true end
+
+	local allies = FindUnitsInRadius(
+		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		0, 0, false
+	)
+
+	for _,ally in pairs(allies) do
+		ally:Purge(false, true, false, bRemoveStuns, false)
+		self:PlayEfxPurge(ally)	
+	end
 
 	if IsServer() then
+		self.parent:EmitSound("DOTA_Item.HotD.Activate")
 		self:StartIntervalThink(self.intervals)
-		self:PlayEfxPurge()
 	end
 end
 
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
---print("IsDebuff", keys.added_buff:GetName(), keys.added_buff:IsDebuff())
 
 function bald_4_modifier_clean:GetEffectName()
 	return "particles/units/heroes/hero_oracle/oracle_false_promise.vpcf"
@@ -55,12 +66,10 @@ function bald_4_modifier_clean:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function bald_4_modifier_clean:PlayEfxPurge()
+function bald_4_modifier_clean:PlayEfxPurge(target)
 	local string = "particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf"
-	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(particle, 0, target:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
-
-	if IsServer() then self.parent:EmitSound("DOTA_Item.HotD.Activate") end
-	--if IsServer() then self.parent:EmitSound("DOTA_Item.ArcaneRing.Cast") end
+	--if IsServer() then target:EmitSound("DOTA_Item.ArcaneRing.Cast") end
 end

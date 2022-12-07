@@ -48,7 +48,8 @@ end
 function bald_u_modifier_vitality:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
@@ -59,11 +60,22 @@ function bald_u_modifier_vitality:GetModifierConstantHealthRegen(keys)
 end
 
 function bald_u_modifier_vitality:OnTakeDamage(keys)
-	if keys.unit ~= self.parent then return end
-	self.delay = self.ability:GetSpecialValueFor("delay")
-	self.regen = self.ability:GetSpecialValueFor("regen_in")
+	if keys.unit == self.parent then
+		self.delay = self.ability:GetSpecialValueFor("delay")
+		self.regen = self.ability:GetSpecialValueFor("regen_in")
 
-	if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(self.regen * 10, 0, 0)) end
+		if self.effect_cast then
+			ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(self.regen * 10, 0, 0))
+		end
+	end
+
+	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+		self:ApplyLifesteal(keys)
+	end
+end
+
+function bald_u_modifier_vitality:OnAttacked(keys)
+	self:ApplyLifesteal(keys)
 end
 
 function bald_u_modifier_vitality:OnIntervalThink()
@@ -101,6 +113,19 @@ end
 
 -- UTILS -----------------------------------------------------------
 
+function bald_u_modifier_vitality:ApplyLifesteal(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker ~= self.parent then return end
+
+	local lifesteal = keys.original_damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
+	
+	if lifesteal > 0 then
+		keys.attacker:Heal(lifesteal, self.ability)
+		self:PlayEfxLifesteal(keys.attacker)
+	end
+end
+
 -- EFFECTS -----------------------------------------------------------
 
 function bald_u_modifier_vitality:GetStatusEffectName()
@@ -120,4 +145,11 @@ function bald_u_modifier_vitality:PlayEfxStart()
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Bloodlust.Target") end
+end
+
+function bald_u_modifier_vitality:PlayEfxLifesteal(attacker)
+	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
+	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
 end
