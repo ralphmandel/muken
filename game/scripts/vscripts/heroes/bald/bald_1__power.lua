@@ -33,15 +33,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function bald_1__power:GetRank(upgrade)
-        local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_bristleback" then return end
-
-		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[1][upgrade] end
-    end
-
     function bald_1__power:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end

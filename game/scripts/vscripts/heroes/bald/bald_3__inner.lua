@@ -34,15 +34,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
-    function bald_3__inner:GetRank(upgrade)
-        local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_bristleback" then return end
-
-		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[3][upgrade] end
-    end
-
     function bald_3__inner:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end
@@ -54,11 +45,17 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
         end
 
-        self:CheckAbilityCharges(1)
+        local base_hero_mod = caster:FindModifierByName("base_hero_mod")
+        if base_hero_mod then
+            base_hero_mod.model_scale = 1 + (self:GetSpecialValueFor("permanent_size") * 0.01)
+            self:ChangeModelScale()
+        end
     end
 
     function bald_3__inner:Spawn()
-        self:CheckAbilityCharges(0)
+        self:SetCurrentAbilityCharges(2)
+        self.def = 0
+        self.atk_range = 0
     end
 
 -- SPELL START
@@ -67,13 +64,19 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         return "bald_3_modifier_passive"
     end
 
+    function bald_3__inner:OnOwnerSpawned()
+        self:SetActivated(true)
+    end
+
     function bald_3__inner:OnSpellStart()
         local caster = self:GetCaster()
-        local buff_duration = self:GetSpecialValueFor("buff_duration")
+        local max_stack = self:GetSpecialValueFor("max_stack")
+
         local def = caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):GetStackCount()
+        if def > max_stack then def = max_stack end
 
         caster:AddNewModifier(caster, self, "bald_3_modifier_inner", {
-            duration = self:CalcStatus(buff_duration, caster, caster),
+            duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster),
             def = def
         })
 
@@ -83,22 +86,21 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
     end
 
+    function bald_3__inner:ChangeModelScale()
+        local caster = self:GetCaster()
+        local base_hero_mod = caster:FindModifierByName("base_hero_mod")
+        if base_hero_mod == nil then return end
+        if base_hero_mod.model_scale == nil then return end
+    
+        local extra_size = self.def * self:GetSpecialValueFor("size_mult") * 0.01
+    
+        caster:SetModelScale(base_hero_mod.model_scale + extra_size)
+        caster:FindAbilityByName("bald__precache"):SetLevel(caster:GetModelScale() * 100)
+        self.atk_range = 120 * (caster:GetModelScale() - 1)
+    end
+
     function bald_3__inner:GetBehavior()
-        if self:GetCurrentAbilityCharges() == 0 then return DOTA_ABILITY_BEHAVIOR_PASSIVE end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
-        return DOTA_ABILITY_BEHAVIOR_PASSIVE
-    end
-
-    function bald_3__inner:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return manacost * level end
-        return 0
-    end
-
-    function bald_3__inner:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
+        return self:GetCurrentAbilityCharges()
     end
 
 -- EFFECTS

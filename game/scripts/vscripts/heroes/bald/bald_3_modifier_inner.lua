@@ -11,9 +11,10 @@ function bald_3_modifier_inner:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.base_hull = 24
-	self:ChangeModelScale(kv.def)
-	self.atk_range = kv.def * 3
+	self.ability.def = kv.def
+	self.ability:ChangeModelScale()
+	self.ability:SetActivated(false)
+	self.ability:EndCooldown()
 
 	if IsServer() then
 		self:SetStackCount(kv.def)
@@ -22,7 +23,8 @@ function bald_3_modifier_inner:OnCreated(kv)
 end
 
 function bald_3_modifier_inner:OnRefresh(kv)
-	self:ChangeModelScale(kv.def)
+	self.ability.def = kv.def
+	self.ability:ChangeModelScale()
 
 	if IsServer() then
 		self:SetStackCount(kv.def)
@@ -31,23 +33,14 @@ function bald_3_modifier_inner:OnRefresh(kv)
 end
 
 function bald_3_modifier_inner:OnRemoved()
+	self.ability.def = 0
 	self.ability:RemoveBonus("_2_DEF", self.parent)
-	self:ChangeModelScale(0)
+	self.ability:ChangeModelScale()
+	self.ability:SetActivated(true)
+	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function bald_3_modifier_inner:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
-	}
-
-	return funcs
-end
-
-function bald_3_modifier_inner:GetModifierAttackRangeBonus()
-	return self.atk_range
-end
 
 function bald_3_modifier_inner:OnStackCountChanged(old)
 	self.ability:RemoveBonus("_2_DEF", self.parent)
@@ -58,15 +51,6 @@ function bald_3_modifier_inner:OnStackCountChanged(old)
 end
 
 -- UTILS -----------------------------------------------------------
-
-function bald_3_modifier_inner:ChangeModelScale(def)
-	local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
-	if base_hero_mod == nil then return end
-	if base_hero_mod.model_scale == nil then return end
-
-	self.parent:SetModelScale(base_hero_mod.model_scale + (def * 0.03))
-	self.parent:FindAbilityByName("bald__precache"):SetLevel(self.parent:GetModelScale() * 100)
-end
 
 -- EFFECTS -----------------------------------------------------------
 

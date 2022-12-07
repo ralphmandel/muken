@@ -61,7 +61,7 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:CheckSkills(pts, ability)
-		if ability then self:SetHotkeys(ability, false) end
+		--if ability then self:SetHotkeys(ability, false) end
 
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()

@@ -72,10 +72,22 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_3__inner" then
-		if caster:FindAbilityByName("bald_3__inner_rank_11") then end
-		if caster:FindAbilityByName("bald_3__inner_rank_12") then end
-		if caster:FindAbilityByName("bald_3__inner_rank_21") then end
-		if caster:FindAbilityByName("bald_3__inner_rank_41") then end
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("bald_3__inner_rank_12") then
+			if value_name == "buff_duration" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bald_3__inner_rank_21") then
+			if value_name == "hits" then return 1 end
+			if value_name == "stack_duration" then return 1 end
+		end
+		
+		if caster:FindAbilityByName("bald_3__inner_rank_41") then
+			if value_name == "permanent_size" then return 1 end
+			if value_name == "size_mult" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
@@ -163,6 +175,25 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_3__inner" then
+		if value_name == "AbilityManaCost" then
+			if ability:GetCurrentAbilityCharges() == 4 then
+				return 150 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 0
+		end
+
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("bald_3__inner_rank_11") then
+				return 0
+			end
+			return 10
+		end
+
+		if value_name == "buff_duration" then return 25 end
+		if value_name == "hits" then return 2 end
+		if value_name == "stack_duration" then return 20 end
+		if value_name == "permanent_size" then return 32 end
+		if value_name == "size_mult" then return 2 end
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then

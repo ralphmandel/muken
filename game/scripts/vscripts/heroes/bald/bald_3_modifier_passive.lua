@@ -10,6 +10,7 @@ function bald_3_modifier_passive:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
+	self.hits = 0
 
 	if IsServer() then self:SetStackCount(0) end
 end
@@ -25,48 +26,57 @@ end
 
 function bald_3_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
 end
 
+function bald_3_modifier_passive:GetModifierAttackRangeBonus()
+	return self.ability.atk_range
+end
+
 function bald_3_modifier_passive:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
 	if self.parent:HasModifier("bald_3_modifier_inner") then return end
 	if self.parent:PassivesDisabled() then return end
+	if self.ability:IsCooldownReady() == false then return end
 
-	local chance = self.ability:GetSpecialValueFor("creep_chance")
-	if keys.attacker:IsHero() then chance = self.ability:GetSpecialValueFor("hero_chance") end
+	self.hits = self.hits + 1
 
-	if RandomFloat(1, 100) <= chance then
+	if self.hits >= self.ability:GetSpecialValueFor("hits") then
 		self:AddMultStack()
+		self.hits = 0
 	end
 end
 
 function bald_3_modifier_passive:OnStackCountChanged(old)
-	local behavior = 1
-	local min_stack = self.ability:GetSpecialValueFor("min_stack")
+	local stack = self:GetStackCount()
+	local max_stack = self.ability:GetSpecialValueFor("max_stack")
+	if stack > max_stack then stack = max_stack end
+
+	if stack >= max_stack / 2 then
+		self.ability:SetCurrentAbilityCharges(4)
+	else
+		self.ability:SetCurrentAbilityCharges(2)
+	end
 
 	self.ability:RemoveBonus("_1_CON", self.parent)
 
-	if self:GetStackCount() >= min_stack then
-		self.ability:AddBonus("_1_CON", self.parent, self:GetStackCount(), 0, nil)
-		behavior = 2
+	if self:GetStackCount() > 0 then
+		self.ability:AddBonus("_1_CON", self.parent, stack, 0, nil)
 	end
-
-	self.ability:CheckAbilityCharges(behavior)
 end
 
 -- UTILS -----------------------------------------------------------
 
 function bald_3_modifier_passive:AddMultStack()
-	local duration = self.ability:GetSpecialValueFor("stack_duration")
 	self:IncrementStackCount()
 
 	local this = tempTable:AddATValue(self)
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_3_modifier_passive_stack", {
-		duration = duration,
+		duration = self.ability:GetSpecialValueFor("stack_duration"),
 		modifier = this
 	})
 end

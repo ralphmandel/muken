@@ -37,15 +37,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
     end
 
-    function bald_2__bash:GetRank(upgrade)
-        local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_bristleback" then return end
-
-		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[2][upgrade] end
-    end
-
     function bald_2__bash:OnUpgrade()
         local caster = self:GetCaster()
         if caster:IsIllusion() then return end

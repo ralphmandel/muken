@@ -142,29 +142,23 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"60"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hero_chance"		"80 82.5 85 87.5 90 92.5 95 97.5 100"
+				"max_stack" 	    "24 25 26 27 28 29 30 31 32"
 			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"creep_chance"		"20 25 30 35 40 45 50 55 60"
+				"hits"		        "3"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"	"20"
-			}
-            "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"min_stack"	        "5"
+				"stack_duration"	"30"
 			}
             "05"
 			{
@@ -174,17 +168,17 @@
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"atk_range_stack"	"2"
+				"size_mult"	        "3"
 			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"150"
-			}
-			"15"
+            "15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			"6 7 8 9 10 11 12 13 14"
+			}
+            "15"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"permanent_size"    "0"
 			}
 		}
 	}
