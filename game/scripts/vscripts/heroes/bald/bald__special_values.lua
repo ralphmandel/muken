@@ -131,7 +131,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bald_5__spike_rank_41") then
-			if value_name == "aborb_skill" then return 1 end
+			if value_name == "absorb_skill" then return 1 end
 		end
 	end
 
@@ -271,7 +271,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "percent" then return 75 end
 		if value_name == "charges" then return 2 end
 		if value_name == "movespeed" then return 50 end
-		if value_name == "aborb_skill" then return 1 end
+		if value_name == "absorb_skill" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "bald_u__vitality" then

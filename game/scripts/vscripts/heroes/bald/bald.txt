@@ -294,7 +294,7 @@
             "18"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"aborb_skill"	"0"
+				"absorb_skill"	"0"
 			}
 		}
 	}

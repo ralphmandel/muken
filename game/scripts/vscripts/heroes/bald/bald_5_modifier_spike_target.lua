@@ -44,10 +44,24 @@ end
 
 function bald_5_modifier_spike_target:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ABSORB_SPELL,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
 	}
 
 	return funcs
+end
+
+function bald_5_modifier_spike_target:GetAbsorbSpell(keys)
+	local absorb_skill = self.ability:GetSpecialValueFor("absorb_skill")
+
+	if absorb_skill > 0 then
+		local attacker = keys.ability:GetCaster()
+		attacker:SetCursorCastTarget(self.caster)
+		keys.ability:OnSpellStart()
+		--attacker:CastAbilityOnTarget(self.caster, keys.ability, attacker:GetPlayerOwnerID())
+	end
+
+	return absorb_skill
 end
 
 function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
