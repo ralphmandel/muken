@@ -14,7 +14,11 @@ function bald_5_modifier_spike_caster:OnCreated(kv)
 	self.amount = self.ability:GetSpecialValueFor("amount")
 
 	self.ability:EndCooldown()
-	self.ability:SetActivated(false)
+	self.ability:StartCooldown(1)
+
+	local current_charge = self.ability:GetCurrentAbilityCharges() - 1
+	self.ability:SetActivated(current_charge > 0)
+	self.ability:SetCurrentAbilityCharges(current_charge)
 
 	if IsServer() then
 		self:SetStackCount(1)
@@ -24,6 +28,14 @@ end
 
 function bald_5_modifier_spike_caster:OnRefresh(kv)
 	self.amount = self.ability:GetSpecialValueFor("amount")
+	local charges = self.ability:GetSpecialValueFor("charges")
+
+	self.ability:EndCooldown()
+	self.ability:StartCooldown(1)
+	
+	local current_charge = self.ability:GetCurrentAbilityCharges() - 1
+	self.ability:SetActivated(current_charge > 0)
+	self.ability:SetCurrentAbilityCharges(current_charge)
 
 	if IsServer() then
 		self:IncrementStackCount()
@@ -36,6 +48,8 @@ function bald_5_modifier_spike_caster:OnRemoved()
 	
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
+
+	self.ability:SetCurrentAbilityCharges(self.ability:GetSpecialValueFor("charges"))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -72,8 +86,7 @@ end
 
 function bald_5_modifier_spike_caster:ReleaseSpikes()
 	local spike_radius = self.ability:GetSpecialValueFor("spike_radius")
-	local damage = self.ability:GetSpecialValueFor("damage")
-	self:PlayEfxQuill(spike_radius * self.parent:GetModelScale())
+	self:PlayEfxQuill(spike_radius)
 
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, spike_radius,
@@ -98,7 +111,7 @@ function bald_5_modifier_spike_caster:ReleaseSpikes()
 		})
 
 		ApplyDamage({
-            damage = damage,
+            damage = self.ability:GetSpecialValueFor("damage"),
             attacker = self.caster,
             victim = enemy,
             damage_type = self.ability:GetAbilityDamageType(),

@@ -109,12 +109,30 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
-		if caster:FindAbilityByName("bald_5__spike_rank_11") then end
-		if caster:FindAbilityByName("bald_5__spike_rank_12") then end
-		if caster:FindAbilityByName("bald_5__spike_rank_21") then end
-		if caster:FindAbilityByName("bald_5__spike_rank_31") then end
-		if caster:FindAbilityByName("bald_5__spike_rank_32") then end
-		if caster:FindAbilityByName("bald_5__spike_rank_41") then end
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
+		if value_name == "spike_radius" then return 1 end
+
+		if caster:FindAbilityByName("bald_5__spike_rank_11") then
+			if value_name == "damage" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bald_5__spike_rank_21") then
+			if value_name == "percent" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bald_5__spike_rank_31") then
+			if value_name == "charges" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bald_5__spike_rank_32") then
+			if value_name == "movespeed" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bald_5__spike_rank_41") then
+			if value_name == "aborb_skill" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "bald_u__vitality" then
@@ -230,6 +248,30 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
+		if value_name == "AbilityManaCost" then
+			if ability:GetCurrentAbilityCharges() == ability:GetSpecialValueFor("charges") then
+				return 120 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 0
+		end
+		if value_name == "AbilityCooldown" then return 15 end
+
+		if value_name == "AbilityCastRange" then
+			if caster:FindAbilityByName("bald_5__spike_rank_12") then
+				return 1200
+			end
+			return 400
+		end
+
+		if value_name == "spike_radius" then
+			return 300 * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
+		end
+
+		if value_name == "damage" then return 100 end
+		if value_name == "percent" then return 75 end
+		if value_name == "charges" then return 2 end
+		if value_name == "movespeed" then return 50 end
+		if value_name == "aborb_skill" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "bald_u__vitality" then
@@ -251,6 +293,5 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 end
 
 -- UTILS -----------------------------------------------------------
-
 
 -- EFFECTS -----------------------------------------------------------

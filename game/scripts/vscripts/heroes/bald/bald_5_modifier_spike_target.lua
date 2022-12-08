@@ -14,15 +14,30 @@ function bald_5_modifier_spike_target:OnCreated(kv)
 		duration = self:GetDuration()
 	})
 
+	local movespeed = self.ability:GetSpecialValueFor("movespeed")
+	if movespeed > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+			percent = movespeed
+		})
+	end
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function bald_5_modifier_spike_target:OnRefresh(kv)
+	self.caster:AddNewModifier(self.caster, self.ability, "bald_5_modifier_spike_caster", {
+		duration = self:GetDuration()
+	})
 end
 
 function bald_5_modifier_spike_target:OnRemoved()
 	local mod_caster = self.caster:FindModifierByNameAndCaster("bald_5_modifier_spike_caster", self.caster)
 	if mod_caster then mod_caster:DecrementStackCount() end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
