@@ -58,7 +58,6 @@ function bald_5_modifier_spike_target:GetAbsorbSpell(keys)
 		local attacker = keys.ability:GetCaster()
 		attacker:SetCursorCastTarget(self.caster)
 		keys.ability:OnSpellStart()
-		--attacker:CastAbilityOnTarget(self.caster, keys.ability, attacker:GetPlayerOwnerID())
 	end
 
 	return absorb_skill

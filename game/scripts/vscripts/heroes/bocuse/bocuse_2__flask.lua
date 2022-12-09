@@ -97,6 +97,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
 
+        if target:GetTeamNumber() ~= caster:GetTeamNumber()
+        and target:TriggerSpellAbsorb(self) then
+            return
+        end
+
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
 
         if caster == target then
@@ -133,11 +138,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function bocuse_2__flask:OnProjectileHit(hTarget, vLocation)
 		if not hTarget then return end
-		
-        if hTarget:GetTeamNumber() ~= self:GetCaster():GetTeamNumber()
-        and hTarget:TriggerSpellAbsorb(self) then
-            return
-        end
 
 		self:BreakFlask(hTarget)
 	end
