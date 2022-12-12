@@ -30,7 +30,7 @@ function flea_u_modifier_target:OnRemoved()
 	local caster_mod = self.caster:FindModifierByNameAndCaster("flea_u_modifier_caster", self.caster)
 	if caster_mod then caster_mod:SetStackCount(caster_mod:GetStackCount() - self:GetStackCount()) end
 	
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -38,8 +38,8 @@ end
 function flea_u_modifier_target:OnStackCountChanged(old)
 	if self:GetStackCount() == 0 then return end
 
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:AddBonus("_1_STR", self.parent, -self:GetStackCount(), 0, nil)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	AddBonus(self.ability, "_1_STR", self.parent, -self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

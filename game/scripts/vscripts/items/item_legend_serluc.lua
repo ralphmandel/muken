@@ -55,6 +55,6 @@ function item_legend_serluc:OnSpellStart()
 	if IsServer() then caster:EmitSound("DOTA_Item.MaskOfMadness.Activate") end
 
 	caster:AddNewModifier(caster, self, "item_legend_serluc_mod_berserk", {
-		duration = self:CalcStatus(duration, caster, nil)
+		duration = CalcStatus(duration, caster, nil)
 	})
 end

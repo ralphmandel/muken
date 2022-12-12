@@ -132,7 +132,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                                 enemy:Kill(self, caster)
                             elseif enemy:IsHero() then
                                 enemy:AddNewModifier(caster, hypo, "icebreaker_1_modifier_frozen", {
-                                    duration = self:CalcStatus(frozen_duration, caster, enemy) 
+                                    duration = CalcStatus(frozen_duration, caster, enemy) 
                                 })
                             else
                                 hypo:AddSlow(enemy, self, 5, true)

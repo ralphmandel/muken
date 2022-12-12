@@ -67,7 +67,7 @@ function mk_root:OnSpellStart()
 
 	for _,hero in pairs(heroes) do
 		hero:AddNewModifier(caster, self, "mk_root_modifier", {
-			duration = self:CalcStatus(duration, caster, hero)
+			duration = CalcStatus(duration, caster, hero)
 		})
 
 		find = find + 1

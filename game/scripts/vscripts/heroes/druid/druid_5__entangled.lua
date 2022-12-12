@@ -64,7 +64,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
     function druid_5__entangled:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
-        local duration = self:CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, target)
+        local duration = CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, target)
         if target:TriggerSpellAbsorb(self) then return end
         local sound = "Hero_Treant.LeechSeed.Cast"
 
@@ -97,7 +97,7 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
                 ApplyDamage(damageTable)
 
                 unit:AddNewModifier(caster, self, "_modifier_root", {
-                    duration = self:CalcStatus(5, caster, unit),
+                    duration = CalcStatus(5, caster, unit),
                     effect = 6
                 })
             end

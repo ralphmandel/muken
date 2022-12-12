@@ -26,7 +26,7 @@ function striker_2_modifier_shield:OnCreated(kv)
 
 	-- UP 2.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_DEF", self.parent, 12, 0, nil)
+		AddBonus(self.ability, "_2_DEF", self.parent, 12, 0, nil)
 	end
 
 	-- UP 2.21
@@ -58,8 +58,8 @@ function striker_2_modifier_shield:OnRefresh(kv)
 
 	-- UP 2.11
 	if self.ability:GetRank(11) then
-		self.ability:RemoveBonus("_2_DEF", self.parent)
-		self.ability:AddBonus("_2_DEF", self.parent, 12, 0, nil)
+		RemoveBonus(self.ability, "_2_DEF", self.parent)
+		AddBonus(self.ability, "_2_DEF", self.parent, 12, 0, nil)
 	end
 
 	-- UP 2.21
@@ -90,7 +90,7 @@ function striker_2_modifier_shield:OnRemoved()
 	if self.knives_particle then ParticleManager:DestroyParticle(self.knives_particle, false) end
 	if IsServer() then self.parent:EmitSound("Hero_Medusa.ManaShield.Off") end
 
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("striker_2_modifier_burn_aura")
 	for _,modifier in pairs(mod) do
@@ -176,7 +176,7 @@ function striker_2_modifier_shield:ApplyCounter(attacker, damage_flags, damage)
 
 		if attacker:IsAlive() then
 			attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-				duration = self.ability:CalcStatus(1, self.caster, attacker)
+				duration = CalcStatus(1, self.caster, attacker)
 			})
 		end
 	end

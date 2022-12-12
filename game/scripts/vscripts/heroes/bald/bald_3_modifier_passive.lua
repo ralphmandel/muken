@@ -19,7 +19,7 @@ function bald_3_modifier_passive:OnRefresh(kv)
 end
 
 function bald_3_modifier_passive:OnRemoved()
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -62,10 +62,10 @@ function bald_3_modifier_passive:OnStackCountChanged(old)
 		self.ability:SetCurrentAbilityCharges(2)
 	end
 
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 
 	if self:GetStackCount() > 0 then
-		self.ability:AddBonus("_1_CON", self.parent, stack, 0, nil)
+		AddBonus(self.ability, "_1_CON", self.parent, stack, 0, nil)
 	end
 end
 

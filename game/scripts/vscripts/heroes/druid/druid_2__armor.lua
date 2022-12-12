@@ -88,7 +88,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
 
         target:AddNewModifier(caster, self, "druid_2_modifier_armor", {
-            duration = self:CalcStatus(duration, caster, target)
+            duration = CalcStatus(duration, caster, target)
         })
 
         if IsServer() then

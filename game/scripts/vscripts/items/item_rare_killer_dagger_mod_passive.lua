@@ -21,9 +21,9 @@ function item_rare_killer_dagger_mod_passive:OnCreated( kv )
 	self.chance = self.ability:GetSpecialValueFor("chance")
 	self.hits = 0
 
-	self.ability:AddBonus("_2_LCK", self.parent, passive_lck, 0, nil)
-	self.ability:AddBonus("_1_STR", self.parent, passive_str, 0, nil)
-	self.ability:AddBonus("_1_AGI", self.parent, self.passive_agi, 0, nil)
+	AddBonus(self.ability, "_2_LCK", self.parent, passive_lck, 0, nil)
+	AddBonus(self.ability, "_1_STR", self.parent, passive_str, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, self.passive_agi, 0, nil)
 
 	self.aspd = self.ability:GetSpecialValueFor("aspd")
 end
@@ -32,9 +32,9 @@ function item_rare_killer_dagger_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_killer_dagger_mod_passive:OnRemoved( kv )
-	self.ability:RemoveBonus("_2_LCK", self.parent)
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_2_LCK", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
 end
 
 -----------------------------------------------------------------------------
@@ -64,15 +64,15 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 	end
 	
 	if self.hits < 1 then
-		self.ability:RemoveBonus("_1_AGI", self.parent)
-		self.ability:AddBonus("_1_AGI", self.parent, self.passive_agi, 0, nil)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
+		AddBonus(self.ability, "_1_AGI", self.parent, self.passive_agi, 0, nil)
 		self:StartIntervalThink(-1)
 		self:StartIntervalThink(2)
 	end
 
 	if RandomFloat(1, 100) <= self.chance then
-		self.ability:RemoveBonus("_1_AGI", self.parent)
-		self.ability:AddBonus("_1_AGI", self.parent, 999, 0, nil)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
+		AddBonus(self.ability, "_1_AGI", self.parent, 999, 0, nil)
 		self.hits = 1
 	end
 end

@@ -86,11 +86,11 @@ function dasdingo_3_modifier_fire:OnRemoved()
 	-- UP 3.41
 	if self.ability:GetRank(41) then
 		self.parent:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_ignition", {
-			duration = self.ability:CalcStatus(7, self.caster, self.parent)
+			duration = CalcStatus(7, self.caster, self.parent)
 		})
 	end
 
-	stun_total = self.ability:CalcStatus(stun_total, self.caster, self.parent)
+	stun_total = CalcStatus(stun_total, self.caster, self.parent)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = stun_total})
 	self.ability:StartCooldown(stun_total)
 

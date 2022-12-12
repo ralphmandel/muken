@@ -22,7 +22,7 @@ function item_rare_lacerator_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_lacerator_mod_passive:OnRemoved( kv )
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 	self.ability:SetActivated(true)
 end
 
@@ -79,7 +79,7 @@ end
 
 function item_rare_lacerator_mod_passive:OnStackCountChanged(iStackCount)
 	local str = math.floor(self:GetStackCount() / 3)
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 
-	if str > 0 then self.ability:AddBonus("_1_STR", self.parent, str, 0, nil) end
+	if str > 0 then AddBonus(self.ability, "_1_STR", self.parent, str, 0, nil) end
 end

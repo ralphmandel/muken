@@ -132,7 +132,7 @@ function bocuse_u_modifier_rage:OnDeath(keys)
 
 	-- UP 6.31
 	if self.ability:GetRank(31) then
-		local duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("duration"), self.parent, self.parent)
+		local duration = CalcStatus(self.ability:GetSpecialValueFor("duration"), self.parent, self.parent)
 		self:SetDuration(duration, true)
 		self.extra_damage = self.extra_damage + 10
 		self:PlayEfxStart()

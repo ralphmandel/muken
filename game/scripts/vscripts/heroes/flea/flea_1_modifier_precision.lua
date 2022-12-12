@@ -36,9 +36,9 @@ function flea_1_modifier_precision:OnRefresh(kv)
 end
 
 function flea_1_modifier_precision:OnRemoved()
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_2_DEX", self.parent)
-	self.ability:RemoveBonus("_2_LCK", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_2_DEX", self.parent)
+	RemoveBonus(self.ability, "_2_LCK", self.parent)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", false) end
@@ -74,7 +74,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_1_modifier_precision:AddMultStack()
-	local duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
+	local duration = CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
 	self:SetDuration(duration, true)
 	self:IncrementStackCount()
 
@@ -91,15 +91,15 @@ function flea_1_modifier_precision:ApplyBuff()
 
 	local stats_total = stats_base + (stats_bonus * (self:GetStackCount() - 1))
 
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_2_DEX", self.parent)
-	self.ability:RemoveBonus("_2_LCK", self.parent)
-	self.ability:AddBonus("_1_AGI", self.parent, stats_total, 0, nil)
-	self.ability:AddBonus("_2_DEX", self.parent, stats_total, 0, nil)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_2_DEX", self.parent)
+	RemoveBonus(self.ability, "_2_LCK", self.parent)
+	AddBonus(self.ability, "_1_AGI", self.parent, stats_total, 0, nil)
+	AddBonus(self.ability, "_2_DEX", self.parent, stats_total, 0, nil)
 
 	-- UP 1.31
 	if self.ability:GetRank(31) then
-		self.ability:AddBonus("_2_LCK", self.parent, stats_total, 0, nil)
+		AddBonus(self.ability, "_2_LCK", self.parent, stats_total, 0, nil)
 	end
 end
 

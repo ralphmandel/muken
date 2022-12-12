@@ -179,7 +179,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
         -- UP 2.21
         if self:GetRank(21) then
             target:AddNewModifier(caster, self, "_modifier_silence", {
-                duration = self:CalcStatus(2, caster, target)
+                duration = CalcStatus(2, caster, target)
             })
         end
 
@@ -189,7 +189,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
             if distance > 0 then
                 self.knockbackProperties.duration = 0.25
                 self.knockbackProperties.knockback_duration = 0.25
-                self.knockbackProperties.knockback_distance = self:CalcStatus(distance / 3, caster, target)
+                self.knockbackProperties.knockback_distance = CalcStatus(distance / 3, caster, target)
 
                 target:AddNewModifier(caster, nil, "modifier_knockback", self.knockbackProperties)
             end

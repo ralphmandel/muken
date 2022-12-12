@@ -46,11 +46,11 @@ end
 -- UTILS -----------------------------------------------------------
 
 function druid_4_modifier_aura_effect:IncrementStat(string, amount)
-	self.ability:AddBonus(string, self.parent, amount, 0, nil)
+	AddBonus(self.ability, string, self.parent, amount, 0, nil)
 end
 
 function druid_4_modifier_aura_effect:DecrementStat(string)
-	self.ability:RemoveBonus(string, self.parent)
+	RemoveBonus(self.ability, string, self.parent)
 end
 
 -- EFFECTS -----------------------------------------------------------

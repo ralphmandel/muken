@@ -52,8 +52,8 @@ function druid_2_modifier_armor:OnRefresh(kv)
 end
 
 function druid_2_modifier_armor:OnRemoved()
-	self.ability:RemoveBonus("_2_DEX", self.parent)
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_2_DEX", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do
@@ -118,8 +118,8 @@ function druid_2_modifier_armor:ChangeStats(bonus, stat_convert, add, remove)
 	local total = convert + bonus
 
 	if total > 0 then
-		self.ability:AddBonus(remove, self.parent, -convert, 0, nil)
-		self.ability:AddBonus(add, self.parent, total, 0, nil)
+		AddBonus(self.ability, remove, self.parent, -convert, 0, nil)
+		AddBonus(self.ability, add, self.parent, total, 0, nil)
 	end
 end
 

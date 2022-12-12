@@ -48,7 +48,7 @@ function immunity:OnSpellStart()
 
 	for _,ally in pairs(allies) do
 		ally:AddNewModifier(caster, self, "_modifier_immunity", {
-            duration = self:CalcStatus(duration, caster, ally)
+            duration = CalcStatus(duration, caster, ally)
         })
 	end
 

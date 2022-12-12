@@ -47,7 +47,7 @@ function doom:OnSpellStart()
 
     if target:IsAlive() then
         target:AddNewModifier(caster, self, "doom_modifier", {
-            duration = self:CalcStatus(duration, caster, target)
+            duration = CalcStatus(duration, caster, target)
         })
     end
 

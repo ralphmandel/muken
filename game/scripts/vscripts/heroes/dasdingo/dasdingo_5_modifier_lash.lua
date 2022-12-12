@@ -17,7 +17,7 @@ function dasdingo_5_modifier_lash:OnCreated(kv)
 
 	-- UP 5.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_DEX", self.caster, 15, 0, nil)   
+		AddBonus(self.ability, "_2_DEX", self.caster, 15, 0, nil)   
 	end
 
 	-- UP 5.21
@@ -57,7 +57,7 @@ function dasdingo_5_modifier_lash:OnRemoved(kv)
 	local model_name = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
 	cosmetics:FadeCosmeticsGesture(model_name, ACT_DOTA_CHANNEL_ABILITY_3)
 
-	self.ability:RemoveBonus("_2_DEX", self.caster)
+	RemoveBonus(self.ability, "_2_DEX", self.caster)
 
 	local mod = self.caster:FindAllModifiersByName("_modifier_bkb")
 	for _,modifier in pairs(mod) do

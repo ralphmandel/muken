@@ -19,14 +19,14 @@ function item_rare_eternal_wings_mod_passive:OnCreated( kv )
 	self.wings_duration = self.ability:GetSpecialValueFor("wings_duration")
 	self.manacost = self.ability:GetSpecialValueFor("manacost")
 
-	self.ability:AddBonus("_2_REC", self.parent, passive_rec, 0, nil)
+	AddBonus(self.ability, "_2_REC", self.parent, passive_rec, 0, nil)
 end
 
 function item_rare_eternal_wings_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_eternal_wings_mod_passive:OnRemoved( kv )
-	self.ability:RemoveBonus("_2_REC", self.parent)
+	RemoveBonus(self.ability, "_2_REC", self.parent)
 end
 
 
@@ -53,7 +53,7 @@ function item_rare_eternal_wings_mod_passive:OnAbilityFullyCast(keys)
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:AddNewModifier(self.caster, self.ability, "item_rare_eternal_wings_mod_buff", {
-		duration = self.ability:CalcStatus(self.wings_duration, self.caster, self.parent)
+		duration = CalcStatus(self.wings_duration, self.caster, self.parent)
 	})
 end
 

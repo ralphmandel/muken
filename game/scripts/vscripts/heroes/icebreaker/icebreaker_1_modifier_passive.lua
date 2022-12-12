@@ -87,7 +87,7 @@ function icebreaker_1_modifier_passive:OnAttackFail(keys)
 
     if self.double_attack > 0 then
 		self.double_attack = self.double_attack - 1
-		self.ability:RemoveBonus("_1_AGI", self.parent)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
 	end
 end
 
@@ -133,7 +133,7 @@ end
 function icebreaker_1_modifier_passive:ApplyAutoBlink(target, bIllusion)
 	if self.double_attack > 0 then
 		self.double_attack = self.double_attack - 1
-		self.ability:RemoveBonus("_1_AGI", self.parent)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
 	end
 
 	if self.parent:PassivesDisabled() then return end
@@ -148,8 +148,8 @@ function icebreaker_1_modifier_passive:ApplyAutoBlink(target, bIllusion)
 		self.parent:SetForwardVector(-direction)
 		FindClearSpaceForUnit(self.parent, blink_point, true)
 
-		self.ability:RemoveBonus("_1_AGI", self.parent)
-		self.ability:AddBonus("_1_AGI", self.parent, 999, 0, 2)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
+		AddBonus(self.ability, "_1_AGI", self.parent, 999, 0, 2)
 		self.double_attack = 1
 	end
 end

@@ -59,7 +59,7 @@ function flea_3_modifier_attack:OnAttackLanded(keys)
 
 		if keys.target:IsAlive() then
 			keys.target:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-				duration = self.ability:CalcStatus(silence_duration, self.caster, keys.target),
+				duration = CalcStatus(silence_duration, self.caster, keys.target),
 				special = 3
 			})
 		end

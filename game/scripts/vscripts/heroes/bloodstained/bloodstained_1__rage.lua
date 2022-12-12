@@ -111,7 +111,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         end
 
         caster:AddNewModifier(caster, self, "bloodstained_1_modifier_rage", {
-            duration = self:CalcStatus(duration, caster, caster)
+            duration = CalcStatus(duration, caster, caster)
         })
 
         if IsServer() then
@@ -133,7 +133,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
         for _,unit in pairs(units) do
             unit:AddNewModifier(caster, self, "bloodstained_1_modifier_call", {
-                duration = self:CalcStatus(5, caster, unit)
+                duration = CalcStatus(5, caster, unit)
             })
         end
     end

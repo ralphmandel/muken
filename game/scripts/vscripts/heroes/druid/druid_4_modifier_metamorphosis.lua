@@ -57,7 +57,7 @@ function druid_4_modifier_metamorphosis:OnCreated(kv)
 		fear = true
 	end
 
-	self.ability:AddBonus("_1_CON", self.parent, con, 0, nil)
+	AddBonus(self.ability, "_1_CON", self.parent, con, 0, nil)
 	self:HideItens(true)
 
 	local group = {[1] = "0", [2] = "1", [3] = "2"}
@@ -88,7 +88,7 @@ end
 function druid_4_modifier_metamorphosis:OnRemoved()
 	if IsServer() then self:PlayEfxEnd() end
 
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 	self:HideItens(false)
 
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
@@ -157,7 +157,7 @@ function druid_4_modifier_metamorphosis:OnAttackLanded(keys)
 		})
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(2, self.caster, keys.target)
+			duration = CalcStatus(2, self.caster, keys.target)
 		})
 	end
 end
@@ -220,7 +220,7 @@ function druid_4_modifier_metamorphosis:ApplyFear()
 
 	for _,unit in pairs(units) do		
 		unit:AddNewModifier(self.caster, self.ability, "druid_4_modifier_fear", {
-			duration = self.ability:CalcStatus(4, self.caster, unit)
+			duration = CalcStatus(4, self.caster, unit)
 		})
 	end
 end

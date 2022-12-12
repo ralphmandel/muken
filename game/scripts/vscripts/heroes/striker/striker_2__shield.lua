@@ -116,7 +116,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function striker_2__shield:PerformAbility(target)
         local caster = self:GetCaster()
-		local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
+		local duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
         target:AddNewModifier(caster, self, "striker_2_modifier_shield", {duration = duration})
 
         return true

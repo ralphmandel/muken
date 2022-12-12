@@ -64,7 +64,7 @@ function bloodstained_4_modifier_passive:OnAttackLanded(keys)
 
 		self.ability.target = keys.target
 		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_4_modifier_frenzy", {
-			duration = self.ability:CalcStatus(duration, self.caster, self.parent)
+			duration = CalcStatus(duration, self.caster, self.parent)
 		})
 	end
 end

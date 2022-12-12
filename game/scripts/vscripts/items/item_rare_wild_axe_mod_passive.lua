@@ -18,14 +18,14 @@ function item_rare_wild_axe_mod_passive:OnCreated( kv )
 	local passive_str = self.ability:GetSpecialValueFor("passive_str")
 	local passive_con = self.ability:GetSpecialValueFor("passive_con")
 
-	self.ability:AddBonus("_1_STR", self.parent, passive_str, 0, nil)
-	self.ability:AddBonus("_1_CON", self.parent, passive_con, 0, nil)
+	AddBonus(self.ability, "_1_STR", self.parent, passive_str, 0, nil)
+	AddBonus(self.ability, "_1_CON", self.parent, passive_con, 0, nil)
 end
 
 function item_rare_wild_axe_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_wild_axe_mod_passive:OnRemoved( kv )
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 end

@@ -44,7 +44,7 @@ function bloodstained_1_modifier_rage:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", false) end
 
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 end
@@ -80,10 +80,10 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 end
 
 function bloodstained_1_modifier_rage:OnStackCountChanged(old)
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 
 	if self:GetStackCount() > 0 then
-		self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, nil)	
+		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)	
 	end
 end
 

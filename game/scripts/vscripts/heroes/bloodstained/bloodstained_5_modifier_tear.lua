@@ -25,7 +25,7 @@ function bloodstained_5_modifier_tear:OnCreated(kv)
 
 	-- UP 5.22
 	if self.ability:GetRank(22) then
-		self.ability:AddBonus("_2_LCK", self.parent, 5, 0, nil)	
+		AddBonus(self.ability, "_2_LCK", self.parent, 5, 0, nil)	
 	end
 
 	-- UP 5.41
@@ -52,7 +52,7 @@ end
 
 function bloodstained_5_modifier_tear:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, true) end
-	self.ability:RemoveBonus("_2_LCK", self.parent)
+	RemoveBonus(self.ability, "_2_LCK", self.parent)
 	self:PullBlood()
 
 	if IsServer() then self.parent:StopSound("Hero_Boodseeker.Bloodmist") end

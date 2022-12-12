@@ -80,7 +80,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self:Throw_hammer()
 
         local caster = self:GetCaster()
-        self.buff_duration = self:CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
+        self.buff_duration = CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
         caster:AddNewModifier(caster, self, "striker_5_modifier_sof", {duration = self.buff_duration})
         
         return true
@@ -192,7 +192,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local slow_duration = self:GetSpecialValueFor("slow_duration")
 
         target:AddNewModifier(caster, self, "striker_5_modifier_debuff", {
-            duration = self:CalcStatus(slow_duration, caster, target)
+            duration = CalcStatus(slow_duration, caster, target)
         })
     
         self:PlayEfxHammerHit(target)

@@ -34,7 +34,7 @@ function druid_3_modifier_totem_effect:OnRefresh(kv)
 end
 
 function druid_3_modifier_totem_effect:OnRemoved()
-	self.ability:RemoveBonus("_1_INT", self.parent)
+	RemoveBonus(self.ability, "_1_INT", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

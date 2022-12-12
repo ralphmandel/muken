@@ -141,7 +141,7 @@ function druid_3_modifier_totem:OnIntervalThink()
 		self:PlayEfxQuillImpact(unit)
 		
 		unit:AddNewModifier(self.caster, self.ability, "druid_3_modifier_quill", {
-			duration = self.ability:CalcStatus(5, self.caster, unit)
+			duration = CalcStatus(5, self.caster, unit)
 		})
 	end
 end

@@ -19,14 +19,14 @@ function _modifier_example:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.ability:AddBonus("_1_AGI", self.parent, value, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, value, 0, nil)
 end
 
 function _modifier_example:OnRefresh(kv)
 end
 
 function _modifier_example:OnRemoved()
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

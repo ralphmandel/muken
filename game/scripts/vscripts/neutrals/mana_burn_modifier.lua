@@ -82,6 +82,6 @@ function mana_burn_modifier:InflictBurn(target)
 
 	target:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		percent = self.slow,
-		duration = self.ability:CalcStatus(1.5, self.caster, target)
+		duration = CalcStatus(1.5, self.caster, target)
 	})
 end

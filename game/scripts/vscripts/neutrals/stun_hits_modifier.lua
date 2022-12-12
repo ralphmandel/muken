@@ -47,7 +47,7 @@ function stun_hits_modifier:GetModifierProcAttack_Feedback(keys)
 	if self.record then
 		self.record = false
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(self.stun_duration, self.caster, keys.target)
+			duration = CalcStatus(self.stun_duration, self.caster, keys.target)
 		})
 	end
 end
@@ -91,7 +91,7 @@ end
 -- 	if self.record then
 -- 		self.record = nil
 -- 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
--- 			duration = self.ability:CalcStatus(self.stun_duration, self.caster, keys.target)
+-- 			duration = CalcStatus(self.stun_duration, self.caster, keys.target)
 -- 		})
 -- 		self:PlayEffects( keys.target )
 -- 	end

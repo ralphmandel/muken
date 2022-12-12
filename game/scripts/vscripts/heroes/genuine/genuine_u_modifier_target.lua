@@ -32,7 +32,7 @@ function genuine_u_modifier_target:OnCreated(kv)
 
 	-- UP 6.11
 	if self.ability:GetRank(11) then
-		self.ability:AddBonus("_2_RES", self.parent, -10, 0, nil)
+		AddBonus(self.ability, "_2_RES", self.parent, -10, 0, nil)
 	end
 
 	-- UP 6.22
@@ -54,7 +54,7 @@ end
 
 function genuine_u_modifier_target:OnRemoved(kv)
 	self.caster:RemoveModifierByNameAndCaster("genuine_u_modifier_caster", self.caster)
-	self.ability:RemoveBonus("_2_RES", self.parent)
+	RemoveBonus(self.ability, "_2_RES", self.parent)
 
 	if IsServer() then self.parent:StopSound("Hero_DeathProphet.Exorcism") end
 

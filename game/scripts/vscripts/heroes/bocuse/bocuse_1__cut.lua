@@ -119,7 +119,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         end
         
         target:AddNewModifier(caster, self, "bocuse_1_modifier_bleeding", {
-            duration = self:CalcStatus(bleeding_duration, caster, target)
+            duration = CalcStatus(bleeding_duration, caster, target)
         })
     end
 

@@ -126,7 +126,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 	-- UP 1.32
 	if self.ability:GetRank(32) then
 		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -50})
-		self.ability:AddBonus("_2_LCK", self.parent, 100, 0, nil)
+		AddBonus(self.ability, "_2_LCK", self.parent, 100, 0, nil)
 	end
 
 	-- UP 1.41
@@ -135,7 +135,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 	end
 
 	local agi = self.ability:GetSpecialValueFor("agi")
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	self.parent:Stop()
 
 	self:PlayEfxBlinkStart(target:GetOrigin() - self.parent:GetOrigin(), target)
@@ -204,8 +204,8 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_2_LCK", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_2_LCK", self.parent)
 	self.hits = 0
 	self.sonicblow = false
 end

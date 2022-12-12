@@ -162,7 +162,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             self.fear = true
 
             target:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
-                duration = self:CalcStatus(1, caster, target)
+                duration = CalcStatus(1, caster, target)
             })
 
             Timers:CreateTimer((0.25), function()

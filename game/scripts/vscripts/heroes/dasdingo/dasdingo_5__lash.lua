@@ -83,7 +83,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
 
     function dasdingo_5__lash:GetChannelTime()
-        return self:CalcStatus(self:GetSpecialValueFor("channel_time"), self:GetCaster(), self:GetCursorTarget())
+        return CalcStatus(self:GetSpecialValueFor("channel_time"), self:GetCaster(), self:GetCursorTarget())
     end
 
     function dasdingo_5__lash:GetCastRange(vLocation, hTarget)

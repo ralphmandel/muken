@@ -27,7 +27,7 @@ function flea_u_modifier_caster:OnRefresh(kv)
 end
 
 function flea_u_modifier_caster:OnRemoved()
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 	self.parent:FindModifierByNameAndCaster(self.ability:GetIntrinsicModifierName(), self.caster):RemoveAllTargets()
 end
 
@@ -36,8 +36,8 @@ end
 function flea_u_modifier_caster:OnStackCountChanged(old)
 	if self:GetStackCount() == 0 then self:Destroy() return end
 
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, nil)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

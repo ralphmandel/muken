@@ -139,7 +139,7 @@ function ancient_3_modifier_walk:ApplyDebuff()
 
 	for _,unit in pairs(units) do
 		unit:AddNewModifier(self.caster, self.ability, "ancient_3_modifier_debuff", {
-			duration = self.ability:CalcStatus(debuff_duration, self.caster, unit)
+			duration = CalcStatus(debuff_duration, self.caster, unit)
 		})
 	end
 end
@@ -182,7 +182,7 @@ function ancient_3_modifier_walk:ApplyAvatar()
 		if ally ~= self.parent
 		and RandomFloat(1, 100) <= 20 then
 			ally:AddNewModifier(self.caster, self.ability, "ancient_3_modifier_avatar", {
-				duration = self.ability:CalcStatus(3.5, self.caster, ally)
+				duration = CalcStatus(3.5, self.caster, ally)
 			})			
 		end
 	end

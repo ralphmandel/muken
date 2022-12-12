@@ -81,7 +81,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	and keys.unit:GetHealth() == 1
 	and keys.unit:HasModifier("dasdingo_1_modifier_immortal") == false then		
 		local mod = keys.unit:AddNewModifier(self.caster, self.ability, "dasdingo_1_modifier_immortal", {
-			duration = self.ability:CalcStatus(5, self.caster, keys.unit)
+			duration = CalcStatus(5, self.caster, keys.unit)
 		})
 
 		local info = {}
@@ -103,7 +103,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
 	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 		keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-			duration = self.ability:CalcStatus(1, self.caster, keys.unit),
+			duration = CalcStatus(1, self.caster, keys.unit),
 			effect = 4
 		})
 	end

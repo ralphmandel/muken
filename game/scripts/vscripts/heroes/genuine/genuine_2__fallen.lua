@@ -117,7 +117,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local fear_duration = self:GetSpecialValueFor("fear_duration")
 
         hTarget:AddNewModifier(caster, self, "genuine_0_modifier_fear", {
-            duration = self:CalcStatus(fear_duration, caster, hTarget)
+            duration = CalcStatus(fear_duration, caster, hTarget)
         })
 
         -- UP 2.11
@@ -136,7 +136,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         -- UP 2.21
         if self:GetRank(21) then
             hTarget:AddNewModifier(caster, self, "genuine_2_modifier_dispel", {
-                duration = self:CalcStatus(5, caster, hTarget)
+                duration = CalcStatus(5, caster, hTarget)
             })
         end
 

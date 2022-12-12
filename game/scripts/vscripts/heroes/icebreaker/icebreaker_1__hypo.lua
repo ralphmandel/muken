@@ -92,7 +92,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             hypo_duration = hypo_duration + 3
         end
 
-        hypo_duration = self:CalcStatus(hypo_duration, caster, target)
+        hypo_duration = CalcStatus(hypo_duration, caster, target)
 
         if modifier_hypo == nil then
             modifier_hypo = target:AddNewModifier(caster, self, "icebreaker_1_modifier_hypo", {})

@@ -162,7 +162,7 @@ function ancient_1_modifier_passive:ApplyStuns(keys)
 	if self.ability.pinned then stun_duration = stun_duration * 4 end
 
 	keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		duration = self.ability:CalcStatus(stun_duration, self.caster, keys.unit)
+		duration = CalcStatus(stun_duration, self.caster, keys.unit)
 	})
 end
 
@@ -189,7 +189,7 @@ function ancient_1_modifier_passive:ApplyReflect(keys, stun_multiplier)
 		self:PlayEfxCrit(self.parent, true)
 
 		keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(stun_duration, self.caster, keys.attacker)
+			duration = CalcStatus(stun_duration, self.caster, keys.attacker)
 		})
 	end
 end

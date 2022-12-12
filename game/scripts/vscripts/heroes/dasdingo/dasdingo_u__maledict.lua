@@ -95,7 +95,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         for _,enemy in pairs(enemies) do
             enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_maledict", {})
             enemy:AddNewModifier(caster, self, "dasdingo_u_modifier_fear", {
-                duration = self:CalcStatus(fear_duration, caster, enemy)
+                duration = CalcStatus(fear_duration, caster, enemy)
             })
         end
 

@@ -21,7 +21,7 @@ function shadowmancer_1_modifier_weapon:OnCreated(kv)
 
 	if self.parent:IsIllusion() == false then
 		local agi = self.ability:GetSpecialValueFor("agi")
-		self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+		AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	end
 
 	if IsServer() then self:PlayEfxStart() end
@@ -30,15 +30,15 @@ end
 function shadowmancer_1_modifier_weapon:OnRefresh(kv)
 	if self.parent:IsIllusion() == false then
 		local agi = self.ability:GetSpecialValueFor("agi")
-		self.ability:RemoveBonus("_1_AGI", self.parent)
-		self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+		RemoveBonus(self.ability, "_1_AGI", self.parent)
+		AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	end
 
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function shadowmancer_1_modifier_weapon:OnRemoved()
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -63,7 +63,7 @@ function shadowmancer_1_modifier_weapon:OnAttackLanded(keys)
 
 	if RandomFloat(1, 100) <= debuff_chance then
 		keys.target:AddNewModifier(self.caster, self.ability, "shadowmancer_1_modifier_debuff", {
-			duration = self.ability:CalcStatus(debuff_duration, self.caster, keys.target)
+			duration = CalcStatus(debuff_duration, self.caster, keys.target)
 		})
 	end
 end

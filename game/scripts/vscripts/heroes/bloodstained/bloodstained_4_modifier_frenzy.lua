@@ -41,7 +41,7 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
 	end
 
 	self.parent:SetForceAttackTarget(self.ability.target)
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
 	if IsServer() then
@@ -56,7 +56,7 @@ end
 function bloodstained_4_modifier_frenzy:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:SetForceAttackTarget(nil)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do
@@ -114,7 +114,7 @@ function bloodstained_4_modifier_frenzy:OnAttackLanded(keys)
 		end
 
 		keys.target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {
-			duration = self.ability:CalcStatus(10, self.caster, keys.target)
+			duration = CalcStatus(10, self.caster, keys.target)
 		})
 	end
 end

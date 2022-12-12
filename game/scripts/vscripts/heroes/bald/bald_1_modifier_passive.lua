@@ -19,7 +19,7 @@ function bald_1_modifier_passive:OnRefresh(kv)
 end
 
 function bald_1_modifier_passive:OnRemoved()
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -30,6 +30,9 @@ function bald_1_modifier_passive:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
 end
 
 function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
@@ -55,7 +58,7 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 		self:PlayEfxImpact(keys.target)
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(total_bash, self.caster, keys.target)
+			duration = CalcStatus(total_bash, self.caster, keys.target)
 		})
 	
 		keys.target:AddNewModifier(self.caster, nil, "modifier_knockback", {
@@ -82,10 +85,10 @@ function bald_1_modifier_passive:OnIntervalThink()
 end
 
 function bald_1_modifier_passive:OnStackCountChanged(old)
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 
 	if self:GetStackCount() > 0 then
-		self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, nil)
+		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
 	end
 end
 

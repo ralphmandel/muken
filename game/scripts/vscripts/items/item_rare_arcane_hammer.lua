@@ -44,7 +44,7 @@ function item_rare_arcane_hammer:OnSpellStart()
 	if IsServer() then target:EmitSound("Arcane_Hammer.Start") end
 
 	target:AddNewModifier(caster, self, "item_rare_arcane_hammer_mod_silence", {
-		duration = self:CalcStatus(duration, caster, target)
+		duration = CalcStatus(duration, caster, target)
 	})
 end
 

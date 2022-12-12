@@ -18,8 +18,8 @@ function genuine_3_modifier_morning:OnCreated(kv)
 	local int_bonus = self.ability:GetSpecialValueFor("int_bonus")
 	local rec_bonus = self.ability:GetSpecialValueFor("rec_bonus")
 
-	self.ability:AddBonus("_1_INT", self.parent, int_bonus, 0, nil)
-	self.ability:AddBonus("_2_REC", self.parent, rec_bonus, 0, nil)
+	AddBonus(self.ability, "_1_INT", self.parent, int_bonus, 0, nil)
+	AddBonus(self.ability, "_2_REC", self.parent, rec_bonus, 0, nil)
 
 	self.purge = true
 
@@ -47,8 +47,8 @@ function genuine_3_modifier_morning:OnRefresh(kv)
 end
 
 function genuine_3_modifier_morning:OnRemoved(kv)
-	self.ability:RemoveBonus("_1_INT", self.parent)
-	self.ability:RemoveBonus("_2_REC", self.parent)
+	RemoveBonus(self.ability, "_1_INT", self.parent)
+	RemoveBonus(self.ability, "_2_REC", self.parent)
 
 	local passive = self.caster:FindModifierByName("genuine_3_modifier_passive")
 	if passive then passive:StopEfxBuff() end

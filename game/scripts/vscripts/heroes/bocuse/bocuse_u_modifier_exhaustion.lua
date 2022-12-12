@@ -71,7 +71,7 @@ function bocuse_u_modifier_exhaustion:StartExplosion()
 
 	for _,enemy in pairs(enemies) do
 		enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(4, self.caster, enemy)
+			duration = CalcStatus(4, self.caster, enemy)
 		})
 	end
 end

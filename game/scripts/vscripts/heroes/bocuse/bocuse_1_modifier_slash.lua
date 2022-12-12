@@ -202,7 +202,7 @@ function bocuse_1_modifier_slash:ApplyDisarm(target)
 
 	if RandomFloat(1, 100) <= 10 then
 		target:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
-			duration = self.ability:CalcStatus(5, self.caster, target)
+			duration = CalcStatus(5, self.caster, target)
 		})		
 	end
 end
@@ -211,7 +211,7 @@ function bocuse_1_modifier_slash:ApplyStun(target)
 	if target:IsAlive() == false or target:IsMagicImmune() then return end
 	
 	target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		duration = self.ability:CalcStatus(self.total_stun, self.caster, target)
+		duration = CalcStatus(self.total_stun, self.caster, target)
 	})
 end
 

@@ -83,7 +83,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
     function genuine_u__star:OnSpellStart()
         local caster = self:GetCaster()
         local target = self:GetCursorTarget()
-        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
+        local duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
         caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
 
         if target:TriggerSpellAbsorb(self) then return end

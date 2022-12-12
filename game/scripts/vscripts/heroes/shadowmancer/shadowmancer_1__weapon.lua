@@ -80,7 +80,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
 
         target:AddNewModifier(caster, self, "shadowmancer_1_modifier_weapon", {
-            duration = self:CalcStatus(duration, caster, target)
+            duration = CalcStatus(duration, caster, target)
         })
 
         if IsServer() then caster:EmitSound("Hero_Visage.SoulAssumption.Cast") end

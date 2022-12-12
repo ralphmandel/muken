@@ -48,7 +48,7 @@ function flea_5_modifier_passive:OnAttackLanded(keys)
 
 	if RandomFloat(1, 100) <= chance then
 		keys.target:AddNewModifier(self.caster, self.ability, "flea_5_modifier_desolator", {
-			duration = self.ability:CalcStatus(duration, self.caster, keys.target)
+			duration = CalcStatus(duration, self.caster, keys.target)
 		})
 	end
 end

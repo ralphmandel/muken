@@ -93,7 +93,7 @@ function genuine_4_modifier_passive:CheckNightMode()
 		self.night = false
 		self.ability.invi = false
 
-		self.ability:RemoveBonus("_2_DEX", self.parent)
+		RemoveBonus(self.ability, "_2_DEX", self.parent)
 
 		local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
 		for _,modifier in pairs(mod) do
@@ -108,8 +108,8 @@ function genuine_4_modifier_passive:CheckNightMode()
 
 		-- UP 4.12
 		if self.ability:GetRank(12) and self.night == false then
-			self.ability:RemoveBonus("_2_DEX", self.parent)
-			self.ability:AddBonus("_2_DEX", self.parent, 10, 0, nil)
+			RemoveBonus(self.ability, "_2_DEX", self.parent)
+			AddBonus(self.ability, "_2_DEX", self.parent, 10, 0, nil)
 			self.night = true
 		end
 	end

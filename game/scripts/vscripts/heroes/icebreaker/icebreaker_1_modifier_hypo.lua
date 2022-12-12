@@ -57,7 +57,7 @@ end
 function icebreaker_1_modifier_hypo:OnStackCountChanged(old)
 	if self:GetStackCount() >= self.max_stack then
 		self.parent:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_frozen", {
-			duration = self.ability:CalcStatus(self.frozen_duration, self.caster, self.parent)
+			duration = CalcStatus(self.frozen_duration, self.caster, self.parent)
 		})
 		return
 	end

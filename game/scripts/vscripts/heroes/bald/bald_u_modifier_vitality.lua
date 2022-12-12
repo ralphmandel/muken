@@ -37,7 +37,7 @@ function bald_u_modifier_vitality:OnRefresh(kv)
 end
 
 function bald_u_modifier_vitality:OnRemoved()
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_u_modifier_vitality_status_efx", false) end
@@ -97,10 +97,10 @@ function bald_u_modifier_vitality:OnIntervalThink()
 end
 
 function bald_u_modifier_vitality:OnStackCountChanged(old)
-	self.ability:RemoveBonus("_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
 
 	if self:GetStackCount() > 0 then
-		self.ability:AddBonus("_1_CON", self.parent, self:GetStackCount(), 0, nil)
+		AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
 	else
 		self:Destroy()
 		return

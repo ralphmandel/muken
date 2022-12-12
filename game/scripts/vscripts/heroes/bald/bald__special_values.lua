@@ -204,7 +204,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		end
 
 		if value_name == "max_charge" then return 5 end
-		if value_name == "bonus_ms" then return 36 end
+		if value_name == "bonus_ms" then return 30 end
 		if value_name == "stun_immunity" then return 1 end
 		if value_name == "bash_aoe" then return 175 end
 	end

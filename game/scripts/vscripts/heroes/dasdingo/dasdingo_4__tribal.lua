@@ -89,10 +89,10 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
             summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {})
             summoned_unit:CreatureLevelUp(level_up)
 
-            self:AddBonus("_1_AGI", summoned_unit, 999, 0, nil)
+            AddBonus(self, "_1_AGI", summoned_unit, 999, 0, nil)
             
 	        local base_stats = caster:FindAbilityByName("base_stats")
-	        if base_stats then self:AddBonus("_1_STR", summoned_unit, base_stats:GetStatTotal("MND"), 0, nil) end
+	        if base_stats then AddBonus(self, "_1_STR", summoned_unit, base_stats:GetStatTotal("MND"), 0, nil) end
 
             local base_stats_tribal = summoned_unit:FindAbilityByName("base_stats")
             if base_stats_tribal then base_stats_tribal:UpdateBaseAttackTime() end

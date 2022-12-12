@@ -15,7 +15,7 @@ require("internal/talent_tree")
 			self:ResetRanksData()
 
 			Timers:CreateTimer(0.2, function()
-				self:CheckSkills(0, nil)
+				--self:CheckSkills(0, nil)
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
 			end)
@@ -36,7 +36,11 @@ require("internal/talent_tree")
 			end
 		end
 
-		self:CheckSkills(0, nil)
+		if level == 12 then
+			self:CheckAbilityPoints(1)
+		end
+
+		--self:CheckSkills(0, nil)
 	end
 
 	function base_hero:GetIntrinsicModifierName()
@@ -45,45 +49,71 @@ require("internal/talent_tree")
 
 -- ABILITY SETTINGS
 
-	function base_hero:SetHotkeys(ability, bUltimate)
-		-- if not self.slot_index then self.slot_index = 1 end
+	-- function base_hero:SetHotkeys(ability, bUltimate)
+		-- 	if not self.slot_index then self.slot_index = 1 end
 
-		-- local caster = self:GetCaster()
-		-- local slot = self.slot_keys[self.slot_index]
+		-- 	local caster = self:GetCaster()
+		-- 	local slot = self.slot_keys[self.slot_index]
 
-		-- if bUltimate then
-		-- 	slot = self.slot_keys[6]
-		-- else
-		-- 	self.slot_index = self.slot_index + 1
-		-- end
+		-- 	if bUltimate then
+		-- 		slot = self.slot_keys[6]
+		-- 	else
+		-- 		self.slot_index = self.slot_index + 1
+		-- 	end
 
-		-- caster:SwapAbilities(ability:GetAbilityName(), slot, true, false)
+		-- 	caster:SwapAbilities(ability:GetAbilityName(), slot, true, false)
+	-- end
+
+	-- function base_hero:CheckSkills(pts, ability)
+		-- 	--if ability then self:SetHotkeys(ability, false) end
+
+		-- 	local caster = self:GetCaster()
+		-- 	local level = caster:GetLevel()
+		-- 	local points = 3
+
+		-- 	--if level >= 7 then points = points + 1 end
+		-- 	if level >= 12 then points = points + 1 end
+
+		-- 	for i = 1, 5, 1 do
+		-- 		local skill = caster:FindAbilityByName(self.skills[i])
+		-- 		if skill then
+		-- 			if skill:IsTrained() then points = points - 1 end
+		-- 		end
+		-- 	end
+
+		-- 	caster:SetAbilityPoints(points + pts)
+
+		-- 	for i = 1, 5, 1 do
+		-- 		local skill = caster:FindAbilityByName(self.skills[i])
+		-- 		if skill then
+		-- 			if skill:IsTrained() == false then
+		-- 				skill:SetHidden(points < 1)
+		-- 			end
+		-- 		end
+		-- 	end
+	-- end
+
+	function base_hero:OnAbilityUpgrade(ability)
+		if ability:GetCaster() == self:GetCaster() then self:CheckAbilityPoints(-1) end
 	end
 
-	function base_hero:CheckSkills(pts, ability)
-		--if ability then self:SetHotkeys(ability, false) end
-
+	function base_hero:CheckAbilityPoints(points)
 		local caster = self:GetCaster()
-		local level = caster:GetLevel()
-		local points = 3
 
-		--if level >= 7 then points = points + 1 end
-		if level >= 12 then points = points + 1 end
-
-		for i = 1, 5, 1 do
-			local skill = caster:FindAbilityByName(self.skills[i])
-			if skill then
-				if skill:IsTrained() then points = points - 1 end
-			end
+		if self.skill_points == nil then
+			self.skill_points = 3
+			if self.hero_name == "bald" then self.skill_points = 2 end
 		end
 
-		caster:SetAbilityPoints(points + pts)
+		self.skill_points = self.skill_points + points
+
+		caster:SetAbilityPoints(self.skill_points)
 
 		for i = 1, 5, 1 do
 			local skill = caster:FindAbilityByName(self.skills[i])
 			if skill then
 				if skill:IsTrained() == false then
-					skill:SetHidden(points < 1)
+					skill:SetHidden(self.skill_points < 1)
 				end
 			end
 		end
@@ -646,7 +676,7 @@ require("internal/talent_tree")
 
 		for i = 1, 6, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
-			and (not self.ranks[i][0]) then
+			and self:GetCaster():FindAbilityByName(self.skills[i]):IsTrained() == false then
 				return false
 			end
 		end

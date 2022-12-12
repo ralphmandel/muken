@@ -75,7 +75,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         if self.target:TriggerSpellAbsorb(self) then return end
 
         self.target:AddNewModifier(caster, self, "bloodstained_3_modifier_curse", {
-            duration = self:CalcStatus(duration, caster, self.target)
+            duration = CalcStatus(duration, caster, self.target)
         })
 
         if IsServer() then

@@ -75,7 +75,7 @@ function dasdingo_3_modifier_passive:AddFire(target)
 		mod:IncrementStackCount()
 	else
 		target:AddNewModifier(self.caster, self.ability, "dasdingo_3_modifier_fire", {
-			duration = self.ability:CalcStatus(self.fire_duration, self.caster, target)
+			duration = CalcStatus(self.fire_duration, self.caster, target)
 		})
 	end
 end

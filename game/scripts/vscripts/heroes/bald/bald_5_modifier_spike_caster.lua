@@ -97,8 +97,8 @@ function bald_5_modifier_spike_caster:ReleaseSpikes()
 	for _,enemy in pairs(enemies) do
 		self:PlayEfxQuillImpact(enemy)
 		local dist = spike_radius - (CalcDistanceBetweenEntityOBB(self.parent, enemy) * 0.5)
-		local knock_duration = self.ability:CalcStatus(dist * 0.001, self.caster, enemy)
-		local knock_distance = self.ability:CalcStatus(dist * 0.4, self.caster, enemy)
+		local knock_duration = CalcStatus(dist * 0.001, self.caster, enemy)
+		local knock_distance = CalcStatus(dist * 0.4, self.caster, enemy)
 	
 		enemy:AddNewModifier(self.caster, nil, "modifier_knockback", {
 			duration = knock_duration,

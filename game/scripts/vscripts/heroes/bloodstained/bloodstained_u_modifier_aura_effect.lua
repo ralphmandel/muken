@@ -105,7 +105,7 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		duration = self.ability:CalcStatus(slow_duration, self.caster, self.parent),
+		duration = CalcStatus(slow_duration, self.caster, self.parent),
 		percent = 100
 	})
 	

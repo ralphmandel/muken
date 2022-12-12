@@ -89,7 +89,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
     function genuine_3__morning:OnSpellStart()
         local caster = self:GetCaster()
-        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
+        local duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
         -- UP 3.41
         if self:GetRank(41)

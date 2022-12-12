@@ -80,12 +80,12 @@ function flea_2_modifier_passive:OnAttackLanded(keys)
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "flea_2_modifier_speed", {
-		duration = self.ability:CalcStatus(duration, self.caster, self.parent)
+		duration = CalcStatus(duration, self.caster, self.parent)
 	})
 
 	if self:GetStackCount() == 100 then
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(3, self.caster, keys.target)
+			duration = CalcStatus(3, self.caster, keys.target)
 		})
 
 		self.energy = 0

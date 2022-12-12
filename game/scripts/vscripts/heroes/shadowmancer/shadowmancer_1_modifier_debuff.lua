@@ -46,8 +46,8 @@ function shadowmancer_1_modifier_debuff:OnRefresh(kv)
 end
 
 function shadowmancer_1_modifier_debuff:OnRemoved()
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "shadowmancer_1_modifier_debuff_status_efx", false) end
@@ -78,7 +78,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function shadowmancer_1_modifier_debuff:AddMultStack()
-	local duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
+	local duration = CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
 	self:SetDuration(duration, true)
 	self:IncrementStackCount()
 
@@ -92,10 +92,10 @@ end
 function shadowmancer_1_modifier_debuff:ApplyDebuff()
 	local stats_loss = self.ability:GetSpecialValueFor("stats_loss") * self:GetStackCount()
 
-	self.ability:RemoveBonus("_1_STR", self.parent)
-	self.ability:RemoveBonus("_2_DEF", self.parent)
-	self.ability:AddBonus("_1_STR", self.parent, -stats_loss, 0, nil)
-	self.ability:AddBonus("_2_DEF", self.parent, -stats_loss, 0, nil)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
+	AddBonus(self.ability, "_1_STR", self.parent, -stats_loss, 0, nil)
+	AddBonus(self.ability, "_2_DEF", self.parent, -stats_loss, 0, nil)
 end
 
 -- EFFECTS -----------------------------------------------------------

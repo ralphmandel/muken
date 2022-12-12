@@ -223,7 +223,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
             -- UP 2.12
             if self:GetRank(12) then
                 unit:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
-                    duration = self:CalcStatus(1, caster, unit),
+                    duration = CalcStatus(1, caster, unit),
                     percent = 100
                 })
             end
@@ -251,7 +251,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
                 -- UP 2.12
                 if self:GetRank(12) then
                     unit:AddNewModifier(caster, self, "_modifier_stun", {
-                        duration = self:CalcStatus(1, caster, unit)
+                        duration = CalcStatus(1, caster, unit)
                     })
                 end
 

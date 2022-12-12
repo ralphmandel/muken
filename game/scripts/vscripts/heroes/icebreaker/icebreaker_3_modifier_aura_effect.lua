@@ -103,7 +103,7 @@ function icebreaker_3_modifier_aura_effect:AddFrozenState()
 	if ability_hypo:IsTrained() == false then return end
 		
 	self.parent:AddNewModifier(self.caster, ability_hypo, "icebreaker_1_modifier_frozen", {
-		duration = self.ability:CalcStatus(6, self.caster, self.parent) 
+		duration = CalcStatus(6, self.caster, self.parent) 
 	}) 
 end
 

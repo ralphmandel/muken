@@ -26,73 +26,110 @@ function template__special_values:DeclareFunctions()
 end
 
 function template__special_values:GetModifierOverrideAbilitySpecial(keys)
+	local caster = self:GetCaster()
 	local ability = keys.ability
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
 
-	if ability == "template_1__sk1" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_1__sk1" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_1__sk1_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_1__sk1_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_1__sk1_rank_31") then
 		end
-		if ability:GetRank(41) then
+
+		if caster:FindAbilityByName("template_1__sk1_rank_41") then
 		end
 	end
 
-	if ability == "template_2__sk2" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_2__sk2" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_2__sk2_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_2__sk2_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_2__sk2_rank_31") then
 		end
-		if ability:GetRank(41) then
+
+		if caster:FindAbilityByName("template_2__sk2_rank_41") then
 		end
 	end
 
-	if ability == "template_3__sk3" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_3__sk3" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_3__sk3_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_3__sk3_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_3__sk3_rank_31") then
 		end
-		if ability:GetRank(41) then
+		
+		if caster:FindAbilityByName("template_3__sk3_rank_41") then
 		end
 	end
 
-	if ability == "template_4__sk4" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_4__sk4" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_4__sk4_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_4__sk4_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_4__sk4_rank_31") then
 		end
-		if ability:GetRank(41) then
+
+		if caster:FindAbilityByName("template_4__sk4_rank_41") then
 		end
 	end
 
-	if ability == "template_5__sk5" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_5__sk5" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_5__sk5_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_5__sk5_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_5__sk5_rank_31") then
 		end
-		if ability:GetRank(41) then
+
+		if caster:FindAbilityByName("template_5__sk5_rank_41") then
 		end
 	end
 
-	if ability == "template_u__sk6" then
-		if ability:GetRank(11) then
+	if ability:GetAbilityName() == "template_u__sk6" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+
+		if caster:FindAbilityByName("template_u__sk6_rank_11") then
 		end
-		if ability:GetRank(21) then
+
+		if caster:FindAbilityByName("template_u__sk6_rank_21") then
 		end
-		if ability:GetRank(31) then
+
+		if caster:FindAbilityByName("template_u__sk6_rank_31") then
 		end
-		if ability:GetRank(41) then
+
+		if caster:FindAbilityByName("template_u__sk6_rank_41") then
 		end
 	end
 
@@ -100,32 +137,46 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 end
 
 function template__special_values:GetModifierOverrideAbilitySpecialValue(keys)
+	local caster = self:GetCaster()
 	local ability = keys.ability
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
+	local ability_level = ability:GetLevel()
+	if ability_level < 1 then ability_level = 1 end
 
-	if ability == "template_1__sk1" then
+	if ability:GetAbilityName() == "template_1__sk1" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
-	if ability == "template_2__sk2" then
+	if ability:GetAbilityName() == "template_2__sk2" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
-	if ability == "template_3__sk3" then
+	if ability:GetAbilityName() == "template_3__sk3" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
-	if ability == "template_4__sk4" then
+	if ability:GetAbilityName() == "template_4__sk4" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
-	if ability == "template_5__sk5" then
+	if ability:GetAbilityName() == "template_5__sk5" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
-	if ability == "template_u__sk6" then
+	if ability:GetAbilityName() == "template_u__sk6" then
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 10 end
 	end
 
 	return 0
 end
 
 -- UTILS -----------------------------------------------------------
-
 
 -- EFFECTS -----------------------------------------------------------

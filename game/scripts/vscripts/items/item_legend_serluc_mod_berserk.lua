@@ -20,7 +20,7 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 
 	local agi = self.ability:GetSpecialValueFor("agi")
 	local ms = self.ability:GetSpecialValueFor("ms")
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
 	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
@@ -35,7 +35,7 @@ end
 
 function item_legend_serluc_mod_berserk:OnRemoved( kv )
 	self.parent:SetForceAttackTarget(nil)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do

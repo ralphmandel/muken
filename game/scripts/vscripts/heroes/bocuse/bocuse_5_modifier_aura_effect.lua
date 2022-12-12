@@ -58,7 +58,7 @@ function bocuse_5_modifier_aura_effect:OnIntervalThink()
 			root_duration = root_duration + 1
 		end
 
-		interval = self.ability:CalcStatus(root_duration, self.caster, self.parent)
+		interval = CalcStatus(root_duration, self.caster, self.parent)
 		self.rooted = true
 
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {

@@ -98,7 +98,7 @@ function dasdingo_4_modifier_tribal:OnTakeDamage(keys)
 			for _,unit in pairs(units) do
 				unit:EmitSound("hero_viper.CorrosiveSkin")
 				unit:AddNewModifier(self.caster, self.ability, "dasdingo_4_modifier_poison", {
-					duration = self.ability:CalcStatus(4, self.caster, unit)
+					duration = CalcStatus(4, self.caster, unit)
 				})
 			end
 		end

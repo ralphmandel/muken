@@ -52,7 +52,7 @@ end
 
 function druid_1_modifier_root_effect:ApplyDebuff()
 	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-	local root_duration = self.ability:CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent)
+	local root_duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent)
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {duration = root_duration, effect = 5})
 end

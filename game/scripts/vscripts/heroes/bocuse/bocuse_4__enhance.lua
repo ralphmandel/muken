@@ -106,7 +106,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
         local duration = self:GetSpecialValueFor("duration")
 
         caster:AddNewModifier(caster, self, "bocuse_4_modifier_enhance", {
-            duration = self:CalcStatus(duration, caster, caster)
+            duration = CalcStatus(duration, caster, caster)
         })
     end
 

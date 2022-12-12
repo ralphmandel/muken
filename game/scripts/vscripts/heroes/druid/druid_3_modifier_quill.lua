@@ -40,7 +40,7 @@ function druid_3_modifier_quill:OnStackCountChanged(old)
 
 	if self:GetStackCount() >= 3 then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = self.ability:CalcStatus(1, self.caster, self.parent)
+			duration = CalcStatus(1, self.caster, self.parent)
 		})
 
 		self:Destroy()

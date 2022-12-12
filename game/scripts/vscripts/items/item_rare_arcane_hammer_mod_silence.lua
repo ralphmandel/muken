@@ -28,7 +28,7 @@ end
 
 function item_rare_arcane_hammer_mod_silence:OnRemoved( kv )
 	if IsServer() then self.parent:EmitSound("Arcane_Hammer.End") end
-	self.ability:RemoveBonus("_1_INT", self.parent)
+	RemoveBonus(self.ability, "_1_INT", self.parent)
 	
 	local damageTable = {
 		victim = self.parent,

@@ -34,7 +34,7 @@ end
 
 function bald_3_modifier_inner:OnRemoved()
 	self.ability.def = 0
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 	self.ability:ChangeModelScale()
 	self.ability:SetActivated(true)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
@@ -43,10 +43,10 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bald_3_modifier_inner:OnStackCountChanged(old)
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 
 	if self:GetStackCount() > 0 then
-		self.ability:AddBonus("_2_DEF", self.parent, self:GetStackCount(), 0, nil)
+		AddBonus(self.ability, "_2_DEF", self.parent, self:GetStackCount(), 0, nil)
 	end
 end
 

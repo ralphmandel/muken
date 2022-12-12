@@ -77,10 +77,10 @@ function fireball:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget:IsAlive() then
 		hTarget:AddNewModifier(self.caster, self, "fireball_modifier", {
-			duration = self:CalcStatus(flame_duration, self.caster, hTarget)
+			duration = CalcStatus(flame_duration, self.caster, hTarget)
 		})
 		hTarget:AddNewModifier(self.caster, self, "_modifier_stun", {
-			duration = self:CalcStatus(stun_duration, self.caster, hTarget)
+			duration = CalcStatus(stun_duration, self.caster, hTarget)
 		})
 	end
 end

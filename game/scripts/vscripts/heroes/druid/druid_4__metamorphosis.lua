@@ -67,7 +67,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function druid_4__metamorphosis:OnSpellStart()
         local caster = self:GetCaster()
-        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
+        local duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
         caster:AddNewModifier(caster, self, "druid_4_modifier_metamorphosis", {
             duration = duration

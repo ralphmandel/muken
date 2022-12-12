@@ -27,15 +27,15 @@ function druid_4_modifier_strength:OnRefresh(kv)
 end
 
 function druid_4_modifier_strength:OnRemoved()
-	self.ability:RemoveBonus("_1_STR", self.parent)
+	RemoveBonus(self.ability, "_1_STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function druid_4_modifier_strength:OnStackCountChanged(old)
     if self:GetStackCount() > 0 then
-		self.ability:RemoveBonus("_1_STR", self.parent)
-		self.ability:AddBonus("_1_STR", self.parent, self:GetStackCount(), 0, nil)
+		RemoveBonus(self.ability, "_1_STR", self.parent)
+		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
 	end
 end
 

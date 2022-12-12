@@ -131,11 +131,11 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
                 -- UP 6.21
                 if self:GetRank(21) and enemy:IsAlive() then
                     enemy:AddNewModifier(caster, self, "_modifier_movespeed_debuff", {
-                        duration = self:CalcStatus(10, caster, enemy),
+                        duration = CalcStatus(10, caster, enemy),
                         percent = 50
                     })
                     enemy:AddNewModifier(caster, self, "_modifier_break", {
-                        duration = self:CalcStatus(10, caster, enemy)
+                        duration = CalcStatus(10, caster, enemy)
                     })
                 end
             end
@@ -249,8 +249,8 @@ LinkLuaModifier("_modifier_movespeed_break", "modifiers/_modifier_movespeed_brea
 
         local total_res = math.ceil(mana_percent * res * 0.01)
 
-        self:RemoveBonus("_2_RES", caster)
-        if caster:IsAlive() and total_res > 0 then self:AddBonus("_2_RES", caster, total_res, 0, nil) end
+        RemoveBonus(self, "_2_RES", caster)
+        if caster:IsAlive() and total_res > 0 then AddBonus(self, "_2_RES", caster, total_res, 0, nil) end
         caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):UpdateAmbients()
     end
 

@@ -23,7 +23,7 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 		defense = defense + 5
 	end
 
-	self.ability:AddBonus("_2_DEF", self.parent, defense, 0, nil)
+	AddBonus(self.ability, "_2_DEF", self.parent, defense, 0, nil)
 	self:PlayEfxStart()
 end
 
@@ -31,7 +31,7 @@ function dasdingo_2_modifier_aura_effect:OnRefresh(kv)
 end
 
 function dasdingo_2_modifier_aura_effect:OnRemoved(kv)
-	self.ability:RemoveBonus("_2_DEF", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
 end
 
 ------------------------------------------------------------

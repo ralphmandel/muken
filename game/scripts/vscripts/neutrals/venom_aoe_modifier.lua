@@ -26,7 +26,7 @@ function venom_aoe_modifier:OnCreated( kv )
 	self.thinker = kv.isProvidedByAura~=1
 
 	if not self.thinker then
-		self.ability:AddBonus("_2_DEF", self.parent, -def_reduction, 0, nil)
+		AddBonus(self.ability, "_2_DEF", self.parent, -def_reduction, 0, nil)
 
 		self.damageTable = {
 			victim = self.parent,
@@ -47,7 +47,7 @@ end
 
 function venom_aoe_modifier:OnRemoved()
 	if not self.thinker then
-		self.ability:RemoveBonus("_2_DEF", self.parent)	
+		RemoveBonus(self.ability, "_2_DEF", self.parent)	
 	else
 		if IsServer() then self.parent:StopSound("Hero_Alchemist.AcidSpray") end
 	end

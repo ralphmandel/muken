@@ -140,7 +140,7 @@ function bloodstained_3_modifier_curse:CheckReflect(state, string)
 		if self.debuffs[string] == false then
 			self.debuffs[string] = true
 			self.parent:AddNewModifier(self.caster, self.ability, string, {
-				duration = self.ability:CalcStatus(2.5, self.caster, self.parent)
+				duration = CalcStatus(2.5, self.caster, self.parent)
 			})
 		end
 	else

@@ -75,7 +75,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bocuse_u__rage:OnSpellStart()
         local caster = self:GetCaster()
-        local duration = self:CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
+        local duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
 
         -- UP 6.11
         if self:GetRank(11) then

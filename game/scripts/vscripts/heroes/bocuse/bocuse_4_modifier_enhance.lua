@@ -37,9 +37,9 @@ function bocuse_4_modifier_enhance:OnRefresh(kv)
 end
 
 function bocuse_4_modifier_enhance:OnRemoved()
-	self.ability:RemoveBonus("_1_CON", self.parent)
-	self.ability:RemoveBonus("_1_AGI", self.parent)
-	self.ability:RemoveBonus("_2_RES", self.parent)
+	RemoveBonus(self.ability, "_1_CON", self.parent)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "_2_RES", self.parent)
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_1__cut"), 1)
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_2__flask"), 1)
 
@@ -103,12 +103,12 @@ end
 function bocuse_4_modifier_enhance:AddEffects()
 	local con = self.ability:GetSpecialValueFor("con")
 	local agi = self.ability:GetSpecialValueFor("agi")
-	self.ability:AddBonus("_1_CON", self.parent, con, 0, nil)
-	self.ability:AddBonus("_1_AGI", self.parent, agi, 0, nil)
+	AddBonus(self.ability, "_1_CON", self.parent, con, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 
 	-- UP 4.21
 	if self.ability:GetRank(21) then
-		self.ability:AddBonus("_2_RES", self.parent, 10, 0, nil)
+		AddBonus(self.ability, "_2_RES", self.parent, 10, 0, nil)
 	end
 
 	self:ModifyCastRange(self.parent:FindAbilityByName("bocuse_1__cut"), 7)
