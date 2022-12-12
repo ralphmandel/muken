@@ -38,7 +38,6 @@ end
 function flea_1_modifier_precision:OnRemoved()
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
 	RemoveBonus(self.ability, "_2_DEX", self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", false) end
@@ -58,11 +57,7 @@ end
 
 function flea_1_modifier_precision:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		self:BurnMana(keys.target)
-	end
+	self:BurnMana(keys.target)
 end
 
 function flea_1_modifier_precision:OnStackCountChanged(iStackCount)
@@ -93,14 +88,8 @@ function flea_1_modifier_precision:ApplyBuff()
 
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
 	RemoveBonus(self.ability, "_2_DEX", self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
 	AddBonus(self.ability, "_1_AGI", self.parent, stats_total, 0, nil)
 	AddBonus(self.ability, "_2_DEX", self.parent, stats_total, 0, nil)
-
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		AddBonus(self.ability, "_2_LCK", self.parent, stats_total, 0, nil)
-	end
 end
 
 function flea_1_modifier_precision:BurnMana(target)
@@ -108,19 +97,11 @@ function flea_1_modifier_precision:BurnMana(target)
 	if target:IsMagicImmune() then return end
 
 	local init_mana = target:GetMana()
-	target:ReduceMana(init_mana * 0.03)
+	target:ReduceMana(init_mana * self.ability:GetSpecialValueFor("special_manaburn") * 0.01)
 	local mana_burn = init_mana - target:GetMana()
 
 	if mana_burn > 0 then
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, mana_burn, self.caster)
-
-		-- ApplyDamage({
-		-- 	damage = mana_burn * 0.5,
-        --     attacker = self.caster,
-        --     victim = target,
-        --     damage_type = DAMAGE_TYPE_MAGICAL,
-        --     ability = self.ability
-		-- })
 	end
 end
 

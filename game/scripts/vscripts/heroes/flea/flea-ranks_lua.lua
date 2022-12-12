@@ -53,6 +53,11 @@ flea_u__weakness_rank_41 = class ({})
 flea_u__weakness_rank_42 = class ({})
 
 flea__precache = class ({})
+LinkLuaModifier("flea__special_values", "heroes/flea/flea__special_values", LUA_MODIFIER_MOTION_NONE)
+
+function flea__precache:GetIntrinsicModifierName()
+    return "flea__special_values"
+end
 
 function flea__precache:Spawn()
     if self:IsTrained() == false then self:UpgradeAbility(true) end

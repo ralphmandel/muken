@@ -19,7 +19,9 @@ function flea_1_modifier_dark_pact:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.pulses = 7
+	self.damage = self.ability:GetSpecialValueFor("special_pact_damage")
+	self.radius = self.ability:GetSpecialValueFor("special_pact_radius")
+	self.pulses = self.ability:GetSpecialValueFor("special_pact_pulses")
 
 	if IsServer() then
 		self:StartIntervalThink(0.1)
@@ -28,8 +30,10 @@ function flea_1_modifier_dark_pact:OnCreated(kv)
 end
 
 function flea_1_modifier_dark_pact:OnRefresh(kv)
-	self.pulses = 7
-
+	self.damage = self.ability:GetSpecialValueFor("special_pact_damage")
+	self.radius = self.ability:GetSpecialValueFor("special_pact_radius")
+	self.pulses = self.ability:GetSpecialValueFor("special_pact_pulses")
+	
 	if IsServer() then
 		self:PlayEfxStart()
 	end
@@ -42,14 +46,14 @@ end
 
 function flea_1_modifier_dark_pact:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 325,
+		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		0, 0, false
 	)
 
 	for _,enemy in pairs(enemies) do
 		ApplyDamage({
-			damage = 20,
+			damage = self.damage,
             attacker = self.caster,
             victim = enemy,
             damage_type = DAMAGE_TYPE_MAGICAL,
