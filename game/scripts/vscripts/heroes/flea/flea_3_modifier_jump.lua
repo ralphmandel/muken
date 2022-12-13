@@ -115,15 +115,7 @@ function flea_3_modifier_jump:PerformImpact()
 	local ability = self.ability
 	local radius_impact = self.radius_impact
 
-	ability:FindTargets(radius_impact, point)
-
-	-- UP 3.22
-	if self.ability:GetRank(22) then
-		-- TIMERS
-        Timers:CreateTimer(0.75, function()
-            ability:FindTargets(radius_impact, point)
-        end)
-	end
+	self.ability:FindTargets(radius_impact, point)
 
 	CreateModifierThinker(
 		self.caster, self.ability, "flea_3_modifier_effect", {duration = 2, radius = self.radius_impact},

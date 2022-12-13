@@ -23,22 +23,12 @@ function flea_2_modifier_speed:OnCreated(kv)
 	self.speed_hit = self.ability:GetSpecialValueFor("speed_hit")
 	self.speed = self.speed_hit
 
-	-- UP 2.12
-	if self.ability:GetRank(12) then
-		self.max_speed = self.max_speed + 15
-	end
-
 	self:IncreaseSpeed()
 end
 
 function flea_2_modifier_speed:OnRefresh(kv)
 	self.max_speed = self.ability:GetSpecialValueFor("max_speed")
-
-	-- UP 2.12
-	if self.ability:GetRank(12) then
-		self.max_speed = self.max_speed + 15
-	end
-
+	self.speed_hit = self.ability:GetSpecialValueFor("speed_hit")
 	self.speed = self.speed + self.speed_hit
 
 	if self.speed > self.max_speed then
@@ -60,7 +50,7 @@ end
 function flea_2_modifier_speed:CheckState()
 	local state = {}
 
-	if self:GetAbility():GetCurrentAbilityCharges() % 5 == 0 then
+	if self:GetAbility():GetSpecialValueFor("special_phase") == 1 then
 		state = {
 			[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true

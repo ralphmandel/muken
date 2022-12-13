@@ -17,12 +17,12 @@
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "flea_1__precision_rank_11"
+				"2"   "flea_1__precision_rank_12"
 			}
 			"1"
 			{
 				"1"   "flea_1__precision_rank_21"
-				"2"   "flea_1__precision_rank_22"
 			}
 			"2"
 			{
@@ -39,7 +39,6 @@
 			"0"
 			{
 				"1"   "flea_2__speed_rank_11"
-				"2"   "flea_2__speed_rank_12"
 			}
 			"1"
 			{
@@ -59,8 +58,7 @@
 		{
 			"0"
 			{
-				"1"   "flea_3__jump_rank_11"
-				"2"   "flea_3__jump_rank_12"
+				"1"   "empty"
 			}
 			"1"
 			{
@@ -69,7 +67,7 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "flea_3__jump_rank_31"
 			}
 			"3"
 			{
@@ -122,19 +120,20 @@
 		{
 			"0"
 			{
-				"1"   "flea_u__weakness_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
 				"1"   "flea_u__weakness_rank_21"
+				"2"   "flea_u__weakness_rank_22"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "flea_u__weakness_rank_31"
 			}
 			"3"
 			{
-				"1"   "flea_u__weakness_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	

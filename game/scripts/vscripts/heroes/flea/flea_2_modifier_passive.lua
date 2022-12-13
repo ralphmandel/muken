@@ -72,15 +72,8 @@ function flea_2_modifier_passive:OnAttackLanded(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	local duration = self.ability:GetSpecialValueFor("duration")
-
-	-- UP 2.31
-	if self.ability:GetRank(31) then
-		duration = duration + 3
-	end
-
 	self.parent:AddNewModifier(self.caster, self.ability, "flea_2_modifier_speed", {
-		duration = CalcStatus(duration, self.caster, self.parent)
+		duration = CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
 	})
 
 	if self:GetStackCount() == 100 then
@@ -96,8 +89,7 @@ function flea_2_modifier_passive:OnIntervalThink()
 	local distance = (self.ability.origin - self.parent:GetOrigin()):Length2D()
 	self.ability.origin = self.parent:GetOrigin()
 
-	-- UP 2.32
-	if self.ability:GetRank(32) then
+	if self.ability:GetSpecialValueFor("special_charge") then
 		self.energy = self.energy + distance
 		if self.energy > 4000 then self.energy = 4000 end
 	end

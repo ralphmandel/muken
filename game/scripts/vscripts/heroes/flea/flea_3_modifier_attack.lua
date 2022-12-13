@@ -23,9 +23,7 @@ function flea_3_modifier_attack:OnCreated(kv)
 
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then
-		self.damage = base_stats:GetStatTotal("AGI") * agi_mult
-	else
-		self.damage = 0
+		self.damage = base_stats:GetStatTotal("AGI") * agi_mult else self.damage = 0
 	end
 end
 
@@ -54,12 +52,9 @@ end
 
 function flea_3_modifier_attack:OnAttackLanded(keys)
 	if IsServer() then
-		if keys.attacker ~= self.parent then return end
-		local silence_duration = self.ability:GetSpecialValueFor("silence_duration")
-
-		if keys.target:IsAlive() then
+		if keys.attacker == self.parent and keys.target:IsAlive() then
 			keys.target:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-				duration = CalcStatus(silence_duration, self.caster, keys.target),
+				duration = CalcStatus(self.ability:GetSpecialValueFor("silence_duration"), self.caster, keys.target),
 				special = 3
 			})
 		end

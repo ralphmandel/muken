@@ -65,6 +65,7 @@ end
 
 function flea__precache:Precache(context)
     PrecacheResource("soundfile", "soundevents/soundevent_flea.vsndevts", context)
+
     PrecacheResource("particle", "particles/econ/items/slark/slark_head_immortal/slark_immortal_dark_pact_pulses.vpcf", context)
     PrecacheResource("particle", "particles/fleaman/fleaman_precision.vpcf", context)
     PrecacheResource("particle", "particles/status_fx/status_effect_slark_shadow_dance.vpcf", context)

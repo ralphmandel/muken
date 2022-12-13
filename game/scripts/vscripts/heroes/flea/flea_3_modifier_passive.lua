@@ -41,9 +41,9 @@ function flea_3_modifier_passive:OnAttackLanded(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
 
-	-- UP 3.21
-	if self.ability:GetRank(21)
-	and RandomFloat(1, 100) <= 2.5 then
+	local special_reset_chance = self.ability:GetSpecialValueFor("special_reset_chance")
+
+	if RandomFloat(1, 100) <= special_reset_chance then
 		self.ability:EndCooldown()
 	end
 end

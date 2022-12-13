@@ -32,7 +32,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
             caster:AddNewModifier(caster, self, "flea_1_modifier_dark_pact", {})
         end
 
-        Timers:CreateTimer(0.15, function()
+        Timers:CreateTimer(0.1, function()
             if caster:IsAlive() then
                 if self:GetSpecialValueFor("special_purge") > 0 then
                     caster:Purge(false, true, false, true, false)
