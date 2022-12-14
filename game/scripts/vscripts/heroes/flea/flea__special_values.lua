@@ -102,17 +102,24 @@ function flea__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "flea_4__smoke" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("flea_4__smoke_rank_11") then
+			if value_name == "debuff_init" then return 1 end
 		end
 
-		if caster:FindAbilityByName("flea_4__smoke_rank_21") then
+		if caster:FindAbilityByName("flea_4__smoke_rank_12") then
+			if value_name == "duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("flea_4__smoke_rank_31") then
+			if value_name == "special_invi_chance" then return 1 end
+			if value_name == "special_invi_delay" then return 1 end
 		end
 
 		if caster:FindAbilityByName("flea_4__smoke_rank_41") then
+			if value_name == "special_allies" then return 1 end
 		end
 	end
 
@@ -204,14 +211,25 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return 280 + (value_level * 10)
 		end
 
-		if value_name == "silence_duration" then return 4 end
+		if value_name == "silence_duration" then return 5 end
 		if value_name == "hits" then return 2 end
 		if value_name == "special_reset_chance" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "flea_4__smoke" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 45 end
+		if value_name == "AbilityCastRange" then return 450 end
+
+		if value_name == "radius" then
+			return 360 + (value_level * 10)
+		end
+
+		if value_name == "debuff_init" then return 70 end
+		if value_name == "duration" then return 15 end
+		if value_name == "special_invi_chance" then return 5 end
+		if value_name == "special_invi_delay" then return 2 end
+		if value_name == "special_allies" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "flea_5__desolator" then

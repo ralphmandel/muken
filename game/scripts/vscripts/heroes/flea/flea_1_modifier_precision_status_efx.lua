@@ -1,12 +1,7 @@
 flea_1_modifier_precision_status_efx = class({})
 
-function flea_1_modifier_precision_status_efx:IsHidden()
-	return true
-end
-
-function flea_1_modifier_precision_status_efx:IsPurgable()
-	return false
-end
+function flea_1_modifier_precision_status_efx:IsHidden() return true end
+function flea_1_modifier_precision_status_efx:IsPurgable() return false end
 
 -----------------------------------------------------------
 

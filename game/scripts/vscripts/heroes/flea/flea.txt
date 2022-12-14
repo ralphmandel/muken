@@ -163,7 +163,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"silence_duration"	"2"
+				"silence_duration"	"3"
 			}
             "02"
 			{
@@ -178,7 +178,7 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi_mult"	    "3"
+				"agi_mult"	    "5"
 			}
             "07"
 			{
@@ -214,52 +214,55 @@
 		"ScriptFile"            		"heroes/flea/flea_4__smoke"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_smoke"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"45"
-		"AbilityCastRange"      		"450"
 
 		"AbilitySpecial"
 		{
             "01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"375 385 395 405 415 425 435 445 455 465 475"
+				"var_type"		    "FIELD_FLOAT"
+				"radius"		    "1 2 3 4 5 6 7 8 9 10"
 			}
             "02"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"12"
+				"var_type"		    "FIELD_FLOAT"
+				"duration"		    "12"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"debuff_init"		"50"
 			}
-            "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"debuff_decrease"   "5"
-			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"interval"         "0.5"
-			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"175"
+				"interval"          "0.5"
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			    "6 7 8 9 10 11 12 13 14 15"
+			}
+            "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_invi_chance"	"0"
+			}
+            "17"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_invi_delay"	"0"
+			}
+            "18"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_allies"	"0"
 			}
 		}
 	}

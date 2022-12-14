@@ -1,17 +1,8 @@
 flea_1_modifier_precision = class({})
 local tempTable = require("libraries/tempTable")
 
-function flea_1_modifier_precision:IsHidden()
-	return false
-end
-
-function flea_1_modifier_precision:IsPurgable()
-	return true
-end
-
-function flea_1_modifier_precision:IsDebuff()
-	return false
-end
+function flea_1_modifier_precision:IsHidden() return false end
+function flea_1_modifier_precision:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

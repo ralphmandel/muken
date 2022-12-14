@@ -1,16 +1,7 @@
 flea_5_modifier_desolator = class({})
 
-function flea_5_modifier_desolator:IsHidden()
-	return false
-end
-
-function flea_5_modifier_desolator:IsPurgable()
-	return true
-end
-
-function flea_5_modifier_desolator:IsDebuff()
-	return true
-end
+function flea_5_modifier_desolator:IsHidden() return false end
+function flea_5_modifier_desolator:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

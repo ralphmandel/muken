@@ -1,16 +1,7 @@
 flea_4_modifier_hidden = class({})
 
-function flea_4_modifier_hidden:IsHidden()
-	return true
-end
-
-function flea_4_modifier_hidden:IsPurgable()
-	return true
-end
-
-function flea_4_modifier_hidden:IsDebuff()
-	return false
-end
+function flea_4_modifier_hidden:IsHidden() return true end
+function flea_4_modifier_hidden:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

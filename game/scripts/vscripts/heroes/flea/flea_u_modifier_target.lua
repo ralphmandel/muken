@@ -1,16 +1,7 @@
 flea_u_modifier_target = class({})
 
-function flea_u_modifier_target:IsHidden()
-	return false
-end
-
-function flea_u_modifier_target:IsPurgable()
-	return true
-end
-
-function flea_u_modifier_target:IsDebuff()
-	return true
-end
+function flea_u_modifier_target:IsHidden() return false end
+function flea_u_modifier_target:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

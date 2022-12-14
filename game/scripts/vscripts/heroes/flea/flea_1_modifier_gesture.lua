@@ -1,16 +1,7 @@
 flea_1_modifier_gesture = class({})
 
-function flea_1_modifier_gesture:IsHidden()
-	return true
-end
-
-function flea_1_modifier_gesture:IsPurgable()
-	return false
-end
-
-function flea_1_modifier_gesture:IsDebuff()
-	return false
-end
+function flea_1_modifier_gesture:IsHidden() return true end
+function flea_1_modifier_gesture:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

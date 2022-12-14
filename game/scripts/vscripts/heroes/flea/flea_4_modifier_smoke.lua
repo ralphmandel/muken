@@ -1,16 +1,7 @@
 flea_4_modifier_smoke = class({})
 
-function flea_4_modifier_smoke:IsHidden()
-	return true
-end
-
-function flea_4_modifier_smoke:IsPurgable()
-	return false
-end
-
-function flea_4_modifier_smoke:IsDebuff()
-	return false
-end
+function flea_4_modifier_smoke:IsHidden() return true end
+function flea_4_modifier_smoke:IsPurgable() return false end
 
 -- AURA -----------------------------------------------------------
 
@@ -39,7 +30,7 @@ function flea_4_modifier_smoke:GetAuraSearchFlags()
 end
 
 function flea_4_modifier_smoke:GetAuraEntityReject(hEntity)
-	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then
+	if self:GetAbility():GetSpecialValueFor("special_allies") == 1 then
 		return false	
 	end
 

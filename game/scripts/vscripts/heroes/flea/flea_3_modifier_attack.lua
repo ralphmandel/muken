@@ -1,16 +1,7 @@
 flea_3_modifier_attack = class({})
 
-function flea_3_modifier_attack:IsHidden()
-	return true
-end
-
-function flea_3_modifier_attack:IsPurgable()
-	return false
-end
-
-function flea_3_modifier_attack:IsDebuff()
-	return false
-end
+function flea_3_modifier_attack:IsHidden() return true end
+function flea_3_modifier_attack:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

@@ -1,16 +1,7 @@
 flea_3_modifier_jump = class({})
 
-function flea_3_modifier_jump:IsHidden()
-	return true
-end
-
-function flea_3_modifier_jump:IsPurgable()
-	return false
-end
-
-function flea_3_modifier_jump:IsDebuff()
-	return false
-end
+function flea_3_modifier_jump:IsHidden() return true end
+function flea_3_modifier_jump:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -27,11 +18,6 @@ function flea_3_modifier_jump:OnCreated( kv )
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.radius_impact = self.ability:GetSpecialValueFor("radius_impact")
-
-	-- UP 3.12
-	if self.ability:GetRank(12) then
-		self.radius_impact = self.radius_impact + 75
-	end
 
 	self.arc = self.parent:AddNewModifier(
 		self.parent, self.ability,
@@ -100,18 +86,17 @@ function flea_3_modifier_jump:OnIntervalThink()
 			break
 		end
 	end
-	if not target then return end
 
-	self:PerformImpact()
-	self:Destroy()
+	self:PerformImpact(target)
 end
 
 -- UTILS -----------------------------------------------------------
 
-function flea_3_modifier_jump:PerformImpact()
+function flea_3_modifier_jump:PerformImpact(target)
+	if not target then return end
 	self.parent:FadeGesture(ACT_DOTA_SLARK_POUNCE)
 
-	local point = self.parent:GetOrigin()
+	local point = target:GetOrigin()
 	local ability = self.ability
 	local radius_impact = self.radius_impact
 
@@ -121,6 +106,8 @@ function flea_3_modifier_jump:PerformImpact()
 		self.caster, self.ability, "flea_3_modifier_effect", {duration = 2, radius = self.radius_impact},
 		GetGroundPosition(self.parent:GetOrigin(), nil), self.caster:GetTeamNumber(), false
 	)
+
+	self:Destroy()
 end
 
 -- EFFECTS -----------------------------------------------------------

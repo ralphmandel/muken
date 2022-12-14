@@ -83,12 +83,11 @@
 			}
 			"1"
 			{
-				"1"   "flea_4__smoke_rank_21"
-				"2"   "flea_4__smoke_rank_22"
+				"1"   "empty"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "flea_4__smoke_rank_31"
 			}
 			"3"
 			{

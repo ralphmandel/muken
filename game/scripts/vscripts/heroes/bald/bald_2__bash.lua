@@ -9,16 +9,22 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
 -- INIT
 
+    function bald_2__bash:Spawn()
+        self.dash = false
+    end
+
 -- SPELL START
 
     function bald_2__bash:OnSpellStart()
         local caster = self:GetCaster()
 
-        if caster:HasModifier("bald_2_modifier_heap") then
+        if self.dash == true then
             self:PerformDash()
         else
             self:PrepareDash()
         end
+
+        self.dash = false
     end
 
     function bald_2__bash:PrepareDash()

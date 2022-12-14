@@ -51,7 +51,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
         self.hits = self.hits - 1
         if self.hits > 0 then
-            Timers:CreateTimer(0.75, function()
+            Timers:CreateTimer(0.25, function()
                 if caster:IsAlive() then
                     self:FindTargets(radius_impact, point)
                 end

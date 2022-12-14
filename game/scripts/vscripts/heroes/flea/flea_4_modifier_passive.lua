@@ -1,16 +1,7 @@
 flea_4_modifier_passive = class({})
 
-function flea_4_modifier_passive:IsHidden()
-	return true
-end
-
-function flea_4_modifier_passive:IsPurgable()
-	return false
-end
-
-function flea_4_modifier_passive:IsDebuff()
-	return false
-end
+function flea_4_modifier_passive:IsHidden() return true end
+function flea_4_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -42,10 +33,10 @@ function flea_4_modifier_passive:OnAttackLanded(keys)
 	if self.parent:HasModifier("flea_4_modifier_smoke_effect") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	-- UP 4.22
-	if self.ability:GetRank(22)
-	and RandomFloat(1, 100) <= 5 then
-		self.parent:AddNewModifier(self.caster, self.ability, "flea_4_modifier_invi", {duration = 2.5})
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_invi_chance") then
+		self.parent:AddNewModifier(self.caster, self.ability, "flea_4_modifier_invi", {
+			duration = self.ability:GetSpecialValueFor("special_invi_delay")
+		})
 		self.parent:MoveToTargetToAttack(keys.target)
 	end
 end

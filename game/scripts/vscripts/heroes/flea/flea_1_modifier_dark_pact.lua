@@ -1,16 +1,7 @@
 flea_1_modifier_dark_pact = class({})
 
-function flea_1_modifier_dark_pact:IsHidden()
-	return true
-end
-
-function flea_1_modifier_dark_pact:IsPurgable()
-	return false
-end
-
-function flea_1_modifier_dark_pact:IsDebuff()
-	return false
-end
+function flea_1_modifier_dark_pact:IsHidden() return true end
+function flea_1_modifier_dark_pact:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

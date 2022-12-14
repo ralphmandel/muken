@@ -73,6 +73,25 @@ function bald_2_modifier_heap:CheckState()
 	return state
 end
 
+function bald_2_modifier_heap:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_START
+	}
+
+	return funcs
+end
+
+function bald_2_modifier_heap:OnAbilityStart(keys)
+	if keys.unit == self.parent then
+		if keys.ability == self.ability then
+			self.ability.dash = true
+		else
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+			self:Destroy()
+		end
+	end
+end
+
 function bald_2_modifier_heap:OnIntervalThink()
 	if self.time == 0 then
 		self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

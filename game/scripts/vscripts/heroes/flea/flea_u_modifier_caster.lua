@@ -1,16 +1,7 @@
 flea_u_modifier_caster = class({})
 
-function flea_u_modifier_caster:IsHidden()
-	return false
-end
-
-function flea_u_modifier_caster:IsPurgable()
-	return false
-end
-
-function flea_u_modifier_caster:IsDebuff()
-	return false
-end
+function flea_u_modifier_caster:IsHidden() return false end
+function flea_u_modifier_caster:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

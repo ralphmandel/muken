@@ -1,16 +1,7 @@
 flea_3_modifier_effect = class({})
 
-function flea_3_modifier_effect:IsHidden()
-	return true
-end
-
-function flea_3_modifier_effect:IsPurgable()
-	return false
-end
-
-function flea_3_modifier_effect:IsDebuff()
-	return false
-end
+function flea_3_modifier_effect:IsHidden() return true end
+function flea_3_modifier_effect:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

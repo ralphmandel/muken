@@ -1,16 +1,7 @@
 flea_5_modifier_passive = class({})
 
-function flea_5_modifier_passive:IsHidden()
-	return true
-end
-
-function flea_5_modifier_passive:IsPurgable()
-	return false
-end
-
-function flea_5_modifier_passive:IsDebuff()
-	return false
-end
+function flea_5_modifier_passive:IsHidden() return true end
+function flea_5_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

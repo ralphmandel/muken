@@ -1,16 +1,7 @@
 flea_2_modifier_speed = class({})
 
-function flea_2_modifier_speed:IsHidden()
-	return true
-end
-
-function flea_2_modifier_speed:IsPurgable()
-	return true
-end
-
-function flea_2_modifier_speed:IsDebuff()
-	return false
-end
+function flea_2_modifier_speed:IsHidden() return true end
+function flea_2_modifier_speed:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

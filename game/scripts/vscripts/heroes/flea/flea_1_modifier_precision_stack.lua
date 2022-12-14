@@ -1,21 +1,9 @@
 flea_1_modifier_precision_stack = class({})
 local tempTable = require("libraries/tempTable")
 
-function flea_1_modifier_precision_stack:IsPurgable()
-	return true
-end
-
-function flea_1_modifier_precision_stack:IsHidden()
-	return true
-end
-
-function flea_1_modifier_precision_stack:IsDebuff()
-	return false
-end
-
-function flea_1_modifier_precision_stack:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
+function flea_1_modifier_precision_stack:IsPurgable() return true end
+function flea_1_modifier_precision_stack:IsHidden() return true end
+function flea_1_modifier_precision_stack:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

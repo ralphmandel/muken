@@ -46,6 +46,13 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function bald_2_modifier_dash:CheckState()
+	local state = {
+		[MODIFIER_STATE_SILENCED] = true
+	}
+	return state
+end
+
 function bald_2_modifier_dash:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DISABLE_TURNING

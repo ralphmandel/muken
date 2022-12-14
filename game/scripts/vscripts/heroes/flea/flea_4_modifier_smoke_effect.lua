@@ -1,16 +1,7 @@
 flea_4_modifier_smoke_effect = class({})
 
-function flea_4_modifier_smoke_effect:IsHidden()
-	return true
-end
-
-function flea_4_modifier_smoke_effect:IsPurgable()
-	return false
-end
-
-function flea_4_modifier_smoke_effect:IsDebuff()
-	return (self:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber())
-end
+function flea_4_modifier_smoke_effect:IsHidden() return true end
+function flea_4_modifier_smoke_effect:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -34,7 +25,15 @@ function flea_4_modifier_smoke_effect:OnRefresh(kv)
 end
 
 function flea_4_modifier_smoke_effect:OnRemoved()
-	self:RemoveDebuff()
+	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -42,7 +41,7 @@ end
 function flea_4_modifier_smoke_effect:CheckState()
 	local state = {}
 
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0
+	if self:GetAbility():GetSpecialValueFor("special_invi_delay") > 0
 	and self:GetCaster() == self:GetParent() then
 		state = {
 			[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
@@ -90,26 +89,8 @@ end
 
 function flea_4_modifier_smoke_effect:ApplyDebuff()
 	local debuff_init = self.ability:GetSpecialValueFor("debuff_init")
-
-	-- UP 4.11
-	if self.ability:GetRank(11) then
-		debuff_init = debuff_init + 15
-	end
-
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = debuff_init})
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = debuff_init})
-end
-
-function flea_4_modifier_smoke_effect:RemoveDebuff()
-	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- EFFECTS -----------------------------------------------------------

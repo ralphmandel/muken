@@ -1,16 +1,7 @@
 flea_4_modifier_invi = class({})
 
-function flea_4_modifier_invi:IsHidden()
-	return false
-end
-
-function flea_4_modifier_invi:IsPurgable()
-	return true
-end
-
-function flea_4_modifier_invi:IsDebuff()
-	return false
-end
+function flea_4_modifier_invi:IsHidden() return false end
+function flea_4_modifier_invi:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
