@@ -17,14 +17,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function bald_2__bash:OnSpellStart()
         local caster = self:GetCaster()
+        print("dash", self.dash)
 
         if self.dash == true then
             self:PerformDash()
         else
             self:PrepareDash()
         end
-
-        self.dash = false
     end
 
     function bald_2__bash:PrepareDash()

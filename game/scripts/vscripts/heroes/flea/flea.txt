@@ -94,7 +94,7 @@
 		"ScriptFile"            		"heroes/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_speed"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -110,7 +110,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_hit"		"5"
+				"speed_hit"		"4"
 			}
             "03"
 			{
@@ -130,7 +130,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14"
+				"rank"			"6 7 8 9 10 11 12 13"
 			}
             "16"
 			{
@@ -178,7 +178,7 @@
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi_mult"	    "5"
+				"agi_mult"	    "4"
 			}
             "07"
 			{
@@ -214,7 +214,7 @@
 		"ScriptFile"            		"heroes/flea/flea_4__smoke"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_smoke"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -227,7 +227,7 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"radius"		    "1 2 3 4 5 6 7 8 9 10"
+				"radius"		    "1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
             "02"
 			{
@@ -247,7 +247,7 @@
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"rank"			    "6 7 8 9 10 11 12 13 14 15"
+				"rank"			    "6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
             "16"
 			{
@@ -273,7 +273,7 @@
 		"ScriptFile"            		"heroes/flea/flea_5__desolator"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_desolator"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -291,15 +291,30 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"5"
 			}
-            "14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"0"
-			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
+			}
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"special_heal"		"0"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"special_evade"		"0"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"special_slow"		"0"
+			}
+            "04"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_damage_percent"	"0"
 			}
 		}
 	}

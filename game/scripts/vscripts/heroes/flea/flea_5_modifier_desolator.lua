@@ -9,12 +9,13 @@ function flea_5_modifier_desolator:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.damage_percent = 0
 	self.damage_total = 0
 
-	-- UP 5.42
-	if self.ability:GetRank(42) then
-		self.damage_percent = 20
+	local special_slow = self.ability:GetSpecialValueFor("special_slow")
+	if special_slow > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			percent = special_slow
+		})
 	end
 
 	if IsServer() then self:PlayEfxStart() end
@@ -25,7 +26,7 @@ end
 
 function flea_5_modifier_desolator:OnRemoved()
 	local damageTable = {
-		damage = self.damage_total * self.damage_percent * 0.01,
+		damage = self.damage_total * self.ability:GetSpecialValueFor("special_damage_percent") * 0.01,
 		attacker = self.caster,
 		victim = self.parent,
 		damage_type = DAMAGE_TYPE_MAGICAL,
@@ -37,6 +38,11 @@ function flea_5_modifier_desolator:OnRemoved()
 		ApplyDamage(damageTable)
 		self:PlayEfxEnd()
 	end
+
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -44,11 +50,11 @@ end
 function flea_5_modifier_desolator:CheckState()
 	local state = {}
 
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then
-		state[MODIFIER_STATE_BLOCK_DISABLED] = true
-	end
+	-- if self:GetAbility():GetSpecialValueFor("special_block") == 1 then
+	-- 	state[MODIFIER_STATE_BLOCK_DISABLED] = true
+	-- end
 
-	if self:GetAbility():GetCurrentAbilityCharges() % 5 == 0 then
+	if self:GetAbility():GetSpecialValueFor("special_evade") == 1 then
 		state[MODIFIER_STATE_EVADE_DISABLED] = true
 	end
 
@@ -70,11 +76,7 @@ function flea_5_modifier_desolator:GetModifierIgnorePhysicalArmor()
 end
 
 function flea_5_modifier_desolator:GetDisableHealing()
-	if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then
-		return 1
-	end
-
-	return 0
+	return self:GetAbility():GetSpecialValueFor("special_heal")
 end
 
 function flea_5_modifier_desolator:OnTakeDamage(keys)

@@ -39,11 +39,11 @@
 			"0"
 			{
 				"1"   "flea_2__speed_rank_11"
+				"2"   "flea_2__speed_rank_12"
 			}
 			"1"
 			{
 				"1"   "flea_2__speed_rank_21"
-				"2"   "flea_2__speed_rank_22"
 			}
 			"2"
 			{
@@ -83,22 +83,24 @@
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "flea_4__smoke_rank_21"
 			}
 			"2"
 			{
-				"1"   "flea_4__smoke_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
 				"1"   "flea_4__smoke_rank_41"
+				"2"   "flea_4__smoke_rank_42"
 			}
 		}
 		"flea_5__desolator"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "flea_5__desolator_rank_11"
+				"2"   "flea_5__desolator_rank_12"
 			}
 			"1"
 			{
@@ -107,7 +109,6 @@
 			"2"
 			{
 				"1"   "flea_5__desolator_rank_31"
-				"2"   "flea_5__desolator_rank_32"
 			}
 			"3"
 			{

@@ -203,7 +203,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return (320 + (value_level * 5)) * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
 		end
 
-		if value_name == "max_charge" then return 5 end
+		if value_name == "max_charge" then return 6 end
 		if value_name == "bonus_ms" then return 30 end
 		if value_name == "stun_immunity" then return 1 end
 		if value_name == "bash_aoe" then return 175 end

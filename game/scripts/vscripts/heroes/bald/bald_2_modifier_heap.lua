@@ -11,10 +11,11 @@ function bald_2_modifier_heap:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
+	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
 	self.max_charge = self.ability:GetSpecialValueFor("max_charge")
 	self.time = self.max_charge
+	self.tick = 0.31
 
-	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetMPRegenState(-1) end
 
@@ -26,8 +27,8 @@ function bald_2_modifier_heap:OnCreated(kv)
 	end
 
 	if IsServer() then
-		self:OnIntervalThink()
-		self.parent:EmitSound("Hero_Spirit_Breaker.Magnet.Cast")
+		self:StartIntervalThink(0.1)
+		self.ability.dash = true
 	end
 end
 
@@ -35,6 +36,8 @@ function bald_2_modifier_heap:OnRefresh(kv)
 end
 
 function bald_2_modifier_heap:OnRemoved()
+	self.ability.dash = false
+
 	local stun_max = self.ability:GetSpecialValueFor("stun_max")
 	local damage_max = self.ability:GetSpecialValueFor("damage_max")
 	local elapsed_time = self:GetElapsedTime()
@@ -83,9 +86,7 @@ end
 
 function bald_2_modifier_heap:OnAbilityStart(keys)
 	if keys.unit == self.parent then
-		if keys.ability == self.ability then
-			self.ability.dash = true
-		else
+		if keys.ability ~= self.ability then
 			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 			self:Destroy()
 		end
@@ -99,16 +100,25 @@ function bald_2_modifier_heap:OnIntervalThink()
 		return
 	end
 
+	if IsServer() then
+		if self.time == self.max_charge then
+			self.parent:EmitSound("Hero_Spirit_Breaker.Magnet.Cast")
+		end
+	end
+
 	local tick = 0.5
 	self:PlayEfxTimer()
 	self.time = self.time - tick
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		duration = tick,
+		duration = self.tick,
 		percent = (self:GetElapsedTime() * (75 / self.max_charge))
 	})
 
-	if IsServer() then self:StartIntervalThink(tick) end
+	if IsServer() then
+		self:StartIntervalThink(self.tick)
+		self.tick = self.tick * 1.03
+	end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -122,13 +132,12 @@ function bald_2_modifier_heap:PlayEfxTimer()
 	local mid = 1
 	if self.time - time > 0 then mid = 8 end
 
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(1, time, mid))
-	ParticleManager:SetParticleControl(effect_cast, 2, Vector(2, 0, 0))
+	if self.efx_count then ParticleManager:DestroyParticle(self.efx_count, true) end
+	self.efx_count = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.efx_count, 1, Vector(1, time, mid))
+	ParticleManager:SetParticleControl(self.efx_count, 2, Vector(2, 0, 0))
 
 	if time < 1 then
-		ParticleManager:SetParticleControl(effect_cast, 2, Vector( 1, 0, 0 ))
+		ParticleManager:SetParticleControl(self.efx_count, 2, Vector( 1, 0, 0 ))
 	end
-
-	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

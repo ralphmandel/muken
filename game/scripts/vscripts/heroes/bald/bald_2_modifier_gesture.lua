@@ -10,7 +10,7 @@ function bald_2_modifier_gesture:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.tick = 0.3
+	self.tick = 0.31
 
 	if IsServer() then self:OnIntervalThink() end
 end
@@ -29,7 +29,7 @@ function bald_2_modifier_gesture:OnIntervalThink()
 		self.parent:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
 		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_GENERIC_CHANNEL_1, 1 / self.tick)
 		self:StartIntervalThink(self.tick)
-		self.tick = self.tick * 1.05
+		self.tick = self.tick * 1.03
 	end
 end
 
