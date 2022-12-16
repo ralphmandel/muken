@@ -57,6 +57,7 @@ require("internal/talent_tree")
 			self.skill_points = 3
 			if self.hero_name == "bald" then self.skill_points = 2 end
 			if self.hero_name == "flea" then self.skill_points = 2 end
+			if self.hero_name == "striker" then self.skill_points = 2 end
 		end
 
 		self.skill_points = self.skill_points + points
@@ -506,39 +507,6 @@ require("internal/talent_tree")
 				if rage == nil then return false end
 				if rage:IsTrained() == false then return false end
 				if rage:GetSpecialValueFor("rank") < 19 then return false end
-			end
-
-		-- STRIKER
-			-- Striker 2.41 requires skill rank level 12
-			if talentName == "striker_2__shield_rank_41" then
-				local striker = self:GetCaster():FindAbilityByName("striker_2__shield")
-				if striker == nil then return false end
-				if striker:IsTrained() == false then return false end
-				if striker:GetSpecialValueFor("rank") < 12 then return false end
-			end
-
-			-- Striker 3.41 requires skill rank level 12
-			if talentName == "striker_3__portal_rank_41" then
-				local striker = self:GetCaster():FindAbilityByName("striker_3__portal")
-				if striker == nil then return false end
-				if striker:IsTrained() == false then return false end
-				if striker:GetSpecialValueFor("rank") < 12 then return false end
-			end
-
-			-- Striker 4.41 requires skill rank level 12
-			if talentName == "striker_4__hammer_rank_41" then
-				local striker = self:GetCaster():FindAbilityByName("striker_4__hammer")
-				if striker == nil then return false end
-				if striker:IsTrained() == false then return false end
-				if striker:GetSpecialValueFor("rank") < 12 then return false end
-			end
-
-			-- Striker 5.41 requires skill rank level 12
-			if talentName == "striker_5__sof_rank_41" then
-				local striker = self:GetCaster():FindAbilityByName("striker_5__sof")
-				if striker == nil then return false end
-				if striker:IsTrained() == false then return false end
-				if striker:GetSpecialValueFor("rank") < 12 then return false end
 			end
 
 		return true

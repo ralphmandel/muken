@@ -35,26 +35,17 @@ end
 
 function flea_2_modifier_passive:GetModifierMoveSpeed_AbsoluteMin()
 	if IsServer() then
-		if self:GetParent():PassivesDisabled() == false then
-			local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
-			if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then min_speed = min_speed + 75 end
-			return min_speed
-		end
-
-		return 0
+		if self:GetParent():PassivesDisabled() then return 0 end
+		return self:GetAbility():GetSpecialValueFor("min_speed")
 	end
 end
 
 function flea_2_modifier_passive:GetModifierConstantHealthRegen()
 	if IsServer() then
-		if self:GetParent():PassivesDisabled() == false then
-			local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
-			local regen = self:GetAbility():GetSpecialValueFor("regen") * 0.01
-			if self:GetAbility():GetCurrentAbilityCharges() % 3 == 0 then regen = regen * 1.5 end
-			return (self:GetParent():GetIdealSpeed() - min_speed - 50) * regen
-		end
-
-		return 0
+		if self:GetParent():PassivesDisabled() then return 0 end
+		local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
+		local regen = self:GetAbility():GetSpecialValueFor("regen") * 0.01
+		return (self:GetParent():GetIdealSpeed() - min_speed - 50) * regen
 	end
 end
 

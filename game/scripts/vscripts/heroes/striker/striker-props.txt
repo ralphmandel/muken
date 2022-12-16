@@ -7,21 +7,21 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"slot_1"
-			"Ability2"						"slot_2"
-			"Ability3"						"slot_3"
-			"Ability4"						"slot_4"
-			"Ability5"						"slot_5"
-			"Ability6"						"slot_6"
+			"Ability1"						"striker_1__blow"
+			"Ability2"						"striker_2__shield"
+			"Ability3"						"striker_3__portal"
+			"Ability4"						"striker_4__hammer"
+			"Ability5"						"striker_5__sof"
+			"Ability6"						"striker_u__auto"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"striker_1__blow"
-			"Ability11"						"striker_2__shield"
-			"Ability12"						"striker_3__portal"
-			"Ability13"						"striker_4__hammer"
-			"Ability14"						"striker_5__sof"
-			"Ability15"						"striker_u__auto"
+			"Ability10"						"_channel"
+			"Ability11"						"_void"
+			"Ability12"						"striker__precache"
+			"Ability13"						"null"
+			"Ability14"						"null"
+			"Ability15"						"null"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"_channel"
-			"Ability31"						"_void"
-			"Ability32"						"striker__precache"
+			"Ability30"						"null"		
+			"Ability31"						"null"		
+			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "150"     // Range within a target can be attacked.
+		"AttackRange"                   "140"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"

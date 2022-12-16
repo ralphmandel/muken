@@ -53,6 +53,11 @@ striker_u__auto_rank_41 = class ({})
 striker_u__auto_rank_42 = class ({})
 
 striker__precache = class ({})
+LinkLuaModifier("striker__special_values", "heroes/striker/striker__special_values", LUA_MODIFIER_MOTION_NONE)
+
+function striker__precache:GetIntrinsicModifierName()
+    return "striker__special_values"
+end
 
 function striker__precache:Spawn()
     if self:IsTrained() == false then self:UpgradeAbility(true) end

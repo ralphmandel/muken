@@ -58,18 +58,18 @@ function striker_u_modifier_autocast:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
 
 	-- UP 6.21
-	if self.ability:GetRank(21) then
-		self:PerformAutoCast()
-	end
+	-- if self.ability:GetRank(21) then
+	-- 	self:PerformAutoCast()
+	-- end
 end
 
 function striker_u_modifier_autocast:OnAttackLanded(keys)
 	if keys.attacker == self.parent then self:PerformAutoCast() end
 
 	-- UP 6.22
-	if self.ability:GetRank(22) then
-		self:BurnMana(keys.attacker, keys.target)
-	end
+	-- if self.ability:GetRank(22) then
+	-- 	self:BurnMana(keys.attacker, keys.target)
+	-- end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -88,12 +88,7 @@ end
 function striker_u_modifier_autocast:PerformAutoCast()
 	if self.ability:GetAutoCastState() == false then return end
 	if self.parent:IsIllusion() then return end
-
-	-- UP 6.21
-	if self.ability:GetRank(21) == false 
-	and self.parent:IsSilenced() then
-		return
-	end
+	if self.parent:IsSilenced() then return end
 
 	if self:CastShield() or self:CastPortal() or self:CastHammer() or self:CastEinSof() then
 		self:PlayEfxAutoCast()
@@ -109,9 +104,9 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 	local cd_mult = 0.5
 
 	-- UP 6.11
-	if self.ability:GetRank(11) then
-		cd_mult = cd_mult + 0.2
-	end
+	-- if self.ability:GetRank(11) then
+	-- 	cd_mult = cd_mult + 0.2
+	-- end
 	
 	self.manacost = ability:GetManaCost(ability:GetLevel()) * autocast_manacost * 0.01
 	if self.parent:GetMana() < self.manacost then return end

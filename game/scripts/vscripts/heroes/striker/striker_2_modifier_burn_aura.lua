@@ -23,7 +23,7 @@ function striker_2_modifier_burn_aura:GetModifierAura()
 end
 
 function striker_2_modifier_burn_aura:GetAuraRadius()
-	return 400
+	return self:GetAbility():GetSpecialValueFor("special_burn_radius")
 end
 
 function striker_2_modifier_burn_aura:GetAuraSearchTeam()

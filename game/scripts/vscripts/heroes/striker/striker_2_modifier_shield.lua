@@ -18,70 +18,40 @@ function striker_2_modifier_shield:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.magic_immunity = false
 
 	local hits = self.ability:GetSpecialValueFor("hits")
-	self.chance_hero = self.ability:GetSpecialValueFor("chance_hero")
-	self.chance = self.ability:GetSpecialValueFor("chance")
+	if hits == 6 then self:PlayEfxKnives() end
 
-	-- UP 2.11
-	if self.ability:GetRank(11) then
-		AddBonus(self.ability, "_2_DEF", self.parent, 12, 0, nil)
-	end
-
-	-- UP 2.21
-	if self.ability:GetRank(21) then
-		self:PlayEfxKnives()
-	end
-
-	-- UP 2.31
-	if self.ability:GetRank(31) then
+	if self.ability:GetSpecialValueFor("special_burn_radius") > 0 then
 		self.parent:AddNewModifier(self.parent, self.ability, "striker_2_modifier_burn_aura", {})
 	end
 
-	-- UP 2.41
-	if self.ability:GetRank(41) then
-		self.magic_immunity = true
+	if self.ability:GetSpecialValueFor("special_spell_immunity") == 1 then
 		self:PlayEfxBKB()
 	end
 
 	if IsServer() then
-		self:SetStackCount(hits)
+		self:SetStackCount(self.ability:GetSpecialValueFor("hits"))
 		self:PlayEfxStart()
 	end
 end
 
 function striker_2_modifier_shield:OnRefresh(kv)
 	local hits = self.ability:GetSpecialValueFor("hits")
-	self.chance_hero = self.ability:GetSpecialValueFor("chance_hero")
-	self.chance = self.ability:GetSpecialValueFor("chance")
+	if hits == 6 then self:PlayEfxKnives() end
 
-	-- UP 2.11
-	if self.ability:GetRank(11) then
-		RemoveBonus(self.ability, "_2_DEF", self.parent)
-		AddBonus(self.ability, "_2_DEF", self.parent, 12, 0, nil)
+	if self.ability:GetSpecialValueFor("special_burn_radius") > 0 then
+		self.parent:AddNewModifier(self.parent, self.ability, "striker_2_modifier_burn_aura", {})
 	end
 
-	-- UP 2.21
-	if self.ability:GetRank(21) then
-		self:PlayEfxKnives()
-	end
-
-	-- UP 2.31
-	if self.ability:GetRank(31) then
-		self.parent:AddNewModifier(self.caster, self.ability, "striker_2_modifier_burn_aura", {})
-	end
-
-	-- UP 2.41
-	if self.ability:GetRank(41) then
-		self.magic_immunity = true
+	if self.ability:GetSpecialValueFor("special_spell_immunity") == 1 then
 		self:PlayEfxBKB()
 	end
-	
+
 	if IsServer() then
-        self:SetStackCount(hits)
-        self:PlayEfxStart()
-    end
+		self:SetStackCount(self.ability:GetSpecialValueFor("hits"))
+		self:PlayEfxStart()
+	end
 end
 
 function striker_2_modifier_shield:OnRemoved()
@@ -101,9 +71,11 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function striker_2_modifier_shield:CheckState()
-	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = self.magic_immunity
-	}
+	local state = {}
+
+	if self:GetAbility():GetSpecialValueFor("special_spell_immunity") == 1 then
+		table.insert(state, MODIFIER_STATE_MAGIC_IMMUNE, true)
+	end
 
 	return state
 end
@@ -119,19 +91,15 @@ end
 
 function striker_2_modifier_shield:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
-	self:DecrementLayer(keys.attacker)
+	self:DecrementStackCount()
 end
 
 function striker_2_modifier_shield:GetModifierPhysical_ConstantBlock(keys)
     if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
 
-	-- UP 2.21
-	if self.ability:GetRank(21) then
-		self:ApplyCounter(keys.attacker, keys.damage_flags, keys.damage)
-	end
-
-    self:PlayEfxBlocked(keys.damage)
+    self:PlayEfxBlocked(keys)
+	self:ApplyCounter(keys)
 
 	if self:GetStackCount() < 1 then
 		self:Destroy()
@@ -143,42 +111,22 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function striker_2_modifier_shield:DecrementLayer(attacker)
-	local chance = self.chance_hero
-
-	if attacker:IsIllusion()
-	or attacker:IsHero() == false then
-		chance = self.chance
-	end
-	
-	if RandomFloat(1, 100) <= chance then
-		self:DecrementStackCount()
-	end
-end
-
-function striker_2_modifier_shield:ApplyCounter(attacker, damage_flags, damage)
-	if attacker == nil then return end
-	local base_stats = attacker:FindAbilityByName("base_stats")
-	if base_stats == nil then return end
-	if base_stats.has_crit == false then return end
+function striker_2_modifier_shield:ApplyCounter(keys)
+	local return_percent = self.ability:GetSpecialValueFor("special_return")
+	if return_percent == 0 then return end
+	if keys.attacker == nil then return end
 
 	local damageTable = {
-		victim = attacker,
+		victim = keys.attacker,
 		attacker = self.caster,
-		damage = damage,
+		damage = keys.damage * return_percent * 0.01,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 		ability = self.ability,
 		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 	}
 
-	if damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
+	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
 		ApplyDamage(damageTable)
-
-		if attacker:IsAlive() then
-			attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-				duration = CalcStatus(1, self.caster, attacker)
-			})
-		end
 	end
 end
 
@@ -195,10 +143,10 @@ function striker_2_modifier_shield:PlayEfxStart()
     if IsServer() then self.parent:EmitSound("Hero_TemplarAssassin.Refraction") end
 end
 
-function striker_2_modifier_shield:PlayEfxBlocked(damage)
+function striker_2_modifier_shield:PlayEfxBlocked(keys)
 	local particle_cast = "particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(damage, 0, 0 ))
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(keys.damage, 0, 0 ))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
     if IsServer() then self.parent:EmitSound("Hero_Striker.Shield.Block") end

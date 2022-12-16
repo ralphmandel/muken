@@ -36,6 +36,7 @@ end
 
 function striker_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_UNIT_MOVED,
 		MODIFIER_EVENT_ON_ORDER,
@@ -44,6 +45,10 @@ function striker_1_modifier_passive:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function striker_1_modifier_passive:GetModifierAttackRangeBonus(keys)
+	return self:GetAbility():GetSpecialValueFor("atk_range")
 end
 
 function striker_1_modifier_passive:OnStateChanged(keys)
@@ -107,32 +112,9 @@ end
 
 function striker_1_modifier_passive:PerformBlink(target)
 	self:CancelCombo(true)
-
-	-- UP 1.11
-	if self.ability:GetRank(11) then
-		self.parent:AddNewModifier(self.caster, self.ability, "striker_1_modifier_immune", {})
-	end
-
-	-- UP 1.12
-	if self.ability:GetRank(12) then
-		self:PerformAfterShake()
-	end
-
-	-- UP 1.31
-	if self.ability:GetRank(31) then
-		self.ability:StartCooldown(12)
-	end
-
-	-- UP 1.32
-	if self.ability:GetRank(32) then
-		self.parent:AddNewModifier(self.caster, self.ability, "base_stats_mod_crit_bonus", {crit_damage = -50})
-		AddBonus(self.ability, "_2_LCK", self.parent, 100, 0, nil)
-	end
-
-	-- UP 1.41
-	if self.ability:GetRank(41) then
-		self:PerformMirrorSonic(RandomInt(0, 2), target)
-	end
+	self:PerformAfterShake()
+	self:PerformMirrorSonic(self.parent:IsIllusion(), target)
+	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
 	local agi = self.ability:GetSpecialValueFor("agi")
 	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
@@ -184,8 +166,6 @@ end
 function striker_1_modifier_passive:CancelCombo(bRepeat)
 	if self.sonicblow == false then return end
 	if bRepeat == false then
-		self.parent:RemoveModifierByNameAndCaster("striker_1_modifier_immune", self.caster)
-
 		if self.parent:IsIllusion() and self.sonic_mirror == true then
 			local caster_mod = self.owner:FindModifierByName("striker_1_modifier_passive")
 			for i = #caster_mod.illu_array, 1, -1 do
@@ -199,67 +179,71 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 		end
 	end
 
-	local mod = self.parent:FindAllModifiersByName("base_stats_mod_crit_bonus")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
 	self.hits = 0
 	self.sonicblow = false
 end
 
 function striker_1_modifier_passive:ApplyKnockback(target)
-	if target:IsMagicImmune() then return end
+	if RandomFloat(1, 100) > self.ability:GetSpecialValueFor("knockback_chance") then return end
 
-	local knockback_duration = 0.1
-	local knockback_distance = 25
-
-	-- UP 1.21
-	if self.ability:GetRank(21) 
-	and RandomFloat(1, 100) <= 25 then
-		knockback_duration = 1
-		knockback_distance = 75
-	end
-
-	local knockbackProperties =
-	{
-		duration = knockback_duration,
-		knockback_duration = knockback_duration,
-		knockback_distance = knockback_distance,
+	target:AddNewModifier(self.caster, nil, "modifier_knockback", {
+		duration = 0.5,
+		knockback_duration = 0.5,
+		knockback_distance = 75,
 		center_x = self.parent:GetAbsOrigin().x + 1,
 		center_y = self.parent:GetAbsOrigin().y + 1,
 		center_z = self.parent:GetAbsOrigin().z,
-		knockback_height = 10,
-	}
+		knockback_height = 12,
+	})
 
-	target:AddNewModifier(self.caster, nil, "modifier_knockback", knockbackProperties)
 	if IsServer() then target:EmitSound("Hero_Spirit_Breaker.Charge.Impact") end
 end
 
 function striker_1_modifier_passive:PerformAfterShake(target)
-	local radius = 275
+	local damage = self.ability:GetSpecialValueFor("special_shake_damage")
+	local radius = self.ability:GetSpecialValueFor("special_shake_radius")
+	if radius == 0 then return end
+
 	local enemies = FindUnitsInRadius(
-        self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+        self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         0, 0, false
     )
 
     for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.5})
+		self:PlayEfxScreenShake(enemy)
+
+		local mod = enemy:FindAllModifiersByName("_modifier_movespeed_debuff")
+		for _,modifier in pairs(mod) do
+			if modifier:GetAbility() == self.ability then modifier:Destroy() end
+		end
+
+		enemy:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			duration = CalcStatus(1.5, self.caster, enemy),
+			percent = 100
+		})
+
+		ApplyDamage({
+			victim = enemy, attacker = self.caster,
+			damage = damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self.ability
+		})
     end
 
     GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)
 	self:PlayEfxAfterShake(radius)
 end
 
-function striker_1_modifier_passive:PerformMirrorSonic(number, target)
-	if self.parent:IsIllusion() then return end
-
+function striker_1_modifier_passive:PerformMirrorSonic(bIllusion, target)
+	local radius = self.ability:GetSpecialValueFor("special_copy_range")
+	local number = RandomInt(0, self.ability:GetSpecialValueFor("special_copy_number"))
 	if number <= 0 then return end
+	if bIllusion then return end
+
 	local enemies = FindUnitsInRadius(
-        self.caster:GetTeamNumber(), target:GetOrigin(), nil, 500,
+        self.caster:GetTeamNumber(), target:GetOrigin(), nil, radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
     )
@@ -358,4 +342,12 @@ function striker_1_modifier_passive:PlayEfxAfterShake(radius)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
 
 	if IsServer() then self.parent:EmitSound("Hero_EarthShaker.Totem") end
+end
+
+function striker_1_modifier_passive:PlayEfxScreenShake(target)
+	local string = "particles/bioshadow/bioshadow_poison_hit_shake.vpcf"
+	local effect = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+	ParticleManager:SetParticleControl(effect, 1, Vector(100, 0, 0))
+	ParticleManager:ReleaseParticleIndex(effect)
 end
