@@ -1,76 +1,9 @@
 striker_4__hammer = class({})
 LinkLuaModifier("striker_4_modifier_hammer", "heroes/striker/striker_4_modifier_hammer", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
-
-    function striker_4__hammer:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return duration end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
-        local base_stats = caster:FindAbilityByName("base_stats")
-
-        if caster:GetTeamNumber() == target:GetTeamNumber() then
-            if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
-        else
-            if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
-            duration = duration * (1 - target:GetStatusResistance())
-        end
-        
-        return duration
-    end
-
-    function striker_4__hammer:AddBonus(string, target, const, percent, time)
-        local base_stats = target:FindAbilityByName("base_stats")
-        if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
-    end
-
-    function striker_4__hammer:RemoveBonus(string, target)
-        local stringFormat = string.format("%s_modifier_stack", string)
-        local mod = target:FindAllModifiersByName(stringFormat)
-        for _,modifier in pairs(mod) do
-            if modifier:GetAbility() == self then modifier:Destroy() end
-        end
-    end
-
-    function striker_4__hammer:GetRank(upgrade)
-        local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_dawnbreaker" then return end
-
-		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[4][upgrade] end
-    end
-
-    function striker_4__hammer:OnUpgrade()
-        local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_dawnbreaker" then return end
-
-        local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then
-            base_hero.ranks[4][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
-        end
-
-        local charges = 1
-
-        -- UP 4.11
-        if self:GetRank(11) then
-            charges = charges * 2 -- cast point
-        end
-
-        -- UP 4.41
-        if self:GetRank(41) then
-            charges = charges * 3 -- AoE radius
-        end
-
-        self:SetCurrentAbilityCharges(charges)
-    end
-
-    function striker_4__hammer:Spawn()
-        self:SetCurrentAbilityCharges(0)
-    end
 
 -- SPELL START
 
@@ -116,33 +49,12 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
     function striker_4__hammer:LandHammer(target, hammer_radius, bGesture)
         local caster = self:GetCaster()
         local level = self:CalculateLevel(caster, target)
-        local isDamageRadius = false
+        local break_duration = self:GetSpecialValueFor("special_break_duration")
 
         if target:HasModifier("bloodstained_u_modifier_copy") == false
 		and target:IsIllusion() then
 			target:ForceKill(false)
 		end
-
-        local stun_duration = self:GetSpecialValueFor("stun_duration") * level
-        local damage = self:GetAbilityDamage() * level
-
-        -- UP 4.21
-        if self:GetRank(21) then
-            stun_duration = (self:GetSpecialValueFor("stun_duration") + 0.75) * level
-        end
-
-        -- UP 4.31
-        if self:GetRank(31) then
-            isDamageRadius = true
-        end
-
-        local damageTable = {
-            victim = target,
-            attacker = caster,
-            damage = damage,
-            damage_type = self:GetAbilityDamageType(),
-            ability = self,
-        }
     
         local enemies = FindUnitsInRadius(
             caster:GetTeamNumber(), target:GetOrigin(), nil, hammer_radius,
@@ -151,13 +63,27 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         )
 
         for _,enemy in pairs(enemies) do
-            if isDamageRadius or enemy == target then
-                damageTable.victim = enemy
-                ApplyDamage(damageTable)
-            end
+            local total_damage = ApplyDamage({
+                victim = enemy,
+                attacker = caster,
+                damage = self:GetSpecialValueFor("damage") * level,
+                damage_type = self:GetAbilityDamageType(),
+                ability = self
+            })
+
+            local heal = total_damage * self:GetSpecialValueFor("special_lifesteal") * 0.01
+            if heal > 0 then caster:Heal(heal, self) end
 
             if enemy:IsAlive() then
-                enemy:AddNewModifier(caster, self, "_modifier_stun", {duration = stun_duration})
+                enemy:AddNewModifier(caster, self, "_modifier_stun", {
+                    duration = self:GetSpecialValueFor("stun_duration") * level
+                })
+
+                if break_duration > 0 then
+                    enemy:AddNewModifier(caster, self, "_modifier_break", {
+                        duration = CalcStatus(break_duration * level, caster, enemy)
+                    })
+                end
             end
         end
     
@@ -168,13 +94,15 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
     end
 
     function striker_4__hammer:CalculateLevel(caster, target)
-        local level = 1
-        if caster:GetLevel() % 2 == 0 and target:GetLevel() % 3 == 0 then level = level + 1 end
-        if caster:GetLevel() % 3 == 0 and target:GetLevel() % 2 == 0 then level = level + 1 end
-        if caster:GetLevel() == target:GetLevel() then return 2 end
-        if target:IsHero() == false then return 1 end
+        local level_min = self:GetSpecialValueFor("level_min")
 
-        return level
+        if caster:GetLevel() == target:GetLevel() then level_min = level_min + 1 end
+        if (caster:GetLevel() % 2 == 0 and target:GetLevel() % 3 == 0)
+        or (caster:GetLevel() % 3 == 0 and target:GetLevel() % 2 == 0) then
+            level_min = level_min + 1
+        end
+
+        return level_min
     end
 
     function striker_4__hammer:CastFilterResultTarget(hTarget)
@@ -192,29 +120,8 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         return UF_SUCCESS
     end
 
-    function striker_4__hammer:GetCastRange(vLocation, hTarget)
-        return self:GetSpecialValueFor("cast_range")
-    end
-
-    function striker_4__hammer:GetCastPoint()
-        local cast_point = self:GetSpecialValueFor("cast_point")
-        if self:GetCurrentAbilityCharges() == 0 then return cast_point end
-        if self:GetCurrentAbilityCharges() % 2 == 0 then return cast_point - 1 end
-        return cast_point
-    end
-
     function striker_4__hammer:GetAOERadius()
-        local hammer_radius = self:GetSpecialValueFor("hammer_radius")
-        if self:GetCurrentAbilityCharges() == 0 then return hammer_radius end
-        if self:GetCurrentAbilityCharges() % 3 == 0 then return hammer_radius + 100 end
-        return hammer_radius
-    end
-
-    function striker_4__hammer:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
+        return self:GetSpecialValueFor("hammer_radius")
     end
 
 -- EFFECTS
@@ -229,11 +136,6 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
         ParticleManager:SetParticleControl(self.efx_light, 0, target:GetOrigin())
         ParticleManager:SetParticleControl(self.efx_light, 1, target:GetOrigin())
         ParticleManager:SetParticleControl(self.efx_light, 2, Vector(radius, radius, 0))
-
-        -- UP 4.11
-        if self:GetRank(11) then
-            flRate = 1.7
-        end
 
         if bGesture then caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, flRate) end
 

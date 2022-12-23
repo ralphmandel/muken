@@ -1,16 +1,7 @@
 striker_3_modifier_portal = class({})
 
-function striker_3_modifier_portal:IsHidden()
-	return true
-end
-
-function striker_3_modifier_portal:IsPurgable()
-	return false
-end
-
-function striker_3_modifier_portal:IsDebuff()
-	return false
-end
+function striker_3_modifier_portal:IsHidden() return true end
+function striker_3_modifier_portal:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -22,22 +13,12 @@ function striker_3_modifier_portal:OnCreated(kv)
 	self.hidden = false
 	self.hidden_level = 0
 
-	self.portal_radius = self.ability:GetSpecialValueFor("portal_radius")
-	local fow_radius = self.ability:GetSpecialValueFor("fow_radius")
-
-	-- UP 3.41
-	if self.ability:GetRank(41) then
-		fow_radius = fow_radius + 200
-
-		Timers:CreateTimer((3), function()
-			if self then self:HiddenPortal() end
-		end)
-	end
+	self:HiddenPortal(self.ability:GetSpecialValueFor("special_invi_delay"))
 
 	if IsServer() then
 		self:StartIntervalThink(0.4)
 		self:PullEnemies()
-		self:PlayEfxStart(fow_radius)
+		self:PlayEfxStart()
 	end
 end
 
@@ -80,26 +61,32 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function striker_3_modifier_portal:HiddenPortal()
-	if self.parent == nil then return end
-	if IsValidEntity(self.parent) == false then return end
+function striker_3_modifier_portal:HiddenPortal(delay)
+	if delay == 0 then return end
+	local parent = self.parent
 
-	self.hidden = true
-	self.hidden_level = 2
-
-	local string = "particles/econ/events/fall_2021/blink_dagger_fall_2021_end.vpcf"
-	local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, self.parent)
-	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
-
-	if IsServer() then self.parent:EmitSound("Hero_PhantomAssassin.Blur.Break") end
+	Timers:CreateTimer((delay), function()
+		if self == nil then return end
+		if parent == nil then return end
+		if IsValidEntity(parent) == false then return end
+	
+		self.hidden = true
+		self.hidden_level = 2
+	
+		local string = "particles/econ/events/fall_2021/blink_dagger_fall_2021_end.vpcf"
+		local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, parent)
+		ParticleManager:SetParticleControl(particle, 0, parent:GetOrigin())
+	
+		if IsServer() then parent:EmitSound("Hero_PhantomAssassin.Blur.Break") end
+	end)
 end
 
-function striker_3_modifier_portal:PullEnemies(pull_radius)
-	local pull_radius = self.ability:GetSpecialValueFor("pull_radius")
-
+function striker_3_modifier_portal:PullEnemies()
 	local enemies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, pull_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
+		self.ability:GetSpecialValueFor("pull_radius"),
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
 	)
 
     for _,enemy in pairs(enemies) do
@@ -113,8 +100,10 @@ end
 
 function striker_3_modifier_portal:FindHeroes()
 	local heroes = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.portal_radius,
-		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 1, false
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil,
+		self.ability:GetSpecialValueFor("portal_radius"),
+		DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 1, false
 	)
 
     for _,hero in pairs(heroes) do
@@ -129,7 +118,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function striker_3_modifier_portal:PlayEfxStart(fow_radius)
+function striker_3_modifier_portal:PlayEfxStart()
 	local string = "particles/striker/portal/striker_portal_ambient.vpcf"
 	self.particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
@@ -137,8 +126,10 @@ function striker_3_modifier_portal:PlayEfxStart(fow_radius)
 	ParticleManager:SetParticleControl(self.particle, 20, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(self.particle)
 
-	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), fow_radius, self:GetDuration(), false)
 	if IsServer() then self.parent:EmitSound("Hero_Abaddon.DeathCoil.Cast") end
+
+	local fow_radius = self.ability:GetSpecialValueFor("fow_radius")
+	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), fow_radius, self:GetDuration(), false)
 end
 
 function striker_3_modifier_portal:PlayEfxEnd(bExpire)

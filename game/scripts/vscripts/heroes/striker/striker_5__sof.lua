@@ -2,66 +2,13 @@ striker_5__sof = class({})
 LinkLuaModifier("striker_5_modifier_sof", "heroes/striker/striker_5_modifier_sof", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_illusion_sof", "heroes/striker/striker_5_modifier_illusion_sof", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_trail", "heroes/striker/striker_5_modifier_trail", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_5_modifier_trail_effect", "heroes/striker/striker_5_modifier_trail_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_return", "heroes/striker/striker_5_modifier_return", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("striker_5_modifier_debuff", "heroes/striker/striker_5_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-    function striker_5__sof:CalcStatus(duration, caster, target)
-        if caster == nil or target == nil then return duration end
-        if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
-        local base_stats = caster:FindAbilityByName("base_stats")
-
-        if caster:GetTeamNumber() == target:GetTeamNumber() then
-            if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
-        else
-            if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
-            duration = duration * (1 - target:GetStatusResistance())
-        end
-        
-        return duration
-    end
-
-    function striker_5__sof:AddBonus(string, target, const, percent, time)
-        local base_stats = target:FindAbilityByName("base_stats")
-        if base_stats then base_stats:AddBonusStat(self:GetCaster(), self, const, percent, time, string) end
-    end
-
-    function striker_5__sof:RemoveBonus(string, target)
-        local stringFormat = string.format("%s_modifier_stack", string)
-        local mod = target:FindAllModifiersByName(stringFormat)
-        for _,modifier in pairs(mod) do
-            if modifier:GetAbility() == self then modifier:Destroy() end
-        end
-    end
-
-    function striker_5__sof:GetRank(upgrade)
-        local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_dawnbreaker" then return end
-
-		local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then return base_hero.ranks[5][upgrade] end
-    end
-
-    function striker_5__sof:OnUpgrade()
-        local caster = self:GetCaster()
-        if caster:IsIllusion() then return end
-        if caster:GetUnitName() ~= "npc_dota_hero_dawnbreaker" then return end
-
-        local base_hero = caster:FindAbilityByName("base_hero")
-        if base_hero then
-            base_hero.ranks[5][0] = true
-            if self:GetLevel() == 1 then base_hero:CheckSkills(1, self) end
-        end
-
-        self:CheckAbilityCharges(1)
-    end
-
     function striker_5__sof:Spawn()
-        self:SetCurrentAbilityCharges(0)
         self.autocast = false
     end
 
@@ -70,9 +17,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function striker_5__sof:OnSpellStart()
         self.autocast = false
         self:PerformAbility()
-
-        -- UP 5.11
-        self.fisrt_strike = self:GetRank(11)
     end
 
     function striker_5__sof:PerformAbility()
@@ -80,8 +24,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         self:Throw_hammer()
 
         local caster = self:GetCaster()
-        self.buff_duration = CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
-        caster:AddNewModifier(caster, self, "striker_5_modifier_sof", {duration = self.buff_duration})
+        caster:AddNewModifier(caster, self, "striker_5_modifier_sof", {
+            duration = CalcStatus(self:GetSpecialValueFor("buff_duration"), caster, caster)
+        })
         
         return true
     end
@@ -89,13 +34,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     function striker_5__sof:Throw_hammer()
         local caster = self:GetCaster()
         local distance = self:GetSpecialValueFor("distance")
-        local radius = 175
+        local radius = self:GetSpecialValueFor("hammer_radius")
         local speed = 1500
-
-        -- UP 5.21
-        if self:GetRank(21) then
-            distance = distance + 500
-        end
         
         local point = caster:GetOrigin() + caster:GetForwardVector():Normalized() * 100
         local hammer_direction = point - caster:GetOrigin()
@@ -132,11 +72,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self.hammer == iProjectileHandle then
             local point = ProjectileManager:GetLinearProjectileLocation(iProjectileHandle)
             GridNav:DestroyTreesAroundPoint(point, 150, true)
-
-            -- UP 5.21
-            if self:GetRank(21) then
-                self:CreateTrail(point)
-            end
+            self:CreateTrail(point)
         end
     end
 
@@ -146,25 +82,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         if self.hammer == iProjectileHandle then
             if target then
                 self:HammerHit(target)
-
-                if self.fisrt_strike then
-                    self.fisrt_strike = false
-                    ApplyDamage({
-                        victim = target, attacker = self:GetCaster(),
-                        damage = RandomInt(100, 150),
-                        damage_type = self:GetAbilityDamageType(),
-                        ability = self
-                    })
-                end
-
-                -- UP 5.21
-                if self:GetRank(21) == false
-                and target:IsHero() then
-                    self:PlayEfxHammerGround(target:GetOrigin())
-                    self.hammer_loc = location
-                    self.hammer = nil
-                    return true
-                end
             else
                 self:PlayEfxHammerGround(location)
                 self.hammer_loc = location
@@ -180,11 +97,15 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
     function striker_5__sof:CreateTrail(loc)
         local caster = self:GetCaster()
-        local thinker = CreateModifierThinker(
-            caster, self, "striker_5_modifier_trail",{
-                duration = self.buff_duration, x = loc.x, y = loc.y,
-            }, loc, caster:GetTeamNumber(), false
-        )
+        local trail_duration = self:GetSpecialValueFor("special_trail_duration")
+
+        if trail_duration > 0 then
+            local thinker = CreateModifierThinker(
+                caster, self, "striker_5_modifier_trail",{
+                    duration = trail_duration, x = loc.x, y = loc.y,
+                }, loc, caster:GetTeamNumber(), false
+            )
+        end
     end
 
     function striker_5__sof:HammerHit(target)
@@ -193,6 +114,13 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         target:AddNewModifier(caster, self, "striker_5_modifier_debuff", {
             duration = CalcStatus(slow_duration, caster, target)
+        })
+
+        ApplyDamage({
+            victim = target, attacker = self:GetCaster(),
+            damage = self:GetSpecialValueFor("damage_impact"),
+            damage_type = self:GetAbilityDamageType(),
+            ability = self
         })
     
         self:PlayEfxHammerHit(target)
@@ -208,17 +136,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             ParticleManager:DestroyLinearProjectile(self.hammer)
             self.hammer = nil
         end
-    end
-
-    function striker_5__sof:GetManaCost(iLevel)
-        local manacost = self:GetSpecialValueFor("manacost")
-        local level = (1 + ((self:GetLevel() - 1) * 0.05))
-        if self:GetCurrentAbilityCharges() == 0 then return 0 end
-        return manacost * level
-    end
-
-    function striker_5__sof:CheckAbilityCharges(charges)
-        self:SetCurrentAbilityCharges(charges)
     end
 
 -- EFFECTS

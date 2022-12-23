@@ -33,12 +33,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"12"
+				"chance"		"15"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"		    "5"
+				"hits"		    "4"
 			}
             "03"
 			{
@@ -161,7 +161,6 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
-		"AbilityCastRange"      		"600"
 
 		"AbilitySpecial"
 		{
@@ -178,22 +177,22 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"pull_radius"	    "180"
+				"pull_radius"	    "150"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"fow_radius"	    "240"
+				"fow_radius"	    "180"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"tick_interval"	    "0.75"
+				"tick_interval"	    "0.5"
 			}
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_ticks"	        "9"
+				"max_ticks"	        "10"
 			}
             "07"
 			{
@@ -205,10 +204,35 @@
 				"var_type"		    "FIELD_FLOAT"
 				"init_amount"	    "40" // x4.31
 			}
+            "09"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"tick_decrease"	    "1"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+			}
+            "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_invi_delay"	"0"
+			}
+            "17"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_purge_chance"	"0"
+			}
+            "18"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_debuff"	    "0"
+			}
+            "19"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_movespeed"	    "0"
 			}
 		}
 	}
@@ -223,13 +247,13 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityDamage"					"100"
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_IDLE"
+        "AbilityCastPoint"       		"2"
 		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
@@ -244,20 +268,35 @@
 				"var_type"		    "FIELD_FLOAT"
 				"stun_duration"		"1"
 			}
-            "12"
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage"		    "150"
+			}
+            "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"cast_point"		"2"
 			}
-            "13"
+            "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"cast_range"		"900"
+				"level_min"		    "1"
 			}
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"rank"			    "6 7 8 9 10 11 12 13 14 15 16"
+			}
+            "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_break_duration"	"0"
+			}
+            "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_lifesteal"	        "0"
 			}
 		}
 	}
@@ -276,11 +315,20 @@
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-        "AbilityDamage"					"15"
 		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage_impact"		"50"
+			}
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage_hit"		"10"
+			}
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -289,27 +337,47 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "70"
+				"hammer_radius"		"200"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow_duration"		"3"
+				"slow"		        "50"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"		"12"
+				"slow_duration"		"5"
 			}
-            "08"
+            "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"swap"		        "30"
+				"buff_duration"		"15"
+			}
+            "07"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"swap"		        "50"
 			}
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"rank"			    "6 7 8 9 10 11 12 13 14 15 16"
+			}
+            "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_trail_duration"    "0"
+			}
+            "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_damage_taken"      "0"
+			}
+            "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_lifesteal"         "0"
 			}
 		}
 	}
@@ -331,17 +399,22 @@
             "01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"autocast_manacost"		"75 72.5 70 67.5 65 62.5 60"
+				"autocast_manacost"		"50"
 			}
-            "03"
+            "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"chance_cooldown"		"100"
 			}
-            "14"
+            "03"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "0"
+				"var_type"		        "FIELD_FLOAT"
+				"mana_cost"		        "150"
+			}
+            "04"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"mana_regen"		    "10"
 			}
 			"15"
 			{

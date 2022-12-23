@@ -1,16 +1,7 @@
 striker_5_modifier_debuff = class({})
 
-function striker_5_modifier_debuff:IsHidden()
-	return true
-end
-
-function striker_5_modifier_debuff:IsPurgable()
-	return true
-end
-
-function striker_5_modifier_debuff:IsDebuff()
-	return true
-end
+function striker_5_modifier_debuff:IsHidden() return true end
+function striker_5_modifier_debuff:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -19,10 +10,11 @@ function striker_5_modifier_debuff:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	local slow = self.ability:GetSpecialValueFor("slow")
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+		percent = self.ability:GetSpecialValueFor("slow")
+	})
 
-	if IsServer() then self:StartIntervalThink(0.5) end
+	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 function striker_5_modifier_debuff:OnRefresh(kv)
@@ -47,13 +39,12 @@ end
 
 function striker_5_modifier_debuff:OnIntervalThink()
 	ApplyDamage({
-		victim = self.parent, attacker = self.caster,
-		damage = RandomInt(5, 10),
+		victim = self.parent, attacker = self.caster, damage = 1,
 		damage_type = self.ability:GetAbilityDamageType(),
 		ability = self.ability
 	})
 
-	if IsServer() then self:StartIntervalThink(0.5) end
+	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------

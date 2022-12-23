@@ -7,7 +7,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 -- INIT
 
     function striker_1__blow:Spawn()
-        --self:SetCurrentAbilityCharges(1)
         if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
@@ -28,7 +27,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     end
 
     function striker_1__blow:GetAbilityTextureName()
-        --if self:GetCurrentAbilityCharges() == 2 then return "striker_blow_alter" end
+        if self:GetCaster():HasModifier("striker_5_modifier_sof")
+        or self:GetCaster():HasModifier("striker_5_modifier_illusion_sof")
+        or self:GetCaster():HasModifier("striker_5_modifier_return") then
+            return "striker_blow_alter"
+        end
+
         return "striker_blow"
     end
 

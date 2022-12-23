@@ -1,16 +1,7 @@
 striker_5_modifier_illusion_sof = class({})
 
-function striker_5_modifier_illusion_sof:IsHidden()
-	return false
-end
-
-function striker_5_modifier_illusion_sof:IsPurgable()
-	return false
-end
-
-function striker_5_modifier_illusion_sof:IsDebuff()
-	return false
-end
+function striker_5_modifier_illusion_sof:IsHidden() return false end
+function striker_5_modifier_illusion_sof:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -21,11 +12,6 @@ function striker_5_modifier_illusion_sof:OnCreated(kv)
 
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self:SetHammer(2, true, "no_hammer")
-
-	-- UP 5.31
-	if self.ability:GetRank(31) then
-		self.swap = self.swap + 20
-	end
 end
 
 function striker_5_modifier_illusion_sof:OnRefresh(kv)
@@ -56,8 +42,8 @@ end
 
 function striker_5_modifier_illusion_sof:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	local min_dmg = self.ability:GetAbilityDamage() - 2
-	local max_dmg = self.ability:GetAbilityDamage() + 2
+	local min_dmg = self.ability:GetSpecialValueFor("damage_hit") * 0.8
+	local max_dmg = self.ability:GetSpecialValueFor("damage_hit") * 1.2
 
 	ApplyDamage({
 		victim = keys.target, attacker = self.caster,
@@ -76,7 +62,6 @@ function striker_5_modifier_illusion_sof:SetHammer(iMode, bHide, activity)
 
 
 	if sonicblow and base_hero_mod and cosmetics then
-		sonicblow:CheckAbilityCharges(iMode)
 		cosmetics:HideCosmetic("models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", bHide)
 		base_hero_mod:ChangeActivity(activity)
 

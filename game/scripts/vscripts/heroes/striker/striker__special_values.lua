@@ -86,34 +86,48 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "striker_3__portal" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 
 		if caster:FindAbilityByName("striker_3__portal_rank_11") then
+			if value_name == "tick_decrease" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_3__portal_rank_21") then
+			if value_name == "portal_duration" then return 1 end
+			if value_name == "fow_radius" then return 1 end
+			if value_name == "special_invi_delay" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_3__portal_rank_31") then
+			if value_name == "special_purge_chance" then return 1 end
 		end
 		
 		if caster:FindAbilityByName("striker_3__portal_rank_41") then
+			if value_name == "special_debuff" then return 1 end
+			if value_name == "special_movespeed" then return 1 end
 		end
 	end
 
 	if ability:GetAbilityName() == "striker_4__hammer" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 
 		if caster:FindAbilityByName("striker_4__hammer_rank_11") then
+			if value_name == "hammer_radius" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_4__hammer_rank_21") then
+			if value_name == "stun_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_4__hammer_rank_31") then
+			if value_name == "special_break_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_4__hammer_rank_41") then
+			if value_name == "special_lifesteal" then return 1 end
+			if value_name == "damage" then return 1 end
 		end
 	end
 
@@ -122,15 +136,22 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 
 		if caster:FindAbilityByName("striker_5__sof_rank_11") then
+			if value_name == "damage_impact" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_5__sof_rank_21") then
+			if value_name == "damage_hit" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_5__sof_rank_31") then
+			if value_name == "distance" then return 1 end
+			if value_name == "slow" then return 1 end
+			if value_name == "special_trail_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_5__sof_rank_41") then
+			if value_name == "special_damage_taken" then return 1 end
+			if value_name == "special_lifesteal" then return 1 end
 		end
 	end
 
@@ -139,15 +160,16 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 
 		if caster:FindAbilityByName("striker_u__auto_rank_11") then
+			if value_name == "chance_cooldown" then return 1 end
 		end
 
-		if caster:FindAbilityByName("striker_u__auto_rank_21") then
+		if caster:FindAbilityByName("striker_u__auto_rank_12") then
+			if value_name == "autocast_manacost" then return 1 end
 		end
 
-		if caster:FindAbilityByName("striker_u__auto_rank_31") then
-		end
-
-		if caster:FindAbilityByName("striker_u__auto_rank_41") then
+		if caster:FindAbilityByName("striker_u__auto_rank_22") then
+			if value_name == "mana_cost" then return 1 end
+			if value_name == "mana_regen" then return 1 end
 		end
 	end
 
@@ -186,8 +208,8 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "atk_range" then return 80 end
 		if value_name == "knockback_chance" then return 100 end
-		if value_name == "chance" then return 10 end
-		if value_name == "hits" then return 7 end
+		if value_name == "chance" then return 12 end
+		if value_name == "hits" then return 6 end
 		if value_name == "special_shake_damage" then return 150 end
 		if value_name == "special_shake_radius" then return 300 end
 		if value_name == "special_copy_number" then return 2 end
@@ -209,21 +231,62 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "striker_3__portal" then
 		if value_name == "AbilityManaCost" then return 90 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 - (value_level * 0.2) end
+		if value_name == "AbilityCastRange" then return 600 end
+
+		if value_name == "tick_decrease" then return 0 end
+		if value_name == "portal_duration" then return 25 end
+		if value_name == "fow_radius" then return 300 end
+		if value_name == "special_invi_delay" then return 5 end
+		if value_name == "special_purge_chance" then return 10 end
+		if value_name == "special_debuff" then return 1 end
+		if value_name == "special_movespeed" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "striker_4__hammer" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+			if caster:FindAbilityByName("striker_4__hammer_rank_11") then
+				return 150 * (1 + ((ability_level - 1) * 0.1))
+			end
+			return 150 * (1 + ((ability_level - 1) * 0.05))
+		end
+
 		if value_name == "AbilityCooldown" then return 25 - (value_level * 0.5) end
+		if value_name == "AbilityCastRange" then return 900 end
+
+		if value_name == "hammer_radius" then return 375 end
+		if value_name == "stun_duration" then return 1.5 end
+		if value_name == "special_break_duration" then return 4.5 end
+		if value_name == "special_lifesteal" then return 50 end
+		if value_name == "damage" then return 225 end
 	end
 
 	if ability:GetAbilityName() == "striker_5__sof" then
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 35 - (value_level * 0.7) end
+
+		if value_name == "damage_impact" then return 200 end
+		if value_name == "damage_hit" then return 15 end
+		if value_name == "distance" then return 1250 end
+		if value_name == "slow" then return 75 end
+		if value_name == "special_trail_duration" then return 10 end
+		if value_name == "special_damage_taken" then return -99999999 end
+		if value_name == "special_lifesteal" then return 25 end
 	end
 
 	if ability:GetAbilityName() == "striker_u__auto" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("striker_u__auto_rank_21") then
+				return 10
+			end
+			return 30
+		end
+
+		if value_name == "chance_cooldown" then return 120 end
+		if value_name == "autocast_manacost" then return 40 end
+		if value_name == "mana_cost" then return 200 end
+		if value_name == "mana_regen" then return 20 end
 	end
 
 	return 0

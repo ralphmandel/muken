@@ -1,52 +1,23 @@
 
 striker_5_modifier_trail = class({})
 
-function striker_5_modifier_trail:IsHidden()
-	return true
-end
-
-function striker_5_modifier_trail:IsDebuff()
-	return false
-end
-
-function striker_5_modifier_trail:IsPurgable()
-	return false
-end
+function striker_5_modifier_trail:IsHidden() return true end
+function striker_5_modifier_trail:IsPurgable() return false end
 
 -- AURA -----------------------------------------------------------
 
-function striker_5_modifier_trail:IsAura()
-	return true
-end
-
-function striker_5_modifier_trail:GetModifierAura()
-	return "striker_5_modifier_debuff"
-end
-
-function striker_5_modifier_trail:GetAuraRadius()
-	return self.radius
-end
-
-function striker_5_modifier_trail:GetAuraDuration()
-	return 0.5
-end
-
-function striker_5_modifier_trail:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function striker_5_modifier_trail:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-function striker_5_modifier_trail:GetAuraSearchFlags()
-	return 0
-end
+function striker_5_modifier_trail:IsAura() return true end
+function striker_5_modifier_trail:GetModifierAura() return "striker_5_modifier_debuff" end
+function striker_5_modifier_trail:GetAuraRadius() return self.radius end
+function striker_5_modifier_trail:GetAuraDuration() return 0.5 end
+function striker_5_modifier_trail:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function striker_5_modifier_trail:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+function striker_5_modifier_trail:GetAuraSearchFlags() return 0 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function striker_5_modifier_trail:OnCreated(kv)
-	self.radius = 175
+	self.radius = self:GetAbility():GetSpecialValueFor("hammer_radius")
 	self.prev_pos = Vector(kv.x, kv.y, 0)
 	self.prev_pos = GetGroundPosition(self.prev_pos, self:GetParent())
 

@@ -1,16 +1,8 @@
 striker_5_modifier_sof = class({})
 
-function striker_5_modifier_sof:IsHidden()
-	return false
-end
-
-function striker_5_modifier_sof:IsPurgable()
-	return false
-end
-
-function striker_5_modifier_sof:IsDebuff()
-	return false
-end
+function striker_5_modifier_sof:IsHidden() return false end
+function striker_5_modifier_sof:IsPurgable() return false end
+function striker_5_modifier_sof:GetPriority() return MODIFIER_PRIORITY_ULTRA end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -24,11 +16,6 @@ function striker_5_modifier_sof:OnCreated(kv)
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self:SetHammer(2, true, "no_hammer")
 
-	-- UP 5.31
-	if self.ability:GetRank(31) then
-		self.swap = self.swap + 20
-	end
-
 	if IsServer() then
 		self.parent:EmitSound("Hero_Striker.Sof.Start")
 		self.ability:EndCooldown()
@@ -39,11 +26,6 @@ end
 function striker_5_modifier_sof:OnRefresh(kv)
 	self.swap = self.ability:GetSpecialValueFor("swap")
 	self.sof_duration = self.ability:GetSpecialValueFor("sof_duration")
-
-	-- UP 5.31
-	if self.ability:GetRank(31) then
-		self.swap = self.swap + 20
-	end
 
 	if IsServer() then self.parent:EmitSound("Hero_Striker.Sof.Start") end
 end
@@ -66,6 +48,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function striker_5_modifier_sof:CheckState()
+	local state = {
+		[MODIFIER_STATE_CANNOT_MISS] = true
+	}
+
+	return state
+end
+
 function striker_5_modifier_sof:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
@@ -87,22 +77,21 @@ function striker_5_modifier_sof:GetModifierAttackSpeedPercentage(keys)
 end
 
 function striker_5_modifier_sof:GetModifierIncomingDamage_Percentage(keys)
-	-- UP 5.41
-	if self.ability:GetRank(41) then
+	local incoming = self.ability:GetSpecialValueFor("special_damage_taken")
+
+	if incoming < 0 then
 		self.ability.last_attacker = keys.attacker
 		self.ability.total_damage = self.ability.total_damage + keys.damage
-		return -99999999
 	end
 	
-	return 0
+	return incoming
 end
 
 function striker_5_modifier_sof:OnAttacked(keys)
 	if keys.attacker ~= self.parent then return end
-
-	-- UP 5.41
-	if self.ability:GetRank(41) then
-		local heal = keys.original_damage * 0.25
+	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_lifesteal") * 0.01
+	
+	if heal > 0 then
 		keys.attacker:Heal(heal, self.ability)
 		self:PlayEfxLifesteal(keys.attacker)
 	end
@@ -110,8 +99,8 @@ end
 
 function striker_5_modifier_sof:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	local min_dmg = self.ability:GetAbilityDamage() - 2
-	local max_dmg = self.ability:GetAbilityDamage() + 2
+	local min_dmg = self.ability:GetSpecialValueFor("damage_hit") * 0.8
+	local max_dmg = self.ability:GetSpecialValueFor("damage_hit") * 1.2
 
 	ApplyDamage({
 		victim = keys.target, attacker = self.caster,
@@ -130,7 +119,6 @@ function striker_5_modifier_sof:SetHammer(iMode, bHide, activity)
 
 
 	if sonicblow and base_hero_mod and cosmetics then
-		sonicblow:CheckAbilityCharges(iMode)
 		cosmetics:HideCosmetic("models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", bHide)
 		base_hero_mod:ChangeActivity(activity)
 

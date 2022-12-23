@@ -1,16 +1,7 @@
 striker_2_modifier_shield = class({})
 
-function striker_2_modifier_shield:IsHidden()
-	return false
-end
-
-function striker_2_modifier_shield:IsPurgable()
-	return true
-end
-
-function striker_2_modifier_shield:IsDebuff()
-	return false
-end
+function striker_2_modifier_shield:IsHidden() return false end
+function striker_2_modifier_shield:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

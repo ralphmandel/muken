@@ -1,16 +1,7 @@
 striker_2_modifier_burn_aura_effect = class({})
 
-function striker_2_modifier_burn_aura_effect:IsHidden()
-	return false
-end
-
-function striker_2_modifier_burn_aura_effect:IsPurgable()
-	return false
-end
-
-function striker_2_modifier_burn_aura_effect:IsDebuff()
-	return true
-end
+function striker_2_modifier_burn_aura_effect:IsHidden() return false end
+function striker_2_modifier_burn_aura_effect:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

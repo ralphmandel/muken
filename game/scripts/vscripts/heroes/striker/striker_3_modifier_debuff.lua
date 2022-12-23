@@ -1,16 +1,7 @@
 striker_3_modifier_debuff = class({})
 
-function striker_3_modifier_debuff:IsHidden()
-	return false
-end
-
-function striker_3_modifier_debuff:IsPurgable()
-	return true
-end
-
-function striker_3_modifier_debuff:IsDebuff()
-	return true
-end
+function striker_3_modifier_debuff:IsHidden() return false end
+function striker_3_modifier_debuff:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -18,59 +9,34 @@ function striker_3_modifier_debuff:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
-	self.root_count = 0
-	self.root = false
 
 	self.ticks = self.ability:GetSpecialValueFor("max_ticks")
 	self.amount = self.ability:GetSpecialValueFor("init_amount")
 	self.amount_reduction = self.ability:GetSpecialValueFor("amount_reduction")
 	self.tick_interval = self.ability:GetSpecialValueFor("tick_interval")
 
-	-- UP 3.11
-	if self.ability:GetRank(11) then
-		self.root_count = 2
-		self.root = true
-		self:PlayEfxRoot()
-	end
-
-	-- UP 3.21
-	if self.ability:GetRank(21) then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {})
-	end
-
 	if IsServer() then
 		self:ApplyTick()
 		self:PlayEfxStart()
+		if self.ability:GetSpecialValueFor("special_debuff") == 1 then
+			self:PlayEfxRoot()
+		end
 	end
 end
 
 function striker_3_modifier_debuff:OnRefresh(kv)
-	-- UP 3.11
-	if self.ability:GetRank(11) then
-		self.root_count = 2
-		self.root = true
-		self:PlayEfxRoot()
-	end
-
-	-- UP 3.21
-	if self.ability:GetRank(21) then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {})
-	end
-
 	if IsServer() then
 		self:ModifyStack(0, true)
 		self:PlayEfxStart()
+		if self.ability:GetSpecialValueFor("special_debuff") == 1 then
+			self:PlayEfxRoot()
+		end
 	end
 end
 
 function striker_3_modifier_debuff:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
 	if self.particle_root then ParticleManager:DestroyParticle(self.particle_root, false) end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_silence")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -78,8 +44,9 @@ end
 function striker_3_modifier_debuff:CheckState()
 	local state = {}
 
-	if self.root == true then
+	if self:GetAbility():GetSpecialValueFor("special_debuff") == 1 then
 		table.insert(state, MODIFIER_STATE_ROOTED, true)
+		table.insert(state, MODIFIER_STATE_SILENCED, true)
 	end
 
 	return state
@@ -96,14 +63,11 @@ end
 function striker_3_modifier_debuff:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
-	if keys.damage > 0 then self:ModifyStack(-1, false) end
+	if keys.damage > 0 then self:ModifyStack(self.ability:GetSpecialValueFor("tick_decrease"), false) end
 end
 
 function striker_3_modifier_debuff:OnIntervalThink()
-	if IsServer() then
-		self:CheckRoot()
-		self:ApplyTick()
-	end
+	if IsServer() then self:ApplyTick() end
 end
 
 function striker_3_modifier_debuff:OnStackCountChanged(old)
@@ -113,9 +77,9 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_3_modifier_debuff:ApplyTick()
-	-- UP 3.31
-	if self.ability:GetRank(31) then
-		self:ApplyPurge()
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") then
+		self.parent:Purge(true, false, false, false, false)
+		self:PlayEfxPurge()
 	end
 
 	local damageTable = {
@@ -128,7 +92,7 @@ function striker_3_modifier_debuff:ApplyTick()
 	}
 	ApplyDamage(damageTable)
 
-	self:ModifyStack(-1, true)
+	self:ModifyStack(1, true)
 
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin()) end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
@@ -140,27 +104,13 @@ function striker_3_modifier_debuff:ModifyStack(value, bModifyAmount)
 		self.amount = self.amount + self.ability:GetSpecialValueFor("init_amount")
 	end
 
-	self.ticks = self.ticks + value
-	if bModifyAmount then self.amount = self.amount * (100 - self.amount_reduction) * 0.01 end
+	self.ticks = self.ticks - value
+
+	if bModifyAmount then
+		self.amount = self.amount * (100 - self.amount_reduction) * 0.01
+	end
 
 	if IsServer() then self:SetStackCount(self.ticks) end
-end
-
-function striker_3_modifier_debuff:CheckRoot()
-	if self.root_count > 0 then
-		self.root_count = self.root_count - 1
-		if self.root_count == 0 then
-			if self.particle_root then ParticleManager:DestroyParticle(self.particle_root, false) end
-			self.root = false
-		end
-	end
-end
-
-function striker_3_modifier_debuff:ApplyPurge()
-	if RandomFloat(1, 100) <= 10 then
-		self.parent:Purge(true, false, false, false, false)
-		self:PlayEfxPurge()
-	end
 end
 
 -- EFFECTS -----------------------------------------------------------

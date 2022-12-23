@@ -1,16 +1,7 @@
 striker_3_modifier_buff = class({})
 
-function striker_3_modifier_buff:IsHidden()
-	return false
-end
-
-function striker_3_modifier_buff:IsPurgable()
-	return true
-end
-
-function striker_3_modifier_buff:IsDebuff()
-	return false
-end
+function striker_3_modifier_buff:IsHidden() return false end
+function striker_3_modifier_buff:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -59,7 +50,7 @@ end
 function striker_3_modifier_buff:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
-	if keys.damage > 0 then self:ModifyStack(-1, false) end
+	if keys.damage > 0 then self:ModifyStack(self.ability:GetSpecialValueFor("tick_decrease"), false) end
 end
 
 function striker_3_modifier_buff:OnIntervalThink()
@@ -73,23 +64,17 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_3_modifier_buff:ApplyTick()
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-
-	-- UP 3.31
-	if self.ability:GetRank(31) then
-		self:ApplyPurge()
-	end
-
-	-- UP 3.21
-	if self.ability:GetRank(21) then
-		self:ApplyMana(base_stats)
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") then
+		self.parent:Purge(false, true, false, true, false)
+		self:PlayEfxPurge()
 	end
 
 	local heal = self.amount
+	local base_stats = self.caster:FindAbilityByName("base_stats")
 	if base_stats then heal = heal * base_stats:GetHealPower() end
     if heal > 0 then self.parent:Heal(heal, self.ability) end
 
-	self:ModifyStack(-1, true)
+	self:ModifyStack(1, true)
 
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin()) end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
@@ -101,45 +86,23 @@ function striker_3_modifier_buff:ModifyStack(value, bModifyAmount)
 		self.amount = self.amount + self.ability:GetSpecialValueFor("init_amount")
 	end
 
-	self.ticks = self.ticks + value
-	if bModifyAmount then self.amount = self.amount * (100 - self.amount_reduction) * 0.01 end
-
-	-- UP 3.11
-	if self.ability:GetRank(11) then
-		self:ApplyMS()
-	end
-
-	if IsServer() then self:SetStackCount(self.ticks) end
-end
-
-function striker_3_modifier_buff:ApplyMana(base_stats)
-	local mana = self.amount * 0.15
-	if base_stats then mana = mana * base_stats:GetHealPower() end
-
-	if mana > 0 and self.parent:GetUnitName() ~= "npc_dota_hero_elder_titan" then
-		self.parent:GiveMana(mana)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana, self.caster)
-	end
-end
-
-function striker_3_modifier_buff:ApplyMS()
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	if self.ticks > 0 then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-			percent = self.ticks * 3
-		})
+	local ms = self.ability:GetSpecialValueFor("special_movespeed") * self.ticks
+	if ms > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 	end
-end
 
-function striker_3_modifier_buff:ApplyPurge()
-	if RandomFloat(1, 100) <= 10 then
-		self.parent:Purge(false, true, false, true, false)
-		self:PlayEfxPurge()
+	self.ticks = self.ticks - value
+
+	if bModifyAmount then
+		self.amount = self.amount * (100 - self.amount_reduction) * 0.01
 	end
+
+	if IsServer() then self:SetStackCount(self.ticks) end
 end
 
 -- EFFECTS -----------------------------------------------------------
