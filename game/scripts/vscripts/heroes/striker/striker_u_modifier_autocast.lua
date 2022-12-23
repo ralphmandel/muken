@@ -91,8 +91,8 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 
 	local chance_cooldown = self.ability:GetSpecialValueFor("chance_cooldown")
 	local chance_sof = self:CheckSof("striker_5_modifier_sof")
-	if chance_sof == 0 then chance_sof = self:CheckSof("striker_5_modifier_return") end
-	if chance_sof == 0 then chance_sof = self:CheckSof("striker_5_modifier_illusion_sof") end
+	if chance_sof == 1 then chance_sof = self:CheckSof("striker_5_modifier_return") end
+	if chance_sof == 1 then chance_sof = self:CheckSof("striker_5_modifier_illusion_sof") end
 
 	local chance = (1 / ability:GetCooldown(ability:GetLevel())) * chance_cooldown * chance_sof
 	if RandomFloat(1, 100) > chance then return end
@@ -104,7 +104,7 @@ function striker_u_modifier_autocast:CheckSof(string)
 	local mod = self.parent:FindModifierByNameAndCaster(string, self.caster)
 	if mod then return (100 / (100 + mod.swap)) end
 
-	return 0
+	return 1
 end
 
 function striker_u_modifier_autocast:CastShield()
