@@ -1,16 +1,7 @@
 bloodstained_1_modifier_call = class({})
 
-function bloodstained_1_modifier_call:IsHidden()
-	return false
-end
-
-function bloodstained_1_modifier_call:IsPurgable()
-	return true
-end
-
-function bloodstained_1_modifier_call:IsDebuff()
-	return true
-end
+function bloodstained_1_modifier_call:IsHidden() return false end
+function bloodstained_1_modifier_call:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

@@ -1,16 +1,7 @@
 bloodstained_u_modifier_copy = class({})
 
-function bloodstained_u_modifier_copy:IsHidden()
-	return false
-end
-
-function bloodstained_u_modifier_copy:IsPurgable()
-	return false
-end
-
-function bloodstained_u_modifier_copy:IsDebuff()
-	return false
-end
+function bloodstained_u_modifier_copy:IsHidden() return false end
+function bloodstained_u_modifier_copy:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

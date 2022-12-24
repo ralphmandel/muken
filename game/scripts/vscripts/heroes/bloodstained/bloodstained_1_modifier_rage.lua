@@ -1,16 +1,7 @@
 bloodstained_1_modifier_rage = class({})
 
-function bloodstained_1_modifier_rage:IsHidden()
-	return false
-end
-
-function bloodstained_1_modifier_rage:IsPurgable()
-	return true
-end
-
-function bloodstained_1_modifier_rage:IsDebuff()
-	return false
-end
+function bloodstained_1_modifier_rage:IsHidden() return false end
+function bloodstained_1_modifier_rage:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -20,10 +11,8 @@ function bloodstained_1_modifier_rage:OnCreated(kv)
     self.ability = self:GetAbility()
 	self.str = 0
 
-	-- UP 1.21
-	if self.ability:GetRank(21) and self.parent:IsStunned() then
-		self.str = 5
-	end
+	self.ability:EndCooldown()
+	self.ability:SetActivated(false)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", true) end
@@ -31,11 +20,6 @@ end
 
 function bloodstained_1_modifier_rage:OnRefresh(kv)
 	self.str = 0
-
-	-- UP 1.21
-	if self.ability:GetRank(21) and self.parent:IsStunned() then
-		self.str = 5
-	end
 end
 
 function bloodstained_1_modifier_rage:OnRemoved()
@@ -53,11 +37,16 @@ end
 
 function bloodstained_1_modifier_rage:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
+end
+
+function bloodstained_1_modifier_rage:GetModifierStatusResistanceStacking()
+	return self:GetAbility():GetSpecialValueFor("resistance")
 end
 
 function bloodstained_1_modifier_rage:OnTakeDamage(keys)
@@ -70,13 +59,9 @@ function bloodstained_1_modifier_rage:OnAttackLanded(keys)
 	if keys.attacker:IsIllusion() then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	-- UP 1.41
-	if self.ability:GetRank(41) then
-		local cleaveatk = DoCleaveAttack(
-			self.parent, keys.target, self.ability, keys.damage * 0.75, 100, 400, 500,
-			"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
-		)
-	end
+	local cleave = self.ability:GetSpecialValueFor("special_cleave")
+	local string = "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
+	if cleave > 0 then DoCleaveAttack(self.parent, keys.target, self.ability, keys.damage * 0.75, 100, 400, 500, string) end
 end
 
 function bloodstained_1_modifier_rage:OnStackCountChanged(old)

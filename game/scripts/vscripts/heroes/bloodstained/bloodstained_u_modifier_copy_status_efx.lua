@@ -1,12 +1,7 @@
 bloodstained_u_modifier_copy_status_efx = class({})
 
-function bloodstained_u_modifier_copy_status_efx:IsHidden()
-	return true
-end
-
-function bloodstained_u_modifier_copy_status_efx:IsPurgable()
-	return false
-end
+function bloodstained_u_modifier_copy_status_efx:IsHidden() return true end
+function bloodstained_u_modifier_copy_status_efx:IsPurgable() return false end
 
 -----------------------------------------------------------
 

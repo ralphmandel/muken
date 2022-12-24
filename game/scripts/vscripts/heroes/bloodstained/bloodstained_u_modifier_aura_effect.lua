@@ -1,20 +1,8 @@
 bloodstained_u_modifier_aura_effect = class({})
 
-function bloodstained_u_modifier_aura_effect:IsHidden()
-	return false
-end
-
-function bloodstained_u_modifier_aura_effect:IsPurgable()
-	return false
-end
-
-function bloodstained_u_modifier_aura_effect:IsDebuff()
-	return self:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber()
-end
-
-function bloodstained_u_modifier_aura_effect:GetPriority()
-    return MODIFIER_PRIORITY_SUPER_ULTRA
-end
+function bloodstained_u_modifier_aura_effect:IsHidden() return false end
+function bloodstained_u_modifier_aura_effect:IsPurgable() return false end
+function bloodstained_u_modifier_aura_effect:GetPriority() return MODIFIER_PRIORITY_SUPER_ULTRA end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -23,10 +11,10 @@ function bloodstained_u_modifier_aura_effect:OnCreated(kv)
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	-- UP 6.41
-	if self.ability:GetRank(41) then
-		self:ApplyDebuffs()
-	end
+		if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
+		and self.ability:GetSpecialValueFor("special_bleeding") == 1 then
+			self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {})
+		end
 end
 
 function bloodstained_u_modifier_aura_effect:OnRefresh(kv)
@@ -38,24 +26,14 @@ function bloodstained_u_modifier_aura_effect:OnRemoved()
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_break")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
 	self:ApplyBloodIllusion()
-
-	-- UP 6.11
-	if self.ability:GetRank(11) then
-		self:ReduceCooldown()
-	end
+	self:ReduceCooldown()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bloodstained_u_modifier_aura_effect:CheckState()
 	local state = {
-		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 		[MODIFIER_STATE_SILENCED] = true
 	}
 
@@ -87,29 +65,17 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 	if self.parent:IsHero() == false then return end
 	if self.ability:IsActivated() then return end
 
+	local copy_number = self.ability:GetSpecialValueFor("copy_number")
 	local copy_duration = self.ability:GetSpecialValueFor("copy_duration")
-	local slow_duration = self.ability:GetSpecialValueFor("slow_duration")
 	local hp_stolen = self.ability:GetSpecialValueFor("hp_stolen")
-	local number = 1
-
-	-- UP 6.12
-	if self.ability:GetRank(12) then
-		copy_duration = copy_duration + 5
-		slow_duration = 3
-	end
-
-	-- UP 6.21
-	if self.ability:GetRank(21) then
-		hp_stolen = hp_stolen - 5
-		number = 2
-	end
+	local slow_duration = self.ability:GetSpecialValueFor("slow_duration")
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		duration = CalcStatus(slow_duration, self.caster, self.parent),
 		percent = 100
 	})
 	
-	self:CreateCopy(number, hp_stolen, copy_duration)
+	self:CreateCopy(copy_number, hp_stolen, copy_duration)
 end
 
 function bloodstained_u_modifier_aura_effect:ReduceCooldown()
@@ -117,14 +83,13 @@ function bloodstained_u_modifier_aura_effect:ReduceCooldown()
 	if self.parent:IsIllusion() then return end
 	if self.parent:IsHero() == false then return end
 
-	self.ability.cooldown = self.ability.cooldown - 25
-end
+	local refresh = self.ability:GetSpecialValueFor("special_refresh")
 
-function bloodstained_u_modifier_aura_effect:ApplyDebuffs()
-	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-
-	self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {})
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {})
+	if refresh > 0 then
+		local cd = self.ability:GetCooldownTimeRemaining() - refresh
+		self.ability:EndCooldown()
+		self.ability:StartCooldown(cd)
+	end
 end
 
 function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_duration)

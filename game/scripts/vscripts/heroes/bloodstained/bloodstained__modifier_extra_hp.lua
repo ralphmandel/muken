@@ -1,20 +1,8 @@
 bloodstained__modifier_extra_hp = class({})
 
-function bloodstained__modifier_extra_hp:IsHidden()
-	return false
-end
-
-function bloodstained__modifier_extra_hp:IsPurgable()
-	return false
-end
-
-function bloodstained__modifier_extra_hp:IsDebuff()
-	return false
-end
-
-function bloodstained__modifier_extra_hp:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
+function bloodstained__modifier_extra_hp:IsHidden() return false end
+function bloodstained__modifier_extra_hp:IsPurgable() return false end
+function bloodstained__modifier_extra_hp:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

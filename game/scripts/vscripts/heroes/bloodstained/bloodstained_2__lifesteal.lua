@@ -60,7 +60,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
     function bloodstained_2__lifesteal:Spawn()
         self:CheckAbilityCharges(0)
-        if self:IsTrained() == false then self:UpgradeAbility(true) end
+        --if self:IsTrained() == false then self:UpgradeAbility(true) end
     end
 
 -- SPELL START

@@ -34,6 +34,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_1__sk1" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_1__sk1_rank_11") then
 		end
@@ -51,6 +52,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_2__sk2" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_2__sk2_rank_11") then
 		end
@@ -68,6 +70,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_3__sk3" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_3__sk3_rank_11") then
 		end
@@ -85,6 +88,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_4__sk4" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_4__sk4_rank_11") then
 		end
@@ -102,6 +106,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_5__sk5" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_5__sk5_rank_11") then
 		end
@@ -119,6 +124,7 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "template_u__sk6" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("template_u__sk6_rank_11") then
 		end
@@ -147,31 +153,37 @@ function template__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "template_1__sk1" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "template_2__sk2" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "template_3__sk3" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "template_4__sk4" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "template_5__sk5" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "template_u__sk6" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "rank" then return 9 + (value_level * 1) end
 	end
 
 	return 0
