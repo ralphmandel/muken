@@ -1,16 +1,7 @@
 bloodstained_2_modifier_passive = class({})
 
-function bloodstained_2_modifier_passive:IsHidden()
-	return false
-end
-
-function bloodstained_2_modifier_passive:IsPurgable()
-	return false
-end
-
-function bloodstained_2_modifier_passive:IsDebuff()
-	return false
-end
+function bloodstained_2_modifier_passive:IsHidden() return false end
+function bloodstained_2_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -32,7 +23,6 @@ end
 
 function bloodstained_2_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_HEAL_RECEIVED,
@@ -42,41 +32,21 @@ function bloodstained_2_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function bloodstained_2_modifier_passive:GetModifierHPRegenAmplify_Percentage()
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then
-		return ((self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()) - 1) * 100
-	end
-
-	return 0
-end
-
 function bloodstained_2_modifier_passive:GetModifierHealAmplify_PercentageTarget()
-	if self:GetAbility():GetCurrentAbilityCharges() % 2 == 0 then
-		return (1 - (self:GetParent():GetHealth() / self:GetParent():GetMaxHealth())) * 50
-	end
-
-	return 0
+	if self:GetParent():PassivesDisabled() then return 0 end
+	return self:GetAbility():GetSpecialValueFor("heal_power")
 end
 
 function bloodstained_2_modifier_passive:OnDeath(keys)
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
-	if keys.attacker ~= self.parent then return end
+	if (keys.unit:GetOrigin() - self.parent:GetOrigin()):Length2D() > self.ability:GetAOERadius() then return end
 	if keys.unit:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 	if keys.unit:IsIllusion() then return end
 
-	-- UP 2.11
-	if self.ability:GetRank(11) then
-		local heal_percent = 15
-		
-		if keys.unit:IsHero() == false then
-			heal_percent = keys.unit:GetLevel()
-		end
+	local heal = self.ability:GetSpecialValueFor("special_kill_heal") * keys.unit:GetLevel()
+	local base_stats = self.caster:FindAbilityByName("base_stats")
+	if base_stats then heal = heal * base_stats:GetHealPower() end
 
-		local heal = self.parent:GetBaseMaxHealth() * heal_percent * 0.01
-		local base_stats = self.caster:FindAbilityByName("base_stats")
-		if base_stats then heal = heal * base_stats:GetHealPower() end
-
+	if heal > 0 then
 		self.parent:Heal(heal, self.parent)
 		self:PlayEfxDeathHeal(keys.unit)
 	end
@@ -85,11 +55,7 @@ end
 function bloodstained_2_modifier_passive:OnHealReceived(keys)
 	if keys.unit ~= self.parent then return end
 	if keys.inflictor ~= self.ability then return end
-
-	-- UP 2.41
-	if self.ability:GetRank(41) then
-		self:ApplyExtraLife(math.floor(keys.gain))
-	end
+	self:ApplyExtraLife(math.floor(keys.gain))
 end
 
 function bloodstained_2_modifier_passive:OnAttacked(keys)
@@ -115,6 +81,8 @@ function bloodstained_2_modifier_passive:ApplyExtraLife(extra_life)
 	if self.parent:GetHealth() < self.parent:GetBaseMaxHealth() * 0.9 then return end
 	if extra_life < 1 then return end
 
+	local cap = self.ability:GetSpecialValueFor("special_cap")
+
 	local mod = self.parent:FindAllModifiersByName("bloodstained__modifier_extra_hp")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then
@@ -123,22 +91,17 @@ function bloodstained_2_modifier_passive:ApplyExtraLife(extra_life)
 		end
 	end
 
-	self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
-		extra_life = extra_life,
-		cap = 25
-	})
+	if cap > 0 then
+		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
+			extra_life = extra_life, cap = cap
+		})
+	end
 end
 
 function bloodstained_2_modifier_passive:GetLifestealPercent()
 	local base_heal = self.ability:GetSpecialValueFor("base_heal")
 	local bonus_heal = self.ability:GetSpecialValueFor("bonus_heal")
 	local deficit_percent =  1 - (self.parent:GetHealth() / self.parent:GetMaxHealth())
-
-	-- UP 2.41
-	if self.ability:GetRank(41) then
-		base_heal = base_heal + 5
-		bonus_heal = bonus_heal - 5
-	end
 
 	return (bonus_heal * deficit_percent) + base_heal
 end

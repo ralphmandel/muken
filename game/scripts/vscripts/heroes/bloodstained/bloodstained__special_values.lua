@@ -57,27 +57,34 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_11") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_21") then
+			if value_name == "heal_power" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_31") then
+			if value_name == "special_kill_radius" then return 1 end
+			if value_name == "special_kill_heal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_41") then
+			if value_name == "base_heal" then return 1 end
+			if value_name == "bonus_heal" then return 1 end
+			if value_name == "special_cap" then return 1 end
 		end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-
-		if caster:FindAbilityByName("bloodstained_3__curse_rank_11") then
-		end
+		if value_name == "cast_range" then return 1 end
 
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_21") then
+			if value_name == "shared_damage" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bloodstained_3__curse_rank_22") then
+			if value_name == "slow" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_31") then
@@ -179,12 +186,28 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+		if value_name == "heal_power" then return 30 end
+		if value_name == "special_kill_radius" then return 1000 end
+		if value_name == "special_kill_heal" then return 25 end
+		if value_name == "base_heal" then return 10 end
+		if value_name == "bonus_heal" then return 15 end
+		if value_name == "special_cap" then return 25 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 20 end
+
+		if value_name == "AbilityCastRange" then
+			return ability:GetSpecialValueFor("cast_range")
+		end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "cast_range" then return 520 + (value_level * 20) end
+
+		if value_name == "shared_damage" then return 60 end
+		if value_name == "slow" then return 40 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__frenzy" then

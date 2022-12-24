@@ -7,9 +7,9 @@ function bloodstained__modifier_extra_hp:GetAttributes() return MODIFIER_ATTRIBU
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained__modifier_extra_hp:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 	self.cap = kv.cap * 0.01
 	self.tick = 0.2
 
