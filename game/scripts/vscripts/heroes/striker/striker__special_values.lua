@@ -194,7 +194,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("striker_1__blow_rank_31") then
-				return 12
+				return 10
 			end
 			return 0
 		end

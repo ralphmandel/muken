@@ -29,14 +29,6 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function striker_5_modifier_debuff:CheckState()
-	local state = {
-		[MODIFIER_STATE_PASSIVES_DISABLED] = true
-	}
-
-	return state
-end
-
 function striker_5_modifier_debuff:OnIntervalThink()
 	ApplyDamage({
 		victim = self.parent, attacker = self.caster, damage = 1,
