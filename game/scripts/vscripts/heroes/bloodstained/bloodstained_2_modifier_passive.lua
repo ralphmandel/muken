@@ -38,6 +38,12 @@ function bloodstained_2_modifier_passive:GetModifierHealAmplify_PercentageTarget
 end
 
 function bloodstained_2_modifier_passive:OnDeath(keys)
+	if self.parent:PassivesDisabled() then return end
+
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
+
 	if (keys.unit:GetOrigin() - self.parent:GetOrigin()):Length2D() > self.ability:GetAOERadius() then return end
 	if keys.unit:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 	if keys.unit:IsIllusion() then return end
@@ -55,6 +61,7 @@ end
 function bloodstained_2_modifier_passive:OnHealReceived(keys)
 	if keys.unit ~= self.parent then return end
 	if keys.inflictor ~= self.ability then return end
+
 	self:ApplyExtraLife(math.floor(keys.gain))
 end
 

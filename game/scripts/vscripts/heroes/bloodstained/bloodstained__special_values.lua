@@ -78,6 +78,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "cast_range" then return 1 end
+		if value_name == "max_range" then return 1 end
 
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_21") then
 			if value_name == "shared_damage" then return 1 end
@@ -88,9 +89,17 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_31") then
+			if value_name == "special_reset" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bloodstained_3__curse_rank_32") then
+			if value_name == "special_degen" then return 1 end
 		end
 		
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_41") then
+			if value_name == "special_curse_purge" then return 1 end
+			if value_name == "special_curse_damage" then return 1 end
+			if value_name == "special_curse_interval" then return 1 end
 		end
 	end
 
@@ -197,17 +206,23 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
 		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 20 end
+		if value_name == "AbilityCooldown" then return 30 end
 
 		if value_name == "AbilityCastRange" then
 			return ability:GetSpecialValueFor("cast_range")
 		end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 520 + (value_level * 20) end
+		if value_name == "cast_range" then return 350 + (value_level * 25) end
+		if value_name == "max_range" then return ability:GetSpecialValueFor("cast_range") + 200 end
 
 		if value_name == "shared_damage" then return 60 end
-		if value_name == "slow" then return 40 end
+		if value_name == "slow" then return 30 end
+		if value_name == "special_reset" then return 1 end
+		if value_name == "special_degen" then return 50 end
+		if value_name == "special_curse_purge" then return 500 end
+		if value_name == "special_curse_damage" then return 5 end
+		if value_name == "special_curse_interval" then return 2.5 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__frenzy" then

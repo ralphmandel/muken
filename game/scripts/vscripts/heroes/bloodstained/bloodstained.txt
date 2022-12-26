@@ -150,17 +150,47 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"		    "20"
+				"slow"		    "15"
 			}
-			"13"
+			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max_range"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"				"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+			}
+			"16"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"special_reset"	"0"
+			}
+			"17"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"special_degen"	"0"
+			}
+			"18"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_curse_purge"			"0"
+			}
+			"19"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_curse_damage"		"0"
+			}
+			"20"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_curse_interval"	"0"
 			}
 		}
 	}

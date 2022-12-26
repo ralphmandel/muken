@@ -1,37 +1,28 @@
 bloodstained_3_modifier_curse = class({})
 
-function bloodstained_3_modifier_curse:IsHidden()
-	return false
-end
-
-function bloodstained_3_modifier_curse:IsPurgable()
-	return true
-end
-
-function bloodstained_3_modifier_curse:IsDebuff()
-	return self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber()
-end
+function bloodstained_3_modifier_curse:IsHidden() return false end
+function bloodstained_3_modifier_curse:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_3_modifier_curse:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-	self.debuffs = nil
-	self.damage = 0
-
-	-- UP 3.22
-	if self.ability:GetRank(22) then
-		self.debuffs = {
-			["_modifier_break"] = false, ["_modifier_disarm"] = false, ["_modifier_silence"] = false, ["_modifier_stun"] = false
-		}
-	end
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
+	self.curse_purge = 0
 
 	if self.parent ~= self.caster then
-		self.caster:AddNewModifier(self.caster, self.ability, self:GetName(), {
-			duration = self:GetDuration()
+		self.ability:SetActivated(false)
+		self.ability:EndCooldown()
+
+		self.caster:AddNewModifier(self.caster, self.ability, self:GetName(), {})
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			percent = self.ability:GetSpecialValueFor("slow")
 		})
+
+		if self.ability:GetSpecialValueFor("special_curse_interval") > 0 then
+			self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_3_modifier_damage", {})
+		end
 	end
 
 	if IsServer() then
@@ -48,11 +39,13 @@ function bloodstained_3_modifier_curse:OnRemoved()
 	self.caster:RemoveModifierByNameAndCaster(self:GetName(), self.caster)
 	self.ability.target = nil
 
-	-- UP 3.21
-	if self.ability:GetRank(21)
-	and self.parent ~= self.caster
-	and self.parent:IsAlive() == false then
-		self.ability:EndCooldown()
+	if self.parent ~= self.caster then
+		self.ability:SetActivated(true)
+		self.parent:RemoveModifierByNameAndCaster("bloodstained_3_modifier_damage", self.caster)
+
+		if self.ability:GetSpecialValueFor("special_reset") == 0 or self.parent:IsAlive() then
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+		end
 	end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
@@ -65,23 +58,22 @@ end
 
 function bloodstained_3_modifier_curse:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
 end
 
-function bloodstained_3_modifier_curse:OnStateChanged(keys)
-	if keys.unit ~= self.caster then return end
-	if self.parent == self.caster then return end
-	if self.debuffs == nil then return end
-	if RandomFloat(1, 100) > 30 then return end
+function bloodstained_3_modifier_curse:GetModifierHealAmplify_PercentageTarget()
+	if self:GetParent() == self:GetCaster() then return 0 end
+	return -self:GetAbility():GetSpecialValueFor("special_degen")
+end
 
-	self:CheckReflect(self.caster:PassivesDisabled(), "_modifier_break")
-	self:CheckReflect(self.caster:IsDisarmed(), "_modifier_disarm")
-	self:CheckReflect(self.caster:IsSilenced(), "_modifier_silence")
-	self:CheckReflect(self.caster:IsStunned(), "_modifier_stun")
+function bloodstained_3_modifier_curse:GetModifierHPRegenAmplify_Percentage()
+	if self:GetParent() == self:GetCaster() then return 0 end
+	return -self:GetAbility():GetSpecialValueFor("special_degen")
 end
 
 function bloodstained_3_modifier_curse:OnTakeDamage(keys)
@@ -91,24 +83,16 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 	local target = self.caster
 	if keys.unit == self.caster then target = self.parent end
 
+	local curse_purge = self.ability:GetSpecialValueFor("special_curse_purge")
 	local shared_damage = self.ability:GetSpecialValueFor("shared_damage")
-
-	-- UP 3.11
-	if self.ability:GetRank(11) then
-		shared_damage = shared_damage + 10
-	end
-
 	local total_damage = (keys.damage * shared_damage * 0.01)
 	local iDesiredHealthValue = target:GetHealth() - total_damage
 	target:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
 
-	-- UP 3.12
-	if self.ability:GetRank(12) then
-		if target == self.caster then
-			self:ApplyPurge(total_damage)
-		else
-			self:ApplyPurge(keys.damage)
-		end
+	if target == self.caster then
+		self:ApplyPurge(total_damage, curse_purge)
+	else
+		self:ApplyPurge(keys.damage, curse_purge)
 	end
 
 	if target == self.caster then
@@ -119,61 +103,27 @@ end
 
 function bloodstained_3_modifier_curse:OnIntervalThink()
 	if IsServer() then
-		self:ApplyDebuff()
+		if self.parent ~= self.caster then
+			AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), 75, 0.2, true)
+			local current_distance = CalcDistanceBetweenEntityOBB(self.caster, self.parent)
+			local max_range = self.ability:GetSpecialValueFor("max_range")
+			if current_distance > max_range then self:Destroy() return end
+		end
+
 		self:StartIntervalThink(0.1)
 	end
 end
 
 -- UTILS -----------------------------------------------------------
 
-function bloodstained_3_modifier_curse:ApplyPurge(damage)
-	self.damage = self.damage + damage
+function bloodstained_3_modifier_curse:ApplyPurge(damage, curse_purge)
+	if curse_purge == 0 then return end
+	self.curse_purge = self.curse_purge + damage
 
-	if self.damage >= 350 then
+	if self.curse_purge >= curse_purge then
 		self.parent:Purge(true, false, false, false, false)
-		self.damage = 0
+		self.curse_purge = 0
 	end
-end
-
-function bloodstained_3_modifier_curse:CheckReflect(state, string)
-	if state == true then
-		if self.debuffs[string] == false then
-			self.debuffs[string] = true
-			self.parent:AddNewModifier(self.caster, self.ability, string, {
-				duration = CalcStatus(2.5, self.caster, self.parent)
-			})
-		end
-	else
-		self.debuffs[string] = false
-	end
-end
-
-function bloodstained_3_modifier_curse:ApplyDebuff()
-	if self.parent == self.caster then return end
-
-	AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), 75, 0.25, true)
-	local current_distance = CalcDistanceBetweenEntityOBB(self.caster, self.parent)
-	local max_range = self.ability:GetSpecialValueFor("max_range")
-	local slow = self.ability:GetSpecialValueFor("slow")
-
-	-- UP 3.31
-	if self.ability:GetRank(31) then
-		slow = slow + (current_distance * 0.01)
-	else
-		if current_distance > max_range then
-			self:Destroy()
-			return
-		end
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		percent = slow
-	})
 end
 
 -- EFFECTS -----------------------------------------------------------
