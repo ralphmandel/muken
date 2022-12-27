@@ -69,8 +69,6 @@ base_stats_mod = class ({})
 
             -- STR
             MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-            MODIFIER_PROPERTY_STATUS_RESISTANCE,
-            MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
             MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
             MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
             MODIFIER_PROPERTY_PRE_ATTACK,
@@ -91,6 +89,7 @@ base_stats_mod = class ({})
             MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 
             -- CON
+            MODIFIER_PROPERTY_STATUS_RESISTANCE,
             MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_BONUS,
             MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
@@ -198,22 +197,6 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierBaseAttack_BonusDamage()
         return self.ability.stat_total["STR"] * self.ability.damage
-    end
-
-    function base_stats_mod:GetModifierStatusResistance()
-        if self.parent:GetAttackCapability() == 1 then
-            return self.ability.total_status_resist
-        end
-
-        return 0
-    end
-
-    function base_stats_mod:GetModifierAttackRangeBonus()
-        if self.parent:GetAttackCapability() == 2 then
-            return self.ability.total_range
-        end
-        
-        return 0
     end
 
     function base_stats_mod:GetModifierProcAttack_Feedback(keys)
@@ -376,6 +359,13 @@ base_stats_mod = class ({})
     end
 
 -- CON
+
+    function base_stats_mod:GetModifierStatusResistance()
+        return self.ability.total_status_resist
+        -- if self.parent:GetAttackCapability() == 1 then
+        --     return self.ability.total_status_resist
+        -- end
+    end
 
     function base_stats_mod:GetModifierExtraHealthBonus()
         if IsServer() then

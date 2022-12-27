@@ -179,9 +179,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:LoadSpecialValues()
 			if IsServer() then
 				-- STR
-				self.damage = self:GetSpecialValueFor("damage")
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
-				self.range = self:GetSpecialValueFor("range")
+				self.base_critical_damage = self:GetSpecialValueFor("base_critical_damage")
+				self.damage = self:GetSpecialValueFor("damage")
 
 				-- BLOCK
 				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
@@ -215,6 +215,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
 
+				-- INIT
+				self.total_critical_damage = self.base_critical_damage + (self.critical_damage * (self.stat_init["STR"]))
+				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"]))
+				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"])
+				self.total_status_resist = self.status_resist * (self.stat_init["CON"])
+
 				-- CRITICAL
 				self.critical_chance = self:GetSpecialValueFor("critical_chance")
 				self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
@@ -223,12 +229,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.force_crit_damage = 0
 				self.force_crit_hit = false
 				self.has_crit = false
-
-				-- INIT
-				self.total_range = self.range * (self.stat_init["STR"])
-				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"]))
-				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"])
-				self.total_status_resist = self.status_resist * (self.stat_init["CON"])
 			end
 		end
 
@@ -463,33 +463,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:CalcCritDamage(damage_type, bSpellCrit)
 			if IsServer() then
 				local caster = self:GetCaster()
-				local bonus_value = 0
-				local mods = caster:FindAllModifiersByName("base_stats_mod_crit_bonus")
-				for _,mod in pairs(mods) do
-					bonus_value = bonus_value + mod.crit_damage
-				end
-
-				local total_crit_dmg = self.critical_damage
+				local total_crit_dmg = self.total_critical_damage
 
 				if caster:HasModifier("ancient_1_modifier_passive")
 				and bSpellCrit ~= true and damage_type == DAMAGE_TYPE_PHYSICAL then
 					total_crit_dmg = total_crit_dmg + self.stat_total["AGI"]
 				end
 
-				-- if caster:HasModifier("ancient_1_modifier_passive")
-				-- and damage_type == DAMAGE_TYPE_PHYSICAL then
-				-- 	local chance_base = 0.25
-				-- 	local chance_luck = self:GetCriticalChance() * 0.005
-				-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
-				-- 	local time = 0
-
-				-- 	if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
-
-				-- 	local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
-				-- 	total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
-				-- end
-
-				return total_crit_dmg + bonus_value
+				return total_crit_dmg
 			end
 		end
 
@@ -555,7 +536,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:GetCriticalChance()
 			local value = self.stat_total["LCK"] * self.critical_chance
-			local calc = (value * 6) / (1 +  (value * 0.04))
+			local calc = (value * 6) / (1 +  (value * 0.06))
 			return calc
 		end
 
@@ -568,3 +549,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:GetBuffAmp()
 			return self.stat_total["MND"] * self.buff_amp * 0.01
 		end
+
+	-- if caster:HasModifier("ancient_1_modifier_passive")
+	-- and damage_type == DAMAGE_TYPE_PHYSICAL then
+	-- 	local chance_base = 0.25
+	-- 	local chance_luck = self:GetCriticalChance() * 0.005
+	-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
+	-- 	local time = 0
+
+	-- 	if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
+
+	-- 	local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
+	-- 	total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
+	-- end

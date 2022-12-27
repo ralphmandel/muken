@@ -26,13 +26,13 @@
 				}
 				"02"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"critical_damage"		"175"
+					"var_type"				        "FIELD_FLOAT"
+					"base_critical_damage"		"175"
 				}
-				"03"
+        "03"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"range"					"40"
+					"var_type"				        "FIELD_FLOAT"
+					"critical_damage"		      "2.5"
 				}
 				"04"
 				{
