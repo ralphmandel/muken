@@ -153,22 +153,22 @@
             "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"	"30"
+				"stack_duration"	"45"
 			}
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"	    "20"
+				"size_mult"	        "3"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"size_mult"	        "3"
+				"max_stack" 	    "20"
 			}
-            "14"
+            "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack" 	    "24 25 26 27 28 29 30 31 32"
+				"buff_duration"	    "20 20.5 21 21.5 22 22.5 23 23.5 24"
 			}
             "15"
 			{

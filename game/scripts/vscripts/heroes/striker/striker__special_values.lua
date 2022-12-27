@@ -250,7 +250,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return 150 * (1 + ((ability_level - 1) * 0.05))
 		end
 
-		if value_name == "AbilityCooldown" then return 25 - (value_level * 0.5) end
+		if value_name == "AbilityCooldown" then return 30 - (value_level * 0.6) end
 		if value_name == "AbilityCastRange" then return 900 end
 
 		if value_name == "hammer_radius" then return 375 end
@@ -262,7 +262,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "striker_5__sof" then
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 35 - (value_level * 0.7) end
+		if value_name == "AbilityCooldown" then return 40 - (value_level * 0.8) end
 
 		if value_name == "damage_impact" then return 200 end
 		if value_name == "damage_hit" then return 15 end
@@ -283,7 +283,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return 30
 		end
 
-		if value_name == "chance_cooldown" then return 120 end
+		if value_name == "chance_cooldown" then return 110 end
 		if value_name == "autocast_manacost" then return 40 end
 		if value_name == "mana_cost" then return 200 end
 		if value_name == "mana_regen" then return 20 end

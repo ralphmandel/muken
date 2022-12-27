@@ -35,7 +35,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"str_gain"		"2"
+				"str_gain"		"1.75"
 			}
 			"02"
 			{
@@ -222,7 +222,7 @@
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi"		    	"30"
+				"agi"		    	"25"
 			}
 			"04"
 			{

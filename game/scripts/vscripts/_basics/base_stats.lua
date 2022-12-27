@@ -204,7 +204,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				-- CON
 				self.status_resist = self:GetSpecialValueFor("status_resist")
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
-				self.health_regen_bonus = self:GetSpecialValueFor("health_regen_bonus")
+				self.health_regen = self:GetSpecialValueFor("health_regen")
 				self.hp_regen_state = 1
 
 				-- SECONDARY

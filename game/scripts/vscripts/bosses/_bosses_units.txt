@@ -39,7 +39,7 @@
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"        	"0"
-		"StatusHealth"				"250"
+		"StatusHealth"				"300"
 		"StatusHealthRegen"			"5"
 		"StatusMana"				"600" //600
 		"StatusManaRegen"			"0"
@@ -56,8 +56,8 @@
 		{
 			"STR"
 			{
-				"initial"	"25"
-				"bonus_level"	"50"
+				"initial"	"5"
+				"bonus_level"	"70"
 			}
 			"AGI"
 			{
@@ -66,13 +66,13 @@
 			}
 			"INT"
 			{
-				"initial"	"20"
-				"bonus_level"	"25"
+				"initial"	"10"
+				"bonus_level"	"40"
 			}
 			"CON"
 			{
-				"initial"	"10"
-				"bonus_level"	"60"
+				"initial"	"25"
+				"bonus_level"	"40"
 			}
 		}
 

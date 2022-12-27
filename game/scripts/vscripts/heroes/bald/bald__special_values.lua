@@ -76,7 +76,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 
 		if caster:FindAbilityByName("bald_3__inner_rank_12") then
-			if value_name == "buff_duration" then return 1 end
+			if value_name == "max_stack" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_3__inner_rank_21") then
@@ -224,9 +224,9 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return 10
 		end
 
-		if value_name == "buff_duration" then return 25 end
+		if value_name == "max_stack" then return 100 end
 		if value_name == "hits" then return 2 end
-		if value_name == "stack_duration" then return 20 end
+		if value_name == "stack_duration" then return 30 end
 		if value_name == "permanent_size" then return 32 end
 		if value_name == "size_mult" then return 2 end
 	end
@@ -278,9 +278,9 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("bald_u__vitality_rank_11") then
-				return 100
+				return 120
 			end
-			return 120
+			return 150
 		end
 
 		if value_name == "regen_in" then return 0.6 end

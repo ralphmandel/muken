@@ -56,7 +56,7 @@ function bald_3_modifier_passive:OnStackCountChanged(old)
 	local max_stack = self.ability:GetSpecialValueFor("max_stack")
 	if stack > max_stack then stack = max_stack end
 
-	if stack >= max_stack / 2 then
+	if stack >= 10 then
 		self.ability:SetCurrentAbilityCharges(4)
 	else
 		self.ability:SetCurrentAbilityCharges(2)

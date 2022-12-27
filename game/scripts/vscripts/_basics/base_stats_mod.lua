@@ -385,7 +385,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierConstantHealthRegen()
         if IsServer() then
-            return self.ability.stat_total["CON"] * self.ability.health_regen_bonus * self.ability.hp_regen_state
+            return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.hp_regen_state
         end
     end
 
