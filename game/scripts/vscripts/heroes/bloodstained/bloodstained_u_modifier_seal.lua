@@ -15,11 +15,11 @@ function bloodstained_u_modifier_seal:GetAuraSearchFlags() return DOTA_UNIT_TARG
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_u_modifier_seal:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 		
-		self.ability:SetActivated(false)
+	self.ability:SetActivated(false)
 
 	if IsServer() then self:PlayEfxStart() end
 end

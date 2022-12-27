@@ -182,7 +182,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.damage = self:GetSpecialValueFor("damage")
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.range = self:GetSpecialValueFor("range")
-				self.status_resist = self:GetSpecialValueFor("status_resist")
 
 				-- BLOCK
 				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
@@ -203,9 +202,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self:SetMPRegenState(0)
 
 				-- CON
+				self.status_resist = self:GetSpecialValueFor("status_resist")
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
-				self.health_regen = self:GetSpecialValueFor("health_regen")
-				self.hp_regen_state = 1	
+				self.health_regen_bonus = self:GetSpecialValueFor("health_regen_bonus")
+				self.hp_regen_state = 1
 
 				-- SECONDARY
 				self.evade = self:GetSpecialValueFor("evade") 
@@ -226,10 +226,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				-- INIT
 				self.total_range = self.range * (self.stat_init["STR"])
-				self.total_status_resist = self.status_resist * (self.stat_init["STR"])
 				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"]))
 				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"])
-				self.total_health_regen = self.health_regen * (self.stat_init["CON"])
+				self.total_status_resist = self.status_resist * (self.stat_init["CON"])
 			end
 		end
 
@@ -495,15 +494,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:RollChance()
-			if IsServer() then
-				local caster = self:GetCaster()
-				local critical_chance = self:GetCriticalChance()
-
-				if RandomFloat(1, 100) <= critical_chance * self.critical_chance then
-					return true
-				end
-				
-				return false
+			if IsServer() then				
+				return RandomFloat(1, 100) <= self:GetCriticalChance()
 			end
 		end
 
@@ -562,10 +554,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-			return 1 + (self.stat_total["LCK"] * 0.08)
-			-- local value = self.stat_total["LCK"] * self.critical_chance -- 0.25
-			-- local calc = (value * 6) / (1 +  (value * 0.04))
-			-- return calc
+			local value = self.stat_total["LCK"] * self.critical_chance
+			local calc = (value * 6) / (1 +  (value * 0.04))
+			return calc
 		end
 
 	-- UTIL MND

@@ -168,7 +168,6 @@ base_stats_mod = class ({})
 
             self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type, true)
             local crit = self.ability.total_crit_damage - 100
-            local critical_chance = self.ability:GetCriticalChance()
 
             if self.ability.crit_damage_spell[keys.damage_type] > 0 then
                 crit = self.ability.crit_damage_spell[keys.damage_type] - 100
@@ -179,7 +178,7 @@ base_stats_mod = class ({})
                 self.ability.force_crit_spell[keys.damage_type] = false
                 self.ability.has_crit = false
             else
-                if ((RandomFloat(1, 100) <= critical_chance * self.ability.critical_chance)
+                if ((RandomFloat(1, 100) <= self.ability:GetCriticalChance())
                 or self.ability.force_crit_spell[keys.damage_type] == true)
                 and not keys.target:IsBuilding() then
                     calc = calc + crit + (calc * crit * 0.01)
@@ -396,7 +395,7 @@ base_stats_mod = class ({})
 
     function base_stats_mod:GetModifierConstantHealthRegen()
         if IsServer() then
-            return self.ability.total_health_regen * self.ability.hp_regen_state
+            return self.ability.stat_total["CON"] * self.ability.health_regen_bonus * self.ability.hp_regen_state
         end
     end
 

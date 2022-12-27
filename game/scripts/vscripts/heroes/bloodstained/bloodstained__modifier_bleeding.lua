@@ -2,21 +2,22 @@ bloodstained__modifier_bleeding = class({})
 
 function bloodstained__modifier_bleeding:IsHidden() return false end
 function bloodstained__modifier_bleeding:IsPurgable() return true end
-function bloodstained__modifier_bleeding:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+--function bloodstained__modifier_bleeding:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained__modifier_bleeding:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
+	self.intervals = 0.2
 
-	self.intervals = 0.1
+	local damage_per_sec = 125
 
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
-		damage = 150 * self.intervals,
+		damage = damage_per_sec * self.intervals,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self.ability
 	}

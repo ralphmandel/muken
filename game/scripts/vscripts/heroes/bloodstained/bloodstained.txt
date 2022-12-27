@@ -128,7 +128,7 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_3__curse"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_curse"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -150,22 +150,22 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"		    "15"
+				"slow"		    "20"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
 			}
 			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_range"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"max_range"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"rank"				"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
 			}
 			"16"
 			{
@@ -201,44 +201,53 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_4__frenzy"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_frenzy"
-		"MaxLevel"               		"14"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
-				"LevelsBetweenUpgrades"  		"25"
+		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCooldown"				"0.1 0.4 0.7 1 1.3 1.6 1.9 2.2 2.5 2.8 3.1 3.4 3.7 4"
 
 		"AbilitySpecial"
 		{
-						"01"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"		"10"
+				"chance"			"15"
 			}
-						"02"
+			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"2.5"
+				"duration"		"3"
 			}
-						"03"
+			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi"		    "20"
+				"agi"		    	"30"
 			}
-						"04"
+			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"ms"		    "75"
-			}
-			"14"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"manacost"		"0"
+				"ms"		    	"25"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19"
+				"rank"				"1 2 3 4 5 6 7 8 9 10 11 12 13"
+			}
+			"16"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_bleed_chance"		"0"
+			}
+			"17"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_bleed_duration"	"0"
+			}
+			"18"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"special_immortality"			"0"
 			}
 		}
 	}

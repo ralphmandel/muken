@@ -48,7 +48,7 @@
             "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"knockback_chance"      "40"
+				"knockback_chance"      "35"
 			}
             "05"
 			{

@@ -179,8 +179,8 @@ function striker_1_modifier_passive:ApplyKnockback(target)
 	if RandomFloat(1, 100) > self.ability:GetSpecialValueFor("knockback_chance") then return end
 
 	target:AddNewModifier(self.caster, nil, "modifier_knockback", {
-		duration = 0.5,
-		knockback_duration = 0.5,
+		duration = 0.3,
+		knockback_duration = 0.3,
 		knockback_distance = 75,
 		center_x = self.parent:GetAbsOrigin().x + 1,
 		center_y = self.parent:GetAbsOrigin().y + 1,

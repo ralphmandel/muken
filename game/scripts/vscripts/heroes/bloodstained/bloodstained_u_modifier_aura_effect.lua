@@ -7,14 +7,11 @@ function bloodstained_u_modifier_aura_effect:GetPriority() return MODIFIER_PRIOR
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_u_modifier_aura_effect:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-		if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
-		and self.ability:GetSpecialValueFor("special_bleeding") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {})
-		end
+	if IsServer() then self:OnIntervalThink() end
 end
 
 function bloodstained_u_modifier_aura_effect:OnRefresh(kv)
@@ -49,11 +46,21 @@ function bloodstained_u_modifier_aura_effect:DeclareFunctions()
 end
 
 function bloodstained_u_modifier_aura_effect:GetModifierAvoidDamage(keys)
-    if keys.attacker:HasModifier(self:GetName()) == false then
-        return 1
-    end
+  if keys.attacker:HasModifier(self:GetName()) == false then
+    return 1
+  end
 
 	return 0
+end
+
+function bloodstained_u_modifier_aura_effect:OnIntervalThink()
+	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
+	and self.parent:HasModifier("bloodstained__modifier_bleeding") == false
+	and self.ability:GetSpecialValueFor("special_bleeding") == 1 then
+		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {})
+	end
+
+	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -101,7 +108,7 @@ function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_
 
 	local illu_array = CreateIllusions(self.caster, self.parent, {
 		outgoing_damage = -50,
-		incoming_damage = 400,
+		incoming_damage = 500,
 		bounty_base = 0,
 		bounty_growth = 0,
 		duration = -1
