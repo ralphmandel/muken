@@ -165,10 +165,10 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 
 		if caster:FindAbilityByName("striker_u__auto_rank_12") then
 			if value_name == "autocast_manacost" then return 1 end
+			if value_name == "mana_cost" then return 1 end
 		end
 
 		if caster:FindAbilityByName("striker_u__auto_rank_22") then
-			if value_name == "mana_cost" then return 1 end
 			if value_name == "mana_regen" then return 1 end
 		end
 	end
@@ -285,8 +285,8 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "chance_cooldown" then return 110 end
 		if value_name == "autocast_manacost" then return 40 end
-		if value_name == "mana_cost" then return 200 end
-		if value_name == "mana_regen" then return 20 end
+		if value_name == "mana_cost" then return 125 end
+		if value_name == "mana_regen" then return 10 end
 	end
 
 	return 0

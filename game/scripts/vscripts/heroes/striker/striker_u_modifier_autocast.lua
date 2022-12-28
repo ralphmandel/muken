@@ -32,7 +32,7 @@ function striker_u_modifier_autocast:DeclareFunctions()
 end
 
 function striker_u_modifier_autocast:GetModifierPercentageManacost(keys)
-	if self:GetAbility():GetCurrentAbilityCharges() == 1 then return 0 end
+	if self:GetAbility():GetCurrentAbilityCharges() == 0 then return 0 end
 	return -self:GetAbility():GetSpecialValueFor("mana_cost") + 100
 end
 

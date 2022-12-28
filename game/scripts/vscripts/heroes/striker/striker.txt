@@ -409,12 +409,12 @@
             "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"mana_cost"		        "150"
+				"mana_cost"		        "100"
 			}
             "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"mana_regen"		    "10"
+				"mana_regen"		    "0"
 			}
 			"15"
 			{
