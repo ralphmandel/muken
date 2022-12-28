@@ -1,6 +1,7 @@
 bloodstained_u__seal = class({})
 LinkLuaModifier("bloodstained_u_modifier_seal", "heroes/bloodstained/bloodstained_u_modifier_seal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_u_modifier_aura_effect", "heroes/bloodstained/bloodstained_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_u_modifier_slow", "heroes/bloodstained/bloodstained_u_modifier_slow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_u_modifier_copy", "heroes/bloodstained/bloodstained_u_modifier_copy", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_u_modifier_copy_status_efx", "heroes/bloodstained/bloodstained_u_modifier_copy_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)

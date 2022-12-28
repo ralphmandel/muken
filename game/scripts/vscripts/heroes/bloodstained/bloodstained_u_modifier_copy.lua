@@ -6,10 +6,11 @@ function bloodstained_u_modifier_copy:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_u_modifier_copy:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.target = nil
+	self.slow_mod = nil
 	self.hp = kv.hp
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
@@ -28,6 +29,13 @@ end
 function bloodstained_u_modifier_copy:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", false) end
+
+	if self.target then
+		local mod = self.target:FindAllModifiersByName("bloodstained_u_modifier_slow")
+		for _,modifier in pairs(mod) do
+			if modifier == self.slow_mod then modifier:Destroy() end
+		end
+	end
 
 	if self.parent:IsAlive() then
 		self.caster:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {

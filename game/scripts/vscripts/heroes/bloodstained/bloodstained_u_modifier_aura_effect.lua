@@ -82,7 +82,9 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 		percent = 100
 	})
 	
-	self:CreateCopy(copy_number, hp_stolen, copy_duration)
+	if self.parent:HasModifier("bloodstained_u_modifier_slow") == false then
+		self:CreateCopy(copy_number, hp_stolen, copy_duration)
+	end
 end
 
 function bloodstained_u_modifier_aura_effect:ReduceCooldown()
@@ -122,6 +124,7 @@ function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_
 
 		illu:SetForceAttackTarget(self.parent)
 		mod.target = self.parent
+		mod.slow_mod = self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_u_modifier_slow", {})
 		mod:PlayEfxTarget()
 
 		local loc = self.parent:GetAbsOrigin() + RandomVector(100)
