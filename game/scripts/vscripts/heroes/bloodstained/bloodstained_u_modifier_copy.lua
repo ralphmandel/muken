@@ -29,25 +29,24 @@ end
 function bloodstained_u_modifier_copy:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", false) end
+	
+	if self.target == nil then return end
 
-	if self.target then
-		local mod = self.target:FindAllModifiersByName("bloodstained_u_modifier_slow")
-		for _,modifier in pairs(mod) do
-			if modifier == self.slow_mod then modifier:Destroy() end
-		end
+	local mod = self.target:FindAllModifiersByName("bloodstained_u_modifier_slow")
+	for _,modifier in pairs(mod) do
+		if modifier == self.slow_mod then modifier:Destroy() end
 	end
 
 	if self.parent:IsAlive() then
 		self.caster:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
 			extra_life = self:GetStackCount(), cap = 1000
 		})
+
 		self.parent:Kill(self.ability, nil)
 	else
-		if self.target then
-			if self.target:IsAlive() then
-				local iDesiredHealthValue = self.target:GetHealth() + self:GetStackCount()
-				self.target:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
-			end
+		if self.target:IsAlive() then
+			--local iDesiredHealthValue = self.target:GetHealth() + self:GetStackCount()
+			--self.target:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
 		end
 	end
 end
@@ -86,9 +85,10 @@ function bloodstained_u_modifier_copy:OnTakeDamage(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
+	if self.slow_mod == nil then return end
 
+	self.slow_mod:ChangeHP(keys.damage)
 	self.hp = self.hp + keys.damage
-
 	if IsServer() then self:SetStackCount(math.floor(self.hp)) end
 end
 

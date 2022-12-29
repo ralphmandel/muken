@@ -180,7 +180,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"percent"		"10"
+				"percent"		"5"
 			}
 		}
 	}

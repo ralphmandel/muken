@@ -10,6 +10,10 @@ function bloodstained_u_modifier_slow:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+
+  self.hp = kv.hp
+
+  if IsServer() then self:SetStackCount(self.hp) end
 end
 
 function bloodstained_u_modifier_slow:OnRefresh(kv)
@@ -28,7 +32,28 @@ end
 -- 	return state
 -- end
 
+function bloodstained_u_modifier_slow:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_HEALTH_BONUS
+	}
+
+	return funcs
+end
+
+function bloodstained_u_modifier_slow:GetModifierHealthBonus()
+	if IsServer() then return -self:GetStackCount() end
+end
+
+function bloodstained_u_modifier_slow:OnStackCountChanged(old)
+	local void = self:GetParent():FindAbilityByName("_void")
+	if void then void:SetLevel(1) end
+end
 
 -- UTILS -----------------------------------------------------------
+
+function bloodstained_u_modifier_slow:ChangeHP(amount)
+  self.hp = self.hp + amount
+  if IsServer() then self:SetStackCount(math.floor(self.hp)) end
+end
 
 -- EFFECTS -----------------------------------------------------------

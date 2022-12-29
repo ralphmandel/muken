@@ -105,11 +105,11 @@ function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_
 	local total_hp_stolen = self.parent:GetMaxHealth() * hp_stolen * number * 0.01
 	if total_hp_stolen > self.parent:GetHealth() then total_hp_stolen = self.parent:GetHealth() end
 
-	local iDesiredHealthValue = self.parent:GetHealth() - total_hp_stolen
-	self.parent:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
+	--local iDesiredHealthValue = self.parent:GetHealth() - total_hp_stolen
+	--self.parent:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
 
 	local illu_array = CreateIllusions(self.caster, self.parent, {
-		outgoing_damage = -50,
+		outgoing_damage = -65,
 		incoming_damage = 500,
 		bounty_base = 0,
 		bounty_growth = 0,
@@ -122,10 +122,13 @@ function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_
 			hp = math.floor(total_hp_stolen / number)
 		})
 
-		illu:SetForceAttackTarget(self.parent)
 		mod.target = self.parent
-		mod.slow_mod = self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_u_modifier_slow", {})
+		mod.slow_mod = self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_u_modifier_slow", {
+			hp = math.floor(total_hp_stolen / number)
+		})
+
 		mod:PlayEfxTarget()
+		illu:SetForceAttackTarget(self.parent)
 
 		local loc = self.parent:GetAbsOrigin() + RandomVector(100)
 		illu:SetAbsOrigin(loc)

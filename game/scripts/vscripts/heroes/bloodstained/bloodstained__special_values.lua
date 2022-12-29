@@ -277,7 +277,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "slow_duration" then return 3 end
 		if value_name == "copy_number" then return 2 end
 		if value_name == "copy_duration" then return 20 end
-		if value_name == "hp_stolen" then return 10 end
+		if value_name == "hp_stolen" then return 5 end
 		if value_name == "special_bleeding" then return 1 end
 		if value_name == "special_refresh" then return 40 end
 	end

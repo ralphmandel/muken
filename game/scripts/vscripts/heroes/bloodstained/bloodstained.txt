@@ -341,7 +341,7 @@
 			"03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hp_stolen"         "15"
+				"hp_stolen"         "10"
 			}
 			"04"
 			{
