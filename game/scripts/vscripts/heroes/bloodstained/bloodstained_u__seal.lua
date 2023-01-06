@@ -5,6 +5,7 @@ LinkLuaModifier("bloodstained_u_modifier_slow", "heroes/bloodstained/bloodstaine
 LinkLuaModifier("bloodstained_u_modifier_copy", "heroes/bloodstained/bloodstained_u_modifier_copy", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_u_modifier_copy_status_efx", "heroes/bloodstained/bloodstained_u_modifier_copy_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained__modifier_target_hp", "heroes/bloodstained/bloodstained__modifier_target_hp", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained__modifier_bleeding", "heroes/bloodstained/bloodstained__modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained__modifier_bleeding_status_efx", "heroes/bloodstained/bloodstained__modifier_bleeding_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_generic_custom_indicator", "modifiers/_modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE)

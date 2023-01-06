@@ -38,9 +38,11 @@ function bloodstained_u_modifier_copy:OnRemoved()
 	end
 
 	if self.parent:IsAlive() then
-		self.caster:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
+		local mod_extra_hp = self.caster:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
 			extra_life = self:GetStackCount(), cap = 1000
 		})
+
+		mod_extra_hp:ApplyTargetDebuff(self.target)
 
 		self.parent:Kill(self.ability, nil)
 	else

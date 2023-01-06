@@ -24,6 +24,7 @@ function bloodstained__modifier_extra_hp:OnRefresh(kv)
 end
 
 function bloodstained__modifier_extra_hp:OnRemoved()
+	if self.target_mod then self.target_mod:Destroy() end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -54,10 +55,20 @@ function bloodstained__modifier_extra_hp:OnStackCountChanged(old)
 
 	if old < self:GetStackCount() then self:StartIntervalThink(1) end
 
+	if self.target_mod then self.target_mod:SetStackCount(self:GetStackCount()) end
+
 	local void = self:GetCaster():FindAbilityByName("_void")
 	if void then void:SetLevel(1) end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function bloodstained__modifier_extra_hp:ApplyTargetDebuff(target)
+	if target == nil then return end
+
+	self.target_mod = target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_target_hp", {
+		hp = self:GetStackCount()
+	})
+end
 
 -- EFFECTS -----------------------------------------------------------

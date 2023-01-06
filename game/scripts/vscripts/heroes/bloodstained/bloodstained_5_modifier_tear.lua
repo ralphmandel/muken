@@ -1,49 +1,30 @@
 bloodstained_5_modifier_tear = class({})
 
-function bloodstained_5_modifier_tear:IsHidden()
-	return true
-end
-
-function bloodstained_5_modifier_tear:IsPurgable()
-	return false
-end
-
-function bloodstained_5_modifier_tear:IsDebuff()
-	return false
-end
+function bloodstained_5_modifier_tear:IsHidden() return true end
+function bloodstained_5_modifier_tear:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_5_modifier_tear:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-	local time = 0
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	self.tick = self.ability:GetSpecialValueFor("tick")
 	self.blood_duration = self.ability:GetSpecialValueFor("blood_duration")
-
-	-- UP 5.22
-	if self.ability:GetRank(22) then
-		AddBonus(self.ability, "_2_LCK", self.parent, 5, 0, nil)	
-	end
-
-	-- UP 5.41
-	if self.ability:GetRank(41) then
-		self.blood_duration = self.blood_duration + 10
-		time = self.blood_duration
-
-		self.start = true
-		ApplyDamage({
-			attacker = self.caster, victim = self.parent, ability = self.ability,
-			damage = 500, damage_type = DAMAGE_TYPE_PURE,
-			damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
-		})
-	end
+	self.init_loss = self.ability:GetSpecialValueFor("special_init_loss")
 
 	if IsServer() then
-		self:PlayEfxStart(self.ability:GetAOERadius(), time)
+		self:PlayEfxStart(self.ability:GetAOERadius(), init_loss)
 		self:StartIntervalThink(self.tick)
+
+		if self.init_loss > 0 then
+			ApplyDamage({
+				attacker = self.caster, victim = self.parent, ability = self.ability,
+				damage = self.init_loss, damage_type = DAMAGE_TYPE_PURE,
+				damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
+			})
+		end
 	end
 end
 
@@ -52,7 +33,6 @@ end
 
 function bloodstained_5_modifier_tear:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, true) end
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
 	self:PullBlood()
 
 	if IsServer() then self.parent:StopSound("Hero_Boodseeker.Bloodmist") end
@@ -71,22 +51,12 @@ end
 function bloodstained_5_modifier_tear:OnTakeDamage(keys)
 	if CalcDistanceBetweenEntityOBB(self.parent, keys.unit) <= self.ability:GetAOERadius() then
 		self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin())
-
-		-- UP 5.22
-		if self.ability:GetRank(22) then
-			self:ApplyHaemorrhage(keys)
-		end
+		self:ApplyHaemorrhage(keys)
 	end
 end
 
 function bloodstained_5_modifier_tear:OnIntervalThink()
 	local hp_lost = self.ability:GetSpecialValueFor("hp_lost")
-
-	-- UP 5.11
-	if self.ability:GetRank(11) then
-		hp_lost = hp_lost + 0.5
-	end
-
 	local damage = self.parent:GetMaxHealth() * hp_lost * 0.01
 
 	local damage_result = ApplyDamage({
@@ -117,7 +87,6 @@ end
 function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
-	if keys.attacker ~= self.parent then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
 	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 	
@@ -125,14 +94,14 @@ function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
 	if base_stats_target == nil then return end
 	if base_stats_target.has_crit ~= true then return end
 
-	local point = (self.parent:GetAbsOrigin() - keys.unit:GetAbsOrigin()):Normalized()
+	local point = (keys.attacker:GetAbsOrigin() - keys.unit:GetAbsOrigin()):Normalized()
 	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 175))
 	self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin() - (point * 350))
-	self:PlayEfxHaemorrhage(self.parent, keys.unit)
+	self:PlayEfxHaemorrhage(keys.attacker, keys.unit)
 end
 
 function bloodstained_5_modifier_tear:CreateBlood(target, damage, origin)
-	if self.start then damage = damage * 5 end
+	if self.init_loss > 0 then damage = damage * 5 end
 	local point = origin + RandomVector(RandomInt(0, 75))
 
 	local blood_thinker = CreateModifierThinker(
@@ -141,7 +110,7 @@ function bloodstained_5_modifier_tear:CreateBlood(target, damage, origin)
 		point, self.parent:GetTeamNumber(), false
 	)
 
-	if self.start then self.start = nil return end
+	if self.init_loss > 0 then self.init_loss = 0 return end
 	self:PlayEfxStartBlood(blood_thinker, point, damage)
 end
 
@@ -174,12 +143,14 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:PlayEfxStart(radius, time)
-	local string_1 = "particles/bloodstained/tear/bloodstained_tear_initial.vpcf"
-	self.particle = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.particle, 10, Vector(time, 0, 0))
-	self:AddParticle(self.particle, false, false, -1, false, false)
+function bloodstained_5_modifier_tear:PlayEfxStart(radius, init_loss)
+	if self.init_loss > 0 then
+		local string_1 = "particles/bloodstained/tear/bloodstained_tear_initial.vpcf"
+		self.particle = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControl(self.particle, 10, Vector(self.blood_duration, 0, 0))
+		self:AddParticle(self.particle, false, false, -1, false, false)
+	end
 
 	local string_2 = "particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_aoe.vpcf"
 	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, self.parent)

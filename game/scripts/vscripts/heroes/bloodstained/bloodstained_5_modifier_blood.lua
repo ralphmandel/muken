@@ -1,16 +1,7 @@
 bloodstained_5_modifier_blood = class({})
 
-function bloodstained_5_modifier_blood:IsHidden()
-	return true
-end
-
-function bloodstained_5_modifier_blood:IsPurgable()
-	return false
-end
-
-function bloodstained_5_modifier_blood:IsDebuff()
-	return false
-end
+function bloodstained_5_modifier_blood:IsHidden() return true end
+function bloodstained_5_modifier_blood:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

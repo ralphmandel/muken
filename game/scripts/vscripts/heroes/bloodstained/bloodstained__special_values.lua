@@ -136,15 +136,20 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("bloodstained_5__tear_rank_11") then
+			if value_name == "hp_lost" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bloodstained_5__tear_rank_21") then
+			if value_name == "radius" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bloodstained_5__tear_rank_22") then
+			if value_name == "blood_duration" then return 1 end
+			if value_name == "special_init_loss" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bloodstained_5__tear_rank_31") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_5__tear_rank_41") then
+			if value_name == "special_copy_leech" then return 1 end
 		end
 	end
 
@@ -256,8 +261,22 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 
 	if ability:GetAbilityName() == "bloodstained_5__tear" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("bloodstained_5__tear_rank_12") then
+				return 10
+			end		
+			return 20
+		end
+		
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "blood_percent" then return 10 + (value_level * 0.2) end
+
+		if value_name == "hp_lost" then return 2.5 end
+		if value_name == "radius" then return 375 end
+		if value_name == "blood_duration" then return 25 end
+		if value_name == "special_init_loss" then return 500 end
+		if value_name == "special_copy_leech" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
