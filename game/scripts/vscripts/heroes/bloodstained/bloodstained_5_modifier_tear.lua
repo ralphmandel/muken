@@ -33,7 +33,9 @@ end
 
 function bloodstained_5_modifier_tear:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, true) end
+	
 	self:PullBlood()
+	self:PullCopies()
 
 	if IsServer() then self.parent:StopSound("Hero_Boodseeker.Bloodmist") end
 end
@@ -119,8 +121,9 @@ function bloodstained_5_modifier_tear:PullBlood()
 	local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
 
 	for _,blood in pairs(thinkers) do
-		if blood:GetOwner() == self.caster then
-			total_blood = total_blood + self:ProcessBlood(blood)
+		local mod = blood:FindModifierByName("bloodstained_5_modifier_blood")
+		if mod and blood:GetOwner() == self.caster then 
+			total_blood = total_blood + mod.damage
 			self:PlayEfxPull(blood)
 			blood:Destroy()
 		end
@@ -135,10 +138,19 @@ function bloodstained_5_modifier_tear:PullBlood()
 	end
 end
 
-function bloodstained_5_modifier_tear:ProcessBlood(blood)
-	local mod = blood:FindModifierByName("bloodstained_5_modifier_blood")
-	if mod == nil then return 0 end
-	return mod.damage
+function bloodstained_5_modifier_tear:PullCopies()
+	if self.ability:GetSpecialValueFor("special_copy_leech") == 0 then return end
+
+	local copies = FindUnitsInRadius(
+		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, -1,
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+		0, 0, false
+	)
+
+	for _,copy in pairs(copies) do
+		self:PlayEfxPull(copy)
+		copy:RemoveModifierByNameAndCaster("bloodstained_u_modifier_copy", self.caster)
+	end
 end
 
 -- EFFECTS -----------------------------------------------------------

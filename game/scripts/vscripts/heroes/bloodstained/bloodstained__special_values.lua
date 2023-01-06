@@ -134,6 +134,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "blood_percent" then return 1 end
 
 		if caster:FindAbilityByName("bloodstained_5__tear_rank_11") then
 			if value_name == "hp_lost" then return 1 end
@@ -260,17 +261,17 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 	end
 
 	if ability:GetAbilityName() == "bloodstained_5__tear" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("bloodstained_5__tear_rank_12") then
-				return 10
+				return 45
 			end		
-			return 20
+			return 60
 		end
 		
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "blood_percent" then return 10 + (value_level * 0.2) end
+		if value_name == "blood_percent" then return 9 + (value_level * 0.1) end
 
 		if value_name == "hp_lost" then return 2.5 end
 		if value_name == "radius" then return 375 end

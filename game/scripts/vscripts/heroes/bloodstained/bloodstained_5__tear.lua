@@ -23,8 +23,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
                 self:SetActivated(true)
             end)
         else
-            self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
-
             caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
             caster:SetMoveCapability(DOTA_UNIT_CAP_MOVE_NONE)
             caster:AttackNoEarlierThan(0.6, 99)

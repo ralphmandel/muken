@@ -407,6 +407,13 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:CheckRequirements(talentName)
+		-- BLOODSTAINED
+			-- Bloodstained 5.31 requires ultimate
+			if talentName == "bloodstained_5__tear_rank_31"
+			and self:GetCaster():FindAbilityByName("bloodstained_u__seal"):IsTrained() == false then
+				return false
+			end
+
 		-- ANCIENT ONE
 			-- Ancient 1.41 requires skill rank level 12
 			if talentName == "ancient_1__berserk_rank_41" then

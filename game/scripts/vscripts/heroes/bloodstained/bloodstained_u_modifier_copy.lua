@@ -80,7 +80,7 @@ function bloodstained_u_modifier_copy:GetModifierMoveSpeedBonus_Percentage(targe
 end
 
 function bloodstained_u_modifier_copy:OnDeath(keys)
-	if keys.unit == self.target then self.parent:Kill(self.ability, nil) end
+	if keys.unit == self.target then self:Destroy() end
 end
 
 function bloodstained_u_modifier_copy:OnTakeDamage(keys)
