@@ -1,30 +1,22 @@
-icebreaker_1_modifier_passive = class ({})
+icebreaker_1_modifier_passive = class({})
 
-function icebreaker_1_modifier_passive:IsHidden()
-    return false
-end
-
-function icebreaker_1_modifier_passive:IsPurgable()
-    return false
-end
+function icebreaker_1_modifier_passive:IsHidden() return false end
+function icebreaker_1_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function icebreaker_1_modifier_passive:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.ability = self:GetAbility()
 
-	self.double_attack = 0
-
-	if self.parent:IsIllusion() then
-		self:SetUpIllusion()
-	end
-
-	if IsServer() then
-		self:SetStackCount(self.ability.kills)
-		self:PlayEfxAmbient()
-	end
+	Timers:CreateTimer(0.2, function()
+		if IsServer() then
+			self.ability.kills = self.ability:GetSpecialValueFor("agi")
+			self:SetStackCount(self.ability.kills)
+			self:PlayEfxAmbient()
+		end
+	end)
 end
 
 function icebreaker_1_modifier_passive:OnRefresh(kv)
@@ -33,141 +25,126 @@ function icebreaker_1_modifier_passive:OnRefresh(kv)
 	end
 end
 
+function icebreaker_1_modifier_passive:OnRemoved()
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+end
+
 -- API FUNCTIONS -----------------------------------------------------------
 
 function icebreaker_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_HERO_KILLED,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_EVENT_ON_ATTACK_FAIL
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
-	
+
 	return funcs
 end
 
-function icebreaker_1_modifier_passive:OnHeroKilled(keys)
-	if keys.attacker == nil or keys.target == nil or keys.inflictor == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
-	if keys.attacker ~= self.parent then return end
-	if self.parent:IsIllusion() then return end
-	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+function icebreaker_1_modifier_passive:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
 
-	if IsServer() then
-		if keys.inflictor:GetAbilityName() == "icebreaker_u__blink" then
-			self.ability:AddKillPoint(1)
-			self:SetStackCount(self.ability.kills)
-		end
+	if self.parent:PassivesDisabled() then
+		self:SetStackCount(0)
+	else
+		self:SetStackCount(self.ability.kills)
 	end
 end
 
-function icebreaker_1_modifier_passive:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
+function icebreaker_1_modifier_passive:GetModifierTotalDamageOutgoing_Percentage(keys)
+	if self.proc then
+		self.proc = nil
+		return -9999
+	end
+
+	return 0
+end
+
+function icebreaker_1_modifier_passive:OnHeroKilled(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if self.parent:IsIllusion() then return end
 
-	self:ApplyHypothermia(keys.target, self.parent:IsIllusion())
+	local blink = self.parent:FindAbilityByName("icebreaker_u__blink")
+	if blink == nil then return end
+	if keys.inflictor ~= blink then return end
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
-		self:ApplyInstantFrozen(keys.target, self.parent:IsIllusion())
-	end
-
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		self:ApplyBonusMagicalDamage(keys.target, self.parent:IsIllusion())
-	end
-
-	-- UP 1.41
-	if self.ability:GetRank(41) then
-		self:ApplyAutoBlink(keys.target, self.parent:IsIllusion())
+	if IsServer() then
+		self.ability.kills = self.ability.kills + 1
+		self:SetStackCount(self.ability.kills)
+		self:PlayEfxKill()
 	end
 end
 
 function icebreaker_1_modifier_passive:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
+	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
+	if self.parent:PassivesDisabled() then return end
 
-    if self.double_attack > 0 then
-		self.double_attack = self.double_attack - 1
-		RemoveBonus(self.ability, "_1_AGI", self.parent)
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+		self:ApplyFrost(keys.target)
+	end
+end
+
+function icebreaker_1_modifier_passive:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
+	if self.parent:PassivesDisabled() then return end
+
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+		self:ApplyFrost(keys.target)
+	end
+
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_blink_chance") then
+		self:PerformAutoBlink(keys.target)
+	end
+end
+
+function icebreaker_1_modifier_passive:OnStackCountChanged(old)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+
+	if self:GetStackCount() > 0 then
+		AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount(), 0, nil)
 	end
 end
 
 -- UTILS -----------------------------------------------------------
 
-function icebreaker_1_modifier_passive:ApplyHypothermia(target, bIllusion)
-	local hypo_chance = 75
-	if bIllusion then hypo_chance = 100 end
-	if target:IsMagicImmune() then hypo_chance = 25 end
-	if self.parent:PassivesDisabled() then hypo_chance = 0 end
-	if RandomFloat(1, 100) <= hypo_chance then self.ability:AddSlow(target, self.ability, 1, true) end
-end
-
-function icebreaker_1_modifier_passive:ApplyBonusMagicalDamage(target, bIllusion)
-	if self.parent:PassivesDisabled() then return end
-	if bIllusion then return end
-
-	local damageTable = {
-		victim = target,
-		attacker = self.caster,
-		damage = 12,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability
-	}
-
-	ApplyDamage(damageTable)
-end
-
-function icebreaker_1_modifier_passive:ApplyInstantFrozen(target, bIllusion)
-	if self.parent:PassivesDisabled() then return end
-	if target:HasModifier("icebreaker_1_modifier_frozen") then return end
-	if target:IsAlive() == false then return end
+function icebreaker_1_modifier_passive:ApplyFrost(target)
 	if target:IsMagicImmune() then return end
-	if bIllusion then return end  
-	
-	if RandomFloat(1, 100) <= 10 then
-		target:AddNewModifier(self.caster, self.ability, "icebreaker_1_modifier_instant", {
-			duration = 0.1
+	local instant_duration = self.ability:GetSpecialValueFor("special_instant_duration")
+
+	ApplyDamage({
+		victim = target, attacker = self.caster,
+		damage = self.ability:GetSpecialValueFor("damage"),
+		damage_type = self.ability:GetAbilityDamageType(),
+		ability = self.ability
+	})
+
+	self.proc = true
+
+	target:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_hypo", {
+		duration = CalcStatus(self.ability:GetSpecialValueFor("stack_duration"), self.caster, target), stack = 1
+	})
+
+	if instant_duration > 0 then
+		target:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_instant", {
+			duration = instant_duration
 		})
 	end
 end
 
-function icebreaker_1_modifier_passive:ApplyAutoBlink(target, bIllusion)
-	if self.double_attack > 0 then
-		self.double_attack = self.double_attack - 1
-		RemoveBonus(self.ability, "_1_AGI", self.parent)
-	end
+function icebreaker_1_modifier_passive:PerformAutoBlink(target)
+	if self.parent:IsRooted() then return end
 
-	if self.parent:PassivesDisabled() then return end
-	if bIllusion then return end
+	local direction = target:GetForwardVector() * (-1)
+	local blink_point = target:GetAbsOrigin() + direction * 130
 
-	if RandomFloat(1, 100) <= 15 then
-		local direction = target:GetForwardVector() * (-1)
-		local blink_point = target:GetAbsOrigin() + direction * 130
-
-		self:PlayEfxAutoBlink()
-		self.parent:SetAbsOrigin(blink_point)
-		self.parent:SetForwardVector(-direction)
-		FindClearSpaceForUnit(self.parent, blink_point, true)
-
-		RemoveBonus(self.ability, "_1_AGI", self.parent)
-		AddBonus(self.ability, "_1_AGI", self.parent, 999, 0, 2)
-		self.double_attack = 1
-	end
-end
-
-function icebreaker_1_modifier_passive:SetUpIllusion()
-	local new_caster = nil
-	local new_ability = nil
-
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then new_caster = base_stats:FindOriginalHero() end
-	if new_caster == nil then self:Destroy() return end
-	if new_caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
-
-	local new_ability = new_caster:FindAbilityByName(self.ability:GetAbilityName())
-	if new_ability == nil then self:Destroy() return end
-
-	self.caster = new_caster
-	self.ability = new_ability
+	self:PlayEfxAutoBlink()
+	self.parent:SetAbsOrigin(blink_point)
+	self.parent:SetForwardVector(-direction)
+	FindClearSpaceForUnit(self.parent, blink_point, true)
 end
 
 -- EFFECTS -----------------------------------------------------------
@@ -181,7 +158,7 @@ function icebreaker_1_modifier_passive:StatusEffectPriority()
 end
 
 function icebreaker_1_modifier_passive:PlayEfxAmbient()
-    if self.effect_cast_1 then ParticleManager:DestroyParticle(self.effect_cast_1, true) end
+  if self.effect_cast_1 then ParticleManager:DestroyParticle(self.effect_cast_1, true) end
 	local particle_cast_1 = "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ambient.vpcf"
 	self.effect_cast_1 = ParticleManager:CreateParticle(particle_cast_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(self.effect_cast_1, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0,0,0), true)
@@ -203,4 +180,14 @@ function icebreaker_1_modifier_passive:PlayEfxAutoBlink()
 	ParticleManager:ReleaseParticleIndex(effect_cast_a)
 
 	if IsServer() then self.parent:EmitSound("Hero_QueenOfPain.Blink_out") end
+end
+
+function icebreaker_1_modifier_passive:PlayEfxKill()
+	local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+
+	local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+	ParticleManager:ReleaseParticleIndex(nFXIndex)
 end

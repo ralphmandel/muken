@@ -6,9 +6,9 @@ function _modifier_example:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function _modifier_example:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	AddBonus(self.ability, "_1_AGI", self.parent, value, 0, nil)
 end
@@ -46,7 +46,7 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function _modifier_example:GetStatusEffectName()
-    return ""
+  return ""
 end
 
 function _modifier_example:StatusEffectPriority()

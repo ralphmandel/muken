@@ -110,12 +110,12 @@
 				"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"armor"					"0.6"
+					"armor"					"0.5"
 				}
 				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"magic_resist"			"0.6"
+					"magic_resist"			"0.4"
 				}
 				"24"
 				{

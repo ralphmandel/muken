@@ -1,0 +1,135 @@
+"TalentTree_icebreaker"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_riki"
+	{
+		"icebreaker_1__hypo"
+		{
+			"0"
+			{
+				"1"   "icebreaker_1__hypo_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_1__hypo_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_1__hypo_rank_31"
+			}
+			"3"
+			{
+				"1"   "icebreaker_1__hypo_rank_41"
+			}
+		}
+		"icebreaker_2__puff"
+		{
+			"0"
+			{
+				"1"   "icebreaker_2__puff_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_2__puff_rank_21"
+				"2"   "icebreaker_2__puff_rank_22"
+			}
+			"2"
+			{
+				"1"   "icebreaker_2__puff_rank_31"
+			}
+			"3"
+			{
+				"1"   "icebreaker_2__puff_rank_41"
+			}
+		}
+		"icebreaker_3__zero"
+		{
+			"0"
+			{
+				"1"   "icebreaker_3__zero_rank_11"
+				"2"   "icebreaker_3__zero_rank_12"
+			}
+			"1"
+			{
+				"1"   "icebreaker_3__zero_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_3__zero_rank_31"
+				"2"   "icebreaker_3__zero_rank_32"
+			}
+			"3"
+			{
+				"1"   "icebreaker_3__zero_rank_41"
+			}
+		}
+		"icebreaker_4__wave"
+		{
+			"0"
+			{
+				"1"   "icebreaker_4__wave_rank_11"
+				"2"   "icebreaker_4__wave_rank_12"
+			}
+			"1"
+			{
+				"1"   "icebreaker_4__wave_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_4__wave_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"icebreaker_5__mirror"
+		{
+			"0"
+			{
+				"1"   "icebreaker_5__mirror_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_5__mirror_rank_21"
+			}
+			"2"
+			{
+				"1"   "icebreaker_5__mirror_rank_31"
+			}
+			"3"
+			{
+				"1"   "icebreaker_5__mirror_rank_41"
+			}
+		}
+		"icebreaker_u__blink"
+		{
+			"0"
+			{
+				"1"   "icebreaker_u__blink_rank_11"
+			}
+			"1"
+			{
+				"1"   "icebreaker_u__blink_rank_21"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "icebreaker_u__blink_rank_41"
+			}
+		}
+	}	
+}

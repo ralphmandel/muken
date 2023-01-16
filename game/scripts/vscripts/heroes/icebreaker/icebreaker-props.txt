@@ -7,21 +7,21 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"slot_1"
-			"Ability2"						"slot_2"
-			"Ability3"						"slot_3"
-			"Ability4"						"slot_4"
-			"Ability5"						"slot_5"
-			"Ability6"						"slot_6"
+			"Ability1"						"icebreaker_1__frost"
+			"Ability2"						"icebreaker_2__wave"
+			"Ability3"						"icebreaker_3__shard"
+			"Ability4"						"icebreaker_4__mirror"
+			"Ability5"						"icebreaker_5__shivas"
+			"Ability6"						"icebreaker_u__blink"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"icebreaker_1__hypo"
-			"Ability11"						"icebreaker_2__puff"
-			"Ability12"						"icebreaker_3__zero"
-			"Ability13"						"icebreaker_4__wave"
-			"Ability14"						"icebreaker_5__mirror"
-			"Ability15"						"icebreaker_u__blink"
+			"Ability10"						"_channel"
+			"Ability11"						"_void"
+			"Ability12"						"icebreaker__precache"
+			"Ability13"						"null"
+			"Ability14"						"null"
+			"Ability15"						"null"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"_channel"
-			"Ability31"						"_void"
-			"Ability32"						"icebreaker__precache"
+			"Ability30"						"null"		
+			"Ability31"						"null"		
+			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "100"     // Range within a target can be attacked.
+		"AttackRange"                   "120"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
