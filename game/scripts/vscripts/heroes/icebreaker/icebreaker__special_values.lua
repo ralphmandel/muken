@@ -57,17 +57,31 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "distance" then return 1 end
+		if value_name == "speed" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_11") then
+			if value_name == "recharge" then return 1 end
+			if value_name == "special_auto_charge" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_21") then
+			if value_name == "stack_max" then return 1 end
+			if value_name == "stack_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_31") then
+			if value_name == "special_path_lifetime" then return 1 end
+		end
+
+		if caster:FindAbilityByName("icebreaker_2__wave_rank_32") then
+			if value_name == "special_silence_duration" then return 1 end
+			if value_name == "special_damage_percent" then return 1 end
+			if value_name == "special_knockback" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_41") then
+			if value_name == "special_mirror_lifetime" then return 1 end
 		end
 	end
 
@@ -166,9 +180,21 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_2__wave" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "distance" then return 850 + (value_level * 50) end
+		if value_name == "speed" then return 675 + (value_level * 25) end
+
+		if value_name == "recharge" then return 15 end
+		if value_name == "special_auto_charge" then return 2 end
+		if value_name == "stack_max" then return 5 end
+		if value_name == "stack_duration" then return 10 end
+		if value_name == "special_path_lifetime" then return 10 end
+		if value_name == "special_silence_duration" then return 2 end
+		if value_name == "special_damage_percent" then return 3 end
+		if value_name == "special_knockback" then return 1 end
+		if value_name == "special_mirror_lifetime" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__shard" then

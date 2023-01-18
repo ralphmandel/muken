@@ -15,14 +15,25 @@ function icebreaker__modifier_hypo:OnCreated(kv)
 	self.max_stack = 10
 	self.frozen_duration = 5
 
+	local stack = kv.stack or 0
+	local stack_min = kv.stack_min or 0
+
+	if stack_min > stack then stack = stack_min end
+
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_hypo_status_efx", true) end
 
-	if IsServer() then self:SetStackCount(kv.stack) end
+	if IsServer() then self:SetStackCount(stack) end
 end
 
 function icebreaker__modifier_hypo:OnRefresh(kv)
-	if IsServer() then self:SetStackCount(self:GetStackCount() + kv.stack) end
+	local stack = kv.stack or 0
+	local stack_min = kv.stack_min or 0
+
+	stack = stack + self:GetStackCount()
+	if stack_min > stack then stack = stack_min end
+
+	if IsServer() then self:SetStackCount(stack) end
 end
 
 function icebreaker__modifier_hypo:OnRemoved()

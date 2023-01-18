@@ -8,9 +8,9 @@ function _modifier_path:GetTexture()
 	return "_modifier_path"
 end
 
-function _modifier_path:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
+-- function _modifier_path:GetAttributes()
+-- 	return MODIFIER_ATTRIBUTE_MULTIPLE
+-- end
 
 --------------------------------------------------------------------------------]
 

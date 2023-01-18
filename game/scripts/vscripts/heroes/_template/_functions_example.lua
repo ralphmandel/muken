@@ -80,9 +80,8 @@
 -- APPLY DAMAGE
     function functions_example:OnSpellStart()
         local damageTable = {
+            attacker = attacker, victim = victim,
             damage = damage,
-            attacker = attacker,
-            victim = victim,
             damage_type = self:GetAbilityDamageType(),
             ability = self
         }

@@ -89,7 +89,6 @@ function icebreaker__precache:Precache(context)
     PrecacheResource( "particle", "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", context )
     PrecacheResource( "particle", "particles/items2_fx/shivas_guard_active.vpcf", context )
     PrecacheResource( "particle", "particles/items2_fx/shivas_guard_impact.vpcf", context )
-    PrecacheResource( "particle", "", context )
 
     PrecacheResource( "model", "models/items/rikimaru/riki_scarlet_fox_arms/riki_scarlet_fox_arms.vmdl", context )
     PrecacheResource( "model", "models/items/rikimaru/riki_scarlet_fox_head/riki_scarlet_fox_head.vmdl", context )
