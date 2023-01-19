@@ -242,7 +242,7 @@ function icebreaker_3_modifier_shard:PlayEfxStart(radius)
 end
 
 function icebreaker_3_modifier_shard:PlayEfxExplosion(point)
-	local particle_cast = "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+	local particle_cast = "particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_explosion_arcana1.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, point)
 

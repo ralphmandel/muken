@@ -78,16 +78,14 @@ LinkLuaModifier("dasdingo_4_modifier_poison", "heroes/dasdingo/dasdingo_4_modifi
 
     function dasdingo_4__tribal:OnSpellStart()
         local caster = self:GetCaster()
-        local point = self:GetCursorPosition()
-        local level_up = math.floor(self:GetSpecialValueFor("rank") / 2) - 1
-        
+        local point = self:GetCursorPosition()        
         local summoned_unit = self:InsertTribal(
             CreateUnitByName("tribal_ward", point, true, caster, caster, caster:GetTeamNumber())
         )
 
         if summoned_unit then
             summoned_unit:AddNewModifier(caster, self, "dasdingo_4_modifier_tribal", {})
-            summoned_unit:CreatureLevelUp(level_up)
+            summoned_unit:CreatureLevelUp(self:GetSpecialValueFor("rank"))
 
             AddBonus(self, "_1_AGI", summoned_unit, 999, 0, nil)
             

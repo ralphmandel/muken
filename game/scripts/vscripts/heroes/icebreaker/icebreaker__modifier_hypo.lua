@@ -6,7 +6,7 @@ function icebreaker__modifier_hypo:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function icebreaker__modifier_hypo:OnCreated(kv)
-  self.caster = self:GetCaster()
+  self.caster = self:GetCaster():GetPlayerOwner():GetAssignedHero()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
@@ -54,6 +54,11 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
 	end
 
 	if self:GetStackCount() ~= old then
+		if self:GetStackCount() == 0 then
+			self:Destroy()
+			return
+		end
+		
 		self:ModifySlow(self:GetStackCount())
 	end
 end

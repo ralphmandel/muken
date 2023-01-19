@@ -86,7 +86,7 @@ function icebreaker__precache:Precache(context)
     PrecacheResource( "particle", "particles/icebreaker/icebreaker_blur.vpcf", context )
     PrecacheResource( "particle", "particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_blur_ambient_warp.vpcf", context )
     PrecacheResource( "particle", "particles/icebreaker/icebreaker_zero.vpcf", context )
-    PrecacheResource( "particle", "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf", context )
     PrecacheResource( "particle", "particles/items2_fx/shivas_guard_active.vpcf", context )
     PrecacheResource( "particle", "particles/items2_fx/shivas_guard_impact.vpcf", context )
 

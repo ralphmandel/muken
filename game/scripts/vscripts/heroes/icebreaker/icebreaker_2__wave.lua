@@ -8,6 +8,7 @@ LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/icebreaker/ice
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_path", "modifiers/_modifier_path", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -73,6 +74,8 @@ LinkLuaModifier("_modifier_path", "modifiers/_modifier_path", LUA_MODIFIER_MOTIO
 		local damage_percent = self:GetSpecialValueFor("special_damage_percent")
 		local knockback = self:GetSpecialValueFor("special_knockback")
 
+		self:CreateMirror(target)
+
 		if silence_duration > 0 then
 			target:AddNewModifier(caster, self, "_modifier_silence", {
 				duration = CalcStatus(silence_duration, caster, target)
@@ -104,6 +107,29 @@ LinkLuaModifier("_modifier_path", "modifiers/_modifier_path", LUA_MODIFIER_MOTIO
 			caster:MoveToTargetToAttack(target)
 			self.first_hit = true
 		end
+	end
+
+	function icebreaker_2__wave:CreateMirror(target)
+		local caster = self:GetCaster()
+		local mirror_lifetime = self:GetSpecialValueFor("special_mirror_lifetime")
+		if mirror_lifetime == 0 then return end
+
+		local illu_array = CreateIllusions(caster, caster, {
+			outgoing_damage = -50,
+			incoming_damage = 700,
+			bounty_base = 0,
+			bounty_growth = 0,
+			duration = mirror_lifetime
+		}, 1, 64, false, true)
+
+		for _,illu in pairs(illu_array) do
+			local loc = target:GetAbsOrigin() + RandomVector(130)
+			illu:AddNewModifier(caster, self, "_modifier_phase", {})
+			illu:SetAbsOrigin(loc)
+			illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
+			illu:SetForceAttackTarget(target)
+			FindClearSpaceForUnit(illu, loc, true)
+		end		
 	end
 
 -- EFFECTS

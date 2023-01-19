@@ -20,7 +20,7 @@ function icebreaker__modifier_frozen:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", true) end
 
-	self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo", self.caster)
+	self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
 
 	if IsServer() then self:PlayEfxStart() end
 end

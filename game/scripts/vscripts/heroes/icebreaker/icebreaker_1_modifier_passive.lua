@@ -2,6 +2,7 @@ icebreaker_1_modifier_passive = class({})
 
 function icebreaker_1_modifier_passive:IsHidden() return false end
 function icebreaker_1_modifier_passive:IsPurgable() return false end
+function icebreaker_1_modifier_passive:GetTexture() return "icebreaker_aspd" end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

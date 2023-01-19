@@ -250,17 +250,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				for _, stat in pairs(self.stats_primary) do
 					self.stat_init[stat] = hero_stats:GetStatInit(stat)
 					self.stat_base[stat] = hero_stats:GetStatBase(stat)
-					self.stat_bonus[stat] = hero_stats:GetStatBonus(stat)
+					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
-					self.stat_percent[stat] = hero_stats:GetStatPercent(stat)
+					self.stat_percent[stat] = 0
+					--self:CalculateStats(0, 0, stat)
 				end
 
 				for _, stat in pairs(self.stats_secondary) do
 					self.stat_init[stat] = hero_stats:GetStatInit(stat)
 					self.stat_base[stat] = hero_stats:GetStatBase(stat)
-					self.stat_bonus[stat] = hero_stats:GetStatBonus(stat)
+					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
-					self.stat_percent[stat] = hero_stats:GetStatPercent(stat)
+					self.stat_percent[stat] = 0
+					--self:CalculateStats(0, 0, stat)
 				end
 			end
 		end
