@@ -20,16 +20,20 @@ end
 --------------------------------------------------------------------------------
 
 function _modifier_invisible:OnCreated( kv )
+	local delay = kv.delay or 0
+	local spell_break = kv.spell_break or 0
+	local attack_break = kv.attack_break or 1
+
 	self.delay = false
-    self.hidden = false
-	self.spell_break = (kv.spell_break == 1)
-	self.attack_break = (kv.attack_break == 1)
+  self.hidden = false
+	self.spell_break = (spell_break == 1)
+	self.attack_break = (attack_break == 1)
 
 	if IsServer() then
-		if kv.delay == 0 then
+		if delay == 0 then
 			self.hidden = true
 		else
-			self:StartIntervalThink(kv.delay)
+			self:StartIntervalThink(delay)
 		end
 
 		local cosmetics = self:GetParent():FindAbilityByName("cosmetics")

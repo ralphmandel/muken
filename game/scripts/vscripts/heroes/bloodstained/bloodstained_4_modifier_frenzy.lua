@@ -67,24 +67,29 @@ end
 
 function bloodstained_4_modifier_frenzy:OnIntervalThink()
 	if IsServer() then
-		if self.ability.target:IsAlive() == false then
-			local enemies = FindUnitsInRadius(
-				self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 500,
-				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
-			)
-		
-			for _,enemy in pairs(enemies) do
-				self.ability.target = enemy
-				self.parent:SetForceAttackTarget(self.ability.target)
-				self:StartIntervalThink(FrameTime())
-				return
+		if self.ability.target then
+			if IsValidEntity(self.ability.target) then
+				if self.ability.target:IsAlive() then
+					self:StartIntervalThink(FrameTime())
+					return
+				end
 			end
-
-			self:Destroy()
-		else
-			self:StartIntervalThink(FrameTime())
 		end
+		
+		local enemies = FindUnitsInRadius(
+			self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 500,
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+		)
+	
+		for _,enemy in pairs(enemies) do
+			self.ability.target = enemy
+			self.parent:SetForceAttackTarget(self.ability.target)
+			self:StartIntervalThink(FrameTime())
+			return
+		end
+
+		self:Destroy()
 	end
 end
 

@@ -204,21 +204,21 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "special_silence_duration" then return 2 end
 		if value_name == "special_damage_percent" then return 3 end
 		if value_name == "special_knockback" then return 1 end
-		if value_name == "special_mirror_lifetime" then return 10 end
+		if value_name == "special_mirror_lifetime" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__shard" then
 		if value_name == "AbilityManaCost" then return 240 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 160 end
+		if value_name == "AbilityCooldown" then return 120 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 700 + (value_level * 25) end
+		if value_name == "radius" then return 500 + (value_level * 12.5) end
 
 		if value_name == "ms_limit" then return 175 end
-		if value_name == "duration" then return 80 end
+		if value_name == "duration" then return 60 end
 		if value_name == "intervals" then return 3 end
-		if value_name == "special_bonus_vision" then return 100 end
+		if value_name == "special_bonus_vision" then return 50 end
 		if value_name == "special_truesight" then return 1 end
-		if value_name == "special_meteor_damage" then return 100 end
+		if value_name == "special_meteor_damage" then return 75 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_4__mirror" then

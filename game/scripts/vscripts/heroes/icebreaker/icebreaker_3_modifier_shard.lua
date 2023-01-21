@@ -86,16 +86,20 @@ function icebreaker_3_modifier_shard:OnDeath(keys)
 end
 
 function icebreaker_3_modifier_shard:OnIntervalThink()
-	self:StartExplosionThink()
+	local radius = self.ability:GetSpecialValueFor("radius")
+	self:StartExplosionThink(radius)
 
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, radius, radius * (radius * 0.002)))
+	end
+
+	if IsServer() then self:StartIntervalThink(1 / (radius * 0.01)) end
 end
 
 -- UTILS -----------------------------------------------------------
 
-function icebreaker_3_modifier_shard:StartExplosionThink()
+function icebreaker_3_modifier_shard:StartExplosionThink(radius)
 	local point = self.parent:GetOrigin()
-	local radius = self.ability:GetSpecialValueFor("radius")
 	local meteor_damage = self.ability:GetSpecialValueFor("special_meteor_damage")
 	local explosion_radius = (radius * 0.2)
 

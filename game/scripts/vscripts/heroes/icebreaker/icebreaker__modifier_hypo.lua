@@ -8,7 +8,7 @@ function icebreaker__modifier_hypo:IsPurgable() return true end
 function icebreaker__modifier_hypo:OnCreated(kv)
   self.caster = self:GetCaster():GetPlayerOwner():GetAssignedHero()
   self.parent = self:GetParent()
-  self.ability = self:GetAbility()
+  self.ability = self.caster:FindAbilityByName("icebreaker_1__frost")
 
 	self.slow_as = 0.15
 	self.slow_ms = 10

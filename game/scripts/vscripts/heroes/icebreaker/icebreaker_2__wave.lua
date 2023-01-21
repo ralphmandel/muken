@@ -116,7 +116,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 
 		local illu_array = CreateIllusions(caster, caster, {
 			outgoing_damage = -50,
-			incoming_damage = 700,
+			incoming_damage = 1000,
 			bounty_base = 0,
 			bounty_growth = 0,
 			duration = mirror_lifetime
@@ -124,7 +124,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 
 		for _,illu in pairs(illu_array) do
 			local loc = target:GetAbsOrigin() + RandomVector(130)
-			illu:AddNewModifier(caster, self, "_modifier_phase", {})
+			--illu:AddNewModifier(caster, self, "_modifier_phase", {})
 			illu:SetAbsOrigin(loc)
 			illu:SetForwardVector((target:GetAbsOrigin() - loc):Normalized())
 			illu:SetForceAttackTarget(target)
