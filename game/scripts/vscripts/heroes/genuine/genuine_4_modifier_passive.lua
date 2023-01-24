@@ -11,9 +11,9 @@ end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function genuine_4_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.night = false
 
 	self.bonus_vision = self.ability:GetSpecialValueFor("bonus_vision")

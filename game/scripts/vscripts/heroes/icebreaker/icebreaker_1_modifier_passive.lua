@@ -55,6 +55,8 @@ function icebreaker_1_modifier_passive:OnStateChanged(keys)
 end
 
 function icebreaker_1_modifier_passive:GetModifierTotalDamageOutgoing_Percentage(keys)
+	if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then return 0 end
+	
 	if self.proc then
 		self.proc = nil
 		return -9999

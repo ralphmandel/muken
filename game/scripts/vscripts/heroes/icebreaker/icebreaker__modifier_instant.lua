@@ -51,4 +51,5 @@ end
 
 function icebreaker__modifier_instant:PlayEfxStart()
 	if IsServer() then self.parent:EmitSound("Hero_Icebreaker.Paralyse") end
+	if IsServer() then self.parent:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 end

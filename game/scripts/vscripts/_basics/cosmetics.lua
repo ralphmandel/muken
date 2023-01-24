@@ -39,8 +39,9 @@ end
 			[1] = "models/items/rikimaru/riki_scarlet_fox_head/riki_scarlet_fox_head.vmdl",
 			[2] = "models/items/rikimaru/riki_scarlet_fox_offhand_weapon/riki_scarlet_fox_offhand_weapon.vmdl",
 			[3] = "models/items/rikimaru/riki_scarlet_fox_weapon/riki_scarlet_fox_weapon.vmdl",
-			--[4] = "models/items/rikimaru/riki_scarlet_fox_shoulder/riki_scarlet_fox_shoulder.vmdl",
-			--[5] = "models/items/rikimaru/riki_scarlet_fox_arms/riki_scarlet_fox_arms.vmdl",
+			[4] = "models/items/rikimaru/riki_scarlet_fox_shoulder/riki_scarlet_fox_shoulder.vmdl",
+			[5] = "models/items/rikimaru/riki_scarlet_fox_arms/riki_scarlet_fox_arms.vmdl",
+			[6] = "models/items/rikimaru/riki_scarlet_fox_tail/riki_scarlet_fox_tail.vmdl"
 		}
 	
 		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroNames().."/"..self:LoadHeroNames().."-cosmetics.txt")

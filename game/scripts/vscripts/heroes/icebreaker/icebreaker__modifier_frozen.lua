@@ -11,16 +11,16 @@ function icebreaker__modifier_frozen:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	self.damageTable = {
-		victim = self.parent, attacker = self.caster,
-		damage = 100, damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = nil
-	}
-
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", true) end
 
 	self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
+
+	self.damageTable = {
+		victim = self.parent, attacker = self.caster,
+		damage = 0, damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability
+	}
 
 	if IsServer() then self:PlayEfxStart() end
 end
@@ -32,7 +32,9 @@ function icebreaker__modifier_frozen:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", false) end
 
-	ApplyDamage(self.damageTable)
+	if self.damageTable.damage > 0 then
+		ApplyDamage(self.damageTable)
+	end
 
 	if IsServer() then self:PlayEfxDestroy() end
 end
@@ -45,8 +47,7 @@ function icebreaker__modifier_frozen:CheckState()
 		[MODIFIER_STATE_FROZEN] = true,
 		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
 		[MODIFIER_STATE_INVISIBLE] = false,
-		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-		[MODIFIER_STATE_NO_TEAM_SELECT] = true
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true
 	}
 
 	return state
@@ -73,6 +74,7 @@ function icebreaker__modifier_frozen:GetModifierAvoidDamage(keys)
 	self:PlayEfxHit()
 
 	if self:GetElapsedTime() >= 2 then
+		self.damageTable.damage = 100
 		self:Destroy()
 	end
 

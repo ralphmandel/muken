@@ -50,6 +50,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 
 		if caster:FindAbilityByName("icebreaker_1__frost_rank_41") then
 			if value_name == "special_instant_duration" then return 1 end
+			if value_name == "chance" then return 1 end
 		end
 	end
 
@@ -119,15 +120,26 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_4__mirror_rank_11") then
+			if value_name == "chance" then return 1 end
+		end
+
+		if caster:FindAbilityByName("icebreaker_4__mirror_rank_12") then
+			if value_name == "invi_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_4__mirror_rank_21") then
+			if value_name == "illusion_lifetime" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_4__mirror_rank_31") then
+			if value_name == "special_spell_chance" then return 1 end
 		end
 
-		if caster:FindAbilityByName("icebreaker_4__mirror_rank_41") then
+		if caster:FindAbilityByName("icebreaker_4__mirror_rank_32") then
+			if value_name == "special_splash_radius" then return 1 end
+			if value_name == "special_instant_duration" then return 1 end
+			if value_name == "special_stack" then return 1 end
+			if value_name == "special_stack_duration" then return 1 end
 		end
 	end
 
@@ -135,35 +147,35 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "blast_radius" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_5__shivas_rank_11") then
+			if value_name == "movespeed" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_5__shivas_rank_21") then
-		end
-
-		if caster:FindAbilityByName("icebreaker_5__shivas_rank_31") then
+			if value_name == "frozen_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_5__shivas_rank_41") then
+			if value_name == "special_cooldown" then return 1 end
 		end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_u__blink" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-
-		if caster:FindAbilityByName("icebreaker_u__blink_rank_11") then
-		end
+		if value_name == "damage" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_u__blink_rank_21") then
-		end
-
-		if caster:FindAbilityByName("icebreaker_u__blink_rank_31") then
+			if value_name == "special_no_roots" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_u__blink_rank_41") then
+			if value_name == "special_spellsteal" then return 1 end
+			if value_name == "special_spellsteal_kill" then return 1 end
 		end
 	end
 
@@ -187,6 +199,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "damage" then return 60 end
 		if value_name == "special_blink_chance" then return 15 end
 		if value_name == "special_instant_duration" then return 0.2 end
+		if value_name == "chance" then return 35 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_2__wave" then
@@ -222,21 +235,59 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_4__mirror" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+		if value_name == "chance" then return 17 end
+		if value_name == "invi_duration" then return 3 end
+		if value_name == "illusion_lifetime" then return 10 end
+		if value_name == "special_spell_chance" then return 50 end
+		if value_name == "special_splash_radius" then return 350 end
+		if value_name == "special_instant_duration" then return 0.5 end
+		if value_name == "special_stack" then return 1 end
+		if value_name == "special_stack_duration" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_5__shivas" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 100 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "blast_radius" then return 850 + (value_level * 50) end
+
+		if value_name == "movespeed" then return 50 end
+		if value_name == "frozen_duration" then return 10 end
+		if value_name == "special_cooldown" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_u__blink" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then
+			if caster:FindAbilityByName("icebreaker_u__blink_rank_11") then
+				return 80 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 100 * (1 + ((ability_level - 1) * 0.05))
+		end
+
+		if value_name == "AbilityCooldown" then
+			if caster:FindAbilityByName("icebreaker_u__blink_rank_12") then
+				return 5
+			end
+			return 10
+		end
+
+		if value_name == "AbilityCastRange" then
+			if caster:FindAbilityByName("icebreaker_u__blink_rank_21") then
+				return 1000
+			end
+			return 500
+		end
+
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "damage" then return 200 + (value_level * 5) end
+
+		if value_name == "special_no_roots" then return 1 end
+		if value_name == "special_spellsteal" then return 50 end
+		if value_name == "special_spellsteal_kill" then return 150 end
 	end
 
 	return 0

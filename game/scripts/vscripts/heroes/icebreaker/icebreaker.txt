@@ -44,7 +44,7 @@
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stack_duration"	"4"
+				"stack_duration""4"
 			}
             "04"
 			{
@@ -245,13 +245,13 @@
 		{
 			"01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"		"15"
+				"var_type"		    "FIELD_FLOAT"
+				"chance"		    "15"
 			}
             "02"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"invi_duration"	"2"
+				"var_type"		    "FIELD_FLOAT"
+				"invi_duration"	    "2"
 			}
             "03"
 			{
@@ -260,8 +260,33 @@
 			}
             "15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"  		"FIELD_FLOAT"
+				"rank"		    	"1 2 3 4 5 6 7 8 9 10 11"
+			}
+            "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_spell_chance"		"0"
+			}
+            "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_splash_radius"		"0"
+			}
+            "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_instant_duration"  "0"
+			}
+            "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stack"		        "0"
+			}
+            "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stack_duration"	"0"
 			}
 		}
 	}
@@ -276,21 +301,42 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"	        "FIELD_FLOAT"
+				"movespeed"	        "25"
+			}
+            "02"
+			{
+				"var_type"	        "FIELD_FLOAT"
+				"frozen_duration"	"5"
+			}
+            "03"
+			{
+				"var_type"	        "FIELD_FLOAT"
+				"blast_speed"	    "350"
+			}
+            "04"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"blast_radius"	    "1 2 3 4 5 6 7 8"
+			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8"
+				"var_type"          "FIELD_FLOAT"
+				"rank"			    "1 2 3 4 5 6 7 8"
+			}
+            "16"
+			{
+				"var_type"	        "FIELD_FLOAT"
+				"special_cooldown"	"0"
 			}
 		}
 	}
@@ -305,21 +351,41 @@
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.2"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage"			"1 2 3 4 5 6 7 8 9"
+			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"rank"				"1 2 3 4 5 6 7 8 9"
+			}
+            "16"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"special_no_roots"	"0"
+			}
+            "17"
+			{
+				"var_type"			    "FIELD_FLOAT"
+				"special_spellsteal"    "0"
+			}
+            "18"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_spellsteal_kill"	"0"
 			}
 		}
 	}

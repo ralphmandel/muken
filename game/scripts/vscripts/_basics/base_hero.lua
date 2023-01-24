@@ -415,6 +415,13 @@ require("internal/talent_tree")
 				return false
 			end
 
+		-- ICEBREAKER
+			-- Icebreaker 5.41 requires ultimate
+			if talentName == "icebreaker_5__shivas_rank_41"
+			and self:GetCaster():FindAbilityByName("icebreaker_5__shivas"):IsTrained() == false then
+				return false
+			end
+
 		-- ANCIENT ONE
 			-- Ancient 1.41 requires skill rank level 12
 			if talentName == "ancient_1__berserk_rank_41" then
@@ -445,46 +452,7 @@ require("internal/talent_tree")
 				end
 			end
 
-		-- ICEBREAKER
-			-- Icebreaker 2.41 requires skill rank level 14
-			if talentName == "icebreaker_2__puff_rank_41" then
-				local puff = self:GetCaster():FindAbilityByName("icebreaker_2__puff")
-				if puff == nil then return false end
-				if puff:IsTrained() == false then return false end
-				if puff:GetSpecialValueFor("rank") < 14 then return false end
-			end
 
-			-- Icebreaker 4.31 requires skill rank level 10
-			if talentName == "icebreaker_4__wave_rank_31" then
-				local wave = self:GetCaster():FindAbilityByName("icebreaker_4__wave")
-				if wave == nil then return false end
-				if wave:IsTrained() == false then return false end
-				if wave:GetSpecialValueFor("rank") < 10 then return false end
-			end
-
-			-- Icebreaker 5.11 requires skill 3
-			if talentName == "icebreaker_5__mirror_rank_11"
-			and (not self.ranks[3][0]) then
-				return false
-			end
-
-			-- Icebreaker 5.21 requires skill 4
-			if talentName == "icebreaker_5__mirror_rank_21"
-			and (not self.ranks[4][0]) then
-				return false
-			end
-
-			-- Icebreaker 5.31 requires skill 2
-			if talentName == "icebreaker_5__mirror_rank_31"
-			and (not self.ranks[2][0]) then
-				return false
-			end
-
-			-- Icebreaker 5.41 requires ultimate
-			if talentName == "icebreaker_5__mirror_rank_41"
-			and (not self.ranks[6][0]) then
-				return false
-			end
 
 		-- GENUINE
 			-- Genuine 1.41 requires skill rank level 14
