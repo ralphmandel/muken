@@ -1,6 +1,6 @@
 icebreaker_3_modifier_aura_effect = class({})
 
-function icebreaker_3_modifier_aura_effect:IsHidden() return false end
+function icebreaker_3_modifier_aura_effect:IsHidden() return true end
 function icebreaker_3_modifier_aura_effect:IsPurgable() return true end
 function icebreaker_3_modifier_aura_effect:GetPriority() return MODIFIER_PRIORITY_ULTRA end
 
