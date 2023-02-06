@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "bocuse_1__cut"
+	"2" "bocuse_2__flask"
+	"3" "bocuse_3__mark"
+	"4" "bocuse_4__enhance"
+	"5" "bocuse_5__puddle"
+	"6" "bocuse_u__rage"
+}

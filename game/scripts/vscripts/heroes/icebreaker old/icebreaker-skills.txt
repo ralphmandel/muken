@@ -1,9 +1,0 @@
-"skills"
-{
-	"1" "icebreaker_1__hypo"
-	"2" "icebreaker_2__puff"
-	"3" "icebreaker_3__zero"
-	"4" "icebreaker_4__wave"
-	"5" "icebreaker_5__mirror"
-	"6" "icebreaker_u__blink"
-}

@@ -1,15 +1,27 @@
 bocuse_1_modifier_bleeding = class({})
 
-function bocuse_1_modifier_bleeding:IsHidden() return false end
-function bocuse_1_modifier_bleeding:IsPurgable() return true end
-function bocuse_1_modifier_bleeding:GetTexture() return "bleeding" end
+function bocuse_1_modifier_bleeding:IsHidden()
+	return false
+end
+
+function bocuse_1_modifier_bleeding:IsPurgable()
+	return true
+end
+
+function bocuse_1_modifier_bleeding:IsDebuff()
+	return true
+end
+
+function bocuse_1_modifier_bleeding:GetTexture()
+	return "bleeding"
+end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bocuse_1_modifier_bleeding:OnCreated(kv)
-  self.caster = self:GetCaster()
-  self.parent = self:GetParent()
-  self.ability = self:GetAbility()
+    self.caster = self:GetCaster()
+    self.parent = self:GetParent()
+    self.ability = self:GetAbility()
 
 	self.intervals = 0.3
 	local bleeding_damage = self.ability:GetSpecialValueFor("bleeding_damage") * self.intervals
@@ -30,7 +42,9 @@ function bocuse_1_modifier_bleeding:OnCreated(kv)
 end
 
 function bocuse_1_modifier_bleeding:OnRefresh(kv)
-	if IsServer() then self:PlayEfxStart() end
+	if IsServer() then
+		self:PlayEfxStart()
+	end
 end
 
 function bocuse_1_modifier_bleeding:OnRemoved()
@@ -38,24 +52,12 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bocuse_1_modifier_bleeding:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING
-	}
-
-	return funcs
-end
-
-function bocuse_1_modifier_bleeding:GetDisableHealing()
-	return 1
-end
-
 function bocuse_1_modifier_bleeding:OnIntervalThink()
 	if IsServer() then
-		--if self.parent:IsMoving() then
+		if self.parent:IsMoving() then
 			local apply_damage = math.floor(ApplyDamage(self.damageTable))
 			if apply_damage > 0 then self:PopupBleeding(apply_damage) end
-		--end
+		end
 
 		self:StartIntervalThink(self.intervals)
 	end
@@ -74,10 +76,10 @@ function bocuse_1_modifier_bleeding:GetEffectAttachType()
 end
 
 function bocuse_1_modifier_bleeding:PopupBleeding(amount)
-  local digits = 1 + #tostring(amount)
+    local digits = 1 + #tostring(amount)
 	local pidx = ParticleManager:CreateParticle("particles/bocuse/bocuse_msg.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-  ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
-  ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
+    ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
+    ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
 end
 
 function bocuse_1_modifier_bleeding:PlayEfxStart()
@@ -92,6 +94,4 @@ function bocuse_1_modifier_bleeding:PlayEfxStart()
 	ParticleManager:SetParticleControl(effect_cast2, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(effect_cast2, 1, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast2)
-
-	if IsServer() then self.parent:EmitSound("Generic.Bleed") end
 end

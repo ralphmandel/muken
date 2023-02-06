@@ -23,7 +23,10 @@ function icebreaker__modifier_hypo:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_hypo_status_efx", true) end
 
-	if IsServer() then self:SetStackCount(stack) end
+	if IsServer() then
+		self:SetStackCount(stack)
+		self:CheckCounterEfx()
+	end
 end
 
 function icebreaker__modifier_hypo:OnRefresh(kv)
@@ -40,7 +43,9 @@ function icebreaker__modifier_hypo:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_hypo_status_efx", false) end
 
+	if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
 	self:ModifySlow(0)
+	self:CheckCounterEfx()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -65,9 +70,7 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function icebreaker__modifier_hypo:ModifySlow(stack_count)
-	if self.pidx then ParticleManager:DestroyParticle(self.pidx, false) end
-	
+function icebreaker__modifier_hypo:ModifySlow(stack_count)	
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetBaseAttackTime(stack_count * self.slow_as) end
 
@@ -76,10 +79,8 @@ function icebreaker__modifier_hypo:ModifySlow(stack_count)
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	self:CheckCounterEfx()
-
 	if stack_count > 0 then
-		self:PopupIce(false)
+		self:PopupIce(true)
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 			percent = stack_count * self.slow_ms
 		})
@@ -105,19 +106,21 @@ function icebreaker__modifier_hypo:GetEffectAttachType()
 end
 
 function icebreaker__modifier_hypo:CheckCounterEfx()
-	local mod = self.parent:FindModifierByName("bocuse_3_modifier_mark")
-	if mod then mod:PopupSauce(true) end
+	local mod = self.parent:FindModifierByName("bocuse_3_modifier_sauce")
+	if mod then
+		if IsServer() then mod:PopupSauce(false) end
+	end
 end
 
-function icebreaker__modifier_hypo:PopupIce(immediate)
-	if self.pidx then ParticleManager:DestroyParticle(self.pidx, immediate) end
+function icebreaker__modifier_hypo:PopupIce(sound)
+	if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
 
 	local particle = "particles/units/heroes/hero_drow/drow_hypothermia_counter_stack.vpcf"
-  if self.parent:HasModifier("bocuse_3_modifier_mark") then particle = "particles/icebreaker/icebreaker_counter_stack.vpcf" end
+  if self.parent:HasModifier("bocuse_3_modifier_sauce") then particle = "particles/icebreaker/icebreaker_counter_stack.vpcf" end
   self.pidx = ParticleManager:CreateParticle(particle, PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.pidx, 1, Vector(0, self:GetStackCount(), 0))
-	
-	if not immediate then
+
+	if sound == true then
 		if IsServer() then self.parent:EmitSound("Hero_Icebreaker.Frost") end
 	end
 end

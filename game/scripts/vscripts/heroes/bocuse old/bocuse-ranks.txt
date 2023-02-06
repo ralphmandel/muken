@@ -1,0 +1,137 @@
+"TalentTree_bocuse"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_pudge"
+	{
+		"bocuse_1__cut"
+		{
+			"0"
+			{
+				"1"   "bocuse_1__cut_rank_11"
+			}
+			"1"
+			{
+				"1"   "bocuse_1__cut_rank_21"
+				"2"   "bocuse_1__cut_rank_22"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "bocuse_1__cut_rank_41"
+			}
+		}
+		"bocuse_2__flask"
+		{
+			"0"
+			{
+				"1"   "bocuse_2__flask_rank_11"
+				"2"   "bocuse_2__flask_rank_12"
+			}
+			"1"
+			{
+				"1"   "bocuse_2__flask_rank_21"
+			}
+			"2"
+			{
+				"1"   "bocuse_2__flask_rank_31"
+			}
+			"3"
+			{
+				"1"   "bocuse_2__flask_rank_41"
+			}
+		}
+		"bocuse_3__mark"
+		{
+			"0"
+			{
+				"1"   "bocuse_3__mark_rank_11"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "bocuse_3__mark_rank_31"
+			}
+			"3"
+			{
+				"1"   "bocuse_3__mark_rank_41"
+				"2"   "bocuse_3__mark_rank_42"
+			}
+		}
+		"bocuse_4__enhance"
+		{
+			"0"
+			{
+				"1"   "bocuse_4__enhance_rank_11"
+			}
+			"1"
+			{
+				"1"   "bocuse_4__enhance_rank_21"
+				"2"   "bocuse_4__enhance_rank_22"
+			}
+			"2"
+			{
+				"1"   "bocuse_4__enhance_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"bocuse_5__puddle"
+		{
+			"0"
+			{
+				"1"   "bocuse_5__puddle_rank_11"
+			}
+			"1"
+			{
+				"1"   "bocuse_5__puddle_rank_21"
+			}
+			"2"
+			{
+				"1"   "bocuse_5__puddle_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"bocuse_u__rage"
+		{
+			"0"
+			{
+				"1"   "bocuse_u__rage_rank_11"
+				"2"   "bocuse_u__rage_rank_12"
+			}
+			"1"
+			{
+				"1"   "bocuse_u__rage_rank_21"
+			}
+			"2"
+			{
+				"1"   "bocuse_u__rage_rank_31"
+				"2"   "bocuse_u__rage_rank_32"
+			}
+			"3"
+			{
+				"1"   "bocuse_u__rage_rank_41"
+			}
+		}
+	}	
+}

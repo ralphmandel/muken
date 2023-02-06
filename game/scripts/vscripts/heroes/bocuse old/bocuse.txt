@@ -16,311 +16,394 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
-	"bocuse_1__julienne"
+	"bocuse_1__cut"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_1__julienne"
+		"ScriptFile"            		"heroes/bocuse/bocuse_1__cut"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_julienne"
-		"MaxLevel"               		"8"
+		"AbilityTextureName"     		"bocuse_cut"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
         "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_GENERIC_CHANNEL_1"
-		"AbilityCastPoint"       		"0.6"
-        "AnimationPlaybackRate"  		"4"
+		"AbilityCastAnimation"   		""
+		"AbilityCooldown"				"15"
+        "AbilityDamage"					"50 51 52 53 54 55 56 57 58 59"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"max_cut"   		    "5"
-			}
-            "02"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"bleeding_duration"   	"3"
+				"var_type"			"FIELD_FLOAT"
+				"init_chance"		"105"
 			}
             "03"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"bleeding_damage"   	"10"
+				"var_type"			"FIELD_FLOAT"
+				"chance_reduction"	"15"
+			}
+            "02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cut_intervals"		"0.266"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bleeding_damage"	"25"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bleeding_duration"	"3"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.5"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max_range"		"300"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"300"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"120"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
+			}
+		}
+	}
+
+	"bocuse_2__flask"
+	{  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_2__flask"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"bocuse_flask"
+		"MaxLevel"               		"12"
+		"RequiredLevel"         	 	"0"
+        "LevelsBetweenUpgrades"  		"25"
+
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilityCastAnimation"   		""
+		"AbilityCastPoint"       		"0.4"
+		"AbilityCooldown"				"45"
+
+		"AbilitySpecial"
+		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"240 250 260 270 280 290 300 310 320 330 340 350"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"projectile_speed"	"600"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"init_duration"		"15"
 			}
             "04"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"stun_duration"   		"1.5"
+				"var_type"		    "FIELD_FLOAT"
+				"intervals"		    "0.75"
 			}
             "05"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"bonus_limit_range"		"350"
+				"var_type"		    "FIELD_FLOAT"
+				"min_amount"		"0.5"
 			}
             "06"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_point"    "0.6"
+				"var_type"		    "FIELD_FLOAT"
+				"amount_scale"		"0.2"
 			}
             "07"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"    "1 2 3 4 5 6 7 8"
+				"var_type"		    "FIELD_FLOAT"
+				"amount_time_loss"	"1.25"
 			}
-            "15"
+            "08"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8"
+				"mana_gain"		"10"
 			}
-            "16"
+            "09"
 			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_bleeding_chance"   "0"
+				"var_type"		"FIELD_FLOAT"
+				"blind"		    "25"
 			}
-		}
-	}
-
-	"bocuse_2__flambee"
-	{  
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_2__flambee"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_flambee"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
-		"AbilitySpecial"
-		{
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"750"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"160"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
 
-	"bocuse_3__sauce"
+	"bocuse_3__mark"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_3__sauce"
+		"ScriptFile"            		"heroes/bocuse/bocuse_3__mark"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_sauce"
-		"MaxLevel"               		"15"
+		"AbilityTextureName"     		"bocuse_mark"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-		//"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"				"1.5"
 
 		"AbilitySpecial"
 		{
-			"01"
+            "01"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"duration"			    "12"
+				"var_type"		    "FIELD_FLOAT"
+				"init_duration"		"9"
 			}
             "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration_reduction"	"2"
+				"duration_reduction"	"1"
 			}
             "03"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"damage_amp_stack"	    "5"
+				"var_type"		"FIELD_FLOAT"
+				"max_stack"		"5"
 			}
             "04"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"lifesteal_base"        "15"
+				"var_type"		"FIELD_FLOAT"
+				"damage_stack"  "15"
 			}
             "05"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"lifesteal_stack"     	"2.5"
+				"var_type"		"FIELD_FLOAT"
+				"slow"		    "75"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"0"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
+			}
+		}
+	}
+
+	"bocuse_4__enhance"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/bocuse/bocuse_4__enhance"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"bocuse_enhance"
+		"MaxLevel"               		"9"
+		"RequiredLevel"         	 	"0"
+        "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		"AbilityCastAnimation"   		""
+		"AbilityCooldown"				"75 72.5 70 67.5 65 62.5 60 57.5 55"
+
+		"AbilitySpecial"
+		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"duration"		    "30"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"con"		        "12"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"agi"		        "8"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"atk_range_bonus"	"50"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range_bonus"	"50"
 			}
             "06"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"max_stack"     	    "5"
+				"var_type"			"FIELD_FLOAT"
+				"init_model_scale"	"1.15"
 			}
-            "15"
+            "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"channel_time"		"4"
+			}
+			"14"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"manacost"		"180"
 			}
-            "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_purge_chance"  "0"
-			}
-            "17"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_break"     	"0"
-			}
-            "18"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_silence"     	"0"
-			}
-            "19"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_heal_allies"   "0"
-			}
-		}
-	}
-
-	"bocuse_4__mirepoix"
-	{ 
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_4__mirepoix"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_mirepoix"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
-		"AbilitySpecial"
-		{
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
 
-	"bocuse_5__roux"
+	"bocuse_5__puddle"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_5__roux"
+		"ScriptFile"            		"heroes/bocuse/bocuse_5__puddle"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bocuse_roux"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"bocuse_puddle"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"				"20"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"340 350 360 370 380 390 400"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"8"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"time_to_root"	"3.5"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"root_duration"	"1.5"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"600"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"140"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
 
-	"bocuse_u__mise"
+	"bocuse_u__rage"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/bocuse/bocuse_u__mise"
-		"AbilityTextureName"     		"bocuse_mise"
+		"ScriptFile"            		"heroes/bocuse/bocuse_u__rage"
+		"AbilityTextureName"     		"bocuse_rage"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityCastAnimation"   		""
+		"AbilityCooldown"				"35"
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"5"
-			}
-            "02"
+            "01"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"angle"				"60"
 			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5"
+			}
+            "05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"status"			"50"
+			}
             "06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"speed_mult"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"speed_mult"		"100 101.5 103 104.5 106 107.5 109 110.5 112 113.5 115 116.5 118 119.5 121"
+			}
+            "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "200"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"		        "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
-			}
-            "16"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_jump_duration"		"0"
-			}
-            "17"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_bonus_ms"		    "0"
-			}
-            "18"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_extra_damage"   	"0"
-			}
-            "19"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_autocast_chance"	"0"
-			}
-            "20"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_autocast_duration"	"0"
-			}
-            "21"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_microstun_chance"	"0"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20 21 22 23"
 			}
 		}
 	}
 
     //RANKS 1
-        "bocuse_1__julienne_rank_11"{
+        "bocuse_1__cut_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -347,10 +430,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_12"{
+        "bocuse_1__cut_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -377,10 +460,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_21"{
+        "bocuse_1__cut_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -407,10 +490,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_22"{
+        "bocuse_1__cut_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -437,10 +520,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_31"{
+        "bocuse_1__cut_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -467,10 +550,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_32"{
+        "bocuse_1__cut_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -497,10 +580,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_41"{
+        "bocuse_1__cut_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -527,10 +610,10 @@
             }
         }
 
-        "bocuse_1__julienne_rank_42"{
+        "bocuse_1__cut_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_julienne"
+            "AbilityTextureName"    		"bocuse_cut"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -558,10 +641,10 @@
         }
 
     //RANKS 2
-        "bocuse_2__flambee_rank_11"{
+        "bocuse_2__flask_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -588,10 +671,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_12"{
+        "bocuse_2__flask_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -618,10 +701,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_21"{
+        "bocuse_2__flask_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -648,10 +731,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_22"{
+        "bocuse_2__flask_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -678,10 +761,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_31"{
+        "bocuse_2__flask_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -708,10 +791,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_32"{
+        "bocuse_2__flask_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -738,10 +821,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_41"{
+        "bocuse_2__flask_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -768,10 +851,10 @@
             }
         }
 
-        "bocuse_2__flambee_rank_42"{
+        "bocuse_2__flask_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_flambee"
+            "AbilityTextureName"    		"bocuse_flask"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -799,10 +882,10 @@
         }
 
     //RANKS 3
-        "bocuse_3__sauce_rank_11"{
+        "bocuse_3__mark_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -829,10 +912,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_12"{
+        "bocuse_3__mark_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -859,10 +942,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_21"{
+        "bocuse_3__mark_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -889,10 +972,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_22"{
+        "bocuse_3__mark_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -919,10 +1002,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_31"{
+        "bocuse_3__mark_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -949,10 +1032,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_32"{
+        "bocuse_3__mark_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -979,10 +1062,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_41"{
+        "bocuse_3__mark_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1009,10 +1092,10 @@
             }
         }
 
-        "bocuse_3__sauce_rank_42"{
+        "bocuse_3__mark_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_sauce"
+            "AbilityTextureName"    		"bocuse_mark"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1040,10 +1123,10 @@
         }
 
     //RANKS 4
-        "bocuse_4__mirepoix_rank_11"{
+        "bocuse_4__enhance_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1070,10 +1153,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_12"{
+        "bocuse_4__enhance_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1100,10 +1183,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_21"{
+        "bocuse_4__enhance_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1130,10 +1213,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_22"{
+        "bocuse_4__enhance_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1160,10 +1243,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_31"{
+        "bocuse_4__enhance_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1190,10 +1273,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_32"{
+        "bocuse_4__enhance_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1220,10 +1303,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_41"{
+        "bocuse_4__enhance_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1250,10 +1333,10 @@
             }
         }
 
-        "bocuse_4__mirepoix_rank_42"{
+        "bocuse_4__enhance_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mirepoix"
+            "AbilityTextureName"    		"bocuse_enhance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1281,10 +1364,10 @@
         }
 
     //RANKS 5
-        "bocuse_5__roux_rank_11"{
+        "bocuse_5__puddle_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1311,10 +1394,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_12"{
+        "bocuse_5__puddle_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1341,10 +1424,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_21"{
+        "bocuse_5__puddle_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1371,10 +1454,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_22"{
+        "bocuse_5__puddle_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1401,10 +1484,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_31"{
+        "bocuse_5__puddle_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1431,10 +1514,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_32"{
+        "bocuse_5__puddle_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1461,10 +1544,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_41"{
+        "bocuse_5__puddle_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1491,10 +1574,10 @@
             }
         }
 
-        "bocuse_5__roux_rank_42"{
+        "bocuse_5__puddle_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_roux"
+            "AbilityTextureName"    		"bocuse_puddle"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1522,10 +1605,10 @@
         }
 
     //RANKS U
-        "bocuse_u__mise_rank_11"{
+        "bocuse_u__rage_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1552,10 +1635,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_12"{
+        "bocuse_u__rage_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1582,10 +1665,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_21"{
+        "bocuse_u__rage_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1612,10 +1695,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_22"{
+        "bocuse_u__rage_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1642,10 +1725,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_31"{
+        "bocuse_u__rage_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1672,10 +1755,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_32"{
+        "bocuse_u__rage_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1702,10 +1785,10 @@
             }
         }
         
-        "bocuse_u__mise_rank_41"{
+        "bocuse_u__rage_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1732,10 +1815,10 @@
             }
         }
 
-        "bocuse_u__mise_rank_42"{
+        "bocuse_u__rage_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-            "AbilityTextureName"    		"bocuse_mise"
+            "AbilityTextureName"    		"bocuse_rage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

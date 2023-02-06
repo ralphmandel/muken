@@ -1,12 +1,17 @@
 bocuse_u_modifier_jump = class ({})
 
-function bocuse_u_modifier_jump:IsHidden() return true end
-function bocuse_u_modifier_jump:IsPurgable() return false end
+function bocuse_u_modifier_jump:IsHidden()
+    return true
+end
+
+function bocuse_u_modifier_jump:IsPurgable()
+    return false
+end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bocuse_u_modifier_jump:OnCreated(kv)
-  self.caster = self:GetCaster()
+    self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -42,13 +47,13 @@ function bocuse_u_modifier_jump:HorizontalMotion(unit, time)
 	local next_pos = GetGroundPosition(pos + pos_p,unit)
 	unit:SetAbsOrigin(next_pos)
 
-	local units = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 50,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    local units = FindUnitsInRadius(
+        self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 50,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		0, 0, false
-	)
+    )
 
-  for _,unit in pairs(units) do
-    self:Destroy()
-  end
+    for _,unit in pairs(units) do
+        self:Destroy()
+    end
 end
