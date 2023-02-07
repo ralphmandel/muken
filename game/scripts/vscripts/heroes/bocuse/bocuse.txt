@@ -92,25 +92,65 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_2__flambee"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_flambee"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		""
+		"AbilityCastPoint"       		"0.4"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"750"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"projectile_speed"	"600"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"duration"		    "10"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"intervals"		    "0.75"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"amount"		    "1"
+			}
+            "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"mana_gain"		"10"
+			}
+            "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"blind"		    "25"
+			}
+            "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"1 2 3 4 5 6 7 8 9 10 11"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
