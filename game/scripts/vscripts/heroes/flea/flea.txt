@@ -94,7 +94,7 @@
 		"ScriptFile"            		"heroes/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_speed"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -110,37 +110,32 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_hit"		"4"
+				"speed_hit"		"5"
 			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"3"
 			}
-            "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"min_speed"		"175"
-			}
-            "05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"regen"		    "10"
-			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13"
+				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
 			}
             "16"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"special_phase"	"0"
+				"var_type"		    "FIELD_FLOAT"
+				"special_charge"    "0"
 			}
             "17"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"special_charge""0"
+				"var_type"		    "FIELD_FLOAT"
+				"special_no_slow"   "0"
+			}
+            "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_no_slow_duration"   "0"
 			}
 		}
 	}
@@ -151,7 +146,7 @@
 		"ScriptFile"            		"heroes/flea/flea_3__jump"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_jump"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -163,47 +158,42 @@
             "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"silence_duration"	"3"
+				"silence_duration"	"2"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_mult"	"2.5"
+				"speed_mult"	"750"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"distance_mult"	"600"
 			}
             "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"distance_mult"	"2"
+				"radius"		"95"
 			}
             "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi_mult"	    "4"
-			}
-            "07"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"95"
-			}
-            "08"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"hits"		    "1"
-			}
-            "09"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius_impact"	"1 2 3 4 5 6 7 8"
+				"radius_impact"	"1 2 3 4 5 6 7"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13"
+				"rank"			"1 2 3 4 5 6 7"
 			}
             "16"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_reset_chance"	"0"
+				"var_type"		            "FIELD_FLOAT"
+				"special_bleeding_duration"	"0"
+			}
+            "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_bleeding_damage"	"0"
 			}
 		}
 	}

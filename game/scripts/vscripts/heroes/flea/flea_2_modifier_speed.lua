@@ -6,9 +6,9 @@ function flea_2_modifier_speed:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_2_modifier_speed:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	self.max_speed = self.ability:GetSpecialValueFor("max_speed")
 	self.speed_hit = self.ability:GetSpecialValueFor("speed_hit")
@@ -37,19 +37,6 @@ function flea_2_modifier_speed:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function flea_2_modifier_speed:CheckState()
-	local state = {}
-
-	if self:GetAbility():GetSpecialValueFor("special_phase") == 1 then
-		state = {
-			[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true
-		}
-	end
-
-	return state
-end
 
 -- UTILS -----------------------------------------------------------
 

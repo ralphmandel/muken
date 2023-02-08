@@ -8,12 +8,12 @@ function flea_3_modifier_jump:IsPurgable() return false end
 function flea_3_modifier_jump:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.ability = self:GetAbility()
 
 	local movespeed = self.parent:GetIdealSpeed()
-	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") * movespeed
-	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") * movespeed
-	local duration = jump_distance/jump_speed
+	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") --* movespeed
+	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") --* movespeed
+	local duration = jump_distance / jump_speed
 	local height = 80 + math.floor(movespeed / 3)
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
@@ -76,31 +76,47 @@ function flea_3_modifier_jump:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0, FIND_CLOSEST, false
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
 	)
 
-	local target
 	for _,enemy in pairs(enemies) do
-		if not enemy:IsIllusion() then
-			target = enemy
-			break
-		end
+		self:PerformImpact(enemy:GetOrigin())
+		break
 	end
-
-	self:PerformImpact(target)
 end
 
 -- UTILS -----------------------------------------------------------
 
-function flea_3_modifier_jump:PerformImpact(target)
-	if not target then return end
+function flea_3_modifier_jump:PerformImpact(point)
 	self.parent:FadeGesture(ACT_DOTA_SLARK_POUNCE)
 
-	local point = target:GetOrigin()
-	local ability = self.ability
-	local radius_impact = self.radius_impact
+	local bleeding_duration = self.ability:GetSpecialValueFor("special_bleeding_duration")
+	local enemies = FindUnitsInRadius(
+		self.parent:GetTeamNumber(), point, nil, self.radius_impact,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+	)
 
-	self.ability:FindTargets(radius_impact, point)
+	for _,enemy in pairs(enemies) do
+		if enemy:HasModifier("bloodstained_u_modifier_copy") == false
+		and enemy:IsIllusion() then
+			enemy:ForceKill(false)
+		else
+			self:PlayEfxHit(enemy)
+			self.parent:PerformAttack(enemy, false, true, true, true, false, false, true)
+
+			enemy:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
+				duration = CalcStatus(self.ability:GetSpecialValueFor("silence_duration"), self.caster, enemy),
+				special = 3
+			})
+
+			if bleeding_duration > 0 then
+				enemy:AddNewModifier(self.caster, self.ability, "flea_3_modifier_bleeding", {
+					duration = CalcStatus(self.ability:GetSpecialValueFor("bleeding_duration"), self.caster, enemy)
+				})
+			end
+		end
+	end
 
 	CreateModifierThinker(
 		self.caster, self.ability, "flea_3_modifier_effect", {duration = 2, radius = self.radius_impact},
@@ -127,4 +143,13 @@ function flea_3_modifier_jump:PlayEfxStart(duration)
 
 	if IsServer() then self.parent:EmitSound("Hero_Slark.Pounce.Cast.Immortal") end
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_SLARK_POUNCE, (0.85 / duration))
+end
+
+function flea_3_modifier_jump:PlayEfxHit(target)
+	local string = "particles/units/heroes/hero_riki/riki_backstab.vpcf"
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	if IsServer() then target:EmitSound("Hero_Riki.Backstab") end
 end

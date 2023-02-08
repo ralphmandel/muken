@@ -39,7 +39,6 @@
 			"0"
 			{
 				"1"   "flea_2__speed_rank_11"
-				"2"   "flea_2__speed_rank_12"
 			}
 			"1"
 			{
@@ -51,7 +50,7 @@
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "flea_2__speed_rank_41"
 			}
 		}
 		"flea_3__jump"

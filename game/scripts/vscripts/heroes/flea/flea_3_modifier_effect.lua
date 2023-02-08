@@ -6,9 +6,9 @@ function flea_3_modifier_effect:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_3_modifier_effect:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	self.radius_impact = kv.radius
 

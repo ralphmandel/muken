@@ -6,9 +6,9 @@ function flea_2_modifier_passive:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_2_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.ability.origin = self:GetParent():GetOrigin()
 	self.energy = 0
 
@@ -25,28 +25,10 @@ end
 
 function flea_2_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
 	return funcs
-end
-
-function flea_2_modifier_passive:GetModifierMoveSpeed_AbsoluteMin()
-	if IsServer() then
-		if self:GetParent():PassivesDisabled() then return 0 end
-		return self:GetAbility():GetSpecialValueFor("min_speed")
-	end
-end
-
-function flea_2_modifier_passive:GetModifierConstantHealthRegen()
-	if IsServer() then
-		if self:GetParent():PassivesDisabled() then return 0 end
-		local min_speed = self:GetAbility():GetSpecialValueFor("min_speed")
-		local regen = self:GetAbility():GetSpecialValueFor("regen") * 0.01
-		return (self:GetParent():GetIdealSpeed() - min_speed - 50) * regen
-	end
 end
 
 function flea_2_modifier_passive:OnAttackLanded(keys)
@@ -71,7 +53,7 @@ function flea_2_modifier_passive:OnIntervalThink()
 	local distance = (self.ability.origin - self.parent:GetOrigin()):Length2D()
 	self.ability.origin = self.parent:GetOrigin()
 
-	if self.ability:GetSpecialValueFor("special_charge") then
+	if self.ability:GetSpecialValueFor("special_charge") == 1 then
 		self.energy = self.energy + distance
 		if self.energy > 4000 then self.energy = 4000 end
 	end
