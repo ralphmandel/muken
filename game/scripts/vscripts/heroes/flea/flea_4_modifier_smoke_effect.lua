@@ -6,15 +6,13 @@ function flea_4_modifier_smoke_effect:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_4_modifier_smoke_effect:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	if IsServer() then
-		if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-			self.parent:RemoveModifierByNameAndCaster("flea_4_modifier_invi", self.caster)
-			self:PlayEfxStart()
-			self:OnIntervalThink()
+		if self.parent == self.caster then
+			self.parent:RemoveModifierByNameAndCaster("flea_4_modifier_shadow", self.caster)
 		else
 			self:ApplyDebuff()
 		end
@@ -25,6 +23,14 @@ function flea_4_modifier_smoke_effect:OnRefresh(kv)
 end
 
 function flea_4_modifier_smoke_effect:OnRemoved()
+	local shadow_duration = self.ability:GetSpecialValueFor("special_shadow_duration")
+
+	if shadow_duration > 0 and self.parent == self.caster then
+		self.parent:AddNewModifier(self.caster, self.ability, "flea_4_modifier_shadow", {
+			duration = CalcStatus(shadow_duration, self.parent, self.parent)
+		})
+	end
+
 	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
@@ -38,59 +44,13 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function flea_4_modifier_smoke_effect:CheckState()
-	local state = {}
-
-	if self:GetAbility():GetSpecialValueFor("special_invi_delay") > 0
-	and self:GetCaster() == self:GetParent() then
-		state = {
-			[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true
-		}
-	end
-
-	return state
-end
-
-function flea_4_modifier_smoke_effect:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-	}
-
-	return funcs
-end
-
-function flea_4_modifier_smoke_effect:GetActivityTranslationModifiers()
-	if self:GetCaster() == self:GetParent() then
-		return "shadow_dance"
-	end
-end
-
-function flea_4_modifier_smoke_effect:OnAttackLanded(keys)
-	if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
-	if keys.attacker ~= self.parent then return end
-
-	self.parent:AddNewModifier(self.caster, self.ability, "flea_4_modifier_hidden", {duration = 1})
-	self.parent:MoveToTargetToAttack(keys.target)
-end
-
-function flea_4_modifier_smoke_effect:OnIntervalThink()
-	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 1, self.parent:GetOrigin()) end
-		if IsServer() then self:StartIntervalThink(FrameTime()) end
-	else
-		self:ApplyDebuff()
-		local interval = self.ability:GetSpecialValueFor("interval")
-		if IsServer() then self:StartIntervalThink(interval) end
-	end
-end
-
 -- UTILS -----------------------------------------------------------
 
 function flea_4_modifier_smoke_effect:ApplyDebuff()
-	local debuff_init = self.ability:GetSpecialValueFor("debuff_init")
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = debuff_init})
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = debuff_init})
+	local blind = self.ability:GetSpecialValueFor("blind")
+	local slow = self.ability:GetSpecialValueFor("slow")
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind, miss_chance = blind})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
 end
 
 -- EFFECTS -----------------------------------------------------------
@@ -110,6 +70,5 @@ function flea_4_modifier_smoke_effect:PlayEfxStart()
 	self:AddParticle(effect_cast_1, false, false, -1, false, false)
 
 	self.effect_cast = effect_cast_1
-
 	if IsServer() then self.parent:EmitSound("DOTA_Item.InvisibilitySword.Activate") end
 end

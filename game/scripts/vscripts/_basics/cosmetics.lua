@@ -110,7 +110,7 @@ end
 		end
 	end
 
--- STATUS EFX / BAN
+-- STATUS EFX / HIDE / APPLY MODIFIERS
 
 	function cosmetics:SetStatusEffect(caster, ability, string, enable)
 		if self.cosmetic == nil then return end
@@ -173,6 +173,29 @@ end
 					self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(1)
 				else
 					self.cosmetic[i]:FindModifierByName("cosmetics_mod"):ChangeHidden(-1)
+				end
+			end
+		end
+	end
+
+	function cosmetics:AddNewModifier(ability, modifier_name)
+		if self.cosmetic == nil then return end
+
+		for i = 1, #self.cosmetic, 1 do
+			self.cosmetic[i]:AddNewModifier(self:GetCaster(), ability, modifier_name, {})
+		end
+	end
+
+	function cosmetics:RemoveModifierByName(ability, modifier_name)
+		if self.cosmetic == nil then return end
+
+		for i = 1, #self.cosmetic, 1 do
+			if ability == nil then
+				self.cosmetic[i]:RemoveModifierByName(modifier_name)
+			else
+				local mods = self.cosmetic[i]:FindAllModifiersByName(modifier_name)
+				for _,modifier in pairs(mods) do
+					if modifier:GetAbility() == ability then modifier:Destroy() end
 				end
 			end
 		end

@@ -1,7 +1,7 @@
 flea_u__weakness = class({})
 LinkLuaModifier("flea_u_modifier_passive", "heroes/flea/flea_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_u_modifier_target", "heroes/flea/flea_u_modifier_target", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_u_modifier_caster", "heroes/flea/flea_u_modifier_caster", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_weakness", "heroes/flea/flea_u_modifier_weakness", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_weakness_stack", "heroes/flea/flea_u_modifier_weakness_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -16,7 +16,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
         local caster = self:GetCaster()
         if unit:GetTeamNumber() == caster:GetTeamNumber() then return end
 
-        local weakness = unit:FindModifierByNameAndCaster("flea_u_modifier_target", caster)
+        local weakness = unit:FindModifierByNameAndCaster("flea_u_modifier_weakness", caster)
         if weakness == nil then return end
 
         local special_respawn_mult = self:GetSpecialValueFor("special_respawn_mult")

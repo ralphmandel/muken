@@ -30,12 +30,11 @@ function flea_4_modifier_smoke:GetAuraSearchFlags()
 end
 
 function flea_4_modifier_smoke:GetAuraEntityReject(hEntity)
-	if self:GetAbility():GetSpecialValueFor("special_allies") == 1 then
-		return false	
+	if self:GetCaster() == hEntity and self:GetAbility():GetSpecialValueFor("special_shadow_duration") > 0 then
+		return false
 	end
 
-	if hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber()
-	and hEntity ~= self:GetCaster() then
+	if hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
 		return true
 	end
 

@@ -7,9 +7,9 @@ function flea_1_modifier_precision:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_1_modifier_precision:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", true) end
@@ -38,8 +38,6 @@ end
 
 function flea_1_modifier_precision:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 

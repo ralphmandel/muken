@@ -88,3 +88,31 @@
 
         ApplyDamage(damageTable)
     end
+
+-- UTILS
+
+    function functions_example:AddTarget(target)
+        for _,enemy in pairs(self.enemies) do
+            if enemy then
+                if IsValidEntity(enemy) then
+                    if target == enemy then
+                        return
+                    end
+                end
+            end
+        end
+
+        table.insert(self.enemies, target)
+    end
+
+    function functions_example:RemoveAllTargets()
+        for _,enemy in pairs(self.enemies) do
+            if enemy then
+                if IsValidEntity(enemy) then
+                    enemy:RemoveModifierByNameAndCaster("flea_u_modifier_target", self.caster)
+                end
+            end
+        end
+
+        self.enemies = {}
+    end

@@ -1,6 +1,8 @@
 bocuse_2__flambee = class({})
 LinkLuaModifier("bocuse_2_modifier_flambee", "heroes/bocuse/bocuse_2_modifier_flambee", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_2_modifier_flambee_status_efx", "heroes/bocuse/bocuse_2_modifier_flambee_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -60,9 +62,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		caster:StartGesture(ACT_DOTA_CHANNEL_ABILITY_1)
 
 		self:CreateFLask(caster, target)
+		self:ThrowSecondFlask(target)		
 	end
 
 	function bocuse_2__flambee:ThrowSecondFlask(target)
+		if self:GetSpecialValueFor("special_second_flask") == 0 then return end
+
 		local caster = self:GetCaster()
 		local target_team = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 
@@ -72,8 +77,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		local units = FindUnitsInRadius(
 			caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
-			target_team, self:GetAbilityTargetType(),
-			self:GetAbilityTargetFlags(), self:GetAbilityTargetFlags(), false
+			target_team, self:GetAbilityTargetType(), self:GetAbilityTargetFlags(),
+			FIND_ANY_ORDER, false
 		)
 
 		for _,unit in pairs(units) do
@@ -121,7 +126,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		for _,unit in pairs(units) do
 			self:PlayEfxHit(unit)			
 			unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee", {
-				duration = self:GetSpecialValueFor("duration")
+				duration = self:GetSpecialValueFor("duration") + 0.1
 			})
 		end
 

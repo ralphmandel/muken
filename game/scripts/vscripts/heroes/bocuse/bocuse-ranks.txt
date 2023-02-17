@@ -38,18 +38,21 @@
 			"0"
 			{
 				"1"   "bocuse_2__flambee_rank_11"
+				"2"   "bocuse_2__flambee_rank_12"
 			}
 			"1"
 			{
 				"1"   "bocuse_2__flambee_rank_21"
+				"2"   "bocuse_2__flambee_rank_22"
 			}
 			"2"
 			{
 				"1"   "bocuse_2__flambee_rank_31"
+				"2"   "bocuse_2__flambee_rank_32"
 			}
 			"3"
 			{
-				"1"   "bocuse_2__flambee_rank_41"
+				"1"   "empty"
 			}
 		}
 		"bocuse_3__sauce"

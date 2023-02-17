@@ -92,7 +92,7 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_2__flambee"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_flambee"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -109,8 +109,8 @@
 		{
             "01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"750"
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"	    "750"
 			}
             "02"
 			{
@@ -120,37 +120,47 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"duration"		    "10"
+				"duration"		    "12"
 			}
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"intervals"		    "0.75"
+				"intervals"		    "0.8"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount"		    "1"
+				"amount_percent"    "0.75"
 			}
             "06"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"mana_gain"		"10"
+				"var_type"		    "FIELD_FLOAT"
+				"effect_blind"		"30"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"effect_resist"		"30"
 			}
             "07"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"blind"		    "25"
-			}
-            "08"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"1 2 3 4 5 6 7 8 9 10 11"
+				"radius"		"1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13"
+			}
+            "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_init"          "0"
+			}
+            "17"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_second_flask"  "0"
 			}
 		}
 	}

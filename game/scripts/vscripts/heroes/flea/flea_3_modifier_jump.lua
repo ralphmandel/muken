@@ -112,7 +112,7 @@ function flea_3_modifier_jump:PerformImpact(point)
 
 			if bleeding_duration > 0 then
 				enemy:AddNewModifier(self.caster, self.ability, "flea_3_modifier_bleeding", {
-					duration = CalcStatus(self.ability:GetSpecialValueFor("bleeding_duration"), self.caster, enemy)
+					duration = CalcStatus(bleeding_duration, self.caster, enemy)
 				})
 			end
 		end
