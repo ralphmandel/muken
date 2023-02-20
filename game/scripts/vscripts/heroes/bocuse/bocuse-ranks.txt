@@ -68,7 +68,6 @@
 			"2"
 			{
 				"1"   "bocuse_3__sauce_rank_31"
-				"2"   "bocuse_3__sauce_rank_32"
 			}
 			"3"
 			{
@@ -81,18 +80,20 @@
 			"0"
 			{
 				"1"   "bocuse_4__mirepoix_rank_11"
+				"2"   "bocuse_4__mirepoix_rank_12"
 			}
 			"1"
 			{
 				"1"   "bocuse_4__mirepoix_rank_21"
+				"2"   "bocuse_4__mirepoix_rank_22"
 			}
 			"2"
 			{
-				"1"   "bocuse_4__mirepoix_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "bocuse_4__mirepoix_rank_41"
+				"1"   "empty"
 			}
 		}
 		"bocuse_5__roux"
@@ -100,14 +101,16 @@
 			"0"
 			{
 				"1"   "bocuse_5__roux_rank_11"
+				"2"   "bocuse_5__roux_rank_12"
 			}
 			"1"
 			{
 				"1"   "bocuse_5__roux_rank_21"
+				"2"   "bocuse_5__roux_rank_22"
 			}
 			"2"
 			{
-				"1"   "bocuse_5__roux_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{

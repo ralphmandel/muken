@@ -56,20 +56,15 @@ function bocuse_2_modifier_flambee:GetModifierStatusResistanceStacking()
 end
 
 function bocuse_2_modifier_flambee:OnIntervalThink()
-	local amount = self.intervals * self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("amount_percent") * 0.01
+	local mana_amount = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_percent") * self.intervals * 0.01
 
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		self.parent:Heal(amount, self.ability)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana_amount, self.caster)
+		self.parent:GiveMana(mana_amount)
 	else
-		if IsServer() then
-			self.parent:EmitSound("Hero_OgreMagi.Ignite.Damage")
-		end
-
-		ApplyDamage({
-			attacker = self.caster, victim = self.parent,
-			damage = amount, damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self.ability
-		})
+		if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Ignite.Damage") end
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, mana_amount, self.caster)
+		self.parent:ReduceMana(mana_amount)
 	end
 end
 

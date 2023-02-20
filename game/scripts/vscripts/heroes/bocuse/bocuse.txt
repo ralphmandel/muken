@@ -125,24 +125,24 @@
             "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"intervals"		    "0.8"
+				"intervals"		    "1"
 			}
             "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount_percent"    "0.75"
+				"mana_percent"      "1.5"
 			}
             "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"effect_blind"		"30"
 			}
-            "06"
+            "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"effect_resist"		"30"
 			}
-            "07"
+            "08"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"radius"		"1 2 3 4 5 6 7 8 9 10 11 12 13"
@@ -247,25 +247,44 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_4__mirepoix"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_mirepoix"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"   		"ACT_DOTA_VICTORY"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_point"		"4"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"duration"		    "30"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"base_aspd"		    "1"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"atk_range"		    "50"
+			}
+            "05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"init_model_scale"	"1.15"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"1 2 3 4 5 6 7"
 			}
 		}
 	}

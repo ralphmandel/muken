@@ -76,7 +76,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 		end
 
 		local units = FindUnitsInRadius(
-			caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
+			caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetCastRange(caster:GetOrigin(), nil),
 			target_team, self:GetAbilityTargetType(), self:GetAbilityTargetFlags(),
 			FIND_ANY_ORDER, false
 		)

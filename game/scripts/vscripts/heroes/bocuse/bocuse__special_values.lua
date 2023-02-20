@@ -68,7 +68,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bocuse_2__flambee_rank_12") then
-			if value_name == "amount_percent" then return 1 end
+			if value_name == "mana_percent" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_2__flambee_rank_21") then
@@ -94,11 +94,11 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 		if value_name == "AbilityCastRange" then return 1 end
 
-		if caster:FindAbilityByName("bocuse_3__sauce_rank_31") then
-			if value_name == "special_purge_chance" then return 1 end
-		end
+		-- if caster:FindAbilityByName("bocuse_3__sauce_rank_31") then
+		-- 	if value_name == "special_purge_chance" then return 1 end
+		-- end
 
-		if caster:FindAbilityByName("bocuse_3__sauce_rank_32") then
+		if caster:FindAbilityByName("bocuse_3__sauce_rank_31") then
 			if value_name == "special_break" then return 1 end
 		end
 
@@ -117,15 +117,19 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_11") then
+			if value_name == "cast_point" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_12") then
+			if value_name == "duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_21") then
+			if value_name == "base_aspd" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_31") then
-		end
-
-		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_41") then
+		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_22") then
+			if value_name == "atk_range" then return 1 end
 		end
 	end
 
@@ -188,7 +192,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 350 + (value_level * 50) end
+		if value_name == "cast_range" then return 375 + (value_level * 25) end
 
 		if value_name == "cast_point" then return 0.1 end
 		if value_name == "max_cut" then return 7 end
@@ -209,7 +213,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "cast_range" then return 1000 end
 		if value_name == "projectile_speed" then return 1200 end
-		if value_name == "amount_percent" then return 1 end
+		if value_name == "mana_percent" then return 2 end
 		if value_name == "effect_blind" then return 50 end
 		if value_name == "effect_resist" then return 50 end
 		if value_name == "special_init" then return 1 end
@@ -220,9 +224,8 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		--if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
 
-		if value_name == "special_purge_chance" then return 5 end
+		--if value_name == "special_purge_chance" then return 5 end
 		if value_name == "special_break" then return 1 end
 		if value_name == "special_silence" then return 1 end
 		if value_name == "special_heal_allies" then return 1 end
@@ -230,8 +233,13 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "bocuse_4__mirepoix" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityCooldown" then return 60 + (value_level * -2.5) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+		if value_name == "cast_point" then return 1 end
+		if value_name == "duration" then return 40 end
+		if value_name == "base_aspd" then return 0.9 end
+		if value_name == "atk_range" then return 75 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then

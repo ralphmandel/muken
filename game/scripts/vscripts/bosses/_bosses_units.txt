@@ -41,7 +41,7 @@
 		"MagicalResistance"        	"0"
 		"StatusHealth"				"300"
 		"StatusHealthRegen"			"5"
-		"StatusMana"				"600" //600
+		"StatusMana"				"500" //600
 		"StatusManaRegen"			"0"
 		"VisionDaytimeRange"		"600"
 		"VisionNighttimeRange"		"500"
