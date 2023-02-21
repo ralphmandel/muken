@@ -96,7 +96,6 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -253,6 +252,7 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_VICTORY"
+		"AbilityCooldown"				"1 2 3 4 5 6 7"
 
 		"AbilitySpecial"
 		{
@@ -295,25 +295,54 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_5__roux"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_roux"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.3"
 
 		"AbilitySpecial"
 		{
-			"15"
+			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"lifetime"		"20"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"		    "45"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"root_interval" "3"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"root_duration" "1"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"    "400"
+			}
+            "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"1 2 3 4 5 6 7 8 9 10 11"
+			}
+            "15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
