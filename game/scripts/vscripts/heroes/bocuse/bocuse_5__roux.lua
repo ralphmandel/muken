@@ -1,4 +1,5 @@
 bocuse_5__roux = class({})
+LinkLuaModifier("bocuse_5_modifier_root", "heroes/bocuse/bocuse_5_modifier_root", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_5_modifier_roux", "heroes/bocuse/bocuse_5_modifier_roux", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_5_modifier_roux_aura_effect", "heroes/bocuse/bocuse_5_modifier_roux_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)

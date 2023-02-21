@@ -159,7 +159,7 @@ function bocuse_3_modifier_sauce:PopupSauce(sound)
 end
 
 function bocuse_3_modifier_sauce:PlayEfxLifesteal(attacker)
-	local particle_cast = "particles/items3_fx/octarine_core_lifesteal.vpcf"
+	local particle_cast = "particles/bocuse/sauce/bocuse_sauce_heal.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
 	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_cast)

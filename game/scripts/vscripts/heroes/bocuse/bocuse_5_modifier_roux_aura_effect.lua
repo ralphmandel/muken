@@ -14,6 +14,8 @@ function bocuse_5_modifier_roux_aura_effect:OnCreated(kv)
 		percent = self.ability:GetSpecialValueFor("slow")
 	})
 
+	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_mobility"), 0, nil)
+
 	if IsServer() then
     self.parent:EmitSound("Hero_Bristleback.ViscousGoo.Target")
 		self:StartIntervalThink(self.ability:GetSpecialValueFor("root_interval"))
@@ -24,6 +26,8 @@ function bocuse_5_modifier_roux_aura_effect:OnRefresh(kv)
 end
 
 function bocuse_5_modifier_roux_aura_effect:OnRemoved(kv)
+	RemoveBonus(self.ability, "_1_AGI", self.parent)
+
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
@@ -32,9 +36,19 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function bocuse_5_modifier_roux_aura_effect:CheckState()
+	local state = {}
+
+	if self:GetAbility():GetSpecialValueFor("special_mobility") < 0 then
+		table.insert(state, MODIFIER_STATE_EVADE_DISABLED, true)
+	end
+
+	return state
+end
+
 function bocuse_5_modifier_roux_aura_effect:OnIntervalThink()
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-		duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent), effect = 3
+	self.parent:AddNewModifier(self.caster, self.ability, "bocuse_5_modifier_root", {
+		duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent)
 	})
 end
 

@@ -14,14 +14,6 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.stop = false
 	self.extra_damage = 0
 
-	local bonus_ms = self.ability:GetSpecialValueFor("special_bonus_ms")
-
-	if bonus_ms > 0 then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-			percent = bonus_ms
-		})
-	end
-
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", true) end
 
@@ -37,11 +29,6 @@ function bocuse_u_modifier_mise:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_4)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", false) end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -54,6 +41,10 @@ function bocuse_u_modifier_mise:CheckState()
     [MODIFIER_STATE_SILENCED] = true,
     [MODIFIER_STATE_FROZEN] = false
 	}
+
+	if self:GetAbility():GetSpecialValueFor("special_jump_duration") > 0 then
+		table.insert(state, MODIFIER_STATE_UNSLOWABLE, true)
+	end
 
 	return state
 end

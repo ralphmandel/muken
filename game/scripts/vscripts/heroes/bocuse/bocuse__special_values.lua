@@ -157,6 +157,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bocuse_5__roux_rank_41") then
+			if value_name == "special_mobility" then return 1 end
 		end
 	end
 
@@ -168,7 +169,6 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 
 		if caster:FindAbilityByName("bocuse_u__mise_rank_31") then
 			if value_name == "special_jump_duration" then return 1 end
-			if value_name == "special_bonus_ms" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_u__mise_rank_32") then
@@ -260,9 +260,10 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "lifetime" then return 30 end
 		if value_name == "root_interval" then return 4 end
-		if value_name == "root_duration" then return 3 end
+		if value_name == "root_duration" then return 2 end
 		if value_name == "slow" then return 75 end
 		if value_name == "cast_range" then return 0 end
+		if value_name == "special_mobility" then return -15 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_u__mise" then
@@ -272,7 +273,6 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "speed_mult" then return 120 + (value_level) end
 
 		if value_name == "special_jump_duration" then return 0.5 end
-		if value_name == "special_bonus_ms" then return 10 end
 		if value_name == "special_extra_damage" then return 10 end
 		if value_name == "special_autocast_chance" then return 12 end
 		if value_name == "special_autocast_duration" then return 1 end

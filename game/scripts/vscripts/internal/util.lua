@@ -229,6 +229,8 @@ function CalcStatus(duration, caster, target)
 end
 
 function AddBonus(ability, string, target, const, percent, time)
+  if const == 0 and percent == 0 then return end
+
   local base_stats = target:FindAbilityByName("base_stats")
   if base_stats then base_stats:AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
 end

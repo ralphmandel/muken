@@ -1,27 +1,27 @@
 "DOTAHeroes"
 {
-	"bocuse"
+	"template"
 	{
-		"override_hero"					"npc_dota_hero_pudge"
+		"override_hero"					"npc_dota_hero_id_name"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"slot_1"
-			"Ability2"						"slot_2"
-			"Ability3"						"slot_3"
-			"Ability4"						"slot_4"
-			"Ability5"						"slot_5"
-			"Ability6"						"slot_6"
+			"Ability1"						"template_1__sk1"
+			"Ability2"						"template_2__sk2"
+			"Ability3"						"template_3__sk3"
+			"Ability4"						"template_4__sk4"
+			"Ability5"						"template_5__sk5"
+			"Ability6"						"template_u__sk6"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"bocuse_1__cut"
-			"Ability11"						"bocuse_2__flask"
-			"Ability12"						"bocuse_3__mark"
-			"Ability13"						"bocuse_4__enhance"
-			"Ability14"						"bocuse_5__puddle"
-			"Ability15"						"bocuse_u__rage"
+			"Ability10"						"_channel"
+			"Ability11"						"_void"
+			"Ability12"						"template__precache"
+			"Ability13"						"null"
+			"Ability14"						"null"
+			"Ability15"						"null"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"_channel"
-			"Ability31"						"_void"
-			"Ability32"						"bocuse__precache"
+			"Ability30"						"null"		
+			"Ability31"						"null"		
+			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "160"     // Range within a target can be attacked.
+		"AttackRange"                   "120"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"

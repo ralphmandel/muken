@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "template_1__sk1"
+	"2" "template_2__sk2"
+	"3" "template_3__sk3"
+	"4" "template_4__sk4"
+	"5" "template_5__sk5"
+	"6" "template_u__sk6"
+}

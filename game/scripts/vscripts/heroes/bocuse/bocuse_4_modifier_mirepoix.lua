@@ -46,14 +46,6 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bocuse_4_modifier_mirepoix:CheckState()
-	local state = {
-		[MODIFIER_STATE_UNSLOWABLE] = true
-	}
-
-	return state
-end
-
 function bocuse_4_modifier_mirepoix:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS

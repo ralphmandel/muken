@@ -118,13 +118,13 @@ function GameMode:OnHeroInGame(hero)
   hero:AddItem(item)
 
   if IsInToolsMode() then
-    if self.temp == nil then
-      self.temp = 6
-    else
-      self.temp = self.temp + 1
-      if self.temp > 7 then self.temp = 8 end
-      hero:SetTeam(self.temp)
-    end
+    -- if self.temp == nil then
+    --   self.temp = 6
+    -- else
+    --   self.temp = self.temp + 1
+    --   if self.temp > 7 then self.temp = 8 end
+    --   hero:SetTeam(self.temp)
+    -- end
   else
     local channel = hero:FindAbilityByName("_channel")
     hero:AddNewModifier(hero, channel, "_modifier_restrict", {duration = 10})

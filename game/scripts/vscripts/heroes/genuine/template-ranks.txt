@@ -1,0 +1,131 @@
+"TalentTree_template"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_id_name"
+	{
+		"template_1__sk1"
+		{
+			"0"
+			{
+				"1"   "template_1__sk1_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_1__sk1_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_1__sk1_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_1__sk1_rank_41"
+			}
+		}
+		"template_2__sk2"
+		{
+			"0"
+			{
+				"1"   "template_2__sk2_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_2__sk2_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_2__sk2_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_2__sk2_rank_41"
+			}
+		}
+		"template_3__sk3"
+		{
+			"0"
+			{
+				"1"   "template_3__sk3_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_3__sk3_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_3__sk3_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_3__sk3_rank_41"
+			}
+		}
+		"template_4__sk4"
+		{
+			"0"
+			{
+				"1"   "template_4__sk4_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_4__sk4_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_4__sk4_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_4__sk4_rank_41"
+			}
+		}
+		"template_5__sk5"
+		{
+			"0"
+			{
+				"1"   "template_5__sk5_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_5__sk5_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_5__sk5_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_5__sk5_rank_41"
+			}
+		}
+		"template_u__sk6"
+		{
+			"0"
+			{
+				"1"   "template_u__sk6_rank_11"
+			}
+			"1"
+			{
+				"1"   "template_u__sk6_rank_21"
+			}
+			"2"
+			{
+				"1"   "template_u__sk6_rank_31"
+			}
+			"3"
+			{
+				"1"   "template_u__sk6_rank_41"
+			}
+		}
+	}	
+}
