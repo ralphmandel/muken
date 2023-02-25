@@ -103,7 +103,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_2__fallen"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_fallen"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -114,7 +114,7 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
+		"AbilityCooldown"				"1 2 3 4 5 6 7 8"
 
 		"AbilitySpecial"
 		{
@@ -146,7 +146,7 @@
             "15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"1 2 3 4 5 6 7 8"
 			}
             "16"
 			{
@@ -154,11 +154,6 @@
 				"special_wide"  "0"
 			}
             "17"
-			{
-				"var_type"	                "FIELD_FLOAT"
-				"special_speed_duration"    "0"
-			}
-            "18"
 			{
 				"var_type"	                "FIELD_FLOAT"
 				"special_dispel_duration"   "0"
@@ -172,7 +167,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_3__morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_morning"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -180,17 +175,78 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NO_INVIS"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.1"
+		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{
-			"15"
+            "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"duration"	    "8"
+			}
+        	"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"int"	        "15"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hero_chance"	"75"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"chance"	    "25"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"force_night_time"	"25"
+			}
+            "06"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"bonus_night_vision"	"250"
+			}
+			"15"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
+			}
+            "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_purge"	        "0"
+			}
+            "17"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_agi"	        "0"
+			}
+            "18"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_ms"	        "0"
+			}
+            "21"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_damage"        "1"
+			}
+            "22"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_radius"       "1"
+			}
+            "23"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_delay"        "1"
 			}
 		}
 	}

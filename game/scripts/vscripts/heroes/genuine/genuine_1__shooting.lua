@@ -7,6 +7,10 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
 -- INIT
 
+	function genuine_1__shooting:Spawn()
+		if self:IsTrained() == false then self:UpgradeAbility(true) end
+	end
+
 -- SPELL START
 
 	function genuine_1__shooting:GetIntrinsicModifierName()
@@ -51,4 +55,44 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 	function genuine_1__shooting:OnOrbFail(keys)
 	end
 
+	function genuine_1__shooting:CreateStarfall(target)
+		local caster = self:GetCaster()
+		local point = target:GetOrigin()
+		self:PlayEfxStarfall(target)
+
+		Timers:CreateTimer(self:GetSpecialValueFor("starfall_delay"), function()
+			if target then
+				if IsValidEntity(target) then
+					if IsServer() then
+						target:EmitSound("Hero_Mirana.Starstorm.Impact")
+					end			
+				end
+			end
+
+			local enemies = FindUnitsInRadius(
+				caster:GetTeamNumber(), point, nil,
+				self:GetSpecialValueFor("starfall_radius"),
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+			)
+		
+			for _,enemy in pairs(enemies) do
+				ApplyDamage({
+					attacker = caster, victim = enemy,
+					damage = self:GetSpecialValueFor("starfall_damage"),
+					damage_type = DAMAGE_TYPE_MAGICAL, ability = self
+				})
+			end		
+		end)
+	end
+
 -- EFFECTS
+
+	function genuine_1__shooting:PlayEfxStarfall(target)
+		local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+		ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+
+		if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+	end
