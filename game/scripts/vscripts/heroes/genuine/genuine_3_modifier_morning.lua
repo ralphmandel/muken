@@ -10,6 +10,9 @@ function genuine_3_modifier_morning:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+	self.ability:EndCooldown()
+	self.ability:SetActivated(false)
+
 	if IsServer() then
 		self:ApplyBuffs()
 		self:StartIntervalThink(0.1)
@@ -24,6 +27,8 @@ function genuine_3_modifier_morning:OnRefresh(kv)
 end
 
 function genuine_3_modifier_morning:OnRemoved()
+	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+	self.ability:SetActivated(true)
 	self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):StopEfxBuff()
 
 	RemoveBonus(self.ability, "_1_INT", self.parent)
@@ -36,6 +41,14 @@ function genuine_3_modifier_morning:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function genuine_3_modifier_morning:CheckState()
+	local state = {
+		[MODIFIER_STATE_FORCED_FLYING_VISION] = GameRules:IsDaytime() == false or GameRules:IsTemporaryNight()
+	}
+
+	return state
+end
 
 function genuine_3_modifier_morning:OnIntervalThink()
 	if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then

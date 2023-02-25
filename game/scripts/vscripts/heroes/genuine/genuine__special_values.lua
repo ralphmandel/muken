@@ -96,25 +96,24 @@ function genuine__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("genuine_3__morning_rank_11") then
-			if value_name == "hero_chance" then return 1 end
-		end
-
-		if caster:FindAbilityByName("genuine_3__morning_rank_12") then
 			if value_name == "bonus_night_vision" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_3__morning_rank_21") then
+		if caster:FindAbilityByName("genuine_3__morning_rank_12") then
 			if value_name == "int" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_3__morning_rank_22") then
+		if caster:FindAbilityByName("genuine_3__morning_rank_21") then
 			if value_name == "force_night_time" then return 1 end
 		end
 		
-		if caster:FindAbilityByName("genuine_3__morning_rank_41") then
+		if caster:FindAbilityByName("genuine_3__morning_rank_31") then
 			if value_name == "special_purge" then return 1 end
-			if value_name == "special_agi" then return 1 end
 			if value_name == "special_ms" then return 1 end
+		end
+
+		if caster:FindAbilityByName("genuine_3__morning_rank_32") then
+			if value_name == "special_agi" then return 1 end
 		end
 	end
 
@@ -183,7 +182,7 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
 
-	if value_name == "starfall_damage" then return 100 end
+	if value_name == "starfall_damage" then return 150 end
 	if value_name == "starfall_radius" then return 250 end
 	if value_name == "starfall_delay" then return 0.5 end
 
@@ -211,7 +210,7 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 16 - (value_level * 0.5) end
+		if value_name == "AbilityCooldown" then return 14 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "mana_steal" then return 70 end
@@ -225,16 +224,15 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_3__morning" then
 		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 25 - (value_level * 0.5) end
+		if value_name == "AbilityCooldown" then return 16 - (value_level * 0.4) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "hero_chance" then return 100 end
 		if value_name == "bonus_night_vision" then return 500 end
-		if value_name == "int" then return 25 end
+		if value_name == "int" then return 20 end
 		if value_name == "force_night_time" then return 100 end
 		if value_name == "special_purge" then return 1 end
-		if value_name == "special_agi" then return 10 end
-		if value_name == "special_ms" then return 25 end
+		if value_name == "special_ms" then return 50 end
+		if value_name == "special_agi" then return 15 end
 	end
 
 	if ability:GetAbilityName() == "genuine_4__nightfall" then

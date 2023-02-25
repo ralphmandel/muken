@@ -64,15 +64,15 @@
 			"1"
 			{
 				"1"   "genuine_3__morning_rank_21"
-				"2"   "genuine_3__morning_rank_22"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "genuine_3__morning_rank_31"
+				"2"   "genuine_3__morning_rank_32"
 			}
 			"3"
 			{
-				"1"   "genuine_3__morning_rank_41"
+				"1"   "empty"
 			}
 		}
 		"genuine_4__nightfall"

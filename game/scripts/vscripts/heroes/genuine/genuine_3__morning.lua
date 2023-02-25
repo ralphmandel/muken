@@ -7,9 +7,13 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 -- SPELL START
 
-  function genuine_3__morning:GetIntrinsicModifierName()
-    return "genuine_3_modifier_passive"
-  end
+	function genuine_3__morning:GetIntrinsicModifierName()
+		return "genuine_3_modifier_passive"
+	end
+
+	function genuine_3__morning:OnOwnerSpawned()
+		self:SetActivated(true)
+	end
 
   function genuine_3__morning:OnAbilityPhaseStart()
     local caster = self:GetCaster()
@@ -32,27 +36,26 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
     if IsServer() then caster:EmitSound("Genuine.Morning") end
   end
 
-  function genuine_3__morning:CreateStarfall(target)
+	function genuine_3__morning:CreateStarfall(target)
 		local caster = self:GetCaster()
 		local point = target:GetOrigin()
 		self:PlayEfxStarfall(target)
 
 		Timers:CreateTimer(self:GetSpecialValueFor("starfall_delay"), function()
-			if target then
-				if IsValidEntity(target) then
-					if IsServer() then
-						target:EmitSound("Hero_Mirana.Starstorm.Impact")
-					end			
-				end
-			end
-
 			local enemies = FindUnitsInRadius(
 				caster:GetTeamNumber(), point, nil,
 				self:GetSpecialValueFor("starfall_radius"),
 				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
 			)
 		
+			for _,enemy in pairs(enemies) do
+				if IsServer() then
+					enemy:EmitSound("Hero_Mirana.Starstorm.Impact")
+					break
+				end
+			end
+
 			for _,enemy in pairs(enemies) do
 				ApplyDamage({
 					attacker = caster, victim = enemy,
@@ -65,11 +68,11 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 
 -- EFFECTS
 
-  function genuine_3__morning:PlayEfxStarfall(target)
-    local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
-    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
-    ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-    ParticleManager:ReleaseParticleIndex(effect_cast)
+function genuine_3__morning:PlayEfxStarfall(target)
+  local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+  local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
+  ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+  ParticleManager:ReleaseParticleIndex(effect_cast)
 
-    if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
-  end
+  if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+end

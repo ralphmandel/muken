@@ -49,6 +49,21 @@
 				"var_type"		"FIELD_FLOAT"
 				"proj_speed"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 			}
+            "11"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_damage"        "1"
+			}
+            "12"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_radius"       "1"
+			}
+            "13"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_delay"        "1"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -79,21 +94,6 @@
 				"var_type"		            "FIELD_FLOAT"
 				"special_fear_duration"     "0"
 			}
-            "21"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_damage"           "1"
-			}
-            "22"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_radius"           "1"
-			}
-            "23"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_delay"            "1"
-			}
 		}
 	}
 
@@ -114,7 +114,6 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
-		"AbilityCooldown"				"1 2 3 4 5 6 7 8"
 
 		"AbilitySpecial"
 		{
@@ -167,7 +166,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_3__morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_morning"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -183,35 +182,50 @@
 
 		"AbilitySpecial"
 		{
-            "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"	    "8"
-			}
-        	"02"
+        	"01"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"int"	        "15"
 			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"hero_chance"	"100"
+			}
             "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hero_chance"	"75"
+				"chance"	    "50"
 			}
             "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"	    "25"
-			}
-            "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"force_night_time"	"25"
 			}
-            "06"
+            "05"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"bonus_night_vision"	"250"
+			}
+            "06"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"duration"	            "8"
+			}
+            "11"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_damage"        "1"
+			}
+            "12"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_radius"       "1"
+			}
+            "13"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"starfall_delay"        "1"
 			}
 			"15"
 			{
@@ -226,27 +240,12 @@
             "17"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"special_agi"	        "0"
+				"special_ms"	        "0"
 			}
             "18"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"special_ms"	        "0"
-			}
-            "21"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_damage"        "1"
-			}
-            "22"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_radius"       "1"
-			}
-            "23"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_delay"        "1"
+				"special_agi"	        "0"
 			}
 		}
 	}
