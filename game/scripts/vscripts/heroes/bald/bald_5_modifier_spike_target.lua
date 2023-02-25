@@ -65,6 +65,7 @@ end
 
 function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
 	local percent = self.ability:GetSpecialValueFor("percent")
+	self:PlayEfxHit()
 
 	local total = ApplyDamage({
 		damage = keys.original_damage * percent * 0.01,
@@ -74,9 +75,6 @@ function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
 		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 		ability = keys.inflictor
 	})
-
-	self:PlayEfxHit()
-
 	return -percent
 end
 

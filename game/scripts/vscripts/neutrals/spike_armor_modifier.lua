@@ -49,8 +49,8 @@ function spike_armor_modifier:OnTakeDamage(keys)
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
 		}
 
-		ApplyDamage(damageTable)
 		if IsServer() then keys.attacker:EmitSound("DOTA_Item.BladeMail.Damage") end
+		ApplyDamage(damageTable)
 	end
 end
 

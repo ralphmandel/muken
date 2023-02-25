@@ -103,7 +103,6 @@ end
 
 function striker_1_modifier_passive:PerformBlink(target)
 	self:CancelCombo(true)
-	self:PerformAfterShake()
 	self:PerformMirrorSonic(self.parent:IsIllusion(), target)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
@@ -113,6 +112,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 
 	self:PlayEfxBlinkStart(target:GetOrigin() - self.parent:GetOrigin(), target)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_ban", {})
+	self:PerformAfterShake()
 
 	local delay = 0.3
 	if self.parent:HasModifier("striker_5_modifier_sof")
@@ -197,12 +197,12 @@ function striker_1_modifier_passive:PerformAfterShake(target)
 	if radius == 0 then return end
 
 	local enemies = FindUnitsInRadius(
-        self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
-        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        0, 0, false
-    )
+		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, radius,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		0, 0, false
+	)
 
-    for _,enemy in pairs(enemies) do
+	for _,enemy in pairs(enemies) do
 		self:PlayEfxScreenShake(enemy)
 
 		local mod = enemy:FindAllModifiersByName("_modifier_movespeed_debuff")
@@ -221,9 +221,9 @@ function striker_1_modifier_passive:PerformAfterShake(target)
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self.ability
 		})
-    end
+	end
 
-    GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)
+	GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), radius, true)
 	self:PlayEfxAfterShake(radius)
 end
 

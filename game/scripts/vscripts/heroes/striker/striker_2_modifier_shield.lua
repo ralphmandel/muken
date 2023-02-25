@@ -86,10 +86,10 @@ function striker_2_modifier_shield:OnAttackLanded(keys)
 end
 
 function striker_2_modifier_shield:GetModifierPhysical_ConstantBlock(keys)
-    if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
+  if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
 
-    self:PlayEfxBlocked(keys)
+  self:PlayEfxBlocked(keys)
 	self:ApplyCounter(keys)
 
 	if self:GetStackCount() < 1 then

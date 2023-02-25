@@ -58,15 +58,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         self:PlayEfxImpact(target)
     
-        ApplyDamage({
-            damage = self.damage,
-            attacker = caster,
-            victim = target,
-            damage_type = self:GetAbilityDamageType(),
-            ability = self,
-            damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
-        })
-        
         target:AddNewModifier(caster, self, "_modifier_stun", {
             duration = CalcStatus(self.stun, caster, target)
         })
@@ -79,6 +70,15 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             center_y = caster:GetAbsOrigin().y + 1,
             center_z = caster:GetAbsOrigin().z,
             knockback_height = self.stun * 20,
+        })
+
+        ApplyDamage({
+            damage = self.damage,
+            attacker = caster,
+            victim = target,
+            damage_type = self:GetAbilityDamageType(),
+            ability = self,
+            damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
         })
     end
 

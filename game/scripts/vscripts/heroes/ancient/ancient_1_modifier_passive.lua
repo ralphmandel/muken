@@ -184,13 +184,17 @@ function ancient_1_modifier_passive:ApplyReflect(keys, stun_multiplier)
 			damage = keys.damage + self.damage, damage_type = keys.damage_type,
 		})
 
-		local stun_duration = total_damage * stun_multiplier * 0.01
-		self:PlayEfxCrit(keys.attacker, true)
-		self:PlayEfxCrit(self.parent, true)
-
-		keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = CalcStatus(stun_duration, self.caster, keys.attacker)
-		})
+		if keys.attacker then
+			if IsValidEntity(keys.attacker) then
+				local stun_duration = total_damage * stun_multiplier * 0.01
+				self:PlayEfxCrit(keys.attacker, true)
+				self:PlayEfxCrit(self.parent, true)
+		
+				keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+					duration = CalcStatus(stun_duration, self.caster, keys.attacker)
+				})				
+			end
+		end
 	end
 end
 

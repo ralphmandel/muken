@@ -41,10 +41,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		FindClearSpaceForUnit(caster, blink_point, true)
 		ProjectileManager:ProjectileDodge(caster)
 
-		if target:HasModifier("icebreaker__modifier_frozen") then
-			self:PerformBreak(target)
-		end
-
 		Timers:CreateTimer(0.1, function()
 			self.turn = 0
 		end)
@@ -53,6 +49,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:MoveToTargetToAttack(target)
+		end
+
+		if target:HasModifier("icebreaker__modifier_frozen") then
+			self:PerformBreak(target)
 		end
 	end
 
@@ -64,7 +64,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		self:EndCooldown()
 		self:ReduceShivasCD(target)
 
-		local teste = ApplyDamage({
+		ApplyDamage({
 			victim = target, attacker = caster, ability = self,
 			damage = self:GetSpecialValueFor("damage"),
 			damage_type = self:GetAbilityDamageType()

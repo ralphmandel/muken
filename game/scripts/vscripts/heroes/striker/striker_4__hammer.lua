@@ -63,6 +63,16 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
         )
 
         for _,enemy in pairs(enemies) do
+            enemy:AddNewModifier(caster, self, "_modifier_stun", {
+                duration = self:GetSpecialValueFor("stun_duration") * level
+            })
+
+            if break_duration > 0 then
+                enemy:AddNewModifier(caster, self, "_modifier_break", {
+                    duration = CalcStatus(break_duration * level, caster, enemy)
+                })
+            end
+
             local total_damage = ApplyDamage({
                 victim = enemy,
                 attacker = caster,
@@ -73,18 +83,6 @@ LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOT
 
             local heal = total_damage * self:GetSpecialValueFor("special_lifesteal") * 0.01
             if heal > 0 then caster:Heal(heal, self) end
-
-            if enemy:IsAlive() then
-                enemy:AddNewModifier(caster, self, "_modifier_stun", {
-                    duration = self:GetSpecialValueFor("stun_duration") * level
-                })
-
-                if break_duration > 0 then
-                    enemy:AddNewModifier(caster, self, "_modifier_break", {
-                        duration = CalcStatus(break_duration * level, caster, enemy)
-                    })
-                end
-            end
         end
     
         GridNav:DestroyTreesAroundPoint(target:GetOrigin(), hammer_radius, true)

@@ -61,8 +61,8 @@ end
 --------------------------------------------------------------------------------
 
 function venom_aoe_modifier:OnIntervalThink()
-	ApplyDamage(self.damageTable)
 	self:PlayEfxSound(self.parent)
+	ApplyDamage(self.damageTable)
 end
 
 --------------------------------------------------------------------------------

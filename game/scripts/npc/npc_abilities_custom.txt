@@ -635,9 +635,9 @@
 #base "../vscripts/heroes/bloodstained/bloodstained.txt"
 #base "../vscripts/heroes/icebreaker/icebreaker.txt"
 #base "../vscripts/heroes/bocuse/bocuse.txt"
+#base "../vscripts/heroes/genuine/genuine.txt"
 
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
-#base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/druid/druid.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
 #base "../vscripts/heroes/osiris/osiris.txt"

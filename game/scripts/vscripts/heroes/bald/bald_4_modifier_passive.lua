@@ -94,7 +94,11 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 		ability = self.ability
 	})
 
-	self:PlayEfxDamage(keys.added_buff:GetCaster(), damage)
+	if keys.added_buff:GetCaster() then
+		if IsValidEntity(keys.added_buff:GetCaster()) then
+			self:PlayEfxDamage(keys.added_buff:GetCaster(), damage)			
+		end
+	end
 end
 
 -- UTILS -----------------------------------------------------------

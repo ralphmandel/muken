@@ -79,8 +79,8 @@ function bald_5_modifier_spike_caster:IncrementAmount(damage)
 	self.total_amount = self.total_amount + damage
 	if self.total_amount > self.amount then
 		self.total_amount = self.total_amount - self.amount
-		self:ReleaseSpikes()
 		self:IncrementAmount(0)
+		self:ReleaseSpikes()
 	end
 end
 
@@ -111,11 +111,11 @@ function bald_5_modifier_spike_caster:ReleaseSpikes()
 		})
 
 		ApplyDamage({
-            damage = self.ability:GetSpecialValueFor("damage"),
-            attacker = self.caster,
-            victim = enemy,
-            damage_type = self.ability:GetAbilityDamageType(),
-            ability = self.ability
+			damage = self.ability:GetSpecialValueFor("damage"),
+			attacker = self.caster,
+			victim = enemy,
+			damage_type = self.ability:GetAbilityDamageType(),
+			ability = self.ability
 		})
 	end
 end

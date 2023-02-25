@@ -82,14 +82,6 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 			})
 		end
 
-		if damage_percent > 0 then
-			ApplyDamage({
-				attacker = caster, victim = target,
-				damage = target:GetMaxHealth() * damage_percent * 0.01,
-				damage_type = DAMAGE_TYPE_MAGICAL, ability = self
-			})
-		end
-
 		if knockback == 1 then
 			local distance = self:GetSpecialValueFor("distance") + 500 - CalcDistanceBetweenEntityOBB(caster, target)
 			self.knockbackProperties.duration = CalcStatus(distance / 5000, caster, target)
@@ -106,6 +98,14 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 		if self.first_hit == false then
 			caster:MoveToTargetToAttack(target)
 			self.first_hit = true
+		end
+
+		if damage_percent > 0 then
+			ApplyDamage({
+				attacker = caster, victim = target,
+				damage = target:GetMaxHealth() * damage_percent * 0.01,
+				damage_type = DAMAGE_TYPE_MAGICAL, ability = self
+			})
 		end
 	end
 

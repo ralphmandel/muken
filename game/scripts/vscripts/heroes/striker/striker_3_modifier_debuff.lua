@@ -6,9 +6,9 @@ function striker_3_modifier_debuff:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function striker_3_modifier_debuff:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	self.ticks = self.ability:GetSpecialValueFor("max_ticks")
 	self.amount = self.ability:GetSpecialValueFor("init_amount")
@@ -16,11 +16,9 @@ function striker_3_modifier_debuff:OnCreated(kv)
 	self.tick_interval = self.ability:GetSpecialValueFor("tick_interval")
 
 	if IsServer() then
-		self:ApplyTick()
+		if self.ability:GetSpecialValueFor("special_debuff") == 1 then self:PlayEfxRoot() end
 		self:PlayEfxStart()
-		if self.ability:GetSpecialValueFor("special_debuff") == 1 then
-			self:PlayEfxRoot()
-		end
+		self:ApplyTick()
 	end
 end
 
@@ -77,6 +75,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_3_modifier_debuff:ApplyTick()
+	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin()) end
+
 	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") then
 		self.parent:Purge(true, false, false, false, false)
 		self:PlayEfxPurge()
@@ -94,7 +94,6 @@ function striker_3_modifier_debuff:ApplyTick()
 
 	self:ModifyStack(1, true)
 
-	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin()) end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 

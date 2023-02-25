@@ -45,7 +45,13 @@ function bloodstained__modifier_bleeding:OnIntervalThink()
 	if IsServer() then
 		if self.parent:IsMoving() then
 			local apply_damage = math.floor(ApplyDamage(self.damageTable))
-			if apply_damage > 0 then self:PopupBleeding(apply_damage) end
+			if apply_damage > 0 then
+				if self.parent then
+					if IsValidEntity(self.parent) then
+						self:PopupBleeding(apply_damage)
+					end
+				end
+			end
 		end
 
 		self:StartIntervalThink(self.intervals)

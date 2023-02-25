@@ -25,6 +25,11 @@ function flea_5_modifier_desolator:OnRefresh(kv)
 end
 
 function flea_5_modifier_desolator:OnRemoved()
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+	
 	local damageTable = {
 		damage = self.damage_total * self.ability:GetSpecialValueFor("special_damage_percent") * 0.01,
 		attacker = self.caster,
@@ -35,13 +40,8 @@ function flea_5_modifier_desolator:OnRemoved()
 
 	if damageTable.damage > 0 then
 		self.parent:Purge(true, false, false, false, false)
-		ApplyDamage(damageTable)
 		self:PlayEfxEnd()
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+		ApplyDamage(damageTable)
 	end
 end
 

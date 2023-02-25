@@ -45,10 +45,10 @@ function flea_1_modifier_dark_pact:OnIntervalThink()
 	for _,enemy in pairs(enemies) do
 		ApplyDamage({
 			damage = self.damage,
-            attacker = self.caster,
-            victim = enemy,
-            damage_type = DAMAGE_TYPE_MAGICAL,
-            ability = self.ability
+			attacker = self.caster,
+			victim = enemy,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self.ability
 		})
 	end
 

@@ -66,21 +66,21 @@ function fireball:OnProjectileHit(hTarget, vLocation)
 	local fireball_damage = self:GetSpecialValueFor("fireball_damage")
 
 	local damageTable = {
-        victim = hTarget,
-        attacker = self.caster,
-        damage = fireball_damage,
-        damage_type = DAMAGE_TYPE_MAGICAL,
-        ability = self
-    }
+		victim = hTarget,
+		attacker = self.caster,
+		damage = fireball_damage,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self
+	}
 	
-	ApplyDamage(damageTable)
 
-	if hTarget:IsAlive() then
-		hTarget:AddNewModifier(self.caster, self, "fireball_modifier", {
-			duration = CalcStatus(flame_duration, self.caster, hTarget)
-		})
-		hTarget:AddNewModifier(self.caster, self, "_modifier_stun", {
-			duration = CalcStatus(stun_duration, self.caster, hTarget)
-		})
-	end
+	hTarget:AddNewModifier(self.caster, self, "fireball_modifier", {
+		duration = CalcStatus(flame_duration, self.caster, hTarget)
+	})
+
+	hTarget:AddNewModifier(self.caster, self, "_modifier_stun", {
+		duration = CalcStatus(stun_duration, self.caster, hTarget)
+	})
+
+	ApplyDamage(damageTable)
 end

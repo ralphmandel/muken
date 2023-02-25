@@ -106,4 +106,5 @@ function bocuse__precache:Precache(context)
     PrecacheResource( "particle", "particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_grimstroke/grimstroke_cast2_ground.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context )
+    PrecacheResource( "particle", "particles/bocuse/sauce/bocuse_sauce_heal.vpcf", context )
 end

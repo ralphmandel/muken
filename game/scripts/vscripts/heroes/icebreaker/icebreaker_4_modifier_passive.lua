@@ -65,6 +65,8 @@ function icebreaker_4_modifier_passive:ApplyInvisibility(target)
 		attack_break = 0
 	})
 
+	if self.parent:IsIllusion() then self.parent:MoveToTargetToAttack(target) end
+
 	self:CreateMirror(target)
 	self:SpreadIce(self.caster, self.parent, self.ability)
 

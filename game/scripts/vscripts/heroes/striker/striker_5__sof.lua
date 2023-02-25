@@ -91,7 +91,11 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
         if self.hammer_return == iProjectileHandle then
             self.hammer_return = nil
-            target:RemoveModifierByNameAndCaster("striker_5_modifier_return", self:GetCaster())
+            if target then
+                if IsValidEntity(target) then
+                    target:RemoveModifierByNameAndCaster("striker_5_modifier_return", self:GetCaster())     
+                end
+            end
         end
     end
 
@@ -112,6 +116,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
         local caster = self:GetCaster()
         local slow_duration = self:GetSpecialValueFor("slow_duration")
 
+        self:PlayEfxHammerHit(target)
+
         target:AddNewModifier(caster, self, "striker_5_modifier_debuff", {
             duration = CalcStatus(slow_duration, caster, target)
         })
@@ -122,8 +128,6 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
             damage_type = self:GetAbilityDamageType(),
             ability = self
         })
-    
-        self:PlayEfxHammerHit(target)
     end
 
     function striker_5__sof:ResetHammer()

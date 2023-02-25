@@ -6,9 +6,9 @@ function template_modifier_autocast:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function template_modifier_autocast:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 end
 
 function template_modifier_autocast:OnRefresh(kv)

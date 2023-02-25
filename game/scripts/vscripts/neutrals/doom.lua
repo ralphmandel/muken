@@ -45,13 +45,14 @@ function doom:OnSpellStart()
         ability = self
     })
 
-    if target:IsAlive() then
-        target:AddNewModifier(caster, self, "doom_modifier", {
-            duration = CalcStatus(duration, caster, target)
-        })
+    if target then
+        if IsValidEntity(target) then
+            if IsServer() then self:PlayEfxStart(target) end
+            target:AddNewModifier(caster, self, "doom_modifier", {
+                duration = CalcStatus(duration, caster, target)
+            })
+        end
     end
-
-    if IsServer() then self:PlayEfxStart(target) end
 end
 
 function doom:PlayEfxStart(target)

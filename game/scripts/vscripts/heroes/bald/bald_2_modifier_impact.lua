@@ -48,8 +48,6 @@ end
 function bald_2_modifier_impact:OnIntervalThink()
 	if self.ability.target == nil then return end
 	if IsValidEntity(self.ability.target) == false then return end
-	
-	self.ability:ApplyImpact(self.ability.target)
 
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.ability.target:GetOrigin(), nil, self.ability:GetSpecialValueFor("bash_aoe"),
@@ -65,6 +63,7 @@ function bald_2_modifier_impact:OnIntervalThink()
 
 	if IsServer() then
 		self.ability.target:EmitSound("Hero_Bristleback.Attack")
+		self.ability:ApplyImpact(self.ability.target)
 		self:StartIntervalThink(-1)
 	end
 end

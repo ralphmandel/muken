@@ -68,8 +68,9 @@ function mk_root_modifier:OnDeath(keys)
 end
 
 function mk_root_modifier:OnIntervalThink()
+	if IsServer() then self.parent:EmitSound("Hero_Sandking.EpiPulse") end
+
 	local damage = ApplyDamage(self.damageTable)
 	self.info.ExtraData = {damage = damage}
 	ProjectileManager:CreateTrackingProjectile(self.info)
-	if IsServer() then self.parent:EmitSound("Hero_Sandking.EpiPulse") end
 end

@@ -29,14 +29,14 @@ function icebreaker__modifier_frozen:OnRefresh(kv)
 end
 
 function icebreaker__modifier_frozen:OnRemoved()
+	if IsServer() then self:PlayEfxDestroy() end
+	
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", false) end
 
 	if self.damageTable.damage > 0 then
 		ApplyDamage(self.damageTable)
 	end
-
-	if IsServer() then self:PlayEfxDestroy() end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

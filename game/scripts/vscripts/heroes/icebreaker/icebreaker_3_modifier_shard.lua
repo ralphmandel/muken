@@ -87,11 +87,12 @@ end
 
 function icebreaker_3_modifier_shard:OnIntervalThink()
 	local radius = self.ability:GetSpecialValueFor("radius")
-	self:StartExplosionThink(radius)
 
 	if self.effect_cast then
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, radius, radius * (radius * 0.002)))
 	end
+
+	self:StartExplosionThink(radius)
 
 	if IsServer() then self:StartIntervalThink(1 / (radius * 0.01)) end
 end

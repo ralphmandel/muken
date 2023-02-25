@@ -95,12 +95,12 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
-		self:ApplyFrost(keys.target)
-	end
-
 	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_blink_chance") then
 		self:PerformAutoBlink(keys.target)
+	end
+
+	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+		self:ApplyFrost(keys.target)
 	end
 end
 
@@ -118,15 +118,6 @@ function icebreaker_1_modifier_passive:ApplyFrost(target)
 	if target:IsMagicImmune() then return end
 	local instant_duration = self.ability:GetSpecialValueFor("special_instant_duration")
 
-	ApplyDamage({
-		victim = target, attacker = self.caster,
-		damage = self.ability:GetSpecialValueFor("damage"),
-		damage_type = self.ability:GetAbilityDamageType(),
-		ability = self.ability
-	})
-
-	self.proc = true
-
 	target:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_hypo", {
 		duration = CalcStatus(self.ability:GetSpecialValueFor("stack_duration"), self.caster, target), stack = 1
 	})
@@ -136,6 +127,15 @@ function icebreaker_1_modifier_passive:ApplyFrost(target)
 			duration = instant_duration
 		})
 	end
+
+	ApplyDamage({
+		victim = target, attacker = self.caster,
+		damage = self.ability:GetSpecialValueFor("damage"),
+		damage_type = self.ability:GetAbilityDamageType(),
+		ability = self.ability
+	})
+
+	self.proc = true
 end
 
 function icebreaker_1_modifier_passive:PerformAutoBlink(target)

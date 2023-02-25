@@ -61,12 +61,6 @@ function bloodstained_5_modifier_tear:OnIntervalThink()
 	local hp_lost = self.ability:GetSpecialValueFor("hp_lost")
 	local damage = self.parent:GetMaxHealth() * hp_lost * 0.01
 
-	local damage_result = ApplyDamage({
-		attacker = self.caster, victim = self.parent, ability = self.ability,
-		damage = damage, damage_type = DAMAGE_TYPE_PURE,
-		damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
-	})
-
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -80,6 +74,12 @@ function bloodstained_5_modifier_tear:OnIntervalThink()
 			damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
 		})
 	end
+
+	ApplyDamage({
+		attacker = self.caster, victim = self.parent, ability = self.ability,
+		damage = damage, damage_type = DAMAGE_TYPE_PURE,
+		damage_flags = 	DOTA_DAMAGE_FLAG_NON_LETHAL
+	})
 
 	if IsServer() then self:StartIntervalThink(self.tick) end
 end
