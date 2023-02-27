@@ -1,13 +1,29 @@
 genuine_4__nightfall = class({})
-LinkLuaModifier("genuine_4_modifier_nightfall", "heroes/genuine/genuine_4_modifier_nightfall", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_4_modifier_aura", "heroes/genuine/genuine_4_modifier_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_4_modifier_aura_effect", "heroes/genuine/genuine_4_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_debuff_increase", "modifiers/_modifier_debuff_increase", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
 -- SPELL START
 
-function genuine_4__nightfall:OnSpellStart()
-    local caster = self:GetCaster()
-end
+	function genuine_4__nightfall:OnOwnerSpawned()
+		self:OnToggle()
+	end
+
+	function genuine_4__nightfall:GetAOERadius()
+		return self:GetSpecialValueFor("radius")
+	end
+
+	function genuine_4__nightfall:OnToggle()
+		local caster = self:GetCaster()
+		local init_loss = self:GetSpecialValueFor("special_init_loss")
+
+		if self:GetToggleState() then
+			caster:AddNewModifier(caster, self, "genuine_4_modifier_aura", {})
+		else
+			caster:RemoveModifierByName("genuine_4_modifier_aura")
+		end
+	end
 
 -- EFFECTS

@@ -517,7 +517,15 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL INT
 
 		function base_stats:GetDebuffAmp()
-			return self.total_debuff_amp * 0.01
+			local caster = self:GetCaster()
+			local bonus = 0
+
+			local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
+			for _,modifier in pairs(mods_increase) do
+				bonus = bonus + modifier:GetStackCount()
+			end
+
+			return (self.total_debuff_amp + bonus) * 0.01
 		end
 
 		function base_stats:SetMPRegenState(stack)

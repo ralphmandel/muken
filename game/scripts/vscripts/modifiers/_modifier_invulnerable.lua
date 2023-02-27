@@ -2,19 +2,15 @@ _modifier_invulnerable = class({})
 
 --------------------------------------------------------------------------------
 function _modifier_invulnerable:IsPurgable()
-	return true
+	return false
 end
 
 function _modifier_invulnerable:IsHidden()
-	return true
+	return false
 end
 
 function _modifier_invulnerable:GetTexture()
 	return "_modifier_invulnerable"
-end
-
-function _modifier_invulnerable:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 --------------------------------------------------------------------------------

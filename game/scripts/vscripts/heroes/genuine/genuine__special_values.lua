@@ -122,16 +122,20 @@ function genuine__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("genuine_4__nightfall_rank_11") then
+		if caster:FindAbilityByName("genuine_4__nightfall_rank_21") then
+			if value_name == "res" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_4__nightfall_rank_21") then
+		if caster:FindAbilityByName("genuine_4__nightfall_rank_22") then
+			if value_name == "debuff_power" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_4__nightfall_rank_31") then
+			if value_name == "special_damage" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_4__nightfall_rank_41") then
+			if value_name == "special_night_vision" then return 1 end
 		end
 	end
 
@@ -201,7 +205,7 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "damage" then return 50 end
 		if value_name == "atk_range" then return 300 end
-		if value_name == "special_starfall_combo" then return 4 end
+		if value_name == "special_starfall_combo" then return 5 end
 		if value_name == "special_starfall_tick" then return 5 end
 		if value_name == "special_lifesteal" then return 30 end
 		if value_name == "special_fear_chance" then return 10 end
@@ -236,9 +240,14 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_4__nightfall" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+		if value_name == "res" then return -15 end
+		if value_name == "debuff_power" then return 75 end
+		if value_name == "special_damage" then return 50 end
+		if value_name == "special_night_vision" then return -300 end
 	end
 
 	if ability:GetAbilityName() == "genuine_5__awakening" then

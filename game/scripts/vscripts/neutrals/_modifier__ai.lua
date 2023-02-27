@@ -80,6 +80,8 @@ function _modifier__ai:IdleThink()
         self.state = AI_STATE_AGGRESSIVE
         return
     end
+
+    self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 
 function _modifier__ai:AggressiveThink()
@@ -138,6 +140,8 @@ function _modifier__ai:AggressiveThink()
         end
     end
     --self.unit:MoveToTargetToAttack(self.aggroTarget)
+    
+    self.unit:RemoveModifierByNameAndCaster("_modifier_invulnerable", self.unit)
 end
 
 function _modifier__ai:ReturningThink()
@@ -150,6 +154,7 @@ function _modifier__ai:ReturningThink()
     -- If not at return position yet, try to move there again
     self.unit:Purge(false, true, false, true, false)
     self.unit:MoveToPosition(self.spawnPos)
+    self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 
 -----------------------------------------------------------
