@@ -9,8 +9,6 @@ function genuine_2_modifier_dispel:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	self.parent:Purge(true, false, false, false, false)
 end
 
 function genuine_2_modifier_dispel:OnRefresh( kv )

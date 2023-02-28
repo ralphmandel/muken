@@ -100,4 +100,5 @@ function genuine__precache:Precache(context)
     PrecacheResource("particle", "particles/genuine/shoulder_efx/genuine_back_ambient.vpcf", context)
     PrecacheResource("particle", "particles/genuine/bow_efx/genuine_bow_ambient.vpcf", context)
     PrecacheResource("particle", "particles/genuine/base_attack/genuine_base_attack.vpcf", context)
+    PrecacheResource("particle", "particles/genuine/genuine_zap/genuine_zap_attack_heavy_ti_5.vpcf", context)
 end

@@ -49,20 +49,20 @@
 				"var_type"		"FIELD_FLOAT"
 				"proj_speed"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 			}
+            "10"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_damage"           "1"
+			}
             "11"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_damage"        "1"
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_radius"           "1"
 			}
             "12"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_radius"       "1"
-			}
-            "13"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_delay"        "1"
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_delay"            "1"
 			}
 			"15"
 			{
@@ -212,20 +212,20 @@
 				"var_type"		        "FIELD_FLOAT"
 				"duration"	            "8"
 			}
+            "10"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_damage"           "1"
+			}
             "11"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_damage"        "1"
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_radius"           "1"
 			}
             "12"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_radius"       "1"
-			}
-            "13"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"starfall_delay"        "1"
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_delay"            "1"
 			}
 			"15"
 			{
@@ -308,7 +308,7 @@
 		"ScriptFile"            		"heroes/genuine/genuine_5__awakening"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_awakening"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -370,12 +370,12 @@
             "10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"		        "1 2 3 4 5 6 7 8 9"
+				"damage"		        "1 2 3 4 5 6 7 8"
 			}
 			"15"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9"
+				"rank"			        "1 2 3 4 5 6 7 8"
 			}
             "16"
 			{
@@ -391,25 +391,69 @@
 		"ScriptFile"            		"heroes/genuine/genuine_u__star"
 		"AbilityTextureName"     		"genuine_star"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"target_damage_percent"		"70"
+			}
+            "02"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"interval"          		"3"
+			}
+            "10"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_damage"           "1"
+			}
+            "11"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_radius"           "1"
+			}
+            "12"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"starfall_delay"            "1"
+			}
+            "13"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"duration"		            "1 2 3 4 5 6 7 8 9 10 11"
+			}
+            "14"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"cast_range"		        "1 2 3 4 5 6 7 8 9 10 11"
+			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"var_type"			        "FIELD_FLOAT"
+				"rank"				        "1 2 3 4 5 6 7 8 9 10 11"
+			}
+            "16"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_starfall"          "0"
+			}
+            "17"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_purge"             "0"
 			}
 		}
 	}

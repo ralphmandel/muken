@@ -34,6 +34,9 @@ function bocuse_u_modifier_passive:DeclareFunctions()
 end
 
 function bocuse_u_modifier_passive:OnHeroKilled(keys)
+	if keys.attacker == nil or keys.target == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:IsIllusion() then return end
 	if self.parent:HasModifier("bocuse_u_modifier_mise") == false then return end

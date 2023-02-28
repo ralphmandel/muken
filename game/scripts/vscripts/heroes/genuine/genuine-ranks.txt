@@ -101,11 +101,11 @@
 			"0"
 			{
 				"1"   "genuine_5__awakening_rank_11"
+				"2"   "genuine_5__awakening_rank_12"
 			}
 			"1"
 			{
 				"1"   "genuine_5__awakening_rank_21"
-				"2"   "genuine_5__awakening_rank_22"
 			}
 			"2"
 			{
@@ -120,11 +120,11 @@
 		{
 			"0"
 			{
-				"1"   "genuine_u__star_rank_11"
+				"1"   "empty"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "genuine_u__star_rank_21"
 			}
 			"2"
 			{
