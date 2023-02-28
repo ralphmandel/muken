@@ -130,11 +130,11 @@ function genuine__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "debuff_power" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_4__nightfall_rank_31") then
+		if caster:FindAbilityByName("genuine_4__nightfall_rank_41") then
 			if value_name == "special_damage" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_4__nightfall_rank_41") then
+		if caster:FindAbilityByName("genuine_4__nightfall_rank_42") then
 			if value_name == "special_night_vision" then return 1 end
 		end
 	end
@@ -147,15 +147,20 @@ function genuine__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "damage" then return 1 end
 
 		if caster:FindAbilityByName("genuine_5__awakening_rank_11") then
+			if value_name == "arrow_range" then return 1 end
+			if value_name == "arrow_speed" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_5__awakening_rank_21") then
+			if value_name == "charges" then return 1 end
+		end
+
+		if caster:FindAbilityByName("genuine_5__awakening_rank_22") then
+			if value_name == "channel_time" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_5__awakening_rank_31") then
-		end
-
-		if caster:FindAbilityByName("genuine_5__awakening_rank_41") then
+			if value_name == "special_bash_power" then return 1 end
 		end
 	end
 
@@ -248,7 +253,7 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "res" then return -15 end
 		if value_name == "debuff_power" then return 75 end
-		if value_name == "special_damage" then return 50 end
+		if value_name == "special_damage" then return 70 end
 		if value_name == "special_night_vision" then return -300 end
 	end
 
@@ -257,7 +262,13 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 60 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "damage" then return 300 + (value_level * 5) end
+		if value_name == "damage" then return 300 + (value_level * 7.5) end
+
+		if value_name == "arrow_range" then return 3600 end
+		if value_name == "arrow_speed" then return 3600 end
+		if value_name == "charges" then return 4 end
+		if value_name == "channel_time" then return 3.5 end
+		if value_name == "special_bash_power" then return 750 end
 	end
 
 	if ability:GetAbilityName() == "genuine_u__star" then

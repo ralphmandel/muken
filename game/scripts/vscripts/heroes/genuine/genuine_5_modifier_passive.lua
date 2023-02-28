@@ -39,7 +39,7 @@ function genuine_5_modifier_passive:OnStackCountChanged(old)
 
 	if self:GetStackCount() < charges then
 		self.ability:EndCooldown()
-		self.ability:StartCooldown(0.8)
+		--self.ability:StartCooldown(0.8)
 		self:StartIntervalThink(cd)
 	end
 end

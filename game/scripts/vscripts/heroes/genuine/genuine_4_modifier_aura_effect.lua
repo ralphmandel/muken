@@ -54,6 +54,7 @@ end
 function genuine_4_modifier_aura_effect:OnModifierAdded(keys)
 	if keys.unit ~= self.parent then return end
 	if keys.added_buff:IsDebuff() == false then return end
+	if keys.added_buff == self then return end
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 
 	for _,mod_name in pairs(self.exceptions) do
