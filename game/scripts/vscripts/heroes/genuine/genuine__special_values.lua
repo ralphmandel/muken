@@ -142,7 +142,9 @@ function genuine__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "genuine_5__awakening" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "damage" then return 1 end
 
 		if caster:FindAbilityByName("genuine_5__awakening_rank_11") then
 		end
@@ -252,8 +254,10 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_5__awakening" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityCooldown" then return 60 end
+		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "damage" then return 300 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "genuine_u__star" then

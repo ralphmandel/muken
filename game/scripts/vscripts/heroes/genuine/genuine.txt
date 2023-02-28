@@ -260,6 +260,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -311,21 +312,70 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+        "AbilityCastPoint"				"0.0"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charges"		        "3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_reduction"		"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_width"			"125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_range"			"2400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_speed"			"3000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tree_width"			"75"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_radius"			"400"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"3.34"
+			}
+            "09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_time"		    "5.0"
+			}
+            "10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"		        "1 2 3 4 5 6 7"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"1 2 3 4 5 6 7"
 			}
 		}
 	}
