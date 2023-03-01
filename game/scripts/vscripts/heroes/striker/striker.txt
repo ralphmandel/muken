@@ -26,6 +26,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
@@ -93,6 +94,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"

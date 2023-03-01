@@ -26,6 +26,7 @@
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
 		"AbilitySpecial"
