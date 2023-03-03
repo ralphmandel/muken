@@ -3,11 +3,11 @@
 {
 	"Version"		"1"
 
-  "druid__precache"
+    "druid__precache"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/druid/druid-ranks_lua"
-  	"AbilityTextureName"    		"druid__precache"
+        "AbilityTextureName"    		"druid__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -22,25 +22,61 @@
 		"ScriptFile"            		"heroes/druid/druid_1__root"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_root"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		//"AbilityCastPoint"       		"0.5"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"distance"		"900"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"150"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"speed"		    "450"
+			}
+            "04"
+			{
+				"var_type"          "FIELD_FLOAT"
+				"bramble_duration"  "10"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"root_duration"	    "2"
+			}
+            "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"root_interval"	    "4"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cooldown"		"16"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"120"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17"
 			}
 		}
 	}
@@ -51,25 +87,54 @@
 		"ScriptFile"            		"heroes/druid/druid_2__armor"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_armor"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"				"16"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"9 9.25 9.5 9.75 10 10.25 10.5 10.75 11 11.25 11.5 11.75 12"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal_per_sec"	"15"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"interval"	    "1"
+			}
+            "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"bonus_per_atk"	"0.3"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"1200"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"130"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -80,83 +145,169 @@
 		"ScriptFile"            		"heroes/druid/druid_3__totem"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_totem"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		//"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"				"34"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"360 365 370 375 380 385 390 395 400"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"20"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"regen"		    "25"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"    "600"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"150"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14"
 			}
 		}
 	}
 
-	"druid_4__form"
+	"druid_4__metamorphosis"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_4__form"
+		"ScriptFile"            		"heroes/druid/druid_4__metamorphosis"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_form"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"druid_metamorphosis"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				"240"
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"60"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"con"		    "15"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal_power"    "30"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stats"         "7"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"aura_radius"   "700 750 800 850 900 950 1000"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"200"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
 
-	"druid_5__seed"
+    "druid_5__entangled"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/druid/druid_5__seed"
+		"ScriptFile"            		"heroes/druid/druid_5__entangled"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"druid_seed"
-		"MaxLevel"               		"1"
+		"AbilityTextureName"     		"druid_entangled"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		//"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		//"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"				"70 68 66 64 62 60 58 56 54 52 50 48 46 44 42"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_duration"	"7.5"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max_targets"	"3"
+			}
+            "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"leech_amount"	"30"
+			}
+            "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"interval"	    "0.75"
+			}
+            "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"incoming"      "75"
+			}
+            "12"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"	    "400"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"400"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"220"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
@@ -167,25 +318,45 @@
 		"ScriptFile"            		"heroes/druid/druid_u__conversion"
 		"AbilityTextureName"     		"druid_conversion"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		//"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityCooldown"				"1"
+        "AbilityChannelTime"    		"999"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"interval"		    "0.9"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"chance_lvl"		"3 2.95 2.9 2.85 2.8 2.75 2.7 2.65 2.6 2.55"
+			}
+            "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"radius"		    "240"
+			}
+            "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"		"450"
+			}
+            "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "20"
+			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"				"9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -914,10 +1085,10 @@
         }
 
     //RANKS 4
-        "druid_4__form_rank_11"{
+        "druid_4__metamorphosis_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -944,10 +1115,10 @@
             }
         }
 
-        "druid_4__form_rank_12"{
+        "druid_4__metamorphosis_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -974,10 +1145,10 @@
             }
         }
 
-        "druid_4__form_rank_21"{
+        "druid_4__metamorphosis_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1004,10 +1175,10 @@
             }
         }
 
-        "druid_4__form_rank_22"{
+        "druid_4__metamorphosis_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1034,10 +1205,10 @@
             }
         }
 
-        "druid_4__form_rank_31"{
+        "druid_4__metamorphosis_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1064,10 +1235,10 @@
             }
         }
 
-        "druid_4__form_rank_32"{
+        "druid_4__metamorphosis_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1094,10 +1265,10 @@
             }
         }
 
-        "druid_4__form_rank_41"{
+        "druid_4__metamorphosis_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1124,10 +1295,10 @@
             }
         }
 
-        "druid_4__form_rank_42"{
+        "druid_4__metamorphosis_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_form"
+            "AbilityTextureName"    		"druid_metamorphosis"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1155,10 +1326,10 @@
         }
 
     //RANKS 5
-        "druid_5__seed_rank_11"{
+        "druid_5__entangled_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1185,10 +1356,10 @@
             }
         }
 
-        "druid_5__seed_rank_12"{
+        "druid_5__entangled_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1215,10 +1386,10 @@
             }
         }
 
-        "druid_5__seed_rank_21"{
+        "druid_5__entangled_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1245,10 +1416,10 @@
             }
         }
 
-        "druid_5__seed_rank_22"{
+        "druid_5__entangled_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1275,10 +1446,10 @@
             }
         }
 
-        "druid_5__seed_rank_31"{
+        "druid_5__entangled_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1305,10 +1476,10 @@
             }
         }
 
-        "druid_5__seed_rank_32"{
+        "druid_5__entangled_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1335,10 +1506,10 @@
             }
         }
 
-        "druid_5__seed_rank_41"{
+        "druid_5__entangled_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1365,10 +1536,10 @@
             }
         }
 
-        "druid_5__seed_rank_42"{
+        "druid_5__entangled_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/druid/druid-ranks_lua"
-            "AbilityTextureName"    		"druid_seed"
+            "AbilityTextureName"    		"druid_entangled"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

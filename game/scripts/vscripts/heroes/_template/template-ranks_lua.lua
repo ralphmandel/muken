@@ -56,13 +56,13 @@ template__precache = class ({})
 LinkLuaModifier("template__special_values", "heroes/template/template__special_values", LUA_MODIFIER_MOTION_NONE)
 
 function template__precache:GetIntrinsicModifierName()
-    return "template__special_values"
+  return "template__special_values"
 end
 
 function template__precache:Spawn()
-    if self:IsTrained() == false then self:UpgradeAbility(true) end
+	if self:IsTrained() == false then self:UpgradeAbility(true) end
 end
 
 function template__precache:Precache(context)
-    --PrecacheResource("soundfile", "soundevents/soundevent_template.vsndevts", context)
+  --PrecacheResource("soundfile", "soundevents/soundevent_template.vsndevts", context)
 end

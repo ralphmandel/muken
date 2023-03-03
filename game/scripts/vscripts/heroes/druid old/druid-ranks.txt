@@ -21,11 +21,12 @@
 			}
 			"1"
 			{
-				"1"   "druid_1__root_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{
 				"1"   "druid_1__root_rank_31"
+				"2"   "druid_1__root_rank_32"
 			}
 			"3"
 			{
@@ -41,6 +42,7 @@
 			"1"
 			{
 				"1"   "druid_2__armor_rank_21"
+				"2"   "druid_2__armor_rank_22"
 			}
 			"2"
 			{
@@ -56,6 +58,7 @@
 			"0"
 			{
 				"1"   "druid_3__totem_rank_11"
+				"2"   "druid_3__totem_rank_12"
 			}
 			"1"
 			{
@@ -63,49 +66,52 @@
 			}
 			"2"
 			{
-				"1"   "druid_3__totem_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
 				"1"   "druid_3__totem_rank_41"
 			}
 		}
-		"druid_4__form"
+		"druid_4__metamorphosis"
 		{
 			"0"
 			{
-				"1"   "druid_4__form_rank_11"
+				"1"   "druid_4__metamorphosis_rank_11"
+				"2"   "druid_4__metamorphosis_rank_12"
 			}
 			"1"
 			{
-				"1"   "druid_4__form_rank_21"
+				"1"   "druid_4__metamorphosis_rank_21"
+				"2"   "druid_4__metamorphosis_rank_22"
 			}
 			"2"
 			{
-				"1"   "druid_4__form_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{
-				"1"   "druid_4__form_rank_41"
+				"1"   "empty"
 			}
 		}
-		"druid_5__seed"
+		"druid_5__entangled"
 		{
 			"0"
 			{
-				"1"   "druid_5__seed_rank_11"
+				"1"   "druid_5__entangled_rank_11"
 			}
 			"1"
 			{
-				"1"   "druid_5__seed_rank_21"
+				"1"   "druid_5__entangled_rank_21"
 			}
 			"2"
 			{
-				"1"   "druid_5__seed_rank_31"
+				"1"   "druid_5__entangled_rank_31"
 			}
 			"3"
 			{
-				"1"   "druid_5__seed_rank_41"
+				"1"   "druid_5__entangled_rank_41"
+				"2"   "druid_5__entangled_rank_42"
 			}
 		}
 		"druid_u__conversion"
@@ -121,10 +127,11 @@
 			"2"
 			{
 				"1"   "druid_u__conversion_rank_31"
+				"2"   "druid_u__conversion_rank_32"
 			}
 			"3"
 			{
-				"1"   "druid_u__conversion_rank_41"
+				"1"   "empty"
 			}
 		}
 	}	

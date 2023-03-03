@@ -423,6 +423,31 @@ require("internal/talent_tree")
 				return false
 			end
 
+		-- STRIKER
+			-- Striker 6.11 requires skill 2 learned
+			if talentName == "striker_u__auto_rank_11"
+			and self:GetCaster():FindAbilityByName("striker_2__shield"):IsTrained() == false then
+				return false
+			end
+
+			-- Striker 6.12 requires skill 3 learned
+			if talentName == "striker_u__auto_rank_12"
+			and self:GetCaster():FindAbilityByName("striker_3__portal"):IsTrained() == false then
+				return false
+			end
+
+			-- Striker 6.21 requires skill 4 llearned
+			if talentName == "striker_u__auto_rank_21"
+			and self:GetCaster():FindAbilityByName("striker_4__hammer"):IsTrained() == false then
+				return false
+			end
+
+			-- Striker 6.22 requires skill 5 learned
+			if talentName == "striker_u__auto_rank_22"
+			and self:GetCaster():FindAbilityByName("striker_5__sof"):IsTrained() == false then
+				return false
+			end
+
 		return true
 	end
 

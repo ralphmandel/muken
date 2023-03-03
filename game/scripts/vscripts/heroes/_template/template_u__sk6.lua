@@ -6,8 +6,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-function template_u__sk6:OnSpellStart()
-    local caster = self:GetCaster()
-end
+	function template_u__sk6:OnSpellStart()
+		local caster = self:GetCaster()
+	end
 
 -- EFFECTS

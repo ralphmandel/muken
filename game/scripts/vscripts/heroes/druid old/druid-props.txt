@@ -7,21 +7,21 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"druid_1__root"
-			"Ability2"						"druid_2__armor"
-			"Ability3"						"druid_3__totem"
-			"Ability4"						"druid_4__form"
-			"Ability5"						"druid_5__seed"
-			"Ability6"						"druid_u__conversion"
+			"Ability1"						"slot_1"
+			"Ability2"						"slot_2"
+			"Ability3"						"slot_3"
+			"Ability4"						"slot_4"
+			"Ability5"						"slot_5"
+			"Ability6"						"slot_6"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"_channel"
-			"Ability11"						"_void"
-			"Ability12"						"druid__precache"
-			"Ability13"						"null"
-			"Ability14"						"null"
-			"Ability15"						"null"
+			"Ability10"						"druid_1__root"
+			"Ability11"						"druid_2__armor"
+			"Ability12"						"druid_3__totem"
+			"Ability13"						"druid_4__metamorphosis"
+			"Ability14"						"druid_5__entangled"
+			"Ability15"						"druid_u__conversion"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,10 +36,11 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"null"		
-			"Ability31"						"null"		
-			"Ability32"						"null"
+			"Ability30"						"_channel"
+			"Ability31"						"_void"
+			"Ability32"						"druid__precache"
 
+		//"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK_DIRECTIONAL"
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
 		"AttributeStrengthGain"			"0"            // Strength bonus per level.
@@ -50,7 +51,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "600"     // Range within a target can be attacked.
+		"AttackRange"                   "400"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"

@@ -117,6 +117,11 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"10"
 			}
+            "14"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"autocast_manacost"		"50"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -211,6 +216,11 @@
 				"var_type"		    "FIELD_FLOAT"
 				"tick_decrease"	    "1"
 			}
+            "14"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"autocast_manacost"		"50"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
@@ -254,7 +264,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_IDLE"
+		"AbilityCastAnimation"   		""
         "AbilityCastPoint"       		"2"
 		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
 
@@ -284,6 +294,11 @@
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"level_min"		    "1"
+			}
+            "14"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"autocast_manacost"		"50"
 			}
 			"15"
 			{
@@ -361,6 +376,11 @@
 				"var_type"		    "FIELD_FLOAT"
 				"swap"		        "50"
 			}
+            "14"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"autocast_manacost"		"50"
+			}
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -398,26 +418,6 @@
 
 		"AbilitySpecial"
 		{
-            "01"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"autocast_manacost"		"50"
-			}
-            "02"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"chance_cooldown"		"100"
-			}
-            "03"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"mana_cost"		        "100"
-			}
-            "04"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"mana_regen"		    "0"
-			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"

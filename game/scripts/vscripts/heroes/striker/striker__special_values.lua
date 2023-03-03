@@ -81,6 +81,10 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("striker_2__shield_rank_41") then
 			if value_name == "special_spell_immunity" then return 1 end
 		end
+
+		if caster:FindAbilityByName("striker_u__auto_rank_11") then
+			if value_name == "autocast_manacost" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "striker_3__portal" then
@@ -106,6 +110,10 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "special_debuff" then return 1 end
 			if value_name == "special_movespeed" then return 1 end
 		end
+
+		if caster:FindAbilityByName("striker_u__auto_rank_12") then
+			if value_name == "autocast_manacost" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "striker_4__hammer" then
@@ -128,6 +136,10 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("striker_4__hammer_rank_41") then
 			if value_name == "special_lifesteal" then return 1 end
 			if value_name == "damage" then return 1 end
+		end
+
+		if caster:FindAbilityByName("striker_u__auto_rank_21") then
+			if value_name == "autocast_manacost" then return 1 end
 		end
 	end
 
@@ -153,24 +165,15 @@ function striker__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "special_damage_taken" then return 1 end
 			if value_name == "special_lifesteal" then return 1 end
 		end
+
+		if caster:FindAbilityByName("striker_u__auto_rank_22") then
+			if value_name == "autocast_manacost" then return 1 end
+		end
 	end
 
 	if ability:GetAbilityName() == "striker_u__auto" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
-
-		if caster:FindAbilityByName("striker_u__auto_rank_11") then
-			if value_name == "chance_cooldown" then return 1 end
-		end
-
-		if caster:FindAbilityByName("striker_u__auto_rank_12") then
-			if value_name == "autocast_manacost" then return 1 end
-			if value_name == "mana_cost" then return 1 end
-		end
-
-		if caster:FindAbilityByName("striker_u__auto_rank_22") then
-			if value_name == "mana_regen" then return 1 end
-		end
 	end
 
 	return 0
@@ -183,6 +186,8 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local value_level = keys.ability_special_level
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
+
+	if value_name == "autocast_manacost" then return 25 end
 
 	if ability:GetAbilityName() == "striker_1__blow" then
 		if value_name == "AbilityManaCost" then
@@ -217,7 +222,13 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "striker_2__shield" then
-		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+			if caster:FindAbilityByName("striker_u__auto_rank_11") then
+				return 140 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 100 * (1 + ((ability_level - 1) * 0.05))
+		end
+
 		if value_name == "AbilityCooldown" then return 15 - (value_level * 0.3) end
 
 		if value_name == "duration" then return 15 end
@@ -229,7 +240,13 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "striker_3__portal" then
-		if value_name == "AbilityManaCost" then return 90 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+			if caster:FindAbilityByName("striker_u__auto_rank_12") then
+				return 120 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 80 * (1 + ((ability_level - 1) * 0.05))
+		end
+
 		if value_name == "AbilityCooldown" then return 10 - (value_level * 0.2) end
 		if value_name == "AbilityCastRange" then return 600 end
 
@@ -244,16 +261,16 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "striker_4__hammer" then
 		if value_name == "AbilityManaCost" then
-			if caster:FindAbilityByName("striker_4__hammer_rank_11") then
-				return 150 * (1 + ((ability_level - 1) * 0.1))
+			if caster:FindAbilityByName("striker_u__auto_rank_21") then
+				return 260 * (1 + ((ability_level - 1) * 0.05))
 			end
-			return 150 * (1 + ((ability_level - 1) * 0.05))
+			return 220 * (1 + ((ability_level - 1) * 0.05))
 		end
 
 		if value_name == "AbilityCooldown" then return 30 - (value_level * 0.6) end
 		if value_name == "AbilityCastRange" then return 900 end
 
-		if value_name == "hammer_radius" then return 375 end
+		if value_name == "hammer_radius" then return 350 end
 		if value_name == "stun_duration" then return 1.5 end
 		if value_name == "special_break_duration" then return 4.5 end
 		if value_name == "special_lifesteal" then return 50 end
@@ -261,7 +278,13 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "striker_5__sof" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+			if caster:FindAbilityByName("striker_u__auto_rank_22") then
+				return 240 * (1 + ((ability_level - 1) * 0.05))
+			end
+			return 200 * (1 + ((ability_level - 1) * 0.05))
+		end
+		
 		if value_name == "AbilityCooldown" then return 40 - (value_level * 0.8) end
 
 		if value_name == "damage_impact" then return 200 end
@@ -275,18 +298,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "striker_u__auto" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		
-		if value_name == "AbilityCooldown" then
-			if caster:FindAbilityByName("striker_u__auto_rank_21") then
-				return 10
-			end
-			return 30
-		end
-
-		if value_name == "chance_cooldown" then return 110 end
-		if value_name == "autocast_manacost" then return 40 end
-		if value_name == "mana_cost" then return 125 end
-		if value_name == "mana_regen" then return 10 end
+		if value_name == "AbilityCooldown" then return 0 end
 	end
 
 	return 0
