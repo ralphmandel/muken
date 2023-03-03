@@ -242,3 +242,13 @@ function RemoveBonus(ability, string, target)
       if modifier:GetAbility() == ability then modifier:Destroy() end
   end
 end
+
+function IsMetamorphosis(ability_name, target)
+  local ability = target:FindAbilityByName(ability_name)
+  if ability then
+    if ability:IsTrained() then
+      return ability:GetCurrentAbilityCharges() == 1
+    end
+  end
+  return false
+end

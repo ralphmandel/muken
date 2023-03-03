@@ -6,8 +6,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- SPELL START
 
-function druid_5__seed:OnSpellStart()
+  function druid_5__seed:OnSpellStart()
     local caster = self:GetCaster()
-end
+  end
 
 -- EFFECTS

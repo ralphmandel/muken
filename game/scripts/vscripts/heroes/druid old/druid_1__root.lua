@@ -39,10 +39,10 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
     function druid_1__root:GetRank(upgrade)
         local caster = self:GetCaster()
-		if caster:IsIllusion() then return end
-		if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
+		    if caster:IsIllusion() then return end
+		    if caster:GetUnitName() ~= "npc_dota_hero_furion" then return end
 
-		local base_hero = caster:FindAbilityByName("base_hero")
+		    local base_hero = caster:FindAbilityByName("base_hero")
         if base_hero then return base_hero.ranks[1][upgrade] end
     end
 

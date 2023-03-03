@@ -106,7 +106,7 @@ function striker_3_modifier_portal:FindHeroes()
 		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 1, false
 	)
 
-    for _,hero in pairs(heroes) do
+  for _,hero in pairs(heroes) do
 		local mod_string = "striker_3_modifier_debuff"
 		if hero:GetTeamNumber() == self.caster:GetTeamNumber() then mod_string = "striker_3_modifier_buff" end
 		hero:AddNewModifier(self.caster, self.ability, mod_string, {})
