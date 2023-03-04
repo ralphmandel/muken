@@ -41,6 +41,7 @@
 			"1"
 			{
 				"1"   "druid_2__armor_rank_21"
+				"2"   "druid_2__armor_rank_22"
 			}
 			"2"
 			{
@@ -48,7 +49,7 @@
 			}
 			"3"
 			{
-				"1"   "druid_2__armor_rank_41"
+				"1"   "empty"
 			}
 		}
 		"druid_3__totem"
