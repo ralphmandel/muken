@@ -238,40 +238,41 @@ base_stats_mod = class ({})
     end
 
     function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-        local physical_block_max_percent = self.ability.physical_block_max_percent
-        local physical_block_min_percent = 0
-		local physical_block_max_const = 0
-		local physical_block_min_const = 0
+      if self.parent:IsRangedAttacker() then return 0 end
+      local physical_block_max_percent = self.ability.physical_block_max_percent
+      local physical_block_min_percent = 0
+		  local physical_block_max_const = 0
+		  local physical_block_min_const = 0
 
-        local mods = self.parent:FindAllModifiersByName("base_stats_mod_block_bonus")
-        for _,mod in pairs(mods) do
-            if mod.physical_block_max_percent > physical_block_max_percent then
-                physical_block_max_percent = mod.physical_block_max_percent
-            end
-            if mod.physical_block_min_percent > physical_block_min_percent then
-                physical_block_min_percent = mod.physical_block_min_percent
-            end
-            if mod.physical_block_max_const > physical_block_max_const then
-                physical_block_max_const = mod.physical_block_max_const
-            end
-            if mod.physical_block_min_const > physical_block_min_const then
-                physical_block_min_const = mod.physical_block_min_const
-            end
+      local mods = self.parent:FindAllModifiersByName("base_stats_mod_block_bonus")
+      for _,mod in pairs(mods) do
+        if mod.physical_block_max_percent > physical_block_max_percent then
+          physical_block_max_percent = mod.physical_block_max_percent
         end
-
-        local block_percent = physical_block_max_percent
-        local block_const = physical_block_max_const
-
-        if physical_block_min_percent < physical_block_max_percent then
-            block_percent = RandomInt(physical_block_min_percent, physical_block_max_percent)
+        if mod.physical_block_min_percent > physical_block_min_percent then
+          physical_block_min_percent = mod.physical_block_min_percent
         end
-
-        if physical_block_min_const < physical_block_max_const then
-            block_const = RandomInt(physical_block_min_const, physical_block_max_const)
+        if mod.physical_block_max_const > physical_block_max_const then
+          physical_block_max_const = mod.physical_block_max_const
         end
+        if mod.physical_block_min_const > physical_block_min_const then
+          physical_block_min_const = mod.physical_block_min_const
+        end
+      end
 
-        local calc = math.floor(keys.damage * block_percent * 0.01) + block_const
-        if calc > 0 then return calc end
+      local block_percent = physical_block_max_percent
+      local block_const = physical_block_max_const
+
+      if physical_block_min_percent < physical_block_max_percent then
+        block_percent = RandomInt(physical_block_min_percent, physical_block_max_percent)
+      end
+
+      if physical_block_min_const < physical_block_max_const then
+        block_const = RandomInt(physical_block_min_const, physical_block_max_const)
+      end
+
+      local calc = math.floor(keys.damage * block_percent * 0.01) + block_const
+      return calc
     end
 
     function base_stats_mod:GetModifierMagical_ConstantBlock(keys)

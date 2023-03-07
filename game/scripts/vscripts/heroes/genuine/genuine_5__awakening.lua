@@ -1,5 +1,6 @@
 genuine_5__awakening = class({})
 LinkLuaModifier("genuine_5_modifier_passive", "heroes/genuine/genuine_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_5_modifier_channeling", "heroes/genuine/genuine_5_modifier_channeling", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -20,6 +21,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
 		caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, rate)
 		caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
+    caster:AddNewModifier(caster, self, "genuine_5_modifier_channeling", {})
 
 		self:PlayEfxChannel(self:GetCursorPosition(), time * 100)
 	end
@@ -28,6 +30,8 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 		local caster = self:GetCaster()
 		local point = self:GetCursorPosition()
 		local channel_pct = (GameRules:GetGameTime() - self:GetChannelStartTime()) / self:GetChannelTime()
+    channel_pct = (channel_pct * 0.8) + 0.2
+    caster:RemoveModifierByName("genuine_5_modifier_channeling")
 
 		Timers:CreateTimer((0.1), function()
 			caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
@@ -39,6 +43,9 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 		projectile_direction.z = 0
 		projectile_direction = projectile_direction:Normalized()
 
+    local fDistance = self:GetCastRange(caster:GetAbsOrigin(), nil) * channel_pct
+    if fDistance < 500 then fDistance = 500 end
+
 		local projectile = ProjectileManager:CreateLinearProjectile({
 			Source = caster,
 			Ability = self,
@@ -49,7 +56,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 			iUnitTargetFlags = self:GetAbilityTargetFlags(),
 
 			EffectName = projectile_name,
-			fDistance = self:GetCastRange(caster:GetAbsOrigin(), nil) * channel_pct,
+			fDistance = fDistance,
 			fStartRadius = self:GetSpecialValueFor("arrow_width"),
 			fEndRadius = self:GetSpecialValueFor("arrow_width"),
 			vVelocity = projectile_direction * self:GetSpecialValueFor("arrow_speed"),

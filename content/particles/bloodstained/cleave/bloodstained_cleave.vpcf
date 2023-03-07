@@ -1,0 +1,495 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 300
+	m_flConstantRadius = 64.000000
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 4
+			m_flTextureVWorldSize = 300.000000
+			m_flRadiusScale = 0.600000
+			m_flOverbrightFactor = 25.000000
+			m_flFeatheringMaxDist = 32.000000
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 64.000000
+			}
+			m_flTextureVScrollRate = -500.000000
+			m_flDepthBias = 64.000000
+			m_flAddSelfAmount = 25.000000
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/beam_plasma_05.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		
+		{
+			_class = "C_OP_RenderRopes"
+			m_flTextureVWorldSize = 800.000000
+			m_flTextureVScrollRate = 2000.000000
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flOverbrightFactor = 4.000000
+			m_flFeatheringMaxDist = 32.000000
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 32.000000
+			}
+			m_flRadiusScale = 0.400000
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/beam_jagged_01.vtex"
+				},
+			]
+		},
+		
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMinTesselation = 2
+			m_nMaxTesselation = 2
+			m_flTextureVWorldSize = 500.000000
+			m_flTextureVScrollRate = -1000.000000
+			m_flTextureVOffset = 0.957031
+			m_nScaleCP1 = 0
+			m_nScaleCP2 = 1
+			m_flRadiusScale = 0.500000
+			m_flFeatheringMaxDist = 32.000000
+			m_flOverbrightFactor = 15.000000
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 32.000000
+			}
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/beam_jagged_01.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.000000
+						}
+					}
+				},
+			]
+		},
+		
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMinTesselation = 2
+			m_nMaxTesselation = 2
+			m_flTextureVWorldSize = 1000.000000
+			m_flTextureVScrollRate = -3000.000000
+			m_flTextureVOffset = 0.957031
+			m_nScaleCP1 = 0
+			m_nScaleCP2 = 1
+			m_flRadiusScale = 4.000000
+			m_bDisableZBuffering = true
+			m_flFeatheringMaxDist = 32.000000
+			m_flOverbrightFactor = 7.000000
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 64.000000
+			}
+			m_vecTexturesInput = 
+			[
+				
+				{
+					m_hTexture = resource:"materials/particle/beam_hotwhite.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.000000
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		
+		{
+			_class = "C_OP_Decay"
+		},
+		
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.250000
+		},
+		
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.250000
+		},
+		
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 24.000000
+			m_flMaxTraceLength = 2048.000000
+			m_flTolerance = 0.000000
+			m_flTraceOffset = 512.000000
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+		},
+		
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.500000
+		},
+	]
+	m_Initializers = 
+	[
+		
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.700000
+			}
+			m_nOutputField = 1
+		},
+		
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.000000
+			}
+			m_nOutputField = 7
+		},
+		
+		{
+			_class = "C_INIT_RingWave"
+			m_bEvenDistribution = true
+			m_flParticlesPerOrbit = 200.000000
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.000000
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5000.000000
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5000.000000
+			}
+			m_flYaw = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 315.000000
+			}
+		},
+		
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = 
+			[
+				0.000000,
+				0.000000,
+				32.000000,
+			]
+			m_OffsetMin = 
+			[
+				0.000000,
+				0.000000,
+				32.000000,
+			]
+		},
+		
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 16
+			m_nInputMin = 1
+		},
+		
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 16
+			m_nInputMin = 38
+			m_nInputMax = 47
+			m_flOutputMin = 1.000000
+			m_flOutputMax = 0.000000
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 18
+			m_nInputMax = 12
+		},
+		
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 18
+			m_nInputMax = 12
+			m_flOutputMin = 1.000000
+			m_flOutputMax = 0.000000
+			m_bActiveRange = true
+			m_bInvert = true
+		},
+		
+		{
+			_class = "C_INIT_RemapScalarToVector"
+			m_nFieldInput = 18
+			m_nFieldOutput = 6
+			m_vecOutputMin = 
+			[
+				0.500000,
+				0.410000,
+				0.032000,
+			]
+			m_vecOutputMax = 
+			[
+				0.600000,
+				0.000000,
+				0.000000,
+			]
+			m_bLocalCoords = false
+		},
+	]
+	m_Emitters = 
+	[
+		
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 48.000000
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -150.000000
+			}
+			m_fFalloffPower = -0.100000
+		},
+	]
+	m_ConstantColor = 
+	[
+		25,
+		33,
+		54,
+		255,
+	]
+	m_controlPointConfigurations = 
+	[
+		
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = 
+					[
+						2.000000,
+						17.000000,
+						4.000000,
+					]
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = 
+					[
+						200.000000,
+						0.000000,
+						0.000000,
+					]
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = 
+					[
+						-200.000000,
+						0.000000,
+						0.000000,
+					]
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = 
+					[
+						0.000000,
+						200.000000,
+						0.000000,
+					]
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = 
+					[
+						0.000000,
+						-200.000000,
+						0.000000,
+					]
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 8
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 9
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 13
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 14
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 17
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_impact_ground_cracks.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_impact_d.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_b.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_impact_c.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_impact_b.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit_b.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_impact_c.vpcf"
+			m_flDelay = 0.300000
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_impact_b.vpcf"
+			m_flDelay = 0.300000
+		},
+		
+		{
+			m_ChildRef = resource:"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_impact_ground_cracks_b.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+}

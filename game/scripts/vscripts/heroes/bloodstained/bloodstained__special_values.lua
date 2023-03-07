@@ -41,6 +41,11 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "resistance" then return 1 end
 		end
 
+    if caster:FindAbilityByName("bloodstained_1__rage_rank_22") then
+			if value_name == "str_init" then return 1 end
+			if value_name == "str_gain" then return 1 end
+		end
+
 		if caster:FindAbilityByName("bloodstained_1__rage_rank_31") then
 			if value_name == "special_call_radius" then return 1 end
 			if value_name == "special_call_duration" then return 1 end
@@ -93,13 +98,12 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_32") then
-			if value_name == "special_degen" then return 1 end
+			if value_name == "special_curse_damage" then return 1 end
+			if value_name == "special_curse_interval" then return 1 end
 		end
 		
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_41") then
 			if value_name == "special_curse_purge" then return 1 end
-			if value_name == "special_curse_damage" then return 1 end
-			if value_name == "special_curse_interval" then return 1 end
 		end
 	end
 
@@ -113,10 +117,6 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_21") then
-			if value_name == "duration" then return 1 end
-		end
-
-		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_22") then
 			if value_name == "chance" then return 1 end
 		end
 
@@ -126,6 +126,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_41") then
+      if value_name == "duration" then return 1 end
 			if value_name == "special_immortality" then return 1 end
 		end
 	end
@@ -189,7 +190,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "bloodstained_1__rage" then
-		if value_name == "AbilityManaCost" then return 125 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("bloodstained_1__rage_rank_21") then
@@ -199,8 +200,11 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 12 + (value_level * 0.3) end
+		if value_name == "duration" then return 12 + (value_level * 0.25) end
+
 		if value_name == "resistance" then return 50 end
+    if value_name == "str_init" then return 0 end
+    if value_name == "str_gain" then return 2 end
 		if value_name == "special_call_radius" then return 450 end
 		if value_name == "special_call_duration" then return 5 end
 		if value_name == "special_cleave" then return 70 end
@@ -220,7 +224,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 
 		if value_name == "AbilityCastRange" then
@@ -234,17 +238,16 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "slow" then return 30 end
 		if value_name == "shared_damage" then return 60 end
 		if value_name == "special_reset" then return 1 end
-		if value_name == "special_degen" then return 50 end
+    if value_name == "special_curse_damage" then return 3 end
+		if value_name == "special_curse_interval" then return 2 end
 		if value_name == "special_curse_purge" then return 500 end
-		if value_name == "special_curse_damage" then return 4 end
-		if value_name == "special_curse_interval" then return 2.5 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__frenzy" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
-			if caster:FindAbilityByName("bloodstained_4__frenzy_rank_22") then
+			if caster:FindAbilityByName("bloodstained_4__frenzy_rank_21") then
 				return 0
 			end
 			return 5
@@ -253,15 +256,20 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "ms" then return 75 end
-		if value_name == "duration" then return 4 end
 		if value_name == "chance" then return 10 end
+    if value_name == "duration" then return 4 end
 		if value_name == "special_bleed_chance" then return 5 end
 		if value_name == "special_bleed_duration" then return 10 end
 		if value_name == "special_immortality" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_5__tear" then
-		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+      if ability:GetCurrentAbilityCharges() == 2 then
+        return 0
+      end
+      return 100 * (1 + ((ability_level - 1) * 0.05))
+    end
 
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("bloodstained_5__tear_rank_12") then
@@ -282,11 +290,10 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
 		if value_name == "AbilityManaCost" then
-			local manacost = 250 * (1 + ((ability_level - 1) * 0.05))
 			if caster:FindAbilityByName("bloodstained_u__seal_rank_11") then
-				manacost = manacost - 100
+				return 150 * (1 + ((ability_level - 1) * 0.05))
 			end
-			return manacost
+			return 200 * (1 + ((ability_level - 1) * 0.05))
 		end
 
 		if value_name == "AbilityCooldown" then return 200 end

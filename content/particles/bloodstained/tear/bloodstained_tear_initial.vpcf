@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -681,6 +681,10 @@
 				}
 			}
 			m_flOffset = 1355.0
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
 		},
 	]
 	m_Operators = 
@@ -745,35 +749,27 @@
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_activation_blood_splurt.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_directional_01.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_directional_03.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_directional_04.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_omni_directional.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/bloodstained/tear/bloodstained_tear_stains.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_spray_drips.vpcf"
-			m_flDelay = 0.5
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_activation.vpcf"
-			m_flDelay = 0.5
 		},
 	]
 }

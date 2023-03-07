@@ -10,10 +10,6 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	if self.ability:GetSpecialValueFor("special_immortality") == 1 then
-		self.parent:Purge(false, true, false, false, false)
-	end
-
 	self.parent:SetForceAttackTarget(self.ability.target)
 	
 	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)

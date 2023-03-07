@@ -6,20 +6,23 @@ function bloodstained_1_modifier_rage:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bloodstained_1_modifier_rage:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-	self.str = 0
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
 
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", true) end
+
+  self.str = 0
+  self:CalcGain(self.ability:GetSpecialValueFor("str_init"))
 end
 
 function bloodstained_1_modifier_rage:OnRefresh(kv)
-	self.str = 0
+  self.str = 0
+  self:CalcGain(self.ability:GetSpecialValueFor("str_init"))
 end
 
 function bloodstained_1_modifier_rage:OnRemoved()
@@ -51,34 +54,31 @@ end
 
 function bloodstained_1_modifier_rage:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
-	self:CalcGain(keys.damage)
+	self:CalcGain(keys.damage * self.ability:GetSpecialValueFor("str_gain") * 0.01)
 end
 
 function bloodstained_1_modifier_rage:OnAttackLanded(keys)
-    if keys.attacker ~= self.parent then return end
+  if keys.attacker ~= self.parent then return end
 	if keys.attacker:IsIllusion() then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
 	local cleave = self.ability:GetSpecialValueFor("special_cleave")
-	local string = "particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength_crit.vpcf"
+	local string = "particles/bloodstained/cleave/bloodstained_cleave.vpcf"
 	if cleave > 0 then DoCleaveAttack(self.parent, keys.target, self.ability, keys.damage * 0.75, 100, 400, 500, string) end
 end
 
 function bloodstained_1_modifier_rage:OnStackCountChanged(old)
 	RemoveBonus(self.ability, "_1_STR", self.parent)
-
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)	
-	end
+  AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)	
 end
 
 -- UTILS -----------------------------------------------------------
 
-function bloodstained_1_modifier_rage:CalcGain(damage)
-	local str_gain = self.ability:GetSpecialValueFor("str_gain")
-	self.str = self.str + (damage * str_gain * 0.01)
-
-	if IsServer() then self:SetStackCount(math.floor(self.str)) end
+function bloodstained_1_modifier_rage:CalcGain(gain)
+	if IsServer() then
+    self.str = self.str + gain
+    self:SetStackCount(math.floor(self.str))
+  end
 end
 
 -- EFFECTS -----------------------------------------------------------

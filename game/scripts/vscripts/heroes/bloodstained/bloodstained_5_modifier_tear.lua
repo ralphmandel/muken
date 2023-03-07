@@ -15,7 +15,7 @@ function bloodstained_5_modifier_tear:OnCreated(kv)
 	self.init_loss = self.ability:GetSpecialValueFor("special_init_loss")
 
 	if IsServer() then
-		self:PlayEfxStart(self.ability:GetAOERadius(), init_loss)
+		self:PlayEfxStart(self.ability:GetAOERadius())
 		self:StartIntervalThink(self.tick)
 
 		if self.init_loss > 0 then
@@ -37,7 +37,7 @@ function bloodstained_5_modifier_tear:OnRemoved()
 	self:PullBlood()
 	self:PullCopies()
 
-	if IsServer() then self.parent:StopSound("Hero_Boodseeker.Bloodmist") end
+	if IsServer() then self.parent:StopSound("Bloodstained.Mist.Loop") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -155,7 +155,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:PlayEfxStart(radius, init_loss)
+function bloodstained_5_modifier_tear:PlayEfxStart(radius)
 	if self.init_loss > 0 then
 		local string_1 = "particles/bloodstained/tear/bloodstained_tear_initial.vpcf"
 		self.particle = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -164,13 +164,13 @@ function bloodstained_5_modifier_tear:PlayEfxStart(radius, init_loss)
 		self:AddParticle(self.particle, false, false, -1, false, false)
 	end
 
-	local string_2 = "particles/units/heroes/hero_bloodseeker/bloodseeker_scepter_blood_mist_aoe.vpcf"
+	local string_2 = "particles/bloodstained/mist/blood_mist_aoe.vpcf"
 	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle_2, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(particle_2, 1, Vector(radius, radius, radius))
 	self:AddParticle(particle_2, false, false, -1, false, false)
 
-	if IsServer() then self.parent:EmitSound("Hero_Boodseeker.Bloodmist") end
+  if IsServer() then self.parent:EmitSound("Bloodstained.Mist.Loop") end
 end
 
 function bloodstained_5_modifier_tear:PlayEfxStartBlood(blood_thinker, point, damage)

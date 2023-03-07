@@ -203,9 +203,9 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "genuine_1__shooting" then
 		if value_name == "AbilityManaCost" then
 			if caster:FindAbilityByName("genuine_1__shooting_rank_11") then
-				return 20 * (1 + ((ability_level - 1) * 0.05))
+				return (20 * (1 + ((ability_level - 1) * 0.05))) - 5
 			end
-			return 25 * (1 + ((ability_level - 1) * 0.05))
+			return 20 * (1 + ((ability_level - 1) * 0.05))
 		end
 
 		if value_name == "AbilityCooldown" then return 0 end
@@ -261,15 +261,15 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_5__awakening" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 30 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 60 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "damage" then return 300 + (value_level * 5) end
+		if value_name == "damage" then return 400 + (value_level * 10) end
 
 		if value_name == "arrow_range" then return 3600 end
 		if value_name == "arrow_speed" then return 3600 end
-		if value_name == "channel_time" then return 4 end
+		if value_name == "channel_time" then return 5 end
 		if value_name == "charges" then return 4 end
 		if value_name == "special_bash_power" then return 750 end
 	end

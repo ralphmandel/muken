@@ -22,10 +22,11 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_1__rage"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_rage"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"1783"
 		"AbilityCastPoint"       		"0.35"
@@ -35,22 +36,27 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"str_gain"		"1.75"
+				"str_init"		"10"
 			}
-			"02"
+      "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"resistance"	"30"
+				"str_gain"		"1.5"
 			}
 			"03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"		"1 2 3 4 5 6 7 8 9 10 11"
+				"resistance"	"30"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
 			"16"
 			{
@@ -174,23 +180,18 @@
 			}
 			"17"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"special_degen"	"0"
+				"var_type"								"FIELD_FLOAT"
+				"special_curse_damage"		"0"
 			}
 			"18"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"special_curse_purge"			"0"
+				"special_curse_interval"	"0"
 			}
 			"19"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"special_curse_damage"		"0"
-			}
-			"20"
-			{
-				"var_type"								"FIELD_FLOAT"
-				"special_curse_interval"	"0"
+				"special_curse_purge"			"0"
 			}
 		}
 	}
@@ -201,7 +202,7 @@
 		"ScriptFile"            		"heroes/bloodstained/bloodstained_4__frenzy"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_frenzy"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -232,7 +233,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9 10 11 12 13"
+				"rank"				"1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"16"
 			{
@@ -263,8 +264,9 @@
 		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityCastPoint"       		"0"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.45"
 
 		"AbilitySpecial"
 		{

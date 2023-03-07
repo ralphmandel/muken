@@ -9,7 +9,8 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-	self.curse_purge = 0
+	self.curse_purge_caster = 0
+	self.curse_purge_target = 0
 
 	if self.parent ~= self.caster then
 		self.ability:SetActivated(false)
@@ -58,22 +59,10 @@ end
 
 function bloodstained_3_modifier_curse:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
-end
-
-function bloodstained_3_modifier_curse:GetModifierHealAmplify_PercentageTarget()
-	if self:GetParent() == self:GetCaster() then return 0 end
-	return -self:GetAbility():GetSpecialValueFor("special_degen")
-end
-
-function bloodstained_3_modifier_curse:GetModifierHPRegenAmplify_Percentage()
-	if self:GetParent() == self:GetCaster() then return 0 end
-	return -self:GetAbility():GetSpecialValueFor("special_degen")
 end
 
 function bloodstained_3_modifier_curse:OnTakeDamage(keys)
@@ -90,9 +79,11 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 	target:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
 
 	if target == self.caster then
-		self:ApplyPurge(total_damage, curse_purge)
+		self:ApplyPurge(total_damage, curse_purge, self.parent)
+		self:ApplyPurge(keys.damage, curse_purge, self.caster)
 	else
-		self:ApplyPurge(keys.damage, curse_purge)
+		self:ApplyPurge(keys.damage, curse_purge, self.parent)
+    self:ApplyPurge(total_damage, curse_purge, self.caster)
 	end
 
 	if target == self.caster then
@@ -116,14 +107,21 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function bloodstained_3_modifier_curse:ApplyPurge(damage, curse_purge)
+function bloodstained_3_modifier_curse:ApplyPurge(damage, curse_purge, target)
 	if curse_purge == 0 then return end
-	self.curse_purge = self.curse_purge + damage
-
-	if self.curse_purge >= curse_purge then
-		self.parent:Purge(true, false, false, false, false)
-		self.curse_purge = 0
-	end
+  if target:GetTeamNumber() == self.caster:GetTeamNumber() then
+    self.curse_purge_caster = self.curse_purge_caster + damage
+    if self.curse_purge_caster >= curse_purge then
+      target:Purge(false, true, false, true, false)
+      self.curse_purge_caster = 0
+    end
+  else
+    self.curse_purge_target = self.curse_purge_target + damage
+    if self.curse_purge_target >= curse_purge then
+      target:Purge(true, false, false, false, false)
+      self.curse_purge_target = 0
+    end
+  end
 end
 
 -- EFFECTS -----------------------------------------------------------

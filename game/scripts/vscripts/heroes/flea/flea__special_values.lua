@@ -185,11 +185,10 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "flea_1__precision" then
 		if value_name == "AbilityManaCost" then
-			local mp_reduction = 0
 			if caster:FindAbilityByName("flea_1__precision_rank_12") then
-				mp_reduction = 20
+        return (80 * (1 + ((ability_level - 1) * 0.05)))
 			end
-			return (100 * (1 + ((ability_level - 1) * 0.05))) - mp_reduction
+			return (100 * (1 + ((ability_level - 1) * 0.05)))
 		end
 
 		if value_name == "duration" then
@@ -244,7 +243,7 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "flea_4__smoke" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 145 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 
 		if value_name == "AbilityCastRange" then

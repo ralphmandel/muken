@@ -21,19 +21,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bloodstained_3_modifier_damage:OnIntervalThink()
-	local curse_damage = self.ability:GetSpecialValueFor("special_curse_damage")
-	local curse_interval = self.ability:GetSpecialValueFor("special_curse_interval")
-	
+function bloodstained_3_modifier_damage:OnIntervalThink()	
 	ApplyDamage({
-		victim = self.parent,
-		attacker = self.caster,
-		damage = self.parent:GetMaxHealth() * curse_damage * 0.01,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability
+		victim = self.parent, attacker = self.caster,
+		damage = self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("special_curse_damage") * 0.01,
+		damage_type = DAMAGE_TYPE_MAGICAL, ability = self.ability
 	})
 
-	if IsServer() then self:StartIntervalThink(curse_interval) end
+	if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("special_curse_interval")) end
 end
 
 -- UTILS -----------------------------------------------------------

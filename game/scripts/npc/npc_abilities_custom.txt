@@ -37,12 +37,12 @@
 				"04"
 				{
 					"var_type"						"FIELD_FLOAT"
-					"physical_block_max_percent"	"15"
+					"physical_block_max_percent"	"20"
 				}
 				"05"
 				{
 					"var_type"						"FIELD_FLOAT"
-					"magical_block_max_percent"		"15"
+					"magical_block_max_percent"		"20"
 				}
 			
 			// AGI

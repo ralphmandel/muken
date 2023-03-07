@@ -24,9 +24,7 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bocuse_5_modifier_root:CheckState()
-	local state = {
-		[MODIFIER_STATE_DISARMED] = true
-	}
+	local state = {}
 
 	if self:GetAbility():GetSpecialValueFor("special_mobility") < 0 then
 		table.insert(state, MODIFIER_STATE_EVADE_DISABLED, true)

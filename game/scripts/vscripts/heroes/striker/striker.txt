@@ -318,7 +318,7 @@
 		}
 	}
 
-    "striker_5__sof"
+  "striker_5__sof"
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/striker/striker_5__sof"
@@ -384,7 +384,7 @@
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"rank"			    "6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
             "16"
 			{
@@ -421,7 +421,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15"
+				"rank"				  "1 2 3 4 5 6 7"
 			}
 		}
 	}
