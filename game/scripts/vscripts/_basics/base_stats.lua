@@ -215,12 +215,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
 
-				-- INIT
-				self.total_critical_damage = self.base_critical_damage + (self.critical_damage * (self.stat_init["STR"]))
-				self.total_movespeed = self.base_movespeed + (self.movespeed * (self.stat_init["AGI"]))
-				self.total_debuff_amp = self.debuff_amp * (self.stat_init["INT"])
-				self.total_status_resist = self.status_resist * (self.stat_init["CON"])
-
 				-- CRITICAL
 				self.critical_chance = self:GetSpecialValueFor("critical_chance")
 				self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
@@ -465,7 +459,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:CalcCritDamage(damage_type, bSpellCrit)
 			if IsServer() then
 				local caster = self:GetCaster()
-				local total_crit_dmg = self.total_critical_damage
+				local total_crit_dmg = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
 
 				if caster:HasModifier("ancient_1_modifier_passive")
 				and bSpellCrit ~= true and damage_type == DAMAGE_TYPE_PHYSICAL then
@@ -518,14 +512,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:GetDebuffAmp()
 			local caster = self:GetCaster()
-			local bonus = 0
+			local bonus = self.debuff_amp * (self.stat_base["INT"])
 
 			local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
 			for _,modifier in pairs(mods_increase) do
 				bonus = bonus + modifier:GetStackCount()
 			end
 
-			return (self.total_debuff_amp + bonus) * 0.01
+			return bonus * 0.01
 		end
 
 		function base_stats:SetMPRegenState(stack)

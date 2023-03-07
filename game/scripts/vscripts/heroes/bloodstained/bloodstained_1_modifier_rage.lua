@@ -54,7 +54,7 @@ end
 
 function bloodstained_1_modifier_rage:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
-	self:CalcGain(keys.damage * self.ability:GetSpecialValueFor("str_gain") * 0.01)
+  self:FilterDamage(keys.damage)
 end
 
 function bloodstained_1_modifier_rage:OnAttackLanded(keys)
@@ -73,6 +73,10 @@ function bloodstained_1_modifier_rage:OnStackCountChanged(old)
 end
 
 -- UTILS -----------------------------------------------------------
+
+function bloodstained_1_modifier_rage:FilterDamage(amount)
+  self:CalcGain(amount * self.ability:GetSpecialValueFor("str_gain") * 0.01)
+end
 
 function bloodstained_1_modifier_rage:CalcGain(gain)
 	if IsServer() then

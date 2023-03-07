@@ -88,7 +88,7 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 
 	if target == self.caster then
 		local mod = self.caster:FindModifierByNameAndCaster("bloodstained_1_modifier_rage", self.caster)
-		if mod then mod:CalcGain(total_damage) end
+		if mod then mod:FilterDamage(total_damage) end
 	end
 end
 

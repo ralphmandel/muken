@@ -36,7 +36,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"str_init"		"10"
+				"str_init"		"15"
 			}
       "02"
 			{
