@@ -197,8 +197,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				-- INT
 				self.mana = self:GetSpecialValueFor("mana")
-				self.spell_amp = self:GetSpecialValueFor("spell_amp")
 				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
+        self.spell_amp = self:GetSpecialValueFor("spell_amp")
+				self.mana_regen = self:GetSpecialValueFor("mana_regen")
 				self:SetMPRegenState(0)
 
 				-- CON

@@ -1,34 +1,29 @@
 base_hero_mod = class ({})
 
 function base_hero_mod:IsHidden()
-    return true
+  return true
 end
 
 function base_hero_mod:IsPurgable()
-    return false
+  return false
 end
 
 -----------------------------------------------------------
 
 function base_hero_mod:OnCreated(kv)
 	self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	self.ability:LoadHeroNames()
 	self:LoadActivity()
 	self:LoadModel()
 	self:LoadSounds()
 
-	--if IsServer() then self:StartIntervalThink(1) end -- Loc finder
+	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
 
 function base_hero_mod:OnRefresh(kv)
-end
-
-function base_hero_mod:OnIntervalThink()
-	local message = "x:" .. self.parent:GetOrigin().x .. "; y:" .. self.parent:GetOrigin().y .. "; loc"
-	print(message)
 end
 
 ------------------------------------------------------------
@@ -69,15 +64,15 @@ function base_hero_mod:OnAttackLanded(keys)
 end
 
 function base_hero_mod:GetAttackSound(keys)
-    return ""
+  return ""
 end
 
 function base_hero_mod:GetActivityTranslationModifiers()
-    return self.activity
+  return self.activity
 end
 
 function base_hero_mod:ChangeActivity(string)
-    self.activity = string
+  self.activity = string
 end
 
 function base_hero_mod:ChangeSounds(pre_attack, attack, attack_landed)
@@ -176,6 +171,23 @@ function base_hero_mod:PlayEfxAmbient(ambient, attach)
 	self:AddParticle(effect_cast, false, false, -1, false, false)
 end
 
+function base_hero_mod:OnIntervalThink()
+  local player = self:GetCaster():GetPlayerOwner()
+  local info = {
+    physical_damage = 100 + (self.parent:FindAbilityByName("base_stats").stat_total["STR"] * 5),
+    crit_damage = self.parent:FindAbilityByName("base_stats").total_crit_damage,
+    crit_chance = self.parent:FindAbilityByName("base_stats"):GetCriticalChance(),
+    attack_speed = self.parent:GetAttackSpeed()
+  }
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "info_state_from_server", info)
+end
+
 -- function base_hero_mod:OnIntervalThink()
 --     print("x", self.parent:GetAbsOrigin().x, "| y", self.parent:GetAbsOrigin().y, "| z", self.parent:GetAbsOrigin().z)
+-- end
+
+-- function base_hero_mod:OnIntervalThink()
+-- 	local message = "x:" .. self.parent:GetOrigin().x .. "; y:" .. self.parent:GetOrigin().y .. "; loc"
+-- 	print(message)
 -- end

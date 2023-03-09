@@ -344,12 +344,12 @@ base_stats_mod = class ({})
 -- INT
 
   function base_stats_mod:GetModifierManaBonus()
-    return self.ability.stat_total["INT"] * self.ability.mana
+    return self.ability.mana * (self.ability.stat_base["INT"])
   end
 
   function base_stats_mod:GetModifierConstantManaRegen()
     if IsServer() then
-      return self.ability.stat_total["INT"] * 0.1 * self.ability.mp_regen_state
+      return self.ability.stat_total["INT"] * self.ability.mana_regen * self.ability.mp_regen_state
     end
   end
 

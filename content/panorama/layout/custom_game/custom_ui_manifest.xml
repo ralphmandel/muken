@@ -62,6 +62,7 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/window.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/next_up.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_stats.xml"/>
+    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_info.xml"/>
     
     <!-- From Overthrow.
 
