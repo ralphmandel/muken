@@ -26,6 +26,11 @@ end
 function base_hero_mod:OnRefresh(kv)
 end
 
+function base_hero_mod:OnIntervalThink()
+  local player = self.parent:GetPlayerOwner()
+  CustomGameEventManager:Send_ServerToPlayer(player, "portrait_request_from_server", {})
+end
+
 ------------------------------------------------------------
 
 function base_hero_mod:DeclareFunctions()
@@ -169,13 +174,6 @@ function base_hero_mod:PlayEfxAmbient(ambient, attach)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, attach, Vector(0,0,0), true)
 	self:AddParticle(effect_cast, false, false, -1, false, false)
-end
-
-function base_hero_mod:OnIntervalThink()
-  local info = {}
-  local player = self.parent:GetPlayerOwner()
-  print("kubo 0")
-  CustomGameEventManager:Send_ServerToPlayer(player, "portrait_request_from_server", {})
 end
 
 -- function base_hero_mod:OnIntervalThink()

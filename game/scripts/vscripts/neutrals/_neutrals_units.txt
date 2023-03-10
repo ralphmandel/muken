@@ -49,26 +49,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"4"
-				}
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "4"
 			}
 
 			"Creature"
@@ -128,26 +112,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "0"
 			}
 
 			"Creature"
@@ -208,26 +176,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"2"
-					"bonus_level"	"2"
-				}
-				"AGI"
-				{
-					"initial"	"2"
-					"bonus_level"	"2"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"4"
-				}
+				"STR" "4"
+				"AGI" "4"
+				"INT" "0"
+				"CON" "4"
 			}
 			
 			"Creature"
@@ -288,26 +240,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"AGI"
-				{
-					"initial"	"12"
-					"bonus_level"	"4"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"8"
-				}
+				"STR" "0"
+				"AGI" "16"
+				"INT" "0"
+				"CON" "8"
 			}
 			
 			"Creature"
@@ -368,26 +304,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"12"
-					"bonus_level"	"6"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"6"
-					"bonus_level"	"12"
-				}
+				"STR" "18"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "18"
 			}
 			
 			"Creature"
@@ -452,26 +372,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"20"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"20"
-				}
-				"INT"
-				{
-					"initial"	"5"
-					"bonus_level"	"35"
-				}
-				"CON"
-				{
-					"initial"	"10"
-					"bonus_level"	"30"
-				}
+				"STR" "25"
+				"AGI" "10"
+				"INT" "45"
+				"CON" "40"
 			}
 
 			"Creature"
@@ -532,26 +436,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"15"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"15"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"3"
-				}
+				"STR" "15"
+				"AGI" "15"
+				"INT" "0"
+				"CON" "3"
 			}
 
 			"Creature"
@@ -617,26 +505,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"25"
-					"bonus_level"	"15"
-				}
-				"AGI"
-				{
-					"initial"	"10"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"15"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"25"
-				}
+				"STR" "40"
+				"AGI" "10"
+				"INT" "15"
+				"CON" "25"
 			}
 
 			"Creature"
@@ -701,26 +573,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"4"
-					"bonus_level"	"0"
-				}
-				"AGI"
-				{
-					"initial"	"4"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"10"
-					"bonus_level"	"30"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"20"
-				}
+				"STR" "5"
+				"AGI" "5"
+				"INT" "35"
+				"CON" "20"
 			}
 
 			"Creature"
@@ -784,26 +640,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"5"
-					"bonus_level"	"20"
-				}
-				"AGI"
-				{
-					"initial"	"7"
-					"bonus_level"	"5"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"12"
-				}
-				"CON"
-				{
-					"initial"	"10"
-					"bonus_level"	"12"
-				}
+				"STR" "25"
+				"AGI" "12"
+				"INT" "10"
+				"CON" "22"
 			}
 
 			"Creature"
@@ -866,26 +706,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"5"
-				}
-				"AGI"
-				{
-					"initial"	"4"
-					"bonus_level"	"12"
-				}
-				"INT"
-				{
-					"initial"	"5"
-					"bonus_level"	"25"
-				}
-				"CON"
-				{
-					"initial"	"5"
-					"bonus_level"	"12"
-				}
+				"STR" "5"
+				"AGI" "15"
+				"INT" "30"
+				"CON" "15"
 			}
 
 			"Creature"
@@ -949,26 +773,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"5"
-				}
-				"AGI"
-				{
-					"initial"	"10"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"14"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"16"
-					"bonus_level"	"0"
-				}
+				"STR" "5"
+				"AGI" "10"
+				"INT" "16"
+				"CON" "16"
 			}
 
 			"Creature"
@@ -1031,26 +839,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"20"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"4"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"14"
-				}
+				"STR" "24"
+				"AGI" "4"
+				"INT" "0"
+				"CON" "12"
 			}
 
 			"Creature"
@@ -1112,26 +904,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"9"
-					"bonus_level"	"5"
-				}
-				"AGI"
-				{
-					"initial"	"0"
-					"bonus_level"	"3"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"19"
-				}
+				"STR" "15"
+				"AGI" "3"
+				"INT" "0"
+				"CON" "19"
 			}
 
 			"Creature"
@@ -1193,26 +969,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"5"
-					"bonus_level"	"7"
-				}
-				"AGI"
-				{
-					"initial"	"2"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"10"
-				}
+				"STR" "12"
+				"AGI" "2"
+				"INT" "0"
+				"CON" "10"
 			}
 
 			"Creature"
@@ -1273,26 +1033,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"5"
-					"bonus_level"	"7"
-				}
-				"AGI"
-				{
-					"initial"	"2"
-					"bonus_level"	"0"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"10"
-				}
+				"STR" "12"
+				"AGI" "2"
+				"INT" "0"
+				"CON" "10"
 			}
 
 			"Creature"
@@ -1353,26 +1097,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"10"
-				}
-				"AGI"
-				{
-					"initial"	"5"
-					"bonus_level"	"5"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"2"
-					"bonus_level"	"3"
-				}
+				"STR" "10"
+				"AGI" "10"
+				"INT" "0"
+				"CON" "6"
 			}
 
 			"Creature"
@@ -1434,26 +1162,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"3"
-				}
-				"AGI"
-				{
-					"initial"	"3"
-					"bonus_level"	"2"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"1"
-				}
+				"STR" "3"
+				"AGI" "5"
+				"INT" "0"
+				"CON" "2"
 			}
 
 			"Creature"
@@ -1514,26 +1226,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"4"
-				}
-				"AGI"
-				{
-					"initial"	"2"
-					"bonus_level"	"3"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"2"
-				}
+				"STR" "4"
+				"AGI" "5"
+				"INT" "0"
+				"CON" "2"
 			}
 			
 			"Creature"
@@ -1594,26 +1290,10 @@
 
 			"Stats"
 			{
-				"STR"
-				{
-					"initial"	"0"
-					"bonus_level"	"2"
-				}
-				"AGI"
-				{
-					"initial"	"2"
-					"bonus_level"	"4"
-				}
-				"INT"
-				{
-					"initial"	"0"
-					"bonus_level"	"0"
-				}
-				"CON"
-				{
-					"initial"	"0"
-					"bonus_level"	"1"
-				}
+				"STR" "2"
+				"AGI" "6"
+				"INT" "0"
+				"CON" "1"
 			}
 
 			"Creature"

@@ -39,9 +39,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
-				self:IncrementSpenderPoints(1, 1.5)
+				self:IncrementSpenderPoints()
 				for _, stat in pairs(self.stats_primary) do
-					self:IncrementSubLevel(stat, self.bonus_level[stat])
+					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
 			end
 		end
@@ -52,19 +52,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
 			if IsServer() then
-				self.primary_points = 0
-				self.secondary_points = 0
+				self.total_points = 0
 
-				self.stat_init = {}
 				self.stat_base = {}
 				self.stat_bonus = {}
 				self.stat_total = {}
 				self.stat_percent = {}
 				self.stat_sub_level = {}
-				self.stat_fraction = {}
-				self.stat_levelup = {} -- LEVEL UP COUNT
 				self.bonus_level = {} -- CONST SPECIAL VALUE
-				
+        self.stat_fraction = {["level_up"] = {}, ["plus_up"] = {}}
+
 				self.stats_primary = {
 					"STR", "AGI", "INT", "CON"
 				}
@@ -74,37 +71,38 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				}
 
 				for _, stat in pairs(self.stats_primary) do
-					self.stat_init[stat] = 0
 					self.stat_base[stat] = 0
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = 0
 					self.stat_percent[stat] = 0
 					self.stat_sub_level[stat] = 0
-					self.stat_fraction[stat] = {}
-					self.stat_levelup[stat] = 0
+					self.stat_fraction["level_up"][stat] = {}
+					self.stat_fraction["plus_up"][stat] = {}
 				end
 
 				for _, stat in pairs(self.stats_secondary) do
-					self.stat_init[stat] = 0
 					self.stat_base[stat] = 0
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = 0
 					self.stat_percent[stat] = 0
 					self.stat_sub_level[stat] = 0
-					self.stat_fraction[stat] = {}
-					self.stat_levelup[stat] = 0
+					self.stat_fraction["level_up"][stat] = {}
+					self.stat_fraction["plus_up"][stat] = {}
 				end
 
-				self.stat_fraction["STR"] = {["value"] = 0, "DEF", "RES", "LCK"}
-				self.stat_fraction["AGI"] = {["value"] = 0, "DEX", "REC", "LCK"}
-				self.stat_fraction["INT"] = {["value"] = 0, "MND", "REC", "RES"}
-				self.stat_fraction["CON"] = {["value"] = 0, "DEF", "DEX", "MND"}
-				self.stat_fraction["DEX"] = {["value"] = 0, "AGI", "CON"}
-				self.stat_fraction["DEF"] = {["value"] = 0, "CON", "STR"}
-				self.stat_fraction["RES"] = {["value"] = 0, "INT", "STR"}
-				self.stat_fraction["REC"] = {["value"] = 0, "AGI", "INT"}
-				self.stat_fraction["LCK"] = {["value"] = 0, "AGI", "STR"}
-				self.stat_fraction["MND"] = {["value"] = 0, "INT", "CON"}
+
+        for type, table in pairs(self.stat_fraction) do
+          self.stat_fraction[type]["STR"] = {["value"] = 0, "DEF", "RES", "LCK"}
+          self.stat_fraction[type]["AGI"] = {["value"] = 0, "DEX", "REC", "LCK"}
+          self.stat_fraction[type]["INT"] = {["value"] = 0, "MND", "REC", "RES"}
+          self.stat_fraction[type]["CON"] = {["value"] = 0, "DEF", "DEX", "MND"}
+          self.stat_fraction[type]["DEX"] = {["value"] = 0, "AGI", "CON"}
+          self.stat_fraction[type]["DEF"] = {["value"] = 0, "CON", "STR"}
+          self.stat_fraction[type]["RES"] = {["value"] = 0, "INT", "STR"}
+          self.stat_fraction[type]["REC"] = {["value"] = 0, "AGI", "INT"}
+          self.stat_fraction[type]["LCK"] = {["value"] = 0, "AGI", "STR"}
+          self.stat_fraction[type]["MND"] = {["value"] = 0, "INT", "CON"}          
+        end
 			end
 		end
 
@@ -157,22 +155,25 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 				self:ResetAllStats()
 
-				for stat, stats_type in pairs(unit_stats) do
-					for stat_type, value in pairs(stats_type) do
-						if stat_type == "initial" then
-							self.stat_init[stat] = value
-							self.stat_base[stat] = self.stat_base[stat] + value
-							self:CalculateStats(0, 0, stat)
-							self:IncrementFraction(stat, value * 3)
-						elseif stat_type == "bonus_level" then
-							if caster:IsHero() then
-								self.bonus_level[stat] = value * 0.05
-							else
-								self:IncrementSubLevel(stat, value)
-							end
-						end
-					end
-				end
+        if caster:IsHero() then
+          for stat, stats_type in pairs(unit_stats) do
+            for stat_type, value in pairs(stats_type) do
+              if stat_type == "initial" then
+                self.stat_base[stat] = self.stat_base[stat] + value
+                self:CalculateStats(0, 0, stat)
+                self:IncrementFraction("level_up", stat, value * 3)
+              elseif stat_type == "bonus_level" then
+                self.bonus_level[stat] = value
+              end
+            end
+          end
+        else
+          for stat, value in pairs(unit_stats) do
+            self.stat_base[stat] = self.stat_base[stat] + value
+            self:CalculateStats(0, 0, stat)
+            self:IncrementFraction("level_up", stat, value * 3)
+          end
+        end
 			end
 		end
 
@@ -234,7 +235,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if hero then hero_stats = hero:FindAbilityByName("base_stats") end
 				if hero_stats == nil then return end
 
-				self.stat_init = {}
 				self.stat_base = {}
 				self.stat_bonus = {}
 				self.stat_total = {}
@@ -243,7 +243,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stats_secondary = {"DEX", "DEF", "RES", "REC", "LCK", "MND"}
 
 				for _, stat in pairs(self.stats_primary) do
-					self.stat_init[stat] = hero_stats:GetStatInit(stat)
 					self.stat_base[stat] = hero_stats:GetStatBase(stat)
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
@@ -252,7 +251,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				end
 
 				for _, stat in pairs(self.stats_secondary) do
-					self.stat_init[stat] = hero_stats:GetStatInit(stat)
 					self.stat_base[stat] = hero_stats:GetStatBase(stat)
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = hero_stats:GetStatTotal(stat)
@@ -298,11 +296,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 	-- GET STATS
-		function base_stats:GetStatInit(stat)
-			local value = self.stat_init[stat]
-			return value
-		end
-
 		function base_stats:GetStatBase(stat)
 			local value = self.stat_base[stat]
 			return value
@@ -325,10 +318,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 ---- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
-		function base_stats:IncrementSpenderPoints(primary, secondary)
+		function base_stats:IncrementSpenderPoints()
 			if IsServer() then
-				self.primary_points = self.primary_points + primary
-				self.secondary_points = self.secondary_points + secondary
+				self.total_points = self.total_points + 5
 				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints() end
 			end
 		end
@@ -353,9 +345,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if (not player) then return end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
-					primary = self.primary_points,
-					secondary = self.secondary_points,
-					stats_level = self.stat_levelup,
+					total_points = self.total_points,
+					stat_base = self.stat_base,
 					hero_level = self:GetCaster():GetLevel()
 				})
 			end
@@ -411,31 +402,33 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 	-- PASSIVE LEVELUP PTS AND FRACTION CALC
-		function base_stats:IncrementSubLevel(stat, value)
+		function base_stats:ApplyBonusLevel(stat, value)
 			if IsServer() then
 				self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
-				if self.stat_sub_level[stat] >= 1 then
-					self.stat_sub_level[stat] = self.stat_sub_level[stat] - 1
+        if stat == "INT" then print("INT", self.stat_sub_level[stat]) end
+				if self.stat_sub_level[stat] >= 20 then
+					self.stat_sub_level[stat] = self.stat_sub_level[stat] - 20
 					self.stat_base[stat] = self.stat_base[stat] + 1
-					self:IncrementFraction(stat, 3)
+					self:IncrementFraction("level_up", stat, 3)
 					self:CalculateStats(0, 0, stat)
-					self:IncrementSubLevel(stat, 0)
+					self:ApplyBonusLevel(stat, 0)
 				end
 			end
 		end
 
-		function base_stats:IncrementFraction(stat, value)
+		function base_stats:IncrementFraction(type, stat, value)
 			if IsServer() then
-				for index, stat_fraction in pairs(self.stat_fraction[stat]) do
+				for index, stat_fraction in pairs(self.stat_fraction[type][stat]) do
 					if index ~= "value" then
-						self.stat_fraction[stat_fraction]["value"] = self.stat_fraction[stat_fraction]["value"] + value
+						self.stat_fraction[type][stat_fraction]["value"] = self.stat_fraction[type][stat_fraction]["value"] + value
 						local levelup = 0
-						while self.stat_fraction[stat_fraction]["value"] >= 6 do
-							self.stat_fraction[stat_fraction]["value"] = self.stat_fraction[stat_fraction]["value"] - 6
+						while self.stat_fraction[type][stat_fraction]["value"] >= 6 do
+							self.stat_fraction[type][stat_fraction]["value"] = self.stat_fraction[type][stat_fraction]["value"] - 6
 							levelup = levelup + 1
 						end
 
 						if levelup > 0 then
+              if type == "plus_up" then self.total_points = self.total_points - levelup end
 							self.stat_base[stat_fraction] = self.stat_base[stat_fraction] + levelup
 							self:CalculateStats(0, 0, stat_fraction)
 						end
@@ -521,7 +514,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     end
 
     function base_stats:GetTotalDebuffAmpPercent()
-      return 100 + (self.stat_base["INT"] * self.debuff_amp)
+      local caster = self:GetCaster()
+      local percent = 100 + (self.stat_base["INT"] * self.debuff_amp)
+      local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
+			for _,modifier in pairs(mods_increase) do
+				percent = percent + modifier:GetStackCount()
+			end
+
+      return percent
     end
 
 		function base_stats:GetDebuffAmp()
@@ -550,6 +550,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 	-- UTIL CON
+
+    function base_stats:GetStatusResistPercent()
+      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
+      return self.status_resist * (self.stat_base["CON"])
+    end
 
 		function base_stats:SetHPRegenState(bool)
 			if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end

@@ -78,7 +78,7 @@ var isWindowOpened = false;
       for (let tab = 1; tab <= 4; tab++) {
         for (const [layout_name, layout_value] of Object.entries(INFO_LAYOUT[tab]["INFO_VALUE"])) {
           if (name == layout_name) {
-            var text = Number((value).toFixed(1)) + INFO_LAYOUT[tab]["INFO_VALUE"][name]["string"];
+            var text = Number((value).toFixed(2)) + INFO_LAYOUT[tab]["INFO_VALUE"][name]["string"];
             INFO_LAYOUT[tab]["INFO_VALUE"][name]["label"].text =  text;            
           }
         }
@@ -88,7 +88,6 @@ var isWindowOpened = false;
 
   function OnPortraitRequest() {
     var nEntityIndex = Players.GetLocalPlayerPortraitUnit()
-    $.Msg("kubo 00 ");
     GameEvents.SendCustomGameEventToServer("portrait_unit_update", {entity: nEntityIndex})
   }
 

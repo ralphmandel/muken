@@ -224,7 +224,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
-		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 135 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 
 		if value_name == "AbilityCastRange" then
@@ -291,9 +291,9 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
 		if value_name == "AbilityManaCost" then
 			if caster:FindAbilityByName("bloodstained_u__seal_rank_11") then
-				return 150 * (1 + ((ability_level - 1) * 0.05))
+				return 175 * (1 + ((ability_level - 1) * 0.05))
 			end
-			return 200 * (1 + ((ability_level - 1) * 0.05))
+			return 225 * (1 + ((ability_level - 1) * 0.05))
 		end
 
 		if value_name == "AbilityCooldown" then return 200 end

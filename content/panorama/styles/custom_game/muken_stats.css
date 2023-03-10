@@ -18,6 +18,20 @@
     transition-duration: 0.2s;
 }
 
+.PtsOut
+{
+    transform: translatex( -110px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
+.PtsIn
+{
+    transform: translatex( 0px );
+    transition-property: transform;
+    transition-duration: 0.2s;
+}
+
 .NoPoints {
     border: 0px solid white;
     width: 1px;
@@ -145,6 +159,33 @@
     background-color: #1922292c;
     /* background-color: gradient( linear, 100% 0%, 100% 100%, from( #001017 ), to( #192229 ) ); */
     flow-children: right;
+}
+
+#PtsWindowContainer
+{
+  horizontal-align: left;
+  vertical-align: top;
+  margin-bottom: 5px;
+	margin-top: 397px;
+
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 16px;
+	color: white;
+  width: 120px;
+	height: 30px;
+
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+}
+
+#PtsWindowContainer Label
+{
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size: 16px;
+	color: white;
+  margin-top: 2px;
+  text-align: center;
+  vertical-align: middle;
+  horizontal-align: middle;
 }
 
 #StatsWindowButton

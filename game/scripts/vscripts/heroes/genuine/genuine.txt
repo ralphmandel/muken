@@ -272,12 +272,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"res"			"-10"
+				"res"			"-5"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"debuff_power"	"50"
+				"debuff_power"	"40"
 			}
             "03"
 			{

@@ -71,12 +71,12 @@
 				"11"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"debuff_amp"			"2" //4 to 2
+					"debuff_amp"			"1" //4 to 1
 				}
 				"12"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					  "5"
+					"mana"					  "10"
 				}
 				"13"
 				{
@@ -86,7 +86,7 @@
   			"14"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.15"
+					"mana_regen"			"0.2"
 				}
 
 			// CON

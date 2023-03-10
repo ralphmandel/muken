@@ -217,12 +217,13 @@ function CalcStatus(duration, caster, target)
   if caster == nil or target == nil then return duration end
   if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
   local base_stats = caster:FindAbilityByName("base_stats")
+  local base_stats_target = target:FindAbilityByName("base_stats")
 
   if caster:GetTeamNumber() == target:GetTeamNumber() then
-      if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
+    if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
   else
-      if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
-      duration = duration * (1 - target:GetStatusResistance())
+    if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
+    if base_stats_target then duration = duration * (1 - (base_stats_target:GetStatusResistPercent() * 0.01)) end
   end
   
   return duration

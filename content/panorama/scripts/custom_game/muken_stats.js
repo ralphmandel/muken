@@ -23,12 +23,14 @@ var isWindowOpened = false;
   function OnStatsWindowButtonClick() {
     isWindowOpened = !isWindowOpened;
     STATS_WINDOW.SetHasClass("WindowIn", isWindowOpened)
+    PTS_WINDOW.SetHasClass("PtsIn", isWindowOpened)
     SetOpenState(isWindowOpened)
     Game.EmitSound("General.SelectAction");
   }
 
   function SetOpenState(isOpen) {
     STATS_WINDOW.SetHasClass("WindowIn", isOpen)
+    PTS_WINDOW.SetHasClass("PtsIn", isOpen)
     STATS_LAYOUT["STAT_BASE"].SetHasClass("Hide", !isOpen)
     STATS_LAYOUT["STAT_BONUS"].SetHasClass("Hide", !isOpen)
     STATS_LAYOUT["STAT_TOTAL"].SetHasClass("Hide", isOpen)
@@ -134,28 +136,18 @@ var isWindowOpened = false;
   }
 
   function OnPointsUpdate(event) {
-    $("#StatsWindowButtonActive").SetHasClass("Hide", !(event.primary > 0 || event.secondary > 0))
-    $("#StatsWindowButtonActive").SetHasClass("Animate", (event.primary > 0 || event.secondary > 0))
+    $("#StatsWindowButtonActive").SetHasClass("Hide", !(event.total_points > 0));
+    $("#StatsWindowButtonActive").SetHasClass("Animate", (event.total_points > 0));
 
-    for (let index = 1; index <= 4; index++) {
-      var enabled = (event.primary > 0)
-      var stat_level = event.stats_level[primary_stats[index]]
-      if (enabled) {enabled = (event.hero_level > stat_level * 2) && (stat_level < 10)}
-
-      STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].hittest = enabled
-      STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("PlusBox", enabled);
-      STATS_LAYOUT["STAT_PLUS"][primary_stats[index]].SetHasClass("NoPoints", !enabled);
+    for (const [stat, value] of Object.entries(event.stat_base)) {
+      var enabled = (event.total_points > 0)
+      if (enabled) {enabled = (event.hero_level + 30 > value)}
+      STATS_LAYOUT["STAT_PLUS"][stat].hittest = enabled
+      STATS_LAYOUT["STAT_PLUS"][stat].SetHasClass("PlusBox", enabled);
+      STATS_LAYOUT["STAT_PLUS"][stat].SetHasClass("NoPoints", !enabled);
     }
 
-    for (let index = 1; index <= 6; index++) {
-      var enabled = (event.secondary > 0)
-      var stat_level = event.stats_level[secondary_stats[index]]
-      if (enabled) {enabled = (event.hero_level > stat_level) && (stat_level < 10)}
-
-      STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].hittest = enabled;
-      STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].SetHasClass("PlusBox", enabled);
-      STATS_LAYOUT["STAT_PLUS"][secondary_stats[index]].SetHasClass("NoPoints", !enabled);
-    }
+    PTS_WINDOW.GetChild(0).text = 'POINTS:      ' + event.total_points;
   }
 
 // PLUS
@@ -198,7 +190,11 @@ var isWindowOpened = false;
   STATS_WINDOW.SetHasClass("WindowOut", true);
   STATS_WINDOW.SetHasClass("WindowIn", true);
   STATS_CONTAINER = $("#StatsColumnContainer");
-  STATS_BUTTON = $("#StatsWindowButton")
+  STATS_BUTTON = $("#StatsWindowButton");
+  PTS_WINDOW = $("#PtsWindowContainer");
+  PTS_WINDOW.SetHasClass("PtsOut", true);
+  PTS_WINDOW.SetHasClass("PtsIn", true);
+  PTS_WINDOW.GetChild(0).text = 'POINTS:      0';
 
   GameEvents.Subscribe("stats_state_from_server", OnStatUpdate);
   GameEvents.Subscribe("points_state_from_server", OnPointsUpdate);

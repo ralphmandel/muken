@@ -221,7 +221,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__shard" then
-		if value_name == "AbilityManaCost" then return 185 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 120 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 500 + (value_level * 12.5) end
@@ -250,7 +250,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_5__shivas" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 100 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "blast_radius" then return 850 + (value_level * 50) end

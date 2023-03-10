@@ -254,8 +254,8 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "res" then return -15 end
-		if value_name == "debuff_power" then return 75 end
+		if value_name == "res" then return -10 end
+		if value_name == "debuff_power" then return 60 end
 		if value_name == "special_damage" then return 50 end
 		if value_name == "special_night_vision" then return -300 end
 	end
