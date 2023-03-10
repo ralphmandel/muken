@@ -203,8 +203,6 @@ var isWindowOpened = false;
   GameEvents.Subscribe("stats_state_from_server", OnStatUpdate);
   GameEvents.Subscribe("points_state_from_server", OnPointsUpdate);
 
-  $.Msg("oi asasasss11");
-
   CreateLayout()
   SetOpenState(isWindowOpened)
 })();

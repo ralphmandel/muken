@@ -6,25 +6,52 @@
 
 .WindowOut
 {
-  transform: translatey( -80px );
+  transform: translatey( -127px );
   transition-property: transform;
-  transition-duration: 0.2s;
+  transition-duration: 0.25s;
 }
 
 .WindowIn
 {
   transform: translatey( 0px );
   transition-property: transform;
-  transition-duration: 0.2s;
+  transition-duration: 0.25s;
 }
 
-#InfoColumnContainer
+#InfoColumnContainer_1
 {
   /* width: fit-children; */
   /* height: fit-children; */
   flow-children: right;
-  margin-top: 5px;
-  margin-left: 30px;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+#InfoColumnContainer_2
+{
+  /* width: fit-children; */
+  /* height: fit-children; */
+  flow-children: right;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+#InfoColumnContainer_3
+{
+  /* width: fit-children; */
+  /* height: fit-children; */
+  flow-children: right;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+#InfoColumnContainer_4
+{
+  /* width: fit-children; */
+  /* height: fit-children; */
+  flow-children: right;
+  margin-top: 30px;
+  margin-left: 10px;
 }
 
 .InfoColumn
@@ -47,7 +74,12 @@
   text-align: center;
   /* text-shadow: 0 0 2px greenyellow; */
   font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+.ShadowEffect
+{
+  text-shadow: 0 0 3px #0bbbda;
 }
 
 .PositiveStats
@@ -64,10 +96,10 @@
 {
   /* margin-top: 75px; */
   horizontal-align: middle;
-  margin-left: 275px;
+  margin-left: 790px;
 
-  /* width: fit-children;
-  height: fit-children; */
+  width: fit-children;
+  /* height: fit-children; */
   background-color: #1922292c;
   /* background-color: gradient( linear, 100% 0%, 100% 100%, from( #001017 ), to( #192229 ) ); */
   flow-children: right;
@@ -77,24 +109,29 @@
 {
   horizontal-align: middle;
   vertical-align: top;
-  margin-bottom: 5px;
-  margin-left: 175px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 790px;
+  /* margin-left: 50px; */
 
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 24px;
+	font-size: 20px;
 	color: white;
-  width: 50px;
-	height: 40px;
+  width: 250px;
+	height: 25px;
 
-  background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+  background-color: #6060809a;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  /* background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) ); */
 }
 
 #InfoButton Label
 {
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 24px;
+	font-size: 15px;
 	color: white;
-  margin-top: 2px;
+  margin-top: 0px;
   text-align: center;
   vertical-align: middle;
   horizontal-align: middle;
@@ -103,7 +140,8 @@
 #InfoButton:hover
 {
   wash-color: #ffffff;
-  background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) );
+  background-color: #15718170;
+  /* background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) ); */
 }
 
 #InfoButtonActive

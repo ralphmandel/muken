@@ -141,13 +141,13 @@ if not Selection then
 end
 
 function Selection:Init()
-    Selection.entities = {} --Stores the selected entities of each playerID
-    CustomGameEventManager:RegisterListener("selection_update", Dynamic_Wrap(Selection, 'OnUpdate'))
+  Selection.entities = {} --Stores the selected entities of each playerID
+  CustomGameEventManager:RegisterListener("selection_update", Dynamic_Wrap(Selection, 'OnUpdate'))
 end
 
 function Selection:OnUpdate(event)
-    local playerID = event.PlayerID
-    Selection.entities[playerID] = event.entities
+  local playerID = event.PlayerID
+  Selection.entities[playerID] = event.entities
 end
 
 -- Internal function to build an entity index list out of various inputs

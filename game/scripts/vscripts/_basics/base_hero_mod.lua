@@ -172,15 +172,10 @@ function base_hero_mod:PlayEfxAmbient(ambient, attach)
 end
 
 function base_hero_mod:OnIntervalThink()
-  local player = self:GetCaster():GetPlayerOwner()
-  local info = {
-    physical_damage = 100 + (self.parent:FindAbilityByName("base_stats").stat_total["STR"] * 5),
-    crit_damage = self.parent:FindAbilityByName("base_stats").total_crit_damage,
-    crit_chance = self.parent:FindAbilityByName("base_stats"):GetCriticalChance(),
-    attack_speed = self.parent:GetAttackSpeed()
-  }
-
-  CustomGameEventManager:Send_ServerToPlayer(player, "info_state_from_server", info)
+  local info = {}
+  local player = self.parent:GetPlayerOwner()
+  print("kubo 0")
+  CustomGameEventManager:Send_ServerToPlayer(player, "portrait_request_from_server", {})
 end
 
 -- function base_hero_mod:OnIntervalThink()

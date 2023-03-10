@@ -446,6 +446,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 ---- ATTRIBUTES UTILS
 	-- UTIL STR
+
+    function base_stats:GetTotalPhysicalDamagePercent()
+      return 100 + (self.stat_total["STR"] * 5)
+    end
+
 		function base_stats:SetForceCritSpell(value, state, damage_type)
 			if value > 0 then self.crit_damage_spell[damage_type] = value end
 			self.force_crit_spell[damage_type] = state -- NIL == force no crit
@@ -511,9 +516,17 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- UTIL INT
 
+    function base_stats:GetTotalMagicalDamagePercent()
+      return 100 + (self.stat_total["INT"] * self.spell_amp)
+    end
+
+    function base_stats:GetTotalDebuffAmpPercent()
+      return 100 + (self.stat_base["INT"] * self.debuff_amp)
+    end
+
 		function base_stats:GetDebuffAmp()
 			local caster = self:GetCaster()
-			local bonus = self.debuff_amp * (self.stat_base["INT"])
+			local bonus = self.stat_base["INT"] * self.debuff_amp
 
 			local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
 			for _,modifier in pairs(mods_increase) do
@@ -551,6 +564,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 	-- UTIL MND
+
+    function base_stats:GetTotalHealPowerPercent()
+      return 100 + (self.stat_total["MND"] * self.heal_power)
+    end
+
+    function base_stats:GetTotalBuffAmpPercent()
+      return 100 + (self.stat_total["MND"] * self.buff_amp)
+    end
 
 		function base_stats:GetHealPower()
 			return 1 + (self.stat_total["MND"] * self.heal_power * 0.01)

@@ -17,6 +17,46 @@ function TalentTree:InitPanaromaEvents()
     CustomGameEventManager:RegisterListener("talent_tree_get_state", Dynamic_Wrap(TalentTree, 'OnTalentTreeStateRequest'))
     CustomGameEventManager:RegisterListener("talent_tree_reset_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeResetRequest'))
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(TalentTree, "OnPlayerReconnect"), TalentTree)
+    CustomGameEventManager:RegisterListener("portrait_unit_update", Dynamic_Wrap(TalentTree, 'OnPortraitUpdate'))
+end
+
+function TalentTree:OnPortraitUpdate(event)
+  if (not IsServer()) then return end
+  if (not event or not event.PlayerID) then return end
+  local player = PlayerResource:GetPlayer(event.PlayerID)
+  if (not player) then return end
+  
+  local entity = EntIndexToHScript(event.entity)
+  local info = {}
+
+  if entity then
+    if IsValidEntity(entity) then
+      local base_stats = entity:FindAbilityByName("base_stats")
+      if base_stats then
+        info = {
+          unit_name = entity:GetUnitName(),
+          physical_damage = base_stats:GetTotalPhysicalDamagePercent(),
+          crit_damage = base_stats:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false),
+          crit_chance = base_stats:GetCriticalChance(),
+          attack_speed = entity:GetAttackSpeed() * 100,
+          magical_damage = base_stats:GetTotalMagicalDamagePercent(),
+          debuff_amp = base_stats:GetTotalDebuffAmpPercent(),
+          mp_regen = entity:GetManaRegen(),
+          cd_reduction = entity:GetCooldownReduction() * 100,
+          movespeed = entity:GetIdealSpeed(),
+          evasion = entity:GetEvasion() * 100,
+          armor = entity:GetPhysicalArmorValue(false),
+          hp_regen = entity:GetHealthRegen(),
+          magical_resist = entity:GetMagicalArmorValue() * 100,
+          status_resist = entity:GetStatusResistance() * 100,
+          heal_power = base_stats:GetTotalHealPowerPercent(),
+          buff_amp = base_stats:GetTotalBuffAmpPercent()
+        }
+      end      
+    end
+  end
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "info_state_from_server", info)
 end
 
 function TalentTree:OnTalentTreeTalentsRequest(event)

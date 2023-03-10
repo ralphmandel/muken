@@ -6,15 +6,18 @@
         <include src="file://{resources}/scripts/custom_game/muken_info.js"/>
     </scripts>
     <Button hittest="false" class="InfoWindow">
-        <!-- RANK WINDOW -->
+        <!-- INFO WINDOWS -->
         <Panel hittest="false" id="InfoContainer" onactivate=''>
-            <Panel id="InfoColumnContainer"/>
+            <Panel id="InfoColumnContainer_1"/>
+            <Panel id="InfoColumnContainer_2"/>
+            <Panel id="InfoColumnContainer_3"/>
+            <Panel id="InfoColumnContainer_4"/>
         </Panel>
         
-        <!-- RANK UP BUTTON -->
+        <!-- INFO BUTTON -->
         <Button hittest="true" id="InfoButton" onactivate='OnInfoButtonClick()'>
             <Panel hittest="false" id="InfoButtonActive" class="Hide" />
-            <Label text="i" />
+            <Label text="" />
         </Button>
     </Button>
 </root>
