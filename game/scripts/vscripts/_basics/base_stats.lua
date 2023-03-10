@@ -344,10 +344,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local player = self:GetCaster():GetPlayerOwner()
 				if (not player) then return end
 
+        local stats = {}
+
+        for _, stat in pairs(self.stats_primary) do
+          stats[stat] = self:IsHeroCanLevelUpStat(stat)
+				end
+
+        for _, stat in pairs(self.stats_secondary) do
+          stats[stat] = self:IsHeroCanLevelUpStat(stat)
+				end
+
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
 					total_points = self.total_points,
-					stat_base = self.stat_base,
-					hero_level = self:GetCaster():GetLevel()
+					stats = stats
 				})
 			end
 		end
@@ -436,6 +445,33 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				end
 			end
 		end
+
+    function base_stats:IsHeroCanLevelUpStat(stat)
+      local caster = self:GetCaster()
+      local total_cost = 1
+
+      for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
+        if index ~= "value" then
+          if self.stat_base[stat_fraction] >= 50 then return false end
+          total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_primary, 4)
+          total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_secondary, 3)
+        end
+      end
+
+      return (caster:GetLevel() + 30 > self.stat_base[stat]) and (self.total_points >= total_cost)
+    end
+
+    function base_stats:GetSubCost(stat_fraction, table, number)
+      local cost = 0
+      for _, table_stat in pairs(table) do
+        if stat_fraction == table_stat then
+          if self.stat_fraction["plus_up"][stat_fraction]["value"] == number then
+            cost = cost + 1
+          end            
+        end
+      end      
+      return cost
+    end
 
 ---- ATTRIBUTES UTILS
 	-- UTIL STR

@@ -139,9 +139,7 @@ var isWindowOpened = false;
     $("#StatsWindowButtonActive").SetHasClass("Hide", !(event.total_points > 0));
     $("#StatsWindowButtonActive").SetHasClass("Animate", (event.total_points > 0));
 
-    for (const [stat, value] of Object.entries(event.stat_base)) {
-      var enabled = (event.total_points > 0)
-      if (enabled) {enabled = (event.hero_level + 30 > value)}
+    for (const [stat, enabled] of Object.entries(event.stats)) {
       STATS_LAYOUT["STAT_PLUS"][stat].hittest = enabled
       STATS_LAYOUT["STAT_PLUS"][stat].SetHasClass("PlusBox", enabled);
       STATS_LAYOUT["STAT_PLUS"][stat].SetHasClass("NoPoints", !enabled);
