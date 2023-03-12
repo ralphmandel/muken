@@ -11,7 +11,7 @@ function flea_3_modifier_jump:OnCreated( kv )
   self.ability = self:GetAbility()
 
 	local movespeed = self.parent:GetIdealSpeed()
-	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") --* movespeed
+	local jump_speed = self.ability:GetSpecialValueFor("speed_mult") * self.parent:GetIdealSpeed()
 	local jump_distance = self.ability:GetSpecialValueFor("distance_mult") --* movespeed
 	local duration = jump_distance / jump_speed
 	local height = 80 + math.floor(movespeed / 3)

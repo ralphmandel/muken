@@ -164,7 +164,7 @@
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_mult"	"750"
+				"speed_mult"	"2"
 			}
             "03"
 			{

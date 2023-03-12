@@ -39,10 +39,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
-				self:IncrementSpenderPoints()
 				for _, stat in pairs(self.stats_primary) do
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
+        self:IncrementSpenderPoints()
 			end
 		end
 
@@ -321,7 +321,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:IncrementSpenderPoints()
 			if IsServer() then
 				self.total_points = self.total_points + 5
-				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints() end
+				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints("nil") end
 			end
 		end
 
@@ -339,24 +339,29 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
-		function base_stats:UpdatePanoramaPoints()
+		function base_stats:UpdatePanoramaPoints(upgraded_stat)
 			if IsServer() then
 				local player = self:GetCaster():GetPlayerOwner()
 				if (not player) then return end
 
         local stats = {}
+        local stats_fraction = {}
 
         for _, stat in pairs(self.stats_primary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat)
+          stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat)
+          stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
 					total_points = self.total_points,
-					stats = stats
+					stats = stats,
+          stats_fraction = stats_fraction,
+          upgraded_stat = upgraded_stat
 				})
 			end
 		end
@@ -448,17 +453,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
     function base_stats:IsHeroCanLevelUpStat(stat)
       local caster = self:GetCaster()
+      local level_cap = caster:GetLevel() + 30
       local total_cost = 1
 
       for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
         if index ~= "value" then
-          if self.stat_base[stat_fraction] >= 50 then return false end
+          if self.stat_base[stat_fraction] >= level_cap then return false end
           total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_primary, 4)
           total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_secondary, 3)
         end
       end
 
-      return (caster:GetLevel() + 30 > self.stat_base[stat]) and (self.total_points >= total_cost)
+      return (level_cap > self.stat_base[stat]) and (self.total_points >= total_cost)
     end
 
     function base_stats:GetSubCost(stat_fraction, table, number)

@@ -50,7 +50,7 @@ function hero_stats_table:OnLevelUpStat(event)
     end
   end
 
-  base_stats:UpdatePanoramaPoints()
+  base_stats:UpdatePanoramaPoints(event.stat)
 end
 
 function hero_stats_table:OnPlayerReconnect(keys)
@@ -73,7 +73,7 @@ function hero_stats_table:OnPlayerReconnect(keys)
     base_stats:UpdatePanoramaStat(secondary)
   end
   
-  base_stats:UpdatePanoramaPoints()
+  base_stats:UpdatePanoramaPoints("nil")
 end
 
 hero_stats_table:Init()

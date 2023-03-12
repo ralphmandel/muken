@@ -15,6 +15,11 @@
       <Panel hittest="false" id="PtsWindowContainer" onactivate=''>
         <Label text="" />
       </Panel>
+
+      <!-- INFO WINDOW -->
+      <Panel hittest="false" id="InfoWindowContainer" onactivate=''>
+        <Label text="" />
+      </Panel>
       
       <!-- RANK UP BUTTON -->
       <Button hittest="true" id="StatsWindowButton" onactivate='OnStatsWindowButtonClick()'>

@@ -1,0 +1,19 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/muken_stats.css"/>
+  </styles>
+  <script>
+    var context = $.GetContextPanel();
+    var id = context.id.replace("HeroStat", "");
+
+    function OnNameOver() {
+      context.Data().OnNameOver(id);
+    }
+
+    function OnNameOut() {
+      context.Data().OnNameOut(id);
+    }
+  </script>
+  <Panel hittest="true" onmouseover="OnNameOver()" onmouseout="OnNameOut()">
+  </Panel>
+</root>
