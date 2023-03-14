@@ -6,11 +6,11 @@ function bald_2_modifier_gesture:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_2_modifier_gesture:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
-	self.tick = 0.31
+	self.tick = 0.3875
 
 	if IsServer() then self:OnIntervalThink() end
 end

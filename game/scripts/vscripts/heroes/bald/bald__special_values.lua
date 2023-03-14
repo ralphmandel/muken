@@ -40,14 +40,14 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bald_1__power_rank_31") then
-			if value_name == "hit_build" then return 1 end
-			if value_name == "hit_build_refresh" then return 1 end
+			if value_name == "special_hit_build" then return 1 end
+			if value_name == "special_hit_build_refresh" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_1__power_rank_41") then
-			if value_name == "bash_chance" then return 1 end
-			if value_name == "bash_duration" then return 1 end
-			if value_name == "bash_damage" then return 1 end
+			if value_name == "special_bash_chance" then return 1 end
+			if value_name == "special_bash_duration" then return 1 end
+			if value_name == "special_bash_damage" then return 1 end
 		end
 	end
 
@@ -62,12 +62,12 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bald_2__bash_rank_31") then
-			if value_name == "bonus_ms" then return 1 end
-			if value_name == "stun_immunity" then return 1 end
+			if value_name == "special_bonus_ms" then return 1 end
+			if value_name == "special_stun_immunity" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_2__bash_rank_41") then
-			if value_name == "bash_aoe" then return 1 end
+			if value_name == "special_bash_aoe" then return 1 end
 		end
 	end
 
@@ -75,18 +75,21 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 
-		if caster:FindAbilityByName("bald_3__inner_rank_12") then
-			if value_name == "max_stack" then return 1 end
+		if caster:FindAbilityByName("bald_3__inner_rank_11") then
+			if value_name == "bonus_stack" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_3__inner_rank_21") then
 			if value_name == "hits" then return 1 end
 			if value_name == "stack_duration" then return 1 end
 		end
+
+    if caster:FindAbilityByName("bald_3__inner_rank_31") then
+			if value_name == "special_spell_immunity" then return 1 end
+		end
 		
 		if caster:FindAbilityByName("bald_3__inner_rank_41") then
-			if value_name == "permanent_size" then return 1 end
-			if value_name == "size_mult" then return 1 end
+			if value_name == "special_base_stack" then return 1 end
 		end
 	end
 
@@ -165,12 +168,14 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "bald_1__power" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "rank" then return 6 + (value_level * 1) end
+
 		if value_name == "duration" then return 90 end
-		if value_name == "hit_build" then return 5 end
-		if value_name == "hit_build_refresh" then return 3 end
-		if value_name == "bash_chance" then return 15 end
-		if value_name == "bash_duration" then return 1 end
-		if value_name == "bash_damage" then return 40 end
+		if value_name == "special_hit_build" then return 5 end
+		if value_name == "special_hit_build_refresh" then return 3 end
+		if value_name == "special_bash_chance" then return 15 end
+		if value_name == "special_bash_duration" then return 1 end
+		if value_name == "special_bash_damage" then return 40 end
 	end
 
 	if ability:GetAbilityName() == "bald_2__bash" then
@@ -203,32 +208,24 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return (320 + (value_level * 5)) * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
 		end
 
+    if value_name == "rank" then return 6 + (value_level * 1) end
+
 		if value_name == "max_charge" then return 6 end
-		if value_name == "bonus_ms" then return 30 end
-		if value_name == "stun_immunity" then return 1 end
-		if value_name == "bash_aoe" then return 175 end
+		if value_name == "special_bonus_ms" then return 20 end
+		if value_name == "special_stun_immunity" then return 1 end
+		if value_name == "special_bash_aoe" then return 175 end
 	end
 
 	if ability:GetAbilityName() == "bald_3__inner" then
-		if value_name == "AbilityManaCost" then
-			if ability:GetCurrentAbilityCharges() == 4 then
-				return 150 * (1 + ((ability_level - 1) * 0.05))
-			end
-			return 0
-		end
+		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 60 - (value_level * 1) end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "AbilityCooldown" then
-			if caster:FindAbilityByName("bald_3__inner_rank_11") then
-				return 0
-			end
-			return 10
-		end
-
-		if value_name == "max_stack" then return 100 end
-		if value_name == "hits" then return 2 end
-		if value_name == "stack_duration" then return 30 end
-		if value_name == "permanent_size" then return 32 end
-		if value_name == "size_mult" then return 2 end
+    if value_name == "bonus_stack" then return 20 end
+    if value_name == "hits" then return 4 end
+    if value_name == "stack_duration" then return 60 end
+    if value_name == "special_spell_immunity" then return 1 end
+    if value_name == "special_base_stack" then return 15 end
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
@@ -240,6 +237,8 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			end
 			return 24
 		end
+
+    if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "heal" then return 60 end
 		if value_name == "duration" then return 12 end
@@ -263,6 +262,8 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 			return 400
 		end
 
+    if value_name == "rank" then return 6 + (value_level * 1) end
+
 		if value_name == "spike_radius" then
 			return 300 * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
 		end
@@ -275,13 +276,16 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_u__vitality" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then
 			if caster:FindAbilityByName("bald_u__vitality_rank_11") then
 				return 120
 			end
 			return 150
 		end
+
+    if value_name == "rank" then return 9 + (value_level * 1) end
+    if value_name == "con" then return 25 + (value_level * 1) end
 
 		if value_name == "regen_in" then return 0.6 end
 		if value_name == "regen_out" then return 1.75 end

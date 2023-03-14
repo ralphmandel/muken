@@ -3,7 +3,7 @@
 {
 	"Version"		"1"
 
-    "bald__precache"
+  "bald__precache"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/bald/bald-ranks_lua"
@@ -24,7 +24,7 @@
 		"AbilityTextureName"     		"bald_power"
 		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
@@ -38,32 +38,32 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
-            "16"
+      "16"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hit_build"		"0"
+				"special_hit_build"		"0"
 			}
-            "17"
+       "17"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hit_build_refresh"	"0"
+				"special_hit_build_refresh"	"0"
 			}
-            "18"
+      "18"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"bash_chance"	    "0"
+				"special_bash_chance"	    "0"
 			}
-            "18"
+      "19"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"bash_duration"	    "0"
+				"special_bash_duration"	    "0"
 			}
-            "18"
+      "20"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"bash_damage"	    "0"
+				"special_bash_damage"	    "0"
 			}
 		}
 	}
@@ -76,9 +76,9 @@
 		"AbilityTextureName"     		"bald_bash"
 		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -91,17 +91,17 @@
 				"var_type"		"FIELD_FLOAT"
 				"max_charge"    "7.5"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"stun_max"      "3.5"
 			}
-            "03"
+      "03"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"damage_max"    "250"
 			}
-            "14"
+      "14"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11 12 13"
@@ -109,22 +109,22 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13"
 			}
-            "16"
+      "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_bonus_ms"		"0"
+			}
+      "17"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_stun_immunity"	"0"
+			}
+      "18"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bonus_ms"		"0"
-			}
-            "17"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"stun_immunity"	"0"
-			}
-            "18"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"bash_aoe"	    "0"
+				"special_bash_aoe"	    "0"
 			}
 		}
 	}
@@ -135,50 +135,56 @@
 		"ScriptFile"            		"heroes/bald/bald_3__inner"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_inner"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"		        "1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"hits"		        "3"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"	"45"
+				"stack_duration"	"30"
 			}
-            "03"
+      "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"bonus_stack"	    "10"
+			}
+      "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"buff_duration"	  "10"
+			}
+      "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"size_mult"	        "3"
 			}
-            "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_stack" 	    "20"
-			}
-            "05"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"	    "20 20.5 21 21.5 22 22.5 23 23.5 24"
-			}
-            "15"
+      "15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "15"
+      "14"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"permanent_size"    "0"
+				"var_type"		            "FIELD_FLOAT"
+				"special_spell_immunity"  "0"
+			}
+      "15"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_base_stack"      "0"
 			}
 		}
 	}
@@ -215,7 +221,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
             "16"
 			{
@@ -274,12 +280,12 @@
             "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"duration"	        "15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22"
+				"duration"	      "15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 			}
             "16"
 			{
@@ -315,32 +321,32 @@
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"regen_in"		    "0.5"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"regen_out"		    "1.5"
 			}
-            "03"
+      "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"delay"	    	    "5"
 			}
-            "14"
+      "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"con"		        "25 26 27 28 29 30 31 32"
+				"con"		          "1 2 3 4 5 6 7 8"
 			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16"
+				"var_type"			  "FIELD_FLOAT"
+				"rank"				    "1 2 3 4 5 6 7 8"
 			}
-            "16"
+      "16"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"lifesteal"			"0"

@@ -57,7 +57,6 @@
 			"0"
 			{
 				"1"   "bald_3__inner_rank_11"
-				"2"   "bald_3__inner_rank_12"
 			}
 			"1"
 			{
@@ -65,7 +64,7 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bald_3__inner_rank_31"
 			}
 			"3"
 			{

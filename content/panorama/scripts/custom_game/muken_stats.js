@@ -223,7 +223,6 @@ function OnNameOver(statId, disabled) {
     var string = stat + '_info';
 
     if (stat == statId) {enabled = true}
-    $.Msg('kubo ' + string + enabled);
     INFO_WINDOW.SetHasClass(string, enabled);
   }
 }

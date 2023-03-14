@@ -191,7 +191,7 @@
 			"19"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"special_curse_purge"			"0"
+				"special_break"			      "0"
 			}
 		}
 	}

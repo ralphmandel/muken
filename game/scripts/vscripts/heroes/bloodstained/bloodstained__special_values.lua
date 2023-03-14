@@ -103,7 +103,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 		
 		if caster:FindAbilityByName("bloodstained_3__curse_rank_41") then
-			if value_name == "special_curse_purge" then return 1 end
+			if value_name == "special_break" then return 1 end
 		end
 	end
 
@@ -240,7 +240,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "special_reset" then return 1 end
     if value_name == "special_curse_damage" then return 3 end
 		if value_name == "special_curse_interval" then return 2 end
-		if value_name == "special_curse_purge" then return 500 end
+		if value_name == "special_break" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__frenzy" then

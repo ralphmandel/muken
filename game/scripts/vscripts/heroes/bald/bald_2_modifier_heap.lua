@@ -7,19 +7,19 @@ function bald_2_modifier_heap:GetPriority() return MODIFIER_PRIORITY_ULTRA end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_2_modifier_heap:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_2_modifier_gesture", {})
 	self.max_charge = self.ability:GetSpecialValueFor("max_charge")
 	self.time = self.max_charge
-	self.tick = 0.31
+	self.tick = 0.3875 --0.31
 
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetMPRegenState(-1) end
 
-	local bonus_ms = self.ability:GetSpecialValueFor("bonus_ms")
+	local bonus_ms = self.ability:GetSpecialValueFor("special_bonus_ms")
 	if bonus_ms > 0 then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 			percent = bonus_ms
@@ -59,7 +59,7 @@ function bald_2_modifier_heap:OnRemoved()
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 	
-	if IsServer() then self.parent:StopSound("Hero_Spirit_Breaker.Magnet.Cast") end
+	if IsServer() then self.parent:StopSound("Bald.Dash.Cast") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -69,7 +69,7 @@ function bald_2_modifier_heap:CheckState()
 		[MODIFIER_STATE_DISARMED] = true
 	}
 
-	if self:GetAbility():GetSpecialValueFor("stun_immunity") == 1 then
+	if self:GetAbility():GetSpecialValueFor("special_stun_immunity") == 1 then
 		table.insert(state, MODIFIER_STATE_STUNNED, false)
 	end
 
@@ -102,7 +102,7 @@ function bald_2_modifier_heap:OnIntervalThink()
 
 	if IsServer() then
 		if self.time == self.max_charge then
-			self.parent:EmitSound("Hero_Spirit_Breaker.Magnet.Cast")
+			self.parent:EmitSound("Bald.Dash.Cast")
 		end
 	end
 

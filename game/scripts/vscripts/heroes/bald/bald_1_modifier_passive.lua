@@ -7,9 +7,9 @@ function bald_1_modifier_passive:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_1_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.build_stack = 0
 
 	if IsServer() then self:SetStackCount(0) end
@@ -40,11 +40,11 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 	if self.parent:PassivesDisabled() then return 0 end
 	if self.ability:IsCooldownReady() == false then return 0 end
 
-	local hit_build = self.ability:GetSpecialValueFor("hit_build")
-	local hit_build_refresh = self.ability:GetSpecialValueFor("hit_build_refresh")
-	local bash_chance = self.ability:GetSpecialValueFor("bash_chance")
-	local bash_duration = self.ability:GetSpecialValueFor("bash_duration")
-	local bash_damage = self.ability:GetSpecialValueFor("bash_damage")
+	local hit_build = self.ability:GetSpecialValueFor("special_hit_build")
+	local hit_build_refresh = self.ability:GetSpecialValueFor("special_hit_build_refresh")
+	local bash_chance = self.ability:GetSpecialValueFor("special_bash_chance")
+	local bash_duration = self.ability:GetSpecialValueFor("special_bash_duration")
+	local bash_damage = self.ability:GetSpecialValueFor("special_bash_damage")
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self:AddMultStack()
@@ -78,7 +78,7 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 end
 
 function bald_1_modifier_passive:OnIntervalThink()
-	local hit_build = self.ability:GetSpecialValueFor("hit_build")
+	local hit_build = self.ability:GetSpecialValueFor("special_hit_build")
 	self.build_stack = self.build_stack + 1
 	
 	if self.build_stack + 1 >= hit_build then self:StartIntervalThink(-1) end

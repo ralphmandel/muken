@@ -1,5 +1,4 @@
 bald_3_modifier_inner = class({})
-local tempTable = require("libraries/tempTable")
 
 function bald_3_modifier_inner:IsHidden() return false end
 function bald_3_modifier_inner:IsPurgable() return true end
@@ -7,48 +6,40 @@ function bald_3_modifier_inner:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_3_modifier_inner:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
-	self.ability.def = kv.def
-	self.ability:ChangeModelScale()
-	self.ability:SetActivated(false)
-	self.ability:EndCooldown()
+  self.spell_immunity = self:GetAbility():GetSpecialValueFor("special_spell_immunity")
+  local modifier = self.parent:FindModifierByNameAndCaster(self.ability:GetIntrinsicModifierName(), self.caster)
 
 	if IsServer() then
-		self:SetStackCount(kv.def)
+    modifier:SetStackCount(kv.stack)
 		self:PlayEfxStart()
 	end
 end
 
 function bald_3_modifier_inner:OnRefresh(kv)
-	self.ability.def = kv.def
-	self.ability:ChangeModelScale()
-
-	if IsServer() then
-		self:SetStackCount(kv.def)
-		self:PlayEfxStart()
-	end
+	if IsServer() then self:PlayEfxStart() end
 end
 
 function bald_3_modifier_inner:OnRemoved()
-	self.ability.def = 0
-	RemoveBonus(self.ability, "_2_DEF", self.parent)
-	self.ability:ChangeModelScale()
-	self.ability:SetActivated(true)
-	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+  local modifier = self.parent:FindModifierByNameAndCaster(self.ability:GetIntrinsicModifierName(), self.caster)
+  if IsServer() then modifier:SetStackCount(0) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bald_3_modifier_inner:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_2_DEF", self.parent)
+function bald_3_modifier_inner:CheckState()
+	local state = {}
 
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_2_DEF", self.parent, self:GetStackCount(), 0, nil)
+	if self.spell_immunity == 1 then
+		table.insert(state, MODIFIER_STATE_MAGIC_IMMUNE, true)
 	end
+
+	return state
 end
+
 
 -- UTILS -----------------------------------------------------------
 

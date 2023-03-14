@@ -39,7 +39,7 @@ function TalentTree:OnPortraitUpdate(event)
     physical_damage = base_stats:GetTotalPhysicalDamagePercent(),
     crit_damage = base_stats:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false),
     crit_chance = base_stats:GetCriticalChance(),
-    attack_speed = entity:GetAttackSpeed() * 100,
+    attack_speed = entity:GetDisplayAttackSpeed(),
     magical_damage = base_stats:GetTotalMagicalDamagePercent(),
     debuff_amp = base_stats:GetTotalDebuffAmpPercent(),
     mp_regen = entity:GetManaRegen(),

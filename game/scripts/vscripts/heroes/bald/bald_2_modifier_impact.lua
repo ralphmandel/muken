@@ -50,7 +50,7 @@ function bald_2_modifier_impact:OnIntervalThink()
 	if IsValidEntity(self.ability.target) == false then return end
 
 	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(), self.ability.target:GetOrigin(), nil, self.ability:GetSpecialValueFor("bash_aoe"),
+		self.parent:GetTeamNumber(), self.ability.target:GetOrigin(), nil, self.ability:GetSpecialValueFor("special_bash_aoe"),
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false
 	)

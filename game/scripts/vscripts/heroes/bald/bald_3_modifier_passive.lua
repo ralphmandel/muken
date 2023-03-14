@@ -1,5 +1,4 @@
 bald_3_modifier_passive = class({})
-local tempTable = require("libraries/tempTable")
 
 function bald_3_modifier_passive:IsHidden() return false end
 function bald_3_modifier_passive:IsPurgable() return false end
@@ -7,9 +6,9 @@ function bald_3_modifier_passive:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_3_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.hits = 0
 
 	if IsServer() then self:SetStackCount(0) end
@@ -19,7 +18,8 @@ function bald_3_modifier_passive:OnRefresh(kv)
 end
 
 function bald_3_modifier_passive:OnRemoved()
-	RemoveBonus(self.ability, "_1_CON", self.parent)
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
+  self:ChangeModelScale(0)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -34,51 +34,39 @@ function bald_3_modifier_passive:DeclareFunctions()
 end
 
 function bald_3_modifier_passive:GetModifierAttackRangeBonus()
-	return self.ability.atk_range
+	return 120 * (self:GetParent():GetModelScale() - 1)
 end
 
 function bald_3_modifier_passive:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
 	if self.parent:HasModifier("bald_3_modifier_inner") then return end
 	if self.parent:PassivesDisabled() then return end
-	if self.ability:IsCooldownReady() == false then return end
 
 	self.hits = self.hits + 1
 
 	if self.hits >= self.ability:GetSpecialValueFor("hits") then
-		self:AddMultStack()
-		self.hits = 0
+    self.parent:AddNewModifier(self.caster, self.ability, "bald_3_modifier_passive_stack", {})
+    self.hits = 0
 	end
 end
 
 function bald_3_modifier_passive:OnStackCountChanged(old)
-	local stack = self:GetStackCount()
-	local max_stack = self.ability:GetSpecialValueFor("max_stack")
-	if stack > max_stack then stack = max_stack end
-
-	if stack >= 10 then
-		self.ability:SetCurrentAbilityCharges(4)
-	else
-		self.ability:SetCurrentAbilityCharges(2)
-	end
-
-	RemoveBonus(self.ability, "_1_CON", self.parent)
-
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_1_CON", self.parent, stack, 0, nil)
-	end
+	RemoveBonus(self.ability, "_2_DEF", self.parent)
+  AddBonus(self.ability, "_2_DEF", self.parent, self:GetStackCount(), 0, nil)
+  self:ChangeModelScale(self:GetStackCount())
 end
 
 -- UTILS -----------------------------------------------------------
 
-function bald_3_modifier_passive:AddMultStack()
-	self:IncrementStackCount()
+function bald_3_modifier_passive:ChangeModelScale(amount)
+  local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
+  if base_hero_mod == nil then return end
+  if base_hero_mod.model_scale == nil then return end
 
-	local this = tempTable:AddATValue(self)
-	self.parent:AddNewModifier(self.caster, self.ability, "bald_3_modifier_passive_stack", {
-		duration = self.ability:GetSpecialValueFor("stack_duration"),
-		modifier = this
-	})
+  local extra_size = amount * self.ability:GetSpecialValueFor("size_mult") * 0.01
+
+  self.parent:SetModelScale(base_hero_mod.model_scale + extra_size)
+  self.parent:FindAbilityByName("bald__precache"):SetLevel(self.parent:GetModelScale() * 100)
 end
 
 -- EFFECTS -----------------------------------------------------------

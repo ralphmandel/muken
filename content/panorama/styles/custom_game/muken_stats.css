@@ -220,10 +220,10 @@
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 	font-size: 16px;
 	color: white;
-  width: 225px;
+  width: fit-children;
   height: fit-children;
-  background-color: gradient( linear, 100% 0%, 100% 100%, from( #192229cd ), to( #001017cd ) );
-  border: 1px solid dimgray;
+  background-color: gradient( linear, 100% 0%, 100% 100%, from( #2b3b46cd ), to( #002332cd ) );
+  /* border: 1px solid dimgray; */
 }
 
 #InfoWindowContainer Label
@@ -233,6 +233,7 @@
 	color: white;
   margin-top: 1px;
   margin-left: 5px;
+  margin-right: 5px;
 
   /* text-align: center; */
   vertical-align: middle;

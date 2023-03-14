@@ -9,8 +9,8 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-	self.curse_purge_caster = 0
-	self.curse_purge_target = 0
+	--self.curse_purge_caster = 0
+	--self.curse_purge_target = 0
 
 	if self.parent ~= self.caster then
 		self.ability:SetActivated(false)
@@ -57,6 +57,17 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function bloodstained_3_modifier_curse:CheckState()
+	local state = {}
+
+	if self:GetAbility():GetSpecialValueFor("special_break") == 1
+  and self:GetParent() ~= self:GetCaster() then
+		table.insert(state, MODIFIER_STATE_PASSIVES_DISABLED, true)
+	end
+
+	return state
+end
+
 function bloodstained_3_modifier_curse:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE
@@ -72,19 +83,19 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 	local target = self.caster
 	if keys.unit == self.caster then target = self.parent end
 
-	local curse_purge = self.ability:GetSpecialValueFor("special_curse_purge")
+	--local curse_purge = self.ability:GetSpecialValueFor("special_curse_purge")
 	local shared_damage = self.ability:GetSpecialValueFor("shared_damage")
 	local total_damage = (keys.damage * shared_damage * 0.01)
 	local iDesiredHealthValue = target:GetHealth() - total_damage
 	target:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
 
-	if target == self.caster then
-		self:ApplyPurge(total_damage, curse_purge, self.parent)
-		self:ApplyPurge(keys.damage, curse_purge, self.caster)
-	else
-		self:ApplyPurge(keys.damage, curse_purge, self.parent)
-    self:ApplyPurge(total_damage, curse_purge, self.caster)
-	end
+	--if target == self.caster then
+		--self:ApplyPurge(total_damage, curse_purge, self.parent)
+		--self:ApplyPurge(keys.damage, curse_purge, self.caster)
+	--else
+		--self:ApplyPurge(keys.damage, curse_purge, self.parent)
+    --self:ApplyPurge(total_damage, curse_purge, self.caster)
+	--end
 
 	if target == self.caster then
 		local mod = self.caster:FindModifierByNameAndCaster("bloodstained_1_modifier_rage", self.caster)
