@@ -195,6 +195,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
 				self.attack_time = self.base_attack_time
 				self.bonus_attack_time = 0
+        self.bonus_movespeed = {}
 
 				-- INT
 				self.mana = self:GetSpecialValueFor("mana")
@@ -518,6 +519,20 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 	-- UTIL AGI
+
+    function base_stats:GetBonusMS(ability_name)
+      local amount = 0
+      for name, value in pairs(self.bonus_movespeed) do
+        if ability_name == nil or ability_name == name then
+          amount = amount + value
+        end
+      end
+      return amount
+    end
+
+    function base_stats:SetBonusMS(ability_name, amount)
+      self.bonus_movespeed[ability_name] = amount
+    end
 
 		function base_stats:SetBaseAttackTime(bonus)
 			if IsServer() then

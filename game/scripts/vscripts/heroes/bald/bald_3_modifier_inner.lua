@@ -9,13 +9,19 @@ function bald_3_modifier_inner:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-
+  self.origin = self.parent:GetOrigin()
+  self.stomp = 0
+  
   self.spell_immunity = self:GetAbility():GetSpecialValueFor("special_spell_immunity")
-  local modifier = self.parent:FindModifierByNameAndCaster(self.ability:GetIntrinsicModifierName(), self.caster)
+  self.giant = self:GetAbility():GetSpecialValueFor("special_giant")
+
+  self.ability:SetActivated(false)
+  self.ability:EndCooldown()
 
 	if IsServer() then
-    modifier:SetStackCount(kv.stack)
 		self:PlayEfxStart()
+    if self.spell_immunity == 1 then self:PlayEfxBKB() end
+    if self.giant == 1 then self:OnIntervalThink() end
 	end
 end
 
@@ -24,8 +30,9 @@ function bald_3_modifier_inner:OnRefresh(kv)
 end
 
 function bald_3_modifier_inner:OnRemoved()
-  local modifier = self.parent:FindModifierByNameAndCaster(self.ability:GetIntrinsicModifierName(), self.caster)
-  if IsServer() then modifier:SetStackCount(0) end
+  self.ability:ResetModifierStack()
+  self.ability:SetActivated(true)
+  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -33,13 +40,33 @@ end
 function bald_3_modifier_inner:CheckState()
 	local state = {}
 
-	if self.spell_immunity == 1 then
-		table.insert(state, MODIFIER_STATE_MAGIC_IMMUNE, true)
-	end
+  if self.giant == 1 then
+  	table.insert(state, MODIFIER_STATE_ALLOW_PATHING_THROUGH_CLIFFS, true)
+  	table.insert(state, MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES, true)
+  end
+
+  if self.spell_immunity == 1 then
+    table.insert(state, MODIFIER_STATE_MAGIC_IMMUNE, true)
+  end
 
 	return state
 end
 
+function bald_3_modifier_inner:OnIntervalThink()
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), 100 * self.parent:GetModelScale(), false)
+  if trees == nil then return end
+  for _,tree in pairs(trees) do tree:CutDown(self.parent:GetTeamNumber()) end
+
+  local distance = (self.origin - self.parent:GetOrigin()):Length2D()
+  self.stomp = self.stomp + distance
+  while self.stomp >= 250 do
+    self.stomp = self.stomp - 250
+    if IsServer() then self:PlayEfxShake() end
+  end
+
+  self.origin = self.parent:GetOrigin()
+  if IsServer() then self:StartIntervalThink(0.2) end
+end
 
 -- UTILS -----------------------------------------------------------
 
@@ -54,4 +81,19 @@ function bald_3_modifier_inner:PlayEfxStart()
 	self:AddParticle(particle, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_EarthSpirit.Magnetize.Cast") end
+end
+
+function bald_3_modifier_inner:PlayEfxBKB()
+	local bkb_particle = ParticleManager:CreateParticle("particles/items_fx/black_king_bar_avatar.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(bkb_particle, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	self:AddParticle(bkb_particle, false, false, -1, true, false)
+end
+
+function bald_3_modifier_inner:PlayEfxShake()
+  local string = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
+  local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
+  ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
+  ParticleManager:SetParticleControl(particle, 1, Vector(800 * (self:GetParent():GetModelScale() - 1), 0, 0))
+
+  if IsServer() then self.parent:EmitSound("Bald.Move") end
 end

@@ -308,12 +308,12 @@ base_stats_mod = class ({})
 -- AGI
 
   function base_stats_mod:GetModifierMoveSpeedBonus_Percentage_Unique(keys)
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"]))
+    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
     return (10000) / total_movespeed
   end
 
   function base_stats_mod:GetModifierMoveSpeedOverride(keys)
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"]))
+    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
     return total_movespeed
   end
 
@@ -322,7 +322,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMoveSpeed_Limit()
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"]))
+    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
     return (total_movespeed * 2) + 100
   end
 
