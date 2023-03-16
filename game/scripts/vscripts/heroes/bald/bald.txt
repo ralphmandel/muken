@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/bald/bald_1__power"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_power"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"8"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -35,35 +35,25 @@
 				"var_type"		"FIELD_FLOAT"
 				"duration"		"60"
 			}
+      "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"gain"		    "3"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8"
 			}
       "16"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"special_hit_build"		"0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_bash_duration"	"0"
 			}
-       "17"
+      "17"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"special_hit_build_refresh"	"0"
-			}
-      "18"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"special_bash_chance"	    "0"
-			}
-      "19"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"special_bash_duration"	    "0"
-			}
-      "20"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"special_bash_damage"	    "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_bash_damage"	  "0"
 			}
 		}
 	}
@@ -163,7 +153,7 @@
       "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"buff_duration"	  "10"
+				"buff_duration"	  "12"
 			}
       "05"
 			{
@@ -199,6 +189,16 @@
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_giant"           "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stomp_radius"    "0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stomp_damage"    "0"
 			}
 		}
 	}

@@ -36,17 +36,15 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("bald_1__power_rank_21") then
+		if caster:FindAbilityByName("bald_1__power_rank_11") then
 			if value_name == "duration" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bald_1__power_rank_31") then
-			if value_name == "special_hit_build" then return 1 end
-			if value_name == "special_hit_build_refresh" then return 1 end
+		if caster:FindAbilityByName("bald_1__power_rank_21") then
+			if value_name == "gain" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_1__power_rank_41") then
-			if value_name == "special_bash_chance" then return 1 end
 			if value_name == "special_bash_duration" then return 1 end
 			if value_name == "special_bash_damage" then return 1 end
 		end
@@ -88,11 +86,13 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bald_3__inner_rank_31") then
-      if value_name == "special_giant" then return 1 end
+			if value_name == "special_spell_immunity" then return 1 end
 		end
 
     if caster:FindAbilityByName("bald_3__inner_rank_41") then
-			if value_name == "special_spell_immunity" then return 1 end
+      if value_name == "special_giant" then return 1 end
+      if value_name == "special_stomp_radius" then return 1 end
+      if value_name == "special_stomp_damage" then return 1 end
 		end
 	end
 
@@ -147,6 +147,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+    if value_name == "con" then return 1 end
 
 		if caster:FindAbilityByName("bald_u__vitality_rank_12") then
 			if value_name == "regen_in" then return 1 end
@@ -173,15 +174,13 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "bald_1__power" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCooldown" then return 5 end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "duration" then return 90 end
-		if value_name == "special_hit_build" then return 5 end
-		if value_name == "special_hit_build_refresh" then return 3 end
-		if value_name == "special_bash_chance" then return 15 end
-		if value_name == "special_bash_duration" then return 1 end
-		if value_name == "special_bash_damage" then return 40 end
+    if value_name == "duration" then return 75 end
+    if value_name == "gain" then return 4 end
+    if value_name == "special_bash_duration" then return 1.5 end
+    if value_name == "special_bash_damage" then return 40 end
 	end
 
 	if ability:GetAbilityName() == "bald_2__bash" then
@@ -230,8 +229,10 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "interval" then return 2 end
     if value_name == "bonus_stack" then return 25 end
-    if value_name == "special_giant" then return 1 end
     if value_name == "special_spell_immunity" then return 1 end
+    if value_name == "special_giant" then return 1 end
+    if value_name == "special_stomp_radius" then return 175 end
+    if value_name == "special_stomp_damage" then return 100 end
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then

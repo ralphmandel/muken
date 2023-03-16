@@ -249,8 +249,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     function ancient_2__leap:PlayEfxStart(radius)
         local caster = self:GetCaster()
         local particle_cast = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2.vpcf"
-        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, caster)
-        ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+        local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
         ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
 
         if IsServer() then caster:EmitSound("Hero_ElderTitan.EchoStomp") end

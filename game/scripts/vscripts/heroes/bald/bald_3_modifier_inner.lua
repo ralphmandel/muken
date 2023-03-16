@@ -43,6 +43,7 @@ function bald_3_modifier_inner:CheckState()
   if self.giant == 1 then
   	table.insert(state, MODIFIER_STATE_ALLOW_PATHING_THROUGH_CLIFFS, true)
   	table.insert(state, MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES, true)
+  	table.insert(state, MODIFIER_STATE_NO_UNIT_COLLISION, true)
   end
 
   if self.spell_immunity == 1 then
@@ -53,22 +54,54 @@ function bald_3_modifier_inner:CheckState()
 end
 
 function bald_3_modifier_inner:OnIntervalThink()
-  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), 100 * self.parent:GetModelScale(), false)
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.parent:GetModelScale() * 75, false)
   if trees == nil then return end
   for _,tree in pairs(trees) do tree:CutDown(self.parent:GetTeamNumber()) end
 
   local distance = (self.origin - self.parent:GetOrigin()):Length2D()
-  self.stomp = self.stomp + distance
-  while self.stomp >= 250 do
-    self.stomp = self.stomp - 250
-    if IsServer() then self:PlayEfxShake() end
+  if distance >= 50 then
+    self.stomp = self.stomp + distance
+    self.origin = self.parent:GetOrigin()
   end
 
-  self.origin = self.parent:GetOrigin()
-  if IsServer() then self:StartIntervalThink(0.2) end
+  if self.stomp >= 150 then
+    self.stomp = self.stomp - 150
+    self:PerformStomp()
+  end
+
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function bald_3_modifier_inner:PerformStomp()
+  local stomp_radius = self.parent:GetModelScale() * self.ability:GetSpecialValueFor("special_stomp_radius")
+  local stomp_damage = self.parent:GetModelScale() * self.ability:GetSpecialValueFor("special_stomp_damage")
+
+  local enemies = FindUnitsInRadius(
+    self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, stomp_radius,
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+  )
+
+  for _,enemy in pairs(enemies) do
+    ApplyDamage({
+      attacker = self.parent, victim = enemy,
+      damage = stomp_damage,
+      damage_type = DAMAGE_TYPE_PHYSICAL,
+      ability = self.ability
+    })
+  end
+
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), stomp_radius, false)
+  if trees then
+    for _,tree in pairs(trees) do
+      tree:CutDown(self.parent:GetTeamNumber())
+    end
+  end
+
+  if IsServer() then self:PlayEfxShake(stomp_radius) end
+end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -89,11 +122,17 @@ function bald_3_modifier_inner:PlayEfxBKB()
 	self:AddParticle(bkb_particle, false, false, -1, true, false)
 end
 
-function bald_3_modifier_inner:PlayEfxShake()
+function bald_3_modifier_inner:PlayEfxShake(stomp_radius)
   local string = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
   local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
   ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
-  ParticleManager:SetParticleControl(particle, 1, Vector(800 * (self:GetParent():GetModelScale() - 1), 0, 0))
+  ParticleManager:SetParticleControl(particle, 1, Vector((self.parent:GetModelScale() - 1) * 800, 0, 0))
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	local particle_stomp = "particles/units/heroes/hero_earthshaker/earthshaker_aftershock.vpcf"
+	local effect_stomp = ParticleManager:CreateParticle(particle_stomp, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_stomp, 1, Vector(stomp_radius, stomp_radius, stomp_radius))
+	ParticleManager:ReleaseParticleIndex(effect_stomp)
 
   if IsServer() then self.parent:EmitSound("Bald.Move") end
 end

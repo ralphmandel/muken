@@ -10,7 +10,6 @@ function bald_1_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-	self.build_stack = 0
 
 	if IsServer() then self:SetStackCount(0) end
 end
@@ -40,21 +39,13 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 	if self.parent:PassivesDisabled() then return 0 end
 	if self.ability:IsCooldownReady() == false then return 0 end
 
-	local hit_build = self.ability:GetSpecialValueFor("special_hit_build")
-	local hit_build_refresh = self.ability:GetSpecialValueFor("special_hit_build_refresh")
-	local bash_chance = self.ability:GetSpecialValueFor("special_bash_chance")
-	local bash_duration = self.ability:GetSpecialValueFor("special_bash_duration")
 	local bash_damage = self.ability:GetSpecialValueFor("special_bash_damage")
-
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self:AddMultStack()
-	self.build_stack = 0
 
-	if hit_build > 0 then self:StartIntervalThink(hit_build_refresh) end
-
-	if RandomFloat(1, 100) <= bash_chance then
+	if bash_damage > 0 then
 		local total_damage = self.parent:GetAverageTrueAttackDamage(keys.target) + bash_damage
-		local total_bash = total_damage * bash_duration * 0.01
+		local total_bash = total_damage * self.ability:GetSpecialValueFor("special_bash_duration") * 0.01
 		self:PlayEfxImpact(keys.target)
 
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
@@ -77,34 +68,20 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 	return 0
 end
 
-function bald_1_modifier_passive:OnIntervalThink()
-	local hit_build = self.ability:GetSpecialValueFor("special_hit_build")
-	self.build_stack = self.build_stack + 1
-	
-	if self.build_stack + 1 >= hit_build then self:StartIntervalThink(-1) end
-end
-
 function bald_1_modifier_passive:OnStackCountChanged(old)
+  local total_gain = self.ability:GetSpecialValueFor("gain") * self:GetStackCount()
 	RemoveBonus(self.ability, "_1_STR", self.parent)
-
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
-	end
+  AddBonus(self.ability, "_1_STR", self.parent, total_gain, 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------
 
 function bald_1_modifier_passive:AddMultStack()
-	local duration = self.ability:GetSpecialValueFor("duration")
-	local stacks = self.build_stack + 1
-
-	self:SetStackCount(self:GetStackCount() + stacks)
+	self:IncrementStackCount()
 
 	local this = tempTable:AddATValue(self)
 	self.parent:AddNewModifier(self.caster, self.ability, "bald_1_modifier_passive_stack", {
-		duration = duration,
-		modifier = this,
-		stacks = stacks
+		duration = self.ability:GetSpecialValueFor("duration"), modifier = this
 	})
 end
 
