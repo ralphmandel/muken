@@ -119,27 +119,30 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "AbilityCastRange" then return 1 end
-		if value_name == "spike_radius" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "spike_radius" then return 1 end
+
+    if caster:HasModifier("bald_3_modifier_inner") then
+      if value_name == "amount" then return 1 end
+    end
 
 		if caster:FindAbilityByName("bald_5__spike_rank_11") then
-			if value_name == "damage" then return 1 end
+			if value_name == "knockback" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_5__spike_rank_21") then
-			if value_name == "percent" then return 1 end
+			if value_name == "spike_damage" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_5__spike_rank_31") then
-			if value_name == "charges" then return 1 end
-		end
-
-		if caster:FindAbilityByName("bald_5__spike_rank_32") then
-			if value_name == "movespeed" then return 1 end
+			if value_name == "special_goo_duration" then return 1 end
+			if value_name == "special_goo_max_stack" then return 1 end
+			if value_name == "special_goo_dex" then return 1 end
+			if value_name == "special_goo_ms" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bald_5__spike_rank_41") then
-			if value_name == "absorb_skill" then return 1 end
+      if value_name == "special_call_duration" then return 1 end
 		end
 	end
 
@@ -179,8 +182,8 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "duration" then return 75 end
     if value_name == "gain" then return 4 end
-    if value_name == "special_bash_duration" then return 1.5 end
-    if value_name == "special_bash_damage" then return 40 end
+    if value_name == "special_bash_duration" then return 1 end
+    if value_name == "special_bash_damage" then return 50 end
 	end
 
 	if ability:GetAbilityName() == "bald_2__bash" then
@@ -232,7 +235,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_spell_immunity" then return 1 end
     if value_name == "special_giant" then return 1 end
     if value_name == "special_stomp_radius" then return 175 end
-    if value_name == "special_stomp_damage" then return 100 end
+    if value_name == "special_stomp_damage" then return 50 end
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
@@ -254,32 +257,23 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
-		if value_name == "AbilityManaCost" then
-			if ability:GetCurrentAbilityCharges() == ability:GetSpecialValueFor("charges") then
-				return 120 * (1 + ((ability_level - 1) * 0.05))
-			end
-			return 0
-		end
-		if value_name == "AbilityCooldown" then return 15 end
-
-		if value_name == "AbilityCastRange" then
-			if caster:FindAbilityByName("bald_5__spike_rank_12") then
-				return 1200
-			end
-			return 400
-		end
-
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("spike_radius") end
     if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "amount" then return 100 end
 
 		if value_name == "spike_radius" then
-			return 300 * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
-		end
+      return ability:GetSpecialValueFor("radius_mult") * caster:FindAbilityByName("bald__precache"):GetLevel() * 0.01
+    end
 
-		if value_name == "damage" then return 100 end
-		if value_name == "percent" then return 75 end
-		if value_name == "charges" then return 2 end
-		if value_name == "movespeed" then return 50 end
-		if value_name == "absorb_skill" then return 1 end
+		if value_name == "knockback" then return 200 end
+		if value_name == "spike_damage" then return 200 end
+    if value_name == "special_goo_duration" then return 10 end
+    if value_name == "special_goo_max_stack" then return 10 end
+    if value_name == "special_goo_dex" then return -3 end
+    if value_name == "special_goo_ms" then return 10 end
+    if value_name == "special_call_duration" then return 50 end
 	end
 
 	if ability:GetAbilityName() == "bald_u__vitality" then

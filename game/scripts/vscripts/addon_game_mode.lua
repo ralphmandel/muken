@@ -20,6 +20,7 @@ function Precache( context )
     -- It it likely that precaching a single particle system will precache all of its children, but this may not be guaranteed
     --PrecacheResource("particle_folder", "particles/test_particle", context)
     PrecacheResource( "particle", "particles/econ/items/silencer/silencer_ti6/silencer_last_word_ti6_silence.vpcf", context)
+    PrecacheResource( "particle", "particles/items_fx/black_king_bar_avatar.vpcf", context)
     PrecacheResource( "particle", "particles/status_fx/status_effect_medusa_stone_gaze.vpcf", context)
     PrecacheResource( "particle", "particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff_stoned.vpcf", context)
     PrecacheResource( "particle", "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", context)
@@ -99,6 +100,7 @@ function Precache( context )
     PrecacheResource( "model", "models/props_gameplay/rune_goldxp.vmdl", context )
 
   -- Sounds can precached here like anything else
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context )

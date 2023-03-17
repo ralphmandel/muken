@@ -55,7 +55,6 @@ require("internal/talent_tree")
 
 		if self.skill_points == nil then
 			self.skill_points = 3
-			if self.hero_name == "bald" then self.skill_points = 2 end
 			if self.hero_name == "flea" then self.skill_points = 2 end
 			if self.hero_name == "striker" then self.skill_points = 2 end
 			if self.hero_name == "bloodstained" then self.skill_points = 1 end
@@ -413,6 +412,13 @@ require("internal/talent_tree")
 			-- Bloodstained 5.31 requires ultimate
 			if talentName == "bloodstained_5__tear_rank_31"
 			and self:GetCaster():FindAbilityByName("bloodstained_u__seal"):IsTrained() == false then
+				return false
+			end
+
+		-- BALDUR
+			-- Baldur 5.41 requires skill 3
+			if talentName == "bald_5__spike_rank_41"
+			and self:GetCaster():FindAbilityByName("bald_3__inner"):IsTrained() == false then
 				return false
 			end
 

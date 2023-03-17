@@ -1,16 +1,16 @@
-bald_5_modifier_spike_target = class({})
+template_x_modifier_example = class({})
 
-function bald_5_modifier_spike_target:IsHidden() return false end
-function bald_5_modifier_spike_target:IsPurgable() return false end
+function template_x_modifier_example:IsHidden() return false end
+function template_x_modifier_example:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function bald_5_modifier_spike_target:OnCreated(kv)
+function template_x_modifier_example:OnCreated(kv)
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
     self.ability = self:GetAbility()
 	
-	self.caster:AddNewModifier(self.caster, self.ability, "bald_5_modifier_spike_caster", {
+	self.caster:AddNewModifier(self.caster, self.ability, "template_x_modifier_spike_caster", {
 		duration = self:GetDuration()
 	})
 
@@ -24,14 +24,14 @@ function bald_5_modifier_spike_target:OnCreated(kv)
 	if IsServer() then self:PlayEfxStart() end
 end
 
-function bald_5_modifier_spike_target:OnRefresh(kv)
-	self.caster:AddNewModifier(self.caster, self.ability, "bald_5_modifier_spike_caster", {
+function template_x_modifier_example:OnRefresh(kv)
+	self.caster:AddNewModifier(self.caster, self.ability, "template_x_modifier_spike_caster", {
 		duration = self:GetDuration()
 	})
 end
 
-function bald_5_modifier_spike_target:OnRemoved()
-	local mod_caster = self.caster:FindModifierByNameAndCaster("bald_5_modifier_spike_caster", self.caster)
+function template_x_modifier_example:OnRemoved()
+	local mod_caster = self.caster:FindModifierByNameAndCaster("template_x_modifier_spike_caster", self.caster)
 	if mod_caster then mod_caster:DecrementStackCount() end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
@@ -42,7 +42,7 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bald_5_modifier_spike_target:DeclareFunctions()
+function template_x_modifier_example:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ABSORB_SPELL,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
@@ -51,7 +51,7 @@ function bald_5_modifier_spike_target:DeclareFunctions()
 	return funcs
 end
 
-function bald_5_modifier_spike_target:GetAbsorbSpell(keys)
+function template_x_modifier_example:GetAbsorbSpell(keys)
 	local absorb_skill = self.ability:GetSpecialValueFor("absorb_skill")
 
 	if absorb_skill > 0 then
@@ -63,7 +63,7 @@ function bald_5_modifier_spike_target:GetAbsorbSpell(keys)
 	return absorb_skill
 end
 
-function bald_5_modifier_spike_target:GetModifierIncomingDamage_Percentage(keys)
+function template_x_modifier_example:GetModifierIncomingDamage_Percentage(keys)
 	local percent = self.ability:GetSpecialValueFor("percent")
 	self:PlayEfxHit()
 
@@ -82,19 +82,19 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bald_5_modifier_spike_target:GetEffectName()
+function template_x_modifier_example:GetEffectName()
 	return "particles/items3_fx/star_emblem_friend_shield.vpcf"
 end
 
-function bald_5_modifier_spike_target:GetEffectAttachType()
+function template_x_modifier_example:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
 
-function bald_5_modifier_spike_target:PlayEfxStart()
+function template_x_modifier_example:PlayEfxStart()
 	if IsServer() then self.parent:EmitSound("Item.StarEmblem.Friendly") end
 end
 
-function bald_5_modifier_spike_target:PlayEfxHit()
+function template_x_modifier_example:PlayEfxHit()
 	local particle_cast = "particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell_dmg_golden.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, self.caster)
 	ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)

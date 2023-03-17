@@ -84,7 +84,7 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"stun_max"      "3.5"
+				"stun_max"      "4"
 			}
       "03"
 			{
@@ -209,7 +209,7 @@
 		"ScriptFile"            		"heroes/bald/bald_4__clean"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_clean"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
         "LevelsBetweenUpgrades"  		"25"
 
@@ -256,65 +256,72 @@
 		"ScriptFile"            		"heroes/bald/bald_5__spike"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_spike"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-        "AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.4"
-
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"percent"	        "50"
+				"amount"	        "300"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"amount"	        "175"
+				"radius_mult"	    "225"
 			}
-            "03"
+      "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"spike_radius"	    "300"
+				"spike_radius"	  "1"
 			}
-            "04"
+      "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"damage"	        "75"
+				"spike_damage"	  "120"
 			}
-            "14"
+      "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"duration"	      "15 15.5 16 16.5 17 17.5 18 18.5 19 19.5 20 20.5 21 21.5 22"
+				"knockback"	      "150"
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "16"
+      "16"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"charges"		"1"
+				"var_type"		          "FIELD_FLOAT"
+				"special_goo_duration"	"0"
 			}
-            "17"
+      "17"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"movespeed"		"0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_goo_max_stack"	"0"
 			}
-            "18"
+      "18"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"absorb_skill"	"0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_goo_dex"	      "0"
+			}
+      "19"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_goo_ms"	      "0"
+			}
+      "20"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_call_duration"	"0"
 			}
 		}
 	}

@@ -34,7 +34,7 @@ function burning_armor_modifier:OnRefresh(kv)
 end
 
 function burning_armor_modifier:OnRemoved()
-	if IsServer() then self.parent:StopSound("Hero_WarlockGolem.Spawn_Loop") end
+	if IsServer() then self.parent:StopSound("Igneo.Burn.Loop") end
 end
 
 --------------------------------------------------------------------------------------------------------------------------
@@ -68,8 +68,8 @@ function burning_armor_modifier:OnIntervalThink()
 	end
 
 	if IsServer() then
-		self.parent:StopSound("Hero_WarlockGolem.Spawn_Loop")
-		self.parent:EmitSound("Hero_WarlockGolem.Spawn_Loop")
+		self.parent:StopSound("Igneo.Burn.Loop")
+		self.parent:EmitSound("Igneo.Burn.Loop")
 	end
 end
 

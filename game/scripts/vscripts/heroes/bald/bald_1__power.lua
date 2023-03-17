@@ -5,14 +5,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- INIT
 
-    function bald_1__power:Spawn()
-        if self:IsTrained() == false then self:UpgradeAbility(true) end
-    end
-
 -- SPELL START
 
-    function bald_1__power:GetIntrinsicModifierName()
-        return "bald_1_modifier_passive"
-    end
+  function bald_1__power:GetIntrinsicModifierName()
+    return "bald_1_modifier_passive"
+  end
 
 -- EFFECTS
