@@ -211,41 +211,32 @@
 		"AbilityTextureName"     		"bald_clean"
 		"MaxLevel"               		"15"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"6"
+				"var_type"		        "FIELD_FLOAT"
+				"stack_decrease_time"	"5"
 			}
-            "02"
+      "02"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"heal"		    "40"
+				"var_type"		  "FIELD_FLOAT"
+				"max_stack"		  "5"
 			}
-           "14"
+      "03"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"intervals"		"1.5 1.45 1.4 1.35 1.3 1.25 1.2 1.15 1.1 1.05 1"
+				"var_type"		  "FIELD_FLOAT"
+				"heal"		      "50"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-            "16"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"magical_damage""0"
-			}
-            "17"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"0"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
 			}
 		}
 	}

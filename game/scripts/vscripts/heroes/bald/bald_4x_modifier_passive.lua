@@ -1,14 +1,14 @@
 bald_4_modifier_passive = class({})
 
-function bald_4_modifier_passive:IsHidden() return false end
+function bald_4_modifier_passive:IsHidden() return true end
 function bald_4_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_4_modifier_passive:OnCreated(kv)
-  self.caster = self:GetCaster()
-  self.parent = self:GetParent()
-  self.ability = self:GetAbility()
+    self.caster = self:GetCaster()
+    self.parent = self:GetParent()
+    self.ability = self:GetAbility()
 
 	self.exceptions_old = {
 		"_modifier_ban",
@@ -49,10 +49,8 @@ function bald_4_modifier_passive:OnCreated(kv)
 		"_2_DEF_modifier_stack", "_2_DEX_modifier_stack",
 		"_2_LCK_modifier_stack", "_2_MND_modifier_stack",
 		"_2_REC_modifier_stack", "_2_RES_modifier_stack",
-		"_modifier_blind_stack", "_modifier_movespeed_debuff"
+		"_modifier_blind_stack", "shadowmancer_1_modifier_debuff_stack",
 	}
-
-  if IsServer() then self:SetStackCount(0) end
 end
 
 function bald_4_modifier_passive:OnRefresh(kv)
@@ -88,47 +86,36 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 
 	self.parent:Heal(heal, self.ability)
 
-  if IsServer() then
-    self:IncrementStackCount()
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("stack_decrease_time"))
-  end
-end
+	local damage = ApplyDamage({
+		damage = self.ability:GetSpecialValueFor("magical_damage"),
+		attacker = self.caster,
+		victim = keys.added_buff:GetCaster(),
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability
+	})
 
-function bald_4_modifier_passive:OnIntervalThink()
-  if IsServer() then
-    self:DecrementStackCount()
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("stack_decrease_time"))
-  end
-end
-
-function bald_4_modifier_passive:OnStackCountChanged(old)
-  if self:GetStackCount() == 0 then
-    if IsServer() then self:StartIntervalThink(-1) end
-  end
-
-  if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_stack") then
-    self.parent:Purge(false, true, false, true, false)
-    self:PlayEfxPurge(self.parent)
-    self:SetStackCount(0)
-  end
+	if keys.added_buff:GetCaster() then
+		if IsValidEntity(keys.added_buff:GetCaster()) then
+			self:PlayEfxDamage(keys.added_buff:GetCaster(), damage)			
+		end
+	end
 end
 
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
 
-function bald_4_modifier_passive:GetEffectName()
-	return "particles/units/heroes/hero_oracle/oracle_false_promise.vpcf"
-end
+function bald_4_modifier_passive:PlayEfxDamage(target, damage)
+	if damage == 0 then return end
 
-function bald_4_modifier_passive:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
+	local particle = "particles/bald/bald_zap/bald_zap_attack_heavy_ti_5.vpcf"
+	local zap_pfx = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControlEnt(zap_pfx, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(zap_pfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(zap_pfx)
 
-function bald_4_modifier_passive:PlayEfxPurge(target)
-	local string = "particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf"
-	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(particle, 0, target:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(particle)
-	if IsServer() then target:EmitSound("DOTA_Item.HotD.Activate") end
+	if IsServer() then
+		self.parent:EmitSound("Hero_Pugna.NetherWard.Attack")
+		target:EmitSound("Hero_Pugna.NetherWard.Target")
+	end
 end

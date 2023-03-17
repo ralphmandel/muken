@@ -239,15 +239,8 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bald_4__clean" then
-		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
-
-		if value_name == "AbilityCooldown" then
-			if caster:FindAbilityByName("bald_4__clean_rank_21") then
-				return 36
-			end
-			return 24
-		end
-
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "heal" then return 60 end
