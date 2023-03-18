@@ -220,23 +220,28 @@
 		{
       "01"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"stack_decrease_time"	"5"
+				"var_type"		  "FIELD_FLOAT"
+				"purge_chance"  "20"
 			}
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"max_stack"		  "5"
+				"heal_amp"		  "25"
 			}
       "03"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"heal"		      "50"
+				"heal"		      "40"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+			}
+      "16"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"special_damage"  "100"
 			}
 		}
 	}

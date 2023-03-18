@@ -104,14 +104,25 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("bald_4__clean_rank_11") then
 			if value_name == "heal" then return 1 end
 		end
+
+    if caster:FindAbilityByName("bald_4__clean_rank_12") then
+			if value_name == "heal_amp" then return 1 end
+		end
+
 		if caster:FindAbilityByName("bald_4__clean_rank_21") then
-			if value_name == "duration" then return 1 end
+			if value_name == "purge_chance" then return 1 end
 		end
+
 		if caster:FindAbilityByName("bald_4__clean_rank_31") then
-			if value_name == "magical_damage" then return 1 end
+			if value_name == "" then return 1 end
 		end
+
+    if caster:FindAbilityByName("bald_4__clean_rank_32") then
+			if value_name == "" then return 1 end
+		end
+
 		if caster:FindAbilityByName("bald_4__clean_rank_41") then
-			if value_name == "radius" then return 1 end
+			if value_name == "special_damage" then return 1 end
 		end
 	end
 
@@ -244,9 +255,9 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "heal" then return 60 end
-		if value_name == "duration" then return 12 end
-		if value_name == "magical_damage" then return 150 end
-		if value_name == "radius" then return 175 end
+		if value_name == "heal_amp" then return 35 end
+		if value_name == "purge_chance" then return 40 end
+		if value_name == "special_damage" then return 150 end
 	end
 
 	if ability:GetAbilityName() == "bald_5__spike" then
