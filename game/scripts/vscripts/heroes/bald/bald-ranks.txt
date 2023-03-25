@@ -25,7 +25,8 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bald_1__power_rank_31"
+				"2"   "bald_1__power_rank_32"
 			}
 			"3"
 			{
@@ -84,8 +85,7 @@
 			}
 			"2"
 			{
-				"1"   "bald_4__clean_rank_31"
-				"2"   "bald_4__clean_rank_32"
+				"1"   "empty"
 			}
 			"3"
 			{

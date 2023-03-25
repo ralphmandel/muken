@@ -25,13 +25,18 @@ end
 
 function bald_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL
 	}
 
 	return funcs
 end
 
-function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
+function bald_1_modifier_passive:OnAttackFail(keys)
+  if keys.attacker ~= self.parent  then return end
+  if self.ability:IsCooldownReady() == false then return end
+
+  RemoveBonus(self.ability, "_1_AGI", self.parent)
 end
 
 function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
@@ -39,19 +44,30 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 	if self.parent:PassivesDisabled() then return 0 end
 	if self.ability:IsCooldownReady() == false then return 0 end
 
+  local break_duration = self.ability:GetSpecialValueFor("special_break_duration")
 	local bash_damage = self.ability:GetSpecialValueFor("special_bash_damage")
+	local bash_duration = self.ability:GetSpecialValueFor("special_bash_duration")
+
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self:AddMultStack()
 
+  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_combo_chance") then
+    AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
+  end
+
+  if break_duration then
+    keys.target:AddNewModifier(self.caster, self.ability, "_modifier_break", {
+      duration = CalcStatus(break_duration, self.caster, keys.attacker)
+    })
+  end
+
 	if bash_damage > 0 then
 		local total_damage = self.parent:GetAverageTrueAttackDamage(keys.target) + bash_damage
-		local total_bash = total_damage * self.ability:GetSpecialValueFor("special_bash_duration") * 0.01
+		local total_bash = CalcStatus(total_damage * bash_duration * 0.01, self.caster, keys.target)
 		self:PlayEfxImpact(keys.target)
 
-		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-			duration = CalcStatus(total_bash, self.caster, keys.target)
-		})
-	
+		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = total_bash})
 		keys.target:AddNewModifier(self.caster, nil, "modifier_knockback", {
 			duration = 0.25,
 			knockback_duration = 0.25,

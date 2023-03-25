@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/bald/bald_1__power"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_power"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"14"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -43,17 +43,32 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14"
 			}
       "16"
 			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_bash_duration"	"0"
+				"var_type"		            "FIELD_FLOAT"
+				"special_combo_chance"	  "0"
 			}
       "17"
 			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_bash_damage"	  "0"
+				"var_type"		            "FIELD_FLOAT"
+				"special_agi"	            "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_break_duration"	"0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_bash_duration"	  "0"
+			}
+      "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_bash_damage"	    "0"
 			}
 		}
 	}
@@ -209,7 +224,7 @@
 		"ScriptFile"            		"heroes/bald/bald_4__clean"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_clean"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"9"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -236,7 +251,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"rank"			  "1 2 3 4 5 6 7 8 9"
 			}
       "16"
 			{
@@ -365,8 +380,8 @@
 			}
       "16"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"lifesteal"			"0"
+				"var_type"			    "FIELD_FLOAT"
+				"special_lifesteal"	"0"
 			}
 		}
 	}

@@ -118,7 +118,7 @@ function bald_u_modifier_vitality:ApplyLifesteal(keys)
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
 
-	local lifesteal = keys.original_damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
+	local lifesteal = keys.original_damage * self.ability:GetSpecialValueFor("special_lifesteal") * 0.01
 	
 	if lifesteal > 0 then
 		keys.attacker:Heal(lifesteal, self.ability)

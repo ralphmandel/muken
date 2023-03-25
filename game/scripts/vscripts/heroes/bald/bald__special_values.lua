@@ -44,6 +44,15 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "gain" then return 1 end
 		end
 
+    if caster:FindAbilityByName("bald_1__power_rank_31") then
+			if value_name == "special_combo_chance" then return 1 end
+			if value_name == "special_agi" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bald_1__power_rank_32") then
+			if value_name == "special_break_duration" then return 1 end
+		end
+
 		if caster:FindAbilityByName("bald_1__power_rank_41") then
 			if value_name == "special_bash_duration" then return 1 end
 			if value_name == "special_bash_damage" then return 1 end
@@ -113,14 +122,6 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "purge_chance" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bald_4__clean_rank_31") then
-			if value_name == "" then return 1 end
-		end
-
-    if caster:FindAbilityByName("bald_4__clean_rank_32") then
-			if value_name == "" then return 1 end
-		end
-
 		if caster:FindAbilityByName("bald_4__clean_rank_41") then
 			if value_name == "special_damage" then return 1 end
 		end
@@ -171,7 +172,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "delay" then return 1 end
 		end
 		if caster:FindAbilityByName("bald_u__vitality_rank_31") then
-			if value_name == "lifesteal" then return 1 end
+			if value_name == "special_lifesteal" then return 1 end
 		end
 	end
 
@@ -193,6 +194,9 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "duration" then return 75 end
     if value_name == "gain" then return 4 end
+    if value_name == "special_combo_chance" then return 30 end
+    if value_name == "special_agi" then return 50 end
+    if value_name == "special_break_duration" then return 3 end
     if value_name == "special_bash_duration" then return 1 end
     if value_name == "special_bash_damage" then return 50 end
 	end
@@ -295,7 +299,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "regen_in" then return 0.6 end
 		if value_name == "regen_out" then return 1.75 end
 		if value_name == "delay" then return 3 end
-		if value_name == "lifesteal" then return 10 end
+		if value_name == "special_lifesteal" then return 10 end
 	end
 
 	return 0
