@@ -2,7 +2,7 @@ bloodstained__modifier_bleeding_status_efx = class({})
 
 function bloodstained__modifier_bleeding_status_efx:IsHidden() return true end
 function bloodstained__modifier_bleeding_status_efx:IsPurgable() return false end
-function bloodstained__modifier_bleeding_status_efx:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+--function bloodstained__modifier_bleeding_status_efx:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -----------------------------------------------------------
 

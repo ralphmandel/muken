@@ -82,6 +82,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("druid_3__totem_rank_11") then
 		end
@@ -208,9 +209,10 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 50 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "radius" then return 225 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
