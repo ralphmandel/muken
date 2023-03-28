@@ -148,11 +148,11 @@
 		"ScriptFile"            		"heroes/druid/druid_3__totem"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_totem"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -186,17 +186,27 @@
       "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"		"1.2"
+				"interval"		"1.5"
 			}
       "06"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"			"1"
+				"ms_limit"		"175"
+			}
+      "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"			"1 2 3 4 5 6 7 8 9 10"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+			}
+      "16"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_spike_damage"  "0"
 			}
 		}
 	}

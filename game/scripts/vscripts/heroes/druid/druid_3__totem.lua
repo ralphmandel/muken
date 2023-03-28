@@ -13,9 +13,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		totem:CreatureLevelUp(self:GetSpecialValueFor("rank"))
 		totem:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-		totem:AddNewModifier(caster, self, "druid_3_modifier_totem", {
-      duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, totem)
-    })
+		totem:AddNewModifier(caster, self, "druid_3_modifier_totem", {duration = self:GetSpecialValueFor("duration")})
 
     if IsServer() then caster:EmitSound("Hero_Juggernaut.HealingWard.Cast") end
   end
