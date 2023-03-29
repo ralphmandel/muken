@@ -255,7 +255,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "blast_radius" then return 850 + (value_level * 50) end
 
-		if value_name == "movespeed" then return 50 end
+		if value_name == "movespeed" then return 100 end
 		if value_name == "frozen_duration" then return 10 end
 		if value_name == "special_cooldown" then return 5 end
 	end

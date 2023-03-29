@@ -27,19 +27,19 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_movespeed_debuff:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE 
-	}
+-- function _modifier_movespeed_debuff:DeclareFunctions()
+-- 	local funcs = {
+-- 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+-- 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE 
+-- 	}
 
-	return funcs
-end
+-- 	return funcs
+-- end
 
-function _modifier_movespeed_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return -self.percent
-end
+-- function _modifier_movespeed_debuff:GetModifierMoveSpeedBonus_Percentage()
+-- 	return -self.percent
+-- end
 
-function _modifier_movespeed_debuff:GetModifierTurnRate_Percentage()
-    return -self.percent
-end
+-- function _modifier_movespeed_debuff:GetModifierTurnRate_Percentage()
+--     return -self.percent
+-- end

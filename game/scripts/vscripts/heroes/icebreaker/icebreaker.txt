@@ -312,7 +312,7 @@
             "01"
 			{
 				"var_type"	        "FIELD_FLOAT"
-				"movespeed"	        "25"
+				"movespeed"	        "50"
 			}
             "02"
 			{

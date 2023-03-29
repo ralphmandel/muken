@@ -78,7 +78,7 @@ function genuine_u_modifier_star:OnIntervalThink()
 
 	if self.ability:GetSpecialValueFor("special_purge") > 0 then
 		self.parent:Purge(true, false, false, false, false)
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 			percent = 100, duration = 0.5
 		})
 	end

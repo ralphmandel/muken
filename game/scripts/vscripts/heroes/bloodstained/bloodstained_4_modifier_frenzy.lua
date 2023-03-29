@@ -18,6 +18,8 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
 		percent = self.ability:GetSpecialValueFor("ms")
 	})
 
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_unslowable", {})
+
 	if IsServer() then
 		self:PlayEfxStart()
 		self:OnIntervalThink()
@@ -36,14 +38,18 @@ function bloodstained_4_modifier_frenzy:OnRemoved()
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
+
+  local mod = self.parent:FindAllModifiersByName("_modifier_unslowable")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bloodstained_4_modifier_frenzy:CheckState()
 	local state = {
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-		[MODIFIER_STATE_UNSLOWABLE] = true
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
 	}
 
 	return state

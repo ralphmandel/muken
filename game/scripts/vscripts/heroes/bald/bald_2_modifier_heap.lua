@@ -112,7 +112,7 @@ function bald_2_modifier_heap:OnIntervalThink()
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
 		duration = self.tick,
-		percent = (self:GetElapsedTime() * (75 / self.max_charge))
+		percent = (self:GetElapsedTime() * (150 / self.max_charge))
 	})
 
 	if IsServer() then

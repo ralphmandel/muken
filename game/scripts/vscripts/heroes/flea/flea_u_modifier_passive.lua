@@ -34,15 +34,17 @@ function flea_u_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if self.parent:PassivesDisabled() then return end
 
-	keys.target:AddNewModifier(self.caster, self.ability, "flea_u_modifier_weakness", {})
+  local modifier = keys.target:FindModifierByNameAndCaster("flea_u_modifier_weakness", self.caster)
+  if modifier then if modifier:GetStackCount() >= self.ability:GetSpecialValueFor("max_stack") then return end end
+
+	keys.target:AddNewModifier(self.caster, self.ability, "flea_u_modifier_weakness", {
+    duration = CalcStatus(self.ability:GetSpecialValueFor("stack_duration"), self.caster, keys.target)
+  })
 end
 
 function flea_u_modifier_passive:OnStackCountChanged(old)
 	RemoveBonus(self.ability, "_1_STR", self.parent)
-
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
-	end
+  AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

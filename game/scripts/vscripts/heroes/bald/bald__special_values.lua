@@ -234,7 +234,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "max_charge" then return 6 end
-		if value_name == "special_bonus_ms" then return 20 end
+		if value_name == "special_bonus_ms" then return 30 end
 		if value_name == "special_stun_immunity" then return 1 end
 		if value_name == "special_bash_aoe" then return 175 end
 	end
@@ -280,7 +280,7 @@ function bald__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_goo_duration" then return 10 end
     if value_name == "special_goo_max_stack" then return 10 end
     if value_name == "special_goo_dex" then return -3 end
-    if value_name == "special_goo_ms" then return 10 end
+    if value_name == "special_goo_ms" then return 15 end
     if value_name == "special_call_duration" then return 50 end
 	end
 

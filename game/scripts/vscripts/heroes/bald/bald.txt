@@ -183,7 +183,7 @@
       "07"
 			{
 				"var_type"		     "FIELD_FLOAT"
-				"slow_mult"        "2"
+				"slow_mult"        "1"
 			}
       "08"
 			{

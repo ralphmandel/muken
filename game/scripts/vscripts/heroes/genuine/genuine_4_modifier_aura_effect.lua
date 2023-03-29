@@ -17,6 +17,7 @@ function genuine_4_modifier_aura_effect:OnCreated(kv)
 		"_2_LCK_modifier_stack", "_2_MND_modifier_stack",
 		"_2_REC_modifier_stack", "_2_RES_modifier_stack",
 		"_modifier_blind_stack", "_modifier_movespeed_debuff",
+    "_modifier_percent_movespeed_debuff"
 	}
 
 	self:ApplyBuff()

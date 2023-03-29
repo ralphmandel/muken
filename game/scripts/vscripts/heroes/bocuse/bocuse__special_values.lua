@@ -261,7 +261,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "lifetime" then return 30 end
 		if value_name == "root_interval" then return 4 end
 		if value_name == "root_duration" then return 2 end
-		if value_name == "slow" then return 75 end
+		if value_name == "slow" then return 200 end
 		if value_name == "cast_range" then return 0 end
 		if value_name == "special_mobility" then return -15 end
 	end

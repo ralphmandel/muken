@@ -235,7 +235,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 		if value_name == "cast_range" then return 325 + (value_level * 25) end
 		if value_name == "max_range" then return ability:GetSpecialValueFor("cast_range") + 200 end
 
-		if value_name == "slow" then return 30 end
+		if value_name == "slow" then return 75 end
 		if value_name == "shared_damage" then return 60 end
 		if value_name == "special_reset" then return 1 end
     if value_name == "special_curse_damage" then return 3 end
@@ -255,7 +255,7 @@ function bloodstained__special_values:GetModifierOverrideAbilitySpecialValue(key
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "ms" then return 75 end
+		if value_name == "ms" then return 250 end
 		if value_name == "chance" then return 10 end
     if value_name == "duration" then return 4 end
 		if value_name == "special_bleed_chance" then return 5 end

@@ -20,6 +20,11 @@ end
 function bald_3_modifier_passive:OnRemoved()
 	RemoveBonus(self.ability, "_2_DEF", self.parent)
   self:ChangeModelScale(0)
+
+  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -77,9 +82,15 @@ function bald_3_modifier_passive:ChangeModelScale(amount)
   if base_hero_mod == nil then return end
   if base_hero_mod.model_scale == nil then return end
 
+  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
   local slow = amount * self.ability:GetSpecialValueFor("slow_mult")
-  local base_stats = self.parent:FindAbilityByName("base_stats")
-  if base_stats then base_stats:SetBonusMS(self.ability:GetAbilityName(), -slow) end
+  if slow > 0 then
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = slow})
+  end
 
   local extra_size = amount * self.ability:GetSpecialValueFor("size_mult") * 0.01
   self.parent:SetModelScale(base_hero_mod.model_scale + extra_size)

@@ -14,13 +14,6 @@ function template_x_modifier_example:OnCreated(kv)
 		duration = self:GetDuration()
 	})
 
-	local movespeed = self.ability:GetSpecialValueFor("movespeed")
-	if movespeed > 0 then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-			percent = movespeed
-		})
-	end
-
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -33,11 +26,6 @@ end
 function template_x_modifier_example:OnRemoved()
 	local mod_caster = self.caster:FindModifierByNameAndCaster("template_x_modifier_spike_caster", self.caster)
 	if mod_caster then mod_caster:DecrementStackCount() end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

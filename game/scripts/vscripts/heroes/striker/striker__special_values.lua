@@ -243,7 +243,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "special_invi_delay" then return 5 end
 		if value_name == "special_purge_chance" then return 10 end
 		if value_name == "special_debuff" then return 1 end
-		if value_name == "special_movespeed" then return 5 end
+		if value_name == "special_movespeed" then return 10 end
     if value_name == "autocast_manacost" then return 40 end
 	end
 
@@ -267,7 +267,7 @@ function striker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "damage_impact" then return 200 end
 		if value_name == "damage_hit" then return 15 end
 		if value_name == "distance" then return 1250 end
-		if value_name == "slow" then return 75 end
+		if value_name == "slow" then return 200 end
 		if value_name == "special_trail_duration" then return 10 end
 		if value_name == "special_damage_taken" then return -99999999 end
 		if value_name == "special_lifesteal" then return 25 end

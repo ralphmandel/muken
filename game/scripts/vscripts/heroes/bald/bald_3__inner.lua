@@ -1,6 +1,7 @@
 bald_3__inner = class({})
 LinkLuaModifier("bald_3_modifier_passive", "heroes/bald/bald_3_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bald_3_modifier_inner", "heroes/bald/bald_3_modifier_inner", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

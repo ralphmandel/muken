@@ -13,7 +13,7 @@ function flea_5_modifier_desolator:OnCreated(kv)
 
 	local special_slow = self.ability:GetSpecialValueFor("special_slow")
 	if special_slow > 0 then
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 			percent = special_slow
 		})
 	end
@@ -25,7 +25,7 @@ function flea_5_modifier_desolator:OnRefresh(kv)
 end
 
 function flea_5_modifier_desolator:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end

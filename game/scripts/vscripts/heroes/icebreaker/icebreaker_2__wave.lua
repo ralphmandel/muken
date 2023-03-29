@@ -5,7 +5,7 @@ LinkLuaModifier("icebreaker__modifier_hypo", "heroes/icebreaker/icebreaker__modi
 LinkLuaModifier("icebreaker__modifier_frozen", "heroes/icebreaker/icebreaker__modifier_frozen", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo_status_efx", "heroes/icebreaker/icebreaker__modifier_hypo_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/icebreaker/icebreaker__modifier_frozen_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_path", "modifiers/_modifier_path", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)

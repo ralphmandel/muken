@@ -13,7 +13,7 @@ end
 function bocuse_5_modifier_pull:OnCreated(kv)
 	if not IsServer() then return end
 
-	self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "_modifier_movespeed_buff", {percent = 75})
+	self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "_modifier_movespeed_buff", {percent = 150})
 
 	self:ApplyHorizontalMotionController()
 	self:StartIntervalThink(0.034)

@@ -173,7 +173,7 @@ function _modifier__ai:ReturningThink()
     if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
   end
 
-  self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_movespeed_buff", {percent = 100})
+  self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_movespeed_buff", {percent = 250})
 end
 
 -----------------------------------------------------------

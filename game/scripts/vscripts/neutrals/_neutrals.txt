@@ -339,7 +339,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"slow"				"75"
+				"slow"				  "50"
 			}
 		}
 	}

@@ -222,8 +222,8 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
-		if value_name == "duration" then return 4 end
-		if value_name == "max_speed" then return 75 end
+		if value_name == "duration" then return 5 end
+		if value_name == "max_speed" then return 150 end
 		if value_name == "special_charge" then return 1 end
 		if value_name == "special_no_slow" then return 1 end
 		if value_name == "special_no_slow_duration" then return 30 end
@@ -257,7 +257,7 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "radius" then return 375 + (value_level * 10) end
 
 		if value_name == "blind" then return 50 end
-		if value_name == "slow" then return 70 end
+		if value_name == "slow" then return 175 end
 		if value_name == "duration" then return 20 end
 		if value_name == "special_shadow_duration" then return 5 end
 	end
@@ -281,8 +281,8 @@ function flea__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 9 + (value_level * 1) end
 
 		if value_name == "stack_duration" then return 45 end
-		if value_name == "max_stack" then return 7 end
-		if value_name == "special_respawn_mult" then return 10 end
+		if value_name == "max_stack" then return 10 end
+		if value_name == "special_respawn_mult" then return 5 end
 	end
 
 	return 0

@@ -106,12 +106,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"max_speed"		"50"
+				"max_speed"		"100"
 			}
             "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"speed_hit"		"5"
+				"speed_hit"		"10"
 			}
             "03"
 			{
@@ -233,7 +233,7 @@
             "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "40"
+				"slow"		        "100"
 			}
             "04"
 			{
@@ -319,22 +319,22 @@
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "5"
+				"max_stack"		    "8"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"    "30"
+				"stack_duration"  "30"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"rank"				"1 2 3 4 5 6 7"
 			}
-            "16"
+      "16"
 			{
 				"var_type"			    "FIELD_FLOAT"
 				"special_respawn_mult"  "0"

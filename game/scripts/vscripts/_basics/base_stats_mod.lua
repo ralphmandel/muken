@@ -67,8 +67,6 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
       -- AGI
-      MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE,
-      MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
       MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
       MODIFIER_PROPERTY_MOVESPEED_LIMIT,
       MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -307,23 +305,18 @@ base_stats_mod = class ({})
 
 -- AGI
 
-  function base_stats_mod:GetModifierMoveSpeedBonus_Percentage_Unique(keys)
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
-    return (10000) / total_movespeed
-  end
-
-  function base_stats_mod:GetModifierMoveSpeedOverride(keys)
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
-    return total_movespeed
-  end
-
   function base_stats_mod:GetModifierIgnoreMovespeedLimit()
     return 1
   end
 
   function base_stats_mod:GetModifierMoveSpeed_Limit()
-    local total_movespeed = self.ability.base_movespeed + (self.ability.movespeed * (self.ability.stat_base["AGI"])) + self.ability:GetBonusMS(nil)
-    return (total_movespeed * 2) + 100
+    local min = 50
+    local max = 2000
+    local amount = math.floor((self.ability:GetBaseMS() - min) * self.ability:GetPercentMS()) + self.ability:GetBonusMS() + min
+    if amount < min then amount = min end
+    if amount > max then amount = max end
+
+    return amount
   end
 
   function base_stats_mod:GetModifierAttackSpeedBonus_Constant()

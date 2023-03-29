@@ -3,7 +3,7 @@ LinkLuaModifier("genuine_1_modifier_orb", "heroes/genuine/genuine_1_modifier_orb
 LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine__modifier_fear", "heroes/genuine/genuine__modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine__modifier_fear_status_efx", "heroes/genuine/genuine__modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

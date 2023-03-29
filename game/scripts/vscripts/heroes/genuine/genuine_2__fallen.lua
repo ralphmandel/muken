@@ -2,7 +2,7 @@ genuine_2__fallen = class({})
 LinkLuaModifier("genuine_2_modifier_dispel", "heroes/genuine/genuine_2_modifier_dispel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine__modifier_fear", "heroes/genuine/genuine__modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine__modifier_fear_status_efx", "heroes/genuine/genuine__modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -12,7 +12,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 	function genuine_2__fallen:OnSpellStart()
 		local caster = self:GetCaster()
 		local point = self:GetCursorPosition()
-		local speed_duration = self:GetSpecialValueFor("special_speed_duration")
 		local projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave.vpcf"
 		local direction = point - caster:GetOrigin()
 		direction.z = 0
@@ -43,12 +42,6 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 			iVisionRadius = self:GetSpecialValueFor("radius"),
 			iVisionTeamNumber = caster:GetTeamNumber()
 		})
-
-		if speed_duration > 0 then
-			caster:AddNewModifier(caster, self, "_modifier_movespeed_buff", {
-				duration = speed_duration, percent = 100
-			})
-		end
 
 		if IsServer() then caster:EmitSound("Hero_DrowRanger.Silence") end
 	end

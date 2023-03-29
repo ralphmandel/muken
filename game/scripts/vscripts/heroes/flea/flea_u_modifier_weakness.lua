@@ -1,5 +1,4 @@
 flea_u_modifier_weakness = class({})
-local tempTable = require("libraries/tempTable")
 
 function flea_u_modifier_weakness:IsHidden() return false end
 function flea_u_modifier_weakness:IsPurgable() return true end
@@ -12,59 +11,37 @@ function flea_u_modifier_weakness:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.stack = 0
 
+  self.caster:FindModifierByName(self.ability:GetIntrinsicModifierName()):IncrementStackCount()
+
 	if IsServer() then
-		self:SetStackCount(0)
-		self:AddMultStack()
-	end
+    self:SetStackCount(1)
+    self:PlayEfxHit(self.parent)
+  end
 end
 
 function flea_u_modifier_weakness:OnRefresh(kv)
-	if IsServer() then self:AddMultStack() end
+  self.caster:FindModifierByName(self.ability:GetIntrinsicModifierName()):IncrementStackCount()
+
+	if IsServer() then
+    self:IncrementStackCount()
+    self:PlayEfxHit(self.parent)
+  end
 end
 
 function flea_u_modifier_weakness:OnRemoved()
+  local modifier = self.caster:FindModifierByName(self.ability:GetIntrinsicModifierName())
+  modifier:SetStackCount(modifier:GetStackCount() - self:GetStackCount())
 	RemoveBonus(self.ability, "_1_STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function flea_u_modifier_weakness:OnStackCountChanged(old)
-	if old == self:GetStackCount() then return end
-
-	local diff = self:GetStackCount() - old
-	local mod = self.caster:FindModifierByName(self.ability:GetIntrinsicModifierName())
-	mod:SetStackCount(mod:GetStackCount() + diff)
-
-	if self:GetStackCount() == 0 then self:Destroy() return end
-	if IsServer() and diff > 0 then self:PlayEfxHit(self.parent) end
-
 	RemoveBonus(self.ability, "_1_STR", self.parent)
 	AddBonus(self.ability, "_1_STR", self.parent, -self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------
-
-function flea_u_modifier_weakness:AddMultStack()
-	local stack_duration = CalcStatus(self.ability:GetSpecialValueFor("stack_duration"), self.caster, self.parent)
-	self:SetDuration(stack_duration, true)
-	self:ChangeStack(1)
-
-	local this = tempTable:AddATValue(self)
-	self.parent:AddNewModifier(self.caster, self.ability, "flea_u_modifier_weakness_stack", {
-		duration = stack_duration,
-		modifier = this
-	})
-end
-
-function flea_u_modifier_weakness:ChangeStack(value)
-	self.stack = self.stack + value
-
-	local current_stack = self.stack
-	local max_stack = self.ability:GetSpecialValueFor("max_stack")
-	
-	if current_stack > max_stack then current_stack = max_stack end
-	self:SetStackCount(current_stack)
-end
 
 -- EFFECTS -----------------------------------------------------------
 

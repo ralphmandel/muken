@@ -100,7 +100,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
 
 		if data.knockbackProperties.knockback_distance > 0 and target:IsAlive() then
 			target:AddNewModifier(caster, nil, "modifier_knockback", data.knockbackProperties)
-			target:AddNewModifier(caster, self, "_modifier_movespeed_debuff", {percent = 100, duration = 1})
+			target:AddNewModifier(caster, self, "_modifier_movespeed_debuff", {percent = 300, duration = 1})
 		end
 
 		if IsServer() then target:EmitSound("Hero_Windrunner.PowershotDamage") end

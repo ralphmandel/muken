@@ -520,18 +520,51 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- UTIL AGI
 
-    function base_stats:GetBonusMS(ability_name)
+    function base_stats:GetBaseMS()
+      return self.base_movespeed + (self.movespeed * self.stat_base["AGI"])
+    end
+
+    function base_stats:GetBonusMS()
+      local caster = self:GetCaster()
       local amount = 0
-      for name, value in pairs(self.bonus_movespeed) do
-        if ability_name == nil or ability_name == name then
-          amount = amount + value
-        end
+
+      local buff = caster:FindAllModifiersByName("_modifier_movespeed_buff")
+      for _,modifier in pairs(buff) do
+        amount = amount + modifier:GetStackCount()
       end
+
+      if caster:HasModifier("_modifier_unslowable") == false then
+        local debuff = caster:FindAllModifiersByName("_modifier_movespeed_debuff")
+        for _,modifier in pairs(debuff) do
+          amount = amount - modifier:GetStackCount()
+        end       
+      end
+
       return amount
     end
 
-    function base_stats:SetBonusMS(ability_name, amount)
-      self.bonus_movespeed[ability_name] = amount
+    function base_stats:GetPercentMS()
+      local caster = self:GetCaster()
+      local amount = 0
+
+      local buff = caster:FindAllModifiersByName("_modifier_percent_movespeed_buff")
+      for _,modifier in pairs(buff) do
+        amount = amount + modifier:GetStackCount()
+      end
+
+      if caster:HasModifier("_modifier_unslowable") == false then
+        local debuff = caster:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
+        for _,modifier in pairs(debuff) do
+          amount = amount - modifier:GetStackCount()
+        end  
+      end
+
+      amount = 1 + (amount * 0.01)
+
+      if amount > 2 then return 2 end
+      if amount < 0 then return 0 end
+
+      return amount
     end
 
 		function base_stats:SetBaseAttackTime(bonus)

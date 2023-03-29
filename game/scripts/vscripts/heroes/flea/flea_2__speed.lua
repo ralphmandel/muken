@@ -3,6 +3,7 @@ LinkLuaModifier("flea_2_modifier_passive", "heroes/flea/flea_2_modifier_passive"
 LinkLuaModifier("flea_2_modifier_speed", "heroes/flea/flea_2_modifier_speed", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("flea_2_modifier_unslow", "heroes/flea/flea_2_modifier_unslow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_unslowable", "modifiers/_modifier_unslowable", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

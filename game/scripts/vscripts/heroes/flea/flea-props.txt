@@ -66,7 +66,7 @@
 			"BaseAttackSpeed"			"100"
 			"AttackRate"              	"1"
 			"MovementTurnRate"          "0.5"
-			"MovementSpeed"           	"50"
+			"MovementSpeed"           	"9999"
 		//VITALITY
 			"StatusHealth"            	"3000"
 			"StatusHealthRegen"        	"10"

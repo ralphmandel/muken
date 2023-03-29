@@ -156,7 +156,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"slow"		    "20"
+				"slow"		    "50"
 			}
 			"03"
 			{
@@ -228,7 +228,7 @@
 			"04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"ms"		    	"25"
+				"ms"		    	"75"
 			}
 			"15"
 			{

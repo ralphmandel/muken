@@ -77,7 +77,7 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 	local hp_stolen = self.ability:GetSpecialValueFor("hp_stolen")
 	local slow_duration = self.ability:GetSpecialValueFor("slow_duration")
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 		duration = CalcStatus(slow_duration, self.caster, self.parent),
 		percent = 100
 	})

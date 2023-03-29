@@ -485,7 +485,7 @@
 				"02"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"ms"			"40"
+					"ms"			"100"
 				}
 			}
 		}
@@ -799,7 +799,7 @@
 				"06"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"ms"			"75"
+					"ms"			"150"
 				}
 				"07"
 				{

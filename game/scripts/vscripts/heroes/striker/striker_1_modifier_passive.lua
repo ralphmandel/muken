@@ -205,12 +205,12 @@ function striker_1_modifier_passive:PerformAfterShake(target)
 	for _,enemy in pairs(enemies) do
 		self:PlayEfxScreenShake(enemy)
 
-		local mod = enemy:FindAllModifiersByName("_modifier_movespeed_debuff")
+		local mod = enemy:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 		for _,modifier in pairs(mod) do
 			if modifier:GetAbility() == self.ability then modifier:Destroy() end
 		end
 
-		enemy:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+		enemy:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 			duration = CalcStatus(1.5, self.caster, enemy),
 			percent = 100
 		})

@@ -74,14 +74,14 @@ function icebreaker__modifier_hypo:ModifySlow(stack_count)
 	local base_stats = self.parent:FindAbilityByName("base_stats")
 	if base_stats then base_stats:SetBaseAttackTime(stack_count * self.slow_as) end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
 	if stack_count > 0 then
 		self:PopupIce(true)
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 			percent = stack_count * self.slow_ms
 		})
 	end

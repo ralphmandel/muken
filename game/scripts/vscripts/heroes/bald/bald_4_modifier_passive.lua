@@ -10,46 +10,14 @@ function bald_4_modifier_passive:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	self.exceptions_old = {
-		"_modifier_ban",
-		"_modifier_bkb",
-		"_modifier_blind",
-		"_modifier_blind_stack",
-		"_modifier_break",
-		"_modifier_disarm",
-		"_modifier_ethereal",
-		"_modifier_generic_arc",
-		"_modifier_generic_custom_indicator",
-		"_modifier_generic_knockback_lua",
-		"_modifier_hide",
-		"_modifier_immunity",
-		"_modifier_invisible",
-		"_modifier_invulnerable",
-		"_modifier_lighting",
-		"_modifier_movespeed_buff",
-		"_modifier_movespeed_debuff",
-		"_modifier_no_bar",
-		"_modifier_path",
-		"_modifier_petrified",
-		"_modifier_phase",
-		"_modifier_pull",
-		"_modifier_restrict",
-		"_modifier_root",
-		"_modifier_silence",
-		"_modifier_stun",
-		"_modifier_tracking",
-		"_modifier_truesight",
-		"_modifier_untargetable",
-		"_modifier_root",
-	}
-
 	self.exceptions = {
 		"_1_AGI_modifier_stack", "_1_CON_modifier_stack",
 		"_1_INT_modifier_stack", "_1_STR_modifier_stack",
 		"_2_DEF_modifier_stack", "_2_DEX_modifier_stack",
 		"_2_LCK_modifier_stack", "_2_MND_modifier_stack",
 		"_2_REC_modifier_stack", "_2_RES_modifier_stack",
-		"_modifier_blind_stack", "_modifier_movespeed_debuff"
+		"_modifier_blind_stack", "_modifier_movespeed_debuff",
+    "_modifier_percent_movespeed_debuff"
 	}
 end
 

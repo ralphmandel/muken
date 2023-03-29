@@ -14,7 +14,7 @@ function genuine__modifier_fear:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "genuine__modifier_fear_status_efx", true) end
 
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 50})
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 25})
 
 	if IsServer() then
 		self:PlayEfxStart()
@@ -49,7 +49,7 @@ end
 function genuine__modifier_fear:OnDestroy()
 	if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end

@@ -45,7 +45,7 @@
 		"StatusManaRegen"			"0"
 		"VisionDaytimeRange"		"600"
 		"VisionNighttimeRange"		"500"
-		"MovementSpeed"				"50"
+		"MovementSpeed"           	"9999"
 		"AttackDamageMin"			"35"
 		"AttackDamageMax"			"45"
 		"AttackRate"				"1.2"

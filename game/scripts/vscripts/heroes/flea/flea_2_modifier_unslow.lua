@@ -10,6 +10,8 @@ function flea_2_modifier_unslow:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_unslowable", {})
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -18,13 +20,16 @@ function flea_2_modifier_unslow:OnRefresh(kv)
 end
 
 function flea_2_modifier_unslow:OnRemoved()
+  local mod = self.parent:FindAllModifiersByName("_modifier_unslowable")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function flea_2_modifier_unslow:CheckState()
 	local state = {
-		[MODIFIER_STATE_UNSLOWABLE] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true
 	}
 

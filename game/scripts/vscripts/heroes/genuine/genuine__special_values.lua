@@ -245,7 +245,7 @@ function genuine__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "int" then return 20 end
 		if value_name == "force_night_time" then return 100 end
 		if value_name == "special_purge" then return 1 end
-		if value_name == "special_ms" then return 50 end
+		if value_name == "special_ms" then return 100 end
 		if value_name == "special_agi" then return 15 end
 	end
 
