@@ -22,17 +22,17 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"damage"				"2"
+					"damage"				  "2"
 				}
 				"02"
 				{
 					"var_type"				        "FIELD_FLOAT"
-					"base_critical_damage"		"150"
+					"base_critical_damage"		"200"
 				}
         "03"
 				{
 					"var_type"				        "FIELD_FLOAT"
-					"critical_damage"		      "1" //2.5 to 1 REWORK
+					"critical_damage"		      "1"
 				}
 				"04"
 				{
@@ -110,17 +110,17 @@
 				"21"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"evade"					"0.5"
+					"evade"					  "0.5"
 				}
 				"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"armor"					"0.5"
+					"armor"					  "0.5"
 				}
 				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"magic_resist"			"0.4"
+					"magic_resist"		"0.4"
 				}
 				"24"
 				{
@@ -130,7 +130,7 @@
 				"25"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"		"0.6" //0.25
+					"critical_chance"	"1" //0.6 scalar
 				}
 				"26"
 				{

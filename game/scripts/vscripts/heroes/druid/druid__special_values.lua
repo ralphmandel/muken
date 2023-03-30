@@ -112,15 +112,21 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("druid_4__form_rank_11") then
+      if value_name == "ms_percent" then return 1 end
 		end
 
-		if caster:FindAbilityByName("druid_4__form_rank_21") then
+    if caster:FindAbilityByName("druid_4__form_rank_12") then
+      if value_name == "main" then return 1 end
 		end
 
 		if caster:FindAbilityByName("druid_4__form_rank_31") then
+      if value_name == "special_stun_interval" then return 1 end
+      if value_name == "special_stun_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("druid_4__form_rank_41") then
+      if value_name == "agi" then return 1 end
+      if value_name == "special_break_duration" then return 1 end
 		end
 	end
 
@@ -232,9 +238,16 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
-		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 135 - (value_level * 5) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+    if value_name == "ms_percent" then return 20 end
+    if value_name == "main" then return 20 end
+    if value_name == "special_stun_interval" then return 10 end
+    if value_name == "special_stun_duration" then return 2 end
+    if value_name == "agi" then return -25 end
+    if value_name == "special_break_duration" then return 1.5 end
 	end
 
 	if ability:GetAbilityName() == "druid_5__seed" then

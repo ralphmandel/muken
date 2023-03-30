@@ -141,9 +141,11 @@ end
 
 function base_hero_mod:LoadSounds()
 	self.pre_attack_sound = ""
-	if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
-	if self.ability.hero_name == "krieger" then self.pre_attack_sound = "Krieger.Pre.Attack" end
-	if self.ability.hero_name == "druid" then self.pre_attack_sound = "Hero_OgreMagi.PreAttack" end
+  -- OK: genuine, dasdingo, druid, flea, bocuse, bald, ancient
+	if self.ability.hero_name == "icebreaker" then self.pre_attack_sound = "hero_bloodseeker.PreAttack" end
+  if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
+	if self.ability.hero_name == "bloodstained" then self.pre_attack_sound = "Hero_Nightstalker.PreAttack" end
+	-- if self.ability.hero_name == "krieger" then self.pre_attack_sound = "Krieger.Pre.Attack" end
 
 	self.attack_sound = ""
 	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
@@ -151,20 +153,15 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "druid" then self.attack_sound = "Hero_Furion.Attack" end
 
 	self.attack_landed_sound = ""
-	if self.ability.hero_name == "dasdingo" then self.attack_landed_sound = "Hero_ShadowShaman.ProjectileImpact" end
 	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end
-	if self.ability.hero_name == "genuine" then self.attack_landed_sound = "Hero_DrowRanger.ProjectileImpact" end
 	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
-	if self.ability.hero_name == "osiris" then self.attack_landed_sound = "Hero_Pudge.Attack" end
-	if self.ability.hero_name == "druid" then self.attack_landed_sound = "Hero_Furion.ProjectileImpact" end
-
-	if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
-	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "flea" then self.attack_landed_sound = "Hero_Slark.Attack" end
-	if self.ability.hero_name == "shadowmancer" then self.attack_landed_sound = "Hero_Spectre.Attack" end
 	if self.ability.hero_name == "bald" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
+	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
+
+	-- if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 end
 
 -----------------------------------------------------------

@@ -78,10 +78,11 @@
 			"0"
 			{
 				"1"   "druid_4__form_rank_11"
+				"2"   "druid_4__form_rank_12"
 			}
 			"1"
 			{
-				"1"   "druid_4__form_rank_21"
+				"1"   "empty"
 			}
 			"2"
 			{

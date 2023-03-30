@@ -217,25 +217,69 @@
 		"ScriptFile"            		"heroes/druid/druid_4__form"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_form"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"10"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10"
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"main"			  "15"
+			}
+      "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"str"			    "10"
+			}
+      "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"mnd"			    "10"
+			}
+      "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"con"			    "10"
+			}
+      "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"agi"			    "-15"
+			}
+      "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"ms_percent"	"10"
+			}
+			"07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"	  "60"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+			}
+      "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stun_interval"	  "0"
+			}
+      "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stun_duration"	  "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_break_duration"	"0"
 			}
 		}
 	}

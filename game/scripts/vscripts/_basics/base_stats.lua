@@ -653,9 +653,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-			local value = self.stat_total["LCK"] * self.critical_chance
-			local calc = (value * 6) / (1 +  (value * 0.06))
-			return calc
+      return (self.stat_total["LCK"] * self.critical_chance) + 1
+      -- SCALAR:
+			-- local value = self.stat_total["LCK"] * self.critical_chance
+			-- local calc = (value * 6) / (1 +  (value * 0.06))
+			-- return calc
 		end
 
 	-- UTIL MND
