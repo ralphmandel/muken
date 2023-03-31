@@ -134,14 +134,19 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "mana_reduction" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("druid_5__seed_rank_11") then
+		end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_12") then
 		end
 
 		if caster:FindAbilityByName("druid_5__seed_rank_21") then
 		end
 
-		if caster:FindAbilityByName("druid_5__seed_rank_31") then
+    if caster:FindAbilityByName("druid_5__seed_rank_22") then
 		end
 
 		if caster:FindAbilityByName("druid_5__seed_rank_41") then
@@ -251,9 +256,11 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_5__seed" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 1.5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "mana_reduction" then return -20 - (value_level * 1) end
+		if value_name == "radius" then return 600 + (value_level * 15) end
 	end
 
 	if ability:GetAbilityName() == "druid_u__conversion" then

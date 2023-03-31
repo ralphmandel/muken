@@ -147,12 +147,6 @@ function druid_4_modifier_form:PlayEfxStart(bFear)
 	ParticleManager:SetParticleControl(shake, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(shake, 1, Vector(500, 0, 0))
 
-	local string_3 = "particles/druid/druid_ult_passive.vpcf"
-	self.effect_aura = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.effect_aura, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_aura, 1, Vector(self.ability:GetAOERadius(), 0, 0))
-	self:AddParticle(self.effect_aura, false, false, -1, false, false)
-
   local string_4 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
   local particle2 = ParticleManager:CreateParticle(string_4, PATTACH_ABSORIGIN_FOLLOW, self.parent)
   ParticleManager:SetParticleControl(particle2, 0, self.parent:GetOrigin())

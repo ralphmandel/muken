@@ -17,7 +17,6 @@ LinkLuaModifier("_modifier_debuff_increase", "modifiers/_modifier_debuff_increas
 
 	function genuine_4__nightfall:OnToggle()
 		local caster = self:GetCaster()
-		local init_loss = self:GetSpecialValueFor("special_init_loss")
 
 		if self:GetToggleState() then
 			caster:AddNewModifier(caster, self, "genuine_4_modifier_aura", {})
