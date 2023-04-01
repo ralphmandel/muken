@@ -19,8 +19,12 @@ function druid_5_modifier_aura:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+  self.interval = 0.3
 
-  if IsServer() then self:PlayEfxStart() end
+  if IsServer() then
+    self:PlayEfxStart()
+    self:StartIntervalThink(self.interval)
+  end
 end
 
 function druid_5_modifier_aura:OnRefresh(kv)
@@ -33,14 +37,35 @@ end
 
 function druid_5_modifier_aura:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_CAN_ATTACK_TREES,
 		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE
 	}
 
 	return funcs
 end
 
+-- function druid_5_modifier_aura:GetModifierCanAttackTrees()
+--   return 1
+-- end
+
 function druid_5_modifier_aura:GetModifierExtraManaPercentage(keys)
   return self:GetAbility():GetSpecialValueFor("mana_reduction")
+end
+
+function druid_5_modifier_aura:OnIntervalThink()
+  local radius = self.ability:GetAOERadius()
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), radius, false)
+
+  if trees then
+    for _,tree in pairs(trees) do
+      if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("tree_chance") * self.interval then
+        self.ability:CreateSeed(tree)
+      end
+    end
+  end
+
+  if self.effect_aura then ParticleManager:SetParticleControl(self.effect_aura, 1, Vector(radius, 0, 0)) end
+  if IsServer() then self:StartIntervalThink(self.interval) end
 end
 
 -- UTILS -----------------------------------------------------------

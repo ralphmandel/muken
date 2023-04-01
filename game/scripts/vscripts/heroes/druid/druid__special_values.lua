@@ -137,16 +137,17 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "mana_reduction" then return 1 end
 		if value_name == "radius" then return 1 end
 
-		if caster:FindAbilityByName("druid_5__seed_rank_11") then
-		end
-
     if caster:FindAbilityByName("druid_5__seed_rank_12") then
+      if value_name == "seed_speed" then return 1 end
 		end
 
 		if caster:FindAbilityByName("druid_5__seed_rank_21") then
+      if value_name == "tree_chance" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_5__seed_rank_22") then
+      if value_name == "hp_lost" then return 1 end
+      if value_name == "delay" then return 1 end
 		end
 
 		if caster:FindAbilityByName("druid_5__seed_rank_41") then
@@ -256,11 +257,28 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_5__seed" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then
+      if caster:FindAbilityByName("druid_5__seed_rank_11") then
+        return 200 * (1 + ((ability_level - 1) * 0.05))
+      end
+      return 0 * (1 + ((ability_level - 1) * 0.05))
+    end
+
 		if value_name == "AbilityCooldown" then return 1.5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "mana_reduction" then return -20 - (value_level * 1) end
 		if value_name == "radius" then return 600 + (value_level * 15) end
+
+    if value_name == "mana_reduction" then
+      if caster:FindAbilityByName("druid_5__seed_rank_11") then
+        return -15
+      end
+      return -20 - (value_level * 1)
+    end
+
+    if value_name == "seed_speed" then return 300 end
+    if value_name == "tree_chance" then return 8 end
+    if value_name == "hp_lost" then return 300 end
+    if value_name == "delay" then return 0 end
 	end
 
 	if ability:GetAbilityName() == "druid_u__conversion" then

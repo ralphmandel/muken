@@ -135,15 +135,22 @@ var isPlusHover = false;
   function OnStatUpdate(event) {
     var bonus = event.bonus;
     var base = event.base;
-    if (event.bonus >= 0) {
+    if (event.bonus == 0) {
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("PositiveStats", false);
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NegativeStats", false);
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NeutralStats", true);
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].text = '+ ' + bonus;
+    } else if (event.bonus >= 0) {
       if (bonus > 99) {bonus = 99}
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("PositiveStats", true);
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NegativeStats", false);
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NeutralStats", false);
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].text = '+ ' + bonus;
     } else {
       if (bonus < -99) {bonus = -99}
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("PositiveStats", false);
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NegativeStats", true);
+      STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].SetHasClass("NeutralStats", false);
       STATS_LAYOUT["STAT_BONUS"][event.stat]["label"].text = bonus;
     }
 

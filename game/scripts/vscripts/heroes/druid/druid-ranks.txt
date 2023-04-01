@@ -98,14 +98,16 @@
 			"0"
 			{
 				"1"   "druid_5__seed_rank_11"
+				"2"   "druid_5__seed_rank_12"
 			}
 			"1"
 			{
 				"1"   "druid_5__seed_rank_21"
+				"2"   "druid_5__seed_rank_22"
 			}
 			"2"
 			{
-				"1"   "druid_5__seed_rank_31"
+				"1"   "empty"
 			}
 			"3"
 			{

@@ -5,8 +5,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 -- INIT
 
--- SPELL START
-
   function druid_5__seed:OnOwnerSpawned()
     self:OnToggle()
   end
@@ -14,6 +12,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   function druid_5__seed:GetAOERadius()
     return self:GetSpecialValueFor("radius")
   end
+
+-- SPELL START
 
   function druid_5__seed:OnToggle()
     local caster = self:GetCaster()
@@ -37,6 +37,29 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     self:PlayEfxHeal(hTarget)
   end
 
+  function druid_5__seed:CreateSeed(target)
+    local caster = self:GetCaster()
+    local source = nil
+
+    self:PlayEfxSeed(target)
+    if target:IsBaseNPC() then source = target end
+
+    ProjectileManager:CreateTrackingProjectile({
+      Target = caster,
+      Source = source,
+      vSourceLoc = target:GetAbsOrigin(),
+      Ability = self,
+      EffectName = "particles/druid/druid_ult_projectile.vpcf",
+      iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+      iMoveSpeed = self:GetSpecialValueFor("seed_speed"),
+      bReplaceExisting = false,
+      bProvidesVision = true,
+      iVisionRadius = 75,
+      iVisionTeamNumber = caster:GetTeamNumber(),
+      ExtraData = {amount = self:GetSpecialValueFor("seed_base_heal")}
+    })
+  end
+
 -- EFFECTS
 
   function druid_5__seed:PlayEfxHeal(target)
@@ -45,4 +68,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
     ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
     ParticleManager:ReleaseParticleIndex(effect)
+  end
+
+  function druid_5__seed:PlayEfxSeed(target)
+    local string = "particles/units/heroes/hero_treant/treant_leech_seed_damage_pulse.vpcf"
+    local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+    ParticleManager:SetParticleControl(particle, 0, target:GetOrigin())
+    ParticleManager:ReleaseParticleIndex(particle)
+  
+    if IsServer() then target:EmitSound("Hero_Treant.LeechSeed.Tick") end
   end
