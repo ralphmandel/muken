@@ -253,3 +253,11 @@ function IsMetamorphosis(ability_name, target)
   end
   return false
 end
+
+function BaseStats(baseNPC)
+  return baseNPC:FindAbilityByName("base_stats")
+end
+
+function BaseHero(baseNPC)
+  return baseNPC:FindAbilityByName("base_hero")
+end

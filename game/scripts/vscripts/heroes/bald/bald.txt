@@ -256,7 +256,7 @@
       "16"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"special_damage"  "100"
+				"special_damage"  "0"
 			}
 		}
 	}

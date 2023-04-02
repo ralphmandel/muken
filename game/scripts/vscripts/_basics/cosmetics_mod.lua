@@ -21,8 +21,8 @@ end
 
 function cosmetics_mod:OnCreated( kv )
 	self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.ambient_table = {}
 
 	self.no_draw = 0

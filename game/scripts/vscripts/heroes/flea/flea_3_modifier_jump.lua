@@ -72,6 +72,31 @@ function flea_3_modifier_jump:CheckState()
 	return state
 end
 
+function flea_3_modifier_jump:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+
+	return funcs
+end
+
+function flea_3_modifier_jump:OnAttackLanded(keys)
+	if keys.attacker ~= self.parent then return end
+	local bleeding_duration = self.ability:GetSpecialValueFor("special_bleeding_duration")
+  self:PlayEfxHit(keys.target)
+
+  keys.target:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
+    duration = CalcStatus(self.ability:GetSpecialValueFor("silence_duration"), self.caster, keys.target),
+    special = 3
+  })
+
+  if bleeding_duration > 0 then
+    keys.target:AddNewModifier(self.caster, self.ability, "flea_3_modifier_bleeding", {
+      duration = CalcStatus(bleeding_duration, self.caster, keys.target)
+    })
+  end
+end
+
 function flea_3_modifier_jump:OnIntervalThink()
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
@@ -90,7 +115,6 @@ end
 function flea_3_modifier_jump:PerformImpact(point)
 	self.parent:FadeGesture(ACT_DOTA_SLARK_POUNCE)
 
-	local bleeding_duration = self.ability:GetSpecialValueFor("special_bleeding_duration")
 	local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), point, nil, self.radius_impact,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -98,23 +122,11 @@ function flea_3_modifier_jump:PerformImpact(point)
 	)
 
 	for _,enemy in pairs(enemies) do
-		if enemy:HasModifier("bloodstained_u_modifier_copy") == false
-		and enemy:IsIllusion() then
+		if enemy:HasModifier("bloodstained_u_modifier_copy") == false and enemy:IsIllusion() then
 			enemy:ForceKill(false)
 		else
-			self:PlayEfxHit(enemy)
+      BaseStats(self.parent):SetForceCritHit(0)
 			self.parent:PerformAttack(enemy, false, true, true, true, false, false, true)
-
-			enemy:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-				duration = CalcStatus(self.ability:GetSpecialValueFor("silence_duration"), self.caster, enemy),
-				special = 3
-			})
-
-			if bleeding_duration > 0 then
-				enemy:AddNewModifier(self.caster, self.ability, "flea_3_modifier_bleeding", {
-					duration = CalcStatus(bleeding_duration, self.caster, enemy)
-				})
-			end
 		end
 	end
 

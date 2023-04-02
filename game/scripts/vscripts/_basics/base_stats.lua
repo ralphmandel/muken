@@ -217,15 +217,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.cooldown = self:GetSpecialValueFor("cooldown")
 				self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
+				self.critical_chance = self:GetSpecialValueFor("critical_chance")
 
 				-- CRITICAL
-				self.critical_chance = self:GetSpecialValueFor("critical_chance")
-				self.crit_damage_spell = {[DAMAGE_TYPE_PHYSICAL] = 0, [DAMAGE_TYPE_MAGICAL] = 0}
-				self.force_crit_spell = {[DAMAGE_TYPE_PHYSICAL] = false, [DAMAGE_TYPE_MAGICAL] = false}
-				self.total_crit_damage = self:CalcCritDamage(nil, nil)
-				self.force_crit_damage = 0
-				self.force_crit_hit = false
-				self.has_crit = false
+				self.force_crit_hit = nil
 			end
 		end
 
@@ -487,35 +482,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return 100 + (self.stat_total["STR"] * 5)
     end
 
-		function base_stats:SetForceCritSpell(value, state, damage_type)
-			if value > 0 then self.crit_damage_spell[damage_type] = value end
-			self.force_crit_spell[damage_type] = state -- NIL == force no crit
+		function base_stats:SetForceCritHit(bool)
+			self.force_crit_hit = bool
 		end
 
-		function base_stats:SetForceCritHit(value)
-			if value > 0 then self.force_crit_damage = value end
-			if value == -1 then self.force_crit_hit = false return end
-			self.force_crit_hit = true
-		end
-
-		function base_stats:CalcCritDamage(damage_type, bSpellCrit)
-			if IsServer() then
-				local caster = self:GetCaster()
-				local total_crit_dmg = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
-
-				if caster:HasModifier("ancient_1_modifier_passive")
-				and bSpellCrit ~= true and damage_type == DAMAGE_TYPE_PHYSICAL then
-					total_crit_dmg = total_crit_dmg + self.stat_total["AGI"]
-				end
-
-				return total_crit_dmg
-			end
-		end
-
-		function base_stats:RollChance()
-			if IsServer() then				
-				return RandomFloat(1, 100) <= self:GetCriticalChance()
-			end
+		function base_stats:GetCriticalDamage()
+			return self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
 		end
 
 	-- UTIL AGI
@@ -654,10 +626,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:GetCriticalChance()
       return (self.stat_total["LCK"] * self.critical_chance) + 1
-      -- SCALAR:
-			-- local value = self.stat_total["LCK"] * self.critical_chance
-			-- local calc = (value * 6) / (1 +  (value * 0.06))
-			-- return calc
 		end
 
 	-- UTIL MND

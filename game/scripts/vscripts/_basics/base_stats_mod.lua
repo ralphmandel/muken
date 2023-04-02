@@ -14,8 +14,7 @@ base_stats_mod = class ({})
       self.parent = self:GetParent()
       self.ability = self:GetAbility()
 
-      self.popup_spell_crit = false
-      self.pierce_proc = false
+      self.records = {}
 
       if self.parent:IsIllusion() then
         self.ability:LoadDataForIllusion()
@@ -39,30 +38,16 @@ base_stats_mod = class ({})
 
 -- DECLARE FUNCTIONS AND STATES
 
-  function base_stats_mod:CheckState()
-    local state = {}
-    
-    -- if self.ability.total_crit_damage > 0 and self.pierce_proc then
-    --     state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-    -- end
-
-    if self.pierce_proc then
-      state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-    end
-
-    return state
-  end
-
   function base_stats_mod:DeclareFunctions()
     local funcs = {
       MODIFIER_EVENT_ON_TAKEDAMAGE, -- POPUP DAMAGE TYPES
-      MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, --SPELL DAMAGE AND CRIT CALC
 
       -- STR
+      MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
       MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
       MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-      MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
       MODIFIER_PROPERTY_PRE_ATTACK,
+      MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
       MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
       MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
@@ -95,135 +80,79 @@ base_stats_mod = class ({})
 
   function base_stats_mod:OnTakeDamage(keys)
     if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
+    if keys.unit ~= self.parent then return end
 
-    if keys.unit == self.parent then
-      local efx = nil
-      if keys.damage_type == DAMAGE_TYPE_MAGICAL then efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE end
-  
-      if keys.inflictor ~= nil then
-        if keys.inflictor:GetClassname() == "ability_lua" then
-          if keys.inflictor:GetAbilityName() == "shadowmancer_1__weapon" 
-          or keys.inflictor:GetAbilityName() == "osiris_1__poison"
-          or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
-            efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
-          end
+    local efx = nil
+    if keys.damage_type == DAMAGE_TYPE_MAGICAL then
+      efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE
+    end
 
-          if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
-            return
-          end
-
-          if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
-            return
-          end
-
-          if keys.inflictor:GetAbilityName() == "bloodstained_5__tear"
-          and keys.damage_type == DAMAGE_TYPE_PURE then
-            return
-          end
+    if keys.inflictor ~= nil then
+      if keys.inflictor:GetClassname() == "ability_lua" then
+        if keys.inflictor:GetAbilityName() == "shadowmancer_1__weapon" 
+        or keys.inflictor:GetAbilityName() == "osiris_1__poison"
+        or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
+          efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
         end
-      end
 
-      if keys.damage_type == DAMAGE_TYPE_PURE then self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent) end
-  
-      if efx ~= nil then
-        SendOverheadEventMessage(nil, efx, self.parent, keys.damage, self.parent)
+        if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
+          return
+        end
+
+        if keys.inflictor:GetAbilityName() == "bloodstained_u__seal" then
+          return
+        end
+
+        if keys.inflictor:GetAbilityName() == "bloodstained_5__tear"
+        and keys.damage_type == DAMAGE_TYPE_PURE then
+          return
+        end
       end
     end
 
-    if keys.attacker == nil then return end
-    if keys.attacker:IsBaseNPC() == false then return end
-    if keys.attacker ~= self.parent then return end
-
-    if self.popup_spell_crit then
-      self:PopupSpellCrit(keys.damage, keys.unit, keys.damage_type)
+    if keys.damage_type == DAMAGE_TYPE_PURE then
+      self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent)
     end
-  end
 
-  function base_stats_mod:GetModifierSpellAmplify_Percentage(keys)
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
-    self.popup_spell_crit = false
-    local calc = 0
-
-    if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-      if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
-        calc = self.ability.stat_total["STR"] * self.ability.damage * 2.5
-      elseif keys.damage_type == DAMAGE_TYPE_MAGICAL then
-        calc = self.ability.stat_total["INT"] * self.ability.spell_amp
-        return calc
-      else
-        return
-      end
-
-      self.ability.total_crit_damage = self.ability:CalcCritDamage(keys.damage_type, true)
-      local crit = self.ability.total_crit_damage - 100
-
-      if self.ability.crit_damage_spell[keys.damage_type] > 0 then
-        crit = self.ability.crit_damage_spell[keys.damage_type] - 100
-        self.ability.crit_damage_spell[keys.damage_type] = 0
-      end
-
-      if self.ability.force_crit_spell[keys.damage_type] == nil then
-        self.ability.force_crit_spell[keys.damage_type] = false
-        self.ability.has_crit = false
-      else
-        if ((RandomFloat(1, 100) <= self.ability:GetCriticalChance())
-        or self.ability.force_crit_spell[keys.damage_type] == true)
-        and not keys.target:IsBuilding() then
-          calc = calc + crit + (calc * crit * 0.01)
-          self.popup_spell_crit = true
-          self.ability.force_crit_spell[keys.damage_type] = false
-          self.ability.has_crit = true
-        else
-          self.ability.has_crit = false
-        end
-      end
-
-      return calc
+    if efx ~= nil then
+      SendOverheadEventMessage(nil, efx, self.parent, keys.damage, self.parent)
     end
   end
 
 -- STR
 
+  function base_stats_mod:GetModifierTotalDamageOutgoing_Percentage(keys)
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+      return self.ability:GetTotalPhysicalDamagePercent() - 100
+    end
+
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK 
+    and self.records[keys.record] == true then
+      return self.ability:GetCriticalDamage() - 100
+    end
+
+    return 0
+  end
+
   function base_stats_mod:GetModifierBaseAttack_BonusDamage()
     return self.ability.stat_total["STR"] * self.ability.damage
   end
 
-  function base_stats_mod:GetModifierProcAttack_Feedback(keys)
-    if self.record then
-      self.record = nil
-      if self.ability.total_crit_damage > 0 then
-        if IsServer() then self.parent:EmitSound("Item_Desolator.Target") end
-      end
-    end
-  end
-
-  function base_stats_mod:GetModifierPreAttack_CriticalStrike(keys)
-    if self.pierce_proc == true or self.ability.force_crit_hit == true then
-      self.pierce_proc = false
-      self.ability.force_crit_hit = false
-
-      if not keys.target:IsBuilding() then
-        self.record = keys.record
-        self.ability.has_crit = true
-        self.ability.total_crit_damage = self.ability:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false) + self.ability.force_crit_damage
-        self.ability.force_crit_damage = 0
-        return self.ability.total_crit_damage
-      else
-        self.ability.has_crit = false
-      end
-    else
-      self.ability.has_crit = false
-    end
-  end
-
   function base_stats_mod:GetModifierPreAttack(keys)
-    if keys.attacker == self.parent then
-      if self.ability:RollChance() then
-        self.pierce_proc = true
-      else
-        self.pierce_proc = false
-      end
+    if keys.attacker ~= self.parent then return end
+
+    local proc = RandomFloat(1, 100) <= self.ability:GetCriticalChance()
+    self.records[keys.record] = proc
+  end
+
+  function base_stats_mod:GetModifierProcAttack_Feedback(keys)
+    if self.records[keys.record] then
+      self:PopupSpellCrit(keys.damage, keys.target, DAMAGE_TYPE_PHYSICAL)
     end
+  end
+
+  function base_stats_mod:OnAttackRecordDestroy(keys)
+    self.records[keys.record] = nil
   end
 
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
@@ -384,7 +313,7 @@ base_stats_mod = class ({})
 
 -- SECONDARY
 
-  function base_stats_mod:GetModifierEvasion_Constant()
+  function base_stats_mod:GetModifierEvasion_Constant(keys)
     local value = self.ability.stat_total["DEX"] * self.ability.evade
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc

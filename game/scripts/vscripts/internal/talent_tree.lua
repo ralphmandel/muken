@@ -30,18 +30,17 @@ function TalentTree:OnPortraitUpdate(event)
   local entity = EntIndexToHScript(event.entity)
   if entity == nil then return end
   if IsValidEntity(entity) == false then return end
-  local base_stats = entity:FindAbilityByName("base_stats")
-  if base_stats == nil then return end
+  if BaseStats(entity) == nil then return end
   if hero:CanEntityBeSeenByMyTeam(entity) == false then return end
 
   local info = {
     unit_name = entity:GetUnitName(),
-    physical_damage = base_stats:GetTotalPhysicalDamagePercent(),
-    crit_damage = base_stats:CalcCritDamage(DAMAGE_TYPE_PHYSICAL, false),
-    crit_chance = base_stats:GetCriticalChance(),
+    physical_damage = BaseStats(entity):GetTotalPhysicalDamagePercent(),
+    crit_damage = BaseStats(entity):GetCriticalDamage(),
+    crit_chance = BaseStats(entity):GetCriticalChance(),
     attack_speed = entity:GetDisplayAttackSpeed(),
-    magical_damage = base_stats:GetTotalMagicalDamagePercent(),
-    debuff_amp = base_stats:GetTotalDebuffAmpPercent(),
+    magical_damage = BaseStats(entity):GetTotalMagicalDamagePercent(),
+    debuff_amp = BaseStats(entity):GetTotalDebuffAmpPercent(),
     mp_regen = entity:GetManaRegen(),
     cd_reduction = entity:GetCooldownReduction() * 100,
     movespeed = entity:GetIdealSpeed(),
@@ -49,9 +48,9 @@ function TalentTree:OnPortraitUpdate(event)
     armor = entity:GetPhysicalArmorValue(false),
     hp_regen = entity:GetHealthRegen(),
     magical_resist = entity:GetMagicalArmorValue() * 100,
-    status_resist = base_stats:GetStatusResistPercent(),
-    heal_power = base_stats:GetTotalHealPowerPercent(),
-    buff_amp = base_stats:GetTotalBuffAmpPercent()
+    status_resist = BaseStats(entity):GetStatusResistPercent(),
+    heal_power = BaseStats(entity):GetTotalHealPowerPercent(),
+    buff_amp = BaseStats(entity):GetTotalBuffAmpPercent()
   }
 
   CustomGameEventManager:Send_ServerToPlayer(player, "info_state_from_server", info)

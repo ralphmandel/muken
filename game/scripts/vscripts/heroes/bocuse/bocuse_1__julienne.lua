@@ -54,7 +54,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 					})
 				end
 
-				caster:PerformAttack(self.target, false, true, true, false, false, false, true)
+				caster:PerformAttack(self.target, false, true, true, false, false, false, false)
 				self:PlayEfxCut(self.target)
 			end
 		end)

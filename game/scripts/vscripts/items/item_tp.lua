@@ -3,7 +3,7 @@ require("settings")
 
 function item_tp:Spawn()
 	self.cooldown = 60
-	self:SetCurrentAbilityCharges(1)
+	--self:SetCurrentAbilityCharges(1)
 end
 
 -- if not self.gesture then self.gesture = 1500 end --1591
@@ -115,6 +115,6 @@ end
 
 function item_tp:GetBehavior()
 	local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET
-	if self:GetCurrentAbilityCharges() == 2 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED end
+	--if self:GetCurrentAbilityCharges() == 2 then return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_CHANNELLED end
 	return behavior + DOTA_ABILITY_BEHAVIOR_CHANNELLED
 end

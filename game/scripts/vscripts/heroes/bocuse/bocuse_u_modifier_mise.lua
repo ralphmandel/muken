@@ -226,7 +226,7 @@ function bocuse_u_modifier_mise:HitTarget(target, direction)
 	if target:IsInvulnerable() then return end
 	if target:IsAttackImmune() then return end
 
-	self.parent:PerformAttack(target, false, true, true, false, false, false, true)
+	self.parent:PerformAttack(target, false, true, true, false, false, false, false)
 	self:PlayEfxHit(target, self.parent:GetOrigin(), direction)
 end
 
