@@ -55,7 +55,8 @@
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "bocuse_2__flambee_rank_41"
+				"2"   "bocuse_2__flambee_rank_42"
 			}
 		}
 		"bocuse_3__sauce"

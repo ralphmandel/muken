@@ -31,7 +31,12 @@ function bocuse_2_modifier_flambee:OnRemoved()
 
 	if IsServer() then self.parent:StopSound("Bocuse.Flambee.Buff") end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
+	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+  local mod = self.parent:FindAllModifiersByName("_modifier_blind")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
@@ -39,33 +44,21 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bocuse_2_modifier_flambee:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
-	}
-
-	return funcs
-end
-
-function bocuse_2_modifier_flambee:GetModifierStatusResistanceStacking()
-	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		return self:GetAbility():GetSpecialValueFor("effect_resist")
-	end
-
-	return 0
-end
-
 function bocuse_2_modifier_flambee:OnIntervalThink()
-	local mana_amount = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_percent") * self.intervals * 0.01
-
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
+    local mana_amount = self.ability:GetSpecialValueFor("mana") * BaseStats(self.caster):GetHealPower()
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana_amount, self.caster)
 		self.parent:GiveMana(mana_amount)
 	else
 		if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Ignite.Damage") end
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self.parent, mana_amount, self.caster)
-		self.parent:ReduceMana(mana_amount)
+    ApplyDamage({
+      attacker = self.caster, victim = self.parent,
+      damage = self.ability:GetSpecialValueFor("damage"),
+      damage_type = self.ability:GetAbilityDamageType(),
+      ability = self.ability
+    })
 	end
+  if IsServer() then self:StartIntervalThink(self.intervals) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -73,9 +66,18 @@ end
 function bocuse_2_modifier_flambee:ApplyBuffs()
 	if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
 
-	if self.ability:GetSpecialValueFor("special_init") == 1 then
+	if self.ability:GetSpecialValueFor("special_purge_allies") == 1 then
 		self.parent:Purge(false, true, false, true, false)
 	end
+
+  local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
+	end
+
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+		percent = self.ability:GetSpecialValueFor("ms")
+	})
 
 	if IsServer() then
 		self.parent:StopSound("Bocuse.Flambee.Buff")
@@ -86,7 +88,7 @@ end
 function bocuse_2_modifier_flambee:ApplyDebuffs()
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 
-	if self.ability:GetSpecialValueFor("special_init") == 1 then
+	if self.ability:GetSpecialValueFor("special_purge_enemies") == 1 then
 		self.parent:Purge(true, false, false, false, false)
 	end
 
@@ -96,7 +98,8 @@ function bocuse_2_modifier_flambee:ApplyDebuffs()
 	end
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {
-		percent = self.ability:GetSpecialValueFor("effect_blind")
+		percent = self.ability:GetSpecialValueFor("blind"),
+    miss_chance = self.ability:GetSpecialValueFor("blind")
 	})
 end
 

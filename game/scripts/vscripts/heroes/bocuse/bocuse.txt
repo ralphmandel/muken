@@ -122,10 +122,11 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_2__flambee"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_flambee"
-		"MaxLevel"               		"13"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -136,59 +137,69 @@
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_range"	    "750"
+				"var_type"		      "FIELD_FLOAT"
+				"cast_range"	      "750"
 			}
-            "02"
+      "02"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"projectile_speed"	"600"
+				"var_type"		      "FIELD_FLOAT"
+				"projectile_speed"  "600"
 			}
-            "03"
+      "03"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"duration"		    "12"
+				"var_type"		      "FIELD_FLOAT"
+				"duration"		      "12"
 			}
-            "04"
+      "04"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"intervals"		    "1"
+				"var_type"		      "FIELD_FLOAT"
+				"intervals"		      "1"
 			}
-            "05"
+      "05"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"mana_percent"      "1.5"
+				"var_type"		      "FIELD_FLOAT"
+				"mana"              "10"
 			}
-            "06"
+      "06"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"effect_blind"		"30"
+				"var_type"		      "FIELD_FLOAT"
+				"ms"                "60"
 			}
-            "07"
+      "07"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"effect_resist"		"30"
+				"var_type"		      "FIELD_FLOAT"
+				"damage"		        "20"
 			}
-            "08"
+      "08"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"1 2 3 4 5 6 7 8 9 10 11 12 13"
+				"var_type"		      "FIELD_FLOAT"
+				"blind"		          "20"
+			}
+      "09"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"radius"		        "1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13"
+				"var_type"		      "FIELD_FLOAT"
+				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "16"
+      "16"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_init"          "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_purge_allies"  "0"
 			}
-            "17"
+      "17"
 			{
-				"var_type"		        "FIELD_FLOAT"
+				"var_type"		          "FIELD_FLOAT"
+				"special_purge_enemies" "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
 				"special_second_flask"  "0"
 			}
 		}
@@ -200,71 +211,66 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_3__sauce"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_sauce"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		//"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+    "AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration"			    "12"
+				"duration"			      "9"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration_reduction"	"2"
+				"duration_reduction"	"1"
 			}
-            "03"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"damage_amp_stack"	    "5"
-			}
-            "04"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"lifesteal_base"        "15"
-			}
-            "05"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"lifesteal_stack"     	"2.5"
-			}
-            "06"
+      "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"max_stack"     	    "5"
 			}
-            "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
-			}
-            "16"
+      "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
+				"damage_amp_stack"	  "4"
+			}
+      "05"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"lifesteal"           "25"
+			}
+      "15"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		          "FIELD_FLOAT"
 				"special_purge_chance"  "0"
 			}
-            "17"
+      "17"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_break"     	"0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_break"     	  "0"
 			}
-            "18"
+      "18"
 			{
-				"var_type"		        "FIELD_FLOAT"
+				"var_type"		          "FIELD_FLOAT"
 				"special_silence"     	"0"
 			}
-            "19"
+      "19"
 			{
-				"var_type"		        "FIELD_FLOAT"
+				"var_type"		          "FIELD_FLOAT"
 				"special_heal_allies"   "0"
 			}
 		}

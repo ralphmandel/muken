@@ -31,7 +31,7 @@ function bocuse_3_modifier_sauce:OnRemoved()
 	if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
 	self:CheckCounterEfx()
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_break")
+	local mod = self.parent:FindAllModifiersByName("_modifier_disarm")
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
@@ -54,23 +54,22 @@ function bocuse_3_modifier_sauce:DeclareFunctions()
 end
 
 function bocuse_3_modifier_sauce:GetModifierIncomingDamage_Percentage(keys)
-	return self:GetAbility():GetSpecialValueFor("damage_amp_stack") * self:GetStackCount()
+  if keys.attacker:GetTeamNumber() == self.caster:GetTeamNumber() then
+	  return self:GetAbility():GetSpecialValueFor("damage_amp_stack") * self:GetStackCount()
+  end
+
+  return 0
 end
 
 function bocuse_3_modifier_sauce:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
+  if keys.attacker == nil then return end
+  if keys.attacker:IsBaseNPC() == false then return end
+  if keys.attacker:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
 
-	local lifesteal_base = self.ability:GetSpecialValueFor("lifesteal_base")
-	local lifesteal_stack = self.ability:GetSpecialValueFor("lifesteal_stack")
-	local heal_percent = lifesteal_base + (lifesteal_stack * (self:GetStackCount() - 1))
-	local heal_amount = keys.damage * heal_percent * 0.01
-
-	self:ApplyHeal(self.caster, heal_amount)
-
-	if self.ability:GetSpecialValueFor("special_heal_allies") == 1 
-	and keys.attacker ~= self.caster then
-		self:ApplyHeal(keys.attacker, heal_amount)
-	end
+	local heal_amount = keys.damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
+	keys.attacker:Heal(heal_amount, self.ability)
+	self:PlayEfxLifesteal(keys.attacker)
 end
 
 function bocuse_3_modifier_sauce:OnIntervalThink()
@@ -89,15 +88,6 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function bocuse_3_modifier_sauce:ApplyHeal(target, heal_amount)
-	if target == nil then return end
-	if target:IsBaseNPC() == false then return end
-	if target:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
-
-	target:Heal(heal_amount, self.ability)
-	self:PlayEfxLifesteal(target)
-end
-
 function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 	local duration = self.ability:GetSpecialValueFor("duration")
 	local duration_reduction = self.ability:GetSpecialValueFor("duration_reduction")
@@ -114,8 +104,8 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 	end
 
 	if stack_count == self.ability:GetSpecialValueFor("max_stack") then
-		if self.ability:GetSpecialValueFor("special_break") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {
+		if self.ability:GetSpecialValueFor("special_disarm") == 1 then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
 				duration = self:GetRemainingTime()
 			})		
 		end
