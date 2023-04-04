@@ -7,7 +7,7 @@
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/bocuse/bocuse-ranks_lua"
-        "AbilityTextureName"    		"bocuse__precache"
+    "AbilityTextureName"    		"bocuse__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -22,11 +22,11 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_1__julienne"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_julienne"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -34,51 +34,51 @@
 
 		"AbilityCastAnimation"   		"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"       		"0.6"
-        "AnimationPlaybackRate"  		"4"
+    "AnimationPlaybackRate"  		"4"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"max_cut"   		    "5"
+				"max_cut"   		      "5"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"bleeding_duration"   	"3"
+				"bleeding_duration"   "3"
 			}
-            "03"
+      "03"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"bleeding_damage"   	"10"
 			}
-            "04"
+      "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"stun_duration"   		"1.5"
 			}
-            "05"
+      "05"
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"bonus_limit_range"		"350"
 			}
-            "06"
+      "06"
 			{
-				"var_type"		"FIELD_FLOAT"
+				"var_type"		  "FIELD_FLOAT"
 				"cast_point"    "0.6"
 			}
-            "07"
+      "07"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"    "1 2 3 4 5 6 7 8"
+				"var_type"		  "FIELD_FLOAT"
+				"cast_range"    "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "15"
+      "15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8"
+				"var_type"		  "FIELD_FLOAT"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "16"
+      "16"
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_bleeding_chance"   "0"

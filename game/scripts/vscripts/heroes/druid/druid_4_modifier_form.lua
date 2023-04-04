@@ -83,7 +83,6 @@ function druid_4_modifier_form:OnAttackLanded(keys)
   if keys.attacker ~= self.parent then return end
   local stun_duration = self.ability:GetSpecialValueFor("special_stun_duration")
   local break_duration = self.ability:GetSpecialValueFor("special_break_duration")
-  local base_stats = self.parent:FindAbilityByName("base_stats")
 
   if stun_duration > 0 then
     if self.stun_delay == false then
@@ -100,12 +99,10 @@ function druid_4_modifier_form:OnAttackLanded(keys)
     RemoveBonus(self.ability, "_2_LCK", self.parent)
     AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
-    if base_stats then
-      if base_stats.has_crit then
-        keys.target:AddNewModifier(self.caster, self.ability, "_modifier_break", {
-          duration = CalcStatus(break_duration, self.caster, keys.target)
-        })
-      end
+    if BaseStats(self.parent).has_crit then
+      keys.target:AddNewModifier(self.caster, self.ability, "_modifier_break", {
+        duration = CalcStatus(break_duration, self.caster, keys.target)
+      })
     end
   end
 end
@@ -119,18 +116,17 @@ end
 
 function druid_4_modifier_form:HideItens(bool)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
 	if cosmetics == nil then return end
-	if base_hero_mod == nil then return end
+  if BaseHeroMod(self.parent) == nil then return end
 
 	for i = 1, #cosmetics.cosmetic, 1 do
 		cosmetics:HideCosmetic(cosmetics.cosmetic[i]:GetModelName(), bool)
 	end
 
 	if bool then
-		base_hero_mod:ChangeSounds("Hero_LoneDruid.TrueForm.PreAttack", nil, "Hero_LoneDruid.TrueForm.Attack")
+		BaseHeroMod(self.parent):ChangeSounds("Hero_LoneDruid.TrueForm.PreAttack", nil, "Hero_LoneDruid.TrueForm.Attack")
 	else
-		base_hero_mod:LoadSounds()
+		BaseHeroMod(self.parent):LoadSounds()
 	end
 end
 

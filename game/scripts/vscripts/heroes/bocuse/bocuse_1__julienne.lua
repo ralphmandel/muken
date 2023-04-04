@@ -49,6 +49,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		Timers:CreateTimer(0.1, function()
 			if self:CheckRequirements() then
 				if slash_count == 1 then
+          BaseStats(caster):SetForceCrit(100, nil)
 					self.target:AddNewModifier(caster, self, "_modifier_stun", {
 						duration = CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, self.target)
 					})

@@ -29,28 +29,27 @@ function hero_stats_table:OnLevelUpStat(event)
   local hero = player:GetAssignedHero()
   if (not hero) then return end
 
-  local base_stats = hero:FindAbilityByName("base_stats")
-  if (not base_stats) then return end
+  if BaseStats(hero) == nil then return end
 
   for _,primary in pairs(hero_stats_table.stats_primary) do
     if event.stat == primary then
-      base_stats.total_points = base_stats.total_points - 1
-      base_stats.stat_base[event.stat] = base_stats.stat_base[event.stat] + 1
-      base_stats:IncrementFraction("plus_up", primary, 3)
-      base_stats:CalculateStats(0, 0, primary)
+      BaseStats(hero).total_points = BaseStats(hero).total_points - 1
+      BaseStats(hero).stat_base[event.stat] = BaseStats(hero).stat_base[event.stat] + 1
+      BaseStats(hero):IncrementFraction("plus_up", primary, 3)
+      BaseStats(hero):CalculateStats(0, 0, primary)
     end
   end
 
   for _,secondary in pairs(hero_stats_table.stats_secondary) do
     if event.stat == secondary then
-      base_stats.total_points = base_stats.total_points - 1
-      base_stats.stat_base[event.stat] = base_stats.stat_base[event.stat] + 1
-      base_stats:IncrementFraction("plus_up", event.stat, 2)
-      base_stats:CalculateStats(0, 0, event.stat)
+      BaseStats(hero).total_points = BaseStats(hero).total_points - 1
+      BaseStats(hero).stat_base[event.stat] = BaseStats(hero).stat_base[event.stat] + 1
+      BaseStats(hero):IncrementFraction("plus_up", event.stat, 2)
+      BaseStats(hero):CalculateStats(0, 0, event.stat)
     end
   end
 
-  base_stats:UpdatePanoramaPoints(event.stat)
+  BaseStats(hero):UpdatePanoramaPoints(event.stat)
 end
 
 function hero_stats_table:OnPlayerReconnect(keys)
@@ -62,18 +61,17 @@ function hero_stats_table:OnPlayerReconnect(keys)
   local hero = player:GetAssignedHero()
   if (not hero) then return end
 
-  local base_stats = hero:FindAbilityByName("base_stats")
-  if (not base_stats) then return end
+  if BaseStats(hero) == nil then return end
 
   for _,primary in pairs(hero_stats_table.stats_primary) do
-    base_stats:UpdatePanoramaStat(primary)
+    BaseStats(hero):UpdatePanoramaStat(primary)
   end
 
   for _,secondary in pairs(hero_stats_table.stats_secondary) do
-    base_stats:UpdatePanoramaStat(secondary)
+    BaseStats(hero):UpdatePanoramaStat(secondary)
   end
   
-  base_stats:UpdatePanoramaPoints("nil")
+  BaseStats(hero):UpdatePanoramaPoints("nil")
 end
 
 hero_stats_table:Init()

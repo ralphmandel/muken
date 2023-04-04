@@ -94,15 +94,9 @@ function druid_3_modifier_totem:GetModifierMoveSpeed_Limit()
 end
 
 function druid_3_modifier_totem:OnIntervalThink()
-  local heal = self.ability:GetSpecialValueFor("heal")
-  local mana = self.ability:GetSpecialValueFor("mana")
+  local heal = self.ability:GetSpecialValueFor("heal") * BaseStats(self.caster):GetHealPower()
+  local mana = self.ability:GetSpecialValueFor("mana") * BaseStats(self.caster):GetHealPower()
   local spike_damage = self.ability:GetSpecialValueFor("special_spike_damage")
-  local base_stats = self.caster:FindAbilityByName("base_stats")
-
-	if base_stats then
-    heal = heal * base_stats:GetHealPower()
-    mana = mana * base_stats:GetHealPower()
-  end
 
 	local allies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,

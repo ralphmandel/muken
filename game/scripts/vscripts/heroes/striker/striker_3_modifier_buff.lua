@@ -69,10 +69,8 @@ function striker_3_modifier_buff:ApplyTick()
 		self:PlayEfxPurge()
 	end
 
-	local heal = self.amount
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then heal = heal * base_stats:GetHealPower() end
-    if heal > 0 then self.parent:Heal(heal, self.ability) end
+	local heal = self.amount * BaseStats(self.caster):GetHealPower()
+  if heal > 0 then self.parent:Heal(heal, self.ability) end
 
 	self:ModifyStack(1, true)
 

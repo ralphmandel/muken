@@ -17,15 +17,17 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 		local target = self:GetCursorTarget()
 
 		if caster == target then
-			--caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
+			--BaseHeroMod(caster):ChangeActivity("trapper")
 			caster:StartGestureWithPlaybackRate(ACT_DOTA_VICTORY, 2)
 		else
 			local rand = RandomInt(1,3)
 			--if rand == 1 then self.parent:AddActivityModifier("ti10_pudge") end
-			if rand == 1 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("") end
-			if rand == 2 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("ftp_dendi_back") end
-			if rand == 3 then caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper") end
-			caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+      if BaseHeroMod(caster) then
+        if rand == 1 then BaseHeroMod(caster):ChangeActivity("") end
+        if rand == 2 then BaseHeroMod(caster):ChangeActivity("ftp_dendi_back") end
+        if rand == 3 then BaseHeroMod(caster):ChangeActivity("trapper") end
+        caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+      end
 		end
 
 		return true
@@ -33,9 +35,11 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
 	function bocuse_2__flambee:OnAbilityPhaseInterrupted()
 		local caster = self:GetCaster()
-		caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
-		caster:FadeGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-		caster:FadeGesture(ACT_DOTA_VICTORY)
+		if BaseHeroMod(caster) then
+      BaseHeroMod(caster):ChangeActivity("trapper")
+      caster:FadeGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+      caster:FadeGesture(ACT_DOTA_VICTORY)
+    end
 	end
 
 	function bocuse_2__flambee:OnSpellStart()
@@ -47,7 +51,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 			return
 		end
 
-		caster:FindModifierByName("base_hero_mod"):ChangeActivity("trapper")
+		if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("trapper") end
 
 		if caster == target then
 			Timers:CreateTimer(0.6, function()

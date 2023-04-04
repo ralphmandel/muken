@@ -44,7 +44,7 @@ function TalentTree:OnPortraitUpdate(event)
     mp_regen = entity:GetManaRegen(),
     cd_reduction = entity:GetCooldownReduction() * 100,
     movespeed = entity:GetIdealSpeed(),
-    evasion = entity:GetEvasion() * 100,
+    evasion = BaseStats(entity):GetDodgePercent(),
     armor = entity:GetPhysicalArmorValue(false),
     hp_regen = entity:GetHealthRegen(),
     magical_resist = entity:GetMagicalArmorValue() * 100,
@@ -65,10 +65,9 @@ function TalentTree:OnTalentTreeTalentsRequest(event)
     local hero = player:GetAssignedHero()
     if (not hero) then return end
 
-    local base_hero = hero:FindAbilityByName("base_hero")
-    if (not base_hero) then return end
+    if BaseHero(hero) == nil then return end
 
-    base_hero:UpdatePanoramaPanels()
+    BaseHero(hero):UpdatePanoramaPanels()
 end
 
 function TalentTree:OnTalentTreeLevelUpRequest(event)
@@ -81,23 +80,22 @@ function TalentTree:OnTalentTreeLevelUpRequest(event)
     local hero = player:GetAssignedHero()
     if (not hero) then return end
 
-    local base_hero = hero:FindAbilityByName("base_hero")
-    if (not base_hero) then return end
+    if BaseHero(hero) == nil then return end
 
     local talentId = tonumber(event.id)
-    if (not talentId or talentId < 1 or talentId > #base_hero.talentsData) then return end
-    if not base_hero.talents then return end
+    if (not talentId or talentId < 1 or talentId > #BaseHero(hero).talentsData) then return end
+    if not BaseHero(hero).talents then return end
 
-    if base_hero:IsHeroCanLevelUpTalent(talentId) then
-        local MaxTalentLvl = base_hero:GetTalentMaxLevel(talentId)
-        local talentLvl = base_hero:GetHeroTalentLevel(talentId)
-        if MaxTalentLvl == 6 then
-            base_hero:AddTalentPointsToHero(-1)
-            base_hero:SetHeroTalentLevel(talentId, talentLvl + 1)
-        else
-            base_hero:AddTalentPointsToHero(-MaxTalentLvl)
-            base_hero:SetHeroTalentLevel(talentId, MaxTalentLvl)
-        end
+    if BaseHero(hero):IsHeroCanLevelUpTalent(talentId) then
+      local MaxTalentLvl = BaseHero(hero):GetTalentMaxLevel(talentId)
+      local talentLvl = BaseHero(hero):GetHeroTalentLevel(talentId)
+      if MaxTalentLvl == 6 then
+        BaseHero(hero):AddTalentPointsToHero(-1)
+        BaseHero(hero):SetHeroTalentLevel(talentId, talentLvl + 1)
+      else
+        BaseHero(hero):AddTalentPointsToHero(-MaxTalentLvl)
+        BaseHero(hero):SetHeroTalentLevel(talentId, MaxTalentLvl)
+      end
     end
 end
 
@@ -111,10 +109,9 @@ function TalentTree:OnTalentTreeStateRequest(event)
     local hero = player:GetAssignedHero()
     if (hero == nil) then return end
 
-    local base_hero = hero:FindAbilityByName("base_hero")
-    if (not base_hero) then return end
+    if BaseHero(hero) == nil then return end
 
-    base_hero:UpdatePanoramaState()
+    BaseHero(hero):UpdatePanoramaState()
 end
 
 function TalentTree:OnTalentTreeResetRequest(event)
@@ -127,16 +124,15 @@ function TalentTree:OnTalentTreeResetRequest(event)
     local hero = player:GetAssignedHero()
     if (not hero) then return end
 
-    local base_hero = hero:FindAbilityByName("base_hero")
-    if (not base_hero) then return end
+    if BaseHero(hero) == nil then return end
 
     local pointsToReturn = 0
     for i = 1, #base_hero.talentsData do
-        pointsToReturn = pointsToReturn + base_hero:GetHeroTalentLevel(i)
-        base_hero:SetHeroTalentLevel(i, 0)
+      pointsToReturn = pointsToReturn + base_hero:GetHeroTalentLevel(i)
+      BaseHero(hero):SetHeroTalentLevel(i, 0)
     end
 
-    base_hero:AddTalentPointsToHero(pointsToReturn)
+    BaseHero(hero):AddTalentPointsToHero(pointsToReturn)
 end
 
 function TalentTree:OnPlayerReconnect(keys)
@@ -148,11 +144,10 @@ function TalentTree:OnPlayerReconnect(keys)
     local hero = player:GetAssignedHero()
     if (not hero) then return end
 
-    local base_hero = hero:FindAbilityByName("base_hero")
-    if (not base_hero) then return end
+    if BaseHero(hero) == nil then return end
 
-    base_hero:UpdatePanoramaPanels()
-    base_hero:UpdatePanoramaState()
+    BaseHero(hero):UpdatePanoramaPanels()
+    BaseHero(hero):UpdatePanoramaState()
 end
 
 TalentTree:Init()

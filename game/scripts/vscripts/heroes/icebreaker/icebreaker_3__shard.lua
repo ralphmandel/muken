@@ -13,9 +13,7 @@ LinkLuaModifier("icebreaker_3_modifier_aura_effect", "heroes/icebreaker/icebreak
 
 		shard:CreatureLevelUp(self:GetSpecialValueFor("rank"))
 		shard:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-
-		local base_stats = caster:FindAbilityByName("base_stats")
-		if base_stats then AddBonus(self, "_1_CON", shard, base_stats:GetStatTotal("MND"), 0, nil) end
+		AddBonus(self, "_1_CON", shard, BaseStats(caster):GetStatTotal("MND"), 0, nil)
 		
 		shard:AddNewModifier(caster, self, "icebreaker_3_modifier_shard", {duration = self:GetSpecialValueFor("duration")})
 	end

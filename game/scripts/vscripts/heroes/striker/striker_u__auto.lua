@@ -18,8 +18,6 @@ LinkLuaModifier("striker_u_modifier_autocast", "heroes/striker/striker_u_modifie
 	function striker_u__auto:OnAutoCastChange(state)
 		local caster = self:GetCaster()
 		local cosmetics = caster:FindAbilityByName("cosmetics")
-		local base_stats = caster:FindAbilityByName("base_stats")
-		if base_stats == nil then return end
 
 		if self:GetAutoCastState() == state then
 			if cosmetics then

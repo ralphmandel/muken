@@ -98,30 +98,6 @@ require("internal/talent_tree")
 			-- state_ranks = true
 			-- end
 		end
-		
-		self.ranks = {
-			[0] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[1] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[2] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[3] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[4] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[5] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			},
-			[6] = {
-				[0] = state_skills, [11] = state_ranks, [12] = state_ranks, [21] = state_ranks, [22] = state_ranks, [31] = state_ranks, [32] = state_ranks, [41] = state_ranks, [42] = state_ranks		
-			}
-		}
 
 		self.skills = {}
 		self.talentsData = {}
@@ -130,6 +106,7 @@ require("internal/talent_tree")
 		self.talents = {}
 		self.talents.level = {}
 		self.talents.abilities = {}
+		self.talents.blocked = {}
 		self.talents.currentPoints = 0
 		self.extras_unlocked = 0
 
@@ -285,11 +262,10 @@ require("internal/talent_tree")
 		})
 	end
 
-	function base_hero:UpgradeRank(skill, id, level)
+	function base_hero:UpgradeRank(skill, id, level, talentId)
 		local caster = self:GetCaster()
 		local ability = nil
 		
-		self.ranks[skill][id] = true
 		ability = caster:FindAbilityByName(self.skills[skill])
 		if not ability then return end
 		if not ability:IsTrained() then return end
@@ -297,6 +273,16 @@ require("internal/talent_tree")
 		ability:SetLevel(ability:GetLevel() + level)
 		caster:AddExperience(level * 10, 0, false, false)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
+
+    for i, talent in pairs(self.talentsData) do
+      if self.talentsData[i].Tab == self.skills[skill] then
+        if self.talentsData[i].MaxLevel == level then
+          if self.talentsData[i].Ability ~= self.talentsData[talentId].Ability then
+            self.talents.blocked[self.talentsData[i].Ability] = true
+          end
+        end
+      end
+    end
 	end
 
 	function base_hero:AddGold(amount)
@@ -365,7 +351,7 @@ require("internal/talent_tree")
 	function base_hero:GetHeroRankLevel()
 		local rank = 0
 		if self.talentsData then
-			for talentId,talent in pairs(self.talentsData) do
+			for talentId, talent in pairs(self.talentsData) do
 				rank = rank + self:GetHeroTalentLevel(talentId)
 			end
 		end
@@ -376,7 +362,7 @@ require("internal/talent_tree")
 	function base_hero:GetTotalTalents(level, flag)
 		local total = 0
 		if self.talentsData then
-			for talentId,talent in pairs(self.talentsData) do
+			for talentId, talent in pairs(self.talentsData) do
 				if flag then
 					if self.talentsData[talentId] ~= flag then
 						if self:IsTalentAvailable(talentId, level) then
@@ -396,18 +382,22 @@ require("internal/talent_tree")
 
 	function base_hero:IsTalentAvailable(talentId, level)
 		if self.talentsData[talentId].Ability == "empty" then return false end
-		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then return false end
+		if self:CheckRequirements(talentId, self.talentsData[talentId].Ability) == false then return false end
 		if (self:GetHeroTalentLevel(talentId) >= self:GetTalentMaxLevel(talentId)) then return false end
 		if level == -1 and self:GetTalentRankLevel(talentId) % 2 == 0 then return false end
 		if level > 0 and self:GetTalentRankLevel(talentId) ~= level then return false end
 		local ability = self:GetCaster():FindAbilityByName(self.talentsData[talentId].Tab)
-		if ability == nil then return end
-		if ability:IsTrained() == false then return end
+		if ability == nil then return false end
+		if ability:IsTrained() == false then return false end
 
 		return true
 	end
 
-	function base_hero:CheckRequirements(talentName)
+	function base_hero:CheckRequirements(talentId, talentName)
+    if self.talents.blocked[self.talentsData[talentId].Ability] then
+      return false
+    end
+
 		-- BLOODSTAINED
 			-- Bloodstained 5.31 requires ultimate
 			if talentName == "bloodstained_5__tear_rank_31"
@@ -530,7 +520,7 @@ require("internal/talent_tree")
 	function base_hero:IsHeroCanLevelUpTalent(talentId)
 		if (not self.talentsData[talentId]) then return false end
 		if self.talentsData[talentId].Ability == "empty" then return false end
-		if self:CheckRequirements(self.talentsData[talentId].Ability) == false then return false end
+		if self:CheckRequirements(talentId, self.talentsData[talentId].Ability) == false then return false end
 
 		for i = 1, 6, 1 do
 			if self.talentsData[talentId].Tab == self.skills[i]
@@ -580,17 +570,16 @@ require("internal/talent_tree")
 					local skill = self.talents.abilities[talentId]:GetSpecialValueFor("skill")
 					local id = self.talents.abilities[talentId]:GetSpecialValueFor("id")
 					local permanent = self.talents.abilities[talentId]:GetSpecialValueFor("permanent")
-					self:UpgradeRank(skill, id, level)
+					self:UpgradeRank(skill, id, level, talentId)
 
 					if permanent == 0 then
 						--self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
 						--self.talents.abilities[talentId] = nil
 					end
-
 				elseif(self.talents.abilities[talentId]) then
 					local skill = self.talents.abilities[talentId]:GetSpecialValueFor("skill")
 					local id = self.talents.abilities[talentId]:GetSpecialValueFor("id")
-					self:UpgradeRank(skill, id, level)
+					self:UpgradeRank(skill, id, level, talentId)
 
 					self.talents.abilities[talentId]:SetLevel(level)
 				end

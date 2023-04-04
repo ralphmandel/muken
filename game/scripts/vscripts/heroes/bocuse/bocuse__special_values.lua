@@ -201,7 +201,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 375 + (value_level * 25) end
+		if value_name == "cast_range" then return 350 + (value_level * 20) end
 
 		if value_name == "cast_point" then return 0.1 end
 		if value_name == "max_cut" then return 7 end

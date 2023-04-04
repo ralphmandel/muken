@@ -1,12 +1,7 @@
 base_hero_mod = class ({})
 
-function base_hero_mod:IsHidden()
-  return true
-end
-
-function base_hero_mod:IsPurgable()
-  return false
-end
+function base_hero_mod:IsHidden() return true end
+function base_hero_mod:IsPurgable() return false end
 
 -----------------------------------------------------------
 

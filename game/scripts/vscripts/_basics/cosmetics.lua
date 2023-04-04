@@ -205,12 +205,10 @@ end
 
 	function cosmetics:ChangeCosmeticsActivity(bClear)
 		if self.cosmetic == nil then return end
-		local base_hero_mod = self:GetCaster():FindModifierByName("base_hero_mod")
-		if base_hero_mod == nil then return end
 
 		for i = 1, #self.cosmetic, 1 do
 			if bClear then self.cosmetic[i]:ClearActivityModifiers() end
-			self.cosmetic[i]:AddActivityModifier(base_hero_mod.activity)
+			self.cosmetic[i]:AddActivityModifier(BaseHeroMod(self:GetCaster()).activity)
 		end
 	end
 

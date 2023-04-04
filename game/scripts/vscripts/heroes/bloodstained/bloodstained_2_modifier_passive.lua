@@ -48,9 +48,7 @@ function bloodstained_2_modifier_passive:OnDeath(keys)
 	if keys.unit:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 	if keys.unit:IsIllusion() then return end
 
-	local heal = self.ability:GetSpecialValueFor("special_kill_heal") * keys.unit:GetLevel()
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then heal = heal * base_stats:GetHealPower() end
+	local heal = self.ability:GetSpecialValueFor("special_kill_heal") * keys.unit:GetLevel() * BaseStats(self.caster):GetHealPower()
 
 	if heal > 0 then
 		self.parent:Heal(heal, self.parent)

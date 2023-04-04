@@ -31,8 +31,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then base_stats:UpdateBaseAttackTime() end
+	BaseStats(self.parent):UpdateBaseAttackTime()
 
 	if self.parent:IsAlive() then
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_4_modifier_end", {
@@ -64,8 +63,7 @@ function bocuse_4_modifier_mirepoix:OnIntervalThink()
 	self.parent:SetModelScale(model_scale)
 	self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 	if self.range >= self.atk_range then
-		local base_stats = self.parent:FindAbilityByName("base_stats")
-		if base_stats then base_stats:UpdateBaseAttackTime() end
+		BaseStats(self.parent):UpdateBaseAttackTime()
 		self:StartIntervalThink(-1)
 	end
 end

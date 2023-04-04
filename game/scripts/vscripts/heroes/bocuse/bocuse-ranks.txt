@@ -23,14 +23,17 @@
 			"1"
 			{
 				"1"   "bocuse_1__julienne_rank_21"
+				"2"   "bocuse_1__julienne_rank_22"
 			}
 			"2"
 			{
 				"1"   "bocuse_1__julienne_rank_31"
+				"2"   "bocuse_1__julienne_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "bocuse_1__julienne_rank_41"
+				"2"   "bocuse_1__julienne_rank_42"
 			}
 		}
 		"bocuse_2__flambee"

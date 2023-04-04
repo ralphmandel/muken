@@ -216,14 +216,12 @@ end
 function CalcStatus(duration, caster, target)
   if caster == nil or target == nil then return duration end
   if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
-  local base_stats = caster:FindAbilityByName("base_stats")
-  local base_stats_target = target:FindAbilityByName("base_stats")
 
   if caster:GetTeamNumber() == target:GetTeamNumber() then
-    if base_stats then duration = duration * (1 + base_stats:GetBuffAmp()) end
+    if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetBuffAmp()) end
   else
-    if base_stats then duration = duration * (1 + base_stats:GetDebuffAmp()) end
-    if base_stats_target then duration = duration * (1 - (base_stats_target:GetStatusResistPercent() * 0.01)) end
+    if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetDebuffAmp()) end
+    if BaseStats(target) then duration = duration * (1 - (BaseStats(target):GetStatusResistPercent() * 0.01)) end
   end
   
   return duration
@@ -231,9 +229,7 @@ end
 
 function AddBonus(ability, string, target, const, percent, time)
   if const == 0 and percent == 0 then return end
-
-  local base_stats = target:FindAbilityByName("base_stats")
-  if base_stats then base_stats:AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
+  if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
 end
 
 function RemoveBonus(ability, string, target)
@@ -260,4 +256,8 @@ end
 
 function BaseHero(baseNPC)
   return baseNPC:FindAbilityByName("base_hero")
+end
+
+function BaseHeroMod(baseNPC)
+  return baseNPC:FindModifierByName("base_hero_mod")
 end

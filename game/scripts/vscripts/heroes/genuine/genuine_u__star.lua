@@ -8,7 +8,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 
   function genuine_u__star:OnAbilityPhaseStart()
     local caster = self:GetCaster()
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
 
     local particle_cast = "particles/genuine/ult_caster/genuine_ult_caster.vpcf"
     local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -19,14 +19,14 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 
   function genuine_u__star:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("ti6") end
   end
 
   function genuine_u__star:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("ti6")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("ti6") end
     if target:TriggerSpellAbsorb(self) then return end
 
     self:PlayEfxStart(caster, target)

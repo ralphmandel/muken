@@ -58,17 +58,15 @@ end
 function striker_5_modifier_illusion_sof:SetHammer(iMode, bHide, activity)
 	local sonicblow = self.parent:FindAbilityByName("striker_1__blow")
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
 
-
-	if sonicblow and base_hero_mod and cosmetics then
+	if BaseHeroMod(self.parent) and sonicblow and cosmetics then
 		cosmetics:HideCosmetic("models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", bHide)
-		base_hero_mod:ChangeActivity(activity)
+		BaseHeroMod(self.parent):ChangeActivity(activity)
 
 		if bHide then
-			base_hero_mod:ChangeSounds("Hero_Ursa.PreAttack", nil, "Hero_Ursa.Attack")
+			BaseHeroMod(self.parent):ChangeSounds("Hero_Ursa.PreAttack", nil, "Hero_Ursa.Attack")
 		else
-			base_hero_mod:LoadSounds()
+			BaseHeroMod(self.parent):LoadSounds()
 		end
 	end
 end

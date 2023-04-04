@@ -64,10 +64,7 @@ function stun_hits_modifier:CheckStun()
 end
 
 function stun_hits_modifier:PrepareCrit()
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats == nil then return end
-
-	base_stats:SetForceCritHit(self.stun_crit)
+  BaseStats(self.parent):SetForceCrit(100, self.stun_crit)
 end
 
 --------------------------------------------------------------------------------

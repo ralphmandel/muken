@@ -28,9 +28,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   function druid_5__seed:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
     if not hTarget then return end
     local caster = self:GetCaster()
-    local heal = ExtraData.amount
-    local base_stats = self:GetCaster():FindAbilityByName("base_stats")
-    if base_stats then heal = heal * base_stats:GetHealPower() end
+    local heal = ExtraData.amount * BaseStats(caster):GetHealPower()
     if heal < 1 then return end
 
     caster:Heal(heal, self)

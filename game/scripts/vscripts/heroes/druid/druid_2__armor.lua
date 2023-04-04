@@ -13,13 +13,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
   function druid_2__armor:OnAbilityPhaseStart()
     local caster = self:GetCaster()
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("suffer")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("suffer") end
     return true
   end
 
   function druid_2__armor:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
   end
 
   function druid_2__armor:OnSpellStart()
@@ -28,7 +28,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
 
-    caster:FindModifierByName("base_hero_mod"):ChangeActivity("")
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
+    
     target:AddNewModifier(caster, self, "druid_2_modifier_armor", {
       duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
     })

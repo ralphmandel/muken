@@ -78,9 +78,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function bald_3_modifier_passive:ChangeModelScale(amount)
-  local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
-  if base_hero_mod == nil then return end
-  if base_hero_mod.model_scale == nil then return end
+  if BaseHeroMod(self.parent) == nil then return end
+  if BaseHeroMod(self.parent).model_scale == nil then return end
 
   local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 	for _,modifier in pairs(mod) do
@@ -93,7 +92,7 @@ function bald_3_modifier_passive:ChangeModelScale(amount)
   end
 
   local extra_size = amount * self.ability:GetSpecialValueFor("size_mult") * 0.01
-  self.parent:SetModelScale(base_hero_mod.model_scale + extra_size)
+  self.parent:SetModelScale(BaseHeroMod(self.parent).model_scale + extra_size)
   self.parent:FindAbilityByName("bald__precache"):SetLevel(self.parent:GetModelScale() * 100)
 end
 

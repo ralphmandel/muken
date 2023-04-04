@@ -16,8 +16,7 @@ function bald_2_modifier_heap:OnCreated(kv)
 	self.time = self.max_charge
 	self.tick = 0.3875 --0.31
 
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then base_stats:SetMPRegenState(-1) end
+	BaseStats(self.parent):SetMPRegenState(-1)
 
 	local bonus_ms = self.ability:GetSpecialValueFor("special_bonus_ms")
 	if bonus_ms > 0 then
@@ -46,8 +45,7 @@ function bald_2_modifier_heap:OnRemoved()
 	self.ability.stun = (stun_max * elapsed_time) / self.max_charge
 
 	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then base_stats:SetMPRegenState(1) end
+	BaseStats(self.parent):SetMPRegenState(1)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
 	for _,modifier in pairs(mod) do

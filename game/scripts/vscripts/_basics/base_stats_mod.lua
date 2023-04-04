@@ -14,9 +14,8 @@ base_stats_mod = class ({})
       self.parent = self:GetParent()
       self.ability = self:GetAbility()
 
-      self.records = {}
-      self.ability.cannot_miss = false
-      self.popup_crit = false
+      self.ability.missing = false
+      self.ability.has_crit = false
 
       if self.parent:IsIllusion() then
         self.ability:LoadDataForIllusion()
@@ -40,27 +39,14 @@ base_stats_mod = class ({})
 
 -- DECLARE FUNCTIONS AND STATES
 
-  -- function base_stats_mod:CheckState()
-  --   local state = {}
-    
-  --   if self.ability.cannot_miss then
-  --     state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-  --   end
-
-  --   return state
-  -- end
-
   function base_stats_mod:DeclareFunctions()
     local funcs = {
       MODIFIER_EVENT_ON_TAKEDAMAGE, -- POPUP DAMAGE TYPES
+      MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, -- PHYS./MAGIC. AMP
+      MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, --CRITICAL ATTACKS
 
       -- STR
-      MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
       MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-      MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-      MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-      MODIFIER_PROPERTY_PRE_ATTACK,
-      MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
       MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
       MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
 
@@ -83,7 +69,9 @@ base_stats_mod = class ({})
       MODIFIER_EVENT_ON_HEAL_RECEIVED,
 
       --SECONDARY
-      MODIFIER_PROPERTY_EVASION_CONSTANT,
+      MODIFIER_PROPERTY_DODGE_PROJECTILE,
+      MODIFIER_EVENT_ON_ATTACK,
+      MODIFIER_PROPERTY_MISS_PERCENTAGE,
       MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
       MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
       MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
@@ -92,19 +80,15 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:OnTakeDamage(keys)
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return end
-
-    if keys.attacker then
-      if keys.attacker:IsBaseNPC() then
-        if keys.attacker == self.parent then
-          if self.popup_crit == true then
-            self.popup_crit = false
-          end
-        end
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+      if keys.attacker == nil then return end
+      if keys.attacker:IsBaseNPC() == false then return end
+      if keys.attacker ~= self.parent then return end
+      if self.ability.has_crit == true then
+        self:PopupSpellCrit(keys.damage, keys.unit, DAMAGE_TYPE_PHYSICAL)
       end
-    end
-
-    if keys.unit == self.parent then
+    else
+      if keys.unit ~= self.parent then return end
       local efx = nil
       if keys.damage_type == DAMAGE_TYPE_MAGICAL then
         efx = OVERHEAD_ALERT_BONUS_SPELL_DAMAGE
@@ -143,44 +127,36 @@ base_stats_mod = class ({})
     end
   end
 
--- STR
-
-  function base_stats_mod:GetModifierTotalDamageOutgoing_Percentage(keys)
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+  function base_stats_mod:GetModifierSpellAmplify_Percentage(keys)
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+    if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
+    
+    if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
       return self.ability:GetTotalPhysicalDamagePercent() - 100
     end
 
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK 
-    and self.records[keys.record] == true then
-      return self.ability:GetCriticalDamage() - 100
+    if keys.damage_type == DAMAGE_TYPE_MAGICAL then
+      return self.ability:GetTotalMagicalDamagePercent() - 100
+    end
+  end
+
+  function base_stats_mod:GetModifierTotalDamageOutgoing_Percentage(keys)
+    if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+    if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
+
+    if self.ability.has_crit == true then
+      local crit_damage = self.ability:GetCriticalDamage()
+      self.ability.force_crit_damage = nil
+      return crit_damage
     end
 
     return 0
   end
+
+-- STR
 
   function base_stats_mod:GetModifierBaseAttack_BonusDamage()
     return self.ability.stat_total["STR"] * self.ability.damage
-  end
-
-  function base_stats_mod:GetModifierPreAttack_CriticalStrike(keys)
-    self.ability.cannot_miss = false
-    return 0
-  end
-
-  function base_stats_mod:GetModifierPreAttack(keys)
-    local proc = RandomFloat(1, 100) <= self.ability:GetCriticalChance()
-    self.records[keys.record] = proc
-    self.ability.cannot_miss = proc
-  end
-
-  function base_stats_mod:GetModifierProcAttack_Feedback(keys)
-    if self.records[keys.record] then
-      self:PopupSpellCrit(keys.damage, keys.unit, DAMAGE_TYPE_PHYSICAL)
-    end
-  end
-
-  function base_stats_mod:OnAttackRecordDestroy(keys)
-    self.records[keys.record] = nil
   end
 
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
@@ -341,12 +317,34 @@ base_stats_mod = class ({})
 
 -- SECONDARY
 
-  function base_stats_mod:GetModifierEvasion_Constant(keys)
-    if BaseStats(keys.attacker).cannot_miss == true then return 0 end
-    return 100
-    -- local value = self.ability.stat_total["DEX"] * self.ability.evade
-    -- local calc = (value * 6) / (1 +  (value * 0.06))
-    -- return calc
+  function base_stats_mod:GetModifierDodgeProjectile(keys)
+    if BaseStats(keys.attacker) == nil then return end
+
+    local crit = RandomFloat(1, 100) <= BaseStats(keys.attacker):GetCriticalChance()
+    BaseStats(keys.attacker).force_crit_chance = nil
+    BaseStats(keys.attacker).has_crit = crit
+    if crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent() then return 1 end
+
+    return 0
+  end
+
+  function base_stats_mod:OnAttack(keys)
+    if BaseStats(keys.attacker) == nil then return end
+    if keys.attacker:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then return end
+    if keys.target ~= self.parent then return end
+
+    local crit = RandomFloat(1, 100) <= BaseStats(keys.attacker):GetCriticalChance()
+    BaseStats(keys.attacker).force_crit_chance = nil
+    BaseStats(keys.attacker).has_crit = crit
+    BaseStats(keys.attacker).missing = crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent()
+  end
+
+  function base_stats_mod:GetModifierMiss_Percentage(keys)
+    if self.parent:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK
+    and self.ability.missing == true then
+      return 100
+    end
+    return 0
   end
 
   function base_stats_mod:GetModifierPhysicalArmorBonus()

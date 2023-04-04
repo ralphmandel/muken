@@ -54,10 +54,7 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 		end
 	end
 
-	local heal = self.ability:GetSpecialValueFor("heal")
-	local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then heal = heal * base_stats:GetHealPower() end
-
+	local heal = self.ability:GetSpecialValueFor("heal") * BaseStats(self.caster):GetHealPower()
 	self.parent:Heal(heal, self.ability)
 
   if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("purge_chance") then

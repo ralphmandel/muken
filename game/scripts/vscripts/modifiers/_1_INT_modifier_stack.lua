@@ -19,15 +19,13 @@ function _1_INT_modifier_stack:OnCreated( kv )
 		self.stacks = kv.stacks
 		self.percent = kv.percent
 
-		local base_stats = self:GetParent():FindAbilityByName("base_stats")
-		if base_stats then base_stats:CalculateStats(self.stacks, self.percent, "INT") end
+		BaseStats(self:GetParent()):CalculateStats(self.stacks, self.percent, "INT")
 	end
 end
 
 function _1_INT_modifier_stack:OnRemoved()
 	if IsServer() then
-		local base_stats = self:GetParent():FindAbilityByName("base_stats")
-		if base_stats then base_stats:CalculateStats(-self.stacks, -self.percent, "INT") end
+		BaseStats(self:GetParent()):CalculateStats(-self.stacks, -self.percent, "INT")
 	end
 end
 

@@ -27,7 +27,7 @@
 				"02"
 				{
 					"var_type"				        "FIELD_FLOAT"
-					"base_critical_damage"		"200"
+					"base_critical_damage"		"100"
 				}
         "03"
 				{
@@ -36,12 +36,12 @@
 				}
 				"04"
 				{
-					"var_type"						"FIELD_FLOAT"
+					"var_type"						        "FIELD_FLOAT"
 					"physical_block_max_percent"	"20"
 				}
 				"05"
 				{
-					"var_type"						"FIELD_FLOAT"
+					"var_type"						        "FIELD_FLOAT"
 					"magical_block_max_percent"		"20"
 				}
 			
@@ -110,7 +110,7 @@
 				"21"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"evade"					  "0.5"
+					"evade"					  "0.4"
 				}
 				"22"
 				{
@@ -130,7 +130,7 @@
 				"25"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"	"1" //0.6 scalar
+					"critical_chance"	"0.7" //0.6 scalar
 				}
 				"26"
 				{

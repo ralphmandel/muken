@@ -71,8 +71,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function icebreaker__modifier_hypo:ModifySlow(stack_count)	
-	local base_stats = self.parent:FindAbilityByName("base_stats")
-	if base_stats then base_stats:SetBaseAttackTime(stack_count * self.slow_as) end
+	BaseStats(self.parent):SetBaseAttackTime(stack_count * self.slow_as)
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
 	for _,modifier in pairs(mod) do

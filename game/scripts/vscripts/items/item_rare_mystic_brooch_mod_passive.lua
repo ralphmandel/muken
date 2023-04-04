@@ -45,11 +45,8 @@ function item_rare_mystic_brooch_mod_passive:OnAttackLanded(keys)
 	if self.ability:IsCooldownReady() == false then return end
 
 	local heal = self.ability:GetSpecialValueFor("heal")
-	local total_heal = self.parent:GetMaxHealth() * heal * 0.01
+	local total_heal = self.parent:GetMaxHealth() * heal * 0.01 * BaseStats(self.caster):GetHealPower()
 
-    local base_stats = self.caster:FindAbilityByName("base_stats")
-	if base_stats then total_heal = total_heal * base_stats:GetHealPower() end
-
-    self.parent:Heal(total_heal, self.ability)
+  self.parent:Heal(total_heal, self.ability)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end

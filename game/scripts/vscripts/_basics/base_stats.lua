@@ -220,7 +220,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.critical_chance = self:GetSpecialValueFor("critical_chance")
 
 				-- CRITICAL
-				self.force_crit_hit = nil
+				self.force_crit_chance = nil
+				self.force_crit_damage = nil
 			end
 		end
 
@@ -482,12 +483,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return 100 + (self.stat_total["STR"] * 5)
     end
 
-		function base_stats:SetForceCritHit(bool)
-			self.force_crit_hit = bool
+		function base_stats:SetForceCrit(chance, damage)
+			self.force_crit_chance = chance
+			self.force_crit_damage = damage
 		end
 
-		function base_stats:GetCriticalDamage()
-			return self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
+    function base_stats:GetCriticalDamage()
+      local result = self.force_crit_damage
+      if result == nil then
+        result = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
+      end
+
+      return result
 		end
 
 	-- UTIL AGI
@@ -625,8 +632,21 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-      return (self.stat_total["LCK"] * self.critical_chance) + 1
+      local result = self.force_crit_chance
+      if result == nil then
+        result = (1 + self.stat_total["LCK"]) * self.critical_chance
+      end
+
+      return result
 		end
+
+  -- UTIL DEX
+
+    function base_stats:GetDodgePercent()
+      local value = self.stat_total["DEX"] * self.evade
+      local calc = (value * 6) / (1 +  (value * 0.06))
+      return calc
+    end
 
 	-- UTIL MND
 
@@ -649,7 +669,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- if caster:HasModifier("ancient_1_modifier_passive")
 	-- and damage_type == DAMAGE_TYPE_PHYSICAL then
 	-- 	local chance_base = 0.25
-	-- 	local chance_luck = self:GetCriticalChance() * 0.005
+	-- 	local chance_luck = self:GetCritChance() * 0.005
 	-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
 	-- 	local time = 0
 

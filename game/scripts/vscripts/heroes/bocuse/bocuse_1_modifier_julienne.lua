@@ -13,8 +13,7 @@ function bocuse_1_modifier_julienne:OnCreated(kv)
 	self.parent:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
 	self.total_slashes = self.ability:GetSpecialValueFor("max_cut")
 
-	local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
-	if base_hero_mod then base_hero_mod:ChangeActivity("") end
+	if BaseHeroMod(self.parent) then BaseHeroMod(self.parent):ChangeActivity("") end
 
 	if IsServer() then self:OnIntervalThink() end
 end
@@ -24,9 +23,7 @@ end
 
 function bocuse_1_modifier_julienne:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_ATTACK)
-
-	local base_hero_mod = self.parent:FindModifierByName("base_hero_mod")
-	if base_hero_mod then base_hero_mod:ChangeActivity("trapper") end
+	if BaseHeroMod(self.parent) then BaseHeroMod(self.parent):ChangeActivity("trapper") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

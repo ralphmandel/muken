@@ -125,8 +125,8 @@ function flea_3_modifier_jump:PerformImpact(point)
 		if enemy:HasModifier("bloodstained_u_modifier_copy") == false and enemy:IsIllusion() then
 			enemy:ForceKill(false)
 		else
-      BaseStats(self.parent):SetForceCritHit(0)
-			self.parent:PerformAttack(enemy, false, true, true, true, false, false, true)
+      BaseStats(self.parent):SetForceCrit(100, nil)
+			self.parent:PerformAttack(enemy, false, true, true, true, false, false, false)
 		end
 	end
 

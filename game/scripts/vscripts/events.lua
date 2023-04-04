@@ -348,11 +348,7 @@ function GameMode:OnEntityKilled( keys )
                   if ally:IsIllusion() == false then
                     ally:ModifyGold(math.floor(gold), false, 18)
                     SendOverheadEventMessage(ally:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, ally, gold, ally)
-                    
-                    local base_hero = ally:FindAbilityByName("base_hero")
-                    if base_hero then
-                      base_hero:AddGold(gold)
-                    end
+                    if BaseHero(ally) then BaseHero(ally):AddGold(gold) end
                   end
                 end
               end              
