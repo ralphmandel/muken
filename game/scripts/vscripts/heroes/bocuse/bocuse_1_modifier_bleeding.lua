@@ -52,9 +52,6 @@ end
 
 function bocuse_1_modifier_bleeding:OnIntervalThink()
 	if IsServer() then
-		--if self.parent:IsMoving() then
-		--end
-
 		local apply_damage = math.floor(ApplyDamage(self.damageTable))
 		if apply_damage > 0 then
 			if self.parent then

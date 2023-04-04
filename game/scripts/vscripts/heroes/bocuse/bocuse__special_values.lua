@@ -43,15 +43,34 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bocuse_1__julienne_rank_12") then
-			if value_name == "max_cut" then return 1 end
+			if value_name == "special_invulnerable" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_1__julienne_rank_21") then
 			if value_name == "stun_duration" then return 1 end
 		end
 
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_22") then
+			if value_name == "special_stun_radius" then return 1 end
+		end
+
 		if caster:FindAbilityByName("bocuse_1__julienne_rank_31") then
 			if value_name == "special_bleeding_chance" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_32") then
+			if value_name == "bleeding_duration" then return 1 end
+			if value_name == "bleeding_damage" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_41") then
+			if value_name == "max_cut" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_42") then
+			if value_name == "special_frenesi_chance" then return 1 end
+			if value_name == "special_max_cut" then return 1 end
+			if value_name == "special_cut_speed" then return 1 end
 		end
 	end
 
@@ -198,15 +217,22 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "bocuse_1__julienne" then
 		if value_name == "AbilityManaCost" then return 125 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 15 end
+		if value_name == "AbilityCooldown" then return 17 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cast_range" then return 350 + (value_level * 20) end
 
-		if value_name == "cast_point" then return 0.1 end
-		if value_name == "max_cut" then return 7 end
-		if value_name == "stun_duration" then return 3 end
-		if value_name == "special_bleeding_chance" then return 10 end
+    if value_name == "cast_point" then return 0.1 end
+    if value_name == "special_invulnerable" then return 1 end
+    if value_name == "stun_duration" then return 3 end
+    if value_name == "special_stun_radius" then return 350 end
+    if value_name == "special_bleeding_chance" then return 10 end
+    if value_name == "bleeding_duration" then return 6 end
+    if value_name == "bleeding_damage" then return 30 end
+    if value_name == "max_cut" then return 10 end
+    if value_name == "special_frenesi_chance" then return 50 end
+    if value_name == "special_max_cut" then return 7 end
+    if value_name == "special_cut_speed" then return 7.5 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_2__flambee" then
