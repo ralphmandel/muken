@@ -63,15 +63,18 @@
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "bocuse_3__sauce_rank_11"
+				"2"   "bocuse_3__sauce_rank_12"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "bocuse_3__sauce_rank_21"
+				"2"   "bocuse_3__sauce_rank_22"
 			}
 			"2"
 			{
 				"1"   "bocuse_3__sauce_rank_31"
+				"2"   "bocuse_3__sauce_rank_32"
 			}
 			"3"
 			{

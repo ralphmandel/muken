@@ -92,29 +92,44 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 	local duration = self.ability:GetSpecialValueFor("duration")
 	local duration_reduction = self.ability:GetSpecialValueFor("duration_reduction")
 	local duration = duration - (duration_reduction * (stack_count - 1))
+	local slow_stack = self.ability:GetSpecialValueFor("special_slow_stack")
+	local slow_duration = self.ability:GetSpecialValueFor("special_slow_duration")
 
-	self:SetDuration(duration, true)
+	self:SetDuration(CalcStatus(duration, self.caster, self.parent), true)
 
 	if stack_count > 0 then
 		self:PopupSauce(true)
 	end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") * stack_count then
-		self.parent:Purge(true, false, false, false, false)
+  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
+	for _,modifier in pairs(mod) do
+		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	if stack_count == self.ability:GetSpecialValueFor("max_stack") then
-		if self.ability:GetSpecialValueFor("special_disarm") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
-				duration = self:GetRemainingTime()
-			})		
-		end
+  if slow_stack > 0 then
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+      percent = slow_stack * stack_count
+    })
+  end
 
+  if slow_duration > 0 then
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+      duration = slow_duration, percent = 100
+    })	
+  end
+
+	if stack_count == self.ability:GetSpecialValueFor("max_stack") then
 		if self.ability:GetSpecialValueFor("special_silence") == 1 then
 			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
 				duration = self:GetRemainingTime(),
 				special = 2
 			})	
+		end
+
+    if self.ability:GetSpecialValueFor("special_disarm") == 1 then
+			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
+				duration = self:GetRemainingTime()
+			})		
 		end
 	end
 end

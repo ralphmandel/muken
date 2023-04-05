@@ -24,3 +24,15 @@ function _modifier_percent_movespeed_debuff:OnCreated(kv)
 
 	if IsServer() then self:SetStackCount(self.percent) end
 end
+
+function _modifier_percent_movespeed_debuff:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE 
+	}
+
+	return funcs
+end
+
+function _modifier_percent_movespeed_debuff:GetModifierTurnRate_Percentage()
+  return -self.percent
+end

@@ -226,7 +226,7 @@
 			"01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration"			      "9"
+				"duration"			      "8"
 			}
       "02"
 			{
@@ -241,7 +241,7 @@
       "04"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"damage_amp_stack"	  "4"
+				"damage_amp_stack"	  "3"
 			}
       "05"
 			{
@@ -256,22 +256,22 @@
       "16"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_purge_chance"  "0"
+				"special_slow_stack"    "0"
 			}
       "17"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_break"     	  "0"
+				"special_slow_duration" "0"
 			}
       "18"
 			{
 				"var_type"		          "FIELD_FLOAT"
 				"special_silence"     	"0"
 			}
-      "19"
+      "17"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_heal_allies"   "0"
+				"special_disarm"     	  "0"
 			}
 		}
 	}
