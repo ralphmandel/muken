@@ -12,6 +12,10 @@ function _1_INT_modifier_stack:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
+function _1_INT_modifier_stack:RemoveOnDeath()
+	return false
+end
+
 --------------------------------------------------------------------------------
 
 function _1_INT_modifier_stack:OnCreated( kv )

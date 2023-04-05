@@ -39,15 +39,15 @@ end
 function dasdingo_2_modifier_aura_effect:DeclareFunctions()
 
     local funcs = {
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+    MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
     }
     return funcs
 end
 
 function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(keys)
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker == nil then return 0 end
+	if keys.attacker:IsBaseNPC() == false then return 0 end
 
 	-- UP 2.11
 	if self.ability:GetRank(11) then
@@ -63,6 +63,8 @@ function dasdingo_2_modifier_aura_effect:GetModifierIncomingDamage_Percentage(ke
 			ApplyDamage(damageTable)
 		end
 	end
+
+  return 0
 end
 
 -----------------------------------------------------------

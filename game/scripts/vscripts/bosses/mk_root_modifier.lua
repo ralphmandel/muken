@@ -35,7 +35,8 @@ function mk_root_modifier:OnCreated( kv )
 		bReplaceExisting = false,
 		bProvidesVision = true,
 		iVisionRadius = 100,
-		iVisionTeamNumber = self.caster:GetTeamNumber()
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
+    bDodgeable = false
 	}
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {effect = 7})

@@ -54,7 +54,8 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
       bProvidesVision = true,
       iVisionRadius = 75,
       iVisionTeamNumber = caster:GetTeamNumber(),
-      ExtraData = {amount = self:GetSpecialValueFor("seed_base_heal")}
+      ExtraData = {amount = self:GetSpecialValueFor("seed_base_heal")},
+      bDodgeable = false
     })
   end
 

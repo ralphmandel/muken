@@ -642,6 +642,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
   -- UTIL DEX
 
+    function base_stats:GetMissPercent()
+      local caster = self:GetCaster()
+      local blind = caster:FindModifierByName("_modifier_blind_stack")
+      if blind then return blind:GetStackCount() end
+      return 0
+    end
+
     function base_stats:GetDodgePercent()
       local value = self.stat_total["DEX"] * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))

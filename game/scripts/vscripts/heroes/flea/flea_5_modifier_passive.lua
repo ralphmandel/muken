@@ -6,9 +6,9 @@ function flea_5_modifier_passive:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_5_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 end
 
 function flea_5_modifier_passive:OnRefresh(kv)

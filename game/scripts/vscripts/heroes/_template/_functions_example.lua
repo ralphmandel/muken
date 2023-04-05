@@ -38,7 +38,8 @@
             bReplaceExisting = false,
             bProvidesVision = true,
             iVisionRadius = 150,
-            iVisionTeamNumber = caster:GetTeamNumber()
+            iVisionTeamNumber = caster:GetTeamNumber(),
+            bDodgeable = false
         }
 
         ProjectileManager:CreateTrackingProjectile(tracking_info)

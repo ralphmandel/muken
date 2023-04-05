@@ -103,7 +103,7 @@ LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_
 
 			EffectName = "particles/bocuse/bocuse_flambee.vpcf",
 			iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
-			bDodgeable = true
+			bDodgeable = false
 		})
 	end
 

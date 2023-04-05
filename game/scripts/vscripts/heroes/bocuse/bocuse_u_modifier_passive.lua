@@ -20,6 +20,7 @@ function bocuse_u_modifier_passive:OnRefresh(kv)
 end
 
 function bocuse_u_modifier_passive:OnRemoved(kv)
+  RemoveBonus(self.ability, "_1_CON", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -64,10 +65,7 @@ end
 
 function bocuse_u_modifier_passive:OnStackCountChanged(old)
 	RemoveBonus(self.ability, "_1_CON", self.parent)
-
-	if self:GetStackCount() > 0 then
-		AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
-	end
+  AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- EFFECTS -----------------------------------------------------------

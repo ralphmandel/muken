@@ -6,9 +6,9 @@ function flea_5_modifier_desolator:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function flea_5_modifier_desolator:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.damage_total = 0
 
 	local special_slow = self.ability:GetSpecialValueFor("special_slow")

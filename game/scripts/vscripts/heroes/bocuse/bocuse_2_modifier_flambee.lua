@@ -97,10 +97,7 @@ function bocuse_2_modifier_flambee:ApplyDebuffs()
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {
-		percent = self.ability:GetSpecialValueFor("blind"),
-    miss_chance = self.ability:GetSpecialValueFor("blind")
-	})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = self.ability:GetSpecialValueFor("blind")})
 end
 
 -- EFFECTS -----------------------------------------------------------

@@ -1,9 +1,0 @@
-"skills"
-{
-	"1" "shadowmancer_1__weapon"
-	"2" "shadowmancer_2__walk"
-	"3" "shadowmancer_3__assault"
-	"4" "shadowmancer_4__heart"
-	"5" "shadowmancer_5__cloud"
-	"6" "shadowmancer_u__dagger"
-}

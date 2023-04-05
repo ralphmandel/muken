@@ -266,9 +266,19 @@
       "18"
 			{
 				"var_type"		          "FIELD_FLOAT"
+				"special_dex"     	    "0"
+			}
+      "19"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_break"     	  "0"
+			}
+      "20"
+			{
+				"var_type"		          "FIELD_FLOAT"
 				"special_silence"     	"0"
 			}
-      "17"
+      "21"
 			{
 				"var_type"		          "FIELD_FLOAT"
 				"special_disarm"     	  "0"

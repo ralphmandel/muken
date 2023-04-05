@@ -47,10 +47,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_4_modifier_smoke_effect:ApplyDebuff()
-	local blind = self.ability:GetSpecialValueFor("blind")
-	local slow = self.ability:GetSpecialValueFor("slow")
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = blind, miss_chance = blind})
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = self.ability:GetSpecialValueFor("blind")})
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = self.ability:GetSpecialValueFor("slow")})
 end
 
 -- EFFECTS -----------------------------------------------------------

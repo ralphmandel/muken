@@ -131,11 +131,11 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bocuse_3__sauce_rank_21") then
-			if value_name == "aaa" then return 1 end
+			if value_name == "special_dex" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_3__sauce_rank_22") then
-			if value_name == "aaa" then return 1 end
+			if value_name == "special_break" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_3__sauce_rank_31") then
@@ -295,7 +295,9 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "special_slow_stack" then return 5 end
-    if value_name == "special_slow_duration" then return 0.5 end
+    if value_name == "special_slow_duration" then return 0.75 end
+    if value_name == "special_dex" then return -30 end
+    if value_name == "special_break" then return 1 end
     if value_name == "special_silence" then return 1 end
     if value_name == "special_disarm" then return 1 end
     if value_name == "damage_amp_stack" then return 9 end

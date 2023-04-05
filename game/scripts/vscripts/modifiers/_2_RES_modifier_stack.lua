@@ -12,6 +12,10 @@ function _2_RES_modifier_stack:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
+function _2_RES_modifier_stack:RemoveOnDeath()
+	return false
+end
+
 --------------------------------------------------------------------------------
 
 function _2_RES_modifier_stack:OnCreated( kv )

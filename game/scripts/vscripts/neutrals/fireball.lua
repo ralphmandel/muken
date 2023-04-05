@@ -20,7 +20,8 @@ function fireball:OnSpellStart()
 		bReplaceExisting = false,                         -- Optional
 		bProvidesVision = true,                           -- Optional
 		iVisionRadius = projectile_vision,				-- Optional
-		iVisionTeamNumber = self.caster:GetTeamNumber()        -- Optional
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
+    bDodgeable = false        -- Optional
 	}
 
 	ProjectileManager:CreateTrackingProjectile(info)

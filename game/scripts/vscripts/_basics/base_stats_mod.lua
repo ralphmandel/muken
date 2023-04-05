@@ -323,7 +323,10 @@ base_stats_mod = class ({})
     local crit = RandomFloat(1, 100) <= BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).has_crit = crit
-    if crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent() then return 1 end
+
+    if RandomFloat(1, 100) <= BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent()) then
+      return 1
+    end
 
     return 0
   end
@@ -336,7 +339,7 @@ base_stats_mod = class ({})
     local crit = RandomFloat(1, 100) <= BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).has_crit = crit
-    BaseStats(keys.attacker).missing = crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent()
+    BaseStats(keys.attacker).missing = (RandomFloat(1, 100) <= BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(1, 100) <= self.ability:GetDodgePercent()))
   end
 
   function base_stats_mod:GetModifierMiss_Percentage(keys)
