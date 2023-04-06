@@ -319,7 +319,7 @@
       "04"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"status_resist"		  "20"
+				"status_resist"		  "25"
 			}
       "05"
 			{
@@ -333,8 +333,23 @@
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		      "FIELD_FLOAT"
+				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_block"	        "0"
+			}
+      "17"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_hp_regen"	    "0"
+			}
+      "18"
+			{
+				"var_type"			        "FIELD_FLOAT"
+				"special_bkb_duration"  "0"
 			}
 		}
 	}
@@ -347,7 +362,7 @@
 		"AbilityTextureName"     		"bocuse_roux"
 		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -361,43 +376,48 @@
 		{
 			"01"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"lifetime"		"20"
+				"var_type"		  "FIELD_FLOAT"
+				"lifetime"		  "15"
 			}
-            "02"
+      "02"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"slow"		    "120"
+				"var_type"		  "FIELD_FLOAT"
+				"slow"		      "120"
 			}
-            "03"
+      "03"
 			{
-				"var_type"		"FIELD_FLOAT"
+				"var_type"		  "FIELD_FLOAT"
 				"root_interval" "3"
 			}
-            "04"
+      "04"
 			{
-				"var_type"		"FIELD_FLOAT"
+				"var_type"		  "FIELD_FLOAT"
 				"root_duration" "1"
 			}
-            "05"
+      "05"
 			{
-				"var_type"		"FIELD_FLOAT"
+				"var_type"		  "FIELD_FLOAT"
 				"cast_range"    "400"
 			}
-            "06"
+      "06"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		  "FIELD_FLOAT"
+				"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "15"
+      "15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		  "FIELD_FLOAT"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "16"
+      "16"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"special_mobility"  "0" 
+				"var_type"		  "FIELD_FLOAT"
+				"special_pull"  "0" 
+			}
+      "17"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"special_agi"   "0" 
 			}
 		}
 	}

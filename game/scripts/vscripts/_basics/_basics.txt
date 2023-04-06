@@ -1,0 +1,235 @@
+
+// Dota Abilities Override File
+"DOTAAbilities"
+{
+  "Version"   "1"
+
+	"base_stats"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/base_stats"
+    "AbilityTextureName"    		"base_stats"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"	
+
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+			// STR
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage"				  "2"
+				}
+				"02"
+				{
+					"var_type"				        "FIELD_FLOAT"
+					"base_critical_damage"		"100"
+				}
+        "03"
+				{
+					"var_type"				        "FIELD_FLOAT"
+					"critical_damage"		      "1"
+				}
+				"04"
+				{
+					"var_type"						        "FIELD_FLOAT"
+					"physical_block_max_percent"	"20"
+				}
+				"05"
+				{
+					"var_type"						        "FIELD_FLOAT"
+					"magical_block_max_percent"		"20"
+				}
+			
+			// AGI
+				"06"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"movespeed"				"2" // 5 to 2
+				}
+				"07"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"base_movespeed"	"275"
+				}
+				"08"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"attack_speed"			"5" //2
+				}
+				"09"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"base_attack_time"		"1.2" //0.85
+				}
+
+			// INT
+				"11"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"debuff_amp"			"1" //4 to 1
+				}
+				"12"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"mana"					  "10"
+				}
+				"13"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"spell_amp"				"4"
+				}
+  			"14"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"mana_regen"			"0.2"
+				}
+
+			// CON
+      	"16"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"status_resist"			"1" //2.5 to 1
+				}
+				"17"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"health_bonus"			"60"
+				}
+				"18"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"health_regen"			"0.5"
+				}
+
+			// SECONDARIES
+				"21"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"evade"					  "0.4"
+				}
+				"22"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"armor"					  "0.5"
+				}
+				"23"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"magic_resist"		"0.4"
+				}
+				"24"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"cooldown"				"0.3"
+				}
+				"25"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"critical_chance"	"0.7" //0.6 scalar
+				}
+				"26"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"heal_power"			"4"
+				}
+				"27"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"buff_amp"				"1.5"
+				}
+		}
+	}
+
+	"base_hero"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/base_hero"
+        "AbilityTextureName"    		"base_hero"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"	
+
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_level"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"gold_init"				"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"gold_mult"				"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"starting_gold"			"0" //54
+			}		
+		}
+	}
+
+	"cosmetics"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/cosmetics"
+        "AbilityTextureName"    		"REC"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"_channel"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_channel"
+        "AbilityTextureName"    		"REC"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"	
+		"RequiredLevel"         	 	"-200"
+		
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"0.9"
+			}
+		}
+	}
+
+	"_void"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"_basics/_void"
+        "AbilityTextureName"    		"plus"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"	
+		
+		"AbilityType"					"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+}

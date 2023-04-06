@@ -1,7 +1,7 @@
 bocuse_4__mirepoix = class({})
 LinkLuaModifier("bocuse_4_modifier_mirepoix", "heroes/bocuse/bocuse_4_modifier_mirepoix", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_4_modifier_end", "heroes/bocuse/bocuse_4_modifier_end", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

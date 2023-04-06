@@ -14,7 +14,7 @@ function bocuse_5_modifier_roux_aura_effect:OnCreated(kv)
 		percent = self.ability:GetSpecialValueFor("slow")
 	})
 
-	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_mobility"), 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
 
 	if IsServer() then
     self.parent:EmitSound("Hero_Bristleback.ViscousGoo.Target")
@@ -35,16 +35,6 @@ function bocuse_5_modifier_roux_aura_effect:OnRemoved(kv)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function bocuse_5_modifier_roux_aura_effect:CheckState()
-	local state = {}
-
-	if self:GetAbility():GetSpecialValueFor("special_mobility") < 0 then
-		table.insert(state, MODIFIER_STATE_EVADE_DISABLED, true)
-	end
-
-	return state
-end
 
 function bocuse_5_modifier_roux_aura_effect:OnIntervalThink()
 	self.parent:AddNewModifier(self.caster, self.ability, "bocuse_5_modifier_root", {

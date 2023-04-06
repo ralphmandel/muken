@@ -119,22 +119,26 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bocuse_5__roux_rank_31"
+				"2"   "bocuse_5__roux_rank_32"
 			}
 			"3"
 			{
 				"1"   "bocuse_5__roux_rank_41"
+				"2"   "bocuse_5__roux_rank_42"
 			}
 		}
 		"bocuse_u__mise"
 		{
 			"0"
 			{
-				"1"   "empty"
+				"1"   "bocuse_u__mise_rank_11"
+				"2"   "bocuse_u__mise_rank_12"
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "bocuse_u__mise_rank_21"
+				"2"   "bocuse_u__mise_rank_22"
 			}
 			"2"
 			{

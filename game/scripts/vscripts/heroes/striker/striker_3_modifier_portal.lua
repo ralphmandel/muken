@@ -6,9 +6,9 @@ function striker_3_modifier_portal:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function striker_3_modifier_portal:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 	self.expire = true
 	self.hidden = false
 	self.hidden_level = 0

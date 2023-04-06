@@ -159,6 +159,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "duration" then return 1 end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_11") then
 			if value_name == "cast_point" then return 1 end
@@ -173,15 +174,15 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_31") then
-			if value_name == "" then return 1 end
+			if value_name == "special_block" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_32") then
-			if value_name == "" then return 1 end
+			if value_name == "special_hp_regen" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_41") then
-			if value_name == "" then return 1 end
+			if value_name == "special_bkb_duration" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_42") then
@@ -196,24 +197,31 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("bocuse_5__roux_rank_11") then
-			if value_name == "lifetime" then return 1 end
-		end
-
-		if caster:FindAbilityByName("bocuse_5__roux_rank_12") then
-			if value_name == "root_interval" then return 1 end
-			if value_name == "root_duration" then return 1 end
-		end
-
-		if caster:FindAbilityByName("bocuse_5__roux_rank_21") then
 			if value_name == "slow" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
+		if caster:FindAbilityByName("bocuse_5__roux_rank_12") then
+			if value_name == "special_pull" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bocuse_5__roux_rank_21") then
 			if value_name == "cast_range" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_5__roux_rank_41") then
-			if value_name == "special_mobility" then return 1 end
+		if caster:FindAbilityByName("bocuse_5__roux_rank_31") then
+			if value_name == "lifetime" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_5__roux_rank_32") then
+			if value_name == "special_agi" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_5__roux_rank_41") then
+			if value_name == "root_interval" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_5__roux_rank_42") then
+			if value_name == "root_duration" then return 1 end
 		end
 	end
 
@@ -282,10 +290,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
       return 30
     end
 
-		if value_name == "AbilityCastRange" then
-			return ability:GetSpecialValueFor("cast_range")
-		end
-
+		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 240 + (value_level * 12) end
 
@@ -332,22 +337,33 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "cast_point" then return 1 end
 		if value_name == "agi" then return 30 end
 		if value_name == "atk_range" then return 120 end
-		if value_name == "status_resist" then return 60 end
+    if value_name == "special_block" then return 20 end
+    if value_name == "special_hp_regen" then return 25 end
+    if value_name == "special_bkb_duration" then return 15 end
+		if value_name == "status_resist" then return 75 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then
 		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 40 end
-
+		
+    if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
+        return 30
+      end
+      return 40
+    end
+    
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 400 + (value_level * 10) end
 
-		if value_name == "lifetime" then return 30 end
-		if value_name == "root_interval" then return 4 end
-		if value_name == "root_duration" then return 2 end
-		if value_name == "slow" then return 200 end
-		if value_name == "cast_range" then return 0 end
-		if value_name == "special_mobility" then return -15 end
+    if value_name == "slow" then return 160 end
+    if value_name == "special_pull" then return 1 end
+    if value_name == "cast_range" then return 0 end
+    if value_name == "lifetime" then return 30 end
+    if value_name == "special_agi" then return -10 end
+    if value_name == "root_interval" then return 1 end
+    if value_name == "root_duration" then return 4 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_u__mise" then

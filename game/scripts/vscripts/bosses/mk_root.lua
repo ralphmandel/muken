@@ -34,7 +34,7 @@ function mk_root:OnSpellStart()
 	local heroes = FindUnitsInRadius(
 		caster:GetTeamNumber(), caster:GetOrigin(), nil, radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
+		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
 	)
 
 	for _,hero in pairs(heroes) do

@@ -4,6 +4,7 @@ LinkLuaModifier("bocuse_5_modifier_roux", "heroes/bocuse/bocuse_5_modifier_roux"
 LinkLuaModifier("bocuse_5_modifier_roux_aura_effect", "heroes/bocuse/bocuse_5_modifier_roux_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_pull", "modifiers/_modifier_pull", LUA_MODIFIER_MOTION_HORIZONTAL)
 
 -- INIT
 
@@ -11,10 +12,6 @@ LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTIO
 
 	function bocuse_5__roux:GetAOERadius()
 		return self:GetSpecialValueFor("radius")
-	end
-
-	function bocuse_5__roux:GetCastRange(vLocation, hTarget)
-		return self:GetSpecialValueFor("cast_range")
 	end
 
 	function bocuse_5__roux:OnSpellStart()
