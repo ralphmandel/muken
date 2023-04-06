@@ -11,11 +11,13 @@ function bocuse_4_modifier_mirepoix:OnCreated(kv)
 	self.ability = self:GetAbility()
 
 	self.init_model_scale = self.ability:GetSpecialValueFor("init_model_scale")
-	self.atk_range = self.ability:GetSpecialValueFor("atk_range") * 100
+	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
   self.range = 0
 
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
+
+  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
 
 	if IsServer() then
 		self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
@@ -31,7 +33,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 
-	BaseStats(self.parent):UpdateBaseAttackTime()
+  RemoveBonus(self.ability, "_1_AGI", self.parent)
 
 	if self.parent:IsAlive() then
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_4_modifier_end", {
@@ -47,23 +49,27 @@ end
 
 function bocuse_4_modifier_mirepoix:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+    MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
 	}
 	
 	return funcs
 end
 
 function bocuse_4_modifier_mirepoix:GetModifierAttackRangeBonus()
-  return self.range * 0.016
+  return self.range
+end
+
+function bocuse_4_modifier_mirepoix:GetModifierStatusResistanceStacking()
+  return self:GetAbility():GetSpecialValueFor("status_resist")
 end
 
 function bocuse_4_modifier_mirepoix:OnIntervalThink()
-	self.range = self.range + 125
-	local model_scale = self.init_model_scale * (1 + (self.range * 0.00005))
+	self.range = self.range + 2
+	local model_scale = self.init_model_scale * (1 + (self.range * 0.003125))
 	self.parent:SetModelScale(model_scale)
 	self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 	if self.range >= self.atk_range then
-		BaseStats(self.parent):UpdateBaseAttackTime()
 		self:StartIntervalThink(-1)
 	end
 end

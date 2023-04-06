@@ -96,11 +96,13 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "bocuse_4__mirepoix_rank_31"
+				"2"   "bocuse_4__mirepoix_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "bocuse_4__mirepoix_rank_41"
+				"2"   "bocuse_4__mirepoix_rank_42"
 			}
 		}
 		"bocuse_5__roux"

@@ -558,7 +558,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local caster = self:GetCaster()
 				local attack_time = 0
 				local ancient_mod = caster:FindModifierByName("ancient_1_modifier_passive")
-				local mirepoix_mod = caster:FindModifierByName("bocuse_4_modifier_mirepoix")
 
 				if ancient_mod then
 					if ancient_mod:GetStackCount() > 0 then attack_time = 2.5 else attack_time = 1 end
@@ -566,10 +565,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					attack_time = 1.5
 				else
 					attack_time = self.base_attack_time
-				end
-
-				if mirepoix_mod then
-					attack_time = mirepoix_mod:GetAbility():GetSpecialValueFor("base_aspd")
 				end
 
 				self.attack_time = attack_time + self.bonus_attack_time

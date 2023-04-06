@@ -292,45 +292,49 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_4__mirepoix"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_mirepoix"
-		"MaxLevel"               		"7"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_VICTORY"
-		"AbilityCooldown"				"1 2 3 4 5 6 7"
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_point"		"4"
+				"var_type"		      "FIELD_FLOAT"
+				"cast_point"		    "4"
 			}
-            "02"
+      "02"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"duration"		    "30"
+				"var_type"		      "FIELD_FLOAT"
+				"agi"		            "15"
 			}
-            "03"
+      "03"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"base_aspd"		    "1"
+				"var_type"		      "FIELD_FLOAT"
+				"atk_range"		      "60"
 			}
-            "04"
+      "04"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"atk_range"		    "50"
+				"var_type"		      "FIELD_FLOAT"
+				"status_resist"		  "20"
 			}
-            "05"
+      "05"
 			{
-				"var_type"			"FIELD_FLOAT"
+				"var_type"			    "FIELD_FLOAT"
 				"init_model_scale"	"1.15"
+			}
+      "06"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"duration"		      "1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}

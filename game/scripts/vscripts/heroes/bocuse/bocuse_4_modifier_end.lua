@@ -38,7 +38,7 @@ function bocuse_4_modifier_end:DeclareFunctions()
 end
 
 function bocuse_4_modifier_end:GetModifierAttackRangeBonus()
-    return self.range * 0.016
+    return self.range
 end
 
 function bocuse_4_modifier_end:OnIntervalThink()
@@ -50,8 +50,8 @@ function bocuse_4_modifier_end:OnIntervalThink()
 		return
 	end
 
-	self.range = self.range - 125
-	local model_scale = self.init_model_scale * (1 + (self.range * 0.00005))
+	self.range = self.range - 2
+	local model_scale = self.init_model_scale * (1 + (self.range * 0.003125))
 	self.parent:SetModelScale(model_scale)
 	self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 	if self.range <= 0 then
