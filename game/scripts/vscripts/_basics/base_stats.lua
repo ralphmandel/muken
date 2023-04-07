@@ -30,6 +30,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:OnUpgrade()
+      if self:GetLevel() == 1 then
+        self:IncrementSpenderPoints(15)
+      end
 		end
 
 		function base_stats:OnHeroLevelUp()
@@ -42,7 +45,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				for _, stat in pairs(self.stats_primary) do
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
-        self:IncrementSpenderPoints()
+        self:IncrementSpenderPoints(3)
 			end
 		end
 
@@ -315,9 +318,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 ---- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
-		function base_stats:IncrementSpenderPoints()
+		function base_stats:IncrementSpenderPoints(pts)
 			if IsServer() then
-				self.total_points = self.total_points + 5
+				self.total_points = self.total_points + pts
 				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints("nil") end
 			end
 		end
@@ -381,18 +384,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stat_percent[stat] = self.stat_percent[stat] + percent_value
 
 				self.stat_total[stat] = self.stat_base[stat] + self.stat_bonus[stat]
-				if self.stat_total[stat] < 0 then self.stat_total[stat] = 0 end
+				if self.stat_total[stat] < -1 then self.stat_total[stat] = -1 end
 
 				self.stat_total[stat] = self.stat_total[stat] + math.floor(
-					self.stat_total[stat] * self.stat_percent[stat] * 0.01
+					(self.stat_total[stat] + 1) * self.stat_percent[stat] * 0.01
 				)
 
 				if self.stat_total[stat] > 99 then self.stat_total[stat] = 99 end
-				if self.stat_total[stat] < 0 then self.stat_total[stat] = 0 end
+				if self.stat_total[stat] < -1 then self.stat_total[stat] = -1 end
 
 				if stat == "REC" then
 					local channel = self:GetCaster():FindAbilityByName("_channel")
-					if channel then channel:SetLevel(self.stat_total["REC"]) end
+					if channel then channel:SetLevel(self.stat_total["REC"] + 1) end
 				end
 
 				local void = self:GetCaster():FindAbilityByName("_void")
@@ -480,7 +483,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL STR
 
     function base_stats:GetTotalPhysicalDamagePercent()
-      return 100 + (self.stat_total["STR"] * 5)
+      return 100 + ((self.stat_total["STR"] + 1) * 5)
     end
 
 		function base_stats:SetForceCrit(chance, damage)
@@ -574,7 +577,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL INT
 
     function base_stats:GetTotalMagicalDamagePercent()
-      return 100 + (self.stat_total["INT"] * self.spell_amp)
+      return 100 + ((self.stat_total["INT"] + 1) * self.spell_amp)
     end
 
     function base_stats:GetTotalDebuffAmpPercent()
@@ -629,7 +632,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:GetCriticalChance()
       local result = self.force_crit_chance
       if result == nil then
-        result = (1 + self.stat_total["LCK"]) * self.critical_chance
+        result = (self.stat_total["LCK"] + 1) * self.critical_chance
       end
 
       return result
@@ -645,7 +648,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     end
 
     function base_stats:GetDodgePercent()
-      local value = self.stat_total["DEX"] * self.evade
+      local value = (self.stat_total["DEX"] + 1) * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc
     end
@@ -653,19 +656,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL MND
 
     function base_stats:GetTotalHealPowerPercent()
-      return 100 + (self.stat_total["MND"] * self.heal_power)
+      return 100 + ((self.stat_total["MND"] + 1) * self.heal_power)
     end
 
     function base_stats:GetTotalBuffAmpPercent()
-      return 100 + (self.stat_total["MND"] * self.buff_amp)
+      return 100 + ((self.stat_total["MND"] + 1) * self.buff_amp)
     end
 
 		function base_stats:GetHealPower()
-			return 1 + (self.stat_total["MND"] * self.heal_power * 0.01)
+			return 1 + ((self.stat_total["MND"] + 1) * self.heal_power * 0.01)
 		end
 
 		function base_stats:GetBuffAmp()
-			return self.stat_total["MND"] * self.buff_amp * 0.01
+			return (self.stat_total["MND"] + 1) * self.buff_amp * 0.01
 		end
 
 	-- if caster:HasModifier("ancient_1_modifier_passive")

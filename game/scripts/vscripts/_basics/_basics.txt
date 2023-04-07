@@ -140,7 +140,7 @@
 				"27"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"buff_amp"				"1.5"
+					"buff_amp"				"1"
 				}
 		}
 	}

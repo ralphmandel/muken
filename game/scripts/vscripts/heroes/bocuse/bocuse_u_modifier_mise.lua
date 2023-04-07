@@ -17,9 +17,16 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", true) end
 
-  if self.ability:GetSpecialValueFor("special_jump_duration") > 0 then
+  self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_jump", {duration = 0.5})
+
+  if self.ability:GetSpecialValueFor("special_unslow") == 1 then
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_unslowable", {})
 	end
+
+  AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
+
+  self.ability:SetActivated(false)
+  if self.ability.autocast == false then self.ability:EndCooldown() end
 
 	self:CheckAggro()
 	self:StartSlash()
@@ -38,6 +45,11 @@ function bocuse_u_modifier_mise:OnRemoved()
 	for _,modifier in pairs(mod) do
 		if modifier:GetAbility() == self.ability then modifier:Destroy() end
 	end
+
+  RemoveBonus(self.ability, "_2_LCK", self.parent)
+
+  self.ability:SetActivated(true)
+  if self.ability.autocast == false then self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel())) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -56,6 +68,7 @@ end
 
 function bocuse_u_modifier_mise:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ORDER,
@@ -64,6 +77,10 @@ function bocuse_u_modifier_mise:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function bocuse_u_modifier_mise:GetModifierIncomingDamage_Percentage(keys)
+	return self:GetAbility():GetSpecialValueFor("special_incoming")
 end
 
 function bocuse_u_modifier_mise:GetModifierProcAttack_BonusDamage_Physical()

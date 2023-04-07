@@ -428,7 +428,7 @@
 		"ScriptFile"            		"heroes/bocuse/bocuse_u__mise"
 		"AbilityTextureName"     		"bocuse_mise"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
@@ -439,47 +439,62 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"5"
+				"duration"			"6"
 			}
-            "02"
+      "02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"angle"				"60"
+				"angle"				  "60"
 			}
-            "06"
+      "03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"speed_mult"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"speed_mult"		"1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"		        "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
+				"rank"		      "1 2 3 4 5 6 7 8 9 10 11"
 			}
-            "16"
+      "16"
 			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_jump_duration"		"0"
+				"var_type"			            "FIELD_FLOAT"
+				"special_jump_distance"		  "0"
 			}
-            "17"
+      "17"
 			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_extra_damage"   	"0"
+				"var_type"			            "FIELD_FLOAT"
+				"special_unslow"		        "0"
 			}
-            "18"
+      "18"
 			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_autocast_chance"	"0"
+				"var_type"			            "FIELD_FLOAT"
+				"special_microstun_chance"  "0"
 			}
-            "19"
+      "19"
+			{
+				"var_type"			            "FIELD_FLOAT"
+				"special_lck"	              "0"
+			}
+      "20"
+			{
+				"var_type"			            "FIELD_FLOAT"
+				"special_incoming"	        "0"
+			}
+      "21"
+			{
+				"var_type"			            "FIELD_FLOAT"
+				"special_extra_damage"   	  "0"
+			}
+      "22"
+			{
+				"var_type"			            "FIELD_FLOAT"
+				"special_autocast_chance"	  "0"
+			}
+      "23"
 			{
 				"var_type"			        "FIELD_FLOAT"
 				"special_autocast_duration"	"0"
-			}
-            "20"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_microstun_chance"	"0"
 			}
 		}
 	}

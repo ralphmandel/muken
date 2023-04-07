@@ -99,7 +99,8 @@
 }
 
 .TalentContainer.disabled {
-    wash-color: rgb(56, 56, 56);
+  /* wash-color: rgb(56, 56, 56); */
+  wash-color: rgb(35, 35, 35);
 }
 
 .TalentContainer #TalentImage {

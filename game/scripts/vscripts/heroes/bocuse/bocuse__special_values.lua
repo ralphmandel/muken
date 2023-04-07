@@ -231,21 +231,35 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 		if value_name == "speed_mult" then return 1 end
 
-		if caster:FindAbilityByName("bocuse_u__mise_rank_31") then
-			if value_name == "special_jump_duration" then return 1 end
+
+    if caster:FindAbilityByName("bocuse_u__mise_rank_11") then
+			if value_name == "special_jump_distance" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_u__mise_rank_32") then
+    if caster:FindAbilityByName("bocuse_u__mise_rank_12") then
+			if value_name == "special_unslow" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_u__mise_rank_21") then
+			if value_name == "special_microstun_chance" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_u__mise_rank_22") then
+			if value_name == "special_lck" then return 1 end
+			if value_name == "special_incoming" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_u__mise_rank_31") then
 			if value_name == "special_extra_damage" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_u__mise_rank_41") then
-			if value_name == "special_autocast_chance" then return 1 end
-			if value_name == "special_autocast_duration" then return 1 end
+    if caster:FindAbilityByName("bocuse_u__mise_rank_32") then
+			if value_name == "duration" then return 1 end
 		end
 
-		if caster:FindAbilityByName("bocuse_u__mise_rank_42") then
-			if value_name == "special_microstun_chance" then return 1 end
+    if caster:FindAbilityByName("bocuse_u__mise_rank_41") then
+			if value_name == "special_autocast_chance" then return 1 end
+      if value_name == "special_autocast_duration" then return 1 end
 		end
 	end
 
@@ -350,7 +364,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
       if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
         return 30
       end
-      return 40
+      return 45
     end
     
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
@@ -368,15 +382,26 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "bocuse_u__mise" then
 		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 35 end
-		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "speed_mult" then return 120 + (value_level) end
 
-		if value_name == "special_jump_duration" then return 0.5 end
-		if value_name == "special_extra_damage" then return 10 end
-		if value_name == "special_autocast_chance" then return 12 end
-		if value_name == "special_autocast_duration" then return 1 end
-		if value_name == "special_microstun_chance" then return 35 end
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("bocuse_u__mise_rank_42") then
+        return 17
+      end
+      return 37
+    end
+
+		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "speed_mult" then return 120 + (value_level * 1) end
+
+		if value_name == "special_jump_distance" then return 500 end
+    if value_name == "special_unslow" then return 1 end
+    if value_name == "special_microstun_chance" then return 50 end
+    if value_name == "special_lck" then return 30 end
+    if value_name == "special_incoming" then return 30 end
+    if value_name == "special_extra_damage" then return 10 end
+    if value_name == "duration" then return 8 end
+    if value_name == "special_autocast_chance" then return 10 end
+    if value_name == "special_autocast_duration" then return ability:GetSpecialValueFor("duration") * 0.25 end
 	end
 
 	return 0

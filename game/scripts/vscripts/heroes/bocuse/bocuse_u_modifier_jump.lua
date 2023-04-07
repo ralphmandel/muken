@@ -12,7 +12,7 @@ function bocuse_u_modifier_jump:OnCreated(kv)
 
 	self:StartIntervalThink(FrameTime())
 	self.angle = self.parent:GetForwardVector():Normalized()
-	self.distance = 600 / (self:GetDuration() / FrameTime())
+	self.distance = self.ability:GetSpecialValueFor("special_jump_distance") / (self:GetDuration() / FrameTime())
 end
 
 function bocuse_u_modifier_jump:OnRefresh(kv)

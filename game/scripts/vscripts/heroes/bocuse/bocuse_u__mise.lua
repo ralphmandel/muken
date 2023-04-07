@@ -10,7 +10,12 @@ LinkLuaModifier("_modifier_unslowable", "modifiers/_modifier_unslowable", LUA_MO
 -- INIT
 
 	function bocuse_u__mise:Spawn()
+    self.autocast = false
 		self.kills = 0
+	end
+
+  function bocuse_u__mise:OnOwnerSpawned()
+		self:SetActivated(true)
 	end
 
 -- SPELL START
@@ -21,11 +26,7 @@ LinkLuaModifier("_modifier_unslowable", "modifiers/_modifier_unslowable", LUA_MO
 
 	function bocuse_u__mise:OnSpellStart()
 		local caster = self:GetCaster()
-		local jump_duration = self:GetSpecialValueFor("special_jump_duration")
-
-		if jump_duration > 0 then
-			caster:AddNewModifier(caster, self, "bocuse_u_modifier_jump", {duration = jump_duration})
-		end
+    self.autocast = false
 
 		caster:AddNewModifier(caster, self, "bocuse_u_modifier_mise", {
 			duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)

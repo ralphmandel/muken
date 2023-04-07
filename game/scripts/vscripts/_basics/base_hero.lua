@@ -107,6 +107,7 @@ require("internal/talent_tree")
 		self.talents.level = {}
 		self.talents.abilities = {}
 		self.talents.blocked = {}
+    self.talents.rank_block = {[1] = 0, [2] = 0, [3] = 0, [4] = 0}
 		self.talents.currentPoints = 0
 		self.extras_unlocked = 0
 
@@ -274,6 +275,8 @@ require("internal/talent_tree")
 		caster:AddExperience(level * 10, 0, false, false)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 
+    self.talents.rank_block[level] = self.talents.rank_block[level] + 1
+
     for i, talent in pairs(self.talentsData) do
       if self.talentsData[i].Tab == self.skills[skill] then
         if self.talentsData[i].MaxLevel == level then
@@ -395,6 +398,10 @@ require("internal/talent_tree")
 
 	function base_hero:CheckRequirements(talentId, talentName)
     if self.talents.blocked[self.talentsData[talentId].Ability] then
+      return false
+    end
+
+    if self.talents.rank_block[self.talentsData[talentId].MaxLevel] >= 3 then
       return false
     end
 

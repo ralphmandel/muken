@@ -156,7 +156,7 @@ base_stats_mod = class ({})
 -- STR
 
   function base_stats_mod:GetModifierBaseAttack_BonusDamage()
-    return self.ability.stat_total["STR"] * self.ability.damage
+    return (self.ability.stat_total["STR"] + 1) * self.ability.damage
   end
 
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
@@ -254,7 +254,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierAttackSpeedBonus_Constant()
     if self.parent:HasModifier("ancient_1_modifier_passive") then return 0 end
-    return self.ability.stat_total["AGI"] * self.ability.attack_speed
+    return (self.ability.stat_total["AGI"] + 1) * self.ability.attack_speed
   end
 
   function base_stats_mod:GetModifierBaseAttackTimeConstant()
@@ -275,7 +275,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierConstantManaRegen()
     if IsServer() then
-      return self.ability.stat_total["INT"] * self.ability.mana_regen * self.ability.mp_regen_state
+      return (self.ability.stat_total["INT"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
     end
   end
 
@@ -288,7 +288,7 @@ base_stats_mod = class ({})
   function base_stats_mod:GetModifierExtraHealthBonus()
     if IsServer() then
       if self:GetParent():IsHero() == false then
-        return self.ability.stat_total["CON"] * self.ability.health_bonus
+        return (self.ability.stat_total["CON"] + 1) * self.ability.health_bonus
       end
     end
   end
@@ -296,14 +296,14 @@ base_stats_mod = class ({})
   function base_stats_mod:GetModifierHealthBonus()
     if IsServer() then
       if self:GetParent():IsHero() then
-        return self.ability.stat_total["CON"] * self.ability.health_bonus
+        return (self.ability.stat_total["CON"] + 1) * self.ability.health_bonus
       end
     end
   end
 
   function base_stats_mod:GetModifierConstantHealthRegen()
     if IsServer() then
-      return self.ability.stat_total["CON"] * self.ability.health_regen * self.ability.hp_regen_state
+      return (self.ability.stat_total["CON"] + 1) * self.ability.health_regen * self.ability.hp_regen_state
     end
   end
 
@@ -351,17 +351,17 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierPhysicalArmorBonus()
-    return self.ability.stat_total["DEF"] * self.ability.armor
+    return (self.ability.stat_total["DEF"] + 1) * self.ability.armor
   end
 
   function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = self.ability.stat_total["RES"] * self.ability.magic_resist
+    local value = (self.ability.stat_total["RES"] + 1) * self.ability.magic_resist
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end
   
   function base_stats_mod:GetModifierPercentageCooldown()
-    local value = self.ability.stat_total["REC"] * self.ability.cooldown
+    local value = (self.ability.stat_total["REC"] + 1) * self.ability.cooldown
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end
