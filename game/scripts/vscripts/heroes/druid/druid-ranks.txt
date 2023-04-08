@@ -18,18 +18,22 @@
 			"0"
 			{
 				"1"   "druid_1__root_rank_11"
+				"2"   "druid_1__root_rank_12"
 			}
 			"1"
 			{
 				"1"   "druid_1__root_rank_21"
+				"2"   "druid_1__root_rank_22"
 			}
 			"2"
 			{
 				"1"   "druid_1__root_rank_31"
+				"2"   "druid_1__root_rank_32"
 			}
 			"3"
 			{
 				"1"   "druid_1__root_rank_41"
+				"2"   "druid_1__root_rank_42"
 			}
 		}
 		"druid_2__armor"
@@ -37,6 +41,7 @@
 			"0"
 			{
 				"1"   "druid_2__armor_rank_11"
+				"2"   "druid_2__armor_rank_12"
 			}
 			"1"
 			{
@@ -46,10 +51,12 @@
 			"2"
 			{
 				"1"   "druid_2__armor_rank_31"
+				"2"   "druid_2__armor_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "druid_2__armor_rank_41"
+				"2"   "druid_2__armor_rank_42"
 			}
 		}
 		"druid_3__totem"
@@ -67,10 +74,12 @@
 			"2"
 			{
 				"1"   "druid_3__totem_rank_31"
+				"2"   "druid_3__totem_rank_32"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "druid_3__totem_rank_41"
+				"2"   "druid_3__totem_rank_42"
 			}
 		}
 		"druid_4__form"
@@ -82,15 +91,18 @@
 			}
 			"1"
 			{
-				"1"   "empty"
+				"1"   "druid_4__form_rank_21"
+				"2"   "druid_4__form_rank_22"
 			}
 			"2"
 			{
 				"1"   "druid_4__form_rank_31"
+				"2"   "druid_4__form_rank_32"
 			}
 			"3"
 			{
 				"1"   "druid_4__form_rank_41"
+				"2"   "druid_4__form_rank_42"
 			}
 		}
 		"druid_5__seed"
@@ -107,11 +119,13 @@
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "druid_5__seed_rank_31"
+				"2"   "druid_5__seed_rank_32"
 			}
 			"3"
 			{
 				"1"   "druid_5__seed_rank_41"
+				"2"   "druid_5__seed_rank_42"
 			}
 		}
 		"druid_u__conversion"
@@ -119,18 +133,22 @@
 			"0"
 			{
 				"1"   "druid_u__conversion_rank_11"
+				"2"   "druid_u__conversion_rank_12"
 			}
 			"1"
 			{
 				"1"   "druid_u__conversion_rank_21"
+				"2"   "druid_u__conversion_rank_22"
 			}
 			"2"
 			{
 				"1"   "druid_u__conversion_rank_31"
+				"2"   "druid_u__conversion_rank_32"
 			}
 			"3"
 			{
 				"1"   "druid_u__conversion_rank_41"
+				"2"   "druid_u__conversion_rank_42"
 			}
 		}
 	}	

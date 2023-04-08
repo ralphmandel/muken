@@ -3,6 +3,16 @@ druid_1_modifier_root = class({})
 function druid_1_modifier_root:IsHidden() return true end
 function druid_1_modifier_root:IsPurgable() return false end
 
+-- AURA -----------------------------------------------------------
+
+function druid_1_modifier_root:IsAura() return self:GetAbility():GetSpecialValueFor("special_permanent_bush") == 1 end
+function druid_1_modifier_root:GetModifierAura() return "druid_1_modifier_root_aura_effect" end
+function druid_1_modifier_root:GetAuraRadius() return 50 end
+function druid_1_modifier_root:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
+function druid_1_modifier_root:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
+function druid_1_modifier_root:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
+function druid_1_modifier_root:GetAuraEntityReject(hEntity) return false end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function druid_1_modifier_root:OnCreated(kv)
@@ -12,7 +22,9 @@ function druid_1_modifier_root:OnCreated(kv)
 
 	if IsServer() then
     self:PlayEfxStart()
-    self:OnIntervalThink()
+    if self:IsAura() == false then
+      self:OnIntervalThink()
+    end
   end
 end
 
@@ -33,22 +45,11 @@ function druid_1_modifier_root:OnIntervalThink()
   )
 
   for _,enemy in pairs(enemies) do
-    local root_duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, enemy)
-    enemy:AddNewModifier(self.caster, self.ability, "_modifier_root", {duration = root_duration, effect = 5})
+    enemy:AddNewModifier(self.caster, self.ability, "druid_1_modifier_root_aura_effect", {
+      duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, enemy)
+    })
 
-    if self.ability:GetSpecialValueFor("special_disarm") == 1 then
-      enemy:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {duration = root_duration})
-    end
-
-    local damage = self.ability:GetSpecialValueFor("special_damage")
-    if damage > 0 then
-      ApplyDamage({
-        attacker = self.caster, victim = enemy, damage = damage,
-        damage_type = self.ability:GetAbilityDamageType(),
-        ability = self.ability
-      })
-    end
-
+    if self.bush then ParticleManager:DestroyParticle(self.bush, true) end
     self:Destroy()
     return
   end
@@ -65,10 +66,10 @@ function druid_1_modifier_root:PlayEfxStart()
 	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 50, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_skill2_ground_root.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-  ParticleManager:SetParticleControl(effect_cast, 10, Vector(self:GetDuration(), 0, 0 ))
-	self:AddParticle(effect_cast, false, false, -1, false, false)
+	self.bush = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(self.bush, 0, self.parent:GetOrigin())
+  ParticleManager:SetParticleControl(self.bush, 10, Vector(self:GetDuration(), 0, 0 ))
+	self:AddParticle(self.bush, false, false, -1, false, false)
     
 	if IsServer() then self.parent:EmitSound("Druid.Move_" .. RandomInt(1, 3)) end
 end

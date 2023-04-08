@@ -1,8 +1,10 @@
 druid_1__root = class({})
 LinkLuaModifier("druid_1_modifier_passive", "heroes/druid/druid_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root", "heroes/druid/druid_1_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_1_modifier_root_aura_effect", "heroes/druid/druid_1_modifier_root_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_mini_root", "heroes/druid/druid_1_modifier_mini_root", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -13,6 +15,10 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
 
   function druid_1__root:GetIntrinsicModifierName()
     return "druid_1_modifier_passive"
+  end
+
+  function druid_1__root:GetAOERadius()
+    return self:GetSpecialValueFor("special_elden_radius")
   end
 
   function druid_1__root:OnAbilityPhaseStart()
@@ -68,7 +74,39 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
 		self.projectiles[projectile].origin = caster:GetOrigin()
 		self.projectiles[projectile].location = caster:GetOrigin()
 
+    self:PerformSuperRoot()
     self:PlayEfxStart()
+  end
+
+  function druid_1__root:PerformSuperRoot()
+    local caster = self:GetCaster()
+    local elden_radius = self:GetSpecialValueFor("special_elden_radius")
+    local elden_duration = self:GetSpecialValueFor("special_elden_duration")
+    local elden_damage = self:GetSpecialValueFor("special_elden_damage")
+    if elden_radius == 0 then return end
+
+    self:PlayEfxSuperRoot(caster)
+
+    local enemies = FindUnitsInRadius(
+      caster:GetTeamNumber(), caster:GetOrigin(), nil, elden_radius,
+      DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+      DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+    )
+
+    for _,enemy in pairs(enemies) do
+      local multiplier = 1 - ((CalcDistanceBetweenEntityOBB(caster, enemy) / elden_radius) * 0.5)
+      enemy:AddNewModifier(caster, self, "_modifier_root", {
+        duration = CalcStatus(elden_duration * multiplier, caster, enemy),
+        effect = 6
+      })
+
+      ApplyDamage({
+        attacker = caster, victim = enemy,
+        damage = elden_damage * multiplier,
+        damage_type = self:GetAbilityDamageType(),
+        ability = self
+      })
+    end
   end
 
   function druid_1__root:OnProjectileHitHandle(target, location, handle)
@@ -121,4 +159,13 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
     ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
 
     if IsServer() then caster:EmitSound("Hero_EarthShaker.EchoSlamSmall") end
+  end
+
+  function druid_1__root:PlayEfxSuperRoot(target)
+    local particle = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
+    local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+    ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+    ParticleManager:ReleaseParticleIndex(effect)
+
+    if IsServer() then target:EmitSound("Druid.EldenTree.Cast") end
   end

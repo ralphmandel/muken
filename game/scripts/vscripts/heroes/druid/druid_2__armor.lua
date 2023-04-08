@@ -11,6 +11,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     return "druid_2_modifier_passive"
   end
 
+  function druid_2__armor:GetAOERadius()
+    return self:GetSpecialValueFor("special_radius")
+  end
+
   function druid_2__armor:OnAbilityPhaseStart()
     local caster = self:GetCaster()
     if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("suffer") end
@@ -25,14 +29,29 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   function druid_2__armor:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
+    local allies = {[0] = target}
 
 		caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
-
     if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
-    
-    target:AddNewModifier(caster, self, "druid_2_modifier_armor", {
-      duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, target)
-    })
+
+    if self:GetAOERadius() > 0 then
+      allies = FindUnitsInRadius(
+        caster:GetTeamNumber(), target:GetOrigin(), nil, self:GetAOERadius(),
+        self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
+        self:GetAbilityTargetFlags(), 0, false
+      )
+    end
+
+    for _,ally in pairs(allies) do
+      ally:AddNewModifier(caster, self, "druid_2_modifier_armor", {
+        duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, ally)
+      })
+    end
+
+    if IsServer() then
+      caster:EmitSound("Hero_Treant.LivingArmor.Cast")
+      target:EmitSound("Hero_Treant.LivingArmor.Target")
+    end
   end
 
   function druid_2__armor:GetCastAnimation()
@@ -40,5 +59,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     return ACT_DOTA_CAST_ABILITY_4
   end
 
+  function druid_2__armor:GetBehavior()
+    if self:GetAOERadius() > 0 then return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE end
+    return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+  end
 
 -- EFFECTS

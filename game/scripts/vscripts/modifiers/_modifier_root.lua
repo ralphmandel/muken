@@ -52,15 +52,6 @@ end
 
 function _modifier_root:OnRemoved(kv)
 	ParticleManager:DestroyParticle(self.particle, false)
-
-	local druid_root = self.parent:FindModifierByName("druid_2_modifier_aura_effect")
-	if self.ability == nil then return end
-	
-	if druid_root
-	and self.ability:GetAbilityName() == "druid_2__root"
-	and self.effect == 5 then
-		druid_root:StartIntervalThink(3)
-	end
 end
 --------------------------------------------------------------------------------
 

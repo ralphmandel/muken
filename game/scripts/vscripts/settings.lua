@@ -207,10 +207,10 @@ GOLD_BOUNTY_MAX = 15
 
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
-  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>", ["spawn"] = Vector(-2550, 3850, 0)},
-  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>", ["spawn"] = Vector(2550, -3850, 0)},
-  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>", ["spawn"] = Vector(-3850, -2550, 0)},
-  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>", ["spawn"] = Vector(3850, 2550, 0)},
+  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Nature Team",  [4] = 0, [5] = "<font color='#3dd296'>", ["spawn"] = Vector(-2550, 3850, 0)},
+  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Blood Team",   [4] = 0, [5] = "<font color='#ff6c00'>", ["spawn"] = Vector(2550, -3850, 0)},
+  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Sun Team", [4] = 0, [5] = "<font color='#c7e40d'>", ["spawn"] = Vector(-3850, -2550, 0)},
+  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Night Team", [4] = 0, [5] = "<font color='#8c2af4'>", ["spawn"] = Vector(3850, 2550, 0)},
   -- [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
   -- [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
   -- [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},

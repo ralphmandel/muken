@@ -35,14 +35,17 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "distance" then return 1 end
 
-		if caster:FindAbilityByName("druid_1__root_rank_12") then
+		if caster:FindAbilityByName("druid_1__root_rank_11") then
+      if value_name == "distance" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_1__root_rank_12") then
       if value_name == "creation_speed" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_1__root_rank_21") then
-      if value_name == "special_damage" then return 1 end
+      if value_name == "special_silence" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_1__root_rank_22") then
@@ -54,13 +57,19 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("druid_1__root_rank_32") then
-      if value_name == "root_duration" then return 1 end
+      if value_name == "special_permanent_bush" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_1__root_rank_41") then
       if value_name == "special_bush_duration" then return 1 end
       if value_name == "special_root_duration" then return 1 end
       if value_name == "special_root_chance" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_1__root_rank_42") then
+      if value_name == "special_elden_radius" then return 1 end
+      if value_name == "special_elden_damage" then return 1 end
+      if value_name == "special_elden_duration" then return 1 end
 		end
 	end
 
@@ -80,7 +89,20 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("druid_2__armor_rank_31") then
+      if value_name == "special_status_resist" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_2__armor_rank_32") then
+      if value_name == "special_root_chance" then return 1 end
+      if value_name == "special_root_duration" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_2__armor_rank_41") then
       if value_name == "special_charges" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_2__armor_rank_42") then
+      if value_name == "special_radius" then return 1 end
 		end
 	end
 
@@ -191,54 +213,55 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_1__root" then
 		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
-		
-    if value_name == "AbilityCooldown" then
-      if caster:FindAbilityByName("druid_1__root_rank_11") then
-        return 10
-      end
-      return 12
-    end
-		
+    if value_name == "AbilityCooldown" then return 15 - (value_level * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "distance" then return 1000 + (value_level * 100) end
 
-    if value_name == "creation_speed" then return 750 end
-    if value_name == "special_damage" then return 100 end
+    if value_name == "distance" then return 2000 end
+    if value_name == "creation_speed" then return 900 end
+    if value_name == "special_silence" then return 1 end
     if value_name == "special_disarm" then return 1 end
-    if value_name == "bush_duration" then return 12 end
-    if value_name == "root_duration" then return 5 end
+    if value_name == "bush_duration" then return 15 end
+    if value_name == "special_permanent_bush" then return 1 end
     if value_name == "special_bush_duration" then return 3 end
     if value_name == "special_root_duration" then return 0.5 end
     if value_name == "special_root_chance" then return 25 end
+    if value_name == "special_elden_radius" then return 600 end
+    if value_name == "special_elden_damage" then return 250 end
+    if value_name == "special_elden_duration" then return 2.5 end
 	end
 
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("druid_2__armor_rank_31") then
-        return 140 * (1 + ((ability_level - 1) * 0.05))
+      if caster:FindAbilityByName("druid_2__armor_rank_41") then
+        return 120 * (1 + ((ability_level - 1) * 0.05))
       end
       return 160 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
-      if caster:FindAbilityByName("druid_2__armor_rank_31") then
-        return 32
+      if caster:FindAbilityByName("druid_2__armor_rank_11") then
+        return 30
       end
-      return 24
+      return 36
     end
     
     if value_name == "AbilityCastRange" then
-      if caster:FindAbilityByName("druid_2__armor_rank_11") then
+      if caster:FindAbilityByName("druid_2__armor_rank_12") then
         return 0
       end
       return 800
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "duration" then return 12 + (value_level * 0.5) end
-    if value_name == "regen" then return 0.6 end
-    if value_name == "def" then return 24 end
+    if value_name == "duration" then return 12 + (value_level * 0.3) end
+
+    if value_name == "regen" then return 1 end
+    if value_name == "def" then return 30 end
+    if value_name == "special_status_resist" then return 30 end
+    if value_name == "special_root_chance" then return 15 end
+    if value_name == "special_root_duration" then return 2 end
     if value_name == "special_charges" then return 2 end
+    if value_name == "special_radius" then return 250 end
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then
