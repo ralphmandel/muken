@@ -49,7 +49,7 @@
       "03"
 			{
 				"var_type"          "FIELD_FLOAT"
-				"bush_duration"  "5"
+				"bush_duration"     "4"
 			}
       "04"
 			{
@@ -68,28 +68,28 @@
 			}
       "16"
 			{
-				"var_type"		      "FIELD_FLOAT"
-				"special_damage"	  "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_damage"	      "0"
 			}
       "17"
 			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_silence_duration"  "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_disarm"        "0"
 			}
       "18"
 			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_bush_duration"	    "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_bush_duration" "0"
 			}
       "19"
 			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_root_duration"	    "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_root_duration" "0"
 			}
       "20"
 			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_root_chance"	      "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_root_chance"	  "0"
 			}
 		}
 	}

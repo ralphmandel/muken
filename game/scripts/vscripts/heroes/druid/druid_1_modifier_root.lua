@@ -33,21 +33,11 @@ function druid_1_modifier_root:OnIntervalThink()
   )
 
   for _,enemy in pairs(enemies) do
-    local root_duration = self.ability:GetSpecialValueFor("root_duration")
-    enemy:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-      duration = CalcStatus(root_duration, self.caster, enemy), effect = 5
-    })
+    local root_duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, enemy)
+    enemy:AddNewModifier(self.caster, self.ability, "_modifier_root", {duration = root_duration, effect = 5})
 
-    local silence_duration = self.ability:GetSpecialValueFor("special_silence_duration")
-    if silence_duration > 0 then
-      local mod = enemy:FindAllModifiersByName("_modifier_silence")
-      for _,modifier in pairs(mod) do
-        if modifier:GetAbility() == self.ability then modifier:Destroy() end
-      end
-
-      enemy:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-        duration = CalcStatus(silence_duration, self.caster, enemy)
-      })
+    if self.ability:GetSpecialValueFor("special_disarm") == 1 then
+      enemy:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {duration = root_duration})
     end
 
     local damage = self.ability:GetSpecialValueFor("special_damage")
