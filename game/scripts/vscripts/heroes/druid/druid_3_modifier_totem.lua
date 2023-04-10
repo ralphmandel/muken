@@ -10,6 +10,8 @@ function druid_3_modifier_totem:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  self.spike_damage = self.ability:GetSpecialValueFor("special_spike_damage")
+  self.flame_duration = self.ability:GetSpecialValueFor("special_flame_duration")
   self.hits = self.ability:GetSpecialValueFor("hits")
   self.radius = self.ability:GetAOERadius()
 
@@ -19,7 +21,7 @@ function druid_3_modifier_totem:OnCreated(kv)
   end)
 
 	if IsServer() then
-		self:PlayEfxStart()
+		self:PlayEfxStart(self.flame_duration > 0)
     self:StartIntervalThink(self.ability:GetSpecialValueFor("interval"))
 	end
 end
@@ -31,9 +33,11 @@ function druid_3_modifier_totem:OnRemoved()
 	if IsServer() then
 		self.parent:StopSound("Hero_Juggernaut.FortunesTout.Loop")
 		self.parent:EmitSound("Hero_Juggernaut.HealingWard.Stop")
+    self.parent:StopSound("Igneo.Burn.Loop")
 	end
 
 	if self.ambient then ParticleManager:DestroyParticle(self.ambient, false) end
+	if self.burn_particle then ParticleManager:DestroyParticle(self.burn_particle, false) end
 	if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
 end
 
@@ -96,7 +100,6 @@ end
 function druid_3_modifier_totem:OnIntervalThink()
   local heal = self.ability:GetSpecialValueFor("heal") * BaseStats(self.caster):GetHealPower()
   local mana = self.ability:GetSpecialValueFor("mana") * BaseStats(self.caster):GetHealPower()
-  local spike_damage = self.ability:GetSpecialValueFor("special_spike_damage")
 
 	local allies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
@@ -114,35 +117,50 @@ function druid_3_modifier_totem:OnIntervalThink()
     end
 	end
 
-  if spike_damage > 0 then
-    self:PlayEfxQuill()
-    local enemies = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
-      DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-      0, 0, false
-    )
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.radius,
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    0, 0, false
+  )
 
-    for _,enemy in pairs(enemies) do
-      self:PlayEfxQuillImpact(enemy)
-      enemy:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.1})
-
-      ApplyDamage({
-        attacker = self.caster, victim = enemy,
-        damage = spike_damage,
-        damage_type = self.ability:GetAbilityDamageType(),
-        ability = self.ability
-      })
-    end
+  for _,enemy in pairs(enemies) do
+    self:ApplySpike(enemy)
+    self:ApplyFlame(enemy)
   end
 
-  if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("interval")) end
+  if IsServer() then
+    self:PlayEfxQuill(self.spike_damage > 0)
+    self:PlayEfxBurn(self.flame_duration > 0)
+    self:StartIntervalThink(self.ability:GetSpecialValueFor("interval"))
+  end
 end
 
 -- UTILS -----------------------------------------------------------
 
+function druid_3_modifier_totem:ApplySpike(target)
+  if self.spike_damage <= 0 then return end
+
+  self:PlayEfxQuillImpact(target)
+  target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.5})
+
+  ApplyDamage({
+    attacker = self.caster, victim = target,
+    damage = self.spike_damage,
+    damage_type = DAMAGE_TYPE_PHYSICAL,
+    ability = self.ability
+  })
+end
+
+function druid_3_modifier_totem:ApplyFlame(target)
+  if self.flame_duration <= 0 then return end
+  target:AddNewModifier(self.caster, self.ability, "druid_3_modifier_flame", {
+    duration = CalcStatus(self.flame_duration, self.caster, target)
+  })
+end
+
 -- EFFECTS -----------------------------------------------------------
 
-function druid_3_modifier_totem:PlayEfxStart(target)
+function druid_3_modifier_totem:PlayEfxStart(isBurn)
 	local eruption_string = "particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_eruption_dc.vpcf"
 	local eruption_pfx = ParticleManager:CreateParticle(eruption_string, PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControl(eruption_pfx, 0, self.parent:GetAbsOrigin())
@@ -154,10 +172,23 @@ function druid_3_modifier_totem:PlayEfxStart(target)
 	ParticleManager:SetParticleControl(self.ambient, 1, Vector(self.radius, 1, 1))
 	ParticleManager:SetParticleControlEnt(self.ambient, 2, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
 
+  if isBurn then
+    local burn_string = "particles/econ/items/phoenix/eye_of_the_sun/phoenix_supernova_egg_eye_sun_loadout.vpcf"
+    self.burn_particle = ParticleManager:CreateParticle(burn_string, PATTACH_POINT_FOLLOW, self.parent)
+    ParticleManager:SetParticleControl(self.burn_particle, 0, self.parent:GetAbsOrigin())
+    ParticleManager:SetParticleControl(self.burn_particle, 1, Vector(self.radius, self.radius, self.radius))
+    
+    if IsServer() then
+      self.parent:StopSound("Igneo.Burn.Loop")
+      self.parent:EmitSound("Igneo.Burn.Loop")
+    end
+  end
+
 	if IsServer() then self.parent:EmitSound("Hero_Juggernaut.FortunesTout.Loop") end
 end
 
-function druid_3_modifier_totem:PlayEfxQuill()
+function druid_3_modifier_totem:PlayEfxQuill(isQuill)
+  if isQuill == false then return end
 	local particle_cast = "particles/druid/druid_lotus/lotus_quill.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 10, Vector(self.radius, 0, 0))
@@ -173,4 +204,19 @@ function druid_3_modifier_totem:PlayEfxQuillImpact(target)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then target:EmitSound("Hero_Bristleback.QuillSpray.Target") end
+end
+
+function druid_3_modifier_totem:PlayEfxBurn(isBurn)
+  if isBurn == false then return end
+  local string = "particles/druid/flame_flower/druid_flame_flower_wave.vpcf"
+	local pfx = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(pfx, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(pfx, 1, Vector(self.radius, 0, 0))
+	ParticleManager:ReleaseParticleIndex(pfx)
+
+  if IsServer() then
+    self.parent:StopSound("Igneo.Burn.Loop")
+    self.parent:EmitSound("Igneo.Burn.Loop")
+    self.parent:EmitSound("Hero_Batrider.Flamebreak.Impact")
+  end
 end

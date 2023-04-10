@@ -178,7 +178,7 @@
 				"STR" "0"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "0"
+				"CON" "-1"
 			}
 
 			"Creature"

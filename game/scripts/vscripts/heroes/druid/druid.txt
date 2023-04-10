@@ -189,11 +189,10 @@
 		"ScriptFile"            		"heroes/druid/druid_3__totem"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_totem"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -207,7 +206,7 @@
       "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"			"25"
+				"duration"			"20"
 			}
       "02"
 			{
@@ -217,17 +216,17 @@
       "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal"			  "12"
+				"heal"			  "20"
 			}
       "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana"			  "9"
+				"mana"			  "15"
 			}
       "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"		"1.5"
+				"interval"		"1.75"
 			}
       "06"
 			{
@@ -237,17 +236,32 @@
       "07"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"			"1 2 3 4 5 6 7 8 9 10"
+				"radius"			"1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
       "16"
 			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_spike_damage"  "0"
+				"var_type"		            "FIELD_FLOAT"
+				"special_spike_damage"    "0"
+			}
+      "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_flame_damage"    "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_flame_slow"      "0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_flame_duration"  "0"
 			}
 		}
 	}

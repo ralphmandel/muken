@@ -122,15 +122,25 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("druid_3__totem_rank_21") then
+      if value_name == "duration" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_3__totem_rank_31") then
       if value_name == "heal" then return 1 end
 		end
 
-    if caster:FindAbilityByName("druid_3__totem_rank_22") then
+    if caster:FindAbilityByName("druid_3__totem_rank_32") then
       if value_name == "mana" then return 1 end
 		end
 
-		if caster:FindAbilityByName("druid_3__totem_rank_31") then
+    if caster:FindAbilityByName("druid_3__totem_rank_41") then
       if value_name == "special_spike_damage" then return 1 end
+		end
+
+		if caster:FindAbilityByName("druid_3__totem_rank_42") then
+      if value_name == "special_flame_damage" then return 1 end
+      if value_name == "special_flame_slow" then return 1 end
+      if value_name == "special_flame_duration" then return 1 end
 		end
 	end
 
@@ -266,16 +276,27 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_3__totem" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 50 end
+
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("druid_3__totem_rank_22") then
+        return 45
+      end
+      return 60
+    end
+
     if value_name == "AbilityCastRange" then return 450 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 250 + (value_level * 5) end
 
     if value_name == "ms_limit" then return 275 end
     if value_name == "hits" then return 15 end
-    if value_name == "heal" then return 20 end
-    if value_name == "mana" then return 15 end
-    if value_name == "special_spike_damage" then return 50 end
+    if value_name == "duration" then return 30 end
+    if value_name == "heal" then return 40 end
+    if value_name == "mana" then return 30 end
+    if value_name == "special_spike_damage" then return 75 end
+    if value_name == "special_flame_damage" then return 50 end
+    if value_name == "special_flame_slow" then return 100 end
+    if value_name == "special_flame_duration" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
