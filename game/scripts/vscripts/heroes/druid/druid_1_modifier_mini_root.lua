@@ -42,6 +42,7 @@ function druid_1_modifier_mini_root:OnIntervalThink()
       })
     end
 
+    if self.bush then ParticleManager:DestroyParticle(self.bush, true) end
     self:Destroy()
     return
   end
@@ -58,10 +59,10 @@ function druid_1_modifier_mini_root:PlayEfxStart()
 	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 30, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_bush.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-  ParticleManager:SetParticleControl(effect_cast, 10, Vector(self:GetDuration(), 0, 0 ))
-	self:AddParticle(effect_cast, false, false, -1, false, false)
+	self.bush = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(self.bush, 0, self.parent:GetOrigin())
+  ParticleManager:SetParticleControl(self.bush, 10, Vector(self:GetDuration(), 0, 0 ))
+	self:AddParticle(self.bush, false, false, -1, false, false)
     
 	if IsServer() then self.parent:EmitSound("Druid.Foot_" .. RandomInt(1, 3)) end
 end

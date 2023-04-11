@@ -272,19 +272,19 @@
 		"ScriptFile"            		"heroes/druid/druid_4__form"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"druid_form"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10"
+		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"main"			  "15"
+				"main"			  "10"
 			}
       "02"
 			{
@@ -304,7 +304,7 @@
       "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi"			    "-15"
+				"agi"			    "-10"
 			}
       "06"
 			{
@@ -319,19 +319,29 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
       "16"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_stun_interval"	  "0"
+				"special_heal"	          "0"
 			}
       "17"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_stun_duration"	  "0"
+				"special_fear_duration"	  "0"
 			}
       "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_damage_return"	  "0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_stun_duration"	  "0"
+			}
+      "20"
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_break_duration"	"0"

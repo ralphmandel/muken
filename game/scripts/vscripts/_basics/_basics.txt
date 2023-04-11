@@ -64,7 +64,7 @@
 				"09"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"base_attack_time"		"1.2" //0.85
+					"base_attack_time"		"1.4" //1.2
 				}
 
 			// INT

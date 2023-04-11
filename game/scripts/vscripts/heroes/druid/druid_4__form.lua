@@ -1,6 +1,9 @@
 druid_4__form = class({})
 LinkLuaModifier("druid_4_modifier_form", "heroes/druid/druid_4_modifier_form", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_4_modifier_fear", "heroes/druid/druid_4_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_4_modifier_fear_status_efx", "heroes/druid/druid_4_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_buff", "modifiers/_modifier_percent_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_break", "modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 

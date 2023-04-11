@@ -9,7 +9,10 @@ function druid_4_modifier_form:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.stun_delay = false
+
+  local fear_duration = self.ability:GetSpecialValueFor("special_fear_duration")
+  self.stun_duration = self.ability:GetSpecialValueFor("special_stun_duration")
+  self.break_duration = self.ability:GetSpecialValueFor("special_break_duration")
   self.luck_stack = 0
 
   self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_buff", {
@@ -26,7 +29,15 @@ function druid_4_modifier_form:OnCreated(kv)
   self.ability:EndCooldown()
   self.ability:SetCurrentAbilityCharges(1)
 
-	if IsServer() then self:PlayEfxStart() end
+  Timers:CreateTimer(0.1, function()
+    local heal = self.parent:GetHealthDeficit() * self.ability:GetSpecialValueFor("special_heal") * 0.01
+    if heal > 0 then self.parent:Heal(heal, self.ability) end
+  end)
+
+	if IsServer() then
+    self:ApplyFear(fear_duration)
+    self:PlayEfxStart(fear_duration > 0)
+  end
 end
 
 function druid_4_modifier_form:OnRefresh(kv)
@@ -60,6 +71,7 @@ function druid_4_modifier_form:DeclareFunctions()
     MODIFIER_PROPERTY_PRE_ATTACK,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
+    MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
@@ -79,37 +91,49 @@ function druid_4_modifier_form:GetModifierModelChange()
 	return "models/items/lone_druid/true_form/dark_wood_true_form/dark_wood_true_form.vmdl"
 end
 
+function druid_4_modifier_form:OnTakeDamage(keys)
+	if keys.unit ~= self.parent then return end
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+  local damage_return = self.ability:GetSpecialValueFor("special_damage_return")
+  if damage_return <= 0 then return end
+
+	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+		local damageTable = {
+			damage = keys.damage * damage_return * 0.01,
+			damage_type = keys.damage_type,
+			attacker = self.caster,
+			victim = keys.attacker,
+			ability = self.ability,
+			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+		}
+
+		if IsServer() then keys.attacker:EmitSound("DOTA_Item.BladeMail.Damage") end
+		ApplyDamage(damageTable)
+	end
+end
+
+
 function druid_4_modifier_form:OnAttackLanded(keys)
   if keys.attacker ~= self.parent then return end
-  local stun_duration = self.ability:GetSpecialValueFor("special_stun_duration")
-  local break_duration = self.ability:GetSpecialValueFor("special_break_duration")
 
-  if stun_duration > 0 then
-    if self.stun_delay == false then
-      self.stun_delay = true
-      if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("special_stun_interval")) end
-      keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-        duration = CalcStatus(stun_duration, self.caster, keys.target)
-      })
-    end
+  if self.stun_duration > 0 then
+    keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
+      duration = CalcStatus(self.stun_duration, self.caster, keys.target)
+    })
   end
 
-  if break_duration > 0 then
+  if self.break_duration > 0 then
     self.luck_stack = self.luck_stack + 1
     RemoveBonus(self.ability, "_2_LCK", self.parent)
     AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
     if BaseStats(self.parent).has_crit then
       keys.target:AddNewModifier(self.caster, self.ability, "_modifier_break", {
-        duration = CalcStatus(break_duration, self.caster, keys.target)
+        duration = CalcStatus(self.break_duration, self.caster, keys.target)
       })
     end
   end
-end
-
-function druid_4_modifier_form:OnIntervalThink()
-  self.stun_delay = false
-  if IsServer() then self:StartIntervalThink(-1) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -130,6 +154,22 @@ function druid_4_modifier_form:HideItens(bool)
 	end
 end
 
+function druid_4_modifier_form:ApplyFear(fear_duration)
+  if fear_duration <= 0 then return end
+	
+	local enemies = FindUnitsInRadius(
+		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, 350,
+		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
+	)
+
+	for _,enemy in pairs(enemies) do		
+		enemy:AddNewModifier(self.caster, self.ability, "druid_4_modifier_fear", {
+			duration = CalcStatus(fear_duration, self.caster, enemy)
+		})
+	end
+end
+
 -- EFFECTS -----------------------------------------------------------
 
 function druid_4_modifier_form:PlayEfxStart(bFear)
@@ -143,10 +183,14 @@ function druid_4_modifier_form:PlayEfxStart(bFear)
 	ParticleManager:SetParticleControl(shake, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(shake, 1, Vector(500, 0, 0))
 
-  local string_4 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
-  local particle2 = ParticleManager:CreateParticle(string_4, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-  ParticleManager:SetParticleControl(particle2, 0, self.parent:GetOrigin())
-  ParticleManager:ReleaseParticleIndex(particle2)
+  if bFear then
+    local string_3 = "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
+    local particle_2 = ParticleManager:CreateParticle(string_3, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+    ParticleManager:SetParticleControl(particle_2, 0, self.parent:GetOrigin())
+    ParticleManager:ReleaseParticleIndex(particle_2)
+
+    if IsServer() then self.parent:EmitSound("Hero_LoneDruid.SavageRoar.Cast") end
+  end
 
 	if IsServer() then self.parent:EmitSound("Hero_Lycan.Shapeshift.Cast") end
 end
