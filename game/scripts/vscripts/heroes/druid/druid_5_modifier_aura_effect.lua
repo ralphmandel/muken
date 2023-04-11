@@ -38,7 +38,7 @@ function druid_5_modifier_aura_effect:OnTakeDamage(keys)
 
   if self.amount >= self.ability:GetSpecialValueFor("hp_lost") then
     self.amount = 0
-    self.ability:CreateSeed(self.parent)
+    self.ability:CreateSeed(self.parent, self.caster, self.parent:GetAbsOrigin())
 
     if delay > 0 then
       if IsServer() then

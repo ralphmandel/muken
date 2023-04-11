@@ -370,12 +370,12 @@
 			"01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hp_lost"         "200"
+				"hp_lost"         "250"
 			}
       "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"delay"           "2"
+				"delay"           "1"
 			}
       "03"
 			{
@@ -390,9 +390,14 @@
       "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"tree_chance"     "5"
+				"tree_chance"     "25"
 			}
       "06"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"tree_interval"   "2.5"
+			}
+      "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"radius"          "1 2 3 4 5 6 7 8 9 10 11"
@@ -406,6 +411,11 @@
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_tree_seed_extra" "0"
 			}
 		}
 	}

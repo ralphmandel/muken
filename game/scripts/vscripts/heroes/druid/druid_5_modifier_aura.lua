@@ -19,11 +19,11 @@ function druid_5_modifier_aura:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-  self.interval = 0.3
+  self.tree_interval = self.ability:GetSpecialValueFor("tree_interval")
 
   if IsServer() then
     self:PlayEfxStart()
-    self:StartIntervalThink(self.interval)
+    self:StartIntervalThink(self.tree_interval)
   end
 end
 
@@ -37,16 +37,11 @@ end
 
 function druid_5_modifier_aura:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_CAN_ATTACK_TREES,
 		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE
 	}
 
 	return funcs
 end
-
--- function druid_5_modifier_aura:GetModifierCanAttackTrees()
---   return 1
--- end
 
 function druid_5_modifier_aura:GetModifierExtraManaPercentage(keys)
   return self:GetAbility():GetSpecialValueFor("mana_reduction")
@@ -58,17 +53,36 @@ function druid_5_modifier_aura:OnIntervalThink()
 
   if trees then
     for _,tree in pairs(trees) do
-      if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("tree_chance") * self.interval then
-        self.ability:CreateSeed(tree)
+      if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("tree_chance") then
+        tree:CutDown(self.parent:GetTeamNumber())
+      else
+        self:CreateSeedFromTree(tree)
       end
+      break
     end
   end
 
   if self.effect_aura then ParticleManager:SetParticleControl(self.effect_aura, 1, Vector(radius, 0, 0)) end
-  if IsServer() then self:StartIntervalThink(self.interval) end
+  if IsServer() then self:StartIntervalThink(self.tree_interval) end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function druid_5_modifier_aura:CreateSeedFromTree(tree)
+  local loc = tree:GetAbsOrigin() + Vector(0, 0, 100)
+  self.ability:CreateSeed(tree, self.parent, loc)
+
+  local tree_seed_extra = self.ability:GetSpecialValueFor("special_tree_seed_extra")
+  local allies = FindUnitsInRadius(self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, -1, 1, 1, 0, 0, false)
+
+  for _,ally in pairs(allies) do
+    if tree_seed_extra > 0 and ally ~= self.parent
+    and ally:HasModifier("druid_5_modifier_aura_effect") then
+      self.ability:CreateSeed(tree, ally, loc)
+      tree_seed_extra = tree_seed_extra - 1
+    end
+  end
+end
 
 -- EFFECTS -----------------------------------------------------------
 

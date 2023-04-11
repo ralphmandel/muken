@@ -27,25 +27,20 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
   function druid_5__seed:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
     if not hTarget then return end
-    local caster = self:GetCaster()
-    local heal = ExtraData.amount * BaseStats(caster):GetHealPower()
-    if heal < 1 then return end
 
-    caster:Heal(heal, self)
+    hTarget:Heal(ExtraData.amount, self)
     self:PlayEfxHeal(hTarget)
   end
 
-  function druid_5__seed:CreateSeed(target)
+  function druid_5__seed:CreateSeed(source, target, loc)
     local caster = self:GetCaster()
-    local source = nil
-
-    self:PlayEfxSeed(target)
-    if target:IsBaseNPC() then source = target end
+    self:PlayEfxSeed(source)
+    if source:IsBaseNPC() == false then source = nil end
 
     ProjectileManager:CreateTrackingProjectile({
-      Target = caster,
+      Target = target,
       Source = source,
-      vSourceLoc = target:GetAbsOrigin(),
+      vSourceLoc = loc,
       Ability = self,
       EffectName = "particles/druid/druid_ult_projectile.vpcf",
       iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
@@ -54,7 +49,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
       bProvidesVision = true,
       iVisionRadius = 75,
       iVisionTeamNumber = caster:GetTeamNumber(),
-      ExtraData = {amount = self:GetSpecialValueFor("seed_base_heal")},
+      ExtraData = {amount = self:GetSpecialValueFor("seed_base_heal") * BaseStats(caster):GetHealPower()},
       bDodgeable = false
     })
   end
