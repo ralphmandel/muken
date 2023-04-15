@@ -368,7 +368,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -413,7 +413,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -435,12 +435,7 @@
 				"02"
 				{
 					"var_type"		"FIELD_FLOAT"
-					"heal_hit"		"20"
-				}
-				"03"
-				{
-					"var_type"		"FIELD_FLOAT"
-					"heal"			"50"
+					"heal"			"100"
 				}
 			}
 		}
@@ -463,7 +458,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -508,7 +503,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -553,7 +548,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -598,7 +593,7 @@
 			"ItemShareability"	"ITEM_FULLY_SHAREABLE"
 			"ItemPermanent"		"0" //used for charges
 			"ItemStackable"		"1"
-			"ItemStackableMax"	"2"
+			"ItemStackableMax"	"1"
 			"ItemInitialCharges""1"
 			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
 
@@ -656,7 +651,7 @@
 
 			"ItemRequirements"
 			{
-				"01"						"item_branch_red;item_branch_green"
+				"01"						"item_branch_red;item_branch_green;item_branch_green"
 			}
 		}
 

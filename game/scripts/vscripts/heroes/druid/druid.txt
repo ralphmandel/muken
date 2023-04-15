@@ -40,7 +40,7 @@
       "01"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"creation_speed"    "500"
+				"creation_speed"    "450"
 			}
 			"02"
 			{
@@ -60,7 +60,7 @@
       "05"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"distance"		      "1200"
+				"distance"		      "900"
 			}
 			"15"
 			{
@@ -385,24 +385,29 @@
       "04"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"seed_base_heal"  "25"
+				"seed_lifetime"   "10"
 			}
       "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"tree_chance"     "25"
+				"seed_base_heal"  "25"
 			}
       "06"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"tree_interval"   "2.5"
+				"tree_chance"     "25"
 			}
       "07"
 			{
 				"var_type"		    "FIELD_FLOAT"
+				"tree_interval"   "3"
+			}
+      "08"
+			{
+				"var_type"		    "FIELD_FLOAT"
 				"radius"          "1 2 3 4 5 6 7 8 9 10 11"
 			}
-      "07"
+      "09"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"mana_reduction"  "1 2 3 4 5 6 7 8 9 10 11"
@@ -415,7 +420,27 @@
       "16"
 			{
 				"var_type"		            "FIELD_FLOAT"
+				"special_enemy_seed"      "0"
+			}
+      "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_branch"          "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
 				"special_tree_seed_extra" "0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_ally_seed_extra" "0"
+			}
+      "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_druid_seed_extra""0"
 			}
 		}
 	}
@@ -426,25 +451,43 @@
 		"ScriptFile"            		"heroes/druid/druid_u__conversion"
 		"AbilityTextureName"     		"druid_conversion"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
+    "AbilityChannelTime"    		"999"
+    
 		"AbilitySpecial"
 		{
+      "01"
+			{
+				"var_type"	    "FIELD_FLOAT"
+				"interval"	    "0.25"
+			}
+      "02"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"chance"		    "15"
+			}
+      "03"
+			{
+				"var_type"      "FIELD_FLOAT"
+				"radius"		    "225"
+			}
+      "04"
+			{
+				"var_type"      "FIELD_FLOAT"
+				"max_dominate"  "1 2 3 4 5 6 7 8 9 10 11"
+			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}

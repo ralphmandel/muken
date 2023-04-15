@@ -197,17 +197,35 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
       if value_name == "seed_speed" then return 1 end
 		end
 
-		if caster:FindAbilityByName("druid_5__seed_rank_31") then
+    if caster:FindAbilityByName("druid_5__seed_rank_21") then
+      if value_name == "special_enemy_seed" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_31") then
+      if value_name == "special_branch" then return 1 end
+    end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_32") then
       if value_name == "tree_chance" then return 1 end
       if value_name == "tree_interval" then return 1 end
       if value_name == "special_tree_seed_extra" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_41") then
+      if value_name == "special_ally_seed_extra" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_42") then
+      if value_name == "special_druid_seed_extra" then return 1 end
 		end
 	end
 
 	if ability:GetAbilityName() == "druid_u__conversion" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "max_dominate" then return 1 end
 
 		if caster:FindAbilityByName("druid_u__conversion_rank_11") then
 		end
@@ -238,7 +256,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityCooldown" then return 15 - (value_level * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
-    if value_name == "distance" then return 2000 end
+    if value_name == "distance" then return 1500 end
     if value_name == "creation_speed" then return 900 end
     if value_name == "special_silence" then return 1 end
     if value_name == "special_disarm" then return 1 end
@@ -249,7 +267,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_root_chance" then return 25 end
     if value_name == "special_elden_radius" then return 600 end
     if value_name == "special_elden_damage" then return 250 end
-    if value_name == "special_elden_duration" then return 2.5 end
+    if value_name == "special_elden_duration" then return 3 end
 	end
 
 	if ability:GetAbilityName() == "druid_2__armor" then
@@ -349,15 +367,21 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
     if value_name == "seed_speed" then return 300 end
+    if value_name == "special_enemy_seed" then return 1 end
     if value_name == "tree_chance" then return 100 end
-    if value_name == "tree_interval" then return 1.5 end
-    if value_name == "special_tree_seed_extra" then return 1 end
+    if value_name == "tree_interval" then return 2 end
+    if value_name == "special_branch" then return 1 end
+    if value_name == "special_tree_seed_extra" then return 2 end
+    if value_name == "special_ally_seed_extra" then return 2 end
+    if value_name == "special_druid_seed_extra" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "druid_u__conversion" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 20 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
+    if value_name == "AbilityCastRange" then return 300 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
+    if value_name == "max_dominate" then return 20 + (value_level * 1) end
 	end
 
 	return 0

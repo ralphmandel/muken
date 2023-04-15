@@ -45,6 +45,9 @@ function _modifier_root:OnCreated(kv)
 	elseif self.effect == 7 then
 		path = "particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_bear_entangle_retro_cauldron.vpcf"
 		self.sound = "LoneDruid_SpiritBear.Entangle"
+	elseif self.effect == 8 then
+		path = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_root.vpcf"
+		self.sound = "Hero_Treant.Overgrowth.Target"
 	end
 
 	self:PlayEfxStart(path)

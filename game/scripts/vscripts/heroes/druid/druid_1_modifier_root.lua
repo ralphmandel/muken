@@ -32,7 +32,6 @@ function druid_1_modifier_root:OnRefresh(kv)
 end
 
 function druid_1_modifier_root:OnRemoved()
-	RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -63,7 +62,7 @@ end
 
 function druid_1_modifier_root:PlayEfxStart()
 	local radius = self.ability:GetSpecialValueFor("path_radius")
-	self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 50, self:GetDuration(), false)
+	--self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), radius + 50, self:GetDuration(), false)
 
 	local string = "particles/druid/druid_skill2_ground_root.vpcf"
 	self.bush = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)

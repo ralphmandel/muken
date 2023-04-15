@@ -26,5 +26,5 @@ function item_rare_wild_axe:OnSpellStart()
 		item:LaunchLoot(false, 100, 0.5, pos_launch)
 	end
 
-	tree:CutDownRegrowAfter(120, caster:GetTeamNumber())
+	tree:CutDownRegrowAfter(180, caster:GetTeamNumber())
 end

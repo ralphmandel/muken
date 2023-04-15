@@ -170,6 +170,15 @@ function GameMode:OnTreeCut(keys)
 
   local treeX = keys.tree_x
   local treeY = keys.tree_y
+
+  for _, hero in pairs(HeroList:GetAllHeroes()) do
+    local seed = hero:FindAbilityByName("druid_5__seed")
+    if seed then
+      if seed:IsTrained() then
+        seed:OnTreeCut(Vector(treeX, treeY, 100))
+      end
+    end
+  end
 end
 
 -- A rune was activated by a player

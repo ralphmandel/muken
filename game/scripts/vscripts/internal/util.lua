@@ -199,17 +199,17 @@ end
 
 function RandomForNoHeroSelected()
   for _, team in pairs(TEAMS) do
-      for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
-          local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
-          if playerID ~= nil then
-              if not PlayerResource:HasSelectedHero(playerID) then
-                  local hPlayer = PlayerResource:GetPlayer(playerID)
-                  if hPlayer ~= nil then
-                      hPlayer:MakeRandomHeroSelection()
-                  end
-              end
+    for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
+      local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
+      if playerID ~= nil then
+        if not PlayerResource:HasSelectedHero(playerID) then
+          local hPlayer = PlayerResource:GetPlayer(playerID)
+          if hPlayer ~= nil then
+            hPlayer:MakeRandomHeroSelection()
           end
+        end
       end
+    end
   end
 end
 
