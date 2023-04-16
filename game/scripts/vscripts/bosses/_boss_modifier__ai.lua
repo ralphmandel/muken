@@ -41,7 +41,12 @@ end
 
 function _boss_modifier__ai:OnIntervalThink()
     -- Execute action corresponding to the current state
-    if self.unit:IsDominated() then return end
+    if self.unit:IsDominated() then
+      self.unit:RemoveModifierByName("_modifier_invulnerable")
+      self.unit:RemoveModifierByName("_modifier_movespeed_buff")
+      return
+    end
+    
     self.stateActions[self.state](self)    
 end
 

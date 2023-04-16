@@ -14,6 +14,11 @@ function strike_modifier:OnCreated( kv )
 	self.ability = self:GetAbility()
 
 	self.strike_damage = self.ability:GetSpecialValueFor("strike_damage")
+
+  if IsServer() then
+    self:SetStackCount(1)
+    self:StartIntervalThink(0.1)
+  end
 end
 
 function strike_modifier:OnRefresh( kv )
@@ -26,8 +31,7 @@ end
 
 function strike_modifier:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL
 	}
 
 	return funcs
@@ -44,8 +48,29 @@ function strike_modifier:GetModifierProcAttack_BonusDamage_Physical(keys)
 	end
 end
 
-function strike_modifier:GetModifierMoveSpeedBonus_Percentage()
-	if self.parent:PassivesDisabled() then return -25 end
-	if self.ability:IsCooldownReady() then return 100 end
-	return -25
+function strike_modifier:OnStackCountChanged(old)
+  if self:GetStackCount() == 1 then
+    local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
+    for _,modifier in pairs(mod) do
+      if modifier:GetAbility() == self.ability then modifier:Destroy() end
+    end
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 150})
+  else
+    local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
+    for _,modifier in pairs(mod) do
+      if modifier:GetAbility() == self.ability then modifier:Destroy() end
+    end
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 50})
+  end
+end
+
+function strike_modifier:OnIntervalThink()
+  if IsServer() then
+    if self.ability:IsCooldownReady() then
+      self:SetStackCount(1)
+    else
+      self:SetStackCount(0)
+    end
+    self:StartIntervalThink(0.1)
+  end
 end

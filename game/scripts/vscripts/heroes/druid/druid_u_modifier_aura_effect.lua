@@ -27,8 +27,8 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function druid_u_modifier_aura_effect:OnIntervalThink()
-  if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") * self.interval
-  and self.parent:GetLevel() <= self.ability:GetSpecialValueFor("max_dominate") then
+  local calc = (100 / (10 + self.parent:GetLevel())) * (1 + (self.caster:GetLevel() * self.ability:GetSpecialValueFor("chance") * 0.01))
+  if RandomFloat(1, 100) <= calc * self.interval and self.parent:GetLevel() <= self.ability:GetSpecialValueFor("max_dominate") then
     self.parent:Purge(false, true, false, false, false)
     self.parent:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})    
     self:Destroy()

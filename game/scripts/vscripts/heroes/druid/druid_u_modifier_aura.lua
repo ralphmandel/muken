@@ -30,6 +30,8 @@ function druid_u_modifier_aura:OnRefresh(kv)
 end
 
 function druid_u_modifier_aura:OnRemoved()
+  if self.efx_channel then ParticleManager:DestroyParticle(self.efx_channel, false) end
+  if self.efx_channel2 then ParticleManager:DestroyParticle(self.efx_channel2, false) end
 	if self.fow then RemoveFOWViewer(self.parent:GetTeamNumber(), self.fow) end
 	if IsServer() then self.parent:StopSound("Druid.Channel") end
 end
@@ -39,6 +41,10 @@ end
 function druid_u_modifier_aura:OnIntervalThink()
   if self.fow then RemoveFOWViewer(self.parent:GetTeamNumber(), self.fow) end
 	self.fow = AddFOWViewer(self.parent:GetTeamNumber(), self.ability.point, self.ability:GetAOERadius(), 3, true)
+
+  if self.efx_channel2 then
+    ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.ability:GetAOERadius() * 0.1), 0, 0))
+  end
 
 	if IsServer() then
     self.parent:EmitSound("Druid.Channel")
