@@ -27,11 +27,7 @@ end
 
 function bocuse_5_modifier_roux_aura_effect:OnRemoved(kv)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

@@ -288,6 +288,43 @@
 		}
 	}
 
+  "smash"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"neutrals/smash"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"     		"neutrals/smash"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"3"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastPoint"       		"1.8"
+		"AbilityManaCost"         	"150"
+		"AbilityCooldown"				    "15"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_radius"	  "275"
+			}
+      "02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"	"2.5"
+			}
+      "03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_damage"	  "250"
+			}
+		}
+	}
+
 	"spike_armor"
 	{
 		"BaseClass"              		"ability_lua"

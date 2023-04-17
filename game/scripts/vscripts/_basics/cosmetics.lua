@@ -193,10 +193,7 @@ end
 			if ability == nil then
 				self.cosmetic[i]:RemoveModifierByName(modifier_name)
 			else
-				local mods = self.cosmetic[i]:FindAllModifiersByName(modifier_name)
-				for _,modifier in pairs(mods) do
-					if modifier:GetAbility() == ability then modifier:Destroy() end
-				end
+        RemoveAllModifiersByNameAndAbility(self.cosmetic[i], modifier_name, ability)
 			end
 		end
 	end

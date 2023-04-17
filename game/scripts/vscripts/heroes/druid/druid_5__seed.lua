@@ -48,6 +48,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
       local drop = CreateItemOnPositionSync(loc, item)
       local pos_launch = loc + RandomVector(RandomFloat(150,200))
       item:LaunchLoot(false, 100, 0.5, pos_launch)
+      self:PlayEfxDropItem(pos_launch)
     end
 
     self:CreateSeedFromTree(loc)
@@ -110,4 +111,13 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     end
   
     if IsServer() then target:EmitSound("Hero_Treant.LeechSeed.Tick") end
+  end
+
+  function druid_5__seed:PlayEfxDropItem(pos_launch)
+    local string = "particles/neutral_fx/neutral_item_drop_lvl1.vpcf"
+    local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+    ParticleManager:SetParticleControl(particle, 0, pos_launch)
+    ParticleManager:ReleaseParticleIndex(particle)
+  
+    if IsServer() then EmitSoundOnLocationForAllies(pos_launch, "NeutralLootDrop.Spawn", self:GetCaster()) end
   end

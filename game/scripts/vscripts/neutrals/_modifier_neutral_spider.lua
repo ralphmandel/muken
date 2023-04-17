@@ -15,6 +15,8 @@ function _modifier_neutral_spider:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 30})
+
 	if self.parent:GetUnitName() == "neutral_spider" then
 		self:StartIntervalThink(1)
 	end
@@ -24,21 +26,10 @@ function _modifier_neutral_spider:OnRefresh( kv )
 end
 
 function _modifier_neutral_spider:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
 --------------------------------------------------------------------------------
-
-function _modifier_neutral_spider:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
-	}
-
-	return funcs
-end
-
-function _modifier_neutral_spider:GetModifierMoveSpeedBonus_Percentage()
-	return -40
-end
 
 function _modifier_neutral_spider:OnIntervalThink()
 	local target = self.parent:GetAggroTarget()

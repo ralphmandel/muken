@@ -224,7 +224,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -288,7 +288,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -352,7 +352,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -420,9 +420,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -438,7 +438,7 @@
 				"STR" "25"
 				"AGI" "10"
 				"INT" "45"
-				"CON" "40"
+				"CON" "37"
 			}
 
 			"Creature"
@@ -484,7 +484,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"25"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -502,7 +502,7 @@
 				"STR" "15"
 				"AGI" "15"
 				"INT" "0"
-				"CON" "3"
+				"CON" "0"
 			}
 
 			"Creature"
@@ -553,9 +553,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -568,10 +568,10 @@
 
 			"Stats"
 			{
-				"STR" "40"
+				"STR" "35"
 				"AGI" "10"
-				"INT" "15"
-				"CON" "25"
+				"INT" "8"
+				"CON" "28"
 			}
 
 			"Creature"
@@ -621,9 +621,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -638,8 +638,8 @@
 			{
 				"STR" "5"
 				"AGI" "5"
-				"INT" "35"
-				"CON" "20"
+				"INT" "30"
+				"CON" "18"
 			}
 
 			"Creature"
@@ -688,9 +688,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -703,10 +703,10 @@
 
 			"Stats"
 			{
-				"STR" "25"
-				"AGI" "12"
-				"INT" "10"
-				"CON" "22"
+				"STR" "18"
+				"AGI" "10"
+				"INT" "8"
+				"CON" "24"
 			}
 
 			"Creature"
@@ -721,14 +721,13 @@
 			}
 		}
 		
-	// LVL 6
 		"neutral_igor"	
 		{
 			"Model"						"models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_crystal.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"6"
+			"Level"						"7"
 			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -754,9 +753,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -769,10 +768,10 @@
 
 			"Stats"
 			{
-				"STR" "5"
+				"STR" "0"
 				"AGI" "15"
-				"INT" "30"
-				"CON" "15"
+				"INT" "25"
+				"CON" "10"
 			}
 
 			"Creature"
@@ -821,9 +820,9 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"500" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"
@@ -836,10 +835,76 @@
 
 			"Stats"
 			{
-				"STR" "5"
-				"AGI" "10"
-				"INT" "16"
-				"CON" "16"
+				"STR" "4"
+				"AGI" "4"
+				"INT" "15"
+				"CON" "12"
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+		"neutral_frostbitten"	
+		{
+			"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"5"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"120"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"200"
+
+      "Ability1"					"smash"
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+			"Ability9"					"_neutral__ai"
+			"Ability10"					"_neutral_frostbitten"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 	"1"
+			"IsNeutralUnitType" "1"
+			"WakesNeutrals" 	"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"500"
+			"StatusHealthRegen"			"10"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR" "20"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "20"
 			}
 
 			"Creature"
@@ -887,7 +952,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -902,75 +967,10 @@
 
 			"Stats"
 			{
-				"STR" "24"
-				"AGI" "4"
+				"STR" "10"
+				"AGI" "5"
 				"INT" "0"
-				"CON" "12"
-			}
-
-			"Creature"
-			{
-				"HPGain"					"0"
-				"DamageGain"				"0"
-				"ArmorGain"					"0"
-				"MagicResistGain"			"0"
-				"MoveSpeedGain"				"0"
-				"BountyGain"				"0"
-				"XPGain"					"0"
-			}
-		}
-
-	// LVL 3
-		"neutral_frostbitten"	
-		{
-			"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"
-			"BaseClass"					"npc_dota_creature"
-			"SoundSet"					"n_creep_Melee"
-			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"3"
-			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackRange"				"120"
-			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
-			//"ProjectileSpeed"			"1500"
-			"HealthBarOffset"			"200"
-
-			"Ability7"					"_void"
-			"Ability8"					"base_stats"
-			"Ability9"					"_neutral__ai"
-
-			"RingRadius"				"100"
-			"BountyXP"					"0"
-			"TeamName"					"DOTA_TEAM_NEUTRALS"
-			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-			"ConsideredHero" 	"1"
-			"IsNeutralUnitType" "1"
-			"WakesNeutrals" 	"1"
-
-			"ArmorPhysical"				"0"
-			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
-			"StatusHealthRegen"			"10"
-			"StatusMana"				"0" //600
-			"StatusManaRegen"			"0"
-			"VisionDaytimeRange"		"600"
-			"VisionNighttimeRange"		"500"
-			"MovementSpeed"           	"9999"
-			"AttackDamageMin"			"35"
-			"AttackDamageMax"			"45"
-			"AttackRate"				"1.2"
-			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"
-
-			"Stats"
-			{
-				"STR" "15"
-				"AGI" "3"
-				"INT" "0"
-				"CON" "19"
+				"CON" "10"
 			}
 
 			"Creature"
@@ -1017,7 +1017,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1032,10 +1032,10 @@
 
 			"Stats"
 			{
-				"STR" "12"
-				"AGI" "2"
+				"STR" "8"
+				"AGI" "4"
 				"INT" "0"
-				"CON" "10"
+				"CON" "8"
 			}
 
 			"Creature"
@@ -1081,7 +1081,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1096,10 +1096,10 @@
 
 			"Stats"
 			{
-				"STR" "12"
-				"AGI" "2"
+				"STR" "8"
+				"AGI" "4"
 				"INT" "0"
-				"CON" "10"
+				"CON" "8"
 			}
 
 			"Creature"
@@ -1145,7 +1145,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1160,10 +1160,10 @@
 
 			"Stats"
 			{
-				"STR" "10"
-				"AGI" "10"
+				"STR" "7"
+				"AGI" "8"
 				"INT" "0"
-				"CON" "6"
+				"CON" "5"
 			}
 
 			"Creature"
@@ -1210,7 +1210,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1226,9 +1226,9 @@
 			"Stats"
 			{
 				"STR" "3"
-				"AGI" "5"
+				"AGI" "4"
 				"INT" "0"
-				"CON" "2"
+				"CON" "3"
 			}
 
 			"Creature"
@@ -1274,7 +1274,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1290,7 +1290,7 @@
 			"Stats"
 			{
 				"STR" "4"
-				"AGI" "5"
+				"AGI" "4"
 				"INT" "0"
 				"CON" "2"
 			}
@@ -1338,7 +1338,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -1354,9 +1354,9 @@
 			"Stats"
 			{
 				"STR" "2"
-				"AGI" "6"
+				"AGI" "8"
 				"INT" "0"
-				"CON" "1"
+				"CON" "0"
 			}
 
 			"Creature"

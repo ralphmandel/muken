@@ -4,10 +4,12 @@ LinkLuaModifier("druid_u_modifier_passive", "heroes/druid/druid_u_modifier_passi
 LinkLuaModifier("druid_u_modifier_channel", "heroes/druid/druid_u_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_aura", "heroes/druid/druid_u_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
   function druid_u__conversion:Spawn()
+    self:SetCurrentAbilityCharges(0)
     self.DominateTable = {}
   end
 
@@ -24,7 +26,7 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/druid/druid_u_modifier_a
   end
 
   function druid_u__conversion:GetBehavior()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) then
+    if self:GetCaster():FindAbilityByName("druid_4__form"):GetCurrentAbilityCharges() == 1 then
       return DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE + DOTA_ABILITY_BEHAVIOR_PASSIVE
     end
 

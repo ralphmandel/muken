@@ -30,10 +30,7 @@ function flea_2_modifier_speed:OnRefresh(kv)
 end
 
 function flea_2_modifier_speed:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -41,10 +38,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function flea_2_modifier_speed:IncreaseSpeed()
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 		duration = self:GetDuration(),

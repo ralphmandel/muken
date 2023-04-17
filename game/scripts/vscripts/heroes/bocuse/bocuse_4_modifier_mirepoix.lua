@@ -41,11 +41,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:SetActivated(true)
 
   RemoveBonus(self.ability, "_1_AGI", self.parent)
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_bkb")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bkb", self.ability)
 
 	if self.parent:IsAlive() then
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_4_modifier_end", {

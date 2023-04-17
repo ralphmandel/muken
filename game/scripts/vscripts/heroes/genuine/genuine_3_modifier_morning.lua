@@ -33,11 +33,7 @@ function genuine_3_modifier_morning:OnRemoved()
 
 	RemoveBonus(self.ability, "_1_INT", self.parent)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -87,11 +83,7 @@ function genuine_3_modifier_morning:ApplyBuffs()
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
 	AddBonus(self.ability, "_1_INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
 	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
 	local ms = self.ability:GetSpecialValueFor("special_ms")
 	if ms > 0 then

@@ -34,10 +34,7 @@ function druid_4_modifier_fear:OnRemoved(kv)
 end
 
 function druid_4_modifier_fear:OnDestroy()
-	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

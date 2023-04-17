@@ -41,11 +41,7 @@ function bocuse_u_modifier_mise:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", false) end
 
-  local mod = self.parent:FindAllModifiersByName("_modifier_unslowable")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
   RemoveBonus(self.ability, "_2_LCK", self.parent)
 
   self.ability:SetActivated(true)

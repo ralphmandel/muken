@@ -33,16 +33,8 @@ function bloodstained_4_modifier_frenzy:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_unslowable")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

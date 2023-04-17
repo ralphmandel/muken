@@ -135,10 +135,7 @@ function striker_1_modifier_passive:PerformBlink(target)
 				self.parent:SetForwardVector((target:GetAbsOrigin() - blink_point):Normalized())
 				FindClearSpaceForUnit(self.parent, blink_point, true)
 
-				local mod = self.parent:FindAllModifiersByName("_modifier_ban")
-				for _,modifier in pairs(mod) do
-					if modifier:GetAbility() == self.ability then modifier:Destroy() end
-				end
+        RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_ban", self.ability)
 
 				self:PerformCombo(target)
 				self:ApplyKnockback(target)
@@ -205,10 +202,7 @@ function striker_1_modifier_passive:PerformAfterShake(target)
 	for _,enemy in pairs(enemies) do
 		self:PlayEfxScreenShake(enemy)
 
-		local mod = enemy:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-		for _,modifier in pairs(mod) do
-			if modifier:GetAbility() == self.ability then modifier:Destroy() end
-		end
+    RemoveAllModifiersByNameAndAbility(enemy, "_modifier_percent_movespeed_debuff", self.ability)
 
 		enemy:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 			duration = CalcStatus(1.5, self.caster, enemy),

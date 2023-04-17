@@ -48,11 +48,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
     local caster = self:GetCaster()
     if target:IsInvisible() then return end
 
-    local mod = target:FindAllModifiersByName("_modifier_stun")
-    for _,modifier in pairs(mod) do
-      if modifier:GetAbility() == self then return end
-    end
-
+    RemoveAllModifiersByNameAndAbility(target, "_modifier_stun", self)
     self:PlayEfxImpact(target)
 
     target:AddNewModifier(caster, self, "_modifier_stun", {

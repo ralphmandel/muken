@@ -13,6 +13,7 @@ function druid_u_modifier_conversion:OnCreated(kv)
 	self.parent:SetTeam(self.caster:GetTeamNumber())
 	self.parent:SetOwner(self.caster)
 	self.parent:SetControllableByPlayer(self.caster:GetPlayerOwnerID(), true)
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_phase", {duration = 0.5})
 
 	self.ability:AddUnit(self.parent)
 	self:PlayEfxStart()

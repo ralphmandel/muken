@@ -24,7 +24,19 @@ function item_rare_wild_axe:OnSpellStart()
 		local drop = CreateItemOnPositionSync(pos, item)
 		local pos_launch = pos + RandomVector(RandomFloat(150,200))
 		item:LaunchLoot(false, 100, 0.5, pos_launch)
+    self:PlayEfxDropItem(pos_launch)
 	end
 
 	tree:CutDownRegrowAfter(180, caster:GetTeamNumber())
+end
+
+-----------------------------------------------------------
+
+function item_rare_wild_axe:PlayEfxDropItem(pos_launch)
+  local string = "particles/neutral_fx/neutral_item_drop_lvl4.vpcf"
+  local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+  ParticleManager:SetParticleControl(particle, 0, pos_launch)
+  ParticleManager:ReleaseParticleIndex(particle)
+
+  if IsServer() then EmitSoundOnLocationForAllies(pos_launch, "NeutralLootDrop.Spawn", self:GetCaster()) end
 end

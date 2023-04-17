@@ -91,11 +91,7 @@ function _boss_modifier__ai:IdleThink()
     return
   end
 
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 
@@ -156,15 +152,8 @@ function _boss_modifier__ai:AggressiveThink()
     end
   end
 
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
-  local mod = self.unit:FindAllModifiersByName("_modifier_invulnerable")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_invulnerable", self:GetAbility())
 end
 
 function _boss_modifier__ai:ReturningThink()
@@ -178,11 +167,7 @@ function _boss_modifier__ai:ReturningThink()
   self.unit:Purge(false, true, false, true, false)
   self.unit:MoveToPosition(self.spawnPos)
   
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_movespeed_buff", {percent = 250})
 end
 

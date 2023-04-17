@@ -29,17 +29,10 @@ function bocuse_2_modifier_flambee:OnRemoved()
 	local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_flambee_status_efx", false) end
 
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
+
 	if IsServer() then self.parent:StopSound("Bocuse.Flambee.Buff") end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_blind")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -70,10 +63,7 @@ function bocuse_2_modifier_flambee:ApplyBuffs()
 		self.parent:Purge(false, true, false, true, false)
 	end
 
-  local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
 		percent = self.ability:GetSpecialValueFor("ms")
@@ -92,11 +82,7 @@ function bocuse_2_modifier_flambee:ApplyDebuffs()
 		self.parent:Purge(true, false, false, false, false)
 	end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_blind")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = self.ability:GetSpecialValueFor("blind")})
 end
 

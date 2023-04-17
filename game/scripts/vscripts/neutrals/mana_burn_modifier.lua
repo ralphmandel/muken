@@ -57,10 +57,7 @@ function mana_burn_modifier:GetModifierProcAttack_Feedback(keys)
 end
 
 function mana_burn_modifier:InflictBurn(target)
-	local mod = target:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
 	target:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
 		percent = self.slow,

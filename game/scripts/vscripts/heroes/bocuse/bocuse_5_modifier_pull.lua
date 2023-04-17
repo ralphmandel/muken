@@ -24,10 +24,7 @@ function bocuse_5_modifier_pull:OnRefresh(kv)
 end
 
 function bocuse_5_modifier_pull:OnRemoved()
-	local mod = self:GetParent():FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 function bocuse_5_modifier_pull:OnDestroy()

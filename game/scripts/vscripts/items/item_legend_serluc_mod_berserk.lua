@@ -36,12 +36,7 @@ end
 function item_legend_serluc_mod_berserk:OnRemoved( kv )
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
 	-- if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "krieger_1_modifier_fury_status_efx", false) end
 

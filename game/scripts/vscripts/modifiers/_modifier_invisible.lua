@@ -55,10 +55,7 @@ function _modifier_invisible:OnDestroy( kv )
 	local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
 	if cosmetics then
 		for i = 1, #cosmetics.cosmetic, 1 do
-			local mod = cosmetics.cosmetic[i]:FindAllModifiersByName("_modifier_invisible_cosmetics")
-			for _,modifier in pairs(mod) do
-				if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-			end
+      RemoveAllModifiersByNameAndAbility(cosmetics.cosmetic[i], "_modifier_invisible_cosmetics", self:GetAbility())
 		end
 	end
 end

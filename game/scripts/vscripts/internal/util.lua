@@ -158,7 +158,7 @@ function GetKillingSpreeAnnouncer(kills)
   return "announcer_killing_spree_announcer_kill_spree_01"
 end
 
-function RollDrops(unit)
+function RollDrops(unit, killerEntity)
   local table = LoadKeyValues("scripts/kv/item_drops.kv")
   local DropInfo = table[unit:GetUnitName()]
   if DropInfo then
@@ -185,6 +185,18 @@ function RollDrops(unit)
       local drop = CreateItemOnPositionSync(pos, item)
       local pos_launch = pos + RandomVector(RandomFloat(150,200))
       item:LaunchLoot(false, 200, 0.75, pos_launch)
+
+      local string = "particles/neutral_fx/neutral_item_drop_lvl4.vpcf"
+      if unit:GetUnitName() == "boss_gorillaz" then string = "particles/neutral_fx/neutral_item_drop_lvl5.vpcf" end
+      local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+      ParticleManager:SetParticleControl(particle, 0, pos_launch)
+      ParticleManager:ReleaseParticleIndex(particle)
+    
+      if IsServer() then
+        if killerEntity then
+          EmitSoundOnLocationForAllies(pos_launch, "NeutralLootDrop.Spawn", killerEntity)
+        end
+      end
 
       Timers:CreateTimer((15), function()
         if drop then
@@ -240,14 +252,21 @@ function RemoveBonus(ability, string, target)
   end
 end
 
+function RemoveAllModifiersByNameAndAbility(target, name, ability)
+  local mod = target:FindAllModifiersByName(name)
+  for _,modifier in pairs(mod) do
+      if modifier:GetAbility() == ability then modifier:Destroy() end
+  end
+end
+
 function IsMetamorphosis(ability_name, target)
   local ability = target:FindAbilityByName(ability_name)
   if ability then
     if ability:IsTrained() then
-      return ability:GetCurrentAbilityCharges() == 1
+      return ability:GetCurrentAbilityCharges()
     end
   end
-  return false
+  return 0
 end
 
 function BaseStats(baseNPC)

@@ -32,26 +32,10 @@ function bocuse_3_modifier_sauce:OnRemoved()
 	self:CheckCounterEfx()
 
   RemoveBonus(self.ability, "_2_DEX", self.parent)
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_break")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_disarm")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_silence")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_break", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_disarm", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_silence", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -113,10 +97,7 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 		self:PopupSauce(true)
 	end
 
-  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
   if slow_stack > 0 then
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {

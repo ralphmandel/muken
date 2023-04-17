@@ -25,7 +25,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_deb
   end
 
   function druid_3__totem:GetCastPoint()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) then return 0.5 end
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return 0.5 end
     return 0.3
   end
 

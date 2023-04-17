@@ -25,10 +25,7 @@ function flea_5_modifier_desolator:OnRefresh(kv)
 end
 
 function flea_5_modifier_desolator:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 	
 	local damageTable = {
 		damage = self.damage_total * self.ability:GetSpecialValueFor("special_damage_percent") * 0.01,

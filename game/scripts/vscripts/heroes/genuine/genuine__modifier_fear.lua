@@ -47,12 +47,8 @@ function genuine__modifier_fear:OnRemoved(kv)
 end
 
 function genuine__modifier_fear:OnDestroy()
-	if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
+  if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

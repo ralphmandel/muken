@@ -23,7 +23,7 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
 
   function druid_1__root:OnAbilityPhaseStart()
     if IsServer() then
-      if IsMetamorphosis("druid_4__form", self:GetCaster()) == false then
+      if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
         self:GetCaster():EmitSound("Druid.Root.Cast")
         self:GetCaster():EmitSound("Hero_EarthShaker.Whoosh")
       end
@@ -34,7 +34,7 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
 
   function druid_1__root:OnAbilityPhaseInterrupted()
     if IsServer() then
-      if IsMetamorphosis("druid_4__form", self:GetCaster()) == false then
+      if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
         self:GetCaster():StopSound("Druid.Root.Cast")
         self:GetCaster():StopSound("Hero_EarthShaker.Whoosh")
       end
@@ -141,12 +141,12 @@ LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_M
   end
 
   function druid_1__root:GetCastAnimation()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) then return ACT_DOTA_CAST_ABILITY_4 end
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return ACT_DOTA_CAST_ABILITY_4 end
     return ACT_DOTA_CAST_ABILITY_3
   end
 
   function druid_1__root:GetCastPoint()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) then return 0.25 end
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return 0.25 end
     return 0.5
   end
 

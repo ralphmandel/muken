@@ -25,10 +25,7 @@ function item_potion_speed_modifier:OnRefresh( kv )
 end
 
 function item_potion_speed_modifier:OnRemoved( kv )
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 	
 	self.ability:SetDroppable(true)
 	self.ability:SetActivated(true)

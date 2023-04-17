@@ -55,7 +55,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   end
 
   function druid_2__armor:GetCastAnimation()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) then return ACT_DOTA_OVERRIDE_ABILITY_2 end
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return ACT_DOTA_OVERRIDE_ABILITY_2 end
     return ACT_DOTA_CAST_ABILITY_4
   end
 

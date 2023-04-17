@@ -29,11 +29,7 @@ end
 
 function genuine_4_modifier_aura_effect:OnRemoved(kv)
 	RemoveBonus(self.ability, "_2_RES", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_debuff_increase")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_debuff_increase", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

@@ -183,12 +183,12 @@ function GameMode:_CaptureGameMode()
     mode:SetTopBarTeamValuesVisible(false)
     mode:SetUseCustomHeroLevels(true)
     --mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
+
     mode:SetCustomXPRequiredToReachNextLevel({
-      5, 10, 15, 20,
-      30, 40, 50, 60,
-      75, 90, 105, 120,
-      140, 160, 180, 200,
-      225, 250, 275, 300
+      10, 20, 30, 40, 50, 60, 70, 80,
+      95, 110, 125, 140, 155, 170,
+      190, 210, 230, 250,
+      275, 300
     })
 
     --mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )

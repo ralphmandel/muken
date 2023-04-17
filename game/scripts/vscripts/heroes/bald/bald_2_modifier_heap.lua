@@ -46,17 +46,9 @@ function bald_2_modifier_heap:OnRemoved()
 
 	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
 	BaseStats(self.parent):SetMPRegenState(1)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-	
 	if IsServer() then self.parent:StopSound("Bald.Dash.Cast") end
 end
 

@@ -329,7 +329,7 @@ function GameMode:OnEntityKilled( keys )
       end
 
       if killedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
-        RollDrops(killedUnit)
+        RollDrops(killedUnit, killerEntity)
 
         if killerAbility == nil and killerEntity ~= nil then
           if killerEntity:GetPlayerOwner() ~= nil then

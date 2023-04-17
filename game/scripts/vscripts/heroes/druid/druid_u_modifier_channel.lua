@@ -10,6 +10,9 @@ function druid_u_modifier_channel:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  self.ability:SetActivated(false)
+  self.ability:SetCurrentAbilityCharges(0)
+
   CreateModifierThinker(
 		self.caster, self.ability, "druid_u_modifier_aura", {},
     self.ability.point, self.parent:GetTeamNumber(), false
@@ -24,6 +27,9 @@ end
 function druid_u_modifier_channel:OnRemoved()
 	if self.efx_channel then ParticleManager:DestroyParticle(self.efx_channel, false) end
 	if self.efx_channel2 then ParticleManager:DestroyParticle(self.efx_channel2, false) end
+
+  self.ability:SetActivated(true)
+  self.ability:StartCooldown(3)
 
   local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
 	for _,thinker in pairs(thinkers) do
@@ -44,7 +50,7 @@ function druid_u_modifier_channel:DeclareFunctions()
 end
 
 function druid_u_modifier_channel:GetModifierConstantManaRegen()
-	return -self:GetAbility():GetManaCost(self:GetAbility():GetLevel())
+	return -self:GetAbility():GetManaCost(self:GetAbility():GetLevel()) * self:GetAbility():GetCurrentAbilityCharges()
 end
 
 function druid_u_modifier_channel:OnIntervalThink()

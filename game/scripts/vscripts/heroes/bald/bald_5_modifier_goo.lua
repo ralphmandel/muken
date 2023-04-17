@@ -25,11 +25,7 @@ end
 
 function bald_5_modifier_goo:OnRemoved()
   RemoveBonus(self.ability, "_2_DEX", self.parent)
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -42,11 +38,7 @@ function bald_5_modifier_goo:OnStackCountChanged(old)
 
   RemoveBonus(self.ability, "_2_DEX", self.parent)
   AddBonus(self.ability, "_2_DEX", self.parent, self:GetStackCount() * self.ability:GetSpecialValueFor("special_goo_dex"), 0, nil)
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 
   self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
     percent = self:GetStackCount() * self.ability:GetSpecialValueFor("special_goo_ms")

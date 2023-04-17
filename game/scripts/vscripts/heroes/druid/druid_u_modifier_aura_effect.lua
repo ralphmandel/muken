@@ -11,6 +11,7 @@ function druid_u_modifier_aura_effect:OnCreated(kv)
   self.ability = self:GetAbility()
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
+  self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
 
   if IsServer() then
     self:PlayEfxStart()
@@ -22,6 +23,7 @@ function druid_u_modifier_aura_effect:OnRefresh(kv)
 end
 
 function druid_u_modifier_aura_effect:OnRemoved()
+  self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

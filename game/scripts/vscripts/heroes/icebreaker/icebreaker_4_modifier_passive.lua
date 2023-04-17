@@ -37,10 +37,7 @@ function icebreaker_4_modifier_passive:OnAttackLanded(keys)
 
 	if keys.attacker == self.parent
 	and self.delay == false then
-		local mod = self.parent:FindAllModifiersByName("_modifier_invisible")
-		for _,modifier in pairs(mod) do
-			if modifier:GetAbility() == self.ability then modifier:Destroy() end
-		end
+    RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_invisible", self.ability)
 	end
 end
 

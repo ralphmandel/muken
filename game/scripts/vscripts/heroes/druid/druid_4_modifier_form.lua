@@ -51,11 +51,7 @@ function druid_4_modifier_form:OnRemoved()
 	RemoveBonus(self.ability, "_1_CON", self.parent)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
 	RemoveBonus(self.ability, "_2_LCK", self.parent)
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_percent_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_buff", self.ability)
 
   self:HideItens(false)
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)

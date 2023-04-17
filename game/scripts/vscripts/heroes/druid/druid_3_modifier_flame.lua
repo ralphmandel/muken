@@ -29,12 +29,8 @@ function druid_3_modifier_flame:OnRefresh(kv)
 end
 
 function druid_3_modifier_flame:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
   if IsServer() then self.parent:StopSound("Hero_Huskar.Burning_Spear") end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

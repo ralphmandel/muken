@@ -18,11 +18,7 @@ function bloodstained_u_modifier_aura_effect:OnRefresh(kv)
 end
 
 function bloodstained_u_modifier_aura_effect:OnRemoved()
-	local mod = self.parent:FindAllModifiersByName("bloodstained__modifier_bleeding")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
+  RemoveAllModifiersByNameAndAbility(self.parent, "bloodstained__modifier_bleeding", self.ability)
 	self:ApplyBloodIllusion()
 	self:ReduceCooldown()
 end

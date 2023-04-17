@@ -30,11 +30,7 @@ end
 
 function striker_3_modifier_buff:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
-
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -84,10 +80,7 @@ function striker_3_modifier_buff:ModifyStack(value, bModifyAmount)
 		self.amount = self.amount + self.ability:GetSpecialValueFor("init_amount")
 	end
 
-	local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
 	local ms = self.ability:GetSpecialValueFor("special_movespeed") * self.ticks
 	if ms > 0 then

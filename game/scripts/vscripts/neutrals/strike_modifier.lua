@@ -50,17 +50,9 @@ end
 
 function strike_modifier:OnStackCountChanged(old)
   if self:GetStackCount() == 1 then
-    local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_debuff")
-    for _,modifier in pairs(mod) do
-      if modifier:GetAbility() == self.ability then modifier:Destroy() end
-    end
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 150})
+    self.parent:AddNewModifier(self.caster, self.ability, "strike_modifier_speed", {})
   else
-    local mod = self.parent:FindAllModifiersByName("_modifier_movespeed_buff")
-    for _,modifier in pairs(mod) do
-      if modifier:GetAbility() == self.ability then modifier:Destroy() end
-    end
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {percent = 50})
+    self.parent:AddNewModifier(self.caster, self.ability, "strike_modifier_slow", {})
   end
 end
 

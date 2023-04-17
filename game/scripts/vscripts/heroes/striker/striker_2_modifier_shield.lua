@@ -52,11 +52,7 @@ function striker_2_modifier_shield:OnRemoved()
 	if IsServer() then self.parent:EmitSound("Hero_Medusa.ManaShield.Off") end
 
 	RemoveBonus(self.ability, "_2_DEF", self.parent)
-
-	local mod = self.parent:FindAllModifiersByName("striker_2_modifier_burn_aura")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "striker_2_modifier_burn_aura", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

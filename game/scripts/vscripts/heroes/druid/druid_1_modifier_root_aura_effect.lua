@@ -25,20 +25,9 @@ function druid_1_modifier_root_aura_effect:OnRefresh(kv)
 end
 
 function druid_1_modifier_root_aura_effect:OnRemoved()
-  local mod = self.parent:FindAllModifiersByName("_modifier_root")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability and modifier.effect == 5 then modifier:Destroy() end
-	end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_disarm")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
-
-  local mod = self.parent:FindAllModifiersByName("_modifier_silence")
-	for _,modifier in pairs(mod) do
-		if modifier:GetAbility() == self.ability then modifier:Destroy() end
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_root", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_disarm", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_silence", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

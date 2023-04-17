@@ -44,8 +44,8 @@ end
 function _modifier__ai:OnIntervalThink()
     -- Execute action corresponding to the current state
     if self.unit:IsDominated() then
-      self.unit:RemoveModifierByName("_modifier_invulnerable")
-      self.unit:RemoveModifierByName("_modifier_movespeed_buff")
+      RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_invulnerable", self:GetAbility())
+      RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
       return
     end
 
@@ -86,11 +86,7 @@ function _modifier__ai:IdleThink()
     return
   end
 
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 
@@ -151,15 +147,8 @@ function _modifier__ai:AggressiveThink()
   end
   --self.unit:MoveToTargetToAttack(self.aggroTarget)
   
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
-  local mod = self.unit:FindAllModifiersByName("_modifier_invulnerable")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_invulnerable", self:GetAbility())
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
 end
 
 function _modifier__ai:ReturningThink()
@@ -173,11 +162,7 @@ function _modifier__ai:ReturningThink()
   self.unit:Purge(false, true, false, true, false)
   self.unit:MoveToPosition(self.spawnPos)
 
-  local mod = self.unit:FindAllModifiersByName("_modifier_movespeed_buff")
-  for _,modifier in pairs(mod) do
-    if modifier:GetAbility() == self:GetAbility() then modifier:Destroy() end
-  end
-
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_movespeed_buff", {percent = 250})
 end
 
