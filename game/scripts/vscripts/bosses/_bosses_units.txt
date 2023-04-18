@@ -9,7 +9,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"ModelScale" 				"1.4"
-		"Level"						"24"
+		"Level"						"30"
 		"BountyGoldMin"				"80"
 		"BountyGoldMax"				"100"
 		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
@@ -39,9 +39,9 @@
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"        	"0"
-		"StatusHealth"				"300"
+		"StatusHealth"				"500"
 		"StatusHealthRegen"			"5"
-		"StatusMana"				"500" //600
+		"StatusMana"				"400" //600
 		"StatusManaRegen"			"0"
 		"VisionDaytimeRange"		"600"
 		"VisionNighttimeRange"		"500"
@@ -54,10 +54,10 @@
 
 		"Stats"
 		{
-      "STR" "50"
+      "STR" "75"
       "AGI" "30"
-      "INT" "30"
-      "CON" "50"
+      "INT" "50"
+      "CON" "65"
 		}
 
 		"Creature"

@@ -94,7 +94,7 @@ function Spawner:RandomizeTier()
   local current_tier = math.ceil((hero_lvl_total / hero_count) / 4)
 
   for i = current_tier, 1, -1 do
-    if RandomInt(0, 1) == 1 then
+    if RandomFloat(1, 100) <= 40 then
       return i
     end
   end

@@ -336,7 +336,7 @@
       "03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_damage"	  "300"
+				"stun_damage"	  "350"
 			}
 		}
 	}

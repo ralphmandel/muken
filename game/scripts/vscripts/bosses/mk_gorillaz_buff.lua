@@ -54,7 +54,7 @@ end
 
 function mk_gorillaz_buff:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	self.bonus_damage = self.bonus_damage + 15
+	self.bonus_damage = self.bonus_damage + 5
 end
 
 --------------------------------------------------------------------------------
