@@ -139,6 +139,9 @@ SPAWNER_MOBS = {
   {["tier"] = 1, ["units"] = {
     "neutral_crocodile"
   }},
+  {["tier"] = 1, ["units"] = {
+    "neutral_frostbitten"
+  }},
 -- TIER 2
   {["tier"] = 2, ["units"] = {
     "neutral_igneo"
@@ -155,9 +158,6 @@ SPAWNER_MOBS = {
     "neutral_crocodile", "neutral_crocodile", "neutral_crocodile"
   }},
   {["tier"] = 3, ["units"] = {
-    "neutral_igor", "neutral_frostbitten", "neutral_frostbitten"
-  }},
-  {["tier"] = 3, ["units"] = {
     "neutral_skydragon", "neutral_dragon"
   }},
   {["tier"] = 3, ["units"] = {
@@ -169,6 +169,13 @@ SPAWNER_MOBS = {
   }},
   {["tier"] = 4, ["units"] = {
     "neutral_igneo", "neutral_igneo"
+  }},
+  {["tier"] = 4, ["units"] = {
+    "neutral_igor", "neutral_frostbitten", "neutral_frostbitten"
+  }},
+-- TIER 5
+  {["tier"] = 5, ["units"] = {
+    "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten"
   }},
 -- TIER BOSS
   {["tier"] = 8, ["units"] = {

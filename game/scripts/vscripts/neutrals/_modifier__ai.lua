@@ -230,7 +230,7 @@ function _modifier__ai:ChangeModelScale()
     if self.unit:GetUnitName() == "neutral_skydragon" then self.unit:SetModelScale(1) end
     if self.unit:GetUnitName() == "neutral_dragon" then self.unit:SetModelScale(0.9) end
     if self.unit:GetUnitName() == "neutral_igor" then self.unit:SetModelScale(1.5) end
-    if self.unit:GetUnitName() == "neutral_frostbitten" then self.unit:SetModelScale(0.9) end
+    if self.unit:GetUnitName() == "neutral_frostbitten" then self.unit:SetModelScale(1.1) end
     if self.unit:GetUnitName() == "neutral_crocodile" then self.unit:SetModelScale(1.4) end
     if self.unit:GetUnitName() == "neutral_basic_chameleon" then self.unit:SetModelScale(1) end
     if self.unit:GetUnitName() == "neutral_basic_chameleon_b" then self.unit:SetModelScale(0.9) end

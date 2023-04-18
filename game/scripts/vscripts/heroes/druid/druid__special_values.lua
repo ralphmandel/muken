@@ -301,7 +301,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_root_chance" then return 15 end
     if value_name == "special_root_duration" then return 2 end
     if value_name == "special_charges" then return 2 end
-    if value_name == "special_radius" then return 250 end
+    if value_name == "special_radius" then return 200 end
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then

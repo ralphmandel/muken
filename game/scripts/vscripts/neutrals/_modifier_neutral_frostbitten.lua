@@ -41,12 +41,12 @@ function _modifier_neutral_frostbitten:OnIntervalThink()
 	if self.parent:IsStunned() then return end
 	if self.parent:IsDominated() then return end
 
-	if RandomInt(1, 100) <= 12 then
+	if RandomInt(1, 100) <= 10 then
 		self.try_sk1 = true
 	end
 
   if self.try_sk1 == true then
-    self:TryCast_Skill_1(target)
+    self:TryCast_Skill_1()
   end
 end
 
@@ -63,8 +63,8 @@ function _modifier_neutral_frostbitten:TryCast_Skill_1()
 		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
 	)
 
-	for _,enemy in pairs(enemies) do		
-    ability:CastAbility()
+	for _,enemy in pairs(enemies) do
+    self.parent:CastAbilityNoTarget(ability, self.parent:GetPlayerOwnerID())
     self.try_sk1 = false
     break
 	end

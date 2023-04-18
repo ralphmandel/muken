@@ -888,7 +888,7 @@
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"500"
 			"StatusHealthRegen"			"10"
-			"StatusMana"				"0" //600
+			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
 			"VisionNighttimeRange"		"500"

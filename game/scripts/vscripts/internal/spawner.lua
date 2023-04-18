@@ -83,14 +83,18 @@ function Spawner:IsSpotCooldown(spawner, spot, respawn_time)
 end
 
 function Spawner:RandomizeTier()
-  local time = GameRules:GetDOTATime(false, false)
-  local start_time = 100
-  if GetMapName() == "muken_arena_turbo" then start_time = 900 end
+  local hero_count = 0
+  local hero_lvl_total = 0
 
-  for i = 4, 2, -1 do
-    local chance = ((time + start_time)/ i) * 0.1
-    if chance > 75 then chance = 75 end
-    if RandomFloat(1, 100) <= chance then
+  for _, hero in pairs(HeroList:GetAllHeroes()) do
+    hero_count = hero_count + 1
+    hero_lvl_total = hero_lvl_total + hero:GetLevel()
+  end
+
+  local current_tier = math.ceil((hero_lvl_total / hero_count) / 4)
+
+  for i = current_tier, 1, -1 do
+    if RandomInt(0, 1) == 1 then
       return i
     end
   end
