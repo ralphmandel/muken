@@ -146,6 +146,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "genuine" then self.attack_sound = "Hero_DrowRanger.Attack" end
 	if self.ability.hero_name == "dasdingo" then self.attack_sound = "Hero_ShadowShaman.Attack" end
 	if self.ability.hero_name == "druid" then self.attack_sound = "Hero_Furion.Attack" end
+  if self.ability.hero_name == "lawbreaker" then self.attack_sound = "Hero_Muerta.Attack" end
 
 	self.attack_landed_sound = ""
 	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end

@@ -416,6 +416,7 @@
 #base "../vscripts/heroes/bocuse/bocuse.txt"
 #base "../vscripts/heroes/genuine/genuine.txt"
 #base "../vscripts/heroes/druid/druid.txt"
+#base "../vscripts/heroes/lawbreaker/lawbreaker.txt"
 
 #base "../vscripts/heroes/dasdingo/dasdingo.txt"
 #base "../vscripts/heroes/ancient/ancient.txt"
