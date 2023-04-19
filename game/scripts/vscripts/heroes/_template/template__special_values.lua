@@ -39,13 +39,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_1__sk1_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_1__sk1_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_1__sk1_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_1__sk1_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_1__sk1_rank_31") then
 		end
 
+    if caster:FindAbilityByName("template_1__sk1_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_1__sk1_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_1__sk1_rank_42") then
 		end
 	end
 
@@ -57,13 +69,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_2__sk2_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_2__sk2_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_2__sk2_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_2__sk2_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_2__sk2_rank_31") then
 		end
 
+    if caster:FindAbilityByName("template_2__sk2_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_2__sk2_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_2__sk2_rank_42") then
 		end
 	end
 
@@ -75,13 +99,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_3__sk3_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_3__sk3_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_3__sk3_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_3__sk3_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_3__sk3_rank_31") then
 		end
-		
+
+    if caster:FindAbilityByName("template_3__sk3_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_3__sk3_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_3__sk3_rank_42") then
 		end
 	end
 
@@ -93,13 +129,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_4__sk4_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_4__sk4_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_4__sk4_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_4__sk4_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_4__sk4_rank_31") then
 		end
 
+    if caster:FindAbilityByName("template_4__sk4_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_4__sk4_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_4__sk4_rank_42") then
 		end
 	end
 
@@ -111,13 +159,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_5__sk5_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_5__sk5_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_5__sk5_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_5__sk5_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_5__sk5_rank_31") then
 		end
 
+    if caster:FindAbilityByName("template_5__sk5_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_5__sk5_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_5__sk5_rank_42") then
 		end
 	end
 
@@ -129,13 +189,25 @@ function template__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("template_u__sk6_rank_11") then
 		end
 
+    if caster:FindAbilityByName("template_u__sk6_rank_12") then
+		end
+
 		if caster:FindAbilityByName("template_u__sk6_rank_21") then
+		end
+
+    if caster:FindAbilityByName("template_u__sk6_rank_22") then
 		end
 
 		if caster:FindAbilityByName("template_u__sk6_rank_31") then
 		end
 
+    if caster:FindAbilityByName("template_u__sk6_rank_32") then
+		end
+
 		if caster:FindAbilityByName("template_u__sk6_rank_41") then
+		end
+
+    if caster:FindAbilityByName("template_u__sk6_rank_42") then
 		end
 	end
 
