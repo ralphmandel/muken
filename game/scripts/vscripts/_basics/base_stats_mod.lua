@@ -62,7 +62,8 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 
       -- CON
-      MODIFIER_PROPERTY_STATUS_RESISTANCE,
+      MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
+      MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
       MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
       MODIFIER_PROPERTY_HEALTH_BONUS,
       MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
@@ -74,6 +75,7 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MISS_PERCENTAGE,
       MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
       MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+      MODIFIER_PROPERTY_STATUS_RESISTANCE,
       MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
     }
     return funcs
@@ -281,8 +283,12 @@ base_stats_mod = class ({})
 
 -- CON
 
-  function base_stats_mod:GetModifierStatusResistance()
-    return self.ability.status_resist * (self.ability.stat_base["CON"])
+  function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
+    return self.ability.heal_amp * (self.ability.stat_base["CON"])
+  end
+
+  function base_stats_mod:GetModifierHPRegenAmplify_Percentage()
+    return self.ability.heal_amp * (self.ability.stat_base["CON"])
   end
 
   function base_stats_mod:GetModifierExtraHealthBonus()
@@ -358,6 +364,10 @@ base_stats_mod = class ({})
     local value = (self.ability.stat_total["RES"] + 1) * self.ability.magic_resist
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
+  end
+
+  function base_stats_mod:GetModifierStatusResistance()
+    return (self.ability.stat_total["RES"] + 1) * self.ability.status_resist
   end
   
   function base_stats_mod:GetModifierPercentageCooldown()

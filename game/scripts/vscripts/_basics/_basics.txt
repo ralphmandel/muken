@@ -68,76 +68,83 @@
 				}
 
 			// INT
-				"11"
+				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"debuff_amp"			"1" //4 to 1
 				}
-				"12"
+				"11"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"mana"					  "10"
 				}
-				"13"
+				"12"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"spell_amp"				"4"
 				}
-  			"14"
+  			"13"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"mana_regen"			"0.2"
 				}
 
 			// CON
-      	"16"
+				"14"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"status_resist"			"1" //2.5 to 1
+					"heal_amp"			  "1"
 				}
-				"17"
+        "15"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"health_bonus"			"60"
 				}
-				"18"
+				"16"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"health_regen"			"0.5"
 				}
 
-			// SECONDARIES
-				"21"
+			// DEX/DEF/RES
+				"17"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"evade"					  "0.4"
 				}
-				"22"
+				"18"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"armor"					  "0.5"
 				}
-				"23"
+				"19"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"magic_resist"		"0.4"
 				}
-				"24"
+      	"20"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"status_resist"			"0.8" //2.5 to 1
+				}
+
+      // REC/MND/LCK
+				"21"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"cooldown"				"0.3"
 				}
-				"25"
+				"22"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"critical_chance"	"0.7" //0.6 scalar
 				}
-				"26"
+				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"heal_power"			"4"
 				}
-				"27"
+				"24"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"buff_amp"				"1"

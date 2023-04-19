@@ -208,19 +208,22 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self:SetMPRegenState(0)
 
 				-- CON
-				self.status_resist = self:GetSpecialValueFor("status_resist")
+				self.heal_amp = self:GetSpecialValueFor("heal_amp")
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
 				self.health_regen = self:GetSpecialValueFor("health_regen")
 				self.hp_regen_state = 1
 
-				-- SECONDARY
-				self.evade = self:GetSpecialValueFor("evade") 
-				self.armor = self:GetSpecialValueFor("armor")
+				-- DEX/DEF/RES
+				self.evade = self:GetSpecialValueFor("evade")
+        self.armor = self:GetSpecialValueFor("armor")
 				self.magic_resist = self:GetSpecialValueFor("magic_resist")
-				self.cooldown = self:GetSpecialValueFor("cooldown")
-				self.heal_power = self:GetSpecialValueFor("heal_power")
+				self.status_resist = self:GetSpecialValueFor("status_resist")
+
+        -- REC/MND/LCK
+        self.cooldown = self:GetSpecialValueFor("cooldown")
+        self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
-				self.critical_chance = self:GetSpecialValueFor("critical_chance")
+        self.critical_chance = self:GetSpecialValueFor("critical_chance")
 
 				-- CRITICAL
 				self.force_crit_chance = nil
@@ -620,7 +623,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
     function base_stats:GetStatusResistPercent()
       if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
-      return self.status_resist * (self.stat_base["CON"])
+      return (self.stat_total["RES"] + 1) * self.status_resist
     end
 
 		function base_stats:SetHPRegenState(bool)

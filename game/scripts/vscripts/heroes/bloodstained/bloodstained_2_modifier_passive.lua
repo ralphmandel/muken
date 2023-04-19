@@ -23,7 +23,7 @@ end
 
 function bloodstained_2_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
+		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_EVENT_ON_ATTACKED
@@ -32,10 +32,10 @@ function bloodstained_2_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function bloodstained_2_modifier_passive:GetModifierHealAmplify_PercentageTarget()
-	if self:GetParent():PassivesDisabled() then return 0 end
-	return self:GetAbility():GetSpecialValueFor("heal_power")
-end
+-- function bloodstained_2_modifier_passive:GetModifierHealAmplify_PercentageTarget()
+-- 	if self:GetParent():PassivesDisabled() then return 0 end
+-- 	return self:GetAbility():GetSpecialValueFor("heal_power")
+-- end
 
 function bloodstained_2_modifier_passive:OnDeath(keys)
 	if self.parent:PassivesDisabled() then return end

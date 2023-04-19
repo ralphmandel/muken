@@ -100,11 +100,6 @@
 				"var_type"		"FIELD_FLOAT"
 				"bonus_heal"	"20"
 			}
-			"03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"heal_power"	"20"
-			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
