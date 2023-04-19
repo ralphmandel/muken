@@ -1,0 +1,84 @@
+lawbreaker_2_modifier_combo = class({})
+
+function lawbreaker_2_modifier_combo:IsHidden() return false end
+function lawbreaker_2_modifier_combo:IsPurgable() return false end
+
+-- CONSTRUCTORS -----------------------------------------------------------
+
+function lawbreaker_2_modifier_combo:OnCreated(kv)
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
+  self.gesture = {[1] = ACT_DOTA_ATTACK, [2] = ACT_DOTA_ATTACK2}
+  self.type = 1
+
+  AddBonus(self.ability, "_1_AGI", self.parent, 30, 0, nil)
+  
+  if IsServer() then self:StartIntervalThink(1 / self:GetAS()) end
+end
+
+function lawbreaker_2_modifier_combo:OnRefresh(kv)
+end
+
+function lawbreaker_2_modifier_combo:OnRemoved()
+	RemoveBonus(self.ability,"_1_AGI", self.parent)
+end
+
+-- API FUNCTIONS -----------------------------------------------------------
+
+
+
+function lawbreaker_2_modifier_combo:OnIntervalThink()
+  print("lawbreakerr", self.parent:GetAttackSpeed())
+  local front = self.parent:GetForwardVector():Normalized()
+  local point = self.parent:GetOrigin() + front * self.parent:Script_GetAttackRange()
+  local direction = point - self.parent:GetOrigin()
+	direction.z = 0
+	direction = direction:Normalized()
+
+  self.parent:FadeGesture(self.gesture[self.type])
+  if self.type == 1 then self.type = 2 else self.type = 1 end
+  self.parent:StartGestureWithPlaybackRate(self.gesture[self.type], self:GetAS())
+
+  local linear_info = {
+    Source = self.parent,
+    Ability = self.ability,
+    vSpawnOrigin = self.parent:GetAbsOrigin(),
+    
+    bDeleteOnHit = false,
+    
+    iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+    iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+    iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    
+    EffectName = "particles/econ/items/mars/mars_ti9_immortal/mars_ti9_immortal_crimson_spear.vpcf",
+    fDistance = self.parent:Script_GetAttackRange(),
+    fStartRadius = 50,
+    fEndRadius = 50,
+    vVelocity = direction * self.parent:GetProjectileSpeed(),
+
+    bProvidesVision = false,
+    iVisionRadius = 0,
+    iVisionTeamNumber = self.parent:GetTeamNumber()
+  }
+  ProjectileManager:CreateLinearProjectile(linear_info)
+  if IsServer() then self:StartIntervalThink(1 / self:GetAS()) end
+end
+
+-- UTILS -----------------------------------------------------------
+
+function lawbreaker_2_modifier_combo:GetAS()
+  --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1))
+  local attack_speed = (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1)
+  attack_speed = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * attack_speed)
+  return attack_speed / 100 * 1.2
+end
+
+-- EFFECTS -----------------------------------------------------------
+
+function lawbreaker_2_modifier_combo:PlayEfxLifesteal(target)
+	local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect)
+end

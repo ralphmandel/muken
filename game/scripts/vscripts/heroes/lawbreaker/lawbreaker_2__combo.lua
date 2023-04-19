@@ -8,6 +8,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 	function lawbreaker_2__combo:OnSpellStart()
 		local caster = self:GetCaster()
+    caster:AddNewModifier(caster, self, "lawbreaker_2_modifier_combo", {duration = 5})
 	end
 
 -- EFFECTS
