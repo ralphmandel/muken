@@ -29,7 +29,6 @@ end
 
 
 function lawbreaker_2_modifier_combo:OnIntervalThink()
-  print("lawbreakerr", self.parent:GetAttackSpeed())
   local front = self.parent:GetForwardVector():Normalized()
   local point = self.parent:GetOrigin() + front * self.parent:Script_GetAttackRange()
   local direction = point - self.parent:GetOrigin()
@@ -69,7 +68,7 @@ end
 
 function lawbreaker_2_modifier_combo:GetAS()
   --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1))
-  local attack_speed = (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1)
+  local attack_speed = (BaseStats(self.parent):GetStatTotal("AGI") + 1)
   attack_speed = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * attack_speed)
   return attack_speed / 100 * 1.2
 end
