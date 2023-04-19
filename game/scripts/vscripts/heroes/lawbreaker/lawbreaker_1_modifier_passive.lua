@@ -24,20 +24,28 @@ end
 
 function lawbreaker_1_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+    MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
 end
 
-function lawbreaker_1_modifier_passive:OnAttackLanded(keys)
+function lawbreaker_1_modifier_passive:OnAttacked(keys)
   if keys.attacker ~= self.parent then return end
   if self.parent:PassivesDisabled() then return end
   if IsServer() then self:IncrementStackCount() end
 
   if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") - 1 then
-    BaseStats(self.parent):SetForceCrit(100, nil)
+    BaseStats(self.parent):SetForceCrit(100, BaseStats(self.parent):GetCriticalDamage() + self.ability:GetSpecialValueFor("crit_dmg"))
   end
+
+  if self:GetStackCount() == 0 then
+    local heal = keys.original_damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
+    self.parent:Heal(heal, self.ability)
+    self:PlayEfxLifesteal(keys.attacker)
+  end
+  
 end
 
 function lawbreaker_1_modifier_passive:OnStackCountChanged(old)
@@ -50,34 +58,9 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function lawbreaker_1_modifier_passive:GetStatusEffectName()
-  return ""
-end
-
-function lawbreaker_1_modifier_passive:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-function lawbreaker_1_modifier_passive:GetEffectName()
-	return ""
-end
-
-function lawbreaker_1_modifier_passive:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function lawbreaker_1_modifier_passive:PlayEfxStart()
-	-- RELEASE PARTICLE
-	local string = ""
-	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	-- MOD PARTICLE
-	local string = ""
-	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle, 0, self.parent:GetOrigin())
-	self:AddParticle(particle, false, false, -1, false, false)
-
-	if IsServer() then self.parent:EmitSound("") end
+function lawbreaker_1_modifier_passive:PlayEfxLifesteal(target)
+	local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect)
 end

@@ -41,6 +41,16 @@
 				"var_type"		"FIELD_FLOAT"
 				"max_hit"			"4"
 			}
+      "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"crit_dmg"			"50"
+			}
+       "0"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"lifesteal"			"50"
+			}
       "15"
 			{
 				"var_type"		"FIELD_FLOAT"
