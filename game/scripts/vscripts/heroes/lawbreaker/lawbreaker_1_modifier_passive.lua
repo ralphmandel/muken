@@ -9,11 +9,8 @@ function lawbreaker_1_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  if IsServer() then
-    self:SetStackCount(0)
-  end
-  
 
+  if IsServer() then self:SetStackCount(0) end
 end
 
 function lawbreaker_1_modifier_passive:OnRefresh(kv)
@@ -35,18 +32,17 @@ end
 
 function lawbreaker_1_modifier_passive:OnAttackLanded(keys)
   if keys.attacker ~= self.parent then return end
-  if keys.attacker:PassivesDisabled() then return end
-  if IsServer() then
-    self:IncrementStackCount()
+  if self.parent:PassivesDisabled() then return end
+  if IsServer() then self:IncrementStackCount() end
+
+  if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") - 1 then
+    BaseStats(self.parent):SetForceCrit(100, nil)
   end
 end
 
 function lawbreaker_1_modifier_passive:OnStackCountChanged(old)
   if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") then 
-    if IsServer() then
-      self:SetStackCount(0)
-      BaseStats(self.parent):SetForceCrit(100, nil)
-    end
+    if IsServer() then self:SetStackCount(0) end
   end
 end
 

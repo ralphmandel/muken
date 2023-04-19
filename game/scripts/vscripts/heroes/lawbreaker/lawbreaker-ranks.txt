@@ -11,7 +11,7 @@
 		}
 	}
 	
-	"npc_dota_hero_id_name"
+	"npc_dota_hero_muerta"
 	{
 		"lawbreaker_1__shot"
 		{
