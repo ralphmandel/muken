@@ -98,7 +98,7 @@
         "15"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"health_bonus"			"60"
+					"health_bonus"		"60"
 				}
 				"16"
 				{
