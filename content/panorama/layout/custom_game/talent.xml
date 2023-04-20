@@ -7,7 +7,7 @@
         var id = parseInt(context.id.replace("HeroTalent", ""));
 
         function ShowTalentTooltip() {
-            context.Data().ShowTalentTooltip(id);
+            context.Data().ShowTalentTooltip(id, context.BHasClass("hidden"));
         }
 
         function HideTalentTooltip() {

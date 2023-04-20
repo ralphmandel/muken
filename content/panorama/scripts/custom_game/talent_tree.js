@@ -32,6 +32,7 @@ function OnTalentsState(event) {
     var parsedStateData = JSON.parse(event.talents);
     for(var i=0; i < parsedStateData.length; i++) {
         var talentId = parsedStateData[i].id;
+        talentsData[talentId].panel.SetHasClass("hidden", parsedStateData[i].hidden);
         talentsData[talentId].panel.SetHasClass("disabled", parsedStateData[i].disabled);
         talentsData[talentId].panel.SetHasClass("upgraded", parsedStateData[i].upgraded);
         talentsData[talentId].panel.levelLabel.text = parsedStateData[i].level + " / " + parsedStateData[i].maxlevel;
@@ -112,13 +113,15 @@ function CreateTalentRows(column) {
   }
 }
 
-function ShowTalentTooltip(talentId) {
+function ShowTalentTooltip(talentId, hidden) {
+  if (!hidden) {
     Game.EmitSound("Config.Move");
     var locID = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(locID);
     var ability = Entities.GetAbilityByName( hero, talentsData[talentId].Ability );
     var lvl = Abilities.GetLevel(ability) || 0;
-	$.DispatchEvent("DOTAShowAbilityTooltipForLevel", $("#HeroTalent" + talentId), talentsData[talentId].Ability, lvl );
+    $.DispatchEvent("DOTAShowAbilityTooltipForLevel", $("#HeroTalent" + talentId), talentsData[talentId].Ability, lvl );
+  }
 }
 
 function HideTalentTooltip(talentId) {

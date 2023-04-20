@@ -15,22 +15,22 @@
 	{
 		"lawbreaker_1__shot"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_1__shot_rank_11"
 				"2"   "lawbreaker_1__shot_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_1__shot_rank_21"
 				"2"   "lawbreaker_1__shot_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_1__shot_rank_31"
 				"2"   "lawbreaker_1__shot_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_1__shot_rank_41"
 				"2"   "lawbreaker_1__shot_rank_42"
@@ -38,22 +38,22 @@
 		}
 		"lawbreaker_2__combo"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_2__combo_rank_11"
 				"2"   "lawbreaker_2__combo_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_2__combo_rank_21"
 				"2"   "lawbreaker_2__combo_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_2__combo_rank_31"
 				"2"   "lawbreaker_2__combo_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_2__combo_rank_41"
 				"2"   "lawbreaker_2__combo_rank_42"
@@ -61,22 +61,22 @@
 		}
 		"lawbreaker_3__grenade"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_3__grenade_rank_11"
 				"2"   "lawbreaker_3__grenade_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_3__grenade_rank_21"
 				"2"   "lawbreaker_3__grenade_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_3__grenade_rank_31"
 				"2"   "lawbreaker_3__grenade_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_3__grenade_rank_41"
 				"2"   "lawbreaker_3__grenade_rank_42"
@@ -84,22 +84,22 @@
 		}
 		"lawbreaker_4__sk4"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_4__sk4_rank_11"
 				"2"   "lawbreaker_4__sk4_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_4__sk4_rank_21"
 				"2"   "lawbreaker_4__sk4_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_4__sk4_rank_31"
 				"2"   "lawbreaker_4__sk4_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_4__sk4_rank_41"
 				"2"   "lawbreaker_4__sk4_rank_42"
@@ -107,22 +107,22 @@
 		}
 		"lawbreaker_5__sk5"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_5__sk5_rank_11"
 				"2"   "lawbreaker_5__sk5_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_5__sk5_rank_21"
 				"2"   "lawbreaker_5__sk5_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_5__sk5_rank_31"
 				"2"   "lawbreaker_5__sk5_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_5__sk5_rank_41"
 				"2"   "lawbreaker_5__sk5_rank_42"
@@ -130,22 +130,22 @@
 		}
 		"lawbreaker_u__sk6"
 		{
-			"0"
+			"1"
 			{
 				"1"   "lawbreaker_u__sk6_rank_11"
 				"2"   "lawbreaker_u__sk6_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "lawbreaker_u__sk6_rank_21"
 				"2"   "lawbreaker_u__sk6_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "lawbreaker_u__sk6_rank_31"
 				"2"   "lawbreaker_u__sk6_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "lawbreaker_u__sk6_rank_41"
 				"2"   "lawbreaker_u__sk6_rank_42"

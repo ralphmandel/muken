@@ -15,100 +15,100 @@
 	{
 		"flea_1__precision"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_1__precision_rank_11"
 				"2"   "flea_1__precision_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "flea_1__precision_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "flea_1__precision_rank_31"
 				"2"   "flea_1__precision_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "flea_1__precision_rank_41"
 			}
 		}
 		"flea_2__speed"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_2__speed_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "flea_2__speed_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "flea_2__speed_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "flea_2__speed_rank_41"
 			}
 		}
 		"flea_3__jump"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_3__jump_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "flea_3__jump_rank_21"
 				"2"   "flea_3__jump_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "flea_3__jump_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "empty"
 			}
 		}
 		"flea_4__smoke"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_4__smoke_rank_11"
 				"2"   "flea_4__smoke_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "flea_4__smoke_rank_21"
 				"2"   "flea_4__smoke_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "empty"
 			}
-			"3"
+			"4"
 			{
 				"1"   "flea_4__smoke_rank_41"
 			}
 		}
 		"flea_5__desolator"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_5__desolator_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "empty"
 			}
-			"2"
+			"3"
 			{
 				"1"   "flea_5__desolator_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "flea_5__desolator_rank_41"
 				"2"   "flea_5__desolator_rank_42"
@@ -116,19 +116,19 @@
 		}
 		"flea_u__weakness"
 		{
-			"0"
+			"1"
 			{
 				"1"   "flea_u__weakness_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "flea_u__weakness_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "flea_u__weakness_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "empty"
 			}

@@ -26,7 +26,17 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function lawbreaker_2_modifier_combo:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+	}
 
+	return funcs
+end
+
+function lawbreaker_2_modifier_combo:GetModifierDisableTurning()
+  return 1
+end
 
 function lawbreaker_2_modifier_combo:OnIntervalThink()
   local front = self.parent:GetForwardVector():Normalized()
