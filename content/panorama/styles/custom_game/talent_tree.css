@@ -103,6 +103,10 @@
   wash-color: rgb(35, 35, 35);
 }
 
+.TalentContainer.hidden {
+  opacity: 0.2;
+}
+
 .TalentContainer #TalentImage {
     width: fill-parent-flow(1.0);
     height: fill-parent-flow(1.0);

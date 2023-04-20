@@ -15,119 +15,119 @@
 	{
 		"icebreaker_1__frost"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_1__frost_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_1__frost_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "icebreaker_1__frost_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "icebreaker_1__frost_rank_41"
 			}
 		}
 		"icebreaker_2__wave"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_2__wave_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_2__wave_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "icebreaker_2__wave_rank_31"
 				"2"   "icebreaker_2__wave_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "icebreaker_2__wave_rank_41"
 			}
 		}
 		"icebreaker_3__shard"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_3__shard_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_3__shard_rank_21"
 				"2"   "icebreaker_3__shard_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "icebreaker_3__shard_rank_31"
 			}
-			"3"
+			"4"
 			{
 				"1"   "icebreaker_3__shard_rank_41"
 			}
 		}
 		"icebreaker_4__mirror"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_4__mirror_rank_11"
 				"2"   "icebreaker_4__mirror_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_4__mirror_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "icebreaker_4__mirror_rank_31"
 				"2"   "icebreaker_4__mirror_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "empty"
 			}
 		}
 		"icebreaker_5__shivas"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_5__shivas_rank_11"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_5__shivas_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "empty"
 			}
-			"3"
+			"4"
 			{
 				"1"   "icebreaker_5__shivas_rank_41"
 			}
 		}
 		"icebreaker_u__blink"
 		{
-			"0"
+			"1"
 			{
 				"1"   "icebreaker_u__blink_rank_11"
 				"2"   "icebreaker_u__blink_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "icebreaker_u__blink_rank_21"
 			}
-			"2"
+			"3"
 			{
 				"1"   "empty"
 			}
-			"3"
+			"4"
 			{
 				"1"   "icebreaker_u__blink_rank_41"
 			}

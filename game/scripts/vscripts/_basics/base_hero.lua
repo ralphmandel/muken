@@ -144,6 +144,23 @@ require("internal/talent_tree")
 		end
 	end
 
+  function base_hero:RandomizeTalentHidden(talent_hidden)
+    local tiers_available = {}
+    local count = 1
+
+    for i = 1, 4, 1 do
+      if talent_hidden.tier ~= i then
+        tiers_available[count] = i
+        count = count + 1
+      end
+    end
+    
+    local tier = tiers_available[RandomInt(1, #tiers_available)]
+    local path = RandomInt(1, 2)
+
+    return {tier = tier, path = path}
+  end
+
 	function base_hero:LoadRanks()
 		local abilitiesData = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name..".txt")
 		local ranks_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-ranks.txt")
@@ -151,27 +168,32 @@ require("internal/talent_tree")
 
 		for _,unit in pairs(ranks_data) do
 			if not unit["min_level"] then
-				for i = 0, 6, 1 do
+				for i = 1, 6, 1 do
+          local talents_hidden = {}
+          talents_hidden[1] = self:RandomizeTalentHidden({tier = 0, path = 0})
+          talents_hidden[2] = self:RandomizeTalentHidden(talents_hidden[1])
 					for tabName, tabData in pairs(unit) do
-						local isTab = false
-						if self.skills[i] then
-							if tabName == self.skills[i] then
-								isTab = true
-							end
-						end
-
-						if isTab == true then
+						if tabName == self.skills[i] then
 							table.insert(self.tabs, tabName) -- self.tabs == abilities name
 							for nlvl, talents in pairs(tabData) do
 								table.insert(self.rows, tonumber(nlvl)) -- self.rows == ranks level
-                for i = 1, 2, 1 do
+                for x = 1, 2, 1 do
                   for path, talent in pairs(talents) do
-                    if tonumber(path) == i then
+                    if tonumber(path) == x then
+                      local hidden = false
+                      for _,talent_hidden in pairs(talents_hidden) do
+                        if tonumber(nlvl) == talent_hidden.tier
+                        and tonumber(path) == talent_hidden.path then
+                          hidden = true
+                        end
+                      end
+
                       local talentData = {
                         Ability = talent, -- rank name
                         Tab = tabName, -- ability name
                         RankLevel = tonumber(nlvl), -- rank level
-                        Path = tonumber(path) -- rank path
+                        Path = tonumber(path), -- rank path
+                        Hidden = hidden
                       }
                       table.insert(self.talentsData, talentData)
                     end
@@ -233,7 +255,7 @@ require("internal/talent_tree")
 
 				table.insert(resultTable, {
 					id = i, disabled = isDisabled, upgraded = isUpgraded,
-					level = talentLvl, maxlevel = talentMaxLvl
+					level = talentLvl, maxlevel = talentMaxLvl, hidden = self.talentsData[i].Hidden
 				})
 			end
 			
@@ -393,13 +415,9 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:CheckRequirements(talentId, talentName)
-    if self.talents.blocked[self.talentsData[talentId].Ability] then
-      return false
-    end
-
-    if self.talents.rank_block[self.talentsData[talentId].RankLevel] >= 3 then
-      return false
-    end
+    if self.talentsData[talentId].Hidden == true then return false end
+    if self.talents.blocked[self.talentsData[talentId].Ability] then return false end
+    if self.talents.rank_block[self.talentsData[talentId].RankLevel] >= 3 then return false end
 
 		-- BLOODSTAINED
 			-- Bloodstained 5.31 requires ultimate
