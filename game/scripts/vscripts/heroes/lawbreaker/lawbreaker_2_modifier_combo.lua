@@ -50,7 +50,7 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
     iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
     iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
     
-    EffectName = "particles/econ/items/mars/mars_ti9_immortal/mars_ti9_immortal_crimson_spear.vpcf",
+    EffectName = "particles/lawbreaker/lawbreaker_skill2_bullets.vpcf",
     fDistance = self.parent:Script_GetAttackRange(),
     fStartRadius = 50,
     fEndRadius = 50,
