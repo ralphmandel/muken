@@ -8,7 +8,15 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 	function lawbreaker_2__combo:OnSpellStart()
 		local caster = self:GetCaster()
-    caster:AddNewModifier(caster, self, "lawbreaker_2_modifier_combo", {duration = 5})
+    self.point = self:GetCursorPosition()
+    caster:RemoveModifierByName("lawbreaker_2_modifier_combo")
+    caster:AddNewModifier(caster, self, "lawbreaker_2_modifier_combo", {})
 	end
+
+  function lawbreaker_2__combo:OnProjectileHit(target, loc)
+    local caster = self:GetCaster()
+    caster:PerformAttack(target, false, false, false, false, false, false, false)
+    return true
+  end
 
 -- EFFECTS
