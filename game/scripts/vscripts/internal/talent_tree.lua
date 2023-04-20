@@ -146,7 +146,7 @@ function TalentTree:OnPlayerReconnect(keys)
 
     if BaseHero(hero) == nil then return end
 
-    BaseHero(hero):UpdatePanoramaPanels()
+    --BaseHero(hero):UpdatePanoramaPanels()
     BaseHero(hero):UpdatePanoramaState()
 end
 

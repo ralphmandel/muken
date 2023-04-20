@@ -161,23 +161,22 @@ require("internal/talent_tree")
 						end
 
 						if isTab == true then
-							table.insert(self.tabs, tabName)
+							table.insert(self.tabs, tabName) -- self.tabs == abilities name
 							for nlvl, talents in pairs(tabData) do
-								table.insert(self.rows, tonumber(nlvl))
-								for _, talent in pairs(talents) do
-									local talentData = {
-										Ability = talent,
-										Tab = tabName,
-										NeedLevel = tonumber(nlvl)
-									}
-									
-									if abilitiesData[talent] then
-										talentData.MaxLevel = abilitiesData[talent]["MaxLevel"] or 1
-									else
-										talentData.MaxLevel = 1
-									end
-									table.insert(self.talentsData, talentData)
-								end
+								table.insert(self.rows, tonumber(nlvl)) -- self.rows == ranks level
+                for i = 1, 2, 1 do
+                  for path, talent in pairs(talents) do
+                    if tonumber(path) == i then
+                      local talentData = {
+                        Ability = talent, -- rank name
+                        Tab = tabName, -- ability name
+                        RankLevel = tonumber(nlvl), -- rank level
+                        Path = tonumber(path) -- rank path
+                      }
+                      table.insert(self.talentsData, talentData)
+                    end
+                  end                 
+                end
 							end
 						end 
 					end
@@ -279,7 +278,7 @@ require("internal/talent_tree")
 
     for i, talent in pairs(self.talentsData) do
       if self.talentsData[i].Tab == self.skills[skill] then
-        if self.talentsData[i].MaxLevel == level then
+        if self.talentsData[i].RankLevel == level then
           if self.talentsData[i].Ability ~= self.talentsData[talentId].Ability then
             self.talents.blocked[self.talentsData[i].Ability] = true
           end
@@ -339,16 +338,13 @@ require("internal/talent_tree")
 
 	function base_hero:GetTalentMaxLevel(talentId)
 		if self.talentsData[talentId] then
-			return self.talentsData[talentId].MaxLevel
+			return self.talentsData[talentId].RankLevel
 		end
 		return -1
 	end
 
 	function base_hero:GetTalentRankLevel(talentId)
-		local talent_level = self.talentsData[talentId].NeedLevel + 1
-		if self.talentsData[talentId].Tab == "extras" then talent_level = 5 end
-
-		return talent_level
+		return self.talentsData[talentId].RankLevel
 	end
 
 	function base_hero:GetHeroRankLevel()
@@ -401,7 +397,7 @@ require("internal/talent_tree")
       return false
     end
 
-    if self.talents.rank_block[self.talentsData[talentId].MaxLevel] >= 3 then
+    if self.talents.rank_block[self.talentsData[talentId].RankLevel] >= 3 then
       return false
     end
 
