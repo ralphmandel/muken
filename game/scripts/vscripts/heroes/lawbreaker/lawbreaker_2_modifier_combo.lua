@@ -34,6 +34,7 @@ function lawbreaker_2_modifier_combo:DeclareFunctions()
 		MODIFIER_PROPERTY_DISABLE_TURNING,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
     MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+    MODIFIER_EVENT_ON_STATE_CHANGED,
     MODIFIER_EVENT_ON_ORDER
 	}
 
@@ -50,6 +51,14 @@ end
 
 function lawbreaker_2_modifier_combo:GetModifierMoveSpeed_Limit()
   return self:GetAbility():GetSpecialValueFor("limit_ms")
+end
+
+function lawbreaker_2_modifier_combo:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+	if self.parent:IsStunned() or self.parent:IsHexed()
+  or self.parent:IsFrozen() or self.parent:IsDisarmed() then
+		self:Destroy()
+	end
 end
 
 function lawbreaker_2_modifier_combo:OnOrder(keys)

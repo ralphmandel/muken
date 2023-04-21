@@ -350,10 +350,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMiss_Percentage(keys)
-    if self.parent:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK
-    and self.ability.missing == true then
-      return 100
-    end
+    if self.ability.missing == true then return 100 end
     return 0
   end
 
