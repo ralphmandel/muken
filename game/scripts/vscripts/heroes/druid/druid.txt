@@ -158,7 +158,7 @@
       "16"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_status_resist"	"0"
+				"special_res"	          "0"
 			}
       "17"
 			{

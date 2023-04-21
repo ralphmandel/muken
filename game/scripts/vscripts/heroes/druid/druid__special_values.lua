@@ -89,7 +89,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("druid_2__armor_rank_31") then
-      if value_name == "special_status_resist" then return 1 end
+      if value_name == "special_res" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_2__armor_rank_32") then
@@ -297,7 +297,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "regen" then return 1 end
     if value_name == "def" then return 30 end
-    if value_name == "special_status_resist" then return 30 end
+    if value_name == "special_res" then return 15 end
     if value_name == "special_root_chance" then return 15 end
     if value_name == "special_root_duration" then return 2 end
     if value_name == "special_charges" then return 2 end

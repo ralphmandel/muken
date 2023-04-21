@@ -11,17 +11,21 @@ function druid_2_modifier_armor:OnCreated(kv)
   self.ability = self:GetAbility()
 
   AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
 
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function druid_2_modifier_armor:OnRefresh(kv)
   RemoveBonus(self.ability, "_2_DEF", self.parent)
+  RemoveBonus(self.ability, "_2_RES", self.parent)
   AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
 end
 
 function druid_2_modifier_armor:OnRemoved()
 	RemoveBonus(self.ability, "_2_DEF", self.parent)
+  RemoveBonus(self.ability, "_2_RES", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -29,7 +33,6 @@ end
 function druid_2_modifier_armor:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-    MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
     MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 
@@ -38,10 +41,6 @@ end
 
 function druid_2_modifier_armor:GetModifierConstantHealthRegen()
 	return self:GetParent():GetBaseMaxHealth() * self:GetAbility():GetSpecialValueFor("regen") * 0.01
-end
-
-function druid_2_modifier_armor:GetModifierStatusResistanceStacking()
-  return self:GetAbility():GetSpecialValueFor("special_status_resist")
 end
 
 function druid_2_modifier_armor:OnAttackLanded(keys)
