@@ -186,7 +186,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_42") then
-			if value_name == "status_resist" then return 1 end
+			if value_name == "res" then return 1 end
 		end
 	end
 
@@ -354,7 +354,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_block" then return 20 end
     if value_name == "special_hp_regen" then return 25 end
     if value_name == "special_bkb_duration" then return 15 end
-		if value_name == "status_resist" then return 75 end
+		if value_name == "res" then return 60 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then

@@ -309,17 +309,17 @@
       "02"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"agi"		            "15"
+				"atk_range"		      "60"
 			}
       "03"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"atk_range"		      "60"
+				"agi"		            "15"
 			}
       "04"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"status_resist"		  "25"
+				"res"		            "20"
 			}
       "05"
 			{

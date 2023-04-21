@@ -19,6 +19,7 @@ function bocuse_4_modifier_mirepoix:OnCreated(kv)
 	self.ability:SetActivated(false)
 
   AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
 
   if bkb_duration > 0 then
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_bkb", {
@@ -41,6 +42,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:SetActivated(true)
 
   RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "_2_RES", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bkb", self.ability)
 
 	if self.parent:IsAlive() then
@@ -58,7 +60,6 @@ end
 function bocuse_4_modifier_mirepoix:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-    MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
     MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
     MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
     MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
@@ -69,10 +70,6 @@ end
 
 function bocuse_4_modifier_mirepoix:GetModifierAttackRangeBonus()
   return self.range
-end
-
-function bocuse_4_modifier_mirepoix:GetModifierStatusResistanceStacking()
-  return self:GetAbility():GetSpecialValueFor("status_resist")
 end
 
 function bocuse_4_modifier_mirepoix:GetModifierPhysical_ConstantBlock()
