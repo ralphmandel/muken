@@ -350,7 +350,10 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMiss_Percentage(keys)
-    if self.ability.missing == true then return 100 end
+    if self.ability.missing == true then
+      self.ability.missing = false
+      return 100
+    end
     return 0
   end
 

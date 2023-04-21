@@ -82,7 +82,7 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
   if self.type == 1 then self.type = 2 else self.type = 1 end
   self.parent:StartGestureWithPlaybackRate(self.gesture[self.type], self:GetAS())
 
-  local linear_info = {
+  ProjectileManager:CreateLinearProjectile({
     Source = self.parent,
     Ability = self.ability,
     vSpawnOrigin = self.parent:GetAbsOrigin(),
@@ -102,9 +102,10 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
     bProvidesVision = false,
     iVisionRadius = 0,
     iVisionTeamNumber = self.parent:GetTeamNumber()
-  }
-  ProjectileManager:CreateLinearProjectile(linear_info)
+  })
+
   if IsServer() then
+    self.parent:EmitSound("Hero_Snapfire.ExplosiveShellsBuff.Attack")
     self:DecrementStackCount()
     self:StartIntervalThink(1 / self:GetAS()) 
   end
