@@ -31,9 +31,6 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
 		"AbilitySpecial"
 		{
 			"01"
@@ -76,7 +73,7 @@
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastPoint"       		"0.2"
 
 		"AbilitySpecial"
 		{

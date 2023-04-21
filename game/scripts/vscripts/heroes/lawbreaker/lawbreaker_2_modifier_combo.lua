@@ -2,7 +2,6 @@ lawbreaker_2_modifier_combo = class({})
 
 function lawbreaker_2_modifier_combo:IsHidden() return false end
 function lawbreaker_2_modifier_combo:IsPurgable() return false end
-function lawbreaker_2_modifier_combo:GetPriority() return MODIFIER_PRIORITY_ULTRA end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -13,7 +12,6 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
   self.gesture = {[1] = ACT_DOTA_ATTACK, [2] = ACT_DOTA_ATTACK2}
   self.type = 1
   
-
   AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
   
   if IsServer() then 
@@ -31,19 +29,12 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function lawbreaker_2_modifier_combo:CheckState()
-	local state = {
-		[MODIFIER_STATE_DISARMED] = true
-	}
-
-	return state
-end
-
 function lawbreaker_2_modifier_combo:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DISABLE_TURNING,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-    MODIFIER_PROPERTY_MOVESPEED_LIMIT
+    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+    MODIFIER_EVENT_ON_ORDER
 	}
 
 	return funcs
@@ -61,9 +52,19 @@ function lawbreaker_2_modifier_combo:GetModifierMoveSpeed_Limit()
   return self:GetAbility():GetSpecialValueFor("limit_ms")
 end
 
+function lawbreaker_2_modifier_combo:OnOrder(keys)
+	if keys.unit ~= self.parent then return end
+
+	if keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+    Timers:CreateTimer(FrameTime(), function()
+      self.parent:MoveToNPC(keys.target)
+    end)
+	end
+end
+
 function lawbreaker_2_modifier_combo:OnIntervalThink()
   local front = self.parent:GetForwardVector():Normalized()
-  local point = self.ability.point
+  local point = self.parent:GetOrigin() + front * self.parent:Script_GetAttackRange()
   local direction = point - self.parent:GetOrigin()
 	direction.z = 0
 	direction = direction:Normalized()

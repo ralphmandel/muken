@@ -339,8 +339,9 @@ base_stats_mod = class ({})
 
   function base_stats_mod:OnAttack(keys)
     if BaseStats(keys.attacker) == nil then return end
-    if keys.attacker:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK then return end
     if keys.target ~= self.parent then return end
+    if keys.attacker:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK
+    and keys.no_attack_cooldown == false then return end
 
     local crit = RandomFloat(1, 100) <= BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil

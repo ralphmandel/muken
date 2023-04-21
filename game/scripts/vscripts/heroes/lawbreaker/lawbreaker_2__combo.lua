@@ -15,7 +15,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
   function lawbreaker_2__combo:OnProjectileHit(target, loc)
     local caster = self:GetCaster()
-    caster:PerformAttack(target, false, false, false, false, false, false, false)
+    caster:PerformAttack(target, false, false, true, false, false, false, false) -- skipCooldown == true FOR RANGED UNITS
     return true
   end
 
