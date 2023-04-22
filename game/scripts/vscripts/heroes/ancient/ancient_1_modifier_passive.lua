@@ -144,7 +144,7 @@ function ancient_1_modifier_passive:ApplyStuns(keys)
 
 	if self.punch then
 		self.punch = false
-		self.ability:UseResources(true, false, true)
+		self.ability:UseResources(true, false, false, true)
 		if self.base_stats then self.base_stats:SetForceCritHit(-1) end
 		
 		local ult = self.parent:FindAbilityByName("ancient_u__final")

@@ -74,7 +74,7 @@ function genuine_1_modifier_orb:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
 	if self:ShouldLaunch(keys.target) then
-		self.ability:UseResources(true, false, true)
+		self.ability:UseResources(true, false, false, true)
 		self.records[keys.record] = true
 
 		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end

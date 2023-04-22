@@ -47,7 +47,7 @@ function TalentTree:OnPortraitUpdate(event)
     evasion = BaseStats(entity):GetDodgePercent(),
     armor = entity:GetPhysicalArmorValue(false),
     hp_regen = entity:GetHealthRegen(),
-    magical_resist = entity:GetMagicalArmorValue() * 100,
+    magical_resist = entity:Script_GetMagicalArmorValue(false, BaseStats(entity)) * 100,
     status_resist = BaseStats(entity):GetStatusResistPercent(),
     heal_power = BaseStats(entity):GetTotalHealPowerPercent(),
     buff_amp = BaseStats(entity):GetTotalBuffAmpPercent()

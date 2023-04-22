@@ -60,7 +60,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff"
 		if mana_steal > hTarget:GetMana() then mana_steal = hTarget:GetMana() end
 		
 		if mana_steal > 0 then
-			hTarget:ReduceMana(mana_steal)
+			hTarget:Script_ReduceMana(mana_steal, self)
 			caster:GiveMana(mana_steal)
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, hTarget, mana_steal, caster)
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_steal, caster)

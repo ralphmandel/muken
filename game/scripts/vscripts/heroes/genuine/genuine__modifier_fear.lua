@@ -47,7 +47,7 @@ function genuine__modifier_fear:OnRemoved(kv)
 end
 
 function genuine__modifier_fear:OnDestroy()
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
   if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 end
 

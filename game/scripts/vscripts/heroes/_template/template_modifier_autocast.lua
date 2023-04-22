@@ -33,7 +33,7 @@ function template_modifier_autocast:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self:ShouldLaunch(keys.target) then
-		self.ability:UseResources(true, false, true)
+		self.ability:UseResources(true, false, false, true)
 	end
 end
 
