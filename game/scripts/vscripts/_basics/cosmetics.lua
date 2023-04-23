@@ -23,13 +23,26 @@ end
 
 -- ADD COSMETICS
 
-	function cosmetics:LoadHeroNames()
+	function cosmetics:LoadHeroesName()
 		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
 		if heroes_name_data == nil then return end
 		for name, id_name in pairs(heroes_name_data) do
 			if self:GetCaster():GetUnitName() == id_name then
 				return name
 			end
+		end
+	end
+
+  function cosmetics:LoadHeroesTeam()
+		local heroes_team_data = LoadKeyValues("scripts/npc/heroes_team.kv")
+		if heroes_team_data == nil then return end
+
+    for team, hero_list in pairs(heroes_team_data) do
+      for _,id_name in pairs(hero_list) do
+        if self:GetCaster():GetUnitName() == id_name then
+          return team
+        end
+      end
 		end
 	end
 
@@ -44,18 +57,18 @@ end
 			[6] = "models/items/rikimaru/riki_scarlet_fox_tail/riki_scarlet_fox_tail.vmdl"
 		}
 	
-		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroNames().."/"..self:LoadHeroNames().."-cosmetics.txt")
+		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroesTeam().."/"..self:LoadHeroesName().."/"..self:LoadHeroesName().."-cosmetics.txt")
 		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
 	
-		if self:LoadHeroNames() == "icebreaker" then
+		if self:LoadHeroesName() == "icebreaker" then
 			self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
 		end
 
-		if self:LoadHeroNames() == "bloodstained" then
+		if self:LoadHeroesName() == "bloodstained" then
 			self:SetStatusEffect(self:GetCaster(), nil, "bloodstained_1_modifier_passive_status_efx", true)
 		end
 		
-		if self:LoadHeroNames() == "krieger" then
+		if self:LoadHeroesName() == "krieger" then
 			self:SetStatusEffect(self:GetCaster(), nil, "krieger_1_modifier_passive_status_efx", true)
 		end
 

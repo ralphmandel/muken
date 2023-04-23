@@ -1,5 +1,5 @@
 template_4__sk4 = class({})
-LinkLuaModifier("template_4_modifier_sk4", "heroes/template/template_4_modifier_sk4", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("template_4_modifier_sk4", "heroes/team_id_team/template/template_4_modifier_sk4", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

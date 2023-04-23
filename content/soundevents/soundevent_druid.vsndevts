@@ -324,6 +324,39 @@
 	}
 }
 
+"Druid.Wind"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/druid_wind.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			  { "value"	"Weapons"	}
+					"volume"          { "value" "0.7"	}
+					"volume_fade_out"	{ "value"	"1" }
+				}
+			}
+		}
+	}
+}
+
 "Druid.Channel"
 {
 	"operator_stacks"

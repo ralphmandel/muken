@@ -10,7 +10,7 @@ function base_hero_mod:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	self.ability:LoadHeroNames()
+	self.ability:LoadHeroesData()
 	self:LoadActivity()
 	self:LoadModel()
 	self:LoadSounds()

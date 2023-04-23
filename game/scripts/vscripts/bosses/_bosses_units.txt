@@ -54,10 +54,10 @@
 
 		"Stats"
 		{
-      "STR" "75"
-      "AGI" "30"
-      "INT" "50"
-      "CON" "65"
+      "STR" "70"
+      "AGI" "25"
+      "INT" "40"
+      "CON" "64"
 		}
 
 		"Creature"

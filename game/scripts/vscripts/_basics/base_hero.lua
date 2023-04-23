@@ -77,13 +77,24 @@ require("internal/talent_tree")
 	end
 
 -- LOAD DATA
-	function base_hero:LoadHeroNames()
+	function base_hero:LoadHeroesData()
 		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
+		local heroes_team_data = LoadKeyValues("scripts/npc/heroes_team.kv")
 		if heroes_name_data == nil then return end
+		if heroes_team_data == nil then return end
+
 		for name, id_name in pairs(heroes_name_data) do
 			if self:GetCaster():GetUnitName() == id_name then
 				self.hero_name = name
 			end
+		end
+
+    for team, hero_list in pairs(heroes_team_data) do
+      for _,id_name in pairs(hero_list) do
+        if self:GetCaster():GetUnitName() == id_name then
+          self.hero_team = team
+        end      
+      end
 		end
 	end
 	
@@ -120,7 +131,7 @@ require("internal/talent_tree")
 		self.gold_init = self:GetSpecialValueFor("gold_init")
 		self.gold_mult = self:GetSpecialValueFor("gold_mult")
 
-		if self.hero_name ~= nil then
+		if self.hero_name ~= nil and self.hero_team ~= nil then
 			self:LoadSkills()
 			self:LoadRanks()
 			self:UpdatePanoramaPanels()
@@ -136,7 +147,7 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:LoadSkills()
-		local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-skills.txt")
+		local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_team.."/"..self.hero_name.."/"..self.hero_name.."-skills.txt")
 		if skills_data ~= nil then
 			for skill, skill_name in pairs(skills_data) do
 				self.skills[tonumber(skill)] = skill_name
@@ -162,8 +173,8 @@ require("internal/talent_tree")
   end
 
 	function base_hero:LoadRanks()
-		local abilitiesData = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name..".txt")
-		local ranks_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_name.."/"..self.hero_name.."-ranks.txt")
+		local abilitiesData = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_team.."/"..self.hero_name.."/"..self.hero_name..".txt")
+		local ranks_data = LoadKeyValues("scripts/vscripts/heroes/"..self.hero_team.."/"..self.hero_name.."/"..self.hero_name.."-ranks.txt")
 		if ranks_data == nil then return end
 
 		for _,unit in pairs(ranks_data) do

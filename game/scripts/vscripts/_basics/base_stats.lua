@@ -456,12 +456,20 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
     function base_stats:IsHeroCanLevelUpStat(stat)
       local caster = self:GetCaster()
-      local level_cap = caster:GetLevel() + 30
       local total_cost = 1
+      local level_cap = caster:GetLevel() + 30
+      local level_cap_fraction = 99
+
+      for _,stats_secondary in pairs(self.stats_secondary) do
+        if stats_secondary == stat then
+          level_cap = 99
+          level_cap_fraction = caster:GetLevel() + 30         
+        end
+      end
 
       for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
         if index ~= "value" then
-          if self.stat_base[stat_fraction] >= level_cap then return false end
+          if self.stat_base[stat_fraction] >= level_cap_fraction then return false end
           total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_primary, 4)
           total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_secondary, 3)
         end
