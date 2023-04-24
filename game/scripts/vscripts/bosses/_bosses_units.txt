@@ -39,7 +39,7 @@
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"        	"0"
-		"StatusHealth"				"500"
+		"StatusHealth"				"1000"
 		"StatusHealthRegen"			"5"
 		"StatusMana"				"400" //600
 		"StatusManaRegen"			"0"
@@ -54,10 +54,10 @@
 
 		"Stats"
 		{
-      "STR" "70"
-      "AGI" "25"
-      "INT" "40"
-      "CON" "64"
+      "STR" "25"
+      "AGI" "20"
+      "INT" "25"
+      "CON" "49"
 		}
 
 		"Creature"
@@ -72,4 +72,386 @@
 		}	
 	}
 
+	// SUMMONS
+		"tribal_ward"
+		{
+			"Model"						"models/items/witchdoctor/wd_ward/wd_father_of_spirits_death_ward/wd_father_of_spirits_death_ward.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"0"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+			"AttackRange"				"400"
+			"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
+			"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"160"
+			"ModelScale" 				"1"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"300"
+			"StatusHealthRegen"			"5"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "4"
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+		"icebreaker_shard"
+		{
+			"Model"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"0"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_FLY"
+			"AttackCapabilities"				"DOTA_UNIT_CAP_NO_ATTACK"
+			"AttackRange"					"0"
+			"ProjectileModel"			""
+			"ProjectileSpeed"			"0"
+			"HealthBarOffset"			"100"
+			"ModelScale" 				"1"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"1000"
+			"StatusHealthRegen"			"0"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"300"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"0"
+			"AttackDamageMax"			"0"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "0"
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+    "druid_totem"
+		{
+			"Model"						  "models/items/pugna/ward/weta_call_of_the_nether_lotus_ward/weta_call_of_the_nether_lotus_ward.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"		"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						  "0"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"				"DOTA_UNIT_CAP_NO_ATTACK"
+			"AttackRange"					"0"
+			"ProjectileModel"			""
+			"ProjectileSpeed"			"0"
+			"HealthBarOffset"			"100"
+			"ModelScale" 				  "1.2"
+
+			"Ability7"					  "_void"
+			"Ability8"					  "base_stats"
+
+			"RingRadius"				    "100"
+			"BountyXP"					    "0"
+			"TeamName"					    "DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			  "1"
+
+			"ArmorPhysical"				  "0"
+			"MagicalResistance"     "0"
+			"StatusHealth"				  "1"
+			"StatusHealthRegen"			"0"
+			"StatusMana"				    "0" //600
+			"StatusManaRegen"			  "0"
+			"VisionDaytimeRange"		"350"
+			"VisionNighttimeRange"	"250"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			  "0"
+			"AttackDamageMax"			  "0"
+			"AttackRate"				    "1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "-1"
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+		"npc_druid_treant_lv1"
+		{
+			"Model"						"models/items/furion/treant/np_desert_traveller_treant/np_desert_traveller_treant.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"1"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"175"
+			"ModelScale" 				"0.9"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"1000"
+			"StatusHealthRegen"			"5"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR" "4"
+				"AGI" "4"
+				"INT" "0"
+				"CON" "4"
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+		"npc_druid_treant_lv2"
+		{
+			"Model"						"models/items/furion/treant/allfather_of_nature_treant/allfather_of_nature_treant.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"2"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"175"
+			"ModelScale" 				"1.2"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"1000"
+			"StatusHealthRegen"			"5"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR" "0"
+				"AGI" "16"
+				"INT" "0"
+				"CON" "8"
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
+
+		"npc_druid_treant_lv3"	
+		{
+			"Model"						"models/items/furion/treant/fungal_lord_shroomthing/fungal_lord_shroomthing.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						"3"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackRange"				"100"
+			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
+			//"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"200"
+			"ModelScale" 				"1.5"
+
+			"Ability7"					"_void"
+			"Ability8"					"base_stats"
+
+			"RingRadius"				"100"
+			"BountyXP"					"0"
+			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"ConsideredHero" 			"1"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			"1"
+
+			"ArmorPhysical"				"0"
+			"MagicalResistance"        	"0"
+			"StatusHealth"				"1000"
+			"StatusHealthRegen"			"5"
+			"StatusMana"				"0" //600
+			"StatusManaRegen"			"0"
+			"VisionDaytimeRange"		"600"
+			"VisionNighttimeRange"		"500"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			"35"
+			"AttackDamageMax"			"45"
+			"AttackRate"				"1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"  
+
+			"Stats"
+			{
+				"STR" "18"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "18"
+			}
+			
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}
+		}
 }

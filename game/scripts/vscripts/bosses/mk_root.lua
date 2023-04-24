@@ -26,8 +26,20 @@ function mk_root:OnSpellStart()
 	)
 
 	for _,unit in pairs(units) do
-		damageTable.victim = unit
-		ApplyDamage(damageTable)
+    damageTable.victim = unit
+    ApplyDamage(damageTable)
+
+    local distance = CalcStatus(1 - (CalcDistanceBetweenEntityOBB(caster, unit) / (radius_impact * 0.5)), caster, unit)
+    local knockbackProperties = {
+      center_x = caster:GetAbsOrigin().x + 1,
+      center_y = caster:GetAbsOrigin().y + 1,
+      center_z = caster:GetAbsOrigin().z,
+      duration = distance * 0.5,
+      knockback_duration = distance * 0.5,
+      knockback_distance = distance * radius_impact * 0.5,
+      knockback_height = 0
+    }
+    unit:AddNewModifier(caster, nil, "modifier_knockback", knockbackProperties)
 	end
 
 	local find = 0
@@ -38,9 +50,9 @@ function mk_root:OnSpellStart()
 	)
 
 	for _,hero in pairs(heroes) do
-		hero:AddNewModifier(caster, self, "mk_root_modifier", {
-			duration = CalcStatus(duration, caster, hero)
-		})
+		-- hero:AddNewModifier(caster, self, "mk_root_modifier", {
+		-- 	duration = CalcStatus(duration, caster, hero)
+		-- })
 
 		find = find + 1
 		if find > 1 then break end

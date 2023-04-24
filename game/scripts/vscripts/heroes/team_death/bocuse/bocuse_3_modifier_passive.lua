@@ -31,7 +31,23 @@ function bocuse_3_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 
-	keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_sauce", {})
+  local duration = self.ability:GetSpecialValueFor("duration")
+	local duration_reduction = self.ability:GetSpecialValueFor("duration_reduction")
+  local mod_sauce = keys.target:FindModifierByNameAndCaster("bocuse_3_modifier_sauce", self.caster)
+
+  if mod_sauce then
+    if mod_sauce:GetStackCount() < self.ability:GetSpecialValueFor("max_stack") and mod_sauce.delay == false then
+      duration = duration - (duration_reduction * mod_sauce:GetStackCount())
+      keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_sauce", {
+        duration = CalcStatus(duration, self.caster, keys.target)
+      })
+    end
+    return
+  end
+
+  keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_sauce", {
+    duration = CalcStatus(duration, self.caster, keys.target)
+  })
 end
 
 -- UTILS -----------------------------------------------------------

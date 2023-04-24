@@ -175,7 +175,7 @@ function ancient_1_modifier_passive:ApplyReflect(keys, stun_multiplier)
 	local base_stats_target = keys.attacker:FindAbilityByName("base_stats")
 	if base_stats_target == nil then return end
 	if base_stats_target.has_crit ~= true then return end
-	if RandomFloat(1, 100) > 50 then return end
+	if RandomFloat(0, 100) >= 50 then return end
 
 	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
 		local total_damage = ApplyDamage({

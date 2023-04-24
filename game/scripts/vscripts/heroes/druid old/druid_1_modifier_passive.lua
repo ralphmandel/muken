@@ -78,7 +78,7 @@ function druid_1_modifier_passive:ApplyBushAttack(target)
 	local bush_duration = RandomFloat(5, 10)
 	local point = target:GetAbsOrigin() + RandomVector(RandomInt(1, 50))
 
-	if RandomFloat(1, 100) <= 20 then
+	if RandomFloat(0, 100) < 20 then
 		self.ability:CreateBush(point, bush_duration, "druid_1_modifier_root")
 	end
 end

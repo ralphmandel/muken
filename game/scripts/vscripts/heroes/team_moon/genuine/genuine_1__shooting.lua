@@ -36,7 +36,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 			})
 		end
 
-		if RandomFloat(1, 100) <= self:GetSpecialValueFor("special_fear_chance") then
+		if RandomFloat(0, 100) < self:GetSpecialValueFor("special_fear_chance") then
 			keys.target:AddNewModifier(caster, self, "genuine__modifier_fear", {
 				duration = CalcStatus(self:GetSpecialValueFor("special_fear_duration"), caster, keys.target)
 			})

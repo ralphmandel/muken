@@ -60,7 +60,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function striker_3_modifier_buff:ApplyTick()
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_purge_chance") then
 		self.parent:Purge(false, true, false, true, false)
 		self:PlayEfxPurge()
 	end

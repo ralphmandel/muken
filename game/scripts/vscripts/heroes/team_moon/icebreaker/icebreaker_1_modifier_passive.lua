@@ -85,7 +85,7 @@ function icebreaker_1_modifier_passive:OnAttackFail(keys)
 	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
 		self:ApplyFrost(keys.target)
 	end
 end
@@ -95,11 +95,11 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
 	if self.parent:PassivesDisabled() then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_blink_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_blink_chance") then
 		self:PerformAutoBlink(keys.target)
 	end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
 		self:ApplyFrost(keys.target)
 	end
 end

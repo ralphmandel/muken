@@ -58,7 +58,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function ancient_3_modifier_debuff:Petrify()
-	if RandomFloat(1, 100) > 10 then return end
+	if RandomFloat(0, 100) >= 10 then return end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_petrified")
 	for _,modifier in pairs(mod) do

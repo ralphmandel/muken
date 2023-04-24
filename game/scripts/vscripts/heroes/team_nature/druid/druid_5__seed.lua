@@ -47,7 +47,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     if self:GetSpecialValueFor("special_branch") == 1 then
       local item = CreateItem(branches[RandomInt(1, 3)], nil, nil)
       local drop = CreateItemOnPositionSync(loc, item)
-      local pos_launch = loc + RandomVector(RandomFloat(150,200))
+      local pos_launch = loc + RandomVector(RandomInt(150,200))
       item:LaunchLoot(false, 100, 0.5, pos_launch)
       self:PlayEfxDropItem(pos_launch)
     end

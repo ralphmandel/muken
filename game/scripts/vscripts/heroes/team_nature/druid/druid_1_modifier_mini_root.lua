@@ -35,7 +35,7 @@ function druid_1_modifier_mini_root:OnIntervalThink()
     if IsServer() then enemy:EmitSound("Druid.Foot_" .. RandomInt(1, 3)) end
 
     if enemy:IsMagicImmune() == false and
-    RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_root_chance") then
+    RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_root_chance") then
       local root_duration = self.ability:GetSpecialValueFor("special_root_duration")
       enemy:AddNewModifier(self.caster, self.ability, "_modifier_root", {
         duration = CalcStatus(root_duration, self.caster, enemy), effect = 5

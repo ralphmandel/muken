@@ -17,17 +17,17 @@ function Spawner:SpawnFountains()
 end
 
 function Spawner:SpawnNeutrals()
-  local time = GameRules:GetDOTATime(false, false)
   local current_mobs = 0
+  local max_mobs = 7
 
-  while current_mobs < 12 do
+  while current_mobs < max_mobs do
     local free_spots = {}
     local free_spot_index = 1
     current_mobs = 0
 
     for i = 1, #SPAWNER_SPOTS, 1 do
       local spot_blocked = self:IsSpotAlive(SPAWNER_SPOTS, i)
-      if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_SPOTS, i, 45) end
+      if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_SPOTS, i, 5) end
       if spot_blocked then
         current_mobs = current_mobs + 1
       else
@@ -36,7 +36,7 @@ function Spawner:SpawnNeutrals()
       end
     end
 
-    if current_mobs < 12 then
+    if current_mobs < max_mobs then
       local spot = free_spots[RandomInt(1, #free_spots)]
       local tier = self:RandomizeTier()
       local mob = self:RandomizeMob(tier)
@@ -46,11 +46,28 @@ function Spawner:SpawnNeutrals()
 end
 
 function Spawner:SpawnBosses()
-  for i = 1, 2, 1 do
-    if self:IsSpotAlive(SPAWNER_BOSS_SPOTS, i) == false then
-      if self:IsSpotCooldown(SPAWNER_BOSS_SPOTS, i, 300) == false then
-        self:CreateMob(SPAWNER_BOSS_SPOTS, i, 8, self:RandomizeMob(8), "")
+  local current_mobs = 0
+  local max_mobs = 1
+
+  while current_mobs < max_mobs do
+    local free_spots = {}
+    local free_spot_index = 1
+    current_mobs = 0
+
+    for i = 1, #SPAWNER_BOSS_SPOTS, 1 do
+      local spot_blocked = self:IsSpotAlive(SPAWNER_BOSS_SPOTS, i)
+      if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_BOSS_SPOTS, i, 300) end
+      if spot_blocked then
+        current_mobs = current_mobs + 1
+      else
+        free_spots[free_spot_index] = i
+        free_spot_index = free_spot_index + 1
       end
+    end
+
+    if current_mobs < max_mobs then
+      local spot = free_spots[RandomInt(1, #free_spots)]
+      self:CreateMob(SPAWNER_BOSS_SPOTS, spot, 8, self:RandomizeMob(8), "")
     end
   end
 end
@@ -94,7 +111,7 @@ function Spawner:RandomizeTier()
   local current_tier = math.ceil((hero_lvl_total / hero_count) / 4)
 
   for i = current_tier, 1, -1 do
-    if RandomFloat(1, 100) <= 40 then
+    if RandomFloat(0, 100) < 40 then
       return i
     end
   end
@@ -107,13 +124,10 @@ function Spawner:RandomizeMob(tier)
   local index = 0
   for _,mob in pairs(SPAWNER_MOBS) do
     if mob["tier"] == tier then
-      --print(mob["tier"], mob["units"], "pass")
       index = index + 1
       rand_mobs[index] = mob["units"]
     end
   end
-
-  --print(rand_mobs[RandomInt(1, index)], index, "index")
 
   return rand_mobs[RandomInt(1, index)]
 end

@@ -52,7 +52,7 @@ function bald_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys
 	self:AddMultStack()
 
   RemoveBonus(self.ability, "_1_AGI", self.parent)
-  if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_combo_chance") then
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_combo_chance") then
     AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
   end
 

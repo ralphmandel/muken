@@ -48,7 +48,7 @@ function _boss_gorillaz_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 	if self.parent:HasModifier("mk_gorillaz_buff") then return end
 
-	if RandomFloat(1, 100) <= 5 then
+	if RandomFloat(0, 100) < 8 then
 		self.parent:AddNewModifier(self.caster, self.ability, "mk_gorillaz_buff", {
 			duration = CalcStatus(6, self.caster, self.parent)
 		})
@@ -70,7 +70,7 @@ function _boss_gorillaz_modifier_passive:OnIntervalThink()
 end
 
 function _boss_gorillaz_modifier_passive:RandomizeTarget()
-	if RandomInt(1, 100) > 15 then return false end
+	if RandomFloat(1, 100) >= 15 then return false end
 	local mod_ai = self.parent:FindModifierByName("_boss_modifier__ai")
 	if mod_ai == nil then return false end
 
@@ -98,7 +98,7 @@ function _boss_gorillaz_modifier_passive:TryCast_Skill_1()
 	if ability:IsTrained() == false then return false end
 	if ability:IsCooldownReady() == false then return false end
 	if ability:IsOwnersManaEnough() == false then return false end
-	if RandomInt(1, 100) > 20 then return false end
+	if RandomFloat(1, 100) >= 30 then return false end
 
 	self.parent:CastAbilityNoTarget(ability, -1)
   return true

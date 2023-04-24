@@ -51,6 +51,8 @@ function _boss_modifier__ai:OnIntervalThink()
 end
 
 function _boss_modifier__ai:IdleThink()
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
+
   if self.idle == nil then self.idle = false end
   if self.idle == false then
     self.unit:Stop()
@@ -73,15 +75,6 @@ function _boss_modifier__ai:IdleThink()
     end
   end
 
-  -- If one or more units were found, start attacking the first one
-  -- if #units > 0 then
-  --     --self.spawnPos = self.unit:GetAbsOrigin() -- Remember position to return to
-  --     self.aggroTarget = units[1] -- Remember who to attack
-  --     self.unit:MoveToTargetToAttack(self.aggroTarget) --Start attacking
-  --     self.state = AI_STATE_AGGRESSIVE --State transition
-  --     return -- Stop processing this state
-  -- end
-
   local vector = (Vector(0, 0, 0) - self.unit:GetAbsOrigin()):Normalized()
   self.unit:SetForwardVector(vector)
 
@@ -91,7 +84,6 @@ function _boss_modifier__ai:IdleThink()
     return
   end
 
-  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 
@@ -168,6 +160,32 @@ function _boss_modifier__ai:ReturningThink()
   self.unit:MoveToPosition(self.spawnPos)
   
   RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
+
+  -- Find any enemy units around the AI unit inside the aggroRange
+  local units = FindUnitsInRadius(
+    self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil, self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY,
+    DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,
+    FIND_ANY_ORDER, false
+  )
+
+  for _,unit in pairs(units) do
+    if unit:IsIllusion() == false then
+      self.aggroTarget = unit -- Remember who to attack
+      self.unit:MoveToTargetToAttack(self.aggroTarget) --Start attacking
+      self.state = AI_STATE_AGGRESSIVE --State transition
+      return -- Stop processing this state
+    end
+  end
+
+  local vector = (Vector(0, 0, 0) - self.unit:GetAbsOrigin()):Normalized()
+  self.unit:SetForwardVector(vector)
+
+  if self.unit:GetAggroTarget() ~= nil then
+    self.aggroTarget = self.unit:GetAggroTarget()
+    self.state = AI_STATE_AGGRESSIVE
+    return
+  end
+
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_movespeed_buff", {percent = 250})
 end
 

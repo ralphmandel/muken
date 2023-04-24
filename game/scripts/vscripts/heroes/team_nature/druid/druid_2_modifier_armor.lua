@@ -47,7 +47,7 @@ function druid_2_modifier_armor:OnAttackLanded(keys)
   if keys.attacker:IsMagicImmune() then return end
   if keys.target ~= self.parent then return end
 
-  if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_root_chance") then
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_root_chance") then
     keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_root", {
       duration = CalcStatus(self.ability:GetSpecialValueFor("special_root_duration"), self.caster, keys.attacker),
       effect = 7

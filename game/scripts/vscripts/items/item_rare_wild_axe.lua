@@ -18,11 +18,11 @@ function item_rare_wild_axe:OnSpellStart()
 	}
 
 	local chance = self:GetSpecialValueFor("chance")
-	if RandomInt(1, 100) <= chance then
+	if RandomFloat(1, 100) < chance then
 		local item = CreateItem(branches[RandomInt(1, 3)], nil, nil)
 		local pos = tree:GetAbsOrigin()
 		local drop = CreateItemOnPositionSync(pos, item)
-		local pos_launch = pos + RandomVector(RandomFloat(150,200))
+		local pos_launch = pos + RandomVector(RandomInt(150,200))
 		item:LaunchLoot(false, 100, 0.5, pos_launch)
     self:PlayEfxDropItem(pos_launch)
 	end

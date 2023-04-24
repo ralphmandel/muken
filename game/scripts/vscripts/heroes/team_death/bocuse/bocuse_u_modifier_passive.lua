@@ -56,7 +56,7 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
 	if self.parent:HasModifier("bocuse_1_modifier_julienne") then return end
 	if self.parent:HasModifier("bocuse_u_modifier_mise") then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_autocast_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_autocast_chance") then
     self.ability.autocast = true
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_mise", {
 			duration = CalcStatus(self.ability:GetSpecialValueFor("special_autocast_duration"), self.caster, self.parent)

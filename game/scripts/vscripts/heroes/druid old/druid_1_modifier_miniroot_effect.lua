@@ -44,7 +44,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function druid_1_modifier_miniroot_effect:ApplyRoot()
-	if RandomInt(1, 100) <= 25 then
+	if RandomFloat(1, 100) < 25 then
 		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {
 			duration = CalcStatus(0.75, self.caster, self.parent),
 			effect = 5

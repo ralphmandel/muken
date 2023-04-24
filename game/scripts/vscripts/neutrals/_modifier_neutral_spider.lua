@@ -15,8 +15,6 @@ function _modifier_neutral_spider:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 30})
-
 	if self.parent:GetUnitName() == "neutral_spider" then
 		self:StartIntervalThink(1)
 	end
@@ -26,10 +24,21 @@ function _modifier_neutral_spider:OnRefresh( kv )
 end
 
 function _modifier_neutral_spider:OnRemoved()
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
 --------------------------------------------------------------------------------
+
+function _modifier_neutral_spider:DeclareFunctions()
+	local funcs = {
+    MODIFIER_PROPERTY_MOVESPEED_LIMIT
+	}
+
+	return funcs
+end
+
+function _modifier_neutral_spider:GetModifierMoveSpeed_Limit()
+  return 225
+end
 
 function _modifier_neutral_spider:OnIntervalThink()
 	local target = self.parent:GetAggroTarget()
@@ -38,12 +47,12 @@ function _modifier_neutral_spider:OnIntervalThink()
 	if self.parent:IsStunned() then return end
 	if self.parent:IsDominated() then return end
 
-	if RandomInt(1, 100) <= 25 then
+	if RandomFloat(1, 100) < 25 then
 		self:TryCast_Skill_1(target)
 		return
 	end
 
-	if RandomInt(1, 100) <= 25 then
+	if RandomFloat(1, 100) < 25 then
 		self:TryCast_Skill_2(target)
 		return
 	end

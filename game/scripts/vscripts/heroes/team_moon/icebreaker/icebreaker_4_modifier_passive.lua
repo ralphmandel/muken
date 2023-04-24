@@ -31,7 +31,7 @@ end
 
 function icebreaker_4_modifier_passive:OnAttackLanded(keys)
 	if keys.target == self.parent
-	and RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+	and RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
 		self:ApplyInvisibility(keys.attacker)
 	end
 
@@ -42,7 +42,7 @@ function icebreaker_4_modifier_passive:OnAttackLanded(keys)
 end
 
 function icebreaker_4_modifier_passive:GetAbsorbSpell(keys)
-	if RandomFloat(1, 100) <= self:GetAbility():GetSpecialValueFor("special_spell_chance") then
+	if RandomFloat(0, 100) < self:GetAbility():GetSpecialValueFor("special_spell_chance") then
 		self:ApplyInvisibility(keys.ability:GetCaster())
 	end
 end

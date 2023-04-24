@@ -44,7 +44,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		self.target = self:GetCursorTarget()
     self.crit = self:GetSpecialValueFor("special_frenesi_chance") > 0
 
-    if RandomFloat(1, 100) <= self:GetSpecialValueFor("special_frenesi_chance") then
+    if RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance") then
       self.total_slashes = self:GetSpecialValueFor("special_max_cut")
       self.cut_speed = self:GetSpecialValueFor("special_cut_speed")
     else

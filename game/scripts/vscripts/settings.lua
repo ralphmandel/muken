@@ -165,15 +165,15 @@ SPAWNER_MOBS = {
   }},
 -- TIER 4
   {["tier"] = 4, ["units"] = {
-    "neutral_spider"
-  }},
-  {["tier"] = 4, ["units"] = {
     "neutral_igneo", "neutral_igneo"
   }},
   {["tier"] = 4, ["units"] = {
     "neutral_igor", "neutral_frostbitten", "neutral_frostbitten"
   }},
 -- TIER 5
+  {["tier"] = 5, ["units"] = {
+    "neutral_spider"
+  }},
   {["tier"] = 5, ["units"] = {
     "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten"
   }},

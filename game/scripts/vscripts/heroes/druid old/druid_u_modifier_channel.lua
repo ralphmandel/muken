@@ -80,7 +80,7 @@ function druid_u_modifier_channel:OnIntervalThink()
 			local unit_lvl = unit:GetLevel()
 			local chance = 100 / (unit_lvl * chance_lvl)
 
-			if RandomFloat(1, 100) <= chance
+			if RandomFloat(0, 100) < chance
 			and unit_lvl <= max_dominate
 			and unit:GetUnitName() ~= "summoner_spider" then
 				unit:Purge(false, true, false, false, false)
@@ -142,7 +142,7 @@ function druid_u_modifier_channel:ConvertTrees()
 		local unit_lvl = RandomInt(1, 3)
 		local chance = 100 / (unit_lvl * chance_lvl)
 
-		if RandomFloat(1, 100) <= chance then
+		if RandomFloat(0, 100) < chance then
 			local origin = tree:GetOrigin()
 			tree:CutDown(self.parent:GetTeamNumber())
 

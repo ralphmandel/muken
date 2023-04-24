@@ -53,6 +53,8 @@ function _modifier__ai:OnIntervalThink()
 end
 
 function _modifier__ai:IdleThink()
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
+
   -- Find any enemy units around the AI unit inside the aggroRange
   local units = FindUnitsInRadius(
     self.unit:GetTeam(), self.spot_origin, nil, self.aggroRange,
@@ -86,7 +88,6 @@ function _modifier__ai:IdleThink()
     return
   end
 
-  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
   self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
 end
 

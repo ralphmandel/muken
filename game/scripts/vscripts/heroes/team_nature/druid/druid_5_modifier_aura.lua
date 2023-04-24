@@ -71,7 +71,7 @@ function druid_5_modifier_aura:OnIntervalThink()
 
   if trees then
     for _,tree in pairs(trees) do
-      if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("tree_chance") then
+      if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("tree_chance") then
         tree:CutDown(self.parent:GetTeamNumber())
       else
         self.ability:CreateSeedFromTree(tree:GetAbsOrigin() + Vector(0, 0, 100))

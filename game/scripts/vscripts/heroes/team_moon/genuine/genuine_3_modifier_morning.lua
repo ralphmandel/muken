@@ -60,7 +60,7 @@ function genuine_3_modifier_morning:OnIntervalThink()
 				if enemy:IsHero() and enemy:IsIllusion() == false then
 					chance = self.ability:GetSpecialValueFor("hero_chance")
 				end
-				if RandomFloat(1, 100) <= chance then
+				if RandomFloat(0, 100) < chance then
 					self.ability:CreateStarfall(enemy)
 				end
 			end

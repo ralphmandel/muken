@@ -19,14 +19,14 @@ function summon_spiders:OnSpellStart()
 	)
 
     for _,unit in pairs(units) do
-        unit:RemoveModifierByName("summon_spiders_modifier")
+      unit:RemoveModifierByName("summon_spiders_modifier")
     end
 
     local spiders_number = self:GetSpecialValueFor("spiders_number")
     for i = 1, spiders_number, 1 do
-        local spider = CreateUnitByName("summoner_spider", point, true, nil, nil, caster:GetTeamNumber())
-        local mod = spider:AddNewModifier(caster, self, "summon_spiders_modifier", {duration = 60})
-        mod.target = target
-        spider:SetForceAttackTarget(target)
+      local spider = CreateUnitByName("summoner_spider", point, true, nil, nil, caster:GetTeamNumber())
+      local mod = spider:AddNewModifier(caster, self, "summon_spiders_modifier", {duration = 60})
+      mod.target = target
+      spider:SetForceAttackTarget(target)
     end
 end

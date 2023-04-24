@@ -53,7 +53,7 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 
 	local ancient_mod = self.parent:FindModifierByName("ancient_1_modifier_passive")
 	if ancient_mod then
-		-- if RandomFloat(1, 100) <= self.chance then
+		-- if RandomFloat(0, 100) < self.chance then
 		-- 	ancient_mod:SetMultipleHits(2)
 		-- end
 		return
@@ -70,7 +70,7 @@ function item_rare_killer_dagger_mod_passive:OnAttack(keys)
 		self:StartIntervalThink(2)
 	end
 
-	if RandomFloat(1, 100) <= self.chance then
+	if RandomFloat(0, 100) < self.chance then
 		RemoveBonus(self.ability, "_1_AGI", self.parent)
 		AddBonus(self.ability, "_1_AGI", self.parent, 999, 0, nil)
 		self.hits = 1

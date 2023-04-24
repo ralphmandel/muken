@@ -133,7 +133,7 @@ function druid_2_modifier_armor:FindAllies(heal)
 	)
 
 	for _,unit in pairs(units) do
-		if RandomFloat(1, 100) <= chance
+		if RandomFloat(0, 100) < chance
 		and unit ~= self.parent then
 			self.ability:CreateSeedProj(unit, self.parent, heal)
 			chance = chance / 2.5

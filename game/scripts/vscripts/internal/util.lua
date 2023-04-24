@@ -178,12 +178,12 @@ function RollDrops(unit, killerEntity)
       end
     end
 
-    if RandomInt(1, 100) <= chance then
+    if RandomFloat(1, 100) < chance then
       local item_name = item_list[RandomInt(1, #item_list)]
       local item = CreateItem(item_name, nil, nil)
       local pos = unit:GetAbsOrigin()
       local drop = CreateItemOnPositionSync(pos, item)
-      local pos_launch = pos + RandomVector(RandomFloat(150,200))
+      local pos_launch = pos + RandomVector(RandomInt(150,200))
       item:LaunchLoot(false, 200, 0.75, pos_launch)
 
       local string = "particles/neutral_fx/neutral_item_drop_lvl4.vpcf"

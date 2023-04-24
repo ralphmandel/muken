@@ -14,11 +14,14 @@ function mk_gorillaz_buff:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
 	self.bonus_damage = 0
-	if IsServer() then self.parent:EmitSound("Hero_LoneDruid.BattleCry.Bear") end
 
-	AddBonus(self.ability, "_1_AGI", self.parent, 15, 0, nil)
+	AddBonus(self.ability, "_1_AGI", self.parent, 20, 0, nil)
+
+  if IsServer() then
+    self.parent:EmitSound("Hero_LoneDruid.BattleCry.Bear")
+    self:SetStackCount(self.bonus_damage)
+  end
 end
 
 function mk_gorillaz_buff:OnRefresh(kv)
@@ -29,14 +32,6 @@ function mk_gorillaz_buff:OnRemoved()
 end
 
 --------------------------------------------------------------------------------
-
-function mk_gorillaz_buff:CheckState()
-	local state = {
-		[MODIFIER_STATE_CANNOT_MISS] = true
-	}
-
-	return state
-end
 
 function mk_gorillaz_buff:DeclareFunctions()
 	local funcs = {
@@ -49,12 +44,14 @@ function mk_gorillaz_buff:DeclareFunctions()
 end
 
 function mk_gorillaz_buff:GetModifierProcAttack_BonusDamage_Physical(keys)
-	return self.bonus_damage
+	return self:GetStackCount()
 end
 
 function mk_gorillaz_buff:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-	self.bonus_damage = self.bonus_damage + 5
+	self.bonus_damage = self.bonus_damage + 10
+
+  if IsServer() then self:SetStackCount(self.bonus_damage) end
 end
 
 --------------------------------------------------------------------------------

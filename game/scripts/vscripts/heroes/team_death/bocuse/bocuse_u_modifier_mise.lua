@@ -86,7 +86,7 @@ end
 function bocuse_u_modifier_mise:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_microstun_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_microstun_chance") then
 		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.2})
 	end
 end

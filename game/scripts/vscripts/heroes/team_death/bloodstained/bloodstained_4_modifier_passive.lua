@@ -42,7 +42,7 @@ function bloodstained_4_modifier_passive:PerformFrenzy(target)
 	if self.parent:HasModifier("bloodstained_4_modifier_frenzy") then return end
 	if self.ability:IsCooldownReady() == false then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
 		self.ability.target = target
 		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_4_modifier_frenzy", {
 			duration = CalcStatus(self.ability:GetSpecialValueFor("duration"), self.caster, self.parent)
@@ -51,7 +51,7 @@ function bloodstained_4_modifier_passive:PerformFrenzy(target)
 end
 
 function bloodstained_4_modifier_passive:ApplyBleed(target)
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_bleed_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_bleed_chance") then
 		target:RemoveModifierByNameAndCaster("bloodstained__modifier_bleeding", self.caster)
 		target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {
 			duration = CalcStatus(self.ability:GetSpecialValueFor("special_bleed_duration"), self.caster, target)

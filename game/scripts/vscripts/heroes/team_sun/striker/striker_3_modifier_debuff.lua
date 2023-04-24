@@ -77,7 +77,7 @@ end
 function striker_3_modifier_debuff:ApplyTick()
 	if self.particle then ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin()) end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("special_purge_chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_purge_chance") then
 		self.parent:Purge(true, false, false, false, false)
 		self:PlayEfxPurge()
 	end

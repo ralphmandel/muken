@@ -40,7 +40,7 @@ function _modifier_neutral_igneo:OnIntervalThink()
 	if self.parent:IsStunned() then return end
 	if self.parent:IsDominated() then return end
 
-	if RandomInt(1, 100) <= 10 then
+	if RandomFloat(1, 100) < 10 then
 		self:TryCast_Skill_1(target)
 	end
 end

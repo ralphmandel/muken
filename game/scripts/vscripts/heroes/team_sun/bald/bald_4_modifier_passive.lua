@@ -57,7 +57,7 @@ function bald_4_modifier_passive:OnModifierAdded(keys)
 	local heal = self.ability:GetSpecialValueFor("heal") * BaseStats(self.caster):GetHealPower()
 	self.parent:Heal(heal, self.ability)
 
-  if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("purge_chance") then
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("purge_chance") then
     self.parent:Purge(false, true, false, true, false)
     self:PlayEfxPurge(self.parent)
   end

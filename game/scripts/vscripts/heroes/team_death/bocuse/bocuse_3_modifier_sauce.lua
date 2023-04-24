@@ -9,21 +9,24 @@ function bocuse_3_modifier_sauce:OnCreated(kv)
   self.caster = self:GetCaster()
 	self.parent = self:GetParent()
   self.ability = self:GetAbility()
-	self.chance = 0
+	self.delay = true
 
 	if IsServer() then
 		self:SetStackCount(1)
 		self:CheckCounterEfx()
 		self:PlayEfxStart()
+    self:StartIntervalThink(self:GetDuration() * 0.2)
+    print("kubo", self:GetDuration())
 	end
 end
 
-function bocuse_3_modifier_sauce:OnRefresh(kv)	
-	if IsServer() then
-		if self:GetStackCount() < self.ability:GetSpecialValueFor("max_stack")
-		and RandomFloat(1, 100) <= self.chance then
-			self:IncrementStackCount()
-		end
+function bocuse_3_modifier_sauce:OnRefresh(kv)
+  self.delay = true
+
+  if IsServer() then
+    self:IncrementStackCount()
+    self:StartIntervalThink(self:GetDuration() * 0.2)
+    print("kubo", self:GetDuration())
 	end
 end
 
@@ -69,33 +72,23 @@ function bocuse_3_modifier_sauce:OnTakeDamage(keys)
 end
 
 function bocuse_3_modifier_sauce:OnIntervalThink()
-	self.chance = self.chance + 5
-	if IsServer() then self:StartIntervalThink(0.25) end
+	self.delay = false
+  if IsServer() then self:StartIntervalThink(-1) end
 end
 
 function bocuse_3_modifier_sauce:OnStackCountChanged(old)
 	if self:GetStackCount() ~= old then
 		self:ModifySauce(self:GetStackCount())
-
 		self.chance = 0
-		if IsServer() then self:StartIntervalThink(0.25) end
 	end	
 end
 
 -- UTILS -----------------------------------------------------------
 
 function bocuse_3_modifier_sauce:ModifySauce(stack_count)
-	local duration = self.ability:GetSpecialValueFor("duration")
-	local duration_reduction = self.ability:GetSpecialValueFor("duration_reduction")
-	local duration = duration - (duration_reduction * (stack_count - 1))
 	local slow_stack = self.ability:GetSpecialValueFor("special_slow_stack")
 	local slow_duration = self.ability:GetSpecialValueFor("special_slow_duration")
-
-	self:SetDuration(CalcStatus(duration, self.caster, self.parent), true)
-
-	if stack_count > 0 then
-		self:PopupSauce(true)
-	end
+	if stack_count > 0 then self:PopupSauce(true) end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 

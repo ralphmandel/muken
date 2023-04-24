@@ -397,7 +397,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "radius" then return 325 end
 		if value_name == "cast_range" then return 750 end
-    if value_name == "chance" then return 3.5 end
+    if value_name == "chance" then return 3 end
 	end
 
 	return 0

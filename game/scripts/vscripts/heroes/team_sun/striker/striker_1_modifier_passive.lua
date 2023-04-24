@@ -96,7 +96,7 @@ end
 function striker_1_modifier_passive:TryCombo(target)
 	if self.parent:PassivesDisabled() then return end
 
-	if RandomFloat(1, 100) <= self.ability:GetSpecialValueFor("chance") then
+	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
 		self:PerformBlink(target)
 	end
 end
@@ -173,7 +173,7 @@ function striker_1_modifier_passive:CancelCombo(bRepeat)
 end
 
 function striker_1_modifier_passive:ApplyKnockback(target)
-	if RandomFloat(1, 100) > self.ability:GetSpecialValueFor("knockback_chance") then return end
+	if RandomFloat(0, 100) >= self.ability:GetSpecialValueFor("knockback_chance") then return end
 
 	target:AddNewModifier(self.caster, nil, "modifier_knockback", {
 		duration = 0.3,

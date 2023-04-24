@@ -53,7 +53,7 @@ function _modifier_neutral_lamp:OnIntervalThink()
 	self.take_damage = self.take_damage - 20
 	if self.take_damage < 0 then self.take_damage = 0 end
 
-	if RandomInt(1, 100) <= self.take_damage then
+	if RandomFloat(1, 100) < self.take_damage then
 		self:TryCast_Skill_1(target)
 		return
 	end

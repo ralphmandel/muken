@@ -96,7 +96,7 @@ function ancient_3_modifier_walk:GetModifierPhysical_ConstantBlock(keys)
 
 	-- UP 3.11
 	if self.ability:GetRank(11)
-	and RandomFloat(1, 100) <= 25 then
+	and RandomFloat(0, 100) < 25 then
 		if base_stats_attacker then
 			if base_stats_attacker.has_crit == true then
 				return keys.damage
@@ -180,7 +180,7 @@ function ancient_3_modifier_walk:ApplyAvatar()
 
 	for _,ally in pairs(allies) do
 		if ally ~= self.parent
-		and RandomFloat(1, 100) <= 20 then
+		and RandomFloat(0, 100) < 20 then
 			ally:AddNewModifier(self.caster, self.ability, "ancient_3_modifier_avatar", {
 				duration = CalcStatus(3.5, self.caster, ally)
 			})			

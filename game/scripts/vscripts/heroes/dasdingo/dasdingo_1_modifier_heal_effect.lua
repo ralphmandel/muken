@@ -98,7 +98,7 @@ function dasdingo_1_modifier_heal_effect:OnTakeDamage(keys)
 		end
 	end
 
-	if RandomFloat(1, 100) <= chance
+	if RandomFloat(0, 100) < chance
 	and keys.unit:IsMagicImmune() == false
 	and keys.unit:GetTeamNumber() ~= self.caster:GetTeamNumber()
 	and keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then

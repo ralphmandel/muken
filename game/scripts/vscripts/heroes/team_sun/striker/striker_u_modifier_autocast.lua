@@ -61,7 +61,7 @@ function striker_u_modifier_autocast:CheckAbility(pAbilityName)
 	if chance_sof == 1 then chance_sof = self:CheckSof("striker_5_modifier_return") end
 
 	local chance = (100 / ability:GetCooldown(ability:GetLevel())) * chance_sof
-	if RandomFloat(1, 100) > chance then return end
+	if RandomFloat(0, 100) >= chance then return end
 
 	return {ability = ability, manacost = manacost}
 end
