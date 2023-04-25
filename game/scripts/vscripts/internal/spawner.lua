@@ -18,9 +18,8 @@ end
 
 function Spawner:SpawnNeutrals()
   local current_mobs = 0
-  local max_mobs = 7
 
-  while current_mobs < max_mobs do
+  while current_mobs < MAX_MOB_COUNT do
     local free_spots = {}
     local free_spot_index = 1
     current_mobs = 0
@@ -36,7 +35,7 @@ function Spawner:SpawnNeutrals()
       end
     end
 
-    if current_mobs < max_mobs then
+    if current_mobs < MAX_MOB_COUNT then
       local spot = free_spots[RandomInt(1, #free_spots)]
       local tier = self:RandomizeTier()
       local mob = self:RandomizeMob(tier)
@@ -47,9 +46,8 @@ end
 
 function Spawner:SpawnBosses()
   local current_mobs = 0
-  local max_mobs = 1
 
-  while current_mobs < max_mobs do
+  while current_mobs < MAX_BOSS_COUNT do
     local free_spots = {}
     local free_spot_index = 1
     current_mobs = 0
@@ -65,7 +63,7 @@ function Spawner:SpawnBosses()
       end
     end
 
-    if current_mobs < max_mobs then
+    if current_mobs < MAX_BOSS_COUNT then
       local spot = free_spots[RandomInt(1, #free_spots)]
       self:CreateMob(SPAWNER_BOSS_SPOTS, spot, 8, self:RandomizeMob(8), "")
     end

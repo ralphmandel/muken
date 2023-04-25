@@ -207,6 +207,9 @@ SPAWNER_BOSS_SPOTS = {
   [2] = { ["mob"] = {}, ["origin"] = Vector(6500, 0, 0), ["respawn"] = -300},
 }
 
+MAX_MOB_COUNT = 8
+MAX_BOSS_COUNT = 1
+
 SCORE = 100
 SCORE_KILL = 60
 SCORE_BOUNTY = 120

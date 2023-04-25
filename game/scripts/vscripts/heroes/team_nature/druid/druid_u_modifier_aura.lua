@@ -8,10 +8,27 @@ function druid_u_modifier_aura:IsPurgable() return false end
 function druid_u_modifier_aura:IsAura() return true end
 function druid_u_modifier_aura:GetModifierAura() return "druid_u_modifier_aura_effect" end
 function druid_u_modifier_aura:GetAuraRadius() return self:GetAbility():GetAOERadius() end
-function druid_u_modifier_aura:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
+
+function druid_u_modifier_aura:GetAuraSearchTeam()
+  if self:GetAbility():GetSpecialValueFor("special_str") > 0
+  or self:GetAbility():GetSpecialValueFor("special_agi") > 0 then
+    return DOTA_UNIT_TARGET_TEAM_BOTH
+  end
+  
+  return self:GetAbility():GetAbilityTargetTeam()
+end
+
 function druid_u_modifier_aura:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
 function druid_u_modifier_aura:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
-function druid_u_modifier_aura:GetAuraEntityReject(hEntity) return hEntity:IsHero() end
+function druid_u_modifier_aura:GetAuraEntityReject(hEntity)
+  if self:GetAbility():GetSpecialValueFor("special_str") > 0
+  or self:GetAbility():GetSpecialValueFor("special_agi") > 0
+  or self:GetAbility():GetSpecialValueFor("special_slow") > 0
+  or self:GetAbility():GetSpecialValueFor("special_manaloss") > 0 then
+    return false
+  end
+  return hEntity:IsHero()
+end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
