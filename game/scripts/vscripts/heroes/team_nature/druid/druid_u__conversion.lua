@@ -45,6 +45,7 @@ LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOT
 
   function druid_u__conversion:OnChannelFinish(bInterrupted)
     local caster = self:GetCaster()
+    if bInterrupted then self:StartCooldown(10) end
     caster:RemoveModifierByNameAndCaster("druid_u_modifier_channel", caster)
   end
 

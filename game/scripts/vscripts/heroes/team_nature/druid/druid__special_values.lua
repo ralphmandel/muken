@@ -225,24 +225,28 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "max_dominate" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("druid_u__conversion_rank_11") then
-      if value_name == "radius" then return 1 end
-		end
-
-    if caster:FindAbilityByName("druid_u__conversion_rank_12") then
-      if value_name == "cast_range" then return 1 end
-		end
-
-		if caster:FindAbilityByName("druid_u__conversion_rank_21") then
       if value_name == "chance" then return 1 end
 		end
 
-		if caster:FindAbilityByName("druid_u__conversion_rank_31") then
+		if caster:FindAbilityByName("druid_u__conversion_rank_21") then
+      if value_name == "special_str" then return 1 end
+      if value_name == "special_agi" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_u__conversion_rank_22") then
+      if value_name == "special_slow" then return 1 end
+      if value_name == "special_manaloss" then return 1 end
 		end
 
 		if caster:FindAbilityByName("druid_u__conversion_rank_41") then
+      if value_name == "special_tree_conversion" then return 1 end
+		end
+
+    if caster:FindAbilityByName("druid_u__conversion_rank_42") then
+      if value_name == "max_dominate" then return 1 end
 		end
 	end
 
@@ -384,20 +388,25 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_u__conversion" then
 		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("druid_u__conversion_rank_22") then
-        return 15 * (1 + ((ability_level - 1) * 0.05))
+      if caster:FindAbilityByName("druid_u__conversion_rank_12") then
+        return 20 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 20 * (1 + ((ability_level - 1) * 0.05))
+      return 25 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-    if value_name == "max_dominate" then return 20 + (value_level * 1) end
+    if value_name == "radius" then return 250 + (value_level * 10) end
 
-    if value_name == "radius" then return 325 end
-		if value_name == "cast_range" then return 750 end
-    if value_name == "chance" then return 3 end
+    if value_name == "chance" then return 2.5 end
+    if value_name == "radius" then return 350 end
+    if value_name == "special_str" then return 10 end
+    if value_name == "special_agi" then return 10 end
+    if value_name == "special_slow" then return 50 end
+    if value_name == "special_manaloss" then return 25 end
+    if value_name == "special_tree_conversion" then return 1 end
+    if value_name == "max_dominate" then return 30 end
 	end
 
 	return 0
