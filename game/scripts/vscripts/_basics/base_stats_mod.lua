@@ -362,7 +362,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = (self.ability.stat_total["RES"]) * self.ability.magic_resist
+    local value = (self.ability.stat_total["RES"] + 1) * self.ability.magic_resist
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end

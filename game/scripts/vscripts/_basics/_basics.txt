@@ -32,7 +32,7 @@
         "03"
 				{
 					"var_type"				        "FIELD_FLOAT"
-					"critical_damage"		      "1"
+					"critical_damage"		      "0.5"
 				}
 				"04"
 				{
@@ -49,7 +49,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"movespeed"				"2" // 5 to 2
+					"movespeed"				"1" // 5 to 2
 				}
 				"07"
 				{
@@ -76,7 +76,7 @@
 				"11"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					  "10"
+					"mana"					  "5"
 				}
 				"12"
 				{
@@ -137,7 +137,7 @@
 				"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"	"0.75" //0.6 scalar
+					"critical_chance"	"0.7"
 				}
 				"23"
 				{

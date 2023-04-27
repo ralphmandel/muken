@@ -30,13 +30,18 @@ end
 function bocuse_1_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
+  local bleeding = keys.target:FindModifierByNameAndCaster("_modifier_bleeding", self.caster)
+	local bleeding_duration = CalcStatus(self.ability:GetSpecialValueFor("bleeding_duration"), self.caster, keys.target)
 	local chance = self.ability:GetSpecialValueFor("special_bleeding_chance")
-	if self.parent:HasModifier("bocuse_1_modifier_julienne") then chance = 100 end
+
+  if self.parent:HasModifier("bocuse_1_modifier_julienne") then chance = 100 end
 
 	if RandomFloat(0, 100) < chance then
-		keys.target:AddNewModifier(self.caster, self.ability, "bocuse_1_modifier_bleeding", {
-			duration = CalcStatus(self.ability:GetSpecialValueFor("bleeding_duration"), self.caster, keys.target)
-		})
+    if bleeding then
+      bleeding:SetDuration(bleeding_duration, true)
+    else
+		  keys.target:AddNewModifier(self.caster, self.ability, "_modifier_bleeding", {duration = bleeding_duration})
+    end
 	end
 end
 

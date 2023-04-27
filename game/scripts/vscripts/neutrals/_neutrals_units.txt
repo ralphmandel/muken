@@ -39,7 +39,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -102,7 +102,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"25"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"300"
@@ -171,7 +171,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -239,7 +239,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -306,7 +306,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -371,7 +371,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -438,7 +438,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -504,7 +504,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"400" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -570,7 +570,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -635,7 +635,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -699,7 +699,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -763,7 +763,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -828,7 +828,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -892,7 +892,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"
@@ -956,7 +956,7 @@
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
 			"StatusHealth"				"1000"
-			"StatusHealthRegen"			"5"
+			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
 			"VisionDaytimeRange"		"600"

@@ -632,7 +632,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     function base_stats:GetBonusHPRegen()
       local value = (self.stat_total["CON"]) * self.health_regen
       local calc = (value * 6) / (1 +  (value * 0.06))
-      return calc
+      return calc + 6
     end
 
 		function base_stats:SetHPRegenState(bool)
@@ -651,7 +651,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:GetCriticalChance()
       local result = self.force_crit_chance
       if result == nil then
-        result = (self.stat_total["LCK"] + 1) * self.critical_chance
+        result = ((self.stat_total["LCK"] + 1) * self.critical_chance) + 5
       end
 
       return result
@@ -669,7 +669,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     function base_stats:GetDodgePercent()
       local value = (self.stat_total["DEX"]) * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
-      return calc
+      return calc + 5
     end
 
 	-- UTIL MND

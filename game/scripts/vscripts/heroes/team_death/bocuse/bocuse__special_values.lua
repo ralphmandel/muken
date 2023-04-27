@@ -60,7 +60,6 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 
     if caster:FindAbilityByName("bocuse_1__julienne_rank_32") then
 			if value_name == "bleeding_duration" then return 1 end
-			if value_name == "bleeding_damage" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_1__julienne_rank_41") then
@@ -286,8 +285,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "stun_duration" then return 3.5 end
     if value_name == "special_stun_radius" then return 350 end
     if value_name == "special_bleeding_chance" then return 10 end
-    if value_name == "bleeding_duration" then return 6 end
-    if value_name == "bleeding_damage" then return 20 end
+    if value_name == "bleeding_duration" then return 8 end
     if value_name == "max_cut" then return 10 end
     if value_name == "special_frenesi_chance" then return 30 end
     if value_name == "special_max_cut" then return 7 end
@@ -385,7 +383,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_u__mise_rank_42") then
-        return 17
+        return 20
       end
       return 37
     end

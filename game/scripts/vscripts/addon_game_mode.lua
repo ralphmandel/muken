@@ -27,6 +27,10 @@ function Precache( context )
     PrecacheResource( "particle", "particles/units/heroes/hero_snapfire/hero_snapfire_disarm.vpcf", context)
     PrecacheResource( "particle", "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf", context )
     PrecacheResource( "particle", "particles/items_fx/blademail.vpcf", context )
+    PrecacheResource( "particle", "particles/bocuse/bocuse_msg.vpcf", context )
+    PrecacheResource( "particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf", context )
+    PrecacheResource( "particle", "particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf", context )
     PrecacheResource( "particle", "particles/econ/wards/ti8_ward/ti8_ward_true_sight_ambient.vpcf", context )
     PrecacheResource( "particle", "particles/basics/silence.vpcf", context )
     PrecacheResource( "particle", "particles/basics/silence__red.vpcf", context )
@@ -199,6 +203,7 @@ function Precache( context )
     PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_muken_config.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_muken_generics.vsndevts", context)
 
   -- Entire items can be precached by name
     -- Abilities can also be precached in this way despite the name

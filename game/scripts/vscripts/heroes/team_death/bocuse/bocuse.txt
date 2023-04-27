@@ -46,17 +46,12 @@
       "02"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"cut_speed"   		  "4.5"
+				"cut_speed"   		  "5"
 			}
       "03"
 			{
 				"var_type"		      "FIELD_FLOAT"
 				"bleeding_duration" "3"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"bleeding_damage"   "10"
 			}
       "05"
 			{

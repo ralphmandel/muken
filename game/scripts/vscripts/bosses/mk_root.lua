@@ -50,9 +50,9 @@ function mk_root:OnSpellStart()
 	)
 
 	for _,hero in pairs(heroes) do
-		-- hero:AddNewModifier(caster, self, "mk_root_modifier", {
-		-- 	duration = CalcStatus(duration, caster, hero)
-		-- })
+		hero:AddNewModifier(caster, self, "mk_root_modifier", {
+			duration = CalcStatus(duration, caster, hero)
+		})
 
 		find = find + 1
 		if find > 1 then break end

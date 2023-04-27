@@ -1,7 +1,7 @@
 bocuse_1__julienne = class({})
 LinkLuaModifier("bocuse_1_modifier_passive", "heroes/team_death/bocuse/bocuse_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_1_modifier_julienne", "heroes/team_death/bocuse/bocuse_1_modifier_julienne", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bocuse_1_modifier_bleeding", "heroes/team_death/bocuse/bocuse_1_modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_bleeding", "modifiers/_modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
