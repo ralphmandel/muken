@@ -288,7 +288,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierHPRegenAmplify_Percentage()
-    return self.ability.heal_amp * (self.ability.stat_base["CON"])
+    --return self.ability.heal_amp * (self.ability.stat_base["CON"])
   end
 
   function base_stats_mod:GetModifierExtraHealthBonus()
@@ -309,7 +309,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierConstantHealthRegen()
     if IsServer() then
-      return (self.ability.stat_total["CON"] + 1) * self.ability.health_regen * self.ability.hp_regen_state
+      return self.ability:GetBonusHPRegen() * self.ability.hp_regen_state
     end
   end
 
@@ -362,7 +362,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = (self.ability.stat_total["RES"] + 1) * self.ability.magic_resist
+    local value = (self.ability.stat_total["RES"]) * self.ability.magic_resist
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end
@@ -372,7 +372,7 @@ base_stats_mod = class ({})
   end
   
   function base_stats_mod:GetModifierPercentageCooldown()
-    local value = (self.ability.stat_total["REC"] + 1) * self.ability.cooldown
+    local value = (self.ability.stat_total["REC"]) * self.ability.cooldown
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end

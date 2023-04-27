@@ -629,14 +629,22 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- UTIL CON
 
-    function base_stats:GetStatusResistPercent()
-      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
-      return (self.stat_total["RES"] + 1) * self.status_resist
+    function base_stats:GetBonusHPRegen()
+      local value = (self.stat_total["CON"]) * self.health_regen
+      local calc = (value * 6) / (1 +  (value * 0.06))
+      return calc
     end
 
 		function base_stats:SetHPRegenState(bool)
 			if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
 		end
+
+  -- RES
+
+    function base_stats:GetStatusResistPercent()
+      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
+      return (self.stat_total["RES"] + 1) * self.status_resist
+    end
 
 	-- UTIL LCK
 
@@ -659,7 +667,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     end
 
     function base_stats:GetDodgePercent()
-      local value = (self.stat_total["DEX"] + 1) * self.evade
+      local value = (self.stat_total["DEX"]) * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc
     end
