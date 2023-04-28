@@ -47,7 +47,7 @@ LinkLuaModifier("_modifier_manaloss", "modifiers/_modifier_manaloss", LUA_MODIFI
 
   function druid_u__conversion:OnChannelFinish(bInterrupted)
     local caster = self:GetCaster()
-    if bInterrupted then self:StartCooldown(10) end
+    if bInterrupted and caster:IsStunned() or caster:IsHexed() or caster:IsSilenced() then self:StartCooldown(10) end
     caster:RemoveModifierByNameAndCaster("druid_u_modifier_channel", caster)
   end
 

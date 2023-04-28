@@ -401,7 +401,7 @@
 			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-			"AttackRange"				"100"
+			"AttackRange"				"125"
 			//"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf"
 			//"ProjectileSpeed"			"1500"
 			"HealthBarOffset"			"175"
@@ -437,10 +437,10 @@
 
 			"Stats"
 			{
-				"STR" "10"
-				"AGI" "10"
+				"STR" "25"
+				"AGI" "0"
 				"INT" "0"
-				"CON" "20"
+				"CON" "15"
 			}
 			
 			"Creature"

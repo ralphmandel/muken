@@ -21,12 +21,19 @@ end
 function druid_u_modifier_aura:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
 function druid_u_modifier_aura:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
 function druid_u_modifier_aura:GetAuraEntityReject(hEntity)
+  if self:GetAbility():GetSpecialValueFor("special_hex_duration") > 0
+  and hEntity:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and hEntity:IsHexed() then
+    return true
+  end
+
   if self:GetAbility():GetSpecialValueFor("special_str") > 0
   or self:GetAbility():GetSpecialValueFor("special_agi") > 0
   or self:GetAbility():GetSpecialValueFor("special_slow") > 0
+  or self:GetAbility():GetSpecialValueFor("special_hex_duration") > 0
   or self:GetAbility():GetSpecialValueFor("special_manaloss") > 0 then
     return false
   end
+
   return hEntity:IsHero()
 end
 
@@ -64,13 +71,14 @@ end
 
 function druid_u_modifier_aura:OnIntervalThink()
   if self.fow then RemoveFOWViewer(self.parent:GetTeamNumber(), self.fow) end
-	self.fow = AddFOWViewer(self.parent:GetTeamNumber(), self.ability.point, self.ability:GetAOERadius(), 3, true)
+	self.fow = AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetAOERadius(), 3, true)
 
   if self.efx_channel2 then
     ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.ability:GetAOERadius() * 0.1), 0, 0))
   end
 
 	if IsServer() then
+    self:ConvertTrees()
     self.parent:EmitSound("Druid.Channel")
     self:StartIntervalThink(self.intervals)
   end
@@ -104,11 +112,12 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function druid_u_modifier_aura:PlayEfxStart()
-	self.efx_channel = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, self.parent)
-	ParticleManager:SetParticleControl(self.efx_channel, 0, self.parent:GetOrigin())
+  self.fow = AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetAOERadius(), 3, true)
+	self.efx_channel = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, self.caster)
+	ParticleManager:SetParticleControl(self.efx_channel, 0, self.caster:GetOrigin())
 
-	self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(self.efx_channel2, 0, self.ability.point)
+	self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(self.efx_channel2, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.ability:GetAOERadius() * 0.1), 0, 0))
 
   if IsServer() then self.parent:EmitSound("Druid.Channel") end

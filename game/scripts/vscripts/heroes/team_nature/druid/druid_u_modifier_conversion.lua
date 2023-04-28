@@ -24,9 +24,9 @@ end
 
 function druid_u_modifier_conversion:OnRemoved()
 	if IsServer() then
-		if self.parent:GetUnitName() == "npc_druid_treant_lv1"
-		or self.parent:GetUnitName() == "npc_druid_treant_lv2"
-		or self.parent:GetUnitName() == "npc_druid_treant_lv3" then
+		if self.parent:GetUnitName() == "druid_treant_lv2"
+		or self.parent:GetUnitName() == "druid_treant_lv3"
+		or self.parent:GetUnitName() == "druid_treant_lv4" then
 			self.parent:EmitSound("Hero_Furion.TreantDeath")
 		end
 	end
@@ -60,9 +60,9 @@ end
 function druid_u_modifier_conversion:GetModifierPreAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
-	if self.parent:GetUnitName() == "npc_druid_treant_lv1"
-	or self.parent:GetUnitName() == "npc_druid_treant_lv2"
-	or self.parent:GetUnitName() == "npc_druid_treant_lv3" then
+	if self.parent:GetUnitName() == "druid_treant_lv2"
+	or self.parent:GetUnitName() == "druid_treant_lv3"
+	or self.parent:GetUnitName() == "druid_treant_lv4" then
 		if IsServer() then self.parent:EmitSound("Furion_Treant.PreAttack") end
 	end
 end
@@ -70,9 +70,9 @@ end
 function druid_u_modifier_conversion:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
-	if self.parent:GetUnitName() == "npc_druid_treant_lv1"
-	or self.parent:GetUnitName() == "npc_druid_treant_lv2"
-	or self.parent:GetUnitName() == "npc_druid_treant_lv3" then
+	if self.parent:GetUnitName() == "druid_treant_lv2"
+	or self.parent:GetUnitName() == "druid_treant_lv3"
+	or self.parent:GetUnitName() == "druid_treant_lv4" then
 		if IsServer() then self.parent:EmitSound("Furion_Treant.Attack") end
 	end
 end

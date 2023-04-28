@@ -292,8 +292,7 @@ end
 -- An entity died
 function GameMode:OnEntityKilled( keys )
   DebugPrint( '[BAREBONES] OnEntityKilled Called' )
-  DebugPrintTable( keys )
-  
+  DebugPrintTable( keys )  
 
   -- The Unit that was Killed
   local killedUnit = EntIndexToHScript( keys.entindex_killed )

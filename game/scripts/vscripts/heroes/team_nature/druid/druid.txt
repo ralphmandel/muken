@@ -482,7 +482,7 @@
       "04"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"cast_range"		"350"
+				"cast_range"		"700"
 			}
       "05"
 			{
@@ -496,33 +496,43 @@
 			}
       "16"
 			{
-				"var_type"      "FIELD_FLOAT"
-				"special_str"		"0"
+				"var_type"              "FIELD_FLOAT"
+				"special_slow"		      "0"
 			}
       "17"
 			{
-				"var_type"      "FIELD_FLOAT"
-				"special_agi"		"0"
+				"var_type"              "FIELD_FLOAT"
+				"special_manaloss"	    "0"
 			}
       "18"
 			{
-				"var_type"                "FIELD_FLOAT"
-				"special_slow"		        "0"
+				"var_type"              "FIELD_FLOAT"
+				"special_hex_chance"		"0"
 			}
       "19"
 			{
-				"var_type"                "FIELD_FLOAT"
-				"special_manaloss"	      "0"
+				"var_type"              "FIELD_FLOAT"
+				"special_hex_duration"  "0"
 			}
       "20"
 			{
-				"var_type"                "FIELD_FLOAT"
-				"special_tree_chance"     "0"
+				"var_type"              "FIELD_FLOAT"
+				"special_str"		        "0"
 			}
       "21"
 			{
-				"var_type"                "FIELD_FLOAT"
-				"special_tree_duration"   "0"
+				"var_type"              "FIELD_FLOAT"
+				"special_agi"		        "0"
+			}
+      "22"
+			{
+				"var_type"              "FIELD_FLOAT"
+				"special_tree_chance"   "0"
+			}
+      "23"
+			{
+				"var_type"              "FIELD_FLOAT"
+				"special_tree_duration" "0"
 			}
 		}
 	}
