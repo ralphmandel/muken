@@ -242,7 +242,8 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("druid_u__conversion_rank_41") then
-      if value_name == "special_tree_conversion" then return 1 end
+      if value_name == "special_tree_chance" then return 1 end
+      if value_name == "special_tree_duration" then return 1 end
 		end
 
     if caster:FindAbilityByName("druid_u__conversion_rank_42") then
@@ -405,7 +406,8 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_agi" then return 10 end
     if value_name == "special_slow" then return 50 end
     if value_name == "special_manaloss" then return 25 end
-    if value_name == "special_tree_conversion" then return 1 end
+    if value_name == "special_tree_chance" then return 17 end
+    if value_name == "special_tree_duration" then return 100 end
     if value_name == "max_dominate" then return 30 end
 	end
 

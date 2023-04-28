@@ -517,7 +517,12 @@
       "20"
 			{
 				"var_type"                "FIELD_FLOAT"
-				"special_tree_conversion" "0"
+				"special_tree_chance"     "0"
+			}
+      "21"
+			{
+				"var_type"                "FIELD_FLOAT"
+				"special_tree_duration"   "0"
 			}
 		}
 	}

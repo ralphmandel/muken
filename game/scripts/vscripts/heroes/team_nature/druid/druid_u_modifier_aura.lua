@@ -36,10 +36,17 @@ function druid_u_modifier_aura:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.intervals = 2
+
+  self.treants = {
+		[1] = "druid_treant_lv2",
+		[2] = "druid_treant_lv3",
+		[3] = "druid_treant_lv4",
+	}
 
 	if IsServer() then
     self:PlayEfxStart()
-    self:StartIntervalThink(3)
+    self:StartIntervalThink(self.intervals)
   end
 end
 
@@ -65,11 +72,34 @@ function druid_u_modifier_aura:OnIntervalThink()
 
 	if IsServer() then
     self.parent:EmitSound("Druid.Channel")
-    self:StartIntervalThink(3)
+    self:StartIntervalThink(self.intervals)
   end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function druid_u_modifier_aura:ConvertTrees()
+	local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetAOERadius(), false)
+  local tree_duration = self.ability:GetSpecialValueFor("special_tree_duration")
+	if trees == nil then return end
+  if tree_duration == 0 then return end
+
+	for _,tree in pairs(trees) do
+    self.caster:Script_ReduceMana(self.ability:GetManaCost(self.ability:GetLevel()) * self.intervals, self.ability)
+
+    if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_tree_chance") * self.intervals then
+			tree:CutDown(self.parent:GetTeamNumber())
+
+			local treant = CreateUnitByName(self.treants[RandomInt(1, 3)], tree:GetOrigin(), true, self.caster, self.caster, self.caster:GetTeamNumber())
+			treant:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {
+        duration = CalcStatus(tree_duration, self.caster, treant)
+      })
+
+			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end
+		end
+		break
+	end
+end
 
 -- EFFECTS -----------------------------------------------------------
 
