@@ -7,6 +7,7 @@ LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/team_nature/druid/druid_
 LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_manaloss", "modifiers/_modifier_manaloss", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_hex", "modifiers/_modifier_hex", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -47,7 +48,6 @@ LinkLuaModifier("_modifier_manaloss", "modifiers/_modifier_manaloss", LUA_MODIFI
 
   function druid_u__conversion:OnChannelFinish(bInterrupted)
     local caster = self:GetCaster()
-    if bInterrupted and caster:IsStunned() or caster:IsHexed() or caster:IsSilenced() then self:StartCooldown(10) end
     caster:RemoveModifierByNameAndCaster("druid_u_modifier_channel", caster)
   end
 

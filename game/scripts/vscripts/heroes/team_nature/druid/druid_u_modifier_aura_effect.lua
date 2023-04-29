@@ -32,6 +32,17 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function druid_u_modifier_aura_effect:OnIntervalThink()
+  self:TryConversion()
+  self:TryHex()
+
+	if IsServer() then self:StartIntervalThink(self.interval) end
+end
+
+-- UTILS -----------------------------------------------------------
+
+function druid_u_modifier_aura_effect:TryConversion()
+  if self.parent:IsHero() then return end
+
   local calc = (100 / (20 + (self.parent:GetLevel() * 2))) * (1 + (self.caster:GetLevel() * self.ability:GetSpecialValueFor("chance") * 0.01))
 
   if RandomFloat(0, 100) < calc * self.interval and self.parent:GetLevel() <= self.ability:GetSpecialValueFor("max_dominate") then
@@ -40,11 +51,17 @@ function druid_u_modifier_aura_effect:OnIntervalThink()
     self:Destroy()
     return
   end
-
-	if IsServer() then self:StartIntervalThink(self.interval) end
 end
 
--- UTILS -----------------------------------------------------------
+function druid_u_modifier_aura_effect:TryHex()
+  if self.parent:IsHero() == false then return end
+
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_hex_chance") * self.interval then
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_hex", {
+      duration = CalcStatus(self.ability:GetSpecialValueFor("special_hex_duration"), self.caster, self.parent)
+    })
+  end
+end
 
 function druid_u_modifier_aura_effect:ApplyOnAllies()
   local str = self.ability:GetSpecialValueFor("special_str")
@@ -63,30 +80,32 @@ function druid_u_modifier_aura_effect:ApplyOnAllies()
 end
 
 function druid_u_modifier_aura_effect:ApplyOnEnemyHero()
-  local slow = self.ability:GetSpecialValueFor("special_slow")
-  local manaloss = self.ability:GetSpecialValueFor("special_manaloss")
-  local hex_chance = self.ability:GetSpecialValueFor("hex_chance")
-  local hex_duration = self.ability:GetSpecialValueFor("hex_duration")
-
-  if slow == 0 and manaloss == 0 and hex_duration == 0 then return end
   if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then return end
   if self.parent:IsHero() == false then return end
-
-  self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
-  self.mod_applied = true
+  
+  local slow = self.ability:GetSpecialValueFor("special_slow")
+  local manaloss = self.ability:GetSpecialValueFor("special_manaloss")
+  local hex_duration = self.ability:GetSpecialValueFor("special_hex_duration")
 
   if slow > 0 and manaloss > 0 then
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = slow})
     self.parent:AddNewModifier(self.caster, self.ability, "_modifier_manaloss", {manaloss = manaloss})
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
+    self.mod_applied = true
+
+    if IsServer() then self:PlayEfxDebuff() end
   end
 
-  if RandomFloat(0, 100) < hex_chance then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_hex", {
-      duration = CalcStatus(hex_duration, self.caster, self.parent)
-    })
-  end
+  if hex_duration > 0 then
+    self.interval = 1
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
+    self.mod_applied = true
 
-  if IsServer() then self:PlayEfxDebuff() end
+    if IsServer() then
+      self:PlayEfxDebuff()
+      self:StartIntervalThink(self.interval)
+    end
+  end
 end
 
 function druid_u_modifier_aura_effect:ApplyOnNeutral()

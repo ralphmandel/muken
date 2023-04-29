@@ -115,9 +115,11 @@ function druid_u_modifier_aura:PlayEfxStart()
   self.fow = AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetAOERadius(), 3, true)
 	self.efx_channel = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, self.caster)
 	ParticleManager:SetParticleControl(self.efx_channel, 0, self.caster:GetOrigin())
+	ParticleManager:SetParticleControl(self.efx_channel, 1, Vector(125, 0, 0))
 
 	self.efx_channel2 = ParticleManager:CreateParticle("particles/druid/druid_skill1_channeling.vpcf", PATTACH_ABSORIGIN, self.parent)
 	ParticleManager:SetParticleControl(self.efx_channel2, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.efx_channel2, 1, Vector(self.ability:GetAOERadius(), 0, 0))
 	ParticleManager:SetParticleControl(self.efx_channel2, 5, Vector(math.floor(self.ability:GetAOERadius() * 0.1), 0, 0))
 
   if IsServer() then self.parent:EmitSound("Druid.Channel") end

@@ -236,7 +236,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
       if value_name == "special_manaloss" then return 1 end
 		end
 
-    if caster:FindAbilityByName("druid_u__conversion_rank_21") then
+    if caster:FindAbilityByName("druid_u__conversion_rank_22") then
       if value_name == "special_hex_chance" then return 1 end
       if value_name == "special_hex_duration" then return 1 end
 		end
@@ -403,7 +403,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-    if value_name == "radius" then return 250 + (value_level * 10) end
+    if value_name == "radius" then return 300 + (value_level * 10) end
 
     if value_name == "chance" then return 2.5 end
     if value_name == "radius" then return 350 end

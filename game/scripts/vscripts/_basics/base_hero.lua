@@ -195,7 +195,7 @@ require("internal/talent_tree")
                       for _,talent_hidden in pairs(talents_hidden) do
                         if tonumber(nlvl) == talent_hidden.tier
                         and tonumber(path) == talent_hidden.path then
-                          hidden = true
+                          --hidden = true
                         end
                       end
 

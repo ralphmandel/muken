@@ -82,11 +82,11 @@ function fountain_modifier:GetAuraSearchTeam()
 end
 
 function fountain_modifier:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+	return DOTA_UNIT_TARGET_HERO
 end
 
 function fountain_modifier:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	return DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
 end
 
 function fountain_modifier:GetAuraEntityReject(hEntity)

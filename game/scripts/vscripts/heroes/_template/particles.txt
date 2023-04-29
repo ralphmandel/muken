@@ -1,1 +1,2 @@
 "particles/econ/items/phoenix/phoenix_2022_crimson_dawn_back/phoenix_2022_ambient_base.vpcf" //LORD OF THE CINDER
+"particles/econ/items/shadow_shaman/shadow_shaman_sheepstick/shadowshaman_voodoo_sheepstick.vpcf" //BUFF
