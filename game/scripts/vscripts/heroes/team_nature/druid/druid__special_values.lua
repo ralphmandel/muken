@@ -246,6 +246,12 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
       if value_name == "special_agi" then return 1 end
 		end
 
+    if caster:FindAbilityByName("druid_u__conversion_rank_32") then
+      if value_name == "special_reborn_chance" then return 1 end
+      if value_name == "special_reborn_hp" then return 1 end
+      if value_name == "special_reborn_delay" then return 1 end
+		end
+
 		if caster:FindAbilityByName("druid_u__conversion_rank_41") then
       if value_name == "special_tree_chance" then return 1 end
       if value_name == "special_tree_duration" then return 1 end
@@ -413,6 +419,9 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_hex_duration" then return 3 end
     if value_name == "special_str" then return 15 end
     if value_name == "special_agi" then return 15 end
+    if value_name == "special_reborn_chance" then return 35 end
+    if value_name == "special_reborn_hp" then return 35 end
+    if value_name == "special_reborn_delay" then return 5 end
     if value_name == "special_tree_chance" then return 15 end
     if value_name == "special_tree_duration" then return 60 end
     if value_name == "max_dominate" then return 30 end

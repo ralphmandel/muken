@@ -4,6 +4,7 @@ LinkLuaModifier("druid_u_modifier_passive", "heroes/team_nature/druid/druid_u_mo
 LinkLuaModifier("druid_u_modifier_channel", "heroes/team_nature/druid/druid_u_modifier_channel", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_aura", "heroes/team_nature/druid/druid_u_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_u_modifier_aura_effect", "heroes/team_nature/druid/druid_u_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_u_modifier_reborn", "heroes/team_nature/druid/druid_u_modifier_reborn", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_phase", "modifiers/_modifier_phase", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_manaloss", "modifiers/_modifier_manaloss", LUA_MODIFIER_MOTION_NONE)

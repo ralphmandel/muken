@@ -416,7 +416,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_damage"		"1000"
+				"strike_damage"		"700"
 			}
 		}
 	}

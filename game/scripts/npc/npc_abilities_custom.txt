@@ -408,22 +408,22 @@
 #base "../vscripts/_basics/_basics.txt"
 
 //HEROES
-//TEAM NATURE
+//NATURE
 #base "../vscripts/heroes/team_nature/druid/druid.txt"
 #base "../vscripts/heroes/team_nature/dasdingo/dasdingo.txt"
 
-//TEAM DEATH
+//DEATH
 #base "../vscripts/heroes/team_death/flea/flea.txt"
 #base "../vscripts/heroes/team_death/bloodstained/bloodstained.txt"
 #base "../vscripts/heroes/team_death/bocuse/bocuse.txt"
 #base "../vscripts/heroes/team_death/lawbreaker/lawbreaker.txt"
 
-//TEAM SUN
+//SUN
 #base "../vscripts/heroes/team_sun/bald/bald.txt"
 #base "../vscripts/heroes/team_sun/striker/striker.txt"
 #base "../vscripts/heroes/team_sun/ancient/ancient.txt"
 
-//TEAM MOON
+//MOON
 #base "../vscripts/heroes/team_moon/icebreaker/icebreaker.txt"
 #base "../vscripts/heroes/team_moon/genuine/genuine.txt"
 

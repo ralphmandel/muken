@@ -22,6 +22,7 @@ end
 
 function druid_u_modifier_aura_effect:OnRemoved()
   if self.mod_applied == true then self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1) end
+  if self.parent:IsReincarnating() == false then self.parent:RemoveModifierByNameAndCaster("druid_u_modifier_reborn", self.caster) end
 
   RemoveBonus(self.ability, "_1_STR", self.parent)
   RemoveBonus(self.ability, "_1_AGI", self.parent)
@@ -30,6 +31,24 @@ function druid_u_modifier_aura_effect:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function druid_u_modifier_aura_effect:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_REINCARNATION
+	}
+
+	return funcs
+end
+
+function druid_u_modifier_aura_effect:ReincarnateTime()
+  if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+    if RandomFloat(0, 100) < self:GetAbility():GetSpecialValueFor("special_reborn_chance") then
+      return self:GetAbility():GetSpecialValueFor("special_reborn_delay")
+    end
+  end
+  
+  return 0
+end
 
 function druid_u_modifier_aura_effect:OnIntervalThink()
   self:TryConversion()
@@ -64,19 +83,26 @@ function druid_u_modifier_aura_effect:TryHex()
 end
 
 function druid_u_modifier_aura_effect:ApplyOnAllies()
+  if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
+
   local str = self.ability:GetSpecialValueFor("special_str")
   local agi = self.ability:GetSpecialValueFor("special_agi")
-  if str == 0 and agi == 0 then return end
-  if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then return end
-  if self.caster == self.parent then return end
+  local reborn_chance = self.ability:GetSpecialValueFor("special_reborn_chance")
 
-  self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
-  self.mod_applied = true
+  if str > 0 or agi > 0 then
+    AddBonus(self.ability, "_1_STR", self.parent, str, 0, nil)
+    AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
+    self.mod_applied = true
+  
+    if IsServer() then self:PlayEfxBuff() end
+  end
 
-  AddBonus(self.ability, "_1_STR", self.parent, str, 0, nil)
-  AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
-
-  if IsServer() then self:PlayEfxBuff() end
+  if reborn_chance > 0 and self.parent:IsHero() then
+    self.parent:AddNewModifier(self.caster, self.ability, "druid_u_modifier_reborn", {})
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
+    self.mod_applied = true
+  end
 end
 
 function druid_u_modifier_aura_effect:ApplyOnEnemyHero()

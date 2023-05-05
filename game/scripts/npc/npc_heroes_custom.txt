@@ -59,21 +59,21 @@
 }
 
 //HEROES
-//TEAM NATURE
+//NATURE
 #base "../vscripts/heroes/team_nature/druid/druid-props.txt"
 #base "../vscripts/heroes/team_nature/dasdingo/dasdingo-props.txt"
 
-//TEAM DEATH
+//DEATH
 #base "../vscripts/heroes/team_death/flea/flea-props.txt"
 #base "../vscripts/heroes/team_death/bloodstained/bloodstained-props.txt"
 #base "../vscripts/heroes/team_death/bocuse/bocuse-props.txt"
 #base "../vscripts/heroes/team_death/lawbreaker/lawbreaker-props.txt"
 
-//TEAM SUN
+//SUN
 #base "../vscripts/heroes/team_sun/bald/bald-props.txt"
 #base "../vscripts/heroes/team_sun/striker/striker-props.txt"
 #base "../vscripts/heroes/team_sun/ancient/ancient-props.txt"
 
-//TEAM MOON
+//MOON
 #base "../vscripts/heroes/team_moon/icebreaker/icebreaker-props.txt"
 #base "../vscripts/heroes/team_moon/genuine/genuine-props.txt"

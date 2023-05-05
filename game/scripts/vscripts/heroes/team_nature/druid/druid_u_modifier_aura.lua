@@ -11,7 +11,8 @@ function druid_u_modifier_aura:GetAuraRadius() return self:GetAbility():GetAOERa
 
 function druid_u_modifier_aura:GetAuraSearchTeam()
   if self:GetAbility():GetSpecialValueFor("special_str") > 0
-  or self:GetAbility():GetSpecialValueFor("special_agi") > 0 then
+  or self:GetAbility():GetSpecialValueFor("special_agi") > 0
+  or self:GetAbility():GetSpecialValueFor("special_reborn_chance") > 0 then
     return DOTA_UNIT_TARGET_TEAM_BOTH
   end
   
@@ -21,16 +22,26 @@ end
 function druid_u_modifier_aura:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
 function druid_u_modifier_aura:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
 function druid_u_modifier_aura:GetAuraEntityReject(hEntity)
-  if self:GetAbility():GetSpecialValueFor("special_hex_duration") > 0
+  if self:GetCaster() == hEntity then
+    return true
+  end
+
+  if self:GetAbility():GetSpecialValueFor("special_hex_duration") > 0 and hEntity:IsHero()
   and hEntity:GetTeamNumber() ~= self:GetCaster():GetTeamNumber() and hEntity:IsHexed() then
     return true
   end
 
-  if self:GetAbility():GetSpecialValueFor("special_str") > 0
-  or self:GetAbility():GetSpecialValueFor("special_agi") > 0
-  or self:GetAbility():GetSpecialValueFor("special_slow") > 0
+  if self:GetAbility():GetSpecialValueFor("special_reborn_chance") > 0
+  and hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber() and hEntity:GetHealthPercent() > 25 then
+    return true
+  end
+
+  if self:GetAbility():GetSpecialValueFor("special_slow") > 0
+  or self:GetAbility():GetSpecialValueFor("special_manaloss") > 0
   or self:GetAbility():GetSpecialValueFor("special_hex_duration") > 0
-  or self:GetAbility():GetSpecialValueFor("special_manaloss") > 0 then
+  or self:GetAbility():GetSpecialValueFor("special_str") > 0
+  or self:GetAbility():GetSpecialValueFor("special_agi") > 0
+  or self:GetAbility():GetSpecialValueFor("special_reborn_chance") > 0 then
     return false
   end
 
