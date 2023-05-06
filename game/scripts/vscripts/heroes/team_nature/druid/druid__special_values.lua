@@ -201,12 +201,15 @@ function druid__special_values:GetModifierOverrideAbilitySpecial(keys)
       if value_name == "special_enemy_seed" then return 1 end
 		end
 
+    if caster:FindAbilityByName("druid_5__seed_rank_22") then
+      if value_name == "special_heal_amp" then return 1 end
+		end
+
     if caster:FindAbilityByName("druid_5__seed_rank_31") then
       if value_name == "special_branch" then return 1 end
     end
 
     if caster:FindAbilityByName("druid_5__seed_rank_32") then
-      if value_name == "tree_chance" then return 1 end
       if value_name == "tree_interval" then return 1 end
       if value_name == "special_tree_seed_extra" then return 1 end
 		end
@@ -390,7 +393,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "seed_speed" then return 300 end
     if value_name == "special_enemy_seed" then return 1 end
-    if value_name == "tree_chance" then return 100 end
+    if value_name == "special_heal_amp" then return 15 end
     if value_name == "tree_interval" then return 2 end
     if value_name == "special_branch" then return 1 end
     if value_name == "special_tree_seed_extra" then return 2 end

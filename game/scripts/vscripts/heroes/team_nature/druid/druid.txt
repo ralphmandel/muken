@@ -425,19 +425,24 @@
       "17"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_branch"          "0"
+				"special_heal_amp"        "0"
 			}
       "18"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_tree_seed_extra" "0"
+				"special_branch"          "0"
 			}
       "19"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_ally_seed_extra" "0"
+				"special_tree_seed_extra" "0"
 			}
       "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_ally_seed_extra" "0"
+			}
+      "21"
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_druid_seed_extra""0"

@@ -55,7 +55,8 @@ end
 
 function druid_5_modifier_aura:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE
+		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE,
+    MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET
 	}
 
 	return funcs
@@ -63,6 +64,10 @@ end
 
 function druid_5_modifier_aura:GetModifierExtraManaPercentage(keys)
   return self:GetAbility():GetSpecialValueFor("mana_reduction")
+end
+
+function druid_5_modifier_aura:GetModifierHealAmplify_PercentageTarget()
+  return self:GetAbility():GetSpecialValueFor("special_heal_amp")
 end
 
 function druid_5_modifier_aura:OnIntervalThink()
