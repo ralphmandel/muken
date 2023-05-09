@@ -22,7 +22,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_1__julienne"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_julienne"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -117,7 +117,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_2__flambee"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_flambee"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -206,7 +206,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_3__sauce"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_sauce"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -287,7 +287,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_4__mirepoix"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_mirepoix"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -355,7 +355,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_5__roux"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bocuse_roux"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
@@ -423,7 +423,7 @@
 		"ScriptFile"            		"heroes/team_death/bocuse/bocuse_u__mise"
 		"AbilityTextureName"     		"bocuse_mise"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 

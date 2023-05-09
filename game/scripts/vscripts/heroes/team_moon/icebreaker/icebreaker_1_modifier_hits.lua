@@ -40,7 +40,7 @@ function icebreaker_1_modifier_hits:OnAttackLanded(keys)
   if keys.target:IsMagicImmune() then return end
   if self.parent:IsIllusion() then return end
 
-  self.ability:PerformFrostAttack(keys.target)
+  self.ability:PerformFrostAttack(keys.target, keys.damage)
   
   if IsServer() then self:DecrementStackCount() end
 end

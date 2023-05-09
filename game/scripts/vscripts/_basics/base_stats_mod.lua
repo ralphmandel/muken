@@ -82,7 +82,8 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:OnTakeDamage(keys)
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK
+    or keys.damage_flags == 1024 then
       if keys.attacker == nil then return end
       if keys.attacker:IsBaseNPC() == false then return end
       if keys.attacker ~= self.parent then return end
@@ -143,8 +144,10 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierTotalDamageOutgoing_Percentage(keys)
-    if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
-    if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
+    if keys.damage_flags ~= 1024 then
+      if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+      if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
+    end
 
     if self.ability.has_crit == true then
       local crit_damage = self.ability:GetCriticalDamage()

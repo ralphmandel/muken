@@ -557,12 +557,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         end  
       end
 
-      amount = 1 + (amount * 0.01)
-
-      if amount > 2 then return 2 end
-      if amount < 0 then return 0 end
-
-      return amount
+      return 1 + (amount * 0.01)
     end
 
 		function base_stats:SetBaseAttackTime(bonus)

@@ -69,7 +69,7 @@
 			"15"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10"
+				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 			}
       "16"
 			{
@@ -105,6 +105,31 @@
 			{
 				"var_type"		                "FIELD_FLOAT"
 				"special_mini_freeze_chance"  "0"
+			}
+      "23"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_blink_chance"        "0"
+			}
+      "24"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_duration"        "0"
+			}
+      "25"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_incoming"        "0"
+			}
+      "26"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_outgoing"        "0"
+			}
+      "27"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_cleave"              "0"
 			}
 		}
 	}
@@ -158,7 +183,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -212,7 +237,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -266,7 +291,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -281,17 +306,23 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{
+      "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"damage"	        "275"
+			}
       "10"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -320,7 +351,12 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_super_blink"	"0"
 			}
 		}
 	}
@@ -374,7 +410,7 @@
 			"15"
 			{
 				"var_type"	  "FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}

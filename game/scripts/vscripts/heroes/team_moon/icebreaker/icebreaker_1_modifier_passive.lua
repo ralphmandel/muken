@@ -47,12 +47,20 @@ function icebreaker_1_modifier_passive:OnAttack(keys)
   end
 end
 
-function icebreaker_1_modifier_passive:OnTakeDamage(keys)
-  if keys.unit ~= self.parent then return end
+function icebreaker_1_modifier_passive:OnTakeDamage(keys)  
+  if keys.unit == self.parent then
+    local invi_delay = self.ability:GetSpecialValueFor("special_invi_delay")
+    if invi_delay > 0 then
+      if IsServer() then self:StartIntervalThink(invi_delay) end
+    end
+  end
 
-  local invi_delay = self.ability:GetSpecialValueFor("special_invi_delay")
-  if invi_delay > 0 then
-    if IsServer() then self:StartIntervalThink(invi_delay) end
+  if keys.attacker == nil then return end
+  if keys.attacker:IsBaseNPC() == false then return end
+  if keys.attacker ~= self.parent then return end
+
+  if keys.damage_flags == 1024 then
+    keys.unit:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_hypo", {stack = 1})
   end
 end
 
@@ -64,7 +72,7 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
   if self.parent:HasModifier("icebreaker_1_modifier_hits") then return end
 
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
-    self.ability:PerformFrostAttack(keys.target)
+    self.ability:PerformFrostAttack(keys.target, keys.damage)
   end
 end
 
