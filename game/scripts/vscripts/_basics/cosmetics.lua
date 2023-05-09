@@ -61,7 +61,7 @@ end
 		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
 	
 		if self:LoadHeroesName() == "icebreaker" then
-			self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
+			--self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
 		end
 
 		if self:LoadHeroesName() == "bloodstained" then

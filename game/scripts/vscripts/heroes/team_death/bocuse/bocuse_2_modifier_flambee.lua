@@ -11,8 +11,7 @@ function bocuse_2_modifier_flambee:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.intervals = self.ability:GetSpecialValueFor("intervals")
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_flambee_status_efx", true) end
+  AddStatusEfx(self.ability, "bocuse_2_modifier_flambee_status_efx", self.caster, self.parent)
 
 	self:ApplyBuffs()
 	self:ApplyDebuffs()
@@ -26,8 +25,7 @@ function bocuse_2_modifier_flambee:OnRefresh(kv)
 end
 
 function bocuse_2_modifier_flambee:OnRemoved()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_2_modifier_flambee_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bocuse_2_modifier_flambee_status_efx", self.caster, self.parent)
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)

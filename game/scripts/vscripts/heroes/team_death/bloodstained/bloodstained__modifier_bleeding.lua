@@ -22,8 +22,7 @@ function bloodstained__modifier_bleeding:OnCreated(kv)
 		ability = self.ability
 	}
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained__modifier_bleeding_status_efx", true) end
+  AddStatusEfx(self.ability, "bloodstained__modifier_bleeding_status_efx", self.caster, self.parent)
 
 	if IsServer() then
 		self:StartIntervalThink(self.intervals)
@@ -35,8 +34,7 @@ function bloodstained__modifier_bleeding:OnRefresh(kv)
 end
 
 function bloodstained__modifier_bleeding:OnRemoved()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained__modifier_bleeding_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bloodstained__modifier_bleeding_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

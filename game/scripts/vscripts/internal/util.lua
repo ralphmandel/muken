@@ -252,6 +252,16 @@ function RemoveBonus(ability, string, target)
   end
 end
 
+function AddStatusEfx(ability, string, caster, target)
+  local cosmetics = target:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect(caster, ability, string, true) end
+end
+
+function RemoveStatusEfx(ability, string, caster, target)
+  local cosmetics = target:FindAbilityByName("cosmetics")
+	if cosmetics then cosmetics:SetStatusEffect(caster, ability, string, false) end
+end
+
 function RemoveAllModifiersByNameAndAbility(target, name, ability)
   local mod = target:FindAllModifiersByName(name)
   for _,modifier in pairs(mod) do

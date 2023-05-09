@@ -11,17 +11,15 @@ function icebreaker__modifier_instant:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self:PlayEfxStart()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_instant_status_efx", true) end
+  AddStatusEfx(self.ability, "icebreaker__modifier_instant_status_efx", self.caster, self.parent)
+  self:PlayEfxStart()
 end
 
 function icebreaker__modifier_instant:OnRefresh( kv )
 end
 
 function icebreaker__modifier_instant:OnRemoved( kv )
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_instant_status_efx", false) end
+  RemoveStatusEfx(self.ability, "icebreaker__modifier_instant_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -30,8 +28,7 @@ function icebreaker__modifier_instant:CheckState()
 	local state = {
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_FROZEN] = true,
-		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
-		[MODIFIER_STATE_INVISIBLE] = false,
+		[MODIFIER_STATE_INVISIBLE] = false
 	}
 
 	return state

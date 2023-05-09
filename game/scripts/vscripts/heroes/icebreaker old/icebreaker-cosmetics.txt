@@ -1,0 +1,23 @@
+"Cosmetics"
+{
+	"models/items/rikimaru/riki_scarlet_fox_arms/riki_scarlet_fox_arms.vmdl" "nil"
+
+	"models/items/rikimaru/riki_scarlet_fox_head/riki_scarlet_fox_head.vmdl"
+	{
+		"particles/econ/items/riki/riki_2022_fox_head/riki_2022_fox_head_ambient.vpcf" ""
+	}
+
+	"models/items/rikimaru/riki_scarlet_fox_offhand_weapon/riki_scarlet_fox_offhand_weapon.vmdl"
+	{
+		"particles/econ/items/riki/riki_2022_fox_offhand/riki_2022_fox_offhand_ambient.vpcf" ""
+	}
+
+	"models/items/rikimaru/riki_scarlet_fox_shoulder/riki_scarlet_fox_shoulder.vmdl" "nil"
+
+	"models/items/rikimaru/riki_scarlet_fox_tail/riki_scarlet_fox_tail.vmdl" "nil"
+
+	"models/items/rikimaru/riki_scarlet_fox_weapon/riki_scarlet_fox_weapon.vmdl"
+	{
+		"particles/econ/items/riki/riki_2022_fox_weapon/riki_2022_fox_weapon_ambient.vpcf" ""
+	}
+}

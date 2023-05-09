@@ -13,8 +13,7 @@ function bald_5_modifier_call:OnCreated(kv)
 	self.parent:SetForceAttackTarget(self.caster)
 	self.parent:MoveToTargetToAttack(self.caster)
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_5_modifier_call_status_efx", true) end
+  AddStatusEfx(self.ability, "bald_5_modifier_call_status_efx", self.caster, self.parent)
 end
 
 function bald_5_modifier_call:OnRefresh(kv)
@@ -23,8 +22,7 @@ end
 function bald_5_modifier_call:OnRemoved()
 	self.parent:SetForceAttackTarget(nil)
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_5_modifier_call_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bald_5_modifier_call_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

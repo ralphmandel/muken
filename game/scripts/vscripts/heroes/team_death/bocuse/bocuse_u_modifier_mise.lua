@@ -14,8 +14,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.stop = false
 	self.extra_damage = 0
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", true) end
+  AddStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
 
   self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_jump", {duration = 0.5})
 
@@ -38,8 +37,7 @@ end
 
 function bocuse_u_modifier_mise:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_4)
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bocuse_u_modifier_mise_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
   RemoveBonus(self.ability, "_2_LCK", self.parent)

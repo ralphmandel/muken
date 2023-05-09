@@ -13,8 +13,7 @@ function bloodstained_1_modifier_rage:OnCreated(kv)
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", true) end
+  AddStatusEfx(self.ability, "bloodstained_1_modifier_rage_status_efx", self.caster, self.parent)
 
   self.str = 0
   self:CalcGain(self.ability:GetSpecialValueFor("str_init"))
@@ -28,8 +27,7 @@ end
 function bloodstained_1_modifier_rage:OnRemoved()
 	if IsServer() then self.parent:StopSound("Bloodstained.rage") end
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_1_modifier_rage_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bloodstained_1_modifier_rage_status_efx", self.caster, self.parent)
 
 	RemoveBonus(self.ability, "_1_STR", self.parent)
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

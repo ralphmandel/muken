@@ -6,81 +6,71 @@ function icebreaker__modifier_hypo:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function icebreaker__modifier_hypo:OnCreated(kv)
-  self.caster = self:GetCaster():GetPlayerOwner():GetAssignedHero()
+  self.caster = self:GetCaster()
   self.parent = self:GetParent()
-  self.ability = self.caster:FindAbilityByName(self:GetAbility():GetAbilityName())
+  self.ability = self:GetAbility()
 
-	self.slow_as = 0.15
-	self.slow_ms = 10
-	self.max_stack = 10
-	self.frozen_duration = 5
+  AddStatusEfx(self.ability, "icebreaker__modifier_hypo_status_efx", self.caster, self.parent)
+  self:CheckCounterEfx()
 
-	local stack = kv.stack or 0
-	local stack_min = kv.stack_min or 0
+  local stack = kv.stack
 
-	if stack_min > stack then stack = stack_min end
-
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_hypo_status_efx", true) end
-
-	if IsServer() then
-		self:SetStackCount(stack)
-		self:CheckCounterEfx()
-	end
+  if IsServer() then
+    self:SetStackCount(stack)
+    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("decay"), self.caster, self.parent))
+  end
 end
 
 function icebreaker__modifier_hypo:OnRefresh(kv)
-	local stack = kv.stack or 0
-	local stack_min = kv.stack_min or 0
+  local stack = kv.stack
 
-	stack = stack + self:GetStackCount()
-	if stack_min > stack then stack = stack_min end
-
-	if IsServer() then self:SetStackCount(stack) end
+  if IsServer() then
+    self:SetStackCount(self:GetStackCount() + stack)
+  end
 end
 
 function icebreaker__modifier_hypo:OnRemoved()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_hypo_status_efx", false) end
+  if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
+  RemoveStatusEfx(self.ability, "icebreaker__modifier_hypo_status_efx", self.caster, self.parent)
+  BaseStats(self.parent):SetBaseAttackTime(0)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
+end
 
-	if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
-	self:ModifySlow(0)
-	self:CheckCounterEfx()
+function icebreaker__modifier_hypo:OnDestroy()
+  self:CheckCounterEfx()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function icebreaker__modifier_hypo:OnStackCountChanged(old)
-	if self:GetStackCount() >= self.max_stack then
-		self.parent:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_frozen", {
-			duration = CalcStatus(self.frozen_duration, self.caster, self.parent)
-		})
-		return
-	end
+function icebreaker__modifier_hypo:OnIntervalThink()
+  if IsServer() then
+    self:DecrementStackCount()
+    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("decay"), self.caster, self.parent))
+  end
+end
 
-	if self:GetStackCount() ~= old then
-		if self:GetStackCount() == 0 then
-			self:Destroy()
-			return
-		end
-		
-		self:ModifySlow(self:GetStackCount())
+function icebreaker__modifier_hypo:OnStackCountChanged(old)
+  if self:GetStackCount() ~= old then
+    if self:GetStackCount() == 0 then self:Destroy() return end
+
+    BaseStats(self.parent):SetBaseAttackTime(self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_as"))
+    RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
+
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+			percent = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_ms")
+		})
+
+    if IsServer() then self:PopupIce(self:GetStackCount() > old) end
+  end
+
+  if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_hypo_stack") then
+		self.parent:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_frozen", {
+			duration = CalcStatus(self.ability:GetSpecialValueFor("frozen_duration"), self.caster, self.parent)
+		})
 	end
 end
 
 -- UTILS -----------------------------------------------------------
-
-function icebreaker__modifier_hypo:ModifySlow(stack_count)	
-	BaseStats(self.parent):SetBaseAttackTime(stack_count * self.slow_as)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
-
-	if stack_count > 0 then
-		self:PopupIce(true)
-		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
-			percent = stack_count * self.slow_ms
-		})
-	end
-end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -101,7 +91,7 @@ function icebreaker__modifier_hypo:GetEffectAttachType()
 end
 
 function icebreaker__modifier_hypo:CheckCounterEfx()
-	local mod = self.parent:FindModifierByName("bocuse_3_modifier_sauce")
+	local mod = self:GetParent():FindModifierByName("bocuse_3_modifier_sauce")
 	if mod then
 		if IsServer() then mod:PopupSauce(false) end
 	end

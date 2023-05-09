@@ -11,8 +11,7 @@ function flea_1_modifier_precision:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", true) end
+  AddStatusEfx(self.ability, "flea_1_modifier_precision_status_efx", self.caster, self.parent)
 
 	if IsServer() then
 		self:SetStackCount(0)
@@ -30,8 +29,7 @@ function flea_1_modifier_precision:OnRemoved()
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
 	RemoveBonus(self.ability, "_2_DEX", self.parent)
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "flea_1_modifier_precision_status_efx", false) end
+  RemoveStatusEfx(self.ability, "flea_1_modifier_precision_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

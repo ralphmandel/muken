@@ -526,6 +526,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         amount = amount + modifier:GetStackCount()
       end
 
+      local buff = caster:FindAllModifiersByName("_modifier_permanent_movespeed_buff")
+      for _,modifier in pairs(buff) do
+        amount = amount + modifier:GetStackCount()
+      end
+
       if caster:HasModifier("_modifier_unslowable") == false then
         local debuff = caster:FindAllModifiersByName("_modifier_movespeed_debuff")
         for _,modifier in pairs(debuff) do

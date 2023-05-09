@@ -28,8 +28,7 @@ end
 --------------------------------------------------------------------------------
 
 function _modifier_petrified:OnCreated(kv)
-	local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self:GetCaster(), self:GetAbility(), "_modifier_petrified_status_efx", true) end
+  AddStatusEfx(self:GetAbility(), "_modifier_petrified_status_efx", self:GetCaster(), self:GetParent())
 
 	if IsServer() then
 		self:PlayEfxStart()
@@ -42,8 +41,7 @@ function _modifier_petrified:OnRefresh(kv)
 end
 
 function _modifier_petrified:OnRemoved()
-	local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self:GetCaster(), self:GetAbility(), "_modifier_petrified_status_efx", false) end
+  RemoveStatusEfx(self:GetAbility(), "_modifier_petrified_status_efx", self:GetCaster(), self:GetParent())
 end
 
 --------------------------------------------------------------------------------

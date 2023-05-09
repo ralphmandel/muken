@@ -13,11 +13,10 @@ function doom_modifier:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-    local damage = self.ability:GetSpecialValueFor("damage")
-    local tick = self.ability:GetSpecialValueFor("tick")
+  local damage = self.ability:GetSpecialValueFor("damage")
+  local tick = self.ability:GetSpecialValueFor("tick")
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "doom_modifier_status_efx", true) end
+  AddStatusEfx(self.ability, "doom_modifier_status_efx", self.caster, self.parent)
 
 	self.damageTable = {
 		damage = damage * tick,
@@ -37,8 +36,8 @@ function doom_modifier:OnRefresh(kv)
 end
 
 function doom_modifier:OnRemoved()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "doom_modifier_status_efx", false) end
+  RemoveStatusEfx(self.ability, "doom_modifier_status_efx", self.caster, self.parent)
+
 	if IsServer() then self.parent:StopSound("Hero_DoomBringer.Doom") end
 end
 

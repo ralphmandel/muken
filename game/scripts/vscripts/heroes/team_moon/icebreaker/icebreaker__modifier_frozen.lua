@@ -11,32 +11,19 @@ function icebreaker__modifier_frozen:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", true) end
+  AddStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
+  self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
 
-	self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
-
-	self.damageTable = {
-		victim = self.parent, attacker = self.caster,
-		damage = 0, damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability
-	}
-
-	if IsServer() then self:PlayEfxStart() end
+  if IsServer() then self:PlayEfxStart() end
 end
 
 function icebreaker__modifier_frozen:OnRefresh(kv)
 end
 
 function icebreaker__modifier_frozen:OnRemoved()
-	if IsServer() then self:PlayEfxDestroy() end
-	
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "icebreaker__modifier_frozen_status_efx", false) end
-
-	if self.damageTable.damage > 0 then
-		ApplyDamage(self.damageTable)
-	end
+  RemoveStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
+  
+  if IsServer() then self:PlayEfxDestroy() end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -45,7 +32,6 @@ function icebreaker__modifier_frozen:CheckState()
 	local state = {
 		[MODIFIER_STATE_STUNNED] = true,
 		[MODIFIER_STATE_FROZEN] = true,
-		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
 		[MODIFIER_STATE_INVISIBLE] = false,
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true
 	}
@@ -68,15 +54,8 @@ function icebreaker__modifier_frozen:OnStateChanged(keys)
 end
 
 function icebreaker__modifier_frozen:GetModifierAvoidDamage(keys)
-	if keys.target ~= self.parent then return 0 end
 	if keys.damage <= 0 then return 0 end
-
 	self:PlayEfxHit()
-
-	if self:GetElapsedTime() >= 2 then
-		self.damageTable.damage = 100
-		self:Destroy()
-	end
 
 	return 1
 end

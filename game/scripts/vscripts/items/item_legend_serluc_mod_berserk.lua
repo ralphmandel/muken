@@ -23,8 +23,7 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
-	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	-- if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "krieger_1_modifier_fury_status_efx", true) end
+  --AddStatusEfx(self.ability, "krieger_1_modifier_fury_status_efx", self.caster, self.parent)
 
 	self:StartIntervalThink(FrameTime())
 	self:PlayEfxBuff()
@@ -37,8 +36,7 @@ function item_legend_serluc_mod_berserk:OnRemoved( kv )
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
-	-- local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	-- if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "krieger_1_modifier_fury_status_efx", false) end
+  --RemoveStatusEfx(self.ability, "krieger_1_modifier_fury_status_efx", self.caster, self.parent)
 
 	--self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	--self.ability:SetActivated(true)

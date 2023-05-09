@@ -3,11 +3,11 @@
 {
 	"Version"		"1"
 
-    "icebreaker__precache"
+  "icebreaker__precache"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-        "AbilityTextureName"    		"icebreaker__precache"
+    "AbilityTextureName"    		"icebreaker__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -22,49 +22,89 @@
 		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_1__frost"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"icebreaker_frost"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
-			"01"
+      "01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"agi"			"10"
+				"chance"			"40"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"chance"	    "40"
+				"hypo_stack"	"1"
 			}
-            "03"
+      "10"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"stack_duration""4"
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
 			}
-            "04"
+      "11"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"	    "40"
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
 			}
-            "15"
+      "12"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
 			}
-            "16"
+      "13"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_blink_chance"  "0"
+				"var_type"		    "FIELD_FLOAT"
+				"decay"	          "0"
 			}
-            "17"
+      "14"
 			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_instant_duration"  "0"
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
+			}
+			"15"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			      "1 2 3 4 5 6 7 8 9 10"
+			}
+      "16"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_hits"	              "0"
+			}
+      "17"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_hits_duration"       "0"
+			}
+      "18"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_ms"                  "0"
+			}
+      "19"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_invi_delay"          "0"
+			}
+      "20"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_bonus_damage"        "0"
+			}
+      "21"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_mini_freeze"         "0"
+			}
+      "22"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_mini_freeze_chance"  "0"
 			}
 		}
 	}
@@ -75,318 +115,266 @@
 		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_2__wave"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"icebreaker_wave"
-		"MaxLevel"               		"14"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
-		"AbilityCastPoint"       		"0.2"
 
-		"AbilitySpecial"
-		{
-            "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"stack_min"		"2"
-			}
-            "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"stack_max"		"4"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"stack_duration""6"
-			}
-			"03"
-			{
-				"var_type"	    "FIELD_FLOAT"
-				"recharge"	    "12"
-			}
-			"04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"250"
-			}
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"distance"		"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
-			}
-            "06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"speed"			"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13 14"
-			}
-            "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_auto_charge"   "0"
-			}
-            "17"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_path_lifetime" "0"
-			}
-            "18"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_silence_duration"  "0"
-			}
-            "19"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_damage_percent"    "0"
-			}
-            "20"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_knockback"     "0"
-			}
-            "21"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_mirror_lifetime"   "0"
-			}
-		}
-	}
-
-	"icebreaker_3__shard"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_3__shard"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"icebreaker_shard"
-		"MaxLevel"               		"13"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
-        "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NO_INVIS"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
-        "AbilityCastRange"				"300"
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"40"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"intervals"		"4"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"ms_limit"		"125"
-			}
-            "04"
+      "10"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"	"4"
+				"hypo_ms"	        "0"
 			}
-            "05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"1 2 3 4 5 6 7 8 9 10 11 12 13"
-			}
-        	"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13"
-			}
-            "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_bonus_vision"  "0"
-			}
-            "17"
+      "11"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"special_truesight" "0"
+				"hypo_as"	        "0"
 			}
-            "18"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_meteor_damage" "0"
-			}
-		}
-	}
-
-	"icebreaker_4__mirror"
-	{ 
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_4__mirror"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"icebreaker_mirror"
-		"MaxLevel"               		"11"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
+      "12"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"chance"		    "15"
+				"max_hypo_stack"	"0"
 			}
-            "02"
+      "13"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"invi_duration"	    "2"
+				"decay"	          "0"
 			}
-            "03"
+      "14"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"illusion_lifetime" "5"
-			}
-            "15"
-			{
-				"var_type"  		"FIELD_FLOAT"
-				"rank"		    	"1 2 3 4 5 6 7 8 9 10 11"
-			}
-            "16"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_spell_chance"		"0"
-			}
-            "17"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_splash_radius"		"0"
-			}
-            "18"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_instant_duration"  "0"
-			}
-            "19"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_stack"		        "0"
-			}
-            "20"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_stack_duration"	"0"
-			}
-		}
-	}
-
-	"icebreaker_5__shivas"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_5__shivas"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"icebreaker_shivas"
-		"MaxLevel"               		"8"
-		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-
-		"AbilitySpecial"
-		{
-            "01"
-			{
-				"var_type"	        "FIELD_FLOAT"
-				"movespeed"	        "50"
-			}
-            "02"
-			{
-				"var_type"	        "FIELD_FLOAT"
-				"frozen_duration"	"5"
-			}
-            "03"
-			{
-				"var_type"	        "FIELD_FLOAT"
-				"blast_speed"	    "350"
-			}
-            "04"
-			{
-				"var_type"          "FIELD_FLOAT"
-				"blast_radius"	    "1 2 3 4 5 6 7 8"
+				"frozen_duration"	"0"
 			}
 			"15"
 			{
-				"var_type"          "FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8"
-			}
-            "16"
-			{
-				"var_type"	        "FIELD_FLOAT"
-				"special_cooldown"	"0"
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
 
-	"icebreaker_u__blink"
+	"icebreaker_3__skin"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_u__blink"
+		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_3__skin"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_skin"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilitySpecial"
+		{
+      "10"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
+			}
+      "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
+			}
+      "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
+			}
+      "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay"	          "0"
+			}
+      "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	"icebreaker_4__shivas"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_4__shivas"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_shivas"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilitySpecial"
+		{
+      "10"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
+			}
+      "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
+			}
+      "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
+			}
+      "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay"	          "0"
+			}
+      "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	"icebreaker_5__blink"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_5__blink"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"icebreaker_blink"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilitySpecial"
+		{
+      "10"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
+			}
+      "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
+			}
+      "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
+			}
+      "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay"	          "0"
+			}
+      "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
+			}
+		}
+	}
+
+	"icebreaker_u__zero"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_moon/icebreaker/icebreaker_u__zero"
+		"AbilityTextureName"     		"icebreaker_zero"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"9"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
 
 		"AbilitySpecial"
 		{
-            "01"
+      "10"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"damage"			"1 2 3 4 5 6 7 8 9"
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
+			}
+      "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
+			}
+      "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
+			}
+      "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"decay"	          "0"
+			}
+      "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
 			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9"
-			}
-            "16"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"special_no_roots"	"0"
-			}
-            "17"
-			{
-				"var_type"			    "FIELD_FLOAT"
-				"special_spellsteal"    "0"
-			}
-            "18"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_spellsteal_kill"	"0"
+				"var_type"	  "FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -874,10 +862,10 @@
         }
 
     //RANKS 3
-        "icebreaker_3__shard_rank_11"{
+        "icebreaker_3__skin_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -904,10 +892,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_12"{
+        "icebreaker_3__skin_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -934,10 +922,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_21"{
+        "icebreaker_3__skin_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -964,10 +952,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_22"{
+        "icebreaker_3__skin_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -994,10 +982,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_31"{
+        "icebreaker_3__skin_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1024,10 +1012,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_32"{
+        "icebreaker_3__skin_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1054,10 +1042,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_41"{
+        "icebreaker_3__skin_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1084,10 +1072,10 @@
             }
         }
 
-        "icebreaker_3__shard_rank_42"{
+        "icebreaker_3__skin_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shard"
+            "AbilityTextureName"    		"icebreaker_skin"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1115,10 +1103,10 @@
         }
 
     //RANKS 4
-        "icebreaker_4__mirror_rank_11"{
+        "icebreaker_4__shivas_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1145,10 +1133,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_12"{
+        "icebreaker_4__shivas_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1175,10 +1163,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_21"{
+        "icebreaker_4__shivas_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1205,10 +1193,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_22"{
+        "icebreaker_4__shivas_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1235,10 +1223,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_31"{
+        "icebreaker_4__shivas_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1265,10 +1253,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_32"{
+        "icebreaker_4__shivas_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1295,10 +1283,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_41"{
+        "icebreaker_4__shivas_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1325,10 +1313,10 @@
             }
         }
 
-        "icebreaker_4__mirror_rank_42"{
+        "icebreaker_4__shivas_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_mirror"
+            "AbilityTextureName"    		"icebreaker_shivas"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1356,10 +1344,10 @@
         }
 
     //RANKS 5
-        "icebreaker_5__shivas_rank_11"{
+        "icebreaker_5__blink_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1386,10 +1374,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_12"{
+        "icebreaker_5__blink_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1416,10 +1404,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_21"{
+        "icebreaker_5__blink_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1446,10 +1434,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_22"{
+        "icebreaker_5__blink_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1476,10 +1464,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_31"{
+        "icebreaker_5__blink_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1506,10 +1494,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_32"{
+        "icebreaker_5__blink_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1536,10 +1524,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_41"{
+        "icebreaker_5__blink_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1566,10 +1554,10 @@
             }
         }
 
-        "icebreaker_5__shivas_rank_42"{
+        "icebreaker_5__blink_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_shivas"
+            "AbilityTextureName"    		"icebreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1597,10 +1585,10 @@
         }
 
     //RANKS U
-        "icebreaker_u__blink_rank_11"{
+        "icebreaker_u__zero_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1627,10 +1615,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_12"{
+        "icebreaker_u__zero_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1657,10 +1645,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_21"{
+        "icebreaker_u__zero_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1687,10 +1675,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_22"{
+        "icebreaker_u__zero_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1717,10 +1705,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_31"{
+        "icebreaker_u__zero_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1747,10 +1735,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_32"{
+        "icebreaker_u__zero_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1777,10 +1765,10 @@
             }
         }
         
-        "icebreaker_u__blink_rank_41"{
+        "icebreaker_u__zero_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1807,10 +1795,10 @@
             }
         }
 
-        "icebreaker_u__blink_rank_42"{
+        "icebreaker_u__zero_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/icebreaker/icebreaker-ranks_lua"
-            "AbilityTextureName"    		"icebreaker_blink"
+            "AbilityTextureName"    		"icebreaker_zero"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

@@ -6,16 +6,15 @@ function bald_u_modifier_vitality:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bald_u_modifier_vitality:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	self.con = self.ability:GetSpecialValueFor("con")
 	self.regen = self.ability:GetSpecialValueFor("regen_out")
 	self.delay = 0
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_u_modifier_vitality_status_efx", true) end
+  AddStatusEfx(self.ability, "bald_u_modifier_vitality_status_efx", self.caster, self.parent)
 
 	if IsServer() then
 		self:SetStackCount(self.con)
@@ -38,9 +37,7 @@ end
 
 function bald_u_modifier_vitality:OnRemoved()
 	RemoveBonus(self.ability, "_1_CON", self.parent)
-
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bald_u_modifier_vitality_status_efx", false) end
+  RemoveStatusEfx(self.ability, "bald_u_modifier_vitality_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

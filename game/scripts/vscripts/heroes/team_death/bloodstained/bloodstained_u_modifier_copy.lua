@@ -13,8 +13,7 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
 	self.slow_mod = nil
 	self.hp = kv.hp
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", true) end
+  AddStatusEfx(self.ability, "bloodstained_u_modifier_copy_status_efx", self.caster, self.parent)
 
 	Timers:CreateTimer(FrameTime(), function()
 		self.parent:ModifyHealth(self.parent:GetMaxHealth(), self.ability, false, 0)
@@ -27,9 +26,8 @@ function bloodstained_u_modifier_copy:OnRefresh(kv)
 end
 
 function bloodstained_u_modifier_copy:OnRemoved()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "bloodstained_u_modifier_copy_status_efx", false) end
-	
+  RemoveStatusEfx(self.ability, "bloodstained_u_modifier_copy_status_efx", self.caster, self.parent)
+
 	if self.target == nil then return end
 
   RemoveAllModifiersByNameAndAbility(self.target, "bloodstained_u_modifier_slow", self.slow_mod)

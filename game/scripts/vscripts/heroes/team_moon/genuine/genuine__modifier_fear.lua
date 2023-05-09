@@ -11,8 +11,7 @@ function genuine__modifier_fear:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.target = self.parent:GetAggroTarget()
 
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "genuine__modifier_fear_status_efx", true) end
+  AddStatusEfx(self.ability, "genuine__modifier_fear_status_efx", self.caster, self.parent)
 
   self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 25})
 
@@ -40,8 +39,7 @@ function genuine__modifier_fear:OnRemoved(kv)
 		self.parent:Stop()
 	end
 
-  local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(self.caster, self.ability, "genuine__modifier_fear_status_efx", false) end
+  RemoveStatusEfx(self.ability, "genuine__modifier_fear_status_efx", self.caster, self.parent)
 
   if IsServer() then self.parent:StopSound("Genuine.Fear.Loop") end
 end

@@ -40,7 +40,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -69,7 +69,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -98,7 +98,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -127,7 +127,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -156,7 +156,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
@@ -185,7 +185,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 	}
