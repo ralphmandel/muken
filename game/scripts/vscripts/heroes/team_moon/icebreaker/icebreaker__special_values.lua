@@ -176,10 +176,13 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("icebreaker_5__blink_rank_11") then
+    if caster:FindAbilityByName("icebreaker_5__blink_rank_11") then
+      if value_name == "special_break_hypo_stack" then return 1 end
 		end
 
-    if caster:FindAbilityByName("icebreaker_5__blink_rank_12") then
+		if caster:FindAbilityByName("icebreaker_5__blink_rank_12") then
+      if value_name == "special_spread_radius" then return 1 end
+      if value_name == "special_spread_stack" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_5__blink_rank_21") then
@@ -324,6 +327,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "special_break_hypo_stack" then return 1 end
+    if value_name == "special_spread_radius" then return 300 end
+    if value_name == "special_spread_stack" then return 1 end
     if value_name == "special_super_blink" then return 1 end
 	end
 

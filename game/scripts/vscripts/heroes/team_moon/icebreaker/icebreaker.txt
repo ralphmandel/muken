@@ -355,8 +355,23 @@
 			}
       "16"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_super_blink"	"0"
+				"var_type"		              "FIELD_FLOAT"
+				"special_break_hypo_stack"	"0"
+			}
+      "17"
+			{
+				"var_type"		              "FIELD_FLOAT"
+				"special_spread_radius"	    "0"
+			}
+      "18"
+			{
+				"var_type"		              "FIELD_FLOAT"
+				"special_spread_stack"	    "0"
+			}
+      "19"
+			{
+				"var_type"		              "FIELD_FLOAT"
+				"special_super_blink"	      "0"
 			}
 		}
 	}

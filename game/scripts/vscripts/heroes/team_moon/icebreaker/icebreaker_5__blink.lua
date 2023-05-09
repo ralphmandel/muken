@@ -71,9 +71,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		local direction = target:GetForwardVector() * (-1)
 		local blink_point = target:GetAbsOrigin() + direction * 130
-		caster:SetAbsOrigin(blink_point)
+		--caster:SetAbsOrigin(blink_point)
+    FindClearSpaceForUnit(caster, blink_point, true)
 		caster:SetForwardVector(-direction)
-		FindClearSpaceForUnit(caster, blink_point, true)
 		ProjectileManager:ProjectileDodge(caster)
 
 		Timers:CreateTimer(0.1, function()
@@ -87,18 +87,54 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		end
 
 		if target:HasModifier("icebreaker__modifier_frozen") then
-      target:RemoveModifierByName("icebreaker__modifier_frozen")
-
-      self:PlayEfxBreak(target)
-      self:EndCooldown()
-  
-      ApplyDamage({
-        victim = target, attacker = caster, ability = self,
-        damage = self:GetSpecialValueFor("damage"),
-        damage_type = self:GetAbilityDamageType()
-      })
+      self:PerformFrostBreak(target)
 		end
 	end
+
+  function icebreaker_5__blink:PerformFrostBreak(target)
+    local caster = self:GetCaster()
+    local break_hypo_stack = self:GetSpecialValueFor("special_break_hypo_stack")
+    local spread_radius = self:GetSpecialValueFor("special_spread_radius")
+
+    self:PlayEfxBreak(target)
+    self:EndCooldown()
+  
+    if spread_radius > 0 then
+      self:PlayEfxSpread()
+      local enemies = FindUnitsInRadius(
+        caster:GetTeamNumber(), target:GetOrigin(), nil, spread_radius,
+        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+        0, 0, false
+      )
+  
+      for _,enemy in pairs(enemies) do
+        if IsServer() then enemy:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+        enemy:AddNewModifier(caster, self, "icebreaker__modifier_hypo", {
+          stack = self:GetSpecialValueFor("special_spread_stack")
+        })
+      end
+    end
+
+    target:RemoveModifierByName("icebreaker__modifier_frozen")
+
+    ApplyDamage({
+      victim = target, attacker = caster, ability = self,
+      damage = self:GetSpecialValueFor("damage"),
+      damage_type = self:GetAbilityDamageType()
+    })
+
+    if break_hypo_stack > 0 then
+      if target then
+        if IsValidEntity(target) then
+          if target:IsAlive() then
+            target:AddNewModifier(caster, self, "icebreaker__modifier_hypo", {
+              stack = break_hypo_stack
+            })
+          end
+        end
+      end
+    end
+  end
 
   function icebreaker_5__blink:ReduceShivasCD(target)
 		local caster = self:GetCaster()
@@ -150,3 +186,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		if IsServer() then target:EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast") end
 		if IsServer() then target:EmitSound("Hero_Icebreaker.Break") end
 	end
+
+  function icebreaker_5__blink:PlayEfxSpread(target)
+    local particle = "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
+    ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+  end
