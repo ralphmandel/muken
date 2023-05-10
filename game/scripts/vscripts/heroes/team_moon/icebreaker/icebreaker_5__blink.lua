@@ -7,7 +7,10 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   function icebreaker_5__blink:Spawn()
     self.kills = 0
     self.turn = 0
-    if self:IsTrained() == false then self:UpgradeAbility(true) end
+
+    if self:IsTrained() == false then
+      self:UpgradeAbility(true)
+    end
   end
 
   function icebreaker_5__blink:CastFilterResultTarget(hTarget)
@@ -35,10 +38,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		if self:GetCaster() == hTarget then return "#dota_hud_error_cant_cast_on_self" end
 	end
 
+  function icebreaker_5__blink:GetCastRange(vLocation, hTarget)
+    return self:GetSpecialValueFor("cast_range")
+  end
+
   function icebreaker_5__blink:GetBehavior()
-		if self:GetSpecialValueFor("special_super_blink") == 1 then
-      return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE
-		end
+		if self:GetSpecialValueFor("special_super_blink") == 1 then return 137472507912 end
 
     return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	end
@@ -71,7 +76,6 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 		local direction = target:GetForwardVector() * (-1)
 		local blink_point = target:GetAbsOrigin() + direction * 130
-		--caster:SetAbsOrigin(blink_point)
     FindClearSpaceForUnit(caster, blink_point, true)
 		caster:SetForwardVector(-direction)
 		ProjectileManager:ProjectileDodge(caster)
@@ -100,7 +104,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
     self:EndCooldown()
   
     if spread_radius > 0 then
-      self:PlayEfxSpread()
+      self:PlayEfxSpread(target)
       local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), target:GetOrigin(), nil, spread_radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
@@ -180,7 +184,7 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 		local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(effect_cast, 1, target:GetAbsOrigin())
-		ParticleManager:SetParticleControlOrientation(effect_cast, 1, caster:GetForwardVector() * (-1), caster:GetRightVector(), caster:GetUpVector())
+		ParticleManager:SetParticleControlTransformForward(effect_cast, 1, target:GetOrigin(), target:GetForwardVector() * (-1))
 		ParticleManager:ReleaseParticleIndex(effect_cast)
 
 		if IsServer() then target:EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast") end

@@ -323,6 +323,11 @@
 				"var_type"		    "FIELD_FLOAT"
 				"damage"	        "275"
 			}
+      "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"	    "800"
+			}
       "10"
 			{
 				"var_type"		    "FIELD_FLOAT"

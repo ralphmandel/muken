@@ -5,10 +5,10 @@ LinkLuaModifier("icebreaker__modifier_frozen", "heroes/team_moon/icebreaker/iceb
 LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/team_moon/icebreaker/icebreaker__modifier_frozen_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_instant", "heroes/team_moon/icebreaker/icebreaker__modifier_instant", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/team_moon/icebreaker/icebreaker__modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker__modifier_illusion", "heroes/team_moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_1_modifier_passive", "heroes/team_moon/icebreaker/icebreaker_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_1_modifier_passive_status_efx", "heroes/team_moon/icebreaker/icebreaker_1_modifier_passive_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_1_modifier_hits", "heroes/team_moon/icebreaker/icebreaker_1_modifier_hits", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker_1_modifier_illusion", "heroes/team_moon/icebreaker/icebreaker_1_modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_permanent_movespeed_buff", "modifiers/_modifier_permanent_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
@@ -100,7 +100,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 			illu:SetForwardVector(forward)
 			illu:SetForceAttackTarget(target)
 			FindClearSpaceForUnit(illu, original_loc, true)
-      illu:AddNewModifier(caster, self, "icebreaker_1_modifier_illusion", {})
+      illu:AddNewModifier(caster, self, "icebreaker__modifier_illusion", {})
 		end		
   end
 

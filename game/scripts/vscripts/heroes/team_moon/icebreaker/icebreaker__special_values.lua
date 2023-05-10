@@ -189,6 +189,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("icebreaker_5__blink_rank_22") then
+      if value_name == "cast_range" then return 1 end
       if value_name == "special_super_blink" then return 1 end
 		end
 
@@ -251,6 +252,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
   if value_name == "max_hypo_stack" then return 10 end
   if value_name == "decay" then return 4 end
   if value_name == "frozen_duration" then return 4 end
+  if value_name == "special_copy_duration" then return 5 end
+  if value_name == "special_copy_incoming" then return 500 end
+  if value_name == "special_copy_outgoing" then return 25 end
 
 	if ability:GetAbilityName() == "icebreaker_1__frost" then
 		if value_name == "AbilityManaCost" then
@@ -277,6 +281,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
         return 30
       end
     end
+
     if value_name == "special_hits" then return 5 end
     if value_name == "special_hits_duration" then return 5 end
     if value_name == "special_ms" then return 50 end
@@ -285,9 +290,6 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_mini_freeze" then return 0.5 end
     if value_name == "special_mini_freeze_chance" then return 50 end
     if value_name == "special_blink_chance" then return 25 end
-    if value_name == "special_copy_duration" then return 10 end
-    if value_name == "special_copy_incoming" then return 500 end
-    if value_name == "special_copy_outgoing" then return 25 end
     if value_name == "special_cleave" then return 1 end
 	end
 
@@ -311,7 +313,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "icebreaker_5__blink" then
 		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("icebreaker_u__blink_rank_21") then
+      if caster:FindAbilityByName("icebreaker_5__blink_rank_21") then
         return 60 * (1 + ((ability_level - 1) * 0.05))
 			end
       return 90 * (1 + ((ability_level - 1) * 0.05))
@@ -319,17 +321,11 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "AbilityCooldown" then return 15 - (value_level * 0.5) end
 
-    if value_name == "AbilityCastRange" then
-			if caster:FindAbilityByName("icebreaker_u__blink_rank_22") then
-				return 1200
-			end
-			return 800
-		end
-
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "special_break_hypo_stack" then return 1 end
-    if value_name == "special_spread_radius" then return 300 end
+    if value_name == "special_spread_radius" then return 350 end
     if value_name == "special_spread_stack" then return 1 end
+    if value_name == "cast_range" then return 1200 end
     if value_name == "special_super_blink" then return 1 end
 	end
 
