@@ -298,9 +298,9 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("druid_2__armor_rank_41") then
-        return 120 * (1 + ((ability_level - 1) * 0.05))
+        return 90 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 160 * (1 + ((ability_level - 1) * 0.05))
+      return 140 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
@@ -355,7 +355,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 160 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 150 - (value_level * 5) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -375,7 +375,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "druid_5__seed" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("druid_5__seed_rank_11") then
-        return 200 * (1 + ((ability_level - 1) * 0.05))
+        return 150 * (1 + ((ability_level - 1) * 0.05))
       end
       return 0 * (1 + ((ability_level - 1) * 0.05))
     end

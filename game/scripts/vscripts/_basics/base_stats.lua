@@ -38,13 +38,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:OnHeroLevelUp()
 			if IsServer() then
 				local caster = self:GetCaster()
-				local level = caster:GetLevel()
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
 				for _, stat in pairs(self.stats_primary) do
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
+
+        if caster:GetLevel() == 20 then self:RandomizeStatOption() end
         self:IncrementSpenderPoints(3)
 			end
 		end
@@ -64,6 +65,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.stat_sub_level = {}
 				self.bonus_level = {} -- CONST SPECIAL VALUE
         self.stat_fraction = {["level_up"] = {}, ["plus_up"] = {}}
+        self.random_stats = {}
 
 				self.stats_primary = {
 					"STR", "AGI", "INT", "CON"
@@ -73,6 +75,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					"DEX", "DEF", "RES", "REC", "LCK", "MND"
 				}
 
+        local index = 1
 				for _, stat in pairs(self.stats_primary) do
 					self.stat_base[stat] = 0
 					self.stat_bonus[stat] = 0
@@ -81,6 +84,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
+          self.random_stats[index] = stat
+          index = index + 1
 				end
 
 				for _, stat in pairs(self.stats_secondary) do
@@ -91,6 +96,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
+          self.random_stats[index] = stat
+          index = index + 1
 				end
 
 
@@ -351,14 +358,46 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         local stats_fraction = {}
 
         for _, stat in pairs(self.stats_primary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat)
+          local selection = false
+          if self:IsHeroCanLevelUpStat(stat, self.total_points) == true then
+            for i = 1, #self.random_stats, 1 do
+              if stat == self.random_stats[i] then
+                selection = true
+              end
+            end
+          end
+
+          if self.total_points < 4 and self:GetCaster():GetLevel() < 20 then selection = false end
+          stats[stat] = selection
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
+        print("kubo --------------------->>")
+
         for _, stat in pairs(self.stats_secondary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat)
+          local selection = false
+          print("kubo - PRE", stat)
+          if self:IsHeroCanLevelUpStat(stat, self.total_points) == true then
+            print("kubo - POS", stat)
+
+            for i = 1, #self.random_stats, 1 do
+              if stat == self.random_stats[i] then
+                selection = true
+              end
+            end
+          end
+
+          if self.total_points < 4 and self:GetCaster():GetLevel() < 20 then selection = false end
+
+          stats[stat] = selection
+          print("kubo - selection", stat, selection)
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
+
+        for k, v in pairs(stats) do
+          print("kubo - final", k, v)
+        end
+        print("<<------------------kubo")
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
 					total_points = self.total_points,
@@ -367,6 +406,49 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
           upgraded_stat = upgraded_stat
 				})
 			end
+		end
+
+    function base_stats:RandomizeStatOption()
+      local stats = {}
+      local locarr = {}
+      local index = 1
+
+      for _, stat in pairs(self.stats_primary) do
+        if self:IsHeroCanLevelUpStat(stat, 99) then
+          stats[index] = stat
+          index = index + 1
+        end
+      end
+
+      for _, stat in pairs(self.stats_secondary) do
+        if self:IsHeroCanLevelUpStat(stat, 99) then
+          stats[index] = stat
+          index = index + 1
+        end
+      end
+
+      if self:GetCaster():GetLevel() == 20 
+      and self.total_points < 4 then
+        self.random_stats = stats
+        return
+      end
+
+      while #stats > 4 do
+        stats[RandomInt(1, #stats)] = "nil"
+        index = 1
+
+        for i = 1, #stats, 1 do
+          if stats[i] ~= "nil" then
+            locarr[index] = stats[i]
+            index = index + 1
+          end
+        end
+
+        stats = locarr
+        locarr = {}
+      end
+
+      self.random_stats = stats
 		end
 
 	-- APPLY STATS
@@ -422,7 +504,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:ApplyBonusLevel(stat, value)
 			if IsServer() then
 				self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
-        if stat == "INT" then print("INT", self.stat_sub_level[stat]) end
 				if self.stat_sub_level[stat] >= 20 then
 					self.stat_sub_level[stat] = self.stat_sub_level[stat] - 20
 					self.stat_base[stat] = self.stat_base[stat] + 1
@@ -454,7 +535,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
-    function base_stats:IsHeroCanLevelUpStat(stat)
+    function base_stats:IsHeroCanLevelUpStat(stat, points)
       local caster = self:GetCaster()
       local total_cost = 1
       local level_cap = caster:GetLevel() + 30
@@ -475,7 +556,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         end
       end
 
-      return (level_cap > self.stat_base[stat]) and (self.total_points >= total_cost)
+      return (level_cap > self.stat_base[stat]) and (points >= total_cost)
     end
 
     function base_stats:GetSubCost(stat_fraction, table, number)

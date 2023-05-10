@@ -5,11 +5,11 @@ function fountain_modifier_aura_effect:IsHidden()
 end
 
 function fountain_modifier_aura_effect:IsPurgable()
-    return false
+  return false
 end
 
-function fountain_modifier_aura_effect:IsDebuff()
-    return self:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber()
+function fountain_modifier_aura_effect:GetPriority()
+  return MODIFIER_PRIORITY_ULTRA
 end
 
 function fountain_modifier_aura_effect:OnCreated( kv )

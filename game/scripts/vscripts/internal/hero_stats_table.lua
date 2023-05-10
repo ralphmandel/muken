@@ -49,6 +49,7 @@ function hero_stats_table:OnLevelUpStat(event)
     end
   end
 
+  BaseStats(hero):RandomizeStatOption()
   BaseStats(hero):UpdatePanoramaPoints(event.stat)
 end
 

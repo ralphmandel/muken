@@ -15,9 +15,19 @@ function icebreaker__modifier_hypo:OnCreated(kv)
 
   local stack = kv.stack
 
+  local blink = self.caster:FindAbilityByName("icebreaker_5__blink")
+  if blink then
+    if blink:IsTrained() then
+      local hypo_damage = blink:GetSpecialValueFor("special_hypo_damage")
+      if hypo_damage > 0 then
+        self.parent:AddNewModifier(self.caster, blink, "icebreaker__modifier_hypo_dps", {hypo_damage = hypo_damage})
+      end     
+    end
+  end
+
   if IsServer() then
     self:SetStackCount(stack)
-    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("decay"), self.caster, self.parent))
+    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
   end
 end
 
@@ -33,7 +43,9 @@ function icebreaker__modifier_hypo:OnRemoved()
   if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
   RemoveStatusEfx(self.ability, "icebreaker__modifier_hypo_status_efx", self.caster, self.parent)
   BaseStats(self.parent):SetBaseAttackTime(0)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
+
+  self.parent:RemoveModifierByNameAndCaster("_modifier_percent_movespeed_debuff", self.caster)
+  self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo_dps", self.caster)
 end
 
 function icebreaker__modifier_hypo:OnDestroy()
@@ -45,7 +57,7 @@ end
 function icebreaker__modifier_hypo:OnIntervalThink()
   if IsServer() then
     self:DecrementStackCount()
-    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("decay"), self.caster, self.parent))
+    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
   end
 end
 

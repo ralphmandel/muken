@@ -42,8 +42,8 @@ end
 function _boss_modifier__ai:OnIntervalThink()
     -- Execute action corresponding to the current state
     if self.unit:IsDominated() then
-      self.unit:RemoveModifierByName("_modifier_invulnerable")
-      self.unit:RemoveModifierByName("_modifier_movespeed_buff")
+      RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_immunity", self:GetAbility())
+      RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
       return
     end
     
@@ -84,7 +84,9 @@ function _boss_modifier__ai:IdleThink()
     return
   end
 
-  self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_invulnerable", {})
+  if self.unit:HasModifier("_modifier_immunity") == false then
+    self.unit:AddNewModifier(self.unit, self:GetAbility(), "_modifier_immunity", {})
+  end
 end
 
 function _boss_modifier__ai:AggressiveThink()
@@ -145,7 +147,7 @@ function _boss_modifier__ai:AggressiveThink()
   end
 
   RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_movespeed_buff", self:GetAbility())
-  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_invulnerable", self:GetAbility())
+  RemoveAllModifiersByNameAndAbility(self.unit, "_modifier_immunity", self:GetAbility())
 end
 
 function _boss_modifier__ai:ReturningThink()

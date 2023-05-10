@@ -58,12 +58,7 @@ function icebreaker_5_modifier_passive:OnTakeDamage(keys)
 	if keys.inflictor == nil then return end
 	if keys.inflictor ~= self.ability then return end
 
-	local spellsteal = self.ability:GetSpecialValueFor("special_spellsteal") * 0.01
-	local spellsteal_kill = self.ability:GetSpecialValueFor("special_spellsteal_kill") * 0.01
-	local damage = keys.original_damage
-
-	local heal = damage * spellsteal_kill
-	if keys.unit:IsAlive() then heal = damage * spellsteal end
+	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_break_heal") * 0.01
 
 	if heal > 0 then
 		self.parent:Heal(heal, self.ability)

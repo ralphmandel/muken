@@ -99,17 +99,6 @@ require("internal/talent_tree")
 	end
 	
 	function base_hero:ResetRanksData()
-		self.slot_keys = {[1] = "slot_1", [2] = "slot_2", [3] = "slot_3", [4] = "slot_4", [5] = "slot_5", [6] = "slot_6"}
-		
-		local state_skills = false
-		local state_ranks = false
-
-		if IsInToolsMode() then
-			-- if self:GetCaster():GetUnitName() == "npc_dota_hero_dawnbreaker" then
-			-- state_ranks = true
-			-- end
-		end
-
 		self.skills = {}
 		self.talentsData = {}
 		self.tabs = {}

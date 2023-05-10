@@ -34,7 +34,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
   if value_name == "hypo_ms" then return 1 end
   if value_name == "hypo_as" then return 1 end
   if value_name == "max_hypo_stack" then return 1 end
-  if value_name == "decay" then return 1 end
+  if value_name == "hypo_decay" then return 1 end
   if value_name == "frozen_duration" then return 1 end
 
 	if ability:GetAbilityName() == "icebreaker_1__frost" then
@@ -197,12 +197,15 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("icebreaker_5__blink_rank_32") then
+      if value_name == "special_hypo_damage" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_5__blink_rank_41") then
+      if value_name == "damage" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_5__blink_rank_42") then
+      if value_name == "special_break_heal" then return 1 end
 		end
 	end
 
@@ -247,10 +250,22 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
 
-  if value_name == "hypo_ms" then return 7 end
+  if value_name == "hypo_ms" then
+    if caster:FindAbilityByName("icebreaker_5__blink_rank_31") then
+      return 10
+		end
+    return 7
+  end
+
+  if value_name == "hypo_decay" then
+    if caster:FindAbilityByName("icebreaker_5__blink_rank_32") then
+      return 6
+		end
+    return 4
+  end
+
   if value_name == "hypo_as" then return 0.15 end
   if value_name == "max_hypo_stack" then return 10 end
-  if value_name == "decay" then return 4 end
   if value_name == "frozen_duration" then return 4 end
   if value_name == "special_copy_duration" then return 5 end
   if value_name == "special_copy_incoming" then return 500 end
@@ -266,7 +281,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("icebreaker_1__frost_rank_12") then
-        return 18
+        return 15 * (1 + ((ability_level - 1) * 0.1))
       end
       return 0
     end
@@ -275,7 +290,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "chance" then
       if caster:FindAbilityByName("icebreaker_1__frost_rank_11") then
-        return 45
+        return 40 + (10 * (1 - ((ability_level - 1) * 0.05)))
       end
       if caster:FindAbilityByName("icebreaker_1__frost_rank_12") then
         return 30
@@ -327,6 +342,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_spread_stack" then return 1 end
     if value_name == "cast_range" then return 1200 end
     if value_name == "special_super_blink" then return 1 end
+    if value_name == "damage" then return 350 end
+    if value_name == "special_hypo_damage" then return 25 end
+    if value_name == "special_break_heal" then return 50 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_u__zero" then
