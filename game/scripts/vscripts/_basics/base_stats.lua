@@ -674,7 +674,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
     function base_stats:GetTotalDebuffAmpPercent()
       local caster = self:GetCaster()
-      local percent = 100 + (self.stat_base["INT"] * self.debuff_amp)
+      local percent = 100 + ((self.stat_total["INT"] + 1) * self.debuff_amp)
       local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
 			for _,modifier in pairs(mods_increase) do
 				percent = percent + modifier:GetStackCount()
@@ -685,7 +685,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:GetDebuffAmp()
 			local caster = self:GetCaster()
-			local bonus = self.stat_base["INT"] * self.debuff_amp
+			local bonus = (self.stat_total["INT"] + 1) * self.debuff_amp
 
 			local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
 			for _,modifier in pairs(mods_increase) do

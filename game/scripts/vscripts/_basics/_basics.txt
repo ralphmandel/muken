@@ -32,7 +32,7 @@
         "03"
 				{
 					"var_type"				        "FIELD_FLOAT"
-					"critical_damage"		      "0.5"
+					"critical_damage"		      "1"
 				}
 				"04"
 				{
@@ -49,7 +49,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"movespeed"				"1" // 5 to 2
+					"movespeed"				"1"
 				}
 				"07"
 				{
@@ -58,35 +58,30 @@
 				}
 				"08"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"attack_speed"			"5" //2
+					"var_type"				  "FIELD_FLOAT"
+					"attack_speed"			"5"
 				}
 				"09"
 				{
-					"var_type"				"FIELD_FLOAT"
-					"base_attack_time"		"1.4" //1.2
+					"var_type"				  "FIELD_FLOAT"
+					"base_attack_time"  "1.4" //1.2
 				}
 
 			// INT
 				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"debuff_amp"			"1" //4 to 1
+					"mana"					  "10"
 				}
-				"11"
+				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					  "5"
+					"debuff_amp"			"1"
 				}
 				"12"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"spell_amp"				"4"
-				}
-  			"13"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.2"
 				}
 
 			// CON
@@ -125,26 +120,31 @@
       	"20"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"status_resist"			"0.8" //2.5 to 1
+					"status_resist"			"0.8"
 				}
 
       // REC/MND/LCK
 				"21"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"cooldown"				"0.3"
+					"cooldown"				"0.2"
 				}
-				"22"
+  			"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"	"0.7"
+					"mana_regen"			"0.1"
 				}
 				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"heal_power"			"4"
+					"critical_chance"	"0.75"
 				}
 				"24"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"heal_power"			"4"
+				}
+				"25"
 				{
 					"var_type"				"FIELD_FLOAT"
 					"buff_amp"				"1"

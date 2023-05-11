@@ -280,7 +280,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierConstantManaRegen()
     if IsServer() then
-      return (self.ability.stat_total["INT"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
+      return (self.ability.stat_total["REC"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
     end
   end
 
