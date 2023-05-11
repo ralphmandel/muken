@@ -144,17 +144,45 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"       		"0.2"
 
 		"AbilitySpecial"
 		{
+      "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_stack_min"  "2"
+			}
+      "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_stack_max"  "4"
+			}
+			"03"
+			{
+				"var_type"	    "FIELD_FLOAT"
+				"recharge"	    "12"
+			}
+			"04"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"radius"		    "250"
+			}
+			"05"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"distance"		  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "06"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"speed"			    "1 2 3 4 5 6 7 8 9 10 11"
+			}
       "10"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -184,6 +212,21 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_knockback_distance"	"0"
+			}
+      "17"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_knockback_duration"	"0"
+			}
+      "18"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_auto_charge"	        "0"
 			}
 		}
 	}
@@ -311,7 +354,6 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.2"
 		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10 11"

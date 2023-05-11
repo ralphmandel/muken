@@ -87,15 +87,21 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_11") then
+      if value_name == "special_knockback_distance" then return 1 end
+      if value_name == "special_knockback_duration" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_2__wave_rank_12") then
+      if value_name == "special_auto_charge" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_21") then
+      if value_name == "hypo_stack_min" then return 1 end
+      if value_name == "hypo_stack_max" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_2__wave_rank_22") then
+      if value_name == "recharge" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_2__wave_rank_31") then
@@ -309,9 +315,21 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_2__wave" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "distance" then return 750 + (value_level * 50) end
+		if value_name == "speed" then return 600 + (value_level * 30) end
+
+    if value_name == "special_knockback_distance" then
+      return ability:GetSpecialValueFor("speed") * ability:GetSpecialValueFor("special_knockback_duration")
+    end
+
+    if value_name == "special_knockback_duration" then return 0.5 end
+    if value_name == "special_auto_charge" then return 3 end
+    if value_name == "hypo_stack_min" then return 3 end
+    if value_name == "hypo_stack_max" then return 5 end
+    if value_name == "recharge" then return 9 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__skin" then
