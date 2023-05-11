@@ -20,7 +20,7 @@ function icebreaker__modifier_hypo:OnCreated(kv)
     if blink:IsTrained() then
       local hypo_damage = blink:GetSpecialValueFor("special_hypo_damage")
       if hypo_damage > 0 then
-        self.parent:AddNewModifier(self.caster, blink, "icebreaker__modifier_hypo_dps", {hypo_damage = hypo_damage})
+        AddModifier(self.parent, self.caster, blink, "icebreaker__modifier_hypo_dps", {hypo_damage = hypo_damage}, false)
       end     
     end
   end
@@ -46,6 +46,7 @@ function icebreaker__modifier_hypo:OnRemoved()
 
   self.parent:RemoveModifierByNameAndCaster("_modifier_percent_movespeed_debuff", self.caster)
   self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo_dps", self.caster)
+  self.parent:RemoveModifierByNameAndCaster("_modifier_silence", self.caster)
 end
 
 function icebreaker__modifier_hypo:OnDestroy()
@@ -68,17 +69,17 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
     BaseStats(self.parent):SetBaseAttackTime(self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_as"))
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
-			percent = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_ms")
-		})
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+      percent = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_ms")
+    }, false)
 
     if IsServer() then self:PopupIce(self:GetStackCount() > old) end
   end
 
   if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_hypo_stack") then
-		self.parent:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_frozen", {
-			duration = CalcStatus(self.ability:GetSpecialValueFor("frozen_duration"), self.caster, self.parent)
-		})
+    AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_frozen", {
+      duration = self.ability:GetSpecialValueFor("frozen_duration")
+    }, true)
 	end
 end
 

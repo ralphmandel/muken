@@ -82,15 +82,16 @@ function fountain_modifier:GetAuraSearchTeam()
 end
 
 function fountain_modifier:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
 function fountain_modifier:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 end
 
 function fountain_modifier:GetAuraEntityReject(hEntity)
 	if hEntity == self:GetCaster() then return true end
+  if hEntity:IsHero() == false and hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber() then return true end
 	return false
 end
 

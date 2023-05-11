@@ -32,10 +32,9 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 	end
 
   function icebreaker_1__frost:OnSpellStart()
-    local caster = self:GetCaster()
-    caster:AddNewModifier(caster, self, "icebreaker_1_modifier_hits", {
-      duration = CalcStatus(self:GetSpecialValueFor("special_hits_duration"), caster, caster)
-    })
+    AddModifier(self:GetCaster(), self:GetCaster(), self, "icebreaker_1_modifier_hits", {
+      duration = self.ability:GetSpecialValueFor("special_hits_duration")
+    }, true)
 	end
 
   function icebreaker_1__frost:PerformFrostAttack(target, damage)
@@ -51,9 +50,9 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
       })
     end
 
-    target:AddNewModifier(caster, self, "icebreaker__modifier_hypo", {
+    AddModifier(target, caster, self, "icebreaker__modifier_hypo", {
       stack = self:GetSpecialValueFor("hypo_stack")
-    })
+    }, false)
 
     if self:GetSpecialValueFor("special_cleave") == 1 then
       DoCleaveAttack(caster, target, self, damage, 100, 400, 500,
@@ -63,9 +62,9 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 
     if RandomFloat(0, 100) < self:GetSpecialValueFor("special_mini_freeze_chance")
     and target:HasModifier("icebreaker__modifier_frozen") == false then
-      target:AddNewModifier(caster, self, "icebreaker__modifier_instant", {
-        duration = CalcStatus(self:GetSpecialValueFor("special_mini_freeze"), caster, target)
-      })
+      AddModifier(target, caster, self, "icebreaker__modifier_instant", {
+        duration = self:GetSpecialValueFor("special_mini_freeze")
+      }, true)
     end
 
     if RandomFloat(0, 100) < self:GetSpecialValueFor("special_blink_chance")
@@ -89,7 +88,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
     FindClearSpaceForUnit(caster, blink_point, true)
 
 		local illu_array = CreateIllusions(caster, caster, {
-			outgoing_damage = -100 + self:GetSpecialValueFor("special_copy_outgoing"),
+			outgoing_damage = self:GetSpecialValueFor("special_copy_outgoing") - 100,
 			incoming_damage = self:GetSpecialValueFor("special_copy_incoming"),
 			bounty_base = 0,
 			bounty_growth = 0,
@@ -101,7 +100,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "modifiers/_modifier_invisible_
 			illu:SetForwardVector(forward)
 			illu:SetForceAttackTarget(target)
 			FindClearSpaceForUnit(illu, original_loc, true)
-      illu:AddNewModifier(caster, self, "icebreaker__modifier_illusion", {})
+      AddModifier(illu, caster, self, "icebreaker__modifier_illusion", {}, false)
 		end		
   end
 

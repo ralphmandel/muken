@@ -33,7 +33,7 @@ function icebreaker__modifier_illusion:OnAttackLanded(keys)
   if self.parent:PassivesDisabled() then return end
 
   if RandomFloat(0, 100) < 20 then
-    keys.target:AddNewModifier(self.caster, self.ability, "icebreaker__modifier_hypo", {stack = 1})
+    AddModifier(keys.target, self.caster, self.ability, "icebreaker__modifier_hypo", {stack = 1}, false)
   end
 end
 

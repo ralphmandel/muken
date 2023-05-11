@@ -239,6 +239,15 @@ function CalcStatus(duration, caster, target)
   return duration
 end
 
+function AddModifier(target, caster, ability, modifier_name, table, bCalcStatus)
+  if table.duration then
+    if bCalcStatus then table.duration = CalcStatus(table.duration, caster, target) end
+    if table.duration <= 0 then return end
+  end
+
+  return target:AddNewModifier(caster, ability, modifier_name, table)
+end
+
 function AddBonus(ability, string, target, const, percent, time)
   if const == 0 and percent == 0 then return end
   if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end

@@ -144,6 +144,7 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -227,6 +228,41 @@
 			{
 				"var_type"		                "FIELD_FLOAT"
 				"special_auto_charge"	        "0"
+			}
+      "19"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_damage"              "0"
+			}
+      "20"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_mana_burn"           "0"
+			}
+      "21"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_duration"        "0"
+			}
+      "22"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_incoming"        "0"
+			}
+      "23"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_outgoing"        "0"
+			}
+      "24"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_copy_chance"         "0"
+			}
+      "25"
+			{
+				"var_type"		                "FIELD_FLOAT"
+				"special_silence_duration"    "0"
 			}
 		}
 	}
