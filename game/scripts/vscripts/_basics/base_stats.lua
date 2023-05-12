@@ -31,7 +31,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:OnUpgrade()
       if self:GetLevel() == 1 then
-        self:IncrementSpenderPoints(15)
+        self:RandomizeStatOption()
       end
 		end
 
@@ -45,8 +45,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
 
-        if caster:GetLevel() == 20 then self:RandomizeStatOption() end
-        self:IncrementSpenderPoints(3)
+        if caster:GetLevel() % 2 == 1 then
+          self:IncrementSpenderPoints(5)
+        end
 			end
 		end
 
@@ -120,8 +121,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			if IsServer() then
 				local caster = self:GetCaster()
 				local unit_stats = nil
-				local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
-				local heroes_stats_data = LoadKeyValues("scripts/npc/heroes_stats.kv")
+				local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
+				local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
 				local boss_list = LoadKeyValues("scripts/vscripts/bosses/_bosses_units.txt")
 				local neutral_list = LoadKeyValues("scripts/vscripts/neutrals/_neutrals_units.txt")
 
@@ -372,13 +373,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
-        print("kubo --------------------->>")
-
         for _, stat in pairs(self.stats_secondary) do
           local selection = false
-          print("kubo - PRE", stat)
           if self:IsHeroCanLevelUpStat(stat, self.total_points) == true then
-            print("kubo - POS", stat)
 
             for i = 1, #self.random_stats, 1 do
               if stat == self.random_stats[i] then
@@ -390,14 +387,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
           if self.total_points < 4 and self:GetCaster():GetLevel() < 20 then selection = false end
 
           stats[stat] = selection
-          print("kubo - selection", stat, selection)
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
-
-        for k, v in pairs(stats) do
-          print("kubo - final", k, v)
-        end
-        print("<<------------------kubo")
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
 					total_points = self.total_points,
@@ -427,7 +418,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         end
       end
 
-      if self:GetCaster():GetLevel() == 20 
+      if self:GetCaster():GetLevel() >= 19 
       and self.total_points < 4 then
         self.random_stats = stats
         return
@@ -710,12 +701,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- UTIL CON
 
-    function base_stats:GetBonusHPRegen()
-      local value = (self.stat_total["CON"]) * self.health_regen
-      local calc = (value * 6) / (1 +  (value * 0.06))
-      return calc + 6
-    end
-
 		function base_stats:SetHPRegenState(bool)
 			if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
 		end
@@ -730,12 +715,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- UTIL LCK
 
 		function base_stats:GetCriticalChance()
-      local result = self.force_crit_chance
-      if result == nil then
-        result = ((self.stat_total["LCK"] + 1) * self.critical_chance) + 5
-      end
+      if self.force_crit_chance then return self.force_crit_chance end
 
-      return result
+      local value = (self.stat_total["LCK"] + 1) * self.critical_chance
+      local calc = (value * 6) / (1 +  (value * 0.06))
+      return calc
 		end
 
   -- UTIL DEX
@@ -748,9 +732,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     end
 
     function base_stats:GetDodgePercent()
-      local value = (self.stat_total["DEX"]) * self.evade
+      local value = (self.stat_total["DEX"] + 1) * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
-      return calc + 5
+      return calc
+    end
+
+    function base_stats:GetBonusHPRegen()
+      return (self.stat_total["DEX"] + 11) * self.health_regen
     end
 
 	-- UTIL MND

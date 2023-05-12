@@ -36,7 +36,7 @@ require("internal/talent_tree")
 		end
 
 		if level == 14 then
-			self:CheckAbilityPoints(1)
+			--self:CheckAbilityPoints(1)
 		end
 	end
 
@@ -78,8 +78,8 @@ require("internal/talent_tree")
 
 -- LOAD DATA
 	function base_hero:LoadHeroesData()
-		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
-		local heroes_team_data = LoadKeyValues("scripts/npc/heroes_team.kv")
+		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
+		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
 		if heroes_name_data == nil then return end
 		if heroes_team_data == nil then return end
 
@@ -419,51 +419,11 @@ require("internal/talent_tree")
     if self.talents.blocked[self.talentsData[talentId].Ability] then return false end
     if self.talents.rank_block[self.talentsData[talentId].RankLevel] >= 3 then return false end
 
-		-- BLOODSTAINED
-			-- Bloodstained 5.31 requires ultimate
-			if talentName == "bloodstained_5__tear_rank_31"
-			and self:GetCaster():FindAbilityByName("bloodstained_u__seal"):IsTrained() == false then
-				return false
-			end
-
-		-- BALDUR
-			-- Baldur 5.41 requires skill 3
-			if talentName == "bald_5__spike_rank_41"
-			and self:GetCaster():FindAbilityByName("bald_3__inner"):IsTrained() == false then
-				return false
-			end
-
-		-- ICEBREAKER
-			-- Icebreaker 5.41 requires ultimate
-			if talentName == "icebreaker_5__shivas_rank_41"
-			and self:GetCaster():FindAbilityByName("icebreaker_5__shivas"):IsTrained() == false then
-				return false
-			end
-
-		-- STRIKER
-			-- Striker 6.11 requires skill 5 max rank
-			if talentName == "striker_u__auto_rank_11"
-			and self:GetCaster():FindAbilityByName("striker_5__sof"):GetLevel() < 11 then
-				return false
-			end
-
-			-- Striker 6.12 requires skill 3 max rank
-			if talentName == "striker_u__auto_rank_12"
-			and self:GetCaster():FindAbilityByName("striker_3__portal"):GetLevel() < 11 then
-				return false
-			end
-
-			-- Striker 6.21 requires skill 2 max rank
-			if talentName == "striker_u__auto_rank_21"
-			and self:GetCaster():FindAbilityByName("striker_2__shield"):GetLevel() < 11 then
-				return false
-			end
-
-			-- Striker 6.22 requires skill 4 max rank
-			if talentName == "striker_u__auto_rank_22"
-			and self:GetCaster():FindAbilityByName("striker_4__hammer"):GetLevel() < 11 then
-				return false
-			end
+    -- Hero 5.31 requires ultimate
+    if talentName == "temp_5__name_rank_31"
+    and self:GetCaster():FindAbilityByName("temp_u__name"):IsTrained() == false then
+      return false
+    end
 
 		return true
 	end

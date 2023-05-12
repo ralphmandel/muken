@@ -24,7 +24,7 @@ end
 -- ADD COSMETICS
 
 	function cosmetics:LoadHeroesName()
-		local heroes_name_data = LoadKeyValues("scripts/npc/heroes_name.kv")
+		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 		if heroes_name_data == nil then return end
 		for name, id_name in pairs(heroes_name_data) do
 			if self:GetCaster():GetUnitName() == id_name then
@@ -34,7 +34,7 @@ end
 	end
 
   function cosmetics:LoadHeroesTeam()
-		local heroes_team_data = LoadKeyValues("scripts/npc/heroes_team.kv")
+		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
 		if heroes_team_data == nil then return end
 
     for team, hero_list in pairs(heroes_team_data) do

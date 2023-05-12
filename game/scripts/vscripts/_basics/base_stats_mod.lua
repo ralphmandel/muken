@@ -66,10 +66,10 @@ base_stats_mod = class ({})
       --MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
       MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
       MODIFIER_PROPERTY_HEALTH_BONUS,
-      MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
       MODIFIER_EVENT_ON_HEAL_RECEIVED,
 
       --SECONDARY
+      MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
       MODIFIER_PROPERTY_DODGE_PROJECTILE,
       MODIFIER_EVENT_ON_ATTACK,
       MODIFIER_PROPERTY_MISS_PERCENTAGE,
@@ -278,12 +278,6 @@ base_stats_mod = class ({})
     return self.ability.mana * (self.ability.stat_base["INT"])
   end
 
-  function base_stats_mod:GetModifierConstantManaRegen()
-    if IsServer() then
-      return (self.ability.stat_total["REC"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
-    end
-  end
-
 -- CON
 
   function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
@@ -310,12 +304,6 @@ base_stats_mod = class ({})
     end
   end
 
-  function base_stats_mod:GetModifierConstantHealthRegen()
-    if IsServer() then
-      return self.ability:GetBonusHPRegen() * self.ability.hp_regen_state
-    end
-  end
-
   function base_stats_mod:OnHealReceived(keys)
     if keys.unit ~= self.parent then return end
     if keys.inflictor == nil then return end
@@ -325,6 +313,12 @@ base_stats_mod = class ({})
   end
 
 -- SECONDARY
+
+  function base_stats_mod:GetModifierConstantHealthRegen()
+    if IsServer() then
+      return self.ability:GetBonusHPRegen() * self.ability.hp_regen_state
+    end
+  end
 
   function base_stats_mod:GetModifierDodgeProjectile(keys)
     if BaseStats(keys.attacker) == nil then return end
@@ -361,11 +355,11 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierPhysicalArmorBonus()
-    return (self.ability.stat_total["DEF"] + 1) * self.ability.armor
+    return (self.ability.stat_total["DEF"] + 11) * self.ability.armor
   end
 
   function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = (self.ability.stat_total["RES"] + 1) * self.ability.magic_resist
+    local value = (self.ability.stat_total["RES"] + 11) * self.ability.magic_resist
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end
@@ -378,6 +372,12 @@ base_stats_mod = class ({})
     local value = (self.ability.stat_total["REC"]) * self.ability.cooldown
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
+  end
+
+  function base_stats_mod:GetModifierConstantManaRegen()
+    if IsServer() then
+      return (self.ability.stat_total["REC"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
+    end
   end
 
 -- EFFECTS

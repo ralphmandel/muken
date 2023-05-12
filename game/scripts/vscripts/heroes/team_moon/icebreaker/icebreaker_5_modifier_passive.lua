@@ -57,8 +57,10 @@ function icebreaker_5_modifier_passive:OnTakeDamage(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.inflictor == nil then return end
 	if keys.inflictor ~= self.ability then return end
+  if self.ability.break_damage == false then return end
 
 	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_break_heal") * 0.01
+  self.ability.break_damage = false
 
 	if heal > 0 then
 		self.parent:Heal(heal, self.ability)

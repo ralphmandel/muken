@@ -330,7 +330,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_silence" then return 1 end
     if value_name == "special_disarm" then return 1 end
     if value_name == "damage_amp_stack" then return 9 end
-    if value_name == "lifesteal" then return 50 end
+    if value_name == "lifesteal" then return 40 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_4__mirepoix" then

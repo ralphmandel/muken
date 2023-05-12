@@ -49,7 +49,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"movespeed"				"1"
+					"movespeed"				"2"
 				}
 				"07"
 				{
@@ -93,19 +93,19 @@
         "15"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"health_bonus"		"60"
-				}
-				"16"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"health_regen"		"0.2"
+					"health_bonus"		"75"
 				}
 
 			// DEX/DEF/RES
+				"16"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"health_regen"		"0.8"
+				}
 				"17"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"evade"					  "0.4"
+					"evade"					  "0.2"
 				}
 				"18"
 				{
@@ -132,12 +132,12 @@
   			"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.1"
+					"mana_regen"			"0.15"
 				}
 				"23"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"critical_chance"	"0.75"
+					"critical_chance"	"0.2"
 				}
 				"24"
 				{

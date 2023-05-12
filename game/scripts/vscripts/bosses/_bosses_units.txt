@@ -52,12 +52,12 @@
 		"AttackAnimationPoint"		"0.5"
 		"AttackAcquisitionRange"	"50"
 
-		"Stats"
+		"Stats" //150 - [15][10]
 		{
-      "STR" "45"
+      "STR" "44"
       "AGI" "20"
-      "INT" "25"
-      "CON" "49"
+      "INT" "22"
+      "CON" "39"
 		}
 
 		"Creature"
@@ -248,7 +248,7 @@
 				"STR" "0"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "-1"
+				"CON" "4"
 			}
 
 			"Creature"
@@ -307,12 +307,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"  
 
-			"Stats"
+			"Stats" //10
 			{
-				"STR" "8"
-				"AGI" "4"
+				"STR" "4"
+				"AGI" "2"
 				"INT" "0"
-				"CON" "8"
+				"CON" "4"
 			}
 			
 			"Creature"
@@ -371,12 +371,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"  
 
-			"Stats"
+			"Stats" //15
 			{
-				"STR" "6"
-				"AGI" "20"
+				"STR" "3"
+				"AGI" "10"
 				"INT" "0"
-				"CON" "4"
+				"CON" "2"
 			}
 			
 			"Creature"
@@ -435,12 +435,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"  
 
-			"Stats"
+			"Stats" //20
 			{
-				"STR" "25"
+				"STR" "12"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "15"
+				"CON" "8"
 			}
 			
 			"Creature"

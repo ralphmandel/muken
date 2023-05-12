@@ -326,12 +326,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "icebreaker_2__wave" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("icebreaker_2__wave_rank_21") then
-        return 160 * (1 + ((ability_level - 1) * 0.05))
-      end
-      if caster:FindAbilityByName("icebreaker_2__wave_rank_22") then
         return 120 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 100 * (1 + ((ability_level - 1) * 0.05))
+      return 90 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end
@@ -366,9 +363,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "icebreaker_5__blink" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("icebreaker_5__blink_rank_21") then
-        return 60 * (1 + ((ability_level - 1) * 0.05))
+        return 50 * (1 + ((ability_level - 1) * 0.05))
 			end
-      return 90 * (1 + ((ability_level - 1) * 0.05))
+      return 75 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 15 - (value_level * 0.5) end

@@ -15,6 +15,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
   function icebreaker_5__blink:Spawn()
     self.kills = 0
     self.turn = 0
+    self.break_damage = false
 
     if self:IsTrained() == false then
       self:UpgradeAbility(true)
@@ -128,6 +129,8 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     end
 
     target:RemoveModifierByName("icebreaker__modifier_frozen")
+
+    self.break_damage = true
 
     ApplyDamage({
       victim = target, attacker = caster, ability = self,

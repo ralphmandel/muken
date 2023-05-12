@@ -345,7 +345,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"arrow_speed"			"3000"
+				"arrow_speed"			"2500"
 			}
 			"06"
 			{

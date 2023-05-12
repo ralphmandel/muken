@@ -51,12 +51,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //100 - [20][5]
 			{
-				"STR" "15"
-				"AGI" "4"
-				"INT" "32"
-				"CON" "29"
+				"STR" "17"
+				"AGI" "5"
+				"INT" "30"
+				"CON" "23"
 			}
 
 			"Creature"
@@ -77,7 +77,7 @@
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"3"
+			"Level"						"4"
 			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
@@ -114,12 +114,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //20
 			{
 				"STR" "0"
-				"AGI" "25"
+				"AGI" "16"
 				"INT" "0"
-				"CON" "10"
+				"CON" "4"
 			}
 
 			"Creature"
@@ -183,12 +183,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //60 - [10][5]
 			{
-				"STR" "30"
+				"STR" "20"
 				"AGI" "10"
 				"INT" "0"
-				"CON" "25"
+				"CON" "15"
 			}
 
 			"Creature"
@@ -251,12 +251,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //40 - [10][5]
 			{
 				"STR" "0"
 				"AGI" "0"
-				"INT" "25"
-				"CON" "18"
+				"INT" "16"
+				"CON" "9"
 			}
 
 			"Creature"
@@ -318,12 +318,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" // 35 - [5]
 			{
-				"STR" "12"
-				"AGI" "4"
-				"INT" "12"
-				"CON" "24"
+				"STR" "10"
+				"AGI" "1"
+				"INT" "5"
+				"CON" "14"
 			}
 
 			"Creature"
@@ -383,12 +383,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //35 - [10]
 			{
 				"STR" "0"
-				"AGI" "15"
-				"INT" "24"
-				"CON" "9"
+				"AGI" "7"
+				"INT" "14"
+				"CON" "4"
 			}
 
 			"Creature"
@@ -450,12 +450,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //25 - [10]
 			{
-				"STR" "3"
-				"AGI" "3"
+				"STR" "0"
+				"AGI" "0"
 				"INT" "10"
-				"CON" "6"
+				"CON" "5"
 			}
 
 			"Creature"
@@ -516,12 +516,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //25 - [5]
 			{
-				"STR" "18"
+				"STR" "9"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "22"
+				"CON" "11"
 			}
 
 			"Creature"
@@ -582,12 +582,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" // 20 - [10]
 			{
-				"STR" "10"
-				"AGI" "5"
+				"STR" "7"
+				"AGI" "0"
 				"INT" "0"
-				"CON" "10"
+				"CON" "3"
 			}
 
 			"Creature"
@@ -647,12 +647,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //10
 			{
-				"STR" "8"
-				"AGI" "4"
+				"STR" "3"
+				"AGI" "2"
 				"INT" "0"
-				"CON" "8"
+				"CON" "5"
 			}
 
 			"Creature"
@@ -711,12 +711,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //10
 			{
-				"STR" "8"
-				"AGI" "4"
+				"STR" "3"
+				"AGI" "2"
 				"INT" "0"
-				"CON" "8"
+				"CON" "5"
 			}
 
 			"Creature"
@@ -775,12 +775,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //10
 			{
-				"STR" "7"
-				"AGI" "8"
+				"STR" "4"
+				"AGI" "4"
 				"INT" "0"
-				"CON" "5"
+				"CON" "2"
 			}
 
 			"Creature"
@@ -840,12 +840,12 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //5
 			{
-				"STR" "3"
-				"AGI" "4"
+				"STR" "1"
+				"AGI" "3"
 				"INT" "0"
-				"CON" "3"
+				"CON" "1"
 			}
 
 			"Creature"
@@ -904,10 +904,10 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"  
 
-			"Stats"
+			"Stats" //5
 			{
-				"STR" "4"
-				"AGI" "4"
+				"STR" "2"
+				"AGI" "1"
 				"INT" "0"
 				"CON" "2"
 			}
@@ -968,10 +968,10 @@
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
-			"Stats"
+			"Stats" //5
 			{
-				"STR" "2"
-				"AGI" "8"
+				"STR" "1"
+				"AGI" "4"
 				"INT" "0"
 				"CON" "0"
 			}
