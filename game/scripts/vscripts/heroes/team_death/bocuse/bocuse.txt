@@ -91,19 +91,24 @@
       "18"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_bleeding_chance" "0"
+				"special_stun_dmg"        "0"
 			}
       "19"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_frenesi_chance"  "0"
+				"special_bleeding_chance" "0"
 			}
       "20"
 			{
 				"var_type"		            "FIELD_FLOAT"
-				"special_max_cut"         "0"
+				"special_frenesi_chance"  "0"
 			}
       "21"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_max_cut"         "0"
+			}
+      "22"
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_cut_speed"       "0"

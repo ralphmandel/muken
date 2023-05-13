@@ -9,7 +9,6 @@ LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/team_moon/ice
 LinkLuaModifier("icebreaker__modifier_illusion", "heroes/team_moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_3_modifier_skin", "heroes/team_moon/icebreaker/icebreaker_3_modifier_skin", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -17,6 +16,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
 
 	function icebreaker_3__skin:OnSpellStart()
 		local caster = self:GetCaster()
+    local target = self:GetCursorTarget()
+
+    AddModifier(target, caster, self, "icebreaker_3_modifier_skin", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

@@ -47,19 +47,20 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("bocuse_1__julienne_rank_21") then
-			if value_name == "stun_duration" then return 1 end
-		end
-
-    if caster:FindAbilityByName("bocuse_1__julienne_rank_22") then
-			if value_name == "special_stun_radius" then return 1 end
-		end
-
-		if caster:FindAbilityByName("bocuse_1__julienne_rank_31") then
 			if value_name == "special_bleeding_chance" then return 1 end
 		end
 
-    if caster:FindAbilityByName("bocuse_1__julienne_rank_32") then
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_22") then
 			if value_name == "bleeding_duration" then return 1 end
+		end
+
+		if caster:FindAbilityByName("bocuse_1__julienne_rank_31") then
+			if value_name == "stun_duration" then return 1 end
+		end
+
+    if caster:FindAbilityByName("bocuse_1__julienne_rank_32") then
+			if value_name == "special_stun_radius" then return 1 end
+      if value_name == "special_stun_dmg" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_1__julienne_rank_41") then
@@ -282,12 +283,13 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "cast_point" then return 0.1 end
     if value_name == "special_invulnerable" then return 1 end
-    if value_name == "stun_duration" then return 3.5 end
+    if value_name == "special_bleeding_chance" then return 7 end
+    if value_name == "bleeding_duration" then return 6 end
+    if value_name == "stun_duration" then return 4 end
     if value_name == "special_stun_radius" then return 350 end
-    if value_name == "special_bleeding_chance" then return 10 end
-    if value_name == "bleeding_duration" then return 8 end
+    if value_name == "special_stun_dmg" then return 125 end
     if value_name == "max_cut" then return 10 end
-    if value_name == "special_frenesi_chance" then return 30 end
+    if value_name == "special_frenesi_chance" then return 40 end
     if value_name == "special_max_cut" then return 7 end
     if value_name == "special_cut_speed" then return 7.5 end
 	end

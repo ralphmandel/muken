@@ -63,8 +63,25 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     return "icebreaker_5_modifier_passive"
   end
 
+  function icebreaker_5__blink:OnAbilityPhaseStart()
+		local caster = self:GetCaster()
+
+    if BaseHeroMod(caster) then
+      BaseHeroMod(caster):ChangeActivity("ti6")
+      caster:StartGesture(ACT_DOTA_CAST_ABILITY_2)
+    end
+
+		return true
+	end
+
   function icebreaker_5__blink:OnAbilityPhaseInterrupted()
+    local caster = self:GetCaster()
 		self.turn = 0
+
+    if BaseHeroMod(caster) then
+      BaseHeroMod(caster):ChangeActivity("shinobi_tail")
+      caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
+    end
 	end
 
 	function icebreaker_5__blink:OnSpellStart()
@@ -73,6 +90,8 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
 		local origin = caster:GetOrigin()
 		local point = self:GetCursorPosition()
 		local distance = CalcDistanceBetweenEntityOBB(caster, target)
+
+    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("shinobi_tail") end
 
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 			if target:TriggerSpellAbsorb(self) then

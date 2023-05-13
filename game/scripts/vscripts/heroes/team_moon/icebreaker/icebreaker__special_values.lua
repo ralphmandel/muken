@@ -130,6 +130,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "cast_range" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_11") then
 		end
@@ -349,9 +350,12 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__skin" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 24 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "cast_range" then return 750 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_4__shivas" then

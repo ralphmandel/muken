@@ -42,9 +42,9 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
   function bocuse_1__julienne:OnSpellStart()
     local caster = self:GetCaster()
 		self.target = self:GetCursorTarget()
-    self.crit = self:GetSpecialValueFor("special_frenesi_chance") > 0
+    self.crit = RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance")
 
-    if RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance") then
+    if self.crit then
       self.total_slashes = self:GetSpecialValueFor("special_max_cut")
       self.cut_speed = self:GetSpecialValueFor("special_cut_speed")
     else
@@ -123,6 +123,12 @@ LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTIO
       for _,enemy in pairs(enemies) do
         enemy:AddNewModifier(caster, self, "_modifier_stun", {
           duration = CalcStatus(self:GetSpecialValueFor("stun_duration"), caster, enemy)
+        })
+        
+        ApplyDamage({
+          attacker = caster, victim = enemy, ability = self,
+          damage = self:GetSpecialValueFor("special_stun_dmg"),
+          damage_type = DAMAGE_TYPE_MAGICAL
         })
       end
     else

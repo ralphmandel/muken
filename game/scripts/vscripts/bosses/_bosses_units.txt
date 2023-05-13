@@ -39,7 +39,7 @@
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"        	"0"
-		"StatusHealth"				"1000"
+		"StatusHealth"				"750"
 		"StatusHealthRegen"			"0"
 		"StatusMana"				"400" //600
 		"StatusManaRegen"			"0"
@@ -52,12 +52,12 @@
 		"AttackAnimationPoint"		"0.5"
 		"AttackAcquisitionRange"	"50"
 
-		"Stats" //150 - [15][10]
+		"Stats" //210 - [30][20] = 160
 		{
-      "STR" "44"
+      "STR" "50"
       "AGI" "20"
-      "INT" "22"
-      "CON" "39"
+      "INT" "40"
+      "CON" "49"
 		}
 
 		"Creature"
@@ -167,7 +167,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"1000"
+			"StatusHealth"				"750"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -294,7 +294,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"1000"
+			"StatusHealth"				"750"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -358,7 +358,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"1000"
+			"StatusHealth"				"750"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -422,7 +422,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"1000"
+			"StatusHealth"				"750"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
