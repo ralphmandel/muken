@@ -129,6 +129,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     local spread_radius = self:GetSpecialValueFor("special_spread_radius")
 
     self:PlayEfxBreak(target)
+    self:ReduceShivasCD(target)
     self:EndCooldown()
   
     if spread_radius > 0 then

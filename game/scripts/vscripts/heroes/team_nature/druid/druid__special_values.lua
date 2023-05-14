@@ -277,7 +277,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "druid_1__root" then
-		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 15 - (value_level * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -298,9 +298,9 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("druid_2__armor_rank_41") then
-        return 90 * (1 + ((ability_level - 1) * 0.05))
+        return 75 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 140 * (1 + ((ability_level - 1) * 0.05))
+      return 125 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
@@ -330,7 +330,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("druid_3__totem_rank_22") then
@@ -355,7 +355,7 @@ function druid__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
-		if value_name == "AbilityManaCost" then return 160 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 150 - (value_level * 5) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 

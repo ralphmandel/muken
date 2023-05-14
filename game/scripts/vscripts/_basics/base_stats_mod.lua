@@ -36,7 +36,6 @@ base_stats_mod = class ({})
   function base_stats_mod:OnRefresh(kv)
   end
 
-
 -- DECLARE FUNCTIONS AND STATES
 
   function base_stats_mod:DeclareFunctions()
@@ -80,6 +79,8 @@ base_stats_mod = class ({})
     }
     return funcs
   end
+
+-- AMP
 
   function base_stats_mod:OnTakeDamage(keys)
     if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK
@@ -166,79 +167,11 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
     if self.parent:IsRangedAttacker() then return 0 end
-    local physical_block_max_percent = self.ability.physical_block_max_percent
-    local physical_block_min_percent = 0
-    local physical_block_max_const = 0
-    local physical_block_min_const = 0
 
-    local mods = self.parent:FindAllModifiersByName("base_stats_mod_block_bonus")
-    for _,mod in pairs(mods) do
-      if mod.physical_block_max_percent > physical_block_max_percent then
-        physical_block_max_percent = mod.physical_block_max_percent
-      end
-      if mod.physical_block_min_percent > physical_block_min_percent then
-        physical_block_min_percent = mod.physical_block_min_percent
-      end
-      if mod.physical_block_max_const > physical_block_max_const then
-        physical_block_max_const = mod.physical_block_max_const
-      end
-      if mod.physical_block_min_const > physical_block_min_const then
-        physical_block_min_const = mod.physical_block_min_const
-      end
-    end
+    local average = self.ability.physical_block_max_percent
+    local block_percent = RandomInt(average - 5, average + 5)
 
-    local block_percent = physical_block_max_percent
-    local block_const = physical_block_max_const
-
-    if physical_block_min_percent < physical_block_max_percent then
-      block_percent = RandomInt(physical_block_min_percent, physical_block_max_percent)
-    end
-
-    if physical_block_min_const < physical_block_max_const then
-      block_const = RandomInt(physical_block_min_const, physical_block_max_const)
-    end
-
-    local calc = math.floor(keys.damage * block_percent * 0.01) + block_const
-    return calc
-  end
-
-  function base_stats_mod:GetModifierMagical_ConstantBlock(keys)
-    return 0
-    -- if keys.damage_flags == DOTA_DAMAGE_FLAG_BYPASSES_BLOCK then return 0 end
-    -- local magical_block_max_percent = self.ability.magical_block_max_percent
-    -- local magical_block_min_percent = 0
-    -- local magical_block_max_const = 0
-    -- local magical_block_min_const = 0
-
-    -- local mods = self.parent:FindAllModifiersByName("base_stats_mod_block_bonus")
-    -- for _,mod in pairs(mods) do
-    --     if mod.magical_block_max_percent > magical_block_max_percent then
-    --         magical_block_max_percent = mod.magical_block_max_percent
-    --     end
-    --     if mod.magical_block_min_percent > magical_block_min_percent then
-    --         magical_block_min_percent = mod.magical_block_min_percent
-    --     end
-    --     if mod.magical_block_max_const > magical_block_max_const then
-    --         magical_block_max_const = mod.magical_block_max_const
-    --     end
-    --     if mod.magical_block_min_const > magical_block_min_const then
-    --         magical_block_min_const = mod.magical_block_min_const
-    --     end
-    -- end
-
-    -- local block_percent = magical_block_max_percent
-    -- local block_const = magical_block_max_const
-
-    -- if magical_block_min_percent < magical_block_max_percent then
-    --     block_percent = RandomInt(magical_block_min_percent, magical_block_max_percent)
-    -- end
-
-    -- if magical_block_min_const < magical_block_max_const then
-    --     block_const = RandomInt(magical_block_min_const, magical_block_max_const)
-    -- end
-
-    -- local calc = math.floor(keys.damage * block_percent * 0.01) + block_const
-    -- if calc > 0 then return calc end
+    return math.floor(keys.damage * block_percent * 0.01)
   end
 
 -- AGI
@@ -376,7 +309,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierConstantManaRegen()
     if IsServer() then
-      return (self.ability.stat_total["REC"] + 1) * self.ability.mana_regen * self.ability.mp_regen_state
+      return self.ability:GetBonusMPRegen() * self.ability.mp_regen_state
     end
   end
 

@@ -14,8 +14,8 @@ function icebreaker__modifier_hypo:OnCreated(kv)
   self:CheckCounterEfx()
 
   local stack = kv.stack
-
   local blink = self.caster:FindAbilityByName("icebreaker_5__blink")
+
   if blink then
     if blink:IsTrained() then
       local hypo_damage = blink:GetSpecialValueFor("special_hypo_damage")
@@ -47,6 +47,7 @@ function icebreaker__modifier_hypo:OnRemoved()
   self.parent:RemoveModifierByNameAndCaster("_modifier_percent_movespeed_debuff", self.caster)
   self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo_dps", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_silence", self.caster)
+  self.parent:RemoveModifierByNameAndCaster("_modifier_fear", self.caster)
 end
 
 function icebreaker__modifier_hypo:OnDestroy()

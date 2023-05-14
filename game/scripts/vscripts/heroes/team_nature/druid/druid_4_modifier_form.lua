@@ -160,7 +160,7 @@ function druid_4_modifier_form:ApplyFear(fear_duration)
 	)
 
 	for _,enemy in pairs(enemies) do		
-		enemy:AddNewModifier(self.caster, self.ability, "druid_4_modifier_fear", {
+		enemy:AddNewModifier(self.caster, self.ability, "_modifier_fear", {
 			duration = CalcStatus(fear_duration, self.caster, enemy)
 		})
 	end

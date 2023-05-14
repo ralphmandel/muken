@@ -9,8 +9,13 @@ LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/team_moon/ice
 LinkLuaModifier("icebreaker__modifier_illusion", "heroes/team_moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_3_modifier_skin", "heroes/team_moon/icebreaker/icebreaker_3_modifier_skin", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_mana_regen", "modifiers/_modifier_mana_regen", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
+
+  function icebreaker_3__skin:GetCastRange(vLocation, hTarget)
+    return self:GetSpecialValueFor("cast_range")
+  end
 
 -- SPELL START
 

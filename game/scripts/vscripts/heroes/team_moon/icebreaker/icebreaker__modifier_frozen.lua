@@ -11,6 +11,16 @@ function icebreaker__modifier_frozen:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  local shivas = self.caster:FindAbilityByName("icebreaker_4__shivas")
+
+  if shivas then
+    if shivas:IsTrained() then
+      if shivas:GetSpecialValueFor("special_break") == 1 then
+        AddModifier(self.parent, self.caster, self.ability, "_modifier_break", {}, false)
+      end
+    end
+  end
+
   AddStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
   self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
 
@@ -22,6 +32,7 @@ end
 
 function icebreaker__modifier_frozen:OnRemoved()
   RemoveStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
+  self.parent:RemoveModifierByNameAndCaster("_modifier_break", self.caster)
   
   if IsServer() then self:PlayEfxDestroy() end
 end

@@ -136,12 +136,15 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("icebreaker_3__skin_rank_12") then
+      if value_name == "duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_21") then
+      if value_name == "special_mp_regen" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_3__skin_rank_22") then
+      if value_name == "special_hp_regen" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_31") then
@@ -151,9 +154,11 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_41") then
+      if value_name == "special_mini_freeze" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_3__skin_rank_42") then
+      if value_name == "layers" then return 1 end
 		end
 	end
 
@@ -161,29 +166,37 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "blast_radius" then return 1 end
 
 		if caster:FindAbilityByName("icebreaker_4__shivas_rank_11") then
+      if value_name == "slow" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_4__shivas_rank_12") then
+      if value_name == "blast_speed" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_4__shivas_rank_21") then
 		end
 
     if caster:FindAbilityByName("icebreaker_4__shivas_rank_22") then
+      if value_name == "special_cooldown" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_4__shivas_rank_31") then
+      if value_name == "special_break" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_4__shivas_rank_32") then
+      if value_name == "special_heal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_4__shivas_rank_41") then
+      if value_name == "hypo_stack" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_4__shivas_rank_42") then
+      if value_name == "special_fear_duration" then return 1 end
 		end
 	end
 
@@ -280,9 +293,15 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     return 4
   end
 
+  if value_name == "frozen_duration" then
+    if caster:FindAbilityByName("icebreaker_4__shivas_rank_31") then
+      return 6
+		end
+    return 4
+  end
+
   if value_name == "hypo_as" then return 0.15 end
   if value_name == "max_hypo_stack" then return 10 end
-  if value_name == "frozen_duration" then return 4 end
   if value_name == "special_copy_duration" then return 5 end
   if value_name == "special_copy_incoming" then return 500 end
   if value_name == "special_copy_outgoing" then return 25 end
@@ -350,18 +369,46 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__skin" then
-		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 24 end
-    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
+		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		
+    if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("icebreaker_3__skin_rank_11") then
+        return 20
+      end
+      return 24
+    end
 
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cast_range" then return 750 + (value_level * 50) end
+
+    if value_name == "duration" then return 16 end
+    if value_name == "special_mp_regen" then return 7.5 end
+    if value_name == "special_hp_regen" then return 30 end
+    if value_name == "special_mini_freeze" then return 0.5 end
+    if value_name == "layers" then return 10 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_4__shivas" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
+
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("icebreaker_4__shivas_rank_21") then
+        return 25
+      end
+      return 35
+    end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "blast_radius" then return 700 + (value_level * 35) end
+
+    if value_name == "slow" then return 25 end
+    if value_name == "blast_speed" then return 525 end
+    if value_name == "special_cooldown" then return 3 end
+    if value_name == "special_break" then return 1 end
+    if value_name == "special_heal" then return 250 end
+    if value_name == "hypo_stack" then return 10 end
+    if value_name == "special_fear_duration" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "icebreaker_5__blink" then

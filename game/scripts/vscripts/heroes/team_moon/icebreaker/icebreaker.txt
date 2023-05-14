@@ -335,8 +335,23 @@
 			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		    "FIELD_FLOAT"
+				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_mp_regen"	  "0"
+			}
+      "17"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_hp_regen"	  "0"
+			}
+      "18"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_mini_freeze"	"0"
 			}
 		}
 	}
@@ -351,17 +366,34 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
 		"AbilitySpecial"
 		{
+      "01"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"hypo_stack"	    "5"
+			}
+      "02"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"slow"	          "50"
+			}
+      "02"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"blast_speed"	    "350"
+			}
+      "03"
+			{
+				"var_type"        "FIELD_FLOAT"
+				"blast_radius"	  "1 2 3 4 5 6 7 8 9 10 11"
+			}
       "10"
 			{
 				"var_type"		    "FIELD_FLOAT"
@@ -391,6 +423,26 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_cooldown"	    "0"
+			}
+      "17"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_break"   	    "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_heal"   	      "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_fear_duration" "0"
 			}
 		}
 	}

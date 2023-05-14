@@ -213,7 +213,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
         self.spell_amp = self:GetSpecialValueFor("spell_amp")
 				self.mana_regen = self:GetSpecialValueFor("mana_regen")
-				self:SetMPRegenState(0)
+				self.mp_regen_state = 1
 
 				-- CON
 				self.heal_amp = self:GetSpecialValueFor("heal_amp")
@@ -327,7 +327,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			return value
 		end
 
----- ATTRIBUTES POINTS
+-- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
 		function base_stats:IncrementSpenderPoints(pts)
 			if IsServer() then
@@ -562,8 +562,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return cost
     end
 
----- ATTRIBUTES UTILS
-	-- UTIL STR
+-- ATTRIBUTES UTILS
+	-- STR
 
     function base_stats:GetTotalPhysicalDamagePercent()
       return 100 + ((self.stat_total["STR"] + 1) * 5)
@@ -583,7 +583,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return result
 		end
 
-	-- UTIL AGI
+	-- AGI
 
     function base_stats:GetBaseMS()
       return self.base_movespeed + (self.movespeed * self.stat_base["AGI"])
@@ -657,7 +657,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
-	-- UTIL INT
+	-- INT
 
     function base_stats:GetTotalMagicalDamagePercent()
       return 100 + ((self.stat_total["INT"] + 1) * self.spell_amp)
@@ -686,43 +686,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			return bonus * 0.01
 		end
 
-		function base_stats:SetMPRegenState(stack)
-			if not self.mp_regen_stack then self.mp_regen_stack = 1 end
-			self.mp_regen_stack = self.mp_regen_stack + stack
-			
-			if self.mp_regen_stack > 0 then
-				self.mp_regen_state = 1
-				self:GetCaster():SetBaseManaRegen(10)
-			else
-				self.mp_regen_state = 0
-				self:GetCaster():SetBaseManaRegen(0)
-			end
-		end
-
-	-- UTIL CON
-
-		function base_stats:SetHPRegenState(bool)
-			if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
-		end
-
-  -- RES
-
-    function base_stats:GetStatusResistPercent()
-      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
-      return (self.stat_total["RES"] + 1) * self.status_resist
-    end
-
-	-- UTIL LCK
-
-		function base_stats:GetCriticalChance()
-      if self.force_crit_chance then return self.force_crit_chance end
-
-      local value = (self.stat_total["LCK"] + 1) * self.critical_chance
-      local calc = (value * 6) / (1 +  (value * 0.06))
-      return calc
-		end
-
-  -- UTIL DEX
+  -- DEX/DEF
 
     function base_stats:GetMissPercent()
       local caster = self:GetCaster()
@@ -741,7 +705,34 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return (self.stat_total["DEX"] + 11) * self.health_regen
     end
 
-	-- UTIL MND
+    function base_stats:SetHPRegenState(bool)
+      if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
+    end
+
+  -- RES/REC
+
+    function base_stats:GetStatusResistPercent()
+      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
+      return (self.stat_total["RES"] + 1) * self.status_resist
+    end
+
+    function base_stats:GetBonusMPRegen()
+      local caster = self:GetCaster()
+      local mana_regen = 10 + ((self.stat_total["REC"] + 1) * self.mana_regen)
+
+      local mods = caster:FindAllModifiersByName("_modifier_mana_regen")
+      for _,modifier in pairs(mods) do
+        mana_regen = mana_regen + modifier:GetStackCount()
+      end
+
+      return mana_regen
+    end
+
+    function base_stats:SetMPRegenState(bool)
+      if bool == true then self.mp_regen_state = 1 else self.mp_regen_state = 0 end
+    end
+
+  -- MND/LCK
 
     function base_stats:GetTotalHealPowerPercent()
       return 100 + ((self.stat_total["MND"] + 1) * self.heal_power)
@@ -759,15 +750,23 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			return (self.stat_total["MND"] + 1) * self.buff_amp * 0.01
 		end
 
-	-- if caster:HasModifier("ancient_1_modifier_passive")
-	-- and damage_type == DAMAGE_TYPE_PHYSICAL then
-	-- 	local chance_base = 0.25
-	-- 	local chance_luck = self:GetCritChance() * 0.005
-	-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
-	-- 	local time = 0
+    function base_stats:GetCriticalChance()
+      if self.force_crit_chance then return self.force_crit_chance end
 
-	-- 	if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
+      local value = (self.stat_total["LCK"] + 1) * self.critical_chance
+      local calc = (value * 6) / (1 +  (value * 0.06))
+      return calc
+		end
 
-	-- 	local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
-	-- 	total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
-	-- end
+-- if caster:HasModifier("ancient_1_modifier_passive")
+-- and damage_type == DAMAGE_TYPE_PHYSICAL then
+-- 	local chance_base = 0.25
+-- 	local chance_luck = self:GetCritChance() * 0.005
+-- 	local crit_dmg = ((self.critical_damage - 100) * 3) * 0.01
+-- 	local time = 0
+
+-- 	if self.stat_total["AGI"] > 0 then time = self.stat_total["AGI"] / 120 end
+
+-- 	local agi_crit_dmg = (time * (1 + (crit_dmg * chance_base) + (crit_dmg * chance_luck))) / (chance_base + chance_luck)
+-- 	total_crit_dmg = math.floor((crit_dmg + agi_crit_dmg) * 100) + 100
+-- end
