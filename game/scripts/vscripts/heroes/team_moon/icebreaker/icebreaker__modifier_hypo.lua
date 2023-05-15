@@ -64,6 +64,15 @@ function icebreaker__modifier_hypo:OnIntervalThink()
 end
 
 function icebreaker__modifier_hypo:OnStackCountChanged(old)
+  local aura_effect = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
+  if aura_effect then
+    local min_stack = aura_effect:GetAbility():GetSpecialValueFor("hypo_min_stack")
+    if self:GetStackCount() < min_stack then
+      if IsServer() then self:SetStackCount(min_stack) end
+      return
+    end
+  end
+  
   if self:GetStackCount() ~= old then
     if self:GetStackCount() == 0 then self:Destroy() return end
 

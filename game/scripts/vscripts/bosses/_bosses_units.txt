@@ -122,7 +122,7 @@
 				"STR" "0"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "4"
+				"CON" "0"
 			}
 
 			"Creature"
@@ -137,46 +137,46 @@
 			}			
 		}
 
-		"icebreaker_shard"
+    "icebreaker_shard"
 		{
-			"Model"						"models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
+			"Model"						  "models/items/tuskarr/sigil/boreal_sigil/boreal_sigil.vmdl"
 			"BaseClass"					"npc_dota_creature"
 			"SoundSet"					"n_creep_Melee"
-			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"0"
+			"GameSoundsFile"		"soundevents/game_sounds_creeps.vsndevts"
+			"Level"						  "0"
 			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
-			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_FLY"
+			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_GROUND"
 			"AttackCapabilities"				"DOTA_UNIT_CAP_NO_ATTACK"
 			"AttackRange"					"0"
 			"ProjectileModel"			""
 			"ProjectileSpeed"			"0"
 			"HealthBarOffset"			"100"
-			"ModelScale" 				"1"
+			"ModelScale" 				  "1"
 
-			"Ability7"					"_void"
-			"Ability8"					"base_stats"
+			"Ability7"					  "_void"
+			"Ability8"					  "base_stats"
 
-			"RingRadius"				"100"
-			"BountyXP"					"0"
-			"TeamName"					"DOTA_TEAM_NEUTRALS"
+			"RingRadius"				    "100"
+			"BountyXP"					    "0"
+			"TeamName"					    "DOTA_TEAM_NEUTRALS"
 			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
 			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 			"IsNeutralUnitType" 		"1"
-			"WakesNeutrals" 			"1"
+			"WakesNeutrals" 			  "1"
 
-			"ArmorPhysical"				"0"
-			"MagicalResistance"        	"0"
-			"StatusHealth"				"750"
+			"ArmorPhysical"				  "0"
+			"MagicalResistance"     "0"
+			"StatusHealth"				  "1"
 			"StatusHealthRegen"			"0"
-			"StatusMana"				"0" //600
-			"StatusManaRegen"			"0"
-			"VisionDaytimeRange"		"300"
-			"VisionNighttimeRange"		"500"
+			"StatusMana"				    "0" //600
+			"StatusManaRegen"			  "0"
+			"VisionDaytimeRange"		"0"
+			"VisionNighttimeRange"	"0"
 			"MovementSpeed"           	"9999"
-			"AttackDamageMin"			"0"
-			"AttackDamageMax"			"0"
-			"AttackRate"				"1.2"
+			"AttackDamageMin"			  "0"
+			"AttackDamageMax"			  "0"
+			"AttackRate"				    "1.2"
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"
 
@@ -234,8 +234,8 @@
 			"StatusHealthRegen"			"0"
 			"StatusMana"				    "0" //600
 			"StatusManaRegen"			  "0"
-			"VisionDaytimeRange"		"350"
-			"VisionNighttimeRange"	"250"
+			"VisionDaytimeRange"		"0"
+			"VisionNighttimeRange"	"0"
 			"MovementSpeed"           	"9999"
 			"AttackDamageMin"			  "0"
 			"AttackDamageMax"			  "0"
@@ -248,7 +248,7 @@
 				"STR" "0"
 				"AGI" "0"
 				"INT" "0"
-				"CON" "4"
+				"CON" "0"
 			}
 
 			"Creature"

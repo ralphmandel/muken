@@ -12,8 +12,10 @@ function druid_3_modifier_totem:OnCreated(kv)
 
   self.spike_damage = self.ability:GetSpecialValueFor("special_spike_damage")
   self.flame_duration = self.ability:GetSpecialValueFor("special_flame_duration")
-  self.hits = self.ability:GetSpecialValueFor("hits")
+  self.hits = self.ability:GetSpecialValueFor("hits") * 4
   self.radius = self.ability:GetAOERadius()
+
+  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
 
   Timers:CreateTimer(FrameTime(), function()
     self.min_health = self.hits
@@ -36,6 +38,8 @@ function druid_3_modifier_totem:OnRemoved()
     self.parent:StopSound("Igneo.Burn.Loop")
 	end
 
+  RemoveBonus(self.ability, "_1_CON", self.parent)
+
 	if self.ambient then ParticleManager:DestroyParticle(self.ambient, false) end
 	if self.burn_particle then ParticleManager:DestroyParticle(self.burn_particle, false) end
 	if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
@@ -45,6 +49,7 @@ end
 
 function druid_3_modifier_totem:CheckState()
 	local state = {
+    [MODIFIER_STATE_MAGIC_IMMUNE] = true,
     [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true
@@ -55,16 +60,24 @@ end
 
 function druid_3_modifier_totem:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
-		MODIFIER_PROPERTY_VISUAL_Z_DELTA,
-		MODIFIER_PROPERTY_MOVESPEED_LIMIT
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+    MODIFIER_PROPERTY_VISUAL_Z_DELTA,
+    MODIFIER_PROPERTY_BONUS_DAY_VISION,
+    MODIFIER_PROPERTY_BONUS_NIGHT_VISION
 	}
 
 	return funcs
+end
+
+function druid_3_modifier_totem:GetModifierHealthBarPips(keys)
+	return self:GetParent():GetMaxHealth() / 4
+	--return self:GetParent():GetMaxHealth() / (self:GetParent():GetMaxHealth() / 5)
 end
 
 function druid_3_modifier_totem:OnDeath(keys)
@@ -73,8 +86,13 @@ end
 
 function druid_3_modifier_totem:OnAttackLanded(keys)
 	if keys.target ~= self.parent then return end
+  local hit = 1
 
-	self.min_health = self.min_health - 1
+  if keys.attacker:IsHero() then
+    if keys.attacker:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then hit = 4 else hit = 2 end
+  end
+
+  self.min_health = self.min_health - hit
 end
 
 function druid_3_modifier_totem:GetDisableHealing()
@@ -89,12 +107,20 @@ function druid_3_modifier_totem:GetModifierExtraHealthBonus()
 	return self.hits - 1
 end
 
+function druid_3_modifier_totem:GetModifierMoveSpeed_Limit()
+	return self:GetAbility():GetSpecialValueFor("ms_limit")
+end
+
 function druid_3_modifier_totem:GetVisualZDelta()
 	return 150
 end
 
-function druid_3_modifier_totem:GetModifierMoveSpeed_Limit()
-	return self:GetAbility():GetSpecialValueFor("ms_limit")
+function druid_3_modifier_totem:GetBonusDayVision()
+	return self.radius
+end
+
+function druid_3_modifier_totem:GetBonusNightVision()
+	return self.radius
 end
 
 function druid_3_modifier_totem:OnIntervalThink()
