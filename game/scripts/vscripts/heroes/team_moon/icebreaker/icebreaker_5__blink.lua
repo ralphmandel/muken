@@ -226,4 +226,5 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     local particle = "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
     local effect_cast = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+    ParticleManager:SetParticleControl(effect_cast, 3, target:GetOrigin())
   end

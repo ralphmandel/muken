@@ -752,8 +752,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
     function base_stats:GetCriticalChance()
       if self.force_crit_chance then return self.force_crit_chance end
-
+      local caster = self:GetCaster()
       local value = (self.stat_total["LCK"] + 1) * self.critical_chance
+
+      if caster:HasModifier("ancient_1_modifier_passive") then
+        value = (15 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
+      end
+
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc
 		end

@@ -148,9 +148,12 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_31") then
+      if value_name == "special_block" then return 1 end
 		end
 
     if caster:FindAbilityByName("icebreaker_3__skin_rank_32") then
+      if value_name == "special_spread_radius" then return 1 end
+      if value_name == "special_spread_stack" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_3__skin_rank_41") then
@@ -265,6 +268,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 
     if caster:FindAbilityByName("icebreaker_u__zero_rank_32") then
       if value_name == "special_radius" then return 1 end
+      if value_name == "special_fly_vision" then return 1 end
 		end
 
 		if caster:FindAbilityByName("icebreaker_u__zero_rank_41") then
@@ -392,6 +396,9 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "duration" then return 16 end
     if value_name == "special_mp_regen" then return 7.5 end
     if value_name == "special_hp_regen" then return 30 end
+    if value_name == "special_block" then return 1 end
+    if value_name == "special_spread_radius" then return 350 end
+    if value_name == "special_spread_stack" then return 1 end
     if value_name == "special_mini_freeze" then return 0.5 end
     if value_name == "layers" then return 10 end
 	end
@@ -427,8 +434,8 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
 		if value_name == "AbilityCooldown" then return 15 - (value_level * 0.5) end
-
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
     if value_name == "special_break_hypo_stack" then return 1 end
     if value_name == "special_spread_radius" then return 350 end
     if value_name == "special_spread_stack" then return 1 end
@@ -457,6 +464,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "hypo_min_stack" then return 3 end
     if value_name == "special_meteor_damage" then return 50 end
     if value_name == "special_radius" then return 25 end
+    if value_name == "special_fly_vision" then return 1 end
     if value_name == "special_immunity" then return 1 end
     if value_name == "special_res_allies" then return 1 end
 	end

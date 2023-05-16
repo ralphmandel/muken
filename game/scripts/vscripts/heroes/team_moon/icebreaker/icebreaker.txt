@@ -340,18 +340,33 @@
 			}
       "16"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_mp_regen"	  "0"
+				"var_type"		           "FIELD_FLOAT"
+				"special_mp_regen"	    "0"
 			}
       "17"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_hp_regen"	  "0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_hp_regen"	    "0"
 			}
       "18"
 			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_mini_freeze"	"0"
+				"var_type"		          "FIELD_FLOAT"
+				"special_block"     	  "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_spread_radius" "0"
+			}
+      "19"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_spread_stack"  "0"
+			}
+      "20"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_mini_freeze"	  "0"
 			}
 		}
 	}
@@ -636,6 +651,11 @@
 			{
 				"var_type"		          "FIELD_FLOAT"
 				"special_radius"	      "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_fly_vision"	  "0"
 			}
       "18"
 			{

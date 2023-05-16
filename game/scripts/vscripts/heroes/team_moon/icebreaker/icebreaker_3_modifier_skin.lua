@@ -16,6 +16,8 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
 
   self.hp_regen = self.ability:GetSpecialValueFor("special_hp_regen")
 
+  self:SpreadHypo()
+
 	if IsServer() then
 		self:SetStackCount(self.ability:GetSpecialValueFor("layers"))
 		self:PlayEfxStart()
@@ -23,6 +25,15 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
 end
 
 function icebreaker_3_modifier_skin:OnRefresh(kv)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_mana_regen", self.ability)
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_mana_regen", {
+    amount = self.ability:GetSpecialValueFor("special_mp_regen")
+  }, false)
+
+  self.hp_regen = self.ability:GetSpecialValueFor("special_hp_regen")
+
+  self:SpreadHypo()
+
 	if IsServer() then
 		self:SetStackCount(self.ability:GetSpecialValueFor("layers"))
 		self:PlayEfxStart()
@@ -30,6 +41,8 @@ function icebreaker_3_modifier_skin:OnRefresh(kv)
 end
 
 function icebreaker_3_modifier_skin:OnRemoved()
+  if self:GetStackCount() < 1 then self:SpreadHypo() end
+
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_mana_regen", self.ability)
   if IsServer() then self.parent:EmitSound("Hero_Lich.IceAge.Tick") end
 end
@@ -39,7 +52,8 @@ end
 function icebreaker_3_modifier_skin:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK
+		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+    MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
 	}
 
 	return funcs
@@ -50,8 +64,12 @@ function icebreaker_3_modifier_skin:GetModifierConstantHealthRegen(keys)
 end
 
 function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
-  if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
-	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
+	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then
+    if self.ability:GetSpecialValueFor("special_block") == 1 then
+      return keys.damage
+    end
+    return 0
+  end
 
   AddModifier(keys.attacker, self.caster, self.ability, "icebreaker__modifier_hypo", {
     stack = self.ability:GetSpecialValueFor("hypo_stack")
@@ -73,7 +91,33 @@ function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
   return keys.damage
 end
 
+function icebreaker_3_modifier_skin:GetModifierMagical_ConstantBlock(keys)
+  if self.ability:GetSpecialValueFor("special_block") == 1 then
+    return keys.damage
+  end
+  return 0
+end
+
 -- UTILS -----------------------------------------------------------
+
+function icebreaker_3_modifier_skin:SpreadHypo()
+  local spread_radius = self.ability:GetSpecialValueFor("special_spread_radius")
+  if spread_radius == 0 then return end
+
+  self:PlayEfxSpread(self.parent)
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, spread_radius,
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+    0, 0, false
+  )
+
+  for _,enemy in pairs(enemies) do
+    if IsServer() then enemy:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
+    AddModifier(enemy, self.caster, self.ability, "icebreaker__modifier_hypo", {
+      stack = self.ability:GetSpecialValueFor("special_spread_stack")
+    }, false)
+  end
+end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -92,4 +136,11 @@ end
 
 function icebreaker_3_modifier_skin:PlayEfxBlock(target)
   if IsServer() then target:EmitSound("Hero_Lich.IceAge.Damage") end
+end
+
+function icebreaker_3_modifier_skin:PlayEfxSpread(target)
+  local particle = "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
+  local effect_cast = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
+  ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+  ParticleManager:SetParticleControl(effect_cast, 3, target:GetOrigin())
 end

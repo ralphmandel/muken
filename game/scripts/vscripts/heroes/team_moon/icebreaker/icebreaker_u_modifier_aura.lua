@@ -81,6 +81,10 @@ function icebreaker_u_modifier_aura:CheckState()
 		[MODIFIER_STATE_EVADE_DISABLED] = true
 	}
 
+  if self:GetAbility():GetSpecialValueFor("special_fly_vision") == 1 then
+		table.insert(state, MODIFIER_STATE_FORCED_FLYING_VISION, true)
+	end
+
 	return state
 end
 
