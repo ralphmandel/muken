@@ -75,6 +75,7 @@ function Precache( context )
     PrecacheResource( "particle", "particles/items_fx/abyssal_blink_start.vpcf", context )
     PrecacheResource( "particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context )
     PrecacheResource( "particle", "particles/status_fx/status_effect_doom.vpcf", context )
+    PrecacheResource( "particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context )
 
   -- Models can also be precached by folder or individually
     -- PrecacheModel should generally used over PrecacheResource for individual models

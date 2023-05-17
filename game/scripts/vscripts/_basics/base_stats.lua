@@ -204,8 +204,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				self.base_movespeed = self:GetSpecialValueFor("base_movespeed")
 				self.attack_speed = self:GetSpecialValueFor("attack_speed")
 				self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
-				self.attack_time = self.base_attack_time
-				self.bonus_attack_time = 0
         self.bonus_movespeed = {}
 
 				-- INT
@@ -585,6 +583,23 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 	-- AGI
 
+    function base_stats:GetBAT()
+      local caster = self:GetCaster()
+      local amount = self.base_attack_time
+
+      local bat_increased = caster:FindAllModifiersByName("_modifier_bat_increased")
+      for _,modifier in pairs(bat_increased) do
+        amount = amount + (modifier:GetStackCount() * 0.01)
+      end
+
+      local bat_decreased = caster:FindAllModifiersByName("_modifier_bat_decreased")
+      for _,modifier in pairs(bat_decreased) do
+        amount = amount - (modifier:GetStackCount() * 0.01)
+      end
+
+      return amount
+    end
+
     function base_stats:GetBaseMS()
       return self.base_movespeed + (self.movespeed * self.stat_base["AGI"])
     end
@@ -631,31 +646,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
       return 1 + (amount * 0.01)
     end
-
-		function base_stats:SetBaseAttackTime(bonus)
-			if IsServer() then
-				self.bonus_attack_time = bonus
-				self:UpdateBaseAttackTime()
-			end
-		end
-
-		function base_stats:UpdateBaseAttackTime()
-			if IsServer() then
-				local caster = self:GetCaster()
-				local attack_time = 0
-				local ancient_mod = caster:FindModifierByName("ancient_1_modifier_passive")
-
-				if ancient_mod then
-					if ancient_mod:GetStackCount() > 0 then attack_time = 2.5 else attack_time = 1 end
-				elseif caster:GetUnitName() == "tribal_ward" then
-					attack_time = 1.5
-				else
-					attack_time = self.base_attack_time
-				end
-
-				self.attack_time = attack_time + self.bonus_attack_time
-			end
-		end
 
 	-- INT
 

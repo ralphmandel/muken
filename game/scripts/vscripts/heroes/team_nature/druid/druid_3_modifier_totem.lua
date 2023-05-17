@@ -49,7 +49,6 @@ end
 
 function druid_3_modifier_totem:CheckState()
 	local state = {
-    [MODIFIER_STATE_MAGIC_IMMUNE] = true,
     [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true

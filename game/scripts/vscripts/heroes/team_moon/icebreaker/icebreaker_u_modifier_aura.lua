@@ -75,7 +75,6 @@ end
 
 function icebreaker_u_modifier_aura:CheckState()
 	local state = {
-    [MODIFIER_STATE_MAGIC_IMMUNE] = true,
     [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true

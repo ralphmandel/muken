@@ -393,7 +393,7 @@ function icebreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cast_range" then return 750 + (value_level * 50) end
 
-    if value_name == "duration" then return 16 end
+    if value_name == "duration" then return 14 end
     if value_name == "special_mp_regen" then return 7.5 end
     if value_name == "special_hp_regen" then return 30 end
     if value_name == "special_block" then return 1 end

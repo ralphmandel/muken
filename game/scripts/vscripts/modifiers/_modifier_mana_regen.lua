@@ -2,7 +2,7 @@ _modifier_mana_regen = class({})
 
 --------------------------------------------------------------------------------
 function _modifier_mana_regen:IsPurgable()
-	return true
+	return false
 end
 
 function _modifier_mana_regen:IsHidden()

@@ -196,7 +196,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierBaseAttackTimeConstant()
-    return self.ability.attack_time
+    return self.ability:GetBAT()
   end
 
   function base_stats_mod:OnRespawn(keys)

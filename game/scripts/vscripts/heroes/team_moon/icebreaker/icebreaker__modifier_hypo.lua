@@ -42,8 +42,8 @@ end
 function icebreaker__modifier_hypo:OnRemoved()
   if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
   RemoveStatusEfx(self.ability, "icebreaker__modifier_hypo_status_efx", self.caster, self.parent)
-  BaseStats(self.parent):SetBaseAttackTime(0)
 
+  self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_percent_movespeed_debuff", self.caster)
   self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo_dps", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_silence", self.caster)
@@ -57,6 +57,15 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function icebreaker__modifier_hypo:OnIntervalThink()
+  local aura_effect = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
+  if aura_effect then
+    local min_stack = aura_effect:GetAbility():GetSpecialValueFor("hypo_min_stack")
+    if self:GetStackCount() == min_stack then
+      self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
+      return
+    end
+  end
+
   if IsServer() then
     self:DecrementStackCount()
     self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
@@ -72,11 +81,15 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
       return
     end
   end
-  
+
   if self:GetStackCount() ~= old then
     if self:GetStackCount() == 0 then self:Destroy() return end
 
-    BaseStats(self.parent):SetBaseAttackTime(self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_as"))
+    self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
+      amount = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_as")
+    }, false)
+
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
     AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
