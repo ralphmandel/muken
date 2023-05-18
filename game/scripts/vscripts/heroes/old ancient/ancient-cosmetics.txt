@@ -1,6 +1,6 @@
 "Cosmetics"
 {
-    "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl" "nil"
+  "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl" "nil"
 
 	"models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl" "nil"
 

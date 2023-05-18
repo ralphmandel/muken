@@ -87,6 +87,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_fraction["plus_up"][stat] = {}
           self.random_stats[index] = stat
           index = index + 1
+          self:UpdatePanoramaStat(stat)
 				end
 
 				for _, stat in pairs(self.stats_secondary) do
@@ -99,6 +100,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self.stat_fraction["plus_up"][stat] = {}
           self.random_stats[index] = stat
           index = index + 1
+          self:UpdatePanoramaStat(stat)
 				end
 
 
@@ -578,9 +580,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
       if result == nil then
         result = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
-        local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
-        for _,modifier in pairs(crit_damage) do
-          result = result + modifier:GetStackCount()
+
+        if caster:HasModifier("ancient_1_modifier_passive") == false or caster:GetHealthPercent() >= 25 then
+          local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
+          for _,modifier in pairs(crit_damage) do
+            result = result + modifier:GetStackCount()
+          end
         end
       end
 
@@ -754,7 +759,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       local value = (self.stat_total["LCK"] + 1) * self.critical_chance
 
       if caster:HasModifier("ancient_1_modifier_passive") then
-        value = (15 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
+        value = (25 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
       end
 
       local calc = (value * 6) / (1 +  (value * 0.06))
