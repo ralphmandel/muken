@@ -233,9 +233,14 @@ function CalcStatus(duration, caster, target)
     if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetBuffAmp()) end
   else
     if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetDebuffAmp()) end
-    if BaseStats(target) then duration = duration * (1 - (BaseStats(target):GetStatusResistPercent() * 0.01)) end
+    CalcStatusResistance(duration, target)
   end
   
+  return duration
+end
+
+function CalcStatusResistance(duration, target)
+  if BaseStats(target) then duration = duration * (1 - (BaseStats(target):GetStatusResistPercent() * 0.01)) end
   return duration
 end
 

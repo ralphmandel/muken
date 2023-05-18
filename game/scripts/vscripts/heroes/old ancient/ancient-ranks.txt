@@ -1,0 +1,137 @@
+"TalentTree_ancient"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_elder_titan"
+	{
+		"ancient_1__berserk"
+		{
+			"0"
+			{
+				"1"   "ancient_1__berserk_rank_11"
+			}
+			"1"
+			{
+				"1"   "ancient_1__berserk_rank_21"
+			}
+			"2"
+			{
+				"1"   "ancient_1__berserk_rank_31"
+			}
+			"3"
+			{
+				"1"   "ancient_1__berserk_rank_41"
+			}
+		}
+		"ancient_2__leap"
+		{
+			"0"
+			{
+				"1"   "ancient_2__leap_rank_11"
+			}
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "ancient_2__leap_rank_31"
+				"2"   "ancient_2__leap_rank_32"
+			}
+			"3"
+			{
+				"1"   "ancient_2__leap_rank_41"
+			}
+		}
+		"ancient_3__walk"
+		{
+			"0"
+			{
+				"1"   "ancient_3__walk_rank_11"
+			}
+			"1"
+			{
+				"1"   "ancient_3__walk_rank_21"
+			}
+			"2"
+			{
+				"1"   "ancient_3__walk_rank_31"
+			}
+			"3"
+			{
+				"1"   "ancient_3__walk_rank_41"
+				"2"   "ancient_3__walk_rank_42"
+			}
+		}
+		"ancient_4__lotus"
+		{
+			"0"
+			{
+				"1"   "ancient_4__lotus_rank_11"
+			}
+			"1"
+			{
+				"1"   "ancient_4__lotus_rank_21"
+				"2"   "ancient_4__lotus_rank_22"
+			}
+			"2"
+			{
+				"1"   "ancient_4__lotus_rank_31"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"ancient_5__heal"
+		{
+			"0"
+			{
+				"1"   "ancient_5__heal_rank_11"
+				"2"   "ancient_5__heal_rank_12"
+			}
+			"1"
+			{
+				"1"   "ancient_5__heal_rank_21"
+				"2"   "ancient_5__heal_rank_22"
+			}
+			"2"
+			{
+				"1"   "empty"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+		}
+		"ancient_u__final"
+		{
+			"0"
+			{
+				"1"   "ancient_u__final_rank_11"
+				"2"   "ancient_u__final_rank_12"
+			}
+			"1"
+			{
+				"1"   "ancient_u__final_rank_21"
+			}
+			"2"
+			{
+				"1"   "ancient_u__final_rank_31"
+			}
+			"3"
+			{
+				"1"   "ancient_u__final_rank_41"
+			}
+		}
+	}	
+}

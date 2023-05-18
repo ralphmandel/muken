@@ -7,21 +7,21 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"slot_1"
-			"Ability2"						"slot_2"
-			"Ability3"						"slot_3"
-			"Ability4"						"slot_4"
-			"Ability5"						"slot_5"
-			"Ability6"						"slot_6"
+			"Ability1"						"ancient_1__power"
+			"Ability2"						"ancient_2__leap"
+			"Ability3"						"ancient_3__walk"
+			"Ability4"						"ancient_4__flesh"
+			"Ability5"						"ancient_5__petrify"
+			"Ability6"						"ancient_u__final"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"ancient_1__berserk"
-			"Ability11"						"ancient_2__leap"
-			"Ability12"						"ancient_3__walk"
-			"Ability13"						"ancient_4__lotus"
-			"Ability14"						"ancient_5__heal"
-			"Ability15"						"ancient_u__final"
+			"Ability10"						"_channel"
+			"Ability11"						"_void"
+			"Ability12"						"ancient__precache"
+			"Ability13"						"null"
+			"Ability14"						"null"
+			"Ability15"						"null"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"_channel"
-			"Ability31"						"_void"
-			"Ability32"						"ancient__precache"
+			"Ability30"						"null"		
+			"Ability31"						"null"		
+			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -54,8 +54,8 @@
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
-		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1000"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
 
 		//STRENGTH
 			"AttackDamageMax"			"45"
@@ -71,7 +71,7 @@
 			"StatusHealthRegen"        	"0"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
-			"StatusMana"              	"500"
+			"StatusMana"              	"0"
 			"StatusManaRegen"          	"0"
 	}
 }

@@ -573,9 +573,15 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
     function base_stats:GetCriticalDamage()
+      local caster = self:GetCaster()
       local result = self.force_crit_damage
+
       if result == nil then
         result = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
+        local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
+        for _,modifier in pairs(crit_damage) do
+          result = result + modifier:GetStackCount()
+        end
       end
 
       return result
@@ -714,6 +720,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       for _,modifier in pairs(mods) do
         mana_regen = mana_regen + modifier:GetStackCount()
       end
+
+      if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
 
       return mana_regen
     end
