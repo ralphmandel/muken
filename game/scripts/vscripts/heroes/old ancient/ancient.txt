@@ -119,37 +119,37 @@
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"channel_time"  "4.5"
 			}
-            "02"
+      "02"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"radius"        "425"
 			}
-            "03"
+      "03"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"tick"          "1.75"
 			}
-            "04"
+      "04"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"max_ms"        "175"
 			}
-            "05"
+      "05"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"debuff_duration"   "3.5"
 			}
-            "06"
+      "06"
 			{
 				"var_type"      "FIELD_FLOAT"
 				"block"         "50"
 			}
-            "07"
+      "07"
 			{
 				"var_type"      "FIELD_FLOAT"
 				"energy_loss"   "1.5"

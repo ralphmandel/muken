@@ -19,7 +19,7 @@
 			"Ability10"						"_channel"
 			"Ability11"						"_void"
 			"Ability12"						"ancient__precache"
-			"Ability13"						"null"
+			"Ability13"						"ancient__jump"
 			"Ability14"						"null"
 			"Ability15"						"null"
 			"Ability16"						"null"

@@ -19,8 +19,14 @@ function ancient_2_modifier_leap:OnCreated(kv)
   self.interval_pre = interval_total * gesture_hit_point
   self.interval_pos = interval_total - self.interval_pre
   self.speed = gesture_time / interval_total
-  self.state = STATE_PRE_HIT
   self.end_combo = false
+
+  if self.ability:GetCurrentAbilityCharges() == 1 then
+    self.state = STATE_POS_HIT
+  else
+    self.state = STATE_PRE_HIT
+  end
+
 
   if IsServer() then self:OnIntervalThink() end
 end

@@ -58,11 +58,11 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	end
 
--- SPELL START
-
   function icebreaker_5__blink:GetIntrinsicModifierName()
     return "icebreaker_5_modifier_passive"
   end
+
+-- SPELL START
 
   function icebreaker_5__blink:OnAbilityPhaseStart()
 		local caster = self:GetCaster()

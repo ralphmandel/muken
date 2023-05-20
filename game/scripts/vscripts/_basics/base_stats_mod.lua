@@ -181,13 +181,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierMoveSpeed_Limit()
-    local min = 50
-    local max = 2000
-    local amount = math.floor((self.ability:GetBaseMS() - min) * self.ability:GetPercentMS()) + self.ability:GetBonusMS() + min
-    if amount < min then amount = min end
-    if amount > max then amount = max end
-
-    return amount
+    return self:GetAbility():GetTotalMS()
   end
 
   function base_stats_mod:GetModifierAttackSpeedBonus_Constant()

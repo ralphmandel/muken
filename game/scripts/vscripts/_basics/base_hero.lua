@@ -35,9 +35,9 @@ require("internal/talent_tree")
 			end
 		end
 
-		if level == 14 then
-			--self:CheckAbilityPoints(1)
-		end
+    if level == 14 or level == 20 then
+      self:CheckAbilityPoints(1)
+    end
 	end
 
 	function base_hero:GetIntrinsicModifierName()
@@ -47,7 +47,9 @@ require("internal/talent_tree")
 -- ABILITY SETTINGS
 
 	function base_hero:OnAbilityUpgrade(ability)
-		if ability:GetCaster() == self:GetCaster() then self:CheckAbilityPoints(-1) end
+		if ability:GetCaster() == self:GetCaster() then
+      self:CheckAbilityPoints(-1)
+    end
 	end
 
 	function base_hero:CheckAbilityPoints(points)
@@ -64,7 +66,6 @@ require("internal/talent_tree")
 		end
 
 		self.skill_points = self.skill_points + points
-
 		caster:SetAbilityPoints(self.skill_points)
 
 		for i = 1, 5, 1 do

@@ -66,3 +66,9 @@ end
 function ancient__precache:Precache(context)
   PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
 end
+
+ancient__jump = class ({})
+
+function ancient__jump:Spawn()
+	if self:IsTrained() == false then self:UpgradeAbility(true) end
+end

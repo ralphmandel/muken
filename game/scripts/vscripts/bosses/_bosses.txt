@@ -112,12 +112,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_impact"		"300"
+				"damage_impact"		"250"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_sec"			"30"
+				"damage_sec"			"25"
 			}
 			"06"
 			{

@@ -658,6 +658,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       return 1 + (amount * 0.01)
     end
 
+    function base_stats:GetTotalMS()
+      local min = 50
+      local max = 2000
+      local amount = math.floor((self:GetBaseMS() - min) * self:GetPercentMS()) + self:GetBonusMS() + min
+      if amount < min then amount = min end
+      if amount > max then amount = max end
+  
+      return amount
+    end
+
 	-- INT
 
     function base_stats:GetTotalMagicalDamagePercent()

@@ -22,7 +22,8 @@ end
 -----------------------------------------------------------
 
 function _modifier_petrified_status_efx:GetStatusEffectName()
-    return "particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
+  return "particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
+  --return "particles/status_fx/status_effect_statue.vpcf"
 end
 
 function _modifier_petrified_status_efx:StatusEffectPriority()

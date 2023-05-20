@@ -151,7 +151,7 @@
 						"value"			"0"
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
-					"volume"            { "value"   "1"	}
+					"volume"            { "value"   "2"	}
 				}
 			}
 		}
