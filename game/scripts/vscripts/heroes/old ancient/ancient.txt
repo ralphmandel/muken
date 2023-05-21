@@ -256,50 +256,55 @@
 
 		"AbilitySpecial"
 		{
-            "01"
+      "01"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"energy_gain"	    "10"
+				"var_type"		      "FIELD_FLOAT"
+				"energy_gain"	      "10"
 			}
-            "02"
+      "02"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"energy_loss"	    "3"
+				"var_type"		      "FIELD_FLOAT"
+				"energy_gain_crit"	"25"
 			}
-            "03"
+      "03"
 			{
-				"var_type"		    "FIELD_FLOAT"
+				"var_type"		      "FIELD_FLOAT"
+				"energy_loss"	      "20"
+			}
+      "04"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"delay"	            "5"
+			}
+      "05"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"con_percent"	      "5"
+			}
+      "06"
+			{
+				"var_type"		      "FIELD_FLOAT"
 				"min_cost"	        "40"
 			}
-            "04"
+      "07"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"crack_time"	    "3.14"
+				"var_type"		      "FIELD_FLOAT"
+				"crack_time"	      "3.14"
 			}
-            "05"
+      "08"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"crack_width"	    "315"
+				"var_type"		      "FIELD_FLOAT"
+				"crack_width"	      "315"
 			}
-            "06"
+      "09"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_range_mult"	"300"
-			}
-            "07"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"res"	            "15"
-			}
-            "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"manacost"		    "0"
+				"var_type"		      "FIELD_FLOAT"
+				"cast_range_mult"	  "300"
 			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20"
+				"var_type"			    "FIELD_FLOAT"
+				"rank"				      "9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}

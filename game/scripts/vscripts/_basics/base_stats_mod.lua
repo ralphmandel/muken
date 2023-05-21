@@ -202,9 +202,12 @@ base_stats_mod = class ({})
 -- INT
 
   function base_stats_mod:GetModifierManaBonus()
-    if self.parent:HasModifier("ancient_1_modifier_passive") 
-    and self.parent:HasModifier("ancient_u_modifier_passive") == false then
-      return 0
+    if self.parent:HasModifier("ancient_1_modifier_passive") then
+      if self.parent:HasModifier("ancient_u_modifier_passive") then
+        return 500 + (self.ability.mana * (self.ability.stat_base["INT"]))
+      else
+        return 0
+      end
     end
     
     return self.ability.mana * (self.ability.stat_base["INT"])
