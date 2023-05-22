@@ -52,19 +52,19 @@ end
 
 function _modifier_petrified:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+    MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
 	}
 	return funcs
 end
 
-function _modifier_petrified:GetDisableHealing()
-  return 1
+function _modifier_petrified:GetModifierHPRegenAmplify_Percentage()
+  return -99999
 end
 
-function _modifier_petrified:GetModifierHPRegenAmplify_Percentage()
+function _modifier_petrified:GetModifierHealAmplify_PercentageTarget()
   return -99999
 end
 

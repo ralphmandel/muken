@@ -1,6 +1,6 @@
 ancient_2_modifier_jump = class({})
 
-function ancient_2_modifier_jump:IsHidden() return false end
+function ancient_2_modifier_jump:IsHidden() return true end
 function ancient_2_modifier_jump:IsPurgable() return false end
 function ancient_2_modifier_jump:GetPriority() return MODIFIER_PRIORITY_SUPER_ULTRA end
 

@@ -96,7 +96,7 @@ LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER
 
     if mana_burn > 0 and target:GetMana() > 0 then
       local init_mana = target:GetMana()
-      target:Script_ReduceMana(target:GetMaxMana() * mana_burn * stack * 0.01, self)
+      ReduceMana(target, self, target:GetMaxMana() * mana_burn * stack * 0.01)
       local burned_mana = init_mana - target:GetMana()
       SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, burned_mana, caster)
     end

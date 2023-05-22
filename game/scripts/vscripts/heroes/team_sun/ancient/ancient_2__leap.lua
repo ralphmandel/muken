@@ -27,7 +27,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
       return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
     end
 
-    return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
+    return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
   end
 
   function ancient_2__leap:GetCastRange(vLocation, hTarget)
@@ -44,24 +44,35 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
     self.distance = (caster:GetOrigin() - self.point):Length2D()
     self.duration = self.distance / (self:GetCastRange(nil, nil) * 1.4)
     self.height = self.distance * 0.5
+    self.interruption = false
 
     caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
 
     if self.duration < 0.4 then
       Timers:CreateTimer((self.duration), function()
-        caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-        caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
-        if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
+        if self.interruption == false then
+          caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+          caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
+          if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
+        end
       end)
     end
 
     if self.duration >= 0.5 then
       Timers:CreateTimer((0.2), function()
-        if IsServer() then caster:EmitSound("Ancient.Jump") end
+        if self.interruption == false then
+          if IsServer() then caster:EmitSound("Ancient.Jump") end
+        end
       end)
     end
 
     return true
+  end
+
+  function ancient_2__leap:OnAbilityPhaseInterrupted()
+    local caster = self:GetCaster()
+    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+    self.interruption = true
   end
 
   function ancient_2__leap:OnSpellStart()

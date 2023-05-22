@@ -42,14 +42,19 @@ end
 
 function _modifier_bleeding:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_HEALING
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+    MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 	}
 
 	return funcs
 end
 
-function _modifier_bleeding:GetDisableHealing()
-	return 1
+function _modifier_bleeding:GetModifierHPRegenAmplify_Percentage()
+  return -99999
+end
+
+function _modifier_bleeding:GetModifierHealAmplify_PercentageTarget()
+  return -99999
 end
 
 function _modifier_bleeding:OnIntervalThink()

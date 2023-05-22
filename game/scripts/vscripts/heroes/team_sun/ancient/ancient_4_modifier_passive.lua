@@ -22,6 +22,24 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function ancient_4_modifier_passive:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_STATE_CHANGED
+	}
+
+	return funcs
+end
+
+function ancient_4_modifier_passive:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+
+  RemoveBonus(self.ability, "_2_RES", self.parent)
+
+  if self.parent:PassivesDisabled() == false then
+    AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
+  end
+end
+
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------

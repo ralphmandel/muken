@@ -43,7 +43,7 @@ function ancient_1_modifier_passive:DeclareFunctions()
 end
 
 function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
-  if self:GetStackCount() == 0 and self:GetParent():GetHealthPercent() >= 25 then return 400 end
+  if self:GetStackCount() == 0 then return 400 end
   return 0
 end
 
@@ -87,7 +87,7 @@ end
 function ancient_1_modifier_passive:OnStackCountChanged(old)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
 
-  if self:GetStackCount() > 0 and self.parent:GetHealthPercent() >= 25 then
+  if self:GetStackCount() > 0 then
     AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
       amount = self.ability:GetSpecialValueFor("bat")
     }, false)

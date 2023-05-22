@@ -65,6 +65,27 @@ end
 
 function ancient__precache:Precache(context)
   PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
+  PrecacheResource("model", "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl", context)
+  PrecacheResource("model", "models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl", context)
+  PrecacheResource("model", "models/items/elder_titan/harness_of_the_soulforged_shoulder/harness_of_the_soulforged_shoulder.vmdl", context)
+  PrecacheResource("model", "models/items/elder_titan/harness_of_the_soulforged_weapon/harness_of_the_soulforged_weapon.vmdl", context)
+  PrecacheResource("model", "models/items/elder_titan/elder_titan_immortal_back/elder_titan_immortal_back.vmdl", context)
+
+  PrecacheResource("particle", "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/ancient_aura_hands.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/ancient_aura_pulses.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/flesh/ancient_flesh_lvl2.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_holy_persuasion.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_chen/chen_penitence.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_magnataur/magnataur_shockwave_cast.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/ancient_aura_alt.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/ancient_back.vpcf", context)
+  PrecacheResource("particle", "particles/ancient/ancient_weapon.vpcf", context)
 end
 
 ancient__jump = class ({})

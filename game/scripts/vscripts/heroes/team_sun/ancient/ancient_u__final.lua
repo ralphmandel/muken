@@ -16,7 +16,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
   end
 
   function ancient_u__final:GetCastRange(vLocation, hTarget)    
-    return self:GetManaCost(self:GetLevel()) * self:GetSpecialValueFor("cast_range_mult") * 0.01
+    return self:GetManaCost(self:GetLevel()) * self:GetSpecialValueFor("cast_range_mult")
   end
   
 -- SPELL START
@@ -27,7 +27,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 
   function ancient_u__final:OnAbilityPhaseStart()
     local caster = self:GetCaster()
-    self.damage = self:GetCaster():GetMana()
+    self.damage = self:GetCaster():GetMana() * self:GetSpecialValueFor("damage")
     self.distance = self:GetCastRange(self:GetCursorPosition(), nil)
 
     if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
@@ -59,6 +59,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
     if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("et_2021") end
     self:PlayEfxStart(caster_position, crack_ending, effect_delay)
     self:StopEfxPre(false)
+    self:UpdateCON()
       
     Timers:CreateTimer(effect_delay, function()
       local enemies = FindUnitsInLine(
@@ -92,7 +93,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 
   function ancient_u__final:UpdateCON()
     local caster = self:GetCaster()
-    local total_con = math.floor(caster:GetMana() * self:GetSpecialValueFor("con_percent") * 0.01)
+    local total_con = math.floor(caster:GetMana() * self:GetSpecialValueFor("con_mult"))
 
     RemoveBonus(self, "_1_CON", caster)
     AddBonus(self, "_1_CON", caster, total_con, 0, nil)

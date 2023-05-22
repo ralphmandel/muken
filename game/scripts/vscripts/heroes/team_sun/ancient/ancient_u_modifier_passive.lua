@@ -74,7 +74,7 @@ function ancient_u_modifier_passive:UpdateAmbients()
 	local ambient_back = cosmetics:GetAmbient("particles/ancient/ancient_back.vpcf")
 	local ambient_weapon = cosmetics:GetAmbient("particles/ancient/ancient_weapon.vpcf")
 
-	local value = self.parent:GetMana()
+	local value = self.parent:GetMana() * 2.5
 	if self.ability.casting == true then value = 0 end
 
 	if self.ambient_aura then ParticleManager:SetParticleControl(self.ambient_aura, 1, Vector(value, 0, 0)) end

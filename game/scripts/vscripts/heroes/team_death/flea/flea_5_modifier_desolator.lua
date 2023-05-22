@@ -61,7 +61,6 @@ end
 function flea_5_modifier_desolator:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
-		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
@@ -70,10 +69,6 @@ end
 
 function flea_5_modifier_desolator:GetModifierIgnorePhysicalArmor()
 	return 1
-end
-
-function flea_5_modifier_desolator:GetDisableHealing()
-	return self:GetAbility():GetSpecialValueFor("special_heal")
 end
 
 function flea_5_modifier_desolator:OnTakeDamage(keys)

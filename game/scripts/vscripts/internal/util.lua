@@ -293,6 +293,11 @@ function IsMetamorphosis(ability_name, target)
   return 0
 end
 
+function ReduceMana(target, ability, amount)
+  if target:HasModifier("ancient_u_modifier_passive") then amount = amount * 0.5 end
+  target:Script_ReduceMana(amount, ability)
+end
+
 function BaseStats(baseNPC)
   return baseNPC:FindAbilityByName("base_stats")
 end

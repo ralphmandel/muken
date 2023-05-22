@@ -84,7 +84,7 @@ function flea_1_modifier_precision:BurnMana(target)
 	if target:IsMagicImmune() then return end
 
 	local init_mana = target:GetMana()
-	target:Script_ReduceMana(init_mana * self.ability:GetSpecialValueFor("special_manaburn") * 0.01, self.ability)
+  ReduceMana(target, self.ability, init_mana * self.ability:GetSpecialValueFor("special_manaburn") * 0.01)
 	local mana_burn = init_mana - target:GetMana()
 
 	if mana_burn > 0 then

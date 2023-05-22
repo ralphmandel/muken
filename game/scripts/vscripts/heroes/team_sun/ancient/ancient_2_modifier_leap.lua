@@ -2,7 +2,7 @@ ancient_2_modifier_leap = class({})
 STATE_PRE_HIT = 1
 STATE_POS_HIT = 2
 
-function ancient_2_modifier_leap:IsHidden() return false end
+function ancient_2_modifier_leap:IsHidden() return true end
 function ancient_2_modifier_leap:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
