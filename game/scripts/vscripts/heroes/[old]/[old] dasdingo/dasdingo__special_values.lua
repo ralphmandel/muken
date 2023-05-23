@@ -31,93 +31,57 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecial(keys)
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
 
-	if ability:GetAbilityName() == "dasdingo_1__field" then
+	if ability:GetAbilityName() == "dasdingo_1__heal" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_1__field_rank_11") then
+		if caster:FindAbilityByName("dasdingo_1__heal_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_1__field_rank_12") then
+		if caster:FindAbilityByName("dasdingo_1__heal_rank_21") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_1__field_rank_21") then
+		if caster:FindAbilityByName("dasdingo_1__heal_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_1__field_rank_22") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_1__field_rank_31") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_1__field_rank_32") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_1__field_rank_41") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_1__field_rank_42") then
+		if caster:FindAbilityByName("dasdingo_1__heal_rank_41") then
 		end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_2__shield" then
+	if ability:GetAbilityName() == "dasdingo_2__aura" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_2__shield_rank_11") then
+		if caster:FindAbilityByName("dasdingo_2__aura_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_2__shield_rank_12") then
+		if caster:FindAbilityByName("dasdingo_2__aura_rank_21") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_2__shield_rank_21") then
+		if caster:FindAbilityByName("dasdingo_2__aura_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_2__shield_rank_22") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_2__shield_rank_31") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_2__shield_rank_32") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_2__shield_rank_41") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_2__shield_rank_42") then
+		if caster:FindAbilityByName("dasdingo_2__aura_rank_41") then
 		end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_3__leech" then
+	if ability:GetAbilityName() == "dasdingo_3__fire" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_3__leech_rank_11") then
+		if caster:FindAbilityByName("dasdingo_3__fire_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_3__leech_rank_12") then
+		if caster:FindAbilityByName("dasdingo_3__fire_rank_21") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_3__leech_rank_21") then
+		if caster:FindAbilityByName("dasdingo_3__fire_rank_31") then
 		end
-
-    if caster:FindAbilityByName("dasdingo_3__leech_rank_22") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_3__leech_rank_31") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_3__leech_rank_32") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_3__leech_rank_41") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_3__leech_rank_42") then
+		
+		if caster:FindAbilityByName("dasdingo_3__fire_rank_41") then
 		end
 	end
 
@@ -129,85 +93,49 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if caster:FindAbilityByName("dasdingo_4__tribal_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_4__tribal_rank_12") then
-		end
-
 		if caster:FindAbilityByName("dasdingo_4__tribal_rank_21") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_4__tribal_rank_22") then
 		end
 
 		if caster:FindAbilityByName("dasdingo_4__tribal_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_4__tribal_rank_32") then
-		end
-
 		if caster:FindAbilityByName("dasdingo_4__tribal_rank_41") then
 		end
-
-    if caster:FindAbilityByName("dasdingo_4__tribal_rank_42") then
-		end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_5__fire" then
+	if ability:GetAbilityName() == "dasdingo_5__lash" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_11") then
+		if caster:FindAbilityByName("dasdingo_5__lash_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_12") then
+		if caster:FindAbilityByName("dasdingo_5__lash_rank_21") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_21") then
+		if caster:FindAbilityByName("dasdingo_5__lash_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_22") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_31") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_32") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_41") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_42") then
+		if caster:FindAbilityByName("dasdingo_5__lash_rank_41") then
 		end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_u__curse" then
+	if ability:GetAbilityName() == "dasdingo_u__maledict" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_u__curse_rank_11") then
+		if caster:FindAbilityByName("dasdingo_u__maledict_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_u__curse_rank_12") then
+		if caster:FindAbilityByName("dasdingo_u__maledict_rank_21") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_u__curse_rank_21") then
+		if caster:FindAbilityByName("dasdingo_u__maledict_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_u__curse_rank_22") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_u__curse_rank_31") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_u__curse_rank_32") then
-		end
-
-		if caster:FindAbilityByName("dasdingo_u__curse_rank_41") then
-		end
-
-    if caster:FindAbilityByName("dasdingo_u__curse_rank_42") then
+		if caster:FindAbilityByName("dasdingo_u__maledict_rank_41") then
 		end
 	end
 
@@ -222,19 +150,19 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
 
-	if ability:GetAbilityName() == "dasdingo_1__field" then
+	if ability:GetAbilityName() == "dasdingo_1__heal" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_2__shield" then
+	if ability:GetAbilityName() == "dasdingo_2__aura" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_3__leech" then
+	if ability:GetAbilityName() == "dasdingo_3__fire" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -246,13 +174,13 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_5__fire" then
+	if ability:GetAbilityName() == "dasdingo_5__lash" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_u__curse" then
+	if ability:GetAbilityName() == "dasdingo_u__maledict" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 9 + (value_level * 1) end

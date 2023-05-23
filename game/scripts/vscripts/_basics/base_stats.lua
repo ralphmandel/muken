@@ -23,6 +23,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
 		function base_stats:Spawn()
 			if IsServer() then
+        self.max_level = 30
 				if self:IsTrained() == false then
 					self:UpgradeAbility(true)
 				end
@@ -45,8 +46,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
 
-        if caster:GetLevel() % 2 == 1 then
-          self:IncrementSpenderPoints(5)
+        self:IncrementSpenderPoints(2)
+
+        if caster:GetLevel() % 6 == 0 then
+          self:ApplyBonusTeam(1)
         end
 			end
 		end
@@ -120,75 +123,129 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:AddBaseStatsPoints()
-			if IsServer() then
-				local caster = self:GetCaster()
-				local unit_stats = nil
-				local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
-				local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
-				local boss_list = LoadKeyValues("scripts/vscripts/bosses/_bosses_units.txt")
-				local neutral_list = LoadKeyValues("scripts/vscripts/neutrals/_neutrals_units.txt")
+			if not IsServer() then return end
 
-				if heroes_name_data then
-					for name, id_name in pairs(heroes_name_data) do
-						if caster:GetUnitName() == id_name then
-							for hero, hero_stats in pairs(heroes_stats_data) do
-								if hero == name then
-									unit_stats = hero_stats
-								end
-							end
-						end
-					end
-				end	
+      local caster = self:GetCaster()
+      local unit_stats = nil
+      local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
+      local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
+      local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
+      local boss_list = LoadKeyValues("scripts/vscripts/bosses/_bosses_units.txt")
+      local neutral_list = LoadKeyValues("scripts/vscripts/neutrals/_neutrals_units.txt")
 
-				if unit_stats == nil then
-					for name, table in pairs(boss_list) do
-						if name == caster:GetUnitName() then
-							for info, stats in pairs(table) do
-								if info == "Stats" then
-									unit_stats = stats
-								end
-							end
-						end
-					end
-				end
-
-				if unit_stats == nil then
-					for name, table in pairs(neutral_list) do
-						if name == caster:GetUnitName() then
-							for info, stats in pairs(table) do
-								if info == "Stats" then
-									unit_stats = stats
-								end
-							end
-						end
-					end
-				end
-
-				if unit_stats == nil then return end
-
-				self:ResetAllStats()
-
-        if caster:IsHero() then
-          for stat, stats_type in pairs(unit_stats) do
-            for stat_type, value in pairs(stats_type) do
-              if stat_type == "initial" then
-                self.stat_base[stat] = self.stat_base[stat] + value
-                self:CalculateStats(0, 0, stat)
-                self:IncrementFraction("level_up", stat, value * 3)
-              elseif stat_type == "bonus_level" then
-                self.bonus_level[stat] = value
+      if heroes_name_data then
+        for name, id_name in pairs(heroes_name_data) do
+          if caster:GetUnitName() == id_name then
+            for hero, hero_stats in pairs(heroes_stats_data) do
+              if hero == name then
+                unit_stats = hero_stats
               end
             end
           end
-        else
-          for stat, value in pairs(unit_stats) do
-            self.stat_base[stat] = self.stat_base[stat] + value
-            self:CalculateStats(0, 0, stat)
-            self:IncrementFraction("level_up", stat, value * 3)
+        end
+      end
+
+      if unit_stats == nil then
+        for name, table in pairs(boss_list) do
+          if name == caster:GetUnitName() then
+            for info, stats in pairs(table) do
+              if info == "Stats" then
+                unit_stats = stats
+              end
+            end
           end
         end
-			end
+      end
+
+      if unit_stats == nil then
+        for name, table in pairs(neutral_list) do
+          if name == caster:GetUnitName() then
+            for info, stats in pairs(table) do
+              if info == "Stats" then
+                unit_stats = stats
+              end
+            end
+          end
+        end
+      end
+
+      if unit_stats == nil then return end
+
+      self:ResetAllStats()
+
+      if caster:IsHero() then
+        for stat, stats_type in pairs(unit_stats) do
+          for stat_type, value in pairs(stats_type) do
+            if stat_type == "initial" then
+              self.stat_base[stat] = self.stat_base[stat] + value
+              self:CalculateStats(0, 0, stat)
+              self:IncrementFraction("level_up", stat, value * 3)
+            elseif stat_type == "bonus_level" then
+              self.bonus_level[stat] = value
+            end
+          end
+        end
+      else
+        for stat, value in pairs(unit_stats) do
+          self.stat_base[stat] = self.stat_base[stat] + value
+          self:CalculateStats(0, 0, stat)
+          self:IncrementFraction("level_up", stat, value * 3)
+        end
+      end
+
+      for team, hero_list in pairs(heroes_team_data) do
+        for _,id_name in pairs(hero_list) do
+          if self:GetCaster():GetUnitName() == id_name then
+            self.hero_team = team
+          end
+        end
+      end
+
+      self:ApplyBonusTeam(5)
 		end
+
+    function base_stats:ApplyBonusTeam(amount)
+      if self.hero_team == "team_death" then
+        self.stat_bonus["STR"] = self.stat_bonus["STR"] + amount
+        self:CalculateStats(0, 0, "STR")
+        self.stat_bonus["DEF"] = self.stat_bonus["DEF"] + amount
+        self:CalculateStats(0, 0, "DEF")
+        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
+        self:CalculateStats(0, 0, "RES")
+        self.stat_bonus["LCK"] = self.stat_bonus["LCK"] + amount
+        self:CalculateStats(0, 0, "LCK")
+      end
+      if self.hero_team == "team_nature" then
+        self.stat_bonus["AGI"] = self.stat_bonus["AGI"] + amount
+        self:CalculateStats(0, 0, "AGI")
+        self.stat_bonus["LCK"] = self.stat_bonus["LCK"] + amount
+        self:CalculateStats(0, 0, "LCK")
+        self.stat_bonus["DEX"] = self.stat_bonus["DEX"] + amount
+        self:CalculateStats(0, 0, "DEX")
+        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
+        self:CalculateStats(0, 0, "REC")
+      end
+      if self.hero_team == "team_moon" then
+        self.stat_bonus["INT"] = self.stat_bonus["INT"] + amount
+        self:CalculateStats(0, 0, "INT")
+        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
+        self:CalculateStats(0, 0, "RES")
+        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
+        self:CalculateStats(0, 0, "REC")
+        self.stat_bonus["MND"] = self.stat_bonus["MND"] + amount
+        self:CalculateStats(0, 0, "MND")
+      end
+      if self.hero_team == "team_sun" then
+        self.stat_bonus["CON"] = self.stat_bonus["CON"] + amount
+        self:CalculateStats(0, 0, "CON")
+        self.stat_bonus["DEF"] = self.stat_bonus["DEF"] + amount
+        self:CalculateStats(0, 0, "DEF")
+        self.stat_bonus["DEX"] = self.stat_bonus["DEX"] + amount
+        self:CalculateStats(0, 0, "DEX")
+        self.stat_bonus["MND"] = self.stat_bonus["MND"] + amount
+        self:CalculateStats(0, 0, "MND")
+      end
+    end
 
 		function base_stats:LoadSpecialValues()
 			if IsServer() then
@@ -368,7 +425,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
             end
           end
 
-          if self.total_points < 4 and self:GetCaster():GetLevel() < 20 then selection = false end
+          if self.total_points < 4 and self:GetCaster():GetLevel() < self.max_level then selection = false end
           stats[stat] = selection
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
@@ -384,7 +441,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
             end
           end
 
-          if self.total_points < 4 and self:GetCaster():GetLevel() < 20 then selection = false end
+          if self.total_points < 4 and self:GetCaster():GetLevel() < self.max_level then selection = false end
 
           stats[stat] = selection
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
@@ -495,8 +552,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:ApplyBonusLevel(stat, value)
 			if IsServer() then
 				self.stat_sub_level[stat] = self.stat_sub_level[stat] + value
-				if self.stat_sub_level[stat] >= 20 then
-					self.stat_sub_level[stat] = self.stat_sub_level[stat] - 20
+				if self.stat_sub_level[stat] >= self.max_level then
+					self.stat_sub_level[stat] = self.stat_sub_level[stat] - self.max_level
 					self.stat_base[stat] = self.stat_base[stat] + 1
 					self:IncrementFraction("level_up", stat, 3)
 					self:CalculateStats(0, 0, stat)
@@ -529,15 +586,15 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     function base_stats:IsHeroCanLevelUpStat(stat, points)
       local caster = self:GetCaster()
       local total_cost = 1
-      local level_cap = caster:GetLevel() + 30
+      local level_cap = 99
       local level_cap_fraction = 99
 
-      for _,stats_secondary in pairs(self.stats_secondary) do
-        if stats_secondary == stat then
-          level_cap = 99
-          level_cap_fraction = caster:GetLevel() + 30         
-        end
-      end
+      -- for _,stats_secondary in pairs(self.stats_secondary) do
+      --   if stats_secondary == stat then
+      --     level_cap = 99
+      --     level_cap_fraction = caster:GetLevel() + 30         
+      --   end
+      -- end
 
       for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
         if index ~= "value" then

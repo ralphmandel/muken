@@ -30,7 +30,7 @@ function bloodstained_u_modifier_copy:OnRemoved()
 
 	if self.target == nil then return end
 
-  RemoveAllModifiersByNameAndAbility(self.target, "bloodstained_u_modifier_slow", self.slow_mod)
+  RemoveAllModifiersByNameAndAbility(self.target, "bloodstained_u_modifier_slow", self.slow_mod:GetAbility())
 
 	if self.parent:IsAlive() then
     AddModifier(self.caster, self.caster, self.ability, "bloodstained__modifier_extra_hp", {

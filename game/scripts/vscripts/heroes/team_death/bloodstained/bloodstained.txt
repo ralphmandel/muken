@@ -174,7 +174,7 @@
 		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_5__tear"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_tear"
-		"MaxLevel"               		"10"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 

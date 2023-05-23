@@ -95,11 +95,11 @@ USE_CUSTOM_TEAM_COLORS = true           -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team colors to color the players/minimap?
 
 TEAM_COLORS = {}                        -- If USE_CUSTOM_TEAM_COLORS is set, use these colors.
-TEAM_COLORS[DOTA_TEAM_NEUTRALS] = { 204, 204, 204 }  --    Teal
-TEAM_COLORS[DOTA_TEAM_CUSTOM_1] = { 61, 210, 150 }  --    Teal
-TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 172, 0, 32 }   --    Orange
-TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 199, 228, 13 }   --   Olive
-TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 140, 42, 244 }  --    Purple
+TEAM_COLORS[DOTA_TEAM_NEUTRALS] = { 204, 204, 204 }  --   
+TEAM_COLORS[DOTA_TEAM_CUSTOM_1] = { 172, 0, 32 }  --    
+TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 61, 210, 150 }   --    
+TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 140, 42, 244 }   --   
+TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 199, 228, 13 }  --   
 -- TEAM_COLORS[DOTA_TEAM_CUSTOM_1] = { 61, 210, 150 }  --    Teal
 -- TEAM_COLORS[DOTA_TEAM_CUSTOM_2] = { 243, 201, 9 }   --    Yellow
 -- TEAM_COLORS[DOTA_TEAM_CUSTOM_3] = { 197, 77, 168 }  --    Pink
@@ -115,10 +115,10 @@ TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 140, 42, 244 }  --    Purple
 USE_AUTOMATIC_PLAYERS_PER_TEAM = false   -- Should we set the number of players to 10 / MAX_NUMBER_OF_TEAMS?
 
 CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 3
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 3
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 3
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 3
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 4
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 4
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 4
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 4
@@ -217,11 +217,11 @@ GOLD_BOUNTY_MIN = 12
 GOLD_BOUNTY_MAX = 15
 
 PLAYERS = {}
-TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar
-  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Nature Team",  [4] = 0, [5] = "<font color='#3dd296'>", ["spawn"] = Vector(-2550, 3850, 0)},
-  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Death Team",   [4] = 0, [5] = "<font color='#ac0020'>", ["spawn"] = Vector(2550, -3850, 0)},
-  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Sun Team", [4] = 0, [5] = "<font color='#c7e40d'>", ["spawn"] = Vector(-3850, -2550, 0)},
-  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Moon Team", [4] = 0, [5] = "<font color='#8c2af4'>", ["spawn"] = Vector(3850, 2550, 0)},
+TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  
+  [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Death Team",  [4] = 0, [5] = "<font color='#ac0020'>", ["spawn"] = Vector(-2550, 3850, 0)},
+  [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Nature Team",   [4] = 0, [5] = "<font color='#3dd296'>", ["spawn"] = Vector(2550, -3850, 0)},
+  [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Moon Team", [4] = 0, [5] = "<font color='#8c2af4'>", ["spawn"] = Vector(-3850, -2550, 0)},
+  [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Sun Team", [4] = 0, [5] = "<font color='#c7e40d'>", ["spawn"] = Vector(3850, 2550, 0)},
   -- [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
   -- [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
   -- [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},

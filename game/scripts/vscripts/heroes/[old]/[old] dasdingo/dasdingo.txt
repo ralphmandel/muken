@@ -3,11 +3,11 @@
 {
 	"Version"		"1"
 
-  "dasdingo__precache"
+    "dasdingo__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-    "AbilityTextureName"    		"dasdingo__precache"
+		"ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+        "AbilityTextureName"    		"dasdingo__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -16,89 +16,144 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
-	"dasdingo_1__field"
+	"dasdingo_1__heal"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_1__field"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_1__heal"
+		"AbilityTextureName"     		"dasdingo_heal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"dasdingo_field"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+		"LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.4"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCooldown"				"12"
+		"AbilityCastRange"      		"700"
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"270 275 280 285 290 295 300 305 310 315 320 325 330"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"16"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"intervals"		"1.5"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"heal"			"15"
+			}
+            "14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"120"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
 
-	"dasdingo_2__shield"
+	"dasdingo_2__aura"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_2__shield"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_2__aura"
+		"AbilityTextureName"     		"dasdingo_aura"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"dasdingo_shield"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"7"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+		"LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"		"550"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"defense"		"10"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"6 7 8 9 10 11 12"
 			}
 		}
 	}
 
-	"dasdingo_3__leech"
+    "dasdingo_3__fire"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_3__leech"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_3__fire"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"     		"dasdingo_fire"
+
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"dasdingo_leech"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"13"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+        "LevelsBetweenUpgrades"  		"25"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"fire_duration"		"5"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"fire_damage"	    "10"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"min_stack"		    "5"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stun_base" 	    "1"
+			}
+            "04"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"stun_mult" 	    "0.1"
+			}
+            "05"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"blast_damage"		"40"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"0"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16 17 18"
 			}
 		}
 	}
@@ -106,95 +161,170 @@
 	"dasdingo_4__tribal"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_4__tribal"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_4__tribal"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"     		"dasdingo_tribal"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
-		"AbilitySpecial"
-		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-		}
-	}
-
-	"dasdingo_5__fire"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_5__fire"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"dasdingo_fire"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"11"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+        "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastPoint"       		"0.2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"				"40"
 
 		"AbilitySpecial"
 		{
+            "01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"atk_range"		"0 10 20 30 40 50 60 70 80 90 100"
+			}
+            "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"max"		    "2"
+			}
+            "13"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"    "275"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"      "180"
+			}
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+				"rank"			"6 7 8 9 10 11 12 13 14 15 16"
 			}
 		}
 	}
 
-	"dasdingo_u__curse"
+	"dasdingo_5__lash"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_nature/dasdingo/dasdingo_u__curse"
-		"AbilityTextureName"     		"dasdingo_curse"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_5__lash"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"     		"dasdingo_lash"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"10"
+		"RequiredLevel"         	 	"0"
+        "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityCastPoint"				"0.3"
+        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
+
+		"AbilityCooldown"				"25"
+
+		"AbilitySpecial"
+		{
+            "01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"channel_time"		"4.5"
+			}
+            "02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"drain_percent"		"1"
+			}
+            "03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cast_range"		"330 360 390 420 450 480 510 540 570 600"
+			}
+			"14"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"manacost"		"160"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			"6 7 8 9 10 11 12 13 14 15"
+			}
+		}
+	}
+
+	"dasdingo_u__maledict"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/dasdingo/dasdingo_u__maledict"
+		"AbilityTextureName"     		"dasdingo_maledict"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
+		"MaxLevel"               		"12"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
+        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
+		"AbilityCastRange"      		"300"
+
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"initial_damage"	"100 105 110 115 120 125 130 135 140 145 150 155"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"350"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"amplification"		"5"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"tick_intervals"	"2.5"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"tick_max"			"5"
+			}
+            "06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"fear_duration"		"2"
+			}
+            "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"cooldown"		    "100"
+			}
+            "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"manacost"		    "250"
+			}
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+				"rank"				"9 10 11 12 13 14 15 16 17 18 19 20"
 			}
 		}
 	}
 
     //RANKS 1
-        "dasdingo_1__field_rank_11"{
+        "dasdingo_1__heal_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -221,10 +351,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_12"{
+        "dasdingo_1__heal_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -251,10 +381,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_21"{
+        "dasdingo_1__heal_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -281,10 +411,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_22"{
+        "dasdingo_1__heal_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -311,10 +441,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_31"{
+        "dasdingo_1__heal_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -341,10 +471,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_32"{
+        "dasdingo_1__heal_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -371,10 +501,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_41"{
+        "dasdingo_1__heal_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -401,10 +531,10 @@
             }
         }
 
-        "dasdingo_1__field_rank_42"{
+        "dasdingo_1__heal_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_field"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_heal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -432,10 +562,10 @@
         }
 
     //RANKS 2
-        "dasdingo_2__shield_rank_11"{
+        "dasdingo_2__aura_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -462,10 +592,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_12"{
+        "dasdingo_2__aura_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -492,10 +622,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_21"{
+        "dasdingo_2__aura_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -522,10 +652,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_22"{
+        "dasdingo_2__aura_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -552,10 +682,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_31"{
+        "dasdingo_2__aura_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -582,10 +712,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_32"{
+        "dasdingo_2__aura_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -612,10 +742,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_41"{
+        "dasdingo_2__aura_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -642,10 +772,10 @@
             }
         }
 
-        "dasdingo_2__shield_rank_42"{
+        "dasdingo_2__aura_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_shield"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_aura"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -673,10 +803,10 @@
         }
 
     //RANKS 3
-        "dasdingo_3__leech_rank_11"{
+        "dasdingo_3__fire_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -703,10 +833,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_12"{
+        "dasdingo_3__fire_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -733,10 +863,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_21"{
+        "dasdingo_3__fire_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -763,10 +893,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_22"{
+        "dasdingo_3__fire_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -793,10 +923,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_31"{
+        "dasdingo_3__fire_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -823,10 +953,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_32"{
+        "dasdingo_3__fire_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -853,10 +983,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_41"{
+        "dasdingo_3__fire_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -883,10 +1013,10 @@
             }
         }
 
-        "dasdingo_3__leech_rank_42"{
+        "dasdingo_3__fire_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_leech"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -916,7 +1046,7 @@
     //RANKS 4
         "dasdingo_4__tribal_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -946,7 +1076,7 @@
 
         "dasdingo_4__tribal_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -976,7 +1106,7 @@
 
         "dasdingo_4__tribal_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1006,7 +1136,7 @@
 
         "dasdingo_4__tribal_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1036,7 +1166,7 @@
 
         "dasdingo_4__tribal_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1066,7 +1196,7 @@
 
         "dasdingo_4__tribal_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1096,7 +1226,7 @@
 
         "dasdingo_4__tribal_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1126,7 +1256,7 @@
 
         "dasdingo_4__tribal_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
             "AbilityTextureName"    		"dasdingo_tribal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1155,10 +1285,10 @@
         }
 
     //RANKS 5
-        "dasdingo_5__fire_rank_11"{
+        "dasdingo_5__lash_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1185,10 +1315,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_12"{
+        "dasdingo_5__lash_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1215,10 +1345,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_21"{
+        "dasdingo_5__lash_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1245,10 +1375,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_22"{
+        "dasdingo_5__lash_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1275,10 +1405,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_31"{
+        "dasdingo_5__lash_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1305,10 +1435,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_32"{
+        "dasdingo_5__lash_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1335,10 +1465,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_41"{
+        "dasdingo_5__lash_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1365,10 +1495,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_42"{
+        "dasdingo_5__lash_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_lash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1396,10 +1526,10 @@
         }
 
     //RANKS U
-        "dasdingo_u__curse_rank_11"{
+        "dasdingo_u__maledict_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1426,10 +1556,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_12"{
+        "dasdingo_u__maledict_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1456,10 +1586,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_21"{
+        "dasdingo_u__maledict_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1486,10 +1616,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_22"{
+        "dasdingo_u__maledict_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1516,10 +1646,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_31"{
+        "dasdingo_u__maledict_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1546,10 +1676,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_32"{
+        "dasdingo_u__maledict_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1576,10 +1706,10 @@
             }
         }
         
-        "dasdingo_u__curse_rank_41"{
+        "dasdingo_u__maledict_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1606,10 +1736,10 @@
             }
         }
 
-        "dasdingo_u__curse_rank_42"{
+        "dasdingo_u__maledict_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_curse"
+            "ScriptFile"					"heroes/dasdingo/dasdingo-ranks_lua"
+            "AbilityTextureName"    		"dasdingo_maledict"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

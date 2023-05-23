@@ -1,27 +1,27 @@
 "DOTAHeroes"
 {
-	"druid"
+	"dasdingo"
 	{
-		"override_hero"					"npc_dota_hero_furion"
+		"override_hero"					"npc_dota_hero_shadow_shaman"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"druid_1__root"
-			"Ability2"						"druid_2__armor"
-			"Ability3"						"druid_3__totem"
-			"Ability4"						"druid_4__form"
-			"Ability5"						"druid_5__seed"
-			"Ability6"						"druid_u__conversion"
+			"Ability1"						"slot_1"
+			"Ability2"						"slot_2"
+			"Ability3"						"slot_3"
+			"Ability4"						"slot_4"
+			"Ability5"						"slot_5"
+			"Ability6"						"slot_6"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"_channel"
-			"Ability11"						"_void"
-			"Ability12"						"druid__precache"
-			"Ability13"						"null"
-			"Ability14"						"null"
-			"Ability15"						"null"
+			"Ability10"						"dasdingo_1__heal"
+			"Ability11"						"dasdingo_2__aura"
+			"Ability12"						"dasdingo_3__fire"
+			"Ability13"						"dasdingo_4__tribal"
+			"Ability14"						"dasdingo_5__lash"
+			"Ability15"						"dasdingo_u__maledict"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"null"		
-			"Ability31"						"null"		
-			"Ability32"						"null"
+			"Ability30"						"_channel"
+			"Ability31"						"_void"
+			"Ability32"						"dasdingo__precache"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,10 +50,10 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "700"     // Range within a target can be attacked.
+		"AttackRange"                   "400"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
-		//"ProjectileModel"          	""
-		"ProjectileSpeed"          	  "800"
+		"ProjectileModel"				"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
+		
 		"VisionDaytimeRange"        	"850"        // Range of vision during day light.
 		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
 

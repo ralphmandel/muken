@@ -7,21 +7,21 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"slot_1"
-			"Ability2"						"slot_2"
-			"Ability3"						"slot_3"
-			"Ability4"						"slot_4"
-			"Ability5"						"slot_5"
-			"Ability6"						"slot_6"
+			"Ability1"						"dasdingo_1__field"
+			"Ability2"						"dasdingo_2__shield"
+			"Ability3"						"dasdingo_3__leech"
+			"Ability4"						"dasdingo_4__tribal"
+			"Ability5"						"dasdingo_5__fire"
+			"Ability6"						"dasdingo_u__curse"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
-			"Ability10"						"dasdingo_1__heal"
-			"Ability11"						"dasdingo_2__aura"
-			"Ability12"						"dasdingo_3__fire"
-			"Ability13"						"dasdingo_4__tribal"
-			"Ability14"						"dasdingo_5__lash"
-			"Ability15"						"dasdingo_u__maledict"
+			"Ability10"						"_channel"
+			"Ability11"						"_void"
+			"Ability12"						"dasdingo__precache"
+			"Ability13"						"null"
+			"Ability14"						"null"
+			"Ability15"						"null"
 			"Ability16"						"null"
 			"Ability17"						"null"
 			"Ability18"						"null"
@@ -36,9 +36,9 @@
 			"Ability27"						"null"		
 			"Ability28"						"null"		
 			"Ability29"						"null"		
-			"Ability30"						"_channel"
-			"Ability31"						"_void"
-			"Ability32"						"dasdingo__precache"
+			"Ability30"						"null"		
+			"Ability31"						"null"		
+			"Ability32"						"null"
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"			"0"            // Base strength
@@ -50,12 +50,12 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "400"     // Range within a target can be attacked.
+		"AttackRange"                   "500"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
-		"ProjectileModel"				"particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
-		
-		"VisionDaytimeRange"        	"850"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
+		"ProjectileModel"          	    "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
+		"ProjectileSpeed"          	    "1100"
+		"VisionDaytimeRange"        	  "850"        // Range of vision during day light.
+		"VisionNighttimeRange"      	  "750"        // Range of vision at night time.
 
 		//STRENGTH
 			"AttackDamageMax"			"45"

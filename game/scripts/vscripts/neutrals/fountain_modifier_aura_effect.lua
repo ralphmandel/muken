@@ -81,13 +81,13 @@ function fountain_modifier_aura_effect:PlayEfxStart()
 
 	local string = nil
 	if self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_1 then
-		string = "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf"
-	elseif self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_2 then
 		string = "particles/econ/events/fall_2022/regen/fountain_regen_fall2022_lvl3.vpcf"
+	elseif self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_2 then
+		string = "particles/econ/events/ti7/fountain_regen_ti7_lvl3.vpcf"
 	elseif self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_3 then
-		string = "particles/econ/events/fall_major_2016/radiant_fountain_regen_fm06_lvl3.vpcf"
-	elseif self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_4 then
 		string = "particles/econ/events/spring_2021/fountain_regen_spring_2021_lvl3.vpcf"
+	elseif self.parent:GetTeamNumber() == DOTA_TEAM_CUSTOM_4 then
+		string = "particles/econ/events/fall_major_2016/radiant_fountain_regen_fm06_lvl3.vpcf"
 	end
 
 	if string == nil then return end

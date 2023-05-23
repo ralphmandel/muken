@@ -13,123 +13,142 @@
 	
 	"npc_dota_hero_shadow_shaman"
 	{
-		"dasdingo_1__heal"
-		{
-			"0"
-			{
-				"1"   "dasdingo_1__heal_rank_11"
-				"2"   "dasdingo_1__heal_rank_12"
-			}
-			"1"
-			{
-				"1"   "dasdingo_1__heal_rank_21"
+		"dasdingo_1__field" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "dasdingo_1__field_rank_11" // PATH + TALENT
+				"2"   "dasdingo_1__field_rank_12"
 			}
 			"2"
 			{
-				"1"   "empty"
+				"1"   "dasdingo_1__field_rank_21"
+				"2"   "dasdingo_1__field_rank_22"
 			}
 			"3"
 			{
-				"1"   "dasdingo_1__heal_rank_41"
-				"2"   "dasdingo_1__heal_rank_42"
+				"1"   "dasdingo_1__field_rank_31"
+				"2"   "dasdingo_1__field_rank_32"
+			}
+			"4"
+			{
+				"1"   "dasdingo_1__field_rank_41"
+				"2"   "dasdingo_1__field_rank_42"
 			}
 		}
-		"dasdingo_2__aura"
+		"dasdingo_2__shield"
 		{
-			"0"
-			{
-				"1"   "dasdingo_2__aura_rank_11"
-			}
 			"1"
 			{
-				"1"   "dasdingo_2__aura_rank_21"
+				"1"   "dasdingo_2__shield_rank_11"
+				"2"   "dasdingo_2__shield_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_2__aura_rank_31"
+				"1"   "dasdingo_2__shield_rank_21"
+				"2"   "dasdingo_2__shield_rank_22"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "dasdingo_2__shield_rank_31"
+				"2"   "dasdingo_2__shield_rank_32"
+			}
+			"4"
+			{
+				"1"   "dasdingo_2__shield_rank_41"
+				"2"   "dasdingo_2__shield_rank_42"
 			}
 		}
-		"dasdingo_3__fire"
+		"dasdingo_3__leech"
 		{
-			"0"
-			{
-				"1"   "dasdingo_3__fire_rank_11"
-			}
 			"1"
 			{
-				"1"   "dasdingo_3__fire_rank_21"
-				"2"   "dasdingo_3__fire_rank_22"
+				"1"   "dasdingo_3__leech_rank_11"
+				"2"   "dasdingo_3__leech_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_3__fire_rank_31"
+				"1"   "dasdingo_3__leech_rank_21"
+				"2"   "dasdingo_3__leech_rank_22"
 			}
 			"3"
 			{
-				"1"   "dasdingo_3__fire_rank_41"
+				"1"   "dasdingo_3__leech_rank_31"
+				"2"   "dasdingo_3__leech_rank_32"
+			}
+			"4"
+			{
+				"1"   "dasdingo_3__leech_rank_41"
+				"2"   "dasdingo_3__leech_rank_42"
 			}
 		}
 		"dasdingo_4__tribal"
 		{
-			"0"
+			"1"
 			{
 				"1"   "dasdingo_4__tribal_rank_11"
+				"2"   "dasdingo_4__tribal_rank_12"
 			}
-			"1"
+			"2"
 			{
 				"1"   "dasdingo_4__tribal_rank_21"
+				"2"   "dasdingo_4__tribal_rank_22"
 			}
-			"2"
+			"3"
 			{
 				"1"   "dasdingo_4__tribal_rank_31"
+				"2"   "dasdingo_4__tribal_rank_32"
 			}
-			"3"
+			"4"
 			{
 				"1"   "dasdingo_4__tribal_rank_41"
+				"2"   "dasdingo_4__tribal_rank_42"
 			}
 		}
-		"dasdingo_5__lash"
+		"dasdingo_5__fire"
 		{
-			"0"
-			{
-				"1"   "dasdingo_5__lash_rank_11"
-			}
 			"1"
 			{
-				"1"   "dasdingo_5__lash_rank_21"
+				"1"   "dasdingo_5__fire_rank_11"
+				"2"   "dasdingo_5__fire_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_5__lash_rank_31"
-				"2"   "dasdingo_5__lash_rank_32"
+				"1"   "dasdingo_5__fire_rank_21"
+				"2"   "dasdingo_5__fire_rank_22"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "dasdingo_5__fire_rank_31"
+				"2"   "dasdingo_5__fire_rank_32"
+			}
+			"4"
+			{
+				"1"   "dasdingo_5__fire_rank_41"
+				"2"   "dasdingo_5__fire_rank_42"
 			}
 		}
-		"dasdingo_u__maledict"
+		"dasdingo_u__curse"
 		{
-			"0"
-			{
-				"1"   "dasdingo_u__maledict_rank_11"
-				"2"   "dasdingo_u__maledict_rank_12"
-			}
 			"1"
 			{
-				"1"   "dasdingo_u__maledict_rank_21"
+				"1"   "dasdingo_u__curse_rank_11"
+				"2"   "dasdingo_u__curse_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_u__maledict_rank_31"
+				"1"   "dasdingo_u__curse_rank_21"
+				"2"   "dasdingo_u__curse_rank_22"
 			}
 			"3"
 			{
-				"1"   "dasdingo_u__maledict_rank_41"
+				"1"   "dasdingo_u__curse_rank_31"
+				"2"   "dasdingo_u__curse_rank_32"
+			}
+			"4"
+			{
+				"1"   "dasdingo_u__curse_rank_41"
+				"2"   "dasdingo_u__curse_rank_42"
 			}
 		}
 	}	
