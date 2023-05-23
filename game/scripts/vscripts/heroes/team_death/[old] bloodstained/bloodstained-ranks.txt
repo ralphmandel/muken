@@ -1,0 +1,155 @@
+"TalentTree_bloodstained"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_shadow_demon"
+	{
+		"bloodstained_1__rage" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "bloodstained_1__rage_rank_11" // PATH + TALENT
+				"2"   "bloodstained_1__rage_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_1__rage_rank_21"
+				"2"   "bloodstained_1__rage_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_1__rage_rank_31"
+				"2"   "bloodstained_1__rage_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_1__rage_rank_41"
+				"2"   "bloodstained_1__rage_rank_42"
+			}
+		}
+		"bloodstained_2__lifesteal"
+		{
+			"1"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_11"
+				"2"   "bloodstained_2__lifesteal_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_21"
+				"2"   "bloodstained_2__lifesteal_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_31"
+				"2"   "bloodstained_2__lifesteal_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_2__lifesteal_rank_41"
+				"2"   "bloodstained_2__lifesteal_rank_42"
+			}
+		}
+		"bloodstained_3__curse"
+		{
+			"1"
+			{
+				"1"   "bloodstained_3__curse_rank_11"
+				"2"   "bloodstained_3__curse_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_3__curse_rank_21"
+				"2"   "bloodstained_3__curse_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_3__curse_rank_31"
+				"2"   "bloodstained_3__curse_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_3__curse_rank_41"
+				"2"   "bloodstained_3__curse_rank_42"
+			}
+		}
+		"bloodstained_4__frenzy"
+		{
+			"1"
+			{
+				"1"   "bloodstained_4__frenzy_rank_11"
+				"2"   "bloodstained_4__frenzy_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_4__frenzy_rank_21"
+				"2"   "bloodstained_4__frenzy_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_4__frenzy_rank_31"
+				"2"   "bloodstained_4__frenzy_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_4__frenzy_rank_41"
+				"2"   "bloodstained_4__frenzy_rank_42"
+			}
+		}
+		"bloodstained_5__tear"
+		{
+			"1"
+			{
+				"1"   "bloodstained_5__tear_rank_11"
+				"2"   "bloodstained_5__tear_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_5__tear_rank_21"
+				"2"   "bloodstained_5__tear_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_5__tear_rank_31"
+				"2"   "bloodstained_5__tear_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_5__tear_rank_41"
+				"2"   "bloodstained_5__tear_rank_42"
+			}
+		}
+		"bloodstained_u__seal"
+		{
+			"1"
+			{
+				"1"   "bloodstained_u__seal_rank_11"
+				"2"   "bloodstained_u__seal_rank_12"
+			}
+			"2"
+			{
+				"1"   "bloodstained_u__seal_rank_21"
+				"2"   "bloodstained_u__seal_rank_22"
+			}
+			"3"
+			{
+				"1"   "bloodstained_u__seal_rank_31"
+				"2"   "bloodstained_u__seal_rank_32"
+			}
+			"4"
+			{
+				"1"   "bloodstained_u__seal_rank_41"
+				"2"   "bloodstained_u__seal_rank_42"
+			}
+		}
+	}	
+}

@@ -9,15 +9,21 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+	--self.curse_purge_caster = 0
+	--self.curse_purge_target = 0
 
 	if self.parent ~= self.caster then
 		self.ability:SetActivated(false)
 		self.ability:EndCooldown()
 
-    AddModifier(self.caster, self.caster, self.ability, self:GetName(), {}, false)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
-      percent = self.ability:GetSpecialValueFor("slow")
-    }, false)
+		self.caster:AddNewModifier(self.caster, self.ability, self:GetName(), {})
+		self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+			percent = self.ability:GetSpecialValueFor("slow")
+		})
+
+		if self.ability:GetSpecialValueFor("special_curse_interval") > 0 then
+			self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_3_modifier_damage", {})
+		end
 	end
 
 	if IsServer() then
@@ -36,14 +42,28 @@ function bloodstained_3_modifier_curse:OnRemoved()
 
 	if self.parent ~= self.caster then
 		self.ability:SetActivated(true)
-    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 		self.parent:RemoveModifierByNameAndCaster("bloodstained_3_modifier_damage", self.caster)
+
+		if self.ability:GetSpecialValueFor("special_reset") == 0 or self.parent:IsAlive() then
+			self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+		end
 	end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function bloodstained_3_modifier_curse:CheckState()
+	local state = {}
+
+	if self:GetAbility():GetSpecialValueFor("special_break") == 1
+  and self:GetParent() ~= self:GetCaster() then
+		table.insert(state, MODIFIER_STATE_PASSIVES_DISABLED, true)
+	end
+
+	return state
+end
 
 function bloodstained_3_modifier_curse:DeclareFunctions()
 	local funcs = {
@@ -60,10 +80,19 @@ function bloodstained_3_modifier_curse:OnTakeDamage(keys)
 	local target = self.caster
 	if keys.unit == self.caster then target = self.parent end
 
+	--local curse_purge = self.ability:GetSpecialValueFor("special_curse_purge")
 	local shared_damage = self.ability:GetSpecialValueFor("shared_damage")
 	local total_damage = (keys.damage * shared_damage * 0.01)
 	local iDesiredHealthValue = target:GetHealth() - total_damage
 	target:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
+
+	--if target == self.caster then
+		--self:ApplyPurge(total_damage, curse_purge, self.parent)
+		--self:ApplyPurge(keys.damage, curse_purge, self.caster)
+	--else
+		--self:ApplyPurge(keys.damage, curse_purge, self.parent)
+    --self:ApplyPurge(total_damage, curse_purge, self.caster)
+	--end
 
 	if target == self.caster then
 		local mod = self.caster:FindModifierByNameAndCaster("bloodstained_1_modifier_rage", self.caster)
@@ -85,6 +114,23 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function bloodstained_3_modifier_curse:ApplyPurge(damage, curse_purge, target)
+	if curse_purge == 0 then return end
+  if target:GetTeamNumber() == self.caster:GetTeamNumber() then
+    self.curse_purge_caster = self.curse_purge_caster + damage
+    if self.curse_purge_caster >= curse_purge then
+      target:Purge(false, true, false, true, false)
+      self.curse_purge_caster = 0
+    end
+  else
+    self.curse_purge_target = self.curse_purge_target + damage
+    if self.curse_purge_target >= curse_purge then
+      target:Purge(true, false, false, false, false)
+      self.curse_purge_target = 0
+    end
+  end
+end
 
 -- EFFECTS -----------------------------------------------------------
 

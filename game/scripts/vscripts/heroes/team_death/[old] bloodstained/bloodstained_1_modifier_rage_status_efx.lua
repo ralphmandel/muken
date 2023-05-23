@@ -17,7 +17,7 @@ end
 -----------------------------------------------------------
 
 function bloodstained_1_modifier_rage_status_efx:GetStatusEffectName()
-  return "particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
+    return "particles/econ/items/lifestealer/lifestealer_immortal_backbone/status_effect_life_stealer_immortal_rage.vpcf"
 end
 
 function bloodstained_1_modifier_rage_status_efx:StatusEffectPriority()

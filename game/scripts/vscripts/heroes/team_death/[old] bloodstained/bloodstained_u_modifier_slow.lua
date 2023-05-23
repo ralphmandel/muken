@@ -24,6 +24,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+-- function bloodstained_u_modifier_slow:CheckState()
+-- 	local state = {
+-- 		[MODIFIER_STATE_SILENCED] = true
+-- 	}
+
+-- 	return state
+-- end
+
 function bloodstained_u_modifier_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_BONUS

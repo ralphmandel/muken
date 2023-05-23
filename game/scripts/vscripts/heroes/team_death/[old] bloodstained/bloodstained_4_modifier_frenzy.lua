@@ -13,9 +13,12 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
 	self.parent:SetForceAttackTarget(self.ability.target)
 	
 	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
-    percent = self.ability:GetSpecialValueFor("ms")
-  }, false)
+
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
+		percent = self.ability:GetSpecialValueFor("ms")
+	})
+
+  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_unslowable", {})
 
 	if IsServer() then
 		self:PlayEfxStart()
@@ -31,6 +34,7 @@ function bloodstained_4_modifier_frenzy:OnRemoved()
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -41,6 +45,18 @@ function bloodstained_4_modifier_frenzy:CheckState()
 	}
 
 	return state
+end
+
+function bloodstained_4_modifier_frenzy:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MIN_HEALTH
+	}
+
+	return funcs
+end
+
+function bloodstained_4_modifier_frenzy:GetMinHealth()
+	return self:GetAbility():GetSpecialValueFor("special_immortality")
 end
 
 function bloodstained_4_modifier_frenzy:OnIntervalThink()

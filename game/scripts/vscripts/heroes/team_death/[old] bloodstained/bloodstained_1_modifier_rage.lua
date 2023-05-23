@@ -9,16 +9,19 @@ function bloodstained_1_modifier_rage:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.str = 0
 
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
 
   AddStatusEfx(self.ability, "bloodstained_1_modifier_rage_status_efx", self.caster, self.parent)
+
+  self.str = 0
+  self:CalcGain(self.ability:GetSpecialValueFor("str_init"))
 end
 
 function bloodstained_1_modifier_rage:OnRefresh(kv)
   self.str = 0
+  self:CalcGain(self.ability:GetSpecialValueFor("str_init"))
 end
 
 function bloodstained_1_modifier_rage:OnRemoved()
@@ -35,6 +38,7 @@ end
 
 function bloodstained_1_modifier_rage:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
@@ -42,9 +46,23 @@ function bloodstained_1_modifier_rage:DeclareFunctions()
 	return funcs
 end
 
+function bloodstained_1_modifier_rage:GetModifierStatusResistanceStacking()
+	return self:GetAbility():GetSpecialValueFor("resistance")
+end
+
 function bloodstained_1_modifier_rage:OnTakeDamage(keys)
 	if keys.unit ~= self.parent then return end
   self:FilterDamage(keys.damage)
+end
+
+function bloodstained_1_modifier_rage:OnAttackLanded(keys)
+  if keys.attacker ~= self.parent then return end
+	if keys.attacker:IsIllusion() then return end
+	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+
+	local cleave = self.ability:GetSpecialValueFor("special_cleave")
+	local string = "particles/bloodstained/cleave/bloodstained_cleave.vpcf"
+	if cleave > 0 then DoCleaveAttack(self.parent, keys.target, self.ability, keys.damage * 0.75, 100, 400, 500, string) end
 end
 
 function bloodstained_1_modifier_rage:OnStackCountChanged(old)

@@ -20,6 +20,7 @@
 			"Ability11"						"_void"
 			"Ability12"						"bloodstained__precache"
 			"Ability13"						"null"
+			"Ability13"						"null"
 			"Ability14"						"null"
 			"Ability15"						"null"
 			"Ability16"						"null"
@@ -49,6 +50,7 @@
 		"AttributeIntelligenceGain"		"0"            // Intelligence bonus per level.
 		"Level"							"0"
 
+		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
 		"AttackRange"                   "130"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack

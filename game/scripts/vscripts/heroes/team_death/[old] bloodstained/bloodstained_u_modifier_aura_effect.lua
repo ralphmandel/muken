@@ -10,13 +10,17 @@ function bloodstained_u_modifier_aura_effect:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+
+	if IsServer() then self:OnIntervalThink() end
 end
 
 function bloodstained_u_modifier_aura_effect:OnRefresh(kv)
 end
 
 function bloodstained_u_modifier_aura_effect:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "bloodstained__modifier_bleeding", self.ability)
 	self:ApplyBloodIllusion()
+	self:ReduceCooldown()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -38,8 +42,21 @@ function bloodstained_u_modifier_aura_effect:DeclareFunctions()
 end
 
 function bloodstained_u_modifier_aura_effect:GetModifierAvoidDamage(keys)
-  if keys.attacker:HasModifier(self:GetName()) == false then return 1 end
+  if keys.attacker:HasModifier(self:GetName()) == false then
+    return 1
+  end
+
 	return 0
+end
+
+function bloodstained_u_modifier_aura_effect:OnIntervalThink()
+	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
+	and self.parent:HasModifier("bloodstained__modifier_bleeding") == false
+	and self.ability:GetSpecialValueFor("special_bleeding") == 1 then
+		self.parent:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_bleeding", {})
+	end
+
+	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -51,17 +68,41 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 	if self.parent:IsHero() == false then return end
 	if self.ability:IsActivated() then return end
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
-    duration = self.ability:GetSpecialValueFor("slow_duration"), percent = 100
-  }, true)
+	local copy_number = self.ability:GetSpecialValueFor("copy_number")
+	local copy_duration = self.ability:GetSpecialValueFor("copy_duration")
+	local hp_stolen = self.ability:GetSpecialValueFor("hp_stolen")
+	local slow_duration = self.ability:GetSpecialValueFor("slow_duration")
+
+	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+		duration = CalcStatus(slow_duration, self.caster, self.parent),
+		percent = 100
+	})
 	
-	if self.parent:HasModifier("bloodstained_u_modifier_slow") == false then self:CreateCopy() end
+	if self.parent:HasModifier("bloodstained_u_modifier_slow") == false then
+		self:CreateCopy(copy_number, hp_stolen, copy_duration)
+	end
 end
 
-function bloodstained_u_modifier_aura_effect:CreateCopy()
-  local copy_number = self.ability:GetSpecialValueFor("copy_number")
-	local total_hp_stolen = self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("hp_stolen") * copy_number * 0.01
+function bloodstained_u_modifier_aura_effect:ReduceCooldown()
+	if self.parent:IsAlive() then return end
+	if self.parent:IsIllusion() then return end
+	if self.parent:IsHero() == false then return end
+
+	local refresh = self.ability:GetSpecialValueFor("special_refresh")
+
+	if refresh > 0 then
+		local cd = self.ability:GetCooldownTimeRemaining() - refresh
+		self.ability:EndCooldown()
+		self.ability:StartCooldown(cd)
+	end
+end
+
+function bloodstained_u_modifier_aura_effect:CreateCopy(number, hp_stolen, copy_duration)
+	local total_hp_stolen = self.parent:GetMaxHealth() * hp_stolen * number * 0.01
 	if total_hp_stolen > self.parent:GetHealth() then total_hp_stolen = self.parent:GetHealth() end
+
+	--local iDesiredHealthValue = self.parent:GetHealth() - total_hp_stolen
+	--self.parent:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
 
 	local illu_array = CreateIllusions(self.caster, self.parent, {
 		outgoing_damage = -65,
@@ -69,18 +110,18 @@ function bloodstained_u_modifier_aura_effect:CreateCopy()
 		bounty_base = 0,
 		bounty_growth = 0,
 		duration = -1
-	}, copy_number, 64, false, true)
+	}, number, 64, false, true)
 
 	for _,illu in pairs(illu_array) do
-    local mod = AddModifier(illu, self.caster, self.ability,"bloodstained_u_modifier_copy", {
-      duration = self.ability:GetSpecialValueFor("copy_duration"), hp = math.floor(total_hp_stolen / copy_number)
-    }, false)
+		local mod = illu:AddNewModifier(self.caster, self.ability, "bloodstained_u_modifier_copy", {
+			duration = copy_duration,
+			hp = math.floor(total_hp_stolen / number)
+		})
 
 		mod.target = self.parent
-
-    mod.slow_mod = AddModifier(self.parent, self.caster, self.ability, "bloodstained_u_modifier_slow", {
-      hp = math.floor(total_hp_stolen / copy_number)
-    }, false)
+		mod.slow_mod = self.parent:AddNewModifier(self.caster, self.ability, "bloodstained_u_modifier_slow", {
+			hp = math.floor(total_hp_stolen / number)
+		})
 
 		mod:PlayEfxTarget()
 		illu:SetForceAttackTarget(self.parent)

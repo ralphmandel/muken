@@ -25,6 +25,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+-- function bloodstained__modifier_target_hp:CheckState()
+-- 	local state = {
+-- 		[MODIFIER_STATE_SILENCED] = true
+-- 	}
+
+-- 	return state
+-- end
+
 function bloodstained__modifier_target_hp:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_BONUS

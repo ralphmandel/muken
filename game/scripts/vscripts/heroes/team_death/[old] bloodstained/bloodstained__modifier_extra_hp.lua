@@ -66,9 +66,9 @@ end
 function bloodstained__modifier_extra_hp:ApplyTargetDebuff(target)
 	if target == nil then return end
 
-  self.target_mod = AddModifier(target, self.caster, self.ability, "bloodstained__modifier_target_hp", {
-    hp = self:GetStackCount()
-  }, false)
+	self.target_mod = target:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_target_hp", {
+		hp = self:GetStackCount()
+	})
 end
 
 -- EFFECTS -----------------------------------------------------------

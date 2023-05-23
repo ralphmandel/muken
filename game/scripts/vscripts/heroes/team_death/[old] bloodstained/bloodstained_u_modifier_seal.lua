@@ -8,9 +8,9 @@ function bloodstained_u_modifier_seal:IsPurgable() return false end
 function bloodstained_u_modifier_seal:IsAura() return true end
 function bloodstained_u_modifier_seal:GetModifierAura() return "bloodstained_u_modifier_aura_effect" end
 function bloodstained_u_modifier_seal:GetAuraRadius() return self:GetAbility():GetSpecialValueFor("radius") end
-function bloodstained_u_modifier_seal:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
-function bloodstained_u_modifier_seal:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
-function bloodstained_u_modifier_seal:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
+function bloodstained_u_modifier_seal:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_BOTH end
+function bloodstained_u_modifier_seal:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+function bloodstained_u_modifier_seal:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

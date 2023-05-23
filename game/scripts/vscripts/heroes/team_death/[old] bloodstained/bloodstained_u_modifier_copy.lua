@@ -33,11 +33,18 @@ function bloodstained_u_modifier_copy:OnRemoved()
   RemoveAllModifiersByNameAndAbility(self.target, "bloodstained_u_modifier_slow", self.slow_mod)
 
 	if self.parent:IsAlive() then
-    AddModifier(self.caster, self.caster, self.ability, "bloodstained__modifier_extra_hp", {
-      extra_life = self:GetStackCount(), cap = 1000
-    }, false):ApplyTargetDebuff(self.target)
+		local mod_extra_hp = self.caster:AddNewModifier(self.caster, self.ability, "bloodstained__modifier_extra_hp", {
+			extra_life = self:GetStackCount(), cap = 1000
+		})
+
+		mod_extra_hp:ApplyTargetDebuff(self.target)
 
 		self.parent:Kill(self.ability, nil)
+	else
+		if self.target:IsAlive() then
+			--local iDesiredHealthValue = self.target:GetHealth() + self:GetStackCount()
+			--self.target:ModifyHealth(iDesiredHealthValue, self.ability, false, 0)
+		end
 	end
 end
 

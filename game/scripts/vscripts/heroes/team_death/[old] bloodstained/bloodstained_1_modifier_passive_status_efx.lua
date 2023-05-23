@@ -17,7 +17,7 @@ end
 -----------------------------------------------------------
 
 function bloodstained_1_modifier_passive_status_efx:GetStatusEffectName()
-  return "particles/bloodstained/status_efx/status_effect_bloodstained.vpcf"
+    return "particles/bloodstained/status_efx/status_effect_bloodstained.vpcf"
 end
 
 function bloodstained_1_modifier_passive_status_efx:StatusEffectPriority()
