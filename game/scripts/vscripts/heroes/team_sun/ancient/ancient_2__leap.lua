@@ -8,6 +8,7 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
   function ancient_2__leap:Spawn()
     self:SetCurrentAbilityCharges(1)
+    self.aggro_target = nil
 
     if self:IsTrained() == false then
       self:UpgradeAbility(true)
@@ -77,9 +78,8 @@ LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_
 
   function ancient_2__leap:OnSpellStart()
     local caster = self:GetCaster()
-    self.aggro_target = caster:GetAggroTarget()
     self:EndCooldown()
-    caster:Hold()
+    caster:Stop()
 
     caster:RemoveModifierByName("ancient_2_modifier_jump")
     caster:RemoveModifierByName("ancient_2_modifier_leap")

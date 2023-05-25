@@ -19,7 +19,7 @@
 			"Ability10"						"_channel"
 			"Ability11"						"_void"
 			"Ability12"						"dasdingo__precache"
-			"Ability13"						"null"
+			"Ability13"						"dasdingo__bind"
 			"Ability14"						"null"
 			"Ability15"						"null"
 			"Ability16"						"null"
@@ -53,7 +53,7 @@
 		"AttackRange"                   "500"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		"ProjectileModel"          	    "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
-		"ProjectileSpeed"          	    "1100"
+		"ProjectileSpeed"          	    "1200"
 		"VisionDaytimeRange"        	  "850"        // Range of vision during day light.
 		"VisionNighttimeRange"      	  "750"        // Range of vision at night time.
 

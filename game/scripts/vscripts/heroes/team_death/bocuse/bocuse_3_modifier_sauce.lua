@@ -16,7 +16,6 @@ function bocuse_3_modifier_sauce:OnCreated(kv)
 		self:CheckCounterEfx()
 		self:PlayEfxStart()
     self:StartIntervalThink(self:GetDuration() * 0.2)
-    print("kubo", self:GetDuration())
 	end
 end
 
@@ -26,7 +25,6 @@ function bocuse_3_modifier_sauce:OnRefresh(kv)
   if IsServer() then
     self:IncrementStackCount()
     self:StartIntervalThink(self:GetDuration() * 0.2)
-    print("kubo", self:GetDuration())
 	end
 end
 

@@ -477,12 +477,12 @@
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"chance"		    "2"
+				"chance"		    "2.5"
 			}
       "03"
 			{
 				"var_type"      "FIELD_FLOAT"
-				"max_dominate"  "20"
+				"max_dominate"  "30"
 			}
       "04"
 			{

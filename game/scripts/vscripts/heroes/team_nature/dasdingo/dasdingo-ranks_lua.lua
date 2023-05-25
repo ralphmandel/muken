@@ -66,3 +66,9 @@ end
 function dasdingo__precache:Precache(context)
   PrecacheResource("soundfile", "soundevents/soundevent_dasdingo.vsndevts", context)
 end
+
+dasdingo__bind = class ({})
+
+function dasdingo__bind:Spawn()
+	if self:IsTrained() == false then self:UpgradeAbility(true) end
+end

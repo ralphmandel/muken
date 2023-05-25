@@ -175,7 +175,7 @@ SPAWNER_MOBS = {
     "neutral_spider"
   }},
   {["tier"] = 5, ["units"] = {
-    "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten"
+    "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten", "neutral_frostbitten"
   }},
 -- TIER BOSS
   {["tier"] = 8, ["units"] = {

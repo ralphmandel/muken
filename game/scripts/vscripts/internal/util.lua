@@ -166,7 +166,7 @@ function RollDrops(unit, killerEntity)
     local item_list = {}
     for table_name, table_chance in pairs(DropInfo) do
       if table_name == "chance" then
-        chance = table_chance
+        chance = unit:GetLevel() * 2 --table_chance
       else
         for i = 1, table_chance, 1 do
           if #item_list then
@@ -266,16 +266,6 @@ function RemoveBonus(ability, string, target)
   end
 end
 
-function AddStatusEfx(ability, string, caster, target)
-  local cosmetics = target:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(caster, ability, string, true) end
-end
-
-function RemoveStatusEfx(ability, string, caster, target)
-  local cosmetics = target:FindAbilityByName("cosmetics")
-	if cosmetics then cosmetics:SetStatusEffect(caster, ability, string, false) end
-end
-
 function RemoveAllModifiersByNameAndAbility(target, name, ability)
   local mod = target:FindAllModifiersByName(name)
   for _,modifier in pairs(mod) do
@@ -298,6 +288,10 @@ function ReduceMana(target, ability, amount)
   target:Script_ReduceMana(amount, ability)
 end
 
+function CalcHeal(target, amount)
+  if BaseStats(target) then return amount * BaseStats(target):GetHealPower() else return 1 end
+end
+
 function BaseStats(baseNPC)
   return baseNPC:FindAbilityByName("base_stats")
 end
@@ -308,4 +302,37 @@ end
 
 function BaseHeroMod(baseNPC)
   return baseNPC:FindModifierByName("base_hero_mod")
+end
+
+function Cosmetics(baseNPC)
+  return baseNPC:FindAbilityByName("cosmetics")
+end
+
+-- COSMETICS
+
+function AddStatusEfx(ability, string, caster, target)
+  if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, true) end
+end
+
+function RemoveStatusEfx(ability, string, caster, target)
+  if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, false) end
+end
+
+function GestureCosmetic(baseNPC, model_name, gesture, bEnabled)
+  if Cosmetics(baseNPC) == nil then return end
+  if Cosmetics(baseNPC).cosmetic == nil then return end
+
+  if bEnabled then
+    Cosmetics(baseNPC):StartCosmeticGesture(model_name, gesture)
+  else
+	  Cosmetics(baseNPC):FadeCosmeticsGesture(model_name, gesture)
+  end
+end
+
+function FindCosmeticByModel(baseNPC, model_name)
+  if Cosmetics(baseNPC) then return Cosmetics(baseNPC):FindCosmeticByModel(model_name) end
+end
+
+function ChangeCosmeticsActivity(baseNPC)
+  if Cosmetics(baseNPC) then Cosmetics(baseNPC):ChangeCosmeticsActivity(true) end
 end

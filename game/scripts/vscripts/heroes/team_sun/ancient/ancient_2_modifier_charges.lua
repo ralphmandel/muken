@@ -24,6 +24,22 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function ancient_2_modifier_charges:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ORDER
+	}
+
+	return funcs
+end
+
+function ancient_2_modifier_charges:OnOrder(keys)
+  if keys.unit ~= self.parent then return end
+  if keys.order_type == 8 or keys.order_type == 5 then
+    self.ability.aggro_target = self.parent:GetAggroTarget()
+  end
+end
+
+
 function ancient_2_modifier_charges:OnStackCountChanged(old)  
   if self:GetStackCount() == 0 then
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

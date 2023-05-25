@@ -48,8 +48,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 
         self:IncrementSpenderPoints(2)
 
-        if caster:GetLevel() % 6 == 0 then
-          self:ApplyBonusTeam(1)
+        if caster:GetLevel() % 5 == 0 then
+          if caster:GetLevel() ~= 15 and caster:GetLevel() ~= 30 then
+            self:ApplyBonusTeam(1)
+          end
         end
 			end
 		end
@@ -193,55 +195,57 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
         end
       end
 
-      for team, hero_list in pairs(heroes_team_data) do
-        for _,id_name in pairs(hero_list) do
-          if self:GetCaster():GetUnitName() == id_name then
-            self.hero_team = team
-          end
-        end
-      end
+      self.hero_team_number = caster:GetTeamNumber()
 
-      self:ApplyBonusTeam(5)
+      self:ApplyBonusTeam(4)
 		end
 
     function base_stats:ApplyBonusTeam(amount)
-      if self.hero_team == "team_death" then
+      if self.hero_team_number == DOTA_TEAM_CUSTOM_1 then
         self.stat_bonus["STR"] = self.stat_bonus["STR"] + amount
         self:CalculateStats(0, 0, "STR")
-        self.stat_bonus["DEF"] = self.stat_bonus["DEF"] + amount
-        self:CalculateStats(0, 0, "DEF")
-        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
-        self:CalculateStats(0, 0, "RES")
-        self.stat_bonus["LCK"] = self.stat_bonus["LCK"] + amount
-        self:CalculateStats(0, 0, "LCK")
-      end
-      if self.hero_team == "team_nature" then
         self.stat_bonus["AGI"] = self.stat_bonus["AGI"] + amount
         self:CalculateStats(0, 0, "AGI")
         self.stat_bonus["LCK"] = self.stat_bonus["LCK"] + amount
         self:CalculateStats(0, 0, "LCK")
-        self.stat_bonus["DEX"] = self.stat_bonus["DEX"] + amount
-        self:CalculateStats(0, 0, "DEX")
-        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
-        self:CalculateStats(0, 0, "REC")
-      end
-      if self.hero_team == "team_moon" then
-        self.stat_bonus["INT"] = self.stat_bonus["INT"] + amount
-        self:CalculateStats(0, 0, "INT")
-        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
-        self:CalculateStats(0, 0, "RES")
-        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
-        self:CalculateStats(0, 0, "REC")
-        self.stat_bonus["MND"] = self.stat_bonus["MND"] + amount
-        self:CalculateStats(0, 0, "MND")
-      end
-      if self.hero_team == "team_sun" then
-        self.stat_bonus["CON"] = self.stat_bonus["CON"] + amount
-        self:CalculateStats(0, 0, "CON")
         self.stat_bonus["DEF"] = self.stat_bonus["DEF"] + amount
         self:CalculateStats(0, 0, "DEF")
         self.stat_bonus["DEX"] = self.stat_bonus["DEX"] + amount
         self:CalculateStats(0, 0, "DEX")
+      end
+      if self.hero_team_number == DOTA_TEAM_CUSTOM_2 then
+        self.stat_bonus["INT"] = self.stat_bonus["INT"] + amount
+        self:CalculateStats(0, 0, "INT")
+        self.stat_bonus["CON"] = self.stat_bonus["CON"] + amount
+        self:CalculateStats(0, 0, "CON")
+        self.stat_bonus["MND"] = self.stat_bonus["MND"] + amount
+        self:CalculateStats(0, 0, "MND")
+        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
+        self:CalculateStats(0, 0, "REC")
+        self.stat_bonus["DEX"] = self.stat_bonus["DEX"] + amount
+        self:CalculateStats(0, 0, "DEX")
+      end
+      if self.hero_team_number == DOTA_TEAM_CUSTOM_3 then
+        self.stat_bonus["INT"] = self.stat_bonus["INT"] + amount
+        self:CalculateStats(0, 0, "INT")
+        self.stat_bonus["AGI"] = self.stat_bonus["AGI"] + amount
+        self:CalculateStats(0, 0, "AGI")
+        self.stat_bonus["REC"] = self.stat_bonus["REC"] + amount
+        self:CalculateStats(0, 0, "REC")
+        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
+        self:CalculateStats(0, 0, "RES")
+        self.stat_bonus["LCK"] = self.stat_bonus["LCK"] + amount
+        self:CalculateStats(0, 0, "LCK")
+      end
+      if self.hero_team_number == DOTA_TEAM_CUSTOM_4 then
+        self.stat_bonus["STR"] = self.stat_bonus["STR"] + amount
+        self:CalculateStats(0, 0, "STR")
+        self.stat_bonus["CON"] = self.stat_bonus["CON"] + amount
+        self:CalculateStats(0, 0, "CON")
+        self.stat_bonus["DEF"] = self.stat_bonus["DEF"] + amount
+        self:CalculateStats(0, 0, "DEF")
+        self.stat_bonus["RES"] = self.stat_bonus["RES"] + amount
+        self:CalculateStats(0, 0, "RES")
         self.stat_bonus["MND"] = self.stat_bonus["MND"] + amount
         self:CalculateStats(0, 0, "MND")
       end

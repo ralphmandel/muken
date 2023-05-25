@@ -106,7 +106,7 @@ function Spawner:RandomizeTier()
     hero_lvl_total = hero_lvl_total + hero:GetLevel()
   end
 
-  local current_tier = math.ceil((hero_lvl_total / hero_count) / 4)
+  local current_tier = math.ceil((hero_lvl_total / hero_count) / 6)
 
   for i = current_tier, 1, -1 do
     if RandomFloat(0, 100) < 40 then

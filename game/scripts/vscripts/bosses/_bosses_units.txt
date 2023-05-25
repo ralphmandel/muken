@@ -9,7 +9,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"ModelScale" 				"1.4"
-		"Level"						"30"
+		"Level"						"40"
 		"BountyGoldMin"				"80"
 		"BountyGoldMax"				"100"
 		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
@@ -39,7 +39,7 @@
 
 		"ArmorPhysical"				"0"
 		"MagicalResistance"        	"0"
-		"StatusHealth"				"750"
+		"StatusHealth"				"500"
 		"StatusHealthRegen"			"0"
 		"StatusMana"				"400" //600
 		"StatusManaRegen"			"0"
@@ -52,12 +52,12 @@
 		"AttackAnimationPoint"		"0.5"
 		"AttackAcquisitionRange"	"50"
 
-		"Stats" //210 - [30][20] = 160
+		"Stats" //200 - [30][25] = 145
 		{
       "STR" "50"
-      "AGI" "20"
+      "AGI" "15"
       "INT" "40"
-      "CON" "49"
+      "CON" "39"
 		}
 
 		"Creature"
@@ -294,7 +294,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"750"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -358,7 +358,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"750"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
@@ -422,7 +422,7 @@
 
 			"ArmorPhysical"				"0"
 			"MagicalResistance"        	"0"
-			"StatusHealth"				"750"
+			"StatusHealth"				"500"
 			"StatusHealthRegen"			"0"
 			"StatusMana"				"0" //600
 			"StatusManaRegen"			"0"
