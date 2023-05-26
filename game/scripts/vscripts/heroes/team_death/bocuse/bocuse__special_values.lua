@@ -151,7 +151,7 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 		
 		if caster:FindAbilityByName("bocuse_3__sauce_rank_42") then
-			if value_name == "lifesteal" then return 1 end
+			if value_name == "special_lifesteal" then return 1 end
 		end
 	end
 
@@ -159,14 +159,14 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "duration" then return 1 end
+		if value_name == "cast_point" then return 1 end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_11") then
-			if value_name == "cast_point" then return 1 end
+			if value_name == "duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_21") then
-			if value_name == "agi" then return 1 end
+			if value_name == "special_agi" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_4__mirepoix_rank_22") then
@@ -178,11 +178,11 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_32") then
-			if value_name == "special_hp_regen" then return 1 end
+			if value_name == "hp_regen" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_41") then
-			if value_name == "special_bkb_duration" then return 1 end
+			if value_name == "def" then return 1 end
 		end
 
     if caster:FindAbilityByName("bocuse_4__mirepoix_rank_42") then
@@ -331,30 +331,30 @@ function bocuse__special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_break" then return 1 end
     if value_name == "special_silence" then return 1 end
     if value_name == "special_disarm" then return 1 end
-    if value_name == "damage_amp_stack" then return 9 end
-    if value_name == "lifesteal" then return 40 end
+    if value_name == "damage_amp_stack" then return 10 end
+    if value_name == "special_lifesteal" then return 20 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_4__mirepoix" then
-		if value_name == "AbilityManaCost" then return 145 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_4__mirepoix_rank_12") then
-        return 40
+        return 90
       end
-      return 60
+      return 120
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 30 + (value_level * 1) end
+		if value_name == "cast_point" then return 4 - (value_level * 0.2) end
 
-		if value_name == "cast_point" then return 1 end
-		if value_name == "agi" then return 30 end
-		if value_name == "atk_range" then return 120 end
+    if value_name == "duration" then return 50 end
+    if value_name == "special_agi" then return 20 end
+    if value_name == "atk_range" then return 120 end
     if value_name == "special_block" then return 20 end
-    if value_name == "special_hp_regen" then return 25 end
-    if value_name == "special_bkb_duration" then return 15 end
-		if value_name == "res" then return 45 end
+    if value_name == "hp_regen" then return 2 end
+    if value_name == "def" then return 50 end
+    if value_name == "res" then return 50 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then

@@ -5,6 +5,12 @@ LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_
 
 -- INIT
 
+  function bocuse_4__mirepoix:GetCastPoint()
+    local channel = self:GetCaster():FindAbilityByName("_channel")
+    local channel_time = self:GetSpecialValueFor("cast_point")
+    return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
+  end
+
 -- SPELL START
 
 	function bocuse_4__mirepoix:OnAbilityPhaseStart()
@@ -41,10 +47,6 @@ LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_
 			caster:StopSound("DOTA_Item.Cheese.Activate")
 			caster:StopSound("DOTA_Item.RepairKit.Target")
 		end
-	end
-
-	function bocuse_4__mirepoix:GetCastPoint()
-		return self:GetSpecialValueFor("cast_point")
 	end
 
 -- EFFECTS

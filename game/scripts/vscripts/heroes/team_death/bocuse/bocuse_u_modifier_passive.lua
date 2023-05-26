@@ -43,6 +43,7 @@ function bocuse_u_modifier_passive:OnHeroKilled(keys)
 	if self.parent:HasModifier("bocuse_u_modifier_mise") == false then return end
 
 	if IsServer() then
+    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("CON", 1) end
 		self.ability.kills = self.ability.kills + 1
 		self:SetStackCount(self.ability.kills)
 		self:PlayEfxKill()
@@ -65,8 +66,8 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
 end
 
 function bocuse_u_modifier_passive:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_1_CON", self.parent)
-  AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
+	-- RemoveBonus(self.ability, "_1_CON", self.parent)
+  -- AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- EFFECTS -----------------------------------------------------------

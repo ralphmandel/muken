@@ -75,7 +75,7 @@ function Spawner:IsSpotAlive(spawner, spot)
     if category == "units" then
       for _,unit in pairs(data) do
         if IsValidEntity(unit) then
-          if unit:IsAlive() then
+          if unit:IsAlive() and unit:IsDominated() == false then
             return true
           end
         end
@@ -156,49 +156,3 @@ function Spawner:RandomizePlayerSpawn(unit)
   unit:SetOrigin(loc)
   FindClearSpaceForUnit(unit, loc, true)
 end
-
--- function Spawner:RandomizePlayerSpawn(unit)
---   local further_loc = nil
---   local further_distance = nil
- 
---   local enemies = FindUnitsInRadius(
---     unit:GetTeamNumber(), unit:GetOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
---     DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,
---     0, false
---   )
-
---   for _,loc in pairs(SPAWN_POS) do
---     local closer = nil
---     local distance = 0
-    
---     for _,enemy in pairs(enemies) do
---       if (enemy:IsAlive() == false and enemy:IsReincarnating()) or enemy:IsAlive() then
---         if closer == nil then
---           closer = loc
---           distance = (loc - enemy:GetAbsOrigin()):Length()
---         end
---         if (loc - enemy:GetAbsOrigin()):Length() < distance then
---           closer = loc
---           distance = (loc - enemy:GetAbsOrigin()):Length()
---         end
---       end
---     end
-
---     if further_loc == nil then
---       further_loc = closer
---       further_distance = distance
---     else
---       if distance > further_distance then
---         further_loc = closer
---         further_distance = distance
---       end
---     end
---   end
-
---   if further_loc == nil then
---     further_loc = SPAWN_POS[RandomInt(1, 15)]
---   end
-
---   unit:SetOrigin(further_loc)
---   FindClearSpaceForUnit(unit, further_loc, true)
--- end

@@ -370,6 +370,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 	-- GET STATS
 		function base_stats:GetStatBase(stat)
 			local value = self.stat_base[stat]
+      if value < 0 then value = 0 end
+      if value > 99 then value = 99 end
 			return value
 		end
 
@@ -393,11 +395,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		function base_stats:IncrementSpenderPoints(pts)
 			if IsServer() then
 				self.total_points = self.total_points + pts
-				if self:GetCaster():IsHero() then self:UpdatePanoramaPoints("nil") end
+				self:UpdatePanoramaPoints("nil")
 			end
 		end
 
 		function base_stats:UpdatePanoramaStat(stat)
+      if self:GetCaster():IsHero() == false then return end
+      if self:GetCaster():IsIllusion() then return end
+      
 			if IsServer() then
 				local player = self:GetCaster():GetPlayerOwner()
 				if (not player) then return end
@@ -412,6 +417,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 		end
 
 		function base_stats:UpdatePanoramaPoints(upgraded_stat)
+      if self:GetCaster():IsHero() == false then return end
+      if self:GetCaster():IsIllusion() then return end
+
 			if IsServer() then
 				local player = self:GetCaster():GetPlayerOwner()
 				if (not player) then return end
@@ -515,6 +523,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 			end
 		end
 
+    function base_stats:AddBaseStat(stat, amount)
+			if IsServer() then
+				self.stat_base[stat] = self.stat_base[stat] + amount
+				self:CalculateStats(0, 0, stat)
+			end
+		end
+
 		function base_stats:CalculateStats(static_value, percent_value, stat)
 			if IsServer() then
 				self.stat_bonus[stat] = self.stat_bonus[stat] + static_value
@@ -538,17 +553,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
 				local void = self:GetCaster():FindAbilityByName("_void")
 				if void then void:SetLevel(1) end
 
-				if self:GetCaster():IsIllusion() then return end
-				if self:GetCaster():IsHero() == false then return end
-
 				self:UpdatePanoramaStat(stat)
-			end
-		end
-
-		function base_stats:AddBaseStat(stat, amount)
-			if IsServer() then
-				self.stat_base[stat] = self.stat_base[stat] + amount
-				self:CalculateStats(0, 0, stat)
 			end
 		end
 
@@ -640,7 +645,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       local result = self.force_crit_damage
 
       if result == nil then
-        result = self.base_critical_damage + (self.critical_damage * (self.stat_base["STR"]))
+        result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("STR"))
 
         if caster:HasModifier("ancient_1_modifier_passive") == false or caster:GetHealthPercent() >= 25 then
           local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
@@ -673,7 +678,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
     end
 
     function base_stats:GetBaseMS()
-      return self.base_movespeed + (self.movespeed * self.stat_base["AGI"])
+      return self.base_movespeed + (self.movespeed * self:GetStatBase("AGI"))
     end
 
     function base_stats:GetBonusMS()

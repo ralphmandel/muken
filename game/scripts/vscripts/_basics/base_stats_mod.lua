@@ -21,10 +21,9 @@ base_stats_mod = class ({})
         self.ability:LoadDataForIllusion()
       else
         self.ability:AddBaseStatsPoints()
+        self.ability:UpdatePanoramaPoints()
             
-        if self.parent:IsHero() then
-          self.ability:UpdatePanoramaPoints()
-        else
+        if self.parent:IsHero() == false then
           self.ability:IncrementSpenderPoints(0, 0)
         end
       end
@@ -204,19 +203,19 @@ base_stats_mod = class ({})
   function base_stats_mod:GetModifierManaBonus()
     if self.parent:HasModifier("ancient_1_modifier_passive") then
       if self.parent:HasModifier("ancient_u_modifier_passive") then
-        return 250 + (self.ability.mana * (self.ability.stat_base["INT"]) * 0.5)
+        return 250 + (self.ability.mana * self.ability:GetStatBase("INT") * 0.5)
       else
         return 0
       end
     end
     
-    return self.ability.mana * (self.ability.stat_base["INT"])
+    return self.ability.mana * self.ability:GetStatBase("INT")
   end
 
 -- CON
 
   function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
-    return self.ability.heal_amp * (self.ability.stat_base["CON"])
+    return self.ability.heal_amp * self.ability:GetStatBase("CON")
   end
 
   function base_stats_mod:GetModifierHPRegenAmplify_Percentage()

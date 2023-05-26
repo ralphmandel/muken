@@ -1,0 +1,156 @@
+dasdingo_4_modifier_tribal = class({})
+
+function dasdingo_4_modifier_tribal:IsHidden() return false end
+function dasdingo_4_modifier_tribal:IsPurgable() return false end
+
+-- CONSTRUCTORS -----------------------------------------------------------
+
+function dasdingo_4_modifier_tribal:OnCreated(kv)
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+  self.hits = self.ability:GetSpecialValueFor("hits") * 4
+  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "_1_STR", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "_1_AGI", self.parent, 9999, 0, nil)
+
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {amount = 0.5}, false)
+  self.parent:SetHealthBarOffsetOverride(300)
+
+  Timers:CreateTimer(FrameTime(), function()
+    self.min_health = self.hits
+    self.parent:ModifyHealth(self.hits, self.ability, false, 0)
+  end)
+
+  if IsServer() then
+    self.parent:StartGesture(ACT_DOTA_SPAWN)
+    self:PlayEfxStart()
+    self:StartIntervalThink(1)
+  end
+end
+
+function dasdingo_4_modifier_tribal:OnRefresh(kv)
+end
+
+function dasdingo_4_modifier_tribal:OnRemoved()
+  self.parent:FadeGesture(ACT_DOTA_IDLE)
+  self.parent:StartGesture(ACT_DOTA_DIE)
+
+  RemoveBonus(self.ability, "_1_CON", self.parent)
+  RemoveBonus(self.ability, "_1_STR", self.parent)
+  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
+
+  if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
+end
+
+-- API FUNCTIONS -----------------------------------------------------------
+
+function dasdingo_4_modifier_tribal:CheckState()
+	local state = {
+    [MODIFIER_STATE_NO_UNIT_COLLISION] = false,
+		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
+		[MODIFIER_STATE_EVADE_DISABLED] = true
+	}
+
+	return state
+end
+
+function dasdingo_4_modifier_tribal:DeclareFunctions()
+	local funcs = {
+    MODIFIER_PROPERTY_HEALTHBAR_PIPS,
+		MODIFIER_EVENT_ON_DEATH,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_MIN_HEALTH,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
+    MODIFIER_PROPERTY_BONUS_DAY_VISION,
+    MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+    MODIFIER_EVENT_ON_ATTACK,
+    MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+	}
+
+	return funcs
+end
+
+function dasdingo_4_modifier_tribal:GetModifierHealthBarPips(keys)
+	return self:GetParent():GetMaxHealth() / 4
+end
+
+function dasdingo_4_modifier_tribal:OnDeath(keys)
+	if keys.unit == self.parent then self:Destroy() end
+end
+
+function dasdingo_4_modifier_tribal:OnAttackLanded(keys)
+  if keys.attacker == self.parent then
+		if IsServer() then keys.target:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
+	end
+
+	if keys.target ~= self.parent then return end
+  local hit = 1
+
+  if keys.attacker:IsHero() then
+    if keys.attacker:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then hit = 4 else hit = 2 end
+  end
+
+  self.min_health = self.min_health - hit
+end
+
+function dasdingo_4_modifier_tribal:GetDisableHealing()
+	return 1
+end
+
+function dasdingo_4_modifier_tribal:GetMinHealth()
+	return self.min_health
+end
+
+function dasdingo_4_modifier_tribal:GetModifierExtraHealthBonus()
+	return self.hits - 1
+end
+
+function dasdingo_4_modifier_tribal:GetBonusDayVision()
+	return 400
+end
+
+function dasdingo_4_modifier_tribal:GetBonusNightVision()
+	return 300
+end
+
+function dasdingo_4_modifier_tribal:OnAttack(keys)
+	if keys.attacker == self.parent then
+		if self.ability.sound == nil then
+			if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.Attack") end
+		end
+	end
+end
+
+function dasdingo_4_modifier_tribal:GetModifierBaseAttack_BonusDamage()
+  return BaseStats(self:GetCaster()):GetStatTotal("MND")
+end
+
+function dasdingo_4_modifier_tribal:OnIntervalThink()
+	if IsServer() then
+    self.parent:StartGesture(ACT_DOTA_IDLE)
+    self:StartIntervalThink(-1)
+  end
+end
+
+-- UTILS -----------------------------------------------------------
+
+-- EFFECTS -----------------------------------------------------------
+
+function dasdingo_4_modifier_tribal:PlayEfxStart()
+	local string = "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_hero_heal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+  ParticleManager:SetParticleControl(effect_cast, 2, self.parent:GetOrigin())
+	self:AddParticle(effect_cast, false, false, -1, false, false)
+
+  local string_2 = "particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_golden_livingarmor.vpcf"
+  self.armor_particle = ParticleManager:CreateParticle(string_2, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(self.armor_particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_origin", self.parent:GetAbsOrigin(), true)
+	self:AddParticle(self.armor_particle, false, false, -1, false, false)
+
+  if IsServer() then self.parent:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
+end

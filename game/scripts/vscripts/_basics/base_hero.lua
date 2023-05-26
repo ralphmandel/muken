@@ -226,6 +226,8 @@ require("internal/talent_tree")
 
 -- UPDATE DATA
 	function base_hero:UpdatePanoramaPanels()
+    if self:GetCaster():IsHero() == false then return end
+
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
@@ -237,6 +239,8 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:UpdatePanoramaState()
+    if self:GetCaster():IsHero() == false then return end
+
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
@@ -278,6 +282,8 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:UpdatePanoramaGold()
+    if self:GetCaster():IsHero() == false then return end
+    
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 

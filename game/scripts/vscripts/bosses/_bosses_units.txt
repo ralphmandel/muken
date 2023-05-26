@@ -73,69 +73,69 @@
 	}
 
 	// SUMMONS
-		"tribal_ward"
-		{
-			"Model"						"models/items/witchdoctor/wd_ward/wd_father_of_spirits_death_ward/wd_father_of_spirits_death_ward.vmdl"
-			"BaseClass"					"npc_dota_creature"
-			"SoundSet"					"n_creep_Melee"
-			"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-			"Level"						"0"
-			"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
-			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackRange"				"400"
-			"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
-			"ProjectileSpeed"			"1500"
-			"HealthBarOffset"			"160"
-			"ModelScale" 				"1"
+		// "tribal_ward"
+		// {
+		// 	"Model"						"models/items/witchdoctor/wd_ward/wd_father_of_spirits_death_ward/wd_father_of_spirits_death_ward.vmdl"
+		// 	"BaseClass"					"npc_dota_creature"
+		// 	"SoundSet"					"n_creep_Melee"
+		// 	"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		// 	"Level"						"0"
+		// 	"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+		// 	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		// 	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// 	"AttackRange"				"400"
+		// 	"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
+		// 	"ProjectileSpeed"			"1500"
+		// 	"HealthBarOffset"			"160"
+		// 	"ModelScale" 				"1"
 
-			"Ability7"					"_void"
-			"Ability8"					"base_stats"
+		// 	"Ability7"					"_void"
+		// 	"Ability8"					"base_stats"
 
-			"RingRadius"				"100"
-			"BountyXP"					"0"
-			"TeamName"					"DOTA_TEAM_NEUTRALS"
-			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-			"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-			"ConsideredHero" 			"1"
-			"IsNeutralUnitType" 		"1"
-			"WakesNeutrals" 			"1"
+		// 	"RingRadius"				"100"
+		// 	"BountyXP"					"0"
+		// 	"TeamName"					"DOTA_TEAM_NEUTRALS"
+		// 	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		// 	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		// 	"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// 	"ConsideredHero" 			"1"
+		// 	"IsNeutralUnitType" 		"1"
+		// 	"WakesNeutrals" 			"1"
 
-			"ArmorPhysical"				"0"
-			"MagicalResistance"        	"0"
-			"StatusHealth"				"300"
-			"StatusHealthRegen"			"0"
-			"StatusMana"				"0" //600
-			"StatusManaRegen"			"0"
-			"VisionDaytimeRange"		"600"
-			"VisionNighttimeRange"		"500"
-			"MovementSpeed"           	"9999"
-			"AttackDamageMin"			"35"
-			"AttackDamageMax"			"45"
-			"AttackRate"				"1.2"
-			"AttackAnimationPoint"		"0.5"
-			"AttackAcquisitionRange"	"50"
+		// 	"ArmorPhysical"				"0"
+		// 	"MagicalResistance"        	"0"
+		// 	"StatusHealth"				"300"
+		// 	"StatusHealthRegen"			"0"
+		// 	"StatusMana"				"0" //600
+		// 	"StatusManaRegen"			"0"
+		// 	"VisionDaytimeRange"		"600"
+		// 	"VisionNighttimeRange"		"500"
+		// 	"MovementSpeed"           	"9999"
+		// 	"AttackDamageMin"			"35"
+		// 	"AttackDamageMax"			"45"
+		// 	"AttackRate"				"1.2"
+		// 	"AttackAnimationPoint"		"0.5"
+		// 	"AttackAcquisitionRange"	"50"
 
-			"Stats"
-			{
-				"STR" "0"
-				"AGI" "0"
-				"INT" "0"
-				"CON" "0"
-			}
+		// 	"Stats"
+		// 	{
+		// 		"STR" "0"
+		// 		"AGI" "0"
+		// 		"INT" "0"
+		// 		"CON" "0"
+		// 	}
 
-			"Creature"
-			{
-				"HPGain"					"0"
-				"DamageGain"				"0"
-				"ArmorGain"					"0"
-				"MagicResistGain"			"0"
-				"MoveSpeedGain"				"0"
-				"BountyGain"				"0"
-				"XPGain"					"0"
-			}			
-		}
+		// 	"Creature"
+		// 	{
+		// 		"HPGain"					"0"
+		// 		"DamageGain"				"0"
+		// 		"ArmorGain"					"0"
+		// 		"MagicResistGain"			"0"
+		// 		"MoveSpeedGain"				"0"
+		// 		"BountyGain"				"0"
+		// 		"XPGain"					"0"
+		// 	}			
+		// }
 
     "icebreaker_shard"
 		{
@@ -176,6 +176,69 @@
 			"MovementSpeed"           	"9999"
 			"AttackDamageMin"			  "0"
 			"AttackDamageMax"			  "0"
+			"AttackRate"				    "1.2"
+			"AttackAnimationPoint"		"0.5"
+			"AttackAcquisitionRange"	"50"
+
+			"Stats"
+			{
+				"STR" "0"
+				"AGI" "0"
+				"INT" "0"
+				"CON" "0"
+			}
+
+			"Creature"
+			{
+				"HPGain"					"0"
+				"DamageGain"				"0"
+				"ArmorGain"					"0"
+				"MagicResistGain"			"0"
+				"MoveSpeedGain"				"0"
+				"BountyGain"				"0"
+				"XPGain"					"0"
+			}			
+		}
+
+    "dasdingo_tribal"
+		{
+			"Model"						  "models/items/witchdoctor/wd_ward/monke_monkes_puppet/monke_monkes_puppet.vmdl"
+			"BaseClass"					"npc_dota_creature"
+			"SoundSet"					"n_creep_Melee"
+			"GameSoundsFile"		""
+			"Level"						  "0"
+			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_NONE"
+			"AttackCapabilities"				"DOTA_UNIT_CAP_RANGED_ATTACK"
+			"AttackRange"					"550"
+			"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_rubick.vpcf"
+			"ProjectileSpeed"			"1500"
+			"HealthBarOffset"			"100"
+			"ModelScale" 				  "1.2"
+
+			"Ability7"					  "_void"
+			"Ability8"					  "base_stats"
+
+			"RingRadius"				    "100"
+			"BountyXP"					    "0"
+			"TeamName"					    "DOTA_TEAM_NEUTRALS"
+			"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+			"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+			"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+			"IsNeutralUnitType" 		"1"
+			"WakesNeutrals" 			  "1"
+
+			"ArmorPhysical"				  "0"
+			"MagicalResistance"     "0"
+			"StatusHealth"				  "1"
+			"StatusHealthRegen"			"0"
+			"StatusMana"				    "0" //600
+			"StatusManaRegen"			  "0"
+			"VisionDaytimeRange"		"0"
+			"VisionNighttimeRange"	"0"
+			"MovementSpeed"           	"9999"
+			"AttackDamageMin"			  "15"
+			"AttackDamageMax"			  "25"
 			"AttackRate"				    "1.2"
 			"AttackAnimationPoint"		"0.5"
 			"AttackAcquisitionRange"	"50"

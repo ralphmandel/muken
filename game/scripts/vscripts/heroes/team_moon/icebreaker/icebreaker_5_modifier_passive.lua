@@ -86,15 +86,16 @@ function icebreaker_5_modifier_passive:OnHeroKilled(keys)
 	if keys.inflictor ~= blink then return end
 
 	if IsServer() then
-		self.ability.kills = self.ability.kills + 1
+    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("AGI", 1) end
+    self.ability.kills = self.ability.kills + 1
 		self:SetStackCount(self.ability.kills)
 		self:PlayEfxKill()
 	end
 end
 
 function icebreaker_5_modifier_passive:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
-  AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount(), 0, nil)
+	-- RemoveBonus(self.ability, "_1_AGI", self.parent)
+  -- AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

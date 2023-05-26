@@ -10,7 +10,6 @@ function bocuse_4_modifier_mirepoix:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-  local bkb_duration = self.ability:GetSpecialValueFor("special_bkb_duration")
 	self.init_model_scale = self.ability:GetSpecialValueFor("init_model_scale")
 	self.atk_range = self.ability:GetSpecialValueFor("atk_range")
   self.range = 0
@@ -18,14 +17,9 @@ function bocuse_4_modifier_mirepoix:OnCreated(kv)
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
 
-  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
   AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
-
-  if bkb_duration > 0 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_bkb", {
-      duration = bkb_duration
-    })
-  end
+  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
 
 	if IsServer() then
 		self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
@@ -41,9 +35,9 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "_2_DEF", self.parent)
   RemoveBonus(self.ability, "_2_RES", self.parent)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bkb", self.ability)
+  RemoveBonus(self.ability, "_1_AGI", self.parent)
 
 	if self.parent:IsAlive() then
 		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_4_modifier_end", {
@@ -81,7 +75,7 @@ function bocuse_4_modifier_mirepoix:GetModifierMagical_ConstantBlock()
 end
 
 function bocuse_4_modifier_mirepoix:GetModifierConstantHealthRegen()
-  return self:GetAbility():GetSpecialValueFor("special_hp_regen")
+  return self:GetParent():GetBaseMaxHealth() * self:GetAbility():GetSpecialValueFor("health_regen") * 0.01
 end
 
 
