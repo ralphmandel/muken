@@ -336,3 +336,13 @@ end
 function ChangeCosmeticsActivity(baseNPC)
   if Cosmetics(baseNPC) then Cosmetics(baseNPC):ChangeCosmeticsActivity(true) end
 end
+
+function ApplyParticleOnCosmetic(baseNPC, model_name, particle_name, attach)
+  if Cosmetics(baseNPC) == nil then return end
+  local off_hand_mod = Cosmetics(baseNPC):FindModifierByModel(model_name)
+  if off_hand_mod then off_hand_mod:PlayEfxAmbient(particle_name, attach) end
+end
+
+function DestroyParticleOnCosmetic(baseNPC, model_name, particle_name, bDestroyImmediately)
+  if Cosmetics(baseNPC) then Cosmetics(baseNPC):DestroyAmbient(model_name, particle_name, bDestroyImmediately) end
+end

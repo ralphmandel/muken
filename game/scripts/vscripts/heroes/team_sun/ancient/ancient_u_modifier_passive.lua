@@ -69,10 +69,9 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 end
 
 function ancient_u_modifier_passive:UpdateAmbients()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics == nil then return end
-	local ambient_back = cosmetics:GetAmbient("particles/ancient/ancient_back.vpcf")
-	local ambient_weapon = cosmetics:GetAmbient("particles/ancient/ancient_weapon.vpcf")
+	if Cosmetics(self.parent) == nil then return end
+	local ambient_back = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_back.vpcf")
+	local ambient_weapon = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_weapon.vpcf")
 
 	local value = self.parent:GetMana() * 2.5
 	if self.ability.casting == true then value = 0 end
