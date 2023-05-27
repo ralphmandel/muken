@@ -32,6 +32,7 @@ end
 
 function ancient_3_modifier_walk:CheckState()
 	local state = {
+    [MODIFIER_STATE_ROOTED] = false,
     [MODIFIER_STATE_STUNNED] = false,
     [MODIFIER_STATE_FROZEN] = false
   }

@@ -152,5 +152,11 @@ function dasdingo_4_modifier_tribal:PlayEfxStart()
 	ParticleManager:SetParticleControlEnt(self.armor_particle, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_origin", self.parent:GetAbsOrigin(), true)
 	self:AddParticle(self.armor_particle, false, false, -1, false, false)
 
+  local string_3 = "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull_rubick.vpcf"
+  self.wardParticle = ParticleManager:CreateParticle(string_3, PATTACH_POINT_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(self.wardParticle, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_attack1", self.parent:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(self.wardParticle, 2, self.parent:GetAbsOrigin())
+	self:AddParticle(self.wardParticle, false, false, -1, false, false)
+
   if IsServer() then self.parent:EmitSound("Hero_WitchDoctor.Paralyzing_Cask_Cast") end
 end

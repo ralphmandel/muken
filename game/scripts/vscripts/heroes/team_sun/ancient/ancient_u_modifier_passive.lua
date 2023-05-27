@@ -11,12 +11,17 @@ function ancient_u_modifier_passive:OnCreated(kv)
   self.ability = self:GetAbility()
 
 	if IsServer() then
+    self.ability.kills = 0
+    self:SetStackCount(self.ability.kills)
 		self:OnIntervalThink()
 		self:PlayEfxBuff()
 	end
 end
 
 function ancient_u_modifier_passive:OnRefresh(kv)
+  if IsServer() then
+		self:SetStackCount(self.ability.kills)
+	end
 end
 
 function ancient_u_modifier_passive:OnRemoved()
@@ -26,7 +31,8 @@ end
 
 function ancient_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-    MODIFIER_EVENT_ON_ATTACKED
+    MODIFIER_EVENT_ON_ATTACKED,
+    MODIFIER_EVENT_ON_HERO_KILLED
 	}
 
 	return funcs
@@ -47,6 +53,18 @@ function ancient_u_modifier_passive:OnAttacked(keys)
   SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, gain, self.caster)
 
   if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("delay")) end
+end
+
+function ancient_u_modifier_passive:OnHeroKilled(keys)
+	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+	if keys.inflictor ~= self.ability then return end
+
+	if IsServer() then
+    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", 1) end
+    self.ability.kills = self.ability.kills + 1
+		self:SetStackCount(self.ability.kills)
+		self:PlayEfxKill()
+	end
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()

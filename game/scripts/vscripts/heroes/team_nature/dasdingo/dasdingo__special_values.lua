@@ -253,8 +253,8 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "dasdingo_4__tribal" then
-		if value_name == "AbilityManaCost" then return 125 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 40 end
+		if value_name == "AbilityManaCost" then return 140 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 45 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "cast_range" then return 300 + (value_level * 20) end

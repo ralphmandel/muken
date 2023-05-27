@@ -179,7 +179,7 @@
       "3"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"	  "40"
+				"duration"	  "30"
 			}
       "3"
 			{
@@ -219,20 +219,20 @@
 				"var_type"		      "FIELD_FLOAT"
 				"interval"	        "0.5"
 			}
-			"02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"fire_damage"		    "5"
-			}
-      "03"
+      "02"
 			{
 				"var_type"		      "FIELD_FLOAT"
 				"fire_duration"	    "5"
 			}
+			"03"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"fire_damage"		    "5"
+			}
       "04"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"ignition_damage"	  "25"
+				"ignition_damage"	  "20"
 			}
       "05"
 			{

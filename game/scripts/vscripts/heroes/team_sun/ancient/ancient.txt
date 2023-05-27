@@ -282,7 +282,7 @@
       "04"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"delay"	            "5"
+				"delay"	            "10"
 			}
       "05"
 			{

@@ -5,6 +5,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_perce
 -- INIT
 
   function ancient_u__final:Spawn()
+    self.kills = 0
     self.casting = false
     self.energy = 0
   end

@@ -23,7 +23,6 @@ function icebreaker_5_modifier_passive:OnRefresh(kv)
 end
 
 function icebreaker_5_modifier_passive:OnRemoved()
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -33,7 +32,6 @@ function icebreaker_5_modifier_passive:DeclareFunctions()
     MODIFIER_PROPERTY_DISABLE_TURNING,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_HERO_KILLED
 	}
 
@@ -68,22 +66,9 @@ function icebreaker_5_modifier_passive:OnTakeDamage(keys)
 	end
 end
 
-function icebreaker_5_modifier_passive:OnStateChanged(keys)
-	if keys.unit ~= self.parent then return end
-
-	if self.parent:PassivesDisabled() then
-		self:SetStackCount(0)
-	else
-		self:SetStackCount(self.ability.kills)
-	end
-end
-
 function icebreaker_5_modifier_passive:OnHeroKilled(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-
-	local blink = self.parent:FindAbilityByName("icebreaker_5__blink")
-	if blink == nil then return end
-	if keys.inflictor ~= blink then return end
+	if keys.inflictor ~= self.ability then return end
 
 	if IsServer() then
     if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("AGI", 1) end
