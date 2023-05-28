@@ -13,6 +13,7 @@ function _modifier_fear:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.target = self.parent:GetAggroTarget()
   self.special = kv.special or 0
+  if kv.x and kv.y and kv.z then self.vec = Vector(kv.x, kv.y, kv.z) end
 
   AddStatusEfx(self.ability, "_modifier_fear_status_efx", self.caster, self.parent)
   self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 30})
@@ -24,6 +25,10 @@ function _modifier_fear:OnCreated(kv)
       self.parent:EmitSound("Hero_DarkWillow.Fear.Target")
       self.parent:StopSound("Genuine.Fear.Loop")
       self.parent:EmitSound("Genuine.Fear.Loop")
+    elseif self.special == 2 then
+      self:PlayEfxStart("particles/econ/items/dark_willow/dark_willow_immortal_2021/dw_2021_willow_wisp_spell_debuff.vpcf", PATTACH_OVERHEAD_FOLLOW)
+      self:PlayEfxStart("particles/genuine/genuine_fear.vpcf", PATTACH_ABSORIGIN_FOLLOW)
+      self.parent:EmitSound("Hero_DarkWillow.Fear.Target")      
     else
       self:PlayEfxStart("particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW)
     end
@@ -64,7 +69,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function _modifier_fear:OnIntervalThink()
-	local direction = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized() * -250
+  local vec = self.vec or self.caster:GetAbsOrigin()
+	local direction = (vec - self.parent:GetAbsOrigin()):Normalized() * -250
 	local pos = self.parent:GetOrigin() + direction
 	self.parent:MoveToPosition(pos)
 

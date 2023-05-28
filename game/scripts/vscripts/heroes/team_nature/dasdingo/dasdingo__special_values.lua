@@ -191,7 +191,9 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "dasdingo_u__curse" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("dasdingo_u__curse_rank_11") then
 		end
@@ -234,7 +236,7 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 20 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 275 + (value_level * 10) end
+		if value_name == "radius" then return 250 + (value_level * 10) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_2__shield" then
@@ -267,9 +269,11 @@ function dasdingo__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "dasdingo_u__curse" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 165 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 90 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "radius" then return 300 + (value_level * 10) end
 	end
 
 	return 0

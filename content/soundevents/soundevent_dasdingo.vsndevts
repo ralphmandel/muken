@@ -86,7 +86,7 @@
 					"pitch"  			{ "value"   "1.000000"	}
 					"volume"            { "value"   "0.60000"	}
 					"volume_fade_out"	{ "value"	"0.5"		}
-					"stop_at_time" 		{ "value"	"12.000000" }
+					"stop_at_time" 		{ "value"	"25.000000" }
 				}
 			}
 		}
