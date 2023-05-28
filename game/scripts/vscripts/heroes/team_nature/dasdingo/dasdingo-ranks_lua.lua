@@ -53,10 +53,10 @@ dasdingo_u__curse_rank_41 = class ({})
 dasdingo_u__curse_rank_42 = class ({})
 
 dasdingo__precache = class ({})
-LinkLuaModifier("dasdingo__special_values", "heroes/team_nature/dasdingo/dasdingo__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_special_values", "heroes/team_nature/dasdingo/dasdingo-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function dasdingo__precache:GetIntrinsicModifierName()
-  return "dasdingo__special_values"
+  return "dasdingo_special_values"
 end
 
 function dasdingo__precache:Spawn()
@@ -65,6 +65,33 @@ end
 
 function dasdingo__precache:Precache(context)
   PrecacheResource("soundfile", "soundevents/soundevent_dasdingo.vsndevts", context)
+  PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", context )
+  PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", context )
+  PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl", context )
+  PrecacheResource( "model", "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl", context )
+  PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt.vmdl", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon_ambient.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_hair.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_eyes.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_mouth_drips.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_2021_crimson_ambient_crystal.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ti8_ss_mushroomer_belt/ti8_ss_mushroomer_belt_ambient.vpcf", context )
+
+  PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti10_immortal_weapon_gold/wd_ti10_immortal_voodoo_gold.vpcf", context )
+  PrecacheResource( "particle", "particles/dasdingo/dasdingo_aura.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_shaman/ss_2021_crimson/shadowshaman_crimson_shackle.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_hero_heal.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/treant_protector/ti7_shoulder/treant_ti7_golden_livingarmor.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_witchdoctor/witchdoctor_ward_skull_rubick.vpcf", context )
+  PrecacheResource( "particle", "particles/dasdingo/dasdingo_fire_debuff.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_hellfireblast_debuff.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/witch_doctor/wd_ti8_immortal_head/wd_ti8_immortal_maledict.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation.vpcf", context )
 end
 
 dasdingo__bind = class ({})

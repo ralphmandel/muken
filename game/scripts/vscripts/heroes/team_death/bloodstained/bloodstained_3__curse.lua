@@ -1,6 +1,6 @@
 bloodstained_3__curse = class({})
 LinkLuaModifier("bloodstained_3_modifier_curse", "heroes/team_death/bloodstained/bloodstained_3_modifier_curse", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

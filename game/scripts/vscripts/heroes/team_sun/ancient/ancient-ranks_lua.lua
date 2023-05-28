@@ -53,10 +53,10 @@ ancient_u__final_rank_41 = class ({})
 ancient_u__final_rank_42 = class ({})
 
 ancient__precache = class ({})
-LinkLuaModifier("ancient__special_values", "heroes/team_sun/ancient/ancient__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("ancient_special_values", "heroes/team_sun/ancient/ancient-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function ancient__precache:GetIntrinsicModifierName()
-  return "ancient__special_values"
+  return "ancient_special_values"
 end
 
 function ancient__precache:Spawn()

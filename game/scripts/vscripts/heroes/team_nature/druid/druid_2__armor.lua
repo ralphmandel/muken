@@ -1,7 +1,7 @@
 druid_2__armor = class({})
 LinkLuaModifier("druid_2_modifier_passive", "heroes/team_nature/druid/druid_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_2_modifier_armor", "heroes/team_nature/druid/druid_2_modifier_armor", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

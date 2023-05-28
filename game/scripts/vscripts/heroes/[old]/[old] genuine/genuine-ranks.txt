@@ -1,0 +1,140 @@
+"TalentTree_genuine"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_drow_ranger"
+	{
+		"genuine_1__shooting"
+		{
+			"1"
+			{
+				"1"   "genuine_1__shooting_rank_11"
+				"2"   "genuine_1__shooting_rank_12"
+			}
+			"2"
+			{
+				"1"   "genuine_1__shooting_rank_21"
+			}
+			"3"
+			{
+				"1"   "genuine_1__shooting_rank_31"
+				"2"   "genuine_1__shooting_rank_32"
+			}
+			"4"
+			{
+				"1"   "genuine_1__shooting_rank_41"
+			}
+		}
+		"genuine_2__fallen"
+		{
+			"1"
+			{
+				"1"   "genuine_2__fallen_rank_11"
+				"2"   "genuine_2__fallen_rank_12"
+			}
+			"2"
+			{
+				"1"   "genuine_2__fallen_rank_21"
+			}
+			"3"
+			{
+				"1"   "genuine_2__fallen_rank_31"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"genuine_3__morning"
+		{
+			"1"
+			{
+				"1"   "genuine_3__morning_rank_11"
+				"2"   "genuine_3__morning_rank_12"
+			}
+			"2"
+			{
+				"1"   "genuine_3__morning_rank_21"
+			}
+			"3"
+			{
+				"1"   "genuine_3__morning_rank_31"
+				"2"   "genuine_3__morning_rank_32"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"genuine_4__nightfall"
+		{
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "genuine_4__nightfall_rank_21"
+				"2"   "genuine_4__nightfall_rank_22"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "genuine_4__nightfall_rank_41"
+				"2"   "genuine_4__nightfall_rank_42"
+			}
+		}
+		"genuine_5__awakening"
+		{
+			"1"
+			{
+				"1"   "genuine_5__awakening_rank_11"
+				"2"   "genuine_5__awakening_rank_12"
+			}
+			"2"
+			{
+				"1"   "genuine_5__awakening_rank_21"
+			}
+			"3"
+			{
+				"1"   "genuine_5__awakening_rank_31"
+			}
+			"4"
+			{
+				"1"   "empty"
+			}
+		}
+		"genuine_u__star"
+		{
+			"1"
+			{
+				"1"   "empty"
+			}
+			"2"
+			{
+				"1"   "genuine_u__star_rank_21"
+			}
+			"3"
+			{
+				"1"   "empty"
+			}
+			"4"
+			{
+				"1"   "genuine_u__star_rank_41"
+				"2"   "genuine_u__star_rank_42"
+			}
+		}
+	}	
+}

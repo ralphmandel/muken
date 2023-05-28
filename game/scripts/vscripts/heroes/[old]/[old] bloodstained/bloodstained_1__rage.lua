@@ -4,7 +4,7 @@ LinkLuaModifier("bloodstained_1_modifier_rage_status_efx", "heroes/team_death/bl
 LinkLuaModifier("bloodstained_1_modifier_call", "heroes/team_death/bloodstained/bloodstained_1_modifier_call", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_1_modifier_call_status_efx", "heroes/team_death/bloodstained/bloodstained_1_modifier_call_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bloodstained_1_modifier_passive_status_efx", "heroes/team_death/bloodstained/bloodstained_1_modifier_passive_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

@@ -13,16 +13,17 @@
 	
 	"npc_dota_hero_drow_ranger"
 	{
-		"genuine_1__shooting"
-		{
-			"1"
-			{
-				"1"   "genuine_1__shooting_rank_11"
+		"genuine_1__shooting" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "genuine_1__shooting_rank_11" // PATH + TALENT
 				"2"   "genuine_1__shooting_rank_12"
 			}
 			"2"
 			{
 				"1"   "genuine_1__shooting_rank_21"
+				"2"   "genuine_1__shooting_rank_22"
 			}
 			"3"
 			{
@@ -32,6 +33,7 @@
 			"4"
 			{
 				"1"   "genuine_1__shooting_rank_41"
+				"2"   "genuine_1__shooting_rank_42"
 			}
 		}
 		"genuine_2__fallen"
@@ -44,14 +46,17 @@
 			"2"
 			{
 				"1"   "genuine_2__fallen_rank_21"
+				"2"   "genuine_2__fallen_rank_22"
 			}
 			"3"
 			{
 				"1"   "genuine_2__fallen_rank_31"
+				"2"   "genuine_2__fallen_rank_32"
 			}
 			"4"
 			{
-				"1"   "empty"
+				"1"   "genuine_2__fallen_rank_41"
+				"2"   "genuine_2__fallen_rank_42"
 			}
 		}
 		"genuine_3__morning"
@@ -64,6 +69,7 @@
 			"2"
 			{
 				"1"   "genuine_3__morning_rank_21"
+				"2"   "genuine_3__morning_rank_22"
 			}
 			"3"
 			{
@@ -72,63 +78,72 @@
 			}
 			"4"
 			{
-				"1"   "empty"
+				"1"   "genuine_3__morning_rank_41"
+				"2"   "genuine_3__morning_rank_42"
 			}
 		}
-		"genuine_4__nightfall"
+		"genuine_4__awakening"
 		{
 			"1"
 			{
-				"1"   "empty"
+				"1"   "genuine_4__awakening_rank_11"
+				"2"   "genuine_4__awakening_rank_12"
 			}
 			"2"
 			{
-				"1"   "genuine_4__nightfall_rank_21"
-				"2"   "genuine_4__nightfall_rank_22"
+				"1"   "genuine_4__awakening_rank_21"
+				"2"   "genuine_4__awakening_rank_22"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "genuine_4__awakening_rank_31"
+				"2"   "genuine_4__awakening_rank_32"
 			}
 			"4"
 			{
-				"1"   "genuine_4__nightfall_rank_41"
-				"2"   "genuine_4__nightfall_rank_42"
+				"1"   "genuine_4__awakening_rank_41"
+				"2"   "genuine_4__awakening_rank_42"
 			}
 		}
-		"genuine_5__awakening"
+		"genuine_5__nightfall"
 		{
 			"1"
 			{
-				"1"   "genuine_5__awakening_rank_11"
-				"2"   "genuine_5__awakening_rank_12"
+				"1"   "genuine_5__nightfall_rank_11"
+				"2"   "genuine_5__nightfall_rank_12"
 			}
 			"2"
 			{
-				"1"   "genuine_5__awakening_rank_21"
+				"1"   "genuine_5__nightfall_rank_21"
+				"2"   "genuine_5__nightfall_rank_22"
 			}
 			"3"
 			{
-				"1"   "genuine_5__awakening_rank_31"
+				"1"   "genuine_5__nightfall_rank_31"
+				"2"   "genuine_5__nightfall_rank_32"
 			}
 			"4"
 			{
-				"1"   "empty"
+				"1"   "genuine_5__nightfall_rank_41"
+				"2"   "genuine_5__nightfall_rank_42"
 			}
 		}
 		"genuine_u__star"
 		{
 			"1"
 			{
-				"1"   "empty"
+				"1"   "genuine_u__star_rank_11"
+				"2"   "genuine_u__star_rank_12"
 			}
 			"2"
 			{
 				"1"   "genuine_u__star_rank_21"
+				"2"   "genuine_u__star_rank_22"
 			}
 			"3"
 			{
-				"1"   "empty"
+				"1"   "genuine_u__star_rank_31"
+				"2"   "genuine_u__star_rank_32"
 			}
 			"4"
 			{

@@ -1,8 +1,8 @@
 dasdingo_u__curse = class({})
 LinkLuaModifier("dasdingo_u_modifier_curse", "heroes/team_nature/dasdingo/dasdingo_u_modifier_curse", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear", "modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear_status_efx", "modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear", "_modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

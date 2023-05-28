@@ -7,10 +7,10 @@ LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/team_moon/iceb
 LinkLuaModifier("icebreaker__modifier_instant", "heroes/team_moon/icebreaker/icebreaker__modifier_instant", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/team_moon/icebreaker/icebreaker__modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_illusion", "heroes/team_moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_bat_increased", "modifiers/_modifier_bat_increased", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear", "modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear_status_efx", "modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_bat_increased", "_modifiers/_modifier_bat_increased", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear", "_modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/team_moon/icebreaker/icebreaker_4_modifier_shivas", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

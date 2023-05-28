@@ -3,9 +3,9 @@ LinkLuaModifier("bocuse_u_modifier_passive", "heroes/team_death/bocuse/bocuse_u_
 LinkLuaModifier("bocuse_u_modifier_mise", "heroes/team_death/bocuse/bocuse_u_modifier_mise", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_u_modifier_mise_status_efx", "heroes/team_death/bocuse/bocuse_u_modifier_mise_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_u_modifier_jump", "heroes/team_death/bocuse/bocuse_u_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
-LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_unslowable", "modifiers/_modifier_unslowable", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_unslowable", "_modifiers/_modifier_unslowable", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

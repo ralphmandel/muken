@@ -3,8 +3,8 @@ LinkLuaModifier("ancient_3_modifier_walk", "heroes/team_sun/ancient/ancient_3_mo
 LinkLuaModifier("ancient_3_modifier_casting", "heroes/team_sun/ancient/ancient_3_modifier_casting", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_efx_hands", "heroes/team_sun/ancient/ancient_3_modifier_efx_hands", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_3_modifier_debuff", "heroes/team_sun/ancient/ancient_3_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_petrified", "modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_petrified_status_efx", "modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified", "_modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

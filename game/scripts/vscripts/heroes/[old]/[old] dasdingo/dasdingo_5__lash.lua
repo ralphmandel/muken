@@ -1,8 +1,8 @@
 dasdingo_5__lash = class({})
 LinkLuaModifier("dasdingo_5_modifier_lash", "heroes/dasdingo/dasdingo_5_modifier_lash", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_ethereal_status_efx", "modifiers/_modifier_ethereal_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_bkb", "modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_ethereal_status_efx", "_modifiers/_modifier_ethereal_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_bkb", "_modifiers/_modifier_bkb", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

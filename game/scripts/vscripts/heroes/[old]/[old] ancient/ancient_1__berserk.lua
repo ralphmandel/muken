@@ -1,7 +1,7 @@
 ancient_1__berserk = class({})
 LinkLuaModifier("ancient_1_modifier_passive", "heroes/ancient/ancient_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_1_modifier_punch", "heroes/ancient/ancient_1_modifier_punch", LUA_MODIFIER_MOTION_HORIZONTAL)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

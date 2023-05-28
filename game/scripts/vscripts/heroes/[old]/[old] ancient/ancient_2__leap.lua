@@ -3,8 +3,8 @@ LinkLuaModifier("ancient_2_modifier_passive", "heroes/ancient/ancient_2_modifier
 LinkLuaModifier("ancient_2_modifier_damage", "heroes/ancient/ancient_2_modifier_damage", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_combo", "heroes/ancient/ancient_2_modifier_combo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_jump", "heroes/ancient/ancient_2_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
-LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

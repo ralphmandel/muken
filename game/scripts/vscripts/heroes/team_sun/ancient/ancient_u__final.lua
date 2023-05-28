@@ -1,6 +1,6 @@
 ancient_u__final = class({})
 LinkLuaModifier("ancient_u_modifier_passive", "heroes/team_sun/ancient/ancient_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_percent_movespeed_debuff", "modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

@@ -3,9 +3,9 @@ LinkLuaModifier("druid_1_modifier_passive", "heroes/team_nature/druid/druid_1_mo
 LinkLuaModifier("druid_1_modifier_root", "heroes/team_nature/druid/druid_1_modifier_root", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_root_aura_effect", "heroes/team_nature/druid/druid_1_modifier_root_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_1_modifier_mini_root", "heroes/team_nature/druid/druid_1_modifier_mini_root", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_root", "modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_silence", "modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_disarm", "modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_root", "_modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

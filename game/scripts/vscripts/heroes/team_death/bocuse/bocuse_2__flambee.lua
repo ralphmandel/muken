@@ -1,8 +1,8 @@
 bocuse_2__flambee = class({})
 LinkLuaModifier("bocuse_2_modifier_flambee", "heroes/team_death/bocuse/bocuse_2_modifier_flambee", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("bocuse_2_modifier_flambee_status_efx", "heroes/team_death/bocuse/bocuse_2_modifier_flambee_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_blind", "modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_blind_stack", "modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind", "_modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

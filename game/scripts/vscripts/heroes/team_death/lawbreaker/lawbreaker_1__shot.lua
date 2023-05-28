@@ -1,6 +1,6 @@
 lawbreaker_1__shot = class({})
 LinkLuaModifier("lawbreaker_1_modifier_passive", "heroes/team_death/lawbreaker/lawbreaker_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

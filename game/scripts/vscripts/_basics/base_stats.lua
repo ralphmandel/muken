@@ -4,16 +4,16 @@ require("internal/hero_stats_table")
 LinkLuaModifier("base_stats_mod", "_basics/base_stats_mod", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_crit_bonus", "_basics/base_stats_mod_crit_bonus", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("base_stats_mod_block_bonus", "_basics/base_stats_mod_block_bonus", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_1_STR_modifier_stack", "modifiers/_1_STR_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_1_AGI_modifier_stack", "modifiers/_1_AGI_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_1_INT_modifier_stack", "modifiers/_1_INT_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_1_CON_modifier_stack", "modifiers/_1_CON_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_DEX_modifier_stack", "modifiers/_2_DEX_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_DEF_modifier_stack", "modifiers/_2_DEF_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_RES_modifier_stack", "modifiers/_2_RES_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_REC_modifier_stack", "modifiers/_2_REC_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_LCK_modifier_stack", "modifiers/_2_LCK_modifier_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_1_STR_modifier_stack", "_modifiers/_1_STR_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_1_AGI_modifier_stack", "_modifiers/_1_AGI_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_1_INT_modifier_stack", "_modifiers/_1_INT_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_1_CON_modifier_stack", "_modifiers/_1_CON_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_DEX_modifier_stack", "_modifiers/_2_DEX_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_DEF_modifier_stack", "_modifiers/_2_DEF_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_RES_modifier_stack", "_modifiers/_2_RES_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_REC_modifier_stack", "_modifiers/_2_REC_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_LCK_modifier_stack", "_modifiers/_2_LCK_modifier_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA_MODIFIER_MOTION_NONE)
 
 ---- INIT
 	-- ABILITY FUNCTIONS
@@ -132,8 +132,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "modifiers/_2_MND_modifier_stack", LUA_
       local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
       local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
       local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
-      local boss_list = LoadKeyValues("scripts/vscripts/bosses/_bosses_units.txt")
-      local neutral_list = LoadKeyValues("scripts/vscripts/neutrals/_neutrals_units.txt")
+      local boss_list = LoadKeyValues("scripts/vscripts/_bosses/_bosses_units.txt")
+      local neutral_list = LoadKeyValues("scripts/vscripts/_neutrals/_neutrals_units.txt")
 
       if heroes_name_data then
         for name, id_name in pairs(heroes_name_data) do

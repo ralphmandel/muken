@@ -3,7 +3,7 @@ LinkLuaModifier("dasdingo_u_modifier_maledict", "heroes/dasdingo/dasdingo_u_modi
 LinkLuaModifier("dasdingo_u_modifier_overtime", "heroes/dasdingo/dasdingo_u_modifier_overtime", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_u_modifier_fear", "heroes/dasdingo/dasdingo_u_modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_u_modifier_fear_status_efx", "heroes/dasdingo/dasdingo_u_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_debuff", "modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

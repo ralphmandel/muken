@@ -2,7 +2,7 @@ druid_5__seed = class({})
 LinkLuaModifier("druid_5_modifier_wind_effect", "heroes/team_nature/druid/druid_5_modifier_wind_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_5_modifier_aura", "heroes/team_nature/druid/druid_5_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("druid_5_modifier_aura_effect", "heroes/team_nature/druid/druid_5_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

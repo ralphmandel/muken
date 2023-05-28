@@ -1,6 +1,6 @@
 lawbreaker_u__sk6 = class({})
 LinkLuaModifier("lawbreaker_u_modifier_sk6", "heroes/team_death/lawbreaker/lawbreaker_u_modifier_sk6", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

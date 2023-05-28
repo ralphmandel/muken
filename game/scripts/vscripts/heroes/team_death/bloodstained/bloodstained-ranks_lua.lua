@@ -53,10 +53,10 @@ bloodstained_u__seal_rank_41 = class ({})
 bloodstained_u__seal_rank_42 = class ({})
 
 bloodstained__precache = class ({})
-LinkLuaModifier("bloodstained__special_values", "heroes/team_death/bloodstained/bloodstained__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_special_values", "heroes/team_death/bloodstained/bloodstained-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function bloodstained__precache:GetIntrinsicModifierName()
-  return "bloodstained__special_values"
+  return "bloodstained_special_values"
 end
 
 function bloodstained__precache:Spawn()

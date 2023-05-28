@@ -53,10 +53,10 @@ druid_u__conversion_rank_41 = class ({})
 druid_u__conversion_rank_42 = class ({})
 
 druid__precache = class ({})
-LinkLuaModifier("druid__special_values", "heroes/team_nature/druid/druid__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("druid_special_values", "heroes/team_nature/druid/druid-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function druid__precache:GetIntrinsicModifierName()
-  return "druid__special_values"
+  return "druid_special_values"
 end
 
 function druid__precache:Spawn()

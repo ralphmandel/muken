@@ -53,10 +53,10 @@ icebreaker_u__zero_rank_41 = class ({})
 icebreaker_u__zero_rank_42 = class ({})
 
 icebreaker__precache = class ({})
-LinkLuaModifier("icebreaker__special_values", "heroes/team_moon/icebreaker/icebreaker__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker_special_values", "heroes/team_moon/icebreaker/icebreaker-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function icebreaker__precache:GetIntrinsicModifierName()
-  return "icebreaker__special_values"
+  return "icebreaker_special_values"
 end
 
 function icebreaker__precache:Spawn()

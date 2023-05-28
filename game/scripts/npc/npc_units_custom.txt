@@ -463,5 +463,5 @@
     }
 }
 
-#base "../vscripts/neutrals/_neutrals_units.txt"
-#base "../vscripts/bosses/_bosses_units.txt"
+#base "../vscripts/_neutrals/_neutrals_units.txt"
+#base "../vscripts/_bosses/_bosses_units.txt"

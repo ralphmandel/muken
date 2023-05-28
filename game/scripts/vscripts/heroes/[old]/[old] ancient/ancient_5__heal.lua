@@ -1,6 +1,6 @@
 ancient_5__heal = class({})
 LinkLuaModifier("ancient_5_modifier_buff", "heroes/ancient/ancient_5_modifier_buff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

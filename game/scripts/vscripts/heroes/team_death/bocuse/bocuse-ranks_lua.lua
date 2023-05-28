@@ -53,10 +53,10 @@ bocuse_u__mise_rank_41 = class ({})
 bocuse_u__mise_rank_42 = class ({})
 
 bocuse__precache = class ({})
-LinkLuaModifier("bocuse__special_values", "heroes/team_death/bocuse/bocuse__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bocuse_special_values", "heroes/team_death/bocuse/bocuse-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function bocuse__precache:GetIntrinsicModifierName()
-    return "bocuse__special_values"
+    return "bocuse_special_values"
 end
 
 function bocuse__precache:Spawn()

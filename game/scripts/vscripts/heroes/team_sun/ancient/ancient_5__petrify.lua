@@ -1,6 +1,6 @@
 ancient_5__petrify = class({})
-LinkLuaModifier("_modifier_petrified", "modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_petrified_status_efx", "modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified", "_modifiers/_modifier_petrified", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrified_status_efx", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

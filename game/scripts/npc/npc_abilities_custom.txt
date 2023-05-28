@@ -428,5 +428,5 @@
 #base "../vscripts/heroes/team_moon/genuine/genuine.txt"
 
 //NEUTRALS
-#base "../vscripts/neutrals/_neutrals.txt"
-#base "../vscripts/bosses/_bosses.txt"
+#base "../vscripts/_neutrals/_neutrals.txt"
+#base "../vscripts/_bosses/_bosses.txt"

@@ -2,7 +2,7 @@ ancient_2__leap = class({})
 LinkLuaModifier("ancient_2_modifier_charges", "heroes/team_sun/ancient/ancient_2_modifier_charges", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_leap", "heroes/team_sun/ancient/ancient_2_modifier_leap", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_2_modifier_jump", "heroes/team_sun/ancient/ancient_2_modifier_jump", LUA_MODIFIER_MOTION_HORIZONTAL)
-LinkLuaModifier("_modifier_generic_arc", "modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
+LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA_MODIFIER_MOTION_BOTH)
 
 -- INIT
 

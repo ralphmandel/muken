@@ -1,6 +1,6 @@
 item_potion_speed = class({})
 LinkLuaModifier("item_potion_speed_modifier", "items/item_potion_speed_modifier", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_movespeed_buff", "modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 function item_potion_speed:OnSpellStart()
 	local caster = self:GetCaster()

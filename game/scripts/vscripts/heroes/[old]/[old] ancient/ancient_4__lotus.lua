@@ -2,7 +2,7 @@ ancient_4__lotus = class({})
 LinkLuaModifier("ancient_4_modifier_passive", "heroes/ancient/ancient_4_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_4_modifier_radiance_aura", "heroes/ancient/ancient_4_modifier_radiance_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("ancient_4_modifier_radiance_aura_effect", "heroes/ancient/ancient_4_modifier_radiance_aura_effect", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
