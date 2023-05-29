@@ -5,9 +5,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 -- INIT
 
   function genuine_5__nightfall:Spawn()
-    if self:IsTrained() == false then
-      self:UpgradeAbility(true)
-    end
+    if self:IsTrained() == false then self:UpgradeAbility(true) end
   end
 
 -- SPELL START

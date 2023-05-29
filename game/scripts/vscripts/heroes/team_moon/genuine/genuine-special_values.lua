@@ -35,6 +35,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "atk_range" then return 1 end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_11") then
 		end
@@ -223,14 +224,15 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "genuine_1__shooting" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 40 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "atk_range" then return 0 + (value_level * 30) end
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 24 - (value_level * 0.6) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
