@@ -433,7 +433,7 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
       return 75 * (1 + ((ability_level - 1) * 0.05))
     end
 
-		if value_name == "AbilityCooldown" then return 15 - (value_level * 0.5) end
+		if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.5) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "special_break_hypo_stack" then return 1 end

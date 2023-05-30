@@ -34,6 +34,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "genuine_1__shooting" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "atk_range" then return 1 end
 
@@ -126,6 +127,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "damage" then return 1 end
 
 		if caster:FindAbilityByName("genuine_4__awakening_rank_11") then
 		end
@@ -224,33 +226,36 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "genuine_1__shooting" then
-		if value_name == "AbilityManaCost" then return 40 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 30 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
+    if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "atk_range" then return 0 + (value_level * 30) end
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
 		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 24 - (value_level * 0.6) end
+    if value_name == "AbilityCooldown" then return 24 - ((ability_level - 1) * 0.6) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "genuine_3__morning" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 120 - ((ability_level - 1) * 2) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "genuine_4__awakening" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 9 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "damage" then return 300 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

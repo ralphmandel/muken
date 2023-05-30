@@ -144,7 +144,7 @@ function druid_4_modifier_form:HideItens(bool)
 	end
 
 	if bool then
-		BaseHeroMod(self.parent):ChangeSounds("Hero_LoneDruid.TrueForm.PreAttack", nil, "Hero_LoneDruid.TrueForm.Attack")
+		BaseHeroMod(self.parent):ChangeSounds("Hero_LoneDruid.TrueForm.PreAttack", "", "Hero_LoneDruid.TrueForm.Attack")
 	else
 		BaseHeroMod(self.parent):LoadSounds()
 	end

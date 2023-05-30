@@ -64,5 +64,5 @@ function genuine__precache:Spawn()
 end
 
 function genuine__precache:Precache(context)
-  --PrecacheResource("soundfile", "soundevents/soundevent_genuine.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/soundevent_genuine.vsndevts", context)
 end

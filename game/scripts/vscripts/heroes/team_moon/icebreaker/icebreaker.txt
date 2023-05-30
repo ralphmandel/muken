@@ -479,7 +479,6 @@
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityCastAnimation"   		""
 		"AbilityCastPoint"       		"0.2"
-		"AbilityCooldown"				    "1 2 3 4 5 6 7 8 9 10 11"
 
 		"AbilitySpecial"
 		{

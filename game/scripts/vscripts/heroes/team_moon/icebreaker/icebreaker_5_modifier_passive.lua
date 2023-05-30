@@ -13,6 +13,7 @@ function icebreaker_5_modifier_passive:OnCreated(kv)
   if IsServer() then
     self.ability.kills = 0
     self:SetStackCount(self.ability.kills)
+    self:PlayEfxAmbient()
   end
 end
 
@@ -86,6 +87,22 @@ end
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
+
+function icebreaker_5_modifier_passive:GetStatusEffectName()
+	return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_radiant.vpcf"
+end
+
+function icebreaker_5_modifier_passive:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+
+function icebreaker_5_modifier_passive:PlayEfxAmbient()
+  if self.effect_cast_1 then ParticleManager:DestroyParticle(self.effect_cast_1, true) end
+	local particle_cast_1 = "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ambient.vpcf"
+	self.effect_cast_1 = ParticleManager:CreateParticle(particle_cast_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(self.effect_cast_1, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0,0,0), true)
+	self:AddParticle(self.effect_cast_1, false, false, -1, false, false)
+end
 
 function icebreaker_5_modifier_passive:PlayEfxKill()
 	local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"

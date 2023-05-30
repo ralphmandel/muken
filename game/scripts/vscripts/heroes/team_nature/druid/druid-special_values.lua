@@ -278,7 +278,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_1__root" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-    if value_name == "AbilityCooldown" then return 15 - (value_level * 0.3) end
+    if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "distance" then return 1500 end
@@ -356,8 +356,8 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_4__form" then
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 150 - (value_level * 5) end
-		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "AbilityCooldown" then return 150 - ((ability_level - 1) * 3) end
+    if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "special_heal" then return 30 end
     if value_name == "special_fear_duration" then return 5 end

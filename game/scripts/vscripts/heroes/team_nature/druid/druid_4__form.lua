@@ -14,6 +14,8 @@ LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_e
   end
 
   function druid_4__form:OnOwnerSpawned()
+    local caster = self:GetCaster()
+    if BaseHeroMod(caster) then BaseHeroMod(caster):LoadSounds() end
     self:SetActivated(true)
     self:SetCurrentAbilityCharges(0)
   end

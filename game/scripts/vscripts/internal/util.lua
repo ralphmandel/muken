@@ -225,6 +225,15 @@ function RandomForNoHeroSelected()
   end
 end
 
+function UpdateForcedTime()
+  local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+
+  for _,thinker in pairs(thinkers) do
+    if thinker:HasModifier("_modifier_forced_night") then
+    end
+  end
+end
+
 function CalcStatus(duration, caster, target)
   if caster == nil or target == nil then return duration end
   if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
