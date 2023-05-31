@@ -18,7 +18,7 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
     local rate = 1 / (time / gesture_time)
 
     caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, rate)
-    AddModifier(caster, caster, self, "genuine_5_modifier_channeling", {}, false)
+    AddModifier(caster, caster, self, "genuine_4_modifier_channeling", {}, false)
     self:SetActivated(false)
     self:EndCooldown()
 
@@ -35,7 +35,7 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
       caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
     end)
 
-    caster:RemoveModifierByName("genuine_5_modifier_channeling")
+    caster:RemoveModifierByName("genuine_4_modifier_channeling")
     self:SetActivated(true)
     self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
 

@@ -12,12 +12,16 @@ function dasdingo_5_modifier_ignition:OnCreated(kv)
   self.step = kv.step
 
   if self.step == 1 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {}, false)
+    if self.parent:IsMagicImmune() == false then
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {}, false)
+    end
     if IsServer() then self:PlayEfxStart() end
   end
 
   if self.step == 2 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 50}, false)
+    if self.parent:IsMagicImmune() == false then
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 50}, false)
+    end
   end
   
   if IsServer() then self:OnIntervalThink() end

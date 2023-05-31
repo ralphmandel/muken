@@ -5,12 +5,9 @@ LinkLuaModifier("genuine_5_modifier_barrier", "heroes/team_moon/genuine/genuine_
 -- INIT
 
   function genuine_5__nightfall:OnUpgrade()
-    self.barrier = self:GetMaxBarrier()
-  end
-
-  function genuine_5__nightfall:OnOwnerSpawned()
-    self.barrier = self:GetMaxBarrier()
-    self:ResetBarrier()
+    if self:GetLevel() == 1 and (GameRules:IsDaytime() == false or GameRules:IsTemporaryNight()) then
+      self:ResetBarrier(true)
+    end
   end
 
   function genuine_5__nightfall:GetIntrinsicModifierName()
@@ -20,16 +17,16 @@ LinkLuaModifier("genuine_5_modifier_barrier", "heroes/team_moon/genuine/genuine_
 -- SPELL START
 
   function genuine_5__nightfall:GetMaxBarrier()
-    return self:GetCaster():GetMaxMana() * self:GetSpecialValueFor("barrier_percent") * 0.01
+    return self:GetCaster():GetMaxMana() * self:GetSpecialValueFor("max_barrier") * 0.01
   end
 
-  function genuine_5__nightfall:ResetBarrier()
+  function genuine_5__nightfall:ResetBarrier(bEnabled)
     local caster = self:GetCaster()
     caster:RemoveModifierByName("genuine_5_modifier_barrier")
 
-    Timers:CreateTimer(FrameTime(), function()
+    if bEnabled then
       AddModifier(caster, caster, self, "genuine_5_modifier_barrier", {}, false)
-    end)
+    end
   end
 
 -- EFFECTS

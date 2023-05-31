@@ -17,13 +17,13 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
   function druid_2__armor:OnAbilityPhaseStart()
     local caster = self:GetCaster()
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("suffer") end
+    ChangeActivity(caster, "suffer")
     return true
   end
 
   function druid_2__armor:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
+    ChangeActivity(caster, "")
   end
 
   function druid_2__armor:OnSpellStart()
@@ -32,7 +32,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local allies = {[0] = target}
 
 		caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
+    ChangeActivity(caster, "")
 
     if self:GetAOERadius() > 0 then
       allies = FindUnitsInRadius(

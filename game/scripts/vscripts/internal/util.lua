@@ -124,9 +124,6 @@ function ShowWearables( unit )
   end
 end
 
-
-
-
 function GetTeamIndex(team_number)
   for i = #TEAMS, 1, -1 do
     if team_number == TEAMS[i][1] then
@@ -234,124 +231,164 @@ function UpdateForcedTime()
   end
 end
 
-function CalcStatus(duration, caster, target)
-  if caster == nil or target == nil then return duration end
-  if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
+-- CALCS
 
-  if caster:GetTeamNumber() == target:GetTeamNumber() then
-    if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetBuffAmp()) end
-  else
-    if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetDebuffAmp()) end
-    CalcStatusResistance(duration, target)
-  end
-  
-  return duration
-end
+  function CalcStatus(duration, caster, target)
+    if caster == nil or target == nil then return duration end
+    if IsValidEntity(caster) == false or IsValidEntity(target) == false then return duration end
 
-function CalcStatusResistance(duration, target)
-  if BaseStats(target) then duration = duration * (1 - (BaseStats(target):GetStatusResistPercent() * 0.01)) end
-  return duration
-end
-
-function AddModifier(target, caster, ability, modifier_name, table, bCalcStatus)
-  if table.duration then
-    if bCalcStatus then table.duration = CalcStatus(table.duration, caster, target) end
-    if table.duration <= 0 then return end
+    if caster:GetTeamNumber() == target:GetTeamNumber() then
+      if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetBuffAmp()) end
+    else
+      if BaseStats(caster) then duration = duration * (1 + BaseStats(caster):GetDebuffAmp()) end
+      CalcStatusResistance(duration, target)
+    end
+    
+    return duration
   end
 
-  return target:AddNewModifier(caster, ability, modifier_name, table)
-end
-
-function AddBonus(ability, string, target, const, percent, time)
-  if const == 0 and percent == 0 then return end
-  if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
-end
-
-function RemoveBonus(ability, string, target)
-  local stringFormat = string.format("%s_modifier_stack", string)
-  local mod = target:FindAllModifiersByName(stringFormat)
-  for _,modifier in pairs(mod) do
-      if modifier:GetAbility() == ability then modifier:Destroy() end
+  function CalcStatusResistance(duration, target)
+    if BaseStats(target) then duration = duration * (1 - (BaseStats(target):GetStatusResistPercent() * 0.01)) end
+    return duration
   end
-end
 
-function RemoveAllModifiersByNameAndAbility(target, name, ability)
-  local mod = target:FindAllModifiersByName(name)
-  for _,modifier in pairs(mod) do
-      if modifier:GetAbility() == ability then modifier:Destroy() end
+  function AddModifier(target, caster, ability, modifier_name, table, bCalcStatus)
+    if table.duration then
+      if bCalcStatus then table.duration = CalcStatus(table.duration, caster, target) end
+      if table.duration <= 0 then return end
+    end
+
+    return target:AddNewModifier(caster, ability, modifier_name, table)
   end
-end
 
-function IsMetamorphosis(ability_name, target)
-  local ability = target:FindAbilityByName(ability_name)
-  if ability then
-    if ability:IsTrained() then
-      return ability:GetCurrentAbilityCharges()
+  function AddBonus(ability, string, target, const, percent, time)
+    if const == 0 and percent == 0 then return end
+    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
+  end
+
+  function RemoveBonus(ability, string, target)
+    local stringFormat = string.format("%s_modifier_stack", string)
+    local mod = target:FindAllModifiersByName(stringFormat)
+    for _,modifier in pairs(mod) do
+        if modifier:GetAbility() == ability then modifier:Destroy() end
     end
   end
-  return 0
-end
 
-function ReduceMana(target, ability, amount)
-  if target:HasModifier("ancient_u_modifier_passive") then amount = amount * 0.5 end
-  target:Script_ReduceMana(amount, ability)
-end
+  function RemoveAllModifiersByNameAndAbility(target, name, ability)
+    local mod = target:FindAllModifiersByName(name)
+    for _,modifier in pairs(mod) do
+        if modifier:GetAbility() == ability then modifier:Destroy() end
+    end
+  end
 
-function CalcHeal(target, amount)
-  if BaseStats(target) then return amount * BaseStats(target):GetHealPower() else return 1 end
-end
+-- HEROES UTIL
 
-function BaseStats(baseNPC)
-  return baseNPC:FindAbilityByName("base_stats")
-end
+  function IsMetamorphosis(ability_name, target)
+    local ability = target:FindAbilityByName(ability_name)
+    if ability then
+      if ability:IsTrained() then
+        return ability:GetCurrentAbilityCharges()
+      end
+    end
+    return 0
+  end
 
-function BaseHero(baseNPC)
-  return baseNPC:FindAbilityByName("base_hero")
-end
+  function SetGenuineBarrier(target, bEnabled)
+    local nightfall = target:FindAbilityByName("genuine_5__nightfall")
+    if nightfall:IsTrained() then
+      nightfall:ResetBarrier(bEnabled)
+    end
+  end
 
-function BaseHeroMod(baseNPC)
-  return baseNPC:FindModifierByName("base_hero_mod")
-end
+-- HEAL / MANA
 
-function Cosmetics(baseNPC)
-  return baseNPC:FindAbilityByName("cosmetics")
-end
+  function CalcHeal(target, amount)
+    if BaseStats(target) then return amount * BaseStats(target):GetHealPower() else return 1 end
+  end
+
+  function IncreaseMana(target, amount)
+    target:GiveMana(amount)
+
+    local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
+    if genuine_barrier then genuine_barrier:UpdateBarrier(amount) end
+    SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, amount, nil)
+  end
+
+  function ReduceMana(target, ability, amount, bMessage)
+    if target:HasModifier("ancient_u_modifier_passive")
+    and ability:GetAbilityName() ~= "ancient_u__final" then
+      amount = amount * 0.5
+    end
+
+    target:Script_ReduceMana(amount, ability)
+    if bMessage then SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, amount, nil) end
+  end
+
+  function StealMana(target, inflictor, ability, amount)
+    if amount > target:GetMana() then amount = target:GetMana() end
+    if amount == 0 then return end
+
+    ReduceMana(target, ability, amount, true)
+    IncreaseMana(inflictor, amount)
+  end
 
 -- COSMETICS
 
-function AddStatusEfx(ability, string, caster, target)
-  if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, true) end
-end
-
-function RemoveStatusEfx(ability, string, caster, target)
-  if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, false) end
-end
-
-function GestureCosmetic(baseNPC, model_name, gesture, bEnabled)
-  if Cosmetics(baseNPC) == nil then return end
-  if Cosmetics(baseNPC).cosmetic == nil then return end
-
-  if bEnabled then
-    Cosmetics(baseNPC):StartCosmeticGesture(model_name, gesture)
-  else
-	  Cosmetics(baseNPC):FadeCosmeticsGesture(model_name, gesture)
+  function Cosmetics(baseNPC)
+    return baseNPC:FindAbilityByName("cosmetics")
   end
-end
 
-function FindCosmeticByModel(baseNPC, model_name)
-  if Cosmetics(baseNPC) then return Cosmetics(baseNPC):FindCosmeticByModel(model_name) end
-end
+  function AddStatusEfx(ability, string, caster, target)
+    if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, true) end
+  end
 
-function ChangeCosmeticsActivity(baseNPC)
-  if Cosmetics(baseNPC) then Cosmetics(baseNPC):ChangeCosmeticsActivity(true) end
-end
+  function RemoveStatusEfx(ability, string, caster, target)
+    if Cosmetics(target) then Cosmetics(target):SetStatusEffect(caster, ability, string, false) end
+  end
 
-function ApplyParticleOnCosmetic(baseNPC, model_name, particle_name, attach)
-  if Cosmetics(baseNPC) == nil then return end
-  local off_hand_mod = Cosmetics(baseNPC):FindModifierByModel(model_name)
-  if off_hand_mod then off_hand_mod:PlayEfxAmbient(particle_name, attach) end
-end
+  function GestureCosmetic(baseNPC, model_name, gesture, bEnabled)
+    if Cosmetics(baseNPC) == nil then return end
+    if Cosmetics(baseNPC).cosmetic == nil then return end
 
-function DestroyParticleOnCosmetic(baseNPC, model_name, particle_name, bDestroyImmediately)
-  if Cosmetics(baseNPC) then Cosmetics(baseNPC):DestroyAmbient(model_name, particle_name, bDestroyImmediately) end
-end
+    if bEnabled then
+      Cosmetics(baseNPC):StartCosmeticGesture(model_name, gesture)
+    else
+      Cosmetics(baseNPC):FadeCosmeticsGesture(model_name, gesture)
+    end
+  end
+
+  function FindCosmeticByModel(baseNPC, model_name)
+    if Cosmetics(baseNPC) then return Cosmetics(baseNPC):FindCosmeticByModel(model_name) end
+  end
+
+  function ChangeCosmeticsActivity(baseNPC)
+    if Cosmetics(baseNPC) then Cosmetics(baseNPC):ChangeCosmeticsActivity(true) end
+  end
+
+  function ApplyParticleOnCosmetic(baseNPC, model_name, particle_name, attach)
+    if Cosmetics(baseNPC) == nil then return end
+    local off_hand_mod = Cosmetics(baseNPC):FindModifierByModel(model_name)
+    if off_hand_mod then off_hand_mod:PlayEfxAmbient(particle_name, attach) end
+  end
+
+  function DestroyParticleOnCosmetic(baseNPC, model_name, particle_name, bDestroyImmediately)
+    if Cosmetics(baseNPC) then Cosmetics(baseNPC):DestroyAmbient(model_name, particle_name, bDestroyImmediately) end
+  end
+
+-- BASES
+
+  function BaseStats(baseNPC)
+    return baseNPC:FindAbilityByName("base_stats")
+  end
+
+  function BaseHero(baseNPC)
+    return baseNPC:FindAbilityByName("base_hero")
+  end
+
+  function BaseHeroMod(baseNPC)
+    return baseNPC:FindModifierByName("base_hero_mod")
+  end
+
+  function ChangeActivity(baseNPC, activity)
+    if BaseHeroMod(baseNPC) then BaseHeroMod(baseNPC):ChangeActivity(activity) end
+  end

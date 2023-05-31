@@ -52,9 +52,8 @@ function fountain_modifier_aura_effect:OnIntervalThink()
 	
 		local recovery = 5
 		if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then recovery = 0 end
-		self.parent:GiveMana(recovery)
 		--self:PlayEfxMana(self.parent)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, recovery, self.parent)
+    IncreaseMana(self.parent, recovery)
 	end
 
 	if IsServer() then self:StartIntervalThink(0.25) end

@@ -48,9 +48,8 @@ function ancient_u_modifier_passive:OnAttacked(keys)
     gain = self.ability:GetSpecialValueFor("energy_gain_crit")
   end
 
-  self.parent:GiveMana(gain)
+  IncreaseMana(self.parent, gain)
   self.ability:UpdateCON()
-  SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, gain, self.caster)
 
   if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("delay")) end
 end
@@ -68,7 +67,7 @@ function ancient_u_modifier_passive:OnHeroKilled(keys)
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
-	self.parent:Script_ReduceMana(self.ability:GetSpecialValueFor("energy_loss") * 0.1, self.ability)
+  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * 0.1, false)
 	self.ability:UpdateCON()
 
 	if IsServer() then self:StartIntervalThink(0.1) end

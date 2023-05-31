@@ -2,6 +2,7 @@ genuine_5_modifier_barrier = class({})
 
 function genuine_5_modifier_barrier:IsHidden() return true end
 function genuine_5_modifier_barrier:IsPurgable() return false end
+function genuine_5_modifier_barrier:RemoveOnDeath() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -9,10 +10,13 @@ function genuine_5_modifier_barrier:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.interval = 0.1
 
   if IsServer() then
-    self:SetStackCount(self.ability:GetMaxBarrier())
-    self:StartIntervalThink(FrameTime())
+    self.max_barrier = self.ability:GetMaxBarrier()
+    self.barrier = self.ability:GetMaxBarrier()
+    self:SetStackCount(self.barrier)
+    self:StartIntervalThink(self.interval)
   end
 end
 
@@ -37,41 +41,37 @@ function genuine_5_modifier_barrier:GetModifierIncomingSpellDamageConstant(keys)
     return self:GetStackCount()
   end
 
-  local damage = keys.damage
-  self.ability.barrier = self.ability.barrier - keys.damage
+  local damage = keys.original_damage
+  self.barrier = self.barrier - damage
 
-  if self.ability.barrier < 0 then
-    damage = damage + self.ability.barrier
-    self.ability.barrier = 0
+  if self.barrier < 0 then
+    damage = damage + self.barrier
+    self.barrier = 0
   end
 
-  self:SetStackCount(self.ability.barrier)
-  self:SendBuffRefreshToClients()
+  self:UpdateBarrier(0)
 
   return -damage
 end
 
 function genuine_5_modifier_barrier:OnIntervalThink()
   if IsServer() then
-    if self.ability.barrier > self.ability:GetMaxBarrier() then
-      self.ability.barrier = self.ability:GetMaxBarrier()
-      self:SetStackCount(self.ability.barrier)
-      self:SendBuffRefreshToClients()
-    end
-    if self.ability.barrier < self.ability:GetMaxBarrier() then 
-      self.ability.barrier = self.ability.barrier + 1
-      self:SetStackCount(self.ability.barrier)
-      self:SendBuffRefreshToClients()
+    if self.barrier < self.max_barrier then
+      self:UpdateBarrier(self.max_barrier * self.ability:GetSpecialValueFor("barrier_regen") * self.interval * 0.01)
     end
 
-    if self:GetStackCount() ~= self.ability.barrier then
-      self:SetStackCount(self.ability.barrier)
-    end
-
-    self:StartIntervalThink(1 / self.ability:GetSpecialValueFor("barrier_regen"))
+    self:StartIntervalThink(self.interval)
   end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function genuine_5_modifier_barrier:UpdateBarrier(value)
+  self.barrier = self.barrier + value
+  if self.barrier > self.max_barrier then self.barrier = self.max_barrier end
+
+  self:SetStackCount(self.barrier)
+  self:SendBuffRefreshToClients()
+end
 
 -- EFFECTS -----------------------------------------------------------

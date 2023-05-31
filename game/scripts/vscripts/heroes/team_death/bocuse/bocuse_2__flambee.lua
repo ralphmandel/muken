@@ -17,17 +17,13 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
 		local target = self:GetCursorTarget()
 
 		if caster == target then
-			--BaseHeroMod(caster):ChangeActivity("trapper")
 			caster:StartGestureWithPlaybackRate(ACT_DOTA_VICTORY, 2)
 		else
 			local rand = RandomInt(1,3)
-			--if rand == 1 then self.parent:AddActivityModifier("ti10_pudge") end
-      if BaseHeroMod(caster) then
-        if rand == 1 then BaseHeroMod(caster):ChangeActivity("") end
-        if rand == 2 then BaseHeroMod(caster):ChangeActivity("ftp_dendi_back") end
-        if rand == 3 then BaseHeroMod(caster):ChangeActivity("trapper") end
-        caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-      end
+      if rand == 1 then ChangeActivity(caster, "") end
+      if rand == 2 then ChangeActivity(caster, "ftp_dendi_back") end
+      if rand == 3 then ChangeActivity(caster, "trapper") end
+      caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		end
 
 		return true
@@ -35,11 +31,9 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
 
 	function bocuse_2__flambee:OnAbilityPhaseInterrupted()
 		local caster = self:GetCaster()
-		if BaseHeroMod(caster) then
-      BaseHeroMod(caster):ChangeActivity("trapper")
-      caster:FadeGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-      caster:FadeGesture(ACT_DOTA_VICTORY)
-    end
+    ChangeActivity(caster, "trapper")
+    caster:FadeGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+    caster:FadeGesture(ACT_DOTA_VICTORY)
 	end
 
 	function bocuse_2__flambee:OnSpellStart()
@@ -51,7 +45,7 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
 			return
 		end
 
-		if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("trapper") end
+		ChangeActivity(caster, "trapper")
 
 		if caster == target then
 			Timers:CreateTimer(0.6, function()

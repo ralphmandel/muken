@@ -14,7 +14,6 @@ function genuine_3_modifier_passive:OnCreated(kv)
   if IsServer() then
     self.ability.kills = self.ability:GetSpecialValueFor("int")
     self:SetStackCount(self.ability.kills)
-    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", self.ability.kills) end
     self:OnIntervalThink()
   end
 end
@@ -63,11 +62,13 @@ function genuine_3_modifier_passive:OnIntervalThink()
   if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
     if self.overnight == false then
       if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", self.ability.kills) end
+      SetGenuineBarrier(self.parent, true)
       self.overnight = true
     end
   else
     if self.overnight == true then
       if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", -self.ability.kills) end
+      SetGenuineBarrier(self.parent, false)
       self.overnight = false
     end
   end

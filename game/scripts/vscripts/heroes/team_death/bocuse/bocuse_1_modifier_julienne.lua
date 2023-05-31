@@ -10,7 +10,7 @@ function bocuse_1_modifier_julienne:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	if BaseHeroMod(self.parent) then BaseHeroMod(self.parent):ChangeActivity("") end
+	ChangeActivity(self.parent, "")
 
 	if IsServer() then self:OnIntervalThink() end
 end
@@ -20,7 +20,7 @@ end
 
 function bocuse_1_modifier_julienne:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_ATTACK)
-	if BaseHeroMod(self.parent) then BaseHeroMod(self.parent):ChangeActivity("trapper") end
+	ChangeActivity(self.parent, "trapper")
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

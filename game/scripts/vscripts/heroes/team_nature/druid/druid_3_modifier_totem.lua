@@ -136,8 +136,7 @@ function druid_3_modifier_totem:OnIntervalThink()
     if ally ~= self.parent then
       ally:Heal(heal, self.ability)
       if ally:GetMaxMana() > 0 then
-        ally:GiveMana(mana)
-        SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, ally, mana, self.caster)
+        IncreaseMana(ally, mana)
       end
     end
 	end

@@ -29,7 +29,7 @@
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilitySpecial"
@@ -42,7 +42,7 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana_return"	"3"
+				"mana_steal"	"2"
 			}
       "03"
 			{
@@ -74,7 +74,7 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
@@ -95,7 +95,7 @@
       "03"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"distance"		  "500"
+				"distance"		  "600"
 			}
       "04"
 			{
@@ -169,7 +169,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
     "AbilityCastPoint"				  "0"
 
@@ -254,13 +254,13 @@
 			}
       "02"
 			{
-				"var_type"		    "FIELD_FLOAT"
-				"barrier_percent"	"100"
+				"var_type"		      "FIELD_FLOAT"
+				"max_barrier"	      "150"
 			}
       "03"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"barrier_regen" 	"5"
+				"barrier_regen" 	"2"
 			}
       "15"
 			{
@@ -280,21 +280,51 @@
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
 		"AbilitySpecial"
 		{
+      "01"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"cast_range"	    "500"
+			}
+      "02"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"duration"			  "8"
+			}
+      "03"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"duration_night"	"12"
+			}
+      "04"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"night_vision"	  "-300"
+			}
+      "05"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"interval"	      "2"
+			}
+      "06"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"mana_steal"	    "1 2 3 4 5 6 7 8 9 10 11"
+			}
 			"15"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"			  "FIELD_FLOAT"
+				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}

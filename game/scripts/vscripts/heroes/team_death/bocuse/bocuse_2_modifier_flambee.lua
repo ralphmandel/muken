@@ -38,8 +38,7 @@ end
 function bocuse_2_modifier_flambee:OnIntervalThink()
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
     local mana_amount = self.ability:GetSpecialValueFor("mana") * BaseStats(self.caster):GetHealPower()
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self.parent, mana_amount, self.caster)
-		self.parent:GiveMana(mana_amount)
+    IncreaseMana(self.parent, mana_amount)
 	else
 		if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Ignite.Damage") end
     ApplyDamage({

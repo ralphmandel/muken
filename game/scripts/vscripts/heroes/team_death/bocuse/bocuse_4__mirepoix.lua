@@ -15,7 +15,7 @@ LinkLuaModifier("_modifier_bkb", "_modifiers/_modifier_bkb", LUA_MODIFIER_MOTION
 
 	function bocuse_4__mirepoix:OnAbilityPhaseStart()
 		local caster = self:GetCaster()
-		if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("ftp_dendi_back") end
+    ChangeActivity(caster, "ftp_dendi_back")
 
 		if IsServer() then
 			caster:EmitSound("DOTA_Item.Cheese.Activate")
@@ -41,7 +41,7 @@ LinkLuaModifier("_modifier_bkb", "_modifiers/_modifier_bkb", LUA_MODIFIER_MOTION
 
 	function bocuse_4__mirepoix:StopFeed()
 		local caster = self:GetCaster()
-		if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("trapper") end
+		ChangeActivity(caster, "trapper")
 
 		if IsServer() then
 			caster:StopSound("DOTA_Item.Cheese.Activate")

@@ -16,10 +16,8 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local caster = self:GetCaster()
 		if self:GetCastPoint() == 0.1 then return true end
 
-    if BaseHeroMod(caster) then
-      BaseHeroMod(caster):ChangeActivity("")
-      caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 0.4)
-    end
+    ChangeActivity(caster, "")
+    caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 0.4)
 
 		Timers:CreateTimer(0.25, function()
 			if IsServer() then caster:EmitSound("Hero_Pudge.PreAttack") end
@@ -30,11 +28,8 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
   function bocuse_1__julienne:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-
-    if BaseHeroMod(caster) then
-      BaseHeroMod(caster):ChangeActivity("trapper")
-      caster:FadeGesture(ACT_DOTA_ATTACK)
-    end
+    ChangeActivity(caster, "trapper")
+    caster:FadeGesture(ACT_DOTA_ATTACK)
 
     if IsServer() then caster:StopSound("Hero_Pudge.PreAttack") end
   end
@@ -52,10 +47,8 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
       self.cut_speed = self:GetSpecialValueFor("cut_speed")
     end
 
-    if BaseHeroMod(caster) then
-      BaseHeroMod(caster):ChangeActivity("trapper")
-      caster:FadeGesture(ACT_DOTA_ATTACK)
-    end
+    ChangeActivity(caster, "trapper")
+    caster:FadeGesture(ACT_DOTA_ATTACK)
 
     caster:AddNewModifier(caster, self, "bocuse_1_modifier_julienne", {})
   end

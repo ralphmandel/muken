@@ -52,7 +52,6 @@ end
 
 function dasdingo_5_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
-  if keys.target:IsMagicImmune() then return end
   if self.parent:PassivesDisabled() then return end
   if keys.target:HasModifier("dasdingo_5_modifier_ignition") then return end
 

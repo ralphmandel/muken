@@ -31,7 +31,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     self.damage = self:GetCaster():GetMana() * self:GetSpecialValueFor("damage")
     self.distance = self:GetCastRange(self:GetCursorPosition(), nil)
 
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("") end
+    ChangeActivity(caster, "")
     
     self:PlayEfxPre()
 
@@ -40,7 +40,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function ancient_u__final:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("et_2021") end
+    ChangeActivity(caster, "et_2021")
 
     self:StopEfxPre(true)
   end
@@ -57,7 +57,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local crack_ending = caster_position + caster_fw * crack_distance
 
     GridNav:DestroyTreesAroundPoint(target_point, crack_width, false)
-    if BaseHeroMod(caster) then BaseHeroMod(caster):ChangeActivity("et_2021") end
+    ChangeActivity(caster, "et_2021")
     self:PlayEfxStart(caster_position, crack_ending, effect_delay)
     self:StopEfxPre(false)
     self:UpdateCON()
