@@ -51,85 +51,10 @@
 		}
 	}
 
-	"bloodstained_2__lifesteal"
-	{  
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_2__lifesteal"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bloodstained_lifesteal"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-		"LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"base_heal"		"5"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"bonus_heal"	"20"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9 10 11"
-			}
-		}
-	}
-
-	"bloodstained_3__curse"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_3__curse"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"bloodstained_curse"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-		"LevelsBetweenUpgrades"  		"25"
-
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_ALL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.4"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"shared_damage"		"40"
-			}
-			"02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "50"
-			}
-			"03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_range"		    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"				    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-		}
-	}
-
-	"bloodstained_4__frenzy"
+	"bloodstained_2__frenzy"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_4__frenzy"
+		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_2__frenzy"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_frenzy"
 		"MaxLevel"               		"1"
@@ -168,10 +93,53 @@
 		}
 	}
 
-	"bloodstained_5__tear"
+	"bloodstained_3__curse"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_5__tear"
+		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_3__curse"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"bloodstained_curse"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_ALL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"shared_damage"		"30"
+			}
+			"02"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"slow"		        "50"
+			}
+			"03"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_range"		    "1 2 3 4 5 6 7 8 9 10 11"
+			}
+			"15"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"rank"				    "1 2 3 4 5 6 7 8 9 10 11"
+			}
+		}
+	}
+
+	"bloodstained_4__tear"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_4__tear"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_tear"
 		"MaxLevel"               		"1"
@@ -224,6 +192,38 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"special_copy_leech"	"0"
+			}
+		}
+	}
+
+	"bloodstained_5__lifesteal"
+	{  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_5__lifesteal"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"bloodstained_lifesteal"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"base_heal"		"5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"bonus_heal"	"20"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"				"1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -528,7 +528,7 @@
         }
 
     //RANKS 2
-        "bloodstained_2__lifesteal_rank_11"{
+        "bloodstained_5__lifesteal_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -558,7 +558,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_12"{
+        "bloodstained_5__lifesteal_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -588,7 +588,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_21"{
+        "bloodstained_5__lifesteal_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -618,7 +618,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_22"{
+        "bloodstained_5__lifesteal_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -648,7 +648,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_31"{
+        "bloodstained_5__lifesteal_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -678,7 +678,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_32"{
+        "bloodstained_5__lifesteal_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -708,7 +708,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_41"{
+        "bloodstained_5__lifesteal_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -738,7 +738,7 @@
             }
         }
 
-        "bloodstained_2__lifesteal_rank_42"{
+        "bloodstained_5__lifesteal_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_lifesteal"
@@ -1010,7 +1010,7 @@
         }
 
     //RANKS 4
-        "bloodstained_4__frenzy_rank_11"{
+        "bloodstained_2__frenzy_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1040,7 +1040,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_12"{
+        "bloodstained_2__frenzy_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1070,7 +1070,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_21"{
+        "bloodstained_2__frenzy_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1100,7 +1100,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_22"{
+        "bloodstained_2__frenzy_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1130,7 +1130,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_31"{
+        "bloodstained_2__frenzy_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1160,7 +1160,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_32"{
+        "bloodstained_2__frenzy_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1190,7 +1190,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_41"{
+        "bloodstained_2__frenzy_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1220,7 +1220,7 @@
             }
         }
 
-        "bloodstained_4__frenzy_rank_42"{
+        "bloodstained_2__frenzy_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_frenzy"
@@ -1251,7 +1251,7 @@
         }
 
     //RANKS 5
-        "bloodstained_5__tear_rank_11"{
+        "bloodstained_4__tear_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1281,7 +1281,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_12"{
+        "bloodstained_4__tear_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1311,7 +1311,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_21"{
+        "bloodstained_4__tear_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1341,7 +1341,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_22"{
+        "bloodstained_4__tear_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1371,7 +1371,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_31"{
+        "bloodstained_4__tear_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1401,7 +1401,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_32"{
+        "bloodstained_4__tear_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1431,7 +1431,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_41"{
+        "bloodstained_4__tear_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"
@@ -1461,7 +1461,7 @@
             }
         }
 
-        "bloodstained_5__tear_rank_42"{
+        "bloodstained_4__tear_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
             "AbilityTextureName"    		"bloodstained_tear"

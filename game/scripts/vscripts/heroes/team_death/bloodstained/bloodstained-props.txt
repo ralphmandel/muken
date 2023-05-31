@@ -8,10 +8,10 @@
 
 		//ABILITIES
 			"Ability1"						"bloodstained_1__rage"
-			"Ability2"						"bloodstained_2__lifesteal"
+			"Ability2"						"bloodstained_2__frenzy"
 			"Ability3"						"bloodstained_3__curse"
-			"Ability4"						"bloodstained_4__frenzy"
-			"Ability5"						"bloodstained_5__tear"
+			"Ability4"						"bloodstained_4__tear"
+			"Ability5"						"bloodstained_5__lifesteal"
 			"Ability6"						"bloodstained_u__seal"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"

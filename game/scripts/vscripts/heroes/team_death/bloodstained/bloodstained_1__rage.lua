@@ -7,9 +7,9 @@ LinkLuaModifier("bloodstained_1_modifier_rage_status_efx", "heroes/team_death/bl
 -- INIT
 
   function bloodstained_1__rage:Spawn()
-    Timers:CreateTimer(0.2, function()
-      if self:IsTrained() == false then self:UpgradeAbility(true) end
-    end)
+    -- Timers:CreateTimer(0.2, function()
+    --   if self:IsTrained() == false then self:UpgradeAbility(true) end
+    -- end)
   end
 
   function bloodstained_1__rage:GetIntrinsicModifierName()

@@ -1,11 +1,11 @@
-bloodstained_4_modifier_frenzy = class({})
+bloodstained_2_modifier_frenzy = class({})
 
-function bloodstained_4_modifier_frenzy:IsHidden() return false end
-function bloodstained_4_modifier_frenzy:IsPurgable() return true end
+function bloodstained_2_modifier_frenzy:IsHidden() return false end
+function bloodstained_2_modifier_frenzy:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function bloodstained_4_modifier_frenzy:OnCreated(kv)
+function bloodstained_2_modifier_frenzy:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
@@ -23,10 +23,10 @@ function bloodstained_4_modifier_frenzy:OnCreated(kv)
 	end
 end
 
-function bloodstained_4_modifier_frenzy:OnRefresh(kv)
+function bloodstained_2_modifier_frenzy:OnRefresh(kv)
 end
 
-function bloodstained_4_modifier_frenzy:OnRemoved()
+function bloodstained_2_modifier_frenzy:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "_1_AGI", self.parent)
@@ -35,7 +35,7 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bloodstained_4_modifier_frenzy:CheckState()
+function bloodstained_2_modifier_frenzy:CheckState()
 	local state = {
 		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
 	}
@@ -43,7 +43,7 @@ function bloodstained_4_modifier_frenzy:CheckState()
 	return state
 end
 
-function bloodstained_4_modifier_frenzy:OnIntervalThink()
+function bloodstained_2_modifier_frenzy:OnIntervalThink()
 	if IsServer() then
 		if self.ability.target then
 			if IsValidEntity(self.ability.target) then
@@ -75,16 +75,16 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bloodstained_4_modifier_frenzy:GetEffectName()
+function bloodstained_2_modifier_frenzy:GetEffectName()
 	--return "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodrage.vpcf"
 	return "particles/bloodstained/frenzy/bloodstained_hands_v2.vpcf"
 end
 
-function bloodstained_4_modifier_frenzy:GetEffectAttachType()
+function bloodstained_2_modifier_frenzy:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function bloodstained_4_modifier_frenzy:PlayEfxStart()
+function bloodstained_2_modifier_frenzy:PlayEfxStart()
 	local loc = self.parent:GetOrigin()
 	local particle_cast = "particles/bloodstained/frenzy/bloodstained_frenzy.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)

@@ -220,12 +220,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hits"				"4"
+				"hits"				"5"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.5"
+				"stun_duration"		"1.2"
 			}
 		}
 	}

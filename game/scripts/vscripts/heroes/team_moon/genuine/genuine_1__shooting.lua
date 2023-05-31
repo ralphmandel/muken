@@ -27,9 +27,11 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local caster = self:GetCaster()
     if IsServer() then keys.target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
-    local mana_return = caster:GetMaxMana() * self:GetSpecialValueFor("mana_return") * 0.01
-    caster:GiveMana(mana_return)
-    SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_return, caster)
+    local mana_return = keys.target:GetMaxMana() * self:GetSpecialValueFor("mana_return") * 0.01
+    if mana_return > 0 then
+      caster:GiveMana(mana_return)
+      SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, mana_return, caster)
+    end
 
     ApplyDamage({
       victim = keys.target, attacker = caster,

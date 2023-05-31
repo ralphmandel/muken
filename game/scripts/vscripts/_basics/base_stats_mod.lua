@@ -105,7 +105,7 @@ base_stats_mod = class ({})
             efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
           end
 
-          if keys.inflictor:GetAbilityName() == "bloodstained_4__frenzy" then
+          if keys.inflictor:GetAbilityName() == "bloodstained_2__frenzy" then
             return
           end
 
@@ -113,7 +113,7 @@ base_stats_mod = class ({})
             return
           end
 
-          if keys.inflictor:GetAbilityName() == "bloodstained_5__tear"
+          if keys.inflictor:GetAbilityName() == "bloodstained_4__tear"
           and keys.damage_type == DAMAGE_TYPE_PURE then
             return
           end

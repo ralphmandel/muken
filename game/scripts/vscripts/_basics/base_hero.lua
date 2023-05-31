@@ -59,7 +59,7 @@ require("internal/talent_tree")
 			self.skill_points = 3
 			if self.hero_name == "flea" then self.skill_points = 2 end
 			if self.hero_name == "striker" then self.skill_points = 2 end
-			if self.hero_name == "bloodstained" then self.skill_points = 1 end
+			if self.hero_name == "bloodstained" then self.skill_points = 2 end
 			if self.hero_name == "ancient" then self.skill_points = 1 end
 			if self.hero_name == "icebreaker" then self.skill_points = 2 end
 			if self.hero_name == "genuine" then self.skill_points = 1 end

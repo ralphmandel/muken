@@ -62,33 +62,33 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "bloodstained_2__lifesteal" then
+  if ability:GetAbilityName() == "bloodstained_2__frenzy" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_11") then
+		if caster:FindAbilityByName("bloodstained_2__frenzy_rank_11") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_12") then
+    if caster:FindAbilityByName("bloodstained_2__frenzy_rank_12") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_21") then
+		if caster:FindAbilityByName("bloodstained_2__frenzy_rank_21") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_22") then
+    if caster:FindAbilityByName("bloodstained_2__frenzy_rank_22") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_31") then
+		if caster:FindAbilityByName("bloodstained_2__frenzy_rank_31") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_32") then
+    if caster:FindAbilityByName("bloodstained_2__frenzy_rank_32") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_41") then
+		if caster:FindAbilityByName("bloodstained_2__frenzy_rank_41") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_2__lifesteal_rank_42") then
+    if caster:FindAbilityByName("bloodstained_2__frenzy_rank_42") then
 		end
 	end
 
@@ -124,64 +124,64 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "bloodstained_4__frenzy" then
-		if value_name == "AbilityManaCost" then return 1 end
-		if value_name == "AbilityCooldown" then return 1 end
-		if value_name == "rank" then return 1 end
-
-		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_11") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_4__frenzy_rank_12") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_21") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_4__frenzy_rank_22") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_31") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_4__frenzy_rank_32") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_4__frenzy_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_4__frenzy_rank_42") then
-		end
-	end
-
-	if ability:GetAbilityName() == "bloodstained_5__tear" then
+	if ability:GetAbilityName() == "bloodstained_4__tear" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
     if value_name == "blood_percent" then return 1 end
 
-		if caster:FindAbilityByName("bloodstained_5__tear_rank_11") then
+		if caster:FindAbilityByName("bloodstained_4__tear_rank_11") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_5__tear_rank_12") then
+    if caster:FindAbilityByName("bloodstained_4__tear_rank_12") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_5__tear_rank_21") then
+		if caster:FindAbilityByName("bloodstained_4__tear_rank_21") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_5__tear_rank_22") then
+    if caster:FindAbilityByName("bloodstained_4__tear_rank_22") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_5__tear_rank_31") then
+		if caster:FindAbilityByName("bloodstained_4__tear_rank_31") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_5__tear_rank_32") then
+    if caster:FindAbilityByName("bloodstained_4__tear_rank_32") then
 		end
 
-		if caster:FindAbilityByName("bloodstained_5__tear_rank_41") then
+		if caster:FindAbilityByName("bloodstained_4__tear_rank_41") then
 		end
 
-    if caster:FindAbilityByName("bloodstained_5__tear_rank_42") then
+    if caster:FindAbilityByName("bloodstained_4__tear_rank_42") then
+		end
+	end
+
+  if ability:GetAbilityName() == "bloodstained_5__lifesteal" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
+
+		if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_11") then
+		end
+
+    if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_12") then
+		end
+
+		if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_21") then
+		end
+
+    if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_22") then
+		end
+
+		if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_31") then
+		end
+
+    if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_32") then
+		end
+
+		if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_41") then
+		end
+
+    if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_42") then
 		end
 	end
 
@@ -234,7 +234,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
     if value_name == "duration" then return 10 + (value_level * 0.2) end
 	end
 
-	if ability:GetAbilityName() == "bloodstained_2__lifesteal" then
+  if ability:GetAbilityName() == "bloodstained_2__frenzy" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -248,17 +248,17 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 		if value_name == "max_range" then return 600 + (value_level * 20) end
 	end
 
-	if ability:GetAbilityName() == "bloodstained_4__frenzy" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
-		if value_name == "rank" then return 6 + (value_level * 1) end
-	end
-
-	if ability:GetAbilityName() == "bloodstained_5__tear" then
+	if ability:GetAbilityName() == "bloodstained_4__tear" then
 		if value_name == "AbilityManaCost" then return 145 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 60 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "blood_percent" then return 9 + (value_level * 0.1) end
+	end
+
+  if ability:GetAbilityName() == "bloodstained_5__lifesteal" then
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
+		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then

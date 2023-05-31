@@ -5,13 +5,23 @@ LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff
 
 -- INIT
 
-  function genuine_3__morning:GetIntrinsicModifierName()
-    return "genuine_3_modifier_passive"
+  function genuine_3__morning:Spawn()
+    self.kills = 0
+
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+      end
+    end)
   end
 
   function genuine_3__morning:OnOwnerSpawned()
     self:GetCaster():FindModifierByName(self:GetIntrinsicModifierName()):StopEfxBuff()
     self:SetActivated(true)
+  end
+
+  function genuine_3__morning:GetIntrinsicModifierName()
+    return "genuine_3_modifier_passive"
   end
 
 -- SPELL START

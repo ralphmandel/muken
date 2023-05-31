@@ -1,11 +1,11 @@
-bloodstained_5_modifier_tear = class({})
+bloodstained_4_modifier_tear = class({})
 
-function bloodstained_5_modifier_tear:IsHidden() return true end
-function bloodstained_5_modifier_tear:IsPurgable() return false end
+function bloodstained_4_modifier_tear:IsHidden() return true end
+function bloodstained_4_modifier_tear:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:OnCreated(kv)
+function bloodstained_4_modifier_tear:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
@@ -28,10 +28,10 @@ function bloodstained_5_modifier_tear:OnCreated(kv)
 	end
 end
 
-function bloodstained_5_modifier_tear:OnRefresh(kv)
+function bloodstained_4_modifier_tear:OnRefresh(kv)
 end
 
-function bloodstained_5_modifier_tear:OnRemoved()
+function bloodstained_4_modifier_tear:OnRemoved()
 	if self.particle then ParticleManager:DestroyParticle(self.particle, true) end
 	
 	self:PullBlood()
@@ -42,7 +42,7 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:DeclareFunctions()
+function bloodstained_4_modifier_tear:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
@@ -50,14 +50,14 @@ function bloodstained_5_modifier_tear:DeclareFunctions()
 	return funcs
 end
 
-function bloodstained_5_modifier_tear:OnTakeDamage(keys)
+function bloodstained_4_modifier_tear:OnTakeDamage(keys)
 	if CalcDistanceBetweenEntityOBB(self.parent, keys.unit) <= self.ability:GetAOERadius() then
 		self:CreateBlood(keys.unit, keys.damage, keys.unit:GetAbsOrigin())
 		self:ApplyHaemorrhage(keys)
 	end
 end
 
-function bloodstained_5_modifier_tear:OnIntervalThink()
+function bloodstained_4_modifier_tear:OnIntervalThink()
 	local hp_lost = self.ability:GetSpecialValueFor("hp_lost")
 	local damage = self.parent:GetMaxHealth() * hp_lost * 0.01
 
@@ -86,7 +86,7 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
+function bloodstained_4_modifier_tear:ApplyHaemorrhage(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
@@ -99,12 +99,12 @@ function bloodstained_5_modifier_tear:ApplyHaemorrhage(keys)
 	self:PlayEfxHaemorrhage(keys.attacker, keys.unit)
 end
 
-function bloodstained_5_modifier_tear:CreateBlood(target, damage, origin)
+function bloodstained_4_modifier_tear:CreateBlood(target, damage, origin)
 	if self.init_loss > 0 then damage = damage * 5 end
 	local point = origin + RandomVector(RandomInt(0, 75))
 
 	local blood_thinker = CreateModifierThinker(
-		self.caster, self.ability, "bloodstained_5_modifier_blood",
+		self.caster, self.ability, "bloodstained_4_modifier_blood",
 		{duration = self.blood_duration, damage = damage},
 		point, self.parent:GetTeamNumber(), false
 	)
@@ -113,12 +113,12 @@ function bloodstained_5_modifier_tear:CreateBlood(target, damage, origin)
 	self:PlayEfxStartBlood(blood_thinker, point, damage)
 end
 
-function bloodstained_5_modifier_tear:PullBlood()
+function bloodstained_4_modifier_tear:PullBlood()
 	local total_blood = 0
 	local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
 
 	for _,blood in pairs(thinkers) do
-		local mod = blood:FindModifierByName("bloodstained_5_modifier_blood")
+		local mod = blood:FindModifierByName("bloodstained_4_modifier_blood")
 		if mod and blood:GetOwner() == self.caster then 
 			total_blood = total_blood + mod.damage
 			self:PlayEfxPull(blood)
@@ -134,7 +134,7 @@ function bloodstained_5_modifier_tear:PullBlood()
 	end
 end
 
-function bloodstained_5_modifier_tear:PullCopies()
+function bloodstained_4_modifier_tear:PullCopies()
 	if self.ability:GetSpecialValueFor("special_copy_leech") == 0 then return end
 
 	local copies = FindUnitsInRadius(
@@ -151,7 +151,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function bloodstained_5_modifier_tear:PlayEfxStart(radius)
+function bloodstained_4_modifier_tear:PlayEfxStart(radius)
 	if self.init_loss > 0 then
 		local string_1 = "particles/bloodstained/tear/bloodstained_tear_initial.vpcf"
 		self.particle = ParticleManager:CreateParticle(string_1, PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -169,8 +169,8 @@ function bloodstained_5_modifier_tear:PlayEfxStart(radius)
   if IsServer() then self.parent:EmitSound("Bloodstained.Mist.Loop") end
 end
 
-function bloodstained_5_modifier_tear:PlayEfxStartBlood(blood_thinker, point, damage)
-	local blood_mod = blood_thinker:FindModifierByNameAndCaster("bloodstained_5_modifier_blood", self.caster)
+function bloodstained_4_modifier_tear:PlayEfxStartBlood(blood_thinker, point, damage)
+	local blood_mod = blood_thinker:FindModifierByNameAndCaster("bloodstained_4_modifier_blood", self.caster)
 	local blood_percent = self.ability:GetSpecialValueFor("blood_percent") * 0.01
 	local amount = math.floor(damage * blood_percent * 0.6)
 
@@ -184,7 +184,7 @@ function bloodstained_5_modifier_tear:PlayEfxStartBlood(blood_thinker, point, da
 	end
 end
 
-function bloodstained_5_modifier_tear:PlayEfxPull(blood)
+function bloodstained_4_modifier_tear:PlayEfxPull(blood)
 	local particle_cast = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
@@ -192,7 +192,7 @@ function bloodstained_5_modifier_tear:PlayEfxPull(blood)
 	ParticleManager:SetParticleControl(effect_cast, 2, self.parent:GetOrigin())
 end
 
-function bloodstained_5_modifier_tear:PlayEfxHeal()
+function bloodstained_4_modifier_tear:PlayEfxHeal()
 	local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 
@@ -204,7 +204,7 @@ function bloodstained_5_modifier_tear:PlayEfxHeal()
 	if IsServer() then self.parent:EmitSound("Hero_Undying.SoulRip.Cast") end
 end
 
-function bloodstained_5_modifier_tear:PlayEfxHaemorrhage(attacker, target)
+function bloodstained_4_modifier_tear:PlayEfxHaemorrhage(attacker, target)
 	local particle_cast = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

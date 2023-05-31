@@ -101,3 +101,13 @@ function ancient_u_modifier_passive:UpdateAmbients()
 		ParticleManager:SetParticleControl(ambient_weapon, 21, Vector(value * 0.01, 0, 0))
 	end
 end
+
+function ancient_u_modifier_passive:PlayEfxKill()
+	local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+
+	local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+	ParticleManager:ReleaseParticleIndex(nFXIndex)
+end
