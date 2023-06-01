@@ -36,7 +36,7 @@ function TalentTree:OnPortraitUpdate(event)
   local info = {
     unit_name = entity:GetUnitName(),
     physical_damage = BaseStats(entity):GetTotalPhysicalDamagePercent(),
-    crit_damage = 100 + BaseStats(entity):GetCriticalDamage(),
+    crit_damage = 100 + BaseStats(entity):GetTotalCriticalDamage(),
     crit_chance = BaseStats(entity):GetCriticalChance(),
     attack_speed = entity:GetDisplayAttackSpeed(),
     magical_damage = BaseStats(entity):GetTotalMagicalDamagePercent(),

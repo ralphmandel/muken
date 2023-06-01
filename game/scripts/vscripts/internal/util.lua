@@ -255,7 +255,7 @@ end
   function AddModifier(target, caster, ability, modifier_name, table, bCalcStatus)
     if table.duration then
       if bCalcStatus then table.duration = CalcStatus(table.duration, caster, target) end
-      if table.duration <= 0 then return end
+      if table.duration <= 0 then return nil end
     end
 
     return target:AddNewModifier(caster, ability, modifier_name, table)
@@ -298,6 +298,41 @@ end
     if nightfall:IsTrained() then
       nightfall:ResetBarrier(bEnabled)
     end
+  end
+
+  function CreateStarfall(target, ability)
+		local caster = ability:GetCaster()
+		local point = target:GetOrigin()
+    local particle_cast = "particles/genuine/starfall/genuine_starfall_attack.vpcf"
+		local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
+		ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+
+		if IsServer() then target:EmitSound("Hero_Mirana.Starstorm.Cast") end
+
+		Timers:CreateTimer(ability:GetSpecialValueFor("special_starfall_delay"), function()
+			local enemies = FindUnitsInRadius(
+				caster:GetTeamNumber(), point, nil,
+				ability:GetSpecialValueFor("special_starfall_radius"),
+				DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+			)
+		
+			for _,enemy in pairs(enemies) do
+				if IsServer() then
+					enemy:EmitSound("Hero_Mirana.Starstorm.Impact")
+					break
+				end
+			end
+
+			for _,enemy in pairs(enemies) do
+				ApplyDamage({
+					attacker = caster, victim = enemy,
+					damage = ability:GetSpecialValueFor("special_starfall_damage"),
+					damage_type = DAMAGE_TYPE_MAGICAL, ability = ability
+				})
+			end		
+		end)
   end
 
 -- HEAL / MANA

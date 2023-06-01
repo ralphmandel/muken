@@ -640,7 +640,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 			self.force_crit_damage = damage
 		end
 
-    function base_stats:GetCriticalDamage()
+    function base_stats:GetTotalCriticalDamage()
       local caster = self:GetCaster()
       local result = self.force_crit_damage
 
@@ -648,15 +648,21 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("STR"))
 
         if caster:HasModifier("ancient_1_modifier_passive") == false or caster:GetHealthPercent() >= 25 then
-          local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
-          for _,modifier in pairs(crit_damage) do
-            result = result + modifier:GetStackCount()
-          end
+          result = self:GetBonusCriticalDamage(result)
         end
       end
 
       return result
 		end
+
+    function base_stats:GetBonusCriticalDamage(result)
+      local caster = self:GetCaster()
+      local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
+      for _,modifier in pairs(crit_damage) do
+        result = result + modifier.amount
+      end
+      return result
+    end
 
 	-- AGI
 

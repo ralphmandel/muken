@@ -86,4 +86,6 @@ function genuine__precache:Precache(context)
   PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf", context)
   PrecacheResource("particle", "particles/genuine/genuine_ultimate.vpcf", context)
   PrecacheResource("particle", "particles/genuine/ult_deny/genuine_deny_v2.vpcf", context)
+
+  PrecacheResource("particle", "particles/genuine/starfall/genuine_starfall_attack.vpcf", context)
 end

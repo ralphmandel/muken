@@ -59,6 +59,51 @@
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
+      "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_lck"	            "0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_silence_duration""0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_fear_chance"	    "0"
+			}
+      "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_fear_duration"	  "0"
+			}
+      "21"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_spell_lifesteal"	"0"
+			}
+      "22"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_combo"  "0"
+			}
+      "23"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_damage"	"0"
+			}
+      "24"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_radius"	"0"
+			}
+      "25"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_delay"	"0"
+			}
 		}
 	}
 

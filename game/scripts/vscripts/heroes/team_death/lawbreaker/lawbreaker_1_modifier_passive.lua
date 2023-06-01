@@ -37,7 +37,7 @@ function lawbreaker_1_modifier_passive:OnAttacked(keys)
   if IsServer() then self:IncrementStackCount() end
 
   if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") - 1 then
-    BaseStats(self.parent):SetForceCrit(100, BaseStats(self.parent):GetCriticalDamage() + self.ability:GetSpecialValueFor("crit_dmg"))
+    BaseStats(self.parent):SetForceCrit(100, BaseStats(self.parent):GetTotalCriticalDamage() + self.ability:GetSpecialValueFor("crit_dmg"))
   end
 
   if self:GetStackCount() == 0 then

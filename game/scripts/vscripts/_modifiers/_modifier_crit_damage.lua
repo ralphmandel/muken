@@ -21,5 +21,5 @@ end
 --------------------------------------------------------------------------------
 
 function _modifier_crit_damage:OnCreated(kv)
-	if IsServer() then self:SetStackCount(kv.amount) end
+	if IsServer() then self.amount = kv.amount end
 end

@@ -31,6 +31,10 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
 
+  if value_name == "special_starfall_damage" then return 1 end
+	if value_name == "special_starfall_radius" then return 1 end
+	if value_name == "special_starfall_delay" then return 1 end
+
 	if ability:GetAbilityName() == "genuine_1__shooting" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
@@ -39,27 +43,39 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "atk_range" then return 1 end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_11") then
+      if value_name == "damage" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_1__shooting_rank_12") then
+      if value_name == "proj_speed" then return 1 end
+      if value_name == "special_lck" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_21") then
 		end
 
     if caster:FindAbilityByName("genuine_1__shooting_rank_22") then
+      if value_name == "mana_steal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_31") then
+      if value_name == "special_silence_duration" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_1__shooting_rank_32") then
+      if value_name == "special_fear_chance" then return 1 end
+      if value_name == "special_fear_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_41") then
+      if value_name == "special_spell_lifesteal" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_1__shooting_rank_42") then
+      if value_name == "special_starfall_combo" then return 1 end
+      if value_name == "special_starfall_damage" then return 1 end
+      if value_name == "special_starfall_radius" then return 1 end
+      if value_name == "special_starfall_delay" then return 1 end
 		end
 	end
 
@@ -228,13 +244,42 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
 
-	if ability:GetAbilityName() == "genuine_1__shooting" then
-		if value_name == "AbilityManaCost" then return 30 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
-    if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
+	if value_name == "special_starfall_damage" then return 100 end
+	if value_name == "special_starfall_radius" then return 250 end
+	if value_name == "special_starfall_delay" then return 0.5 end
 
+	if ability:GetAbilityName() == "genuine_1__shooting" then
+		if value_name == "AbilityManaCost" then
+      local mana_cost = 30 * (1 + ((ability_level - 1) * 0.05))
+      if caster:FindAbilityByName("genuine_1__shooting_rank_21") then
+        mana_cost = mana_cost - 10
+      end
+      return mana_cost
+    end
+
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("genuine_1__shooting_rank_31") then
+        return 15
+      end
+      if caster:FindAbilityByName("genuine_1__shooting_rank_32") then
+        return 5
+      end
+      return 0
+    end
+
+    if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "atk_range" then return 0 + (value_level * 20) end
+
+    if value_name == "damage" then return 45 end
+    if value_name == "proj_speed" then return 1200 end
+    if value_name == "special_lck" then return 10 end
+    if value_name == "mana_steal" then return 3 end
+    if value_name == "special_silence_duration" then return 3 end
+    if value_name == "special_fear_chance" then return 12 end
+    if value_name == "special_fear_duration" then return 1 end
+    if value_name == "special_spell_lifesteal" then return 25 end
+    if value_name == "special_starfall_combo" then return 5 end
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
@@ -264,8 +309,8 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_u__star" then
-		if value_name == "AbilityManaCost" then return 135 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 40 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 45 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
 		if value_name == "mana_steal" then return 20 + (value_level * 1) end

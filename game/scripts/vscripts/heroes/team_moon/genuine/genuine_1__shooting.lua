@@ -1,6 +1,10 @@
 genuine_1__shooting = class({})
 LinkLuaModifier("genuine_1_modifier_orb", "heroes/team_moon/genuine/genuine_1_modifier_orb", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_1_modifier_starfall_stack", "heroes/team_moon/genuine/genuine_1_modifier_starfall_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear", "_modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -30,6 +34,27 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     if keys.target:HasModifier("genuine_u_modifier_star") then
       local mana_steal = keys.target:GetMaxMana() * self:GetSpecialValueFor("mana_steal") * 0.01
       StealMana(keys.target, caster, self, mana_steal)
+    end
+
+    if self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
+      local silence = AddModifier(keys.target, caster, self, "_modifier_silence", {
+        duration = self:GetSpecialValueFor("special_silence_duration")
+      }, true)
+
+      if silence then self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel())) end
+    end
+
+    if RandomFloat(0, 100) < self:GetSpecialValueFor("special_fear_chance")
+    and self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
+      local fear = AddModifier(keys.target, caster, self, "_modifier_fear", {
+        duration = self:GetSpecialValueFor("special_fear_duration"), special = 1
+      }, true)
+
+      if fear then self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel())) end
+    end
+
+    if self:GetSpecialValueFor("special_starfall_combo") > 0 then
+      AddModifier(keys.target, caster, self, "genuine_1_modifier_starfall_stack", {duration = 3}, false)
     end
 
     ApplyDamage({

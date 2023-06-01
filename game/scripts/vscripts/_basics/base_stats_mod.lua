@@ -150,7 +150,7 @@ base_stats_mod = class ({})
     end
 
     if self.ability.has_crit == true then
-      local crit_damage = self.ability:GetCriticalDamage()
+      local crit_damage = self.ability:GetTotalCriticalDamage()
       self.ability.force_crit_damage = nil
       return crit_damage
     end
