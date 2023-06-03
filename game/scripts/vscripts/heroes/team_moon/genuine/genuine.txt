@@ -117,6 +117,7 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -140,7 +141,7 @@
       "03"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"distance"		  "600"
+				"distance"		  "500"
 			}
       "04"
 			{
@@ -151,6 +152,41 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_slow"        "0"
+			}
+      "17"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_invi_break"  "0"
+			}
+      "18"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_purge_enemy" "0"
+			}
+      "19"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_purge_ally"  "0"
+			}
+      "20"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_wide"        "0"
+			}
+      "21"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_damage"      "0"
+			}
+      "22"
+			{
+				"var_type"	          "FIELD_FLOAT"
+				"special_heal"        "0"
 			}
 		}
 	}
@@ -165,8 +201,8 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.1"
 
@@ -196,6 +232,56 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_count"  "0"
+			}
+      "17"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_track_duration"	"0"
+			}
+      "18"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_rec"		          "0"
+			}
+      "19"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_ms_night"        "0"
+			}
+      "20"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_strike_damage"   "0"
+			}
+      "21"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_strike_radius"   "0"
+			}
+      "22"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_int_allies"		  "0"
+			}
+      "23"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_damage"	"0"
+			}
+      "24"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_radius"	"0"
+			}
+      "25"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_delay"	"0"
 			}
 		}
 	}
@@ -295,7 +381,7 @@
 			"01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"night_vision"	  "300"
+				"night_vision"	  "200"
 			}
       "02"
 			{
@@ -339,7 +425,7 @@
       "01"
 			{
 				"var_type"			  "FIELD_FLOAT"
-				"cast_range"	    "500"
+				"cast_range"	    "400"
 			}
       "02"
 			{
@@ -354,7 +440,7 @@
       "04"
 			{
 				"var_type"			  "FIELD_FLOAT"
-				"night_vision"	  "-300"
+				"night_vision"	  "-200"
 			}
       "05"
 			{
@@ -364,7 +450,7 @@
       "06"
 			{
 				"var_type"			  "FIELD_FLOAT"
-				"mana_steal"	    "1 2 3 4 5 6 7 8 9 10 11"
+				"mana_steal"	    "30"
 			}
 			"15"
 			{

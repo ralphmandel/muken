@@ -277,7 +277,9 @@ end
   function RemoveAllModifiersByNameAndAbility(target, name, ability)
     local mod = target:FindAllModifiersByName(name)
     for _,modifier in pairs(mod) do
-        if modifier:GetAbility() == ability then modifier:Destroy() end
+      if modifier:GetAbility() == ability or ability == nil then
+        modifier:Destroy()
+      end
     end
   end
 

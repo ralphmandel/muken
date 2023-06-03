@@ -1,9 +1,21 @@
 genuine_2__fallen = class({})
+LinkLuaModifier("genuine_2_modifier_fallen", "heroes/team_moon/genuine/genuine_2_modifier_fallen", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_fear", "_modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_truesight", "_modifiers/_modifier_truesight", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
+
+  function genuine_2__fallen:GetAbilityTargetTeam()
+    if self:GetSpecialValueFor("special_heal") > 0 or self:GetSpecialValueFor("special_purge_ally") == 1 then
+      return DOTA_UNIT_TARGET_TEAM_BOTH
+    end
+
+    return DOTA_UNIT_TARGET_TEAM_ENEMY
+  end
 
 -- SPELL START
 
@@ -14,6 +26,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 		local direction = point - caster:GetOrigin()
 		direction.z = 0
 		direction = direction:Normalized()
+
+    if self:GetSpecialValueFor("special_wide") == 1 then
+			projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf"
+		end
 
 		ProjectileManager:CreateLinearProjectile({
 			Source = caster,
@@ -43,20 +59,25 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 	function genuine_2__fallen:OnProjectileHit(hTarget, vLocation)
 		if not hTarget then return end
 		local caster = self:GetCaster()
+    if hTarget == caster then return end
 
-    hTarget:Purge(true, false, false, false, false)
+    if hTarget:GetTeamNumber() == caster:GetTeamNumber() then
+      local purge_ally = self:GetSpecialValueFor("special_purge_ally")
+      local heal = hTarget:GetMaxHealth() * self:GetSpecialValueFor("special_heal") * 0.01
 
-    AddModifier(hTarget, caster, self, "_modifier_fear", {
-      duration = self:GetSpecialValueFor("fear_duration"), special = 1
-    }, true)
-		
-		self:PlayEfxHit(hTarget)
+      if purge_ally == 1 then hTarget:Purge(false, true, false, true, false) end
+      if heal > 0 then hTarget:Heal(heal, self) end
+      return
+    end
+
+    if self:GetSpecialValueFor("special_purge_enemy") == 1 then
+      hTarget:Purge(true, false, false, false, false)
+    end
+
+    AddModifier(hTarget, caster, self, "genuine_2_modifier_fallen", {
+      duration = self:GetSpecialValueFor("fear_duration")
+    }, true)		
 	end
 
 -- EFFECTS
 
-	function genuine_2__fallen:PlayEfxHit(target)
-		local particle_cast = "particles/genuine/genuine_fallen_hit.vpcf"
-		local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-	end

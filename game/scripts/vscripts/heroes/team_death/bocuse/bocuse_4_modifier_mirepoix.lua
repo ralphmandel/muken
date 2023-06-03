@@ -75,7 +75,7 @@ function bocuse_4_modifier_mirepoix:GetModifierMagical_ConstantBlock()
 end
 
 function bocuse_4_modifier_mirepoix:GetModifierConstantHealthRegen()
-  return self:GetParent():GetBaseMaxHealth() * self:GetAbility():GetSpecialValueFor("health_regen") * 0.01
+  return self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("health_regen") * 0.01
 end
 
 

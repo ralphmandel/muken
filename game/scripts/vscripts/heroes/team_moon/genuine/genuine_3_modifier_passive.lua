@@ -18,7 +18,7 @@ function genuine_3_modifier_passive:OnCreated(kv)
   end
 end
 
-function genuine_3_modifier_passive:OnRefresh(kv)
+function genuine_3_modifier_passive:OnRefresh(kv)  
   if IsServer() then
 		self:SetStackCount(self.ability.kills)
 	end
@@ -61,12 +61,14 @@ end
 function genuine_3_modifier_passive:OnIntervalThink()
   if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
     if self.overnight == false then
+      if self.ability:GetSpecialValueFor("special_ms_night") == 1 then self.ability:AddNightSpeed() end
       if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", self.ability.kills) end
       SetGenuineBarrier(self.parent, true)
       self.overnight = true
     end
   else
     if self.overnight == true then
+      RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
       if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", -self.ability.kills) end
       SetGenuineBarrier(self.parent, false)
       self.overnight = false

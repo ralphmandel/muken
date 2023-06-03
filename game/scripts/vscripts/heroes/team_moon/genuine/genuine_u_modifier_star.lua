@@ -9,6 +9,7 @@ function genuine_u_modifier_star:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+  self.effect = (self.parent:GetMana() > self.caster:GetMana())
 
   local mana_steal = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_steal") * 0.01
 
@@ -47,10 +48,9 @@ function genuine_u_modifier_star:GetBonusNightVision()
 end
 
 function genuine_u_modifier_star:OnIntervalThink()
-	if self.parent:GetMana() > self.caster:GetMana() then
+	if self.effect == true then
     self:PlayEfxPurge()
 		self.caster:Purge(false, true, false, false, false)
-		self.parent:Purge(true, false, false, false, false)
 
     if self.parent:IsMagicImmune() == false then
       AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {

@@ -31,7 +31,7 @@ end
 function druid_u_modifier_reborn:OnRespawn(keys)
   local reborn_hp = self.ability:GetSpecialValueFor("special_reborn_hp") * 0.01
   if keys.unit == self.parent then
-    self.parent:ModifyHealth(self.parent:GetBaseMaxHealth() * reborn_hp, self.ability, false, 0)
+    self.parent:ModifyHealth(self.parent:GetMaxHealth() * reborn_hp, self.ability, false, 0)
     self.parent:SetMana(self.parent:GetMaxMana() * reborn_hp)
     self:Destroy()
   end

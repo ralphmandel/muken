@@ -2,7 +2,7 @@ _modifier_movespeed_buff = class({})
 
 --------------------------------------------------------------------------------
 function _modifier_movespeed_buff:IsPurgable()
-	return true
+	return false
 end
 
 function _modifier_movespeed_buff:IsHidden()

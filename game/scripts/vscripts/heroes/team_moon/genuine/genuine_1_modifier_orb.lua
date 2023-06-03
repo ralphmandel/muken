@@ -17,16 +17,10 @@ end
 function genuine_1_modifier_orb:OnRefresh(kv)
   RemoveBonus(self.ability, "_2_LCK", self.parent)
   AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
-
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_crit_damage", {
-    amount = self.ability:GetSpecialValueFor("special_crit_dmg")
-  }, false)
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
   RemoveBonus(self.ability, "_2_LCK", self.parent)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

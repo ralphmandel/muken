@@ -88,4 +88,5 @@ function genuine__precache:Precache(context)
   PrecacheResource("particle", "particles/genuine/ult_deny/genuine_deny_v2.vpcf", context)
 
   PrecacheResource("particle", "particles/genuine/starfall/genuine_starfall_attack.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf", context)
 end

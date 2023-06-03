@@ -73,7 +73,7 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
     if damage > 0 then
       ApplyDamage({
         victim = target, attacker = caster, ability = self,
-        damage =  target:GetBaseMaxHealth() * damage * stack * 0.01,
+        damage =  target:GetMaxHealth() * damage * stack * 0.01,
         damage_type = self:GetAbilityDamageType()
       })
     end

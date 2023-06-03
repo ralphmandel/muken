@@ -85,27 +85,38 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("genuine_2__fallen_rank_11") then
+      if value_name == "special_slow" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_12") then
+      if value_name == "special_invi_break" then return 1 end
 		end
 
-		if caster:FindAbilityByName("genuine_2__fallen_rank_21") then
+    if caster:FindAbilityByName("genuine_2__fallen_rank_21") then
+      if value_name == "special_purge_enemy" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_22") then
+      if value_name == "special_purge_ally" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_2__fallen_rank_31") then
+      if value_name == "fear_duration" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_32") then
+      if value_name == "special_wide" then return 1 end
+      if value_name == "speed" then return 1 end
+      if value_name == "radius" then return 1 end
+      if value_name == "distance" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_2__fallen_rank_41") then
+      if value_name == "special_damage" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_42") then
+      if value_name == "special_heal" then return 1 end
 		end
 	end
 
@@ -115,28 +126,37 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("genuine_3__morning_rank_11") then
+      if value_name == "special_starfall_count" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_3__morning_rank_12") then
-		end
+      if value_name == "special_track_duration" then return 1 end
+    end
 
 		if caster:FindAbilityByName("genuine_3__morning_rank_21") then
-		end
+      if value_name == "special_rec" then return 1 end
+    end
 
     if caster:FindAbilityByName("genuine_3__morning_rank_22") then
-		end
+      if value_name == "agi" then return 1 end
+    end
 
 		if caster:FindAbilityByName("genuine_3__morning_rank_31") then
-		end
+      if value_name == "special_ms_night" then return 1 end
+    end
 
     if caster:FindAbilityByName("genuine_3__morning_rank_32") then
-		end
+      if value_name == "ms" then return 1 end
+    end
 
 		if caster:FindAbilityByName("genuine_3__morning_rank_41") then
-		end
+      if value_name == "special_strike_damage" then return 1 end
+      if value_name == "special_strike_radius" then return 1 end
+    end
 
     if caster:FindAbilityByName("genuine_3__morning_rank_42") then
-		end
+      if value_name == "special_int_allies" then return 1 end
+    end
 	end
 
 	if ability:GetAbilityName() == "genuine_4__awakening" then
@@ -206,9 +226,9 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-    if value_name == "mana_steal" then return 1 end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_11") then
+      if value_name == "mana_steal" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_12") then
@@ -284,19 +304,41 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
 		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
-    if value_name == "AbilityCooldown" then return 24 - ((ability_level - 1) * 0.6) end
+    if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+    if value_name == "special_slow" then return 75 end
+    if value_name == "special_invi_break" then return 1 end
+    if value_name == "special_purge_enemy" then return 1 end
+    if value_name == "special_purge_ally" then return 1 end
+    if value_name == "fear_duration" then return 4 end
+    if value_name == "special_wide" then return 1 end
+    if value_name == "speed" then return 2000 end
+    if value_name == "radius" then return 400 end
+    if value_name == "distance" then return 1200 end
+    if value_name == "special_damage" then return 2 end
+    if value_name == "special_heal" then return 15 end
 	end
 
 	if ability:GetAbilityName() == "genuine_3__morning" then
 		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 180 - ((ability_level - 1) * 3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+    if value_name == "special_starfall_count" then return 3 end
+    if value_name == "special_track_duration" then return 3 end
+    if value_name == "special_rec" then return 15 end
+    if value_name == "agi" then return 25 end
+    if value_name == "special_ms_night" then return 1 end
+    if value_name == "ms" then return 175 end
+    if value_name == "special_strike_damage" then return 50 end
+    if value_name == "special_strike_radius" then return 2000 end
+    if value_name == "special_int_allies" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "genuine_4__awakening" then
 		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 9 end
+		if value_name == "AbilityCooldown" then return 10 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "damage" then return 300 + (value_level * 5) end
@@ -313,7 +355,8 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 45 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "mana_steal" then return 20 + (value_level * 1) end
+
+		if value_name == "mana_steal" then return 40 end
 	end
 
 	return 0

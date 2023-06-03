@@ -40,7 +40,7 @@ function druid_2_modifier_armor:DeclareFunctions()
 end
 
 function druid_2_modifier_armor:GetModifierConstantHealthRegen()
-	return self:GetParent():GetBaseMaxHealth() * self:GetAbility():GetSpecialValueFor("regen") * 0.01
+	return self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("regen") * 0.01
 end
 
 function druid_2_modifier_armor:OnAttackLanded(keys)
