@@ -1,12 +1,18 @@
 genuine_5__nightfall = class({})
 LinkLuaModifier("genuine_5_modifier_passive", "heroes/team_moon/genuine/genuine_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_5_modifier_barrier", "heroes/team_moon/genuine/genuine_5_modifier_barrier", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible", "_modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
   function genuine_5__nightfall:OnUpgrade()
     if self:GetLevel() == 1 and (GameRules:IsDaytime() == false or GameRules:IsTemporaryNight()) then
       self:ResetBarrier(true)
+    end
+
+    if self:GetSpecialValueFor("special_invi") == 1 then
+      self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()))
     end
   end
 

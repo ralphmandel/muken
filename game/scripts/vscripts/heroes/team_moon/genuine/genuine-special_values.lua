@@ -385,16 +385,11 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
-		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("genuine_5__nightfall_rank_32") then
-        return 50 * (1 + ((ability_level - 1) * 0.05))
-      end
-      return 0 * (1 + ((ability_level - 1) * 0.05))
-    end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("genuine_5__nightfall_rank_31") then
-        return 5
+        return 10
       end
       if caster:FindAbilityByName("genuine_5__nightfall_rank_32") then
         return 30
