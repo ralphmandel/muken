@@ -242,28 +242,39 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_11") then
-      if value_name == "mana_steal" then return 1 end
+      if value_name == "special_reset" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_12") then
+      if value_name == "cast_range" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_21") then
+      if value_name == "mana_steal" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_22") then
+      if value_name == "special_swap" then return 1 end
+      if value_name == "mana_steal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_31") then
+      if value_name == "duration_night" then return 1 end
+      if value_name == "night_vision" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_32") then
+      if value_name == "special_day_vision" then return 1 end
+      if value_name == "duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_41") then
+      if value_name == "special_stun_purge" then return 1 end
+      if value_name == "interval" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_42") then
+      if value_name == "special_starfall" then return 1 end
 		end
 	end
 
@@ -415,7 +426,24 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
 
-		if value_name == "mana_steal" then return 40 end
+    if value_name == "special_reset" then return 1 end
+    if value_name == "cast_range" then return 1000 end
+
+    if caster:FindAbilityByName("genuine_u__star_rank_21") then
+      if value_name == "mana_steal" then return 50 end
+		end
+    if caster:FindAbilityByName("genuine_u__star_rank_22") then
+      if value_name == "mana_steal" then return 0 end
+		end
+
+    if value_name == "special_swap" then return 1 end
+    if value_name == "duration_night" then return 14 end
+    if value_name == "night_vision" then return -500 end
+    if value_name == "special_day_vision" then return ability:GetSpecialValueFor("night_vision") end
+    if value_name == "duration" then return ability:GetSpecialValueFor("duration_night") end
+    if value_name == "interval" then return 1 end
+    if value_name == "special_stun_purge" then return 1 end
+    if value_name == "special_starfall" then return 1 end
 	end
 
 	return 0

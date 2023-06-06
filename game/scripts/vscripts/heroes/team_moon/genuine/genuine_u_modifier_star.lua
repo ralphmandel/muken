@@ -11,12 +11,10 @@ function genuine_u_modifier_star:OnCreated(kv)
 	self.ability = self:GetAbility()
   self.effect = (self.parent:GetMana() > self.caster:GetMana())
 
-  local mana_steal = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_steal") * 0.01
-
 	if IsServer() then
 		self:PlayEfxStart()
     self:OnIntervalThink()
-    StealMana(self.parent, self.caster, self.ability, mana_steal)
+    self:ExchangeMana()
 	end
 end
 
@@ -27,7 +25,9 @@ function genuine_u_modifier_star:OnRemoved()
   if self.parent:IsAlive() == false then
     local cd = self.ability:GetCooldownTimeRemaining()
     self.ability:EndCooldown()
-    self.ability:StartCooldown(cd / 2)
+    if self.ability:GetSpecialValueFor("special_reset") == 0 then
+      self.ability:StartCooldown(cd / 2)
+    end
   end
   
 	if IsServer() then self.parent:StopSound("Genuine.Curse.Loop") end
@@ -37,7 +37,8 @@ end
 
 function genuine_u_modifier_star:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
+		MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+    MODIFIER_PROPERTY_BONUS_DAY_VISION
 	}
 	
 	return funcs
@@ -47,15 +48,25 @@ function genuine_u_modifier_star:GetBonusNightVision()
 	return self:GetAbility():GetSpecialValueFor("night_vision")
 end
 
+function genuine_u_modifier_star:GetBonusDayVision()
+	return self:GetAbility():GetSpecialValueFor("special_day_vision")
+end
+
 function genuine_u_modifier_star:OnIntervalThink()
 	if self.effect == true then
     self:PlayEfxPurge()
-		self.caster:Purge(false, true, false, false, false)
+
+    local stun_purge = self.ability:GetSpecialValueFor("special_stun_purge") == 1
+		self.caster:Purge(false, true, false, stun_purge, false)
 
     if self.parent:IsMagicImmune() == false then
       AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
         percent = 100, duration = 0.5
       }, false)
+    end
+
+    if self.ability:GetSpecialValueFor("special_starfall") == 1 then
+      CreateStarfall(self.parent, self.ability)
     end
 	end
 
@@ -65,6 +76,29 @@ function genuine_u_modifier_star:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function genuine_u_modifier_star:ExchangeMana()
+  if self.ability:GetSpecialValueFor("special_swap") == 1 then
+    if self.parent:GetMaxMana() > 0 then
+      local target_mana = self.parent:GetMana()
+      local caster_mana = self.caster:GetMana()
+      self.parent:SetMana(caster_mana)
+      self.caster:SetMana(target_mana)
+
+      local diff_mana = target_mana - caster_mana
+      local mana_deficit = self.caster:GetMaxMana() - caster_mana
+      if diff_mana > mana_deficit then diff_mana = mana_deficit end
+      if diff_mana > 0 then
+        local genuine_barrier = self.caster:FindModifierByName("genuine_5_modifier_barrier")
+        if genuine_barrier then genuine_barrier:UpdateBarrier(diff_mana, false) end
+      end
+    end
+    return
+  end
+  
+  local mana_steal = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_steal") * 0.01
+  StealMana(self.parent, self.caster, self.ability, mana_steal)
+end
 
 -- EFFECTS -----------------------------------------------------------
 

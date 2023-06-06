@@ -492,6 +492,46 @@
 				"var_type"			  "FIELD_FLOAT"
 				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 			}
+      "16"
+			{
+				"var_type"			      "FIELD_FLOAT"
+				"special_reset"	      "0"
+			}
+      "17"
+			{
+				"var_type"			      "FIELD_FLOAT"
+				"special_swap"	      "0"
+			}
+      "18"
+			{
+				"var_type"			      "FIELD_FLOAT"
+				"special_day_vision"	"0"
+			}
+      "19"
+			{
+				"var_type"			      "FIELD_FLOAT"
+				"special_stun_purge"	  "0"
+			}
+      "20"
+			{
+				"var_type"			      "FIELD_FLOAT"
+				"special_starfall"	  "0"
+			}
+      "21"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_damage"	"0"
+			}
+      "22"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_radius"	"0"
+			}
+      "23"
+			{
+				"var_type"		            "FIELD_FLOAT"
+				"special_starfall_delay"	"0"
+			}
 		}
 	}
 

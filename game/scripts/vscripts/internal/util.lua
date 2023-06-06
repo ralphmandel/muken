@@ -344,7 +344,10 @@ end
   end
 
   function IncreaseMana(target, amount)
+    local mana_deficit = target:GetMaxMana() - target:GetMana()
+    if amount > mana_deficit then amount = mana_deficit end
     if amount <= 0 then return end
+    
     target:GiveMana(amount)
 
     local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
