@@ -344,14 +344,17 @@ end
   end
 
   function IncreaseMana(target, amount)
+    if amount <= 0 then return end
     target:GiveMana(amount)
 
     local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
-    if genuine_barrier then genuine_barrier:UpdateBarrier(amount) end
+    if genuine_barrier then genuine_barrier:UpdateBarrier(amount, false) end
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, amount, nil)
   end
 
   function ReduceMana(target, ability, amount, bMessage)
+    if amount <= 0 then return end
+
     if target:HasModifier("ancient_u_modifier_passive")
     and ability:GetAbilityName() ~= "ancient_u__final" then
       amount = amount * 0.5
@@ -363,7 +366,6 @@ end
 
   function StealMana(target, inflictor, ability, amount)
     if amount > target:GetMana() then amount = target:GetMana() end
-    if amount == 0 then return end
 
     ReduceMana(target, ability, amount, true)
     IncreaseMana(inflictor, amount)

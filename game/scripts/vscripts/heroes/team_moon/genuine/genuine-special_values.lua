@@ -167,27 +167,33 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "damage" then return 1 end
 
 		if caster:FindAbilityByName("genuine_4__awakening_rank_11") then
+      if value_name == "special_mana" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_4__awakening_rank_12") then
 		end
 
 		if caster:FindAbilityByName("genuine_4__awakening_rank_21") then
+      if value_name == "arrow_range" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_4__awakening_rank_22") then
+      if value_name == "damage_reduction" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_4__awakening_rank_31") then
+      if value_name == "special_bash_power" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_4__awakening_rank_32") then
+      if value_name == "channel_time" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_4__awakening_rank_41") then
 		end
 
     if caster:FindAbilityByName("genuine_4__awakening_rank_42") then
+      if value_name == "special_pure_dmg" then return 1 end
 		end
 	end
 
@@ -197,27 +203,35 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("genuine_5__nightfall_rank_11") then
+      if value_name == "barrier_regen" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_5__nightfall_rank_12") then
+      if value_name == "special_hp_regen" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_5__nightfall_rank_21") then
+      if value_name == "max_barrier" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_5__nightfall_rank_22") then
+      if value_name == "special_universal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_5__nightfall_rank_31") then
+      if value_name == "special_invi" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_5__nightfall_rank_32") then
+      if value_name == "special_linkens" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_5__nightfall_rank_41") then
+      if value_name == "night_vision" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_5__nightfall_rank_42") then
+      if value_name == "special_fly_vision" then return 1 end
 		end
 	end
 
@@ -337,17 +351,67 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_4__awakening" then
-		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then
+      if caster:FindAbilityByName("genuine_4__awakening_rank_12") then
+        return 30 * (1 + ((ability_level - 1) * 0.05))
+      end
+      return 40 * (1 + ((ability_level - 1) * 0.05))
+    end
+
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("genuine_4__awakening_rank_41") then
+        return 1
+      end 
+      return 10
+    end
+    
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "damage" then return 300 + (value_level * 5) end
+
+		if value_name == "damage" then
+      local calc = 300 + (value_level * 5)
+      if caster:FindAbilityByName("genuine_4__awakening_rank_42") then
+        return math.floor(calc * 1.5)
+      end
+      return calc
+    end
+
+    if value_name == "special_mana" then return 100 end
+    if value_name == "arrow_range" then return 5500 end
+    if value_name == "damage_reduction" then return 0 end
+    if value_name == "special_bash_power" then return 600 end
+    if value_name == "channel_time" then return 3 end
+    if value_name == "special_pure_dmg" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+		if value_name == "AbilityManaCost" then
+      if caster:FindAbilityByName("genuine_5__nightfall_rank_32") then
+        return 50 * (1 + ((ability_level - 1) * 0.05))
+      end
+      return 0 * (1 + ((ability_level - 1) * 0.05))
+    end
+
+		if value_name == "AbilityCooldown" then
+      if caster:FindAbilityByName("genuine_5__nightfall_rank_31") then
+        return 5
+      end
+      if caster:FindAbilityByName("genuine_5__nightfall_rank_32") then
+        return 30
+      end
+      return 0
+    end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
+
+    if value_name == "barrier_regen" then return 3 end
+    if value_name == "special_hp_regen" then return 1 end
+    if value_name == "max_barrier" then return 225 end
+    if value_name == "special_universal" then return 1 end
+    if value_name == "special_invi" then return 1 end
+    if value_name == "special_linkens" then return 1 end
+    if value_name == "night_vision" then return 600 end
+    if value_name == "special_fly_vision" then return 1 end
 	end
 
 	if ability:GetAbilityName() == "genuine_u__star" then

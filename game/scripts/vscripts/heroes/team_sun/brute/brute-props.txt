@@ -1,24 +1,24 @@
 "DOTAHeroes"
 {
-	"icebreaker"
+	"brute"
 	{
-		"override_hero"					"npc_dota_hero_riki"
+		"override_hero"					"npc_dota_hero_axe"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"icebreaker_1__frost"
-			"Ability2"						"icebreaker_2__wave"
-			"Ability3"						"icebreaker_3__skin"
-			"Ability4"						"icebreaker_4__shivas"
-			"Ability5"						"icebreaker_5__blink"
-			"Ability6"						"icebreaker_u__zero"
+			"Ability1"						"brute_1__spin"
+			"Ability2"						"brute_2__rage"
+			"Ability3"						"brute_3__xcution"
+			"Ability4"						"brute_4__sk4"
+			"Ability5"						"brute_5__sk5"
+			"Ability6"						"brute_u__mark"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
 			"Ability10"						"_channel"
 			"Ability11"						"_void"
-			"Ability12"						"icebreaker__precache"
+			"Ability12"						"brute__precache"
 			"Ability13"						"null"
 			"Ability14"						"null"
 			"Ability15"						"null"
@@ -50,12 +50,12 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "120"     // Range within a target can be attacked.
+		"AttackRange"                   "150"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
-		"VisionDaytimeRange"        	"600"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1000"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
 
 		//STRENGTH
 			"AttackDamageMax"			"45"

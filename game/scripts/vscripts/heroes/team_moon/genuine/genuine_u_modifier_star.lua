@@ -30,7 +30,7 @@ function genuine_u_modifier_star:OnRemoved()
     self.ability:StartCooldown(cd / 2)
   end
   
-	if IsServer() then self.parent:StopSound("Hero_DeathProphet.Exorcism") end
+	if IsServer() then self.parent:StopSound("Genuine.Curse.Loop") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -79,7 +79,7 @@ function genuine_u_modifier_star:PlayEfxStart()
 	ParticleManager:SetParticleControl(effect_target, 0, self.parent:GetOrigin())
 	self:AddParticle(effect_target, false, false, -1, false, false)
 
-	if IsServer() then self.parent:EmitSound("Hero_DeathProphet.Exorcism") end
+	if IsServer() then self.parent:EmitSound("Genuine.Curse.Loop") end
 end
 
 function genuine_u_modifier_star:PlayEfxPurge()

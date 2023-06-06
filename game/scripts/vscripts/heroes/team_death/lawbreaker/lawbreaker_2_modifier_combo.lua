@@ -13,6 +13,9 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
   self.type = 1
   
   AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddModifier(self.caster, self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
+    percent = self.ability:GetSpecialValueFor("slow_percent")
+  }, false)
   
   if IsServer() then 
     self:SetStackCount(self.ability:GetSpecialValueFor("max_shots"))
@@ -25,6 +28,7 @@ end
 
 function lawbreaker_2_modifier_combo:OnRemoved()
 	RemoveBonus(self.ability,"_1_AGI", self.parent)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -33,7 +37,6 @@ function lawbreaker_2_modifier_combo:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_DISABLE_TURNING,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
     MODIFIER_EVENT_ON_STATE_CHANGED,
     MODIFIER_EVENT_ON_ORDER
 	}
@@ -47,10 +50,6 @@ end
 
 function lawbreaker_2_modifier_combo:GetModifierAttackRangeBonus()
   return self:GetAbility():GetSpecialValueFor("atk_range")
-end
-
-function lawbreaker_2_modifier_combo:GetModifierMoveSpeed_Limit()
-  return self:GetAbility():GetSpecialValueFor("limit_ms")
 end
 
 function lawbreaker_2_modifier_combo:OnStateChanged(keys)

@@ -422,6 +422,7 @@
 #base "../vscripts/heroes/team_sun/bald/bald.txt"
 #base "../vscripts/heroes/team_sun/striker/striker.txt"
 #base "../vscripts/heroes/team_sun/ancient/ancient.txt"
+#base "../vscripts/heroes/team_sun/brute/brute.txt"
 
 //MOON
 #base "../vscripts/heroes/team_moon/icebreaker/icebreaker.txt"

@@ -1,0 +1,155 @@
+"TalentTree_brute"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_axe"
+	{
+		"brute_1__spin" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "brute_1__spin_rank_11" // PATH + TALENT
+				"2"   "brute_1__spin_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_1__spin_rank_21"
+				"2"   "brute_1__spin_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_1__spin_rank_31"
+				"2"   "brute_1__spin_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_1__spin_rank_41"
+				"2"   "brute_1__spin_rank_42"
+			}
+		}
+		"brute_2__rage"
+		{
+			"1"
+			{
+				"1"   "brute_2__rage_rank_11"
+				"2"   "brute_2__rage_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_2__rage_rank_21"
+				"2"   "brute_2__rage_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_2__rage_rank_31"
+				"2"   "brute_2__rage_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_2__rage_rank_41"
+				"2"   "brute_2__rage_rank_42"
+			}
+		}
+		"brute_3__xcution"
+		{
+			"1"
+			{
+				"1"   "brute_3__xcution_rank_11"
+				"2"   "brute_3__xcution_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_3__xcution_rank_21"
+				"2"   "brute_3__xcution_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_3__xcution_rank_31"
+				"2"   "brute_3__xcution_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_3__xcution_rank_41"
+				"2"   "brute_3__xcution_rank_42"
+			}
+		}
+		"brute_4__sk4"
+		{
+			"1"
+			{
+				"1"   "brute_4__sk4_rank_11"
+				"2"   "brute_4__sk4_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_4__sk4_rank_21"
+				"2"   "brute_4__sk4_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_4__sk4_rank_31"
+				"2"   "brute_4__sk4_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_4__sk4_rank_41"
+				"2"   "brute_4__sk4_rank_42"
+			}
+		}
+		"brute_5__sk5"
+		{
+			"1"
+			{
+				"1"   "brute_5__sk5_rank_11"
+				"2"   "brute_5__sk5_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_5__sk5_rank_21"
+				"2"   "brute_5__sk5_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_5__sk5_rank_31"
+				"2"   "brute_5__sk5_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_5__sk5_rank_41"
+				"2"   "brute_5__sk5_rank_42"
+			}
+		}
+		"brute_u__mark"
+		{
+			"1"
+			{
+				"1"   "brute_u__mark_rank_11"
+				"2"   "brute_u__mark_rank_12"
+			}
+			"2"
+			{
+				"1"   "brute_u__mark_rank_21"
+				"2"   "brute_u__mark_rank_22"
+			}
+			"3"
+			{
+				"1"   "brute_u__mark_rank_31"
+				"2"   "brute_u__mark_rank_32"
+			}
+			"4"
+			{
+				"1"   "brute_u__mark_rank_41"
+				"2"   "brute_u__mark_rank_42"
+			}
+		}
+	}	
+}

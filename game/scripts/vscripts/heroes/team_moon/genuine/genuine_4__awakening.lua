@@ -1,5 +1,6 @@
 genuine_4__awakening = class({})
 LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genuine_4_modifier_channeling", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -7,6 +8,11 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
 
   function genuine_4__awakening:OnOwnerSpawned()
     self:SetActivated(true)
+  end
+
+  function genuine_4__awakening:GetAbilityDamageType()
+    if self:GetSpecialValueFor("special_pure_dmg") == 1 then return DAMAGE_TYPE_PURE end
+    return DAMAGE_TYPE_MAGICAL
   end
 
 -- SPELL START
@@ -68,18 +74,15 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
       iVisionTeamNumber = caster:GetTeamNumber(),
     })
 
+    local knockback = self:GetSpecialValueFor("special_bash_power") * channel_pct
+
     self.projectiles[projectile] = {}
     self.projectiles[projectile].damage = self:GetSpecialValueFor("damage") * channel_pct
     self.projectiles[projectile].reduction = damage_reduction
     self.projectiles[projectile].knockbackProperties = {
-      center_x = caster:GetAbsOrigin().x + 1,
-      center_y = caster:GetAbsOrigin().y + 1,
-      center_z = caster:GetAbsOrigin().z,
-      knockback_height = 0,
-      duration = self:GetSpecialValueFor("special_bash_power") / 2000,
-      knockback_duration = self:GetSpecialValueFor("special_bash_power") / 2000,
-      knockback_distance = self:GetSpecialValueFor("special_bash_power") * channel_pct
-    } --700
+      center_x = caster:GetAbsOrigin().x + 1, center_y = caster:GetAbsOrigin().y + 1, center_z = caster:GetAbsOrigin().z,
+      knockback_height = 0, duration = knockback / 2000, knockback_duration = knockback / 2000, knockback_distance = knockback
+    }
 
     self:StopEfxChannel()
   end
@@ -100,8 +103,13 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
     local data = self.projectiles[handle]
     local damage = data.damage
 
-    if data.knockbackProperties.knockback_distance > 0 and target:IsAlive() then
-      AddModifier(target, caster, nil, "modifier_knockback", data.knockbackProperties, false)
+    if data.knockbackProperties.knockback_distance > 0 then
+      local properties = data.knockbackProperties
+      properties.duration = CalcStatus(properties.duration, caster, target)
+      AddModifier(target, caster, nil, "modifier_knockback", properties, false)
+      AddModifier(target, caster, self, "_modifier_percent_movespeed_debuff", {
+        duration = properties.duration * 4, percent = 100
+      }, false)
     end
 
     if IsServer() then target:EmitSound("Hero_Windrunner.PowershotDamage") end
@@ -111,6 +119,12 @@ LinkLuaModifier("genuine_4_modifier_channeling", "heroes/team_moon/genuine/genui
       ability = self, damage = damage,
       damage_type = self:GetAbilityDamageType()
     })
+
+    if IsValidEntity(target) then
+      if target:IsAlive() == false then
+        IncreaseMana(caster, self:GetSpecialValueFor("special_mana") * BaseStats(caster):GetHealPower())
+      end
+    end
 
     data.damage = damage * data.reduction
   end

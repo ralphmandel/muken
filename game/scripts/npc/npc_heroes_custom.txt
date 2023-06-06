@@ -73,6 +73,7 @@
 #base "../vscripts/heroes/team_sun/bald/bald-props.txt"
 #base "../vscripts/heroes/team_sun/striker/striker-props.txt"
 #base "../vscripts/heroes/team_sun/ancient/ancient-props.txt"
+#base "../vscripts/heroes/team_sun/brute/brute-props.txt"
 
 //MOON
 #base "../vscripts/heroes/team_moon/icebreaker/icebreaker-props.txt"
