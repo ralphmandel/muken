@@ -1,5 +1,6 @@
 lawbreaker_2__combo = class({})
 LinkLuaModifier("lawbreaker_2_modifier_passive", "heroes/team_death/lawbreaker/lawbreaker_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("lawbreaker_2_modifier_reload", "heroes/team_death/lawbreaker/lawbreaker_2_modifier_reload", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("lawbreaker_2_modifier_combo", "heroes/team_death/lawbreaker/lawbreaker_2_modifier_combo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
@@ -16,6 +17,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function lawbreaker_2__combo:Spawn()
     self:SetCurrentAbilityCharges(0)
+    self.reloading = false
   end
 
   function lawbreaker_2__combo:OnUpgrade()
@@ -42,7 +44,16 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local caster = self:GetCaster()
     local passive = caster:FindModifierByName(self:GetIntrinsicModifierName())
     local interval = -1
-    if bEnable then interval = self:GetSpecialValueFor("recharge_time") end
+
+    if bEnable then
+      interval = self:GetSpecialValueFor("reload")
+      if self.reloading == true then interval = self:GetSpecialValueFor("fast_reload") end
+      AddModifier(caster, caster, self, "lawbreaker_2_modifier_reload", {}, false)
+    end
+
+    if caster:HasModifier("lawbreaker_2_modifier_combo") or bEnable == false then
+      caster:RemoveModifierByName("lawbreaker_2_modifier_reload")
+    end
 
     if IsServer() then passive:StartIntervalThink(interval) end
   end

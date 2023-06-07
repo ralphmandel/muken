@@ -1,6 +1,6 @@
 lawbreaker_2_modifier_passive = class({})
 
-function lawbreaker_2_modifier_passive:IsHidden() return false end
+function lawbreaker_2_modifier_passive:IsHidden() return true end
 function lawbreaker_2_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
@@ -25,8 +25,47 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function lawbreaker_2_modifier_passive:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_START,
+    MODIFIER_EVENT_ON_UNIT_MOVED
+	}
+
+	return funcs
+end
+
+function lawbreaker_2_modifier_passive:OnAttackStart(keys)
+  if keys.attacker == self.parent then self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload") end
+end
+
+function lawbreaker_2_modifier_passive:OnUnitMoved(keys)
+  if keys.unit == self.parent then self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload") end
+end 
+
 function lawbreaker_2_modifier_passive:OnIntervalThink()
-  if IsServer() then self:IncrementStackCount() end
+  if IsServer() then
+    local fast_reload = self.ability:GetSpecialValueFor("fast_reload")
+
+    if self.ability.reloading == true then
+      Timers:CreateTimer(fast_reload / 2, function()
+        self.parent:FadeGesture(ACT_DOTA_TRANSITION)
+        if self.ability.reloading == true then
+          self.parent:StartGestureWithPlaybackRate(ACT_DOTA_TRANSITION, 1.17 / fast_reload)
+        end
+      end)
+      Timers:CreateTimer(fast_reload - 0.05, function()
+        if self.ability.reloading == true then
+          self.parent:EmitSound("Hero_Muerta.PreAttack")
+        end
+      end)
+    else
+      Timers:CreateTimer(fast_reload / 2, function()
+        self.parent:FadeGesture(ACT_DOTA_TRANSITION)
+      end)
+    end
+    
+    self:IncrementStackCount()
+  end
 end
 
 function lawbreaker_2_modifier_passive:OnStackCountChanged(old)

@@ -79,38 +79,48 @@
 		{
       "01"
 			{
-				"var_type"		  "FIELD_FLOAT"
-				"agi"			      "50"
-			}
-      "03"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"atk_range"			"100"
-			}
-      "04"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"slow_percent"	"40"
-			}
-      "05"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"recharge_time"	"1.5"
-			}
-      "06"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"min_shots"			"5"
+				"var_type"		      "FIELD_FLOAT"
+				"agi"			          "50"
 			}
       "02"
 			{
-				"var_type"		  "FIELD_FLOAT"
-				"max_shots"			"1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		      "FIELD_FLOAT"
+				"atk_range"			    "100"
+			}
+      "03"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"slow_percent"	    "40"
+			}
+      "04"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"reload"	          "1.6"
+			}
+      "05"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"fast_reload"	      "0.4"
+			}
+      "06"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"fast_reload_delay" "4"
+			}
+      "07"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"min_shots"			    "5"
+			}
+      "08"
+			{
+				"var_type"		      "FIELD_FLOAT"
+				"max_shots"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
 			"15"
 			{
-				"var_type"		  "FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+				"var_type"		      "FIELD_FLOAT"
+				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
