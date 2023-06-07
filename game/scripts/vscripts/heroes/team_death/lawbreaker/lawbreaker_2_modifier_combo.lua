@@ -104,7 +104,7 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
 
   if IsServer() then
     self.parent:EmitSound("Hero_Snapfire.ExplosiveShellsBuff.Attack")
-    self.parent:FindModifierByName(self:GetIntrinsicModifierName()):DecrementStackCount()
+    self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):DecrementStackCount()
     self:StartIntervalThink(1 / self:GetAS()) 
   end
 end

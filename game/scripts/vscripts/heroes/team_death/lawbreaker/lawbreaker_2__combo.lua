@@ -10,7 +10,17 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   end
 
   function lawbreaker_2__combo:OnOwnerSpawned()
-    if IsServer() then self:GetCaster():FindModifierByName(self:GetIntrinsicModifierName()):SetStackCount(0) end
+    local caster = self:GetCaster()
+    if IsServer() then caster:FindModifierByName(self:GetIntrinsicModifierName()):SetStackCount(0) end
+  end
+
+  function lawbreaker_2__combo:Spawn()
+    self:SetCurrentAbilityCharges(0)
+  end
+
+  function lawbreaker_2__combo:OnUpgrade()
+    local caster = self:GetCaster()
+    caster:FindModifierByName(self:GetIntrinsicModifierName()):CheckShots()
   end
 
 -- SPELL START
@@ -26,6 +36,15 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local caster = self:GetCaster()
     caster:PerformAttack(target, false, false, true, false, false, false, false) -- skipCooldown == true FOR RANGED UNITS
     return true
+  end
+
+  function lawbreaker_2__combo:EnableShotRefresh(bEnable)
+    local caster = self:GetCaster()
+    local passive = caster:FindModifierByName(self:GetIntrinsicModifierName())
+    local interval = -1
+    if bEnable then interval = self:GetSpecialValueFor("recharge_time") end
+
+    if IsServer() then passive:StartIntervalThink(interval) end
   end
 
 -- EFFECTS

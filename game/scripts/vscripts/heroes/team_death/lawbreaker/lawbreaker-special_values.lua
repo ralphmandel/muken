@@ -65,6 +65,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "max_shots" then return 1 end
 
 		if caster:FindAbilityByName("lawbreaker_2__combo_rank_11") then
 		end
@@ -230,11 +231,12 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_2__combo" then
 		if value_name == "AbilityManaCost" then
-      return 50 * (1 + ((ability_level - 1) * 0.05)) + (caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() * 5)
+      return 50 * (1 + ((ability_level - 1) * 0.05)) + (ability:GetCurrentAbilityCharges() * 5)
     end
-    
+
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "max_shots" then return 15 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "lawbreaker_3__grenade" then
