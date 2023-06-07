@@ -53,10 +53,10 @@ lawbreaker_u__sk6_rank_41 = class ({})
 lawbreaker_u__sk6_rank_42 = class ({})
 
 lawbreaker__precache = class ({})
-LinkLuaModifier("lawbreaker__special_values", "heroes/team_death/lawbreaker/lawbreaker__special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("lawbreaker_special_values", "heroes/team_death/lawbreaker/lawbreaker-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function lawbreaker__precache:GetIntrinsicModifierName()
-  return "lawbreaker__special_values"
+  return "lawbreaker_special_values"
 end
 
 function lawbreaker__precache:Spawn()

@@ -1,7 +1,7 @@
 lawbreaker_2_modifier_combo = class({})
 
-function lawbreaker_2_modifier_combo:IsHidden() return false end
-function lawbreaker_2_modifier_combo:IsPurgable() return false end
+function lawbreaker_2_modifier_combo:IsHidden() return true end
+function lawbreaker_2_modifier_combo:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -18,7 +18,6 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
   }, false)
   
   if IsServer() then 
-    self:SetStackCount(self.ability:GetSpecialValueFor("max_shots"))
     self:StartIntervalThink(1 / self:GetAS()) 
   end
 end
@@ -105,17 +104,11 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
 
   if IsServer() then
     self.parent:EmitSound("Hero_Snapfire.ExplosiveShellsBuff.Attack")
-    self:DecrementStackCount()
+    self.parent:FindModifierByName(self:GetIntrinsicModifierName()):DecrementStackCount()
     self:StartIntervalThink(1 / self:GetAS()) 
   end
 end
 
-function lawbreaker_2_modifier_combo:OnStackCountChanged(old)
-  if self:GetStackCount() ~= old and self:GetStackCount() == 0 then
-    self:Destroy()
-  end
-  
-end
 -- UTILS -----------------------------------------------------------
 
 function lawbreaker_2_modifier_combo:GetAS()

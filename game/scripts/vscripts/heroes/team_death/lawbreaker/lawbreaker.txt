@@ -97,10 +97,20 @@
 				"var_type"		  "FIELD_FLOAT"
 				"slow_percent"	"40"
 			}
+      "05"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"recharge_time"	"1"
+			}
+      "06"
+			{
+				"var_type"		  "FIELD_FLOAT"
+				"min_shots"			"5"
+			}
 			"15"
 			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"var_type"		  "FIELD_FLOAT"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -129,7 +139,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -158,7 +168,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -187,7 +197,7 @@
 			"15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
@@ -216,7 +226,7 @@
 			"15"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"rank"				"9"
+				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}

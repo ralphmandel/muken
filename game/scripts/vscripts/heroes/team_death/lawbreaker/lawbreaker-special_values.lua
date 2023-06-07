@@ -1,22 +1,22 @@
-lawbreaker__special_values = class({})
+lawbreaker_special_values = class({})
 
-function lawbreaker__special_values:IsHidden() return true end
-function lawbreaker__special_values:IsPurgable() return false end
+function lawbreaker_special_values:IsHidden() return true end
+function lawbreaker_special_values:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function lawbreaker__special_values:OnCreated(kv)
+function lawbreaker_special_values:OnCreated(kv)
 end
 
-function lawbreaker__special_values:OnRefresh(kv)
+function lawbreaker_special_values:OnRefresh(kv)
 end
 
-function lawbreaker__special_values:OnRemoved()
+function lawbreaker_special_values:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function lawbreaker__special_values:DeclareFunctions()
+function lawbreaker_special_values:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL,
 		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE
@@ -25,7 +25,7 @@ function lawbreaker__special_values:DeclareFunctions()
 	return funcs
 end
 
-function lawbreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
+function lawbreaker_special_values:GetModifierOverrideAbilitySpecial(keys)
 	local caster = self:GetCaster()
 	local ability = keys.ability
 	local value_name = keys.ability_special_value
@@ -214,7 +214,7 @@ function lawbreaker__special_values:GetModifierOverrideAbilitySpecial(keys)
 	return 0
 end
 
-function lawbreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
+function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local caster = self:GetCaster()
 	local ability = keys.ability
 	local value_name = keys.ability_special_value
@@ -229,8 +229,11 @@ function lawbreaker__special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "lawbreaker_2__combo" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then
+      return 50 * (1 + ((ability_level - 1) * 0.05)) + (caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() * 5)
+    end
+    
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

@@ -13,11 +13,11 @@
 	
 	"npc_dota_hero_muerta"
 	{
-		"lawbreaker_1__shot"
-		{
-			"1"
-			{
-				"1"   "lawbreaker_1__shot_rank_11"
+		"lawbreaker_1__shot" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "lawbreaker_1__shot_rank_11" // PATH + TALENT
 				"2"   "lawbreaker_1__shot_rank_12"
 			}
 			"2"
