@@ -1,0 +1,18 @@
+"Cosmetics"
+{
+    "models/items/slark/hydrakan_latch/mesh/hydrkan_latch_model.vmdl"
+    {
+        "particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_ambient.vpcf" ""
+    }
+
+    "models/items/slark/slark_head_immortal/slark_head_immortal.vmdl"
+    {
+        "particles/econ/items/slark/slark_head_immortal/slark_head_immortal_ambient.vpcf" ""
+    }
+
+    "models/items/slark/dplus_shadow_of_the_dark_reef_shoulder/dplus_shadow_of_the_dark_reef_shoulder.vmdl" "nil"
+
+    "models/items/slark/dplus_shadow_of_the_dark_reef_back/dplus_shadow_of_the_dark_reef_back.vmdl" "nil"
+
+    "models/items/slark/dplus_shadow_of_the_dark_reef_arms/dplus_shadow_of_the_dark_reef_arms.vmdl" "nil"
+}

@@ -1,0 +1,155 @@
+"TalentTree_fleaman"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_slark"
+	{
+		"fleaman_1__precision" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "fleaman_1__precision_rank_11" // PATH + TALENT
+				"2"   "fleaman_1__precision_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_1__precision_rank_21"
+				"2"   "fleaman_1__precision_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_1__precision_rank_31"
+				"2"   "fleaman_1__precision_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_1__precision_rank_41"
+				"2"   "fleaman_1__precision_rank_42"
+			}
+		}
+		"fleaman_2__speed"
+		{
+			"1"
+			{
+				"1"   "fleaman_2__speed_rank_11"
+				"2"   "fleaman_2__speed_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_2__speed_rank_21"
+				"2"   "fleaman_2__speed_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_2__speed_rank_31"
+				"2"   "fleaman_2__speed_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_2__speed_rank_41"
+				"2"   "fleaman_2__speed_rank_42"
+			}
+		}
+		"fleaman_3__jump"
+		{
+			"1"
+			{
+				"1"   "fleaman_3__jump_rank_11"
+				"2"   "fleaman_3__jump_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_3__jump_rank_21"
+				"2"   "fleaman_3__jump_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_3__jump_rank_31"
+				"2"   "fleaman_3__jump_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_3__jump_rank_41"
+				"2"   "fleaman_3__jump_rank_42"
+			}
+		}
+		"fleaman_4__strip"
+		{
+			"1"
+			{
+				"1"   "fleaman_4__strip_rank_11"
+				"2"   "fleaman_4__strip_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_4__strip_rank_21"
+				"2"   "fleaman_4__strip_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_4__strip_rank_31"
+				"2"   "fleaman_4__strip_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_4__strip_rank_41"
+				"2"   "fleaman_4__strip_rank_42"
+			}
+		}
+		"fleaman_5__steal"
+		{
+			"1"
+			{
+				"1"   "fleaman_5__steal_rank_11"
+				"2"   "fleaman_5__steal_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_5__steal_rank_21"
+				"2"   "fleaman_5__steal_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_5__steal_rank_31"
+				"2"   "fleaman_5__steal_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_5__steal_rank_41"
+				"2"   "fleaman_5__steal_rank_42"
+			}
+		}
+		"fleaman_u__smoke"
+		{
+			"1"
+			{
+				"1"   "fleaman_u__smoke_rank_11"
+				"2"   "fleaman_u__smoke_rank_12"
+			}
+			"2"
+			{
+				"1"   "fleaman_u__smoke_rank_21"
+				"2"   "fleaman_u__smoke_rank_22"
+			}
+			"3"
+			{
+				"1"   "fleaman_u__smoke_rank_31"
+				"2"   "fleaman_u__smoke_rank_32"
+			}
+			"4"
+			{
+				"1"   "fleaman_u__smoke_rank_41"
+				"2"   "fleaman_u__smoke_rank_42"
+			}
+		}
+	}	
+}

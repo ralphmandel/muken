@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "fleaman_1__precision"
+	"2" "fleaman_2__speed"
+	"3" "fleaman_3__jump"
+	"4" "fleaman_4__strip"
+	"5" "fleaman_5__steal"
+	"6" "fleaman_u__smoke"
+}

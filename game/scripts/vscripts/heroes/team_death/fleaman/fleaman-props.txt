@@ -1,24 +1,24 @@
 "DOTAHeroes"
 {
-	"template"
+	"fleaman"
 	{
-		"override_hero"					"npc_dota_hero_id_name"
+		"override_hero"					"npc_dota_hero_slark"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"template_1__sk1"
-			"Ability2"						"template_2__sk2"
-			"Ability3"						"template_3__sk3"
-			"Ability4"						"template_4__sk4"
-			"Ability5"						"template_5__sk5"
-			"Ability6"						"template_u__sk6"
+			"Ability1"						"fleaman_1__precision"
+			"Ability2"						"fleaman_2__speed"
+			"Ability3"						"fleaman_3__jump"
+			"Ability4"						"fleaman_4__strip"
+			"Ability5"						"fleaman_5__steal"
+			"Ability6"						"fleaman_u__smoke"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
 			"Ability10"						"_channel"
 			"Ability11"						"_void"
-			"Ability12"						"template__precache"
+			"Ability12"						"fleaman__precache"
 			"Ability13"						"null"
 			"Ability14"						"null"
 			"Ability15"						"null"
@@ -50,7 +50,7 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "120"     // Range within a target can be attacked.
+		"AttackRange"                   "100"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
