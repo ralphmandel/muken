@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -7,7 +7,7 @@
 	m_flConstantLifespan = 0.25
 	m_ConstantColor = [ 0, 0, 0, 255 ]
 	m_nConstantSequenceNumber = 4
-	m_nBehaviorVersion = 4
+	m_nBehaviorVersion = 12
 	m_nFirstMultipleOverride_BackwardCompat = 6
 	m_controlPointConfigurations = 
 	[
@@ -29,7 +29,10 @@
 			_class = "C_OP_SetSingleControlPointPosition"
 			m_nCP1 = 4
 			m_vecCP1Pos = [ 75.0, 0.0, 0.0 ]
-			m_nHeadLocation = 3
+			m_transformInput = 
+			{
+				m_nControlPoint = 3
+			}
 		},
 	]
 	m_Emitters = 
@@ -85,8 +88,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 186, 255, 163 ]
-			m_ColorMax = [ 151, 255, 145 ]
+			m_ColorMin = [ 163, 255, 245 ]
+			m_ColorMax = [ 143, 243, 255 ]
 		},
 		{
 			_class = "C_INIT_CreateWithinSphereTransform"

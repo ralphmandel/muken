@@ -1,12 +1,30 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 32
 	m_flConstantRadius = 64.0
-	m_ConstantColor = [ 79, 155, 79, 255 ]
+	m_ConstantColor = [ 79, 143, 155, 255 ]
 	m_nBehaviorVersion = 12
 	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
 	m_PreEmissionOperators = 
 	[
 		{
@@ -106,7 +124,7 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_ti6_destruction_sparkles.vpcf"
+			m_ChildRef = resource:"particles/lawbreaker/lawbreaker_skill2_bullets_destruction_sparkles.vpcf"
 		},
 	]
 }

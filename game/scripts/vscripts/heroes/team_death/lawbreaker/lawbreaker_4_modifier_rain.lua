@@ -39,11 +39,11 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function lawbreaker_4_modifier_rain:PlayEfxStart()
-	local particle_cast = "particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+	local particle_cast = "particles/lawbreaker/rain/lawbreaker_rain.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 1, 1 ))
-	ParticleManager:SetParticleControlForward(self.effect_cast, 2, self.direction + Vector(0, 0, 0.1))
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, self.radius, 1 ))
+  ParticleManager:SetParticleControlTransformForward(self.effect_cast, 2, self.parent:GetOrigin(), self.direction)
 
   AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius, self:GetDuration(), false)
 
@@ -52,8 +52,8 @@ end
 
 function lawbreaker_4_modifier_rain:StopEfxStart()
   if self.effect_cast then
-    ParticleManager:DestroyParticle( self.effect_cast, false )
-    ParticleManager:ReleaseParticleIndex( self.effect_cast )
+    ParticleManager:DestroyParticle(self.effect_cast, false)
+    ParticleManager:ReleaseParticleIndex(self.effect_cast)
   end
 
   if IsServer() then self.parent:StopSound("Hero_Sniper.MKG_ShrapnelShatter") end

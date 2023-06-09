@@ -58,7 +58,8 @@ function lawbreaker_2_modifier_passive:OnIntervalThink()
       Timers:CreateTimer(fast_reload / 2, function()
         self.parent:FadeGesture(ACT_DOTA_TRANSITION)
         if self.ability.reloading == true then
-          self.parent:StartGestureWithPlaybackRate(ACT_DOTA_TRANSITION, 1.17 / fast_reload)
+          self.parent:AddActivityModifier("aggressive")
+          self.parent:StartGestureWithPlaybackRate(ACT_DOTA_TRANSITION, 0.9 / fast_reload)
         end
       end)
       Timers:CreateTimer(fast_reload - 0.05, function()

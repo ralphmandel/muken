@@ -1,11 +1,11 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf54:version{326b1595-45e8-4004-aa5a-3e08655ff51f} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 200
 	m_flConstantRadius = 56.0
-	m_ConstantColor = [ 2, 45, 12, 225 ]
-	m_nBehaviorVersion = 5
+	m_ConstantColor = [ 1, 30, 45, 225 ]
+	m_nBehaviorVersion = 12
 	m_nFirstMultipleOverride_BackwardCompat = 8
 	m_controlPointConfigurations = 
 	[
@@ -108,8 +108,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 37, 97, 18 ]
-			m_ColorMax = [ 38, 76, 50 ]
+			m_ColorMin = [ 17, 97, 89 ]
+			m_ColorMax = [ 76, 36, 72 ]
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -147,7 +147,7 @@
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 43, 57, 68, 255 ]
+			m_ColorFade = [ 57, 41, 68 ]
 			m_flFadeStartTime = 0.25
 		},
 		{

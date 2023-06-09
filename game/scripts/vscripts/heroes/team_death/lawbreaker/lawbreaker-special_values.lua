@@ -233,7 +233,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_2__combo" then
 		if value_name == "AbilityManaCost" then
-      return ability:GetCurrentAbilityCharges() * 5 * (1 + ((ability_level - 1) * 0.05))
+      return (25 + (ability:GetCurrentAbilityCharges() * 5)) * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end
@@ -248,8 +248,8 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "lawbreaker_4__rain" then
-		if value_name == "AbilityManaCost" then return 115 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 20 end
+		if value_name == "AbilityManaCost" then return 110 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 18 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 300 + (value_level * 10) end

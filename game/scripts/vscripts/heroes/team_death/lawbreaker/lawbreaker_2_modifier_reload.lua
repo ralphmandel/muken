@@ -20,6 +20,7 @@ function lawbreaker_2_modifier_reload:OnRefresh(kv)
 end
 
 function lawbreaker_2_modifier_reload:OnRemoved()
+  self.parent:ClearActivityModifiers()
   self.parent:FadeGesture(ACT_DOTA_TRANSITION)
   self.ability.reloading = false
 end
@@ -35,9 +36,14 @@ function lawbreaker_2_modifier_reload:OnIntervalThink()
     if self.step == 1 then
       self.step = 2
       self:StartIntervalThink(0.5)
-    else
+    elseif self.step == 2 then
+      self.step = 3
       self:PlayEfxStart()
-      self:StartIntervalThink(-1)
+      self:StartIntervalThink(0.1)
+    else
+      if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsFrozen() then
+        self:Destroy()
+      end
     end
   end
 end

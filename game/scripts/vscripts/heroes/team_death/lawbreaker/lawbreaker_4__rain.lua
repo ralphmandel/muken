@@ -29,12 +29,12 @@ LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_de
 	function lawbreaker_4__rain:OnSpellStart()
 		local caster = self:GetCaster()
     local point = self:GetCursorPosition()
+    local delay = self:GetSpecialValueFor("delay") + ((caster:GetOrigin() - point):Length2D() / 2000)
 
     caster:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
-
     self:PlayEfxStart(point)
 
-    Timers:CreateTimer(self:GetSpecialValueFor("delay"), function()
+    Timers:CreateTimer(delay, function()
       CreateModifierThinker(caster, self, "lawbreaker_4_modifier_rain", {
         duration = self:GetSpecialValueFor("duration")
       }, point, caster:GetTeamNumber(), false)

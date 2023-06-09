@@ -2,6 +2,7 @@ lawbreaker_4_modifier_aura_effect = class({})
 
 function lawbreaker_4_modifier_aura_effect:IsHidden() return true end
 function lawbreaker_4_modifier_aura_effect:IsPurgable() return false end
+function lawbreaker_4_modifier_aura_effect:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
