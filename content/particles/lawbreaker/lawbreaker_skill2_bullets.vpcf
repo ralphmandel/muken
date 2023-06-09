@@ -1233,5 +1233,8 @@
 		{
 			m_ChildRef = resource:"particles/lawbreaker/lawbreaker_skill2_bullets_base.vpcf"
 		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/lawbreaker_skill2_bullets_base_flame_2.vpcf"
+		},
 	]
 }
