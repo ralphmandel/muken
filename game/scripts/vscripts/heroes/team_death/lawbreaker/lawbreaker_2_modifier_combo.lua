@@ -123,10 +123,3 @@ function lawbreaker_2_modifier_combo:GetAS()
 end
 
 -- EFFECTS -----------------------------------------------------------
-
-function lawbreaker_2_modifier_combo:PlayEfxLifesteal(target)
-	local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
-	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(effect)
-end
