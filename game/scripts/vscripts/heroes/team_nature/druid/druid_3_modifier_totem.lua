@@ -61,7 +61,7 @@ function druid_3_modifier_totem:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
@@ -83,7 +83,7 @@ function druid_3_modifier_totem:OnDeath(keys)
 	if keys.unit == self.parent then self:Destroy() end
 end
 
-function druid_3_modifier_totem:OnAttackLanded(keys)
+function druid_3_modifier_totem:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
   local hit = 1
 

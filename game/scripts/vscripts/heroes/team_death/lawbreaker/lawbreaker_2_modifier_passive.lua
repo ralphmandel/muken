@@ -27,11 +27,19 @@ end
 
 function lawbreaker_2_modifier_passive:DeclareFunctions()
 	local funcs = {
+    MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_ATTACK_START,
     MODIFIER_EVENT_ON_UNIT_MOVED
 	}
 
 	return funcs
+end
+
+function lawbreaker_2_modifier_passive:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsFrozen() then
+		self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload")
+	end
 end
 
 function lawbreaker_2_modifier_passive:OnAttackStart(keys)

@@ -10,6 +10,7 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
   self.gesture = {[1] = ACT_DOTA_ATTACK, [2] = ACT_DOTA_ATTACK2}
+  self.spawn_shot = {[1] = -35, [2] = 35}
   self.type = 1
   
   AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
@@ -80,10 +81,13 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
   if self.type == 1 then self.type = 2 else self.type = 1 end
   self.parent:StartGestureWithPlaybackRate(self.gesture[self.type], self:GetAS())
 
+  local cross = CrossVectors(self.parent:GetOrigin() - point, Vector(0, 0, 1)):Normalized() * self.spawn_shot[self.type]
+  local spawn_origin = self.parent:GetOrigin() + cross
+
   ProjectileManager:CreateLinearProjectile({
     Source = self.parent,
     Ability = self.ability,
-    vSpawnOrigin = self.parent:GetAbsOrigin(),
+    vSpawnOrigin = spawn_origin,
     
     bDeleteOnHit = true,
     

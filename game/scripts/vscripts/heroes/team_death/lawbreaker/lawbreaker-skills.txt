@@ -3,7 +3,7 @@
 	"1" "lawbreaker_1__shot"
 	"2" "lawbreaker_2__combo"
 	"3" "lawbreaker_3__grenade"
-	"4" "lawbreaker_4__sk4"
-	"5" "lawbreaker_5__sk5"
-	"6" "lawbreaker_u__sk6"
+	"4" "lawbreaker_4__rain"
+	"5" "lawbreaker_5__blink"
+	"6" "lawbreaker_u__form"
 }

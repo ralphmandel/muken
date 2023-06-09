@@ -61,7 +61,7 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
@@ -82,7 +82,7 @@ function dasdingo_4_modifier_tribal:OnDeath(keys)
 	if keys.unit == self.parent then self:Destroy() end
 end
 
-function dasdingo_4_modifier_tribal:OnAttackLanded(keys)
+function dasdingo_4_modifier_tribal:OnAttacked(keys)
   if keys.attacker == self.parent then
 		if IsServer() then keys.target:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
 	end

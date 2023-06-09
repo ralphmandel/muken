@@ -18,6 +18,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   function lawbreaker_2__combo:Spawn()
     self:SetCurrentAbilityCharges(0)
     self.reloading = false
+
+    if self:IsTrained() == false then
+      self:UpgradeAbility(true)
+    end 
   end
 
   function lawbreaker_2__combo:OnUpgrade()
@@ -26,6 +30,13 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   end
 
 -- SPELL START
+
+  function lawbreaker_2__combo:OnAbilityPhaseStart()
+    local caster = self:GetCaster()
+    if caster:HasModifier("lawbreaker_2_modifier_combo") then return false end
+
+    return true
+  end
 
 	function lawbreaker_2__combo:OnSpellStart()
 		local caster = self:GetCaster()

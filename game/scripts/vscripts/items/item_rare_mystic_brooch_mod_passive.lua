@@ -34,13 +34,13 @@ end
 
 function item_rare_mystic_brooch_mod_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
 end
 
-function item_rare_mystic_brooch_mod_passive:OnAttackLanded(keys)
+function item_rare_mystic_brooch_mod_passive:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
 	if self.ability:IsCooldownReady() == false then return end
 

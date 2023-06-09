@@ -26,7 +26,6 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-
 -- UTILS -----------------------------------------------------------
 
 function lawbreaker_2_modifier_reload:OnIntervalThink()
@@ -35,7 +34,7 @@ function lawbreaker_2_modifier_reload:OnIntervalThink()
   if IsServer() then
     if self.step == 1 then
       self.step = 2
-      self:StartIntervalThink(1)
+      self:StartIntervalThink(0.5)
     else
       self:PlayEfxStart()
       self:StartIntervalThink(-1)

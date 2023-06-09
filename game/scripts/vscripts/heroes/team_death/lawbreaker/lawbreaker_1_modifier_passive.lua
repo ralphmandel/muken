@@ -45,7 +45,6 @@ function lawbreaker_1_modifier_passive:OnAttacked(keys)
     self.parent:Heal(heal, self.ability)
     self:PlayEfxLifesteal(keys.attacker)
   end
-  
 end
 
 function lawbreaker_1_modifier_passive:OnStackCountChanged(old)

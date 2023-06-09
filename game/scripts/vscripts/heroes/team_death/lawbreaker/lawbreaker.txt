@@ -17,7 +17,7 @@
 	}
 
 	"lawbreaker_1__shot"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_1__shot"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -41,23 +41,23 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"crit_dmg"			"50"
+				"crit_dmg"		"100"
 			}
        "0"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"lifesteal"			"50"
+				"lifesteal"		"50"
 			}
       "15"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"rank"			"6"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 			}
 		}
 	}
 
 	"lawbreaker_2__combo"
-	{  
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_2__combo"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -66,7 +66,6 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -105,7 +104,7 @@
       "06"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"fast_reload_delay" "4"
+				"fast_reload_delay" "3"
 			}
       "07"
 			{
@@ -154,12 +153,76 @@
 		}
 	}
 
-	"lawbreaker_4__sk4"
-	{ 
+	"lawbreaker_4__rain"
+	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_4__sk4"
+		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_4__rain"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_sk4"
+		"AbilityTextureName"     		"lawbreaker_rain"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_RESET"
+		"AbilityCastPoint"       		"0.4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"damage"			"75"
+			}
+      "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"slow"			  "125"
+			}
+      "03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"interval"		"0.5"
+			}
+      "04"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"delay"		    "0.8"
+			}
+      "05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"	  "6"
+			}
+      "06"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_range"	"600"
+			}
+      "07"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"radius"			"1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+		}
+	}
+
+	"lawbreaker_5__blink"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_5__blink"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"lawbreaker_blink"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -183,40 +246,11 @@
 		}
 	}
 
-	"lawbreaker_5__sk5"
+	"lawbreaker_u__form"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_5__sk5"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_sk5"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
-
-		"AbilitySpecial"
-		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-		}
-	}
-
-	"lawbreaker_u__sk6"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_u__sk6"
-		"AbilityTextureName"     		"lawbreaker_sk6"
+		"ScriptFile"            		"heroes/team_death/lawbreaker/lawbreaker_u__form"
+		"AbilityTextureName"     		"lawbreaker_form"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
@@ -965,10 +999,10 @@
         }
 
     //RANKS 4
-        "lawbreaker_4__sk4_rank_11"{
+        "lawbreaker_4__rain_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -995,10 +1029,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_12"{
+        "lawbreaker_4__rain_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1025,10 +1059,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_21"{
+        "lawbreaker_4__rain_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1055,10 +1089,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_22"{
+        "lawbreaker_4__rain_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1085,10 +1119,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_31"{
+        "lawbreaker_4__rain_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1115,10 +1149,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_32"{
+        "lawbreaker_4__rain_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1145,10 +1179,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_41"{
+        "lawbreaker_4__rain_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1175,10 +1209,10 @@
             }
         }
 
-        "lawbreaker_4__sk4_rank_42"{
+        "lawbreaker_4__rain_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk4"
+            "AbilityTextureName"    		"lawbreaker_rain"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1206,10 +1240,10 @@
         }
 
     //RANKS 5
-        "lawbreaker_5__sk5_rank_11"{
+        "lawbreaker_5__blink_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1236,10 +1270,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_12"{
+        "lawbreaker_5__blink_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1266,10 +1300,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_21"{
+        "lawbreaker_5__blink_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1296,10 +1330,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_22"{
+        "lawbreaker_5__blink_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1326,10 +1360,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_31"{
+        "lawbreaker_5__blink_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1356,10 +1390,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_32"{
+        "lawbreaker_5__blink_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1386,10 +1420,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_41"{
+        "lawbreaker_5__blink_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1416,10 +1450,10 @@
             }
         }
 
-        "lawbreaker_5__sk5_rank_42"{
+        "lawbreaker_5__blink_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk5"
+            "AbilityTextureName"    		"lawbreaker_blink"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1447,10 +1481,10 @@
         }
 
     //RANKS U
-        "lawbreaker_u__sk6_rank_11"{
+        "lawbreaker_u__form_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1477,10 +1511,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_12"{
+        "lawbreaker_u__form_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1507,10 +1541,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_21"{
+        "lawbreaker_u__form_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1537,10 +1571,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_22"{
+        "lawbreaker_u__form_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1567,10 +1601,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_31"{
+        "lawbreaker_u__form_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1597,10 +1631,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_32"{
+        "lawbreaker_u__form_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1627,10 +1661,10 @@
             }
         }
         
-        "lawbreaker_u__sk6_rank_41"{
+        "lawbreaker_u__form_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1657,10 +1691,10 @@
             }
         }
 
-        "lawbreaker_u__sk6_rank_42"{
+        "lawbreaker_u__form_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_sk6"
+            "AbilityTextureName"    		"lawbreaker_form"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

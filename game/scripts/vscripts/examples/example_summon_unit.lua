@@ -42,7 +42,7 @@ function template_x_modifier_example:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
@@ -60,7 +60,7 @@ function template_x_modifier_example:OnDeath(keys)
 	if keys.unit == self.parent then self:Destroy() end
 end
 
-function template_x_modifier_example:OnAttackLanded(keys)
+function template_x_modifier_example:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
   local hit = 1
 

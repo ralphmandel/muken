@@ -95,7 +95,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "lawbreaker_3__grenade" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
-		if value_name == "rank" then return 1 end
+    if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("lawbreaker_3__grenade_rank_11") then
 		end
@@ -122,93 +122,95 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "lawbreaker_4__sk4" then
+	if ability:GetAbilityName() == "lawbreaker_4__rain" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
-		if value_name == "rank" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "rank" then return 1 end
+		if value_name == "radius" then return 1 end
 
-		if caster:FindAbilityByName("lawbreaker_4__sk4_rank_11") then
+		if caster:FindAbilityByName("lawbreaker_4__rain_rank_11") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_4__sk4_rank_12") then
+    if caster:FindAbilityByName("lawbreaker_4__rain_rank_12") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_4__sk4_rank_21") then
+		if caster:FindAbilityByName("lawbreaker_4__rain_rank_21") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_4__sk4_rank_22") then
+    if caster:FindAbilityByName("lawbreaker_4__rain_rank_22") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_4__sk4_rank_31") then
+		if caster:FindAbilityByName("lawbreaker_4__rain_rank_31") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_4__sk4_rank_32") then
+    if caster:FindAbilityByName("lawbreaker_4__rain_rank_32") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_4__sk4_rank_41") then
+		if caster:FindAbilityByName("lawbreaker_4__rain_rank_41") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_4__sk4_rank_42") then
+    if caster:FindAbilityByName("lawbreaker_4__rain_rank_42") then
 		end
 	end
 
-	if ability:GetAbilityName() == "lawbreaker_5__sk5" then
+	if ability:GetAbilityName() == "lawbreaker_5__blink" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("lawbreaker_5__sk5_rank_11") then
+		if caster:FindAbilityByName("lawbreaker_5__blink_rank_11") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_5__sk5_rank_12") then
+    if caster:FindAbilityByName("lawbreaker_5__blink_rank_12") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_5__sk5_rank_21") then
+		if caster:FindAbilityByName("lawbreaker_5__blink_rank_21") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_5__sk5_rank_22") then
+    if caster:FindAbilityByName("lawbreaker_5__blink_rank_22") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_5__sk5_rank_31") then
+		if caster:FindAbilityByName("lawbreaker_5__blink_rank_31") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_5__sk5_rank_32") then
+    if caster:FindAbilityByName("lawbreaker_5__blink_rank_32") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_5__sk5_rank_41") then
+		if caster:FindAbilityByName("lawbreaker_5__blink_rank_41") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_5__sk5_rank_42") then
+    if caster:FindAbilityByName("lawbreaker_5__blink_rank_42") then
 		end
 	end
 
-	if ability:GetAbilityName() == "lawbreaker_u__sk6" then
+	if ability:GetAbilityName() == "lawbreaker_u__form" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("lawbreaker_u__sk6_rank_11") then
+		if caster:FindAbilityByName("lawbreaker_u__form_rank_11") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_u__sk6_rank_12") then
+    if caster:FindAbilityByName("lawbreaker_u__form_rank_12") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_u__sk6_rank_21") then
+		if caster:FindAbilityByName("lawbreaker_u__form_rank_21") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_u__sk6_rank_22") then
+    if caster:FindAbilityByName("lawbreaker_u__form_rank_22") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_u__sk6_rank_31") then
+		if caster:FindAbilityByName("lawbreaker_u__form_rank_31") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_u__sk6_rank_32") then
+    if caster:FindAbilityByName("lawbreaker_u__form_rank_32") then
 		end
 
-		if caster:FindAbilityByName("lawbreaker_u__sk6_rank_41") then
+		if caster:FindAbilityByName("lawbreaker_u__form_rank_41") then
 		end
 
-    if caster:FindAbilityByName("lawbreaker_u__sk6_rank_42") then
+    if caster:FindAbilityByName("lawbreaker_u__form_rank_42") then
 		end
 	end
 
@@ -231,7 +233,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_2__combo" then
 		if value_name == "AbilityManaCost" then
-      return 50 * (1 + ((ability_level - 1) * 0.05)) + (ability:GetCurrentAbilityCharges() * 5)
+      return ability:GetCurrentAbilityCharges() * 5 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end
@@ -245,19 +247,21 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "lawbreaker_4__sk4" then
+	if ability:GetAbilityName() == "lawbreaker_4__rain" then
+		if value_name == "AbilityManaCost" then return 115 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 20 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
+		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "radius" then return 300 + (value_level * 10) end
+	end
+
+	if ability:GetAbilityName() == "lawbreaker_5__blink" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
-	if ability:GetAbilityName() == "lawbreaker_5__sk5" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
-		if value_name == "rank" then return 6 + (value_level * 1) end
-	end
-
-	if ability:GetAbilityName() == "lawbreaker_u__sk6" then
+	if ability:GetAbilityName() == "lawbreaker_u__form" then
 		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 9 + (value_level * 1) end

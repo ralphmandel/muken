@@ -91,7 +91,7 @@ function icebreaker_u_modifier_aura:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
@@ -113,7 +113,7 @@ function icebreaker_u_modifier_aura:OnDeath(keys)
 	if keys.unit == self.parent then self:Destroy() end
 end
 
-function icebreaker_u_modifier_aura:OnAttackLanded(keys)
+function icebreaker_u_modifier_aura:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
   local hit = 1
 

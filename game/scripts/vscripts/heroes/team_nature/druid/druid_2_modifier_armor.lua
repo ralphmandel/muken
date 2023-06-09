@@ -33,7 +33,7 @@ end
 function druid_2_modifier_armor:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-    MODIFIER_EVENT_ON_ATTACK_LANDED
+    MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
@@ -43,7 +43,7 @@ function druid_2_modifier_armor:GetModifierConstantHealthRegen()
 	return self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("regen") * 0.01
 end
 
-function druid_2_modifier_armor:OnAttackLanded(keys)
+function druid_2_modifier_armor:OnAttacked(keys)
   if keys.attacker:IsMagicImmune() then return end
   if keys.target ~= self.parent then return end
 
