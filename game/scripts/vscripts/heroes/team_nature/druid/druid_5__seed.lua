@@ -97,8 +97,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
   function druid_5__seed:PlayEfxHeal(target)
     local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-    local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
-    ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
+    local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
     ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
     ParticleManager:ReleaseParticleIndex(effect)
   end
