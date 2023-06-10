@@ -32,7 +32,6 @@
 		},
 		{
 			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_ground_rays.vpcf"
-			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_smoke_dark.vpcf"

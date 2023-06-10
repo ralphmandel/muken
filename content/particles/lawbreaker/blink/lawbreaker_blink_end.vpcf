@@ -1,63 +1,14 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 12
-	m_Children = 
-	[
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_ground.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_dust.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_ground_rays.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_smoke_dark_end.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_flek.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_embers.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_up.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_flare.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start_halo.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_end_beam.vpcf"
-		},
-		
-		{
-			m_ChildRef = resource:"particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_end_stars.vpcf"
-		},
-	]
 	m_nMaxParticles = 0
 	m_controlPointConfigurations = 
 	[
-		
 		{
 			m_name = "preview"
 			m_drivers = 
 			[
-				
 				{
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_entityName = "self"
@@ -69,6 +20,42 @@
 				m_sequenceName = "arc_agg_idle"
 				m_hitboxSetName = "default"
 			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_ground.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_ground_rays.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_smoke_dark_end.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_flek.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_up.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_flare.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_start_halo.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_end_beam.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/lawbreaker/blink/lawbreaker_blink_end_stars.vpcf"
 		},
 	]
 }

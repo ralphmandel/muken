@@ -37,8 +37,8 @@ LinkLuaModifier("lawbreaker_5_modifier_blink", "heroes/team_death/lawbreaker/law
 
   function lawbreaker_5__blink:PlayEfxBlink(start_point, end_point)
     local caster = self:GetCaster()
-    local particle_start = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_start.vpcf" 
-    local particle_end = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_blink_end.vpcf"
+    local particle_start = "particles/lawbreaker/blink/lawbreaker_blink_start.vpcf"
+    local particle_end = "particles/lawbreaker/blink/lawbreaker_blink_end.vpcf"
 
     local blink_start_fx = ParticleManager:CreateParticle(particle_start, PATTACH_ABSORIGIN, caster)
     ParticleManager:SetParticleControl(blink_start_fx, 0, start_point)
