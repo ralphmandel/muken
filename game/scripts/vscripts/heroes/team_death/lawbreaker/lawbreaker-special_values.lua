@@ -249,15 +249,15 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_4__rain" then
 		if value_name == "AbilityManaCost" then return 110 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 18 end
+		if value_name == "AbilityCooldown" then return 21 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 300 + (value_level * 10) end
 	end
 
 	if ability:GetAbilityName() == "lawbreaker_5__blink" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 8 - ((ability_level - 1) * 0.2) end
+		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

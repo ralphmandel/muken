@@ -197,7 +197,7 @@
       "05"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"	  "6"
+				"duration"	  "7"
 			}
       "06"
 			{
@@ -235,6 +235,11 @@
 			{
 				"var_type"		"FIELD_FLOAT"
 				"range"			  "300"
+			}
+      "02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"charges"			"3"
 			}
       "15"
 			{
