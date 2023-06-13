@@ -62,4 +62,6 @@ function lawbreaker_1_modifier_passive:PlayEfxLifesteal(target)
 	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
+
+  if IsServer() then target:EmitSound("Hero_Muerta.PartingShot.Start") end
 end
