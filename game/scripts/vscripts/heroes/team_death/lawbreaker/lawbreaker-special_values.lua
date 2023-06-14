@@ -261,7 +261,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_5__blink" then
 		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
+		--if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

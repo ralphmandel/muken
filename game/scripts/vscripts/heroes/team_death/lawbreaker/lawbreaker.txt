@@ -143,6 +143,7 @@
 		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"0.45"
 
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -181,6 +182,11 @@
 				"proj_speed"	"1500"
 			}
       "08"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"delay"	      "2"
+			}
+      "09"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
@@ -268,6 +274,8 @@
     "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityCharges"            "3"
+    "AbilityChargeRestoreTime"  "6"
 
 		"AbilitySpecial"
 		{
