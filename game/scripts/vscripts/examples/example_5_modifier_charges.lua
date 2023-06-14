@@ -1,11 +1,11 @@
-lawbreaker_5_modifier_charges = class({})
+example_5_modifier_charges = class({})
 
-function lawbreaker_5_modifier_charges:IsHidden() return false end
-function lawbreaker_5_modifier_charges:IsPurgable() return false end
+function example_5_modifier_charges:IsHidden() return false end
+function example_5_modifier_charges:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function lawbreaker_5_modifier_charges:OnCreated(kv)
+function example_5_modifier_charges:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -13,20 +13,20 @@ function lawbreaker_5_modifier_charges:OnCreated(kv)
 	if IsServer() then self:ResetCharges() end
 end
 
-function lawbreaker_5_modifier_charges:OnRefresh(kv)
+function example_5_modifier_charges:OnRefresh(kv)
 end
 
-function lawbreaker_5_modifier_charges:OnRemoved()
+function example_5_modifier_charges:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function lawbreaker_5_modifier_charges:OnIntervalThink()
+function example_5_modifier_charges:OnIntervalThink()
 	self:ResetCharges()
 	self:StartIntervalThink(-1)
 end
 
-function lawbreaker_5_modifier_charges:OnStackCountChanged(old)
+function example_5_modifier_charges:OnStackCountChanged(old)
 	if self:GetStackCount() == 0 then
 		self:StartIntervalThink(-1)
 		self:ResetCharges()
@@ -41,7 +41,7 @@ end
 
 -- UTILS -----------------------------------------------------------
 
-function lawbreaker_5_modifier_charges:ResetCharges()
+function example_5_modifier_charges:ResetCharges()
 	self:SetStackCount(self.ability:GetSpecialValueFor("charges"))
 end
 

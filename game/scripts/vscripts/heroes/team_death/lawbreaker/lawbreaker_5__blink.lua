@@ -1,20 +1,6 @@
 lawbreaker_5__blink = class({})
-LinkLuaModifier("lawbreaker_5_modifier_charges", "heroes/team_death/lawbreaker/lawbreaker_5_modifier_charges", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("lawbreaker_5_modifier_blink", "heroes/team_death/lawbreaker/lawbreaker_5_modifier_blink", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
-
-  -- function lawbreaker_5__blink:GetIntrinsicModifierName()
-  --   return "lawbreaker_5_modifier_charges"
-  -- end
-
-  function lawbreaker_5__blink:OnUpgrade()
-    local caster = self:GetCaster()
-
-    -- if self:IsCooldownReady() == false then
-    --   if IsServer() then caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):ResetCharges() end
-    -- end
-  end
 
 -- SPELL START
 
@@ -23,8 +9,6 @@ LinkLuaModifier("lawbreaker_5_modifier_blink", "heroes/team_death/lawbreaker/law
     local origin = caster:GetOrigin()
     local direction = (origin - self:GetCursorPosition()):Normalized()
     local blink_point = origin - (direction * self:GetSpecialValueFor("range"))
-
-    --if IsServer() then caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount() end
 
 		ProjectileManager:ProjectileDodge(caster)
     FindClearSpaceForUnit(caster, blink_point, true)

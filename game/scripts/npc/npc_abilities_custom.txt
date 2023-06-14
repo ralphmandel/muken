@@ -413,7 +413,7 @@
 #base "../vscripts/heroes/team_nature/dasdingo/dasdingo.txt"
 
 //DEATH
-#base "../vscripts/heroes/team_death/flea/flea.txt"
+#base "../vscripts/heroes/team_death/fleaman/fleaman.txt"
 #base "../vscripts/heroes/team_death/bloodstained/bloodstained.txt"
 #base "../vscripts/heroes/team_death/bocuse/bocuse.txt"
 #base "../vscripts/heroes/team_death/lawbreaker/lawbreaker.txt"

@@ -77,6 +77,8 @@ function druid_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "AbilityCastRange" then return 1 end
+		if value_name == "AbilityCharges" then return 1 end
+		if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
     if value_name == "duration" then return 1 end
 
@@ -297,15 +299,15 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("druid_2__armor_rank_41") then
-        return 75 * (1 + ((ability_level - 1) * 0.05))
+      if caster:FindAbilityByName("druid_2__armor_rank_11") then
+        return 100 * (1 + ((ability_level - 1) * 0.05))
       end
       return 125 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
-      if caster:FindAbilityByName("druid_2__armor_rank_11") then
-        return 30
+      if caster:FindAbilityByName("druid_2__armor_rank_41") then
+        return 0
       end
       return 36
     end
@@ -317,15 +319,28 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
       return 800
     end
 
-		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "duration" then return 12 + (value_level * 0.3) end
+    if value_name == "AbilityCharges" then
+      if caster:FindAbilityByName("druid_2__armor_rank_41") then
+        return 3
+      end
+      return 0
+    end
 
-    if value_name == "regen" then return 1 end
-    if value_name == "def" then return 30 end
-    if value_name == "special_res" then return 15 end
-    if value_name == "special_root_chance" then return 15 end
+    if value_name == "AbilityChargeRestoreTime" then
+      if caster:FindAbilityByName("druid_2__armor_rank_41") then
+        return 18
+      end
+      return 0
+    end
+
+		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "duration" then return 18 + (value_level * 0.6) end
+
+    if value_name == "regen" then return 0.8 end
+    if value_name == "def" then return 24 end
+    if value_name == "special_res" then return 10 end
+    if value_name == "special_root_chance" then return 10 end
     if value_name == "special_root_duration" then return 2 end
-    if value_name == "special_charges" then return 2 end
     if value_name == "special_radius" then return 200 end
 	end
 

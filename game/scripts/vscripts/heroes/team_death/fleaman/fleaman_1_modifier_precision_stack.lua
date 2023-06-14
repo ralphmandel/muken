@@ -1,0 +1,39 @@
+fleaman_1_modifier_precision_stack = class({})
+local tempTable = require("libraries/tempTable")
+
+function fleaman_1_modifier_precision_stack:IsPurgable() return true end
+function fleaman_1_modifier_precision_stack:IsHidden() return true end
+function fleaman_1_modifier_precision_stack:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+
+-- CONSTRUCTORS -----------------------------------------------------------
+
+function fleaman_1_modifier_precision_stack:OnCreated( kv )
+	if IsServer() then
+		self.modifier = tempTable:RetATValue( kv.modifier )
+	end
+end
+
+function fleaman_1_modifier_precision_stack:OnRemoved()
+	if IsServer() then
+		if not self.modifier:IsNull() then
+			self.modifier:DecrementStackCount()
+		end
+	end
+end
+
+function fleaman_1_modifier_precision_stack:OnDestroy()
+end
+
+-- API FUNCTIONS -----------------------------------------------------------
+
+-- UTILS -----------------------------------------------------------
+
+-- EFFECTS -----------------------------------------------------------
+
+function fleaman_1_modifier_precision_stack:GetEffectName()
+	return "particles/fleaman/fleaman_precision.vpcf"
+end
+
+function fleaman_1_modifier_precision_stack:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

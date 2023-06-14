@@ -90,7 +90,7 @@ function base_hero_mod:LoadActivity()
 		if self.ability.hero_name == "bocuse" then self.activity = "trapper" end
 		if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 		if self.ability.hero_name == "ancient" then self.activity = "et_2021" end
-		if self.ability.hero_name == "flea" then self.activity = "latch" end
+		if self.ability.hero_name == "fleaman" then self.activity = "latch" end
 	end)
 end
 
@@ -154,7 +154,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
-	if self.ability.hero_name == "flea" then self.attack_landed_sound = "Hero_Slark.Attack" end
+	if self.ability.hero_name == "fleaman" then self.attack_landed_sound = "Hero_Slark.Attack" end
 	if self.ability.hero_name == "bald" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "brute" then self.attack_landed_sound = "Hero_Axe.Attack" end

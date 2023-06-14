@@ -34,7 +34,10 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "fleaman_1__precision" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "duration" then return 1 end
 
 		if caster:FindAbilityByName("fleaman_1__precision_rank_11") then
 		end
@@ -223,14 +226,17 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "fleaman_1__precision" then
-		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
-    if value_name == "AbilityCooldown" then return 40 - ((ability_level - 1) * 0.8) end
+		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 0 - ((ability_level - 1) * 0.8) end
+    if value_name == "AbilityCharges" then return 3 end
+    if value_name == "AbilityChargeRestoreTime" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "duration" then return 10 + (value_level * 0.2) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_2__speed" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
@@ -241,14 +247,14 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "fleaman_4__strip" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_5__steal" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

@@ -7,10 +7,6 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 -- SPELL START
 
-  function druid_2__armor:GetIntrinsicModifierName()
-    return "druid_2_modifier_passive"
-  end
-
   function druid_2__armor:GetAOERadius()
     return self:GetSpecialValueFor("special_radius")
   end
@@ -31,7 +27,6 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local target = self:GetCursorTarget()
     local allies = {[0] = target}
 
-		caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):DecrementStackCount()
     ChangeActivity(caster, "")
 
     if self:GetAOERadius() > 0 then

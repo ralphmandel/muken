@@ -64,7 +64,7 @@
 #base "../vscripts/heroes/team_nature/dasdingo/dasdingo-props.txt"
 
 //DEATH
-#base "../vscripts/heroes/team_death/flea/flea-props.txt"
+#base "../vscripts/heroes/team_death/fleaman/fleaman-props.txt"
 #base "../vscripts/heroes/team_death/bloodstained/bloodstained-props.txt"
 #base "../vscripts/heroes/team_death/bocuse/bocuse-props.txt"
 #base "../vscripts/heroes/team_death/lawbreaker/lawbreaker-props.txt"
