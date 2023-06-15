@@ -73,6 +73,8 @@ end
 
 function fleaman_3_modifier_jump:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
+  if keys.target:IsMagicImmune() then return end
+  
   self:PlayEfxHit(keys.target)
 
   AddModifier(keys.target, self.caster, self.ability, "_modifier_silence", {

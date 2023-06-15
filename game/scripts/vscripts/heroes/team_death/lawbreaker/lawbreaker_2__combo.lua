@@ -42,7 +42,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 		local caster = self:GetCaster()
     self.point = self:GetCursorPosition()
     caster:RemoveModifierByName("lawbreaker_2_modifier_combo")
-    caster:AddNewModifier(caster, self, "lawbreaker_2_modifier_combo", {})
+    AddModifier(caster, caster, self, "lawbreaker_2_modifier_combo", {}, false)
 	end
 
   function lawbreaker_2__combo:OnProjectileHit(target, loc)

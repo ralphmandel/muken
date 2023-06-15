@@ -1,13 +1,13 @@
 fleaman_5__steal = class({})
+LinkLuaModifier("fleaman_5_modifier_passive", "heroes/team_death/fleaman/fleaman_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("fleaman_5_modifier_steal", "heroes/team_death/fleaman/fleaman_5_modifier_steal", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
--- SPELL START
+  function fleaman_5__steal:GetIntrinsicModifierName()
+    return "fleaman_5_modifier_passive"
+  end
 
-	function fleaman_5__steal:OnSpellStart()
-		local caster = self:GetCaster()
-	end
+-- SPELL START
 
 -- EFFECTS
