@@ -60,7 +60,7 @@ end
 
 function _modifier_stun:CheckState()
 	local state = {
-		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_STUNNED] = true
 	}
 
 	return state

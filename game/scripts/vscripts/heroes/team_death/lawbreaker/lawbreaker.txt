@@ -31,28 +31,12 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"max_hit"			"4"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"crit_dmg"		"50"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"lifesteal"		"40"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"max_hit"			"4"
+      "crit_dmg"		"50"
+      "lifesteal"		"40"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -74,53 +58,18 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.2"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"agi"			          "50"
-			}
-      "02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"atk_range"			    "100"
-			}
-      "03"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"slow_percent"	    "40"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"reload"	          "1.5"
-			}
-      "05"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"fast_reload"	      "0.5"
-			}
-      "06"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"fast_reload_delay" "1"
-			}
-      "07"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"min_shots"			    "5"
-			}
-      "08"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"max_shots"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"agi"			          "50"
+      "atk_range"			    "100"
+      "slow_percent"	    "40"
+      "reload"	          "1.5"
+      "fast_reload"	      "0.5"
+      "fast_reload_delay" "1"
+      "hits_to_recharge"  "3"
+      "min_shots"			    "5"
+      "max_shots"			    "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -143,59 +92,18 @@
 		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"0.45"
 
-
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"			"300"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"12"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"def"			    "-10"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"blind"			  "25"
-			}
-      "05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"			"250"
-			}
-      "06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"proj_radius"	"60"
-			}
-      "07"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"proj_speed"	"1500"
-			}
-      "08"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"delay"	      "2"
-			}
-      "09"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"damage"			"200"
+      "duration"		"8"
+      "def"			    "-5"
+      "blind"			  "15"
+      "radius"			"250"
+      "proj_radius"	"60"
+      "proj_speed"	"1500"
+      "delay"	      "2"
+      "cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -218,48 +126,16 @@
 		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"			"75"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"slow"			  "150"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"interval"		"0.5"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"delay"		    "0.5"
-			}
-      "05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"	  "6"
-			}
-      "06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"600"
-			}
-      "07"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"			"1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"damage"			"70"
+      "slow"			  "150"
+      "interval"		"0.5"
+      "delay"		    "0.5"
+      "duration"	  "6"
+      "cast_range"	"600"
+      "radius"			"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -274,26 +150,11 @@
     "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-    "AbilityCharges"            "3"
-    "AbilityChargeRestoreTime"  "6"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"range"			  "300"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"charges"			"3"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"range"			  "300"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -307,22 +168,23 @@
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"15"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"duration"			      "15"
+			"transform_duration"  "0.35"
+			"model_scale"         "30"
+			"break_duration"	    "2"
+			"vision_range"	      "1 2 3 4 5 6 7 8 9 10 11"
+			"atk_range"	          "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

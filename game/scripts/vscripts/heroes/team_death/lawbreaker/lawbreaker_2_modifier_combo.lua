@@ -119,7 +119,7 @@ function lawbreaker_2_modifier_combo:GetAS()
   --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1))
   local attack_speed = (BaseStats(self.parent):GetStatTotal("AGI") + 1)
   attack_speed = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * attack_speed)
-  return attack_speed / 100 * 1.2
+  return attack_speed / 100 * BaseStats(self.parent):GetSpecialValueFor("base_attack_time")
 end
 
 -- EFFECTS -----------------------------------------------------------

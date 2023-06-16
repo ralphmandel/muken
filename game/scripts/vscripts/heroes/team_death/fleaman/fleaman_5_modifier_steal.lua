@@ -48,12 +48,10 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function fleaman_5_modifier_steal:PlayEfxHit(target)
-  local direction = (self.parent:GetOrigin() - self.caster:GetOrigin()):Normalized()
-
 	local particle_cast = "particles/econ/items/slark/slark_ti6_blade/slark_ti6_blade_essence_shift.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(effect_cast, 1, self.caster:GetOrigin() + Vector(0, 0, 64))
-  ParticleManager:SetParticleControlTransformForward(effect_cast, 3, self.parent:GetOrigin(), direction)
+  ParticleManager:SetParticleControlTransformForward(effect_cast, 3, self.parent:GetOrigin(), self.caster:GetLeftVector())
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	if IsServer() then target:EmitSound("Hero_BountyHunter.Jinada") end

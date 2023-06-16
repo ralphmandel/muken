@@ -1,10 +1,10 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 50
 	m_flConstantRadius = 110.0
-	m_ConstantColor = [ 113, 98, 127, 255 ]
+	m_ConstantColor = [ 68, 59, 77, 255 ]
 	m_nBehaviorVersion = 12
 	m_nFirstMultipleOverride_BackwardCompat = 9
 	m_controlPointConfigurations = 
@@ -195,8 +195,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 179, 88, 88, 255 ]
-			m_ColorMax = [ 169, 63, 63, 255 ]
+			m_ColorMin = [ 100, 88, 129 ]
+			m_ColorMax = [ 83, 66, 119 ]
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"
@@ -225,6 +225,10 @@
 			m_flNoiseScaleLoc = 0.2
 			m_vecOutputMin = [ -50.0, -50.0, 0.0 ]
 			m_vecOutputMax = [ 50.0, 50.0, 100.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
 		},
 	]
 	m_Operators = 

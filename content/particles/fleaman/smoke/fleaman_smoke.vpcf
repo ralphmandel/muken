@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf57:version{4f75132e-4f5d-493c-958e-3bb4328089ba} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -20,11 +20,6 @@
 					m_vecOffset = [ 325.0, 325.0, 325.0 ]
 					m_entityName = "self"
 				},
-				{
-					m_iControlPoint = 3
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_entityName = "self"
-				},
 			]
 			m_previewState = 
 			{
@@ -39,25 +34,26 @@
 			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_ground_proj.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/econ/items/riki/riki_head_ti8/riki_smokebomb_ti8_crimson_start_ring.vpcf"
+			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_start_ring.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/econ/items/riki/riki_head_ti8/riki_smokebomb_ti8_crimson_smoke_ground.vpcf"
+			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_smoke_ground.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/econ/items/riki/riki_head_ti8/riki_smokebomb_ti8_crimson_model.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_smoke_rise.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/econ/items/riki/riki_head_ti8/riki_smokebomb_ti8_crimson_ring_soft.vpcf"
+			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_ring_soft.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_ember.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/econ/items/riki/riki_head_ti8/riki_smokebomb_ti8_crimson_start_flash.vpcf"
+			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_start_flash.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/fleaman/smoke/fleaman_smoke_ring_debris.vpcf"

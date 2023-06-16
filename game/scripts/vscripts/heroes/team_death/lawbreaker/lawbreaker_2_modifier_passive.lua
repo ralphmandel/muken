@@ -9,6 +9,7 @@ function lawbreaker_2_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.hits_to_recharge = 0
 
   if IsServer() then
     self:PlayEfxStart()
@@ -28,8 +29,10 @@ end
 function lawbreaker_2_modifier_passive:DeclareFunctions()
 	local funcs = {
     MODIFIER_EVENT_ON_STATE_CHANGED,
+    MODIFIER_EVENT_ON_UNIT_MOVED,
 		MODIFIER_EVENT_ON_ATTACK_START,
-    MODIFIER_EVENT_ON_UNIT_MOVED
+    MODIFIER_EVENT_ON_ATTACK_LANDED,
+    MODIFIER_EVENT_ON_MODIFIER_ADDED
 	}
 
 	return funcs
@@ -42,13 +45,29 @@ function lawbreaker_2_modifier_passive:OnStateChanged(keys)
 	end
 end
 
+function lawbreaker_2_modifier_passive:OnUnitMoved(keys)
+  if keys.unit == self.parent then self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload") end
+end 
+
 function lawbreaker_2_modifier_passive:OnAttackStart(keys)
   if keys.attacker == self.parent then self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload") end
 end
 
-function lawbreaker_2_modifier_passive:OnUnitMoved(keys)
-  if keys.unit == self.parent then self.parent:RemoveModifierByName("lawbreaker_2_modifier_reload") end
-end 
+function lawbreaker_2_modifier_passive:OnAttackLanded(keys)
+  if keys.attacker ~= self.parent then return end
+  if self.parent:HasModifier("lawbreaker_u_modifier_form") == false then return end
+  
+  self.hits_to_recharge = self.hits_to_recharge + 1
+  if self.hits_to_recharge >= self.ability:GetSpecialValueFor("hits_to_recharge") then
+    if IsServer() then self:IncrementStackCount() end
+  end
+end
+
+function lawbreaker_2_modifier_passive:OnModifierAdded(keys)
+  if keys.unit ~= self.parent then return end
+  if keys.added_buff:GetName() ~= "lawbreaker_u_modifier_form" then return end
+  self.hits_to_recharge = 0
+end
 
 function lawbreaker_2_modifier_passive:OnIntervalThink()
   if IsServer() then
@@ -81,13 +100,19 @@ function lawbreaker_2_modifier_passive:OnStackCountChanged(old)
   self.ability:SetActivated(self:GetStackCount() >= self.ability:GetSpecialValueFor("min_shots"))
   if self:GetStackCount() == 0 then self.parent:RemoveModifierByName("lawbreaker_2_modifier_combo") end
 
+  self.hits_to_recharge = 0
   self:CheckShots()
 end
 
 -- UTILS -----------------------------------------------------------
 
 function lawbreaker_2_modifier_passive:CheckShots()
-  if self:GetStackCount() == self.ability:GetSpecialValueFor("max_shots") then
+  if self:GetStackCount() > self.ability:GetSpecialValueFor("max_shots") then
+    if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("max_shots")) end
+    return
+  end
+
+  if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_shots") then
     self.ability:EnableShotRefresh(false)
   else
     self.ability:EnableShotRefresh(true)

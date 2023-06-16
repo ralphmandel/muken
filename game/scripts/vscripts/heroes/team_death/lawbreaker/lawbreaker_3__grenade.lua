@@ -1,5 +1,6 @@
 lawbreaker_3__grenade = class({})
 LinkLuaModifier("lawbreaker_3_modifier_grenade", "heroes/team_death/lawbreaker/lawbreaker_3_modifier_grenade", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind", "_modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA_MODIFIER_MOTION_NONE)
 
@@ -72,18 +73,20 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
     local delay = self:GetSpecialValueFor("delay")
 
     if target then
-      AddModifier(target, caster, self, "lawbreaker_3_modifier_grenade", {
-        duration = self:GetSpecialValueFor("duration")
-      }, true)
+      if target:IsMagicImmune() == false then
+        AddModifier(target, caster, self, "lawbreaker_3_modifier_grenade", {
+          duration = self:GetSpecialValueFor("duration")
+        }, true)
+      end
     else
       AddFOWViewer(caster:GetTeamNumber(), loc, self:GetAOERadius(), delay + 1, false)
       Timers:CreateTimer(delay, function()
-        self:PlantBomb(loc, handle)
+        self:DetonateGrenade(loc, handle)
       end)
     end
   end
 
-  function lawbreaker_3__grenade:PlantBomb(loc, handle)
+  function lawbreaker_3__grenade:DetonateGrenade(loc, handle)
     local caster = self:GetCaster()
     GridNav:DestroyTreesAroundPoint(loc, self:GetAOERadius(), false)	
     self:StopEfxStart(self.projectiles[handle].pfx, loc)
@@ -97,6 +100,10 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
 
     for _,enemy in pairs(enemies) do
       if enemy:IsMagicImmune() == false then
+        AddModifier(enemy, caster, self, "_modifier_percent_movespeed_debuff", {
+          duration = 0.5, percent = 100
+        }, true)
+
         AddModifier(enemy, caster, self, "lawbreaker_3_modifier_grenade", {
           duration = self:GetSpecialValueFor("duration")
         }, true)

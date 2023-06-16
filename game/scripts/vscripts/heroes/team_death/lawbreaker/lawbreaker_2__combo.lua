@@ -62,7 +62,8 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
       AddModifier(caster, caster, self, "lawbreaker_2_modifier_reload", {}, false)
     end
 
-    if caster:HasModifier("lawbreaker_2_modifier_combo") or bEnable == false then
+    if bEnable == false or caster:HasModifier("lawbreaker_2_modifier_combo")
+    or caster:HasModifier("lawbreaker_u_modifier_form") then
       caster:RemoveModifierByName("lawbreaker_2_modifier_reload")
     end
 
