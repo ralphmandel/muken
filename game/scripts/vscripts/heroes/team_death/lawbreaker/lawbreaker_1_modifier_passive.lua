@@ -24,6 +24,7 @@ end
 
 function lawbreaker_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_PROJECTILE_NAME,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
     MODIFIER_EVENT_ON_ATTACKED
 	}

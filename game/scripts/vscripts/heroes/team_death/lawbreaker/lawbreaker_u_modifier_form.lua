@@ -11,13 +11,13 @@ function lawbreaker_u_modifier_form:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
   self.transforming = 1
-  self.main_target = nil
-	self.proc_target = nil
 
-  self.vision_range = self.ability:GetSpecialValueFor("vision_range")
+  self.gunslinger = self.parent:AddAbility("muerta_gunslinger")
+  self.gunslinger:SetCurrentAbilityCharges(0)
+  self.gunslinger:UpgradeAbility(true)
+  self.gunslinger:SetHidden(true)
+
   self.ability:SetActivated(false)
-
-  AddModifier(self.parent, self.caster, self.ability, "lawbreaker_u_modifier_sequence", {}, false)
 
   if IsServer() then
     self:StartIntervalThink(self.ability:GetSpecialValueFor("transform_duration"))
@@ -30,6 +30,7 @@ end
 
 function lawbreaker_u_modifier_form:OnRemoved()
   self.ability:SetActivated(true)
+  self.parent:RemoveAbility("muerta_gunslinger")
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -51,31 +52,29 @@ function lawbreaker_u_modifier_form:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_BONUS_DAY_VISION,
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
-		--MODIFIER_PROPERTY_MODEL_CHANGE,
+		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-    MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK,
     MODIFIER_EVENT_ON_ATTACKED,
-    MODIFIER_EVENT_ON_ATTACK_START,
-    MODIFIER_EVENT_ON_ATTACK
+    MODIFIER_EVENT_ON_ATTACK_START
 	}
 
 	return funcs
 end
 
 function lawbreaker_u_modifier_form:GetBonusDayVision()
-	return self.vision_range
+	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
 function lawbreaker_u_modifier_form:GetBonusNightVision()
-	return self.vision_range
+	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
--- function lawbreaker_u_modifier_form:GetModifierModelChange()
--- 	return "models/heroes/muerta/muerta_ult.vmdl"
--- end
+function lawbreaker_u_modifier_form:GetModifierModelChange()
+	return "models/heroes/muerta/muerta_ult.vmdl"
+end
 
 function lawbreaker_u_modifier_form:GetModifierModelScale()
 	return self:GetAbility():GetSpecialValueFor("model_scale")
@@ -91,10 +90,6 @@ end
 
 function lawbreaker_u_modifier_form:GetAttackSound()
 	return "Hero_Muerta.PierceTheVeil.Attack"
-end
-
-function lawbreaker_u_modifier_form:GetAlwaysAllowAttack(keys)
-  return 1
 end
 
 function lawbreaker_u_modifier_form:OnAttacked(keys)
@@ -113,11 +108,6 @@ function lawbreaker_u_modifier_form:OnAttackStart(keys)
 	if keys.attacker ~= self.parent then return end
 	if keys.target:GetTeamNumber() == keys.attacker:GetTeamNumber() then return end
 
-  if IsServer() then self:PlayEfxHit() end
-
-	self.main_target = keys.target
-	self.proc_target = nil
-
   local enemies = FindUnitsInRadius(
     self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil,
     self.parent:Script_GetAttackRange(),
@@ -125,43 +115,16 @@ function lawbreaker_u_modifier_form:OnAttackStart(keys)
     self.ability:GetAbilityTargetFlags(), 0, false
   )
 
-	for _,enemy in pairs(enemies) do
-    if self.main_target:IsHero() and enemy:IsHero() then
-      if enemy ~= self.main_target then
-        self.proc_target = enemy
-        self.parent:FadeGesture(ACT_DOTA_ATTACK)
-        self.parent:StartGesture(ACT_DOTA_ATTACK)
-        self.parent:SetSequence(self:GetSequenceName(enemy))
-        print("~ kubito", self.parent:GetSequence())
-        return
-      end
-    end
-	end
-
   for _,enemy in pairs(enemies) do
-    if enemy ~= self.main_target then
-      self.proc_target = enemy
-      self.parent:FadeGesture(ACT_DOTA_ATTACK)
-      self.parent:StartGesture(ACT_DOTA_ATTACK)
-      self.parent:SetSequence(self:GetSequenceName(enemy))
-      print("~ kubito", self.parent:GetSequence())
+    if enemy ~= keys.target then
+      self.gunslinger:SetCurrentAbilityCharges(1)
+      self.gunslinger:SetLevel(1)
       return
     end
 	end
-end
 
-function lawbreaker_u_modifier_form:OnAttack(keys)
-	if keys.attacker ~= self.parent then return end
-	if self.proc_target == nil then return end
-	if keys.no_attack_cooldown then return end
-
-	local target = self.proc_target
-	self.proc_target = nil
-	self.main_target = nil
-
-  self.parent:PerformAttack(target, true, true, true, false, true, false, false)
-
-  if IsServer() then self.parent:EmitSound("Hero_Muerta.Attack.DoubleShot") end
+  self.gunslinger:SetCurrentAbilityCharges(0)
+  self.gunslinger:SetLevel(1)
 end
 
 function lawbreaker_u_modifier_form:OnIntervalThink()
@@ -171,13 +134,6 @@ function lawbreaker_u_modifier_form:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
-
-function lawbreaker_u_modifier_form:GetAS()
-  --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1))
-  local attack_speed = (BaseStats(self.parent):GetStatTotal("AGI") + 1)
-  attack_speed = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * attack_speed)
-  return attack_speed / 100 * BaseStats(self.parent):GetSpecialValueFor("base_attack_time")
-end
 
 function lawbreaker_u_modifier_form:GetSequenceName(target)
   local angle = VectorToAngles(target:GetOrigin() - self.parent:GetOrigin()).y
@@ -223,7 +179,6 @@ function lawbreaker_u_modifier_form:GetSequenceName(target)
   end
 
   local sequence_name = "@muerta_double_shot_right_"..string_side..string_angle
-  --print("kubito", sequence_name)
   return sequence_name
 end
 

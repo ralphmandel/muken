@@ -29,23 +29,12 @@
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"         "12"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"agi"         "12"
+      "duration"		"1 2 3 4 5 6 7 8 9 10 11"
+      "cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

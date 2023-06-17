@@ -31,6 +31,10 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecial(keys)
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
 
+  if ability:GetAbilityName() == "muerta_gunslinger" then
+    if value_name == "double_shot_chance" then return 1 end
+  end
+
 	if ability:GetAbilityName() == "lawbreaker_1__shot" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
@@ -230,6 +234,13 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	local value_level = keys.ability_special_level
 	local ability_level = ability:GetLevel()
 	if ability_level < 1 then ability_level = 1 end
+
+  if value_name == "double_shot_chance" then
+    if ability:GetCurrentAbilityCharges() == 1 then
+      return 100
+    end
+    return 0
+  end
 
 	if ability:GetAbilityName() == "lawbreaker_1__shot" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end

@@ -250,6 +250,41 @@ function GameMode:_CaptureGameMode()
 			end
 		, self)
 
+    mode:SetTrackingProjectileFilter(
+      function(ctx, event)
+				local source = EntIndexToHScript(event.entindex_source_const)
+				local target = EntIndexToHScript(event.entindex_target_const)
+				local ability = EntIndexToHScript(event.entindex_ability_const)
+
+        local lawbreaker_form = source:FindModifierByName("lawbreaker_u_modifier_form")
+        local gunslinger = source:FindAbilityByName("muerta_gunslinger")
+        if lawbreaker_form and gunslinger then
+          if gunslinger:GetCurrentAbilityCharges() == 1 then
+            gunslinger:SetCurrentAbilityCharges(0)
+            
+            ProjectileManager:CreateTrackingProjectile({
+              Target = target,
+              Source = source,
+              Ability = lawbreaker_form:GetAbility(),
+              EffectName = lawbreaker_form:GetModifierProjectileName(),
+              iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
+              iMoveSpeed = source:GetProjectileSpeed(),
+              bReplaceExisting = false,
+              bProvidesVision = false,
+              iVisionRadius = 75,
+              iVisionTeamNumber = source:GetTeamNumber(),
+              bDodgeable = false
+            })
+
+            return false
+          end
+        end
+
+				return true
+			end
+    , self)
+
+
     self:OnFirstPlayerLoaded()
   end 
 end
