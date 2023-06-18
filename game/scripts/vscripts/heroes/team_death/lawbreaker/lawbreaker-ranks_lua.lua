@@ -65,4 +65,18 @@ end
 
 function lawbreaker__precache:Precache(context)
   --PrecacheResource("soundfile", "soundevents/soundevent_lawbreaker.vsndevts", context)
+  PrecacheResource( "particle", "particles/lawbreaker/lawbreaker_skill2_bullets.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/shots_count/lawbreaker_shots_overhead.vpcf", context )
+  PrecacheResource( "particle", "particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/grenade/lawbreaker_grenade_model.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/grenade/lawbreaker_grenade_slow.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/rain_launch/lawbreaker_rain_launch.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/rain/lawbreaker_rain.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/blink/lawbreaker_blink_start.vpcf", context )
+  PrecacheResource( "particle", "particles/lawbreaker/blink/lawbreaker_blink_end.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_screen_effect.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_finish.vpcf", context )
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_gunslinger.vpcf", context )
 end

@@ -45,7 +45,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_de
 
   function lawbreaker_4__rain:PlayEfxStart(point)
     local caster = self:GetCaster()
-    local particle_cast = "particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+    local particle_cast = "particles/lawbreaker/rain_launch/lawbreaker_rain_launch.vpcf"
     local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
     ParticleManager:SetParticleControlEnt(effect_cast, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetOrigin(), false)
     ParticleManager:SetParticleControl(effect_cast, 1, point + Vector(0, 0, 2000))
