@@ -38,6 +38,7 @@ end
 function lawbreaker_u_modifier_form:CheckState()
 	local state = {
 		[MODIFIER_STATE_DISARMED] = false,
+		[MODIFIER_STATE_PASSIVES_DISABLED] = false,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true
 	}
 

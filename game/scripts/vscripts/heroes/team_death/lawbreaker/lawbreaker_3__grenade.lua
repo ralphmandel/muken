@@ -1,4 +1,5 @@
 lawbreaker_3__grenade = class({})
+LinkLuaModifier("lawbreaker_3_modifier_detonate", "heroes/team_death/lawbreaker/lawbreaker_3_modifier_detonate", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("lawbreaker_3_modifier_grenade", "heroes/team_death/lawbreaker/lawbreaker_3_modifier_grenade", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_blind", "_modifiers/_modifier_blind", LUA_MODIFIER_MOTION_NONE)
@@ -30,8 +31,8 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
     local point = self:GetCursorPosition()
     local spawn_origin = caster:GetOrigin() + (caster:GetForwardVector():Normalized() * 100)
     local distance = (spawn_origin - point):Length2D()
-    if distance < 300 then
-      point = spawn_origin + (caster:GetForwardVector():Normalized() * 300)
+    if distance < 200 then
+      point = spawn_origin + (caster:GetForwardVector():Normalized() * 200)
       point.z = self:GetCursorPosition().z
       distance = (spawn_origin - point):Length2D()
     end
@@ -79,43 +80,11 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
         }, true)
       end
     else
-      AddFOWViewer(caster:GetTeamNumber(), loc, self:GetAOERadius(), delay + 1, false)
-      Timers:CreateTimer(delay, function()
-        self:DetonateGrenade(loc, handle)
-      end)
-    end
-  end
-
-  function lawbreaker_3__grenade:DetonateGrenade(loc, handle)
-    local caster = self:GetCaster()
-    GridNav:DestroyTreesAroundPoint(loc, self:GetAOERadius(), false)	
-    self:StopEfxStart(self.projectiles[handle].pfx, loc)
-    self.projectiles[handle] = nil
-
-    local enemies = FindUnitsInRadius(
-      caster:GetTeamNumber(), loc, nil, self:GetAOERadius(),
-      self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
-      self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
-    )
-
-    for _,enemy in pairs(enemies) do
-      if enemy:IsMagicImmune() == false then
-        AddModifier(enemy, caster, self, "_modifier_percent_movespeed_debuff", {
-          duration = 0.5, percent = 100
-        }, true)
-
-        AddModifier(enemy, caster, self, "lawbreaker_3_modifier_grenade", {
-          duration = self:GetSpecialValueFor("duration")
-        }, true)
-      end
-
-      if IsServer() then enemy:EmitSound("Hero_Muerta.DeadShot.Damage") end
-
-      ApplyDamage({
-        victim = enemy, attacker = caster, ability = self,
-        damage = self:GetSpecialValueFor("damage"),
-        damage_type = self:GetAbilityDamageType()
-      })
+      CreateModifierThinker(
+        caster, self, "lawbreaker_3_modifier_detonate",
+        {id = handle}, loc,
+        caster:GetTeamNumber(), false
+      )
     end
   end
 
@@ -138,11 +107,4 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
     end
 
     return particle
-  end
-
-  function lawbreaker_3__grenade:StopEfxStart(pfx, loc)
-    local caster = self:GetCaster()
-
-    if pfx then ParticleManager:DestroyParticle(pfx, false) end
-    if IsServer() then EmitSoundOnLocationWithCaster(loc, "Hero_Sniper.ConcussiveGrenade", caster) end
   end
