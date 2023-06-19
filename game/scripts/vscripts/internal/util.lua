@@ -355,22 +355,22 @@ end
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, amount, nil)
   end
 
-  function ReduceMana(target, ability, amount, bMessage)
+  function ReduceMana(target, ability, amount, bMessage, bAncientException)
     if amount <= 0 then return end
 
     if target:HasModifier("ancient_u_modifier_passive")
-    and ability:GetAbilityName() ~= "ancient_u__final" then
-      amount = amount * 0.5
+    and bAncientException == false then
+      amount = amount * 0.25
     end
 
     target:Script_ReduceMana(amount, ability)
     if bMessage then SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, amount, nil) end
   end
 
-  function StealMana(target, inflictor, ability, amount)
+  function StealMana(target, inflictor, ability, amount, bAncientException)
     if amount > target:GetMana() then amount = target:GetMana() end
 
-    ReduceMana(target, ability, amount, true)
+    ReduceMana(target, ability, amount, true, bAncientException)
     IncreaseMana(inflictor, amount)
   end
 

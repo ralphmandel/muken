@@ -1,5 +1,6 @@
 genuine_u__star = class({})
 LinkLuaModifier("genuine_u_modifier_star", "heroes/team_moon/genuine/genuine_u_modifier_star", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("genuine_u_modifier_vision", "heroes/team_moon/genuine/genuine_u_modifier_vision", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

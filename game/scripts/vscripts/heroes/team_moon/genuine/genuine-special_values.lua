@@ -227,7 +227,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("genuine_5__nightfall_rank_41") then
-      if value_name == "night_vision" then return 1 end
+      if value_name == "special_night_vision" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_5__nightfall_rank_42") then
@@ -240,6 +240,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+    if value_name == "special_interval" then return -1 end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_11") then
       if value_name == "special_reset" then return 1 end
@@ -269,8 +270,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
 		if caster:FindAbilityByName("genuine_u__star_rank_41") then
-      if value_name == "special_stun_purge" then return 1 end
-      if value_name == "interval" then return 1 end
+      if value_name == "special_slow" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_u__star_rank_42") then
@@ -387,7 +387,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
       return calc
     end
 
-    if value_name == "special_mana" then return 100 end
+    if value_name == "special_mana" then return 200 end
     if value_name == "arrow_range" then return 5500 end
     if value_name == "damage_reduction" then return 0 end
     if value_name == "special_bash_power" then return 600 end
@@ -416,7 +416,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_universal" then return 1 end
     if value_name == "special_invi" then return 1 end
     if value_name == "special_linkens" then return 1 end
-    if value_name == "night_vision" then return 600 end
+    if value_name == "special_night_vision" then return 400 end
     if value_name == "special_fly_vision" then return 1 end
 	end
 
@@ -438,12 +438,20 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "special_swap" then return 1 end
     if value_name == "duration_night" then return 14 end
-    if value_name == "night_vision" then return -500 end
+    if value_name == "night_vision" then return 500 end
     if value_name == "special_day_vision" then return ability:GetSpecialValueFor("night_vision") end
     if value_name == "duration" then return ability:GetSpecialValueFor("duration_night") end
-    if value_name == "interval" then return 1 end
-    if value_name == "special_stun_purge" then return 1 end
+    if value_name == "special_slow" then return 1 end
     if value_name == "special_starfall" then return 1 end
+    if value_name == "special_interval" then
+      if caster:FindAbilityByName("genuine_u__star_rank_41") then
+        return 1
+      end
+      if caster:FindAbilityByName("genuine_u__star_rank_42") then
+        return 2
+      end
+      return 0
+    end
 	end
 
 	return 0

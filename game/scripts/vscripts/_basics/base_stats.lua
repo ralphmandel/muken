@@ -801,7 +801,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:GetBonusMPRegen()
       local caster = self:GetCaster()
-      local mana_regen = 10 + ((self.stat_total["REC"] + 1) * self.mana_regen)
+      local mana_regen = 20 + ((self.stat_total["REC"] + 1) * self.mana_regen)
 
       local mods = caster:FindAllModifiersByName("_modifier_mana_regen")
       for _,modifier in pairs(mods) do

@@ -310,7 +310,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "ms" then return 75 end
     if value_name == "blind" then return 25 end
-    if value_name == "mana" then return 20 end
+    if value_name == "mana" then return 40 end
     if value_name == "damage" then return 40 end
     if value_name == "special_purge_allies" then return 1 end
     if value_name == "special_purge_enemies" then return 1 end

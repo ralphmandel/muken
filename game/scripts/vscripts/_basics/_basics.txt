@@ -71,7 +71,7 @@
 				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					  "10"
+					"mana"					  "15"
 				}
 				"10"
 				{
@@ -132,7 +132,7 @@
   			"22"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.2"
+					"mana_regen"			"0.5"
 				}
 				"23"
 				{

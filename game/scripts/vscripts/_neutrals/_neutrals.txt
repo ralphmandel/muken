@@ -385,7 +385,7 @@
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityManaCost"         		"15"
+		"AbilityManaCost"           "25"
 
 		"AbilitySpecial"
 		{

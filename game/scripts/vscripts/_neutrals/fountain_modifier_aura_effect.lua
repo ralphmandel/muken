@@ -50,7 +50,7 @@ function fountain_modifier_aura_effect:OnIntervalThink()
 		self.parent:Heal(heal, self.ability)
 		--self:PlayEfxHeal(self.parent)
 	
-		local recovery = 5
+		local recovery = 10
 		if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then recovery = 0 end
 		--self:PlayEfxMana(self.parent)
     IncreaseMana(self.parent, recovery)

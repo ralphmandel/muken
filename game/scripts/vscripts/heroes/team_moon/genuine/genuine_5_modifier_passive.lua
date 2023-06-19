@@ -29,7 +29,7 @@ function genuine_5_modifier_passive:DeclareFunctions()
 end
 
 function genuine_5_modifier_passive:GetBonusNightVisionUnique()
-	return self:GetAbility():GetSpecialValueFor("night_vision")
+	return self:GetAbility():GetSpecialValueFor("special_night_vision")
 end
 
 function genuine_5_modifier_passive:OnAttackStart(keys)

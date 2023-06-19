@@ -67,7 +67,7 @@ function ancient_u_modifier_passive:OnHeroKilled(keys)
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
-  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * 0.1, false)
+  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * 0.1, false, true)
 	self.ability:UpdateCON()
 
 	if IsServer() then self:StartIntervalThink(0.1) end

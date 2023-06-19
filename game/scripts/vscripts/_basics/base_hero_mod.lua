@@ -88,9 +88,9 @@ function base_hero_mod:LoadActivity()
 		if self.ability.hero_name == "icebreaker" then self.activity = "shinobi_tail" end
 		if self.ability.hero_name == "dasdingo" then self.activity = "fall20" end
 		if self.ability.hero_name == "bocuse" then self.activity = "trapper" end
-		if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 		if self.ability.hero_name == "ancient" then self.activity = "et_2021" end
 		if self.ability.hero_name == "fleaman" then self.activity = "latch" end
+    --if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 	end)
 end
 

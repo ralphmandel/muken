@@ -22,10 +22,14 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
   end
 
   function druid_1__root:OnAbilityPhaseStart()
+    local caster = self:GetCaster()
+
     if IsServer() then
       if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
-        self:GetCaster():EmitSound("Druid.Root.Cast")
-        self:GetCaster():EmitSound("Hero_EarthShaker.Whoosh")
+        caster:EmitSound("Druid.Root.Cast")
+        caster:EmitSound("Hero_EarthShaker.Whoosh")
+      else
+        ChangeActivity(caster, "suffer")
       end
     end
 
@@ -33,10 +37,13 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
   end
 
   function druid_1__root:OnAbilityPhaseInterrupted()
+    local caster = self:GetCaster()
+    ChangeActivity(caster, "")
+
     if IsServer() then
       if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
-        self:GetCaster():StopSound("Druid.Root.Cast")
-        self:GetCaster():StopSound("Hero_EarthShaker.Whoosh")
+        caster:StopSound("Druid.Root.Cast")
+        caster:StopSound("Hero_EarthShaker.Whoosh")
       end
     end
   end
@@ -44,6 +51,7 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
   function druid_1__root:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
+    ChangeActivity(caster, "")
 
     local direction = point - caster:GetOrigin()
     direction.z = 0

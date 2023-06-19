@@ -388,17 +388,12 @@
 
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"night_vision"	  "200"
-			}
-      "02"
+      "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"max_barrier"	    "150"
 			}
-      "03"
+      "02"
 			{
 				"var_type"		    "FIELD_FLOAT"
 				"barrier_regen" 	"2"
@@ -432,6 +427,11 @@
 			{
 				"var_type"		        "FIELD_FLOAT"
 				"special_fly_vision" 	"0"
+			}
+			"21"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_night_vision""0"
 			}
 		}
 	}
@@ -480,11 +480,6 @@
       "05"
 			{
 				"var_type"			  "FIELD_FLOAT"
-				"interval"	      "2"
-			}
-      "06"
-			{
-				"var_type"			  "FIELD_FLOAT"
 				"mana_steal"	    "30"
 			}
 			"15"
@@ -510,7 +505,7 @@
       "19"
 			{
 				"var_type"			      "FIELD_FLOAT"
-				"special_stun_purge"	  "0"
+				"special_slow"	      "0"
 			}
       "20"
 			{
@@ -531,6 +526,11 @@
 			{
 				"var_type"		            "FIELD_FLOAT"
 				"special_starfall_delay"	"0"
+			}
+      "24"
+			{
+				"var_type"			          "FIELD_FLOAT"
+				"special_interval"	      "0"
 			}
 		}
 	}

@@ -33,7 +33,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
     if keys.target:HasModifier("genuine_u_modifier_star") then
       local mana_steal = keys.target:GetMaxMana() * self:GetSpecialValueFor("mana_steal") * 0.01
-      StealMana(keys.target, caster, self, mana_steal)
+      StealMana(keys.target, caster, self, mana_steal, true)
     end
 
     if self:IsCooldownReady() and keys.target:IsMagicImmune() == false then

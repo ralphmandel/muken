@@ -362,7 +362,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "hits" then return 10 end
     if value_name == "duration" then return 30 end
     if value_name == "heal" then return 40 end
-    if value_name == "mana" then return 30 end
+    if value_name == "mana" then return 60 end
     if value_name == "special_spike_damage" then return 75 end
     if value_name == "special_flame_damage" then return 50 end
     if value_name == "special_flame_slow" then return 100 end
