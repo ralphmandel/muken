@@ -133,7 +133,7 @@ require("internal/talent_tree")
 			self:AddGold(self:GetSpecialValueFor("starting_gold"))
 		end
 
-		if GetMapName() == "muken_arena_turbo" then
+		if GetMapName() == "muken_arena_turbo" or GetMapName() == "muken_arena_no_ranks" then
 			self:AddGold(99999)
 		end
 	end
@@ -549,8 +549,8 @@ require("internal/talent_tree")
 				if (not self.talents.abilities[talentId]) then
 					local ability = self:GetCaster():FindAbilityByName(self.talentsData[talentId].Ability)
 					if ability == nil then
-						self.talents.abilities[talentId] = self:GetCaster():AddAbility(self.talentsData[talentId].Ability)
-						self.talents.abilities[talentId]:UpgradeAbility(true)
+            self.talents.abilities[talentId] = self:GetCaster():AddAbility(self.talentsData[talentId].Ability)
+            self.talents.abilities[talentId]:UpgradeAbility(true)  
 					else
 						--ability:UpgradeAbility(true)
 						self.talents.abilities[talentId] = ability
@@ -561,6 +561,10 @@ require("internal/talent_tree")
 					local id = self.talents.abilities[talentId]:GetSpecialValueFor("id")
 					local permanent = self.talents.abilities[talentId]:GetSpecialValueFor("permanent")
 					self:UpgradeRank(skill, id, level, talentId)
+
+          if GetMapName() == "muken_arena_no_ranks" then
+						self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
+          end
 
 					if permanent == 0 then
 						--self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])

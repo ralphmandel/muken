@@ -1,0 +1,8 @@
+muken_arena_no_ranks
+{
+	material materials/overviews/muken_arena_no_ranks.vmat
+	pos_x -8192
+	pos_y 8192
+	scale 16.000
+}
+

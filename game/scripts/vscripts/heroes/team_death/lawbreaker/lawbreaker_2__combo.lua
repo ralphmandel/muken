@@ -21,7 +21,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
     if self:IsTrained() == false then
       self:UpgradeAbility(true)
-    end 
+    end
   end
 
   function lawbreaker_2__combo:OnUpgrade()

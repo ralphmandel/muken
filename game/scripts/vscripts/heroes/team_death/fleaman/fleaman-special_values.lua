@@ -188,6 +188,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "fleaman_u__smoke" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "radius" then return 1 end
 
@@ -262,10 +263,11 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "fleaman_u__smoke" then
-		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 30 end
+		if value_name == "AbilityManaCost" then return 135 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 40 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "radius" then return 400 + (value_level * 10) end
+		if value_name == "radius" then return 500 + (value_level * 10) end
 	end
 
 	return 0

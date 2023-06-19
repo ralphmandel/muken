@@ -30,7 +30,7 @@ LinkLuaModifier("fleaman_1_modifier_precision_status_efx", "heroes/team_death/fl
     Timers:CreateTimer(0.35, function()
       if caster:IsAlive() then
         caster:AttackNoEarlierThan(1, 1)
-        AddModifier(caster, caster, self, "fleaman_1_modifier_gesture",  {duration = 1.2}, false)
+        AddModifier(caster, caster, self, "fleaman_1_modifier_gesture",  {duration = 0.6}, false)
       end
     end)
   end

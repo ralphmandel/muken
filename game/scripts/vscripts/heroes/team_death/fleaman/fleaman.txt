@@ -33,7 +33,6 @@
 		{
 			"agi"         "12"
       "duration"		"1 2 3 4 5 6 7 8 9 10 11"
-      "cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -50,28 +49,12 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"ms"              "10"
-			}
-      "02"
-			{
-				"var_type"	    	"FIELD_FLOAT"
-				"dex"             "3"
-			}
-      "03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"  "5"
-			}
-			"15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"ms"              "10"
+			"dex"             "3"
+			"stack_duration"  "5"
+			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -90,33 +73,13 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"silence_duration"	"3"
-			}
-      "02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"speed_mult"	      "2"
-			}
-      "03"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"radius"	          "275"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"distance"	        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "silence_duration"	"3"
+      "speed_mult"	      "2"
+      "radius"	          "275"
+      "distance"	        "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -132,23 +95,11 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"		  "5"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"4"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"chance"		  "5"
+			"duration"		"4"
+		  "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -164,23 +115,11 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_stack"		    "10"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"stack_duration"  "10"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"max_stack"		    "10"
+			"stack_duration"  "10"
+			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -203,23 +142,14 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"duration"		  "8"
-			}
-      "01"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"duration"		  "8"
+			"slow"		      "125"
+			"blind"		      "30"
+			"delay"		      "1.5"
+			"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
