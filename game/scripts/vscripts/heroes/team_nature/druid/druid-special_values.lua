@@ -192,8 +192,10 @@ function druid_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "mana_reduction" then return 1 end
-		if value_name == "radius" then return 1 end
+
+    if caster:FindAbilityByName("druid_5__seed_rank_11") then
+      if value_name == "radius" then return 1 end
+		end
 
     if caster:FindAbilityByName("druid_5__seed_rank_12") then
       if value_name == "seed_speed" then return 1 end
@@ -279,7 +281,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "druid_1__root" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -300,9 +302,9 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("druid_2__armor_rank_11") then
-        return 100 * (1 + ((ability_level - 1) * 0.05))
+        return 180 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 125 * (1 + ((ability_level - 1) * 0.05))
+      return 225 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
@@ -345,7 +347,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then
-		if value_name == "AbilityManaCost" then return 130 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("druid_3__totem_rank_22") then
@@ -370,7 +372,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 150 - ((ability_level - 1) * 3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -388,24 +390,11 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_5__seed" then
-		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("druid_5__seed_rank_11") then
-        return 150 * (1 + ((ability_level - 1) * 0.05))
-      end
-      return 0 * (1 + ((ability_level - 1) * 0.05))
-    end
-
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 1.5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 600 + (value_level * 15) end
 
-    if value_name == "mana_reduction" then
-      if caster:FindAbilityByName("druid_5__seed_rank_11") then
-        return -15
-      end
-      return -20 - (value_level * 1)
-    end
-
+    if value_name == "radius" then return 750 end
     if value_name == "seed_speed" then return 300 end
     if value_name == "special_enemy_seed" then return 1 end
     if value_name == "special_heal_amp" then return 15 end
@@ -419,9 +408,9 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "druid_u__conversion" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("druid_u__conversion_rank_12") then
-        return 15 * (1 + ((ability_level - 1) * 0.05))
+        return 30 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 20 * (1 + ((ability_level - 1) * 0.05))
+      return 40 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end

@@ -99,7 +99,7 @@ function lawbreaker_u_modifier_form:OnAttacked(keys)
 
   RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_break", self.ability)
 
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.1}, true)
+  AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.1}, false)
   AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {
     duration = self.ability:GetSpecialValueFor("break_duration")
   }, true)

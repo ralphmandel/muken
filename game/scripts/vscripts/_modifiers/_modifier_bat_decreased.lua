@@ -21,5 +21,5 @@ end
 --------------------------------------------------------------------------------
 
 function _modifier_bat_decreased:OnCreated(kv)
-	if IsServer() then self:SetStackCount(kv.amount * 100) end
+	if IsServer() then self:SetStackCount(math.floor(kv.amount * 100)) end
 end

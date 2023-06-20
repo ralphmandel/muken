@@ -50,8 +50,7 @@ end
 
 function ancient_2_modifier_leap:CheckState()
 	local state = {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_SILENCED] = true
+		[MODIFIER_STATE_DISARMED] = true
 	}
 
 	return state
@@ -59,10 +58,16 @@ end
 
 function ancient_2_modifier_leap:DeclareFunctions()
 	local funcs = {
+		MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_UNIT_MOVED
 	}
 
 	return funcs
+end
+
+function ancient_2_modifier_leap:OnStateChanged(keys)
+  if keys.unit ~= self.parent then return end
+  if self.parent:IsStunned() or self.parent:IsHexed() then self:Destroy() end
 end
 
 function ancient_2_modifier_leap:OnUnitMoved(keys)

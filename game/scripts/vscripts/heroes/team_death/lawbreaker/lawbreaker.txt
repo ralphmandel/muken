@@ -35,7 +35,7 @@
 		{
 			"max_hit"			"5"
       "crit_dmg"		"50"
-      "lifesteal"		"40"
+      "lifesteal"		"30"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -101,7 +101,7 @@
       "radius"			"250"
       "proj_radius"	"60"
       "proj_speed"	"1500"
-      "delay"	      "2"
+      "delay"	      "1.5"
       "cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}

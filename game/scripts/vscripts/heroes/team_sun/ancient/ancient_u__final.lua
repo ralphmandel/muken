@@ -28,6 +28,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function ancient_u__final:OnAbilityPhaseStart()
     local caster = self:GetCaster()
+    caster:RemoveModifierByName("ancient_2_modifier_leap")
     self.damage = self:GetCaster():GetMana() * self:GetSpecialValueFor("damage")
     self.distance = self:GetCastRange(self:GetCursorPosition(), nil)
 

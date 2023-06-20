@@ -14,7 +14,11 @@ function ancient_1_modifier_passive:OnCreated(kv)
     amount = self.ability:GetSpecialValueFor("crit_damage")
   }, false)
 
-  if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("double_hit")) end
+  Timers:CreateTimer(0.3, function()
+    self:ChanegeBAT()
+  end)
+
+  if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("special_double_hit")) end
 end
 
 function ancient_1_modifier_passive:OnRefresh(kv)
@@ -33,6 +37,7 @@ end
 
 function ancient_1_modifier_passive:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
     MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
@@ -42,21 +47,13 @@ function ancient_1_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
-  if self:GetStackCount() == 0 then return 400 end
-  return 0
+function ancient_1_modifier_passive:GetModifierBaseDamageOutgoing_Percentage()
+  return self:GetAbility():GetSpecialValueFor("bat")
 end
 
-function ancient_1_modifier_passive:OnStateChanged(keys)
-	if keys.unit ~= self.parent then return end
-
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
-
-  if self.parent:PassivesDisabled() == false then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_crit_damage", {
-      amount = self.ability:GetSpecialValueFor("crit_damage")
-    }, false)
-  end
+function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
+  if self:GetAbility():GetSpecialValueFor("special_double_hit") > 0 and self:GetStackCount() == 0 then return 450 end
+  return 0
 end
 
 function ancient_1_modifier_passive:OnAttackFail(keys)
@@ -69,7 +66,6 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 
   self:ReduceHit()
 
-  if self.parent:GetHealthPercent() < 25 then return end
 	if self.parent:PassivesDisabled() then return end
 
   if BaseStats(keys.attacker).has_crit then
@@ -85,28 +81,38 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 end
 
 function ancient_1_modifier_passive:OnStackCountChanged(old)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
-
-  if self:GetStackCount() > 0 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
-      amount = self.ability:GetSpecialValueFor("bat")
-    }, false)
-  end
+  self:ChanegeBAT()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function ancient_1_modifier_passive:ChanegeBAT()
+  if BaseStats(self.parent) == nil then return end
+
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
+
+  if self.ability:GetSpecialValueFor("special_double_hit") == 0 or self:GetStackCount() > 0 then
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
+      amount = BaseStats(self.parent):GetSpecialValueFor("base_attack_time") * self.ability:GetSpecialValueFor("bat") * 0.01
+    }, false)
+  end
+end
 
 function ancient_1_modifier_passive:CalcStunDuration(target, damage)
   return CalcStatusResistance(self.ability:GetSpecialValueFor("stun_duration") * damage * 0.01, target)
 end
 
 function ancient_1_modifier_passive:ReduceHit()
+  local double_hit = self.ability:GetSpecialValueFor("special_double_hit")
+
   if self.parent:HasModifier("ancient_2_modifier_leap") == false then
     if IsServer() then
-      if self:GetStackCount() > 0 then
-        self:DecrementStackCount()
-      else
-        self:SetStackCount(self.ability:GetSpecialValueFor("double_hit"))
+      if double_hit > 0 then
+        if self:GetStackCount() > 0 then
+          self:DecrementStackCount()
+        else
+          self:SetStackCount(double_hit)
+        end        
       end
     end
   end

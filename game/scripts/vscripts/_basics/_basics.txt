@@ -71,7 +71,7 @@
 				"10"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"mana"					  "15"
+					"mana"					  "20"
 				}
 				"10"
 				{
@@ -100,7 +100,7 @@
 				"16"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"health_regen"		"0.8"
+					"health_regen"		"0.5"
 				}
 				"17"
 				{

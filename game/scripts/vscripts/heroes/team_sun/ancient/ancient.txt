@@ -47,27 +47,27 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"bat"			    "0.4"
+				"bat"			    "50"
 			}
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"crit_damage" "150"
+				"crit_damage" "1000"
 			}
       "03"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"stun_duration" "0.3"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"double_hit"	"5"
+				"stun_duration" "0.2"
 			}
       "15"
 			{
 				"var_type"		"FIELD_FLOAT"
 				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		        "FIELD_FLOAT"
+				"special_double_hit"	"0"
 			}
 		}
 	}

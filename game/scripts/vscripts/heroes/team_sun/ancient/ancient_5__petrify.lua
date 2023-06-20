@@ -16,6 +16,7 @@ LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrifie
     caster:AddActivityModifier("taunt_2022")
     caster:AddActivityModifier("ti7")
     caster:StartGesture(ACT_DOTA_TAUNT)
+    caster:RemoveModifierByName("ancient_2_modifier_leap")
     
     return true
   end

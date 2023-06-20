@@ -295,11 +295,10 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_1__shooting" then
 		if value_name == "AbilityManaCost" then
-      local mana_cost = 30 * (1 + ((ability_level - 1) * 0.05))
       if caster:FindAbilityByName("genuine_1__shooting_rank_21") then
-        mana_cost = mana_cost - 10
+        return 40 * (1 + ((ability_level - 1) * 0.05))
       end
-      return mana_cost
+      return 50 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then
@@ -316,7 +315,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "atk_range" then return 0 + (value_level * 20) end
 
-    if value_name == "damage" then return 45 end
+    if value_name == "damage" then return 70 end
     if value_name == "proj_speed" then return 1200 end
     if value_name == "special_lck" then return 10 end
     if value_name == "mana_steal" then return 3 end
@@ -328,7 +327,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
-		if value_name == "AbilityManaCost" then return 120 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -346,7 +345,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_3__morning" then
-		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 180 - ((ability_level - 1) * 3) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -364,9 +363,9 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "genuine_4__awakening" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("genuine_4__awakening_rank_12") then
-        return 30 * (1 + ((ability_level - 1) * 0.05))
+        return 60 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 40 * (1 + ((ability_level - 1) * 0.05))
+      return 75 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then

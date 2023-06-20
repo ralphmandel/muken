@@ -646,10 +646,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
       if result == nil then
         result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("STR"))
-
-        if caster:HasModifier("ancient_1_modifier_passive") == false or caster:GetHealthPercent() >= 25 then
-          result = self:GetBonusCriticalDamage(result)
-        end
+        result = self:GetBonusCriticalDamage(result)
       end
 
       return result
@@ -785,7 +782,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     end
 
     function base_stats:GetBonusHPRegen()
-      return (self.stat_total["DEX"] + 11) * self.health_regen
+      return (self.stat_total["DEX"] + 21) * self.health_regen
     end
 
     function base_stats:SetHPRegenState(bool)
@@ -840,9 +837,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local caster = self:GetCaster()
       local value = (self.stat_total["LCK"] + 1) * self.critical_chance
 
-      if caster:HasModifier("ancient_1_modifier_passive") then
-        value = (25 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
-      end
+      -- if caster:HasModifier("ancient_1_modifier_passive") then
+      --   value = (25 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
+      -- end
 
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc

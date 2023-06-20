@@ -30,6 +30,7 @@ LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrifie
 
     caster:RemoveModifierByName("ancient_3_modifier_walk")
     caster:RemoveModifierByName("ancient_3_modifier_casting")
+    caster:RemoveModifierByName("ancient_2_modifier_leap")
     AddModifier(caster, caster, self, "ancient_3_modifier_casting", {}, false)
 
     return true
