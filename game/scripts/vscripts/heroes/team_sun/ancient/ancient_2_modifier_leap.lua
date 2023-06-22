@@ -110,6 +110,7 @@ function ancient_2_modifier_leap:PosHit()
   end
 
   self.state = STATE_PRE_HIT
+  self.ability:StartCooldown(1)
 
   if IsServer() then
     self:PlayEfxHit(self.ability:GetAOERadius())

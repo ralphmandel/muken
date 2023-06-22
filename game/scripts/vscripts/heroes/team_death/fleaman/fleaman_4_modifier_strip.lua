@@ -10,6 +10,8 @@ function fleaman_4_modifier_strip:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -17,22 +19,10 @@ function fleaman_4_modifier_strip:OnRefresh(kv)
 end
 
 function fleaman_4_modifier_strip:OnRemoved()
+  RemoveBonus(self.ability, "_2_DEF", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function fleaman_4_modifier_strip:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
-	}
-
-	return funcs
-end
-
-function fleaman_4_modifier_strip:GetModifierIgnorePhysicalArmor()
-	return 1
-end
 
 -- UTILS -----------------------------------------------------------
 

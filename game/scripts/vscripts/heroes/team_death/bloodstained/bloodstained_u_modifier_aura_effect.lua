@@ -50,12 +50,13 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 	if self.parent:IsIllusion() then return end
 	if self.parent:IsHero() == false then return end
 	if self.ability:IsActivated() then return end
+  if self.parent:HasModifier("bloodstained_u_modifier_slow") then return end
 
   AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
     duration = self.ability:GetSpecialValueFor("slow_duration"), percent = 100
   }, true)
 	
-	if self.parent:HasModifier("bloodstained_u_modifier_slow") == false then self:CreateCopy() end
+	self:CreateCopy()
 end
 
 function bloodstained_u_modifier_aura_effect:CreateCopy()
@@ -77,12 +78,13 @@ function bloodstained_u_modifier_aura_effect:CreateCopy()
     }, false)
 
 		mod.target = self.parent
-
-    mod.slow_mod = AddModifier(self.parent, self.caster, self.ability, "bloodstained_u_modifier_slow", {
+    mod.slow_mod = AddModifier(self.parent, self.caster, self.ability, "bloodstained_u_modifier_slow", {}, false)
+    mod.target_mod = AddModifier(self.parent, self.caster, self.ability, "bloodstained__modifier_target_hp", {
       hp = math.floor(total_hp_stolen / copy_number)
     }, false)
 
-		mod:PlayEfxTarget()
+
+		self:PlayEfxTarget(self.parent, mod)
 		illu:SetForceAttackTarget(self.parent)
 
 		local loc = self.parent:GetAbsOrigin() + RandomVector(100)
@@ -100,4 +102,14 @@ end
 
 function bloodstained_u_modifier_aura_effect:GetEffectAttachType()
 	return PATTACH_POINT_FOLLOW
+end
+
+function bloodstained_u_modifier_aura_effect:PlayEfxTarget(target, mod)
+	if target == nil then return end
+	local string = "particles/bloodstained/bloodstained_u_track1.vpcf"
+	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControlEnt(particle, 3, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	if mod then mod:AddParticle(particle, false, false, -1, false, true) end
+
+	if IsServer() then target:EmitSound("Hero_LifeStealer.OpenWounds") end
 end

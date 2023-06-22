@@ -10,6 +10,7 @@ function bloodstained_u_modifier_copy:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 	self.target = nil
+	self.target_mod = nil
 	self.slow_mod = nil
 	self.hp = kv.hp
 
@@ -30,15 +31,22 @@ function bloodstained_u_modifier_copy:OnRemoved()
 
 	if self.target == nil then return end
 
-  RemoveAllModifiersByNameAndAbility(self.target, "bloodstained_u_modifier_slow", self.slow_mod:GetAbility())
+  if self.target:IsAlive() then self.slow_mod:Destroy() end
 
 	if self.parent:IsAlive() then
     AddModifier(self.caster, self.caster, self.ability, "bloodstained__modifier_extra_hp", {
-      extra_life = self:GetStackCount(), cap = 1000
-    }, false):ApplyTargetDebuff(self.target)
+      duration = self.ability:GetSpecialValueFor("steal_duration"), extra_life = self:GetStackCount()
+    }, false)
+
+    if IsServer() then
+      self.target_mod:SetStackCount(self:GetStackCount())
+      self.target_mod:SetDuration(self.ability:GetSpecialValueFor("steal_duration"), true)
+    end
 
 		self.parent:Kill(self.ability, nil)
-	end
+	else
+    self.target_mod:Destroy()
+  end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -68,16 +76,18 @@ function bloodstained_u_modifier_copy:GetModifierMoveSpeedBonus_Percentage(targe
 end
 
 function bloodstained_u_modifier_copy:OnDeath(keys)
-	if keys.unit == self.target then self:Destroy() end
+	if keys.unit == self.target then
+    self:Destroy()
+  end
 end
 
 function bloodstained_u_modifier_copy:OnTakeDamage(keys)
 	if keys.attacker == nil then return end
 	if keys.attacker:IsBaseNPC() == false then return end
 	if keys.attacker ~= self.parent then return end
-	if self.slow_mod == nil then return end
+	if self.target_mod == nil then return end
 
-	self.slow_mod:ChangeHP(keys.damage)
+	self.target_mod:ChangeHP(keys.damage)
 	self.hp = self.hp + keys.damage
 	if IsServer() then self:SetStackCount(math.floor(self.hp)) end
 end
@@ -96,14 +106,4 @@ end
 
 function bloodstained_u_modifier_copy:GetEffectName()
 	return "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf"
-end
-
-function bloodstained_u_modifier_copy:PlayEfxTarget()
-	if self.target == nil then return end
-	local string = "particles/bloodstained/bloodstained_u_track1.vpcf"
-	local particle = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.target)
-	ParticleManager:SetParticleControlEnt(particle, 3, self.target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self.target:GetAbsOrigin(), true)
-	self:AddParticle(particle, false, false, -1, false, true)
-
-	if IsServer() then self.target:EmitSound("Hero_LifeStealer.OpenWounds") end
 end

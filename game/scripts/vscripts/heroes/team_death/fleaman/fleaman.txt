@@ -31,7 +31,7 @@
 
     "AbilityValues"
 		{
-			"agi"         "12"
+			"agi"         "15"
       "duration"		"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -51,8 +51,8 @@
 
     "AbilityValues"
 		{
-			"ms"              "10"
-			"dex"             "3"
+			"ms"              "15"
+			"dex"             "2"
 			"stack_duration"  "5"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -98,7 +98,8 @@
     "AbilityValues"
 		{
 			"chance"		  "5"
-			"duration"		"4"
+			"duration"		"6"
+			"def"		      "-30"
 		  "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

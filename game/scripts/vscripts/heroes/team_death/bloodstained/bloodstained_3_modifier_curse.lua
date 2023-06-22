@@ -36,8 +36,10 @@ function bloodstained_3_modifier_curse:OnRemoved()
 
 	if self.parent ~= self.caster then
 		self.ability:SetActivated(true)
-    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
-		self.parent:RemoveModifierByNameAndCaster("bloodstained_3_modifier_damage", self.caster)
+
+    if self.parent:IsAlive() == false then
+      self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+    end
 	end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
@@ -77,7 +79,10 @@ function bloodstained_3_modifier_curse:OnIntervalThink()
 			AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), 75, 0.2, true)
 			local current_distance = CalcDistanceBetweenEntityOBB(self.caster, self.parent)
 			local max_range = self.ability:GetSpecialValueFor("max_range")
-			if current_distance > max_range then self:Destroy() return end
+			if current_distance > max_range then
+        self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+        self:Destroy() return
+      end
 		end
 
 		self:StartIntervalThink(0.1)

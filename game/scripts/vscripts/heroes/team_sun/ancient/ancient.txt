@@ -42,33 +42,13 @@
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"bat"			    "50"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"crit_damage" "100"
-			}
-      "03"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"stun_duration" "0.2"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_double_hit"	"0"
-			}
+			"bat"			      "50"
+			"crit_damage"   "100"
+			"stun_duration" "0.2"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+			"special_double_hit"	"0"
 		}
 	}
 
@@ -90,33 +70,12 @@
 		"AbilityCastAnimation"   		"ACT_RESET"
     "AbilityCastPoint"       		"0.4"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"hits"			  "3"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"interval"	  "0.8"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"	    "275"
-			}
-      "04"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"jump_distance"	"0"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "interval"  "0.8"
+      "radius"	  "275"
+      "rank"			"1 2 3 4 5 6 7 8 9 10 11"
+      "special_jump_distance"	"0"
 		}
 	}
 
