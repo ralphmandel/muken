@@ -52,7 +52,7 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"crit_damage" "1000"
+				"crit_damage" "100"
 			}
       "03"
 			{
@@ -87,7 +87,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		""
+		"AbilityCastAnimation"   		"ACT_RESET"
     "AbilityCastPoint"       		"0.4"
 
 		"AbilitySpecial"

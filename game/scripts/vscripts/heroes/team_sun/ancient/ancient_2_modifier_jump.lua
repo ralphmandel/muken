@@ -22,7 +22,7 @@ function ancient_2_modifier_jump:OnCreated( kv )
     if IsServer() then
       self.parent:StopSound("Ancient.Jump")
       if interrupted then
-        self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):SetStackCount(0)
+        --self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):SetStackCount(0)
         return
       end
       if self.ability.duration >= 0.6 then self.parent:EmitSound("Ability.TossImpact") end

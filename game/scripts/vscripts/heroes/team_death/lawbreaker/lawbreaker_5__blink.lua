@@ -10,6 +10,9 @@ lawbreaker_5__blink = class({})
     local direction = (origin - self:GetCursorPosition()):Normalized()
     local blink_point = origin - (direction * self:GetSpecialValueFor("range"))
 
+    print("kubo GetMaxAbilityCharges", self:GetMaxAbilityCharges(self:GetLevel()))
+    print("kubo GetCurrentAbilityCharges", self:GetCurrentAbilityCharges())
+
 		ProjectileManager:ProjectileDodge(caster)
     FindClearSpaceForUnit(caster, blink_point, true)
     caster:MoveToPosition(self:GetCursorPosition())

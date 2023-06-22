@@ -7,7 +7,6 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
 -- INIT
 
   function ancient_2__leap:Spawn()
-    self:SetCurrentAbilityCharges(1)
     self.aggro_target = nil
 
     if self:IsTrained() == false then
@@ -24,17 +23,19 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
   end
 
   function ancient_2__leap:GetBehavior()
-    if self:GetCurrentAbilityCharges() == 2 then
-      return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+    if self:GetCurrentAbilityCharges() == 3 then
+      return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
     end
 
-    return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+    return DOTA_ABILITY_BEHAVIOR_NO_TARGET
   end
 
   function ancient_2__leap:GetCastRange(vLocation, hTarget)
-    if self:GetCurrentAbilityCharges() == 2 then return 0 end
+    if self:GetCurrentAbilityCharges() == 3 then
+      return self:GetSpecialValueFor("jump_distance")
+    end
 
-    return self:GetSpecialValueFor("jump_distance")
+    return 0
   end
 
 -- SPELL START
@@ -47,24 +48,28 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
     self.height = self.distance * 0.5
     self.interruption = false
 
-    caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
-
-    if self.duration < 0.4 then
-      Timers:CreateTimer((self.duration), function()
-        if self.interruption == false then
-          caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-          caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
-          if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
-        end
-      end)
-    end
-
-    if self.duration >= 0.5 then
-      Timers:CreateTimer((0.2), function()
-        if self.interruption == false then
-          if IsServer() then caster:EmitSound("Ancient.Jump") end
-        end
-      end)
+    if self:GetMaxAbilityCharges(self:GetLevel()) == self:GetCurrentAbilityCharges() then
+      caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
+      if self.duration < 0.4 then
+        Timers:CreateTimer((self.duration), function()
+          if self.interruption == false then
+            caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+            caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
+            if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
+          end
+        end)
+      end
+  
+      if self.duration >= 0.5 then
+        Timers:CreateTimer((0.2), function()
+          if self.interruption == false then
+            if IsServer() then caster:EmitSound("Ancient.Jump") end
+          end
+        end)
+      end
+    else
+      caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
+      if IsServer() then caster:EmitSound("Hero_ElderTitan.PreAttack") end
     end
 
     return true
@@ -73,22 +78,22 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
   function ancient_2__leap:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
     caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_5)
     self.interruption = true
   end
 
   function ancient_2__leap:OnSpellStart()
     local caster = self:GetCaster()
-    self:EndCooldown()
     caster:Stop()
 
     caster:RemoveModifierByName("ancient_2_modifier_jump")
     caster:RemoveModifierByName("ancient_2_modifier_leap")
 
-    if self:GetCurrentAbilityCharges() == 1 then
-      AddModifier(caster, caster, self, "ancient_2_modifier_jump", {}, false)
-    end
+    self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
 
-    if self:GetCurrentAbilityCharges() == 2 then
+    if self:GetMaxAbilityCharges(self:GetLevel()) == self:GetCurrentAbilityCharges() then
+      AddModifier(caster, caster, self, "ancient_2_modifier_jump", {}, false)
+    else
       AddModifier(caster, caster, self, "ancient_2_modifier_leap", {}, false)
     end
   end

@@ -21,12 +21,7 @@ function ancient_2_modifier_leap:OnCreated(kv)
   self.speed = gesture_time / interval_total
   self.end_combo = false
 
-  if self.ability:GetCurrentAbilityCharges() == 1 then
-    self.state = STATE_POS_HIT
-  else
-    self.state = STATE_PRE_HIT
-  end
-
+  self.state = STATE_POS_HIT
 
   if IsServer() then self:OnIntervalThink() end
 end
@@ -106,16 +101,13 @@ function ancient_2_modifier_leap:PosHit()
     self.parent:PerformAttack(enemy, false, true, true, true, false, false, false)
 	end
 
-  local charges = self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName())
-  
-  if charges:GetStackCount() == 1 then
-    self.end_combo = true
-  else
-    self.ability:EndCooldown()
-    self.ability:StartCooldown(1)
+  if self.ability:GetCurrentAbilityCharges() > 0 then
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
   end
-
-  if IsServer() then charges:DecrementStackCount() end
+  
+  if self.ability:GetCurrentAbilityCharges() == 0 then
+    self.end_combo = true
+  end
 
   self.state = STATE_PRE_HIT
 
