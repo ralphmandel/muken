@@ -40,13 +40,13 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
     local caster = self:GetCaster()
     self.point = self:GetCursorPosition()
     self.distance = (caster:GetOrigin() - self.point):Length2D()
-    self.duration = self.distance / (self:GetCastRange(nil, nil) * 1.4)
+    self.duration = self.distance / (((self:GetCastRange(nil, nil) - 100) / (self:GetCurrentAbilityCharges() * 0.7)) * 2.2)
     self.height = self.distance * 0.5
     self.interruption = false
 
     if caster:HasModifier("ancient_2_modifier_leap") then return false end
 
-    if self:GetMaxAbilityCharges(self:GetLevel()) == 1 then
+    if self:GetCastRange(nil, nil) > 0 then
       caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
       if self.duration < 0.4 then
         Timers:CreateTimer((self.duration), function()
@@ -89,7 +89,7 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
 
     self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
 
-    if self:GetMaxAbilityCharges(self:GetLevel()) == 1 then
+    if self:GetCastRange(nil, nil) > 0 then
       AddModifier(caster, caster, self, "ancient_2_modifier_jump", {}, false)
     else
       AddModifier(caster, caster, self, "ancient_2_modifier_leap", {}, false)

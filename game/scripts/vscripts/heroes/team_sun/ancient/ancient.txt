@@ -97,43 +97,15 @@
 
 		"AbilityCastAnimation"   		""
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_point"      "4"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"duration"        "20"
-			}
-      "03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"radius"          "425"
-			}
-      "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"interval"        "1.75"
-			}
-      "05"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"debuff_duration" "3.5"
-			}
-      "06"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"ms_limit"        "200"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "cast_point"      "4"
+      "duration"        "20"
+      "radius"          "425"
+      "interval"        "1.75"
+      "debuff_duration" "3.5"
+      "ms_limit"        "200"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -149,18 +121,10 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"res"			    "25"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "res"			    "25"
+      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -182,23 +146,11 @@
 		"AbilityCastAnimation"   		"ACT_RESET"
 		"AbilityCastPoint"       		"1"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"5"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"750"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "duration"		"5"
+      "cast_range"	"900"
+      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -221,63 +173,19 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"energy_gain"	      "4"
-			}
-      "02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"energy_gain_crit"	"10"
-			}
-      "03"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"energy_loss"	      "10"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"delay"	            "10"
-			}
-      "05"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"con_mult"	        "0.1"
-			}
-      "06"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"min_cost"	        "40"
-			}
-      "07"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"crack_time"	      "3.14"
-			}
-      "08"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"crack_width"	      "315"
-			}
-      "09"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"cast_range_mult"	  "7"
-			}
-      "10"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"damage"	          "3.5"
-			}
-			"15"
-			{
-				"var_type"			    "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "energy_gain"	      "10"
+      "energy_gain_crit"	"15"
+      "energy_loss"	      "10"
+      "delay"	            "15"
+      "con_mult"	        "0.1"
+      "min_cost"	        "40"
+      "crack_time"	      "3.14"
+      "crack_width"	      "315"
+      "cast_range_mult"	  "7"
+      "damage"	          "3.5"
+      "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

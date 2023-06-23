@@ -236,9 +236,6 @@ function ancient_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
 
     if value_name == "AbilityCharges" then
-      if caster:FindAbilityByName("ancient_2__leap_rank_31") then
-        return 1
-      end
       if caster:FindAbilityByName("ancient_2__leap_rank_32") then
         return 5
       end
@@ -247,7 +244,9 @@ function ancient_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "AbilityChargeRestoreTime" then return 5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "special_jump_distance" then return caster:FindAbilityByName("ancient__jump"):GetLevel() * 1.5 end
+    if value_name == "special_jump_distance" then
+      return 100 + (caster:FindAbilityByName("ancient__jump"):GetLevel() * ability:GetCurrentAbilityCharges() * 0.7)
+    end
 	end
 
 	if ability:GetAbilityName() == "ancient_3__walk" then
@@ -264,7 +263,7 @@ function ancient_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "ancient_5__petrify" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 25 end
+		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 

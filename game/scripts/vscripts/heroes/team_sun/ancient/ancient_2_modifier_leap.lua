@@ -32,6 +32,10 @@ end
 function ancient_2_modifier_leap:OnRemoved()
   self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_5)
 
+  if self.ability:GetCastRange(nil, nil) > 0 then
+    self.ability:SetCurrentAbilityCharges(0)
+  end
+
   if self.ability.aggro_target then
     if IsValidEntity(self.ability.aggro_target) then
       if self.parent:IsAlive() and self.ability.aggro_target:IsAlive() then
