@@ -17,7 +17,7 @@
 	}
 
 	"fleaman_1__precision"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/team_death/fleaman/fleaman_1__precision"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -25,6 +25,7 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -67,6 +68,7 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -133,6 +135,7 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"

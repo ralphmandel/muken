@@ -35,13 +35,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -64,13 +60,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -93,13 +85,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -122,13 +110,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -151,13 +135,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -180,13 +160,9 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"15"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

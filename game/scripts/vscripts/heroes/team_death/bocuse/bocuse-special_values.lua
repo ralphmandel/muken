@@ -336,7 +336,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bocuse_4__mirepoix" then
-		if value_name == "AbilityManaCost" then return 285 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_4__mirepoix_rank_12") then
@@ -358,7 +358,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then
-		if value_name == "AbilityManaCost" then return 235 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 230 * (1 + ((ability_level - 1) * 0.05)) end
 		
     if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
@@ -381,7 +381,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bocuse_u__mise" then
-		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 220 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_u__mise_rank_42") then

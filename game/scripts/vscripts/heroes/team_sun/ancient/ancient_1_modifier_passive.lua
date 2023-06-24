@@ -14,9 +14,8 @@ function ancient_1_modifier_passive:OnCreated(kv)
     amount = self.ability:GetSpecialValueFor("crit_damage")
   }, false)
 
-  Timers:CreateTimer(0.3, function()
-    self:ChanegeBAT()
-  end)
+  self:ChangeBAT()
+
 
   if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("special_double_hit")) end
 end
@@ -81,12 +80,12 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 end
 
 function ancient_1_modifier_passive:OnStackCountChanged(old)
-  self:ChanegeBAT()
+  self:ChangeBAT()
 end
 
 -- UTILS -----------------------------------------------------------
 
-function ancient_1_modifier_passive:ChanegeBAT()
+function ancient_1_modifier_passive:ChangeBAT()
   if BaseStats(self.parent) == nil then return end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)

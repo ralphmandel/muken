@@ -31,6 +31,7 @@ require("internal/talent_tree")
 			if ultimate then
 				if ultimate:IsTrained() == false then
 					ultimate:UpgradeAbility(true)
+          BaseStats(caster):AddManaExtra(ultimate)
 				end
 			end
 		end
@@ -58,12 +59,11 @@ require("internal/talent_tree")
 		if self.skill_points == nil then
 			self.skill_points = 3
 			if self.hero_name == "fleaman" then self.skill_points = 2 end
-			if self.hero_name == "striker" then self.skill_points = 2 end
 			if self.hero_name == "bloodstained" then self.skill_points = 2 end
-			if self.hero_name == "ancient" then self.skill_points = 1 end
+      if self.hero_name == "lawbreaker" then self.skill_points = 2 end
 			if self.hero_name == "icebreaker" then self.skill_points = 2 end
 			if self.hero_name == "genuine" then self.skill_points = 1 end
-			if self.hero_name == "lawbreaker" then self.skill_points = 2 end
+      if self.hero_name == "ancient" then self.skill_points = 1 end
 		end
 
 		self.skill_points = self.skill_points + points
@@ -81,24 +81,8 @@ require("internal/talent_tree")
 
 -- LOAD DATA
 	function base_hero:LoadHeroesData()
-		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
-		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
-		if heroes_name_data == nil then return end
-		if heroes_team_data == nil then return end
-
-		for name, id_name in pairs(heroes_name_data) do
-			if self:GetCaster():GetUnitName() == id_name then
-				self.hero_name = name
-			end
-		end
-
-    for team, hero_list in pairs(heroes_team_data) do
-      for _,id_name in pairs(hero_list) do
-        if self:GetCaster():GetUnitName() == id_name then
-          self.hero_team = team
-        end      
-      end
-		end
+    self.hero_name = GetHeroName(self:GetCaster())
+    self.hero_team = GetHeroTeam(self:GetCaster())
 	end
 	
 	function base_hero:ResetRanksData()

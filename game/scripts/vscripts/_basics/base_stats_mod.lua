@@ -209,7 +209,7 @@ base_stats_mod = class ({})
       end
     end
     
-    return self.ability.mana * self.ability:GetStatBase("INT")
+    return (self.ability:GetStatBase("INT") * self.ability.mana) + self.ability:GetBonusMaxMana()
   end
 
 -- CON
@@ -303,9 +303,8 @@ base_stats_mod = class ({})
   end
   
   function base_stats_mod:GetModifierPercentageCooldown()
-    local value = (self.ability.stat_total["REC"]) * self.ability.cooldown
-    local calc = (value * 6) / (1 +  (value * 0.06))
-    return calc
+    local value = 1 + ((self.ability.stat_total["REC"] + 1) * self.ability.cooldown * 0.01)
+    return 100 - (100 / value)
   end
 
   function base_stats_mod:GetModifierConstantManaRegen()

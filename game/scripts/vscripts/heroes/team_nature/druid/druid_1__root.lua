@@ -11,8 +11,6 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
 
   druid_1__root.projectiles = {}
 
--- SPELL START
-
   function druid_1__root:GetIntrinsicModifierName()
     return "druid_1_modifier_passive"
   end
@@ -21,15 +19,33 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
     return self:GetSpecialValueFor("special_elden_radius")
   end
 
+  function druid_1__root:GetCastAnimation()
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return ACT_DOTA_CAST_ABILITY_4 end
+    return ACT_DOTA_CAST_ABILITY_3  
+  end
+
+  function druid_1__root:GetCastPoint()
+    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return 0.25 end
+    return 0.5
+  end
+
+-- SPELL START
+
+
+
   function druid_1__root:OnAbilityPhaseStart()
     local caster = self:GetCaster()
+
+    -- if not self.delete then self.delete = 1499 end
+    -- caster:FadeGesture(self.delete)
+    -- self.delete = self.delete + 1
+    -- caster:StartGesture(self.delete)
+    -- GameRules:SendCustomMessage("gesture: "..self.delete,-1,0)
 
     if IsServer() then
       if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
         caster:EmitSound("Druid.Root.Cast")
         caster:EmitSound("Hero_EarthShaker.Whoosh")
-      else
-        ChangeActivity(caster, "suffer")
       end
     end
 
@@ -38,7 +54,6 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
 
   function druid_1__root:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
-    ChangeActivity(caster, "")
 
     if IsServer() then
       if IsMetamorphosis("druid_4__form", self:GetCaster()) == 0 then
@@ -51,7 +66,6 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
   function druid_1__root:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
-    ChangeActivity(caster, "")
 
     local direction = point - caster:GetOrigin()
     direction.z = 0
@@ -146,16 +160,6 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
   function druid_1__root:CreateBush(point, duration, string)
     local caster = self:GetCaster()
     CreateModifierThinker(caster, self, string, {duration = duration}, point, caster:GetTeamNumber(), false)
-  end
-
-  function druid_1__root:GetCastAnimation()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return ACT_DOTA_CAST_ABILITY_4 end
-    return ACT_DOTA_CAST3_STATUE
-  end
-
-  function druid_1__root:GetCastPoint()
-    if IsMetamorphosis("druid_4__form", self:GetCaster()) == 1 then return 0.25 end
-    return 0.5
   end
 
 -- EFFECTS

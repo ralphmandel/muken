@@ -56,8 +56,33 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 			end
 		end
 
-		function base_stats:OnOwnerSpawned()
-		end
+    function base_stats:OnAbilityUpgrade(ability)
+      self:AddManaExtra(ability)
+    end
+
+    function base_stats:AddManaExtra(ability)
+      local caster = self:GetCaster()
+      if caster:IsIllusion() or caster:IsHero() == false then return end
+
+      local hero_name = GetHeroName(self:GetCaster())
+      local hero_team = GetHeroTeam(self:GetCaster())
+      local abilities_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_team.."/"..hero_name.."/"..hero_name..".txt")
+      if abilities_data == nil then return end
+
+      for ability_name, data in pairs(abilities_data) do
+        if ability:GetAbilityName() == ability_name then
+          for key, value in pairs(data) do
+            if key == "ActiveSpell" then
+              if tonumber(value) == 1 then
+                self.ability_mp_bonus = self.ability_mp_bonus + 1
+                local void = caster:FindAbilityByName("_void")
+                if void then void:SetLevel(1) end
+              end
+            end
+          end          
+        end
+      end
+    end
 
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
@@ -273,8 +298,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				self.mana = self:GetSpecialValueFor("mana")
 				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
         self.spell_amp = self:GetSpecialValueFor("spell_amp")
-				self.mana_regen = self:GetSpecialValueFor("mana_regen")
-				self.mp_regen_state = 1
 
 				-- CON
 				self.heal_amp = self:GetSpecialValueFor("heal_amp")
@@ -290,6 +313,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
         -- REC/MND/LCK
         self.cooldown = self:GetSpecialValueFor("cooldown")
+        self.mana_regen = self:GetSpecialValueFor("mana_regen")
+				self.mp_regen_state = 1
         self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
         self.critical_chance = self:GetSpecialValueFor("critical_chance")
@@ -297,6 +322,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				-- CRITICAL
 				self.force_crit_chance = nil
 				self.force_crit_damage = nil
+
+        -- ABILITY MP BONUS
+        self.ability_mp_bonus = 0
 			end
 		end
 
@@ -739,6 +767,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 	-- INT
 
+    function base_stats:GetBonusMaxMana()
+      return 200 * self.ability_mp_bonus
+    end
+
     function base_stats:GetTotalMagicalDamagePercent()
       return 100 + ((self.stat_total["INT"] + 1) * self.spell_amp)
     end
@@ -798,13 +830,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:GetBonusMPRegen()
       local caster = self:GetCaster()
-      local mana_regen = 20 + ((self.stat_total["REC"] + 1) * self.mana_regen)
+      local regen_percent = 3 + ((self.stat_total["REC"] + 1) * self.mana_regen * 0.01)
 
       local mods = caster:FindAllModifiersByName("_modifier_mana_regen")
       for _,modifier in pairs(mods) do
-        mana_regen = mana_regen + modifier:GetStackCount()
+        regen_percent = regen_percent + (modifier:GetStackCount() * 0.01)
       end
 
+      local mana_regen = self:GetBonusMaxMana() * regen_percent * 0.01
       if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
 
       return mana_regen

@@ -16,139 +16,43 @@
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
 			// STR
-				"01"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"damage"				  "2"
-				}
-				"02"
-				{
-					"var_type"				        "FIELD_FLOAT"
-					"base_critical_damage"		"100"
-				}
-        "03"
-				{
-					"var_type"				        "FIELD_FLOAT"
-					"critical_damage"		      "1"
-				}
-				"04"
-				{
-					"var_type"						        "FIELD_FLOAT"
-					"physical_block_max_percent"	"10"
-				}
-				"05"
-				{
-					"var_type"						        "FIELD_FLOAT"
-					"magical_block_max_percent"		"10"
-				}
+        "damage"				              "2"
+        "base_critical_damage"		    "100"
+        "critical_damage"		          "1"
+        "physical_block_max_percent"	"10"
+        "magical_block_max_percent"		"10"
 			
 			// AGI
-				"06"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"movespeed"				"2"
-				}
-				"07"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"base_movespeed"	"275"
-				}
-				"08"
-				{
-					"var_type"				  "FIELD_FLOAT"
-					"attack_speed"			"5"
-				}
-				"09"
-				{
-					"var_type"				  "FIELD_FLOAT"
-					"base_attack_time"  "1.4" //1.2
-				}
+        "movespeed"				  "2"
+        "base_movespeed"	  "275"
+        "attack_speed"			"5"
+        "base_attack_time"  "1.4" //1.2
 
-			// INT
-				"10"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"mana"					  "20"
-				}
-				"10"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"debuff_amp"			"1"
-				}
-				"12"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"spell_amp"				"4"
-				}
+      // INT
+        "mana"					    "20"
+        "debuff_amp"			  "1"
+        "spell_amp"				  "4"
 
 			// CON
-				"14"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"heal_amp"			  "1"
-				}
-        "15"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"health_bonus"		"75"
-				}
+        "heal_amp"			    "1"
+        "health_bonus"		  "75"
 
 			// DEX/DEF/RES
-				"16"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"health_regen"		"0.5"
-				}
-				"17"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"evade"					  "0.2"
-				}
-				"18"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"armor"					  "0.5"
-				}
-				"19"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"magic_resist"		"0.4"
-				}
-      	"20"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"status_resist"			"0.8"
-				}
+        "health_regen"		  "0.5"
+        "evade"					    "0.2"
+        "armor"					    "0.5"
+        "magic_resist"		  "0.4"
+        "status_resist"			"0.8"
 
       // REC/MND/LCK
-				"21"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"cooldown"				"0.2"
-				}
-  			"22"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"mana_regen"			"0.5"
-				}
-				"23"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"critical_chance"	"0.2"
-				}
-				"24"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"heal_power"			"4"
-				}
-				"25"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"buff_amp"				"1"
-				}
+        "cooldown"				  "1"
+        "mana_regen"			  "6"
+        "critical_chance"	  "0.2"
+        "heal_power"			  "4"
+        "buff_amp"				  "1"
 		}
 	}
 

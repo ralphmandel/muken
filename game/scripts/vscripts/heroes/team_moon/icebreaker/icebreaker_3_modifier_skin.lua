@@ -11,7 +11,7 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
   self.ability = self:GetAbility()
 
   AddModifier(self.parent, self.caster, self.ability, "_modifier_mana_regen", {
-    amount = self.ability:GetSpecialValueFor("special_mp_regen")
+    amount = self.ability:GetSpecialValueFor("special_mp_regen") * 100
   }, false)
 
   self.hp_regen = self.ability:GetSpecialValueFor("special_hp_regen")

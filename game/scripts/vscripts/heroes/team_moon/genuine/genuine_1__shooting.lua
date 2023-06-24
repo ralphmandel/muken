@@ -9,7 +9,12 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 -- INIT
 
   function genuine_1__shooting:Spawn()
-    if self:IsTrained() == false then self:UpgradeAbility(true) end
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        BaseStats(self:GetCaster()):AddManaExtra(self)
+      end
+    end)
   end
 
   function genuine_1__shooting:GetIntrinsicModifierName()

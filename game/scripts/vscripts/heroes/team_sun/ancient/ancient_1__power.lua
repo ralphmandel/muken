@@ -8,9 +8,12 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 -- INIT
 
   function ancient_1__power:Spawn()
-    if self:IsTrained() == false then
-      self:UpgradeAbility(true)
-    end
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        BaseStats(self:GetCaster()):AddManaExtra(self)
+      end
+    end)
   end
 
   function ancient_1__power:GetIntrinsicModifierName()

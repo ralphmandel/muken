@@ -434,3 +434,26 @@ end
   function ChangeActivity(baseNPC, activity)
     if BaseHeroMod(baseNPC) then BaseHeroMod(baseNPC):ChangeActivity(activity) end
   end
+
+  function GetHeroName(baseNPC)
+		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
+
+		for name, id_name in pairs(heroes_name_data) do
+			if baseNPC:GetUnitName() == id_name then
+				return name
+			end
+		end
+	end
+
+  function GetHeroTeam(baseNPC)
+		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
+
+    for team, hero_list in pairs(heroes_team_data) do
+      for _,id_name in pairs(hero_list) do
+        if baseNPC:GetUnitName() == id_name then
+          return team
+        end      
+      end
+		end
+	end
+

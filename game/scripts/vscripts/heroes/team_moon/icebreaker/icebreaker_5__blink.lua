@@ -18,9 +18,12 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
     self.turn = 0
     self.break_damage = false
 
-    if self:IsTrained() == false then
-      self:UpgradeAbility(true)
-    end
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        BaseStats(self:GetCaster()):AddManaExtra(self)
+      end
+    end)
   end
 
   function icebreaker_5__blink:CastFilterResultTarget(hTarget)

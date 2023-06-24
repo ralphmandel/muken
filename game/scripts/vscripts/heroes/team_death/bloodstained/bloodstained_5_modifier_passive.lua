@@ -10,6 +10,8 @@ function bloodstained_5_modifier_passive:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  AddStatusEfx(self.ability, "bloodstained_5_modifier_passive_status_efx", self.caster, self.parent)
+
 	if IsServer() then self:OnIntervalThink() end
 end
 
@@ -17,6 +19,7 @@ function bloodstained_5_modifier_passive:OnRefresh(kv)
 end
 
 function bloodstained_5_modifier_passive:OnRemoved()
+  RemoveStatusEfx(self.ability, "bloodstained_5_modifier_passive_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -57,6 +60,14 @@ function bloodstained_5_modifier_passive:GetLifestealPercent()
 end
 
 -- EFFECTS -----------------------------------------------------------
+
+function bloodstained_5_modifier_passive:GetStatusEffectName()
+  return "particles/bloodstained/status_efx/status_effect_bloodstained.vpcf"
+end
+
+function bloodstained_5_modifier_passive:StatusEffectPriority()
+return MODIFIER_PRIORITY_NORMAL
+end
 
 function bloodstained_5_modifier_passive:GetEffectName()
 	return "particles/bioshadow/bioshadow_drain.vpcf"

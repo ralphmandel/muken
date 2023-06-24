@@ -7,9 +7,12 @@ LinkLuaModifier("fleaman_1_modifier_precision_status_efx", "heroes/team_death/fl
 -- INIT
 
   function fleaman_1__precision:Spawn()
-    if self:IsTrained() == false then
-      self:UpgradeAbility(true)
-    end 
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        BaseStats(self:GetCaster()):AddManaExtra(self)
+      end
+    end)
   end
 
 -- SPELL START
