@@ -40,10 +40,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
   RemoveBonus(self.ability, "_1_AGI", self.parent)
 
 	if self.parent:IsAlive() then
-		self.parent:AddNewModifier(self.caster, self.ability, "bocuse_4_modifier_end", {
-			duration = 2,
-			range = self.range
-		})
+    AddModifier(self.parent, self.caster, self.ability, "bocuse_4_modifier_end", {duration = 2, range = self.range}, false)
 	else
 		self.parent:SetModelScale(self.init_model_scale)
 	end

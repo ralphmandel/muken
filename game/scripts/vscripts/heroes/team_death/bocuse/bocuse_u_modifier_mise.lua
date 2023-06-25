@@ -15,11 +15,10 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.extra_damage = 0
 
   AddStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
-
-  self.parent:AddNewModifier(self.caster, self.ability, "bocuse_u_modifier_jump", {duration = 0.5})
+  AddModifier(self.parent, self.caster, self.ability, "bocuse_u_modifier_jump", {duration = 0.5}, false)
 
   if self.ability:GetSpecialValueFor("special_unslow") == 1 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_unslowable", {})
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_unslowable", {}, false)
 	end
 
   AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
@@ -85,7 +84,7 @@ function bocuse_u_modifier_mise:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_microstun_chance") then
-		keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {duration = 0.2})
+    AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.2}, false)
 	end
 end
 

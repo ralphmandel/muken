@@ -34,9 +34,9 @@ LinkLuaModifier("_modifier_bkb", "_modifiers/_modifier_bkb", LUA_MODIFIER_MOTION
 		self:StopFeed()
 
 		caster:RemoveModifierByName("bocuse_4_modifier_end")
-		caster:AddNewModifier(caster, self, "bocuse_4_modifier_mirepoix", {
-			duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
-		})
+    AddModifier(caster, caster, self, "bocuse_4_modifier_mirepoix", {
+      duration = self:GetSpecialValueFor("duration")
+    }, true)
 	end
 
 	function bocuse_4__mirepoix:StopFeed()

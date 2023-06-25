@@ -40,7 +40,9 @@ function bocuse_1_modifier_passive:OnAttackLanded(keys)
     if bleeding then
       bleeding:SetDuration(bleeding_duration, true)
     else
-		  keys.target:AddNewModifier(self.caster, self.ability, "_modifier_bleeding", {duration = bleeding_duration})
+      AddModifier(keys.target, self.caster, self.ability, "_modifier_bleeding", {
+        duration = bleeding_duration
+      }, false)
     end
 	end
 end

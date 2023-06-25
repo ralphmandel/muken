@@ -28,9 +28,7 @@ LinkLuaModifier("_modifier_unslowable", "_modifiers/_modifier_unslowable", LUA_M
 		local caster = self:GetCaster()
     self.autocast = false
 
-		caster:AddNewModifier(caster, self, "bocuse_u_modifier_mise", {
-			duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster)
-		})
+    AddModifier(caster, caster, self, "bocuse_u_modifier_mise", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

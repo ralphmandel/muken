@@ -91,15 +91,15 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
   if slow_stack > 0 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
       percent = slow_stack * stack_count
-    })
+    }, false)
   end
 
   if slow_duration > 0 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
-      duration = CalcStatus(slow_duration, self.caster, self.parent), percent = 100
-    })
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+      duration = slow_duration, percent = 100
+    }, true)
   end
 
 	if stack_count == self.ability:GetSpecialValueFor("max_stack") then
@@ -108,22 +108,21 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 		end
 
     if self.ability:GetSpecialValueFor("special_break") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_break", {
-				duration = self:GetRemainingTime()
-			})
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_break", {
+        duration = self:GetRemainingTime()
+      }, false)
 		end
 
 		if self.ability:GetSpecialValueFor("special_silence") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {
-				duration = self:GetRemainingTime(),
-				special = 2
-			})
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_silence", {
+        duration = self:GetRemainingTime(), special = 2
+      }, false)
 		end
 
     if self.ability:GetSpecialValueFor("special_disarm") == 1 then
-			self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {
-				duration = self:GetRemainingTime()
-			})
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_disarm", {
+        duration = self:GetRemainingTime()
+      }, false)
 		end
 	end
 end

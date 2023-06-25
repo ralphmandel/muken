@@ -122,10 +122,10 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
 		)
 
 		for _,unit in pairs(units) do
-			self:PlayEfxHit(unit)			
-			unit:AddNewModifier(caster, self, "bocuse_2_modifier_flambee", {
-				duration = self:GetSpecialValueFor("duration") + 0.1
-			})
+			self:PlayEfxHit(unit)
+      AddModifier(unit, caster, self, "bocuse_2_modifier_flambee", {
+        duration = self:GetSpecialValueFor("duration") + 0.1
+      }, false)
 		end
 
 		self:PlayEfxImpact(target, radius)

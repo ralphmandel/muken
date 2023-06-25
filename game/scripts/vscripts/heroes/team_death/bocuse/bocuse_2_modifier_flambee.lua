@@ -62,9 +62,9 @@ function bocuse_2_modifier_flambee:ApplyBuffs()
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {
-		percent = self.ability:GetSpecialValueFor("ms")
-	})
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
+    percent = self.ability:GetSpecialValueFor("ms")
+  }, false)
 
 	if IsServer() then
 		self.parent:StopSound("Bocuse.Flambee.Buff")
@@ -80,7 +80,9 @@ function bocuse_2_modifier_flambee:ApplyDebuffs()
 	end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_blind", {percent = self.ability:GetSpecialValueFor("blind")})
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_blind", {
+    percent = self.ability:GetSpecialValueFor("blind")
+  }, false)
 end
 
 -- EFFECTS -----------------------------------------------------------

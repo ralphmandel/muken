@@ -10,9 +10,9 @@ function bocuse_5_modifier_roux_aura_effect:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
-		percent = self.ability:GetSpecialValueFor("slow")
-	})
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
+    percent = self.ability:GetSpecialValueFor("slow")
+  }, false)
 
 	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
 
@@ -33,9 +33,9 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bocuse_5_modifier_roux_aura_effect:OnIntervalThink()
-	self.parent:AddNewModifier(self.caster, self.ability, "bocuse_5_modifier_root", {
-		duration = CalcStatus(self.ability:GetSpecialValueFor("root_duration"), self.caster, self.parent)
-	})
+  AddModifier(self.parent, self.caster, self.ability, "bocuse_5_modifier_root", {
+    duration = self.ability:GetSpecialValueFor("root_duration")
+  }, true)
 end
 
 -- UTILS -----------------------------------------------------------

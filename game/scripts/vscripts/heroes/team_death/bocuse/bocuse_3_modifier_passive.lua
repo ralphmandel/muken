@@ -38,16 +38,12 @@ function bocuse_3_modifier_passive:OnAttackLanded(keys)
   if mod_sauce then
     if mod_sauce:GetStackCount() < self.ability:GetSpecialValueFor("max_stack") and mod_sauce.delay == false then
       duration = duration - (duration_reduction * mod_sauce:GetStackCount())
-      keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_sauce", {
-        duration = CalcStatus(duration, self.caster, keys.target)
-      })
+      AddModifier(keys.target, self.caster, self.ability, "bocuse_3_modifier_sauce", {duration = duration}, true)
     end
     return
   end
 
-  keys.target:AddNewModifier(self.caster, self.ability, "bocuse_3_modifier_sauce", {
-    duration = CalcStatus(duration, self.caster, keys.target)
-  })
+  AddModifier(keys.target, self.caster, self.ability, "bocuse_3_modifier_sauce", {duration = duration}, true)
 end
 
 -- UTILS -----------------------------------------------------------
