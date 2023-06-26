@@ -66,7 +66,8 @@ function druid_u_modifier_aura_effect:TryConversion()
 
   if RandomFloat(0, 100) < calc * self.interval and self.parent:GetLevel() <= self.ability:GetSpecialValueFor("max_dominate") then
     self.parent:Purge(false, true, false, false, false)
-    self.parent:AddNewModifier(self.caster, self.ability, "druid_u_modifier_conversion", {})    
+    AddModifier(self.parent, self.caster, self.ability, "druid_u_modifier_conversion", {}, false)
+
     self:Destroy()
     return
   end
@@ -76,9 +77,9 @@ function druid_u_modifier_aura_effect:TryHex()
   if self.parent:IsHero() == false then return end
 
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_hex_chance") * self.interval then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_hex", {
-      duration = CalcStatus(self.ability:GetSpecialValueFor("special_hex_duration"), self.caster, self.parent)
-    })
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_hex", {
+      duration = self.ability:GetSpecialValueFor("special_hex_duration")
+    }, true)
   end
 end
 
@@ -99,7 +100,7 @@ function druid_u_modifier_aura_effect:ApplyOnAllies()
   end
 
   if reborn_chance > 0 and self.parent:IsHero() then
-    self.parent:AddNewModifier(self.caster, self.ability, "druid_u_modifier_reborn", {})
+    AddModifier(self.parent, self.caster, self.ability, "druid_u_modifier_reborn", {}, false)
     self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
     self.mod_applied = true
   end
@@ -114,8 +115,8 @@ function druid_u_modifier_aura_effect:ApplyOnEnemyHero()
   local hex_duration = self.ability:GetSpecialValueFor("special_hex_duration")
 
   if slow > 0 and manaloss > 0 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = slow})
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_manaloss", {manaloss = manaloss})
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = slow}, false)
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_manaloss", {manaloss = manaloss}, false)
     self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
     self.mod_applied = true
 

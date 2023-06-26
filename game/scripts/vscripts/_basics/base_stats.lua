@@ -38,6 +38,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 		function base_stats:OnHeroLevelUp()
 			if IsServer() then
+        print("kubo lv", self:GetLevel())
 				local caster = self:GetCaster()
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
@@ -74,9 +75,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
           for key, value in pairs(data) do
             if key == "ActiveSpell" then
               if tonumber(value) == 1 then
-                self.ability_mp_bonus = self.ability_mp_bonus + 1
-                local void = caster:FindAbilityByName("_void")
-                if void then void:SetLevel(1) end
+                self:UpgradeAbility(true)
               end
             end
           end          
@@ -322,9 +321,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				-- CRITICAL
 				self.force_crit_chance = nil
 				self.force_crit_damage = nil
-
-        -- ABILITY MP BONUS
-        self.ability_mp_bonus = 0
 			end
 		end
 
@@ -767,10 +763,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 	-- INT
 
-    function base_stats:GetBonusMaxMana()
-      return 200 * self.ability_mp_bonus
-    end
-
     function base_stats:GetTotalMagicalDamagePercent()
       return 100 + ((self.stat_total["INT"] + 1) * self.spell_amp)
     end
@@ -830,17 +822,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:GetBonusMPRegen()
       local caster = self:GetCaster()
-      local regen_percent = 3 + ((self.stat_total["REC"] + 1) * self.mana_regen * 0.01)
+      if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
+
+      local mp_regen = 7.5 + ((self.stat_total["REC"] + 1) * self.mana_regen)
 
       local mods = caster:FindAllModifiersByName("_modifier_mana_regen")
       for _,modifier in pairs(mods) do
-        regen_percent = regen_percent + (modifier:GetStackCount() * 0.01)
+        mp_regen = mp_regen + (modifier:GetStackCount() * 0.01)
       end
 
-      local mana_regen = self:GetBonusMaxMana() * regen_percent * 0.01
-      if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
-
-      return mana_regen
+      return mp_regen
     end
 
     function base_stats:SetMPRegenState(bool)

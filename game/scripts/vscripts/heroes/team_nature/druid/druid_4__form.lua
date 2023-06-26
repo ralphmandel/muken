@@ -41,10 +41,9 @@ LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_e
     AddBonus(self, "_1_CON", caster, con, 0, nil)
     AddBonus(self, "_1_AGI", caster, agi, 0, nil)
 
-    caster:AddNewModifier(caster, self, "druid_4_modifier_form", {
-      duration = CalcStatus(self:GetSpecialValueFor("duration"), caster, caster),
-      form = form
-    })
+    AddModifier(caster, caster, self, "druid_4_modifier_form", {
+      duration = self:GetSpecialValueFor("duration"), form = form
+    }, true)
   end
 
 -- EFFECTS

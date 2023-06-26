@@ -97,12 +97,14 @@ function lawbreaker_u_modifier_form:OnAttacked(keys)
   if keys.attacker ~= self.parent then return end
   if keys.target:IsMagicImmune() then return end
 
-  RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_break", self.ability)
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("break_chance") then
+    RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_break", self.ability)
 
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.1}, false)
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {
-    duration = self.ability:GetSpecialValueFor("break_duration")
-  }, true)
+    AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.5}, true)
+    AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {
+      duration = self.ability:GetSpecialValueFor("break_duration")
+    }, true)    
+  end
 end
 
 function lawbreaker_u_modifier_form:OnAttackStart(keys)

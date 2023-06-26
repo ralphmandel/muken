@@ -40,7 +40,7 @@ function _modifier_neutral_skydragon:OnIntervalThink()
 	if self.parent:IsStunned() then return end
 	if self.parent:IsDominated() then return end
 
-	if RandomFloat(1, 100) < 20 then
+	if randomfloat(0, 100) < 20 then
 		self:TryCast_Skill_1(target)
 		return
 	end

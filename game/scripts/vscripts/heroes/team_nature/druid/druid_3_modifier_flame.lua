@@ -11,9 +11,9 @@ function druid_3_modifier_flame:OnCreated(kv)
   self.ability = self:GetAbility()
   self.interval = 0.25
 
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_debuff", {
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
     percent = self.ability:GetSpecialValueFor("special_flame_slow")
-  })
+  }, false)
 
 	if IsServer() then
 		self.parent:EmitSound("Hero_Huskar.Burning_Spear")

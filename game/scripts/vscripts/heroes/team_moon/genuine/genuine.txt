@@ -395,7 +395,7 @@
       "01"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"max_barrier"	    "150"
+				"max_barrier"	    "100"
 			}
       "02"
 			{

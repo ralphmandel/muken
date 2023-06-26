@@ -36,7 +36,7 @@ require("internal/talent_tree")
 			end
 		end
 
-    if level == 15 or level == 30 then
+    if level == 15 then --or level == 30 then
       self:CheckAbilityPoints(1)
     end
 	end

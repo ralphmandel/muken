@@ -117,10 +117,9 @@ LinkLuaModifier("_modifier_disarm", "_modifiers/_modifier_disarm", LUA_MODIFIER_
 
     for _,enemy in pairs(enemies) do
       local multiplier = 1 - ((CalcDistanceBetweenEntityOBB(caster, enemy) / elden_radius) * 0.5)
-      enemy:AddNewModifier(caster, self, "_modifier_root", {
-        duration = CalcStatus(elden_duration * multiplier, caster, enemy),
-        effect = 8
-      })
+      AddModifier(enemy, caster, self, "_modifier_root", {
+        duration = elden_duration * multiplier, effect = 8
+      }, true)
 
       ApplyDamage({
         attacker = caster, victim = enemy,

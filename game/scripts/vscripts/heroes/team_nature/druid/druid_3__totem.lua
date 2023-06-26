@@ -15,7 +15,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_de
 
 		totem:CreatureLevelUp(self:GetSpecialValueFor("rank"))
 		totem:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-		totem:AddNewModifier(caster, self, "druid_3_modifier_totem", {duration = self:GetSpecialValueFor("duration")})
+    AddModifier(totem, caster, self, "druid_3_modifier_totem", {duration = self:GetSpecialValueFor("duration")}, true)
 
     if IsServer() then caster:EmitSound("Hero_Juggernaut.HealingWard.Cast") end
   end

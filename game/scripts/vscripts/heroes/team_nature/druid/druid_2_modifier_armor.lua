@@ -48,10 +48,9 @@ function druid_2_modifier_armor:OnAttacked(keys)
   if keys.target ~= self.parent then return end
 
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_root_chance") then
-    keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_root", {
-      duration = CalcStatus(self.ability:GetSpecialValueFor("special_root_duration"), self.caster, keys.attacker),
-      effect = 7
-    })
+    AddModifier(keys.attacker, self.caster, self.ability, "_modifier_root", {
+      duration = self.ability:GetSpecialValueFor("special_root_duration"), effect = 7
+    }, true)
   end
 end
 

@@ -175,7 +175,7 @@ function RollDrops(unit, killerEntity)
       end
     end
 
-    if RandomFloat(1, 100) < chance then
+    if randomfloat(0, 100) < chance then
       local item_name = item_list[RandomInt(1, #item_list)]
       local item = CreateItem(item_name, nil, nil)
       local pos = unit:GetAbsOrigin()
@@ -350,8 +350,8 @@ end
     
     target:GiveMana(amount)
 
-    local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
-    if genuine_barrier then genuine_barrier:UpdateBarrier(amount, false) end
+    --local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
+    --if genuine_barrier then genuine_barrier:UpdateBarrier(amount, false) end
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, amount, nil)
   end
 
@@ -360,7 +360,7 @@ end
 
     if target:HasModifier("ancient_u_modifier_passive")
     and bAncientException == false then
-      amount = amount * 0.25
+      amount = math.floor(amount / 3)
     end
 
     target:Script_ReduceMana(amount, ability)

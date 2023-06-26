@@ -15,9 +15,9 @@ function druid_4_modifier_form:OnCreated(kv)
   self.break_duration = self.ability:GetSpecialValueFor("special_break_duration")
   self.luck_stack = 0
 
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_buff", {
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms_percent")
-  })
+  }, false)
   
 	self:HideItens(true)
 
@@ -113,11 +113,7 @@ end
 function druid_4_modifier_form:OnAttackLanded(keys)
   if keys.attacker ~= self.parent then return end
 
-  if self.stun_duration > 0 then
-    keys.target:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-      duration = CalcStatus(self.stun_duration, self.caster, keys.target)
-    })
-  end
+  AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = self.stun_duration}, true)
 
   if self.break_duration > 0 then
     self.luck_stack = self.luck_stack + 1
@@ -125,9 +121,7 @@ function druid_4_modifier_form:OnAttackLanded(keys)
     AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
     if BaseStats(self.parent).has_crit then
-      keys.target:AddNewModifier(self.caster, self.ability, "_modifier_break", {
-        duration = CalcStatus(self.break_duration, self.caster, keys.target)
-      })
+      AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {duration = self.break_duration}, true)
     end
   end
 end
@@ -159,10 +153,8 @@ function druid_4_modifier_form:ApplyFear(fear_duration)
 		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
 	)
 
-	for _,enemy in pairs(enemies) do		
-		enemy:AddNewModifier(self.caster, self.ability, "_modifier_fear", {
-			duration = CalcStatus(fear_duration, self.caster, enemy)
-		})
+	for _,enemy in pairs(enemies) do
+    AddModifier(enemy, self.caster, self.ability, "_modifier_fear", {duration = fear_duration}, true)
 	end
 end
 

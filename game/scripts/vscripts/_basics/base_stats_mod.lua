@@ -57,7 +57,7 @@ base_stats_mod = class ({})
 
       -- INT
       MODIFIER_PROPERTY_MANA_BONUS,
-      MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+      MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 
       -- CON
       MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
@@ -75,6 +75,7 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
       MODIFIER_PROPERTY_STATUS_RESISTANCE,
       MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+      MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
     }
     return funcs
   end
@@ -209,7 +210,11 @@ base_stats_mod = class ({})
       end
     end
     
-    return (self.ability:GetStatBase("INT") * self.ability.mana) + self.ability:GetBonusMaxMana()
+    return (self.ability:GetStatBase("INT") * self.ability.mana)
+  end
+
+  function base_stats_mod:GetModifierPercentageManacost(keys)
+    return 100 - (100 / (self:GetAbility():GetLevel() * 0.5))
   end
 
 -- CON

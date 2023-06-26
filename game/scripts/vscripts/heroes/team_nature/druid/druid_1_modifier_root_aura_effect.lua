@@ -10,14 +10,14 @@ function druid_1_modifier_root_aura_effect:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_root", {effect = 5})
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_root", {effect = 5}, false)
 
   if self.ability:GetSpecialValueFor("special_disarm") == 1 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_disarm", {})
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_disarm", {}, false)
   end
 
   if self.ability:GetSpecialValueFor("special_silence") == 1 then
-    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_silence", {})
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_silence", {}, false)
   end
 end
 

@@ -228,7 +228,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "bloodstained_1__rage" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 10 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "duration" then return 10 + (value_level * 0.2) end
@@ -241,7 +241,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
-		if value_name == "AbilityManaCost" then return 230 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
     if value_name == "AbilityCastRange" then return 400 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -251,7 +251,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability:GetAbilityName() == "bloodstained_4__tear" then
 		if value_name == "AbilityManaCost" then
       if ability:GetCurrentAbilityCharges() == 1 then
-        return 275 * (1 + ((ability_level - 1) * 0.05))
+        return 450 * (1 + ((ability_level - 1) * 0.05))
       end
       return 0
     end
@@ -268,7 +268,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
-		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 575 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 135 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
     if value_name == "duration" then return 12 + (value_level * 0.4) end

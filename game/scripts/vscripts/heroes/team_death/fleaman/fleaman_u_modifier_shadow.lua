@@ -10,10 +10,6 @@ function fleaman_u_modifier_shadow:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {
-    delay = 1, attack_break = 0
-  }, false)
-
 	if IsServer() then
 		self:PlayEfxStart()
 		self:OnIntervalThink()

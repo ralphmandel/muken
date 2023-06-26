@@ -49,7 +49,7 @@
 
       // REC/MND/LCK
         "cooldown"				  "1"
-        "mana_regen"			  "6"
+        "mana_regen"			  "0.2"
         "critical_chance"	  "0.2"
         "heal_power"			  "4"
         "buff_amp"				  "1"

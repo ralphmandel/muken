@@ -281,7 +281,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "druid_1__root" then
-		if value_name == "AbilityManaCost" then return 180 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 220 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 
@@ -301,10 +301,11 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "druid_2__armor" then
 		if value_name == "AbilityManaCost" then
-      if caster:FindAbilityByName("druid_2__armor_rank_11") then
-        return 180 * (1 + ((ability_level - 1) * 0.05))
+      local manacost = 320 * (1 + ((ability_level - 1) * 0.05))
+      if caster:FindAbilityByName("druid_2__armor_rank_41") then
+        return manacost * 0.75
       end
-      return 225 * (1 + ((ability_level - 1) * 0.05))
+      return manacost
     end
 
 		if value_name == "AbilityCooldown" then
@@ -347,7 +348,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_3__totem" then
-		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 400 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("druid_3__totem_rank_22") then
@@ -364,7 +365,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "hits" then return 10 end
     if value_name == "duration" then return 30 end
     if value_name == "heal" then return 40 end
-    if value_name == "mana" then return 60 end
+    if value_name == "mana" then return 40 end
     if value_name == "special_spike_damage" then return 75 end
     if value_name == "special_flame_damage" then return 50 end
     if value_name == "special_flame_slow" then return 100 end
@@ -372,7 +373,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "druid_4__form" then
-		if value_name == "AbilityManaCost" then return 340 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 700 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 150 - ((ability_level - 1) * 3) end
     if value_name == "rank" then return 6 + (value_level * 1) end
 

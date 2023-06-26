@@ -218,7 +218,7 @@
       "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"mana"			  "30"
+				"mana"			  "20"
 			}
       "05"
 			{

@@ -20,7 +20,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local caster = self:GetCaster()
 
     if self:GetToggleState() then
-      caster:AddNewModifier(caster, self, "druid_5_modifier_aura", {})
+      AddModifier(caster, caster, self, "druid_5_modifier_aura", {}, false)
     else
       caster:RemoveModifierByName("druid_5_modifier_aura")
     end
