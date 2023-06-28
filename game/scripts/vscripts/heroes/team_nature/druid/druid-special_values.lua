@@ -82,6 +82,10 @@ function druid_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "rank" then return 1 end
     if value_name == "duration" then return 1 end
 
+    if caster:FindAbilityByName("druid_2__armor_rank_11") then
+      if value_name == "special_purge" then return 1 end
+		end
+
 		if caster:FindAbilityByName("druid_2__armor_rank_21") then
       if value_name == "regen" then return 1 end
 		end
@@ -339,6 +343,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "duration" then return 18 + (value_level * 0.6) end
 
+    if value_name == "special_purge" then return 1 end
     if value_name == "regen" then return 0.8 end
     if value_name == "def" then return 24 end
     if value_name == "special_res" then return 10 end

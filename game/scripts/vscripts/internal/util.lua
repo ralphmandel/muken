@@ -175,7 +175,7 @@ function RollDrops(unit, killerEntity)
       end
     end
 
-    if randomfloat(0, 100) < chance then
+    if RandomFloat(0, 100) < chance then
       local item_name = item_list[RandomInt(1, #item_list)]
       local item = CreateItem(item_name, nil, nil)
       local pos = unit:GetAbsOrigin()
@@ -353,25 +353,26 @@ end
     --local genuine_barrier = target:FindModifierByName("genuine_5_modifier_barrier")
     --if genuine_barrier then genuine_barrier:UpdateBarrier(amount, false) end
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, amount, nil)
+    return amount
   end
 
-  function ReduceMana(target, ability, amount, bMessage, bAncientException)
+  function ReduceMana(target, ability, amount, bMessage, isManaPercent)
     if amount <= 0 then return end
 
-    if target:HasModifier("ancient_u_modifier_passive")
-    and bAncientException == false then
+    if target:HasModifier("ancient_u_modifier_passive") and isManaPercent == false then
       amount = math.floor(amount / 3)
     end
 
     target:Script_ReduceMana(amount, ability)
     if bMessage then SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, amount, nil) end
+    return amount
   end
 
   function StealMana(target, inflictor, ability, amount, bAncientException)
     if amount > target:GetMana() then amount = target:GetMana() end
 
     ReduceMana(target, ability, amount, true, bAncientException)
-    IncreaseMana(inflictor, amount)
+    return IncreaseMana(inflictor, amount)
   end
 
 -- COSMETICS
@@ -456,4 +457,12 @@ end
       end
 		end
 	end
+
+  function IsAbilityCastable(ability)
+    if ability == nil then return false end
+    if ability:IsTrained() == false then return false end
+    if ability:IsActivated() == false then return false end
+    if ability:IsFullyCastable() == false then return false end
+    return true
+  end
 

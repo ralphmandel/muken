@@ -47,12 +47,12 @@ function _modifier_neutral_spider:OnIntervalThink()
 	if self.parent:IsStunned() then return end
 	if self.parent:IsDominated() then return end
 
-	if randomfloat(0, 100) < 25 then
+	if RandomFloat(0, 100) < 25 then
 		self:TryCast_Skill_1(target)
 		return
 	end
 
-	if randomfloat(0, 100) < 25 then
+	if RandomFloat(0, 100) < 25 then
 		self:TryCast_Skill_2(target)
 		return
 	end

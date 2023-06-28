@@ -6,7 +6,7 @@ end
 function Spawner:SpawnFountains()
   if self.start == nil then
     for i = 1, #TEAMS, 1 do
-      local loc = GetGroundPosition(TEAMS[i]["spawn"], nil)
+      local loc = GetGroundPosition(TEAMS[i]["fountain_origin"], nil)
       local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, TEAMS[i][1])
       fountain:SetOrigin(loc)
       FindClearSpaceForUnit(fountain, loc, true)
@@ -149,7 +149,7 @@ function Spawner:RandomizePlayerSpawn(unit)
 
   for i = 1, #TEAMS, 1 do
 		if TEAMS[i][1] == unit:GetTeamNumber() then
-			loc = TEAMS[i]["spawn"]
+			loc = TEAMS[i]["team_origin"]
 		end
 	end
 

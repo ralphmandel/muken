@@ -13,6 +13,10 @@ function druid_2_modifier_armor:OnCreated(kv)
   AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
   AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
 
+  if self.ability:GetSpecialValueFor("special_purge") == 1 then
+    self.parent:Purge(false, true, false, true, false)
+  end
+
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -21,6 +25,10 @@ function druid_2_modifier_armor:OnRefresh(kv)
   RemoveBonus(self.ability, "_2_RES", self.parent)
   AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
   AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
+
+  if self.ability:GetSpecialValueFor("special_purge") == 1 then
+    self.parent:Purge(false, true, false, true, false)
+  end
 end
 
 function druid_2_modifier_armor:OnRemoved()

@@ -102,7 +102,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bocuse_2__flambee_rank_32") then
-			if value_name == "special_purge_enemies" then return 1 end
+			if value_name == "special_stun_duration" then return 1 end
 		end
 
 		if caster:FindAbilityByName("bocuse_2__flambee_rank_41") then
@@ -313,7 +313,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "mana" then return 30 end
     if value_name == "damage" then return 40 end
     if value_name == "special_purge_allies" then return 1 end
-    if value_name == "special_purge_enemies" then return 1 end
+    if value_name == "special_stun_duration" then return 3 end
     if value_name == "special_second_flask" then return 1 end
     if value_name == "duration" then return 15 end
     if value_name == "cast_range" then return 0 end

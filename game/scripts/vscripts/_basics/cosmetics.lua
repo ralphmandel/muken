@@ -73,7 +73,7 @@ end
 		end
 
 		if IsInToolsMode() then
-			self:ChangeTeam(self:GetCaster():GetTeamNumber())
+			--self:ChangeTeam(self:GetCaster():GetTeamNumber())
 		end
 	end
 

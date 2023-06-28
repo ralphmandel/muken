@@ -70,7 +70,7 @@ function _boss_gorillaz_modifier_passive:OnIntervalThink()
 end
 
 function _boss_gorillaz_modifier_passive:RandomizeTarget()
-	if randomfloat(0, 100) >= 15 then return false end
+	if RandomFloat(0, 100) >= 15 then return false end
 	local mod_ai = self.parent:FindModifierByName("_boss_modifier__ai")
 	if mod_ai == nil then return false end
 
@@ -98,7 +98,7 @@ function _boss_gorillaz_modifier_passive:TryCast_Skill_1()
 	if ability:IsTrained() == false then return false end
 	if ability:IsCooldownReady() == false then return false end
 	if ability:IsOwnersManaEnough() == false then return false end
-	if randomfloat(0, 100) >= 30 then return false end
+	if RandomFloat(0, 100) >= 30 then return false end
 
 	self.parent:CastAbilityNoTarget(ability, -1)
   return true

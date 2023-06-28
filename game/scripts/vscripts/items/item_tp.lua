@@ -54,7 +54,7 @@ end
 function item_tp:RandomizePlayerSpawn(unit)
 	for i = 1, #TEAMS, 1 do
 		if TEAMS[i][1] == unit:GetTeamNumber() then
-			return TEAMS[i]["spawn"]
+			return TEAMS[i]["team_origin"]
 		end
 	end
 	-- unit:SetOrigin(further_loc)

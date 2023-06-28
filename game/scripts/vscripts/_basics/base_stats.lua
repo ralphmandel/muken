@@ -63,7 +63,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:AddManaExtra(ability)
       local caster = self:GetCaster()
-      if caster:IsIllusion() or caster:IsHero() == false then return end
+      if caster:IsHero() == false then return end
 
       local hero_name = GetHeroName(self:GetCaster())
       local hero_team = GetHeroTeam(self:GetCaster())

@@ -33,78 +33,22 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"		  "60"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"2"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"proj_speed"	"600"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"atk_range"		"1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_lck"	            "0"
-			}
-      "18"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_silence_duration""0"
-			}
-      "19"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_fear_chance"	    "0"
-			}
-      "20"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_fear_duration"	  "0"
-			}
-      "21"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_spell_lifesteal"	"0"
-			}
-      "22"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_combo"  "0"
-			}
-      "23"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_damage"	"0"
-			}
-      "24"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_radius"	"0"
-			}
-      "25"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_delay"	"0"
-			}
+      "damage"		              "60"
+      "proj_speed"	            "600"
+      "atk_range"		            "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_lck"	            "0"
+      "special_mana_steal"	    "0"
+      "special_silence_duration""0"
+      "special_fear_chance"	    "0"
+      "special_fear_duration"	  "0"
+      "special_spell_lifesteal"	"0"
+      "special_starfall_combo"  "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
 		}
 	}
 
@@ -128,68 +72,20 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"speed"		      "1000"
-			}
-      "02"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"radius"		    "250"
-			}
-      "03"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"distance"		  "500"
-			}
-      "04"
-			{
-				"var_type"	    "FIELD_FLOAT"
-				"fear_duration" "3"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_slow"        "0"
-			}
-      "17"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_invi_break"  "0"
-			}
-      "18"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_purge_enemy" "0"
-			}
-      "19"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_purge_ally"  "0"
-			}
-      "20"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_wide"        "0"
-			}
-      "21"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_damage"      "0"
-			}
-      "22"
-			{
-				"var_type"	          "FIELD_FLOAT"
-				"special_heal"        "0"
-			}
+      "speed"		            "1000"
+      "radius"		          "250"
+      "distance"		        "500"
+      "fear_duration"       "3"
+      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+      "special_slow"        "0"
+      "special_invi_break"  "0"
+      "special_manaburn"    "0"
+      "special_purge_ally"  "0"
+      "special_wide"        "0"
+      "special_damage"      "0"
+      "special_heal"        "0"
 		}
 	}
 
@@ -209,83 +105,23 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.1"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"30"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"int"		      "10"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"		      "15"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"ms"		      "75"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_count"  "0"
-			}
-      "17"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_track_duration"	"0"
-			}
-      "18"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_rec"		          "0"
-			}
-      "19"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_ms_night"        "0"
-			}
-      "20"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_strike_damage"   "0"
-			}
-      "21"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_strike_radius"   "0"
-			}
-      "22"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_int_allies"		  "0"
-			}
-      "23"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_damage"	"0"
-			}
-      "24"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_radius"	"0"
-			}
-      "25"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_delay"	"0"
-			}
+      "duration"		            "30"
+      "int"		                  "10"
+      "agi"		                  "15"
+      "ms"		                  "75"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_starfall_count"  "0"
+      "special_track_duration"	"0"
+      "special_rec"		          "0"
+      "special_ms_night"        "0"
+      "special_strike_damage"   "0"
+      "special_strike_radius"   "0"
+      "special_int_allies"		  "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
 		}
 	}
 
@@ -308,73 +144,21 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
     "AbilityCastPoint"				  "0"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"damage_reduction"	"20"
-			}
-			"02"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"arrow_width"			  "125"
-			}
-			"03"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"arrow_range"			  "3500"
-			}
-			"04"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"arrow_speed"			  "2500"
-			}
-			"05"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"tree_width"			  "75"
-			}
-			"06"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"vision_radius"			"400"
-			}
-			"07"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"vision_duration"		"3.34"
-			}
-      "08"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"channel_time"		  "5"
-			}
-      "09"
-			{
-				"var_type"				  "FIELD_FLOAT"
-				"damage"		        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"				    "FIELD_FLOAT"
-				"special_mana"	      "0"
-			}
-      "17"
-			{
-				"var_type"				    "FIELD_FLOAT"
-				"special_bash_power"	"0"
-			}
-      "18"
-			{
-				"var_type"				    "FIELD_FLOAT"
-				"special_pure_dmg"	  "0"
-			}
+      "damage_reduction"	"20"
+      "arrow_width"			  "125"
+      "arrow_range"			  "3500"
+      "arrow_speed"			  "2500"
+      "tree_width"			  "75"
+      "vision_radius"			"400"
+      "vision_duration"		"3.34"
+      "channel_time"		  "5"
+      "damage"		        "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
+      "special_mana"	      "0"
+      "special_bash_power"	"0"
+      "special_pure_dmg"	  "0"
 		}
 	}
 
@@ -390,53 +174,17 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_barrier"	    "100"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"barrier_regen" 	"2"
-			}
-      "15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_hp_regen" 	  "0"
-			}
-      "17"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_universal" 	"0"
-			}
-      "18"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_invi" 	      "0"
-			}
-      "19"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_linkens" 	  "0"
-			}
-      "20"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_fly_vision" 	"0"
-			}
-			"21"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_night_vision""0"
-			}
+      "max_barrier"	        "100"
+      "barrier_regen" 	    "2"
+      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+      "special_hp_regen" 	  "0"
+      "special_universal" 	"0"
+      "special_invi" 	      "0"
+      "special_linkens" 	  "0"
+      "special_fly_vision" 	"0"
+      "special_night_vision""0"
 		}
 	}
 
@@ -459,83 +207,23 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"cast_range"	    "400"
-			}
-      "02"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"duration"			  "8"
-			}
-      "03"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"duration_night"	"12"
-			}
-      "04"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"night_vision"	  "-200"
-			}
-      "05"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"mana_steal"	    "30"
-			}
-			"15"
-			{
-				"var_type"			  "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"			      "FIELD_FLOAT"
-				"special_reset"	      "0"
-			}
-      "17"
-			{
-				"var_type"			      "FIELD_FLOAT"
-				"special_swap"	      "0"
-			}
-      "18"
-			{
-				"var_type"			      "FIELD_FLOAT"
-				"special_day_vision"	"0"
-			}
-      "19"
-			{
-				"var_type"			      "FIELD_FLOAT"
-				"special_slow"	      "0"
-			}
-      "20"
-			{
-				"var_type"			      "FIELD_FLOAT"
-				"special_starfall"	  "0"
-			}
-      "21"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_damage"	"0"
-			}
-      "22"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_radius"	"0"
-			}
-      "23"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_delay"	"0"
-			}
-      "24"
-			{
-				"var_type"			          "FIELD_FLOAT"
-				"special_interval"	      "0"
-			}
+      "cast_range"	            "400"
+      "duration"			          "8"
+      "duration_night"	        "12"
+      "night_vision"	          "200"
+      "mana_steal"	            "30"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_reset"	          "0"
+      "special_swap"	          "0"
+      "special_day_vision"	    "0"
+      "special_slow"	          "0"
+      "special_starfall"	      "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
+      "special_interval"	      "0"
 		}
 	}
 

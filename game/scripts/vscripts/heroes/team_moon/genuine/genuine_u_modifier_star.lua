@@ -84,6 +84,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function genuine_u_modifier_star:ExchangeMana()
+  local genuine_barrier = self.caster:FindModifierByName("genuine_5_modifier_barrier")
+
   if self.ability:GetSpecialValueFor("special_swap") == 1 then
     if self.parent:GetMaxMana() > 0 then
       local target_mana = self.parent:GetMana()
@@ -95,14 +97,16 @@ function genuine_u_modifier_star:ExchangeMana()
       local mana_deficit = self.caster:GetMaxMana() - caster_mana
       if diff_mana > mana_deficit then diff_mana = mana_deficit end
       if diff_mana > 0 then
-        local genuine_barrier = self.caster:FindModifierByName("genuine_5_modifier_barrier")
-        if genuine_barrier then genuine_barrier:UpdateBarrier(diff_mana, false) end
+        if genuine_barrier then
+          genuine_barrier:UpdateBarrier(diff_mana, false)
+        end
       end
     end
     return
   end
   
   local mana_steal = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_steal") * 0.01
+  if genuine_barrier then genuine_barrier:UpdateBarrier(mana_steal, false) end
   StealMana(self.parent, self.caster, self.ability, mana_steal, false)
 end
 

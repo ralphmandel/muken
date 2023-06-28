@@ -1,5 +1,6 @@
 base_hero = class ({})
 LinkLuaModifier("base_hero_mod", "_basics/base_hero_mod", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("general_script", "_bot_scripts/general_script", LUA_MODIFIER_MOTION_NONE)
 require("internal/talent_tree")
 
 -- ABILITY FUNCTIONS
@@ -56,16 +57,6 @@ require("internal/talent_tree")
 	function base_hero:CheckAbilityPoints(points)
 		local caster = self:GetCaster()
 
-		if self.skill_points == nil then
-			self.skill_points = 3
-			if self.hero_name == "fleaman" then self.skill_points = 2 end
-			if self.hero_name == "bloodstained" then self.skill_points = 2 end
-      if self.hero_name == "lawbreaker" then self.skill_points = 2 end
-			if self.hero_name == "icebreaker" then self.skill_points = 2 end
-			if self.hero_name == "genuine" then self.skill_points = 1 end
-      if self.hero_name == "ancient" then self.skill_points = 1 end
-		end
-
 		self.skill_points = self.skill_points + points
 		caster:SetAbilityPoints(self.skill_points)
 
@@ -83,6 +74,16 @@ require("internal/talent_tree")
 	function base_hero:LoadHeroesData()
     self.hero_name = GetHeroName(self:GetCaster())
     self.hero_team = GetHeroTeam(self:GetCaster())
+
+    if self.skill_points == nil then
+			self.skill_points = 3
+			if self.hero_name == "fleaman" then self.skill_points = 2 end
+			if self.hero_name == "bloodstained" then self.skill_points = 2 end
+      if self.hero_name == "lawbreaker" then self.skill_points = 2 end
+			if self.hero_name == "icebreaker" then self.skill_points = 2 end
+			if self.hero_name == "genuine" then self.skill_points = 1 end
+      if self.hero_name == "ancient" then self.skill_points = 1 end
+		end
 	end
 	
 	function base_hero:ResetRanksData()

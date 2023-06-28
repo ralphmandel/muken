@@ -159,19 +159,24 @@
       "16"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_res"	          "0"
+				"special_purge"	        "0"
 			}
       "17"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_root_chance"	  "0"
+				"special_res"	          "0"
 			}
       "18"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_root_duration"	"0"
+				"special_root_chance"	  "0"
 			}
       "19"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_root_duration"	"0"
+			}
+      "20"
 			{
 				"var_type"		          "FIELD_FLOAT"
 				"special_radius"	      "0"

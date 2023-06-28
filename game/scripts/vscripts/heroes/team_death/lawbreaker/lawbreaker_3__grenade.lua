@@ -76,7 +76,7 @@ LinkLuaModifier("_modifier_blind_stack", "_modifiers/_modifier_blind_stack", LUA
     if target then
       if target:IsMagicImmune() == false then
         AddModifier(target, caster, self, "lawbreaker_3_modifier_grenade", {
-          duration = self:GetSpecialValueFor("duration")
+          duration = 2
         }, true)
       end
     else

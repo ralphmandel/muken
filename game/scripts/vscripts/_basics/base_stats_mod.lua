@@ -214,6 +214,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierPercentageManacost(keys)
+    if self:GetParent():IsHero() == false then return 0 end
     return 100 - (100 / (self:GetAbility():GetLevel() * 0.5))
   end
 

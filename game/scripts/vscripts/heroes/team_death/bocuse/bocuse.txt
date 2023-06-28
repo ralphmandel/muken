@@ -197,7 +197,7 @@
       "17"
 			{
 				"var_type"		          "FIELD_FLOAT"
-				"special_purge_enemies" "0"
+				"special_stun_duration" "0"
 			}
       "18"
 			{

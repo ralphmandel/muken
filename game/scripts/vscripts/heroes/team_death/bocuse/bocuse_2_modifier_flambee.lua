@@ -26,9 +26,14 @@ end
 
 function bocuse_2_modifier_flambee:OnRemoved()
   RemoveStatusEfx(self.ability, "bocuse_2_modifier_flambee_status_efx", self.caster, self.parent)
-
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
+
+  if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {
+      duration = self.ability:GetSpecialValueFor("special_stun_duration")
+    }, true)
+  end
 
 	if IsServer() then self.parent:StopSound("Bocuse.Flambee.Buff") end
 end
@@ -74,10 +79,6 @@ end
 
 function bocuse_2_modifier_flambee:ApplyDebuffs()
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
-
-	if self.ability:GetSpecialValueFor("special_purge_enemies") == 1 then
-		self.parent:Purge(true, false, false, false, false)
-	end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
   AddModifier(self.parent, self.caster, self.ability, "_modifier_blind", {

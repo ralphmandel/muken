@@ -288,8 +288,8 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 500 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 100 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "vision_range" then return 150 + (value_level * 10) end
-		if value_name == "atk_range" then return 150 + (value_level * 10) end
+		if value_name == "vision_range" then return 100 + (value_level * 10) end
+		if value_name == "atk_range" then return 100 + (value_level * 10) end
 	end
 
 	return 0

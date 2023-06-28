@@ -36,8 +36,8 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local caster = self:GetCaster()
     if IsServer() then keys.target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
-    if keys.target:HasModifier("genuine_u_modifier_star") then
-      local mana_steal = keys.target:GetMaxMana() * self:GetSpecialValueFor("mana_steal") * 0.01
+    if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
+      local mana_steal = keys.target:GetMaxMana() * self:GetSpecialValueFor("special_mana_steal") * 0.01
       StealMana(keys.target, caster, self, mana_steal, true)
     end
 

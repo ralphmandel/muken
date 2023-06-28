@@ -70,7 +70,7 @@ function genuine_5_modifier_barrier:GetModifierIncomingSpellDamageConstant(keys)
     self.barrier = 0
   end
 
-  self:UpdateBarrier(0, true)
+  self:UpdateBarrier(0, false)
 
   return -damage
 end
@@ -90,7 +90,7 @@ function genuine_5_modifier_barrier:GetModifierIncomingDamageConstant(keys)
     self.barrier = 0
   end
 
-  self:UpdateBarrier(0, true)
+  self:UpdateBarrier(0, false)
 
   return -damage
 end
@@ -127,7 +127,7 @@ end
 function genuine_5_modifier_barrier:UpdateBarrier(value, isRegen)
   if self.barrier + value > self.max_barrier then value = self.max_barrier - self.barrier end
 
-  if isRegen == false and self.ability:GetSpecialValueFor("special_hp_regen") == 1 then
+  if isRegen == true and self.ability:GetSpecialValueFor("special_hp_regen") == 1 then
     self.parent:ModifyHealth(self.parent:GetHealth() + value, self.ability, false, 0)
   end
 

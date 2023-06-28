@@ -63,20 +63,16 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
 
     if hTarget:GetTeamNumber() == caster:GetTeamNumber() then
       local purge_ally = self:GetSpecialValueFor("special_purge_ally")
-      local heal = hTarget:GetMaxHealth() * self:GetSpecialValueFor("special_heal") * 0.01
-
       if purge_ally == 1 then hTarget:Purge(false, true, false, true, false) end
+
+      local heal = hTarget:GetMaxHealth() * self:GetSpecialValueFor("special_heal") * 0.01
       if heal > 0 then hTarget:Heal(heal, self) end
-      return
-    end
-
-    if self:GetSpecialValueFor("special_purge_enemy") == 1 then
-      hTarget:Purge(true, false, false, false, false)
-    end
-
-    AddModifier(hTarget, caster, self, "genuine_2_modifier_fallen", {
-      duration = self:GetSpecialValueFor("fear_duration")
-    }, true)		
+    else
+      ReduceMana(hTarget, self, self:GetSpecialValueFor("special_manaburn"), true, false)
+      AddModifier(hTarget, caster, self, "genuine_2_modifier_fallen", {
+        duration = self:GetSpecialValueFor("fear_duration")
+      }, true)	
+    end	
 	end
 
 -- EFFECTS

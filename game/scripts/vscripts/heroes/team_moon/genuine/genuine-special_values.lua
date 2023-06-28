@@ -55,7 +55,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("genuine_1__shooting_rank_22") then
-      if value_name == "mana_steal" then return 1 end
+      if value_name == "special_mana_steal" then return 1 end
 		end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_31") then
@@ -93,7 +93,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_21") then
-      if value_name == "special_purge_enemy" then return 1 end
+      if value_name == "special_manaburn" then return 1 end
 		end
 
     if caster:FindAbilityByName("genuine_2__fallen_rank_22") then
@@ -318,8 +318,8 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "damage" then return 70 end
     if value_name == "proj_speed" then return 1200 end
-    if value_name == "special_lck" then return 10 end
-    if value_name == "mana_steal" then return 3 end
+    if value_name == "special_lck" then return 5 end
+    if value_name == "special_mana_steal" then return 1 end
     if value_name == "special_silence_duration" then return 3 end
     if value_name == "special_fear_chance" then return 12 end
     if value_name == "special_fear_duration" then return 1 end
@@ -334,7 +334,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "special_slow" then return 75 end
     if value_name == "special_invi_break" then return 1 end
-    if value_name == "special_purge_enemy" then return 1 end
+    if value_name == "special_manaburn" then return 100 end
     if value_name == "special_purge_ally" then return 1 end
     if value_name == "fear_duration" then return 4 end
     if value_name == "special_wide" then return 1 end
