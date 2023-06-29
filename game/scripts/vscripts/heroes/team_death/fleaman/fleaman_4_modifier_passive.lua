@@ -9,6 +9,9 @@ function fleaman_4_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+
+  -- local calc = 200 * (math.sin(math.rad(-30)))
+  -- print("atan", calc)
 end
 
 function fleaman_4_modifier_passive:OnRefresh(kv)

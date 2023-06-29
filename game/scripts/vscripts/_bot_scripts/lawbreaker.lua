@@ -10,10 +10,10 @@ function lawbreaker:TrySpell(caster, target)
   self.script = caster:FindModifierByName("general_script")
 
   local abilities_actions = {
-    [1] = self.TryCast_Combo,
-    [2] = self.TryCast_Grenade,
-    [3] = self.TryCast_Rain,
-    [4] = self.TryCast_Blink,
+    [1] = self.TryCast_Blink,
+    [2] = self.TryCast_Combo,
+    [3] = self.TryCast_Grenade,
+    [4] = self.TryCast_Rain,
     [5] = self.TryCast_Form
   }
 
@@ -24,6 +24,26 @@ function lawbreaker:TrySpell(caster, target)
   end
 
   return cast
+end
+
+function lawbreaker:TryCast_Blink()
+  local ability = self.caster:FindAbilityByName("lawbreaker_5__blink")
+  if IsAbilityCastable(ability) == false then return false end
+
+  local vDest = self.target:GetOrigin()
+  local min_distance = self.caster:Script_GetAttackRange()
+
+  local mod = self.caster:FindModifierByName("lawbreaker_2_modifier_combo")
+  if mod then
+    vDest = mod:CalcPosition(self.target) or vDest
+    min_distance = 250
+  end
+
+  if (vDest - self.caster:GetOrigin()):Length2D() <= min_distance then return false end
+
+  self.caster:CastAbilityOnPosition(vDest, ability, self.caster:GetPlayerOwnerID())
+
+  return true
 end
 
 function lawbreaker:TryCast_Combo()
@@ -71,24 +91,28 @@ function lawbreaker:TryCast_Rain()
   return true
 end
 
-function lawbreaker:TryCast_Blink()
-  local ability = self.caster:FindAbilityByName("lawbreaker_5__blink")
+function lawbreaker:TryCast_Form()
+  local ability = self.caster:FindAbilityByName("lawbreaker_u__form")
   if IsAbilityCastable(ability) == false then return false end
 
-  local distance_diff = CalcDistanceBetweenEntityOBB(self.target, self.parent)
-  local vDest = self.target:GetOrigin()
+  local total_targets = 0
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+  )
 
-  
-  if distance_diff <= self.parent:Script_GetAttackRange() then return false end
+  for _,enemy in pairs(enemies) do
+    if enemy ~= self.target then
+      total_targets = total_targets + 1
+    end
+  end
 
-  self.caster:CastAbilityOnPosition(vDest, ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
+  if total_targets == 0 then return false end
+
+  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 
   return true
-end
-
-function lawbreaker:TryCast_Form()
-  return false
 end
 
 function lawbreaker:RandomizeValue(ability, value_name)

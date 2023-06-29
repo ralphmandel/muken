@@ -194,13 +194,13 @@ require("internal/talent_tree")
 			end
 		end
 		
-		local loclenght = 1
+		local loclength = 1
 		local locarr = {}
 		table.sort(self.rows)
 		for i = 1, #self.rows do
 			if locarr[self.rows[i]] == nil then
-				locarr[self.rows[i]] = loclenght
-				loclenght = loclenght + 1
+				locarr[self.rows[i]] = loclength
+				loclength = loclength + 1
 			end
 		end
 

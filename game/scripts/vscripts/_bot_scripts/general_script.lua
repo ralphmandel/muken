@@ -43,6 +43,7 @@ function general_script:OnCreated(params)
       [BOT_STATE_FARMING] = self.FarmingThink,
     }
 
+    self.parent:AddExperience(300, 0, false, false)
     self:StartIntervalThink(self.interval)
   end
 end
@@ -50,8 +51,6 @@ end
 function general_script:OnIntervalThink()
   self.stateActions[self.state](self)
   self:ConsumeAbilityPoint()
-
-  print("kubo", self.interval)
 
   if IsServer() then self:StartIntervalThink(self.interval) end
 end

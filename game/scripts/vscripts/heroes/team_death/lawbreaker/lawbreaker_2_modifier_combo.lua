@@ -88,8 +88,8 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
   local spawn_origin = self.parent:GetOrigin() + cross
 
   if self.bot_script then
-    local pos = self:CalcPosition(self.bot_script.attack_target)
-    if pos then self.parent:MoveToPosition(pos) end
+    local vDest = self:CalcPosition(self.bot_script.attack_target)
+    if vDest then self.parent:MoveToPosition(vDest) end
   end
 
   ProjectileManager:CreateLinearProjectile({
@@ -135,26 +135,23 @@ function lawbreaker_2_modifier_combo:CalcPosition(target)
   if IsValidEntity(target) == false then return end
   if self.parent:CanEntityBeSeenByMyTeam(target) == false then return end
 
-  local vDest = self.parent:GetOrigin()
-  local direction = target:GetOrigin() - self.parent:GetOrigin() -- CASE 1: BACKING
+  local direction = target:GetOrigin() - self.parent:GetOrigin()
   local angle = VectorToAngles(direction)
   local angle_diff = AngleDiff(self.parent:GetAngles().y, angle.y)
   local distance_diff = CalcDistanceBetweenEntityOBB(target, self.parent)
+  local atk_range = self.parent:Script_GetAttackRange() - 100
+  local vDest = target:GetOrigin()
 
-  local side = 0
-  if angle_diff > 0 then side = 1 end
-  if angle_diff < 0 then side = -1 end
-
-  if distance_diff > 150 and angle_diff > -80 and angle_diff < 80 then
-    direction = self.parent:GetForwardVector():Normalized() -- CASE 2: SIDE
-  end
-
-  vDest = vDest + CrossVectors(direction, Vector(0, 0, 1)):Normalized() * 300 * side
-
-  if distance_diff > self.parent:Script_GetAttackRange() - 100 then
-    vDest = target:GetOrigin() -- CASE 3: FOLLOW
-  else
+  if distance_diff <= atk_range then
     if angle_diff >= -5 and angle_diff <= 5 then return end
+    direction = self.parent:GetForwardVector():Normalized()
+
+    if distance_diff > 150 and angle_diff > -75 and angle_diff < 75 then
+      local pos_mult = distance_diff * (math.sin(math.rad(angle_diff)))
+      vDest = self.parent:GetOrigin() + CrossVectors(direction, Vector(0, 0, 1)):Normalized() * pos_mult
+    else
+      vDest = target:GetOrigin() - direction * 200
+    end
   end
 
   return vDest
