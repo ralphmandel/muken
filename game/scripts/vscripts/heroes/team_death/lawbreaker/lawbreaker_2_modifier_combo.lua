@@ -87,7 +87,10 @@ function lawbreaker_2_modifier_combo:OnIntervalThink()
   local cross = CrossVectors(self.parent:GetOrigin() - point, Vector(0, 0, 1)):Normalized() * self.spawn_shot[self.type]
   local spawn_origin = self.parent:GetOrigin() + cross
 
-  self:CalcPosition()
+  if self.bot_script then
+    local pos = self:CalcPosition(self.bot_script.attack_target)
+    if pos then self.parent:MoveToPosition(pos) end
+  end
 
   ProjectileManager:CreateLinearProjectile({
     Source = self.parent,
@@ -127,15 +130,13 @@ function lawbreaker_2_modifier_combo:GetAS()
   return attack_speed / 100 * BaseStats(self.parent):GetSpecialValueFor("base_attack_time")
 end
 
-function lawbreaker_2_modifier_combo:CalcPosition()
-  if self.bot_script == nil then return end
-  local target = self.bot_script.attack_target
+function lawbreaker_2_modifier_combo:CalcPosition(target)
   if target == nil then return end
   if IsValidEntity(target) == false then return end
   if self.parent:CanEntityBeSeenByMyTeam(target) == false then return end
 
   local vDest = self.parent:GetOrigin()
-  local direction = target:GetOrigin() - self.parent:GetOrigin()
+  local direction = target:GetOrigin() - self.parent:GetOrigin() -- CASE 1: BACKING
   local angle = VectorToAngles(direction)
   local angle_diff = AngleDiff(self.parent:GetAngles().y, angle.y)
   local distance_diff = CalcDistanceBetweenEntityOBB(target, self.parent)
@@ -144,14 +145,19 @@ function lawbreaker_2_modifier_combo:CalcPosition()
   if angle_diff > 0 then side = 1 end
   if angle_diff < 0 then side = -1 end
 
-  if distance_diff > 150 and angle_diff > -80 and angle_diff < 80 then direction = self.parent:GetForwardVector():Normalized() end
+  if distance_diff > 150 and angle_diff > -80 and angle_diff < 80 then
+    direction = self.parent:GetForwardVector():Normalized() -- CASE 2: SIDE
+  end
+
   vDest = vDest + CrossVectors(direction, Vector(0, 0, 1)):Normalized() * 300 * side
 
   if distance_diff > self.parent:Script_GetAttackRange() - 100 then
-    vDest = target:GetOrigin()
+    vDest = target:GetOrigin() -- CASE 3: FOLLOW
+  else
+    if angle_diff >= -5 and angle_diff <= 5 then return end
   end
 
-  self.parent:MoveToPosition(vDest)
+  return vDest
 end
 
 -- EFFECTS -----------------------------------------------------------
