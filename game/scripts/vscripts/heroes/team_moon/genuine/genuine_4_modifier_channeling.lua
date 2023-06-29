@@ -10,6 +10,8 @@ function genuine_4_modifier_channeling:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+  self.bot_script = self.parent:FindModifierByName("general_script")
+
   if IsServer() then self:StartIntervalThink(0.1) end
 end
 
@@ -36,10 +38,29 @@ function genuine_4_modifier_channeling:GetModifierConstantManaRegen()
 end
 
 function genuine_4_modifier_channeling:OnIntervalThink()
+  if self.bot_script then
+    if self:CheckTargetPos(self.bot_script.attack_target) == false then self.ability:EndChannel(false) end
+  end
+
   if self.parent:GetMana() < 10 then self:Destroy() return end
   if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function genuine_4_modifier_channeling:CheckTargetPos(target)
+  if target == nil then return false end
+  if IsValidEntity(target) == false then return false end
+  if self.parent:CanEntityBeSeenByMyTeam(target) == false then return false end
+
+  local angle = VectorToAngles(target:GetOrigin() - self.parent:GetOrigin())
+  local angle_diff = AngleDiff(self.parent:GetAngles().y, angle.y)
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.parent, target)
+  local moved_distance = distance_diff * (math.sin(math.rad(angle_diff)))
+  if moved_distance < 0 then moved_distance = 0 - moved_distance end
+  if moved_distance > 50 then self.ability:EndChannel(false) end
+
+  return true
+end
 
 -- EFFECTS -----------------------------------------------------------

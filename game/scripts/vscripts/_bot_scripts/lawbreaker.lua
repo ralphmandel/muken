@@ -1,5 +1,6 @@
 if not lawbreaker then
 	lawbreaker = {}
+  lawbreaker.values = {}
   lawbreaker.random_values = {}
 end
 
@@ -8,6 +9,8 @@ function lawbreaker:TrySpell(caster, target)
   self.caster = caster
   self.target = target
   self.script = caster:FindModifierByName("general_script")
+
+  if self.caster:IsCommandRestricted() then return cast end
 
   local abilities_actions = {
     [1] = self.TryCast_Blink,
@@ -72,7 +75,6 @@ end
 function lawbreaker:TryCast_Grenade()
   local ability = self.caster:FindAbilityByName("lawbreaker_3__grenade")
   if IsAbilityCastable(ability) == false then return false end
-  if CalcDistanceBetweenEntityOBB(self.caster, self.target) > ability:GetCastRange(self.caster:GetOrigin(), self.target) then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
   self.script.interval = ability:GetCastPoint() + 0.5
@@ -83,7 +85,6 @@ end
 function lawbreaker:TryCast_Rain()
   local ability = self.caster:FindAbilityByName("lawbreaker_4__rain")
   if IsAbilityCastable(ability) == false then return false end
-  if CalcDistanceBetweenEntityOBB(self.caster, self.target) > ability:GetCastRange(self.caster:GetOrigin(), self.target) then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
   self.script.interval = ability:GetCastPoint() + 0.5

@@ -20,7 +20,6 @@ function _modifier_forced_night:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-  print("kubo", self.parent:GetClassname())
   UpdateForcedTime()
 end
 

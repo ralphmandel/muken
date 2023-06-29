@@ -38,7 +38,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 		function base_stats:OnHeroLevelUp()
 			if IsServer() then
-        print("kubo lv", self:GetLevel())
 				local caster = self:GetCaster()
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end

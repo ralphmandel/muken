@@ -1,5 +1,6 @@
 general_script = class({})
 local lawbreaker = require("_bot_scripts/lawbreaker")
+local genuine = require("_bot_scripts/genuine")
 
 local BOT_STATE_IDLE = 0
 local BOT_STATE_AGGRESSIVE = 1
@@ -19,6 +20,10 @@ local TARGET_PRIORITY_HERO = 1
 local TARGET_PRIORITY_UNITS = 2
 local TARGET_PRIORITY_NEUTRALS = 3
 
+local TARGET_HUNTING_MAX_TIME = 15
+
+local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
+
 function general_script:IsPurgable() return false end
 function general_script:IsHidden() return true end
 function general_script:RemoveOnDeath() return false end
@@ -30,8 +35,10 @@ function general_script:OnCreated(params)
     self.ability = self:GetAbility()
 
     self.state = BOT_STATE_AGGRESSIVE
-    self.order_point = Vector(0, 0, 0)
+    self.order_point = LOCATION_MAIN_ARENA
     self.attack_target = nil
+    self.target_last_loc = nil
+    self.hunt_time = nil
     self.interval = INIT_THINK_INTERVAL
 
     self.abilityScript = self:LoadAbilityScript()
@@ -63,18 +70,37 @@ end
 function general_script:AggressiveThink()
   local target_state = self:CheckTargetState(self.attack_target)
 
+  if target_state ~= TARGET_STATE_MISSING then
+    self.order_point = LOCATION_MAIN_ARENA
+    self.hunt_time = nil
+  end
+
   if target_state == TARGET_STATE_VISIBLE then
+    self.target_last_loc = self.attack_target:GetOrigin()
+
     if self.abilityScript:TrySpell(self.caster, self.attack_target) == false then
-      self.parent:MoveToTargetToAttack(self.attack_target)
+      self:MoveBotTo("attack_target", self.attack_target)
       self.interval = DEFAULT_THINK_INTERVAL
     end
-  elseif target_state == TARGET_STATE_MISSING and self.interval ~= SEARCH_THINK_INTERVAL then
-    self.interval = SEARCH_THINK_INTERVAL
+
+  elseif target_state == TARGET_STATE_MISSING then
+    if self.hunt_time == nil then self.hunt_time = GameRules:GetGameTime() end
+    self.order_point = self.target_last_loc
+    self:MoveBotTo("location", self.order_point)
+
+    if (self.order_point - self.parent:GetOrigin()):Length2D() <= 100
+    or GameRules:GetGameTime() - self.hunt_time > TARGET_HUNTING_MAX_TIME then
+      self.attack_target = nil
+      self.hunt_time = nil
+    end
+    
+    self.interval = DEFAULT_THINK_INTERVAL
+    
   else
     self.attack_target = self:FindNewTarget(
       self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
     )
-    if self.attack_target == nil then self.parent:MoveToPosition(self.order_point) end
+    if self.attack_target == nil then self:MoveBotTo("location", self.order_point) end
     self.interval = DEFAULT_THINK_INTERVAL
   end
 end
@@ -91,6 +117,14 @@ function general_script:CheckTargetState(target)
   if self.parent:CanEntityBeSeenByMyTeam(target) == false then return TARGET_STATE_MISSING end
 
   return TARGET_STATE_VISIBLE
+end
+
+function general_script:MoveBotTo(command, handle)
+  if self.parent:IsCommandRestricted() then return end
+  if handle == nil then return end
+
+  if command == "attack_target" then self.parent:MoveToTargetToAttack(handle) end
+  if command == "location" then self.parent:MoveToPosition(handle) end
 end
 
 function general_script:FindNewTarget(loc, radius, priority, find_order)
@@ -122,8 +156,8 @@ function general_script:FindNewTarget(loc, radius, priority, find_order)
 end
 
 function general_script:LoadAbilityScript()
-  return lawbreaker
-  --if GetHeroName(self.parent) == "lawbreaker" then return lawbreaker end
+  if GetHeroName(self.parent) == "lawbreaker" then return lawbreaker end
+  if GetHeroName(self.parent) == "genuine" then return genuine end
 end
 
 function general_script:ConsumeAbilityPoint()

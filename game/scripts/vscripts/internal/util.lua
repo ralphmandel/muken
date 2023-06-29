@@ -461,6 +461,7 @@ end
   function IsAbilityCastable(ability)
     if ability == nil then return false end
     if ability:IsTrained() == false then return false end
+    if ability:IsChanneling() == true then return true end
     if ability:IsActivated() == false then return false end
     if ability:IsFullyCastable() == false then return false end
     return true

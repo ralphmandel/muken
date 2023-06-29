@@ -19,10 +19,10 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
   local hero_index = 1
   local hero_list = {
-    [1] = "npc_dota_hero_drow_ranger",
-    [2] = "npc_dota_hero_riki",
+    [1] = "npc_dota_hero_muerta",
+    [2] = "npc_dota_hero_drow_ranger",
     [3] = "npc_dota_hero_elder_titan",
-    [4] = "npc_dota_hero_drow_ranger",
+    [4] = "npc_dota_hero_riki",
     [5] = "npc_dota_hero_pudge",
     [6] = "npc_dota_hero_shadow_demon",
     [7] = "npc_dota_hero_shadow_shaman",

@@ -129,10 +129,10 @@ BOTS = {
     [1] = { ["npc"] = nil, ["bot_name"] = "Jairo, o Jakiro" },
     --[2] = { ["npc"] = nil, ["bot_name"] = "Zubumafu" },
   },
-  -- [DOTA_TEAM_CUSTOM_2] = {
-  --   [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
+  [DOTA_TEAM_CUSTOM_2] = {
+    [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
   --   [2] = { ["npc"] = nil, ["bot_name"] = "Kubo" },
-  -- },
+  },
   -- [DOTA_TEAM_CUSTOM_3] = {
   --   [1] = { ["npc"] = nil, ["bot_name"] = "Chico" },
   --   [2] = { ["npc"] = nil, ["bot_name"] = "Serluc" },

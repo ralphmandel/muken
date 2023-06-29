@@ -213,7 +213,7 @@
       "duration"			          "8"
       "duration_night"	        "12"
       "night_vision"	          "200"
-      "mana_steal"	            "30"
+      "mana_steal"	            "40"
       "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
       "special_reset"	          "0"
       "special_swap"	          "0"
