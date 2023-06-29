@@ -64,5 +64,4 @@ function template__precache:Spawn()
 end
 
 function template__precache:Precache(context)
-  --PrecacheResource("soundfile", "soundevents/soundevent_template.vsndevts", context)
 end

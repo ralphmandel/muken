@@ -64,7 +64,6 @@ function fleaman__precache:Spawn()
 end
 
 function fleaman__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_fleaman.vsndevts", context)
   PrecacheResource( "model", "models/items/slark/hydrakan_latch/mesh/hydrkan_latch_model.vmdl", context )
   PrecacheResource( "model", "models/items/slark/slark_head_immortal/slark_head_immortal.vmdl", context )
   PrecacheResource( "model", "models/items/slark/dplus_shadow_of_the_dark_reef_shoulder/dplus_shadow_of_the_dark_reef_shoulder.vmdl", context )

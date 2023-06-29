@@ -64,7 +64,6 @@ function ancient__precache:Spawn()
 end
 
 function ancient__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_ancient.vsndevts", context)
   PrecacheResource("model", "models/items/elder_titan/harness_of_the_soulforged_arms/harness_of_the_soulforged_arms.vmdl", context)
   PrecacheResource("model", "models/items/elder_titan/ti9_cache_et_monuments_head/ti9_cache_et_monuments_head.vmdl", context)
   PrecacheResource("model", "models/items/elder_titan/harness_of_the_soulforged_shoulder/harness_of_the_soulforged_shoulder.vmdl", context)

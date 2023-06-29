@@ -64,8 +64,6 @@ function icebreaker__precache:Spawn()
 end
 
 function icebreaker__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_icebreaker.vsndevts", context)
-
   PrecacheResource( "particle", "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf", context )
   PrecacheResource( "particle", "particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf", context )

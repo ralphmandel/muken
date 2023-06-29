@@ -64,7 +64,6 @@ function bocuse__precache:Spawn()
 end
 
 function bocuse__precache:Precache(context)
-    --PrecacheResource("soundfile", "soundevents/soundevent_bocuse.vsndevts", context)
     PrecacheResource( "model", "models/items/pudge/pudge_dapper_disguise_head/pudge_dapper_disguise_head.vmdl", context )
     PrecacheResource( "model", "models/items/pudge/nightmare_scarecrow_belt/nightmare_scarecrow_belt.vmdl", context )
     PrecacheResource( "model", "models/items/pudge/blackdeath_shoulder_s1/blackdeath_shoulder_s1.vmdl", context )

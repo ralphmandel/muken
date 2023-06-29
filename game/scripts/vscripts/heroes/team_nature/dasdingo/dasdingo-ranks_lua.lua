@@ -64,7 +64,6 @@ function dasdingo__precache:Spawn()
 end
 
 function dasdingo__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_dasdingo.vsndevts", context)
   PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", context )
   PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", context )
   PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl", context )

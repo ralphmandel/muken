@@ -35,6 +35,9 @@ function genuine:TryCast_Awakening()
 
   if ability:IsChanneling() then return true end
 
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+  if distance_diff < self.caster:Script_GetAttackRange() + 50 then return false end
+
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
   return true
@@ -55,10 +58,13 @@ function genuine:TryCast_Fallen()
   local ability = self.caster:FindAbilityByName("genuine_2__fallen")
   if IsAbilityCastable(ability) == false then return false end
 
-  local distance = ability:GetSpecialValueFor("distance") * 0.75
+  local distance = ability:GetSpecialValueFor("distance") * 0.8
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
 
-  if distance_diff > distance then return false end
+  if distance_diff > distance then
+    self.script:MoveBotTo("attack_target", self.target)
+    return true
+  end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
   self.script.interval = ability:GetCastPoint() + 0.5
@@ -69,6 +75,8 @@ end
 function genuine:TryCast_Star()
   local ability = self.caster:FindAbilityByName("genuine_u__star")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.caster:GetManaPercent() > 60 then return false end
 
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
   self.script.interval = ability:GetCastPoint() + 0.5

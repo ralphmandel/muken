@@ -64,5 +64,4 @@ function brute__precache:Spawn()
 end
 
 function brute__precache:Precache(context)
-  --PrecacheResource("soundfile", "soundevents/soundevent_brute.vsndevts", context)
 end

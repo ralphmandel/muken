@@ -64,7 +64,6 @@ function lawbreaker__precache:Spawn()
 end
 
 function lawbreaker__precache:Precache(context)
-  --PrecacheResource("soundfile", "soundevents/soundevent_lawbreaker.vsndevts", context)
   PrecacheResource( "particle", "particles/lawbreaker/lawbreaker_skill2_bullets.vpcf", context )
   PrecacheResource( "particle", "particles/lawbreaker/shots_count/lawbreaker_shots_overhead.vpcf", context )
   PrecacheResource( "particle", "particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient.vpcf", context )

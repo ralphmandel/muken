@@ -64,8 +64,6 @@ function druid__precache:Spawn()
 end
 
 function druid__precache:Precache(context)
-	PrecacheResource("soundfile", "soundevents/soundevent_druid.vsndevts", context)
-
 	PrecacheResource("particle", "particles/druid/druid_skill2_overgrowth.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf", context)
 	PrecacheResource("particle", "particles/druid/druid_bush.vpcf", context)

@@ -100,7 +100,13 @@ function general_script:AggressiveThink()
     self.attack_target = self:FindNewTarget(
       self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
     )
-    if self.attack_target == nil then self:MoveBotTo("location", self.order_point) end
+
+    if self.attack_target == nil then
+      if (self.order_point - self.parent:GetOrigin()):Length2D() > 100 then
+        self:MoveBotTo("location", self.order_point)
+      end
+    end
+    
     self.interval = DEFAULT_THINK_INTERVAL
   end
 end
@@ -165,20 +171,19 @@ function general_script:ConsumeAbilityPoint()
 
   local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent).."/"..GetHeroName(self.parent).."/"..GetHeroName(self.parent).."-skills.txt")
   local available_abilities = {}
-  local i = 1
+  local i = 0
 
-  for _, ability_name in pairs(skills_data) do
+  for index, ability_name in pairs(skills_data) do
     local ability = self.parent:FindAbilityByName(ability_name)
-    if ability then
-      if ability:IsTrained() == false
-      and self.parent:GetLevel() >= ability:GetHeroLevelRequiredToUpgrade() then
-        available_abilities[i] = ability
+    if ability and tonumber(index) < 6 then
+      if ability:IsTrained() == false then
         i = i + 1
+        available_abilities[i] = ability
       end
     end
   end
 
-  available_abilities[RandomInt(1, #available_abilities)]:UpgradeAbility(true)
+  available_abilities[RandomInt(1, i)]:UpgradeAbility(true)
   BaseHero(self.parent):CheckAbilityPoints(-1)
   self:ConsumeAbilityPoint()
 end

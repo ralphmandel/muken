@@ -64,7 +64,6 @@ function genuine__precache:Spawn()
 end
 
 function genuine__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_genuine.vsndevts", context)
   PrecacheResource("model", "models/items/drow/secret_witch_head/secret_witch_head.vmdl", context)
   PrecacheResource("model", "models/items/drow/secret_witch_legs/secret_witch_legs.vmdl", context)
   PrecacheResource("model", "models/items/drow/secret_witch_arms/secret_witch_arms.vmdl", context)

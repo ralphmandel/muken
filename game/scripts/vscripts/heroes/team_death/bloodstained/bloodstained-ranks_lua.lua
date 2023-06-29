@@ -64,7 +64,6 @@ function bloodstained__precache:Spawn()
 end
 
 function bloodstained__precache:Precache(context)
-  PrecacheResource("soundfile", "soundevents/soundevent_bloodstained.vsndevts", context)
   PrecacheResource( "model", "models/items/shadow_demon/mantle_of_the_shadow_demon_belt/mantle_of_the_shadow_demon_belt.vmdl", context )
   PrecacheResource( "model", "models/items/shadow_demon/sd_crown_of_the_nightworld_tail/sd_crown_of_the_nightworld_tail.vmdl", context )
   PrecacheResource( "model", "models/items/shadow_demon/ti7_immortal_back/sd_ti7_immortal_back.vmdl", context )
