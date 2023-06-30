@@ -8,7 +8,7 @@ local BOT_STATE_IDLE = 0
 local BOT_STATE_AGGRESSIVE = 1
 local BOT_STATE_FARMING = 2
 
-local INIT_THINK_INTERVAL = 1
+local INIT_THINK_INTERVAL = 45
 local DEFAULT_THINK_INTERVAL = 0.25
 local SEARCH_THINK_INTERVAL = 3
 
@@ -71,6 +71,11 @@ end
 
 function _general_script:AggressiveThink()
   local target_state = self:CheckTargetState(self.attack_target)
+
+  -- CUSTOM ACTION SPECIAL BLOODY TEARS
+  if target_state ~= TARGET_STATE_VISIBLE and self.abilityScript.TryCast_Tear then
+    if self.abilityScript:TryCast_Tear() == true then return end
+  end
 
   if target_state ~= TARGET_STATE_MISSING then
     self.order_point = LOCATION_MAIN_ARENA

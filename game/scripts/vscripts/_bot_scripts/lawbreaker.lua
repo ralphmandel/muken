@@ -15,9 +15,9 @@ function lawbreaker:TrySpell(caster, target)
   local abilities_actions = {
     [1] = self.TryCast_Blink,
     [2] = self.TryCast_Combo,
-    [3] = self.TryCast_Grenade,
-    [4] = self.TryCast_Rain,
-    [5] = self.TryCast_Form
+    [3] = self.TryCast_Form,
+    [4] = self.TryCast_Grenade,
+    [5] = self.TryCast_Rain
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -70,6 +70,30 @@ function lawbreaker:TryCast_Combo()
   return true
 end
 
+function lawbreaker:TryCast_Form()
+  local ability = self.caster:FindAbilityByName("lawbreaker_u__form")
+  if IsAbilityCastable(ability) == false then return false end
+
+  local total_targets = 0
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, 1500,
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+  )
+
+  for _,enemy in pairs(enemies) do
+    if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+      total_targets = total_targets + 1
+    end
+  end
+
+  if total_targets <= 1 then return false end
+
+  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+
+  return true
+end
+
 function lawbreaker:TryCast_Grenade()
   local ability = self.caster:FindAbilityByName("lawbreaker_3__grenade")
   if IsAbilityCastable(ability) == false then return false end
@@ -86,30 +110,6 @@ function lawbreaker:TryCast_Rain()
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
   self.script.interval = ability:GetCastPoint() + 0.5
-
-  return true
-end
-
-function lawbreaker:TryCast_Form()
-  local ability = self.caster:FindAbilityByName("lawbreaker_u__form")
-  if IsAbilityCastable(ability) == false then return false end
-
-  local total_targets = 0
-  local enemies = FindUnitsInRadius(
-    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
-    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
-    DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
-  )
-
-  for _,enemy in pairs(enemies) do
-    if enemy ~= self.target then
-      total_targets = total_targets + 1
-    end
-  end
-
-  if total_targets == 0 then return false end
-
-  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 
   return true
 end

@@ -13,9 +13,9 @@ function fleaman:TrySpell(caster, target)
   if self.caster:IsCommandRestricted() then return cast end
 
   local abilities_actions = {
-    [1] = self.TryCast_Precision,
-    [2] = self.TryCast_Jump,
-    [3] = self.TryCast_Smoke
+    [1] = self.TryCast_Jump,
+    [2] = self.TryCast_Smoke,
+    [3] = self.TryCast_Precision,
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -25,25 +25,6 @@ function fleaman:TrySpell(caster, target)
   end
 
   return cast
-end
-
-function fleaman:TryCast_Precision()
-  local ability = self.caster:FindAbilityByName("fleaman_1__precision")
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.random_values["precision_charges"] == nil then self:RandomizeValue(ability, "precision_charges") end
-  if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
-
-  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-  if ability:GetCurrentAbilityCharges() == 0 then
-    self:RandomizeValue(ability, "precision_charges")
-  else
-    self.random_values["precision_charges"] = 0
-  end
-
-  self.script.interval = 0.45
-
-  return true
 end
 
 function fleaman:TryCast_Jump()
@@ -66,6 +47,26 @@ function fleaman:TryCast_Smoke()
   if self.caster:GetHealthPercent() >= 50 then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+  self.script.interval = ability:GetCastPoint() + 0.5
+
+  return true
+end
+
+function fleaman:TryCast_Precision()
+  local ability = self.caster:FindAbilityByName("fleaman_1__precision")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.random_values["precision_charges"] == nil then self:RandomizeValue(ability, "precision_charges") end
+  if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
+
+  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+  if ability:GetCurrentAbilityCharges() == 0 then
+    self:RandomizeValue(ability, "precision_charges")
+  else
+    self.random_values["precision_charges"] = 0
+  end
+
+  self.script.interval = 0.45
 
   return true
 end

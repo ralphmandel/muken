@@ -65,7 +65,9 @@ function bloodstained:TryCast_Tear()
     )
   
     for _,enemy in pairs(enemies) do
-      total_targets = total_targets + 1
+      if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+        total_targets = total_targets + 1
+      end
     end
 
     if total_targets == 0 then return false end
@@ -73,7 +75,7 @@ function bloodstained:TryCast_Tear()
     local mod = self.caster:FindModifierByName("bloodstained_4_modifier_tear")
     if mod == nil then return false end
     if self.caster:GetHealthPercent() > 15 and mod:GetElapsedTime() < 20 then return false end
-    self.script.interval = ability:GetCastPoint() + 0.5
+    if self.script then self.script.interval = ability:GetCastPoint() + 0.5 end
   end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())

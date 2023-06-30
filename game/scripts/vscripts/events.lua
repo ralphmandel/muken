@@ -19,10 +19,10 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
   local hero_index = 1
   local hero_list = {
-    [1] = "npc_dota_hero_shadow_demon",
-    [2] = "npc_dota_hero_muerta",
-    [3] = "npc_dota_hero_slark",
-    [4] = "npc_dota_hero_drow_ranger",
+    [1] = "npc_dota_hero_slark",
+    [2] = "npc_dota_hero_drow_ranger",
+    [3] = "npc_dota_hero_shadow_demon",
+    [4] = "npc_dota_hero_muerta",
     [5] = "npc_dota_hero_pudge",
     [6] = "npc_dota_hero_shadow_demon",
     [7] = "npc_dota_hero_shadow_shaman",
@@ -30,6 +30,8 @@ function GameMode:OnGameRulesStateChange(keys)
   }
   
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(0, 0, 0), 9999, 9999, false)
+
     for team, data in pairs(BOTS) do
       for index, table in pairs(data) do
         table["npc"] = GameRules:AddBotPlayerWithEntityScript(hero_list[hero_index], table["bot_name"], team, "", false)
