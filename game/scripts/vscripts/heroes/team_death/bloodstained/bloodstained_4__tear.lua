@@ -23,6 +23,10 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     if self:GetCurrentAbilityCharges() == 2 then return DOTA_ABILITY_BEHAVIOR_NO_TARGET end
   end
 
+  function bloodstained_4__tear:GetAOERadius()
+    return self:GetSpecialValueFor("radius")
+  end
+
 -- SPELL START
 
   function bloodstained_4__tear:OnSpellStart()
@@ -42,10 +46,6 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
       caster:RemoveModifierByName("bloodstained_4_modifier_tear")
       self:SetCurrentAbilityCharges(1)
     end
-  end
-
-  function bloodstained_4__tear:GetAOERadius()
-    return self:GetSpecialValueFor("radius")
   end
 
 -- EFFECTS

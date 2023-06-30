@@ -8,7 +8,7 @@ function genuine:TrySpell(caster, target)
   local cast = false
   self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("general_script")
+  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
@@ -46,6 +46,7 @@ end
 function genuine:TryCast_Morning()
   local ability = self.caster:FindAbilityByName("genuine_3__morning")
   if IsAbilityCastable(ability) == false then return false end
+
   if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
@@ -87,7 +88,9 @@ end
 function genuine:TryCast_Shooting()
   local ability = self.caster:FindAbilityByName("genuine_1__shooting")
   if IsAbilityCastable(ability) == false then return false end
+
   if ability:GetAutoCastState() == false then ability:ToggleAutoCast() end
+  
   return false
 end
 

@@ -8,7 +8,7 @@ function lawbreaker:TrySpell(caster, target)
   local cast = false
   self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("general_script")
+  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
@@ -53,17 +53,15 @@ function lawbreaker:TryCast_Combo()
   local ability = self.caster:FindAbilityByName("lawbreaker_2__combo")
   if self.caster:HasModifier("lawbreaker_2_modifier_combo") then return true end
   if IsAbilityCastable(ability) == false then return false end
+  
   if CalcDistanceBetweenEntityOBB(self.caster, self.target) > self.caster:Script_GetAttackRange() then return false end
 
   local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
   local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
-
   if angle_diff < -5 or angle_diff > 5 then return false end
 
   if self.random_values["combo_bullets"] == nil then self:RandomizeValue(ability, "combo_bullets") end
-  if self.caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() < self.random_values["combo_bullets"] then
-    return false
-  end
+  if self.caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() < self.random_values["combo_bullets"] then return false end
 
   self:RandomizeValue(ability, "combo_bullets")
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
@@ -118,7 +116,7 @@ end
 
 function lawbreaker:RandomizeValue(ability, value_name)
   if value_name == "combo_bullets" then
-    self.random_values["combo_bullets"] = RandomInt(ability:GetSpecialValueFor("min_shots"), ability:GetSpecialValueFor("max_shots"))
+    self.random_values[value_name] = RandomInt(ability:GetSpecialValueFor("min_shots"), ability:GetSpecialValueFor("max_shots"))
   end
 end
 

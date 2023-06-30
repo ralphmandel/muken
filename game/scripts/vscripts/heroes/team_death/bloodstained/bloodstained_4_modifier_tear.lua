@@ -63,8 +63,8 @@ function bloodstained_4_modifier_tear:OnIntervalThink()
 
 	local enemies = FindUnitsInRadius(
 		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false
+		self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
+		self.ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
 	)
 
 	for _,enemy in pairs(enemies) do

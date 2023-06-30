@@ -1,5 +1,7 @@
-general_script = class({})
+_general_script = class({})
 local lawbreaker = require("_bot_scripts/lawbreaker")
+local fleaman = require("_bot_scripts/fleaman")
+local bloodstained = require("_bot_scripts/bloodstained")
 local genuine = require("_bot_scripts/genuine")
 
 local BOT_STATE_IDLE = 0
@@ -24,11 +26,11 @@ local TARGET_HUNTING_MAX_TIME = 15
 
 local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
 
-function general_script:IsPurgable() return false end
-function general_script:IsHidden() return true end
-function general_script:RemoveOnDeath() return false end
+function _general_script:IsPurgable() return false end
+function _general_script:IsHidden() return true end
+function _general_script:RemoveOnDeath() return false end
 
-function general_script:OnCreated(params)
+function _general_script:OnCreated(params)
   if IsServer() then
     self.caster = self:GetCaster()
     self.parent = self:GetParent()
@@ -55,7 +57,7 @@ function general_script:OnCreated(params)
   end
 end
 
-function general_script:OnIntervalThink()
+function _general_script:OnIntervalThink()
   self.stateActions[self.state](self)
   self:ConsumeAbilityPoint()
 
@@ -64,10 +66,10 @@ end
 
 -- STATE FUNCTIONS -----------------------------------------------------------
 
-function general_script:IdleThink()
+function _general_script:IdleThink()
 end
 
-function general_script:AggressiveThink()
+function _general_script:AggressiveThink()
   local target_state = self:CheckTargetState(self.attack_target)
 
   if target_state ~= TARGET_STATE_MISSING then
@@ -111,12 +113,12 @@ function general_script:AggressiveThink()
   end
 end
 
-function general_script:FarmingThink()
+function _general_script:FarmingThink()
 end
 
 -- UTIL FUNCTIONS -----------------------------------------------------------
 
-function general_script:CheckTargetState(target)
+function _general_script:CheckTargetState(target)
   if target == nil then return TARGET_STATE_INVALID end
   if IsValidEntity(target) == false then return TARGET_STATE_INVALID end
   if target:IsAlive() == false then return TARGET_STATE_DEAD end
@@ -125,7 +127,7 @@ function general_script:CheckTargetState(target)
   return TARGET_STATE_VISIBLE
 end
 
-function general_script:MoveBotTo(command, handle)
+function _general_script:MoveBotTo(command, handle)
   if self.parent:IsCommandRestricted() then return end
   if handle == nil then return end
 
@@ -133,7 +135,7 @@ function general_script:MoveBotTo(command, handle)
   if command == "location" then self.parent:MoveToPosition(handle) end
 end
 
-function general_script:FindNewTarget(loc, radius, priority, find_order)
+function _general_script:FindNewTarget(loc, radius, priority, find_order)
   local enemies = FindUnitsInRadius(
     self.parent:GetTeamNumber(), loc, nil, radius,
     DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
@@ -161,12 +163,14 @@ function general_script:FindNewTarget(loc, radius, priority, find_order)
   end
 end
 
-function general_script:LoadAbilityScript()
+function _general_script:LoadAbilityScript()
   if GetHeroName(self.parent) == "lawbreaker" then return lawbreaker end
+  if GetHeroName(self.parent) == "fleaman" then return fleaman end
+  if GetHeroName(self.parent) == "bloodstained" then return bloodstained end
   if GetHeroName(self.parent) == "genuine" then return genuine end
 end
 
-function general_script:ConsumeAbilityPoint()
+function _general_script:ConsumeAbilityPoint()
   if BaseHero(self.parent).skill_points <= 0 then return end
 
   local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent).."/"..GetHeroName(self.parent).."/"..GetHeroName(self.parent).."-skills.txt")

@@ -10,7 +10,7 @@ function genuine_4_modifier_channeling:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-  self.bot_script = self.parent:FindModifierByName("general_script")
+  self.bot_script = self.parent:FindModifierByName("_general_script")
 
   if IsServer() then self:StartIntervalThink(0.1) end
 end
