@@ -53,6 +53,10 @@ function genuine_4_modifier_channeling:CheckTargetPos(target)
   if IsValidEntity(target) == false then return false end
   if self.parent:CanEntityBeSeenByMyTeam(target) == false then return false end
 
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.parent, target)
+  local cast_range = self.ability:GetCastRange(self.parent:GetOrigin(), self.parent) - 200
+  if distance_diff > cast_range then self.ability:EndChannel(false) return true end
+
   local angle = VectorToAngles(target:GetOrigin() - self.parent:GetOrigin())
   local angle_diff = AngleDiff(self.parent:GetAngles().y, angle.y)
   local distance_diff = CalcDistanceBetweenEntityOBB(self.parent, target)

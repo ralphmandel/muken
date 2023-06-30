@@ -4,11 +4,9 @@ if not lawbreaker then
   lawbreaker.random_values = {}
 end
 
-function lawbreaker:TrySpell(caster, target)
+function lawbreaker:TrySpell(target)
   local cast = false
-  self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
@@ -54,7 +52,9 @@ function lawbreaker:TryCast_Combo()
   if self.caster:HasModifier("lawbreaker_2_modifier_combo") then return true end
   if IsAbilityCastable(ability) == false then return false end
   
-  if CalcDistanceBetweenEntityOBB(self.caster, self.target) > self.caster:Script_GetAttackRange() then return false end
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+  local atk_range = self.caster:Script_GetAttackRange()
+  if distance_diff > atk_range then return false end
 
   local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
   local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
@@ -65,7 +65,6 @@ function lawbreaker:TryCast_Combo()
 
   self:RandomizeValue(ability, "combo_bullets")
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -99,7 +98,6 @@ function lawbreaker:TryCast_Grenade()
   if IsAbilityCastable(ability) == false then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -109,7 +107,6 @@ function lawbreaker:TryCast_Rain()
   if IsAbilityCastable(ability) == false then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end

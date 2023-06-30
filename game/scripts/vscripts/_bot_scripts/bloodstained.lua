@@ -4,11 +4,9 @@ if not bloodstained then
   bloodstained.random_values = {}
 end
 
-function bloodstained:TrySpell(caster, target)
+function bloodstained:TrySpell(target)
   local cast = false
-  self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
@@ -35,7 +33,6 @@ function bloodstained:TryCast_Rage()
   if self.caster:GetNumAttackers() == 0 then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -45,7 +42,6 @@ function bloodstained:TryCast_Curse()
   if IsAbilityCastable(ability) == false then return false end
 
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -75,7 +71,6 @@ function bloodstained:TryCast_Tear()
     local mod = self.caster:FindModifierByName("bloodstained_4_modifier_tear")
     if mod == nil then return false end
     if self.caster:GetHealthPercent() > 15 and mod:GetElapsedTime() < 20 then return false end
-    if self.script then self.script.interval = ability:GetCastPoint() + 0.5 end
   end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
@@ -90,7 +85,6 @@ function bloodstained:TryCast_Seal()
   if self.target:GetHealthPercent() >= 50 then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end

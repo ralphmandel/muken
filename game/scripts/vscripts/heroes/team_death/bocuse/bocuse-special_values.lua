@@ -193,6 +193,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "bocuse_5__roux" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "radius" then return 1 end
 

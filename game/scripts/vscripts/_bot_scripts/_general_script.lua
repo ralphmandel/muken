@@ -2,13 +2,17 @@ _general_script = class({})
 local lawbreaker = require("_bot_scripts/lawbreaker")
 local fleaman = require("_bot_scripts/fleaman")
 local bloodstained = require("_bot_scripts/bloodstained")
+local bocuse = require("_bot_scripts/bocuse")
+local dasdingo = require("_bot_scripts/dasdingo")
 local genuine = require("_bot_scripts/genuine")
+local icebreaker = require("_bot_scripts/icebreaker")
+local ancient = require("_bot_scripts/ancient")
 
 local BOT_STATE_IDLE = 0
 local BOT_STATE_AGGRESSIVE = 1
 local BOT_STATE_FARMING = 2
 
-local INIT_THINK_INTERVAL = 45
+local INIT_THINK_INTERVAL = 1
 local DEFAULT_THINK_INTERVAL = 0.25
 local SEARCH_THINK_INTERVAL = 3
 
@@ -45,6 +49,7 @@ function _general_script:OnCreated(params)
 
     self.abilityScript = self:LoadAbilityScript()
     if self.abilityScript == nil then return end
+    self.abilityScript.caster = self.parent
 
     self.stateActions = {
       [BOT_STATE_IDLE] = self.IdleThink,
@@ -60,6 +65,24 @@ end
 function _general_script:OnIntervalThink()
   self.stateActions[self.state](self)
   self:ConsumeAbilityPoint()
+
+  if IsServer() then self:StartIntervalThink(self.interval) end
+end
+
+function _general_script:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+    MODIFIER_EVENT_ON_ABILITY_START
+	}
+
+	return funcs
+end
+
+function _general_script:OnAbilityStart(keys)
+  if keys.unit ~= self.parent then return end
+
+  local cast_point = keys.ability:GetCastPoint()
+  self.interval = cast_point + 0.5
 
   if IsServer() then self:StartIntervalThink(self.interval) end
 end
@@ -85,7 +108,7 @@ function _general_script:AggressiveThink()
   if target_state == TARGET_STATE_VISIBLE then
     self.target_last_loc = self.attack_target:GetOrigin()
 
-    if self.abilityScript:TrySpell(self.caster, self.attack_target) == false then
+    if self.abilityScript:TrySpell(self.attack_target) == false then
       self:MoveBotTo("attack_target", self.attack_target)
       self.interval = DEFAULT_THINK_INTERVAL
     end
@@ -172,7 +195,14 @@ function _general_script:LoadAbilityScript()
   if GetHeroName(self.parent) == "lawbreaker" then return lawbreaker end
   if GetHeroName(self.parent) == "fleaman" then return fleaman end
   if GetHeroName(self.parent) == "bloodstained" then return bloodstained end
+  if GetHeroName(self.parent) == "bocuse" then return bocuse end
+
+  if GetHeroName(self.parent) == "dasdingo" then return dasdingo end
+
   if GetHeroName(self.parent) == "genuine" then return genuine end
+  if GetHeroName(self.parent) == "icebreaker" then return icebreaker end
+
+  if GetHeroName(self.parent) == "ancient" then return ancient end
 end
 
 function _general_script:ConsumeAbilityPoint()

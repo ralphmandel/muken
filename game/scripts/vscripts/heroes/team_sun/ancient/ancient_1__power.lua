@@ -4,6 +4,7 @@ LinkLuaModifier("_modifier_bat_increased", "_modifiers/_modifier_bat_increased",
 LinkLuaModifier("_modifier_bat_decreased", "_modifiers/_modifier_bat_decreased", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_no_block", "_modifiers/_modifier_no_block", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

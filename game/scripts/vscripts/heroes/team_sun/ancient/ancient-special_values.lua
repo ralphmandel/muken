@@ -242,7 +242,7 @@ function ancient_special_values:GetModifierOverrideAbilitySpecialValue(keys)
       return 3
     end
 
-    if value_name == "AbilityChargeRestoreTime" then return 5 end
+    if value_name == "AbilityChargeRestoreTime" then return 7.5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "special_jump_distance" then
       return 100 + (caster:FindAbilityByName("ancient__jump"):GetLevel() * ability:GetCurrentAbilityCharges() * 0.7)

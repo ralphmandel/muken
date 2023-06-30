@@ -39,6 +39,7 @@ function ancient_1_modifier_passive:DeclareFunctions()
     MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
     MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
+    MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACKED,
 	}
@@ -55,9 +56,16 @@ function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
   return 0
 end
 
+function ancient_1_modifier_passive:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+  AddModifier(keys.target, self.caster, self.ability, "_modifier_no_block", {}, false)
+end
+
 function ancient_1_modifier_passive:OnAttackFail(keys)
 	if keys.attacker ~= self.parent then return end
   self:ReduceHit()
+
+  RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_no_block", self.ability)
 end
 
 function ancient_1_modifier_passive:OnAttacked(keys)
@@ -77,6 +85,8 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 	AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {
     duration = self:CalcStunDuration(keys.target, keys.original_damage)
   }, false)
+
+  RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_no_block", self.ability)
 end
 
 function ancient_1_modifier_passive:OnStackCountChanged(old)

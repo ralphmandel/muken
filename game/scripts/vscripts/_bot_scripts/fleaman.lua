@@ -4,18 +4,16 @@ if not fleaman then
   fleaman.random_values = {}
 end
 
-function fleaman:TrySpell(caster, target)
+function fleaman:TrySpell(target)
   local cast = false
-  self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
   local abilities_actions = {
     [1] = self.TryCast_Jump,
     [2] = self.TryCast_Smoke,
-    [3] = self.TryCast_Precision,
+    [3] = self.TryCast_Precision
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -47,7 +45,6 @@ function fleaman:TryCast_Smoke()
   if self.caster:GetHealthPercent() >= 50 then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -60,13 +57,12 @@ function fleaman:TryCast_Precision()
   if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+  
   if ability:GetCurrentAbilityCharges() == 0 then
     self:RandomizeValue(ability, "precision_charges")
   else
     self.random_values["precision_charges"] = 0
   end
-
-  self.script.interval = 0.45
 
   return true
 end

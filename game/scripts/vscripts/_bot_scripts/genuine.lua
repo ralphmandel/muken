@@ -4,11 +4,9 @@ if not genuine then
   genuine.random_values = {}
 end
 
-function genuine:TrySpell(caster, target)
+function genuine:TrySpell(target)
   local cast = false
-  self.caster = caster
   self.target = target
-  self.script = caster:FindModifierByName("_general_script")
 
   if self.caster:IsCommandRestricted() then return cast end
 
@@ -36,7 +34,10 @@ function genuine:TryCast_Awakening()
   if ability:IsChanneling() then return true end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-  if distance_diff < self.caster:Script_GetAttackRange() + 50 then return false end
+  local atk_range = self.caster:Script_GetAttackRange() + 50
+  local cast_range = ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 400
+  if distance_diff < atk_range then return false end
+  if distance_diff > cast_range then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
@@ -50,7 +51,6 @@ function genuine:TryCast_Morning()
   if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -59,16 +59,16 @@ function genuine:TryCast_Fallen()
   local ability = self.caster:FindAbilityByName("genuine_2__fallen")
   if IsAbilityCastable(ability) == false then return false end
 
-  local distance = ability:GetSpecialValueFor("distance") * 0.8
-  local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+  if self.target:IsStunned() then return false end
 
-  if distance_diff > distance then
-    self.script:MoveBotTo("attack_target", self.target)
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+  local distance = ability:GetSpecialValueFor("distance") * 0.8
+  if distance_diff > distance and self.caster:IsCommandRestricted() == false then
+    self.caster:MoveToNPC(self.target)
     return true
   end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end
@@ -80,7 +80,6 @@ function genuine:TryCast_Star()
   if self.caster:GetManaPercent() > 60 then return false end
 
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
-  self.script.interval = ability:GetCastPoint() + 0.5
 
   return true
 end

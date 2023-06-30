@@ -19,12 +19,12 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
   local hero_index = 1
   local hero_list = {
-    [1] = "npc_dota_hero_slark",
-    [2] = "npc_dota_hero_drow_ranger",
-    [3] = "npc_dota_hero_shadow_demon",
-    [4] = "npc_dota_hero_muerta",
-    [5] = "npc_dota_hero_pudge",
-    [6] = "npc_dota_hero_shadow_demon",
+    [1] = "dasdingo",
+    [2] = "bloodstained",
+    [3] = "icebreaker",
+    [4] = "genuine",
+    [5] = "bocuse",
+    [6] = "fleaman",
     [7] = "npc_dota_hero_shadow_shaman",
     [8] = "npc_dota_hero_slark",
   }
@@ -34,7 +34,7 @@ function GameMode:OnGameRulesStateChange(keys)
 
     for team, data in pairs(BOTS) do
       for index, table in pairs(data) do
-        table["npc"] = GameRules:AddBotPlayerWithEntityScript(hero_list[hero_index], table["bot_name"], team, "", false)
+        table["npc"] = GameRules:AddBotPlayerWithEntityScript(GetIDName(hero_list[hero_index]), table["bot_name"], team, "", false)
         table["npc"]:AddNewModifier(table["npc"], nil, "_general_script", {})
         hero_index = hero_index + 1
       end

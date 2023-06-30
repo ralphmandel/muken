@@ -70,8 +70,12 @@ end
 
 function _modifier_fear:OnIntervalThink()
   local vec = self.vec or self.caster:GetAbsOrigin()
-	local direction = (vec - self.parent:GetAbsOrigin()):Normalized() * -250
-	local pos = self.parent:GetOrigin() + direction
+	local direction = vec - self.parent:GetAbsOrigin()
+  if direction:Length2D() < 10 then
+    vec = vec + RandomVector(15)
+    direction = vec - self.parent:GetAbsOrigin()
+  end
+	local pos = self.parent:GetOrigin() + direction:Normalized() * -250
 	self.parent:MoveToPosition(pos)
 
 	if IsServer() then self:StartIntervalThink(FrameTime()) end

@@ -436,6 +436,16 @@ end
     if BaseHeroMod(baseNPC) then BaseHeroMod(baseNPC):ChangeActivity(activity) end
   end
 
+  function GetIDName(hero_name)
+		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
+
+		for name, id_name in pairs(heroes_name_data) do
+			if hero_name == name then
+				return id_name
+			end
+		end
+	end
+
   function GetHeroName(baseNPC)
 		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 
