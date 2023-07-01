@@ -127,14 +127,16 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 4
 BOTS = {
   [DOTA_TEAM_CUSTOM_1] = {
     [1] = { ["npc"] = nil, ["bot_name"] = "Jairo, o Jakiro" },
-    --[2] = { ["npc"] = nil, ["bot_name"] = "Zubumafu" },
-    --[3] = { ["npc"] = nil, ["bot_name"] = "UK" },
+    [2] = { ["npc"] = nil, ["bot_name"] = "Zubumafu" },
+    [3] = { ["npc"] = nil, ["bot_name"] = "UK" },
+    [4] = { ["npc"] = nil, ["bot_name"] = "UK2" },
   },
-  -- [DOTA_TEAM_CUSTOM_2] = {
-  --   [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
-  --   [2] = { ["npc"] = nil, ["bot_name"] = "Kubo" },
-  --   [3] = { ["npc"] = nil, ["bot_name"] = "Do Jun" },
-  -- },
+  [DOTA_TEAM_CUSTOM_2] = {
+    [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
+    [2] = { ["npc"] = nil, ["bot_name"] = "Kubo" },
+    [3] = { ["npc"] = nil, ["bot_name"] = "Do Jun" },
+    [4] = { ["npc"] = nil, ["bot_name"] = "Serluc" },
+  },
   -- [DOTA_TEAM_CUSTOM_3] = {
   --   [1] = { ["npc"] = nil, ["bot_name"] = "Chico" },
   --   [2] = { ["npc"] = nil, ["bot_name"] = "Serluc" },
@@ -231,7 +233,7 @@ SPAWNER_BOSS_SPOTS = {
 MAX_MOB_COUNT = 8
 MAX_BOSS_COUNT = 1
 
-SCORE = 100
+SCORE = 25
 SCORE_KILL = 60
 SCORE_BOUNTY = 120
 GOLD_BOUNTY_MIN = 12

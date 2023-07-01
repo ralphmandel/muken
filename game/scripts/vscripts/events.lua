@@ -19,22 +19,31 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
   local hero_index = 1
   local hero_list = {
-    [1] = "dasdingo",
-    [2] = "bloodstained",
-    [3] = "icebreaker",
+    [1] = "fleaman",
+    [2] = "ancient",
+    [3] = "bocuse",
     [4] = "genuine",
-    [5] = "bocuse",
-    [6] = "fleaman",
-    [7] = "npc_dota_hero_shadow_shaman",
-    [8] = "npc_dota_hero_slark",
+    [5] = "icebreaker",
+    [6] = "dasdingo",
+    [7] = "bloodstained",
+    [8] = "lawbreaker",
   }
-  
+
+  local new_list = {}
+
+  for i = 1, #hero_list, 1 do
+    local rand = RandomInt(i, #hero_list)
+    new_list[i] = hero_list[rand]
+    hero_list[rand] = hero_list[i]
+    hero_list[i] = new_list[i]
+  end
+
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
     AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(0, 0, 0), 9999, 9999, false)
 
     for team, data in pairs(BOTS) do
       for index, table in pairs(data) do
-        table["npc"] = GameRules:AddBotPlayerWithEntityScript(GetIDName(hero_list[hero_index]), table["bot_name"], team, "", false)
+        table["npc"] = GameRules:AddBotPlayerWithEntityScript(GetIDName(new_list[hero_index]), table["bot_name"], team, "", false)
         table["npc"]:AddNewModifier(table["npc"], nil, "_general_script", {})
         hero_index = hero_index + 1
       end
@@ -257,59 +266,59 @@ function GameMode:OnTeamKillCredit(keys)
   local killerTeamNumber = keys.teamnumber
   local team_index = GetTeamIndex(killerTeamNumber)
 
-  if victimPlayer:GetAssignedHero():IsReincarnating() == false then
-    if self.first_blood == nil then self.first_blood = true end
-    if self.vo == nil then self.vo = 0 end
-    if self.vo_time == nil then self.vo_time = -60 end
+  TEAMS[team_index][2] = TEAMS[team_index][2] + 1
+  local message = TEAMS[team_index][3] .. " SCORE: " .. TEAMS[team_index][2]
+  GameRules:SendCustomMessage(TEAMS[team_index][5] .. message .."</font>",-1,0)
 
-    if self.first_blood == true then
-      EmitAnnouncerSound("announcer_killing_spree_announcer_1stblood_01")
-      self.first_blood = false
-    end
-
-    if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
-      if RandomInt(1,2) > 1 then
-        self.vo = self.vo + 1
-        Timers:CreateTimer((2), function()
-          self.vo = self.vo - 1
-          if self.vo == 0 then
-            local rand_vo = RandomInt(1, 4)
-            if rand_vo == 1 then
-              EmitAnnouncerSound("Vo.Kill.1")
-              self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
-            elseif rand_vo == 2 then
-              EmitAnnouncerSound("Vo.Kill.2")
-              self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
-            elseif rand_vo == 3 then
-              EmitAnnouncerSound("Vo.Kill.3")
-              self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 28
-            else
-              EmitAnnouncerSound("Vo.Kill.4")
-              self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
-            end
-          end
-        end)
-      end
-      for _,player in pairs(PLAYERS) do
-        if player[1] == killer then
-          player[2] = player[2] + 1
-          local string = GetKillingSpreeAnnouncer(player[2])
-          if player[2] > 2 then EmitAnnouncerSound(string) end
-          break
-        end
-      end
-    end
-  
-    TEAMS[team_index][2] = TEAMS[team_index][2] + 1
-    local message = TEAMS[team_index][3] .. " SCORE: " .. TEAMS[team_index][2]
-    GameRules:SendCustomMessage(TEAMS[team_index][5] .. message .."</font>",-1,0)
-  
-    if TEAMS[team_index][2] >= SCORE then
-      local message = TEAMS[team_index][3] .. " VICTORY!"
-      GameRules:SetCustomVictoryMessage(message)
-      GameRules:SetGameWinner(TEAMS[team_index][1])
-    end
+  if TEAMS[team_index][2] >= SCORE then
+    local message = TEAMS[team_index][3] .. " VICTORY!"
+    GameRules:SetCustomVictoryMessage(message)
+    GameRules:SetGameWinner(TEAMS[team_index][1])
   end
+
+  -- if victimPlayer:GetAssignedHero():IsReincarnating() == false then
+  --   if self.first_blood == nil then self.first_blood = true end
+  --   if self.vo == nil then self.vo = 0 end
+  --   if self.vo_time == nil then self.vo_time = -60 end
+
+  --   if self.first_blood == true then
+  --     EmitAnnouncerSound("announcer_killing_spree_announcer_1stblood_01")
+  --     self.first_blood = false
+  --   end
+
+  --   if math.floor(GameRules:GetDOTATime(false, true)) >= self.vo_time then
+  --     if RandomInt(1,2) > 1 then
+  --       self.vo = self.vo + 1
+  --       Timers:CreateTimer((2), function()
+  --         self.vo = self.vo - 1
+  --         if self.vo == 0 then
+  --           local rand_vo = RandomInt(1, 4)
+  --           if rand_vo == 1 then
+  --             EmitAnnouncerSound("Vo.Kill.1")
+  --             self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 8
+  --           elseif rand_vo == 2 then
+  --             EmitAnnouncerSound("Vo.Kill.2")
+  --             self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 3
+  --           elseif rand_vo == 3 then
+  --             EmitAnnouncerSound("Vo.Kill.3")
+  --             self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 28
+  --           else
+  --             EmitAnnouncerSound("Vo.Kill.4")
+  --             self.vo_time = math.floor(GameRules:GetDOTATime(false, true)) + 6
+  --           end
+  --         end
+  --       end)
+  --     end
+  --     for _,player in pairs(PLAYERS) do
+  --       if player[1] == killer then
+  --         player[2] = player[2] + 1
+  --         local string = GetKillingSpreeAnnouncer(player[2])
+  --         if player[2] > 2 then EmitAnnouncerSound(string) end
+  --         break
+  --       end
+  --     end
+  --   end
+  -- end
 end
 
 -- An entity died
