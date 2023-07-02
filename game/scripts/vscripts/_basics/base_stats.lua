@@ -422,6 +422,29 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 			end
 		end
 
+    function base_stats:UpgradeStat(stat)
+      for _,primary in pairs(self.stats_primary) do
+        if stat == primary then
+          self.total_points = self.total_points - 1
+          self.stat_base[stat] = self.stat_base[stat] + 1
+          self:IncrementFraction("plus_up", primary, 3)
+          self:CalculateStats(0, 0, primary)
+        end
+      end
+    
+      for _,secondary in pairs(self.stats_secondary) do
+        if stat == secondary then
+          self.total_points = self.total_points - 1
+          self.stat_base[stat] = self.stat_base[stat] + 1
+          self:IncrementFraction("plus_up", stat, 2)
+          self:CalculateStats(0, 0, stat)
+        end
+      end
+    
+      self:RandomizeStatOption()
+      self:UpdatePanoramaPoints(stat)
+    end
+
 		function base_stats:UpdatePanoramaStat(stat)
       if self:GetCaster():IsHero() == false then return end
       if self:GetCaster():IsIllusion() then return end
@@ -510,7 +533,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         end
       end
 
-      if self:GetCaster():GetLevel() >= 19 
+      if self:GetCaster():GetLevel() >= self.max_level - 1 
       and self.total_points < 4 then
         self.random_stats = stats
         return

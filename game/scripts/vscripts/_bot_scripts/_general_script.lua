@@ -10,11 +10,12 @@ local ancient = require("_bot_scripts/ancient")
 
 local BOT_STATE_IDLE = 0
 local BOT_STATE_AGGRESSIVE = 1
-local BOT_STATE_FARMING = 2
+local BOT_STATE_FLEE = 2
+local BOT_STATE_FARMING = 3
 
-local INIT_THINK_INTERVAL = 1
-local DEFAULT_THINK_INTERVAL = 0.25
-local SEARCH_THINK_INTERVAL = 3
+local THINK_INTERVAL_INIT = 45
+local THINK_INTERVAL_DEFAULT = 0.25
+local THINK_INTERVAL_SEARCH = 3
 
 local TARGET_STATE_INVALID = 0
 local TARGET_STATE_DEAD = 1
@@ -26,9 +27,12 @@ local TARGET_PRIORITY_HERO = 1
 local TARGET_PRIORITY_UNITS = 2
 local TARGET_PRIORITY_NEUTRALS = 3
 
-local TARGET_HUNTING_MAX_TIME = 15
+local TARGET_HUNTING_MAX_TIME = 5
+
+local LOW_HEALTH_PERCENT = 20
 
 local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
+local LIMIT_RANGE = 3600
 
 function _general_script:IsPurgable() return false end
 function _general_script:IsHidden() return true end
@@ -41,11 +45,9 @@ function _general_script:OnCreated(params)
     self.ability = self:GetAbility()
 
     self.state = BOT_STATE_AGGRESSIVE
-    self.order_point = LOCATION_MAIN_ARENA
-    self.attack_target = nil
-    self.target_last_loc = nil
-    self.hunt_time = nil
-    self.interval = INIT_THINK_INTERVAL
+    self.interval = THINK_INTERVAL_INIT
+    self.low_health = LOW_HEALTH_PERCENT
+    self:ResetStateData(BOT_STATE_AGGRESSIVE)
 
     self.abilityScript = self:LoadAbilityScript()
     if self.abilityScript == nil then return end
@@ -54,6 +56,7 @@ function _general_script:OnCreated(params)
     self.stateActions = {
       [BOT_STATE_IDLE] = self.IdleThink,
       [BOT_STATE_AGGRESSIVE] = self.AggressiveThink,
+      [BOT_STATE_FLEE] = self.FleeThink,
       [BOT_STATE_FARMING] = self.FarmingThink,
     }
 
@@ -63,8 +66,13 @@ function _general_script:OnCreated(params)
 end
 
 function _general_script:OnIntervalThink()
-  self.stateActions[self.state](self)
+  if self.stateActions[self.state](self) then
+    self:OnIntervalThink()
+    return
+  end
+  
   self:ConsumeAbilityPoint()
+  self:ConsumeStatPoint()
 
   if IsServer() then self:StartIntervalThink(self.interval) end
 end
@@ -93,6 +101,18 @@ function _general_script:IdleThink()
 end
 
 function _general_script:AggressiveThink()
+  if self.parent:GetHealthPercent() < self.low_health then
+    self.state = BOT_STATE_FLEE
+    self.interval = THINK_INTERVAL_DEFAULT
+    self:ResetStateData(BOT_STATE_AGGRESSIVE)
+    return true
+  end
+
+  if (LOCATION_MAIN_ARENA - self.parent:GetOrigin()):Length2D() > LIMIT_RANGE then
+    self.attack_target = nil
+    self.interval = THINK_INTERVAL_DEFAULT
+  end
+
   local target_state = self:CheckTargetState(self.attack_target)
 
   -- CUSTOM ACTION SPECIAL BLOODY TEARS
@@ -101,50 +121,72 @@ function _general_script:AggressiveThink()
   end
 
   if target_state ~= TARGET_STATE_MISSING then
-    self.order_point = LOCATION_MAIN_ARENA
+    self.agressive_loc = LOCATION_MAIN_ARENA
     self.hunt_time = nil
   end
 
   if target_state == TARGET_STATE_VISIBLE then
-    self.target_last_loc = self.attack_target:GetOrigin()
+    self.target_last_loc = self.attack_target:GetOrigin() + (self.parent:GetOrigin() - self.attack_target:GetOrigin()):Normalized() * -200
 
     if self.abilityScript:TrySpell(self.attack_target) == false then
       self:MoveBotTo("attack_target", self.attack_target)
-      self.interval = DEFAULT_THINK_INTERVAL
+      self.interval = THINK_INTERVAL_DEFAULT
     end
 
   elseif target_state == TARGET_STATE_MISSING then
     if self.hunt_time == nil then self.hunt_time = GameRules:GetGameTime() end
-    self.order_point = self.target_last_loc
-    self:MoveBotTo("location", self.order_point)
+    self.agressive_loc = self.target_last_loc
+    self:MoveBotTo("location", self.agressive_loc)
 
-    if (self.order_point - self.parent:GetOrigin()):Length2D() <= 100
-    or GameRules:GetGameTime() - self.hunt_time > TARGET_HUNTING_MAX_TIME then
+    if GameRules:GetGameTime() - self.hunt_time > TARGET_HUNTING_MAX_TIME then
       self.attack_target = nil
       self.hunt_time = nil
     end
     
-    self.interval = DEFAULT_THINK_INTERVAL
-    
+    self.interval = THINK_INTERVAL_DEFAULT
+
   else
     self.attack_target = self:FindNewTarget(
       self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
     )
 
-    if self.attack_target == nil then
-      if (self.order_point - self.parent:GetOrigin()):Length2D() > 100 then
-        self:MoveBotTo("location", self.order_point)
+    for _, hero in pairs(HeroList:GetAllHeroes()) do
+      if self.attack_target == nil and hero:GetTeamNumber() == self.parent:GetTeamNumber() then
+        self.attack_target = self:FindNewTarget(
+          hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
+        )
       end
     end
+
+    if self.attack_target == nil then self:MoveBotTo("location", self.agressive_loc) end
     
-    self.interval = DEFAULT_THINK_INTERVAL
+    self.interval = THINK_INTERVAL_DEFAULT
   end
+end
+
+function _general_script:FleeThink()
+  if self.parent:GetHealthPercent() == 100 then
+    self.state = BOT_STATE_AGGRESSIVE
+    self.interval = THINK_INTERVAL_DEFAULT
+    return true
+  end
+
+  self:MoveBotTo("location", GetFountainLoc(self.parent))
 end
 
 function _general_script:FarmingThink()
 end
 
 -- UTIL FUNCTIONS -----------------------------------------------------------
+
+function _general_script:ResetStateData(state)
+  if state == BOT_STATE_AGGRESSIVE then
+    self.agressive_loc = LOCATION_MAIN_ARENA
+    self.attack_target = nil
+    self.target_last_loc = nil
+    self.hunt_time = nil
+  end
+end
 
 function _general_script:CheckTargetState(target)
   if target == nil then return TARGET_STATE_INVALID end
@@ -155,14 +197,6 @@ function _general_script:CheckTargetState(target)
   return TARGET_STATE_VISIBLE
 end
 
-function _general_script:MoveBotTo(command, handle)
-  if self.parent:IsCommandRestricted() then return end
-  if handle == nil then return end
-
-  if command == "attack_target" then self.parent:MoveToTargetToAttack(handle) end
-  if command == "location" then self.parent:MoveToPosition(handle) end
-end
-
 function _general_script:FindNewTarget(loc, radius, priority, find_order)
   local enemies = FindUnitsInRadius(
     self.parent:GetTeamNumber(), loc, nil, radius,
@@ -171,7 +205,8 @@ function _general_script:FindNewTarget(loc, radius, priority, find_order)
   )
 
   for _,enemy in pairs(enemies) do
-    if self.parent:CanEntityBeSeenByMyTeam(enemy) == true then
+    if self.parent:CanEntityBeSeenByMyTeam(enemy) == true
+    and (LOCATION_MAIN_ARENA - enemy:GetOrigin()):Length2D() < LIMIT_RANGE then
       if priority == TARGET_PRIORITY_HERO then
         if enemy:IsHero() then return enemy end
       end
@@ -185,8 +220,28 @@ function _general_script:FindNewTarget(loc, radius, priority, find_order)
   end
 
   for _,enemy in pairs(enemies) do
-    if self.parent:CanEntityBeSeenByMyTeam(enemy) == true then
+    if self.parent:CanEntityBeSeenByMyTeam(enemy) == true
+    and (LOCATION_MAIN_ARENA - enemy:GetOrigin()):Length2D() < LIMIT_RANGE then
       return enemy
+    end
+  end
+end
+
+function _general_script:MoveBotTo(command, handle)
+  if self.parent:IsCommandRestricted() then return end
+  if handle == nil then return end
+
+  if command == "attack_target" then
+    if (LOCATION_MAIN_ARENA - handle:GetOrigin()):Length2D() > LIMIT_RANGE then
+      self.parent:MoveToPosition(LOCATION_MAIN_ARENA)
+    else
+      self.parent:MoveToTargetToAttack(handle)
+    end
+  end
+
+  if command == "location" then
+    if (handle - self.parent:GetOrigin()):Length2D() > 100 then
+      self.parent:MoveToPosition(handle)
     end
   end
 end
@@ -206,7 +261,9 @@ function _general_script:LoadAbilityScript()
 end
 
 function _general_script:ConsumeAbilityPoint()
-  if BaseHero(self.parent).skill_points <= 0 then return end
+  local base_hero = BaseHero(self.parent)
+  if base_hero == nil then return end
+  if base_hero.skill_points <= 0 then return end
 
   local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent).."/"..GetHeroName(self.parent).."/"..GetHeroName(self.parent).."-skills.txt")
   local available_abilities = {}
@@ -223,6 +280,99 @@ function _general_script:ConsumeAbilityPoint()
   end
 
   available_abilities[RandomInt(1, i)]:UpgradeAbility(true)
-  BaseHero(self.parent):CheckAbilityPoints(-1)
+  base_hero:CheckAbilityPoints(-1)
   self:ConsumeAbilityPoint()
+end
+
+function _general_script:ConsumeStatPoint()
+  local base_stats = BaseStats(self.parent)
+  if base_stats == nil then return end
+  if base_stats.random_stats == nil then return end
+  if base_stats.total_points <= 0 then return end
+
+  local main_stats = {
+    [1] = "STR",
+    [2] = "AGI",
+    [3] = "INT",
+    [4] = "CON",
+    [5] = "MND"
+  } --MND LCK DEF RES REC DEX
+
+  if GetHeroName(self.parent) == "lawbreaker" then
+    main_stats[1] = "STR"
+    main_stats[2] = "INT"
+    main_stats[3] = "LCK"
+    main_stats[4] = "RES"
+    main_stats[5] = "DEF"
+  end
+
+  if GetHeroName(self.parent) == "fleaman" then
+    main_stats[1] = "AGI"
+    main_stats[2] = "STR"
+    main_stats[3] = "DEX"
+    main_stats[4] = "LCK"
+    main_stats[5] = "REC"
+  end
+
+  if GetHeroName(self.parent) == "bloodstained" then
+    main_stats[1] = "STR"
+    main_stats[2] = "AGI"
+    main_stats[3] = "LCK"
+    main_stats[4] = "DEF"
+    main_stats[5] = "MND"
+  end
+
+  if GetHeroName(self.parent) == "bocuse" then
+    main_stats[1] = "STR"
+    main_stats[2] = "INT"
+    main_stats[3] = "RES"
+    main_stats[4] = "MND"
+    main_stats[5] = "DEF"
+  end
+
+  if GetHeroName(self.parent) == "dasdingo" then
+    main_stats[1] = "INT"
+    main_stats[2] = "CON"
+    main_stats[3] = "MND"
+    main_stats[4] = "REC"
+    main_stats[5] = "RES"
+  end
+
+  if GetHeroName(self.parent) == "genuine" then
+    main_stats[1] = "INT"
+    main_stats[2] = "AGI"
+    main_stats[3] = "REC"
+    main_stats[4] = "RES"
+    main_stats[5] = "DEX"
+  end
+
+  if GetHeroName(self.parent) == "icebreaker" then
+    main_stats[1] = "INT"
+    main_stats[2] = "AGI"
+    main_stats[3] = "DEX"
+    main_stats[4] = "REC"
+    main_stats[5] = "LCK"
+  end
+
+  if GetHeroName(self.parent) == "ancient" then
+    main_stats[1] = "STR"
+    main_stats[2] = "INT"
+    main_stats[3] = "DEF"
+    main_stats[4] = "RES"
+    main_stats[5] = "LCK"
+  end
+
+  local main = 0
+
+  for i = 1, 5, 1 do
+    for index, random_stat in pairs(base_stats.random_stats) do
+      if main_stats[i] == random_stat and main == 0 then
+        main = index
+      end
+    end
+  end
+
+  if main == 0 then main = RandomInt(1, #base_stats.random_stats) end
+  base_stats:UpgradeStat(base_stats.random_stats[main])
+  self:ConsumeStatPoint()
 end

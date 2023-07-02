@@ -39,7 +39,11 @@ function GameMode:OnGameRulesStateChange(keys)
   end
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(0, 0, 0), 9999, 9999, false)
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(0, 0, 0), 5000, 9999, false)
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(-2550, 3850, 0), 1600, 9999, false)
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(2550, -3850, 0), 1600, 9999, false)
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(-3850, -2550, 0), 1600, 9999, false)
+    AddFOWViewer(DOTA_TEAM_CUSTOM_3, Vector(3850, 2550, 0), 1600, 9999, false)
 
     for team, data in pairs(BOTS) do
       for index, table in pairs(data) do

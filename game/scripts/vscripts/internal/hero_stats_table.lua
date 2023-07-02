@@ -29,28 +29,7 @@ function hero_stats_table:OnLevelUpStat(event)
   local hero = player:GetAssignedHero()
   if (not hero) then return end
 
-  if BaseStats(hero) == nil then return end
-
-  for _,primary in pairs(hero_stats_table.stats_primary) do
-    if event.stat == primary then
-      BaseStats(hero).total_points = BaseStats(hero).total_points - 1
-      BaseStats(hero).stat_base[event.stat] = BaseStats(hero).stat_base[event.stat] + 1
-      BaseStats(hero):IncrementFraction("plus_up", primary, 3)
-      BaseStats(hero):CalculateStats(0, 0, primary)
-    end
-  end
-
-  for _,secondary in pairs(hero_stats_table.stats_secondary) do
-    if event.stat == secondary then
-      BaseStats(hero).total_points = BaseStats(hero).total_points - 1
-      BaseStats(hero).stat_base[event.stat] = BaseStats(hero).stat_base[event.stat] + 1
-      BaseStats(hero):IncrementFraction("plus_up", event.stat, 2)
-      BaseStats(hero):CalculateStats(0, 0, event.stat)
-    end
-  end
-
-  BaseStats(hero):RandomizeStatOption()
-  BaseStats(hero):UpdatePanoramaPoints(event.stat)
+  if BaseStats(hero) then BaseStats(hero):UpgradeStat(event.stat) end
 end
 
 function hero_stats_table:OnPlayerReconnect(keys)

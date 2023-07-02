@@ -132,6 +132,14 @@ function GetTeamIndex(team_number)
   end
 end
 
+function GetFountainLoc(hero)
+  local loc = Vector(0, 0, 0)
+  if hero:IsHero() == false then return loc end
+  if hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS then return loc end
+
+  return TEAMS[GetTeamIndex(hero:GetTeamNumber())]["fountain_origin"]
+end
+
 function GetKillingSpreeAnnouncer(kills)
   local rand = RandomInt(1,2)
 

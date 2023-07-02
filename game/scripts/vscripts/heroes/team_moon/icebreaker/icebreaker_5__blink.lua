@@ -99,6 +99,8 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
 			end
 		end
 
+    local bot_script = caster:FindModifierByName("_general_script")
+
 		if IsServer() then caster:EmitSound("Hero_QueenOfPain.Blink_out") end
 
 		local direction = target:GetForwardVector() * (-1)
@@ -115,6 +117,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
 
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 			caster:MoveToTargetToAttack(target)
+      if bot_script then bot_script.attack_target = target end
 		end
 
 		if target:HasModifier("icebreaker__modifier_frozen") then
