@@ -61,7 +61,7 @@
 
     "AbilityValues"
 		{
-			"agi"			          "50"
+			"agi"			          "40"
       "atk_range"			    "150"
       "slow_percent"	    "40"
       "reload"	          "1.5"

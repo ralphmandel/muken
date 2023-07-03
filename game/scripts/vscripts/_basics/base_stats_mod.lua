@@ -166,7 +166,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-    if self.parent:IsRangedAttacker() then return 0 end
+    --if self.parent:IsRangedAttacker() then return 0 end
 
     local average = self.ability.physical_block_max_percent
     local block_percent = RandomInt(average - 5, average + 5)

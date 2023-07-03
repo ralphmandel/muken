@@ -50,8 +50,6 @@ function ancient_u_modifier_passive:OnAttacked(keys)
 
   IncreaseMana(self.parent, gain)
   self.ability:UpdateCON()
-
-  if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("delay")) end
 end
 
 function ancient_u_modifier_passive:OnHeroKilled(keys)

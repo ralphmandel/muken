@@ -86,6 +86,8 @@ function _general_script:RemoveOnDeath() return false end
 
     local cast_point = keys.ability:GetCastPoint()
 
+    if keys.ability:GetAbilityName() == "bloodstained_4__tear" then self:ChangeState(BOT_STATE_AGGRESSIVE) end
+
     if IsServer() then
       self:StartIntervalThink(cast_point + 0.5)
     end
@@ -114,8 +116,7 @@ function _general_script:RemoveOnDeath() return false end
 
       if current_action == ACTION_AGRESSIVE_CHANGE_TO_FLEE then
         if self.parent:GetHealthPercent() < self.low_health then
-          self:ResetStateData(BOT_STATE_AGGRESSIVE)
-          self.state = BOT_STATE_FLEE
+          self:ChangeState(BOT_STATE_FLEE)
         end
       end
 
@@ -181,8 +182,8 @@ function _general_script:RemoveOnDeath() return false end
       self:SpecialActions(current_action)
 
       if current_action == ACTION_FLEE_CHANGE_TO_AGGRESSIVE then
-        if self.parent:GetHealthPercent() == 95 then
-          self.state = BOT_STATE_AGGRESSIVE
+        if self.parent:GetHealthPercent() >= 95 then
+          self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
 
@@ -204,6 +205,11 @@ function _general_script:RemoveOnDeath() return false end
   end
 
 -- UTIL FUNCTIONS -----------------------------------------------------------
+
+  function _general_script:ChangeState(state)
+    if self.state ~= state then self:ResetStateData(self.state) end
+    self.state = state
+  end
 
   function _general_script:ResetStateData(state)
     if state == BOT_STATE_AGGRESSIVE then

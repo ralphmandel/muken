@@ -116,7 +116,7 @@ end
 
 function ancient:RandomizeValue(ability, value_name)
   if value_name == "final_percent" then
-    self.random_values[value_name] = RandomInt(ability:GetSpecialValueFor("min_cost"), 100)
+    self.random_values[value_name] = RandomInt(ability:GetSpecialValueFor("min_cost"), 90)
   end
 end
 
