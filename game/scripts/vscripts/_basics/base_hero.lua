@@ -27,6 +27,13 @@ require("internal/talent_tree")
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
 
+    local bot_script = caster:FindModifierByName("_general_script")
+    
+    if bot_script then
+      bot_script:ConsumeAbilityPoint()
+      bot_script:ConsumeStatPoint()
+    end
+
 		if level == 8 then
 			local ultimate = caster:FindAbilityByName(self.skills[6])
 			if ultimate then

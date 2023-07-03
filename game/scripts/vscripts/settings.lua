@@ -131,7 +131,7 @@ BOTS = {
     [3] = { ["npc"] = nil, ["bot_name"] = "UK" },
     [4] = { ["npc"] = nil, ["bot_name"] = "UK2" },
   },
-  [DOTA_TEAM_CUSTOM_2] = {
+  [DOTA_TEAM_CUSTOM_3] = {
     [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
     [2] = { ["npc"] = nil, ["bot_name"] = "Kubo" },
     [3] = { ["npc"] = nil, ["bot_name"] = "Do Jun" },

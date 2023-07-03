@@ -43,6 +43,19 @@ function bloodstained_2_modifier_frenzy:CheckState()
 	return state
 end
 
+function bloodstained_2_modifier_frenzy:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MIN_HEALTH
+	}
+
+	return funcs
+end
+
+function bloodstained_2_modifier_frenzy:GetMinHealth()
+  return 1
+end
+
+
 function bloodstained_2_modifier_frenzy:OnIntervalThink()
 	if IsServer() then
 		if self.ability.target then
