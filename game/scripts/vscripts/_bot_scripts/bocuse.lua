@@ -92,7 +92,7 @@ function bocuse:TryCast_Mise()
 
   local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
   local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
-  if angle_diff < -10 or angle_diff > 10 then return false end
+  if angle_diff < -75 or angle_diff > 75 then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 

@@ -232,9 +232,9 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCharges" then return 3 end
-    if value_name == "AbilityChargeRestoreTime" then return 25 end
+    if value_name == "AbilityChargeRestoreTime" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 12 + (value_level * 0.3) end
+		if value_name == "duration" then return 15 + (value_level * 0.3) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_2__speed" then

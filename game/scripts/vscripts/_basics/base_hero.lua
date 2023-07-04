@@ -15,9 +15,12 @@ require("internal/talent_tree")
 		if self:GetLevel() == 1 then
 			self:ResetRanksData()
 
-			Timers:CreateTimer(0.2, function()
+			Timers:CreateTimer(1, function()
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
+        if GetMapName() == "muken_arena_no_ranks" then
+          caster:AddExperience(300, 0, false, false)
+        end
 			end)
 		end
 	end
@@ -79,8 +82,8 @@ require("internal/talent_tree")
 
 -- LOAD DATA
 	function base_hero:LoadHeroesData()
-    self.hero_name = GetHeroName(self:GetCaster())
-    self.hero_team = GetHeroTeam(self:GetCaster())
+    self.hero_name = GetHeroName(self:GetCaster():GetUnitName())
+    self.hero_team = GetHeroTeam(self:GetCaster():GetUnitName())
 
     if self.skill_points == nil then
 			self.skill_points = 3
@@ -219,8 +222,6 @@ require("internal/talent_tree")
 
 -- UPDATE DATA
 	function base_hero:UpdatePanoramaPanels()
-    if self:GetCaster():IsHero() == false then return end
-
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
@@ -232,8 +233,6 @@ require("internal/talent_tree")
 	end
 
 	function base_hero:UpdatePanoramaState()
-    if self:GetCaster():IsHero() == false then return end
-
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
@@ -274,9 +273,7 @@ require("internal/talent_tree")
 		end)
 	end
 
-	function base_hero:UpdatePanoramaGold()
-    if self:GetCaster():IsHero() == false then return end
-    
+	function base_hero:UpdatePanoramaGold()    
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 

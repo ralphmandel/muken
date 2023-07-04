@@ -64,8 +64,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local caster = self:GetCaster()
       if caster:IsHero() == false then return end
 
-      local hero_name = GetHeroName(self:GetCaster())
-      local hero_team = GetHeroTeam(self:GetCaster())
+      local hero_name = GetHeroName(self:GetCaster():GetUnitName())
+      local hero_team = GetHeroTeam(self:GetCaster():GetUnitName())
       local abilities_data = LoadKeyValues("scripts/vscripts/heroes/"..hero_team.."/"..hero_name.."/"..hero_name..".txt")
       if abilities_data == nil then return end
 
@@ -153,7 +153,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local caster = self:GetCaster()
       local unit_stats = nil
       local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
-      local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
       local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
       local boss_list = LoadKeyValues("scripts/vscripts/_bosses/_bosses_units.txt")
       local neutral_list = LoadKeyValues("scripts/vscripts/_neutrals/_neutrals_units.txt")

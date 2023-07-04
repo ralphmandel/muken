@@ -115,36 +115,35 @@ TEAM_COLORS[DOTA_TEAM_CUSTOM_4] = { 199, 228, 13 }  --
 USE_AUTOMATIC_PLAYERS_PER_TEAM = false   -- Should we set the number of players to 10 / MAX_NUMBER_OF_TEAMS?
 
 CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 4
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 4
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 2
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 2
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 2
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 2
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 4
 
-BOTS = {
-  [DOTA_TEAM_CUSTOM_1] = {
-    [1] = { ["npc"] = nil, ["bot_name"] = "Jairo, o Jakiro" },
-    [2] = { ["npc"] = nil, ["bot_name"] = "Zubumafu" },
-    [3] = { ["npc"] = nil, ["bot_name"] = "UK" },
-    --[4] = { ["npc"] = nil, ["bot_name"] = "UK2" },
-  },
-  [DOTA_TEAM_CUSTOM_3] = {
-    [1] = { ["npc"] = nil, ["bot_name"] = "Sacola de Gold" },
-    [2] = { ["npc"] = nil, ["bot_name"] = "Kubo" },
-    [3] = { ["npc"] = nil, ["bot_name"] = "Do Jun" },
-    --[4] = { ["npc"] = nil, ["bot_name"] = "Serluc" },
-  },
-  -- [DOTA_TEAM_CUSTOM_3] = {
-  --   [1] = { ["npc"] = nil, ["bot_name"] = "Chico" },
-  --   [2] = { ["npc"] = nil, ["bot_name"] = "Serluc" },
-  -- },
-  -- [DOTA_TEAM_CUSTOM_4] = {
-  --   [1] = { ["npc"] = nil, ["bot_name"] = "Gasp.Z" },
-  --   [2] = { ["npc"] = nil, ["bot_name"] = "Edomic Wolf" },
-  -- },
+BOTS = {}
+
+BOT_LIST = {
+  "fleaman", "lawbreaker", "bloodstained", "bocuse",
+  "genuine", "icebreaker",
+  "dasdingo",
+  "ancient",
+}
+
+RANDOM_NAMES = {
+  [1] = "Serluc",
+  [2] = "Zubumafu",
+  [3] = "Kazunari",
+  [4] = "Edomic Wolf",
+  [5] = "InStereo4",
+  [6] = "UK",
+  [7] = "Do Jun",
+  [8] = "Kubo",
+  [9] = "Gasp.Z",
+  [10] = "Jairo, o Jakiro"
 }
 
 SPAWNER_MOBS = {
@@ -233,7 +232,7 @@ SPAWNER_BOSS_SPOTS = {
 MAX_MOB_COUNT = 8
 MAX_BOSS_COUNT = 1
 
-SCORE = 10
+SCORE = 15
 SCORE_KILL = 60
 SCORE_BOUNTY = 120
 GOLD_BOUNTY_MIN = 12

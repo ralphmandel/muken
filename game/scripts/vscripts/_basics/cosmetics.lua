@@ -22,31 +22,8 @@ function cosmetics:OnUpgrade()
 end
 
 -- ADD COSMETICS
-
-	function cosmetics:LoadHeroesName()
-		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
-		if heroes_name_data == nil then return end
-		for name, id_name in pairs(heroes_name_data) do
-			if self:GetCaster():GetUnitName() == id_name then
-				return name
-			end
-		end
-	end
-
-  function cosmetics:LoadHeroesTeam()
-		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
-		if heroes_team_data == nil then return end
-
-    for team, hero_list in pairs(heroes_team_data) do
-      for _,id_name in pairs(hero_list) do
-        if self:GetCaster():GetUnitName() == id_name then
-          return team
-        end
-      end
-		end
-	end
-
 	function cosmetics:LoadCosmetics()
+    local caster = self:GetCaster()
 		self.cosmetic = {}
 		self.status_efx_flags = {
 			-- [1] = "models/items/rikimaru/riki_scarlet_fox_head/riki_scarlet_fox_head.vmdl",
@@ -57,23 +34,23 @@ end
 			-- [6] = "models/items/rikimaru/riki_scarlet_fox_tail/riki_scarlet_fox_tail.vmdl"
 		}
 	
-		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..self:LoadHeroesTeam().."/"..self:LoadHeroesName().."/"..self:LoadHeroesName().."-cosmetics.txt")
+		local cosmetics_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(caster:GetUnitName()).."/"..GetHeroName(caster:GetUnitName()).."/"..GetHeroName(caster:GetUnitName()).."-cosmetics.txt")
 		if cosmetics_data ~= nil then self:ApplyCosmetics(cosmetics_data) end
 	
-		if self:LoadHeroesName() == "icebreaker" then
-			--self:SetStatusEffect(self:GetCaster(), nil, "icebreaker_1_modifier_passive_status_efx", true)
+		if GetHeroName(caster:GetUnitName()) == "icebreaker" then
+			--self:SetStatusEffect(caster, nil, "icebreaker_1_modifier_passive_status_efx", true)
 		end
 
-		if self:LoadHeroesName() == "bloodstained" then
-			self:SetStatusEffect(self:GetCaster(), nil, "bloodstained_1_modifier_passive_status_efx", true)
+		if GetHeroName(caster:GetUnitName()) == "bloodstained" then
+			self:SetStatusEffect(caster, nil, "bloodstained_1_modifier_passive_status_efx", true)
 		end
 		
-		if self:LoadHeroesName() == "krieger" then
-			self:SetStatusEffect(self:GetCaster(), nil, "krieger_1_modifier_passive_status_efx", true)
+		if GetHeroName(caster:GetUnitName()) == "krieger" then
+			self:SetStatusEffect(caster, nil, "krieger_1_modifier_passive_status_efx", true)
 		end
 
 		if IsInToolsMode() then
-			--self:ChangeTeam(self:GetCaster():GetTeamNumber())
+			--self:ChangeTeam(caster:GetTeamNumber())
 		end
 	end
 

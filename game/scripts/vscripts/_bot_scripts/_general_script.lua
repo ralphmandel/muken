@@ -14,14 +14,16 @@ local BOT_STATE_FLEE = 2
 local BOT_STATE_FARMING = 3
 
 local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 101
-local ACTION_AGRESSIVE_ATTACK_TARGET = 102
-local ACTION_AGRESSIVE_SEEK_TARGET = 103
-local ACTION_AGRESSIVE_FIND_TARGET = 104
+local ACTION_AGRESSIVE_SWAP_TARGET = 102
+local ACTION_AGRESSIVE_ATTACK_TARGET = 103
+local ACTION_AGRESSIVE_SEEK_TARGET = 104
+local ACTION_AGRESSIVE_FIND_TARGET = 105
 
 local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 201
 local ACTION_FLEE_GO_TO_FOUNTAIN = 202
 
 local ACTION_BLOODSTAINED_TEAR = 401
+local ACTION_FLEAMAN_STEAL = 402
 
 local THINK_INTERVAL_INIT = 45
 local THINK_INTERVAL_DEFAULT = 0.25
@@ -32,11 +34,13 @@ local TARGET_STATE_MISSING = 2
 local TARGET_STATE_VISIBLE = 3
 
 local TARGET_PRIORITY_ANY = 0
-local TARGET_PRIORITY_HERO = 1
-local TARGET_PRIORITY_UNITS = 2
-local TARGET_PRIORITY_NEUTRALS = 3
+local TARGET_PRIORITY_ONLY_HERO = 1
+local TARGET_PRIORITY_HERO = 2
+local TARGET_PRIORITY_UNITS = 3
+local TARGET_PRIORITY_NEUTRALS = 4
 
-local LOW_HEALTH_PERCENT = 20
+local LOW_HEALTH_PERCENT = 25
+local FULL_HEALTH_PERCENT = 100
 local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
 local LIMIT_RANGE = 3600
 
@@ -50,7 +54,6 @@ function _general_script:RemoveOnDeath() return false end
     if IsServer() then
       self.caster = self:GetCaster()
       self.parent = self:GetParent()
-      self.ability = self:GetAbility()
 
       self.state = BOT_STATE_AGGRESSIVE
       self.interval = THINK_INTERVAL_DEFAULT
@@ -96,8 +99,6 @@ function _general_script:RemoveOnDeath() return false end
   function _general_script:OnIntervalThink()
     self.stateActions[self.state](self)
 
-    if self.parent:GetLevel() < 30 then self.parent:AddExperience(300, 0, false, false) end
-
     if IsServer() then self:StartIntervalThink(self.interval) end
   end
 
@@ -117,6 +118,17 @@ function _general_script:RemoveOnDeath() return false end
       if current_action == ACTION_AGRESSIVE_CHANGE_TO_FLEE then
         if self.parent:GetHealthPercent() < self.low_health then
           self:ChangeState(BOT_STATE_FLEE)
+        end
+      end
+
+      if current_action == ACTION_AGRESSIVE_SWAP_TARGET then
+        local new_target = self:FindNewTarget(
+          self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_ONLY_HERO, FIND_ANY_ORDER, LOW_HEALTH_PERCENT
+        )
+
+        if new_target then
+          self.agressive_loc = LOCATION_MAIN_ARENA
+          self.attack_target = new_target
         end
       end
 
@@ -157,13 +169,13 @@ function _general_script:RemoveOnDeath() return false end
           self.agressive_loc = LOCATION_MAIN_ARENA
 
           self.attack_target = self:FindNewTarget(
-            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
+            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER, FULL_HEALTH_PERCENT
           )
     
           for _, hero in pairs(HeroList:GetAllHeroes()) do
             if self.attack_target == nil and hero:GetTeamNumber() == self.parent:GetTeamNumber() then
               self.attack_target = self:FindNewTarget(
-                hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER
+                hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER, FULL_HEALTH_PERCENT
               )
             end
           end
@@ -182,7 +194,7 @@ function _general_script:RemoveOnDeath() return false end
       self:SpecialActions(current_action)
 
       if current_action == ACTION_FLEE_CHANGE_TO_AGGRESSIVE then
-        if self.parent:GetHealthPercent() >= 95 then
+        if self.parent:GetHealthPercent() >= FULL_HEALTH_PERCENT then
           self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
@@ -200,7 +212,47 @@ function _general_script:RemoveOnDeath() return false end
     if current_action == ACTION_BLOODSTAINED_TEAR then
       if self:CheckTargetState(self.attack_target) ~= TARGET_STATE_VISIBLE and self.abilityScript.TryCast_Tear then
         self.abilityScript:TryCast_Tear()
-      end      
+      end
+    end
+
+    if current_action == ACTION_FLEAMAN_STEAL then
+      if self:CheckTargetState(self.attack_target) ~= TARGET_STATE_MISSING and self.parent:HasModifier("fleaman_5_modifier_passive") then
+        local new_target = true
+
+        if self:CheckTargetState(self.attack_target) == TARGET_STATE_VISIBLE then
+          local mod_steal = self.attack_target:FindAllModifiersByName("fleaman_5_modifier_steal")
+          if mod_steal then
+            if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
+              new_target = false
+            end
+          end
+        end
+
+        if new_target == true then
+          self.agressive_loc = LOCATION_MAIN_ARENA
+
+          local enemies = FindUnitsInRadius(
+            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+          )
+      
+          for _,enemy in pairs(enemies) do
+            if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false then
+              local mod_steal = enemy:FindAllModifiersByName("fleaman_5_modifier_steal")
+              if mod_steal then
+                if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
+                  self.attack_target = enemy
+                  break
+                end
+              else
+                self.attack_target = enemy
+                break
+              end
+            end
+          end
+        end
+      end
     end
   end
 
@@ -228,7 +280,7 @@ function _general_script:RemoveOnDeath() return false end
     return TARGET_STATE_VISIBLE
   end
 
-  function _general_script:FindNewTarget(loc, radius, priority, find_order)
+  function _general_script:FindNewTarget(loc, radius, priority, find_order, hp_cap)
     local enemies = FindUnitsInRadius(
       self.parent:GetTeamNumber(), loc, nil, radius,
       DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
@@ -236,8 +288,9 @@ function _general_script:RemoveOnDeath() return false end
     )
 
     for _,enemy in pairs(enemies) do
-      if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false then
-        if priority == TARGET_PRIORITY_HERO then
+      if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false
+      and enemy:GetHealthPercent() <= hp_cap then
+        if priority == TARGET_PRIORITY_HERO or priority == TARGET_PRIORITY_ONLY_HERO then
           if enemy:IsHero() then return enemy end
         end
         if priority == TARGET_PRIORITY_NEUTRALS then
@@ -245,13 +298,16 @@ function _general_script:RemoveOnDeath() return false end
         end
         if priority == TARGET_PRIORITY_UNITS then
           if enemy:IsHero() == false and enemy:IsNeutralUnitType() == false then return enemy end
-        end      
+        end
       end
     end
 
     for _,enemy in pairs(enemies) do
-      if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false then
-        return enemy
+      if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false
+      and enemy:GetHealthPercent() <= hp_cap then
+        if priority ~= TARGET_PRIORITY_ONLY_HERO then
+          return enemy
+        end
       end
     end
   end
@@ -286,7 +342,7 @@ function _general_script:RemoveOnDeath() return false end
     if base_hero == nil then return end
     if base_hero.skill_points <= 0 then return end
 
-    local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent).."/"..GetHeroName(self.parent).."/"..GetHeroName(self.parent).."-skills.txt")
+    local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."-skills.txt")
     local available_abilities = {}
     local i = 0
 
@@ -311,76 +367,15 @@ function _general_script:RemoveOnDeath() return false end
     if base_stats.random_stats == nil then return end
     if base_stats.total_points <= 0 then return end
 
-    local main_stats = {
-      [1] = "STR",
-      [2] = "AGI",
-      [3] = "INT",
-      [4] = "CON",
-      [5] = "MND"
-    } --MND LCK DEF RES REC DEX
+    local main_stats = {}
+    local data = LoadKeyValues("scripts/kv/heroes_priority.kv")
 
-    if GetHeroName(self.parent) == "lawbreaker" then
-      main_stats[1] = "STR"
-      main_stats[2] = "INT"
-      main_stats[3] = "LCK"
-      main_stats[4] = "RES"
-      main_stats[5] = "DEF"
-    end
-
-    if GetHeroName(self.parent) == "fleaman" then
-      main_stats[1] = "AGI"
-      main_stats[2] = "STR"
-      main_stats[3] = "DEX"
-      main_stats[4] = "LCK"
-      main_stats[5] = "REC"
-    end
-
-    if GetHeroName(self.parent) == "bloodstained" then
-      main_stats[1] = "STR"
-      main_stats[2] = "AGI"
-      main_stats[3] = "LCK"
-      main_stats[4] = "DEF"
-      main_stats[5] = "MND"
-    end
-
-    if GetHeroName(self.parent) == "bocuse" then
-      main_stats[1] = "STR"
-      main_stats[2] = "INT"
-      main_stats[3] = "RES"
-      main_stats[4] = "MND"
-      main_stats[5] = "DEF"
-    end
-
-    if GetHeroName(self.parent) == "dasdingo" then
-      main_stats[1] = "INT"
-      main_stats[2] = "CON"
-      main_stats[3] = "MND"
-      main_stats[4] = "REC"
-      main_stats[5] = "RES"
-    end
-
-    if GetHeroName(self.parent) == "genuine" then
-      main_stats[1] = "INT"
-      main_stats[2] = "AGI"
-      main_stats[3] = "REC"
-      main_stats[4] = "RES"
-      main_stats[5] = "DEX"
-    end
-
-    if GetHeroName(self.parent) == "icebreaker" then
-      main_stats[1] = "INT"
-      main_stats[2] = "AGI"
-      main_stats[3] = "DEX"
-      main_stats[4] = "REC"
-      main_stats[5] = "LCK"
-    end
-
-    if GetHeroName(self.parent) == "ancient" then
-      main_stats[1] = "STR"
-      main_stats[2] = "INT"
-      main_stats[3] = "DEF"
-      main_stats[4] = "RES"
-      main_stats[5] = "LCK"
+    for hero_name, stats in pairs(data) do
+      if hero_name == GetHeroName(self.parent:GetUnitName()) then
+        for priority, stat in pairs(stats) do
+          main_stats[tonumber(priority)] = stat
+        end
+      end
     end
 
     local main = 0
@@ -401,9 +396,10 @@ function _general_script:RemoveOnDeath() return false end
   function _general_script:LoadHeroActions()
     self.AggressiveActions = {
       [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
-      [2] = ACTION_AGRESSIVE_ATTACK_TARGET,
-      [3] = ACTION_AGRESSIVE_SEEK_TARGET,
-      [4] = ACTION_AGRESSIVE_FIND_TARGET,
+      [2] = ACTION_AGRESSIVE_SWAP_TARGET,
+      [3] = ACTION_AGRESSIVE_ATTACK_TARGET,
+      [4] = ACTION_AGRESSIVE_SEEK_TARGET,
+      [5] = ACTION_AGRESSIVE_FIND_TARGET,
     }
 
     self.FleeActions = {
@@ -411,13 +407,14 @@ function _general_script:RemoveOnDeath() return false end
       [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
     }
 
-    if GetHeroName(self.parent) == "bloodstained" then
+    if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
       self.AggressiveActions = {
         [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
         [2] = ACTION_BLOODSTAINED_TEAR,
-        [3] = ACTION_AGRESSIVE_ATTACK_TARGET,
-        [4] = ACTION_AGRESSIVE_SEEK_TARGET,
-        [5] = ACTION_AGRESSIVE_FIND_TARGET,
+        [3] = ACTION_AGRESSIVE_SWAP_TARGET,
+        [4] = ACTION_AGRESSIVE_ATTACK_TARGET,
+        [5] = ACTION_AGRESSIVE_SEEK_TARGET,
+        [6] = ACTION_AGRESSIVE_FIND_TARGET,
       }
 
       self.FleeActions = {
@@ -429,11 +426,23 @@ function _general_script:RemoveOnDeath() return false end
       return bloodstained
     end
 
-    if GetHeroName(self.parent) == "lawbreaker" then return lawbreaker end
-    if GetHeroName(self.parent) == "fleaman" then return fleaman end
-    if GetHeroName(self.parent) == "bocuse" then return bocuse end
-    if GetHeroName(self.parent) == "dasdingo" then return dasdingo end
-    if GetHeroName(self.parent) == "genuine" then return genuine end
-    if GetHeroName(self.parent) == "icebreaker" then return icebreaker end
-    if GetHeroName(self.parent) == "ancient" then return ancient end
+    if GetHeroName(self.parent:GetUnitName()) == "fleaman" then
+      self.AggressiveActions = {
+        [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
+        [2] = ACTION_AGRESSIVE_SWAP_TARGET,
+        [3] = ACTION_AGRESSIVE_ATTACK_TARGET,
+        [4] = ACTION_AGRESSIVE_SEEK_TARGET,
+        [5] = ACTION_FLEAMAN_STEAL,
+        [6] = ACTION_AGRESSIVE_FIND_TARGET,
+      }
+
+      return fleaman
+    end
+
+    if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then return lawbreaker end
+    if GetHeroName(self.parent:GetUnitName()) == "bocuse" then return bocuse end
+    if GetHeroName(self.parent:GetUnitName()) == "dasdingo" then return dasdingo end
+    if GetHeroName(self.parent:GetUnitName()) == "genuine" then return genuine end
+    if GetHeroName(self.parent:GetUnitName()) == "icebreaker" then return icebreaker end
+    if GetHeroName(self.parent:GetUnitName()) == "ancient" then return ancient end
   end

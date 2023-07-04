@@ -147,8 +147,11 @@ function GameMode:OnGameInProgress()
 
   Timers:CreateTimer(1, -- Start this timer 30 game-time seconds later
     function()
-      --Spawner:SpawnNeutrals()
-      --Spawner:SpawnBosses()
+      if GetMapName() ~= "muken_arena_no_ranks" then
+        Spawner:SpawnNeutrals()
+        Spawner:SpawnBosses()
+      end
+
       return 1 -- Rerun this timer every 30 game-time seconds 
     end)
 end

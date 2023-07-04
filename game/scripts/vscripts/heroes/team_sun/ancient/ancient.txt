@@ -178,7 +178,7 @@
 		{
       "energy_gain"	      "10"
       "energy_gain_crit"	"15"
-      "energy_loss"	      "2"
+      "energy_loss"	      "3"
       "con_mult"	        "0.1"
       "min_cost"	        "40"
       "crack_time"	      "3.14"

@@ -17,40 +17,10 @@ function GameMode:OnGameRulesStateChange(keys)
   DebugPrintTable(keys)
 
   local newState = GameRules:State_Get()
-  local hero_index = 1
-  local hero_list = {
-    [1] = "fleaman",
-    [2] = "ancient",
-    [3] = "bocuse",
-    [4] = "genuine",
-    [5] = "icebreaker",
-    [6] = "dasdingo",
-    [7] = "bloodstained",
-    [8] = "lawbreaker",
-  }
-
-  local new_list = {}
-
-  for i = 1, #hero_list, 1 do
-    local rand = RandomInt(i, #hero_list)
-    new_list[i] = hero_list[rand]
-    hero_list[rand] = hero_list[i]
-    hero_list[i] = new_list[i]
-  end
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-    AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(0, 0, 0), 5000, 9999, false)
-    AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(-2550, 3850, 0), 1600, 9999, false)
-    AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(2550, -3850, 0), 1600, 9999, false)
-    AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(-3850, -2550, 0), 1600, 9999, false)
-    AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(3850, 2550, 0), 1600, 9999, false)
-
-    for team, data in pairs(BOTS) do
-      for index, table in pairs(data) do
-        table["npc"] = GameRules:AddBotPlayerWithEntityScript(GetIDName(new_list[hero_index]), table["bot_name"], team, "", false)
-        table["npc"]:AddNewModifier(table["npc"], nil, "_general_script", {})
-        hero_index = hero_index + 1
-      end
+    if GetMapName() == "muken_arena_no_ranks" then
+      LoadBots()
     end
   end
 end

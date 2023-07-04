@@ -124,121 +124,6 @@ function ShowWearables( unit )
   end
 end
 
-function GetTeamIndex(team_number)
-  for i = #TEAMS, 1, -1 do
-    if team_number == TEAMS[i][1] then
-      return i
-    end
-  end
-end
-
-function GetFountainLoc(hero)
-  local loc = Vector(0, 0, 0)
-  if hero:IsHero() == false then return loc end
-  if hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS then return loc end
-
-  return TEAMS[GetTeamIndex(hero:GetTeamNumber())]["fountain_origin"]
-end
-
-function GetKillingSpreeAnnouncer(kills)
-  local rand = RandomInt(1,2)
-
-  if kills == 4 then
-    if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
-    if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
-  end
-  if kills == 5 then
-    if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
-    if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
-  end
-  if kills == 6 then
-    if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
-    if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
-  end
-  if kills >= 7 then
-    if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
-    if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
-  end
-
-  return "announcer_killing_spree_announcer_kill_spree_01"
-end
-
-function RollDrops(unit, killerEntity)
-  local table = LoadKeyValues("scripts/kv/item_drops.kv")
-  local DropInfo = table[unit:GetUnitName()]
-  if DropInfo then
-    local chance = 0
-    local item_list = {}
-    for table_name, table_chance in pairs(DropInfo) do
-      if table_name == "chance" then
-        chance = unit:GetLevel() * 2 --table_chance
-      else
-        for i = 1, table_chance, 1 do
-          if #item_list then
-            item_list[#item_list + 1] = table_name
-          else
-            item_list[1] = table_name
-          end
-        end
-      end
-    end
-
-    if RandomFloat(0, 100) < chance then
-      local item_name = item_list[RandomInt(1, #item_list)]
-      local item = CreateItem(item_name, nil, nil)
-      local pos = unit:GetAbsOrigin()
-      local drop = CreateItemOnPositionSync(pos, item)
-      local pos_launch = pos + RandomVector(RandomInt(150,200))
-      item:LaunchLoot(false, 200, 0.75, pos_launch)
-
-      local string = "particles/neutral_fx/neutral_item_drop_lvl4.vpcf"
-      if unit:GetUnitName() == "boss_gorillaz" then string = "particles/neutral_fx/neutral_item_drop_lvl5.vpcf" end
-      local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
-      ParticleManager:SetParticleControl(particle, 0, pos_launch)
-      ParticleManager:ReleaseParticleIndex(particle)
-    
-      if IsServer() then
-        if killerEntity then
-          EmitSoundOnLocationForAllies(pos_launch, "NeutralLootDrop.Spawn", killerEntity)
-        end
-      end
-
-      Timers:CreateTimer((15), function()
-        if drop then
-          if IsValidEntity(drop) then
-            UTIL_Remove(drop)
-          end
-        end
-      end)
-    end
-  end
-end
-
-function RandomForNoHeroSelected()
-  for _, team in pairs(TEAMS) do
-    for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
-      local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
-      if playerID ~= nil then
-        if not PlayerResource:HasSelectedHero(playerID) then
-          local hPlayer = PlayerResource:GetPlayer(playerID)
-          if hPlayer ~= nil then
-            hPlayer:MakeRandomHeroSelection()
-          end
-        end
-      end
-    end
-  end
-end
-
-function UpdateForcedTime()
-  local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
-
-  for _,thinker in pairs(thinkers) do
-    if thinker:HasModifier("_modifier_forced_night") then
-    end
-  end
-end
-
 -- CALCS
 
   function CalcStatus(duration, caster, target)
@@ -345,6 +230,15 @@ end
 		end)
   end
 
+  function UpdateForcedTime()
+    local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+  
+    for _,thinker in pairs(thinkers) do
+      if thinker:HasModifier("_modifier_forced_night") then
+      end
+    end
+  end
+
 -- HEAL / MANA
 
   function CalcHeal(target, amount)
@@ -444,37 +338,224 @@ end
     if BaseHeroMod(baseNPC) then BaseHeroMod(baseNPC):ChangeActivity(activity) end
   end
 
+-- GETTERS
+
   function GetIDName(hero_name)
 		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 
 		for name, id_name in pairs(heroes_name_data) do
-			if hero_name == name then
-				return id_name
-			end
+			if hero_name == name then return id_name end
 		end
 	end
 
-  function GetHeroName(baseNPC)
+  function GetHeroName(id)
 		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 
 		for name, id_name in pairs(heroes_name_data) do
-			if baseNPC:GetUnitName() == id_name then
-				return name
-			end
+			if id == id_name then return name end
 		end
 	end
 
-  function GetHeroTeam(baseNPC)
+  function GetHeroTeam(id)
 		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
 
     for team, hero_list in pairs(heroes_team_data) do
-      for _,id_name in pairs(hero_list) do
-        if baseNPC:GetUnitName() == id_name then
+      for _, hero_name in pairs(hero_list) do
+        if GetHeroName(id) == hero_name then
           return team
-        end      
+        end
       end
 		end
 	end
+
+  function GetTeamIndex(team_number)
+    for i = #TEAMS, 1, -1 do
+      if team_number == TEAMS[i][1] then
+        return i
+      end
+    end
+  end
+  
+  function GetFountainLoc(hero)
+    local loc = Vector(0, 0, 0)
+    if hero:IsHero() == false then return loc end
+    if hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS then return loc end
+  
+    return TEAMS[GetTeamIndex(hero:GetTeamNumber())]["fountain_origin"]
+  end
+  
+  function GetKillingSpreeAnnouncer(kills)
+    local rand = RandomInt(1,2)
+  
+    if kills == 4 then
+      if rand == 1 then return "announcer_killing_spree_announcer_kill_dominate_01" end
+      if rand == 2 then return "announcer_killing_spree_announcer_kill_mega_01" end
+    end
+    if kills == 5 then
+      if rand == 1 then return "announcer_killing_spree_announcer_kill_unstop_01" end
+      if rand == 2 then return "announcer_killing_spree_announcer_kill_wicked_01" end
+    end
+    if kills == 6 then
+      if rand == 1 then return "announcer_killing_spree_announcer_kill_godlike_01" end
+      if rand == 2 then return "announcer_killing_spree_announcer_ownage_01" end
+    end
+    if kills >= 7 then
+      if rand == 1 then return "announcer_killing_spree_announcer_kill_holy_01" end
+      if rand == 2 then return "announcer_killing_spree_announcer_kill_monster_01" end
+    end
+  
+    return "announcer_killing_spree_announcer_kill_spree_01"
+  end
+
+-- ROLL FUNCTIONS
+
+  function RollDrops(unit, killerEntity)
+    local table = LoadKeyValues("scripts/kv/item_drops.kv")
+    local DropInfo = table[unit:GetUnitName()]
+    if DropInfo then
+      local chance = 0
+      local item_list = {}
+      for table_name, table_chance in pairs(DropInfo) do
+        if table_name == "chance" then
+          chance = unit:GetLevel() * 2 --table_chance
+        else
+          for i = 1, table_chance, 1 do
+            if #item_list then
+              item_list[#item_list + 1] = table_name
+            else
+              item_list[1] = table_name
+            end
+          end
+        end
+      end
+
+      if RandomFloat(0, 100) < chance then
+        local item_name = item_list[RandomInt(1, #item_list)]
+        local item = CreateItem(item_name, nil, nil)
+        local pos = unit:GetAbsOrigin()
+        local drop = CreateItemOnPositionSync(pos, item)
+        local pos_launch = pos + RandomVector(RandomInt(150,200))
+        item:LaunchLoot(false, 200, 0.75, pos_launch)
+
+        local string = "particles/neutral_fx/neutral_item_drop_lvl4.vpcf"
+        if unit:GetUnitName() == "boss_gorillaz" then string = "particles/neutral_fx/neutral_item_drop_lvl5.vpcf" end
+        local particle = ParticleManager:CreateParticle(string, PATTACH_WORLDORIGIN, nil)
+        ParticleManager:SetParticleControl(particle, 0, pos_launch)
+        ParticleManager:ReleaseParticleIndex(particle)
+      
+        if IsServer() then
+          if killerEntity then
+            EmitSoundOnLocationForAllies(pos_launch, "NeutralLootDrop.Spawn", killerEntity)
+          end
+        end
+
+        Timers:CreateTimer((15), function()
+          if drop then
+            if IsValidEntity(drop) then
+              UTIL_Remove(drop)
+            end
+          end
+        end)
+      end
+    end
+  end
+
+  function RandomForNoHeroSelected()
+    for _, team in pairs(TEAMS) do
+      for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
+        local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
+        if playerID ~= nil then
+          if not PlayerResource:HasSelectedHero(playerID) then
+            local hPlayer = PlayerResource:GetPlayer(playerID)
+            if hPlayer ~= nil then
+              hPlayer:MakeRandomHeroSelection()
+            end
+          end
+        end
+      end
+    end
+  end
+
+-- BOTS
+
+  function LoadBots()
+    if IsInToolsMode() then
+      AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(0, 0, 0), 5000, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(-2550, 3850, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(2550, -3850, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(-3850, -2550, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_2, Vector(3850, 2550, 0), 1600, 9999, false)
+    end
+
+    local bot_slots = {
+      [DOTA_TEAM_CUSTOM_1] = 2,
+      [DOTA_TEAM_CUSTOM_2] = 2,
+      [DOTA_TEAM_CUSTOM_3] = 2,
+      [DOTA_TEAM_CUSTOM_4] = 2,
+    }
+
+    local players_hero_list = {}
+    local bot_list = {}
+    local random_list = {}
+    local hero_index = 1
+
+    for _, team in pairs(TEAMS) do
+      for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
+        local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
+        if playerID then
+          local hero_name = GetHeroName(PlayerResource:GetSelectedHeroName(playerID))
+          if hero_name then
+            table.insert(players_hero_list, hero_name)
+            for bot_team, number in pairs(bot_slots) do
+              if bot_team == team[1] then
+                bot_slots[bot_team] = bot_slots[bot_team] - 1
+              end
+            end            
+          end
+        end
+      end
+    end
+
+    for _, bot_hero_name in pairs(BOT_LIST) do
+      local bIncludeHero = true
+      for _, player_hero_name in pairs(players_hero_list) do
+        if player_hero_name == bot_hero_name then
+          bIncludeHero = false
+        end
+      end
+      if bIncludeHero == true then
+        bot_list[hero_index] = bot_hero_name
+        hero_index = hero_index + 1
+      end
+    end
+
+    for i = 1, #bot_list, 1 do
+      local rand = RandomInt(i, #bot_list)
+      random_list[i] = bot_list[rand]
+      bot_list[rand] = bot_list[i]
+      bot_list[i] = random_list[i]
+    end
+
+    hero_index = 1
+
+    for bot_team, number in pairs(bot_slots) do
+      local i = number
+      while i > 0 do
+
+        local new_bot = GameRules:AddBotPlayerWithEntityScript(
+          GetIDName(random_list[hero_index]), RANDOM_NAMES[RandomInt(1, #RANDOM_NAMES)], bot_team, "", false
+        )
+
+        new_bot:AddNewModifier(new_bot, nil, "_general_script", {})
+
+        BOTS[hero_index] = new_bot
+        hero_index = hero_index + 1
+        i = i - 1
+
+        if hero_index > #random_list then return end
+      end
+    end
+  end
 
   function IsAbilityCastable(ability)
     if ability == nil then return false end
