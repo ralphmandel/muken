@@ -276,7 +276,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "bocuse_1__julienne" then
-		if value_name == "AbilityManaCost" then return 230 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 17 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -285,14 +285,14 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "cast_point" then return 0.1 end
     if value_name == "special_invulnerable" then return 1 end
     if value_name == "special_bleeding_chance" then return 7 end
-    if value_name == "bleeding_duration" then return 6 end
+    if value_name == "bleeding_duration" then return 8 end
     if value_name == "stun_duration" then return 4 end
     if value_name == "special_stun_radius" then return 350 end
     if value_name == "special_stun_dmg" then return 125 end
-    if value_name == "max_cut" then return 10 end
+    if value_name == "max_cut" then return 12 end
     if value_name == "special_frenesi_chance" then return 40 end
-    if value_name == "special_max_cut" then return 7 end
-    if value_name == "special_cut_speed" then return 7.5 end
+    if value_name == "special_max_cut" then return 8 end
+    if value_name == "special_cut_speed" then return 8 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_2__flambee" then
@@ -359,30 +359,30 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then
-		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
 		
     if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
-        return 30
+        return 18
       end
-      return 45
+      return 24
     end
     
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "radius" then return 400 + (value_level * 10) end
 
-    if value_name == "slow" then return 160 end
+    if value_name == "slow" then return 200 end
     if value_name == "special_pull" then return 1 end
     if value_name == "cast_range" then return 0 end
-    if value_name == "lifetime" then return 30 end
+    if value_name == "lifetime" then return 20 end
     if value_name == "special_agi" then return -10 end
     if value_name == "root_interval" then return 1 end
     if value_name == "root_duration" then return 4 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_u__mise" then
-		if value_name == "AbilityManaCost" then return 330 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 325 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("bocuse_u__mise_rank_42") then
@@ -392,7 +392,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "speed_mult" then return 120 + (value_level * 1) end
+		if value_name == "speed_mult" then return 130 + (value_level * 1) end
 
 		if value_name == "special_jump_distance" then return 500 end
     if value_name == "special_unslow" then return 1 end

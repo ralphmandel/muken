@@ -100,7 +100,7 @@ function icebreaker:TryCast_Skin()
   local ability = self.caster:FindAbilityByName("icebreaker_3__skin")
   if IsAbilityCastable(ability) == false then return false end
 
-  local target = self.caster
+  local target = nil
 
   local units = FindUnitsInRadius(
     self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
@@ -109,11 +109,13 @@ function icebreaker:TryCast_Skin()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) then
+    if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() > 0 then
       target = unit
       break
     end
   end
+
+  if target == nil then return false end
 
   self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
 

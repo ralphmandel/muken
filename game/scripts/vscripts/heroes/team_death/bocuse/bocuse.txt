@@ -42,17 +42,17 @@
 			"01"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"max_cut"   		    "4"
+				"max_cut"   		    "5"
 			}
       "02"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"cut_speed"   		  "5"
+				"cut_speed"   		  "6"
 			}
       "03"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"bleeding_duration" "3"
+				"bleeding_duration" "4"
 			}
       "05"
 			{
@@ -386,12 +386,12 @@
 			"01"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"lifetime"		  "15"
+				"lifetime"		  "10"
 			}
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"slow"		      "120"
+				"slow"		      "150"
 			}
       "03"
 			{

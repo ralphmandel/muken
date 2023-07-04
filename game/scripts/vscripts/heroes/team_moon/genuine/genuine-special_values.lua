@@ -346,8 +346,8 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_3__morning" then
-		if value_name == "AbilityManaCost" then return 725 * (1 + ((ability_level - 1) * 0.05)) end
-    if value_name == "AbilityCooldown" then return 180 - ((ability_level - 1) * 3) end
+		if value_name == "AbilityManaCost" then return 550 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 120 - ((ability_level - 1) * 2) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "special_starfall_count" then return 3 end

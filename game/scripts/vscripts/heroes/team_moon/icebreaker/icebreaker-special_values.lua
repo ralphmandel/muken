@@ -337,10 +337,10 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "chance" then
       if caster:FindAbilityByName("icebreaker_1__frost_rank_11") then
-        return 40 + (10 * (1 - ((ability_level - 1) * 0.05)))
+        return 50 + (10 * (1 - ((ability_level - 1) * 0.05)))
       end
       if caster:FindAbilityByName("icebreaker_1__frost_rank_12") then
-        return 30
+        return 40
       end
     end
 
@@ -381,13 +381,13 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_3__skin" then
-		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
 		
     if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("icebreaker_3__skin_rank_11") then
-        return 20
+        return 18
       end
-      return 24
+      return 22
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -404,13 +404,13 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "icebreaker_4__shivas" then
-		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
 
 		if value_name == "AbilityCooldown" then
       if caster:FindAbilityByName("icebreaker_4__shivas_rank_21") then
-        return 30
+        return 24
       end
-      return 45
+      return 30
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -428,9 +428,9 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "icebreaker_5__blink" then
 		if value_name == "AbilityManaCost" then
       if caster:FindAbilityByName("icebreaker_5__blink_rank_21") then
-        return 100 * (1 + ((ability_level - 1) * 0.05))
+        return 80 * (1 + ((ability_level - 1) * 0.05))
 			end
-      return 150 * (1 + ((ability_level - 1) * 0.05))
+      return 120 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.5) end

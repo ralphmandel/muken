@@ -107,7 +107,7 @@
 
 		"AbilityValues"
 		{
-      "duration"		            "30"
+      "duration"		            "20"
       "int"		                  "10"
       "agi"		                  "15"
       "ms"		                  "75"
