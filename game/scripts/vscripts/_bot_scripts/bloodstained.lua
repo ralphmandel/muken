@@ -30,7 +30,20 @@ function bloodstained:TryCast_Rage()
   local ability = self.caster:FindAbilityByName("bloodstained_1__rage")
   if IsAbilityCastable(ability) == false then return false end
 
-  if self.caster:GetNumAttackers() == 0 then return false end
+  local total_targets = 0
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetAOERadius() - 50,
+    ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
+    ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
+  )
+
+  for _,enemy in pairs(enemies) do
+    if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+      total_targets = total_targets + 1
+    end
+  end
+
+  if total_targets == 0 then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 

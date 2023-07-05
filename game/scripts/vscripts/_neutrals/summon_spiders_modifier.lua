@@ -24,7 +24,7 @@ function summon_spiders_modifier:OnRefresh( kv )
 end
 
 function summon_spiders_modifier:OnRemoved()
-	if self.parent:IsAlive() then self.parent:Kill(self.ability, self.caster) end
+	if self.parent:IsAlive() then self.parent:ForceKill(false) end
 end
 
 --------------------------------------------------------------------------------

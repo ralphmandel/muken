@@ -29,26 +29,21 @@
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
 		"AbilityCastAnimation"   		"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"       		"0.35"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"str_gain"		"3"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "radius"        "275"
+      "call_duration" "3"
+      "lck"           "20"
+      "str_gain"      "3"
+      "duration"      "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"		      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -64,38 +59,14 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"			"12"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"2"
-			}
-			"03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"res"		    	"30"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"		    	"30"
-			}
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"ms"		    	"100"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "chance"    "15"
+      "duration"  "2"
+      "res"       "30"
+      "agi"       "30"
+      "ms"        "100"
+      "rank"		  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -118,28 +89,11 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"shared_damage"		"40"
-			}
-			"02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"slow"		        "50"
-			}
-			"03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_range"		    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"				    "1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"shared_damage" "50"
+			"max_range"		  "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"		      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -173,7 +127,7 @@
 			"02"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hp_lost"		      "2"
+				"hp_lost"		      "1"
 			}
 			"03"
 			{
@@ -183,7 +137,7 @@
 			"05"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"radius"		      "300"
+				"radius"		      "350"
 			}
 			"06"
 			{
@@ -220,23 +174,11 @@
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+    "AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"base_heal"		"5"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"bonus_heal"	"25"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"				"1 2 3 4 5 6 7 8 9 10 11"
-			}
+			"base_heal"   "10"
+			"max_heal"  "40"
+      "rank"		    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -264,8 +206,8 @@
       "copy_number"     "1"
       "copy_duration"   "15"
       "hp_stolen"       "10"
-      "steal_duration"  "60"
-      "slow_duration"   "1"
+      "steal_duration"  "90"
+      "slow_duration"   "1.5"
       "radius"		      "500"
       "duration"			  "1 2 3 4 5 6 7 8 9 10 11"
       "rank"					  "1 2 3 4 5 6 7 8 9 10 11"

@@ -53,10 +53,10 @@ end
 
 function bloodstained_5_modifier_passive:GetLifestealPercent()
 	local base_heal = self.ability:GetSpecialValueFor("base_heal")
-	local bonus_heal = self.ability:GetSpecialValueFor("bonus_heal")
+	local max_heal = self.ability:GetSpecialValueFor("max_heal")
 	local deficit_percent =  1 - (self.parent:GetHealth() / self.parent:GetMaxHealth())
 
-	return (bonus_heal * deficit_percent) + base_heal
+	return ((max_heal - base_heal) * deficit_percent) + base_heal
 end
 
 -- EFFECTS -----------------------------------------------------------

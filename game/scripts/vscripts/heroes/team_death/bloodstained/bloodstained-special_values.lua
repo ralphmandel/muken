@@ -188,6 +188,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "duration" then return 1 end
 
@@ -243,9 +244,9 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
 		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
-    if value_name == "AbilityCastRange" then return 400 end
+    if value_name == "AbilityCastRange" then return 500 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "max_range" then return 600 + (value_level * 20) end
+		if value_name == "max_range" then return 1000 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__tear" then
@@ -270,6 +271,8 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
 		if value_name == "AbilityManaCost" then return 575 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 135 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
+
 		if value_name == "rank" then return 9 + (value_level * 1) end
     if value_name == "duration" then return 12 + (value_level * 0.4) end
 	end

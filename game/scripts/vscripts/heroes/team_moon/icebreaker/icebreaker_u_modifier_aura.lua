@@ -68,7 +68,7 @@ function icebreaker_u_modifier_aura:OnRemoved()
 
   RemoveBonus(self.ability, "_1_CON", self.parent)
 
-  if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
+  if self.parent:IsAlive() then self.parent:ForceKill(false) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

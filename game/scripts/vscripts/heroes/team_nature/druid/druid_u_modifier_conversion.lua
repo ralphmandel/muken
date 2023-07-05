@@ -34,7 +34,7 @@ function druid_u_modifier_conversion:OnRemoved()
 	self.ability:RemoveUnit(self.parent)
 
 	if self.parent:IsAlive() then
-		self.parent:Kill(nil, nil)
+		self.parent:ForceKill(false)
 	end
 end
 

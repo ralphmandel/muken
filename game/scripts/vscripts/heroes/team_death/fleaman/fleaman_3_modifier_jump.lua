@@ -107,8 +107,8 @@ function fleaman_3_modifier_jump:PerformImpact(point)
 	)
 
 	for _,enemy in pairs(enemies) do
-		if enemy:HasModifier("bloodstained_u_modifier_copy") == false and enemy:IsIllusion() then
-			enemy:ForceKill(false)
+		if enemy:IsIllusion() then
+      enemy:Kill(self.ability, nil)
 		else
       BaseStats(self.parent):SetForceCrit(100, nil)
 			self.parent:PerformAttack(enemy, false, true, true, true, false, false, true)

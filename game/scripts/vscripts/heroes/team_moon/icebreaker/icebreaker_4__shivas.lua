@@ -58,8 +58,7 @@ LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/team_moon/icebreaker/ice
               unit:Heal(heal * BaseStats(caster):GetHealPower(), self)
             end
           else
-            if unit:HasModifier("bloodstained_u_modifier_copy") == false
-            and unit:IsIllusion() then
+            if unit:IsIllusion() then
               unit:Kill(self, caster)
             else
               AddModifier(unit, caster, self, "icebreaker__modifier_hypo", {

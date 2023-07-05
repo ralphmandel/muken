@@ -49,9 +49,7 @@ end
 			self:SetStatusEffect(caster, nil, "krieger_1_modifier_passive_status_efx", true)
 		end
 
-		if IsInToolsMode() then
-			--self:ChangeTeam(caster:GetTeamNumber())
-		end
+		self:ChangeTeam(caster:GetTeamNumber())
 	end
 
 	function cosmetics:ApplyCosmetics(cosmetics_data)

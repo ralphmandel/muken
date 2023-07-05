@@ -145,7 +145,7 @@ function bloodstained_4_modifier_tear:PullCopies()
 
 	for _,copy in pairs(copies) do
 		self:PlayEfxPull(copy)
-		copy:RemoveModifierByNameAndCaster("bloodstained_u_modifier_copy", self.caster)
+		copy:RemoveModifierByNameAndCaster("bloodstained__modifier_copy", self.caster)
 	end
 end
 

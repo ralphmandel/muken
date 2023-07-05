@@ -63,7 +63,7 @@ function ancient:TryCast_Petrify()
   local target = nil
 
   local units = FindUnitsInRadius(
-    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 50,
     ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
     ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
   )

@@ -42,7 +42,7 @@ function druid_3_modifier_totem:OnRemoved()
 
 	if self.ambient then ParticleManager:DestroyParticle(self.ambient, false) end
 	if self.burn_particle then ParticleManager:DestroyParticle(self.burn_particle, false) end
-	if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
+	if self.parent:IsAlive() then self.parent:ForceKill(false) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

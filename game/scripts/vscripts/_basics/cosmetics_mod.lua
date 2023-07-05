@@ -71,7 +71,7 @@ function cosmetics_mod:DeclareFunctions()
 end
 
 function cosmetics_mod:GetActivityTranslationModifiers()
-    return self.activity
+  return self.activity
 end
 
 function cosmetics_mod:GetModifierModelChange()

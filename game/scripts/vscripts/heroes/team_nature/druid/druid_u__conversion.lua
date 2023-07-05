@@ -58,7 +58,7 @@ LinkLuaModifier("_modifier_hex", "_modifiers/_modifier_hex", LUA_MODIFIER_MOTION
     local unit_lvl = unit:GetLevel()
 
     if self:GetCurrentTableLvl() + unit_lvl > max_dominate then
-      self:GetWeakerUnit():Kill(nil, nil)
+      self:GetWeakerUnit():ForceKill(false)
       self:AddUnit(unit)
       return
     end

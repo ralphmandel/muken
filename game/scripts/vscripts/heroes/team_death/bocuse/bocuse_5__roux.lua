@@ -20,14 +20,6 @@ LinkLuaModifier("_modifier_pull", "_modifiers/_modifier_pull", LUA_MODIFIER_MOTI
 		CreateModifierThinker(caster, self, "bocuse_5_modifier_roux", {
 			duration = self:GetSpecialValueFor("lifetime")
 		}, self:GetCursorPosition(), caster:GetTeamNumber(), false)
-
-		-- local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
-		-- for _,smoke in pairs(thinkers) do
-		-- 	if smoke:GetOwner() == caster and smoke:HasModifier("bocuse_5_modifier_puddle") then
-    --             smoke:FindModifierByName("bocuse_5_modifier_puddle"):Destroy()
-		-- 		--smoke:Kill(self, nil)
-		-- 	end
-		-- end
 	end
 
 -- EFFECTS

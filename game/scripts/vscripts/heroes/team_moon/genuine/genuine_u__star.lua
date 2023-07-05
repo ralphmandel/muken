@@ -36,7 +36,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
     self:PlayEfxStart(caster, target)
 
-    if target:IsIllusion() then target:ForceKill(false) return end
+    if target:IsIllusion() then
+      target:Kill(self, nil)
+      return
+    end
     AddModifier(target, caster, self, "genuine_u_modifier_star", {duration = duration + 0.1}, false)
   end
 
