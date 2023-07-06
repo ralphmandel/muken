@@ -29,108 +29,29 @@
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"			"40"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"hypo_stack"	"1"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_hits"	              "0"
-			}
-      "17"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_hits_duration"       "0"
-			}
-      "18"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_ms"                  "0"
-			}
-      "19"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_invi_delay"          "0"
-			}
-      "20"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_bonus_damage"        "0"
-			}
-      "21"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_mini_freeze"         "0"
-			}
-      "22"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_mini_freeze_chance"  "0"
-			}
-      "23"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_blink_chance"        "0"
-			}
-      "24"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_duration"        "0"
-			}
-      "25"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_incoming"        "0"
-			}
-      "26"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_outgoing"        "0"
-			}
-      "27"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_cleave"              "0"
-			}
+      "chance"			    "50"
+      "hypo_stack"	    "1"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_hits"	              "0"
+      "special_hits_duration"       "0"
+      "special_ms"                  "0"
+      "special_invi_delay"          "0"
+      "special_bonus_damage"        "0"
+      "special_mini_freeze"         "0"
+      "special_mini_freeze_chance"  "0"
+      "special_blink_chance"        "0"
+      "special_copy_duration"       "0"
+      "special_copy_incoming"       "0"
+      "special_copy_outgoing"       "0"
+      "special_cleave"              "0"
 		}
 	}
 
@@ -153,118 +74,31 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
 		"AbilityCastPoint"       		"0.2"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_stack_min"  "2"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_stack_max"  "4"
-			}
-			"03"
-			{
-				"var_type"	    "FIELD_FLOAT"
-				"recharge"	    "12"
-			}
-			"04"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"radius"		    "250"
-			}
-			"05"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"distance"		  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "06"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"speed"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_knockback_distance"	"0"
-			}
-      "17"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_knockback_duration"	"0"
-			}
-      "18"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_auto_charge"	        "0"
-			}
-      "19"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_damage"              "0"
-			}
-      "20"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_mana_burn"           "0"
-			}
-      "21"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_duration"        "0"
-			}
-      "22"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_incoming"        "0"
-			}
-      "23"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_outgoing"        "0"
-			}
-      "24"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_copy_chance"         "0"
-			}
-      "25"
-			{
-				"var_type"		                "FIELD_FLOAT"
-				"special_silence_duration"    "0"
-			}
+      "hypo_stack_min"  "2"
+      "hypo_stack_max"  "4"
+      "recharge"	      "12"
+      "radius"		      "250"
+      "distance"		    "1 2 3 4 5 6 7 8 9 10 11"
+      "speed"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_knockback_distance"	"0"
+      "special_knockback_duration"	"0"
+      "special_auto_charge"	        "0"
+      "special_damage"              "0"
+      "special_mana_burn"           "0"
+      "special_copy_duration"       "0"
+      "special_copy_incoming"       "0"
+      "special_copy_outgoing"       "0"
+      "special_copy_chance"         "0"
+      "special_silence_duration"    "0"
 		}
 	}
 
@@ -288,88 +122,25 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"duration"	      "8"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"layers"	        "6"
-			}
-      "03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_stack"	    "1"
-			}
-      "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		           "FIELD_FLOAT"
-				"special_mp_regen"	    "0"
-			}
-      "17"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_hp_regen"	    "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_block"     	  "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_spread_radius" "0"
-			}
-      "19"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_spread_stack"  "0"
-			}
-      "20"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_mini_freeze"	  "0"
-			}
+      "duration"	      "8"
+      "layers"	        "6"
+      "hypo_stack"	    "1"
+      "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_mp_regen"	    "0"
+      "special_hp_regen"	    "0"
+      "special_block"     	  "0"
+      "special_spread_radius" "0"
+      "special_spread_stack"  "0"
+      "special_mini_freeze"	  "0"
 		}
 	}
 
@@ -389,6 +160,25 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityValues"
+		{
+      "hypo_stack"	    "5"
+      "slow"	          "50"
+      "blast_speed"	    "350"
+      "blast_radius"	  "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_cooldown"	    "0"
+      "special_break"   	    "0"
+      "special_heal"   	      "0"
+      "special_fear_duration" "0"
+		}
 
 		"AbilitySpecial"
 		{
@@ -430,7 +220,7 @@
       "13"
 			{
 				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
+				"hypo_duration"	    "0"
 			}
       "14"
 			{
@@ -484,78 +274,23 @@
 		"AbilityCastAnimation"   		""
 		"AbilityCastPoint"       		"0.2"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"damage"	        "275"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"cast_range"	    "800"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_break_hypo_stack"	"0"
-			}
-      "17"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_spread_radius"	    "0"
-			}
-      "18"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_spread_stack"	    "0"
-			}
-      "19"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_super_blink"	      "0"
-			}
-      "20"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_hypo_damage"	      "0"
-			}
-      "21"
-			{
-				"var_type"		              "FIELD_FLOAT"
-				"special_break_heal"	      "0"
-			}
+      "damage"	        "300"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_break_hypo_stack"	"0"
+      "special_spread_radius"	    "0"
+      "special_spread_stack"	    "0"
+      "special_super_blink"	      "0"
+      "special_hypo_damage"	      "0"
+      "special_break_heal"	      "0"
 		}
 	}
 
@@ -579,98 +314,27 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hits"	          "10"
-			}
-      "02"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"ms_limit"	      "125"
-			}
-      "03"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"radius_day"	    "600"
-			}
-      "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"radius_night"	  "800"
-			}
-      "05"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"res"	            "50"
-			}
-      "06"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_min_stack"	"2"
-			}
-      "07"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"duration"	      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_decay"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"	      "FIELD_FLOAT"
-				"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_meteor_damage"	"0"
-			}
-      "17"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_radius"	      "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_fly_vision"	  "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_immunity"	    "0"
-			}
-      "19"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_res_allies"	  "0"
-			}
+      "hits"	          "10"
+      "ms_limit"	      "125"
+      "radius_day"	    "600"
+      "radius_night"	  "800"
+      "res"	            "50"
+      "hypo_min_stack"	"3"
+      "duration"	      "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_meteor_damage"	"0"
+      "special_radius"	      "0"
+      "special_fly_vision"	  "0"
+      "special_immunity"	    "0"
+      "special_res_allies"	  "0"
 		}
 	}
 

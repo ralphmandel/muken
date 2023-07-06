@@ -15,12 +15,12 @@ require("internal/talent_tree")
 		if self:GetLevel() == 1 then
 			self:ResetRanksData()
 
-			Timers:CreateTimer(1, function()
+			Timers:CreateTimer(2, function()
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
-        if GetMapName() == "muken_arena_no_ranks" then
-          caster:AddExperience(300, 0, false, false)
-        end
+
+        local bot_script = caster:FindModifierByName("_general_script")
+        if bot_script then bot_script:ConsumeRankPoint() end
 			end)
 		end
 	end
@@ -29,13 +29,6 @@ require("internal/talent_tree")
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
-
-    local bot_script = caster:FindModifierByName("_general_script")
-    
-    if bot_script then
-      bot_script:ConsumeAbilityPoint()
-      bot_script:ConsumeStatPoint()
-    end
 
 		if level == 8 then
 			local ultimate = caster:FindAbilityByName(self.skills[6])
@@ -88,9 +81,9 @@ require("internal/talent_tree")
     if self.skill_points == nil then
 			self.skill_points = 3
 			if self.hero_name == "fleaman" then self.skill_points = 2 end
-			if self.hero_name == "bloodstained" then self.skill_points = 1 end
       if self.hero_name == "lawbreaker" then self.skill_points = 2 end
-			if self.hero_name == "icebreaker" then self.skill_points = 2 end
+      if self.hero_name == "bloodstained" then self.skill_points = 1 end
+			if self.hero_name == "icebreaker" then self.skill_points = 1 end
 			if self.hero_name == "genuine" then self.skill_points = 1 end
       if self.hero_name == "ancient" then self.skill_points = 1 end
 		end
@@ -282,31 +275,6 @@ require("internal/talent_tree")
 		})
 	end
 
-	function base_hero:UpgradeRank(skill, id, level, talentId)
-		local caster = self:GetCaster()
-		local ability = nil
-		
-		ability = caster:FindAbilityByName(self.skills[skill])
-		if not ability then return end
-		if not ability:IsTrained() then return end
-
-		ability:SetLevel(ability:GetLevel() + level)
-		caster:AddExperience(level * 10, 0, false, false)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
-
-    self.talents.rank_block[level] = self.talents.rank_block[level] + 1
-
-    for i, talent in pairs(self.talentsData) do
-      if self.talentsData[i].Tab == self.skills[skill] then
-        if self.talentsData[i].RankLevel == level then
-          if self.talentsData[i].Ability ~= self.talentsData[talentId].Ability then
-            self.talents.blocked[self.talentsData[i].Ability] = true
-          end
-        end
-      end
-    end
-	end
-
 	function base_hero:AddGold(amount)
 		self.gold_left = self.gold_left - amount
 		self:CalculateGold()
@@ -329,6 +297,64 @@ require("internal/talent_tree")
 	end
 
 -- RANK SYSTEM
+
+  function base_hero:RandomizeRank()
+    local available_talents_id = {}
+    local index = 0
+
+    for i, talentData in pairs(self.talentsData) do
+      if self:IsHeroCanLevelUpTalent(i) then
+        index = index + 1
+        available_talents_id[index] = i
+      end
+    end
+
+    if index == 0 then return 0 end
+    return available_talents_id[RandomInt(1, #available_talents_id)]
+  end
+
+  function base_hero:UpgradeRank(talentId)
+    if (not talentId or talentId < 1 or talentId > #self.talentsData) then return end
+    if not self.talents then return end
+
+    if self:IsHeroCanLevelUpTalent(talentId) then
+      local MaxTalentLvl = self:GetTalentMaxLevel(talentId)
+      local talentLvl = self:GetHeroTalentLevel(talentId)
+      if MaxTalentLvl == 6 then
+        self:AddTalentPointsToHero(-1)
+        self:SetHeroTalentLevel(talentId, talentLvl + 1)
+      else
+        self:AddTalentPointsToHero(-MaxTalentLvl)
+        self:SetHeroTalentLevel(talentId, MaxTalentLvl)
+      end
+    end
+  end
+
+  function base_hero:OnRankUpgrade(skill, id, level, talentId)
+    local caster = self:GetCaster()
+    local ability = nil
+    
+    ability = caster:FindAbilityByName(self.skills[skill])
+    if not ability then return end
+    if not ability:IsTrained() then return end
+
+    ability:SetLevel(ability:GetLevel() + level)
+    caster:AddExperience(level * 10, 0, false, false)
+    SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
+
+    self.talents.rank_block[level] = self.talents.rank_block[level] + 1
+
+    for i, talent in pairs(self.talentsData) do
+      if self.talentsData[i].Tab == self.skills[skill] then
+        if self.talentsData[i].RankLevel == level then
+          if self.talentsData[i].Ability ~= self.talentsData[talentId].Ability then
+            self.talents.blocked[self.talentsData[i].Ability] = true
+          end
+        end
+      end
+    end
+  end
+
 	function base_hero:GetColumnTalentPoints(tab)
 		local points = 0
 		if self.talents then
@@ -549,7 +575,7 @@ require("internal/talent_tree")
 					local skill = self.talents.abilities[talentId]:GetSpecialValueFor("skill")
 					local id = self.talents.abilities[talentId]:GetSpecialValueFor("id")
 					local permanent = self.talents.abilities[talentId]:GetSpecialValueFor("permanent")
-					self:UpgradeRank(skill, id, level, talentId)
+					self:OnRankUpgrade(skill, id, level, talentId)
 
           if GetMapName() == "muken_arena_no_ranks" then
 						self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
@@ -562,7 +588,7 @@ require("internal/talent_tree")
 				elseif(self.talents.abilities[talentId]) then
 					local skill = self.talents.abilities[talentId]:GetSpecialValueFor("skill")
 					local id = self.talents.abilities[talentId]:GetSpecialValueFor("id")
-					self:UpgradeRank(skill, id, level, talentId)
+					self:OnRankUpgrade(skill, id, level, talentId)
 
 					self.talents.abilities[talentId]:SetLevel(level)
 				end

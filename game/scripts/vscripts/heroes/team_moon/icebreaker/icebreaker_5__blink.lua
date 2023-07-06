@@ -1,7 +1,6 @@
 icebreaker_5__blink = class({})
 LinkLuaModifier("icebreaker__modifier_hypo", "heroes/team_moon/icebreaker/icebreaker__modifier_hypo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo_status_efx", "heroes/team_moon/icebreaker/icebreaker__modifier_hypo_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_hypo_dps", "heroes/team_moon/icebreaker/icebreaker__modifier_hypo_dps", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen", "heroes/team_moon/icebreaker/icebreaker__modifier_frozen", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/team_moon/icebreaker/icebreaker__modifier_frozen_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_instant", "heroes/team_moon/icebreaker/icebreaker__modifier_instant", LUA_MODIFIER_MOTION_NONE)
@@ -132,7 +131,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
 
     self:PlayEfxBreak(target)
     self:ReduceShivasCD(target)
-    self:EndCooldown()
+    self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
   
     if spread_radius > 0 then
       self:PlayEfxSpread(target)

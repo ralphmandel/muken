@@ -9,33 +9,22 @@ function icebreaker__modifier_hypo:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.last_applied_time = self:GetLastAppliedTime()
+  self.remaining_time = -1
+  self.intervals = 0.8
 
   AddStatusEfx(self.ability, "icebreaker__modifier_hypo_status_efx", self.caster, self.parent)
   self:CheckCounterEfx()
 
-  local stack = kv.stack
-  local blink = self.caster:FindAbilityByName("icebreaker_5__blink")
-
-  if blink then
-    if blink:IsTrained() then
-      local hypo_damage = blink:GetSpecialValueFor("special_hypo_damage")
-      if hypo_damage > 0 then
-        AddModifier(self.parent, self.caster, blink, "icebreaker__modifier_hypo_dps", {hypo_damage = hypo_damage}, false)
-      end     
-    end
-  end
-
   if IsServer() then
-    self:SetStackCount(stack)
-    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
+    self:SetStackCount(kv.stack)
+    self:StartIntervalThink(self.intervals)
   end
 end
 
 function icebreaker__modifier_hypo:OnRefresh(kv)
-  local stack = kv.stack
-
   if IsServer() then
-    self:SetStackCount(self:GetStackCount() + stack)
+    self:SetStackCount(self:GetStackCount() + kv.stack)
   end
 end
 
@@ -45,7 +34,6 @@ function icebreaker__modifier_hypo:OnRemoved()
 
   self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_percent_movespeed_debuff", self.caster)
-  self.parent:RemoveModifierByNameAndCaster("icebreaker__modifier_hypo_dps", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_silence", self.caster)
   self.parent:RemoveModifierByNameAndCaster("_modifier_fear", self.caster)
 end
@@ -57,33 +45,40 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function icebreaker__modifier_hypo:OnIntervalThink()
-  local aura_effect = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
-  if aura_effect then
-    local min_stack = aura_effect:GetAbility():GetSpecialValueFor("hypo_min_stack")
-    if self:GetStackCount() == min_stack then
-      self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
-      return
+  local blink = self.caster:FindAbilityByName("icebreaker_5__blink")
+
+  if blink then
+    if blink:IsTrained() then
+      local hypo_damage = blink:GetSpecialValueFor("special_hypo_damage")
+      if hypo_damage > 0 then
+        ApplyDamage({
+          victim = self.parent, attacker = self.caster, ability = blink,
+          damage = hypo_damage * self.intervals,
+          damage_type = DAMAGE_TYPE_MAGICAL
+        })
+      end    
     end
   end
 
-  if IsServer() then
-    self:DecrementStackCount()
-    self:StartIntervalThink(CalcStatus(self.ability:GetSpecialValueFor("hypo_decay"), self.caster, self.parent))
-  end
+  if IsServer() then self:StartIntervalThink(self.intervals) end
 end
 
 function icebreaker__modifier_hypo:OnStackCountChanged(old)
-  local aura_effect = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
-  if aura_effect then
-    local min_stack = aura_effect:GetAbility():GetSpecialValueFor("hypo_min_stack")
-    if self:GetStackCount() < min_stack then
-      if IsServer() then self:SetStackCount(min_stack) end
-      return
-    end
-  end
+  if self:GetStackCount() > 0 then
+    if IsServer() then
+      local diff = self:GetStackCount() - old
+      local increment_duration = CalcStatus(self.ability:GetSpecialValueFor("hypo_increment"), self.caster, self.parent) * diff
 
-  if self:GetStackCount() ~= old then
-    if self:GetStackCount() == 0 then self:Destroy() return end
+      if self.remaining_time == -1 then
+        self.remaining_time = CalcStatus(self.ability:GetSpecialValueFor("hypo_duration"), self.caster, self.parent)
+        self.last_applied_time = self:GetLastAppliedTime()
+      end
+
+      self.remaining_time = self.remaining_time - (self:GetLastAppliedTime() - self.last_applied_time)
+      self.remaining_time = self.remaining_time + increment_duration
+      self.last_applied_time = self:GetLastAppliedTime()
+      self:SetDuration(self.remaining_time, true)
+    end
 
     self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
     AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
@@ -91,7 +86,6 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
     }, false)
 
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
-
     AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
       percent = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_ms")
     }, false)

@@ -61,11 +61,11 @@
 
     "AbilityValues"
 		{
-      "chance"    "15"
+      "chance"    "10"
       "duration"  "2"
-      "res"       "30"
-      "agi"       "30"
-      "ms"        "100"
+      "res"       "50"
+      "agi"       "50"
+      "ms"        "150"
       "rank"		  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

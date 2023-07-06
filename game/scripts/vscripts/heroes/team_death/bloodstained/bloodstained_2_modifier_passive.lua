@@ -34,6 +34,7 @@ function bloodstained_2_modifier_passive:OnAttackLanded(keys)
 	if self.ability:IsCooldownReady() == false then return end
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
+    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 		self.ability.target = keys.target
     AddModifier(self.parent, self.caster, self.ability, "bloodstained_2_modifier_frenzy", {
       duration = self.ability:GetSpecialValueFor("duration")

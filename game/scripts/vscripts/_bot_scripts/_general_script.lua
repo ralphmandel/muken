@@ -1,54 +1,58 @@
 _general_script = class({})
-local lawbreaker = require("_bot_scripts/lawbreaker")
-local fleaman = require("_bot_scripts/fleaman")
-local bloodstained = require("_bot_scripts/bloodstained")
-local bocuse = require("_bot_scripts/bocuse")
-local dasdingo = require("_bot_scripts/dasdingo")
-local genuine = require("_bot_scripts/genuine")
-local icebreaker = require("_bot_scripts/icebreaker")
-local ancient = require("_bot_scripts/ancient")
 
-local BOT_STATE_IDLE = 0
-local BOT_STATE_AGGRESSIVE = 1
-local BOT_STATE_FLEE = 2
-local BOT_STATE_FARMING = 3
+-- CONSTANTS -----------------------------------------------------------
 
-local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 101
-local ACTION_AGRESSIVE_SWAP_TARGET = 102
-local ACTION_AGRESSIVE_ATTACK_TARGET = 103
-local ACTION_AGRESSIVE_SEEK_TARGET = 104
-local ACTION_AGRESSIVE_FIND_TARGET = 105
+  local lawbreaker = require("_bot_scripts/lawbreaker")
+  local fleaman = require("_bot_scripts/fleaman")
+  local bloodstained = require("_bot_scripts/bloodstained")
+  local bocuse = require("_bot_scripts/bocuse")
+  local dasdingo = require("_bot_scripts/dasdingo")
+  local genuine = require("_bot_scripts/genuine")
+  local icebreaker = require("_bot_scripts/icebreaker")
+  local ancient = require("_bot_scripts/ancient")
 
-local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 201
-local ACTION_FLEE_GO_TO_FOUNTAIN = 202
+  local BOT_STATE_IDLE = 0
+  local BOT_STATE_AGGRESSIVE = 1
+  local BOT_STATE_FLEE = 2
+  local BOT_STATE_FARMING = 3
 
-local ACTION_BLOODSTAINED_TEAR = 401
-local ACTION_FLEAMAN_STEAL = 402
+  local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 101
+  local ACTION_AGRESSIVE_SWAP_TARGET = 102
+  local ACTION_AGRESSIVE_ATTACK_TARGET = 103
+  local ACTION_AGRESSIVE_SEEK_TARGET = 104
+  local ACTION_AGRESSIVE_FIND_TARGET = 105
 
-local THINK_INTERVAL_INIT = 45
-local THINK_INTERVAL_DEFAULT = 0.25
+  local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 201
+  local ACTION_FLEE_GO_TO_FOUNTAIN = 202
 
-local TARGET_STATE_INVALID = 0
-local TARGET_STATE_DEAD = 1
-local TARGET_STATE_MISSING = 2
-local TARGET_STATE_VISIBLE = 3
+  local ACTION_BLOODSTAINED_TEAR = 401
+  local ACTION_FLEAMAN_STEAL = 402
 
-local TARGET_PRIORITY_ANY = 0
-local TARGET_PRIORITY_ONLY_HERO = 1
-local TARGET_PRIORITY_HERO = 2
-local TARGET_PRIORITY_UNITS = 3
-local TARGET_PRIORITY_NEUTRALS = 4
+  local THINK_INTERVAL_INIT = 45
+  local THINK_INTERVAL_DEFAULT = 0.25
 
-local LOW_HEALTH_PERCENT = 25
-local FULL_HEALTH_PERCENT = 100
-local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
-local LIMIT_RANGE = 3600
+  local TARGET_STATE_INVALID = 0
+  local TARGET_STATE_DEAD = 1
+  local TARGET_STATE_MISSING = 2
+  local TARGET_STATE_VISIBLE = 3
 
-function _general_script:IsPurgable() return false end
-function _general_script:IsHidden() return true end
-function _general_script:RemoveOnDeath() return false end
+  local TARGET_PRIORITY_ANY = 0
+  local TARGET_PRIORITY_ONLY_HERO = 1
+  local TARGET_PRIORITY_HERO = 2
+  local TARGET_PRIORITY_UNITS = 3
+  local TARGET_PRIORITY_NEUTRALS = 4
+
+  local LOW_HEALTH_PERCENT = 25
+  local FULL_HEALTH_PERCENT = 100
+  local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
+  local LIMIT_RANGE = 3600
+  local MISSING_MAX_TIME = 5
 
 -- CREATE -----------------------------------------------------------
+
+  function _general_script:IsPurgable() return false end
+  function _general_script:IsHidden() return true end
+  function _general_script:RemoveOnDeath() return false end
 
   function _general_script:OnCreated(params)
     if IsServer() then
@@ -113,6 +117,10 @@ function _general_script:RemoveOnDeath() return false end
       local current_action = self.AggressiveActions[i]
       local target_state = self:CheckTargetState(self.attack_target)
 
+      if target_state ~= TARGET_STATE_MISSING then
+        self.missing_start_time = nil
+      end
+
       self:SpecialActions(current_action)
 
       if current_action == ACTION_AGRESSIVE_CHANGE_TO_FLEE then
@@ -122,13 +130,32 @@ function _general_script:RemoveOnDeath() return false end
       end
 
       if current_action == ACTION_AGRESSIVE_SWAP_TARGET then
-        local new_target = self:FindNewTarget(
-          self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_ONLY_HERO, FIND_ANY_ORDER, LOW_HEALTH_PERCENT
-        )
+        local new_target = nil
+        if target_state == TARGET_STATE_VISIBLE then
+          if self.attack_target:GetHealthPercent() <= LOW_HEALTH_PERCENT then
+            new_target = self.attack_target
+          end
+        end
+
+        if new_target == nil then
+          new_target = self:FindNewTarget(
+            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_ONLY_HERO,
+            FIND_ANY_ORDER, LOW_HEALTH_PERCENT, ""
+          )
+        end
+
+        if new_target == nil then
+          new_target = self:FindNewTarget(
+            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+            FIND_CLOSEST, FULL_HEALTH_PERCENT, "bloodstained__modifier_copy"
+          )
+        end
 
         if new_target then
-          self.agressive_loc = LOCATION_MAIN_ARENA
-          self.attack_target = new_target
+          if new_target ~= self.attack_target then
+            self.agressive_loc = LOCATION_MAIN_ARENA
+            self.attack_target = new_target            
+          end
         end
       end
 
@@ -148,6 +175,13 @@ function _general_script:RemoveOnDeath() return false end
 
       if current_action == ACTION_AGRESSIVE_SEEK_TARGET then
         if target_state == TARGET_STATE_MISSING then
+          if self.missing_start_time == nil then
+            self.missing_start_time = GameRules:GetGameTime()
+          end
+          if GameRules:GetGameTime() - self.missing_start_time > MISSING_MAX_TIME then
+            self.target_last_loc = nil
+          end
+
           if self.target_last_loc == nil then
             self.attack_target = nil
           else
@@ -169,13 +203,15 @@ function _general_script:RemoveOnDeath() return false end
           self.agressive_loc = LOCATION_MAIN_ARENA
 
           self.attack_target = self:FindNewTarget(
-            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER, FULL_HEALTH_PERCENT
+            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+            FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
           )
     
           for _, hero in pairs(HeroList:GetAllHeroes()) do
             if self.attack_target == nil and hero:GetTeamNumber() == self.parent:GetTeamNumber() then
               self.attack_target = self:FindNewTarget(
-                hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO, FIND_ANY_ORDER, FULL_HEALTH_PERCENT
+                hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+                FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
               )
             end
           end
@@ -268,6 +304,7 @@ function _general_script:RemoveOnDeath() return false end
       self.agressive_loc = LOCATION_MAIN_ARENA
       self.attack_target = nil
       self.target_last_loc = nil
+      self.missing_start_time = nil
     end
   end
 
@@ -280,7 +317,7 @@ function _general_script:RemoveOnDeath() return false end
     return TARGET_STATE_VISIBLE
   end
 
-  function _general_script:FindNewTarget(loc, radius, priority, find_order, hp_cap)
+  function _general_script:FindNewTarget(loc, radius, priority, find_order, hp_cap, modifier_name)
     local enemies = FindUnitsInRadius(
       self.parent:GetTeamNumber(), loc, nil, radius,
       DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
@@ -289,7 +326,7 @@ function _general_script:RemoveOnDeath() return false end
 
     for _,enemy in pairs(enemies) do
       if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false
-      and enemy:GetHealthPercent() <= hp_cap then
+      and enemy:GetHealthPercent() <= hp_cap and (enemy:HasModifier(modifier_name) or modifier_name == "") then
         if priority == TARGET_PRIORITY_HERO or priority == TARGET_PRIORITY_ONLY_HERO then
           if enemy:IsHero() then return enemy end
         end
@@ -304,7 +341,7 @@ function _general_script:RemoveOnDeath() return false end
 
     for _,enemy in pairs(enemies) do
       if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false
-      and enemy:GetHealthPercent() <= hp_cap then
+      and enemy:GetHealthPercent() <= hp_cap and (enemy:HasModifier(modifier_name) or modifier_name == "") then
         if priority ~= TARGET_PRIORITY_ONLY_HERO then
           return enemy
         end
@@ -337,28 +374,44 @@ function _general_script:RemoveOnDeath() return false end
 
 -- LOAD HERO DATA -----------------------------------------------------------
 
-  function _general_script:ConsumeAbilityPoint()
+  function _general_script:ConsumeRankPoint()
     local base_hero = BaseHero(self.parent)
     if base_hero == nil then return end
-    if base_hero.skill_points <= 0 then return end
+    local result = 0
 
-    local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."-skills.txt")
-    local available_abilities = {}
-    local i = 0
+    repeat
+      self:ConsumeAbilityPoint()
+      self:ConsumeStatPoint()
+      result = base_hero:RandomizeRank()
+      if result > 0 then base_hero:UpgradeRank(result) end
+    until result == 0
+  end
 
-    for index, ability_name in pairs(skills_data) do
-      local ability = self.parent:FindAbilityByName(ability_name)
-      if ability and tonumber(index) < 6 then
-        if ability:IsTrained() == false then
-          i = i + 1
-          available_abilities[i] = ability
+  function _general_script:ConsumeAbilityPoint()
+    local base_hero = BaseHero(self.parent)
+    local base_stats = BaseStats(self.parent)
+    if base_hero == nil or base_stats == nil then return end
+
+    while base_hero.skill_points > 0 do
+      local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."-skills.txt")
+      local available_abilities = {}
+      local i = 0
+  
+      for index, ability_name in pairs(skills_data) do
+        local ability = self.parent:FindAbilityByName(ability_name)
+        if ability and tonumber(index) < 6 then
+          if ability:IsTrained() == false then
+            i = i + 1
+            available_abilities[i] = ability
+          end
         end
       end
+  
+      local ability_result = available_abilities[RandomInt(1, i)]
+      ability_result:UpgradeAbility(true)
+      base_hero:CheckAbilityPoints(-1)
+      base_stats:AddManaExtra(ability_result)
     end
-
-    available_abilities[RandomInt(1, i)]:UpgradeAbility(true)
-    base_hero:CheckAbilityPoints(-1)
-    self:ConsumeAbilityPoint()
   end
 
   function _general_script:ConsumeStatPoint()
@@ -367,30 +420,31 @@ function _general_script:RemoveOnDeath() return false end
     if base_stats.random_stats == nil then return end
     if base_stats.total_points <= 0 then return end
 
-    local main_stats = {}
-    local data = LoadKeyValues("scripts/kv/heroes_priority.kv")
-
-    for hero_name, stats in pairs(data) do
-      if hero_name == GetHeroName(self.parent:GetUnitName()) then
-        for priority, stat in pairs(stats) do
-          main_stats[tonumber(priority)] = stat
+    while base_stats.total_points > 0 and base_stats.random_stats ~= nil do
+      local main_stats = {}
+      local data = LoadKeyValues("scripts/kv/heroes_priority.kv")
+  
+      for hero_name, stats in pairs(data) do
+        if hero_name == GetHeroName(self.parent:GetUnitName()) then
+          for priority, stat in pairs(stats) do
+            main_stats[tonumber(priority)] = stat
+          end
         end
       end
-    end
-
-    local main = 0
-
-    for i = 1, 5, 1 do
-      for index, random_stat in pairs(base_stats.random_stats) do
-        if main_stats[i] == random_stat and main == 0 then
-          main = index
+  
+      local main = 0
+  
+      for i = 1, 5, 1 do
+        for index, random_stat in pairs(base_stats.random_stats) do
+          if main_stats[i] == random_stat and main == 0 then
+            main = index
+          end
         end
       end
+  
+      if main == 0 then main = RandomInt(1, #base_stats.random_stats) end
+      base_stats:UpgradeStat(base_stats.random_stats[main])      
     end
-
-    if main == 0 then main = RandomInt(1, #base_stats.random_stats) end
-    base_stats:UpgradeStat(base_stats.random_stats[main])
-    self:ConsumeStatPoint()
   end
 
   function _general_script:LoadHeroActions()

@@ -340,7 +340,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_wide" then return 1 end
     if value_name == "speed" then return 2000 end
     if value_name == "radius" then return 400 end
-    if value_name == "distance" then return 1200 end
+    if value_name == "distance" then return 1000 end
     if value_name == "special_damage" then return 2 end
     if value_name == "special_heal" then return 15 end
 	end

@@ -11,7 +11,8 @@ function icebreaker_u_modifier_aura_effect:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self:ApplyBuff()
-  self:ApplyDebuff()
+
+  if IsServer() then self:OnIntervalThink() end
 end
 
 function icebreaker_u_modifier_aura_effect:OnRefresh(kv)
@@ -21,9 +22,20 @@ function icebreaker_u_modifier_aura_effect:OnRemoved()
   RemoveStatusEfx(self.ability, "icebreaker_u_modifier_status_efx", self.caster, self.parent)
   RemoveBonus(self.ability, "_2_RES", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bkb", self.ability)
+
+  if self.parent:HasModifier("icebreaker__modifier_hypo") then
+    AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_hypo", {
+      stack = 0
+    }, false)
+  end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function icebreaker_u_modifier_aura_effect:OnIntervalThink()
+  self:ApplyDebuff()
+  if IsServer() then self:StartIntervalThink(0.1) end
+end
 
 -- UTILS -----------------------------------------------------------
 
@@ -39,7 +51,21 @@ end
 
 function icebreaker_u_modifier_aura_effect:ApplyDebuff()
   if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
-  AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_hypo", {stack = 0}, false)
+  local mod = self.parent:FindModifierByName("icebreaker__modifier_hypo")
+  local hypo_min_stack = self.ability:GetSpecialValueFor("hypo_min_stack")
+
+  if mod == nil then
+    mod = AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_hypo", {
+      stack = hypo_min_stack
+    }, false)
+  elseif mod:GetStackCount() < hypo_min_stack then
+    mod:SetStackCount(hypo_min_stack)
+  end
+
+  if mod:GetStackCount() == hypo_min_stack then
+    mod:SetDuration(-1, true)
+    mod.remaining_time = -1
+  end
 end
 
 -- EFFECTS -----------------------------------------------------------
