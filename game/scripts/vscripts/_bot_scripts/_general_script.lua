@@ -145,10 +145,27 @@ _general_script = class({})
         end
 
         if new_target == nil then
-          new_target = self:FindNewTarget(
-            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
-            FIND_CLOSEST, FULL_HEALTH_PERCENT, "bloodstained__modifier_copy"
+          local enemies = FindUnitsInRadius(
+            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
           )
+      
+          for _,enemy in pairs(enemies) do
+            if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
+            and self:IsOutOfRange(enemy:GetOrigin()) == false then
+              local mod = enemy:FindModifierByName("bloodstained__modifier_copy")
+              if mod then
+                if mod.target then
+                  if IsValidEntity(mod.target) then
+                    if mod.target:GetTeamNumber() == self.parent:GetTeamNumber() then
+                      new_target = enemy
+                    end
+                  end
+                end
+              end
+            end
+          end
         end
 
         if new_target then

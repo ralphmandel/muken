@@ -40,7 +40,8 @@ function ancient:TryCast_Leap()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) then
+    if self.caster:CanEntityBeSeenByMyTeam(unit)
+    and unit:IsHero() or unit:IsConsideredHero() then
       targets = targets + 1
     end
   end
@@ -69,7 +70,8 @@ function ancient:TryCast_Petrify()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:IsStunned() == false then
+    if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:IsStunned() == false
+    and unit:IsHero() or unit:IsConsideredHero() then
       target = unit
       break
     end
@@ -85,6 +87,8 @@ end
 function ancient:TryCast_Final()
   local ability = self.caster:FindAbilityByName("ancient_u__final")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local cast_range = ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 500

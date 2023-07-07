@@ -38,7 +38,10 @@ function bloodstained:TryCast_Rage()
   )
 
   for _,enemy in pairs(enemies) do
-    if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+    if self.caster:CanEntityBeSeenByMyTeam(enemy)
+    and enemy:IsStunned() == false and enemy:IsDisarmed() == false and enemy:IsHexed() == false
+    and enemy:GetAttackCapability() > 0 and enemy:HasModifier("_modifier_fear") == false
+    and enemy:IsHero() or enemy:IsConsideredHero() then
       total_targets = total_targets + 1
     end
   end
@@ -53,6 +56,8 @@ end
 function bloodstained:TryCast_Curse()
   local ability = self.caster:FindAbilityByName("bloodstained_3__curse")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
 
@@ -74,7 +79,8 @@ function bloodstained:TryCast_Tear()
     )
   
     for _,enemy in pairs(enemies) do
-      if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+      if self.caster:CanEntityBeSeenByMyTeam(enemy)
+      and enemy:IsHero() or enemy:IsConsideredHero() then
         total_targets = total_targets + 1
       end
     end
@@ -95,6 +101,7 @@ function bloodstained:TryCast_Seal()
   local ability = self.caster:FindAbilityByName("bloodstained_u__seal")
   if IsAbilityCastable(ability) == false then return false end
 
+  if self.target:IsHero() == false then return false end
   if self.target:GetHealthPercent() >= 50 then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
