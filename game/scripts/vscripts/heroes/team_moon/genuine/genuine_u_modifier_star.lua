@@ -107,7 +107,7 @@ function genuine_u_modifier_star:ExchangeMana()
   
   local mana_steal = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_steal") * 0.01
   if genuine_barrier then genuine_barrier:UpdateBarrier(mana_steal, false) end
-  StealMana(self.parent, self.caster, self.ability, mana_steal, false)
+  StealMana(self.parent, self.caster, self.ability, mana_steal)
 end
 
 -- EFFECTS -----------------------------------------------------------

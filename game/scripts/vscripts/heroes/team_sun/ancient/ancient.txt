@@ -176,15 +176,15 @@
 
 		"AbilityValues"
 		{
-      "energy_gain"	      "15"
-      "energy_gain_crit"	"20"
-      "energy_loss"	      "3"
-      "con_mult"	        "0.1"
+      "energy_gain"	      "30"
+      "energy_gain_crit"	"50"
+      "energy_loss"	      "5"
       "min_cost"	        "40"
       "crack_time"	      "3.14"
       "crack_width"	      "315"
-      "cast_range_mult"	  "7"
-      "damage"	          "3.5"
+      "cast_range_mult"	  "200"
+      "damage"	          "125"
+      "con_mult"	        "2"
       "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

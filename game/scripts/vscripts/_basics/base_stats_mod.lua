@@ -203,9 +203,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierManaBonus()
     if self.parent:HasModifier("ancient_1_modifier_passive") then
-      if self.parent:HasModifier("ancient_u_modifier_passive") then
-        return 250 + (self.ability:GetStatBase("INT") * 5)
-      else
+      if self.parent:HasModifier("ancient_u_modifier_passive") == false then
         return 0
       end
     end

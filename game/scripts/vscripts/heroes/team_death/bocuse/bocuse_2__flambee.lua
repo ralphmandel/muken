@@ -40,6 +40,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 	function bocuse_2__flambee:OnSpellStart()
 		local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
+    self:StartCooldown(1)
 
 		if target:GetTeamNumber() ~= caster:GetTeamNumber()
 		and target:TriggerSpellAbsorb(self) then

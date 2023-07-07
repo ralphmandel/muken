@@ -9,7 +9,6 @@ function bocuse_3_modifier_sauce:OnCreated(kv)
   self.caster = self:GetCaster()
 	self.parent = self:GetParent()
   self.ability = self:GetAbility()
-	self.delay = true
 
 	if IsServer() then
 		self:SetStackCount(1)
@@ -20,8 +19,6 @@ function bocuse_3_modifier_sauce:OnCreated(kv)
 end
 
 function bocuse_3_modifier_sauce:OnRefresh(kv)
-  self.delay = true
-
   if IsServer() then
     self:IncrementStackCount()
     self:StartIntervalThink(self:GetDuration() * 0.2)
@@ -67,11 +64,6 @@ function bocuse_3_modifier_sauce:OnTakeDamage(keys)
 	local heal_amount = keys.damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
 	keys.attacker:Heal(heal_amount, self.ability)
 	self:PlayEfxLifesteal(keys.attacker)
-end
-
-function bocuse_3_modifier_sauce:OnIntervalThink()
-	self.delay = false
-  if IsServer() then self:StartIntervalThink(-1) end
 end
 
 function bocuse_3_modifier_sauce:OnStackCountChanged(old)

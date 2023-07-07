@@ -104,7 +104,7 @@ function druid_u_modifier_aura:ConvertTrees()
   if tree_duration == 0 then return end
 
 	for _,tree in pairs(trees) do
-    ReduceMana(self.caster, self.ability, self.ability:GetManaCost(self.ability:GetLevel()) * self.intervals, false, false)
+    ReduceMana(self.caster, self.ability, self.ability:GetManaCost(self.ability:GetLevel()) * self.intervals, false)
 
     if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_tree_chance") * self.intervals then
 			tree:CutDown(self.parent:GetTeamNumber())

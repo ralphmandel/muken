@@ -68,8 +68,7 @@ function mana_burn_modifier:InflictBurn(target)
 	if burned_mana > target:GetMana() then burned_mana = target:GetMana() end
 
 	if burned_mana > 0 then
-    ReduceMana(target, self.ability, burned_mana, true, false)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, burned_mana, self.caster)
+    ReduceMana(target, self.ability, burned_mana, true)
 
 		local damageTable = {
 			damage = burned_mana,

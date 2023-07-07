@@ -42,7 +42,7 @@
 			"01"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"max_cut"   		    "5"
+				"max_cut"   		    "4"
 			}
       "02"
 			{
@@ -52,12 +52,12 @@
       "03"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"bleeding_duration" "4"
+				"bleeding_duration" "3"
 			}
       "05"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"stun_duration"   	"1.5"
+				"stun_duration"   	"1.25"
 			}
       "06"
 			{
@@ -167,17 +167,17 @@
       "06"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"ms"                "60"
+				"ms"                "50"
 			}
       "07"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"damage"		        "20"
+				"damage"		        "25"
 			}
       "08"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"blind"		          "20"
+				"blind"		          "15"
 			}
       "09"
 			{
@@ -228,12 +228,12 @@
 			"01"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration"			      "8"
+				"duration"			      "12"
 			}
       "02"
 			{
 				"var_type"		        "FIELD_FLOAT"
-				"duration_reduction"	"1"
+				"duration_reduction"	"2"
 			}
       "03"
 			{
@@ -302,63 +302,16 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_VICTORY"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"duration"		      "40"
-			}
-      "02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"atk_range"		      "60"
-			}
-      "03"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"def"		            "10"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"res"		            "10"
-			}
-      "05"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"hp_regen"		      "1"
-			}
-      "06"
-			{
-				"var_type"			    "FIELD_FLOAT"
-				"init_model_scale"	"1.15"
-			}
-      "07"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"cast_point"		    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_block"	        "0"
-			}
-      "17"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_hp_regen"	    "0"
-			}
-      "18"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_bkb_duration"  "0"
-			}
+      "duration"		      "45"
+      "atk_range"		      "60"
+      "init_model_scale"	"1.15"
+      "max_barrier"	      "30"
+      "barrier_regen"	    "1"
+      "barrier_absorption""50"
+      "cast_point"		    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -391,7 +344,7 @@
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"slow"		      "150"
+				"slow"		      "100"
 			}
       "03"
 			{

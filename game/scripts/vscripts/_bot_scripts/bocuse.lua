@@ -19,7 +19,6 @@ function bocuse:TrySpell(target)
     [5] = self.TryCast_Mise,
   }
 
-
   for i = 1, #abilities_actions, 1 do
     if cast == false then
       cast = abilities_actions[i](self)
@@ -34,6 +33,10 @@ function bocuse:TryCast_Mirepoix()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.caster:GetHealthPercent() < 25 then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+  
+  local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+  if distance_diff > 2000 then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 
@@ -62,7 +65,8 @@ function bocuse:TryCast_Flambee()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) then
+    if self.caster:CanEntityBeSeenByMyTeam(unit)
+    and unit:IsHero() or unit:IsConsideredHero() then
       target = unit
       break
     end
@@ -77,6 +81,8 @@ function bocuse:TryCast_Roux()
   local ability = self.caster:FindAbilityByName("bocuse_5__roux")
   if IsAbilityCastable(ability) == false then return false end
 
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
   return true
@@ -85,6 +91,8 @@ end
 function bocuse:TryCast_Mise()
   local ability = self.caster:FindAbilityByName("bocuse_u__mise")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local atk_range = self.caster:Script_GetAttackRange()

@@ -65,10 +65,11 @@ function ancient_u_modifier_passive:OnHeroKilled(keys)
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
-  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * 0.1, false, true)
+  local interval = 1
+  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * interval, false)
 	self.ability:UpdateCON()
 
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if IsServer() then self:StartIntervalThink(interval) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -88,7 +89,7 @@ function ancient_u_modifier_passive:UpdateAmbients()
 	local ambient_back = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_back.vpcf")
 	local ambient_weapon = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_weapon.vpcf")
 
-	local value = self.parent:GetMana() * 2.5
+	local value = self.parent:GetMana() * 0.7
 	if self.ability.casting == true then value = 0 end
 
 	if self.ambient_aura then ParticleManager:SetParticleControl(self.ambient_aura, 1, Vector(value, 0, 0)) end

@@ -17,7 +17,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   end
 
   function ancient_u__final:GetCastRange(vLocation, hTarget)    
-    return self:GetManaCost(self:GetLevel()) * self:GetSpecialValueFor("cast_range_mult")
+    return self:GetManaCost(self:GetLevel()) * self:GetSpecialValueFor("cast_range_mult") * 0.01
   end
   
 -- SPELL START
@@ -29,7 +29,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   function ancient_u__final:OnAbilityPhaseStart()
     local caster = self:GetCaster()
     caster:RemoveModifierByName("ancient_2_modifier_leap")
-    self.damage = self:GetCaster():GetMana() * self:GetSpecialValueFor("damage")
+    self.damage = self:GetCaster():GetMana() * self:GetSpecialValueFor("damage") * 0.01
     self.distance = self:GetCastRange(self:GetCursorPosition(), nil)
 
     ChangeActivity(caster, "")
@@ -95,7 +95,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function ancient_u__final:UpdateCON()
     local caster = self:GetCaster()
-    local total_con = math.floor(caster:GetMana() * self:GetSpecialValueFor("con_mult"))
+    local total_con = math.floor(caster:GetMana() * self:GetSpecialValueFor("con_mult") * 0.01)
 
     RemoveBonus(self, "_1_CON", caster)
     AddBonus(self, "_1_CON", caster, total_con, 0, nil)

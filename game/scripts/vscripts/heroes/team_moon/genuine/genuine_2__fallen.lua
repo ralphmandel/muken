@@ -78,7 +78,7 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
       local heal = hTarget:GetMaxHealth() * self:GetSpecialValueFor("special_heal") * 0.01
       if heal > 0 then hTarget:Heal(heal, self) end
     else
-      ReduceMana(hTarget, self, self:GetSpecialValueFor("special_manaburn"), true, false)
+      ReduceMana(hTarget, self, self:GetSpecialValueFor("special_manaburn"), true)
       AddModifier(hTarget, caster, self, "genuine_2_modifier_fallen", {
         duration = fear_duration
       }, true)	
