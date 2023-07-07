@@ -12,6 +12,12 @@ function dasdingo_u_modifier_curse:OnCreated(kv)
 
 	self.interval = self.ability:GetSpecialValueFor("interval")
 	self.health = self.parent:GetHealth()
+
+  ApplyDamage({
+    attacker = self.caster, victim = self.parent, ability = self.ability,
+    damage = self.ability:GetSpecialValueFor("damage_init"),
+    damage_type = self.ability:GetAbilityDamageType()
+  })
 	
 	if IsServer() then
 		self:PlayEfxStart(true)

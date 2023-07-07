@@ -63,12 +63,12 @@
       "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"	  "0.8"
+				"interval"	  "0.9"
 			}
       "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_tick"	  "10"
+				"heal_tick"	  "15"
 			}
       "05"
 			{
@@ -103,12 +103,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"radius"			"600"
+				"radius"			"750"
 			}
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"def"			    "10"
+				"def"			    "8"
 			}
       "15"
 			{
@@ -147,7 +147,7 @@
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"drain_percent" "2.5"
+				"drain_percent" "3"
 			}
       "03"
 			{
@@ -235,17 +235,17 @@
       "04"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"ignition_damage"	  "15"
+				"ignition_damage"	  "25"
 			}
       "05"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"stun_duration"	    "1.5"
+				"stun_duration"	    "1"
 			}
       "05"
 			{
 				"var_type"		      "FIELD_FLOAT"
-				"slow_duration"	    "1.5"
+				"slow_duration"	    "3"
 			}
       "06"
 			{
@@ -290,7 +290,12 @@
       "02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"fear_duration" "2.5"
+				"fear_duration" "2"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_init"   "100"
 			}
       "03"
 			{
@@ -300,7 +305,7 @@
       "04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"max_tick"      "5"
+				"max_tick"      "6"
 			}
       "05"
 			{

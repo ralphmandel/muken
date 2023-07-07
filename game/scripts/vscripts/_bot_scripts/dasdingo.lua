@@ -44,7 +44,8 @@ function dasdingo:TryCast_Tribal()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) then
+    if self.caster:CanEntityBeSeenByMyTeam(unit)
+    and unit:IsHero() or unit:IsConsideredHero() then
       targets = targets + 1
     end
   end
@@ -62,6 +63,7 @@ function dasdingo:TryCast_Curse()
   if IsAbilityCastable(ability) == false then return false end
   
   if self.target:IsStunned() then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
@@ -82,7 +84,7 @@ function dasdingo:TryCast_Field()
 
   for _,unit in pairs(units) do
     if self.caster:CanEntityBeSeenByMyTeam(unit)
-    and (unit:IsHero() or unit:IsCreepHero())
+    and (unit:IsHero() or unit:IsConsideredHero())
     and target:GetHealthPercent() > unit:GetHealthPercent() then
       target = unit
     end
@@ -99,7 +101,8 @@ function dasdingo:TryCast_Leech()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.target:IsStunned() then return false end
-  
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
 
   return true

@@ -20,7 +20,7 @@ function dasdingo_5_modifier_ignition:OnCreated(kv)
 
   if self.step == 2 then
     if self.parent:IsMagicImmune() == false then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 50}, false)
+      AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 25}, false)
     end
   end
   
