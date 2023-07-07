@@ -81,7 +81,8 @@ function lawbreaker:TryCast_Form()
   )
 
   for _,enemy in pairs(enemies) do
-    if self.caster:CanEntityBeSeenByMyTeam(enemy) then
+    if self.caster:CanEntityBeSeenByMyTeam(enemy)
+    and enemy:IsHero() or enemy:IsConsideredHero() then
       total_targets = total_targets + 1
     end
   end
@@ -97,6 +98,8 @@ function lawbreaker:TryCast_Grenade()
   local ability = self.caster:FindAbilityByName("lawbreaker_3__grenade")
   if IsAbilityCastable(ability) == false then return false end
 
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
   return true
@@ -105,6 +108,8 @@ end
 function lawbreaker:TryCast_Rain()
   local ability = self.caster:FindAbilityByName("lawbreaker_4__rain")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 

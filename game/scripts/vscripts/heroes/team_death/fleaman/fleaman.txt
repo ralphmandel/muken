@@ -54,7 +54,7 @@
 		{
 			"ms"              "15"
 			"dex"             "2"
-			"stack_duration"  "5"
+			"stack_duration"  "6"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -149,8 +149,8 @@
     "AbilityValues"
 		{
 			"duration"		  "8"
-			"slow"		      "125"
-			"blind"		      "30"
+			"slow"		      "120"
+			"blind"		      "50"
 			"delay"		      "4"
 			"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"

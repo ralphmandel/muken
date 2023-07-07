@@ -31,7 +31,7 @@
 
 		"AbilityValues"
 		{
-      "chance"			    "50"
+      "chance"			    "70"
       "hypo_stack"	    "1"
       "hypo_ms"	        "0"
       "hypo_as"	        "0"
@@ -76,8 +76,8 @@
 
 		"AbilityValues"
 		{
-      "hypo_stack_min"  "2"
-      "hypo_stack_max"  "4"
+      "hypo_stack_min"  "3"
+      "hypo_stack_max"  "5"
       "recharge"	      "12"
       "radius"		      "250"
       "distance"		    "1 2 3 4 5 6 7 8 9 10 11"

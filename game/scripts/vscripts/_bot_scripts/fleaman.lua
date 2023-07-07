@@ -29,6 +29,8 @@ function fleaman:TryCast_Jump()
   local ability = self.caster:FindAbilityByName("fleaman_3__jump")
   if IsAbilityCastable(ability) == false then return false end
 
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+
   local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
   local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
   if angle_diff < -3 or angle_diff > 3 then return false end
@@ -43,6 +45,7 @@ function fleaman:TryCast_Smoke()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.caster:GetHealthPercent() >= 50 then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
 
@@ -52,6 +55,8 @@ end
 function fleaman:TryCast_Precision()
   local ability = self.caster:FindAbilityByName("fleaman_1__precision")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   if self.random_values["precision_charges"] == nil then self:RandomizeValue(ability, "precision_charges") end
   if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end

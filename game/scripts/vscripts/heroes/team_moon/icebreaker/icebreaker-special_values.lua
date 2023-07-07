@@ -364,7 +364,7 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
       if caster:FindAbilityByName("icebreaker_2__wave_rank_21") then
         return 200 * (1 + ((ability_level - 1) * 0.05))
       end
-      return 150 * (1 + ((ability_level - 1) * 0.05))
+      return 160 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end
@@ -375,8 +375,8 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_knockback_distance" then return 100 end
     if value_name == "special_knockback_duration" then return 0.2 end
     if value_name == "special_auto_charge" then return 3 end
-    if value_name == "hypo_stack_min" then return 3 end
-    if value_name == "hypo_stack_max" then return 5 end
+    if value_name == "hypo_stack_min" then return 4 end
+    if value_name == "hypo_stack_max" then return 6 end
     if value_name == "recharge" then return 9 end
     if value_name == "special_damage" then return 1.5 end
     if value_name == "special_mana_burn" then return 5 end

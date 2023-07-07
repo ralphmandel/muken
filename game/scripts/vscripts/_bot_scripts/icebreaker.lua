@@ -40,7 +40,8 @@ function icebreaker:TryCast_Zero()
   )
 
   for _,unit in pairs(units) do
-    if self.caster:CanEntityBeSeenByMyTeam(unit) then
+    if self.caster:CanEntityBeSeenByMyTeam(unit)
+    and unit:IsHero() or unit:IsConsideredHero() then
       targets = targets + 1
     end
   end
@@ -73,6 +74,7 @@ function icebreaker:TryCast_Blink()
     end
   end
 
+  if target == nil and ability:GetCurrentAbilityCharges() > 1 then target = self.target end
   if target == nil then return false end
 
   self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
@@ -83,6 +85,8 @@ end
 function icebreaker:TryCast_Wave()
   local ability = self.caster:FindAbilityByName("icebreaker_2__wave")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local distance = ability:GetSpecialValueFor("distance") * 0.8
@@ -125,6 +129,8 @@ end
 function icebreaker:TryCast_Shivas()
   local ability = self.caster:FindAbilityByName("icebreaker_4__shivas")
   if IsAbilityCastable(ability) == false then return false end
+
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local distance = ability:GetSpecialValueFor("blast_radius") * 0.8

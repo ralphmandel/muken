@@ -34,7 +34,7 @@
     "AbilityValues"
 		{
 			"max_hit"			"5"
-      "crit_dmg"		"50"
+      "crit_dmg"		"75"
       "lifesteal"		"30"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -64,7 +64,7 @@
 			"agi"			          "40"
       "atk_range"			    "150"
       "slow_percent"	    "40"
-      "reload"	          "1.5"
+      "reload"	          "2"
       "fast_reload"	      "0.5"
       "fast_reload_delay" "1"
       "hits_to_recharge"  "3"
@@ -98,9 +98,9 @@
 		{
 			"damage"			"250"
       "duration"		"8"
-      "def"			    "-5"
-      "blind"			  "15"
-      "radius"			"250"
+      "def"			    "-10"
+      "blind"			  "20"
+      "radius"			"300"
       "proj_radius"	"60"
       "proj_speed"	"1500"
       "delay"	      "1.5"
@@ -131,8 +131,8 @@
 
     "AbilityValues"
 		{
-			"damage"			"70"
-      "slow"			  "150"
+			"damage"			"75"
+      "slow"			  "175"
       "interval"		"0.5"
       "delay"		    "0.5"
       "duration"	  "6"
