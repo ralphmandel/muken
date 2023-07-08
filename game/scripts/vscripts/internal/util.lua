@@ -401,6 +401,17 @@ end
     return "announcer_killing_spree_announcer_kill_spree_01"
   end
 
+  function GetPipHitDamage(attacker)
+    local hit = 1
+
+    if attacker:IsHero() then
+      if attacker:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then hit = 4 else hit = 2 end
+      if attacker:HasModifier("ancient_1_modifier_passive") then hit = 6 end
+    end
+
+    return hit
+  end
+
 -- ROLL FUNCTIONS
 
   function RollDrops(unit, killerEntity)

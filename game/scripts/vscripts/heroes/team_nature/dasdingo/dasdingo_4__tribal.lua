@@ -9,11 +9,12 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
   function dasdingo_4__tribal:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
-    local shard = CreateUnitByName("dasdingo_tribal", point, true, caster, caster, caster:GetTeamNumber())
+    local unit = CreateUnitByName("dasdingo_tribal", point, true, caster, caster, caster:GetTeamNumber())
+    FindClearSpaceForUnit(unit, point, true)
 
-    shard:CreatureLevelUp(self:GetSpecialValueFor("rank"))
-    shard:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-    AddModifier(shard, caster, self, "dasdingo_4_modifier_tribal", {duration = self:GetSpecialValueFor("duration")}, true)
+    unit:CreatureLevelUp(self:GetSpecialValueFor("rank"))
+    unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
+    AddModifier(unit, caster, self, "dasdingo_4_modifier_tribal", {duration = self:GetSpecialValueFor("duration")}, true)
   end
 
 -- EFFECTS

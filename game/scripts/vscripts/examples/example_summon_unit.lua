@@ -62,13 +62,7 @@ end
 
 function template_x_modifier_example:OnAttacked(keys)
 	if keys.target ~= self.parent then return end
-  local hit = 1
-
-  if keys.attacker:IsHero() then
-    if keys.attacker:GetAttackCapability() == DOTA_UNIT_CAP_MELEE_ATTACK then hit = 4 else hit = 2 end
-  end
-
-  self.min_health = self.min_health - hit
+  self.min_health = self.min_health - GetPipHitDamage(keys.attacker)
 end
 
 function template_x_modifier_example:GetDisableHealing()
