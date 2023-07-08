@@ -11,15 +11,15 @@ function dasdingo_4_modifier_tribal:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
+  self.min_health = self.hits
+
   AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
   AddBonus(self.ability, "_1_STR", self.parent, -9999, 0, nil)
   AddBonus(self.ability, "_1_AGI", self.parent, 9999, 0, nil)
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {amount = 0.5}, false)
   self.parent:SetHealthBarOffsetOverride(300)
 
   Timers:CreateTimer(FrameTime(), function()
-    self.min_health = self.hits
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
   end)
 
@@ -40,7 +40,6 @@ function dasdingo_4_modifier_tribal:OnRemoved()
   RemoveBonus(self.ability, "_1_CON", self.parent)
   RemoveBonus(self.ability, "_1_STR", self.parent)
   RemoveBonus(self.ability, "_1_AGI", self.parent)
-  self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
 
   if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
 end
@@ -49,7 +48,6 @@ end
 
 function dasdingo_4_modifier_tribal:CheckState()
 	local state = {
-    [MODIFIER_STATE_NO_UNIT_COLLISION] = false,
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true
 	}

@@ -328,15 +328,15 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
-		if value_name == "AbilityManaCost" then return 240 * (1 + ((ability_level - 1) * 0.05)) end
-    if value_name == "AbilityCooldown" then return 18 - ((ability_level - 1) * 0.3) end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 15 - ((ability_level - 1) * 0.2) end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
     if value_name == "special_slow" then return 75 end
     if value_name == "special_invi_break" then return 1 end
     if value_name == "special_manaburn" then return 100 end
     if value_name == "special_purge_ally" then return 1 end
-    if value_name == "fear_duration" then return 4 end
+    if value_name == "fear_duration" then return 3 end
     if value_name == "special_wide" then return 1 end
     if value_name == "speed" then return 2000 end
     if value_name == "radius" then return 400 end
@@ -423,7 +423,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_u__star" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 45 end
+		if value_name == "AbilityCooldown" then return 60 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
 

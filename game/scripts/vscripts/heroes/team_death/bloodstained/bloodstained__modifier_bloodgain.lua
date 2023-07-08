@@ -35,6 +35,11 @@ function bloodstained__modifier_bloodgain:GetModifierHealthBonus()
 	return self:GetStackCount()
 end
 
+function bloodstained__modifier_bloodgain:OnStackCountChanged(old)
+	local void = self:GetParent():FindAbilityByName("_void")
+	if void then void:SetLevel(1) end
+end
+
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------

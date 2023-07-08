@@ -13,12 +13,12 @@ function druid_3_modifier_totem:OnCreated(kv)
   self.spike_damage = self.ability:GetSpecialValueFor("special_spike_damage")
   self.flame_duration = self.ability:GetSpecialValueFor("special_flame_duration")
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
+  self.min_health = self.hits
   self.radius = self.ability:GetAOERadius()
 
   AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
 
   Timers:CreateTimer(FrameTime(), function()
-    self.min_health = self.hits
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
   end)
 

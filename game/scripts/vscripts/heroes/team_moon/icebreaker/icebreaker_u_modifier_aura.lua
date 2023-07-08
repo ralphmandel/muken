@@ -35,7 +35,8 @@ function icebreaker_u_modifier_aura:OnCreated(kv)
   self.radius_night = self.ability:GetSpecialValueFor("radius_night")
   self.radius_percent = self.ability:GetSpecialValueFor("special_radius")
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
-  
+  self.min_health = self.hits
+
   self.damageTable = {
     attacker = self.caster,
     damage = self.ability:GetSpecialValueFor("special_meteor_damage"),
@@ -47,7 +48,6 @@ function icebreaker_u_modifier_aura:OnCreated(kv)
   if self.radius_percent > 0 then self.parent:SetMoveCapability(DOTA_UNIT_CAP_MOVE_FLY) end
 
   Timers:CreateTimer(FrameTime(), function()
-    self.min_health = self.hits
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
   end)
 

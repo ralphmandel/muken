@@ -11,10 +11,10 @@ function template_x_modifier_example:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
+  self.min_health = self.hits
   AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
 
   Timers:CreateTimer(FrameTime(), function()
-    self.min_health = self.hits
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
   end)
 end

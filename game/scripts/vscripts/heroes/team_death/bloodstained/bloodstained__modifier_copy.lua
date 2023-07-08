@@ -16,13 +16,13 @@ function bloodstained__modifier_copy:OnCreated(kv)
   self.target = EntIndexToHScript(kv.target_index)
 
   AddStatusEfx(self.ability, "bloodstained__modifier_copy_status_efx", self.caster, self.parent)
+  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
 
   self.max_barrier = 100
   self.barrier = self.max_barrier
 
   self:SetHasCustomTransmitterData(true)
   self:SetStackCount(self.hp_stolen)
-  self:OnIntervalThink()
 end
 
 function bloodstained__modifier_copy:OnRefresh(kv)
@@ -30,6 +30,7 @@ end
 
 function bloodstained__modifier_copy:OnRemoved()
   RemoveStatusEfx(self.ability, "bloodstained__modifier_copy_status_efx", self.caster, self.parent)
+  RemoveBonus(self.ability, "_1_CON", self.parent)
 
   if self.target then
     if IsValidEntity(self.target) then
@@ -63,7 +64,8 @@ end
 function bloodstained__modifier_copy:CheckState()
 	local state = {
 		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+    [MODIFIER_STATE_EVADE_DISABLED] = true
 	}
 
 	return state
@@ -94,11 +96,12 @@ function bloodstained__modifier_copy:GetModifierIncomingPhysicalDamageConstant(k
 
   if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
 
-  local damage = 15
-  if self:GetParent():HasModifier("ancient_1_modifier_passive") then damage = 30 end
+  local damage = 12.5
+  if self:GetParent():HasModifier("ancient_1_modifier_passive") then damage = 25 end
 
   self.barrier = self.barrier - damage
-  if self.barrier < 0 then self:GetParent():ForceKill(false) end
+  self:SendBuffRefreshToClients()
+  if self.barrier < 1 then self:GetParent():ForceKill(false) end
 
   return -damage
 end
@@ -119,14 +122,6 @@ function bloodstained__modifier_copy:OnDeath(keys)
 
   self.target:RemoveModifierByName("bloodstained__modifier_bloodstained")
   self.parent:ForceKill(false)
-end
-
-function bloodstained__modifier_copy:OnIntervalThink()
-  if IsServer() then
-    if self.barrier < self.max_barrier then self.barrier = self.barrier + 1 end
-    self:SendBuffRefreshToClients()
-    self:StartIntervalThink(0.2)
-  end
 end
 
 function bloodstained__modifier_copy:OnStackCountChanged(old)

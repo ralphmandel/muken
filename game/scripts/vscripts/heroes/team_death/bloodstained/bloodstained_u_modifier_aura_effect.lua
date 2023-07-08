@@ -60,6 +60,8 @@ function bloodstained_u_modifier_aura_effect:ApplyBloodIllusion()
 end
 
 function bloodstained_u_modifier_aura_effect:CreateCopy()
+  if not IsServer() then return end
+
   local copy_number = self.ability:GetSpecialValueFor("copy_number")
 	local hp_stolen = math.floor(self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("hp_stolen") * 0.01)
 

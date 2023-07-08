@@ -205,6 +205,8 @@ base_stats_mod = class ({})
     if self.parent:HasModifier("ancient_1_modifier_passive") then
       if self.parent:HasModifier("ancient_u_modifier_passive") == false then
         return 0
+      else
+        return 750 + (self.ability:GetStatBase("INT") * self.ability.mana)
       end
     end
     

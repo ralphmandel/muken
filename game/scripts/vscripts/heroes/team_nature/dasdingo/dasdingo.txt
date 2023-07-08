@@ -58,17 +58,17 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"450"
+				"cast_range"	"700"
 			}
       "03"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"interval"	  "0.9"
+				"interval"	  "1.5"
 			}
       "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_tick"	  "15"
+				"heal_tick"	  "20"
 			}
       "05"
 			{
@@ -182,12 +182,12 @@
       "3"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"duration"	  "30"
+				"duration"	  "20"
 			}
       "3"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"	      "8"
+				"hits"	      "5"
 			}
 			"3"
 			{
@@ -285,7 +285,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cast_range"    "600"
+				"cast_range"    "500"
 			}
       "02"
 			{
@@ -295,7 +295,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_init"   "100"
+				"damage_init"   "150"
 			}
       "03"
 			{
@@ -310,7 +310,7 @@
       "05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_damage"     "5"
+				"hp_damage"     "4"
 			}
       "06"
 			{

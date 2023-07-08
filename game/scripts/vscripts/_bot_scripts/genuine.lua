@@ -32,6 +32,7 @@ function genuine:TryCast_Awakening()
   if IsAbilityCastable(ability) == false then return false end
 
   if ability:IsChanneling() then return true end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local atk_range = self.caster:Script_GetAttackRange() + 50
@@ -49,6 +50,7 @@ function genuine:TryCast_Morning()
   if IsAbilityCastable(ability) == false then return false end
 
   if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
 
@@ -60,6 +62,7 @@ function genuine:TryCast_Fallen()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.target:IsStunned() then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
   local distance = ability:GetSpecialValueFor("distance") * 0.8
@@ -78,6 +81,7 @@ function genuine:TryCast_Star()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.caster:GetManaPercent() > 60 then return false end
+  if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
   self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
 

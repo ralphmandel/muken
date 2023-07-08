@@ -477,6 +477,7 @@ _general_script = class({})
     }
 
     if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
+      self.low_health = 15
       self.AggressiveActions = {
         [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
         [2] = ACTION_BLOODSTAINED_TEAR,

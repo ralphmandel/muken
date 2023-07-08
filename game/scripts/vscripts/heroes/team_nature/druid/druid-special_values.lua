@@ -367,7 +367,7 @@ function druid_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "radius" then return 250 + (value_level * 5) end
 
     if value_name == "ms_limit" then return 275 end
-    if value_name == "hits" then return 10 end
+    if value_name == "hits" then return 8 end
     if value_name == "duration" then return 30 end
     if value_name == "heal" then return 40 end
     if value_name == "mana" then return 40 end

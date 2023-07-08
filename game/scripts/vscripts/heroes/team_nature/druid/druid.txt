@@ -213,7 +213,7 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"			  "5"
+				"hits"			  "4"
 			}
       "03"
 			{
