@@ -19,8 +19,9 @@ require("internal/talent_tree")
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
 
-        local bot_script = caster:FindModifierByName("_general_script")
-        if bot_script then bot_script:ConsumeRankPoint() end
+        if GetMapName() ~= "muken_arena_default" then
+          caster:AddExperience(55300, 0, false, false)
+        end
 			end)
 		end
 	end
@@ -29,6 +30,8 @@ require("internal/talent_tree")
 		local caster = self:GetCaster()
 		local level = caster:GetLevel()
 		if caster:IsIllusion() then return end
+
+    self:AddTalentPointsToHero(1)
 
 		if level == 8 then
 			local ultimate = caster:FindAbilityByName(self.skills[6])
@@ -43,6 +46,9 @@ require("internal/talent_tree")
     if level == 15 then --or level == 30 then
       self:CheckAbilityPoints(1)
     end
+
+    local bot_script = caster:FindModifierByName("_general_script")
+    if bot_script then bot_script:ConsumeAllPoints() end
 	end
 
 	function base_hero:GetIntrinsicModifierName()
@@ -90,6 +96,8 @@ require("internal/talent_tree")
 	end
 	
 	function base_hero:ResetRanksData()
+    local caster = self:GetCaster()
+
 		self.skills = {}
 		self.talentsData = {}
 		self.tabs = {}
@@ -115,14 +123,6 @@ require("internal/talent_tree")
 			self:LoadSkills()
 			self:LoadRanks()
 			self:UpdatePanoramaPanels()
-		end
-
-		if GetMapName() == "arena_temple_sm" then
-			self:AddGold(self:GetSpecialValueFor("starting_gold"))
-		end
-
-		if GetMapName() == "muken_arena_turbo" or GetMapName() == "muken_arena_no_ranks" then
-			self:AddGold(99999)
 		end
 	end
 
@@ -339,7 +339,6 @@ require("internal/talent_tree")
     if not ability:IsTrained() then return end
 
     ability:SetLevel(ability:GetLevel() + level)
-    caster:AddExperience(level * 10, 0, false, false)
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_SHARD, caster, level, caster)
 
     self.talents.rank_block[level] = self.talents.rank_block[level] + 1

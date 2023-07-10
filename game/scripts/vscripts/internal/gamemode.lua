@@ -75,6 +75,8 @@ function GameMode:_InitGameMode()
     end
   end
 
+  GameRules:SetCustomGameTeamMaxPlayers(1, 2)
+
   if USE_CUSTOM_TEAM_COLORS then
     for team,color in pairs(TEAM_COLORS) do
       SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
@@ -185,9 +187,9 @@ function GameMode:_CaptureGameMode()
     --mode:SetCustomHeroMaxLevel ( MAX_LEVEL )
 
     mode:SetCustomXPRequiredToReachNextLevel({
-      10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
-      110, 120, 130, 140, 150, 160, 170, 180, 190, 200,
-      210, 220, 230, 240, 250, 260, 270, 280, 290, 300
+      200, 420, 670, 960, 1300, 1700, 2170, 2720, 3360, 4100,
+      4950, 5920, 7020, 8260, 9650, 11200, 12920, 14820, 16910, 19200,
+      21700, 24420, 27370, 30560, 34000, 37700, 41670, 45920, 50460, 55300
     })
 
     --mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )

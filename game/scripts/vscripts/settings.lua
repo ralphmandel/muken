@@ -89,7 +89,6 @@ ENABLED_RUNES[DOTA_RUNE_REGENERATION] = true
 ENABLED_RUNES[DOTA_RUNE_BOUNTY] = true
 ENABLED_RUNES[DOTA_RUNE_ARCANE] = true
 
-
 MAX_NUMBER_OF_TEAMS = 4                -- How many potential teams can be in this game mode?
 USE_CUSTOM_TEAM_COLORS = true           -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = true          -- Should we use custom team colors to color the players/minimap?
@@ -139,11 +138,11 @@ RANDOM_NAMES = {
   [3] = "Kazunari",
   [4] = "Edomic Wolf",
   [5] = "InStereo4",
-  [6] = "UK",
-  [7] = "Do Jun",
-  [8] = "Kubo",
-  [9] = "Gasp.Z",
-  [10] = "Jairo, o Jakiro"
+  [6] = "Jairo, o Jakiro",
+  [7] = "Gasp.Z",
+  [8] = "Do Jun",
+  [9] = "kubo",
+  [10] = "UK"
 }
 
 SPAWNER_MOBS = {
@@ -232,11 +231,11 @@ SPAWNER_BOSS_SPOTS = {
 MAX_MOB_COUNT = 8
 MAX_BOSS_COUNT = 1
 
-SCORE = 15
+SCORE = 30
 SCORE_KILL = 60
 SCORE_BOUNTY = 120
-GOLD_BOUNTY_MIN = 12
-GOLD_BOUNTY_MAX = 15
+GOLD_BOUNTY_MIN = 20
+GOLD_BOUNTY_MAX = 30
 
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  

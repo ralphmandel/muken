@@ -548,7 +548,7 @@ end
       while i > 0 do
 
         local new_bot = GameRules:AddBotPlayerWithEntityScript(
-          GetIDName(random_list[hero_index]), RANDOM_NAMES[RandomInt(1, #RANDOM_NAMES)], bot_team, "", false
+          GetIDName(random_list[hero_index]), RANDOM_NAMES[hero_index], bot_team, "", false
         )
 
         new_bot:AddNewModifier(new_bot, nil, "_general_script", {})

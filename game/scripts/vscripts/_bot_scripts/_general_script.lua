@@ -389,17 +389,10 @@ _general_script = class({})
 
 -- LOAD HERO DATA -----------------------------------------------------------
 
-  function _general_script:ConsumeRankPoint()
-    local base_hero = BaseHero(self.parent)
-    if base_hero == nil then return end
-    local result = 0
-
-    repeat
-      self:ConsumeAbilityPoint()
-      self:ConsumeStatPoint()
-      result = base_hero:RandomizeRank()
-      if result > 0 then base_hero:UpgradeRank(result) end
-    until result == 0
+  function _general_script:ConsumeAllPoints()
+    self:ConsumeAbilityPoint()
+    self:ConsumeRankPoint()
+    self:ConsumeStatPoint()
   end
 
   function _general_script:ConsumeAbilityPoint()
@@ -426,6 +419,17 @@ _general_script = class({})
       ability_result:UpgradeAbility(true)
       base_hero:CheckAbilityPoints(-1)
       base_stats:AddManaExtra(ability_result)
+    end
+  end
+
+  function _general_script:ConsumeRankPoint()
+    local base_hero = BaseHero(self.parent)
+    if base_hero == nil then return end
+    local result = base_hero:RandomizeRank()
+
+    while result > 0 do
+      base_hero:UpgradeRank(result)
+      result = base_hero:RandomizeRank()      
     end
   end
 
