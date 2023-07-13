@@ -33,7 +33,7 @@ function genuine_u_modifier_curse:DeclareFunctions()
 end
 
 function genuine_u_modifier_curse:GetBonusVisionPercentage()
-	return self:GetSpecialValueFor("vision_reduction")
+	return self:GetAbility():GetSpecialValueFor("vision_reduction")
 end
 
 function genuine_u_modifier_curse:OnIntervalThink()

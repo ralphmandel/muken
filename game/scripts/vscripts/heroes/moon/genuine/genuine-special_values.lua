@@ -186,6 +186,8 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "damage" then return 1 end
 
@@ -327,7 +329,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 20 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "projectile_distance" then return 900 + (value_level * 30) end
+    if value_name == "projectile_distance" then return 1000 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "genuine_4__under" then
@@ -343,21 +345,30 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
 		if value_name == "AbilityManaCost" then
-      local manacost = 75 * (1 + ((ability_level - 1) * 0.05))
+      local manacost = 90 * (1 + ((ability_level - 1) * 0.05))
       if caster:FindAbilityByName("genuine_5__nightfall_rank_12") then
         return manacost * 0.8
       end
       return manacost
     end
 
-		if value_name == "AbilityCooldown" then
+		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
+
+    if value_name == "AbilityCharges" then
       if caster:FindAbilityByName("genuine_5__nightfall_rank_41") then
-        return 1
-      end 
-      return 10
+        return 5
+      end
+      return 3
     end
     
-    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
+    if value_name == "AbilityChargeRestoreTime" then
+      if caster:FindAbilityByName("genuine_5__nightfall_rank_41") then
+        return 20
+      end
+      return 30
+    end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
 
 		if value_name == "damage" then

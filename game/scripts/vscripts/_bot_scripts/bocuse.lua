@@ -117,7 +117,7 @@ function bocuse:TryCast_Mise()
     return false
   end
 
-  if self.state == BOT_STATE_FLEE then
+  if self.state == BOT_STATE_AGGRESSIVE then
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)

@@ -20,7 +20,7 @@ function GameMode:OnGameRulesStateChange(keys)
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
     if GetMapName() == "muken_arena_no_ranks" then
-      --LoadBots()
+      LoadBots()
     end
   end
 end
