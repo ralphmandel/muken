@@ -1,9 +1,9 @@
 striker_5__sof = class({})
-LinkLuaModifier("striker_5_modifier_sof", "heroes/team_sun/striker/striker_5_modifier_sof", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_5_modifier_illusion_sof", "heroes/team_sun/striker/striker_5_modifier_illusion_sof", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_5_modifier_trail", "heroes/team_sun/striker/striker_5_modifier_trail", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_5_modifier_return", "heroes/team_sun/striker/striker_5_modifier_return", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_5_modifier_debuff", "heroes/team_sun/striker/striker_5_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_sof", "heroes/sun/striker/striker_5_modifier_sof", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_illusion_sof", "heroes/sun/striker/striker_5_modifier_illusion_sof", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_trail", "heroes/sun/striker/striker_5_modifier_trail", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_return", "heroes/sun/striker/striker_5_modifier_return", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_5_modifier_debuff", "heroes/sun/striker/striker_5_modifier_debuff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

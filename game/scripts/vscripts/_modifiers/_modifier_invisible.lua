@@ -28,6 +28,7 @@ function _modifier_invisible:OnCreated( kv )
   self.hidden = false
 	self.spell_break = (spell_break == 1)
 	self.attack_break = (attack_break == 1)
+  self.interrupted = false
 
 	if IsServer() then
 		if delay == 0 then
@@ -58,6 +59,10 @@ function _modifier_invisible:OnDestroy( kv )
       RemoveAllModifiersByNameAndAbility(cosmetics.cosmetic[i], "_modifier_invisible_cosmetics", self:GetAbility())
 		end
 	end
+
+  if self.endCallback then
+		self.endCallback(self.interrupted)
+	end
 end
 
 -------------------------------------------------------------
@@ -87,13 +92,17 @@ end
 function _modifier_invisible:OnAttackStart(keys)
   if IsServer() then
     if keys.attacker == self:GetParent() and self.attack_break then
+      self.interrupted = true
       self:Destroy()
     end
   end
 end
 
 function _modifier_invisible:OnAbilityStart(keys)
-	if keys.unit == self:GetParent() and self.spell_break then self:Destroy() end
+	if keys.unit == self:GetParent() and self.spell_break then
+    self.interrupted = true
+    self:Destroy()
+  end
 end
 
 function _modifier_invisible:OnIntervalThink()
@@ -105,6 +114,10 @@ function _modifier_invisible:OnIntervalThink()
 		self.hidden = true
 		self:StartIntervalThink(-1)
 	end
+end
+
+function _modifier_invisible:SetEndCallback(func)
+	self.endCallback = func
 end
 
 --------------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 	"bloodstained__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+		"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 		"AbilityTextureName"    		"bloodstained__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -19,7 +19,7 @@
 	"bloodstained_1__rage"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_1__rage"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_1__rage"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_rage"
 		"MaxLevel"               		"13"
@@ -79,7 +79,7 @@
 	"bloodstained_2__lifesteal"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_2__lifesteal"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_2__lifesteal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_lifesteal"
 		"MaxLevel"               		"9"
@@ -126,7 +126,7 @@
 	"bloodstained_3__curse"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_3__curse"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_3__curse"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_curse"
 		"MaxLevel"               		"14"
@@ -194,7 +194,7 @@
 	"bloodstained_4__frenzy"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_4__frenzy"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_4__frenzy"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_frenzy"
 		"MaxLevel"               		"11"
@@ -251,7 +251,7 @@
 	"bloodstained_5__tear"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_5__tear"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_5__tear"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bloodstained_tear"
 		"MaxLevel"               		"10"
@@ -311,7 +311,7 @@
 	"bloodstained_u__seal"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/bloodstained/bloodstained_u__seal"
+		"ScriptFile"            		"heroes/death/bloodstained/bloodstained_u__seal"
 		"AbilityTextureName"     		"bloodstained_seal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"9"
@@ -376,7 +376,7 @@
 		//RANKS 1
 				"bloodstained_1__rage_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -406,7 +406,7 @@
 
 				"bloodstained_1__rage_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -436,7 +436,7 @@
 
 				"bloodstained_1__rage_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -466,7 +466,7 @@
 
 				"bloodstained_1__rage_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -496,7 +496,7 @@
 
 				"bloodstained_1__rage_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -526,7 +526,7 @@
 
 				"bloodstained_1__rage_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -556,7 +556,7 @@
 
 				"bloodstained_1__rage_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -586,7 +586,7 @@
 
 				"bloodstained_1__rage_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_rage"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -617,7 +617,7 @@
 		//RANKS 2
 				"bloodstained_2__lifesteal_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -647,7 +647,7 @@
 
 				"bloodstained_2__lifesteal_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -677,7 +677,7 @@
 
 				"bloodstained_2__lifesteal_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -707,7 +707,7 @@
 
 				"bloodstained_2__lifesteal_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -737,7 +737,7 @@
 
 				"bloodstained_2__lifesteal_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -767,7 +767,7 @@
 
 				"bloodstained_2__lifesteal_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -797,7 +797,7 @@
 
 				"bloodstained_2__lifesteal_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -827,7 +827,7 @@
 
 				"bloodstained_2__lifesteal_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_lifesteal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -858,7 +858,7 @@
 		//RANKS 3
 				"bloodstained_3__curse_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -888,7 +888,7 @@
 
 				"bloodstained_3__curse_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -918,7 +918,7 @@
 
 				"bloodstained_3__curse_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -948,7 +948,7 @@
 
 				"bloodstained_3__curse_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -978,7 +978,7 @@
 
 				"bloodstained_3__curse_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1008,7 +1008,7 @@
 
 				"bloodstained_3__curse_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1038,7 +1038,7 @@
 
 				"bloodstained_3__curse_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1068,7 +1068,7 @@
 
 				"bloodstained_3__curse_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_curse"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1099,7 +1099,7 @@
 		//RANKS 4
 				"bloodstained_4__frenzy_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1129,7 +1129,7 @@
 
 				"bloodstained_4__frenzy_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1159,7 +1159,7 @@
 
 				"bloodstained_4__frenzy_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1189,7 +1189,7 @@
 
 				"bloodstained_4__frenzy_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1219,7 +1219,7 @@
 
 				"bloodstained_4__frenzy_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1249,7 +1249,7 @@
 
 				"bloodstained_4__frenzy_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1279,7 +1279,7 @@
 
 				"bloodstained_4__frenzy_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1309,7 +1309,7 @@
 
 				"bloodstained_4__frenzy_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_frenzy"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1340,7 +1340,7 @@
 		//RANKS 5
 				"bloodstained_5__tear_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1370,7 +1370,7 @@
 
 				"bloodstained_5__tear_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1400,7 +1400,7 @@
 
 				"bloodstained_5__tear_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1430,7 +1430,7 @@
 
 				"bloodstained_5__tear_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1460,7 +1460,7 @@
 
 				"bloodstained_5__tear_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1490,7 +1490,7 @@
 
 				"bloodstained_5__tear_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1520,7 +1520,7 @@
 
 				"bloodstained_5__tear_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1550,7 +1550,7 @@
 
 				"bloodstained_5__tear_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_tear"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1581,7 +1581,7 @@
 		//RANKS U
 				"bloodstained_u__seal_rank_11"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1611,7 +1611,7 @@
 
 				"bloodstained_u__seal_rank_12"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"1"	
@@ -1641,7 +1641,7 @@
 
 				"bloodstained_u__seal_rank_21"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1671,7 +1671,7 @@
 
 				"bloodstained_u__seal_rank_22"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"2"	
@@ -1701,7 +1701,7 @@
 
 				"bloodstained_u__seal_rank_31"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1731,7 +1731,7 @@
 
 				"bloodstained_u__seal_rank_32"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"3"	
@@ -1761,7 +1761,7 @@
 				
 				"bloodstained_u__seal_rank_41"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	
@@ -1791,7 +1791,7 @@
 
 				"bloodstained_u__seal_rank_42"{
 						"BaseClass"						"ability_lua"
-						"ScriptFile"					"heroes/team_death/bloodstained/bloodstained-ranks_lua"
+						"ScriptFile"					"heroes/death/bloodstained/bloodstained-ranks_lua"
 						"AbilityTextureName"    		"bloodstained_seal"
 						"FightRecapLevel"				"1"
 						"MaxLevel"						"4"	

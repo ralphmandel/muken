@@ -1,6 +1,6 @@
 bloodstained_2__lifesteal = class({})
-LinkLuaModifier("bloodstained_2_modifier_passive", "heroes/team_death/bloodstained/bloodstained_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/team_death/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_2_modifier_passive", "heroes/death/bloodstained/bloodstained_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained__modifier_extra_hp", "heroes/death/bloodstained/bloodstained__modifier_extra_hp", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

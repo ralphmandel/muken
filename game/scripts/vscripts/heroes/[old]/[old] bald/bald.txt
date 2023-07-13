@@ -6,7 +6,7 @@
   "bald__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+		"ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
         "AbilityTextureName"    		"bald__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -19,7 +19,7 @@
 	"bald_1__power"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_1__power"
+		"ScriptFile"            		"heroes/sun/bald/bald_1__power"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_power"
 		"MaxLevel"               		"14"
@@ -76,7 +76,7 @@
 	"bald_2__bash"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_2__bash"
+		"ScriptFile"            		"heroes/sun/bald/bald_2__bash"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_bash"
 		"MaxLevel"               		"13"
@@ -137,7 +137,7 @@
 	"bald_3__inner"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_3__inner"
+		"ScriptFile"            		"heroes/sun/bald/bald_3__inner"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_inner"
 		"MaxLevel"               		"11"
@@ -221,7 +221,7 @@
 	"bald_4__clean"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_4__clean"
+		"ScriptFile"            		"heroes/sun/bald/bald_4__clean"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_clean"
 		"MaxLevel"               		"9"
@@ -264,7 +264,7 @@
 	"bald_5__spike"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_5__spike"
+		"ScriptFile"            		"heroes/sun/bald/bald_5__spike"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"bald_spike"
 		"MaxLevel"               		"11"
@@ -340,7 +340,7 @@
 	"bald_u__vitality"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/bald/bald_u__vitality"
+		"ScriptFile"            		"heroes/sun/bald/bald_u__vitality"
 		"AbilityTextureName"     		"bald_vitality"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"8"
@@ -389,7 +389,7 @@
     //RANKS 1
         "bald_1__power_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -419,7 +419,7 @@
 
         "bald_1__power_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -449,7 +449,7 @@
 
         "bald_1__power_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -479,7 +479,7 @@
 
         "bald_1__power_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -509,7 +509,7 @@
 
         "bald_1__power_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -539,7 +539,7 @@
 
         "bald_1__power_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -569,7 +569,7 @@
 
         "bald_1__power_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -599,7 +599,7 @@
 
         "bald_1__power_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -630,7 +630,7 @@
     //RANKS 2
         "bald_2__bash_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -660,7 +660,7 @@
 
         "bald_2__bash_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -690,7 +690,7 @@
 
         "bald_2__bash_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -720,7 +720,7 @@
 
         "bald_2__bash_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -750,7 +750,7 @@
 
         "bald_2__bash_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -780,7 +780,7 @@
 
         "bald_2__bash_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -810,7 +810,7 @@
 
         "bald_2__bash_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -840,7 +840,7 @@
 
         "bald_2__bash_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_bash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -871,7 +871,7 @@
     //RANKS 3
         "bald_3__inner_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -901,7 +901,7 @@
 
         "bald_3__inner_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -931,7 +931,7 @@
 
         "bald_3__inner_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -961,7 +961,7 @@
 
         "bald_3__inner_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -991,7 +991,7 @@
 
         "bald_3__inner_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1021,7 +1021,7 @@
 
         "bald_3__inner_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1051,7 +1051,7 @@
 
         "bald_3__inner_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1081,7 +1081,7 @@
 
         "bald_3__inner_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_inner"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1112,7 +1112,7 @@
     //RANKS 4
         "bald_4__clean_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1142,7 +1142,7 @@
 
         "bald_4__clean_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1172,7 +1172,7 @@
 
         "bald_4__clean_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1202,7 +1202,7 @@
 
         "bald_4__clean_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1232,7 +1232,7 @@
 
         "bald_4__clean_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1262,7 +1262,7 @@
 
         "bald_4__clean_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1292,7 +1292,7 @@
 
         "bald_4__clean_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1322,7 +1322,7 @@
 
         "bald_4__clean_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_clean"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1353,7 +1353,7 @@
     //RANKS 5
         "bald_5__spike_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1383,7 +1383,7 @@
 
         "bald_5__spike_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1413,7 +1413,7 @@
 
         "bald_5__spike_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1443,7 +1443,7 @@
 
         "bald_5__spike_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1473,7 +1473,7 @@
 
         "bald_5__spike_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1503,7 +1503,7 @@
 
         "bald_5__spike_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1533,7 +1533,7 @@
 
         "bald_5__spike_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1563,7 +1563,7 @@
 
         "bald_5__spike_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_spike"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1594,7 +1594,7 @@
     //RANKS U
         "bald_u__vitality_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1624,7 +1624,7 @@
 
         "bald_u__vitality_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1654,7 +1654,7 @@
 
         "bald_u__vitality_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1684,7 +1684,7 @@
 
         "bald_u__vitality_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1714,7 +1714,7 @@
 
         "bald_u__vitality_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1744,7 +1744,7 @@
 
         "bald_u__vitality_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1774,7 +1774,7 @@
         
         "bald_u__vitality_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1804,7 +1804,7 @@
 
         "bald_u__vitality_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/bald/bald-ranks_lua"
+            "ScriptFile"					"heroes/sun/bald/bald-ranks_lua"
             "AbilityTextureName"    		"bald_vitality"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	

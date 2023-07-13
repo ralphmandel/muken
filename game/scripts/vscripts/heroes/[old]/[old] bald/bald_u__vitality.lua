@@ -1,6 +1,6 @@
 bald_u__vitality = class({})
-LinkLuaModifier("bald_u_modifier_vitality", "heroes/team_sun/bald/bald_u_modifier_vitality", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bald_u_modifier_vitality_status_efx", "heroes/team_sun/bald/bald_u_modifier_vitality_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_u_modifier_vitality", "heroes/sun/bald/bald_u_modifier_vitality", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bald_u_modifier_vitality_status_efx", "heroes/sun/bald/bald_u_modifier_vitality_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

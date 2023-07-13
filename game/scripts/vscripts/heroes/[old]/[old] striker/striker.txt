@@ -6,7 +6,7 @@
     "striker__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+		"ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
         "AbilityTextureName"    		"striker__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -19,7 +19,7 @@
 	"striker_1__blow"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_1__blow"
+		"ScriptFile"            		"heroes/sun/striker/striker_1__blow"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_blow"
 		"MaxLevel"               		"15"
@@ -87,7 +87,7 @@
 	"striker_2__shield"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_2__shield"
+		"ScriptFile"            		"heroes/sun/striker/striker_2__shield"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_shield"
 		"MaxLevel"               		"11"
@@ -153,7 +153,7 @@
 	"striker_3__portal"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_3__portal"
+		"ScriptFile"            		"heroes/sun/striker/striker_3__portal"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_portal"
 		"MaxLevel"               		"11"
@@ -252,7 +252,7 @@
 	"striker_4__hammer"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_4__hammer"
+		"ScriptFile"            		"heroes/sun/striker/striker_4__hammer"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_hammer"
 		"MaxLevel"               		"11"
@@ -321,7 +321,7 @@
   "striker_5__sof"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_5__sof"
+		"ScriptFile"            		"heroes/sun/striker/striker_5__sof"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"striker_sof"
 		"MaxLevel"               		"11"
@@ -407,7 +407,7 @@
 	"striker_u__auto"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_sun/striker/striker_u__auto"
+		"ScriptFile"            		"heroes/sun/striker/striker_u__auto"
 		"AbilityTextureName"     		"striker_auto"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"7"
@@ -429,7 +429,7 @@
     //RANKS 1
         "striker_1__blow_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -459,7 +459,7 @@
 
         "striker_1__blow_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -489,7 +489,7 @@
 
         "striker_1__blow_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -519,7 +519,7 @@
 
         "striker_1__blow_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -549,7 +549,7 @@
 
         "striker_1__blow_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -579,7 +579,7 @@
 
         "striker_1__blow_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -609,7 +609,7 @@
 
         "striker_1__blow_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -639,7 +639,7 @@
 
         "striker_1__blow_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_blow"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -670,7 +670,7 @@
     //RANKS 2
         "striker_2__shield_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -700,7 +700,7 @@
 
         "striker_2__shield_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -730,7 +730,7 @@
 
         "striker_2__shield_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -760,7 +760,7 @@
 
         "striker_2__shield_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -790,7 +790,7 @@
 
         "striker_2__shield_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -820,7 +820,7 @@
 
         "striker_2__shield_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -850,7 +850,7 @@
 
         "striker_2__shield_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -880,7 +880,7 @@
 
         "striker_2__shield_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -911,7 +911,7 @@
     //RANKS 3
         "striker_3__portal_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -941,7 +941,7 @@
 
         "striker_3__portal_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -971,7 +971,7 @@
 
         "striker_3__portal_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1001,7 +1001,7 @@
 
         "striker_3__portal_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1031,7 +1031,7 @@
 
         "striker_3__portal_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1061,7 +1061,7 @@
 
         "striker_3__portal_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1091,7 +1091,7 @@
 
         "striker_3__portal_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1121,7 +1121,7 @@
 
         "striker_3__portal_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_portal"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1152,7 +1152,7 @@
     //RANKS 4
         "striker_4__hammer_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1182,7 +1182,7 @@
 
         "striker_4__hammer_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1212,7 +1212,7 @@
 
         "striker_4__hammer_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1242,7 +1242,7 @@
 
         "striker_4__hammer_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1272,7 +1272,7 @@
 
         "striker_4__hammer_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1302,7 +1302,7 @@
 
         "striker_4__hammer_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1332,7 +1332,7 @@
 
         "striker_4__hammer_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1362,7 +1362,7 @@
 
         "striker_4__hammer_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1393,7 +1393,7 @@
     //RANKS 6
         "striker_5__sof_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1423,7 +1423,7 @@
 
         "striker_5__sof_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1453,7 +1453,7 @@
 
         "striker_5__sof_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1483,7 +1483,7 @@
 
         "striker_5__sof_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1513,7 +1513,7 @@
 
         "striker_5__sof_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1543,7 +1543,7 @@
 
         "striker_5__sof_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1573,7 +1573,7 @@
 
         "striker_5__sof_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1603,7 +1603,7 @@
 
         "striker_5__sof_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_sof"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1634,7 +1634,7 @@
     //RANKS U
         "striker_u__auto_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1664,7 +1664,7 @@
 
         "striker_u__auto_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1694,7 +1694,7 @@
 
         "striker_u__auto_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1724,7 +1724,7 @@
 
         "striker_u__auto_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1754,7 +1754,7 @@
 
         "striker_u__auto_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1784,7 +1784,7 @@
 
         "striker_u__auto_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1814,7 +1814,7 @@
         
         "striker_u__auto_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1844,7 +1844,7 @@
 
         "striker_u__auto_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_sun/striker/striker-ranks_lua"
+            "ScriptFile"					"heroes/sun/striker/striker-ranks_lua"
             "AbilityTextureName"    		"striker_auto"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	

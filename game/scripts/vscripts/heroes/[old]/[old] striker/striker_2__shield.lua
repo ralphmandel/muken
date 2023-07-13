@@ -1,7 +1,7 @@
 striker_2__shield = class({})
-LinkLuaModifier("striker_2_modifier_shield", "heroes/team_sun/striker/striker_2_modifier_shield", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_2_modifier_burn_aura", "heroes/team_sun/striker/striker_2_modifier_burn_aura", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("striker_2_modifier_burn_aura_effect", "heroes/team_sun/striker/striker_2_modifier_burn_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_2_modifier_shield", "heroes/sun/striker/striker_2_modifier_shield", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_2_modifier_burn_aura", "heroes/sun/striker/striker_2_modifier_burn_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_2_modifier_burn_aura_effect", "heroes/sun/striker/striker_2_modifier_burn_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

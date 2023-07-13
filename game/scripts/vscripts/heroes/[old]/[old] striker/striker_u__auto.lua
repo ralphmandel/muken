@@ -1,5 +1,5 @@
 striker_u__auto = class({})
-LinkLuaModifier("striker_u_modifier_autocast", "heroes/team_sun/striker/striker_u_modifier_autocast", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_u_modifier_autocast", "heroes/sun/striker/striker_u_modifier_autocast", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

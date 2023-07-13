@@ -244,6 +244,8 @@ GOLD_BOUNTY_MAX = 30
 
 GENUINE_TRAVEL_STATE_IN = 0
 GENUINE_TRAVEL_STATE_OUT = 1
+GENUINE_UNDER_NIGHT = 0
+GENUINE_UNDER_DAY = 1
 
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  

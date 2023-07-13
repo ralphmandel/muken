@@ -6,7 +6,7 @@
     "flea__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+		"ScriptFile"					"heroes/death/flea/flea-ranks_lua"
         "AbilityTextureName"    		"flea__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -19,7 +19,7 @@
 	"flea_1__precision"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_1__precision"
+		"ScriptFile"            		"heroes/death/flea/flea_1__precision"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_precision"
 		"MaxLevel"               		"15"
@@ -92,7 +92,7 @@
 	"flea_2__speed"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_2__speed"
+		"ScriptFile"            		"heroes/death/flea/flea_2__speed"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_speed"
 		"MaxLevel"               		"11"
@@ -144,7 +144,7 @@
 	"flea_3__jump"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_3__jump"
+		"ScriptFile"            		"heroes/death/flea/flea_3__jump"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_jump"
 		"MaxLevel"               		"9"
@@ -207,7 +207,7 @@
 	"flea_4__smoke"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_4__smoke"
+		"ScriptFile"            		"heroes/death/flea/flea_4__smoke"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_smoke"
 		"MaxLevel"               		"11"
@@ -256,7 +256,7 @@
 	"flea_5__desolator"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_5__desolator"
+		"ScriptFile"            		"heroes/death/flea/flea_5__desolator"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"flea_desolator"
 		"MaxLevel"               		"13"
@@ -308,7 +308,7 @@
 	"flea_u__weakness"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_death/flea/flea_u__weakness"
+		"ScriptFile"            		"heroes/death/flea/flea_u__weakness"
 		"AbilityTextureName"     		"flea_weakness"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"7"
@@ -345,7 +345,7 @@
     //RANKS 1
         "flea_1__precision_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -375,7 +375,7 @@
 
         "flea_1__precision_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -405,7 +405,7 @@
 
         "flea_1__precision_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -435,7 +435,7 @@
 
         "flea_1__precision_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -465,7 +465,7 @@
 
         "flea_1__precision_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -495,7 +495,7 @@
 
         "flea_1__precision_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -525,7 +525,7 @@
 
         "flea_1__precision_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -555,7 +555,7 @@
 
         "flea_1__precision_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_precision"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -586,7 +586,7 @@
     //RANKS 2
         "flea_2__speed_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -616,7 +616,7 @@
 
         "flea_2__speed_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -646,7 +646,7 @@
 
         "flea_2__speed_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -676,7 +676,7 @@
 
         "flea_2__speed_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -706,7 +706,7 @@
 
         "flea_2__speed_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -736,7 +736,7 @@
 
         "flea_2__speed_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -766,7 +766,7 @@
 
         "flea_2__speed_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -796,7 +796,7 @@
 
         "flea_2__speed_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_speed"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -827,7 +827,7 @@
     //RANKS 3
         "flea_3__jump_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -857,7 +857,7 @@
 
         "flea_3__jump_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -887,7 +887,7 @@
 
         "flea_3__jump_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -917,7 +917,7 @@
 
         "flea_3__jump_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -947,7 +947,7 @@
 
         "flea_3__jump_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -977,7 +977,7 @@
 
         "flea_3__jump_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1007,7 +1007,7 @@
 
         "flea_3__jump_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1037,7 +1037,7 @@
 
         "flea_3__jump_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_jump"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1068,7 +1068,7 @@
     //RANKS 4
         "flea_4__smoke_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1098,7 +1098,7 @@
 
         "flea_4__smoke_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1128,7 +1128,7 @@
 
         "flea_4__smoke_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1158,7 +1158,7 @@
 
         "flea_4__smoke_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1188,7 +1188,7 @@
 
         "flea_4__smoke_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1218,7 +1218,7 @@
 
         "flea_4__smoke_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1248,7 +1248,7 @@
 
         "flea_4__smoke_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1278,7 +1278,7 @@
 
         "flea_4__smoke_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_smoke"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1309,7 +1309,7 @@
     //RANKS 5
         "flea_5__desolator_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1339,7 +1339,7 @@
 
         "flea_5__desolator_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1369,7 +1369,7 @@
 
         "flea_5__desolator_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1399,7 +1399,7 @@
 
         "flea_5__desolator_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1429,7 +1429,7 @@
 
         "flea_5__desolator_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1459,7 +1459,7 @@
 
         "flea_5__desolator_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1489,7 +1489,7 @@
 
         "flea_5__desolator_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1519,7 +1519,7 @@
 
         "flea_5__desolator_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_desolator"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1550,7 +1550,7 @@
     //RANKS U
         "flea_u__weakness_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1580,7 +1580,7 @@
 
         "flea_u__weakness_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1610,7 +1610,7 @@
 
         "flea_u__weakness_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1640,7 +1640,7 @@
 
         "flea_u__weakness_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1670,7 +1670,7 @@
 
         "flea_u__weakness_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1700,7 +1700,7 @@
 
         "flea_u__weakness_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1730,7 +1730,7 @@
         
         "flea_u__weakness_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1760,7 +1760,7 @@
 
         "flea_u__weakness_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_death/flea/flea-ranks_lua"
+            "ScriptFile"					"heroes/death/flea/flea-ranks_lua"
             "AbilityTextureName"    		"flea_weakness"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	

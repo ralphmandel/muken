@@ -1,6 +1,6 @@
 flea_u__weakness = class({})
-LinkLuaModifier("flea_u_modifier_passive", "heroes/team_death/flea/flea_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_u_modifier_weakness", "heroes/team_death/flea/flea_u_modifier_weakness", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_passive", "heroes/death/flea/flea_u_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_u_modifier_weakness", "heroes/death/flea/flea_u_modifier_weakness", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

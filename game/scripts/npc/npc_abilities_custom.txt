@@ -409,24 +409,24 @@
 
 //HEROES
 //NATURE
-#base "../vscripts/heroes/team_nature/druid/druid.txt"
-#base "../vscripts/heroes/team_nature/dasdingo/dasdingo.txt"
+#base "../vscripts/heroes/nature/druid/druid.txt"
+#base "../vscripts/heroes/nature/dasdingo/dasdingo.txt"
 
 //DEATH
-#base "../vscripts/heroes/team_death/fleaman/fleaman.txt"
-#base "../vscripts/heroes/team_death/bloodstained/bloodstained.txt"
-#base "../vscripts/heroes/team_death/bocuse/bocuse.txt"
-#base "../vscripts/heroes/team_death/lawbreaker/lawbreaker.txt"
+#base "../vscripts/heroes/death/fleaman/fleaman.txt"
+#base "../vscripts/heroes/death/bloodstained/bloodstained.txt"
+#base "../vscripts/heroes/death/bocuse/bocuse.txt"
+#base "../vscripts/heroes/death/lawbreaker/lawbreaker.txt"
 
 //SUN
-#base "../vscripts/heroes/team_sun/bald/bald.txt"
-#base "../vscripts/heroes/team_sun/striker/striker.txt"
-#base "../vscripts/heroes/team_sun/ancient/ancient.txt"
-#base "../vscripts/heroes/team_sun/brute/brute.txt"
+#base "../vscripts/heroes/sun/bald/bald.txt"
+#base "../vscripts/heroes/sun/striker/striker.txt"
+#base "../vscripts/heroes/sun/ancient/ancient.txt"
+#base "../vscripts/heroes/sun/brute/brute.txt"
 
 //MOON
-#base "../vscripts/heroes/team_moon/icebreaker/icebreaker.txt"
-#base "../vscripts/heroes/team_moon/genuine/genuine.txt"
+#base "../vscripts/heroes/moon/icebreaker/icebreaker.txt"
+#base "../vscripts/heroes/moon/genuine/genuine.txt"
 
 //NEUTRALS
 #base "../vscripts/_neutrals/_neutrals.txt"

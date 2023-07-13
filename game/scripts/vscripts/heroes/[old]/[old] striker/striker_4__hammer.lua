@@ -1,5 +1,5 @@
 striker_4__hammer = class({})
-LinkLuaModifier("striker_4_modifier_hammer", "heroes/team_sun/striker/striker_4_modifier_hammer", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("striker_4_modifier_hammer", "heroes/sun/striker/striker_4_modifier_hammer", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MOTION_NONE)
 

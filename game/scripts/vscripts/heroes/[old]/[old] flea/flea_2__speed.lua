@@ -1,7 +1,7 @@
 flea_2__speed = class({})
-LinkLuaModifier("flea_2_modifier_passive", "heroes/team_death/flea/flea_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_2_modifier_speed", "heroes/team_death/flea/flea_2_modifier_speed", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_2_modifier_unslow", "heroes/team_death/flea/flea_2_modifier_unslow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_2_modifier_passive", "heroes/death/flea/flea_2_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_2_modifier_speed", "heroes/death/flea/flea_2_modifier_speed", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_2_modifier_unslow", "heroes/death/flea/flea_2_modifier_unslow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_unslowable", "_modifiers/_modifier_unslowable", LUA_MODIFIER_MOTION_NONE)
 

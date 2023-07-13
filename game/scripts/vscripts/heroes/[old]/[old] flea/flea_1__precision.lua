@@ -1,10 +1,10 @@
 flea_1__precision = class({})
-LinkLuaModifier("flea_1_modifier_passive", "heroes/team_death/flea/flea_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_1_modifier_gesture", "heroes/team_death/flea/flea_1_modifier_gesture", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_1_modifier_precision", "heroes/team_death/flea/flea_1_modifier_precision", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_1_modifier_precision_stack", "heroes/team_death/flea/flea_1_modifier_precision_stack", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_1_modifier_precision_status_efx", "heroes/team_death/flea/flea_1_modifier_precision_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("flea_1_modifier_dark_pact", "heroes/team_death/flea/flea_1_modifier_dark_pact", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_passive", "heroes/death/flea/flea_1_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_gesture", "heroes/death/flea/flea_1_modifier_gesture", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_precision", "heroes/death/flea/flea_1_modifier_precision", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_precision_stack", "heroes/death/flea/flea_1_modifier_precision_stack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_precision_status_efx", "heroes/death/flea/flea_1_modifier_precision_status_efx", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("flea_1_modifier_dark_pact", "heroes/death/flea/flea_1_modifier_dark_pact", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

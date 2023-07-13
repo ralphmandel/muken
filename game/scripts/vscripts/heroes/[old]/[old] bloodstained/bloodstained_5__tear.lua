@@ -1,6 +1,6 @@
 bloodstained_5__tear = class({})
-LinkLuaModifier("bloodstained_5_modifier_tear", "heroes/team_death/bloodstained/bloodstained_5_modifier_tear", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("bloodstained_5_modifier_blood", "heroes/team_death/bloodstained/bloodstained_5_modifier_blood", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_5_modifier_tear", "heroes/death/bloodstained/bloodstained_5_modifier_tear", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("bloodstained_5_modifier_blood", "heroes/death/bloodstained/bloodstained_5_modifier_blood", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

@@ -60,21 +60,21 @@
 
 //HEROES
 //NATURE
-#base "../vscripts/heroes/team_nature/druid/druid-props.txt"
-#base "../vscripts/heroes/team_nature/dasdingo/dasdingo-props.txt"
+#base "../vscripts/heroes/nature/druid/druid-props.txt"
+#base "../vscripts/heroes/nature/dasdingo/dasdingo-props.txt"
 
 //DEATH
-#base "../vscripts/heroes/team_death/fleaman/fleaman-props.txt"
-#base "../vscripts/heroes/team_death/bloodstained/bloodstained-props.txt"
-#base "../vscripts/heroes/team_death/bocuse/bocuse-props.txt"
-#base "../vscripts/heroes/team_death/lawbreaker/lawbreaker-props.txt"
+#base "../vscripts/heroes/death/fleaman/fleaman-props.txt"
+#base "../vscripts/heroes/death/bloodstained/bloodstained-props.txt"
+#base "../vscripts/heroes/death/bocuse/bocuse-props.txt"
+#base "../vscripts/heroes/death/lawbreaker/lawbreaker-props.txt"
 
 //SUN
-#base "../vscripts/heroes/team_sun/bald/bald-props.txt"
-#base "../vscripts/heroes/team_sun/striker/striker-props.txt"
-#base "../vscripts/heroes/team_sun/ancient/ancient-props.txt"
-#base "../vscripts/heroes/team_sun/brute/brute-props.txt"
+#base "../vscripts/heroes/sun/bald/bald-props.txt"
+#base "../vscripts/heroes/sun/striker/striker-props.txt"
+#base "../vscripts/heroes/sun/ancient/ancient-props.txt"
+#base "../vscripts/heroes/sun/brute/brute-props.txt"
 
 //MOON
-#base "../vscripts/heroes/team_moon/icebreaker/icebreaker-props.txt"
-#base "../vscripts/heroes/team_moon/genuine/genuine-props.txt"
+#base "../vscripts/heroes/moon/icebreaker/icebreaker-props.txt"
+#base "../vscripts/heroes/moon/genuine/genuine-props.txt"
