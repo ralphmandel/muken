@@ -10,15 +10,17 @@ function genuine_1_modifier_orb:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	
-	self.lifesteal = 0
 	self.cast = false
 	self.records = {}
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
+  RemoveBonus(self.ability, "_2_LCK", self.parent)
+  AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
+  RemoveBonus(self.ability, "_2_LCK", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -29,8 +31,8 @@ function genuine_1_modifier_orb:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
 		MODIFIER_EVENT_ON_ORDER
@@ -66,7 +68,18 @@ end
 function genuine_1_modifier_orb:GetModifierProcAttack_Feedback(keys)
 	if self.records[keys.record] then
 		if self.ability.OnOrbImpact then self.ability:OnOrbImpact(keys) end
-		self.lifesteal = self.ability:GetSpecialValueFor("special_lifesteal")
+	end
+end
+
+function genuine_1_modifier_orb:OnTakeDamage(keys)
+	if keys.inflictor ~= self.ability then return end
+  if keys.damage_type ~= self.ability:GetAbilityDamageType() then return end
+
+	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_spell_lifesteal") * 0.01
+
+	if heal > 0 then
+		self.parent:Heal(heal, self.ability)
+		self:PlayEfxSpellLifesteal()
 	end
 end
 
@@ -74,24 +87,13 @@ function genuine_1_modifier_orb:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
 	if self:ShouldLaunch(keys.target) then
-		self.ability:UseResources(true, false, false, true)
+		self.ability:UseResources(true, false, false, false)
 		self.records[keys.record] = true
 
 		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end
 	end
 
 	self.cast = false
-end
-
-function genuine_1_modifier_orb:OnAttacked(keys)
-	if keys.attacker ~= self.parent then return end
-	if self.parent:GetTeamNumber() == keys.target:GetTeamNumber() then return end
-	if self.lifesteal == 0 then return end
-
-	local heal = keys.original_damage * self.lifesteal * 0.01
-	self.parent:Heal(heal, self.ability)
-	self:PlayEfxLifesteal(self.parent)
-	self.lifesteal = 0
 end
 
 function genuine_1_modifier_orb:OnAttackFail(keys)
@@ -133,8 +135,8 @@ function genuine_1_modifier_orb:ShouldLaunch(target)
 		end
 	end
 
-	if self.cast and self.ability:IsFullyCastable()
-	and self.parent:IsSilenced() == false then
+	if self.cast and self.parent:IsSilenced() == false
+  and self.parent:GetMana() >= self.ability:GetManaCost(self.ability:GetLevel()) then
 		return true
 	end
 
@@ -143,9 +145,9 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function genuine_1_modifier_orb:PlayEfxLifesteal(target)
-	local particle = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
+function genuine_1_modifier_orb:PlayEfxSpellLifesteal()
+	local particle = "particles/items3_fx/octarine_core_lifesteal.vpcf"
+	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
 end

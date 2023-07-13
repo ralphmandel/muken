@@ -188,13 +188,6 @@ end
     return 0
   end
 
-  function SetGenuineBarrier(target, bEnabled)
-    local nightfall = target:FindAbilityByName("genuine_5__nightfall")
-    if nightfall:IsTrained() then
-      nightfall:ResetBarrier(bEnabled)
-    end
-  end
-
   function CreateStarfall(target, ability)
 		local caster = ability:GetCaster()
 		local point = target:GetOrigin()

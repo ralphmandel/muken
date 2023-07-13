@@ -3,11 +3,11 @@
 {
 	"Version"		"1"
 
-    "genuine__precache"
+  "genuine__precache"
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-        "AbilityTextureName"    		"genuine__precache"
+    "AbilityTextureName"    		"genuine__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -22,78 +22,33 @@
 		"ScriptFile"            		"heroes/team_moon/genuine/genuine_1__shooting"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_shooting"
-		"MaxLevel"               		"15"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-            "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"damage"		"40"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"atk_range"		"150"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"proj_speed"	"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
-			}
-            "10"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_damage"           "1"
-			}
-            "11"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_radius"           "1"
-			}
-            "12"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_delay"            "1"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"
-			}
-            "16"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_combo"    "0"
-			}
-            "17"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_starfall_tick"     "0"
-			}
-            "18"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_lifesteal"         "0"
-			}
-            "19"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_fear_chance"       "0"
-			}
-            "20"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"special_fear_duration"     "0"
-			}
+      "damage"		              "60"
+      "proj_speed"	            "600"
+      "atk_range"		            "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_lck"	            "0"
+      "special_mana_steal"	    "0"
+      "special_silence_duration""0"
+      "special_fear_chance"	    "0"
+      "special_fear_duration"	  "0"
+      "special_spell_lifesteal"	"0"
+      "special_starfall_combo"  "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
 		}
 	}
 
@@ -103,10 +58,12 @@
 		"ScriptFile"            		"heroes/team_moon/genuine/genuine_2__fallen"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_fallen"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -115,48 +72,20 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-            "01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"speed"		    "1000"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"		"250"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"distance"		"500"
-			}
-            "04"
-			{
-				"var_type"	    "FIELD_FLOAT"
-				"fear_duration" "1.75"
-			}
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"mana_steal"	"50"
-			}
-            "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8"
-			}
-            "16"
-			{
-				"var_type"	    "FIELD_FLOAT"
-				"special_wide"  "0"
-			}
-            "17"
-			{
-				"var_type"	                "FIELD_FLOAT"
-				"special_dispel_duration"   "0"
-			}
+      "speed"		            "1000"
+      "radius"		          "250"
+      "distance"		        "500"
+      "fear_duration"       "2"
+      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+      "special_slow"        "0"
+      "special_invi_break"  "0"
+      "special_manaburn"    "0"
+      "special_purge_ally"  "0"
+      "special_wide"        "0"
+      "special_damage"      "0"
+      "special_heal"        "0"
 		}
 	}
 
@@ -166,222 +95,96 @@
 		"ScriptFile"            		"heroes/team_moon/genuine/genuine_3__morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_morning"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.1"
-		"AbilityCooldown"				"1 2 3 4 5 6 7 8 9 10 11"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-        	"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"int"	        "15"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"hero_chance"	"100"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"	    "50"
-			}
-            "04"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"force_night_time"	"25"
-			}
-            "05"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"bonus_night_vision"	"250"
-			}
-            "06"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"duration"	            "8"
-			}
-            "10"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_damage"           "1"
-			}
-            "11"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_radius"           "1"
-			}
-            "12"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_delay"            "1"
-			}
-			"15"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-            "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_purge"	        "0"
-			}
-            "17"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_ms"	        "0"
-			}
-            "18"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_agi"	        "0"
-			}
+      "duration"		            "20"
+      "int"		                  "10"
+      "agi"		                  "15"
+      "ms"		                  "75"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_starfall_count"  "0"
+      "special_track_duration"	"0"
+      "special_rec"		          "0"
+      "special_ms_night"        "0"
+      "special_strike_damage"   "0"
+      "special_strike_radius"   "0"
+      "special_int_allies"		  "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
 		}
 	}
 
-	"genuine_4__nightfall"
+	"genuine_4__awakening"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_4__nightfall"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_nightfall"
-		"MaxLevel"               		"12"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityCastPoint"       		"0"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"res"			"-5"
-			}
-            "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"debuff_power"	"40"
-			}
-            "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"	    "900"
-			}
-            "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			"1 2 3 4 5 6 7 8 9 10 11 12"
-			}
-            "16"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_damage"        "0"
-			}
-            "17"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"special_night_vision"  "0"
-			}
-		}
-	}
-
-	"genuine_5__awakening"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_5__awakening"
+		"ScriptFile"            		"heroes/team_moon/genuine/genuine_4__awakening"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"genuine_awakening"
-		"MaxLevel"               		"8"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-        "LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
-        "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
-        "AbilityCastPoint"				"0.0"
+    "AbilityCastPoint"				  "0"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-            "01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"charges"		        "3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_reduction"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"arrow_width"			"125"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"arrow_range"			"2400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"arrow_speed"			"2500"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tree_width"			"75"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_radius"			"400"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_duration"		"3.34"
-			}
-            "09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel_time"		    "6.0"
-			}
-            "10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"		        "1 2 3 4 5 6 7 8"
-			}
-			"15"
-			{
-				"var_type"		        "FIELD_FLOAT"
-				"rank"			        "1 2 3 4 5 6 7 8"
-			}
-            "16"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"special_bash_power"    "0"
-			}
+      "damage_reduction"	"20"
+      "arrow_width"			  "125"
+      "arrow_range"			  "3500"
+      "arrow_speed"			  "2500"
+      "tree_width"			  "75"
+      "vision_radius"			"400"
+      "vision_duration"		"3.34"
+      "channel_time"		  "5"
+      "damage"		        "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
+      "special_mana"	      "0"
+      "special_bash_power"	"0"
+      "special_pure_dmg"	  "0"
+		}
+	}
+
+	"genuine_5__nightfall"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_moon/genuine/genuine_5__nightfall"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"genuine_nightfall"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+      "max_barrier"	        "100"
+      "barrier_regen" 	    "2"
+      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+      "special_hp_regen" 	  "0"
+      "special_universal" 	"0"
+      "special_invi" 	      "0"
+      "special_linkens" 	  "0"
+      "special_fly_vision" 	"0"
+      "special_night_vision""0"
 		}
 	}
 
@@ -391,70 +194,36 @@
 		"ScriptFile"            		"heroes/team_moon/genuine/genuine_u__star"
 		"AbilityTextureName"     		"genuine_star"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"11"
+		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"target_damage_percent"		"70"
-			}
-            "02"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"interval"          		"3"
-			}
-            "10"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_damage"           "1"
-			}
-            "11"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_radius"           "1"
-			}
-            "12"
-			{
-				"var_type"		            "FIELD_FLOAT"
-				"starfall_delay"            "1"
-			}
-            "13"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"duration"		            "1 2 3 4 5 6 7 8 9 10 11"
-			}
-            "14"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"cast_range"		        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"rank"				        "1 2 3 4 5 6 7 8 9 10 11"
-			}
-            "16"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_starfall"          "0"
-			}
-            "17"
-			{
-				"var_type"			        "FIELD_FLOAT"
-				"special_purge"             "0"
-			}
+      "cast_range"	            "400"
+      "duration"			          "8"
+      "duration_night"	        "12"
+      "night_vision"	          "250"
+      "mana_steal"	            "40"
+      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
+      "special_reset"	          "0"
+      "special_swap"	          "0"
+      "special_day_vision"	    "0"
+      "special_slow"	          "0"
+      "special_starfall"	      "0"
+      "special_starfall_damage"	"0"
+      "special_starfall_radius"	"0"
+      "special_starfall_delay"	"0"
+      "special_interval"	      "0"
 		}
 	}
 
@@ -1182,10 +951,10 @@
         }
 
     //RANKS 4
-        "genuine_4__nightfall_rank_11"{
+        "genuine_4__awakening_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1212,10 +981,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_12"{
+        "genuine_4__awakening_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1242,10 +1011,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_21"{
+        "genuine_4__awakening_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1272,10 +1041,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_22"{
+        "genuine_4__awakening_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1302,10 +1071,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_31"{
+        "genuine_4__awakening_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1332,10 +1101,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_32"{
+        "genuine_4__awakening_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1362,10 +1131,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_41"{
+        "genuine_4__awakening_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1392,10 +1161,10 @@
             }
         }
 
-        "genuine_4__nightfall_rank_42"{
+        "genuine_4__awakening_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_nightfall"
+            "AbilityTextureName"    		"genuine_awakening"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1423,10 +1192,10 @@
         }
 
     //RANKS 5
-        "genuine_5__awakening_rank_11"{
+        "genuine_5__nightfall_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1453,10 +1222,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_12"{
+        "genuine_5__nightfall_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1483,10 +1252,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_21"{
+        "genuine_5__nightfall_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1513,10 +1282,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_22"{
+        "genuine_5__nightfall_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1543,10 +1312,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_31"{
+        "genuine_5__nightfall_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1573,10 +1342,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_32"{
+        "genuine_5__nightfall_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1603,10 +1372,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_41"{
+        "genuine_5__nightfall_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1633,10 +1402,10 @@
             }
         }
 
-        "genuine_5__awakening_rank_42"{
+        "genuine_5__nightfall_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

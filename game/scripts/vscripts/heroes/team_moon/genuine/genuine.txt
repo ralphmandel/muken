@@ -6,7 +6,7 @@
   "genuine__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+		"ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
     "AbilityTextureName"    		"genuine__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -89,48 +89,70 @@
 		}
 	}
 
-	"genuine_3__morning"
+	"genuine_3__travel"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_3__morning"
+		"ScriptFile"            		"heroes/moon_team/genuine/genuine_3__travel"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_morning"
+		"AbilityTextureName"     		"genuine_travel"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"       		"0.1"
 
-		"AbilityValues"
+    "AbilityValues"
 		{
-      "duration"		            "20"
-      "int"		                  "10"
-      "agi"		                  "15"
-      "ms"		                  "75"
-      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
-      "special_starfall_count"  "0"
-      "special_track_duration"	"0"
-      "special_rec"		          "0"
-      "special_ms_night"        "0"
-      "special_strike_damage"   "0"
-      "special_strike_radius"   "0"
-      "special_int_allies"		  "0"
-      "special_starfall_damage"	"0"
-      "special_starfall_radius"	"0"
-      "special_starfall_delay"	"0"
+			"damage"	            "200"
+			"silence_min"	        "0.5"
+			"silence_mult"	      "300"
+			"silence_radius"	    "300"
+			"vision_radius"	      "300"
+			"projectile_radius"	  "200"
+			"projectile_speed"	  "450"
+			"projectile_distance"	"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"genuine_4__awakening"
+	"genuine_4__under"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_4__awakening"
+		"ScriptFile"            		"heroes/moon_team/genuine/genuine_4__under"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_awakening"
+		"AbilityTextureName"     		"genuine_under"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+    "AbilityValues"
+		{
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"genuine_5__nightfall"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/team_moon/genuine/genuine_5__nightfall"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"genuine_nightfall"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -162,75 +184,35 @@
 		}
 	}
 
-	"genuine_5__nightfall"
+	"genuine_u__morning"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_5__nightfall"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"genuine_nightfall"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilityValues"
-		{
-      "max_barrier"	        "100"
-      "barrier_regen" 	    "2"
-      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
-      "special_hp_regen" 	  "0"
-      "special_universal" 	"0"
-      "special_invi" 	      "0"
-      "special_linkens" 	  "0"
-      "special_fly_vision" 	"0"
-      "special_night_vision""0"
-		}
-	}
-
-	"genuine_u__star"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_moon/genuine/genuine_u__star"
-		"AbilityTextureName"     		"genuine_star"
+		"ScriptFile"            		"heroes/moon_team/genuine/genuine_u__morning"
+		"AbilityTextureName"     		"genuine_morning"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilityValues"
+    "AbilityValues"
 		{
-      "cast_range"	            "400"
-      "duration"			          "8"
-      "duration_night"	        "12"
-      "night_vision"	          "250"
-      "mana_steal"	            "40"
-      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
-      "special_reset"	          "0"
-      "special_swap"	          "0"
-      "special_day_vision"	    "0"
-      "special_slow"	          "0"
-      "special_starfall"	      "0"
-      "special_starfall_damage"	"0"
-      "special_starfall_radius"	"0"
-      "special_starfall_delay"	"0"
-      "special_interval"	      "0"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
     //RANKS 1
         "genuine_1__shooting_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -260,7 +242,7 @@
 
         "genuine_1__shooting_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -290,7 +272,7 @@
 
         "genuine_1__shooting_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -320,7 +302,7 @@
 
         "genuine_1__shooting_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -350,7 +332,7 @@
 
         "genuine_1__shooting_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -380,7 +362,7 @@
 
         "genuine_1__shooting_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -410,7 +392,7 @@
 
         "genuine_1__shooting_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -440,7 +422,7 @@
 
         "genuine_1__shooting_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_shooting"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -471,7 +453,7 @@
     //RANKS 2
         "genuine_2__fallen_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -501,7 +483,7 @@
 
         "genuine_2__fallen_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -531,7 +513,7 @@
 
         "genuine_2__fallen_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -561,7 +543,7 @@
 
         "genuine_2__fallen_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -591,7 +573,7 @@
 
         "genuine_2__fallen_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -621,7 +603,7 @@
 
         "genuine_2__fallen_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -651,7 +633,7 @@
 
         "genuine_2__fallen_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -681,7 +663,7 @@
 
         "genuine_2__fallen_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_fallen"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -710,10 +692,10 @@
         }
 
     //RANKS 3
-        "genuine_3__morning_rank_11"{
+        "genuine_3__travel_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -740,10 +722,10 @@
             }
         }
 
-        "genuine_3__morning_rank_12"{
+        "genuine_3__travel_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -770,10 +752,10 @@
             }
         }
 
-        "genuine_3__morning_rank_21"{
+        "genuine_3__travel_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -800,10 +782,10 @@
             }
         }
 
-        "genuine_3__morning_rank_22"{
+        "genuine_3__travel_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -830,10 +812,10 @@
             }
         }
 
-        "genuine_3__morning_rank_31"{
+        "genuine_3__travel_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -860,10 +842,10 @@
             }
         }
 
-        "genuine_3__morning_rank_32"{
+        "genuine_3__travel_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -890,10 +872,10 @@
             }
         }
 
-        "genuine_3__morning_rank_41"{
+        "genuine_3__travel_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -920,10 +902,10 @@
             }
         }
 
-        "genuine_3__morning_rank_42"{
+        "genuine_3__travel_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_morning"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_travel"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -951,10 +933,10 @@
         }
 
     //RANKS 4
-        "genuine_4__awakening_rank_11"{
+        "genuine_4__under_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -981,10 +963,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_12"{
+        "genuine_4__under_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1011,10 +993,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_21"{
+        "genuine_4__under_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1041,10 +1023,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_22"{
+        "genuine_4__under_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1071,10 +1053,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_31"{
+        "genuine_4__under_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1101,10 +1083,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_32"{
+        "genuine_4__under_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1131,10 +1113,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_41"{
+        "genuine_4__under_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1161,10 +1143,10 @@
             }
         }
 
-        "genuine_4__awakening_rank_42"{
+        "genuine_4__under_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_awakening"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_under"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1194,7 +1176,7 @@
     //RANKS 5
         "genuine_5__nightfall_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1224,7 +1206,7 @@
 
         "genuine_5__nightfall_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1254,7 +1236,7 @@
 
         "genuine_5__nightfall_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1284,7 +1266,7 @@
 
         "genuine_5__nightfall_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1314,7 +1296,7 @@
 
         "genuine_5__nightfall_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1344,7 +1326,7 @@
 
         "genuine_5__nightfall_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1374,7 +1356,7 @@
 
         "genuine_5__nightfall_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1404,7 +1386,7 @@
 
         "genuine_5__nightfall_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
             "AbilityTextureName"    		"genuine_nightfall"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1433,10 +1415,10 @@
         }
 
     //RANKS U
-        "genuine_u__star_rank_11"{
+        "genuine_u__morning_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1463,10 +1445,10 @@
             }
         }
 
-        "genuine_u__star_rank_12"{
+        "genuine_u__morning_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1493,10 +1475,10 @@
             }
         }
 
-        "genuine_u__star_rank_21"{
+        "genuine_u__morning_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1523,10 +1505,10 @@
             }
         }
 
-        "genuine_u__star_rank_22"{
+        "genuine_u__morning_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1553,10 +1535,10 @@
             }
         }
 
-        "genuine_u__star_rank_31"{
+        "genuine_u__morning_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1583,10 +1565,10 @@
             }
         }
 
-        "genuine_u__star_rank_32"{
+        "genuine_u__morning_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1613,10 +1595,10 @@
             }
         }
         
-        "genuine_u__star_rank_41"{
+        "genuine_u__morning_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1643,10 +1625,10 @@
             }
         }
 
-        "genuine_u__star_rank_42"{
+        "genuine_u__morning_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_moon/genuine/genuine-ranks_lua"
-            "AbilityTextureName"    		"genuine_star"
+            "ScriptFile"					"heroes/moon_team/genuine/genuine-ranks_lua"
+            "AbilityTextureName"    		"genuine_morning"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

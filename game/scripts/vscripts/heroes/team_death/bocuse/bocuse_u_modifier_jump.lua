@@ -24,7 +24,10 @@ end
 function bocuse_u_modifier_jump:OnDestroy()
 	if not IsServer() then return end
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
-	self.parent:MoveToPosition(self.parent:GetOrigin())
+
+  if self.parent:IsCommandRestricted() == false then
+    self.parent:MoveToPosition(self.parent:GetOrigin())
+  end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

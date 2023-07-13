@@ -145,6 +145,11 @@ RANDOM_NAMES = {
   [10] = "UK"
 }
 
+BOT_STATE_IDLE = 0
+BOT_STATE_AGGRESSIVE = 1
+BOT_STATE_FLEE = 2
+BOT_STATE_FARMING = 3
+
 SPAWNER_MOBS = {
 -- TIER 1
   {["tier"] = 1, ["units"] = {
@@ -236,6 +241,9 @@ SCORE_KILL = 60
 SCORE_BOUNTY = 120
 GOLD_BOUNTY_MIN = 20
 GOLD_BOUNTY_MAX = 30
+
+GENUINE_TRAVEL_STATE_IN = 0
+GENUINE_TRAVEL_STATE_OUT = 1
 
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  

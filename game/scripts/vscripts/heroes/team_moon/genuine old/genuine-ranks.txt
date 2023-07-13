@@ -59,50 +59,50 @@
 				"2"   "genuine_2__fallen_rank_42"
 			}
 		}
-		"genuine_3__travel"
+		"genuine_3__morning"
 		{
 			"1"
 			{
-				"1"   "genuine_3__travel_rank_11"
-				"2"   "genuine_3__travel_rank_12"
+				"1"   "genuine_3__morning_rank_11"
+				"2"   "genuine_3__morning_rank_12"
 			}
 			"2"
 			{
-				"1"   "genuine_3__travel_rank_21"
-				"2"   "genuine_3__travel_rank_22"
+				"1"   "genuine_3__morning_rank_21"
+				"2"   "genuine_3__morning_rank_22"
 			}
 			"3"
 			{
-				"1"   "genuine_3__travel_rank_31"
-				"2"   "genuine_3__travel_rank_32"
+				"1"   "genuine_3__morning_rank_31"
+				"2"   "genuine_3__morning_rank_32"
 			}
 			"4"
 			{
-				"1"   "genuine_3__travel_rank_41"
-				"2"   "genuine_3__travel_rank_42"
+				"1"   "genuine_3__morning_rank_41"
+				"2"   "genuine_3__morning_rank_42"
 			}
 		}
-		"genuine_4__under"
+		"genuine_4__awakening"
 		{
 			"1"
 			{
-				"1"   "genuine_4__under_rank_11"
-				"2"   "genuine_4__under_rank_12"
+				"1"   "genuine_4__awakening_rank_11"
+				"2"   "genuine_4__awakening_rank_12"
 			}
 			"2"
 			{
-				"1"   "genuine_4__under_rank_21"
-				"2"   "genuine_4__under_rank_22"
+				"1"   "genuine_4__awakening_rank_21"
+				"2"   "genuine_4__awakening_rank_22"
 			}
 			"3"
 			{
-				"1"   "genuine_4__under_rank_31"
-				"2"   "genuine_4__under_rank_32"
+				"1"   "genuine_4__awakening_rank_31"
+				"2"   "genuine_4__awakening_rank_32"
 			}
 			"4"
 			{
-				"1"   "genuine_4__under_rank_41"
-				"2"   "genuine_4__under_rank_42"
+				"1"   "genuine_4__awakening_rank_41"
+				"2"   "genuine_4__awakening_rank_42"
 			}
 		}
 		"genuine_5__nightfall"
@@ -128,27 +128,27 @@
 				"2"   "genuine_5__nightfall_rank_42"
 			}
 		}
-		"genuine_u__morning"
+		"genuine_u__star"
 		{
 			"1"
 			{
-				"1"   "genuine_u__morning_rank_11"
-				"2"   "genuine_u__morning_rank_12"
+				"1"   "genuine_u__star_rank_11"
+				"2"   "genuine_u__star_rank_12"
 			}
 			"2"
 			{
-				"1"   "genuine_u__morning_rank_21"
-				"2"   "genuine_u__morning_rank_22"
+				"1"   "genuine_u__star_rank_21"
+				"2"   "genuine_u__star_rank_22"
 			}
 			"3"
 			{
-				"1"   "genuine_u__morning_rank_31"
-				"2"   "genuine_u__morning_rank_32"
+				"1"   "genuine_u__star_rank_31"
+				"2"   "genuine_u__star_rank_32"
 			}
 			"4"
 			{
-				"1"   "genuine_u__morning_rank_41"
-				"2"   "genuine_u__morning_rank_42"
+				"1"   "genuine_u__star_rank_41"
+				"2"   "genuine_u__star_rank_42"
 			}
 		}
 	}	

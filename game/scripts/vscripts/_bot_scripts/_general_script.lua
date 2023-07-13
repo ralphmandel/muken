@@ -11,11 +11,6 @@ _general_script = class({})
   local icebreaker = require("_bot_scripts/icebreaker")
   local ancient = require("_bot_scripts/ancient")
 
-  local BOT_STATE_IDLE = 0
-  local BOT_STATE_AGGRESSIVE = 1
-  local BOT_STATE_FLEE = 2
-  local BOT_STATE_FARMING = 3
-
   local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 101
   local ACTION_AGRESSIVE_SWAP_TARGET = 102
   local ACTION_AGRESSIVE_ATTACK_TARGET = 103
@@ -25,8 +20,7 @@ _general_script = class({})
   local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 201
   local ACTION_FLEE_GO_TO_FOUNTAIN = 202
 
-  local ACTION_BLOODSTAINED_TEAR = 401
-  local ACTION_FLEAMAN_STEAL = 402
+  local ACTION_FLEAMAN_STEAL = 401
 
   local THINK_INTERVAL_INIT = 45
   local THINK_INTERVAL_DEFAULT = 0.25
@@ -181,7 +175,7 @@ _general_script = class({})
           if self:IsOutOfRange(self.target_last_loc) then
             self.attack_target = nil
           else
-            if self.abilityScript:TrySpell(self.attack_target) == false then
+            if self.abilityScript:TrySpell(self.attack_target, self.state) == false then
               self:MoveBotTo("attack_target", self.attack_target)
             end
           end
@@ -251,7 +245,9 @@ _general_script = class({})
       end
 
       if current_action == ACTION_FLEE_GO_TO_FOUNTAIN then
-        self:MoveBotTo("location", GetFountainLoc(self.parent))
+        if self.abilityScript:TrySpell(nil, self.state) == false then
+          self:MoveBotTo("location", GetFountainLoc(self.parent))
+        end
       end
     end
   end
@@ -260,12 +256,6 @@ _general_script = class({})
   end
 
   function _general_script:SpecialActions(current_action)
-    if current_action == ACTION_BLOODSTAINED_TEAR then
-      if self:CheckTargetState(self.attack_target) ~= TARGET_STATE_VISIBLE and self.abilityScript.TryCast_Tear then
-        self.abilityScript:TryCast_Tear()
-      end
-    end
-
     if current_action == ACTION_FLEAMAN_STEAL then
       if self:CheckTargetState(self.attack_target) ~= TARGET_STATE_MISSING and self.parent:HasModifier("fleaman_5_modifier_passive") then
         local new_target = true
@@ -482,21 +472,6 @@ _general_script = class({})
 
     if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
       self.low_health = 15
-      self.AggressiveActions = {
-        [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
-        [2] = ACTION_BLOODSTAINED_TEAR,
-        [3] = ACTION_AGRESSIVE_SWAP_TARGET,
-        [4] = ACTION_AGRESSIVE_ATTACK_TARGET,
-        [5] = ACTION_AGRESSIVE_SEEK_TARGET,
-        [6] = ACTION_AGRESSIVE_FIND_TARGET,
-      }
-
-      self.FleeActions = {
-        [1] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
-        [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
-        [3] = ACTION_BLOODSTAINED_TEAR,
-      }
-
       return bloodstained
     end
 

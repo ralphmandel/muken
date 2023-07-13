@@ -95,13 +95,15 @@ function bocuse_u_modifier_mise:OnOrder(keys)
 
 	Timers:CreateTimer((FrameTime()), function()
 		if target and self then
-			if (self.parent:GetOrigin() - target:GetOrigin()):Length2D() > self.parent:Script_GetAttackRange() then
-				local direction = (self.parent:GetOrigin() - target:GetOrigin()):Normalized() * self.parent:Script_GetAttackRange()
-				local point = target:GetOrigin() + direction
-				self.parent:MoveToPosition(point)
-			else
-				self.parent:Stop()
-			end
+      if self.parent:IsCommandRestricted() == false then
+        if (self.parent:GetOrigin() - target:GetOrigin()):Length2D() > self.parent:Script_GetAttackRange() then
+          local direction = (self.parent:GetOrigin() - target:GetOrigin()):Normalized() * self.parent:Script_GetAttackRange()
+          local point = target:GetOrigin() + direction
+          self.parent:MoveToPosition(point)
+        else
+          self.parent:Stop()
+        end        
+      end
 		end
 	end)
 end
@@ -158,12 +160,14 @@ function bocuse_u_modifier_mise:CheckAggro()
 	local target = self.parent:GetAttackTarget()
 	if target == nil then target = self.parent:GetAggroTarget() end
 	if target then
-		self.parent:Stop()
-		if (self.parent:GetOrigin() - target:GetOrigin()):Length2D() > self.parent:Script_GetAttackRange() then
-			local direction = (self.parent:GetOrigin() - target:GetOrigin()):Normalized() * self.parent:Script_GetAttackRange()
-			local point = target:GetOrigin() + direction
-			self.parent:MoveToPosition(point)
-		end
+    if self.parent:IsCommandRestricted() == false then
+      self.parent:Stop()
+      if (self.parent:GetOrigin() - target:GetOrigin()):Length2D() > self.parent:Script_GetAttackRange() then
+        local direction = (self.parent:GetOrigin() - target:GetOrigin()):Normalized() * self.parent:Script_GetAttackRange()
+        local point = target:GetOrigin() + direction
+        self.parent:MoveToPosition(point)
+      end      
+    end
 	end
 end
 

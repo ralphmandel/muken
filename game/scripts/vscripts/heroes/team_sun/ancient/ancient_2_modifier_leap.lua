@@ -39,7 +39,9 @@ function ancient_2_modifier_leap:OnRemoved()
   if self.ability.aggro_target then
     if IsValidEntity(self.ability.aggro_target) then
       if self.parent:IsAlive() and self.ability.aggro_target:IsAlive() then
-        self.parent:MoveToTargetToAttack(self.ability.aggro_target)
+        if self.parent:IsCommandRestricted() == false then
+          self.parent:MoveToTargetToAttack(self.ability.aggro_target)
+        end
       end
     end
   end

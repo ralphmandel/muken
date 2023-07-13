@@ -9,10 +9,10 @@
 		//ABILITIES
 			"Ability1"						"genuine_1__shooting"
 			"Ability2"						"genuine_2__fallen"
-			"Ability3"						"genuine_3__morning"
-			"Ability4"						"genuine_4__awakening"
+			"Ability3"						"genuine_3__travel"
+			"Ability4"						"genuine_4__under"
 			"Ability5"						"genuine_5__nightfall"
-			"Ability6"						"genuine_u__star"
+			"Ability6"						"genuine_u__morning"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"

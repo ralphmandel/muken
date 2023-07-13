@@ -4,9 +4,10 @@ if not genuine then
   genuine.random_values = {}
 end
 
-function genuine:TrySpell(target)
+function genuine:TrySpell(target, state)
   local cast = false
   self.target = target
+  self.state = state
 
   if self.caster:IsCommandRestricted() then return cast end
 

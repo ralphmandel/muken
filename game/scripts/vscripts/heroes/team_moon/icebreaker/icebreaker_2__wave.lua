@@ -82,7 +82,9 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
     if target:IsAlive() == false then return end
 
     if self.first_hit == false then
-      caster:MoveToTargetToAttack(target)
+      if caster:IsCommandRestricted() == false then
+        caster:MoveToTargetToAttack(target)
+      end
       self.first_hit = true
     end
 

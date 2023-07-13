@@ -68,7 +68,9 @@ function lawbreaker_2_modifier_combo:OnOrder(keys)
 
 	if keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
     Timers:CreateTimer(FrameTime(), function()
-      self.parent:MoveToNPC(keys.target)
+      if self.parent:IsCommandRestricted() == false then
+        self.parent:MoveToNPC(keys.target)
+      end
     end)
 	end
 end
@@ -134,6 +136,7 @@ function lawbreaker_2_modifier_combo:CalcPosition(target)
   if target == nil then return end
   if IsValidEntity(target) == false then return end
   if self.parent:CanEntityBeSeenByMyTeam(target) == false then return end
+  if self.parent:IsCommandRestricted() then return end
 
   local direction = target:GetOrigin() - self.parent:GetOrigin()
   local angle = VectorToAngles(direction)

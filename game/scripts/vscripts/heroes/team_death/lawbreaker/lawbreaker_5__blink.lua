@@ -12,7 +12,10 @@ lawbreaker_5__blink = class({})
 
 		ProjectileManager:ProjectileDodge(caster)
     FindClearSpaceForUnit(caster, blink_point, true)
-    caster:MoveToPosition(self:GetCursorPosition())
+
+    if caster:IsCommandRestricted() == false then
+      caster:MoveToPosition(self:GetCursorPosition())
+    end
 
     if IsServer() then self:PlayEfxBlink(origin, caster:GetOrigin()) end
 	end

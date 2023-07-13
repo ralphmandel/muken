@@ -115,7 +115,9 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/team_moon/icebreaker/ic
 		self:PlayEfxBlink(direction, origin, target)
 
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
-			caster:MoveToTargetToAttack(target)
+      if caster:IsCommandRestricted() == false then
+        caster:MoveToTargetToAttack(target)      
+      end
       if bot_script then bot_script.attack_target = target end
 		end
 

@@ -10,8 +10,8 @@
 			"Ability1"						"genuine_1__shooting"
 			"Ability2"						"genuine_2__fallen"
 			"Ability3"						"genuine_3__morning"
-			"Ability4"						"genuine_4__nightfall"
-			"Ability5"						"genuine_5__awakening"
+			"Ability4"						"genuine_4__awakening"
+			"Ability5"						"genuine_5__nightfall"
 			"Ability6"						"genuine_u__star"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
@@ -54,7 +54,7 @@
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		"ProjectileModel"          		"particles/genuine/base_attack/genuine_base_attack.vpcf"
 		"ProjectileSpeed"          	  "900"
-		"VisionDaytimeRange"        	"700"        // Range of vision during day light.
+		"VisionDaytimeRange"        	"600"        // Range of vision during day light.
 		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
 
 		//STRENGTH
@@ -71,7 +71,7 @@
 			"StatusHealthRegen"        	"0"
 		//INTELLIGENCE
 			"MagicalResistance"        	"0"
-			"StatusMana"              	"500"
+			"StatusMana"              	"750"
 			"StatusManaRegen"          	"0"
 	}
 }

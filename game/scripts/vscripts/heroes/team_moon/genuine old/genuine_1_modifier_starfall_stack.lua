@@ -1,7 +1,7 @@
 genuine_1_modifier_starfall_stack = class({})
 
 function genuine_1_modifier_starfall_stack:IsHidden() return false end
-function genuine_1_modifier_starfall_stack:IsPurgable() return false end
+function genuine_1_modifier_starfall_stack:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -14,23 +14,20 @@ function genuine_1_modifier_starfall_stack:OnCreated(kv)
 end
 
 function genuine_1_modifier_starfall_stack:OnRefresh(kv)
-	local starfall_combo = self.ability:GetSpecialValueFor("special_starfall_combo")
-
-	if IsServer() then
-		if self:GetStackCount() < starfall_combo then
-			self:IncrementStackCount()
-			if self:GetStackCount() == starfall_combo then
-				self.ability:CreateStarfall(self.parent)
-				self:Destroy()
-			end
-		end
-	end
+	if IsServer() then self:IncrementStackCount() end
 end
 
 function genuine_1_modifier_starfall_stack:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function genuine_1_modifier_starfall_stack:OnStackCountChanged(old)
+  if self:GetStackCount() >= self:GetAbility():GetSpecialValueFor("special_starfall_combo") then
+    CreateStarfall(self.parent, self.ability)
+    self:Destroy()
+  end
+end
 
 -- UTILS -----------------------------------------------------------
 
