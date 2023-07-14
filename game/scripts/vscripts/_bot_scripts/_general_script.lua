@@ -11,18 +11,23 @@ _general_script = class({})
   local icebreaker = require("_bot_scripts/icebreaker")
   local ancient = require("_bot_scripts/ancient")
 
-  local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 101
-  local ACTION_AGRESSIVE_SWAP_TARGET = 102
-  local ACTION_AGRESSIVE_ATTACK_TARGET = 103
-  local ACTION_AGRESSIVE_SEEK_TARGET = 104
-  local ACTION_AGRESSIVE_FIND_TARGET = 105
+  local ACTION_REST_WAIT_FULL_HEALTH = 100
+  local ACTION_REST_WAIT_FULL_MANA = 101
+  local ACTION_REST_CHANGE_TO_AGGRESSIVE = 102
 
-  local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 201
-  local ACTION_FLEE_GO_TO_FOUNTAIN = 202
+  local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 200
+  local ACTION_AGRESSIVE_SWAP_TARGET = 201
+  local ACTION_AGRESSIVE_ATTACK_TARGET = 202
+  local ACTION_AGRESSIVE_SEEK_TARGET = 203
+  local ACTION_AGRESSIVE_FIND_TARGET = 204
 
-  local ACTION_FLEAMAN_STEAL = 401
+  local ACTION_FLEE_CHANGE_TO_REST = 300
+  local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 301
+  local ACTION_FLEE_GO_TO_FOUNTAIN = 302
 
-  local THINK_INTERVAL_INIT = 45
+  local ACTION_FLEAMAN_STEAL = 400
+
+  local THINK_INTERVAL_INIT = 75
   local THINK_INTERVAL_DEFAULT = 0.25
 
   local TARGET_STATE_INVALID = 0
@@ -37,7 +42,11 @@ _general_script = class({})
   local TARGET_PRIORITY_NEUTRALS = 4
 
   local LOW_HEALTH_PERCENT = 25
+  local MID_HEALTH_PERCENT = 50
   local FULL_HEALTH_PERCENT = 100
+  local CUSTOM_HEALTH_PERCENT_BLOODSTAINED = 15
+  local FULL_MANA_PERCENT = 100
+
   local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
   local LIMIT_RANGE = 3600
   local MISSING_MAX_TIME = 5
@@ -63,7 +72,7 @@ _general_script = class({})
       self.abilityScript.caster = self.parent
 
       self.stateActions = {
-        [BOT_STATE_IDLE] = self.IdleThink,
+        [BOT_STATE_REST] = self.RestThink,
         [BOT_STATE_AGGRESSIVE] = self.AggressiveThink,
         [BOT_STATE_FLEE] = self.FleeThink,
         [BOT_STATE_FARMING] = self.FarmingThink,
@@ -102,7 +111,34 @@ _general_script = class({})
 
 -- STATE FUNCTIONS -----------------------------------------------------------
 
-  function _general_script:IdleThink()
+  function _general_script:RestThink()
+    self.rested = true
+    for i = 1, #self.RestActions, 1 do
+      if self.state ~= BOT_STATE_REST then return end
+      local current_action = self.RestActions[i]
+
+      self:SpecialActions(current_action)
+
+      if current_action == ACTION_REST_WAIT_FULL_HEALTH then
+        if self.parent:GetHealthPercent() < FULL_HEALTH_PERCENT then
+          self.rested = false
+        end
+      end
+
+      if current_action == ACTION_REST_WAIT_FULL_MANA then
+        if self.parent:GetManaPercent() < FULL_MANA_PERCENT then
+          self.rested = false
+        end
+      end
+
+      if current_action == ACTION_REST_CHANGE_TO_AGGRESSIVE then
+        if self.rested == true then
+          self:ChangeState(BOT_STATE_AGGRESSIVE)
+        else
+          self.abilityScript:TrySpell(nil, self.state)
+        end
+      end
+    end
   end
 
   function _general_script:AggressiveThink()
@@ -238,8 +274,14 @@ _general_script = class({})
 
       self:SpecialActions(current_action)
 
+      if current_action == ACTION_FLEE_CHANGE_TO_REST then
+        if (GetFountainLoc(self.parent) - self.parent:GetOrigin()):Length2D() < 150 then
+          self:ChangeState(BOT_STATE_REST)
+        end
+      end
+
       if current_action == ACTION_FLEE_CHANGE_TO_AGGRESSIVE then
-        if self.parent:GetHealthPercent() >= FULL_HEALTH_PERCENT then
+        if self.parent:GetHealthPercent() > MID_HEALTH_PERCENT then
           self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
@@ -457,6 +499,12 @@ _general_script = class({})
   end
 
   function _general_script:LoadHeroActions()
+    self.RestActions = {
+      [1] = ACTION_REST_WAIT_FULL_HEALTH,
+      [2] = ACTION_REST_WAIT_FULL_MANA,
+      [3] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
+    }
+
     self.AggressiveActions = {
       [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
       [2] = ACTION_AGRESSIVE_SWAP_TARGET,
@@ -466,12 +514,13 @@ _general_script = class({})
     }
 
     self.FleeActions = {
-      [1] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
-      [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
+      [1] = ACTION_FLEE_CHANGE_TO_REST,
+      [2] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
+      [3] = ACTION_FLEE_GO_TO_FOUNTAIN,
     }
 
     if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
-      self.low_health = 15
+      self.low_health = CUSTOM_HEALTH_PERCENT_BLOODSTAINED
       return bloodstained
     end
 
@@ -488,10 +537,18 @@ _general_script = class({})
       return fleaman
     end
 
+    if GetHeroName(self.parent:GetUnitName()) == "ancient" then
+      self.RestActions = {
+        [1] = ACTION_REST_WAIT_FULL_HEALTH,
+        [2] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
+      }
+      
+      return ancient
+    end
+
     if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then return lawbreaker end
     if GetHeroName(self.parent:GetUnitName()) == "bocuse" then return bocuse end
     if GetHeroName(self.parent:GetUnitName()) == "dasdingo" then return dasdingo end
     if GetHeroName(self.parent:GetUnitName()) == "genuine" then return genuine end
     if GetHeroName(self.parent:GetUnitName()) == "icebreaker" then return icebreaker end
-    if GetHeroName(self.parent:GetUnitName()) == "ancient" then return ancient end
   end

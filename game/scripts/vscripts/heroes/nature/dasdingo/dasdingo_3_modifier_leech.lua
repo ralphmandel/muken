@@ -34,7 +34,7 @@ function dasdingo_3_modifier_leech:OnRemoved(kv)
   self.ability:SetActivated(true)
   self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 
-	if IsServer() then self.parent:StopSound("Hero_ShadowShaman.Shackles") end
+	if IsServer() then self.parent:StopSound("Dasdingo.Leech.Loop") end
 
 	local mod = self.parent:FindAllModifiersByName("_modifier_stun")
 	for _,modifier in pairs(mod) do
@@ -69,5 +69,5 @@ function dasdingo_3_modifier_leech:PlayEfxStart()
     self:AddParticle(shackle_particle, true, false, -1, true, false)
   end
 
-	if IsServer() then self.parent:EmitSound("Hero_ShadowShaman.Shackles") end
+	if IsServer() then self.parent:EmitSound("Dasdingo.Leech.Loop") end
 end

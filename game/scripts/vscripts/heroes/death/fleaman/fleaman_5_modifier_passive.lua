@@ -34,6 +34,7 @@ function fleaman_5_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
   if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if self.parent:PassivesDisabled() then return end
+  if self.parent:IsIllusion() then return end
 
   AddModifier(keys.target, self.caster, self.ability, "fleaman_5_modifier_steal", {
     duration = self.ability:GetSpecialValueFor("stack_duration")

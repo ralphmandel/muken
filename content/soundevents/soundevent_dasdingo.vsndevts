@@ -124,3 +124,38 @@
 		}
 	}
 }
+
+"Dasdingo.Leech.Loop"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/weapons/hero/shadowshaman/shackleloop.vsnd"
+						}
+					}
+
+					"memory_type"		{ "value"	"0"			}
+					"pitch_rand_min" 	{ "value"   "-0.100000" }
+					"pitch_rand_max"  	{ "value"   "0.100000"	}
+					"pitch"  			{ "value"   "1.000000"	}
+					"volume"            { "value"   "0.50000"	}
+					"volume_fade_out"	{ "value"	"0.1"		}          
+					"mixgroup"			{ "value"	"Weapons"	}
+					"spread_radius"			{ "value"	"300.000000"	}
+					"stop_at_time" 		{ "value"	"15.000000" }
+				}
+			}
+		}
+	}
+}

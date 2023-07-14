@@ -138,6 +138,8 @@ LinkLuaModifier("_modifier_ban", "_modifiers/_modifier_ban", LUA_MODIFIER_MOTION
         AddModifier(enemy, caster, self, "_modifier_silence", {duration = silence_duration}, true)
       end
 
+      caster:RemoveModifierByName("genuine_3_modifier_travel")
+      self.projectileData.modifier:GetParent():StopSound("Hero_Puck.Illusory_Orb")
       self.projectileData.modifier:Destroy()
     end
 

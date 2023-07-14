@@ -35,6 +35,7 @@ function fleaman_4_modifier_passive:OnAttackLanded(keys)
   if keys.target:IsMagicImmune() then return end
 	if keys.target:HasModifier("fleaman_4_modifier_strip") then return end
 	if self.parent:PassivesDisabled() then return end
+  if self.parent:IsIllusion() then return end
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
     AddModifier(keys.target, self.caster, self.ability, "fleaman_4_modifier_strip", {

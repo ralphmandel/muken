@@ -19,11 +19,6 @@ function genuine_3_modifier_orb:OnRefresh(kv)
 end
 
 function genuine_3_modifier_orb:OnRemoved()
-	if IsServer() then
-    self.caster:RemoveModifierByName("genuine_3_modifier_travel")
-		self.parent:StopSound("Hero_Puck.Illusory_Orb")
-		UTIL_Remove(self:GetParent())
-	end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

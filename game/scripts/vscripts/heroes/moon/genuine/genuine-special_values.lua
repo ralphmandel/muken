@@ -322,7 +322,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_3__travel" then
 		if value_name == "AbilityManaCost" then
-      if ability:GetCurrentAbilityCharges() == GENUINE_TRAVEL_STATE_OUT then return 0 end
+      if ability:GetCurrentAbilityCharges() == 1 then return 0 end
       return 250 * (1 + ((ability_level - 1) * 0.05))
     end
 

@@ -14,7 +14,7 @@ function genuine:TrySpell(target, state)
   local travel = self.caster:FindAbilityByName("genuine_3__travel")
   if travel then
     if travel:IsTrained() then
-      if travel:GetCurrentAbilityCharges() == GENUINE_TRAVEL_STATE_OUT then return true end
+      if travel:GetCurrentAbilityCharges() == 1 then return true end
     end
   end
 
