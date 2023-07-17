@@ -411,6 +411,7 @@
 //NATURE
 #base "../vscripts/heroes/nature/druid/druid.txt"
 #base "../vscripts/heroes/nature/dasdingo/dasdingo.txt"
+#base "../vscripts/heroes/nature/hunter/hunter.txt"
 
 //DEATH
 #base "../vscripts/heroes/death/fleaman/fleaman.txt"

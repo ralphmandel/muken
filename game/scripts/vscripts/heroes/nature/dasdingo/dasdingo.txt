@@ -187,7 +187,7 @@
       "3"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"hits"	      "5"
+				"hits"	      "6"
 			}
 			"3"
 			{

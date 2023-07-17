@@ -1,0 +1,12 @@
+"Cosmetics"
+{
+  "models/items/sniper/sniper_black_sails_cannoneer_weapon/sniper_black_sails_cannoneer_weapon.vmdl"
+  {
+    "particles/econ/items/sniper/sniper_ti10_black_sails_weapon/sniper_ti10_black_sails_weapon_ambient.vpcf" "attach_weapon"
+  }
+  
+  "models/items/sniper/spring2021_ambush_sniper_arms/spring2021_ambush_sniper_arms.vmdl" "nil"
+  "models/items/sniper/spring2021_ambush_sniper_cape/spring2021_ambush_sniper_cape.vmdl" "nil"
+  "models/items/sniper/spring2021_ambush_sniper_nest_cap/spring2021_ambush_sniper_nest_cap.vmdl" "nil"
+  "models/items/sniper/spring2021_ambush_sniper_shoulders/spring2021_ambush_sniper_shoulders.vmdl" "nil"
+}

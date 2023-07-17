@@ -127,6 +127,9 @@ function base_hero_mod:LoadModel()
 					self.model_scale = 1
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
+        if self.ability.hero_name == "hunter" then
+					self.parent:SetMaterialGroup("1")
+				end
 				if self.model_scale ~= nil then
 					self.parent:SetModelScale(self.model_scale)
 				end
@@ -148,6 +151,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "dasdingo" then self.attack_sound = "Hero_ShadowShaman.Attack" end
   if self.ability.hero_name == "lawbreaker" then self.attack_sound = "Hero_Muerta.Attack" end
 	if self.ability.hero_name == "druid" then self.attack_sound = "Hero_Furion.Attack" end
+	if self.ability.hero_name == "hunter" then self.attack_sound = "Hero_Sniper.MKG_attack" end
 
 	self.attack_landed_sound = ""
 	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end
@@ -158,6 +162,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "bald" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "brute" then self.attack_landed_sound = "Hero_Axe.Attack" end
+	if self.ability.hero_name == "hunter" then self.attack_landed_sound = "Hero_Sniper.MKG_impact" end
 
 	-- if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 end

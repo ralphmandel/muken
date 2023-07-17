@@ -62,6 +62,7 @@
 //NATURE
 #base "../vscripts/heroes/nature/druid/druid-props.txt"
 #base "../vscripts/heroes/nature/dasdingo/dasdingo-props.txt"
+#base "../vscripts/heroes/nature/hunter/hunter-props.txt"
 
 //DEATH
 #base "../vscripts/heroes/death/fleaman/fleaman-props.txt"

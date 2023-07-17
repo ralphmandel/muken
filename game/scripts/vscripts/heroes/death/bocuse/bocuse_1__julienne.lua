@@ -3,6 +3,7 @@ LinkLuaModifier("bocuse_1_modifier_passive", "heroes/death/bocuse/bocuse_1_modif
 LinkLuaModifier("bocuse_1_modifier_julienne", "heroes/death/bocuse/bocuse_1_modifier_julienne", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_bleeding", "_modifiers/_modifier_bleeding", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -37,20 +38,22 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
   function bocuse_1__julienne:OnSpellStart()
     local caster = self:GetCaster()
 		self.target = self:GetCursorTarget()
-    self.crit = RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance")
+    local frenesi = RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance")
+    local crit_damage = self:GetSpecialValueFor("special_crit_damage")
 
-    if self.crit then
+    if frenesi then
       self.total_slashes = self:GetSpecialValueFor("special_max_cut")
       self.cut_speed = self:GetSpecialValueFor("special_cut_speed")
     else
       self.total_slashes = self:GetSpecialValueFor("max_cut")
       self.cut_speed = self:GetSpecialValueFor("cut_speed")
+      crit_damage = 0
     end
 
     ChangeActivity(caster, "trapper")
     caster:FadeGesture(ACT_DOTA_ATTACK)
 
-    AddModifier(caster, caster, self, "bocuse_1_modifier_julienne", {}, false)
+    AddModifier(caster, caster, self, "bocuse_1_modifier_julienne", {crit_damage = crit_damage}, false)
   end
 
   function bocuse_1__julienne:PerformSlash(slash_count)
@@ -66,17 +69,9 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 		Timers:CreateTimer(0.1, function()
 			if self:CheckRequirements() then
-        local never_miss = false
-				if slash_count == 1 then
-          never_miss = true
-          self:ApplyStun(self.target)
-				end
-
-        if self.crit == true or slash_count == 1 then
-          BaseStats(caster):SetForceCrit(100, nil)
-        end
-
-				caster:PerformAttack(self.target, false, true, true, false, false, false, never_miss)
+				if slash_count == 1 then self:ApplyStun(self.target) end
+        BaseStats(caster):SetForceCrit(100, nil)
+				caster:PerformAttack(self.target, false, true, true, false, false, false, true)
 				self:PlayEfxCut(self.target)
 			end
 		end)

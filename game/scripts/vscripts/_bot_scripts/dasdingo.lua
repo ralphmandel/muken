@@ -41,6 +41,13 @@ function dasdingo:TryCast_Tribal()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
+    if ability.unit ~= nil then
+      if IsValidEntity(ability.unit) then
+        local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, ability.unit)
+        if distance_diff < 1000 then return false end
+      end
+    end
+
     local targets = 0
 
     local units = FindUnitsInRadius(

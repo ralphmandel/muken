@@ -1,24 +1,24 @@
 "DOTAHeroes"
 {
-	"druid"
+	"hunter"
 	{
-		"override_hero"					"npc_dota_hero_furion"
+		"override_hero"					"npc_dota_hero_sniper"
 		//"SoundSet"						""
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"druid_1__root"
-			"Ability2"						"druid_2__armor"
-			"Ability3"						"druid_3__totem"
-			"Ability4"						"druid_4__form"
-			"Ability5"						"druid_5__seed"
-			"Ability6"						"druid_u__conversion"
+			"Ability1"						"hunter_1__shot"
+			"Ability2"						"hunter_2__camouflage"
+			"Ability3"						"hunter_3__radar"
+			"Ability4"						"hunter_4__bandage"
+			"Ability5"						"hunter_5__trap"
+			"Ability6"						"hunter_u__aim"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"
 			"Ability10"						"_channel"
 			"Ability11"						"_void"
-			"Ability12"						"druid__precache"
+			"Ability12"						"hunter__precache"
 			"Ability13"						"null"
 			"Ability14"						"null"
 			"Ability15"						"null"
@@ -50,10 +50,10 @@
 		"Level"							"0"
 
 		"AttackAcquisitionRange"        "200"     // Range within a target can be acquired.
-		"AttackRange"                   "700"     // Range within a target can be attacked.
+		"AttackRange"                   "750"     // Range within a target can be attacked.
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
-		//"ProjectileModel"          	""
-		"ProjectileSpeed"          	  "700"
+		"ProjectileModel"          	"particles/econ/items/sniper/sniper_charlie/sniper_base_attack_charlie.vpcf"
+		"ProjectileSpeed"          	"3000"
 		"VisionDaytimeRange"        	"850"        // Range of vision during day light.
 		"VisionNighttimeRange"      	"700"        // Range of vision at night time.
 

@@ -40,6 +40,7 @@ function dasdingo_4_modifier_tribal:OnRemoved()
   RemoveBonus(self.ability, "_1_CON", self.parent)
   RemoveBonus(self.ability, "_1_STR", self.parent)
   RemoveBonus(self.ability, "_1_AGI", self.parent)
+  self.ability.unit = nil
 
   if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
 end

@@ -1,13 +1,13 @@
-// Dota Ability lawbreaker
+// Dota Ability hunter
 "DOTAAbilities"
 {
 	"Version"		"1"
 
-  "lawbreaker__precache"
+  "hunter__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-    "AbilityTextureName"    		"lawbreaker__precache"
+		"ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+    "AbilityTextureName"    		"hunter__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -16,189 +16,167 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
-	"lawbreaker_1__shot"
-	{
+	"hunter_1__shot"
+	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_1__shot"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_1__shot"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_shot"
+		"AbilityTextureName"     		"hunter_shot"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"1"
+		"AnimationPlaybackRate"  		"2"
+
+    "AbilityValues"
+		{
+			"kill_chance"	"0.5"
+			"damage"			"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"hunter_2__camouflage"
+	{  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_2__camouflage"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"hunter_camouflage"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
     "AbilityValues"
 		{
-			"max_hit"			"5"
-      "crit_dmg"		"100"
-      "lifesteal"		"25"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"lawbreaker_2__combo"
+	"hunter_3__radar"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_2__combo"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_3__radar"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_combo"
+		"AbilityTextureName"     		"hunter_radar"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityCastPoint"       		"0.2"
-
-    "AbilityValues"
-		{
-			"agi"			          "40"
-      "atk_range"			    "150"
-      "slow_percent"	    "40"
-      "reload"	          "2"
-      "fast_reload"	      "0.5"
-      "fast_reload_delay" "1"
-      "hits_to_recharge"  "3"
-      "min_shots"			    "5"
-      "max_shots"			    "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"lawbreaker_3__grenade"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_3__grenade"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_grenade"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
-
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_RESET"
-		"AbilityCastPoint"       		"0.45"
-
     "AbilityValues"
 		{
-			"damage"			"250"
-      "duration"		"8"
-      "def"			    "-10"
-      "blind"			  "20"
-      "radius"			"300"
-      "proj_radius"	"60"
-      "proj_speed"	"1500"
-      "delay"	      "1.5"
-      "cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
+			"fow_time"	  "10"
+			"search_time"	"5"
+			"radius"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"lawbreaker_4__rain"
-	{
+	"hunter_4__bandage"
+	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_4__rain"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_4__bandage"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_rain"
+		"AbilityTextureName"     		"hunter_bandage"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_RESET"
-		"AbilityCastPoint"       		"0.4"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
 
     "AbilityValues"
 		{
-			"damage"			"75"
-      "slow"			  "175"
-      "interval"		"0.5"
-      "delay"		    "0.5"
-      "duration"	  "6"
-      "cast_range"	"600"
-      "radius"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"lawbreaker_5__blink"
+	"hunter_5__trap"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_5__blink"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_5__trap"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"lawbreaker_blink"
+		"AbilityTextureName"     		"hunter_trap"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityValues"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+    "AbilityValues"
 		{
-			"range"			  "300"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"lawbreaker_u__form"
+	"hunter_u__aim"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/lawbreaker/lawbreaker_u__form"
-		"AbilityTextureName"     		"lawbreaker_form"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_u__aim"
+		"AbilityTextureName"     		"hunter_aim"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"       		"0"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
 
-		"AbilityValues"
+    "AbilityValues"
 		{
-			"duration"			      "20"
-			"transform_duration"  "0.35"
-			"model_scale"         "30"
-			"break_duration"	    "3"
-			"break_chance"	      "50"
-			"vision_range"	      "1 2 3 4 5 6 7 8 9 10 11"
-			"atk_range"	          "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
     //RANKS 1
-        "lawbreaker_1__shot_rank_11"{
+        "hunter_1__shot_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -225,10 +203,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_12"{
+        "hunter_1__shot_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -255,10 +233,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_21"{
+        "hunter_1__shot_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -285,10 +263,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_22"{
+        "hunter_1__shot_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -315,10 +293,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_31"{
+        "hunter_1__shot_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -345,10 +323,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_32"{
+        "hunter_1__shot_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -375,10 +353,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_41"{
+        "hunter_1__shot_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -405,10 +383,10 @@
             }
         }
 
-        "lawbreaker_1__shot_rank_42"{
+        "hunter_1__shot_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_shot"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_shot"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -436,10 +414,10 @@
         }
 
     //RANKS 2
-        "lawbreaker_2__combo_rank_11"{
+        "hunter_2__camouflage_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -466,10 +444,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_12"{
+        "hunter_2__camouflage_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -496,10 +474,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_21"{
+        "hunter_2__camouflage_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -526,10 +504,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_22"{
+        "hunter_2__camouflage_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -556,10 +534,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_31"{
+        "hunter_2__camouflage_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -586,10 +564,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_32"{
+        "hunter_2__camouflage_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -616,10 +594,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_41"{
+        "hunter_2__camouflage_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -646,10 +624,10 @@
             }
         }
 
-        "lawbreaker_2__combo_rank_42"{
+        "hunter_2__camouflage_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_combo"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -677,10 +655,10 @@
         }
 
     //RANKS 3
-        "lawbreaker_3__grenade_rank_11"{
+        "hunter_3__radar_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -707,10 +685,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_12"{
+        "hunter_3__radar_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -737,10 +715,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_21"{
+        "hunter_3__radar_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -767,10 +745,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_22"{
+        "hunter_3__radar_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -797,10 +775,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_31"{
+        "hunter_3__radar_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -827,10 +805,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_32"{
+        "hunter_3__radar_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -857,10 +835,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_41"{
+        "hunter_3__radar_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -887,10 +865,10 @@
             }
         }
 
-        "lawbreaker_3__grenade_rank_42"{
+        "hunter_3__radar_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_grenade"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_radar"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -918,10 +896,10 @@
         }
 
     //RANKS 4
-        "lawbreaker_4__rain_rank_11"{
+        "hunter_4__bandage_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -948,10 +926,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_12"{
+        "hunter_4__bandage_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -978,10 +956,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_21"{
+        "hunter_4__bandage_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1008,10 +986,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_22"{
+        "hunter_4__bandage_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1038,10 +1016,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_31"{
+        "hunter_4__bandage_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1068,10 +1046,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_32"{
+        "hunter_4__bandage_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1098,10 +1076,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_41"{
+        "hunter_4__bandage_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1128,10 +1106,10 @@
             }
         }
 
-        "lawbreaker_4__rain_rank_42"{
+        "hunter_4__bandage_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_rain"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_bandage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1159,10 +1137,10 @@
         }
 
     //RANKS 5
-        "lawbreaker_5__blink_rank_11"{
+        "hunter_5__trap_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1189,10 +1167,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_12"{
+        "hunter_5__trap_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1219,10 +1197,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_21"{
+        "hunter_5__trap_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1249,10 +1227,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_22"{
+        "hunter_5__trap_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1279,10 +1257,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_31"{
+        "hunter_5__trap_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1309,10 +1287,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_32"{
+        "hunter_5__trap_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1339,10 +1317,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_41"{
+        "hunter_5__trap_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1369,10 +1347,10 @@
             }
         }
 
-        "lawbreaker_5__blink_rank_42"{
+        "hunter_5__trap_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_blink"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_trap"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1400,10 +1378,10 @@
         }
 
     //RANKS U
-        "lawbreaker_u__form_rank_11"{
+        "hunter_u__aim_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1430,10 +1408,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_12"{
+        "hunter_u__aim_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1460,10 +1438,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_21"{
+        "hunter_u__aim_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1490,10 +1468,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_22"{
+        "hunter_u__aim_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1520,10 +1498,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_31"{
+        "hunter_u__aim_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1550,10 +1528,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_32"{
+        "hunter_u__aim_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1580,10 +1558,10 @@
             }
         }
         
-        "lawbreaker_u__form_rank_41"{
+        "hunter_u__aim_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1610,10 +1588,10 @@
             }
         }
 
-        "lawbreaker_u__form_rank_42"{
+        "hunter_u__aim_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/lawbreaker/lawbreaker-ranks_lua"
-            "AbilityTextureName"    		"lawbreaker_form"
+            "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

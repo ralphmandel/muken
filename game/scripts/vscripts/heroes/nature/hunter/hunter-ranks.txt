@@ -1,0 +1,155 @@
+"TalentTree_hunter"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_sniper"
+	{
+		"hunter_1__shot" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "hunter_1__shot_rank_11" // PATH + TALENT
+				"2"   "hunter_1__shot_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_1__shot_rank_21"
+				"2"   "hunter_1__shot_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_1__shot_rank_31"
+				"2"   "hunter_1__shot_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_1__shot_rank_41"
+				"2"   "hunter_1__shot_rank_42"
+			}
+		}
+		"hunter_2__camouflage"
+		{
+			"1"
+			{
+				"1"   "hunter_2__camouflage_rank_11"
+				"2"   "hunter_2__camouflage_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_2__camouflage_rank_21"
+				"2"   "hunter_2__camouflage_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_2__camouflage_rank_31"
+				"2"   "hunter_2__camouflage_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_2__camouflage_rank_41"
+				"2"   "hunter_2__camouflage_rank_42"
+			}
+		}
+		"hunter_3__radar"
+		{
+			"1"
+			{
+				"1"   "hunter_3__radar_rank_11"
+				"2"   "hunter_3__radar_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_3__radar_rank_21"
+				"2"   "hunter_3__radar_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_3__radar_rank_31"
+				"2"   "hunter_3__radar_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_3__radar_rank_41"
+				"2"   "hunter_3__radar_rank_42"
+			}
+		}
+		"hunter_4__bandage"
+		{
+			"1"
+			{
+				"1"   "hunter_4__bandage_rank_11"
+				"2"   "hunter_4__bandage_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_4__bandage_rank_21"
+				"2"   "hunter_4__bandage_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_4__bandage_rank_31"
+				"2"   "hunter_4__bandage_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_4__bandage_rank_41"
+				"2"   "hunter_4__bandage_rank_42"
+			}
+		}
+		"hunter_5__trap"
+		{
+			"1"
+			{
+				"1"   "hunter_5__trap_rank_11"
+				"2"   "hunter_5__trap_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_5__trap_rank_21"
+				"2"   "hunter_5__trap_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_5__trap_rank_31"
+				"2"   "hunter_5__trap_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_5__trap_rank_41"
+				"2"   "hunter_5__trap_rank_42"
+			}
+		}
+		"hunter_u__aim"
+		{
+			"1"
+			{
+				"1"   "hunter_u__aim_rank_11"
+				"2"   "hunter_u__aim_rank_12"
+			}
+			"2"
+			{
+				"1"   "hunter_u__aim_rank_21"
+				"2"   "hunter_u__aim_rank_22"
+			}
+			"3"
+			{
+				"1"   "hunter_u__aim_rank_31"
+				"2"   "hunter_u__aim_rank_32"
+			}
+			"4"
+			{
+				"1"   "hunter_u__aim_rank_41"
+				"2"   "hunter_u__aim_rank_42"
+			}
+		}
+	}	
+}

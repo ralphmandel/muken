@@ -71,6 +71,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecial(keys)
 			if value_name == "special_frenesi_chance" then return 1 end
 			if value_name == "special_max_cut" then return 1 end
 			if value_name == "special_cut_speed" then return 1 end
+			if value_name == "special_crit_damage" then return 1 end
 		end
 	end
 
@@ -277,8 +278,8 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "bocuse_1__julienne" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 13 end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cast_range" then return 350 + (value_level * 20) end
@@ -286,7 +287,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "cast_point" then return 0.1 end
     if value_name == "special_invulnerable" then return 1 end
     if value_name == "special_bleeding_chance" then return 7 end
-    if value_name == "bleeding_duration" then return 6 end
+    if value_name == "bleeding_duration" then return 8 end
     if value_name == "stun_duration" then return 3 end
     if value_name == "special_stun_radius" then return 350 end
     if value_name == "special_stun_dmg" then return 100 end
@@ -294,6 +295,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "special_frenesi_chance" then return 40 end
     if value_name == "special_max_cut" then return 7 end
     if value_name == "special_cut_speed" then return 8 end
+    if value_name == "special_crit_damage" then return 100 end
 	end
 
 	if ability:GetAbilityName() == "bocuse_2__flambee" then
