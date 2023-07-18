@@ -81,14 +81,14 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
     "AbilityValues"
 		{
-			"fow_time"	  "10"
+			"fow_time"	  "15"
 			"search_time"	"5"
 			"radius"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
@@ -143,7 +143,7 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			"1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -168,6 +168,8 @@
 
     "AbilityValues"
 		{
+      "vision"    "250"
+      "atk_range" "500"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

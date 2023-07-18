@@ -56,7 +56,7 @@
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
 		"VisionDaytimeRange"        	"1000"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"600"        // Range of vision at night time.
+		"VisionNighttimeRange"      	"700"        // Range of vision at night time.
 
 		//STRENGTH
 			"AttackDamageMax"			"45"
