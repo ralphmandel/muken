@@ -24,14 +24,16 @@ var isPlusHover = false;
   function OnStatsWindowButtonClick() {
     isWindowOpened = !isWindowOpened;
     STATS_WINDOW.SetHasClass("WindowIn", isWindowOpened);
-    PTS_WINDOW.SetHasClass("PtsIn", isWindowOpened);
+    PTS_PRIMARY.SetHasClass("PtsIn", isWindowOpened);
+    PTS_SECONDARY.SetHasClass("PtsIn", isWindowOpened);
     SetOpenState(isWindowOpened);
     Game.EmitSound("General.SelectAction");
   }
 
   function SetOpenState(isOpen) {
     STATS_WINDOW.SetHasClass("WindowIn", isOpen);
-    PTS_WINDOW.SetHasClass("PtsIn", isOpen);
+    PTS_PRIMARY.SetHasClass("PtsIn", isOpen);
+    PTS_SECONDARY.SetHasClass("PtsIn", isOpen);
     INFO_WINDOW.SetHasClass("InfoIn", isOpen);
     INFO_WINDOW.SetHasClass("InfoOut", !isOpen);
     STATS_LAYOUT["STAT_BASE"].SetHasClass("Hide", !isOpen);
@@ -171,8 +173,8 @@ var isPlusHover = false;
   }
 
   function OnPointsUpdate(event) {
-    $("#StatsWindowButtonActive").SetHasClass("Hide", !(event.total_points > 0));
-    $("#StatsWindowButtonActive").SetHasClass("Animate", (event.total_points > 0));
+    $("#StatsWindowButtonActive").SetHasClass("Hide", !(event.primary_points > 0));
+    $("#StatsWindowButtonActive").SetHasClass("Animate", (event.secondary_points > 0));
 
     for (const [stat, enabled] of Object.entries(event.stats)) {
       STATS_LAYOUT["STAT_PLUS"][stat].hittest = enabled;
@@ -183,7 +185,8 @@ var isPlusHover = false;
       STATS_LAYOUT["STAT_NAME"][stat]["Fraction"] = event.stats_fraction[stat];
     }
 
-    PTS_WINDOW.GetChild(0).text = 'POINTS:      ' + event.total_points;
+    PTS_PRIMARY.GetChild(0).text = 'MAIN-PTS:      ' + event.primary_points;
+    PTS_SECONDARY.GetChild(0).text = 'SUB-PTS:      ' + event.secondary_points;
 
     if (!(event.upgraded_stat == "nil") && isPlusHover) {
       OnStatOut(event.upgraded_stat, false)
@@ -254,10 +257,14 @@ function OnNameOut(statId, disabled) {
   STATS_WINDOW.SetHasClass("WindowIn", true);
   STATS_CONTAINER = $("#StatsColumnContainer");
   STATS_BUTTON = $("#StatsWindowButton");
-  PTS_WINDOW = $("#PtsWindowContainer");
-  PTS_WINDOW.SetHasClass("PtsOut", true);
-  PTS_WINDOW.SetHasClass("PtsIn", true);
-  PTS_WINDOW.GetChild(0).text = 'POINTS:      0';
+  PTS_PRIMARY = $("#PtsPrimaryContainer");
+  PTS_PRIMARY.SetHasClass("PtsOut", true);
+  PTS_PRIMARY.SetHasClass("PtsIn", true);
+  PTS_PRIMARY.GetChild(0).text = 'MAIN-PTS:      0';
+  PTS_SECONDARY = $("#PtsSecondaryContainer");
+  PTS_SECONDARY.SetHasClass("PtsOut", true);
+  PTS_SECONDARY.SetHasClass("PtsIn", true);
+  PTS_SECONDARY.GetChild(0).text = 'SUB-PTS:      0';
   INFO_WINDOW = $("#InfoWindowContainer");
   INFO_WINDOW.SetHasClass("Hide", true);
 

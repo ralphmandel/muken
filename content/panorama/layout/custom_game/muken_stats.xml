@@ -12,7 +12,10 @@
       </Panel>
 
       <!-- PTS WINDOW -->
-      <Panel hittest="false" id="PtsWindowContainer" onactivate=''>
+      <Panel hittest="false" id="PtsPrimaryContainer" onactivate=''>
+        <Label text="" />
+      </Panel>
+      <Panel hittest="false" id="PtsSecondaryContainer" onactivate=''>
         <Label text="" />
       </Panel>
 

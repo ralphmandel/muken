@@ -54,7 +54,7 @@ function dasdingo_5_modifier_fire:OnTakeDamage(keys)
 
     if self:GetStackCount() >= self.ability:GetSpecialValueFor("ignition_cap") then
       AddModifier(self.parent, self.caster, self.ability, "dasdingo_5_modifier_ignition", {
-        duration = self.ability:GetSpecialValueFor("stun_duration"), step = 1
+        duration = self.ability:GetSpecialValueFor("slow_duration")
       }, true)
       self:Destroy()
     end

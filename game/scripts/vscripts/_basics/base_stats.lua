@@ -31,9 +31,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 		end
 
 		function base_stats:OnUpgrade()
-      if self:GetLevel() == 1 then
-        self:RandomizeStatOption()
-      end
 		end
 
 		function base_stats:OnHeroLevelUp()
@@ -46,7 +43,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 					self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				end
 
-        self:IncrementSpenderPoints(2)
+        self:IncrementSpenderPoints(1, 1)
 
         if caster:GetLevel() % 5 == 0 then
           if caster:GetLevel() ~= 15 and caster:GetLevel() ~= 30 then
@@ -85,7 +82,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
 			if IsServer() then
-				self.total_points = 0
+				self.primary_points = 0
+				self.secondary_points = 0
 
 				self.stat_base = {}
 				self.stat_bonus = {}
@@ -94,7 +92,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				self.stat_sub_level = {}
 				self.bonus_level = {} -- CONST SPECIAL VALUE
         self.stat_fraction = {["level_up"] = {}, ["plus_up"] = {}}
-        self.random_stats = {}
 
 				self.stats_primary = {
 					"STR", "AGI", "INT", "CON"
@@ -113,7 +110,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
-          self.random_stats[index] = stat
           index = index + 1
           self:UpdatePanoramaStat(stat)
 				end
@@ -126,7 +122,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
-          self.random_stats[index] = stat
           index = index + 1
           self:UpdatePanoramaStat(stat)
 				end
@@ -203,7 +198,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
             if stat_type == "initial" then
               self.stat_base[stat] = self.stat_base[stat] + value
               self:CalculateStats(0, 0, stat)
-              self:IncrementFraction("level_up", stat, value * 3)
+              self:IncrementFraction("level_up", stat, value * 3, 0)
             elseif stat_type == "bonus_level" then
               self.bonus_level[stat] = value
             end
@@ -213,7 +208,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         for stat, value in pairs(unit_stats) do
           self.stat_base[stat] = self.stat_base[stat] + value
           self:CalculateStats(0, 0, stat)
-          self:IncrementFraction("level_up", stat, value * 3)
+          self:IncrementFraction("level_up", stat, value * 3, 0)
         end
       end
 
@@ -414,9 +409,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 -- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
-		function base_stats:IncrementSpenderPoints(pts)
+		function base_stats:IncrementSpenderPoints(primary_pts, secondary_pts)
 			if IsServer() then
-				self.total_points = self.total_points + pts
+				self.primary_points = self.primary_points + primary_pts
+				self.secondary_points = self.secondary_points + secondary_pts
 				self:UpdatePanoramaPoints("nil")
 			end
 		end
@@ -424,23 +420,22 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     function base_stats:UpgradeStat(stat)
       for _,primary in pairs(self.stats_primary) do
         if stat == primary then
-          self.total_points = self.total_points - 1
+          self.primary_points = self.primary_points - 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          self:IncrementFraction("plus_up", primary, 3)
+          self:IncrementFraction("plus_up", primary, 3, 1)
           self:CalculateStats(0, 0, primary)
         end
       end
     
       for _,secondary in pairs(self.stats_secondary) do
         if stat == secondary then
-          self.total_points = self.total_points - 1
+          self.secondary_points = self.secondary_points - 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          self:IncrementFraction("plus_up", stat, 2)
-          self:CalculateStats(0, 0, stat)
+          self:IncrementFraction("plus_up", secondary, 2, 2)
+          self:CalculateStats(0, 0, secondary)
         end
       end
     
-      self:RandomizeStatOption()
       self:UpdatePanoramaPoints(stat)
     end
 
@@ -473,39 +468,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         local stats_fraction = {}
 
         for _, stat in pairs(self.stats_primary) do
-          local selection = false
-          if self:IsHeroCanLevelUpStat(stat, self.total_points) == true then
-            for i = 1, #self.random_stats, 1 do
-              if stat == self.random_stats[i] then
-                selection = true
-              end
-            end
-          end
-
-          if self.total_points < 4 and self:GetCaster():GetLevel() < self.max_level then selection = false end
-          stats[stat] = selection
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.primary_points) == true
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
-          local selection = false
-          if self:IsHeroCanLevelUpStat(stat, self.total_points) == true then
-
-            for i = 1, #self.random_stats, 1 do
-              if stat == self.random_stats[i] then
-                selection = true
-              end
-            end
-          end
-
-          if self.total_points < 4 and self:GetCaster():GetLevel() < self.max_level then selection = false end
-
-          stats[stat] = selection
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.secondary_points) == true
           stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
-					total_points = self.total_points,
+					primary_points = self.primary_points,
+					secondary_points = self.secondary_points,
 					stats = stats,
           stats_fraction = stats_fraction,
           upgraded_stat = upgraded_stat
@@ -532,8 +506,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         end
       end
 
-      if self:GetCaster():GetLevel() >= self.max_level - 1 
-      and self.total_points < 4 then
+      if self:GetCaster():GetLevel() >= self.max_level - 1 then
         self.random_stats = stats
         return
       end
@@ -609,14 +582,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if self.stat_sub_level[stat] >= self.max_level then
 					self.stat_sub_level[stat] = self.stat_sub_level[stat] - self.max_level
 					self.stat_base[stat] = self.stat_base[stat] + 1
-					self:IncrementFraction("level_up", stat, 3)
+					self:IncrementFraction("level_up", stat, 3, 0)
 					self:CalculateStats(0, 0, stat)
 					self:ApplyBonusLevel(stat, 0)
 				end
 			end
 		end
 
-		function base_stats:IncrementFraction(type, stat, value)
+		function base_stats:IncrementFraction(type, stat, value, group)
 			if IsServer() then
 				for index, stat_fraction in pairs(self.stat_fraction[type][stat]) do
 					if index ~= "value" then
@@ -628,7 +601,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 						end
 
 						if levelup > 0 then
-              if type == "plus_up" then self.total_points = self.total_points - levelup end
+              if group == 1 then self.primary_points = self.primary_points - levelup end
+              if group == 2 then self.secondary_points = self.secondary_points - levelup end
 							self.stat_base[stat_fraction] = self.stat_base[stat_fraction] + levelup
 							self:CalculateStats(0, 0, stat_fraction)
 						end

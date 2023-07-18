@@ -1,7 +1,7 @@
 dasdingo_5_modifier_ignition = class({})
 
 function dasdingo_5_modifier_ignition:IsHidden() return false end
-function dasdingo_5_modifier_ignition:IsPurgable() return true end
+function dasdingo_5_modifier_ignition:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -9,59 +9,38 @@ function dasdingo_5_modifier_ignition:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-  self.step = kv.step
 
-  if self.step == 1 then
-    if self.parent:IsMagicImmune() == false then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {}, false)
-    end
-    if IsServer() then self:PlayEfxStart() end
-  end
-
-  if self.step == 2 then
-    if self.parent:IsMagicImmune() == false then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 25}, false)
-    end
+  if self.parent:IsMagicImmune() == false then
+    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 50}, false)
   end
   
-  if IsServer() then self:OnIntervalThink() end
+  if IsServer() then
+    self:PlayEfxStart()
+    self:OnIntervalThink()
+  end
 end
 
 function dasdingo_5_modifier_ignition:OnRefresh(kv)
 end
 
 function dasdingo_5_modifier_ignition:OnRemoved()
-  if self.step == 1 then
-    RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_stun", self.ability)
-    AddModifier(self.parent, self.caster, self.ability, "dasdingo_5_modifier_ignition", {
-      duration = self.ability:GetSpecialValueFor("slow_duration"), step = 2
-    }, true)
-  end
-  
-  if self.step == 2 or self.parent:IsAlive() == false then
-    RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
-    if IsServer() then self.parent:StopSound("Dasdingo.Fire.Loop") end
-  end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
+  if IsServer() then self.parent:StopSound("Dasdingo.Fire.Loop") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function dasdingo_5_modifier_ignition:OnIntervalThink()
-	if IsServer() then
-    self:ApplyIgnitionDamage()
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("interval"))
-  end
-end
-
--- UTILS -----------------------------------------------------------
-
-function dasdingo_5_modifier_ignition:ApplyIgnitionDamage()
   ApplyDamage({
     attacker = self.caster, victim = self.parent, ability = self.ability,
     damage = self.ability:GetSpecialValueFor("ignition_damage"),
     damage_type = self.ability:GetAbilityDamageType()
   })
+
+	if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("interval")) end
 end
+
+-- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
 

@@ -1,22 +1,22 @@
-hunter_u_modifier_aim = class({})
+hunter_u_modifier_passive = class({})
 
-function hunter_u_modifier_aim:IsHidden() return true end
-function hunter_u_modifier_aim:IsPurgable() return false end
+function hunter_u_modifier_passive:IsHidden() return true end
+function hunter_u_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function hunter_u_modifier_aim:OnCreated(kv)
+function hunter_u_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 end
 
-function hunter_u_modifier_aim:OnRemoved()
+function hunter_u_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function hunter_u_modifier_aim:DeclareFunctions()
+function hunter_u_modifier_passive:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_BONUS_DAY_VISION,
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
@@ -26,15 +26,15 @@ function hunter_u_modifier_aim:DeclareFunctions()
 	return funcs
 end
 
-function hunter_u_modifier_aim:GetBonusDayVision()
+function hunter_u_modifier_passive:GetBonusDayVision()
 	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
-function hunter_u_modifier_aim:GetBonusNightVision()
+function hunter_u_modifier_passive:GetBonusNightVision()
 	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
-function hunter_u_modifier_aim:GetModifierAttackRangeBonus()
+function hunter_u_modifier_passive:GetModifierAttackRangeBonus()
   return self:GetAbility():GetSpecialValueFor("atk_range")
 end
 

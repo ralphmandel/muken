@@ -465,36 +465,51 @@ _general_script = class({})
     end
   end
 
-  function _general_script:ConsumeStatPoint()
+  function base_stats:ConsumeStatPoint()
     local base_stats = BaseStats(self.parent)
     if base_stats == nil then return end
-    if base_stats.random_stats == nil then return end
-    if base_stats.total_points <= 0 then return end
+    local up = true
 
-    while base_stats.total_points > 0 and base_stats.random_stats ~= nil do
-      local main_stats = {}
+    while up == true do
+      local main = {}
+      local sub = {}
       local data = LoadKeyValues("scripts/kv/heroes_priority.kv")
+      up = false
   
-      for hero_name, stats in pairs(data) do
+      for hero_name, table in pairs(data) do
         if hero_name == GetHeroName(self.parent:GetUnitName()) then
-          for priority, stat in pairs(stats) do
-            main_stats[tonumber(priority)] = stat
+          for group, stats in pairs(table) do
+            if group == "MAIN" then
+              local index = 1
+              for i, stat in pairs(stats) do
+                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.primary_points) == true then
+                  main[index] = stat
+                  index = index + 1
+                end
+              end
+            end
+            if group == "SUB" then
+              local index = 1
+              for i, stat in pairs(stats) do
+                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.secondary_points) == true then
+                  sub[index] = stat
+                  index = index + 1
+                end
+              end
+            end
           end
         end
       end
-  
-      local main = 0
-  
-      for i = 1, 5, 1 do
-        for index, random_stat in pairs(base_stats.random_stats) do
-          if main_stats[i] == random_stat and main == 0 then
-            main = index
-          end
-        end
+
+      if #main > 0 then
+        base_stats:UpgradeStat(main[RandomInt(1, #main)])
+        up = true
       end
-  
-      if main == 0 then main = RandomInt(1, #base_stats.random_stats) end
-      base_stats:UpgradeStat(base_stats.random_stats[main])      
+
+      if #sub > 0 then
+        base_stats:UpgradeStat(sub[RandomInt(1, #sub)])
+        up = true
+      end
     end
   end
 

@@ -215,48 +215,15 @@
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"interval"	        "0.5"
-			}
-      "02"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"fire_duration"	    "5"
-			}
-			"03"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"fire_damage"		    "5"
-			}
-      "04"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"ignition_damage"	  "25"
-			}
-      "05"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"stun_duration"	    "1"
-			}
-      "05"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"slow_duration"	    "3"
-			}
-      "06"
-			{
-				"var_type"		      "FIELD_FLOAT"
-				"ignition_cap"      "300"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "interval"	      "0.5"
+      "fire_duration"	  "5"
+      "fire_damage"		  "5"
+      "ignition_damage" "30"
+      "slow_duration"	  "3"
+      "ignition_cap"    "300"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
