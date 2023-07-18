@@ -8,10 +8,19 @@ hunter_1__shot = class({})
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
+    ChangeActivity(caster, "dreamleague")
+    caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, 2)
+    
     if IsServer() then caster:EmitSound("Ability.MKG_AssassinateLoad") end
 
     return true
   end
+
+  function hunter_1__shot:OnAbilityPhaseInterrupted()
+		local caster = self:GetCaster()
+    ChangeActivity(caster, "MGC")
+    caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+	end
 
 	function hunter_1__shot:OnSpellStart()
 		local caster = self:GetCaster()

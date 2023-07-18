@@ -15,6 +15,12 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     return DAMAGE_TYPE_MAGICAL
   end
 
+  function genuine_5__nightfall:GetChannelTime()
+    local channel = self:GetCaster():FindAbilityByName("_channel")
+    local channel_time = self:GetSpecialValueFor("channel_time")
+    return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
+  end
+
 -- SPELL START
 
   function genuine_5__nightfall:OnSpellStart()
@@ -132,12 +138,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   function genuine_5__nightfall:OnProjectileThink(location)
     local tree_width = self:GetSpecialValueFor("tree_width")
     GridNav:DestroyTreesAroundPoint(location, tree_width, false)	
-  end
-
-  function genuine_5__nightfall:GetChannelTime()
-    local channel = self:GetCaster():FindAbilityByName("_channel")
-    local channel_time = self:GetSpecialValueFor("channel_time")
-    return channel_time * (1 - (channel:GetLevel() * channel:GetSpecialValueFor("channel") * 0.01))
   end
 
 -- EFFECTS
