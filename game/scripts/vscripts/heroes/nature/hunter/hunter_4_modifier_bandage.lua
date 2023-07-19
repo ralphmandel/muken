@@ -22,6 +22,19 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function hunter_4_modifier_bandage:DeclareFunctions()
+	local funcs = {
+    MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+
+	return funcs
+end
+
+function hunter_4_modifier_bandage:OnAttackLanded(keys)
+  if keys.target ~= self.parent then return end
+  self:Destroy()
+end
+
 function hunter_4_modifier_bandage:OnIntervalThink()
   self.parent:Heal(CalcHeal(self.parent, self.ability:GetSpecialValueFor("heal_per_second") * self.interval), self.ability)
 end

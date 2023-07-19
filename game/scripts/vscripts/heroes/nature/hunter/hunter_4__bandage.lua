@@ -21,14 +21,12 @@ LinkLuaModifier("hunter_4_modifier_bandage", "heroes/nature/hunter/hunter_4_modi
   function hunter_4__bandage:OnChannelFinish(bInterrupted)
     if self.target == nil then return end
     self.target:RemoveModifierByName("hunter_4_modifier_channeling")
-    
-		local caster = self:GetCaster()
 
-    if bInterrupted then
-      self:EndCooldown()
-      self:StartCooldown(1)
-      return
-    end
+    if bInterrupted then return end
+
+    local caster = self:GetCaster()
+
+    self.target:Purge(false, true, false, true, false)
 
     AddModifier(self.target, caster, self, "hunter_4_modifier_bandage", {
       duration = self:GetSpecialValueFor("heal_duration")

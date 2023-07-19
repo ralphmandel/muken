@@ -29,6 +29,8 @@ hunter_1__shot = class({})
     local kill_chance = (100 - target:GetHealthPercent()) * self:GetSpecialValueFor("kill_chance")
     local kill = false
 
+    ChangeActivity(caster, "MGC")
+
     if RandomFloat(0, 100) < kill_chance then
       bDodgeable = false
       kill = true
@@ -58,6 +60,7 @@ hunter_1__shot = class({})
     if IsServer() then target:EmitSound("Hero_Sniper.AssassinateDamage") end
 
     if extradata.kill == 1 then
+      self:PlayEfxKill(caster)
       target:Kill(self, caster)
       return
     end
@@ -73,3 +76,12 @@ hunter_1__shot = class({})
   end
 
 -- EFFECTS
+
+  function hunter_1__shot:PlayEfxKill(target)
+    local caster = self:GetCaster()
+    local particle_cast = "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_counter.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, caster)
+    ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+
+    if IsServer() then target:EmitSound("Item.BlackPowder") end
+  end
