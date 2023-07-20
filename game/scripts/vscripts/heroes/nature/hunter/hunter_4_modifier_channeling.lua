@@ -11,10 +11,13 @@ function hunter_4_modifier_channeling:OnCreated(kv)
   self.ability = self:GetAbility()
 
   if self.caster ~= self.parent then
-    self.parent:Hold()
+    self.parent:Stop()
   end
 
   if IsServer() then self.parent:EmitSound("DOTA_Item.RepairKit.Target") end
+end
+
+function hunter_4_modifier_channeling:OnRefresh(kv)
 end
 
 function hunter_4_modifier_channeling:OnRemoved()

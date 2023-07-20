@@ -465,7 +465,7 @@ _general_script = class({})
     end
   end
 
-  function base_stats:ConsumeStatPoint()
+  function _general_script:ConsumeStatPoint()
     local base_stats = BaseStats(self.parent)
     if base_stats == nil then return end
     local up = true

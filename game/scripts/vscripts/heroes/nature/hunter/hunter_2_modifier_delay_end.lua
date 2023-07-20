@@ -11,6 +11,9 @@ function hunter_2_modifier_delay_end:OnCreated(kv)
   self.ability = self:GetAbility()
 end
 
+function hunter_2_modifier_delay_end:OnRefresh(kv)
+end
+
 function hunter_2_modifier_delay_end:OnRemoved()
   local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
   if trees then

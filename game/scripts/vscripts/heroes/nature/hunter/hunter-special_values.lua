@@ -126,8 +126,9 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "hunter_4__bandage" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "AbilityCastRange" then return 1 end
+		if value_name == "heal_duration" then return 1 end
 
 		if caster:FindAbilityByName("hunter_4__bandage_rank_11") then
 		end
@@ -157,7 +158,11 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "hunter_5__trap" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "lifetime" then return 1 end
 
 		if caster:FindAbilityByName("hunter_5__trap_rank_11") then
 		end
@@ -246,16 +251,21 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "hunter_4__bandage" then
-		if value_name == "AbilityManaCost" then return 400 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 60 end
 		if value_name == "AbilityCastRange" then return 150 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "heal_duration" then return 5 + (value_level * 0.1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_5__trap" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
+    if value_name == "AbilityCastRange" then return 100 end
+    if value_name == "AbilityCharges" then return 4 end
+    if value_name == "AbilityChargeRestoreTime" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "lifetime" then return 240 + (value_level * 6) end
 	end
 
 	if ability:GetAbilityName() == "hunter_u__aim" then

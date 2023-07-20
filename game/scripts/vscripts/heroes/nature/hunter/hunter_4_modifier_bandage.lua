@@ -17,6 +17,9 @@ function hunter_4_modifier_bandage:OnCreated(kv)
   end
 end
 
+function hunter_4_modifier_bandage:OnRefresh(kv)
+end
+
 function hunter_4_modifier_bandage:OnRemoved()
 end
 

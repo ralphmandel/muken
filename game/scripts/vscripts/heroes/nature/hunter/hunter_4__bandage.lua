@@ -22,7 +22,11 @@ LinkLuaModifier("hunter_4_modifier_bandage", "heroes/nature/hunter/hunter_4_modi
     if self.target == nil then return end
     self.target:RemoveModifierByName("hunter_4_modifier_channeling")
 
-    if bInterrupted then return end
+    if bInterrupted then
+      self:EndCooldown()
+      self:StartCooldown(1)
+      return
+    end
 
     local caster = self:GetCaster()
 

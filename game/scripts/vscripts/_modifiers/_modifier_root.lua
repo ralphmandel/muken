@@ -23,10 +23,10 @@ function _modifier_root:OnCreated(kv)
 	self.parent = self:GetParent()
     self.ability = self:GetAbility()
 
-	self.effect = kv.effect
+	self.effect = kv.effect or 0
 	self.sound = "Hero_DarkWillow.Bramble.Target.Layer"
 
-	local path
+	local path = nil
 	if self.effect == 1 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
 	elseif self.effect == 2 then
@@ -74,6 +74,7 @@ end
 --------------------------------------------------------------------------------
 
 function _modifier_root:PlayEfxStart(path)
+  if path == nil then return end
 	self.particle = ParticleManager:CreateParticle(path, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
 

@@ -13,8 +13,8 @@ function _modifier_bleeding:OnCreated(kv)
   self.ability = self:GetAbility()
 
 	self.intervals = 0.3
-	self.damage_moving = 25 * self.intervals
-	self.damage_hold = 0 * self.intervals
+	self.damage_moving = 100 * self.intervals
+	self.damage_hold = 25 * self.intervals
 
 	self.damageTable = {
 		victim = self.parent,
@@ -39,23 +39,6 @@ function _modifier_bleeding:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function _modifier_bleeding:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-    MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-	}
-
-	return funcs
-end
-
-function _modifier_bleeding:GetModifierHPRegenAmplify_Percentage()
-  return -99999
-end
-
-function _modifier_bleeding:GetModifierHealAmplify_PercentageTarget()
-  return -99999
-end
 
 function _modifier_bleeding:OnIntervalThink()
 	if IsServer() then

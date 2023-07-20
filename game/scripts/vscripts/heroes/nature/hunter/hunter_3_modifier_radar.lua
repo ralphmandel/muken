@@ -28,6 +28,9 @@ function hunter_3_modifier_radar:OnCreated(kv)
   end
 end
 
+function hunter_3_modifier_radar:OnRefresh(kv)
+end
+
 function hunter_3_modifier_radar:OnRemoved()
 end
 

@@ -11,6 +11,9 @@ function hunter_2_modifier_passive:OnCreated(kv)
   self.ability = self:GetAbility()
 end
 
+function hunter_2_modifier_passive:OnRefresh(kv)
+end
+
 function hunter_2_modifier_passive:OnRemoved()
 end
 
