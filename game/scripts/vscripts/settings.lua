@@ -209,23 +209,45 @@ SPAWNER_MOBS = {
   }}
 }
 
+SPAWNER_SPOTS_A = {
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-1264, -5247, 0), ["respawn"] = -90 },
+  [2] = { ["mob"] = {}, ["origin"] = Vector(-631, -5971, 0), ["respawn"] = -90 },
+  [3] = { ["mob"] = {}, ["origin"] = Vector(-1175, -7170, 0), ["respawn"] = -90 },
+  [4] = { ["mob"] = {}, ["origin"] = Vector(299, -6840, 0), ["respawn"] = -90 },
+  [5] = { ["mob"] = {}, ["origin"] = Vector(144, -5266, 0), ["respawn"] = -90 },
+  [6] = { ["mob"] = {}, ["origin"] = Vector(1380, -5030, 0), ["respawn"] = -90 },
+  [7] = { ["mob"] = {}, ["origin"] = Vector(1059, -6249, 0), ["respawn"] = -90 },
+  [8] = { ["mob"] = {}, ["origin"] = Vector(1541, -7312, 0), ["respawn"] = -90 }
+}
+
+SPAWNER_SPOTS_B = {
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-1273, 5143, 0), ["respawn"] = -90 },
+  [2] = { ["mob"] = {}, ["origin"] = Vector(-865, 6067, 0), ["respawn"] = -90 },
+  [3] = { ["mob"] = {}, ["origin"] = Vector(-1228, 7106, 0), ["respawn"] = -90 },
+  [4] = { ["mob"] = {}, ["origin"] = Vector(-60, 6605, 0), ["respawn"] = -90 },
+  [5] = { ["mob"] = {}, ["origin"] = Vector(28, 5359, 0), ["respawn"] = -90 },
+  [6] = { ["mob"] = {}, ["origin"] = Vector(1430, 5222, 0), ["respawn"] = -90 },
+  [7] = { ["mob"] = {}, ["origin"] = Vector(1126, 5855, 0), ["respawn"] = -90 },
+  [8] = { ["mob"] = {}, ["origin"] = Vector(1125, 6785, 0), ["respawn"] = -90 }
+}
+
 SPAWNER_SPOTS = {
-  [1] = { ["mob"] = {}, ["origin"] = Vector(-3195, 379, 0), ["respawn"] = -60 },
-  [2] = { ["mob"] = {}, ["origin"] = Vector(-2048, 2872, 0), ["respawn"] = -60 },
-  [3] = { ["mob"] = {}, ["origin"] = Vector(-761, 1587, 0), ["respawn"] = -60 },
-  [4] = { ["mob"] = {}, ["origin"] = Vector(-701, 3193, 0), ["respawn"] = -60 },
-  [5] = { ["mob"] = {}, ["origin"] = Vector(507, 1276, 0), ["respawn"] = -60 },
-  [6] = { ["mob"] = {}, ["origin"] = Vector(638, 3195, 0), ["respawn"] = -60 },
-  [7] = { ["mob"] = {}, ["origin"] = Vector(2163, 2170, 0), ["respawn"] = -60 },
-  [8] = { ["mob"] = {}, ["origin"] = Vector(3195, 1528, 0), ["respawn"] = -60 },
-  [9] = { ["mob"] = {}, ["origin"] = Vector(1607, 386, 0), ["respawn"] = -60 },
-  [10] = { ["mob"] = {}, ["origin"] = Vector(3203, -771, 0), ["respawn"] = -60 },
-  [11] = { ["mob"] = {}, ["origin"] = Vector(1412, -1863, 0), ["respawn"] = -60 },
-  [12] = { ["mob"] = {}, ["origin"] = Vector(1602, -3146, 0), ["respawn"] = -60 },
-  [13] = { ["mob"] = {}, ["origin"] = Vector(329, -1352, 0), ["respawn"] = -60 },
-  [14] = { ["mob"] = {}, ["origin"] = Vector(131, -2949, 0), ["respawn"] = -60 },
-  [15] = { ["mob"] = {}, ["origin"] = Vector(-2621, -2115, 0), ["respawn"] = -60 },
-  [16] = { ["mob"] = {}, ["origin"] = Vector(-1409, -835, 0), ["respawn"] = -60 }
+  [1] = { ["mob"] = {}, ["origin"] = Vector(-3195, 379, 0), ["respawn"] = -90 },
+  [2] = { ["mob"] = {}, ["origin"] = Vector(-2048, 2872, 0), ["respawn"] = -90 },
+  [3] = { ["mob"] = {}, ["origin"] = Vector(-761, 1587, 0), ["respawn"] = -90 },
+  [4] = { ["mob"] = {}, ["origin"] = Vector(-701, 3193, 0), ["respawn"] = -90 },
+  [5] = { ["mob"] = {}, ["origin"] = Vector(507, 1276, 0), ["respawn"] = -90 },
+  [6] = { ["mob"] = {}, ["origin"] = Vector(638, 3195, 0), ["respawn"] = -90 },
+  [7] = { ["mob"] = {}, ["origin"] = Vector(2163, 2170, 0), ["respawn"] = -90 },
+  [8] = { ["mob"] = {}, ["origin"] = Vector(3195, 1528, 0), ["respawn"] = -90 },
+  [9] = { ["mob"] = {}, ["origin"] = Vector(1607, 386, 0), ["respawn"] = -90 },
+  [10] = { ["mob"] = {}, ["origin"] = Vector(3203, -771, 0), ["respawn"] = -90 },
+  [11] = { ["mob"] = {}, ["origin"] = Vector(1412, -1863, 0), ["respawn"] = -90 },
+  [12] = { ["mob"] = {}, ["origin"] = Vector(1602, -3146, 0), ["respawn"] = -90 },
+  [13] = { ["mob"] = {}, ["origin"] = Vector(329, -1352, 0), ["respawn"] = -90 },
+  [14] = { ["mob"] = {}, ["origin"] = Vector(131, -2949, 0), ["respawn"] = -90 },
+  [15] = { ["mob"] = {}, ["origin"] = Vector(-2621, -2115, 0), ["respawn"] = -90 },
+  [16] = { ["mob"] = {}, ["origin"] = Vector(-1409, -835, 0), ["respawn"] = -90 }
 }
 
 SPAWNER_BOSS_SPOTS = {
@@ -233,7 +255,7 @@ SPAWNER_BOSS_SPOTS = {
   [2] = { ["mob"] = {}, ["origin"] = Vector(6500, 0, 0), ["respawn"] = -300},
 }
 
-MAX_MOB_COUNT = 8
+MAX_MOB_COUNT = 3
 MAX_BOSS_COUNT = 1
 
 SCORE = 20
@@ -263,22 +285,4 @@ TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team
   -- [8] = {[1] = DOTA_TEAM_CUSTOM_8, [2] = 0, [3] = "Team Cyan", [4] = 0, [5] = "<font color='#1bc0d8'>"},
   --[9] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
   --[10] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"}
-}
-
-SPAWN_POS = {
-  [1] = Vector(455, -1394, 0),
-  [2] = Vector(-1040, -3661, 0),
-  [3] = Vector(-2724, -2628, 0),
-  [4] = Vector(-2563, -923, 0),
-  [5] = Vector(-3144, 1596, 0),
-  [6] = Vector(-828, 1413, 0),
-  [7] = Vector(-2047, 4349, 0),
-  [8] = Vector(1858, 5903, 0),
-  [9] = Vector(935, 2619, 0),
-  [10] = Vector(3291, 2578, 0),
-  [11] = Vector(1084, 875, 0),
-  [12] = Vector(3587, -670, 0),
-  [13] = Vector(3848, -1969, 0),
-  [14] = Vector(3920, -3897, 0),
-  [15] = Vector(2175, -3259, 0)
 }

@@ -9,6 +9,8 @@ function hunter_u_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+
+  --if IsServer() then self:StartIntervalThink(0.5) end
 end
 
 function hunter_u_modifier_passive:OnRemoved()
@@ -39,5 +41,10 @@ function hunter_u_modifier_passive:GetModifierAttackRangeBonus()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function hunter_u_modifier_passive:OnIntervalThink()
+  local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
+  print(loc)
+end
 
 -- EFFECTS -----------------------------------------------------------

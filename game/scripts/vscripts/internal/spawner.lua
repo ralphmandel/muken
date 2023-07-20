@@ -16,7 +16,7 @@ function Spawner:SpawnFountains()
   self.start = true
 end
 
-function Spawner:SpawnNeutrals()
+function Spawner:SpawnNeutrals(spawn_area)
   local current_mobs = 0
 
   while current_mobs < MAX_MOB_COUNT do
@@ -24,9 +24,9 @@ function Spawner:SpawnNeutrals()
     local free_spot_index = 1
     current_mobs = 0
 
-    for i = 1, #SPAWNER_SPOTS, 1 do
-      local spot_blocked = self:IsSpotAlive(SPAWNER_SPOTS, i)
-      if not spot_blocked then spot_blocked = self:IsSpotCooldown(SPAWNER_SPOTS, i, 5) end
+    for i = 1, #spawn_area, 1 do
+      local spot_blocked = self:IsSpotAlive(spawn_area, i)
+      if not spot_blocked then spot_blocked = self:IsSpotCooldown(spawn_area, i, 5) end
       if spot_blocked then
         current_mobs = current_mobs + 1
       else
@@ -39,9 +39,12 @@ function Spawner:SpawnNeutrals()
       local spot = free_spots[RandomInt(1, #free_spots)]
       local tier = self:RandomizeTier()
       local mob = self:RandomizeMob(tier)
-      self:CreateMob(SPAWNER_SPOTS, spot, tier, mob, "_modifier__ai")
+      self:CreateMob(spawn_area, spot, tier, mob, "_modifier__ai")
     end
   end
+end
+
+function Spawner:SpawnBosses()
 end
 
 function Spawner:SpawnBosses()
