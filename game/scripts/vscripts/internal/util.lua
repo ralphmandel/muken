@@ -536,6 +536,7 @@ end
           GetIDName(random_list[hero_index]), RANDOM_NAMES[hero_index], bot_team, "", false
         )
 
+        PlayerResource:GetPlayer(new_bot:GetPlayerID()):SetAssignedHeroEntity(new_bot)
         new_bot:AddNewModifier(new_bot, nil, "_general_script", {})
 
         BOTS[hero_index] = new_bot

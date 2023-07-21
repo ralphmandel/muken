@@ -36,6 +36,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "damage" then return 1 end
+		if value_name == "cd_mult_tooltip" then return 1 end
 
 		if caster:FindAbilityByName("hunter_1__shot_rank_11") then
 		end
@@ -231,10 +232,11 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "hunter_1__shot" then
-		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 30 end
+		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "damage" then return 300 + (value_level * 10) end
+		if value_name == "cd_mult_tooltip" then return ability:GetCooldown(ability:GetLevel()) * ability:GetSpecialValueFor("cd_mult") end
 	end
 
 	if ability:GetAbilityName() == "hunter_2__camouflage" then
@@ -244,8 +246,8 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "hunter_3__radar" then
-		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 45 end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "radius" then return 750 + (value_level * 25) end
 	end

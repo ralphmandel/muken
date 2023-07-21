@@ -39,7 +39,9 @@
 
     "AbilityValues"
 		{
-			"kill_chance"	"0.4"
+			"kill_chance"	    "0.4"
+			"cd_mult"	        "3"
+			"cd_mult_tooltip"	"0"
 			"damage"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -62,10 +64,13 @@
 
     "AbilityValues"
 		{
-      "delay_in"    "3"
-      "delay_out"   "0.5"
-      "tree_radius" "200"
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "delay_in"      "3"
+      "delay_out"     "0.5"
+      "tree_radius"   "200"
+      "agi"           "50"
+      "hits"          "5"
+      "buff_duration" "3"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -169,9 +174,10 @@
 
     "AbilityValues"
 		{
-      "vision"    "250"
-      "atk_range" "500"
-			"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+      "vision"       "250"
+      "atk_range"    "500"
+      "bonus_damage" "5"
+			"rank"			   "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

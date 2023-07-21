@@ -245,16 +245,22 @@ function GameMode:OnTeamKillCredit(keys)
   local victimPlayer = PlayerResource:GetPlayer(keys.victim_userid)
   local numKills = keys.herokills
   local killerTeamNumber = keys.teamnumber
-  local team_index = GetTeamIndex(killerTeamNumber)
+  local KillerTeamIndex = GetTeamIndex(killerTeamNumber)
+  local VictimTeamIndex = GetTeamIndex(victimPlayer:GetAssignedHero():GetTeamNumber())
 
-  TEAMS[team_index][2] = TEAMS[team_index][2] + 1
-  local message = TEAMS[team_index][3] .. " SCORE: " .. TEAMS[team_index][2]
-  GameRules:SendCustomMessage(TEAMS[team_index][5] .. message .."</font>",-1,0)
+  TEAMS[VictimTeamIndex][2] = TEAMS[VictimTeamIndex][2] + SCORE_DEATH
+  if TEAMS[VictimTeamIndex][2] < 0 then TEAMS[VictimTeamIndex][2] = 0 end
+  local message = TEAMS[VictimTeamIndex][3] .. " SCORE: " .. TEAMS[VictimTeamIndex][2]
+  GameRules:SendCustomMessage(TEAMS[VictimTeamIndex][5] .. message .."</font>",-1,0)
 
-  if TEAMS[team_index][2] >= SCORE then
-    local message = TEAMS[team_index][3] .. " VICTORY!"
+  TEAMS[KillerTeamIndex][2] = TEAMS[KillerTeamIndex][2] + SCORE_KILL
+  local message = TEAMS[KillerTeamIndex][3] .. " SCORE: " .. TEAMS[KillerTeamIndex][2]
+  GameRules:SendCustomMessage(TEAMS[KillerTeamIndex][5] .. message .."</font>",-1,0)
+
+  if TEAMS[KillerTeamIndex][2] >= SCORE_LIMIT then
+    local message = TEAMS[KillerTeamIndex][3] .. " VICTORY!"
     GameRules:SetCustomVictoryMessage(message)
-    GameRules:SetGameWinner(TEAMS[team_index][1])
+    GameRules:SetGameWinner(TEAMS[KillerTeamIndex][1])
   end
 
   -- if victimPlayer:GetAssignedHero():IsReincarnating() == false then
@@ -361,7 +367,7 @@ function GameMode:OnEntityKilled( keys )
                 end
               end
             
-              local average_gold_bounty = RandomInt(GOLD_BOUNTY_MIN * killedUnit:GetLevel(), GOLD_BOUNTY_MAX * killedUnit:GetLevel())
+              local average_gold_bounty = RandomInt(XP_BOUNTY_MIN * killedUnit:GetLevel(), XP_BOUNTY_MAX * killedUnit:GetLevel())
               gold = average_gold_bounty / number
             
               if math.floor(gold) > 0 and number > 0 then

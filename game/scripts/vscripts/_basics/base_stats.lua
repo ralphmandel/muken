@@ -686,7 +686,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local caster = self:GetCaster()
       local amount = self.base_attack_time
 
-      if caster:IsRangedAttacker() then amount = amount + 0.2 end
+      if caster:IsRangedAttacker() then amount = amount + 0.1 end
 
       local bat_increased = caster:FindAllModifiersByName("_modifier_bat_increased")
       for _,modifier in pairs(bat_increased) do

@@ -62,6 +62,8 @@ hunter_1__shot = class({})
     if extradata.kill == 1 then
       self:PlayEfxKill(caster)
       target:Kill(self, caster)
+      self:EndCooldown()
+      self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()) * self:GetSpecialValueFor("cd_mult"))
       return
     end
 
@@ -73,8 +75,6 @@ hunter_1__shot = class({})
     })
   
     target:Interrupt()
-    self:EndCooldown()
-    self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()) / 2)
   end
 
 -- EFFECTS
