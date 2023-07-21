@@ -67,7 +67,7 @@
       "delay_in"      "3"
       "delay_out"     "0.5"
       "tree_radius"   "200"
-      "agi"           "50"
+      "agi"           "40"
       "hits"          "5"
       "buff_duration" "3"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
@@ -174,8 +174,8 @@
 
     "AbilityValues"
 		{
-      "vision"       "250"
-      "atk_range"    "500"
+      "vision"       "300"
+      "atk_range"    "300"
       "bonus_damage" "5"
 			"rank"			   "1 2 3 4 5 6 7 8 9 10 11"
 		}

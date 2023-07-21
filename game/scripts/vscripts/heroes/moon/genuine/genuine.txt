@@ -117,7 +117,7 @@
 			"silence_radius"	    "300"
 			"vision_radius"	      "300"
 			"projectile_radius"	  "200"
-			"projectile_speed"	  "400"
+			"projectile_speed"	  "350"
 			"projectile_distance"	"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}

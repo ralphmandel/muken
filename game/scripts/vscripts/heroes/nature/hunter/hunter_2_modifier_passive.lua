@@ -31,12 +31,12 @@ end
 
 function hunter_2_modifier_passive:OnUnitMoved(keys)
 	if keys.unit == self.parent then
-    local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-    if trees then
-      for k, v in pairs(trees) do
-        return
-      end
-    end
+    -- local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
+    -- if trees then
+    --   for k, v in pairs(trees) do
+    --     return
+    --   end
+    -- end
     self:StartDelay()
   else
     if keys.unit:GetTeamNumber() ~= self.parent:GetTeamNumber() then

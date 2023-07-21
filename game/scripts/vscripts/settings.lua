@@ -133,16 +133,16 @@ BOT_LIST = {
 }
 
 RANDOM_NAMES = {
-  [1] = "Serluc",
+  [1] = "Jairo, o Jakiro",
   [2] = "Zubumafu",
-  [3] = "Kazunari",
-  [4] = "Edomic Wolf",
-  [5] = "InStereo4",
-  [6] = "Jairo, o Jakiro",
-  [7] = "Gasp.Z",
+  [3] = "Gasp.Z",
+  [4] = "UK",
+  [5] = "Kazunari",
+  [6] = "Serluc",
+  [7] = "InStereo4",
   [8] = "Do Jun",
   [9] = "kubo",
-  [10] = "UK"
+  [10] = "Edomic Wolf"
 }
 
 BOT_STATE_REST = 0

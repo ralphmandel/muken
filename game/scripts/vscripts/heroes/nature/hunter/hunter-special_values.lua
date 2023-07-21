@@ -233,9 +233,9 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "hunter_1__shot" then
 		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 15 end
+		if value_name == "AbilityCooldown" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "damage" then return 300 + (value_level * 10) end
+		if value_name == "damage" then return 250 + (value_level * 5) end
 		if value_name == "cd_mult_tooltip" then return ability:GetCooldown(ability:GetLevel()) * ability:GetSpecialValueFor("cd_mult") end
 	end
 
@@ -265,7 +265,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return 100 end
     if value_name == "AbilityCharges" then return 4 end
-    if value_name == "AbilityChargeRestoreTime" then return 20 end
+    if value_name == "AbilityChargeRestoreTime" then return 25 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "lifetime" then return 240 + (value_level * 6) end
 	end

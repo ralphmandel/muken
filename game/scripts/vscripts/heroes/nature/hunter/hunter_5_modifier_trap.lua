@@ -9,7 +9,7 @@ function hunter_5_modifier_trap:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.delay = 1
+  self.delay = 2
 
   AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {delay = self.delay}, false)
 
