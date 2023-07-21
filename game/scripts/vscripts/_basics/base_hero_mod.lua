@@ -143,7 +143,7 @@ function base_hero_mod:LoadSounds()
 	self.pre_attack_sound = ""
   -- check brute and lawbreaker
 	if self.ability.hero_name == "icebreaker" then self.pre_attack_sound = "hero_bloodseeker.PreAttack" end
-  if self.ability.hero_name == "striker" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
+  if self.ability.hero_name == "paladin" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
 	if self.ability.hero_name == "bloodstained" then self.pre_attack_sound = "Hero_Nightstalker.PreAttack" end
 	-- if self.ability.hero_name == "krieger" then self.pre_attack_sound = "Krieger.Pre.Attack" end
 
@@ -156,7 +156,7 @@ function base_hero_mod:LoadSounds()
 
 	self.attack_landed_sound = ""
 	if self.ability.hero_name == "icebreaker" then self.attack_landed_sound = "Hero_Riki.Attack" end
-	if self.ability.hero_name == "striker" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
+	if self.ability.hero_name == "paladin" then self.attack_landed_sound = "Hero_Dawnbreaker.Attack" end
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 	if self.ability.hero_name == "fleaman" then self.attack_landed_sound = "Hero_Slark.Attack" end

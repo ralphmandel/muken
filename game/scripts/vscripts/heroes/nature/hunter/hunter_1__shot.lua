@@ -73,6 +73,8 @@ hunter_1__shot = class({})
     })
   
     target:Interrupt()
+    self:EndCooldown()
+    self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel()) / 2)
   end
 
 -- EFFECTS

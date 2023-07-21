@@ -1,0 +1,155 @@
+"TalentTree_paladin"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_dawnbreaker"
+	{
+		"paladin_1__link" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "paladin_1__link_rank_11" // PATH + TALENT
+				"2"   "paladin_1__link_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_1__link_rank_21"
+				"2"   "paladin_1__link_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_1__link_rank_31"
+				"2"   "paladin_1__link_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_1__link_rank_41"
+				"2"   "paladin_1__link_rank_42"
+			}
+		}
+		"paladin_2__shield"
+		{
+			"1"
+			{
+				"1"   "paladin_2__shield_rank_11"
+				"2"   "paladin_2__shield_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_2__shield_rank_21"
+				"2"   "paladin_2__shield_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_2__shield_rank_31"
+				"2"   "paladin_2__shield_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_2__shield_rank_41"
+				"2"   "paladin_2__shield_rank_42"
+			}
+		}
+		"paladin_3__hammer"
+		{
+			"1"
+			{
+				"1"   "paladin_3__hammer_rank_11"
+				"2"   "paladin_3__hammer_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_3__hammer_rank_21"
+				"2"   "paladin_3__hammer_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_3__hammer_rank_31"
+				"2"   "paladin_3__hammer_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_3__hammer_rank_41"
+				"2"   "paladin_3__hammer_rank_42"
+			}
+		}
+		"paladin_4__magnus"
+		{
+			"1"
+			{
+				"1"   "paladin_4__magnus_rank_11"
+				"2"   "paladin_4__magnus_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_4__magnus_rank_21"
+				"2"   "paladin_4__magnus_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_4__magnus_rank_31"
+				"2"   "paladin_4__magnus_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_4__magnus_rank_41"
+				"2"   "paladin_4__magnus_rank_42"
+			}
+		}
+		"paladin_5__reborn"
+		{
+			"1"
+			{
+				"1"   "paladin_5__reborn_rank_11"
+				"2"   "paladin_5__reborn_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_5__reborn_rank_21"
+				"2"   "paladin_5__reborn_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_5__reborn_rank_31"
+				"2"   "paladin_5__reborn_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_5__reborn_rank_41"
+				"2"   "paladin_5__reborn_rank_42"
+			}
+		}
+		"paladin_u__faith"
+		{
+			"1"
+			{
+				"1"   "paladin_u__faith_rank_11"
+				"2"   "paladin_u__faith_rank_12"
+			}
+			"2"
+			{
+				"1"   "paladin_u__faith_rank_21"
+				"2"   "paladin_u__faith_rank_22"
+			}
+			"3"
+			{
+				"1"   "paladin_u__faith_rank_31"
+				"2"   "paladin_u__faith_rank_32"
+			}
+			"4"
+			{
+				"1"   "paladin_u__faith_rank_41"
+				"2"   "paladin_u__faith_rank_42"
+			}
+		}
+	}	
+}

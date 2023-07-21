@@ -242,9 +242,9 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
 		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
-    if value_name == "AbilityCastRange" then return 375 end
+    if value_name == "AbilityCastRange" then return 350 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "max_range" then return 750 + (value_level * 25) end
+		if value_name == "max_range" then return 700 + (value_level * 30) end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__tear" then

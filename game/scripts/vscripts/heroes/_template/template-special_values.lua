@@ -30,6 +30,9 @@ function template_special_values:GetModifierOverrideAbilitySpecial(keys)
 	local ability = keys.ability
 	local value_name = keys.ability_special_value
 	local value_level = keys.ability_special_level
+  --"AbilityCastRange"
+  --"AbilityCharges"
+  --"AbilityChargeRestoreTime"
 
 	if ability:GetAbilityName() == "template_1__sk1" then
 		if value_name == "AbilityManaCost" then return 1 end

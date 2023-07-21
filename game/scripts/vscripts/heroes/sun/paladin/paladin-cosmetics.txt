@@ -1,0 +1,13 @@
+"Cosmetics"
+{
+    "models/items/dawnbreaker/judgement_of_light_armor/judgement_of_light_armor.vmdl"
+    {
+        "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_armor_ambient.vpcf" ""
+    }
+
+    "models/items/dawnbreaker/judgement_of_light_arms/judgement_of_light_arms.vmdl" "nil"
+
+    "models/items/dawnbreaker/judgement_of_light_head/judgement_of_light_head.vmdl" "nil"
+
+    "models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl" "nil"
+}

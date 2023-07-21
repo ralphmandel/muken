@@ -315,7 +315,7 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     return 3
   end
 
-  if value_name == "hypo_duration" then return 5 end
+  if value_name == "hypo_duration" then return 2 end
   if value_name == "hypo_increment" then return 1 end
   if value_name == "max_hypo_stack" then return 10 end
   if value_name == "special_copy_duration" then return 5 end

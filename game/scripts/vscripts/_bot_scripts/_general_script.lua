@@ -13,7 +13,8 @@ _general_script = class({})
 
   local ACTION_REST_WAIT_FULL_HEALTH = 100
   local ACTION_REST_WAIT_FULL_MANA = 101
-  local ACTION_REST_CHANGE_TO_AGGRESSIVE = 102
+  local ACTION_REST_WAIT_FOR_ALLIES = 102
+  local ACTION_REST_CHANGE_TO_AGGRESSIVE = 103
 
   local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 200
   local ACTION_AGRESSIVE_SWAP_TARGET = 201
@@ -128,6 +129,16 @@ _general_script = class({})
       if current_action == ACTION_REST_WAIT_FULL_MANA then
         if self.parent:GetManaPercent() < FULL_MANA_PERCENT then
           self.rested = false
+        end
+      end
+
+      if current_action == ACTION_REST_WAIT_FOR_ALLIES then
+        for _, hero in pairs(HeroList:GetAllHeroes()) do
+          if hero:GetTeamNumber() == self.parent:GetTeamNumber() then
+            if hero:IsAlive() == false then
+              self.rested = false
+            end
+          end
         end
       end
 
@@ -517,7 +528,8 @@ _general_script = class({})
     self.RestActions = {
       [1] = ACTION_REST_WAIT_FULL_HEALTH,
       [2] = ACTION_REST_WAIT_FULL_MANA,
-      [3] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
+      [3] = ACTION_REST_WAIT_FOR_ALLIES,
+      [4] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
     }
 
     self.AggressiveActions = {
@@ -555,7 +567,8 @@ _general_script = class({})
     if GetHeroName(self.parent:GetUnitName()) == "ancient" then
       self.RestActions = {
         [1] = ACTION_REST_WAIT_FULL_HEALTH,
-        [2] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
+        [2] = ACTION_REST_WAIT_FOR_ALLIES,
+        [3] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
       }
       
       return ancient
