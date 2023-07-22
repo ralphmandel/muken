@@ -44,16 +44,16 @@ function item_rare_serluc_armor_mod_aura:OnCreated( kv )
 	local passive_con = self.ability:GetSpecialValueFor("passive_con")
 	local passive_mnd = self.ability:GetSpecialValueFor("passive_mnd")
 
-	AddBonus(self.ability, "_1_CON", self.parent, passive_con, 0, nil)
-	AddBonus(self.ability, "_2_MND", self.parent, passive_mnd, 0, nil)
+	AddBonus(self.ability, "CON", self.parent, passive_con, 0, nil)
+	AddBonus(self.ability, "MND", self.parent, passive_mnd, 0, nil)
 end
 
 function item_rare_serluc_armor_mod_aura:OnRefresh( kv )
 end
 
 function item_rare_serluc_armor_mod_aura:OnRemoved( kv )
-	RemoveBonus(self.ability, "_1_CON", self.parent)
-	RemoveBonus(self.ability, "_2_MND", self.parent)
+	RemoveBonus(self.ability, "CON", self.parent)
+	RemoveBonus(self.ability, "MND", self.parent)
 end
 
 

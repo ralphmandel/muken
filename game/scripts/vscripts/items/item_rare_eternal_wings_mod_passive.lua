@@ -19,14 +19,14 @@ function item_rare_eternal_wings_mod_passive:OnCreated( kv )
 	self.wings_duration = self.ability:GetSpecialValueFor("wings_duration")
 	self.manacost = self.ability:GetSpecialValueFor("manacost")
 
-	AddBonus(self.ability, "_2_REC", self.parent, passive_rec, 0, nil)
+	AddBonus(self.ability, "REC", self.parent, passive_rec, 0, nil)
 end
 
 function item_rare_eternal_wings_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_eternal_wings_mod_passive:OnRemoved( kv )
-	RemoveBonus(self.ability, "_2_REC", self.parent)
+	RemoveBonus(self.ability, "REC", self.parent)
 end
 
 

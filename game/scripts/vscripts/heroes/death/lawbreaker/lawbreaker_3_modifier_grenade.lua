@@ -10,7 +10,7 @@ function lawbreaker_3_modifier_grenade:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
   
-  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
   AddModifier(self.parent, self.caster, self.ability, "_modifier_blind", {
     percent = self.ability:GetSpecialValueFor("blind")
   }, false)
@@ -23,7 +23,7 @@ function lawbreaker_3_modifier_grenade:OnRefresh(kv)
 end
 
 function lawbreaker_3_modifier_grenade:OnRemoved()
-  RemoveBonus(self.ability, "_2_DEF", self.parent)
+  RemoveBonus(self.ability, "DEF", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
 end
 

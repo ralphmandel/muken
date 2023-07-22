@@ -20,7 +20,7 @@ function item_legend_serluc_mod_berserk:OnCreated( kv )
 
 	local agi = self.ability:GetSpecialValueFor("agi")
 	local ms = self.ability:GetSpecialValueFor("ms")
-	AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
+	AddBonus(self.ability, "AGI", self.parent, agi, 0, nil)
 	self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = ms})
 
   --AddStatusEfx(self.ability, "krieger_1_modifier_fury_status_efx", self.caster, self.parent)
@@ -34,7 +34,7 @@ end
 
 function item_legend_serluc_mod_berserk:OnRemoved( kv )
 	self.parent:SetForceAttackTarget(nil)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
   --RemoveStatusEfx(self.ability, "krieger_1_modifier_fury_status_efx", self.caster, self.parent)
 

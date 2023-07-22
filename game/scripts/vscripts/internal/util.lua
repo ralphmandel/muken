@@ -156,15 +156,19 @@ end
 
   function AddBonus(ability, string, target, const, percent, time)
     if const == 0 and percent == 0 then return end
-    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, string) end
+    local stringFormat = "_1_"
+    if string ~= "STR" and string ~= "INT" and string ~= "AGI" and string ~= "CON" then stringFormat = "_2_" end
+    stringFormat = stringFormat..string
+
+    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, stringFormat) end
   end
 
   function RemoveBonus(ability, string, target)
-    local stringFormat = string.format("%s_modifier_stack", string)
-    local mod = target:FindAllModifiersByName(stringFormat)
-    for _,modifier in pairs(mod) do
-        if modifier:GetAbility() == ability then modifier:Destroy() end
-    end
+    local stringFormat = "_1_"
+    if string ~= "STR" and string ~= "INT" and string ~= "AGI" and string ~= "CON" then stringFormat = "_2_" end
+    stringFormat = stringFormat..string.."_modifier_stack"
+
+    RemoveAllModifiersByNameAndAbility(target, stringFormat, ability)
   end
 
   function RemoveAllModifiersByNameAndAbility(target, name, ability)

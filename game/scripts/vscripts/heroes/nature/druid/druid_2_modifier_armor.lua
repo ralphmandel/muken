@@ -10,8 +10,8 @@ function druid_2_modifier_armor:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
-  AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
+  AddBonus(self.ability, "DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
 
   if self.ability:GetSpecialValueFor("special_purge") == 1 then
     self.parent:Purge(false, true, false, true, false)
@@ -21,10 +21,10 @@ function druid_2_modifier_armor:OnCreated(kv)
 end
 
 function druid_2_modifier_armor:OnRefresh(kv)
-  RemoveBonus(self.ability, "_2_DEF", self.parent)
-  RemoveBonus(self.ability, "_2_RES", self.parent)
-  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
-  AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
+  RemoveBonus(self.ability, "DEF", self.parent)
+  RemoveBonus(self.ability, "RES", self.parent)
+  AddBonus(self.ability, "DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("special_res"), 0, nil)
 
   if self.ability:GetSpecialValueFor("special_purge") == 1 then
     self.parent:Purge(false, true, false, true, false)
@@ -32,8 +32,8 @@ function druid_2_modifier_armor:OnRefresh(kv)
 end
 
 function druid_2_modifier_armor:OnRemoved()
-	RemoveBonus(self.ability, "_2_DEF", self.parent)
-  RemoveBonus(self.ability, "_2_RES", self.parent)
+	RemoveBonus(self.ability, "DEF", self.parent)
+  RemoveBonus(self.ability, "RES", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

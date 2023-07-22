@@ -23,7 +23,7 @@ function bocuse_4_modifier_mirepoix:OnCreated(kv)
 	self.ability:EndCooldown()
 	self.ability:SetActivated(false)
 
-  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
+  AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
   AddStatusEfx(self.ability, "bocuse_4_modifier_mirepoix_status_efx", self.caster, self.parent)
 
   self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
@@ -40,7 +40,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
 
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "AGI", self.parent)
   RemoveStatusEfx(self.ability, "bocuse_4_modifier_mirepoix_status_efx", self.caster, self.parent)
 
 	if self.parent:IsAlive() then

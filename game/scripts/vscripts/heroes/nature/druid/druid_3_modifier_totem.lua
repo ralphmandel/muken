@@ -16,7 +16,7 @@ function druid_3_modifier_totem:OnCreated(kv)
   self.min_health = self.hits
   self.radius = self.ability:GetAOERadius()
 
-  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "CON", self.parent, -9999, 0, nil)
 
   Timers:CreateTimer(FrameTime(), function()
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
@@ -38,7 +38,7 @@ function druid_3_modifier_totem:OnRemoved()
     self.parent:StopSound("Igneo.Burn.Loop")
 	end
 
-  RemoveBonus(self.ability, "_1_CON", self.parent)
+  RemoveBonus(self.ability, "CON", self.parent)
 
 	if self.ambient then ParticleManager:DestroyParticle(self.ambient, false) end
 	if self.burn_particle then ParticleManager:DestroyParticle(self.burn_particle, false) end

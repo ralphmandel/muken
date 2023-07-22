@@ -97,8 +97,8 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local caster = self:GetCaster()
     local total_con = math.floor(caster:GetMana() * self:GetSpecialValueFor("con_mult") * 0.01)
 
-    RemoveBonus(self, "_1_CON", caster)
-    AddBonus(self, "_1_CON", caster, total_con, 0, nil)
+    RemoveBonus(self, "CON", caster)
+    AddBonus(self, "CON", caster, total_con, 0, nil)
     caster:FindModifierByNameAndCaster(self:GetIntrinsicModifierName(), caster):UpdateAmbients()
   end
 

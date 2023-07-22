@@ -46,11 +46,11 @@ end
 function druid_4_modifier_form:OnRemoved()
 	if IsServer() then self:PlayEfxEnd() end
 
-	RemoveBonus(self.ability, "_1_STR", self.parent)
-	RemoveBonus(self.ability, "_2_MND", self.parent)
-	RemoveBonus(self.ability, "_1_CON", self.parent)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
+	RemoveBonus(self.ability, "STR", self.parent)
+	RemoveBonus(self.ability, "MND", self.parent)
+	RemoveBonus(self.ability, "CON", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
+	RemoveBonus(self.ability, "LCK", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_buff", self.ability)
 
   self:HideItens(false)
@@ -117,8 +117,8 @@ function druid_4_modifier_form:OnAttackLanded(keys)
 
   if self.break_duration > 0 then
     self.luck_stack = self.luck_stack + 1
-    RemoveBonus(self.ability, "_2_LCK", self.parent)
-    AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
+    RemoveBonus(self.ability, "LCK", self.parent)
+    AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
     if BaseStats(self.parent).has_crit then
       AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {duration = self.break_duration}, true)

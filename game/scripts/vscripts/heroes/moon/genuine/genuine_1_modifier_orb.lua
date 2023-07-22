@@ -15,12 +15,12 @@ function genuine_1_modifier_orb:OnCreated(kv)
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
-  RemoveBonus(self.ability, "_2_LCK", self.parent)
-  AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
+  RemoveBonus(self.ability, "LCK", self.parent)
+  AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
-  RemoveBonus(self.ability, "_2_LCK", self.parent)
+  RemoveBonus(self.ability, "LCK", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

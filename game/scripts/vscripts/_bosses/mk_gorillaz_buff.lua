@@ -16,7 +16,7 @@ function mk_gorillaz_buff:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.bonus_damage = 0
 
-	AddBonus(self.ability, "_1_AGI", self.parent, 20, 0, nil)
+	AddBonus(self.ability, "AGI", self.parent, 20, 0, nil)
   AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {percent = 100}, false)
 
   if IsServer() then
@@ -29,7 +29,7 @@ function mk_gorillaz_buff:OnRefresh(kv)
 end
 
 function mk_gorillaz_buff:OnRemoved()
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 

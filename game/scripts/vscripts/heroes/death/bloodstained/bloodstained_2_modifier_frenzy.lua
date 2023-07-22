@@ -12,8 +12,8 @@ function bloodstained_2_modifier_frenzy:OnCreated(kv)
 
 	self.parent:SetForceAttackTarget(self.ability.target)
 	
-	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-	AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
+	AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+	AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
   AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms")
   }, false)
@@ -30,8 +30,8 @@ end
 function bloodstained_2_modifier_frenzy:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:SetForceAttackTarget(nil)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
-	RemoveBonus(self.ability, "_2_RES", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
+	RemoveBonus(self.ability, "RES", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 

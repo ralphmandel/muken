@@ -15,7 +15,7 @@ function hunter_2_modifier_camouflage:OnCreated(kv)
     delay = 0, spell_break = 0, attack_break = 0
   }, false)
 
-  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
 
   if IsServer() then
     self:SetStackCount(self.ability:GetSpecialValueFor("hits"))
@@ -28,7 +28,7 @@ end
 
 function hunter_2_modifier_camouflage:OnRemoved()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_invisible", self.ability)
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "AGI", self.parent)
 end
 
 function hunter_2_modifier_camouflage:OnDestroy(kv)

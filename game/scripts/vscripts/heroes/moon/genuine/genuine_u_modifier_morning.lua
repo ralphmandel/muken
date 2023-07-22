@@ -14,8 +14,8 @@ function genuine_u_modifier_morning:OnCreated(kv)
 
 	self.ability:SetActivated(false)
 
-  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-  AddBonus(self.ability, "_1_INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
+  AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddBonus(self.ability, "INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
 
   GameRules:BeginTemporaryNight(self:GetDuration())
 
@@ -35,8 +35,8 @@ function genuine_u_modifier_morning:OnRemoved()
   self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):StopEfxBuff()
 	self.ability:SetActivated(true)
 
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
-	RemoveBonus(self.ability, "_1_INT", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
+	RemoveBonus(self.ability, "INT", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

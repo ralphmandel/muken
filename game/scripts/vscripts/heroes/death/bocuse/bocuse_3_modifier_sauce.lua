@@ -29,7 +29,7 @@ function bocuse_3_modifier_sauce:OnRemoved()
 	if self.pidx then ParticleManager:DestroyParticle(self.pidx, true) end
 	self:CheckCounterEfx()
 
-  RemoveBonus(self.ability, "_2_DEX", self.parent)
+  RemoveBonus(self.ability, "DEX", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_break", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_disarm", self.ability)
@@ -96,7 +96,7 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 
 	if stack_count == self.ability:GetSpecialValueFor("max_stack") then
     if self.ability:GetSpecialValueFor("special_dex") < 0 then
-      AddBonus(self.ability, "_2_DEX", self.parent, self.ability:GetSpecialValueFor("special_dex"), 0, self:GetRemainingTime())
+      AddBonus(self.ability, "DEX", self.parent, self.ability:GetSpecialValueFor("special_dex"), 0, self:GetRemainingTime())
 		end
 
     if self.ability:GetSpecialValueFor("special_break") == 1 then

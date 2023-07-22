@@ -16,7 +16,7 @@ function bloodstained__modifier_copy:OnCreated(kv)
   self.target = EntIndexToHScript(kv.target_index)
 
   AddStatusEfx(self.ability, "bloodstained__modifier_copy_status_efx", self.caster, self.parent)
-  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "CON", self.parent, -9999, 0, nil)
 
   self.max_barrier = 100
   self.barrier = self.max_barrier
@@ -30,7 +30,7 @@ end
 
 function bloodstained__modifier_copy:OnRemoved()
   RemoveStatusEfx(self.ability, "bloodstained__modifier_copy_status_efx", self.caster, self.parent)
-  RemoveBonus(self.ability, "_1_CON", self.parent)
+  RemoveBonus(self.ability, "CON", self.parent)
 
   if self.target then
     if IsValidEntity(self.target) then

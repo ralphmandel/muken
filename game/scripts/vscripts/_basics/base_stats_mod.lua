@@ -42,11 +42,11 @@ base_stats_mod = class ({})
       MODIFIER_EVENT_ON_TAKEDAMAGE, -- POPUP DAMAGE TYPES
       MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, -- PHYS./MAGIC. AMP
       MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, --CRITICAL ATTACKS
-
+      MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+      
       -- STR
       MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-      MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
-      MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK,
+      MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 
       -- AGI
       MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
@@ -60,10 +60,9 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 
       -- CON
-      MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-      --MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
       MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
       MODIFIER_PROPERTY_HEALTH_BONUS,
+      MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
       MODIFIER_EVENT_ON_HEAL_RECEIVED,
 
       --SECONDARY
@@ -159,19 +158,21 @@ base_stats_mod = class ({})
     return 0
   end
 
--- STR
-
-  function base_stats_mod:GetModifierBaseAttack_BonusDamage()
-    return (self.ability.stat_total["STR"] + 1) * self.ability.damage
-  end
-
   function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-    --if self.parent:IsRangedAttacker() then return 0 end
-
     local average = self.ability.physical_block_max_percent
     local block_percent = RandomInt(average - 5, average + 5)
 
     return math.floor(keys.damage * block_percent * 0.01)
+  end
+
+-- STR
+
+  function base_stats_mod:GetModifierBaseAttack_BonusDamage()
+    return self.ability.stat_total["STR"] * self.ability.base_atk_damage * self.ability.damage_percent * 0.01
+  end
+
+  function hunter_u_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
+    return self.ability:GetStatBase("STR") * self.ability.bonus_atk_damage
   end
 
 -- AGI
@@ -186,7 +187,7 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierAttackSpeedBonus_Constant()
     if self.parent:HasModifier("ancient_1_modifier_passive") then return 0 end
-    return (self.ability.stat_total["AGI"] + 1) * self.ability.attack_speed
+    return self.ability.stat_total["AGI"] * self.ability.attack_speed
   end
 
   function base_stats_mod:GetModifierBaseAttackTimeConstant()
@@ -220,18 +221,10 @@ base_stats_mod = class ({})
 
 -- CON
 
-  function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
-    return self.ability.heal_amp * self.ability:GetStatBase("CON")
-  end
-
-  function base_stats_mod:GetModifierHPRegenAmplify_Percentage()
-    --return self.ability.heal_amp * (self.ability.stat_base["CON"])
-  end
-
   function base_stats_mod:GetModifierExtraHealthBonus()
     if IsServer() then
       if self:GetParent():IsHero() == false then
-        return (self.ability.stat_total["CON"] + 1) * self.ability.health_bonus
+        return self.ability.stat_total["CON"] * self.ability.health_bonus
       end
     end
   end
@@ -239,9 +232,13 @@ base_stats_mod = class ({})
   function base_stats_mod:GetModifierHealthBonus()
     if IsServer() then
       if self:GetParent():IsHero() then
-        return (self.ability.stat_total["CON"] + 1) * self.ability.health_bonus
+        return self.ability.stat_total["CON"] * self.ability.health_bonus
       end
     end
+  end
+
+  function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
+    return self.ability.heal_amp * self.ability:GetStatBase("CON")
   end
 
   function base_stats_mod:OnHealReceived(keys)
@@ -250,6 +247,24 @@ base_stats_mod = class ({})
     if keys.gain < 1 then return end
 
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
+  end
+
+-- DEF
+
+  function base_stats_mod:GetModifierPhysicalArmorBonus()
+    return self.ability.stat_total["DEF"] * self.ability.armor
+  end
+
+  function base_stats_mod:GetModifierStatusResistance()
+    return self.ability:GetStatBase("DEF") * self.ability.status_resist
+  end
+
+-- RES
+
+  function base_stats_mod:GetModifierMagicalResistanceBonus()
+    local value = self.ability.stat_total["RES"] * self.ability.magic_resist
+    local calc = (value * 6) / (1 +  (value * 0.06))
+    return calc
   end
 
 -- SECONDARY
@@ -292,20 +307,6 @@ base_stats_mod = class ({})
       return 100
     end
     return 0
-  end
-
-  function base_stats_mod:GetModifierPhysicalArmorBonus()
-    return (self.ability.stat_total["DEF"] + 11) * self.ability.armor
-  end
-
-  function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = (self.ability.stat_total["RES"] + 11) * self.ability.magic_resist
-    local calc = (value * 6) / (1 +  (value * 0.06))
-    return calc
-  end
-
-  function base_stats_mod:GetModifierStatusResistance()
-    return (self.ability.stat_total["RES"] + 1) * self.ability.status_resist
   end
   
   function base_stats_mod:GetModifierPercentageCooldown()

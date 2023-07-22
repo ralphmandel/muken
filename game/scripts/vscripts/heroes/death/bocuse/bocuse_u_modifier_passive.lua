@@ -65,8 +65,8 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
 end
 
 function bocuse_u_modifier_passive:OnStackCountChanged(old)
-	-- RemoveBonus(self.ability, "_1_CON", self.parent)
-  -- AddBonus(self.ability, "_1_CON", self.parent, self:GetStackCount(), 0, nil)
+	-- RemoveBonus(self.ability, "CON", self.parent)
+  -- AddBonus(self.ability, "CON", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- EFFECTS -----------------------------------------------------------

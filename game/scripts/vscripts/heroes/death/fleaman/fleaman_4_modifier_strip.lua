@@ -10,7 +10,7 @@ function fleaman_4_modifier_strip:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddBonus(self.ability, "_2_DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
+  AddBonus(self.ability, "DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
 
 	if IsServer() then self:PlayEfxStart() end
 end
@@ -19,7 +19,7 @@ function fleaman_4_modifier_strip:OnRefresh(kv)
 end
 
 function fleaman_4_modifier_strip:OnRemoved()
-  RemoveBonus(self.ability, "_2_DEF", self.parent)
+  RemoveBonus(self.ability, "DEF", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

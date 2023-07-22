@@ -24,8 +24,8 @@ function druid_u_modifier_aura_effect:OnRemoved()
   if self.mod_applied == true then self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1) end
   if self.parent:IsReincarnating() == false then self.parent:RemoveModifierByNameAndCaster("druid_u_modifier_reborn", self.caster) end
 
-  RemoveBonus(self.ability, "_1_STR", self.parent)
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "STR", self.parent)
+  RemoveBonus(self.ability, "AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_manaloss", self.ability)
 end
@@ -91,8 +91,8 @@ function druid_u_modifier_aura_effect:ApplyOnAllies()
   local reborn_chance = self.ability:GetSpecialValueFor("special_reborn_chance")
 
   if str > 0 or agi > 0 then
-    AddBonus(self.ability, "_1_STR", self.parent, str, 0, nil)
-    AddBonus(self.ability, "_1_AGI", self.parent, agi, 0, nil)
+    AddBonus(self.ability, "STR", self.parent, str, 0, nil)
+    AddBonus(self.ability, "AGI", self.parent, agi, 0, nil)
     self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() + 1)
     self.mod_applied = true
   

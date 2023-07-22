@@ -20,18 +20,18 @@ function item_legend_serluc_mod_passive:OnCreated( kv )
 	local passive_lck = self.ability:GetSpecialValueFor("passive_lck")
 	local passive_mnd = self.ability:GetSpecialValueFor("passive_mnd")
 
-	AddBonus(self.ability, "_1_STR", self.parent, passive_str, 0, nil)
-	AddBonus(self.ability, "_2_LCK", self.parent, passive_lck, 0, nil)
-	AddBonus(self.ability, "_2_MND", self.parent, passive_mnd, 0, nil)
+	AddBonus(self.ability, "STR", self.parent, passive_str, 0, nil)
+	AddBonus(self.ability, "LCK", self.parent, passive_lck, 0, nil)
+	AddBonus(self.ability, "MND", self.parent, passive_mnd, 0, nil)
 end
 
 function item_legend_serluc_mod_passive:OnRefresh( kv )
 end
 
 function item_legend_serluc_mod_passive:OnRemoved( kv )
-	RemoveBonus(self.ability, "_1_STR", self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
-	RemoveBonus(self.ability, "_2_MND", self.parent)
+	RemoveBonus(self.ability, "STR", self.parent)
+	RemoveBonus(self.ability, "LCK", self.parent)
+	RemoveBonus(self.ability, "MND", self.parent)
 end
 ---------------------------------------------------------------------------------------------------
 

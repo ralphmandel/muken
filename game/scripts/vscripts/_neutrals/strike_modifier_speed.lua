@@ -15,7 +15,7 @@ function strike_modifier_speed:OnCreated( kv )
 
   self.parent:RemoveModifierByName("strike_modifier_slow")
   self.parent:AddNewModifier(self.caster, self.ability, "_modifier_movespeed_buff", {percent = 150})
-  AddBonus(self.ability, "_2_DEX", self.parent, 100, 0, nil)
+  AddBonus(self.ability, "DEX", self.parent, 100, 0, nil)
 
   if IsServer() then self.parent:EmitSound("Ability.Windrun") end
 end
@@ -26,7 +26,7 @@ end
 function strike_modifier_speed:OnRemoved()
   if IsServer() then self.parent:StopSound("Ability.Windrun") end
 
-  RemoveBonus(self.ability, "_2_DEX", self.parent)
+  RemoveBonus(self.ability, "DEX", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 

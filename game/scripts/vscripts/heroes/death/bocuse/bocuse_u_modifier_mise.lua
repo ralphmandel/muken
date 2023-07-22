@@ -21,7 +21,7 @@ function bocuse_u_modifier_mise:OnCreated(kv)
     AddModifier(self.parent, self.caster, self.ability, "_modifier_unslowable", {}, false)
 	end
 
-  AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
+  AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
 
   self.ability:SetActivated(false)
   if self.ability.autocast == false then self.ability:EndCooldown() end
@@ -39,7 +39,7 @@ function bocuse_u_modifier_mise:OnRemoved()
   RemoveStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
-  RemoveBonus(self.ability, "_2_LCK", self.parent)
+  RemoveBonus(self.ability, "LCK", self.parent)
 
   self.ability:SetActivated(true)
   if self.ability.autocast == false then self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel())) end

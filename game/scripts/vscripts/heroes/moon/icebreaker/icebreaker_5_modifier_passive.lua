@@ -80,8 +80,8 @@ function icebreaker_5_modifier_passive:OnHeroKilled(keys)
 end
 
 function icebreaker_5_modifier_passive:OnStackCountChanged(old)
-	-- RemoveBonus(self.ability, "_1_AGI", self.parent)
-  -- AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount(), 0, nil)
+	-- RemoveBonus(self.ability, "AGI", self.parent)
+  -- AddBonus(self.ability, "AGI", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

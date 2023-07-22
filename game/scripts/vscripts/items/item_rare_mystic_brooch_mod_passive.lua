@@ -18,16 +18,16 @@ function item_rare_mystic_brooch_mod_passive:OnCreated( kv )
 	local passive_con = self.ability:GetSpecialValueFor("passive_con")
 	local passive_mnd = self.ability:GetSpecialValueFor("passive_mnd")
 
-	AddBonus(self.ability, "_1_CON", self.parent, passive_con, 0, nil)
-	AddBonus(self.ability, "_2_MND", self.parent, passive_mnd, 0, nil)
+	AddBonus(self.ability, "CON", self.parent, passive_con, 0, nil)
+	AddBonus(self.ability, "MND", self.parent, passive_mnd, 0, nil)
 end
 
 function item_rare_mystic_brooch_mod_passive:OnRefresh( kv )
 end
 
 function item_rare_mystic_brooch_mod_passive:OnRemoved( kv )
-	RemoveBonus(self.ability, "_1_CON", self.parent)
-	RemoveBonus(self.ability, "_2_MND", self.parent)
+	RemoveBonus(self.ability, "CON", self.parent)
+	RemoveBonus(self.ability, "MND", self.parent)
 end
 
 ---------------------------------------------------------------------------------------------------

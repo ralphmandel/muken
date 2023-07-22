@@ -14,7 +14,7 @@ function bocuse_5_modifier_roux_aura_effect:OnCreated(kv)
     percent = self.ability:GetSpecialValueFor("slow")
   }, false)
 
-	AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
+	AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
 
 	if IsServer() then
     self.parent:EmitSound("Hero_Bristleback.ViscousGoo.Target")
@@ -26,7 +26,7 @@ function bocuse_5_modifier_roux_aura_effect:OnRefresh(kv)
 end
 
 function bocuse_5_modifier_roux_aura_effect:OnRemoved(kv)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 end
 

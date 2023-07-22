@@ -10,14 +10,14 @@ function ancient_4_modifier_passive:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
+  AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
 end
 
 function ancient_4_modifier_passive:OnRefresh(kv)
 end
 
 function ancient_4_modifier_passive:OnRemoved()
-  RemoveBonus(self.ability, "_2_RES", self.parent)
+  RemoveBonus(self.ability, "RES", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -33,10 +33,10 @@ end
 function ancient_4_modifier_passive:OnStateChanged(keys)
 	if keys.unit ~= self.parent then return end
 
-  RemoveBonus(self.ability, "_2_RES", self.parent)
+  RemoveBonus(self.ability, "RES", self.parent)
 
   if self.parent:PassivesDisabled() == false then
-    AddBonus(self.ability, "_2_RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
+    AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
   end
 end
 

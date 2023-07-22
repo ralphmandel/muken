@@ -13,7 +13,7 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
   local def = self.ability:GetSpecialValueFor("def")
   if self.parent:IsHero() == false then def = def * 0.5 end 
 
-  AddBonus(self.ability, "_2_DEF", self.parent, def, 0, nil)
+  AddBonus(self.ability, "DEF", self.parent, def, 0, nil)
 
   if IsServer() then self:PlayEfxStart() end
 end
@@ -22,7 +22,7 @@ function dasdingo_2_modifier_aura_effect:OnRefresh(kv)
 end
 
 function dasdingo_2_modifier_aura_effect:OnRemoved()
-  RemoveBonus(self.ability, "_2_DEF", self.parent)
+  RemoveBonus(self.ability, "DEF", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

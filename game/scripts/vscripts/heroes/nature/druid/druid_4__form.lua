@@ -36,10 +36,10 @@ LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_e
     if form == 2 then con = con + main end
     if form == 3 then mnd = mnd + main end
   
-    AddBonus(self, "_1_STR", caster, str, 0, nil)
-    AddBonus(self, "_2_MND", caster, mnd, 0, nil)
-    AddBonus(self, "_1_CON", caster, con, 0, nil)
-    AddBonus(self, "_1_AGI", caster, agi, 0, nil)
+    AddBonus(self, "STR", caster, str, 0, nil)
+    AddBonus(self, "MND", caster, mnd, 0, nil)
+    AddBonus(self, "CON", caster, con, 0, nil)
+    AddBonus(self, "AGI", caster, agi, 0, nil)
 
     AddModifier(caster, caster, self, "druid_4_modifier_form", {
       duration = self:GetSpecialValueFor("duration"), form = form

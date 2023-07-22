@@ -12,7 +12,7 @@ function template_x_modifier_example:OnCreated(kv)
 
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
   self.min_health = self.hits
-  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "CON", self.parent, -9999, 0, nil)
 
   Timers:CreateTimer(FrameTime(), function()
     self.parent:ModifyHealth(self.hits, self.ability, false, 0)
@@ -23,7 +23,7 @@ function template_x_modifier_example:OnRefresh(kv)
 end
 
 function template_x_modifier_example:OnRemoved()
-  RemoveBonus(self.ability, "_1_CON", self.parent)
+  RemoveBonus(self.ability, "CON", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

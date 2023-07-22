@@ -15,7 +15,7 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
 
   self.bot_script = self.parent:FindModifierByName("_general_script")
   
-  AddBonus(self.ability, "_1_AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
+  AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
   AddModifier(self.caster, self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
     percent = self.ability:GetSpecialValueFor("slow_percent")
   }, false)
@@ -29,7 +29,7 @@ function lawbreaker_2_modifier_combo:OnRefresh(kv)
 end
 
 function lawbreaker_2_modifier_combo:OnRemoved()
-	RemoveBonus(self.ability,"_1_AGI", self.parent)
+	RemoveBonus(self.ability,"AGI", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
@@ -126,7 +126,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function lawbreaker_2_modifier_combo:GetAS()
-  --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("_1_AGI") + 1))
+  --local attack_speed1 = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * (BaseStats(self.parent):GetStatTotal("AGI") + 1))
   local attack_speed = (BaseStats(self.parent):GetStatTotal("AGI") + 1)
   attack_speed = 100 + (BaseStats(self.parent):GetSpecialValueFor("attack_speed") * attack_speed)
   return attack_speed / 100 * BaseStats(self.parent):GetSpecialValueFor("base_attack_time")

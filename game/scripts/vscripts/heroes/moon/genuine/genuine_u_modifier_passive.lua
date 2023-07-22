@@ -23,8 +23,8 @@ function genuine_u_modifier_passive:OnRefresh(kv)
 end
 
 function genuine_u_modifier_passive:OnRemoved(kv)
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
-  RemoveBonus(self.ability, "_1_INT", self.parent)
+  RemoveBonus(self.ability, "AGI", self.parent)
+  RemoveBonus(self.ability, "INT", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -53,10 +53,10 @@ function genuine_u_modifier_passive:OnHeroKilled(keys)
 end
 
 function genuine_u_modifier_passive:OnStackCountChanged(old)
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
-  RemoveBonus(self.ability, "_1_INT", self.parent)
-  AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount(), 0, nil)
-  AddBonus(self.ability, "_1_INT", self.parent, self:GetStackCount(), 0, nil)
+  RemoveBonus(self.ability, "AGI", self.parent)
+  RemoveBonus(self.ability, "INT", self.parent)
+  AddBonus(self.ability, "AGI", self.parent, self:GetStackCount(), 0, nil)
+  AddBonus(self.ability, "INT", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

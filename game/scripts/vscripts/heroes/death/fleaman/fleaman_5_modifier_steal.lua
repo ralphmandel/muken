@@ -25,14 +25,14 @@ end
 function fleaman_5_modifier_steal:OnRemoved()
   local modifier = self.caster:FindModifierByName(self.ability:GetIntrinsicModifierName())
   modifier:SetStackCount(modifier:GetStackCount() - self:GetStackCount())
-	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function fleaman_5_modifier_steal:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_1_STR", self.parent)
-	AddBonus(self.ability, "_1_STR", self.parent, -self:GetStackCount(), 0, nil)
+	RemoveBonus(self.ability, "STR", self.parent)
+	AddBonus(self.ability, "STR", self.parent, -self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

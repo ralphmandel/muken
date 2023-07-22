@@ -44,7 +44,7 @@ function icebreaker_u_modifier_aura:OnCreated(kv)
     ability = self.ability
   }
 
-  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "CON", self.parent, -9999, 0, nil)
   if self.radius_percent > 0 then self.parent:SetMoveCapability(DOTA_UNIT_CAP_MOVE_FLY) end
 
   Timers:CreateTimer(FrameTime(), function()
@@ -66,7 +66,7 @@ function icebreaker_u_modifier_aura:OnRemoved()
 		self.parent:EmitSound("Ability.FrostNova")
 	end
 
-  RemoveBonus(self.ability, "_1_CON", self.parent)
+  RemoveBonus(self.ability, "CON", self.parent)
 
   if self.parent:IsAlive() then self.parent:ForceKill(false) end
 end

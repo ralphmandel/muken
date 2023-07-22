@@ -15,7 +15,7 @@ function bloodstained_1_modifier_rage:OnCreated(kv)
 	self.ability:SetActivated(false)
 
   AddStatusEfx(self.ability, "bloodstained_1_modifier_rage_status_efx", self.caster, self.parent)
-  AddBonus(self.ability, "_2_LCK", self.parent, self.ability:GetSpecialValueFor("lck"), 0, nil)
+  AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("lck"), 0, nil)
 end
 
 function bloodstained_1_modifier_rage:OnRefresh(kv)
@@ -26,8 +26,8 @@ function bloodstained_1_modifier_rage:OnRemoved()
 	if IsServer() then self.parent:StopSound("Bloodstained.rage") end
 
   RemoveStatusEfx(self.ability, "bloodstained_1_modifier_rage_status_efx", self.caster, self.parent)
-	RemoveBonus(self.ability, "_2_LCK", self.parent)
-	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "LCK", self.parent)
+	RemoveBonus(self.ability, "STR", self.parent)
 
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.ability:SetActivated(true)
@@ -50,8 +50,8 @@ function bloodstained_1_modifier_rage:OnTakeDamage(keys)
 end
 
 function bloodstained_1_modifier_rage:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_1_STR", self.parent)
-  AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)	
+	RemoveBonus(self.ability, "STR", self.parent)
+  AddBonus(self.ability, "STR", self.parent, self:GetStackCount(), 0, nil)	
 end
 
 -- UTILS -----------------------------------------------------------

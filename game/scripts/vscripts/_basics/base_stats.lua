@@ -128,16 +128,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 
         for type, table in pairs(self.stat_fraction) do
-          self.stat_fraction[type]["STR"] = {["value"] = 0, "DEF", "RES", "LCK"}
+          self.stat_fraction[type]["STR"] = {["value"] = 0, "DEF", "MND", "LCK"}
           self.stat_fraction[type]["AGI"] = {["value"] = 0, "DEX", "REC", "LCK"}
           self.stat_fraction[type]["INT"] = {["value"] = 0, "MND", "REC", "RES"}
-          self.stat_fraction[type]["CON"] = {["value"] = 0, "DEF", "DEX", "MND"}
+          self.stat_fraction[type]["CON"] = {["value"] = 0, "DEF", "DEX", "RES"}
           self.stat_fraction[type]["DEX"] = {["value"] = 0, "AGI", "CON"}
           self.stat_fraction[type]["DEF"] = {["value"] = 0, "CON", "STR"}
-          self.stat_fraction[type]["RES"] = {["value"] = 0, "INT", "STR"}
+          self.stat_fraction[type]["RES"] = {["value"] = 0, "INT", "CON"}
           self.stat_fraction[type]["REC"] = {["value"] = 0, "AGI", "INT"}
           self.stat_fraction[type]["LCK"] = {["value"] = 0, "AGI", "STR"}
-          self.stat_fraction[type]["MND"] = {["value"] = 0, "INT", "CON"}          
+          self.stat_fraction[type]["MND"] = {["value"] = 0, "INT", "STR"}          
         end
 			end
 		end
@@ -270,48 +270,51 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 		function base_stats:LoadSpecialValues()
 			if IsServer() then
-				-- STR
-				self.critical_damage = self:GetSpecialValueFor("critical_damage")
-				self.base_critical_damage = self:GetSpecialValueFor("base_critical_damage")
-				self.damage = self:GetSpecialValueFor("damage")
-
 				-- BLOCK
 				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
 				self.magical_block_max_percent = self:GetSpecialValueFor("magical_block_max_percent")
 
+				-- STR
+				self.base_atk_damage = self:GetSpecialValueFor("base_atk_damage")
+				self.damage_percent = self:GetSpecialValueFor("damage_percent")
+				self.bonus_atk_damage = self:GetSpecialValueFor("bonus_atk_damage")
+
 				-- AGI
+				self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
+        self.attack_speed = self:GetSpecialValueFor("attack_speed")
 				self.movespeed = self:GetSpecialValueFor("movespeed")
 				self.base_movespeed = self:GetSpecialValueFor("base_movespeed")
-				self.attack_speed = self:GetSpecialValueFor("attack_speed")
-				self.base_attack_time = self:GetSpecialValueFor("base_attack_time")
         self.bonus_movespeed = {}
 
 				-- INT
-				self.mana = self:GetSpecialValueFor("mana")
-				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
         self.spell_amp = self:GetSpecialValueFor("spell_amp")
+				self.mana = self:GetSpecialValueFor("mana")
 
 				-- CON
-				self.heal_amp = self:GetSpecialValueFor("heal_amp")
 				self.health_bonus = self:GetSpecialValueFor("health_bonus")
-				self.health_regen = self:GetSpecialValueFor("health_regen")
-				self.hp_regen_state = 1
+				self.heal_amp = self:GetSpecialValueFor("heal_amp")
 
-				-- DEX/DEF/RES
-				self.evade = self:GetSpecialValueFor("evade")
+				-- DEF
         self.armor = self:GetSpecialValueFor("armor")
-				self.magic_resist = self:GetSpecialValueFor("magic_resist")
 				self.status_resist = self:GetSpecialValueFor("status_resist")
 
-        -- REC/MND/LCK
+        --RES
+				self.magic_resist = self:GetSpecialValueFor("magic_resist")
+        self.heal_power = self:GetSpecialValueFor("heal_power")
+
+        self.evade = self:GetSpecialValueFor("evade")
+				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
+				self.health_regen = self:GetSpecialValueFor("health_regen")
+				self.hp_regen_state = 1
         self.cooldown = self:GetSpecialValueFor("cooldown")
         self.mana_regen = self:GetSpecialValueFor("mana_regen")
 				self.mp_regen_state = 1
-        self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
         self.critical_chance = self:GetSpecialValueFor("critical_chance")
+				self.critical_damage = self:GetSpecialValueFor("critical_damage")
+				self.base_critical_damage = self:GetSpecialValueFor("base_critical_damage")
 
-				-- CRITICAL
+				-- LCK
 				self.force_crit_chance = nil
 				self.force_crit_damage = nil
 			end
@@ -388,7 +391,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 		function base_stats:GetStatBase(stat)
 			local value = self.stat_base[stat]
       if value < 0 then value = 0 end
-      if value > 99 then value = 99 end
+      if value > 50 then value = 50 end
 			return value
 		end
 
@@ -651,33 +654,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- STR
 
     function base_stats:GetTotalPhysicalDamagePercent()
-      return 100 + ((self.stat_total["STR"] + 1) * 5)
-    end
-
-		function base_stats:SetForceCrit(chance, damage)
-			self.force_crit_chance = chance
-			self.force_crit_damage = damage
-		end
-
-    function base_stats:GetTotalCriticalDamage()
-      local caster = self:GetCaster()
-      local result = self.force_crit_damage
-
-      if result == nil then
-        result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("STR"))
-        result = self:GetBonusCriticalDamage(result)
-      end
-
-      return result
-		end
-
-    function base_stats:GetBonusCriticalDamage(result)
-      local caster = self:GetCaster()
-      local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
-      for _,modifier in pairs(crit_damage) do
-        result = result + modifier.amount
-      end
-      return result
+      return 100 + (self.stat_total["STR"] * self.damage_percent)
     end
 
 	-- AGI
@@ -686,7 +663,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local caster = self:GetCaster()
       local amount = self.base_attack_time
 
-      if caster:IsRangedAttacker() then amount = amount + 0.1 end
+      if caster:IsRangedAttacker() then amount = amount + 0.2 end
 
       local bat_increased = caster:FindAllModifiersByName("_modifier_bat_increased")
       for _,modifier in pairs(bat_increased) do
@@ -761,12 +738,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- INT
 
     function base_stats:GetTotalMagicalDamagePercent()
-      return 100 + ((self.stat_total["INT"] + 1) * self.spell_amp)
+      return 100 + (self.stat_total["INT"] * self.spell_amp)
     end
 
     function base_stats:GetTotalDebuffAmpPercent()
       local caster = self:GetCaster()
-      local percent = 100 + ((self.stat_total["INT"] + 1) * self.debuff_amp)
+      local percent = 100 + (self.stat_total["MND"] * self.debuff_amp)
       local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
 			for _,modifier in pairs(mods_increase) do
 				percent = percent + modifier:GetStackCount()
@@ -787,7 +764,24 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 			return bonus * 0.01
 		end
 
-  -- DEX/DEF
+  -- DEF
+
+    function base_stats:GetStatusResistPercent()
+      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
+      return self:GetStatBase("DEF") * self.status_resist
+    end
+
+  -- RES
+  
+    function base_stats:GetTotalHealPowerPercent()
+      return 100 + (self:GetStatBase("RES") * self.heal_power)
+    end
+
+    function base_stats:GetHealPower()
+      return 1 + (self:GetStatBase("RES") * self.heal_power * 0.01)
+    end
+
+  -- DEX
 
     function base_stats:GetMissPercent()
       local caster = self:GetCaster()
@@ -810,13 +804,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
     end
 
-  -- RES/REC
-
-    function base_stats:GetStatusResistPercent()
-      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
-      return (self.stat_total["RES"] + 1) * self.status_resist
-    end
-
     function base_stats:GetBonusMPRegen()
       local caster = self:GetCaster()
       if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
@@ -835,36 +822,64 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       if bool == true then self.mp_regen_state = 1 else self.mp_regen_state = 0 end
     end
 
-  -- MND/LCK
-
-    function base_stats:GetTotalHealPowerPercent()
-      return 100 + ((self.stat_total["MND"] + 1) * self.heal_power)
-    end
+  -- MND
 
     function base_stats:GetTotalBuffAmpPercent()
       return 100 + ((self.stat_total["MND"] + 1) * self.buff_amp)
     end
 
-		function base_stats:GetHealPower()
-			return 1 + ((self.stat_total["MND"] + 1) * self.heal_power * 0.01)
-		end
-
 		function base_stats:GetBuffAmp()
 			return (self.stat_total["MND"] + 1) * self.buff_amp * 0.01
 		end
+
+  -- LCK
 
     function base_stats:GetCriticalChance()
       if self.force_crit_chance then return self.force_crit_chance end
       local caster = self:GetCaster()
       local value = (self.stat_total["LCK"] + 1) * self.critical_chance
 
-      -- if caster:HasModifier("ancient_1_modifier_passive") then
-      --   value = (25 + (self.stat_total["AGI"] * 0.25) + self.stat_total["LCK"]) * self.critical_chance
-      -- end
-
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc
 		end
+
+    function base_stats:SetForceCrit(chance, damage)
+			self.force_crit_chance = chance
+			self.force_crit_damage = damage
+		end
+
+    function base_stats:GetTotalCriticalDamage()
+      local caster = self:GetCaster()
+      local result = self.force_crit_damage
+
+      if result == nil then
+        result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("LCK"))
+        result = self:GetBonusCriticalDamage(result)
+      end
+
+      return result
+		end
+
+    function base_stats:GetBonusCriticalDamage(result)
+      local caster = self:GetCaster()
+      local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
+      for _,modifier in pairs(crit_damage) do
+        result = result + modifier.amount
+      end
+      return result
+    end
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- if caster:HasModifier("ancient_1_modifier_passive")
 -- and damage_type == DAMAGE_TYPE_PHYSICAL then

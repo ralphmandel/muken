@@ -17,7 +17,7 @@ function fleaman_5_modifier_passive:OnRefresh(kv)
 end
 
 function fleaman_5_modifier_passive:OnRemoved()
-	RemoveBonus(self.ability, "_1_STR", self.parent)
+	RemoveBonus(self.ability, "STR", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -42,8 +42,8 @@ function fleaman_5_modifier_passive:OnAttackLanded(keys)
 end
 
 function fleaman_5_modifier_passive:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "_1_STR", self.parent)
-  AddBonus(self.ability, "_1_STR", self.parent, self:GetStackCount(), 0, nil)
+	RemoveBonus(self.ability, "STR", self.parent)
+  AddBonus(self.ability, "STR", self.parent, self:GetStackCount(), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------

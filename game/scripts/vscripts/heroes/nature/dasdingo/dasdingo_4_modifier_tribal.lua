@@ -13,9 +13,9 @@ function dasdingo_4_modifier_tribal:OnCreated(kv)
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
   self.min_health = self.hits
 
-  AddBonus(self.ability, "_1_CON", self.parent, -9999, 0, nil)
-  AddBonus(self.ability, "_1_STR", self.parent, -9999, 0, nil)
-  AddBonus(self.ability, "_1_AGI", self.parent, 9999, 0, nil)
+  AddBonus(self.ability, "CON", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "STR", self.parent, -9999, 0, nil)
+  AddBonus(self.ability, "AGI", self.parent, 9999, 0, nil)
 
   self.parent:SetHealthBarOffsetOverride(300)
 
@@ -37,9 +37,9 @@ function dasdingo_4_modifier_tribal:OnRemoved()
   self.parent:FadeGesture(ACT_DOTA_IDLE)
   self.parent:StartGesture(ACT_DOTA_DIE)
 
-  RemoveBonus(self.ability, "_1_CON", self.parent)
-  RemoveBonus(self.ability, "_1_STR", self.parent)
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
+  RemoveBonus(self.ability, "CON", self.parent)
+  RemoveBonus(self.ability, "STR", self.parent)
+  RemoveBonus(self.ability, "AGI", self.parent)
   self.ability.unit = nil
 
   if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end

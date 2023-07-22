@@ -25,7 +25,7 @@ end
 
 function fleaman_1_modifier_precision:OnRemoved()
   RemoveStatusEfx(self.ability, "fleaman_1_modifier_precision_status_efx", self.caster, self.parent)
-	RemoveBonus(self.ability, "_1_AGI", self.parent)
+	RemoveBonus(self.ability, "AGI", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -34,8 +34,8 @@ function fleaman_1_modifier_precision:OnStackCountChanged(old)
 	if old == self:GetStackCount() then return end
 	if self:GetStackCount() == 0 then self:Destroy() return end
 
-  RemoveBonus(self.ability, "_1_AGI", self.parent)
-  AddBonus(self.ability, "_1_AGI", self.parent, self:GetStackCount() * self.ability:GetSpecialValueFor("agi"), 0, nil)
+  RemoveBonus(self.ability, "AGI", self.parent)
+  AddBonus(self.ability, "AGI", self.parent, self:GetStackCount() * self.ability:GetSpecialValueFor("agi"), 0, nil)
 end
 
 -- UTILS -----------------------------------------------------------
