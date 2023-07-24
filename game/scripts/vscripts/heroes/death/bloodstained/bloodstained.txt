@@ -40,8 +40,8 @@
 		{
       "radius"        "275"
       "call_duration" "3"
-      "lck"           "20"
-      "str_gain"      "3"
+      "lck"           "10"
+      "str_gain"      "1"
       "duration"      "12"
       "rank"		      "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -63,8 +63,8 @@
 		{
       "chance"    "10"
       "duration"  "2"
-      "res"       "50"
-      "agi"       "50"
+      "status_res""50"
+      "agi"       "25"
       "ms"        "150"
       "rank"		  "1 2 3 4 5 6 7 8 9 10 11"
 		}

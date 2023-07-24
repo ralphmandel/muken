@@ -277,7 +277,7 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 120 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "radius" then return 300 + (value_level * 10) end
+		if value_name == "radius" then return 250 + (value_level * 10) end
 	end
 
 	return 0

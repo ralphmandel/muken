@@ -17,7 +17,7 @@
 	}
 
 	"icebreaker_1__frost"
-	{ 
+	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_1__frost"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
@@ -320,7 +320,7 @@
       "ms_limit"	      "125"
       "radius_day"	    "800"
       "radius_night"	  "1000"
-      "res"	            "50"
+      "res"	            "25"
       "hypo_min_stack"	"3"
       "duration"	      "1 2 3 4 5 6 7 8 9 10 11"
       "hypo_ms"	        "0"

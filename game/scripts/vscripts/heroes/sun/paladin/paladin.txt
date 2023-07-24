@@ -39,7 +39,7 @@
     "AbilityValues"
 		{
       "absorption"  "75"
-      "duration"    "30"
+      "duration"    "60"
 			"cast_range"  "1 2 3 4 5 6 7 8 9 10 11"
 			"max_range"   "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"        "1 2 3 4 5 6 7 8 9 10 11"
@@ -57,18 +57,17 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
+		"AnimationPlaybackRate"  		"0.6"
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "duration"  "16"
+      "hits"      "12"
+      "reduction" "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			"1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -164,8 +163,8 @@
 
     "AbilityValues"
 		{
-			"con"   "20"
-			"res"   "15"
+			"con"   "10"
+			"res"   "10"
 			"rank"  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

@@ -154,13 +154,13 @@ end
     return target:AddNewModifier(caster, ability, modifier_name, table)
   end
 
-  function AddBonus(ability, string, target, const, percent, time)
-    if const == 0 and percent == 0 then return end
+  function AddBonus(ability, string, target, bonus, base, time)
+    if bonus == 0 and base == 0 then return end
     local stringFormat = "_1_"
     if string ~= "STR" and string ~= "INT" and string ~= "AGI" and string ~= "CON" then stringFormat = "_2_" end
     stringFormat = stringFormat..string
 
-    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, const, percent, time, stringFormat) end
+    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, bonus, base, time, stringFormat) end
   end
 
   function RemoveBonus(ability, string, target)

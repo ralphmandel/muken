@@ -65,16 +65,22 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
       MODIFIER_EVENT_ON_HEAL_RECEIVED,
 
-      --SECONDARY
-      MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+      --DEF
+      MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+      MODIFIER_PROPERTY_STATUS_RESISTANCE,
+
+      --RES
+      MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+
+      --DEX
       MODIFIER_PROPERTY_DODGE_PROJECTILE,
       MODIFIER_EVENT_ON_ATTACK,
       MODIFIER_PROPERTY_MISS_PERCENTAGE,
-      MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-      MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-      MODIFIER_PROPERTY_STATUS_RESISTANCE,
-      MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-      MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
+      MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+
+      --REC
+      MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+      MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
     }
     return funcs
   end
@@ -132,27 +138,39 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierSpellAmplify_Percentage(keys)
     if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
-    if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
-    
-    if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
-      return self.ability:GetTotalPhysicalDamagePercent() - 100
-    end
 
-    if keys.damage_type == DAMAGE_TYPE_MAGICAL then
-      return self.ability:GetTotalMagicalDamagePercent() - 100
+    if keys.damage_flags ~= 31 then
+      if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
+        return self.ability:GetTotalPhysicalDamagePercent() - 100
+      end
+  
+      if keys.damage_type == DAMAGE_TYPE_MAGICAL then
+        return self.ability:GetTotalMagicalDamagePercent() - 100
+      end
     end
+    
+    return 0
   end
 
   function base_stats_mod:GetModifierTotalDamageOutgoing_Percentage(keys)
     if keys.damage_flags ~= 1024 then
       if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
-      if keys.damage_flags == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
+
+      if keys.damage_flags ~= 31 then
+        if self.ability.has_crit == true then
+          local crit_damage = self.ability:GetTotalCriticalDamage()
+          self.ability.force_crit_damage = nil
+          return crit_damage
+        end
+      end
     end
 
-    if self.ability.has_crit == true then
-      local crit_damage = self.ability:GetTotalCriticalDamage()
-      self.ability.force_crit_damage = nil
-      return crit_damage
+    if keys.damage_flags ~= 31 then
+      if self.ability.has_crit == true then
+        local crit_damage = self.ability:GetTotalCriticalDamage()
+        self.ability.force_crit_damage = nil
+        return crit_damage
+      end
     end
 
     return 0
@@ -171,8 +189,8 @@ base_stats_mod = class ({})
     return self.ability.stat_total["STR"] * self.ability.base_atk_damage * self.ability.damage_percent * 0.01
   end
 
-  function hunter_u_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
-    return self.ability:GetStatBase("STR") * self.ability.bonus_atk_damage
+  function base_stats_mod:GetModifierProcAttack_BonusDamage_Physical(keys)
+    return self.ability:GetBonusAtkDamage()
   end
 
 -- AGI
@@ -238,7 +256,7 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:GetModifierHealAmplify_PercentageTarget()
-    return self.ability.heal_amp * self.ability:GetStatBase("CON")
+    return self.ability:GetHealAmp()
   end
 
   function base_stats_mod:OnHealReceived(keys)
@@ -252,7 +270,7 @@ base_stats_mod = class ({})
 -- DEF
 
   function base_stats_mod:GetModifierPhysicalArmorBonus()
-    return self.ability.stat_total["DEF"] * self.ability.armor
+    return 10 + (self.ability.stat_total["DEF"] * self.ability.armor)
   end
 
   function base_stats_mod:GetModifierStatusResistance()
@@ -262,18 +280,12 @@ base_stats_mod = class ({})
 -- RES
 
   function base_stats_mod:GetModifierMagicalResistanceBonus()
-    local value = self.ability.stat_total["RES"] * self.ability.magic_resist
+    local value = 10 + (self.ability.stat_total["RES"] * self.ability.magic_resist)
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
   end
 
--- SECONDARY
-
-  function base_stats_mod:GetModifierConstantHealthRegen()
-    if IsServer() then
-      return self.ability:GetBonusHPRegen() * self.ability.hp_regen_state
-    end
-  end
+-- DEX
 
   function base_stats_mod:GetModifierDodgeProjectile(keys)
     if BaseStats(keys.attacker) == nil then return end
@@ -308,16 +320,24 @@ base_stats_mod = class ({})
     end
     return 0
   end
-  
-  function base_stats_mod:GetModifierPercentageCooldown()
-    local value = 1 + ((self.ability.stat_total["REC"] + 1) * self.ability.cooldown * 0.01)
-    return 100 - (100 / value)
+
+  function base_stats_mod:GetModifierConstantHealthRegen()
+    if IsServer() then
+      return self.ability:GetBonusHPRegen() * self.ability.hp_regen_state
+    end
   end
+
+-- REC
 
   function base_stats_mod:GetModifierConstantManaRegen()
     if IsServer() then
       return self.ability:GetBonusMPRegen() * self.ability.mp_regen_state
     end
+  end
+  
+  function base_stats_mod:GetModifierPercentageCooldown()
+    local value = 1 + (self.ability:GetStatBase("REC") * self.ability.cooldown * 0.01)
+    return 100 - (100 / value)
   end
 
 -- EFFECTS

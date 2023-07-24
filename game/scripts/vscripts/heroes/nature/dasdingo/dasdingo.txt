@@ -68,7 +68,7 @@
       "04"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"heal_tick"	  "20"
+				"heal_tick"	  "30"
 			}
       "05"
 			{
@@ -108,7 +108,7 @@
       "02"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"def"			    "8"
+				"def"			    "5"
 			}
       "15"
 			{

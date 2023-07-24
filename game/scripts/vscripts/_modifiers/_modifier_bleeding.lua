@@ -14,7 +14,7 @@ function _modifier_bleeding:OnCreated(kv)
 
 	self.intervals = 0.3
 	self.damage_moving = 100 * self.intervals
-	self.damage_hold = 25 * self.intervals
+	self.damage_hold = 20 * self.intervals
 
 	self.damageTable = {
 		victim = self.parent,
@@ -24,6 +24,8 @@ function _modifier_bleeding:OnCreated(kv)
 		damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS,
 		ability = self.ability
 	}
+
+  if BaseStats(self.parent) then BaseStats(self.parent):SetHPRegenState(false) end
 
 	if IsServer() then
 		self:StartIntervalThink(self.intervals)
@@ -36,6 +38,9 @@ function _modifier_bleeding:OnRefresh(kv)
 end
 
 function _modifier_bleeding:OnRemoved()
+  if self.parent:HasModifier("_modifier_bleeding") == false then
+    if BaseStats(self.parent) then BaseStats(self.parent):SetHPRegenState(true) end
+  end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

@@ -13,7 +13,6 @@ function bloodstained_2_modifier_frenzy:OnCreated(kv)
 	self.parent:SetForceAttackTarget(self.ability.target)
 	
 	AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-	AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
   AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms")
   }, false)
@@ -31,7 +30,6 @@ function bloodstained_2_modifier_frenzy:OnRemoved()
 	self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 	self.parent:SetForceAttackTarget(nil)
 	RemoveBonus(self.ability, "AGI", self.parent)
-	RemoveBonus(self.ability, "RES", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
@@ -47,7 +45,8 @@ end
 
 function bloodstained_2_modifier_frenzy:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MIN_HEALTH
+		MODIFIER_PROPERTY_MIN_HEALTH,
+    MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
 	}
 
 	return funcs
@@ -57,6 +56,9 @@ function bloodstained_2_modifier_frenzy:GetMinHealth()
   return 1
 end
 
+function bloodstained_2_modifier_frenzy:GetModifierStatusResistanceStacking()
+  return self:GetAbility():GetSpecialValueFor("status_res")
+end
 
 function bloodstained_2_modifier_frenzy:OnIntervalThink()
 	if IsServer() then

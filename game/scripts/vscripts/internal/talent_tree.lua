@@ -35,21 +35,29 @@ function TalentTree:OnPortraitUpdate(event)
 
   local info = {
     unit_name = entity:GetUnitName(),
+
     physical_damage = BaseStats(entity):GetTotalPhysicalDamagePercent(),
-    crit_damage = 100 + BaseStats(entity):GetTotalCriticalDamage(),
-    crit_chance = BaseStats(entity):GetCriticalChance(),
     attack_speed = entity:GetDisplayAttackSpeed(),
-    magical_damage = BaseStats(entity):GetTotalMagicalDamagePercent(),
-    debuff_amp = BaseStats(entity):GetTotalDebuffAmpPercent(),
-    mp_regen = entity:GetManaRegen(),
-    cd_reduction = entity:GetCooldownReduction() * 100,
-    movespeed = entity:GetIdealSpeed(),
-    evasion = BaseStats(entity):GetDodgePercent(),
     armor = entity:GetPhysicalArmorValue(false),
-    hp_regen = entity:GetHealthRegen(),
-    magical_resist = entity:Script_GetMagicalArmorValue(false, BaseStats(entity)) * 100,
+    evasion = BaseStats(entity):GetDodgePercent(),
+    crit_chance = BaseStats(entity):GetCriticalChance(),
+
+    bonus_damage = BaseStats(entity):GetBonusAtkDamage(),
+    movespeed = entity:GetIdealSpeed(),
     status_resist = BaseStats(entity):GetStatusResistPercent(),
+    hp_regen = entity:GetHealthRegen(),
+    crit_damage = 100 + BaseStats(entity):GetTotalCriticalDamage(),
+
+    magical_damage = BaseStats(entity):GetTotalMagicalDamagePercent(),
+    max_health = entity:GetMaxHealth(),
+    magical_resist = entity:Script_GetMagicalArmorValue(false, BaseStats(entity)) * 100,
+    mp_regen = entity:GetManaRegen(),
+    debuff_amp = BaseStats(entity):GetTotalDebuffAmpPercent(),
+
+    max_mana = entity:GetMaxMana(),
+    heal_amp = BaseStats(entity):GetHealAmp(),
     heal_power = BaseStats(entity):GetTotalHealPowerPercent(),
+    cd_reduction = entity:GetCooldownReduction() * 100,
     buff_amp = BaseStats(entity):GetTotalBuffAmpPercent()
   }
 

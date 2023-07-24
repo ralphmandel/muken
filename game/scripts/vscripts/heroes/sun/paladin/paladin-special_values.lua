@@ -232,17 +232,18 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
     if value_name == "AbilityCharges" then return 1 end
-    if value_name == "AbilityChargeRestoreTime" then return 60 end
+    if value_name == "AbilityChargeRestoreTime" then return 90 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "cast_range" then return 400 + (value_level * 20) end
-		if value_name == "max_range" then return 800 + (value_level * 20) end
+    if value_name == "cast_range" then return 500 + (value_level * 25) end
+		if value_name == "max_range" then return 1000 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "paladin_2__shield" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 24 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "reduction" then return 50 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "paladin_3__hammer" then

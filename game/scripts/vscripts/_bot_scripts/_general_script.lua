@@ -85,11 +85,18 @@ _general_script = class({})
 
   function _general_script:DeclareFunctions()
     local funcs = {
+      MODIFIER_EVENT_ON_DEATH,
       MODIFIER_EVENT_ON_ATTACK_LANDED,
       MODIFIER_EVENT_ON_ABILITY_START
     }
 
     return funcs
+  end
+
+  function _general_script:OnDeath(keys)
+    if keys.unit == self.parent then
+      self:ChangeState(BOT_STATE_REST)
+    end
   end
 
   function _general_script:OnAbilityStart(keys)
@@ -434,7 +441,7 @@ _general_script = class({})
 
   function _general_script:ConsumeAllPoints()
     self:ConsumeAbilityPoint()
-    self:ConsumeRankPoint()
+    --self:ConsumeRankPoint()
     self:ConsumeStatPoint()
   end
 

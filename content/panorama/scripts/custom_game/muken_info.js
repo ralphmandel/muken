@@ -17,26 +17,30 @@ var isWindowOpened = false;
 
     if (tab == 1) {
       CreateRow(tab, column, "physical_damage", '%');
-      CreateRow(tab, column, "crit_damage", '%');
-      CreateRow(tab, column, "crit_chance", '%');
       CreateRow(tab, column, "attack_speed", '');
+      CreateRow(tab, column, "armor", '');
+      CreateRow(tab, column, "evasion", '%');
+      CreateRow(tab, column, "crit_chance", '%');
     }
     if (tab == 2) {
-      CreateRow(tab, column, "magical_damage", '%');
-      CreateRow(tab, column, "debuff_amp", '%');
-      CreateRow(tab, column, "mp_regen", '');
-      CreateRow(tab, column, "cd_reduction", '%');
+      CreateRow(tab, column, "bonus_damage", '');
+      CreateRow(tab, column, "movespeed", '');
+      CreateRow(tab, column, "status_resist", '%');
+      CreateRow(tab, column, "hp_regen", '');
+      CreateRow(tab, column, "crit_damage", '%');
     }
     if (tab == 3) {
-      CreateRow(tab, column, "movespeed", '');
-      CreateRow(tab, column, "evasion", '%');
-      CreateRow(tab, column, "armor", '');
-      CreateRow(tab, column, "hp_regen", '');
+      CreateRow(tab, column, "magical_damage", '%');
+      CreateRow(tab, column, "max_health", '');
+      CreateRow(tab, column, "magical_resist", '%');
+      CreateRow(tab, column, "mp_regen", '');
+      CreateRow(tab, column, "debuff_amp", '%');
     }
     if (tab == 4) {
-      CreateRow(tab, column, "magical_resist", '%');
-      CreateRow(tab, column, "status_resist", '%');
+      CreateRow(tab, column, "max_mana", '');
+      CreateRow(tab, column, "heal_amp", '%');
       CreateRow(tab, column, "heal_power", '%');
+      CreateRow(tab, column, "cd_reduction", '%');
       CreateRow(tab, column, "buff_amp", '%');
     }
   }
@@ -79,7 +83,7 @@ var isWindowOpened = false;
         for (const [layout_name, layout_value] of Object.entries(INFO_LAYOUT[tab]["INFO_VALUE"])) {
           if (name == layout_name) {
             var text = Number((value).toFixed(2)) + INFO_LAYOUT[tab]["INFO_VALUE"][name]["string"];
-            INFO_LAYOUT[tab]["INFO_VALUE"][name]["label"].text =  text;            
+            INFO_LAYOUT[tab]["INFO_VALUE"][name]["label"].text = text;            
           }
         }
       }

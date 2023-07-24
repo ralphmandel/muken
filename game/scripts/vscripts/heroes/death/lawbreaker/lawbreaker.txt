@@ -61,9 +61,9 @@
 
     "AbilityValues"
 		{
-			"agi"			          "40"
+			"agi"			          "25"
       "atk_range"			    "150"
-      "slow_percent"	    "40"
+      "slow_percent"	    "30"
       "reload"	          "2"
       "fast_reload"	      "0.5"
       "fast_reload_delay" "1"
@@ -98,7 +98,7 @@
 		{
 			"damage"			"250"
       "duration"		"8"
-      "def"			    "-10"
+      "def"			    "-5"
       "blind"			  "20"
       "radius"			"300"
       "proj_radius"	"60"

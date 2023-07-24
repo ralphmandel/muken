@@ -39,17 +39,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
-				for _, stat in pairs(self.stats_primary) do
-					self:ApplyBonusLevel(stat, self.bonus_level[stat])
-				end
-
-        self:IncrementSpenderPoints(1, 1)
-
-        if caster:GetLevel() % 5 == 0 then
-          if caster:GetLevel() ~= 15 and caster:GetLevel() ~= 30 then
-            self:ApplyBonusTeam(1)
-          end
+        if caster:GetLevel() % 3 == 0 then
+          self:IncrementSpenderPoints(3, 2)
         end
+
+				--for _, stat in pairs(self.stats_primary) do
+					--self:ApplyBonusLevel(stat, self.bonus_level[stat])
+				--end
+
+        -- if caster:GetLevel() % 5 == 0 then
+        --   if caster:GetLevel() ~= 15 and caster:GetLevel() ~= 30 then
+        --     self:ApplyBonusTeam(1)
+        --   end
+        -- end
 			end
 		end
 
@@ -193,16 +195,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       self:ResetAllStats()
 
       if caster:IsHero() then
-        for stat, stats_type in pairs(unit_stats) do
-          for stat_type, value in pairs(stats_type) do
-            if stat_type == "initial" then
-              self.stat_base[stat] = self.stat_base[stat] + value
-              self:CalculateStats(0, 0, stat)
-              self:IncrementFraction("level_up", stat, value * 3, 0)
-            elseif stat_type == "bonus_level" then
-              self.bonus_level[stat] = value
-            end
-          end
+        for stat, value in pairs(unit_stats) do
+          self.stat_base[stat] = self.stat_base[stat] + value
+          self:CalculateStats(0, 0, stat)
+          -- for stat_type, value in pairs(stats_type) do
+          --   if stat_type == "initial" then
+          --     self.stat_base[stat] = self.stat_base[stat] + value
+          --     self:CalculateStats(0, 0, stat)
+          --     self:IncrementFraction("level_up", stat, value * 3, 0)
+          --   elseif stat_type == "bonus_level" then
+          --     self.bonus_level[stat] = value
+          --   end
+          -- end
         end
       else
         for stat, value in pairs(unit_stats) do
@@ -214,7 +218,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
       self.hero_team_number = caster:GetTeamNumber()
 
-      self:ApplyBonusTeam(4)
+      --self:ApplyBonusTeam(4)
 		end
 
     function base_stats:ApplyBonusTeam(amount)
@@ -302,19 +306,24 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				self.magic_resist = self:GetSpecialValueFor("magic_resist")
         self.heal_power = self:GetSpecialValueFor("heal_power")
 
+        --DEX
         self.evade = self:GetSpecialValueFor("evade")
-				self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
 				self.health_regen = self:GetSpecialValueFor("health_regen")
 				self.hp_regen_state = 1
-        self.cooldown = self:GetSpecialValueFor("cooldown")
+
+        --REC
         self.mana_regen = self:GetSpecialValueFor("mana_regen")
 				self.mp_regen_state = 1
+        self.cooldown = self:GetSpecialValueFor("cooldown")
+
+        --MND
+        self.debuff_amp = self:GetSpecialValueFor("debuff_amp")
 				self.buff_amp = self:GetSpecialValueFor("buff_amp")
+
+        --LCK
         self.critical_chance = self:GetSpecialValueFor("critical_chance")
 				self.critical_damage = self:GetSpecialValueFor("critical_damage")
 				self.base_critical_damage = self:GetSpecialValueFor("base_critical_damage")
-
-				-- LCK
 				self.force_crit_chance = nil
 				self.force_crit_damage = nil
 			end
@@ -533,38 +542,25 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 		end
 
 	-- APPLY STATS
-		function base_stats:AddBonusStat(attacker, ability, static_value, percent_value, duration, string)
+		function base_stats:AddBonusStat(attacker, ability, bonus_amount, base_amount, duration, string)
 			if IsServer() then
 				local target = self:GetCaster()
 				local stringFormat = string.format("%s_modifier_stack", string)
 
 				target:AddNewModifier(attacker, ability, stringFormat, {
-					duration = duration, stacks = static_value, percent = percent_value
+					duration = duration, stacks = bonus_amount, percent = base_amount
 				})
 			end
 		end
 
-    function base_stats:AddBaseStat(stat, amount)
+		function base_stats:CalculateStats(bonus_value, base_value, stat)
 			if IsServer() then
-				self.stat_base[stat] = self.stat_base[stat] + amount
-				self:CalculateStats(0, 0, stat)
-			end
-		end
-
-		function base_stats:CalculateStats(static_value, percent_value, stat)
-			if IsServer() then
-				self.stat_bonus[stat] = self.stat_bonus[stat] + static_value
-				self.stat_percent[stat] = self.stat_percent[stat] + percent_value
+				self.stat_bonus[stat] = self.stat_bonus[stat] + bonus_value
+				self.stat_base[stat] = self.stat_base[stat] + base_value
 
 				self.stat_total[stat] = self.stat_base[stat] + self.stat_bonus[stat]
-				if self.stat_total[stat] < -1 then self.stat_total[stat] = -1 end
-
-				self.stat_total[stat] = self.stat_total[stat] + math.floor(
-					(self.stat_total[stat] + 1) * self.stat_percent[stat] * 0.01
-				)
-
+				if self.stat_total[stat] < 0 then self.stat_total[stat] = 0 end
 				if self.stat_total[stat] > 99 then self.stat_total[stat] = 99 end
-				if self.stat_total[stat] < -1 then self.stat_total[stat] = -1 end
 
 				if stat == "REC" then
 					local channel = self:GetCaster():FindAbilityByName("_channel")
@@ -657,6 +653,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       return 100 + (self.stat_total["STR"] * self.damage_percent)
     end
 
+    function base_stats:GetBonusAtkDamage()
+      return self:GetStatBase("STR") * self.bonus_atk_damage
+    end
+
 	-- AGI
 
     function base_stats:GetBAT()
@@ -741,28 +741,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       return 100 + (self.stat_total["INT"] * self.spell_amp)
     end
 
-    function base_stats:GetTotalDebuffAmpPercent()
-      local caster = self:GetCaster()
-      local percent = 100 + (self.stat_total["MND"] * self.debuff_amp)
-      local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
-			for _,modifier in pairs(mods_increase) do
-				percent = percent + modifier:GetStackCount()
-			end
+  -- CON
 
-      return percent
+    function base_stats:GetHealAmp()
+      return self.heal_amp * self:GetStatBase("CON")
     end
-
-		function base_stats:GetDebuffAmp()
-			local caster = self:GetCaster()
-			local bonus = (self.stat_total["INT"] + 1) * self.debuff_amp
-
-			local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
-			for _,modifier in pairs(mods_increase) do
-				bonus = bonus + modifier:GetStackCount()
-			end
-
-			return bonus * 0.01
-		end
 
   -- DEF
 
@@ -791,24 +774,26 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     end
 
     function base_stats:GetDodgePercent()
-      local value = (self.stat_total["DEX"] + 1) * self.evade
+      local value = self.stat_total["DEX"] * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc
     end
 
     function base_stats:GetBonusHPRegen()
-      return (self.stat_total["DEX"] + 21) * self.health_regen
+      return 10 + (self:GetStatBase("DEX") * self.health_regen)
     end
 
     function base_stats:SetHPRegenState(bool)
       if bool == true then self.hp_regen_state = 1 else self.hp_regen_state = 0 end
     end
 
+  -- REC
+
     function base_stats:GetBonusMPRegen()
       local caster = self:GetCaster()
       if caster:HasModifier("ancient_u_modifier_passive") then return 0 end
 
-      local mp_regen = 7.5 + ((self.stat_total["REC"] + 1) * self.mana_regen)
+      local mp_regen = 5 + (self.stat_total["REC"] * self.mana_regen)
 
       local mods = caster:FindAllModifiersByName("_modifier_mana_regen")
       for _,modifier in pairs(mods) do
@@ -824,12 +809,35 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
   -- MND
 
+    function base_stats:GetTotalDebuffAmpPercent()
+      local caster = self:GetCaster()
+      local percent = 100 + (self.stat_total["MND"] * self.debuff_amp)
+      local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
+      for _,modifier in pairs(mods_increase) do
+        percent = percent + modifier:GetStackCount()
+      end
+
+      return percent
+    end
+
+    function base_stats:GetDebuffAmp()
+      local caster = self:GetCaster()
+      local bonus = self.stat_total["MND"] * self.debuff_amp
+
+      local mods_increase = caster:FindAllModifiersByName("_modifier_debuff_increase")
+      for _,modifier in pairs(mods_increase) do
+        bonus = bonus + modifier:GetStackCount()
+      end
+
+      return bonus * 0.01
+    end
+
     function base_stats:GetTotalBuffAmpPercent()
-      return 100 + ((self.stat_total["MND"] + 1) * self.buff_amp)
+      return 100 + (self:GetStatBase("MND") * self.buff_amp)
     end
 
 		function base_stats:GetBuffAmp()
-			return (self.stat_total["MND"] + 1) * self.buff_amp * 0.01
+			return self:GetStatBase("MND") * self.buff_amp * 0.01
 		end
 
   -- LCK
@@ -837,7 +845,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     function base_stats:GetCriticalChance()
       if self.force_crit_chance then return self.force_crit_chance end
       local caster = self:GetCaster()
-      local value = (self.stat_total["LCK"] + 1) * self.critical_chance
+      local value = self.stat_total["LCK"] * self.critical_chance
 
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc

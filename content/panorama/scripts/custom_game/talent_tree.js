@@ -145,12 +145,16 @@ var isWindowOpened = false;
 function OnTalentTreeWindowButtonClick() {
     if(isWindowOpened == true) {
         //TALENTS_WINDOW.style.visibility = "collapse";
-		TALENTS_WINDOW.GetParent().hittest = false
+		    TALENTS_WINDOW.GetParent().hittest = false
         TALENTS_WINDOW.SetHasClass("WindowIn", true)
     } else {
         //TALENTS_WINDOW.style.visibility = "visible";
-		TALENTS_WINDOW.GetParent().hittest = true
-        TALENTS_WINDOW.SetHasClass("WindowIn", false)
+        //************************************* */
+
+    		// TALENTS_WINDOW.GetParent().hittest = true
+        // TALENTS_WINDOW.SetHasClass("WindowIn", false)
+
+        //************************************* */
         // TALENTS_LAYOUT[1][3].RemoveAndDeleteChildren()
         // for(var column=1; column <= 3; column++) {
         //     for(var rows=1; rows <= 5; rows++) {

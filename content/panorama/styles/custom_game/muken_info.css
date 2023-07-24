@@ -6,7 +6,7 @@
 
 .WindowOut
 {
-  transform: translatey( -127px );
+  transform: translatey( -150px );
   transition-property: transform;
   transition-duration: 0.25s;
 }

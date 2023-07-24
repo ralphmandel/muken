@@ -267,7 +267,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 40 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "radius" then return 500 + (value_level * 10) end
+		if value_name == "radius" then return 600 + (value_level * 15) end
 	end
 
 	return 0

@@ -31,6 +31,41 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function paladin_1_modifier_link:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+    MODIFIER_EVENT_ON_TAKEDAMAGE
+	}
+
+	return funcs
+end
+
+function paladin_1_modifier_link:OnDeath(keys)
+  if keys.unit == self.caster then self:Destroy() end
+end
+
+function paladin_1_modifier_link:GetModifierIncomingDamage_Percentage(keys)
+  return -self.ability:GetSpecialValueFor("absorption")
+end
+
+function paladin_1_modifier_link:OnTakeDamage(keys)
+  if keys.unit ~= self.parent then return end
+  local mult = (100 / (100 - self.ability:GetSpecialValueFor("absorption"))) - 1
+  
+  local damageTable = {
+    victim = self.caster, attacker = keys.attacker, damage = keys.damage * mult,
+    damage_type = keys.damage_type, ability = keys.inflictor,
+    damage_flags = DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR
+    + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_REFLECTION
+  }
+
+  --if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
+		local total = ApplyDamage(damageTable)
+    --print("kubo", total)
+	--end
+end
+
 function paladin_1_modifier_link:OnIntervalThink()
   if CalcDistanceBetweenEntityOBB(self.caster, self.parent) > self.max_range then
     self:Destroy()
