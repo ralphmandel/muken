@@ -205,6 +205,7 @@ function Precache( context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_muerta.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/voscripts/game_sounds_vo_announcer_killing_spree.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/soundevent_vo.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_muken_items.vsndevts", context)
@@ -219,7 +220,7 @@ function Precache( context )
     PrecacheResource( "soundfile", "soundevents/soundevent_druid.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_ancient.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_hunter.vsndevts", context)
-    PrecacheResource( "soundfile", "soundevents/soundevent_striker.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_paladin.vsndevts", context)
 
   -- Entire items can be precached by name
     -- Abilities can also be precached in this way despite the name

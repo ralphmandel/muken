@@ -64,4 +64,23 @@ function paladin__precache:Spawn()
 end
 
 function paladin__precache:Precache(context)
+  PrecacheResource("model", "models/items/dawnbreaker/judgement_of_light_armor/judgement_of_light_armor.vmdl", context)
+  PrecacheResource("model", "models/items/dawnbreaker/judgement_of_light_arms/judgement_of_light_arms.vmdl", context)
+  PrecacheResource("model", "models/items/dawnbreaker/judgement_of_light_head/judgement_of_light_head.vmdl", context)
+  PrecacheResource("model", "models/items/dawnbreaker/judgment_of_light_weapon/judgment_of_light_weapon.vmdl", context)
+
+  PrecacheResource("particle", "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_armor_ambient.vpcf", context)
+  PrecacheResource("particle", "particles/paladin/link/paladin_link.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/lanaya/ta_ti9_immortal_shoulders/ta_ti9_refraction.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_attacked.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_immortal_cast.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_gold_call.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
+  PrecacheResource("particle", "particles/paladin/cross_magnus/paladin_cross_magnus.vpcf", context)
+  PrecacheResource("particle", "particles/econ/events/ti10/aegis_lvl_1000_ambient_ti10.vpcf", context)
+  PrecacheResource("particle", "particles/items_fx/aegis_respawn_timer.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_target.vpcf", context)
+  PrecacheResource("particle", "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_spawn_v2.vpcf", context)
+  PrecacheResource("particle", "particles/bioshadow/bioshadow_poison_hit_shake.vpcf", context)
 end

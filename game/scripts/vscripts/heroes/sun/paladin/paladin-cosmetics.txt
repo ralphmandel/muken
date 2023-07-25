@@ -2,7 +2,7 @@
 {
     "models/items/dawnbreaker/judgement_of_light_armor/judgement_of_light_armor.vmdl"
     {
-        "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_armor_ambient.vpcf" ""
+      "particles/econ/items/dawnbreaker/dawnbreaker_judgement_of_light/dawnbreaker_judgement_of_light_armor_ambient.vpcf" ""
     }
 
     "models/items/dawnbreaker/judgement_of_light_arms/judgement_of_light_arms.vmdl" "nil"

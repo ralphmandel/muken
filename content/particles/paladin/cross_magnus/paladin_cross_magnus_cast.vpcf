@@ -1,0 +1,35 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 0
+	m_Children = 
+	[
+		
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_arc_warden/arc_warden_magnetic_cast_l.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_arc_warden/arc_warden_magnetic_cast_r.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_arc_warden/arc_warden_magnetic_cast_hit.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 3
+			m_vecCP1Pos = 
+			[
+				120.000000,
+				0.000000,
+				75.000000,
+			]
+		},
+	]
+	m_nBehaviorVersion = 12
+}

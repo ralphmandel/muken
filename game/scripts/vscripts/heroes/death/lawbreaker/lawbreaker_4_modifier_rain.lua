@@ -42,7 +42,7 @@ function lawbreaker_4_modifier_rain:PlayEfxStart()
 	local particle_cast = "particles/lawbreaker/rain/lawbreaker_rain.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, self.radius, 1 ))
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, self.radius, 1))
   ParticleManager:SetParticleControlTransformForward(self.effect_cast, 2, self.parent:GetOrigin(), self.direction)
 
   AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius, self:GetDuration(), false)

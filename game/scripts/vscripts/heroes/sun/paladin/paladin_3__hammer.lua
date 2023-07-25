@@ -32,8 +32,13 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
       local mult = random_mult
 
       if unit:GetTeamNumber() == caster:GetTeamNumber() then
+        if target == unit then unit:Purge(false, true, false, true, false) end
         unit:Heal(CalcHeal(caster, self:GetSpecialValueFor("heal") * mult), self)
       else
+        if target == unit then
+          AddModifier(unit, caster, self, "_modifier_stun", {duration = self:GetSpecialValueFor("stun_duration")}, true)
+        end
+        
         if unit:IsIllusion() then
           unit:Kill(self, caster)
         else

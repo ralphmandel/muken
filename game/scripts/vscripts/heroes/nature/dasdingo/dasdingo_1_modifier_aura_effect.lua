@@ -42,6 +42,4 @@ function dasdingo_1_modifier_aura_effect:PlayEfxHeal()
 	local effect_parent = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_parent, 1, self.parent:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect_parent)
-
-  if IsServer() then self.parent:EmitSound("Hero_Dasdingo.Heal") end
 end

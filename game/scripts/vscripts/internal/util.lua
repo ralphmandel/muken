@@ -481,6 +481,8 @@ end
 -- BOTS
 
   function LoadBots()
+    BOTS_LOADED = true
+    
     local bot_slots = {
       [DOTA_TEAM_CUSTOM_1] = 2,
       [DOTA_TEAM_CUSTOM_2] = 2,
@@ -494,7 +496,8 @@ end
     local hero_index = 1
 
     for _, team in pairs(TEAMS) do
-      for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
+      --for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
+      for i = 1, 2 do
         local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
         if playerID then
           local hero_name = GetHeroName(PlayerResource:GetSelectedHeroName(playerID))

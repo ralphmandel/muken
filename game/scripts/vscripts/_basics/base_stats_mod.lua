@@ -265,6 +265,7 @@ base_stats_mod = class ({})
     if keys.gain < 1 then return end
 
     SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, keys.unit, keys.gain, keys.unit)
+    if IsServer() then self.parent:EmitSound("Effect.Heal") end
   end
 
 -- DEF
@@ -356,6 +357,8 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:PopupDamage(damage, color, target)
+    if damage < 1 then return end
+
     local digits = 1
     if damage < 10 then digits = 2 end
     if damage > 9 and damage < 100 then digits = 3 end

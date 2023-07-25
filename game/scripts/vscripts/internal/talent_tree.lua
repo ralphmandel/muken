@@ -55,7 +55,7 @@ function TalentTree:OnPortraitUpdate(event)
     debuff_amp = BaseStats(entity):GetTotalDebuffAmpPercent(),
 
     max_mana = entity:GetMaxMana(),
-    heal_amp = BaseStats(entity):GetHealAmp(),
+    heal_amp = 100 + BaseStats(entity):GetHealAmp(),
     heal_power = BaseStats(entity):GetTotalHealPowerPercent(),
     cd_reduction = entity:GetCooldownReduction() * 100,
     buff_amp = BaseStats(entity):GetTotalBuffAmpPercent()

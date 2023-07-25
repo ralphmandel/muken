@@ -48,7 +48,6 @@ function genuine_3_modifier_morning:OnCreated(kv)
 
   for _,ally in pairs(self.allies) do
     if self.ability:GetSpecialValueFor("special_int_allies") == 1 then
-      if BaseStats(ally) then BaseStats(ally):AddBaseStat("INT", self.int_allies) end
     end
   end
 

@@ -315,7 +315,7 @@ end
 function striker_1_modifier_passive:PlayEfxComboStart()
 	local particle_cast = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_spawn_v2.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
-    ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+  ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 
 	if IsServer() then self.parent:EmitSound("Hero_Centaur.DoubleEdge") end
 end

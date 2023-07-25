@@ -1,7 +1,7 @@
 paladin_1_modifier_link = class({})
 
 function paladin_1_modifier_link:IsHidden() return false end
-function paladin_1_modifier_link:IsPurgable() return false end
+function paladin_1_modifier_link:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -13,6 +13,8 @@ function paladin_1_modifier_link:OnCreated(kv)
   self.cast_range = self.ability:GetSpecialValueFor("cast_range")
   self.max_range = self.ability:GetSpecialValueFor("max_range")
 
+  AddModifier(self.caster, self.caster, self.ability, "paladin_1_modifier_regen", {}, false)
+
   if IsServer() then
     self:PlayEfxStart()
     self:OnIntervalThink()
@@ -23,6 +25,8 @@ function paladin_1_modifier_link:OnRefresh(kv)
 end
 
 function paladin_1_modifier_link:OnRemoved()
+  self.caster:RemoveModifierByName("paladin_1_modifier_regen")
+
   if IsServer() then
     self.caster:StopSound("Hero_Wisp.Tether")
     self.caster:EmitSound("Hero_Wisp.Tether.Stop")
@@ -34,8 +38,10 @@ end
 function paladin_1_modifier_link:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_PROPERTY_HP_REGEN_CAN_BE_NEGATIVE,
+    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
     MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-    MODIFIER_EVENT_ON_TAKEDAMAGE
+    MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
 
 	return funcs
@@ -43,6 +49,14 @@ end
 
 function paladin_1_modifier_link:OnDeath(keys)
   if keys.unit == self.caster then self:Destroy() end
+end
+
+function paladin_1_modifier_link:GetModifierHPRegen_CanBeNegative(keys)
+  return true
+end
+
+function paladin_1_modifier_link:GetModifierConstantHealthRegen(keys)
+  return -self.ability:GetSpecialValueFor("regen")
 end
 
 function paladin_1_modifier_link:GetModifierIncomingDamage_Percentage(keys)

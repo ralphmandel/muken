@@ -103,6 +103,4 @@ function mk_root:PlayEfxHeal(target)
 	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(effect, 1, target:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
-
-	--if IsServer() then target:EmitSound("Druid.Seed.Heal") end
 end

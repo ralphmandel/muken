@@ -118,12 +118,14 @@ function GameMode:OnHeroInGame(hero)
   hero:AddItem(item)
 
   if IsInToolsMode() then
-    if self.temp == nil then
-      self.temp = 6
-    else
-      self.temp = self.temp + 1
-      if self.temp > 7 then self.temp = 8 end
-      hero:SetTeam(self.temp)
+    if BOTS_LOADED == false then
+      if self.temp == nil then
+        self.temp = 6
+      else
+        self.temp = self.temp + 1
+        if self.temp > 7 then self.temp = 8 end
+        hero:SetTeam(self.temp)
+      end      
     end
   else
     local channel = hero:FindAbilityByName("_channel")

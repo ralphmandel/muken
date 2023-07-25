@@ -27,7 +27,7 @@ function GameMode:OnGameRulesStateChange(keys)
         AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(-3850, -2550, 0), 1600, 9999, false)
         AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(3850, 2550, 0), 1600, 9999, false)
       end
-      --LoadBots()
+      LoadBots()
     end
   end
 end

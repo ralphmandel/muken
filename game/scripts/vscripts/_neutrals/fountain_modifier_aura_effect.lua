@@ -46,9 +46,11 @@ end
 
 function fountain_modifier_aura_effect:OnIntervalThink()
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then
-		local heal = self.parent:GetMaxHealth() * 0.01
-		self.parent:Heal(heal, self.ability)
-		--self:PlayEfxHeal(self.parent)
+    if self.parent:GetHealthPercent() < 100 then
+      local heal = self.parent:GetMaxHealth() * 0.01
+      self.parent:Heal(heal, self.ability)
+      --self:PlayEfxHeal(self.parent)
+    end
 	
 		local recovery = 5
 		if self.parent:GetUnitName() == "npc_dota_hero_elder_titan" then recovery = 0 end
