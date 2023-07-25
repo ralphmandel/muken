@@ -219,6 +219,7 @@ function Precache( context )
     PrecacheResource( "soundfile", "soundevents/soundevent_druid.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_ancient.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevent_hunter.vsndevts", context)
+    PrecacheResource( "soundfile", "soundevents/soundevent_striker.vsndevts", context)
 
   -- Entire items can be precached by name
     -- Abilities can also be precached in this way despite the name

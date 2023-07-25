@@ -39,7 +39,7 @@
     "AbilityValues"
 		{
       "absorption"  "75"
-      "duration"    "60"
+      "duration"    "40"
 			"cast_range"  "1 2 3 4 5 6 7 8 9 10 11"
 			"max_range"   "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"        "1 2 3 4 5 6 7 8 9 10 11"
@@ -82,17 +82,24 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2_END"
+		"AbilityCastPoint"       		"0.2"
 
     "AbilityValues"
 		{
+      "min_mult"    "1"
+      "max_mult"    "3"
+      "heal"        "75"
+      "damage"      "0"
+      "damage_lv"   "2"
+      "cast_range"  "750"
+			"radius"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

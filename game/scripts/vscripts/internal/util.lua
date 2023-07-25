@@ -238,8 +238,8 @@ end
 
 -- HEAL / MANA
 
-  function CalcHeal(target, amount)
-    if BaseStats(target) then return amount * BaseStats(target):GetHealPower() else return 1 end
+  function CalcHeal(caster, amount)
+    if BaseStats(caster) then return amount * BaseStats(caster):GetHealPower() else return amount end
   end
 
   function IncreaseMana(target, amount)

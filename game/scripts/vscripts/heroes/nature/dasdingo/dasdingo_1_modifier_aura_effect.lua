@@ -25,7 +25,7 @@ end
 -- API FUNCTIONS -----------------------------------------------------------
 
 function dasdingo_1_modifier_aura_effect:OnIntervalThink()
-  self.parent:Heal(CalcHeal(self.parent, self.ability:GetSpecialValueFor("heal_tick")), self.ability)
+  self.parent:Heal(CalcHeal(self.caster, self.ability:GetSpecialValueFor("heal_tick")), self.ability)
   
   if IsServer() then
     self:PlayEfxHeal()

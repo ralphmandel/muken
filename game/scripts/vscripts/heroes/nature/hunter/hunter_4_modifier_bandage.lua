@@ -39,7 +39,7 @@ function hunter_4_modifier_bandage:OnAttackLanded(keys)
 end
 
 function hunter_4_modifier_bandage:OnIntervalThink()
-  self.parent:Heal(CalcHeal(self.parent, self.ability:GetSpecialValueFor("heal_per_second") * self.interval), self.ability)
+  self.parent:Heal(CalcHeal(self.caster, self.ability:GetSpecialValueFor("heal_per_second") * self.interval), self.ability)
 end
 
 -- UTILS -----------------------------------------------------------
