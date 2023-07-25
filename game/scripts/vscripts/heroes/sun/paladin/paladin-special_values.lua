@@ -70,7 +70,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "reduction" then return 1 end
+		if value_name == "duration" then return 1 end
 
 		if caster:FindAbilityByName("paladin_2__shield_rank_11") then
 		end
@@ -254,7 +254,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 20 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "reduction" then return 60 + (value_level * 1.5) end
+		if value_name == "duration" then return 20 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "paladin_3__hammer" then

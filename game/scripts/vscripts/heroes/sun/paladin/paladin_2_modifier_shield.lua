@@ -50,7 +50,7 @@ function paladin_2_modifier_shield:GetModifierPhysical_ConstantBlock(keys)
 
 	if self:GetStackCount() < 1 then self:Destroy() end
 
-  return keys.damage * (100 - self.ability:GetSpecialValueFor("reduction")) * 0.01
+  return keys.damage
 end
 
 -- UTILS -----------------------------------------------------------

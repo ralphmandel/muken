@@ -38,8 +38,6 @@ end
 function paladin_1_modifier_link:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_DEATH,
-    MODIFIER_PROPERTY_HP_REGEN_CAN_BE_NEGATIVE,
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
     MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
     MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
@@ -49,14 +47,6 @@ end
 
 function paladin_1_modifier_link:OnDeath(keys)
   if keys.unit == self.caster then self:Destroy() end
-end
-
-function paladin_1_modifier_link:GetModifierHPRegen_CanBeNegative(keys)
-  return true
-end
-
-function paladin_1_modifier_link:GetModifierConstantHealthRegen(keys)
-  return -self.ability:GetSpecialValueFor("regen")
 end
 
 function paladin_1_modifier_link:GetModifierIncomingDamage_Percentage(keys)

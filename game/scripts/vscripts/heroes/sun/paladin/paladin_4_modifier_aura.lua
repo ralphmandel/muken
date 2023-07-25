@@ -45,30 +45,30 @@ function paladin_4_modifier_aura:CheckState()
 	return state
 end
 
-function paladin_4_modifier_aura:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE
-	}
+-- function paladin_4_modifier_aura:DeclareFunctions()
+-- 	local funcs = {
+-- 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+-- 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
+-- 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE
+-- 	}
 
-	return funcs
-end
+-- 	return funcs
+-- end
 
-function paladin_4_modifier_aura:GetAbsoluteNoDamagePhysical(keys)
-  if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
-  return 0
-end
+-- function paladin_4_modifier_aura:GetAbsoluteNoDamagePhysical(keys)
+--   if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
+--   return 0
+-- end
 
-function paladin_4_modifier_aura:GetAbsoluteNoDamageMagical(keys)
-  if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
-  return 0
-end
+-- function paladin_4_modifier_aura:GetAbsoluteNoDamageMagical(keys)
+--   if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
+--   return 0
+-- end
 
-function paladin_4_modifier_aura:GetAbsoluteNoDamagePure(keys)
-  if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
-  return 0
-end 
+-- function paladin_4_modifier_aura:GetAbsoluteNoDamagePure(keys)
+--   if keys.attacker:HasModifier("paladin_4_modifier_aura_effect") then return 1 end
+--   return 0
+-- end 
 
 function paladin_4_modifier_aura:OnIntervalThink()
   if IsServer() then self.parent:EmitSound("Paladin.Magnus.Hit") end

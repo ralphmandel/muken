@@ -27,7 +27,6 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
@@ -39,7 +38,6 @@
     "AbilityValues"
 		{
       "absorption"  "75"
-      "regen"       "10"
       "duration"    "40"
 			"cast_range"  "1 2 3 4 5 6 7 8 9 10 11"
 			"max_range"   "1 2 3 4 5 6 7 8 9 10 11"
@@ -65,10 +63,9 @@
 
     "AbilityValues"
 		{
-      "duration"  "15"
-      "hits"      "10"
-      "reduction" "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			"1 2 3 4 5 6 7 8 9 10 11"
+      "hits"      "8"
+      "duration"  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"	    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -95,10 +92,10 @@
     "AbilityValues"
 		{
       "stun_duration" "1"
+      "damage"        "90"
+      "heal"          "60"
       "min_mult"      "2"
       "max_mult"      "3"
-      "heal"          "60"
-      "damage"        "90"
       "cast_range"    "750"
 			"radius"			  "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
