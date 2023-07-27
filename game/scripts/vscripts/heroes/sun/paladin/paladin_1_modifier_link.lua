@@ -13,8 +13,6 @@ function paladin_1_modifier_link:OnCreated(kv)
   self.cast_range = self.ability:GetSpecialValueFor("cast_range")
   self.max_range = self.ability:GetSpecialValueFor("max_range")
 
-  AddModifier(self.caster, self.caster, self.ability, "paladin_1_modifier_regen", {}, false)
-
   if IsServer() then
     self:PlayEfxStart()
     self:OnIntervalThink()
@@ -25,8 +23,6 @@ function paladin_1_modifier_link:OnRefresh(kv)
 end
 
 function paladin_1_modifier_link:OnRemoved()
-  self.caster:RemoveModifierByName("paladin_1_modifier_regen")
-
   if IsServer() then
     self.caster:StopSound("Hero_Wisp.Tether")
     self.caster:EmitSound("Hero_Wisp.Tether.Stop")

@@ -92,6 +92,8 @@ function icebreaker__modifier_frozen:StatusEffectPriority()
 end
 
 function icebreaker__modifier_frozen:PlayEfxStart()
+  self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), 150, self:GetDuration(), false)
+
 	if IsServer() then self.parent:EmitSound("Hero_Ancient_Apparition.IceBlast.Tracker") end
 end
 
@@ -100,6 +102,8 @@ function icebreaker__modifier_frozen:PlayEfxHit()
 end
 
 function icebreaker__modifier_frozen:PlayEfxDestroy()
+  if self.fow then RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow) end
+
 	local particle = "particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())

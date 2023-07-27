@@ -9,7 +9,7 @@
     "npc_dota_hero_slark"               "1"
     "npc_dota_hero_muerta"              "1"
     "npc_dota_hero_sniper"              "1"
-    
     "npc_dota_hero_dawnbreaker"         "1"
+    
     //"npc_dota_hero_furion"              "1"
 }

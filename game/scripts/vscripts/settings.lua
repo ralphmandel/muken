@@ -131,7 +131,7 @@ BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
   "dasdingo",
-  "ancient",
+  "ancient", "paladin"
 }
 
 RANDOM_NAMES = {
@@ -271,20 +271,20 @@ GENUINE_TRAVEL_STATE_OUT = 1
 GENUINE_UNDER_NIGHT = 0
 GENUINE_UNDER_DAY = 1
 
+SHRINE_STATE_DISABLED = 0
+SHRINE_STATE_ENABLED = 1
+
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  
   [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Death Team",  [4] = 0, [5] = "<font color='#ac0020'>", ["fountain_origin"] = Vector(-2550, 3850, 0), ["team_origin"] = Vector(-3215, 3965, 0)},
   [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Nature Team",   [4] = 0, [5] = "<font color='#3dd296'>", ["fountain_origin"] = Vector(2550, -3850, 0), ["team_origin"] = Vector(3215, -3965, 0)},
   [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Moon Team", [4] = 0, [5] = "<font color='#8c2af4'>", ["fountain_origin"] = Vector(-3850, -2550, 0), ["team_origin"] = Vector(-3965, -3215, 0)},
   [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Sun Team", [4] = 0, [5] = "<font color='#c7e40d'>", ["fountain_origin"] = Vector(3850, 2550, 0), ["team_origin"] = Vector(3965, 3215, 0)},
-  -- [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Team Teal",  [4] = 0, [5] = "<font color='#3dd296'>"},
-  -- [2] = {[1] = DOTA_TEAM_CUSTOM_2, [2] = 0, [3] = "Team Yellow",    [4] = 0, [5] = "<font color='#f3c909'>"},
-  -- [3] = {[1] = DOTA_TEAM_CUSTOM_3, [2] = 0, [3] = "Team Pink", [4] = 0, [5] = "<font color='#c54da8'>"},
-  -- [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Team Orange",   [4] = 0, [5] = "<font color='#ff6c00'>"},
-  -- [5] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
-  -- [6] = {[1] = DOTA_TEAM_CUSTOM_6, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"},
-  -- [7] = {[1] = DOTA_TEAM_CUSTOM_7, [2] = 0, [3] = "Team Brown", [4] = 0, [5] = "<font color='#815336'>"},
-  -- [8] = {[1] = DOTA_TEAM_CUSTOM_8, [2] = 0, [3] = "Team Cyan", [4] = 0, [5] = "<font color='#1bc0d8'>"},
-  --[9] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Olive", [4] = 0, [5] = "<font color='#c7e40d'>"},
-  --[10] = {[1] = DOTA_TEAM_CUSTOM_5, [2] = 0, [3] = "Team Purple", [4] = 0, [5] = "<font color='#8c2af4'>"}
+}
+
+SHRINE_INFO = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  
+  [DOTA_TEAM_CUSTOM_1] = {["fountain_origin"] = Vector(2615.21, -2588.71, 131.376), ["team_origin"] = Vector(2730, -2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
+  [DOTA_TEAM_CUSTOM_2] = {["fountain_origin"] = Vector(2588.71, 2551.21, 131.376), ["team_origin"] = Vector(2730, 2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
+  [DOTA_TEAM_CUSTOM_3] = {["fountain_origin"] = Vector(-2551.21, 2588.71, 131.376), ["team_origin"] = Vector(-2730, 2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
+  [DOTA_TEAM_CUSTOM_4] = {["fountain_origin"] = Vector(-2588.71, -2551.21, 128), ["team_origin"] = Vector(-2730, -2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
 }

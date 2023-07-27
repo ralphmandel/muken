@@ -10,6 +10,7 @@ _general_script = class({})
   local genuine = require("_bot_scripts/genuine")
   local icebreaker = require("_bot_scripts/icebreaker")
   local ancient = require("_bot_scripts/ancient")
+  local paladin = require("_bot_scripts/paladin")
 
   local ACTION_REST_WAIT_FULL_HEALTH = 100
   local ACTION_REST_WAIT_FULL_MANA = 101
@@ -49,7 +50,7 @@ _general_script = class({})
   local FULL_MANA_PERCENT = 100
 
   local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
-  local LIMIT_RANGE = 3600
+  local LIMIT_RANGE = 5000
   local MISSING_MAX_TIME = 5
 
 -- CREATE -----------------------------------------------------------
@@ -62,6 +63,7 @@ _general_script = class({})
     if IsServer() then
       self.caster = self:GetCaster()
       self.parent = self:GetParent()
+      self.team = self.parent:GetTeamNumber()
 
       self.state = BOT_STATE_AGGRESSIVE
       self.interval = THINK_INTERVAL_DEFAULT
@@ -95,7 +97,7 @@ _general_script = class({})
 
   function _general_script:OnDeath(keys)
     if keys.unit == self.parent then
-      self:ChangeState(BOT_STATE_REST)
+      self:ChangeState(BOT_STATE_FLEE)
     end
   end
 
@@ -141,7 +143,7 @@ _general_script = class({})
 
       if current_action == ACTION_REST_WAIT_FOR_ALLIES then
         for _, hero in pairs(HeroList:GetAllHeroes()) do
-          if hero:GetTeamNumber() == self.parent:GetTeamNumber() then
+          if hero:GetTeamNumber() == self.team then
             if hero:IsAlive() == false then
               self.rested = false
             end
@@ -193,7 +195,7 @@ _general_script = class({})
         end
 
         local enemies = FindUnitsInRadius(
-          self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+          self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
           DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
           DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
         )
@@ -205,7 +207,7 @@ _general_script = class({})
             if mod then
               if mod.target then
                 if IsValidEntity(mod.target) then
-                  if mod.target:GetTeamNumber() == self.parent:GetTeamNumber() then
+                  if mod.target:GetTeamNumber() == self.team then
                     new_target = enemy
                   end
                 end
@@ -271,7 +273,7 @@ _general_script = class({})
           )
     
           for _, hero in pairs(HeroList:GetAllHeroes()) do
-            if self.attack_target == nil and hero:GetTeamNumber() == self.parent:GetTeamNumber() then
+            if self.attack_target == nil and hero:GetTeamNumber() == self.team then
               self.attack_target = self:FindNewTarget(
                 hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
                 FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
@@ -293,13 +295,14 @@ _general_script = class({})
       self:SpecialActions(current_action)
 
       if current_action == ACTION_FLEE_CHANGE_TO_REST then
-        if (GetFountainLoc(self.parent) - self.parent:GetOrigin()):Length2D() < 150 then
-          self:ChangeState(BOT_STATE_REST)
-        end
+        -- if (GetFountainLoc(self.parent) - self.parent:GetOrigin()):Length2D() < 150 then
+        --   self:ChangeState(BOT_STATE_REST)
+        -- end
       end
 
       if current_action == ACTION_FLEE_CHANGE_TO_AGGRESSIVE then
-        if self.parent:GetHealthPercent() > MID_HEALTH_PERCENT then
+        if SHRINE_INFO[self.team]["shrine_state"] == SHRINE_STATE_DISABLED or
+        self.parent:GetHealthPercent() > MID_HEALTH_PERCENT then
           self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
@@ -333,7 +336,7 @@ _general_script = class({})
           self.agressive_loc = LOCATION_MAIN_ARENA
 
           local enemies = FindUnitsInRadius(
-            self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+            self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
             DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
             DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
           )
@@ -384,7 +387,7 @@ _general_script = class({})
 
   function _general_script:FindNewTarget(loc, radius, priority, find_order, hp_cap, modifier_name)
     local enemies = FindUnitsInRadius(
-      self.parent:GetTeamNumber(), loc, nil, radius,
+      self.team, loc, nil, radius,
       DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
       DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, find_order, false
     )
@@ -586,4 +589,5 @@ _general_script = class({})
     if GetHeroName(self.parent:GetUnitName()) == "dasdingo" then return dasdingo end
     if GetHeroName(self.parent:GetUnitName()) == "genuine" then return genuine end
     if GetHeroName(self.parent:GetUnitName()) == "icebreaker" then return icebreaker end
+    if GetHeroName(self.parent:GetUnitName()) == "paladin" then return paladin end
   end

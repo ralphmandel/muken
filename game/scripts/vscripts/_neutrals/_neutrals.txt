@@ -436,8 +436,9 @@
 		"AbilityCastPoint"       		"0.5"
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
-		"AbilityManaCost"         		"175"
-		"AbilityCooldown"				"40"
+		"AbilityManaCost"           "175"
+		"AbilityCooldown"				    "40"
+		"AbilityCastRange"    		  "400"
 
 		"AbilitySpecial"
 		{
@@ -462,9 +463,9 @@
 		"AbilityCastPoint"       		"0.5"
 		"AbilityCastAnimation"   		"ACT_DOTA_ATTACK"
 
-		"AbilityManaCost"         		"250"
-		"AbilityCooldown"				"15"
-		"AbilityCastRange"    		   	"300"
+		"AbilityManaCost"           "250"
+		"AbilityCooldown"				    "15"
+		"AbilityCastRange"    		  "600"
 
 		"AbilitySpecial"
 		{

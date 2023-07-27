@@ -18,10 +18,7 @@ require("internal/talent_tree")
 			Timers:CreateTimer(2, function()
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
 				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
-
-        if GetMapName() ~= "muken_arena_default" then
-          caster:AddExperience(55300, 0, false, false)
-        end
+        caster:AddExperience(55300, 0, false, false)
 			end)
 		end
 	end
@@ -576,9 +573,8 @@ require("internal/talent_tree")
 					local permanent = self.talents.abilities[talentId]:GetSpecialValueFor("permanent")
 					self:OnRankUpgrade(skill, id, level, talentId)
 
-          if GetMapName() == "muken_arena_no_ranks" then
-						self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])
-          end
+
+          self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId]) --DISABLE RANKS
 
 					if permanent == 0 then
 						--self:GetCaster():RemoveAbilityByHandle(self.talents.abilities[talentId])

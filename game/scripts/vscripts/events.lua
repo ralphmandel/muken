@@ -19,15 +19,14 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-    if GetMapName() == "muken_arena_no_ranks" then
-      if IsInToolsMode() then
-        AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(0, 0, 0), 5000, 9999, false)
-        AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(-2550, 3850, 0), 1600, 9999, false)
-        AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(2550, -3850, 0), 1600, 9999, false)
-        AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(-3850, -2550, 0), 1600, 9999, false)
-        AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(3850, 2550, 0), 1600, 9999, false)
-      end
-      --LoadBots()
+    LoadBots()
+
+    if IsInToolsMode() then
+      AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(0, 0, 0), 5000, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(-2550, 3850, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(2550, -3850, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(-3850, -2550, 0), 1600, 9999, false)
+      AddFOWViewer(DOTA_TEAM_CUSTOM_1, Vector(3850, 2550, 0), 1600, 9999, false)
     end
   end
 end

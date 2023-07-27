@@ -1,7 +1,7 @@
 "AddonInfo"
 {
   "TeamCount" "10"
-  "maps"      "muken_arena_no_ranks"
+  "maps"      "muken_arena_pvp"
   "IsPlayable"  "1"
   "muken_arena_default"
   {

@@ -27,7 +27,7 @@ function dasdingo_1_modifier_field:OnRefresh(kv)
 end
 
 function dasdingo_1_modifier_field:OnRemoved()
-  RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow)
+  if self.fow then RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

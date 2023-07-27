@@ -371,6 +371,10 @@ end
     local loc = Vector(0, 0, 0)
     if hero:IsHero() == false then return loc end
     if hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS then return loc end
+
+    if GetMapName() == "muken_arena_pvp" then
+      return SHRINE_INFO[hero:GetTeamNumber()]["fountain_origin"]
+    end
   
     return TEAMS[GetTeamIndex(hero:GetTeamNumber())]["fountain_origin"]
   end
@@ -496,8 +500,7 @@ end
     local hero_index = 1
 
     for _, team in pairs(TEAMS) do
-      --for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
-      for i = 1, 2 do
+      for i = 1, CUSTOM_TEAM_PLAYER_COUNT[team[1]] do
         local playerID = PlayerResource:GetNthPlayerIDOnTeam(team[1], i)
         if playerID then
           local hero_name = GetHeroName(PlayerResource:GetSelectedHeroName(playerID))

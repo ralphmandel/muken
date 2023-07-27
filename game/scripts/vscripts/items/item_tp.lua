@@ -52,6 +52,10 @@ function item_tp:OnSpellStart()
 end
 
 function item_tp:RandomizePlayerSpawn(unit)
+  if GetMapName() == "muken_arena_pvp" then
+    return SHRINE_INFO[unit:GetTeamNumber()]["fountain_origin"]
+  end
+
 	for i = 1, #TEAMS, 1 do
 		if TEAMS[i][1] == unit:GetTeamNumber() then
 			return TEAMS[i]["team_origin"]

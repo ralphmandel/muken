@@ -5,11 +5,19 @@ end
 
 function Spawner:SpawnFountains()
   if self.start == nil then
-    for i = 1, #TEAMS, 1 do
-      local loc = GetGroundPosition(TEAMS[i]["fountain_origin"], nil)
-      local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, TEAMS[i][1])
-      fountain:SetOrigin(loc)
-      FindClearSpaceForUnit(fountain, loc, true)
+    if GetMapName() == "muken_arena_pvp" then
+      for i = 6, 9 do
+        local loc = GetGroundPosition(SHRINE_INFO[i]["fountain_origin"], nil)
+        local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, i)
+        fountain:SetOrigin(loc)
+      end
+    else
+      for i = 1, #TEAMS, 1 do
+        local loc = GetGroundPosition(TEAMS[i]["fountain_origin"], nil)
+        local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, TEAMS[i][1])
+        fountain:SetOrigin(loc)
+        FindClearSpaceForUnit(fountain, loc, true)
+      end
     end
   end
 
@@ -150,11 +158,15 @@ end
 function Spawner:RandomizePlayerSpawn(unit)
   local loc = Vector(0, 0, 0)
 
-  for i = 1, #TEAMS, 1 do
-		if TEAMS[i][1] == unit:GetTeamNumber() then
-			loc = TEAMS[i]["team_origin"]
-		end
-	end
+  if GetMapName() == "muken_arena_pvp" then
+    loc = SHRINE_INFO[unit:GetTeamNumber()]["team_origin"]
+  else
+    for i = 1, #TEAMS, 1 do
+      if TEAMS[i][1] == unit:GetTeamNumber() then
+        loc = TEAMS[i]["team_origin"]
+      end
+    end
+  end
 
   unit:SetOrigin(loc)
   FindClearSpaceForUnit(unit, loc, true)
