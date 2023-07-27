@@ -160,39 +160,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "paladin_5__reborn" then
-		if value_name == "AbilityManaCost" then return 1 end
-		if value_name == "AbilityCooldown" then return 1 end
-    if value_name == "AbilityCastRange" then return 1 end
-		if value_name == "rank" then return 1 end
-		if value_name == "percent" then return 1 end
-
-		if caster:FindAbilityByName("paladin_5__reborn_rank_11") then
-		end
-
-    if caster:FindAbilityByName("paladin_5__reborn_rank_12") then
-		end
-
-		if caster:FindAbilityByName("paladin_5__reborn_rank_21") then
-		end
-
-    if caster:FindAbilityByName("paladin_5__reborn_rank_22") then
-		end
-
-		if caster:FindAbilityByName("paladin_5__reborn_rank_31") then
-		end
-
-    if caster:FindAbilityByName("paladin_5__reborn_rank_32") then
-		end
-
-		if caster:FindAbilityByName("paladin_5__reborn_rank_41") then
-		end
-
-    if caster:FindAbilityByName("paladin_5__reborn_rank_42") then
-		end
-	end
-
-	if ability:GetAbilityName() == "paladin_u__faith" then
+	if ability:GetAbilityName() == "paladin_5__smite" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
@@ -200,6 +168,36 @@ function paladin_special_values:GetModifierOverrideAbilitySpecial(keys)
     if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "damage" then return 1 end
+
+		if caster:FindAbilityByName("paladin_5__smite_rank_11") then
+		end
+
+    if caster:FindAbilityByName("paladin_5__smite_rank_12") then
+		end
+
+		if caster:FindAbilityByName("paladin_5__smite_rank_21") then
+		end
+
+    if caster:FindAbilityByName("paladin_5__smite_rank_22") then
+		end
+
+		if caster:FindAbilityByName("paladin_5__smite_rank_31") then
+		end
+
+    if caster:FindAbilityByName("paladin_5__smite_rank_32") then
+		end
+
+		if caster:FindAbilityByName("paladin_5__smite_rank_41") then
+		end
+
+    if caster:FindAbilityByName("paladin_5__smite_rank_42") then
+		end
+	end
+
+	if ability:GetAbilityName() == "paladin_u__faith" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("paladin_u__faith_rank_11") then
 		end
@@ -273,16 +271,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "duration" then return 6 + (value_level * 0.1) end
 	end
 
-	if ability:GetAbilityName() == "paladin_5__reborn" then
-		if value_name == "AbilityManaCost" then return 600 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 150 end
-    if value_name == "AbilityCastRange" then return 350 end
-
-		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "percent" then return 50 + (value_level * 2.5) end
-	end
-
-	if ability:GetAbilityName() == "paladin_u__faith" then
+	if ability:GetAbilityName() == "paladin_5__smite" then
 		if value_name == "AbilityManaCost" then return 75 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
@@ -291,6 +280,13 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
 		if value_name == "damage" then return 120 + (value_level * 3) end
+	end
+
+	if ability:GetAbilityName() == "paladin_u__faith" then
+		if value_name == "AbilityManaCost" then return 0 end
+		if value_name == "AbilityCooldown" then return 0 end
+
+		if value_name == "rank" then return 9 + (value_level * 1) end
 	end
 
 	return 0

@@ -1,13 +1,13 @@
-// Dota Ability paladin
+// Dota Ability priest
 "DOTAAbilities"
 {
 	"Version"		"1"
 
-  "paladin__precache"
+  "priest__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-    "AbilityTextureName"    		"paladin__precache"
+		"ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+    "AbilityTextureName"    		"priest__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -16,12 +16,12 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
-	"paladin_1__link"
+	"priest_1__link"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_1__link"
+		"ScriptFile"            		"heroes/sun/priest/priest_1__link"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"paladin_link"
+		"AbilityTextureName"     		"priest_link"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -45,12 +45,12 @@
 		}
 	}
 
-	"paladin_2__shield"
+	"priest_2__shield"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_2__shield"
+		"ScriptFile"            		"heroes/sun/priest/priest_2__shield"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"paladin_shield"
+		"AbilityTextureName"     		"priest_shield"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -69,12 +69,12 @@
 		}
 	}
 
-	"paladin_3__hammer"
+	"priest_3__hammer"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_3__hammer"
+		"ScriptFile"            		"heroes/sun/priest/priest_3__hammer"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"paladin_hammer"
+		"AbilityTextureName"     		"priest_hammer"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -102,12 +102,12 @@
 		}
 	}
 
-	"paladin_4__magnus"
+	"priest_4__magnus"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_4__magnus"
+		"ScriptFile"            		"heroes/sun/priest/priest_4__magnus"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"paladin_magnus"
+		"AbilityTextureName"     		"priest_magnus"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
@@ -121,7 +121,7 @@
 
     "AbilityValues"
 		{
-      "damage_percent"  "2.5"
+      "damage_percent"  "3"
       "interval"        "0.25"
       "radius"          "400"
 			"duration"	      "1 2 3 4 5 6 7 8 9 10 11"
@@ -129,56 +129,62 @@
 		}
 	}
 
-	"paladin_5__smite"
+	"priest_5__reborn"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_5__smite"
+		"ScriptFile"            		"heroes/sun/priest/priest_5__reborn"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"paladin_smite"
+		"AbilityTextureName"     		"priest_reborn"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_DEAD"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityCastPoint"       		"4"
+
+    "AbilityValues"
+		{
+			"percent"			"1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"priest_u__faith"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/sun/priest/priest_u__faith"
+		"AbilityTextureName"     		"priest_faith"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"8"
+		"LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
     "AbilityValues"
 		{
-      "heal"    "50"
+			"con"     "10"
 			"damage"  "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"		"1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"paladin_u__faith"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/sun/paladin/paladin_u__faith"
-		"AbilityTextureName"     		"paladin_faith"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"8"
-		"LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-    "AbilityValues"
-		{
-			"con"             "15"
-			"holy_reduction"  "-30"
-			"rank"            "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
     //RANKS 1
-        "paladin_1__link_rank_11"{
+        "priest_1__link_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -205,10 +211,10 @@
             }
         }
 
-        "paladin_1__link_rank_12"{
+        "priest_1__link_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -235,10 +241,10 @@
             }
         }
 
-        "paladin_1__link_rank_21"{
+        "priest_1__link_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -265,10 +271,10 @@
             }
         }
 
-        "paladin_1__link_rank_22"{
+        "priest_1__link_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -295,10 +301,10 @@
             }
         }
 
-        "paladin_1__link_rank_31"{
+        "priest_1__link_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -325,10 +331,10 @@
             }
         }
 
-        "paladin_1__link_rank_32"{
+        "priest_1__link_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -355,10 +361,10 @@
             }
         }
 
-        "paladin_1__link_rank_41"{
+        "priest_1__link_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -385,10 +391,10 @@
             }
         }
 
-        "paladin_1__link_rank_42"{
+        "priest_1__link_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_link"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_link"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -416,10 +422,10 @@
         }
 
     //RANKS 2
-        "paladin_2__shield_rank_11"{
+        "priest_2__shield_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -446,10 +452,10 @@
             }
         }
 
-        "paladin_2__shield_rank_12"{
+        "priest_2__shield_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -476,10 +482,10 @@
             }
         }
 
-        "paladin_2__shield_rank_21"{
+        "priest_2__shield_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -506,10 +512,10 @@
             }
         }
 
-        "paladin_2__shield_rank_22"{
+        "priest_2__shield_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -536,10 +542,10 @@
             }
         }
 
-        "paladin_2__shield_rank_31"{
+        "priest_2__shield_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -566,10 +572,10 @@
             }
         }
 
-        "paladin_2__shield_rank_32"{
+        "priest_2__shield_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -596,10 +602,10 @@
             }
         }
 
-        "paladin_2__shield_rank_41"{
+        "priest_2__shield_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -626,10 +632,10 @@
             }
         }
 
-        "paladin_2__shield_rank_42"{
+        "priest_2__shield_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_shield"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_shield"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -657,10 +663,10 @@
         }
 
     //RANKS 3
-        "paladin_3__hammer_rank_11"{
+        "priest_3__hammer_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -687,10 +693,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_12"{
+        "priest_3__hammer_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -717,10 +723,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_21"{
+        "priest_3__hammer_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -747,10 +753,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_22"{
+        "priest_3__hammer_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -777,10 +783,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_31"{
+        "priest_3__hammer_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -807,10 +813,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_32"{
+        "priest_3__hammer_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -837,10 +843,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_41"{
+        "priest_3__hammer_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -867,10 +873,10 @@
             }
         }
 
-        "paladin_3__hammer_rank_42"{
+        "priest_3__hammer_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_hammer"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_hammer"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -898,10 +904,10 @@
         }
 
     //RANKS 4
-        "paladin_4__magnus_rank_11"{
+        "priest_4__magnus_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -928,10 +934,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_12"{
+        "priest_4__magnus_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -958,10 +964,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_21"{
+        "priest_4__magnus_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -988,10 +994,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_22"{
+        "priest_4__magnus_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1018,10 +1024,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_31"{
+        "priest_4__magnus_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1048,10 +1054,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_32"{
+        "priest_4__magnus_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1078,10 +1084,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_41"{
+        "priest_4__magnus_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1108,10 +1114,10 @@
             }
         }
 
-        "paladin_4__magnus_rank_42"{
+        "priest_4__magnus_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_magnus"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_magnus"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1139,10 +1145,10 @@
         }
 
     //RANKS 5
-        "paladin_5__smite_rank_11"{
+        "priest_5__reborn_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1169,10 +1175,10 @@
             }
         }
 
-        "paladin_5__smite_rank_12"{
+        "priest_5__reborn_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1199,10 +1205,10 @@
             }
         }
 
-        "paladin_5__smite_rank_21"{
+        "priest_5__reborn_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1229,10 +1235,10 @@
             }
         }
 
-        "paladin_5__smite_rank_22"{
+        "priest_5__reborn_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1259,10 +1265,10 @@
             }
         }
 
-        "paladin_5__smite_rank_31"{
+        "priest_5__reborn_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1289,10 +1295,10 @@
             }
         }
 
-        "paladin_5__smite_rank_32"{
+        "priest_5__reborn_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1319,10 +1325,10 @@
             }
         }
 
-        "paladin_5__smite_rank_41"{
+        "priest_5__reborn_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1349,10 +1355,10 @@
             }
         }
 
-        "paladin_5__smite_rank_42"{
+        "priest_5__reborn_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_smite"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_reborn"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1380,10 +1386,10 @@
         }
 
     //RANKS U
-        "paladin_u__faith_rank_11"{
+        "priest_u__faith_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1410,10 +1416,10 @@
             }
         }
 
-        "paladin_u__faith_rank_12"{
+        "priest_u__faith_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1440,10 +1446,10 @@
             }
         }
 
-        "paladin_u__faith_rank_21"{
+        "priest_u__faith_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1470,10 +1476,10 @@
             }
         }
 
-        "paladin_u__faith_rank_22"{
+        "priest_u__faith_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1500,10 +1506,10 @@
             }
         }
 
-        "paladin_u__faith_rank_31"{
+        "priest_u__faith_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1530,10 +1536,10 @@
             }
         }
 
-        "paladin_u__faith_rank_32"{
+        "priest_u__faith_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1560,10 +1566,10 @@
             }
         }
         
-        "paladin_u__faith_rank_41"{
+        "priest_u__faith_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1590,10 +1596,10 @@
             }
         }
 
-        "paladin_u__faith_rank_42"{
+        "priest_u__faith_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-            "AbilityTextureName"    		"paladin_faith"
+            "ScriptFile"					"heroes/sun/priest/priest-ranks_lua"
+            "AbilityTextureName"    		"priest_faith"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

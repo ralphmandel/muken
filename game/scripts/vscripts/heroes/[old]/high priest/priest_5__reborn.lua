@@ -1,10 +1,10 @@
-paladin_5__reborn = class({})
-LinkLuaModifier("paladin_5_modifier_reborn", "heroes/sun/paladin/paladin_5_modifier_reborn", LUA_MODIFIER_MOTION_NONE)
+priest_5__reborn = class({})
+LinkLuaModifier("priest_5_modifier_reborn", "heroes/sun/priest/priest_5_modifier_reborn", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
-  function paladin_5__reborn:CastFilterResultLocation(vLocation)
+  function priest_5__reborn:CastFilterResultLocation(vLocation)
     local caster = self:GetCaster()
 
     local allies = FindUnitsInRadius(
@@ -22,13 +22,13 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     return UF_FAIL_CUSTOM
   end
 
-  function paladin_5__reborn:GetCustomCastErrorLocation(vLocation)
+  function priest_5__reborn:GetCustomCastErrorLocation(vLocation)
     return "NO DEAD ALLIED HEROES FOUND"
   end
 
 -- SPELL START
 
-  function paladin_5__reborn:OnAbilityPhaseStart()
+  function priest_5__reborn:OnAbilityPhaseStart()
     local caster = self:GetCaster()
 
     local allies = FindUnitsInRadius(
@@ -48,12 +48,12 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     return false
   end
 
-  function paladin_5__reborn:OnAbilityPhaseInterrupted()
+  function priest_5__reborn:OnAbilityPhaseInterrupted()
     local caster = self:GetCaster()
     if IsServer() then self:StopEfx() end
   end
 
-	function paladin_5__reborn:OnSpellStart()
+	function priest_5__reborn:OnSpellStart()
 		local caster = self:GetCaster()
     
     self.target:RespawnHero(false, false)
@@ -69,7 +69,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 -- EFFECTS
 
-  function paladin_5__reborn:StopEfx()
+  function priest_5__reborn:StopEfx()
     local caster = self:GetCaster()
 
     if self.efx_pre then
@@ -81,7 +81,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     if IsServer() then caster:StopSound("Druid.Channel") end
   end
 
-  function paladin_5__reborn:PlayEfxPre(loc)
+  function priest_5__reborn:PlayEfxPre(loc)
     self:StopEfx()
     
     local caster = self:GetCaster()
@@ -93,7 +93,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     if IsServer() then caster:EmitSound("Druid.Channel") end
   end
 
-  function paladin_5__reborn:PlayEfxStart(loc)
+  function priest_5__reborn:PlayEfxStart(loc)
     self:StopEfx()
     
     local caster = self:GetCaster()

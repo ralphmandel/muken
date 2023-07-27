@@ -105,27 +105,27 @@
 				"2"   "paladin_4__magnus_rank_42"
 			}
 		}
-		"paladin_5__reborn"
+		"paladin_5__smite"
 		{
 			"1"
 			{
-				"1"   "paladin_5__reborn_rank_11"
-				"2"   "paladin_5__reborn_rank_12"
+				"1"   "paladin_5__smite_rank_11"
+				"2"   "paladin_5__smite_rank_12"
 			}
 			"2"
 			{
-				"1"   "paladin_5__reborn_rank_21"
-				"2"   "paladin_5__reborn_rank_22"
+				"1"   "paladin_5__smite_rank_21"
+				"2"   "paladin_5__smite_rank_22"
 			}
 			"3"
 			{
-				"1"   "paladin_5__reborn_rank_31"
-				"2"   "paladin_5__reborn_rank_32"
+				"1"   "paladin_5__smite_rank_31"
+				"2"   "paladin_5__smite_rank_32"
 			}
 			"4"
 			{
-				"1"   "paladin_5__reborn_rank_41"
-				"2"   "paladin_5__reborn_rank_42"
+				"1"   "paladin_5__smite_rank_41"
+				"2"   "paladin_5__smite_rank_42"
 			}
 		}
 		"paladin_u__faith"

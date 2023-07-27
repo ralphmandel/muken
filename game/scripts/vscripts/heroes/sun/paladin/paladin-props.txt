@@ -11,7 +11,7 @@
 			"Ability2"						"paladin_2__shield"
 			"Ability3"						"paladin_3__hammer"
 			"Ability4"						"paladin_4__magnus"
-			"Ability5"						"paladin_5__reborn"
+			"Ability5"						"paladin_5__smite"
 			"Ability6"						"paladin_u__faith"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"

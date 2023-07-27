@@ -4,6 +4,6 @@
 	"2" "paladin_2__shield"
 	"3" "paladin_3__hammer"
 	"4" "paladin_4__magnus"
-	"5" "paladin_5__reborn"
+	"5" "paladin_5__smite"
 	"6" "paladin_u__faith"
 }
