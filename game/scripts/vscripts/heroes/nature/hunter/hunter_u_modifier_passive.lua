@@ -12,7 +12,7 @@ function hunter_u_modifier_passive:OnCreated(kv)
 
   self.records = {}
 
-  --if IsServer() then self:StartIntervalThink(0.5) end
+  --if IsServer() then self:StartIntervalThink(1) end
 end
 
 function hunter_u_modifier_passive:OnRemoved()
@@ -64,8 +64,14 @@ end
 -- UTILS -----------------------------------------------------------
 
 function hunter_u_modifier_passive:OnIntervalThink()
-  local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
-  print(loc)
+  --local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
+  --print(loc)
+
+  print("KUBO -----------------------")
+  local entities = Entities:FindAllInSphere(SHRINE_INFO[DOTA_TEAM_CUSTOM_1]["fountain_origin"], 300)
+  for k, entity in pairs(entities) do
+    print("class:", entity:GetClassname(), "isBaseNPC:", entity:IsBaseNPC())
+  end
 end
 
 -- EFFECTS -----------------------------------------------------------

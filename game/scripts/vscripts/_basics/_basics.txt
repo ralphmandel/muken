@@ -143,6 +143,17 @@
 		}
 	}
 
+  "shrine"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"_basics/shrine"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"shrine"
+
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"               		"1"
+	}
+
 	"_void"
 	{
 		"BaseClass"						"ability_lua"

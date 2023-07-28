@@ -6,10 +6,10 @@ end
 function Spawner:SpawnFountains()
   if self.start == nil then
     if GetMapName() == "muken_arena_pvp" then
-      for i = 6, 9 do
-        local loc = GetGroundPosition(SHRINE_INFO[i]["fountain_origin"], nil)
-        local fountain = CreateUnitByName("fountain_building", loc, true, nil, nil, i)
-        fountain:SetOrigin(loc)
+      local shrines = Entities:FindAllByClassname("npc_dota_healer")
+      for _, shrine in pairs(shrines) do
+        local shrine_ability = shrine:AddAbility("shrine")
+        shrine_ability:UpgradeAbility(true)
       end
     else
       for i = 1, #TEAMS, 1 do
