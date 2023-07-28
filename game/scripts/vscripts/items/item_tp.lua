@@ -53,7 +53,7 @@ end
 
 function item_tp:RandomizePlayerSpawn(unit)
   if GetMapName() == "muken_arena_pvp" then
-    return SHRINE_INFO[unit:GetTeamNumber()]["fountain_origin"]
+    return TEAM_ORIGIN[unit:GetTeamNumber()]
   end
 
 	for i = 1, #TEAMS, 1 do

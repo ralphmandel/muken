@@ -159,7 +159,7 @@ function Spawner:RandomizePlayerSpawn(unit)
   local loc = Vector(0, 0, 0)
 
   if GetMapName() == "muken_arena_pvp" then
-    loc = SHRINE_INFO[unit:GetTeamNumber()]["team_origin"]
+    loc = TEAM_ORIGIN[unit:GetTeamNumber()]
   else
     for i = 1, #TEAMS, 1 do
       if TEAMS[i][1] == unit:GetTeamNumber() then

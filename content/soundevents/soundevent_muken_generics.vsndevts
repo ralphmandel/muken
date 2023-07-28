@@ -224,6 +224,38 @@
 	}
 }
 
+"Shrine.Cast"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/ambient/shrine_cast.vsnd"
+						}
+					}
+					"mixgroup"			    { "value"	"Ambient" }
+					"volume"            { "value" "1.000000" }
+					"volume_fade_out"	  { "value"	"1.5" }
+          "pitch" =           { "value" "1.000000" }
+          "pitch_rand_min" =  { "value" "-0.050000" }
+          "pitch_rand_max" =  { "value" "0.050000" }
+          "soundlevel" =      { "value" "90.000000" }
+				}
+			}
+		}
+	}
+}
+
 "Effect.Heal"
 {
 	"operator_stacks"

@@ -33,7 +33,7 @@ function lawbreaker:TryCast_Blink()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
-    self.caster:CastAbilityOnPosition(GetFountainLoc(self.caster), ability, self.caster:GetPlayerOwnerID())
+    self.caster:CastAbilityOnPosition(GetShrineTarget(self.caster):GetOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end
 

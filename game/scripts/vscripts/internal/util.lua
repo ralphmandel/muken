@@ -366,17 +366,10 @@ end
       end
     end
   end
-  
-  function GetFountainLoc(hero)
-    local loc = Vector(0, 0, 0)
-    if hero:IsHero() == false then return loc end
-    if hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS then return loc end
 
-    if GetMapName() == "muken_arena_pvp" then
-      return SHRINE_INFO[hero:GetTeamNumber()]["fountain_origin"]
-    end
-  
-    return TEAMS[GetTeamIndex(hero:GetTeamNumber())]["fountain_origin"]
+  function GetShrineTarget(hero)
+    local bot_script = hero:FindModifierByName("_general_script")
+    if bot_script then return bot_script:GetShrineTarget() end
   end
   
   function GetKillingSpreeAnnouncer(kills)
@@ -493,6 +486,10 @@ end
       [DOTA_TEAM_CUSTOM_3] = 2,
       [DOTA_TEAM_CUSTOM_4] = 2,
     }
+
+    -- if IsInToolsMode() then
+    --   bot_slots[DOTA_TEAM_CUSTOM_1] = 3
+    -- end
 
     local players_hero_list = {}
     local bot_list = {}

@@ -22,6 +22,7 @@ end
 
 function hunter_u_modifier_passive:DeclareFunctions()
 	local funcs = {
+    --MODIFIER_EVENT_ON_ORDER,
     MODIFIER_PROPERTY_BONUS_DAY_VISION,
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
@@ -32,6 +33,12 @@ function hunter_u_modifier_passive:DeclareFunctions()
 
 	return funcs
 end
+
+-- function hunter_u_modifier_passive:OnOrder(keys)
+-- 	if keys.unit ~= self.parent then return end
+
+--   print("KUBO ORDER", keys.order_type)
+-- end
 
 function hunter_u_modifier_passive:GetBonusDayVision()
 	return self:GetAbility():GetSpecialValueFor("vision_range")
@@ -64,14 +71,8 @@ end
 -- UTILS -----------------------------------------------------------
 
 function hunter_u_modifier_passive:OnIntervalThink()
-  --local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
-  --print(loc)
-
-  print("KUBO -----------------------")
-  local entities = Entities:FindAllInSphere(SHRINE_INFO[DOTA_TEAM_CUSTOM_1]["fountain_origin"], 300)
-  for k, entity in pairs(entities) do
-    print("class:", entity:GetClassname(), "isBaseNPC:", entity:IsBaseNPC())
-  end
+  local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
+  print(loc)
 end
 
 -- EFFECTS -----------------------------------------------------------

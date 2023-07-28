@@ -118,6 +118,7 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 3
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 3
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 3
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 3
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 1
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_7] = 4
@@ -151,6 +152,7 @@ BOT_STATE_REST = 0
 BOT_STATE_AGGRESSIVE = 1
 BOT_STATE_FLEE = 2
 BOT_STATE_FARMING = 3
+BOT_STATE_DEAD = 4
 
 SPAWNER_MOBS = {
 -- TIER 1
@@ -271,9 +273,6 @@ GENUINE_TRAVEL_STATE_OUT = 1
 GENUINE_UNDER_NIGHT = 0
 GENUINE_UNDER_DAY = 1
 
-SHRINE_STATE_DISABLED = 0
-SHRINE_STATE_ENABLED = 1
-
 PLAYERS = {}
 TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  
   [1] = {[1] = DOTA_TEAM_CUSTOM_1, [2] = 0, [3] = "Death Team",  [4] = 0, [5] = "<font color='#ac0020'>", ["fountain_origin"] = Vector(-2550, 3850, 0), ["team_origin"] = Vector(-3215, 3965, 0)},
@@ -282,9 +281,16 @@ TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team
   [4] = {[1] = DOTA_TEAM_CUSTOM_4, [2] = 0, [3] = "Sun Team", [4] = 0, [5] = "<font color='#c7e40d'>", ["fountain_origin"] = Vector(3850, 2550, 0), ["team_origin"] = Vector(3965, 3215, 0)},
 }
 
-SHRINE_INFO = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team colour bar  
-  [DOTA_TEAM_CUSTOM_1] = {["fountain_origin"] = Vector(2615.21, -2588.71, 131.376), ["team_origin"] = Vector(2730, -2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
-  [DOTA_TEAM_CUSTOM_2] = {["fountain_origin"] = Vector(2588.71, 2551.21, 131.376), ["team_origin"] = Vector(2730, 2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
-  [DOTA_TEAM_CUSTOM_3] = {["fountain_origin"] = Vector(-2551.21, 2588.71, 131.376), ["team_origin"] = Vector(-2730, 2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
-  [DOTA_TEAM_CUSTOM_4] = {["fountain_origin"] = Vector(-2588.71, -2551.21, 128), ["team_origin"] = Vector(-2730, -2730, 0), ["shrine_state"] = SHRINE_STATE_DISABLED},
+TEAM_ORIGIN = {
+  [DOTA_TEAM_CUSTOM_1] = Vector(2730, -2730, 0),
+  [DOTA_TEAM_CUSTOM_2] = Vector(2730, 2730, 0),
+  [DOTA_TEAM_CUSTOM_3] = Vector(-2730, 2730, 0),
+  [DOTA_TEAM_CUSTOM_4] = Vector(-2730, -2730, 0),
+}
+
+OUTPOST_ORIGIN = {
+  [1] = Vector(2145.98, -427.15, 48.1793),
+  [2] = Vector(545.975, 2452.85, 48.1793),
+  [3] = Vector(-2526.03, 596.85, 57.7422),
+  [4] = Vector(-542.025, -2283.15, 16),
 }

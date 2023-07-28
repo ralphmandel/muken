@@ -23,11 +23,12 @@ _general_script = class({})
   local ACTION_AGRESSIVE_SEEK_TARGET = 203
   local ACTION_AGRESSIVE_FIND_TARGET = 204
 
-  local ACTION_FLEE_CHANGE_TO_REST = 300
-  local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 301
-  local ACTION_FLEE_GO_TO_FOUNTAIN = 302
+  local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 300
+  local ACTION_FLEE_GO_TO_FOUNTAIN = 301
 
-  local ACTION_FLEAMAN_STEAL = 400
+  local ACTION_DEAD_CHANGE_TO_AGGRESSIVE = 400
+
+  local ACTION_FLEAMAN_STEAL = 500
 
   local THINK_INTERVAL_INIT = 75
   local THINK_INTERVAL_DEFAULT = 0.25
@@ -47,7 +48,10 @@ _general_script = class({})
   local MID_HEALTH_PERCENT = 50
   local FULL_HEALTH_PERCENT = 100
   local CUSTOM_HEALTH_PERCENT_BLOODSTAINED = 15
+  local LOW_MANA_PERCENT = 25
+  local MID_MANA_PERCENT = 50
   local FULL_MANA_PERCENT = 100
+  local CUSTOM_ENERGY_PERCENT = 0
 
   local LOCATION_MAIN_ARENA = Vector(0, 0, 0)
   local LIMIT_RANGE = 5000
@@ -68,17 +72,24 @@ _general_script = class({})
       self.state = BOT_STATE_AGGRESSIVE
       self.interval = THINK_INTERVAL_DEFAULT
       self.low_health = LOW_HEALTH_PERCENT
+      self.low_mana = LOW_MANA_PERCENT
+      self.mid_health = MID_HEALTH_PERCENT
+      self.mid_mana = MID_MANA_PERCENT
       self:ResetStateData(BOT_STATE_AGGRESSIVE)
 
       self.abilityScript = self:LoadHeroActions()
       if self.abilityScript == nil then return end
       self.abilityScript.caster = self.parent
 
+      self.shrine_target = Entities:FindByClassnameNearest("npc_dota_healer", self.parent:GetOrigin(), 5000)
+      self.current_outpost = OUTPOST_ORIGIN[RandomInt(1, 4)]
+
       self.stateActions = {
         [BOT_STATE_REST] = self.RestThink,
         [BOT_STATE_AGGRESSIVE] = self.AggressiveThink,
         [BOT_STATE_FLEE] = self.FleeThink,
         [BOT_STATE_FARMING] = self.FarmingThink,
+        [BOT_STATE_DEAD] = self.DeadThink,
       }
 
       self:StartIntervalThink(THINK_INTERVAL_INIT)
@@ -97,7 +108,7 @@ _general_script = class({})
 
   function _general_script:OnDeath(keys)
     if keys.unit == self.parent then
-      self:ChangeState(BOT_STATE_FLEE)
+      self:ChangeState(BOT_STATE_DEAD)
     end
   end
 
@@ -174,7 +185,8 @@ _general_script = class({})
       self:SpecialActions(current_action)
 
       if current_action == ACTION_AGRESSIVE_CHANGE_TO_FLEE then
-        if self.parent:GetHealthPercent() < self.low_health then
+        if self.parent:GetHealthPercent() < self.low_health or 
+        self.parent:GetManaPercent() < self.low_mana then
           self:ChangeState(BOT_STATE_FLEE)
         end
       end
@@ -194,31 +206,32 @@ _general_script = class({})
           )
         end
 
-        local enemies = FindUnitsInRadius(
-          self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
-          DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
-          DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
-        )
+        -- FIND BLOODY ILLUSIONS
+          local enemies = FindUnitsInRadius(
+            self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+          )
     
-        for _,enemy in pairs(enemies) do
-          if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
-          and self:IsOutOfRange(enemy:GetOrigin()) == false then
-            local mod = enemy:FindModifierByName("bloodstained__modifier_copy")
-            if mod then
-              if mod.target then
-                if IsValidEntity(mod.target) then
-                  if mod.target:GetTeamNumber() == self.team then
-                    new_target = enemy
+          for _,enemy in pairs(enemies) do
+            if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
+            and self:IsOutOfRange(enemy:GetOrigin()) == false then
+              local mod = enemy:FindModifierByName("bloodstained__modifier_copy")
+              if mod then
+                if mod.target then
+                  if IsValidEntity(mod.target) then
+                    if mod.target:GetTeamNumber() == self.team then
+                      new_target = enemy
+                    end
                   end
                 end
               end
             end
           end
-        end
 
         if new_target then
           if new_target ~= self.attack_target then
-            self.agressive_loc = LOCATION_MAIN_ARENA
+            self.agressive_loc = self.current_outpost
             self.attack_target = new_target            
           end
         end
@@ -265,7 +278,7 @@ _general_script = class({})
 
       if current_action == ACTION_AGRESSIVE_FIND_TARGET then
         if target_state == TARGET_STATE_INVALID or target_state == TARGET_STATE_DEAD then
-          self.agressive_loc = LOCATION_MAIN_ARENA
+          self.agressive_loc = self.current_outpost
 
           self.attack_target = self:FindNewTarget(
             self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
@@ -294,28 +307,50 @@ _general_script = class({})
 
       self:SpecialActions(current_action)
 
-      if current_action == ACTION_FLEE_CHANGE_TO_REST then
-        -- if (GetFountainLoc(self.parent) - self.parent:GetOrigin()):Length2D() < 150 then
-        --   self:ChangeState(BOT_STATE_REST)
-        -- end
-      end
-
       if current_action == ACTION_FLEE_CHANGE_TO_AGGRESSIVE then
-        if SHRINE_INFO[self.team]["shrine_state"] == SHRINE_STATE_DISABLED or
-        self.parent:GetHealthPercent() > MID_HEALTH_PERCENT then
+        if self.parent:GetHealthPercent() >= self.mid_health
+        and self.parent:GetManaPercent() >= self.mid_mana
+        and self.parent:IsAlive() then
           self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
 
       if current_action == ACTION_FLEE_GO_TO_FOUNTAIN then
         if self.abilityScript:TrySpell(nil, self.state) == false then
-          self:MoveBotTo("location", GetFountainLoc(self.parent))
+          local new_shrine = self:GetShrineTarget()
+          if self.parent:GetHealthPercent() < self.mid_health then
+            new_shrine = self:FindShrine("hp_filler")
+          elseif self.parent:GetManaPercent() < self.mid_mana then
+            new_shrine = self:FindShrine("mp_filler")
+          end
+
+          if new_shrine then
+            self.shrine_target = new_shrine
+            self:MoveBotTo("npc", self:GetShrineTarget())
+          else
+            self:ChangeState(BOT_STATE_AGGRESSIVE)
+          end
         end
       end
     end
   end
 
   function _general_script:FarmingThink()
+  end
+
+  function _general_script:DeadThink()
+    for i = 1, #self.DeadActions, 1 do
+      if self.state ~= BOT_STATE_DEAD then return end
+      local current_action = self.DeadActions[i]
+
+      self:SpecialActions(current_action)
+
+      if current_action == ACTION_DEAD_CHANGE_TO_AGGRESSIVE then
+        if self.parent:IsAlive() then
+          self:ChangeState(BOT_STATE_AGGRESSIVE)
+        end
+      end
+    end
   end
 
   function _general_script:SpecialActions(current_action)
@@ -333,7 +368,7 @@ _general_script = class({})
         end
 
         if new_target == true then
-          self.agressive_loc = LOCATION_MAIN_ARENA
+          self.agressive_loc = self.current_outpost
 
           local enemies = FindUnitsInRadius(
             self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
@@ -369,7 +404,7 @@ _general_script = class({})
 
   function _general_script:ResetStateData(state)
     if state == BOT_STATE_AGGRESSIVE then
-      self.agressive_loc = LOCATION_MAIN_ARENA
+      self.agressive_loc = self.current_outpost
       self.attack_target = nil
       self.target_last_loc = nil
       self.missing_start_time = nil
@@ -423,13 +458,39 @@ _general_script = class({})
 
     if command == "attack_target" then
       if self:IsOutOfRange(handle:GetOrigin()) then
-        self.parent:MoveToPosition(LOCATION_MAIN_ARENA)
+        self.parent:MoveToPosition(self.current_outpost)
       else
         self.parent:MoveToTargetToAttack(handle)
       end
     end
 
+    if command == "npc" then
+      ExecuteOrderFromTable({
+        UnitIndex = self.parent:entindex(),
+        OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+        TargetIndex = handle:entindex(),
+        --AbilityIndex = self:GetAbility():entindex(),
+        Queue = false,
+      })
+    end
+
     if command == "location" then
+      if handle == self.current_outpost then
+        if (handle - self.parent:GetOrigin()):Length2D() < 200 then
+          local outpost_list = {}
+          local index = 1
+          for i = 1, 4 do
+            if OUTPOST_ORIGIN[i] ~= self.current_outpost then
+              outpost_list[index] = OUTPOST_ORIGIN[i]
+              index = index + 1
+            end
+          end
+          self.current_outpost = outpost_list[RandomInt(1, #outpost_list)]
+          self.parent:MoveToPosition(self.current_outpost)
+        else
+          self.parent:MoveToPosition(handle)
+        end
+      end
       if (handle - self.parent:GetOrigin()):Length2D() > 100 then
         self.parent:MoveToPosition(handle)
       end
@@ -438,6 +499,29 @@ _general_script = class({})
 
   function _general_script:IsOutOfRange(loc)
     return (LOCATION_MAIN_ARENA - loc):Length2D() > LIMIT_RANGE
+  end
+
+  function _general_script:GetShrineTarget()
+    return self.shrine_target
+  end
+
+  function _general_script:FindShrine(shrine_type)
+    local shrines = Entities:FindAllByClassname("npc_dota_healer")
+    local new_shrine = nil
+    local current_distance = 9999
+
+    for _, shrine in pairs(shrines) do
+      local filler_ability = shrine:FindAbilityByName("filler_ability")
+      local name = string.sub(shrine:GetName(), 1, -3)
+      local distance = CalcDistanceBetweenEntityOBB(self.parent, shrine)
+
+      if name == shrine_type and filler_ability:IsCooldownReady() and current_distance > distance then
+        current_distance = distance
+        new_shrine = shrine
+      end
+    end
+
+    return new_shrine
   end
 
 -- LOAD HERO DATA -----------------------------------------------------------
@@ -551,9 +635,12 @@ _general_script = class({})
     }
 
     self.FleeActions = {
-      [1] = ACTION_FLEE_CHANGE_TO_REST,
-      [2] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
-      [3] = ACTION_FLEE_GO_TO_FOUNTAIN,
+      [1] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
+      [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
+    }
+
+    self.DeadActions = {
+      [1] = ACTION_DEAD_CHANGE_TO_AGGRESSIVE
     }
 
     if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
@@ -575,6 +662,8 @@ _general_script = class({})
     end
 
     if GetHeroName(self.parent:GetUnitName()) == "ancient" then
+      self.low_mana = CUSTOM_ENERGY_PERCENT
+      self.mid_mana = CUSTOM_ENERGY_PERCENT
       self.RestActions = {
         [1] = ACTION_REST_WAIT_FULL_HEALTH,
         [2] = ACTION_REST_WAIT_FOR_ALLIES,
