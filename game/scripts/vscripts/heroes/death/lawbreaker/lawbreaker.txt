@@ -34,7 +34,7 @@
     "AbilityValues"
 		{
 			"max_hit"			"5"
-      "crit_dmg"		"100"
+      "crit_dmg"		"150"
       "lifesteal"		"25"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -96,7 +96,7 @@
 
     "AbilityValues"
 		{
-			"damage"			"250"
+			"damage"			"200"
       "duration"		"8"
       "def"			    "-5"
       "blind"			  "20"
@@ -131,7 +131,7 @@
 
     "AbilityValues"
 		{
-			"damage"			"75"
+			"damage"			"70"
       "slow"			  "175"
       "interval"		"0.5"
       "delay"		    "0.5"

@@ -318,8 +318,8 @@
 		{
       "hits"	          "10"
       "ms_limit"	      "125"
-      "radius_day"	    "800"
-      "radius_night"	  "1000"
+      "radius_day"	    "900"
+      "radius_night"	  "1200"
       "res"	            "25"
       "hypo_min_stack"	"3"
       "duration"	      "1 2 3 4 5 6 7 8 9 10 11"

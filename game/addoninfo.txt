@@ -5,7 +5,7 @@
   "IsPlayable"  "1"
   "muken_arena_default"
   {
-    "MaxPlayers"                    "16"
+    "MaxPlayers"                    "12"
   }
   // "muken_arena_turbo"
   // {

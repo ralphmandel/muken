@@ -48,8 +48,8 @@ _general_script = class({})
   local MID_HEALTH_PERCENT = 50
   local FULL_HEALTH_PERCENT = 100
   local CUSTOM_HEALTH_PERCENT_BLOODSTAINED = 15
-  local LOW_MANA_PERCENT = 25
-  local MID_MANA_PERCENT = 50
+  local LOW_MANA_PERCENT = 20
+  local MID_MANA_PERCENT = 40
   local FULL_MANA_PERCENT = 100
   local CUSTOM_ENERGY_PERCENT = 0
 
@@ -185,10 +185,8 @@ _general_script = class({})
       self:SpecialActions(current_action)
 
       if current_action == ACTION_AGRESSIVE_CHANGE_TO_FLEE then
-        if self.parent:GetHealthPercent() < self.low_health or 
-        self.parent:GetManaPercent() < self.low_mana then
-          self:ChangeState(BOT_STATE_FLEE)
-        end
+        local new_shrine = self:GetAvailableShrine(self.low_health, self.low_mana)
+        if new_shrine then self:ChangeState(BOT_STATE_FLEE) end
       end
 
       if current_action == ACTION_AGRESSIVE_SWAP_TARGET then
@@ -317,12 +315,7 @@ _general_script = class({})
 
       if current_action == ACTION_FLEE_GO_TO_FOUNTAIN then
         if self.abilityScript:TrySpell(nil, self.state) == false then
-          local new_shrine = self:GetShrineTarget()
-          if self.parent:GetHealthPercent() < self.mid_health then
-            new_shrine = self:FindShrine("hp_filler")
-          elseif self.parent:GetManaPercent() < self.mid_mana then
-            new_shrine = self:FindShrine("mp_filler")
-          end
+          local new_shrine = self:GetAvailableShrine(self.mid_health, self.mid_mana)
 
           if new_shrine then
             self.shrine_target = new_shrine
@@ -503,6 +496,19 @@ _general_script = class({})
 
   function _general_script:GetShrineTarget()
     return self.shrine_target
+  end
+
+  function _general_script:GetAvailableShrine(hp_cap, mp_cap)
+    local new_shrine = nil
+    if self.parent:GetHealthPercent() < hp_cap then
+      new_shrine = self:FindShrine("hp_filler")
+    end
+
+    if new_shrine == nil and self.parent:GetManaPercent() < mp_cap then
+      new_shrine = self:FindShrine("mp_filler")
+    end
+
+    return new_shrine
   end
 
   function _general_script:FindShrine(shrine_type)

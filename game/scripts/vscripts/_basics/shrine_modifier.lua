@@ -48,6 +48,7 @@ function shrine_modifier:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "filler_ability" then
     if self.name == "hp_filler" then
       if value_name == "AbilityCooldown" then return 1 end
+      if value_name == "duration" then return 1 end
       if value_name == "mp_heal" then return 1 end
       if value_name == "mp_heal_pct" then return 1 end
       if value_name == "mp_heal_growth" then return 1 end
@@ -56,6 +57,7 @@ function shrine_modifier:GetModifierOverrideAbilitySpecial(keys)
     end
     if self.name == "mp_filler" then
       if value_name == "AbilityCooldown" then return 1 end
+      if value_name == "duration" then return 1 end
       if value_name == "hp_heal" then return 1 end
       if value_name == "hp_heal_pct" then return 1 end
       if value_name == "hp_heal_growth" then return 1 end
@@ -78,19 +80,21 @@ function shrine_modifier:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "filler_ability" then
     if self.name == "hp_filler" then
       if value_name == "AbilityCooldown" then return 120 end
+      if value_name == "duration" then return 4 end
       if value_name == "mp_heal" then return 0 end
       if value_name == "mp_heal_pct" then return 0 end
       if value_name == "mp_heal_growth" then return 0 end
-      if value_name == "hp_heal" then return 200 end
-      if value_name == "hp_heal_pct" then return 4 end
+      if value_name == "hp_heal" then return 250 end
+      if value_name == "hp_heal_pct" then return 5 end
     end
     if self.name == "mp_filler" then
       if value_name == "AbilityCooldown" then return 180 end
+      if value_name == "duration" then return 4 end
       if value_name == "hp_heal" then return 0 end
       if value_name == "hp_heal_pct" then return 0 end
       if value_name == "hp_heal_growth" then return 0 end
-      if value_name == "mp_heal" then return 50 end
-      if value_name == "mp_heal_pct" then return 4 end
+      if value_name == "mp_heal" then return 60 end
+      if value_name == "mp_heal_pct" then return 5 end
     end
 	end
 
@@ -112,8 +116,11 @@ end
 
 function shrine_modifier:OnIntervalThink()
   local filler = self.parent:FindAbilityByName("filler_ability")
+
   filler:EndCooldown()
-  filler:StartCooldown(120)
+
+  if self.name == "hp_filler" then filler:StartCooldown(filler:GetEffectiveCooldown(filler:GetLevel()) / 2) end
+  if self.name == "mp_filler" then filler:StartCooldown(filler:GetEffectiveCooldown(filler:GetLevel()) / 2) end
 
   if IsServer() then self:StartIntervalThink(-1) end
 end
