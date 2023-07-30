@@ -16,14 +16,11 @@ function genuine_u_modifier_morning:OnCreated(kv)
 
   AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
   AddBonus(self.ability, "INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
+  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
+    percent = self.ability:GetSpecialValueFor("ms")
+  }, false)
 
   GameRules:BeginTemporaryNight(self:GetDuration())
-
-  for _,hero in pairs(HeroList:GetAllHeroes()) do
-    if hero:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-      AddModifier(hero, self.caster, self.ability, "genuine_u_modifier_curse", {duration = self:GetDuration()}, false)
-    end
-  end
 
 	if IsServer() then self.parent:EmitSound("Genuine.Morning") end
 end
@@ -37,6 +34,7 @@ function genuine_u_modifier_morning:OnRemoved()
 
 	RemoveBonus(self.ability, "AGI", self.parent)
 	RemoveBonus(self.ability, "INT", self.parent)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

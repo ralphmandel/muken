@@ -45,11 +45,10 @@ function genuine:TryCast_Nightfall()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    if ability:IsChanneling() then return true end
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
   
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    local atk_range = self.caster:Script_GetAttackRange() + 50
+    local atk_range = self.caster:Script_GetAttackRange() + 100
     local cast_range = ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 400
     if distance_diff < atk_range then return false end
     if distance_diff > cast_range then return false end
@@ -106,7 +105,10 @@ function genuine:TryCast_Morning()
   if self.state == BOT_STATE_AGGRESSIVE then
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_PRE_GAME then return false end
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
-  
+    
+    local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+    if dist_diff > 1500 then return false end
+
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     return true
   end

@@ -12,10 +12,8 @@ _general_script = class({})
   local ancient = require("_bot_scripts/ancient")
   local paladin = require("_bot_scripts/paladin")
 
-  local ACTION_REST_WAIT_FULL_HEALTH = 100
-  local ACTION_REST_WAIT_FULL_MANA = 101
-  local ACTION_REST_WAIT_FOR_ALLIES = 102
-  local ACTION_REST_CHANGE_TO_AGGRESSIVE = 103
+  local ACTION_REST_WAIT_FOR_ALLIES = 100
+  local ACTION_REST_CHANGE_TO_AGGRESSIVE = 101
 
   local ACTION_AGRESSIVE_CHANGE_TO_FLEE = 200
   local ACTION_AGRESSIVE_SWAP_TARGET = 201
@@ -26,11 +24,9 @@ _general_script = class({})
   local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 300
   local ACTION_FLEE_GO_TO_FOUNTAIN = 301
 
-  local ACTION_DEAD_CHANGE_TO_AGGRESSIVE = 400
+  local ACTION_FLEAMAN_STEAL = 400
 
-  local ACTION_FLEAMAN_STEAL = 500
-
-  local THINK_INTERVAL_INIT = 75
+  local THINK_INTERVAL_INIT = PRE_GAME_TIME
   local THINK_INTERVAL_DEFAULT = 0.25
 
   local TARGET_STATE_INVALID = 0
@@ -69,13 +65,13 @@ _general_script = class({})
       self.parent = self:GetParent()
       self.team = self.parent:GetTeamNumber()
 
-      self.state = BOT_STATE_AGGRESSIVE
+      self.state = nil
       self.interval = THINK_INTERVAL_DEFAULT
       self.low_health = LOW_HEALTH_PERCENT
       self.low_mana = LOW_MANA_PERCENT
       self.mid_health = MID_HEALTH_PERCENT
       self.mid_mana = MID_MANA_PERCENT
-      self:ResetStateData(BOT_STATE_AGGRESSIVE)
+      self:ChangeState(BOT_STATE_REST)
 
       self.abilityScript = self:LoadHeroActions()
       if self.abilityScript == nil then return end
@@ -89,7 +85,6 @@ _general_script = class({})
         [BOT_STATE_AGGRESSIVE] = self.AggressiveThink,
         [BOT_STATE_FLEE] = self.FleeThink,
         [BOT_STATE_FARMING] = self.FarmingThink,
-        [BOT_STATE_DEAD] = self.DeadThink,
       }
 
       self:StartIntervalThink(THINK_INTERVAL_INIT)
@@ -108,7 +103,7 @@ _general_script = class({})
 
   function _general_script:OnDeath(keys)
     if keys.unit == self.parent then
-      self:ChangeState(BOT_STATE_DEAD)
+      self:ChangeState(BOT_STATE_REST)
     end
   end
 
@@ -116,8 +111,6 @@ _general_script = class({})
     if keys.unit ~= self.parent then return end
 
     local cast_point = keys.ability:GetCastPoint()
-
-    if keys.ability:GetAbilityName() == "bloodstained_4__tear" then self:ChangeState(BOT_STATE_AGGRESSIVE) end
 
     if IsServer() then
       self:StartIntervalThink(cast_point + 0.5)
@@ -139,18 +132,6 @@ _general_script = class({})
       local current_action = self.RestActions[i]
 
       self:SpecialActions(current_action)
-
-      if current_action == ACTION_REST_WAIT_FULL_HEALTH then
-        if self.parent:GetHealthPercent() < FULL_HEALTH_PERCENT then
-          self.rested = false
-        end
-      end
-
-      if current_action == ACTION_REST_WAIT_FULL_MANA then
-        if self.parent:GetManaPercent() < FULL_MANA_PERCENT then
-          self.rested = false
-        end
-      end
 
       if current_action == ACTION_REST_WAIT_FOR_ALLIES then
         for _, hero in pairs(HeroList:GetAllHeroes()) do
@@ -329,21 +310,6 @@ _general_script = class({})
   end
 
   function _general_script:FarmingThink()
-  end
-
-  function _general_script:DeadThink()
-    for i = 1, #self.DeadActions, 1 do
-      if self.state ~= BOT_STATE_DEAD then return end
-      local current_action = self.DeadActions[i]
-
-      self:SpecialActions(current_action)
-
-      if current_action == ACTION_DEAD_CHANGE_TO_AGGRESSIVE then
-        if self.parent:IsAlive() then
-          self:ChangeState(BOT_STATE_AGGRESSIVE)
-        end
-      end
-    end
   end
 
   function _general_script:SpecialActions(current_action)
@@ -626,10 +592,8 @@ _general_script = class({})
 
   function _general_script:LoadHeroActions()
     self.RestActions = {
-      [1] = ACTION_REST_WAIT_FULL_HEALTH,
-      [2] = ACTION_REST_WAIT_FULL_MANA,
-      [3] = ACTION_REST_WAIT_FOR_ALLIES,
-      [4] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
+      [1] = ACTION_REST_WAIT_FOR_ALLIES,
+      [2] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
     }
 
     self.AggressiveActions = {
@@ -643,10 +607,6 @@ _general_script = class({})
     self.FleeActions = {
       [1] = ACTION_FLEE_CHANGE_TO_AGGRESSIVE,
       [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
-    }
-
-    self.DeadActions = {
-      [1] = ACTION_DEAD_CHANGE_TO_AGGRESSIVE
     }
 
     if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then
@@ -670,11 +630,6 @@ _general_script = class({})
     if GetHeroName(self.parent:GetUnitName()) == "ancient" then
       self.low_mana = CUSTOM_ENERGY_PERCENT
       self.mid_mana = CUSTOM_ENERGY_PERCENT
-      self.RestActions = {
-        [1] = ACTION_REST_WAIT_FULL_HEALTH,
-        [2] = ACTION_REST_WAIT_FOR_ALLIES,
-        [3] = ACTION_REST_CHANGE_TO_AGGRESSIVE,
-      }
       
       return ancient
     end

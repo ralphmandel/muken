@@ -41,7 +41,7 @@ function bocuse:TryCast_Mirepoix()
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
   
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    if distance_diff > 2000 then return false end
+    if distance_diff > 1500 then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     return true

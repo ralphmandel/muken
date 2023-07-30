@@ -119,8 +119,8 @@ function shrine_modifier:OnIntervalThink()
 
   filler:EndCooldown()
 
-  if self.name == "hp_filler" then filler:StartCooldown(filler:GetEffectiveCooldown(filler:GetLevel()) / 2) end
-  if self.name == "mp_filler" then filler:StartCooldown(filler:GetEffectiveCooldown(filler:GetLevel()) / 2) end
+  if self.name == "hp_filler" then filler:StartCooldown(PRE_GAME_TIME) end
+  if self.name == "mp_filler" then filler:StartCooldown(PRE_GAME_TIME + 30) end
 
   if IsServer() then self:StartIntervalThink(-1) end
 end

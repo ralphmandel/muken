@@ -13,10 +13,10 @@ function lawbreaker:TrySpell(target, state)
 
   local abilities_actions = {
     [1] = self.TryCast_Blink,
-    [2] = self.TryCast_Combo,
-    [3] = self.TryCast_Form,
-    [4] = self.TryCast_Grenade,
-    [5] = self.TryCast_Rain
+    [2] = self.TryCast_Form,
+    [3] = self.TryCast_Grenade,
+    [4] = self.TryCast_Rain,
+    [5] = self.TryCast_Combo,
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -54,35 +54,9 @@ function lawbreaker:TryCast_Blink()
   end
 end
 
-function lawbreaker:TryCast_Combo()
-  local ability = self.caster:FindAbilityByName("lawbreaker_2__combo")
-  if self.caster:HasModifier("lawbreaker_2_modifier_combo") then return true end
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.state == BOT_STATE_FLEE then
-    return false
-  end
-
-  if self.state == BOT_STATE_AGGRESSIVE then
-    local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    local atk_range = self.caster:Script_GetAttackRange()
-    if distance_diff > atk_range then return false end
-  
-    local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
-    local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
-    if angle_diff < -5 or angle_diff > 5 then return false end
-  
-    if self.random_values["combo_bullets"] == nil then self:RandomizeValue(ability, "combo_bullets") end
-    if self.caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() < self.random_values["combo_bullets"] then return false end
-  
-    self:RandomizeValue(ability, "combo_bullets")
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-end
-
 function lawbreaker:TryCast_Form()
   local ability = self.caster:FindAbilityByName("lawbreaker_u__form")
+  if self.caster:HasModifier("lawbreaker_2_modifier_combo") then return true end
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
@@ -92,7 +66,7 @@ function lawbreaker:TryCast_Form()
   if self.state == BOT_STATE_AGGRESSIVE then
     local total_targets = 0
     local enemies = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, 1500,
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
       DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
       DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
     )
@@ -139,6 +113,32 @@ function lawbreaker:TryCast_Rain()
   if self.state == BOT_STATE_AGGRESSIVE then
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
+    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+end
+
+function lawbreaker:TryCast_Combo()
+  local ability = self.caster:FindAbilityByName("lawbreaker_2__combo")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.state == BOT_STATE_FLEE then
+    return false
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+    local atk_range = self.caster:Script_GetAttackRange()
+    if distance_diff > atk_range then return false end
+  
+    -- local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
+    -- local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
+    -- if angle_diff < -5 or angle_diff > 5 then return false end
+  
+    if self.random_values["combo_bullets"] == nil then self:RandomizeValue(ability, "combo_bullets") end
+    if self.caster:FindModifierByName(ability:GetIntrinsicModifierName()):GetStackCount() < self.random_values["combo_bullets"] then return false end
+  
+    self:RandomizeValue(ability, "combo_bullets")
     self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end

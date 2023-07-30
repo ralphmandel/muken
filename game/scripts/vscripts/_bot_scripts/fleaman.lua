@@ -40,7 +40,7 @@ function fleaman:TryCast_Jump()
 
     local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
     local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
-    if angle_diff < -3 or angle_diff > 3 then return false end
+    if angle_diff < -5 or angle_diff > 5 then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     return true
@@ -79,6 +79,9 @@ function fleaman:TryCast_Precision()
 
     if self.random_values["precision_charges"] == nil then self:RandomizeValue(ability, "precision_charges") end
     if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
+
+    local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+    if dist_diff > 1500 then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     
