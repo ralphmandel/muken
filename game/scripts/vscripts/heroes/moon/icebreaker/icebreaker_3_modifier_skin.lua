@@ -14,14 +14,11 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
     amount = self.ability:GetSpecialValueFor("special_mp_regen") * 100
   }, false)
 
-  self.hp_regen = self.ability:GetSpecialValueFor("special_hp_regen")
+  self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
 
   self:SpreadHypo()
 
-	if IsServer() then
-		self:SetStackCount(self.ability:GetSpecialValueFor("layers"))
-		self:PlayEfxStart()
-	end
+	if IsServer() then self:PlayEfxStart() end
 end
 
 function icebreaker_3_modifier_skin:OnRefresh(kv)
@@ -30,18 +27,15 @@ function icebreaker_3_modifier_skin:OnRefresh(kv)
     amount = self.ability:GetSpecialValueFor("special_mp_regen")
   }, false)
 
-  self.hp_regen = self.ability:GetSpecialValueFor("special_hp_regen")
+  self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
 
   self:SpreadHypo()
 
-	if IsServer() then
-		self:SetStackCount(self.ability:GetSpecialValueFor("layers"))
-		self:PlayEfxStart()
-	end
+	if IsServer() then self:PlayEfxStart() end
 end
 
 function icebreaker_3_modifier_skin:OnRemoved()
-  if self:GetStackCount() < 1 then self:SpreadHypo() end
+  self:SpreadHypo()
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_mana_regen", self.ability)
   if IsServer() then self.parent:EmitSound("Hero_Lich.IceAge.Tick") end
@@ -53,7 +47,6 @@ function icebreaker_3_modifier_skin:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
-    MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
 	}
 
 	return funcs
@@ -64,12 +57,8 @@ function icebreaker_3_modifier_skin:GetModifierConstantHealthRegen(keys)
 end
 
 function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
-	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then
-    if self.ability:GetSpecialValueFor("special_block") == 1 then
-      return keys.damage
-    end
-    return 0
-  end
+	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+	if RandomFloat(0, 100) >= self.ability:GetSpecialValueFor("chance") then return 0 end
 
   AddModifier(keys.attacker, self.caster, self.ability, "icebreaker__modifier_hypo", {
     stack = self.ability:GetSpecialValueFor("hypo_stack")
@@ -79,22 +68,8 @@ function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
     duration = self.ability:GetSpecialValueFor("special_mini_freeze")
   }, true)
   
-	if IsServer() then
-    self:DecrementStackCount()
-    self:PlayEfxBlock(keys.attacker)
-  end
+	if IsServer() then self:PlayEfxBlock(keys.attacker) end
 
-	if self:GetStackCount() < 1 then
-		self:Destroy()
-	end
-
-  return keys.damage
-end
-
-function icebreaker_3_modifier_skin:GetModifierMagical_ConstantBlock(keys)
-  if self.ability:GetSpecialValueFor("special_block") == 1 then
-    return keys.damage
-  end
   return 0
 end
 
