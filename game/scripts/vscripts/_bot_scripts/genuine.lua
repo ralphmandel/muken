@@ -23,8 +23,7 @@ function genuine:TrySpell(target, state)
     [2] = self.TryCast_Travel,    
     [3] = self.TryCast_Morning,
     [4] = self.TryCast_Fallen,
-    [5] = self.TryCast_Under,
-    [6] = self.TryCast_Shooting
+    [5] = self.TryCast_Shooting
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -154,22 +153,6 @@ function genuine:TryCast_Fallen()
   
     self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
-  end
-end
-
-function genuine:TryCast_Under()
-  local ability = self.caster:FindAbilityByName("genuine_4__under")
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.state == BOT_STATE_FLEE then
-    if ability:GetCurrentAbilityCharges() == GENUINE_UNDER_DAY then return false end
-    
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-
-  if self.state == BOT_STATE_AGGRESSIVE then
-    return false
   end
 end
 

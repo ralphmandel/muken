@@ -125,7 +125,7 @@
 		"AbilityValues"
 		{
       "duration"	      "10"
-      "hp_regen"	      "20"
+      "hp_regen"	      "30"
       "chance"	        "50"
       "hypo_stack"	    "1"
       "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
