@@ -89,6 +89,7 @@ function genuine__precache:Precache(context)
   PrecacheResource("particle", "particles/econ/items/puck/puck_merry_wanderer/puck_illusory_orb_merry_wanderer.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf", context)
   PrecacheResource("particle", "particles/genuine/genuine_travel_silence/genuine_silence_aproset.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf", context)
 
   PrecacheResource("particle", "particles/genuine/starfall/genuine_starfall_attack.vpcf", context)
   PrecacheResource("particle", "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf", context)

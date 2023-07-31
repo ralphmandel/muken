@@ -334,14 +334,16 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_4__under" then
-		if value_name == "AbilityManaCost" then
-      --if ability:GetCurrentAbilityCharges() == GENUINE_UNDER_DAY then return 0 end
-      return 0
+		if value_name == "AbilityManaCost" then return 0 end
+		
+    if value_name == "AbilityCooldown" then
+      if ability:GetCurrentAbilityCharges() == GENUINE_UNDER_NIGHT then
+        return 20
+      end
+      return 60
     end
-
-		if value_name == "AbilityCooldown" then return 0 end
-		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "invi_duration" then return 20 + (value_level * 1) end
+		
+    if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
