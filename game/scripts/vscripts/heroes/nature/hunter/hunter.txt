@@ -64,12 +64,13 @@
 
     "AbilityValues"
 		{
-      "delay_in"      "3"
+      "delay_in"      "1.5"
       "delay_out"     "0.5"
       "tree_radius"   "200"
       "agi"           "25"
       "hits"          "5"
       "buff_duration" "3"
+      "reveal_range"  "200"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -109,19 +110,16 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+    "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+    "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+    "AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityCastAnimation"   		"ACT_"
 		"AbilityCastPoint"       		"0.1"
 
     "AbilityValues"
 		{
-      "channel_time"    "5"
-      "heal_per_second" "100"
-      "heal_duration"   "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

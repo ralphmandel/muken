@@ -19,42 +19,59 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function hunter_2_modifier_passive:CheckState()
+	local state = {
+		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true
+	}
+
+	return state
+end
+
 function hunter_2_modifier_passive:DeclareFunctions()
 	local funcs = {
     MODIFIER_EVENT_ON_UNIT_MOVED,
-    MODIFIER_EVENT_ON_ATTACK_START,
-    MODIFIER_EVENT_ON_ATTACK_LANDED
+    MODIFIER_EVENT_ON_ATTACK_START
 	}
 
 	return funcs
 end
 
 function hunter_2_modifier_passive:OnUnitMoved(keys)
-	if keys.unit == self.parent then
-    -- local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-    -- if trees then
-    --   for k, v in pairs(trees) do
-    --     return
-    --   end
-    -- end
-    self:StartDelay()
+  if keys.unit == self.parent then
+    local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
+    local has_tree = false    
+    if trees then
+      for k, v in pairs(trees) do
+        has_tree = true
+        break
+      end
+    end
+
+    if has_tree == true then
+      self:StartDelay()
+    else
+      if IsServer() then self:StartIntervalThink(-1) end
+    end
   else
     if keys.unit:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-      if CalcDistanceBetweenEntityOBB(keys.unit, self.parent) < 100 then
+      local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
+      if dist < self.ability:GetSpecialValueFor("reveal_range") then
         self:StartDelay()
       end
     end
   end
+
+	if keys.unit == self.parent then return end
+  if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
+
+  local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
+  if dist < self.ability:GetSpecialValueFor("reveal_range") then
+  end
 end
 
 function hunter_2_modifier_passive:OnAttackStart(keys)
-  if keys.attacker ~= self.parent then return end
-  self:StartDelay()
-end
-
-function hunter_2_modifier_passive:OnAttackLanded(keys)
-  if keys.target ~= self.parent then return end
-  self:StartDelay()
+  if keys.attacker ~= self.parent and keys.target ~= self.parent then return end
+  if IsServer() then self:StartIntervalThink(-1) end
 end
 
 function hunter_2_modifier_passive:OnIntervalThink()

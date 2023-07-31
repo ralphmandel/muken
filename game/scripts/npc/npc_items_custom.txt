@@ -621,6 +621,7 @@
 		}
 
 	// RECIPES
+
 		"item_recipe_potion_recover"
 		{
 			"ID"							"1631"
@@ -722,6 +723,79 @@
 				"01"						"item_branch_blue;item_branch_yellow"
 			}
 		}
+
+  // MISC
+		"item_med_kit"
+		{
+			"BaseClass"						"item_lua"
+			"ScriptFile"					"items/item_med_kit"
+			"AbilityTextureName"  "med_kit"
+			"ID"							    "1700"
+      "Model"							  "models/props_gameplay/fountain_of_life/fountain_of_life_consumable.vmdl"
+
+      "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+			"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+
+			"AbilityCastPoint"		      "0.1"
+			"AbilityChannelTime"			  "1.5"
+			"AbilityCooldown"		        "1"
+			"AbilityManaCost"		        "0"
+			"AbilityCastRange"		      "150"
+			
+			"ItemCost"			  "0"
+			"ItemKillable"		"1"
+			"ItemSellable"		"0"
+			"ItemPurchasable" "0"
+			"ItemDroppable" 	"1"
+
+			"ItemShareability"	  "ITEM_FULLY_SHAREABLE"
+			"ItemPermanent"		    "0" //used for charges
+			"ItemStackable"		    "1"
+			"ItemStackableMax"	  "3"
+			"ItemInitialCharges"  "1"
+			"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+			"ItemQuality"		    "artifact"
+			"AllowedInBackpack"	"1"
+			"ItemIsNeutralDrop"	"0"
+			"ItemAlertable" 	  "1"
+			"ItemInitial"		    "0"
+			"SideShop"			    "0"
+			"SecretShop"		    "0"
+			
+			"precache"
+			{
+				"particle"	"particles/units/heroes/hero_mars/mars_arena_of_blood_heal.vpcf"
+			}
+			
+			"AbilityValues"
+			{
+        "heal_per_second" "75"
+        "heal_duration"   "5"
+        "max_stack"       "3"
+			}
+		}
+  	
+    "item_recipe_med_kit"
+		{
+			"ID"							    "1800"
+			"BaseClass"						"item_datadriven"
+			"AbilityTextureName"  "med_kit"
+			"Model"							  "models/props_gameplay/fountain_of_life/fountain_of_life"
+			"ItemCost"						"0"
+			"ItemShopTags"				""
+			"ItemRecipe"					"1"
+			"ItemResult"					"item_med_kit"
+
+			"ItemRequirements"
+			{
+				"01"  "item_tango;item_tango;item_tango;item_tango;item_tango"
+			}
+		}
+
 
 	// LEGENDARY ITEMS
 		"item_legend_serluc"

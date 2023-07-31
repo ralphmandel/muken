@@ -54,7 +54,6 @@
       //"item_ward_observer"      "REMOVE"
       //"item_ward_sentry"      "REMOVE"
   "item_ward_dispenser" "REMOVE"
-  "item_tango"      "REMOVE"
   "item_tango_single"     "REMOVE"
   "item_courier"      "REMOVE"
   "item_tpscroll"     "REMOVE"
@@ -287,6 +286,26 @@
   "item_recipe_hurricane_pike"      "REMOVE"
   "item_hurricane_pike"      "REMOVE"
   "item_banana"      "REMOVE"
+
+  "item_tango"
+  {
+		"ItemStackableMax"	"1"
+		"ItemInitialCharges""1"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"		"FIELD_FLOAT"
+        "buff_duration"	"10"
+      }
+      "02"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "health_regen"	"15"
+      }
+    }
+  }
 
   "item_ward_observer"
 	{

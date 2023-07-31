@@ -37,14 +37,6 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function hunter_2_modifier_camouflage:CheckState()
-	local state = {
-		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true
-	}
-
-	return state
-end
-
 function hunter_2_modifier_camouflage:DeclareFunctions()
 	local funcs = {
     MODIFIER_EVENT_ON_UNIT_MOVED,
@@ -75,12 +67,13 @@ function hunter_2_modifier_camouflage:OnUnitMoved(keys)
             self.moved = true
             self:StartIntervalThink(self.ability:GetSpecialValueFor("delay_out"))            
           end
-        end       
+        end
       end
     end
   else
     if keys.unit:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-      if CalcDistanceBetweenEntityOBB(keys.unit, self.parent) < 100 and self.invi then
+      local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
+      if dist < self.ability:GetSpecialValueFor("reveal_range") and self.invi then
         self:Destroy()
       end
     end
