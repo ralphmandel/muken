@@ -105,27 +105,27 @@
 				"2"   "dasdingo_4__tribal_rank_42"
 			}
 		}
-		"dasdingo_5__fire"
+		"dasdingo_5__hex"
 		{
 			"1"
 			{
-				"1"   "dasdingo_5__fire_rank_11"
-				"2"   "dasdingo_5__fire_rank_12"
+				"1"   "dasdingo_5__hex_rank_11"
+				"2"   "dasdingo_5__hex_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_5__fire_rank_21"
-				"2"   "dasdingo_5__fire_rank_22"
+				"1"   "dasdingo_5__hex_rank_21"
+				"2"   "dasdingo_5__hex_rank_22"
 			}
 			"3"
 			{
-				"1"   "dasdingo_5__fire_rank_31"
-				"2"   "dasdingo_5__fire_rank_32"
+				"1"   "dasdingo_5__hex_rank_31"
+				"2"   "dasdingo_5__hex_rank_32"
 			}
 			"4"
 			{
-				"1"   "dasdingo_5__fire_rank_41"
-				"2"   "dasdingo_5__fire_rank_42"
+				"1"   "dasdingo_5__hex_rank_41"
+				"2"   "dasdingo_5__hex_rank_42"
 			}
 		}
 		"dasdingo_u__curse"

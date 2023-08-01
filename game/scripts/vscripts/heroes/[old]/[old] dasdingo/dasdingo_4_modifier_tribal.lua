@@ -64,7 +64,7 @@ function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)
 		CreateModifierThinker(
 			self.parent, self.ability, "dasdingo_4_modifier_bounce", {},
 			keys.target:GetOrigin(), self.parent:GetTeamNumber(), false
-		)    
+		)
 	end
 end
 

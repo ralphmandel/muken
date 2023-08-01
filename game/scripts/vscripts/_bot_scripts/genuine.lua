@@ -20,7 +20,7 @@ function genuine:TrySpell(target, state)
 
   local abilities_actions = {
     [1] = self.TryCast_Nightfall,
-    [2] = self.TryCast_Travel,    
+    [2] = self.TryCast_Travel,
     [3] = self.TryCast_Morning,
     [4] = self.TryCast_Fallen,
     [5] = self.TryCast_Shooting

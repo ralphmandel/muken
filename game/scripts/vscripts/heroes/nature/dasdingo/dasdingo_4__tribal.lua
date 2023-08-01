@@ -1,5 +1,6 @@
 dasdingo_4__tribal = class({})
 LinkLuaModifier("dasdingo_4_modifier_tribal", "heroes/nature/dasdingo/dasdingo_4_modifier_tribal", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("dasdingo_4_modifier_bounce", "heroes/nature/dasdingo/dasdingo_4_modifier_bounce", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT

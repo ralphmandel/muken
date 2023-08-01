@@ -40,46 +40,21 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.4"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"	  "12"
-			}
-      "02"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"700"
-			}
-      "03"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"interval"	  "1.5"
-			}
-      "04"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"heal_tick"	  "30"
-			}
-      "05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"radius"	    "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "duration"	  "12"
+      "interval"	  "0.9"
+      "heal_tick"	  "15"
+      "radius"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -137,28 +112,12 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityCastPoint"       		"0.3"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "01"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"channel_time"	"3"
-			}
-      "02"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"drain_percent" "3"
-			}
-      "03"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"cast_range"	  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-			"15"
-			{
-				"var_type"		  "FIELD_FLOAT"
-				"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "channel_time"	"4"
+      "drain_percent" "3"
+      "cast_range"	  "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -177,53 +136,43 @@
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"       		"0.2"
 
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-      "3"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"	  "20"
-			}
-      "3"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"hits"	      "6"
-			}
-			"3"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"cast_range"	"1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
+      "hits"	        "5"
+      "cast_range"	  "300"
+      "duration"	    "15"
+      "bounce"	      "3"
+      "bounce_range"  "450"
+      "atk_range"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"dasdingo_5__fire"
+	"dasdingo_5__hex"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/nature/dasdingo/dasdingo_5__fire"
+		"ScriptFile"            		"heroes/nature/dasdingo/dasdingo_5__hex"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"dasdingo_fire"
+		"AbilityTextureName"     		"dasdingo_hex"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"       		"0.2"
 
 		"AbilityValues"
 		{
-      "interval"	      "0.5"
-      "fire_duration"	  "5"
-      "fire_damage"		  "5"
-      "ignition_damage" "30"
-      "slow_duration"	  "3"
-      "ignition_cap"    "300"
-      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "cast_range"  "600"
+      "duration"	  "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -1257,10 +1206,10 @@
         }
 
     //RANKS 5
-        "dasdingo_5__fire_rank_11"{
+        "dasdingo_5__hex_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1287,10 +1236,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_12"{
+        "dasdingo_5__hex_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1317,10 +1266,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_21"{
+        "dasdingo_5__hex_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1347,10 +1296,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_22"{
+        "dasdingo_5__hex_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1377,10 +1326,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_31"{
+        "dasdingo_5__hex_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1407,10 +1356,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_32"{
+        "dasdingo_5__hex_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1437,10 +1386,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_41"{
+        "dasdingo_5__hex_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1467,10 +1416,10 @@
             }
         }
 
-        "dasdingo_5__fire_rank_42"{
+        "dasdingo_5__hex_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/dasdingo/dasdingo-ranks_lua"
-            "AbilityTextureName"    		"dasdingo_fire"
+            "AbilityTextureName"    		"dasdingo_hex"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

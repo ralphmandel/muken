@@ -11,7 +11,7 @@
 			"Ability2"						"dasdingo_2__shield"
 			"Ability3"						"dasdingo_3__leech"
 			"Ability4"						"dasdingo_4__tribal"
-			"Ability5"						"dasdingo_5__fire"
+			"Ability5"						"dasdingo_5__hex"
 			"Ability6"						"dasdingo_u__curse"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"

@@ -1,11 +1,11 @@
-dasdingo_5_modifier_passive = class({})
+shaman_5_modifier_passive = class({})
 
-function dasdingo_5_modifier_passive:IsHidden() return true end
-function dasdingo_5_modifier_passive:IsPurgable() return false end
+function shaman_5_modifier_passive:IsHidden() return true end
+function shaman_5_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function dasdingo_5_modifier_passive:OnCreated(kv)
+function shaman_5_modifier_passive:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -14,15 +14,15 @@ function dasdingo_5_modifier_passive:OnCreated(kv)
   if IsServer() then self:PlayEfxStart() end
 end
 
-function dasdingo_5_modifier_passive:OnRefresh(kv)
+function shaman_5_modifier_passive:OnRefresh(kv)
 end
 
-function dasdingo_5_modifier_passive:OnRemoved()
+function shaman_5_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function dasdingo_5_modifier_passive:DeclareFunctions()
+function shaman_5_modifier_passive:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_PROJECTILE_NAME,
     MODIFIER_EVENT_ON_STATE_CHANGED,
@@ -32,13 +32,13 @@ function dasdingo_5_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function dasdingo_5_modifier_passive:GetModifierProjectileName(keys)
+function shaman_5_modifier_passive:GetModifierProjectileName(keys)
   if self:GetParent():PassivesDisabled() == false then
     return "particles/econ/items/shadow_fiend/sf_desolation/sf_base_attack_desolation_fire_arcana.vpcf"
   end
 end
 
-function dasdingo_5_modifier_passive:OnStateChanged(keys)
+function shaman_5_modifier_passive:OnStateChanged(keys)
   if keys.unit ~= self.parent then return end
 
   if IsServer() then
@@ -50,12 +50,12 @@ function dasdingo_5_modifier_passive:OnStateChanged(keys)
   end
 end
 
-function dasdingo_5_modifier_passive:OnAttackLanded(keys)
+function shaman_5_modifier_passive:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
   if self.parent:PassivesDisabled() then return end
-  if keys.target:HasModifier("dasdingo_5_modifier_ignition") then return end
+  if keys.target:HasModifier("shaman_5_modifier_ignition") then return end
 
-  AddModifier(keys.target, self.caster, self.ability, "dasdingo_5_modifier_fire", {
+  AddModifier(keys.target, self.caster, self.ability, "shaman_5_modifier_fire", {
     duration = self.ability:GetSpecialValueFor("fire_duration")
   }, true)
 end
@@ -64,7 +64,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function dasdingo_5_modifier_passive:PlayEfxStart()
+function shaman_5_modifier_passive:PlayEfxStart()
   if self.efx_enabled == true then return end
   local model_name = "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl"
   local particle_name = "particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf"
@@ -72,7 +72,7 @@ function dasdingo_5_modifier_passive:PlayEfxStart()
   self.efx_enabled = true
 end
 
-function dasdingo_5_modifier_passive:StopEfxStart()
+function shaman_5_modifier_passive:StopEfxStart()
   if self.efx_enabled == false then return end
   local model_name = "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl"
   local particle_name = "particles/econ/items/shadow_shaman/shadow_shaman_charmer_firesnake/shadow_shaman_charmer_firesnake_offhand.vpcf"

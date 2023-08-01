@@ -153,6 +153,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_stats.kv")
       local boss_list = LoadKeyValues("scripts/vscripts/_bosses/_bosses_units.txt")
       local neutral_list = LoadKeyValues("scripts/vscripts/_neutrals/_neutrals_units.txt")
+      local summon_list = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 
       if heroes_name_data then
         for name, id_name in pairs(heroes_name_data) do
@@ -180,6 +181,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
       if unit_stats == nil then
         for name, table in pairs(neutral_list) do
+          if name == caster:GetUnitName() then
+            for info, stats in pairs(table) do
+              if info == "Stats" then
+                unit_stats = stats
+              end
+            end
+          end
+        end
+      end
+
+      if unit_stats == nil then
+        for name, table in pairs(summon_list) do
           if name == caster:GetUnitName() then
             for info, stats in pairs(table) do
               if info == "Stats" then

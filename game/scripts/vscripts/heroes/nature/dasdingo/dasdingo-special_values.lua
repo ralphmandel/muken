@@ -34,7 +34,6 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "dasdingo_1__field" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
-    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "radius" then return 1 end
 
@@ -130,10 +129,8 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
-    if value_name == "AbilityCharges" then return 1 end
-    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "cast_range" then return 1 end
+		if value_name == "atk_range" then return 1 end
 
 		if caster:FindAbilityByName("dasdingo_4__tribal_rank_11") then
 		end
@@ -160,33 +157,35 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_5__fire" then
+	if ability:GetAbilityName() == "dasdingo_5__hex" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "duration" then return 1 end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_11") then
+		if caster:FindAbilityByName("dasdingo_5__hex_rank_11") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_12") then
+    if caster:FindAbilityByName("dasdingo_5__hex_rank_12") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_21") then
+		if caster:FindAbilityByName("dasdingo_5__hex_rank_21") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_22") then
+    if caster:FindAbilityByName("dasdingo_5__hex_rank_22") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_31") then
+		if caster:FindAbilityByName("dasdingo_5__hex_rank_31") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_32") then
+    if caster:FindAbilityByName("dasdingo_5__hex_rank_32") then
 		end
 
-		if caster:FindAbilityByName("dasdingo_5__fire_rank_41") then
+		if caster:FindAbilityByName("dasdingo_5__hex_rank_41") then
 		end
 
-    if caster:FindAbilityByName("dasdingo_5__fire_rank_42") then
+    if caster:FindAbilityByName("dasdingo_5__hex_rank_42") then
 		end
 	end
 
@@ -234,11 +233,10 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "dasdingo_1__field" then
-		if value_name == "AbilityManaCost" then return 240 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 18 end
-    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
+		if value_name == "AbilityManaCost" then return 280 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 400 + (value_level * 10) end
+		if value_name == "radius" then return 350 + (value_level * 10) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_2__shield" then
@@ -248,8 +246,8 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "dasdingo_3__leech" then
-		if value_name == "AbilityManaCost" then return 260 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 22 end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 30 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
     if value_name == "AbilityChannelTime" then return caster:FindAbilityByName("dasdingo__bind"):GetLevel() * 0.01 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -257,19 +255,19 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "dasdingo_4__tribal" then
-		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+		if value_name == "AbilityManaCost" then return 260 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 24 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
-    if value_name == "AbilityCharges" then return 2 end
-    if value_name == "AbilityChargeRestoreTime" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "cast_range" then return 300 + (value_level * 15) end
+    if value_name == "atk_range" then return 600 + (value_level * 15) end
 	end
 
-	if ability:GetAbilityName() == "dasdingo_5__fire" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+	if ability:GetAbilityName() == "dasdingo_5__hex" then
+		if value_name == "AbilityManaCost" then return 240 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 18 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "duration" then return 3 + (value_level * 0.1) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_u__curse" then

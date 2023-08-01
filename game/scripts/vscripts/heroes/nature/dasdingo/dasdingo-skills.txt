@@ -4,6 +4,6 @@
 	"2" "dasdingo_2__shield"
 	"3" "dasdingo_3__leech"
 	"4" "dasdingo_4__tribal"
-	"5" "dasdingo_5__fire"
+	"5" "dasdingo_5__hex"
 	"6" "dasdingo_u__curse"
 }

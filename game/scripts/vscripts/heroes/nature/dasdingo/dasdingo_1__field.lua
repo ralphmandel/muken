@@ -12,10 +12,7 @@ LinkLuaModifier("dasdingo_1_modifier_aura_effect", "heroes/nature/dasdingo/dasdi
 
 	function dasdingo_1__field:OnSpellStart()
 		local caster = self:GetCaster()
-
-    CreateModifierThinker(caster, self, "dasdingo_1_modifier_field", {
-      duration = self:GetSpecialValueFor("duration") + 0.5
-    }, self:GetCursorPosition(), caster:GetTeamNumber(), false)
+    AddModifier(caster, caster, self, "dasdingo_1_modifier_field", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

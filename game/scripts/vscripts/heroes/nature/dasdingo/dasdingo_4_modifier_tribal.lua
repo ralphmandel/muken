@@ -50,7 +50,8 @@ end
 function dasdingo_4_modifier_tribal:CheckState()
 	local state = {
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
-		[MODIFIER_STATE_EVADE_DISABLED] = true
+		[MODIFIER_STATE_EVADE_DISABLED] = true,
+		[MODIFIER_STATE_CANNOT_MISS] = true
 	}
 
 	return state
@@ -60,6 +61,7 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_HEALTHBAR_PIPS,
 		MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_ATTACKED,
 		MODIFIER_PROPERTY_DISABLE_HEALING,
 		MODIFIER_PROPERTY_MIN_HEALTH,
@@ -68,6 +70,7 @@ function dasdingo_4_modifier_tribal:DeclareFunctions()
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
     MODIFIER_EVENT_ON_ATTACK,
     MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+    MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE
 	}
 
 	return funcs
@@ -79,6 +82,15 @@ end
 
 function dasdingo_4_modifier_tribal:OnDeath(keys)
 	if keys.unit == self.parent then self:Destroy() end
+end
+
+function dasdingo_4_modifier_tribal:GetModifierProcAttack_Feedback(keys)
+	if self.parent:PassivesDisabled() then return end
+
+  CreateModifierThinker(
+    self.parent, self.ability, "dasdingo_4_modifier_bounce", {},
+    keys.target:GetOrigin(), self.parent:GetTeamNumber(), false
+  )
 end
 
 function dasdingo_4_modifier_tribal:OnAttacked(keys)
@@ -103,11 +115,11 @@ function dasdingo_4_modifier_tribal:GetModifierExtraHealthBonus()
 end
 
 function dasdingo_4_modifier_tribal:GetBonusDayVision()
-	return 400
+	return 600
 end
 
 function dasdingo_4_modifier_tribal:GetBonusNightVision()
-	return 300
+	return 450
 end
 
 function dasdingo_4_modifier_tribal:OnAttack(keys)
@@ -120,6 +132,10 @@ end
 
 function dasdingo_4_modifier_tribal:GetModifierBaseAttack_BonusDamage()
   return BaseStats(self:GetCaster()):GetStatTotal("MND")
+end
+
+function dasdingo_4_modifier_tribal:GetModifierAttackRangeOverride()
+  return self:GetAbility():GetSpecialValueFor("atk_range")
 end
 
 function dasdingo_4_modifier_tribal:OnIntervalThink()

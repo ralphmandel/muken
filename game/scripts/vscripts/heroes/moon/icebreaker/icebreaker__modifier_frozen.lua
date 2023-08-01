@@ -60,8 +60,8 @@ function icebreaker__modifier_frozen:DeclareFunctions()
 end
 
 function icebreaker__modifier_frozen:OnStateChanged(keys)
-	if keys.unit ~= self.parent then return end
-	if self.parent:IsStunned() == false then self:Destroy() end
+	-- if keys.unit ~= self.parent then return end
+	-- if self.parent:IsStunned() == false then self:Destroy() end
 end
 
 function icebreaker__modifier_frozen:GetModifierAvoidDamage(keys)

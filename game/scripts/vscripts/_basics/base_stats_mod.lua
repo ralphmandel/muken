@@ -24,7 +24,7 @@ base_stats_mod = class ({})
         self.ability:UpdatePanoramaPoints()
             
         if self.parent:IsHero() == false then
-          self.ability:IncrementSpenderPoints(0, 0)
+          --self.ability:IncrementSpenderPoints(0, 0)
         end
       end
 
@@ -52,7 +52,6 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
       MODIFIER_PROPERTY_MOVESPEED_LIMIT,
       MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-      MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
       MODIFIER_EVENT_ON_RESPAWN,
 
       -- INT
@@ -82,6 +81,11 @@ base_stats_mod = class ({})
       MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
       MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
     }
+
+    if self:GetParent():IsHero() or self:GetParent():IsConsideredHero() then
+      table.insert(funcs, MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT)
+    end
+
     return funcs
   end
 
@@ -213,9 +217,6 @@ base_stats_mod = class ({})
   end
 
   function base_stats_mod:OnRespawn(keys)
-    if keys.unit == self.parent then
-      self.ability:SetBaseAttackTime(0)
-    end
   end
 
 -- INT
