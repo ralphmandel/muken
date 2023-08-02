@@ -44,7 +44,7 @@ _general_script = class({})
   local MID_HEALTH_PERCENT = 50
   local FULL_HEALTH_PERCENT = 100
   local CUSTOM_HEALTH_PERCENT_BLOODSTAINED = 15
-  local LOW_MANA_PERCENT = 20
+  local LOW_MANA_PERCENT = 15
   local MID_MANA_PERCENT = 40
   local FULL_MANA_PERCENT = 100
   local CUSTOM_ENERGY_PERCENT = 0
@@ -94,7 +94,7 @@ _general_script = class({})
   function _general_script:DeclareFunctions()
     local funcs = {
       MODIFIER_EVENT_ON_DEATH,
-      MODIFIER_EVENT_ON_ATTACK_LANDED,
+      MODIFIER_EVENT_ON_TAKEDAMAGE,
       MODIFIER_EVENT_ON_ABILITY_START
     }
 
@@ -104,6 +104,12 @@ _general_script = class({})
   function _general_script:OnDeath(keys)
     if keys.unit == self.parent then
       self:ChangeState(BOT_STATE_REST)
+    end
+  end
+
+  function _general_script:OnTakeDamage(keys)
+    if keys.unit == self.parent then
+      self.take_damage = true
     end
   end
 
@@ -141,13 +147,17 @@ _general_script = class({})
             end
           end
         end
+
+        if self.parent:IsAlive() and (TEAM_ORIGIN[self.parent:GetTeamNumber()] - self.parent:GetOrigin()):Length2D() > 250 then
+          self.rested = true
+        end
       end
 
       if current_action == ACTION_REST_CHANGE_TO_AGGRESSIVE then
-        if self.rested == true then
-          self:ChangeState(BOT_STATE_AGGRESSIVE)
-        else
+        if self.rested == false and self.take_damage == nil then
           self.abilityScript:TrySpell(nil, self.state)
+        else
+          self:ChangeState(BOT_STATE_AGGRESSIVE)
         end
       end
     end
@@ -208,6 +218,24 @@ _general_script = class({})
             end
           end
 
+        -- FIND TRIBAL WARDS
+
+          if self.parent:GetHealthPercent() > self.mid_health then
+            local enemies = FindUnitsInRadius(
+              self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+              DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+            )
+      
+            for _,enemy in pairs(enemies) do
+              if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
+              and self:IsOutOfRange(enemy:GetOrigin()) == false then
+                local mod = enemy:FindModifierByName("dasdingo_4_modifier_tribal")
+                if mod then new_target = enemy end
+              end
+            end            
+          end
+
         if new_target then
           if new_target ~= self.attack_target then
             self.agressive_loc = self.current_outpost
@@ -257,23 +285,25 @@ _general_script = class({})
 
       if current_action == ACTION_AGRESSIVE_FIND_TARGET then
         if target_state == TARGET_STATE_INVALID or target_state == TARGET_STATE_DEAD then
-          self.agressive_loc = self.current_outpost
+          if self.abilityScript:TrySpell(nil, BOT_STATE_AGGRESSIVE_FIND_TARGET) == false then
+            self.agressive_loc = self.current_outpost
 
-          self.attack_target = self:FindNewTarget(
-            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
-            FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
-          )
-    
-          for _, hero in pairs(HeroList:GetAllHeroes()) do
-            if self.attack_target == nil and hero:GetTeamNumber() == self.team then
-              self.attack_target = self:FindNewTarget(
-                hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
-                FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
-              )
+            self.attack_target = self:FindNewTarget(
+              self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+              FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
+            )
+      
+            for _, hero in pairs(HeroList:GetAllHeroes()) do
+              if self.attack_target == nil and hero:GetTeamNumber() == self.team then
+                self.attack_target = self:FindNewTarget(
+                  hero:GetOrigin(), hero:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+                  FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
+                )
+              end
             end
+      
+            if self.attack_target == nil then self:MoveBotTo("location", self.agressive_loc) end            
           end
-    
-          if self.attack_target == nil then self:MoveBotTo("location", self.agressive_loc) end
         end
       end
     end
@@ -367,6 +397,10 @@ _general_script = class({})
       self.attack_target = nil
       self.target_last_loc = nil
       self.missing_start_time = nil
+    end
+
+    if state == BOT_STATE_REST then
+      self.take_damage = nil
     end
   end
 

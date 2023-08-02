@@ -18,9 +18,6 @@
 
     "AbilityValues"
 		{
-      "physical_block_max_percent"	"10"
-      "magical_block_max_percent"		"10"
-
 			// STR
         "base_atk_damage"	  "50"
         "damage_percent"	  "10"
@@ -34,6 +31,7 @@
 
       // INT
         "spell_amp"				  "10"
+        "heal_power"			  "10"
         "mana"					    "25"
 
 			// CON
@@ -42,11 +40,11 @@
 
       // DEF
         "armor"					    "1"
-        "status_resist"			"1.9"
+        "block"					    "1"
 
       // RES
         "magic_resist"		  "1"
-        "heal_power"			  "5"
+        "status_resist"			"1.9"
 
 			// DEX
         "evade"					    "1"

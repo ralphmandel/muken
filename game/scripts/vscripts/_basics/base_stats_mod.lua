@@ -42,7 +42,6 @@ base_stats_mod = class ({})
       MODIFIER_EVENT_ON_TAKEDAMAGE, -- POPUP DAMAGE TYPES
       MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, -- PHYS./MAGIC. AMP
       MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, --CRITICAL ATTACKS
-      MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
       
       -- STR
       MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
@@ -66,10 +65,11 @@ base_stats_mod = class ({})
 
       --DEF
       MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-      MODIFIER_PROPERTY_STATUS_RESISTANCE,
+      MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 
       --RES
       MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+      MODIFIER_PROPERTY_STATUS_RESISTANCE,
 
       --DEX
       MODIFIER_PROPERTY_DODGE_PROJECTILE,
@@ -180,13 +180,6 @@ base_stats_mod = class ({})
     return 0
   end
 
-  function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
-    local average = self.ability.physical_block_max_percent
-    local block_percent = RandomInt(average - 5, average + 5)
-
-    return math.floor(keys.damage * block_percent * 0.01)
-  end
-
 -- STR
 
   function base_stats_mod:GetModifierBaseAttack_BonusDamage()
@@ -275,8 +268,9 @@ base_stats_mod = class ({})
     return 10 + (self.ability.stat_total["DEF"] * self.ability.armor)
   end
 
-  function base_stats_mod:GetModifierStatusResistance()
-    return self.ability:GetStatBase("DEF") * self.ability.status_resist
+  function base_stats_mod:GetModifierPhysical_ConstantBlock(keys)
+    if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+    return self.ability:GetStatBase("DEF") * self.ability.block
   end
 
 -- RES
@@ -285,6 +279,10 @@ base_stats_mod = class ({})
     local value = 10 + (self.ability.stat_total["RES"] * self.ability.magic_resist)
     local calc = (value * 6) / (1 +  (value * 0.06))
     return calc
+  end
+
+  function base_stats_mod:GetModifierStatusResistance()
+    return self.ability:GetStatBase("RES") * self.ability.status_resist
   end
 
 -- DEX

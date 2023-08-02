@@ -8,7 +8,7 @@
 
 		//ABILITIES
 			"Ability1"						"dasdingo_1__field"
-			"Ability2"						"dasdingo_2__shield"
+			"Ability2"						"dasdingo_2__tree"
 			"Ability3"						"dasdingo_3__leech"
 			"Ability4"						"dasdingo_4__tribal"
 			"Ability5"						"dasdingo_5__hex"

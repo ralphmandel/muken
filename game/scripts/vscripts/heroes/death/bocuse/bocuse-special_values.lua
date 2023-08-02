@@ -352,7 +352,7 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_point" then return 4 - (value_level * 0.2) end
+		if value_name == "cast_point" then return 1 - (value_level * 0.1) end
 
     if value_name == "duration" then return 60 end
     if value_name == "special_agi" then return 20 end

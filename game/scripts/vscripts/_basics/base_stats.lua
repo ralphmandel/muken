@@ -287,10 +287,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 		function base_stats:LoadSpecialValues()
 			if IsServer() then
-				-- BLOCK
-				self.physical_block_max_percent = self:GetSpecialValueFor("physical_block_max_percent")
-				self.magical_block_max_percent = self:GetSpecialValueFor("magical_block_max_percent")
-
 				-- STR
 				self.base_atk_damage = self:GetSpecialValueFor("base_atk_damage")
 				self.damage_percent = self:GetSpecialValueFor("damage_percent")
@@ -305,6 +301,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 				-- INT
         self.spell_amp = self:GetSpecialValueFor("spell_amp")
+        self.heal_power = self:GetSpecialValueFor("heal_power")
 				self.mana = self:GetSpecialValueFor("mana")
 
 				-- CON
@@ -313,11 +310,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 				-- DEF
         self.armor = self:GetSpecialValueFor("armor")
-				self.status_resist = self:GetSpecialValueFor("status_resist")
+        self.block = self:GetSpecialValueFor("block")
 
         --RES
 				self.magic_resist = self:GetSpecialValueFor("magic_resist")
-        self.heal_power = self:GetSpecialValueFor("heal_power")
+				self.status_resist = self:GetSpecialValueFor("status_resist")
 
         --DEX
         self.evade = self:GetSpecialValueFor("evade")
@@ -754,28 +751,48 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       return 100 + (self.stat_total["INT"] * self.spell_amp)
     end
 
+    function base_stats:GetTotalHealPowerPercent()
+      return self:GetHealPower() * 100
+    end
+
+    function base_stats:GetHealPower()
+      local caster = self:GetCaster()
+      local total = 1 + (self.stat_total["INT"] * self.heal_power * 0.01)
+
+      local heal_power = caster:FindAllModifiersByName("_modifier_heal_power")
+      for _,modifier in pairs(heal_power) do
+        total = total + (modifier.amount * 0.01)
+      end
+
+      return total
+    end
+
   -- CON
 
     function base_stats:GetHealAmp()
-      return self.heal_amp * self:GetStatBase("CON")
+      local caster = self:GetCaster()
+      local total = self.heal_amp * self:GetStatBase("CON")
+
+      local heal_amp = caster:FindAllModifiersByName("_modifier_heal_amp")
+      for _,modifier in pairs(heal_amp) do
+        total = total + modifier.amount
+      end
+
+      return total
     end
 
   -- DEF
 
-    function base_stats:GetStatusResistPercent()
-      if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
-      return self:GetStatBase("DEF") * self.status_resist
-    end
+  function base_stats:GetBlockAtkDamage()
+    return self:GetStatBase("DEF") * self.block
+  end
 
   -- RES
   
-    function base_stats:GetTotalHealPowerPercent()
-      return 100 + (self:GetStatBase("RES") * self.heal_power)
-    end
-
-    function base_stats:GetHealPower()
-      return 1 + (self:GetStatBase("RES") * self.heal_power * 0.01)
-    end
+  function base_stats:GetStatusResistPercent()
+    if self:GetCaster():IsHero() then return self:GetCaster():GetStatusResistance() * 100 end
+    return self:GetStatBase("RES") * self.status_resist
+  end
 
   -- DEX
 

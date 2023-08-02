@@ -21,10 +21,12 @@ function bocuse:TrySpell(target, state)
   }
 
   for i = 1, #abilities_actions, 1 do
-    if cast == false then
+    if cast == false or cast == nil then
       cast = abilities_actions[i](self)
     end
   end
+
+  if cast == nil then return false end
 
   return cast
 end
@@ -98,13 +100,19 @@ function bocuse:TryCast_Roux()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
-    self.caster:CastAbilityOnPosition(self.caster:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+    local loc = self.caster:GetOrigin()
+    if loc.z == 0 then return false end
+
+    self.caster:CastAbilityOnPosition(loc, ability, self.caster:GetPlayerOwnerID())
     return true
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
+    local loc = self.target:GetOrigin()
+    if loc.z == 0 then return false end
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
-    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+
+    self.caster:CastAbilityOnPosition(loc, ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end

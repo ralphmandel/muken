@@ -93,6 +93,7 @@ function base_hero_mod:LoadActivity()
 		if self.ability.hero_name == "ancient" then self.activity = "et_2021" end
 		if self.ability.hero_name == "fleaman" then self.activity = "latch" end
 		if self.ability.hero_name == "hunter" then self.activity = "MGC" end
+		if self.ability.hero_name == "templar" then self.activity = "ti8_taunt" end
     --if self.ability.hero_name == "druid" then self.activity = "when_nature_attacks" end
 	end)
 end
@@ -107,7 +108,7 @@ function base_hero_mod:LoadModel()
 			if IsValidEntity(self.parent) then
 				if self.ability.hero_name == "bocuse" then
 					self.model_scale = 1.15
-					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+					self.parent:SetHealthBarOffsetOverride(250 * self.parent:GetModelScale())
 					self.parent:SetMaterialGroup("1")
 				end
 				if self.ability.hero_name == "krieger" then
@@ -132,6 +133,10 @@ function base_hero_mod:LoadModel()
 				end
         if self.ability.hero_name == "hunter" then
 					self.parent:SetMaterialGroup("1")
+				end
+        if self.ability.hero_name == "templar" then
+					self.model_scale = 1.2
+					self.parent:SetHealthBarOffsetOverride(350 * self.parent:GetModelScale())
 				end
 				if self.model_scale ~= nil then
 					self.parent:SetModelScale(self.model_scale)
@@ -166,6 +171,7 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
 	if self.ability.hero_name == "brute" then self.attack_landed_sound = "Hero_Axe.Attack" end
 	if self.ability.hero_name == "hunter" then self.attack_landed_sound = "Hero_Sniper.MKG_impact" end
+	if self.ability.hero_name == "templar" then self.attack_landed_sound = "Hero_Omniknight.Attack" end
 
 	-- if self.ability.hero_name == "krieger" then self.attack_landed_sound = "krieger.Attack" end
 end

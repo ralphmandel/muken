@@ -20,10 +20,12 @@ function paladin:TrySpell(target, state)
   }
 
   for i = 1, #abilities_actions, 1 do
-    if cast == false then
+    if cast == false or cast == nil then
       cast = abilities_actions[i](self)
     end
   end
+
+  if cast == nil then return false end
 
   return cast
 end

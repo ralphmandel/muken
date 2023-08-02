@@ -17,7 +17,6 @@ function dasdingo_4_modifier_bounce:OnCreated( kv )
 	self.parent:SetOrigin(self.parent:GetOrigin() + Vector(0, 0, 100))
 	self.parent:SetAttackCapability(self.caster:GetAttackCapability())
 	self.parent:SetRangedProjectileName(self.caster:GetRangedProjectileName())
-  print("kubo", self.parent:GetProjectileSpeed())
 
 	local units = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 1,

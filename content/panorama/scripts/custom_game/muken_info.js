@@ -25,21 +25,21 @@ var isWindowOpened = false;
     if (tab == 2) {
       CreateRow(tab, column, "bonus_damage", '');
       CreateRow(tab, column, "movespeed", '');
-      CreateRow(tab, column, "status_resist", '%');
+      CreateRow(tab, column, "block", '');
       CreateRow(tab, column, "hp_regen", '');
       CreateRow(tab, column, "crit_damage", '%');
     }
     if (tab == 3) {
       CreateRow(tab, column, "magical_damage", '%');
-      CreateRow(tab, column, "max_health", '');
+      CreateRow(tab, column, "current_vision", '');
       CreateRow(tab, column, "magical_resist", '%');
       CreateRow(tab, column, "mp_regen", '');
       CreateRow(tab, column, "debuff_amp", '%');
     }
     if (tab == 4) {
-      CreateRow(tab, column, "max_mana", '');
-      CreateRow(tab, column, "heal_amp", '%');
       CreateRow(tab, column, "heal_power", '%');
+      CreateRow(tab, column, "heal_amp", '%');
+      CreateRow(tab, column, "status_resist", '%');
       CreateRow(tab, column, "cd_reduction", '%');
       CreateRow(tab, column, "buff_amp", '%');
     }

@@ -138,7 +138,7 @@ BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
   "dasdingo",
-  "ancient", "paladin"
+  "paladin", --"ancient",
 }
 
 RANDOM_NAMES = {
@@ -158,6 +158,7 @@ BOT_STATE_REST = 0
 BOT_STATE_AGGRESSIVE = 1
 BOT_STATE_FLEE = 2
 BOT_STATE_FARMING = 3
+BOT_STATE_AGGRESSIVE_FIND_TARGET = 10
 
 SPAWNER_MOBS = {
 -- TIER 1

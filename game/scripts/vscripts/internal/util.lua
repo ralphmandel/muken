@@ -487,10 +487,6 @@ end
       [DOTA_TEAM_CUSTOM_4] = 2,
     }
 
-    -- if IsInToolsMode() then
-    --   bot_slots[DOTA_TEAM_CUSTOM_1] = 3
-    -- end
-
     local players_hero_list = {}
     local bot_list = {}
     local random_list = {}
@@ -538,10 +534,9 @@ end
     for bot_team, number in pairs(bot_slots) do
       local i = number
       while i > 0 do
-
-        local new_bot = GameRules:AddBotPlayerWithEntityScript(
-          GetIDName(random_list[hero_index]), RANDOM_NAMES[hero_index], bot_team, "", false
-        )
+        local hero = GetIDName(random_list[hero_index])
+        --if bot_team == DOTA_TEAM_CUSTOM_1 then hero = "npc_dota_hero_shadow_shaman" end -- FORCE BOT PICK
+        local new_bot = GameRules:AddBotPlayerWithEntityScript(hero, RANDOM_NAMES[hero_index], bot_team, "", false)
 
         PlayerResource:GetPlayer(new_bot:GetPlayerID()):SetAssignedHeroEntity(new_bot)
         new_bot:AddNewModifier(new_bot, nil, "_general_script", {})

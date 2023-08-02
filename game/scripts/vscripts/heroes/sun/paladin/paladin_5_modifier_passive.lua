@@ -48,6 +48,8 @@ function paladin_5_modifier_passive:GetModifierProcAttack_Feedback(keys)
   self.ability:UseResources(true, false, false, true)
   self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
 
+  if keys.target:TriggerSpellAbsorb(self) then return end
+
   if IsServer() then
     self:PlayEfxHit(keys.target)
     self:PlayEfxScreenShake(keys.target)

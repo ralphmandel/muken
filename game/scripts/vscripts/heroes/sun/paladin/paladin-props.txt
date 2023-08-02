@@ -54,8 +54,8 @@
 		"AttackRangeBuffer"             "200"     // Extra range the target can move without canceling the attack
 		//"ProjectileModel"          	""
 		//"ProjectileSpeed"          	"900"
-		"VisionDaytimeRange"        	"900"        // Range of vision during day light.
-		"VisionNighttimeRange"      	"750"        // Range of vision at night time.
+		"VisionDaytimeRange"        	"1000"        // Range of vision during day light.
+		"VisionNighttimeRange"      	"700"        // Range of vision at night time.
 
 		//STRENGTH
 			"AttackDamageMax"			"45"

@@ -36,27 +36,27 @@
 				"2"   "dasdingo_1__field_rank_42"
 			}
 		}
-		"dasdingo_2__shield"
+		"dasdingo_2__tree"
 		{
 			"1"
 			{
-				"1"   "dasdingo_2__shield_rank_11"
-				"2"   "dasdingo_2__shield_rank_12"
+				"1"   "dasdingo_2__tree_rank_11"
+				"2"   "dasdingo_2__tree_rank_12"
 			}
 			"2"
 			{
-				"1"   "dasdingo_2__shield_rank_21"
-				"2"   "dasdingo_2__shield_rank_22"
+				"1"   "dasdingo_2__tree_rank_21"
+				"2"   "dasdingo_2__tree_rank_22"
 			}
 			"3"
 			{
-				"1"   "dasdingo_2__shield_rank_31"
-				"2"   "dasdingo_2__shield_rank_32"
+				"1"   "dasdingo_2__tree_rank_31"
+				"2"   "dasdingo_2__tree_rank_32"
 			}
 			"4"
 			{
-				"1"   "dasdingo_2__shield_rank_41"
-				"2"   "dasdingo_2__shield_rank_42"
+				"1"   "dasdingo_2__tree_rank_41"
+				"2"   "dasdingo_2__tree_rank_42"
 			}
 		}
 		"dasdingo_3__leech"

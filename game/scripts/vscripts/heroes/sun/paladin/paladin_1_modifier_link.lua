@@ -62,7 +62,6 @@ function paladin_1_modifier_link:OnTakeDamage(keys)
 
   --if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
 		local total = ApplyDamage(damageTable)
-    --print("kubo", total)
 	--end
 end
 

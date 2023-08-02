@@ -92,8 +92,8 @@
     "AbilityValues"
 		{
       "stun_duration" "1"
-      "damage"        "90"
-      "heal"          "60"
+      "damage"        "100"
+      "heal"          "50"
       "min_mult"      "2"
       "max_mult"      "3"
       "cast_range"    "750"

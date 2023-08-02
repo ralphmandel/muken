@@ -28,7 +28,7 @@ function genuine_4_modifier_aura_effect:DeclareFunctions()
 end
 
 function genuine_4_modifier_aura_effect:GetAbsorbSpell(keys)
-  if self.ability:IsCooldownReady() then
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") and self.ability:IsCooldownReady() then
     if IsServer() then self:PlayEfxSpellBlock() end
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
     return 1

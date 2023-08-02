@@ -37,7 +37,6 @@ end
 -- function hunter_u_modifier_passive:OnOrder(keys)
 -- 	if keys.unit ~= self.parent then return end
 
---   print("KUBO ORDER", keys.order_type)
 -- end
 
 function hunter_u_modifier_passive:GetBonusDayVision()

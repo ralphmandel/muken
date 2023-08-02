@@ -15,7 +15,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
   function dasdingo_u__curse:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
-    local fear_duration = self:GetSpecialValueFor("fear_duration")
 
     local enemies = FindUnitsInRadius(
       caster:GetTeamNumber(), point, nil, self:GetSpecialValueFor("radius"),
@@ -26,19 +25,19 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     for _,enemy in pairs(enemies) do
       AddModifier(enemy, caster, self, "dasdingo_u_modifier_curse", {}, false)
 
-      if enemy:IsMagicImmune() == false then
-        AddModifier(enemy, caster, self, "_modifier_fear", {
-          duration = fear_duration, special = 2, x = point.x, y = point.y, z = point.z
-        }, true)
-      end
+      -- if enemy:IsMagicImmune() == false then
+      --   AddModifier(enemy, caster, self, "_modifier_fear", {
+      --     duration = fear_duration, special = 2, x = point.x, y = point.y, z = point.z
+      --   }, true)
+      -- end
     end
 
-    self:PlayEfxStart(point, fear_duration)
+    self:PlayEfxStart(point)
   end
 
 -- EFFECTS
 
-  function dasdingo_u__curse:PlayEfxStart(point, fow_duration)
+  function dasdingo_u__curse:PlayEfxStart(point)
     local caster = self:GetCaster()
     local radius = self:GetAOERadius()
 
@@ -55,5 +54,5 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
       EmitSoundOnLocationWithCaster(point, "Hero_Oracle.FalsePromise.Damaged", caster)
     end
 
-    AddFOWViewer(caster:GetTeamNumber(), point, radius, fow_duration, false)
+    AddFOWViewer(caster:GetTeamNumber(), point, radius, 2, true)
   end

@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "templar_1__shield"
+	"2" "templar_2__barrier"
+	"3" "templar_3__circle"
+	"4" "templar_4__hammer"
+	"5" "templar_5__reborn"
+	"6" "templar_u__praise"
+}

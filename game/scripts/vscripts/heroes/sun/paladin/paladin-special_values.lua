@@ -256,12 +256,12 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "paladin_3__hammer" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 12 end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 300 + (value_level * 5) end
+		if value_name == "radius" then return 350 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "paladin_4__magnus" then
@@ -276,7 +276,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
     if value_name == "AbilityCharges" then return 3 end
-    if value_name == "AbilityChargeRestoreTime" then return 4 end
+    if value_name == "AbilityChargeRestoreTime" then return 5 end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
 		if value_name == "damage" then return 120 + (value_level * 3) end

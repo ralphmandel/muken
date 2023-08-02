@@ -50,6 +50,10 @@ end
 		end
 
 		self:ChangeTeam(caster:GetTeamNumber())
+
+    if GetHeroName(caster:GetUnitName()) == "templar" then
+      if IsServer() then self:PlayEfxHammer() end
+		end
 	end
 
 	function cosmetics:ApplyCosmetics(cosmetics_data)
@@ -272,3 +276,13 @@ end
 			self:ApplyAmbient(ambients, unit, self:FindModifierByModel(model))
 		end
 	end
+
+
+  function cosmetics:PlayEfxHammer()
+    local caster = self:GetCaster()
+    local string = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_hammer_ambient.vpcf"
+    local particle = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, caster)
+    ParticleManager:SetParticleControl(particle, 0, caster:GetOrigin())
+    ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
+    --self:AddParticle(particle, false, false, -1, false, false)  
+  end

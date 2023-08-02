@@ -15,7 +15,7 @@ function dasdingo_u_modifier_curse:OnCreated(kv)
 
   ApplyDamage({
     attacker = self.caster, victim = self.parent, ability = self.ability,
-    damage = self.ability:GetSpecialValueFor("damage_init"),
+    damage = self.ability:GetSpecialValueFor("damage"),
     damage_type = self.ability:GetAbilityDamageType()
   })
 	

@@ -19,7 +19,6 @@ function dasdingo_1_modifier_aura_effect:OnRefresh(kv)
 end
 
 function dasdingo_1_modifier_aura_effect:OnRemoved()
-  RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

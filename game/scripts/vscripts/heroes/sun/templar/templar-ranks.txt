@@ -1,0 +1,155 @@
+"TalentTree_templar"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_omniknight"
+	{
+		"templar_1__shield" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "templar_1__shield_rank_11" // PATH + TALENT
+				"2"   "templar_1__shield_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_1__shield_rank_21"
+				"2"   "templar_1__shield_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_1__shield_rank_31"
+				"2"   "templar_1__shield_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_1__shield_rank_41"
+				"2"   "templar_1__shield_rank_42"
+			}
+		}
+		"templar_2__barrier"
+		{
+			"1"
+			{
+				"1"   "templar_2__barrier_rank_11"
+				"2"   "templar_2__barrier_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_2__barrier_rank_21"
+				"2"   "templar_2__barrier_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_2__barrier_rank_31"
+				"2"   "templar_2__barrier_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_2__barrier_rank_41"
+				"2"   "templar_2__barrier_rank_42"
+			}
+		}
+		"templar_3__circle"
+		{
+			"1"
+			{
+				"1"   "templar_3__circle_rank_11"
+				"2"   "templar_3__circle_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_3__circle_rank_21"
+				"2"   "templar_3__circle_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_3__circle_rank_31"
+				"2"   "templar_3__circle_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_3__circle_rank_41"
+				"2"   "templar_3__circle_rank_42"
+			}
+		}
+		"templar_4__hammer"
+		{
+			"1"
+			{
+				"1"   "templar_4__hammer_rank_11"
+				"2"   "templar_4__hammer_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_4__hammer_rank_21"
+				"2"   "templar_4__hammer_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_4__hammer_rank_31"
+				"2"   "templar_4__hammer_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_4__hammer_rank_41"
+				"2"   "templar_4__hammer_rank_42"
+			}
+		}
+		"templar_5__reborn"
+		{
+			"1"
+			{
+				"1"   "templar_5__reborn_rank_11"
+				"2"   "templar_5__reborn_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_5__reborn_rank_21"
+				"2"   "templar_5__reborn_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_5__reborn_rank_31"
+				"2"   "templar_5__reborn_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_5__reborn_rank_41"
+				"2"   "templar_5__reborn_rank_42"
+			}
+		}
+		"templar_u__praise"
+		{
+			"1"
+			{
+				"1"   "templar_u__praise_rank_11"
+				"2"   "templar_u__praise_rank_12"
+			}
+			"2"
+			{
+				"1"   "templar_u__praise_rank_21"
+				"2"   "templar_u__praise_rank_22"
+			}
+			"3"
+			{
+				"1"   "templar_u__praise_rank_31"
+				"2"   "templar_u__praise_rank_32"
+			}
+			"4"
+			{
+				"1"   "templar_u__praise_rank_41"
+				"2"   "templar_u__praise_rank_42"
+			}
+		}
+	}	
+}

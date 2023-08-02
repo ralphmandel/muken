@@ -8,11 +8,23 @@ LinkLuaModifier("_modifier_pull", "_modifiers/_modifier_pull", LUA_MODIFIER_MOTI
 
 -- INIT
 
--- SPELL START
+  function bocuse_5__roux:CastFilterResultLocation(vLocation)
+    local caster = self:GetCaster()
 
-	function bocuse_5__roux:GetAOERadius()
+    if vLocation.z == 0 then return UF_FAIL_CUSTOM end
+
+    return UF_SUCCESS
+  end
+
+  function bocuse_5__roux:GetCustomCastErrorLocation(vLocation)
+    return "CANNOT CAST ON WATER"
+  end
+
+  function bocuse_5__roux:GetAOERadius()
 		return self:GetSpecialValueFor("radius")
 	end
+
+-- SPELL START
 
 	function bocuse_5__roux:OnSpellStart()
 		local caster = self:GetCaster()

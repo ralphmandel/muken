@@ -1,0 +1,23 @@
+"Cosmetics"
+{
+    "models/items/omniknight/light_hammer/mesh/light_hammer_model.vmdl" "nil"
+
+    "models/heroes/omniknight/head.vmdl" "nil"
+
+    "models/items/omniknight/light_helmet/light_helmet.vmdl"
+    {
+      "particles/econ/items/omniknight/omni_ti8_head/omni_ti8_head_ambient.vpcf" ""
+    }
+
+    "models/items/omniknight/the_unbroken_knight_back/the_unbroken_knight_back.vmdl" "nil"
+
+    "models/items/omniknight/omni_fall20_immortal_shoulders/omni_fall20_immortal_shoulders.vmdl"
+    {
+      "particles/econ/items/omniknight/omniknight_fall20_immortal/omniknight_fall20_immortal_shoulder_ambient.vpcf" ""
+    }
+
+    "models/items/omniknight/omni_2021_immortal_arms/omni_2021_immortal_arms.vmdl"
+    {
+      "particles/econ/items/omniknight/omni_2021_immortal/omni_2021_immortal_arms_ambient.vpcf" ""
+    }
+}
