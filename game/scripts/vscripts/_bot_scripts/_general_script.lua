@@ -348,7 +348,7 @@ _general_script = class({})
         local new_target = true
 
         if self:CheckTargetState(self.attack_target) == TARGET_STATE_VISIBLE then
-          local mod_steal = self.attack_target:FindAllModifiersByName("fleaman_5_modifier_steal")
+          local mod_steal = self.attack_target:FindModifierByName("fleaman_5_modifier_steal")
           if mod_steal then
             if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
               new_target = false
@@ -367,7 +367,7 @@ _general_script = class({})
       
           for _,enemy in pairs(enemies) do
             if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false then
-              local mod_steal = enemy:FindAllModifiersByName("fleaman_5_modifier_steal")
+              local mod_steal = enemy:FindModifierByName("fleaman_5_modifier_steal")
               if mod_steal then
                 if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
                   self.attack_target = enemy
@@ -501,11 +501,15 @@ _general_script = class({})
   function _general_script:GetAvailableShrine(hp_cap, mp_cap)
     local new_shrine = nil
     if self.parent:GetHealthPercent() < hp_cap then
-      new_shrine = self:FindShrine("hp_filler")
+      if self.parent:HasModifier("shrine_refresh_hp_modifier") == false then
+        new_shrine = self:FindShrine("hp_filler")
+      end
     end
 
     if new_shrine == nil and self.parent:GetManaPercent() < mp_cap then
-      new_shrine = self:FindShrine("mp_filler")
+      if self.parent:HasModifier("shrine_refresh_mp_modifier") == false then
+        new_shrine = self:FindShrine("mp_filler")
+      end
     end
 
     return new_shrine

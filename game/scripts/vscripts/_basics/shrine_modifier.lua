@@ -79,7 +79,7 @@ function shrine_modifier:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "filler_ability" then
     if self.name == "hp_filler" then
-      if value_name == "AbilityCooldown" then return 120 end
+      if value_name == "AbilityCooldown" then return 150 end
       if value_name == "duration" then return 4 end
       if value_name == "mp_heal" then return 0 end
       if value_name == "mp_heal_pct" then return 0 end
@@ -88,7 +88,7 @@ function shrine_modifier:GetModifierOverrideAbilitySpecialValue(keys)
       if value_name == "hp_heal_pct" then return 5 end
     end
     if self.name == "mp_filler" then
-      if value_name == "AbilityCooldown" then return 150 end
+      if value_name == "AbilityCooldown" then return 180 end
       if value_name == "duration" then return 4 end
       if value_name == "hp_heal" then return 0 end
       if value_name == "hp_heal_pct" then return 0 end
@@ -128,7 +128,8 @@ end
 --------------------------------------------------------------------------------------------------------------------------
 
 function shrine_modifier:ActivateHP(mod)
-  if mod:GetParent():GetHealthPercent() > 50 then
+  if mod:GetParent():GetHealthPercent() > 50
+  or mod:GetParent():HasModifier("shrine_refresh_hp_modifier") then
     Timers:CreateTimer(FrameTime(), function()
       if IsServer() then self.parent:StopSound("Shrine.Cast") end
     end)
@@ -139,13 +140,16 @@ function shrine_modifier:ActivateHP(mod)
     mod:Destroy()
     return
   end
+
+  AddModifier(mod:GetParent(), self.caster, self.ability, "shrine_refresh_hp_modifier", {duration = 50}, false)
 
   if IsServer() then self:PlayEfxHP(mod) end
 end
 
 function shrine_modifier:ActiveteMP(mod)
   if mod:GetParent():GetManaPercent() > 50
-  or mod:GetParent():HasModifier("ancient_1_modifier_passive") then
+  or mod:GetParent():HasModifier("ancient_1_modifier_passive")
+  or mod:GetParent():HasModifier("shrine_refresh_mp_modifier") then
     Timers:CreateTimer(FrameTime(), function()
       if IsServer() then self.parent:StopSound("Shrine.Cast") end
     end)
@@ -156,6 +160,8 @@ function shrine_modifier:ActiveteMP(mod)
     mod:Destroy()
     return
   end
+
+  AddModifier(mod:GetParent(), self.caster, self.ability, "shrine_refresh_mp_modifier", {duration = 60}, false)
 
   if IsServer() then self:PlayEfxMP(mod) end
 end

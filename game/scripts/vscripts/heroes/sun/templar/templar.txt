@@ -77,6 +77,7 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -102,15 +103,16 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastPoint"       		"0.2"
 
     "AbilityValues"
 		{
@@ -163,8 +165,8 @@
 		{
 			"interval_base"       "1"
 			"interval_reduction"  "0.7"
-			"hp_cap"              "90"
 			"duration"            "8"
+			"hp_cap"              "90"
 			"heal"                "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"                "1 2 3 4 5 6 7 8 9 10 11"
 		}
