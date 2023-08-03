@@ -88,7 +88,6 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     
     local caster = self:GetCaster()
     local particle_pre = "particles/econ/events/ti10/aegis_lvl_1000_ambient_ti10.vpcf"
-
     self.efx_pre = ParticleManager:CreateParticle(particle_pre, PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(self.efx_pre, 0, loc)
 
@@ -100,7 +99,6 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     
     local caster = self:GetCaster()
     local particle_reborn = "particles/items_fx/aegis_respawn_timer.vpcf"
-
     local efx_reborn = ParticleManager:CreateParticle(particle_reborn, PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(efx_reborn, 0, loc)
     ParticleManager:SetParticleControl(efx_reborn, 1, Vector(0, 0, 0))

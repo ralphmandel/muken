@@ -1,6 +1,5 @@
 templar_u__praise = class({})
 LinkLuaModifier("templar_u_modifier_praise", "heroes/sun/templar/templar_u_modifier_praise", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -8,6 +7,8 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 	function templar_u__praise:OnSpellStart()
 		local caster = self:GetCaster()
+    caster:RemoveModifierByName("templar_u_modifier_praise")
+    AddModifier(caster, caster, self, "templar_u_modifier_praise", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

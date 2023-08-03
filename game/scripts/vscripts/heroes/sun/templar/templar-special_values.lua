@@ -192,6 +192,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "heal" then return 1 end
 
 		if caster:FindAbilityByName("templar_u__praise_rank_11") then
 		end
@@ -256,17 +257,18 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_5__reborn" then
-		if value_name == "AbilityManaCost" then return 600 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 150 end
+		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 75 end
 		if value_name == "AbilityCastRange" then return 300 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "percent" then return 40 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "templar_u__praise" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 550 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 120 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "heal" then return 50 + (value_level * 1) end
 	end
 
 	return 0
