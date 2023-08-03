@@ -79,10 +79,12 @@
 
 		"AbilityValues"
 		{
-      "hp_regen"			"25"
-      "duration"      "300"
-      "radius"			  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "hp_regen"			  "25"
+      "duration"        "300"
+      "root_duration"   "2"
+      "root_chance"     "12"
+      "radius"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -131,7 +133,7 @@
 
 		"AbilityValues"
 		{
-      "hits"	        "5"
+      "hits"	        "6"
       "cast_range"	  "300"
       "duration"	    "15"
       "bounce"	      "3"

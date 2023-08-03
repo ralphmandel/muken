@@ -1,6 +1,7 @@
 dasdingo_2__tree = class({})
 LinkLuaModifier("dasdingo_2_modifier_aura", "heroes/nature/dasdingo/dasdingo_2_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/nature/dasdingo/dasdingo_2_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_root", "_modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -32,12 +33,10 @@ LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/nature/dasdingo/dasdi
 
     local caster = self:GetCaster()
 
-    local test = CreateModifierThinker(
-      caster, self, "dasdingo_2_modifier_aura", {
-        duration = self:GetSpecialValueFor("duration"),
-        tree_index = self.tree:entindex()
-      }, self.tree:GetAbsOrigin(), caster:GetTeamNumber(), false
-    )
+    CreateModifierThinker(caster, self, "dasdingo_2_modifier_aura", {
+      duration = self:GetSpecialValueFor("duration"),
+      tree_index = self.tree:entindex()
+    }, self.tree:GetAbsOrigin(), caster:GetTeamNumber(), false)
   end
 
 -- EFFECTS

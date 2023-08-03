@@ -1,9 +1,0 @@
-"skills"
-{
-	"1" "brute_1__spin"
-	"2" "brute_2__rage"
-	"3" "brute_3__xcution"
-	"4" "brute_4__sk4"
-	"5" "brute_5__sk5"
-	"6" "brute_u__mark"
-}

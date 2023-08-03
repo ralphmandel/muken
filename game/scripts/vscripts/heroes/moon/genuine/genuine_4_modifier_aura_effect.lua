@@ -28,7 +28,12 @@ function genuine_4_modifier_aura_effect:DeclareFunctions()
 end
 
 function genuine_4_modifier_aura_effect:GetAbsorbSpell(keys)
-  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") and self.ability:IsCooldownReady() then
+  local chance = self.ability:GetSpecialValueFor("chance_day")
+  if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
+    chance = self.ability:GetSpecialValueFor("chance_night")
+  end
+
+  if RandomFloat(0, 100) < chance and self.ability:IsCooldownReady() then
     if IsServer() then self:PlayEfxSpellBlock() end
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
     return 1
