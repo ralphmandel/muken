@@ -159,7 +159,7 @@ function druid_3_modifier_totem:ApplySpike(target)
   if self.spike_damage <= 0 then return end
 
   self:PlayEfxQuillImpact(target)
-  AddModifier(target, self.caster, self.ability, "_modifier_stun", {duration = 0.5}, false)
+  AddModifier(target, self.ability, "_modifier_stun", {duration = 0.5}, false)
 
   ApplyDamage({
     attacker = self.caster, victim = target,
@@ -170,7 +170,7 @@ function druid_3_modifier_totem:ApplySpike(target)
 end
 
 function druid_3_modifier_totem:ApplyFlame(target)
-  AddModifier(target, self.caster, self.ability, "druid_3_modifier_flame", {duration = self.flame_duration}, true)
+  AddModifier(target, self.ability, "druid_3_modifier_flame", {duration = self.flame_duration}, true)
 end
 
 -- EFFECTS -----------------------------------------------------------

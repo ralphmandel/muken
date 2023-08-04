@@ -16,7 +16,7 @@ function ancient_3_modifier_casting:OnCreated(kv)
 	self.step = 1
 
   if IsServer() then
-    AddModifier(self.parent, self.caster, self.ability, "ancient_3_modifier_efx_hands", {duration = time}, false)
+    AddModifier(self.parent, self.ability, "ancient_3_modifier_efx_hands", {duration = time}, false)
   end
 
 	if think < 0 then

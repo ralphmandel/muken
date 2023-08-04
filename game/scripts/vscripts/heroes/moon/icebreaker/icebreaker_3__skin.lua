@@ -23,7 +23,7 @@ LinkLuaModifier("_modifier_mana_regen", "_modifiers/_modifier_mana_regen", LUA_M
 		local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    AddModifier(target, caster, self, "icebreaker_3_modifier_skin", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(target, self, "icebreaker_3_modifier_skin", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

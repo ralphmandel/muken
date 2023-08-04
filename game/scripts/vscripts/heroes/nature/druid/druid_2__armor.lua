@@ -38,7 +38,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     end
 
     for _,ally in pairs(allies) do
-      AddModifier(ally, caster, self, "druid_2_modifier_armor", {
+      AddModifier(ally, self, "druid_2_modifier_armor", {
         duration = self:GetSpecialValueFor("duration")
       }, true)
     end

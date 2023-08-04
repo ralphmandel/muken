@@ -22,7 +22,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
     self.unit:CreatureLevelUp(self:GetSpecialValueFor("rank"))
     self.unit:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-    AddModifier(self.unit, caster, self, "dasdingo_4_modifier_tribal", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(self.unit, self, "dasdingo_4_modifier_tribal", {duration = self:GetSpecialValueFor("duration")}, true)
   end
 
 -- EFFECTS

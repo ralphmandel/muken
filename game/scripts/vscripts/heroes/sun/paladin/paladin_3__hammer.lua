@@ -21,6 +21,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local random_mult = RandomInt(self:GetSpecialValueFor("min_mult"), self:GetSpecialValueFor("max_mult"))
 
     if IsServer() then self:PlayEfxHammer(target, random_mult, self:GetAOERadius()) end
+    AddFOWViewer(caster:GetTeamNumber(), target:GetOrigin(), self:GetAOERadius(), 1, true)
 
     local units = FindUnitsInRadius(
       caster:GetTeamNumber(), target:GetOrigin(), nil, self:GetAOERadius(),
@@ -36,7 +37,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
         unit:Heal(CalcHeal(caster, self:GetSpecialValueFor("heal") * mult), self)
       else
         if target == unit then
-          AddModifier(unit, caster, self, "_modifier_stun", {duration = self:GetSpecialValueFor("stun_duration")}, true)
+          AddModifier(unit, self, "_modifier_stun", {duration = self:GetSpecialValueFor("stun_duration")}, true)
         end
         
         if unit:IsIllusion() then

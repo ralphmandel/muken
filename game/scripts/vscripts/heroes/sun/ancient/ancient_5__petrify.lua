@@ -38,7 +38,7 @@ LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrifie
 
     self:PlayEfxStart(target)
 
-    AddModifier(target, caster, self, "_modifier_petrified", {
+    AddModifier(target, self, "_modifier_petrified", {
       duration = self:GetSpecialValueFor("duration")
     }, true)
 	end

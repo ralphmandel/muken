@@ -88,7 +88,7 @@ function shrine_modifier:GetModifierOverrideAbilitySpecialValue(keys)
       if value_name == "hp_heal_pct" then return 5 end
     end
     if self.name == "mp_filler" then
-      if value_name == "AbilityCooldown" then return 180 end
+      if value_name == "AbilityCooldown" then return 150 end
       if value_name == "duration" then return 4 end
       if value_name == "hp_heal" then return 0 end
       if value_name == "hp_heal_pct" then return 0 end
@@ -141,7 +141,7 @@ function shrine_modifier:ActivateHP(mod)
     return
   end
 
-  AddModifier(mod:GetParent(), self.caster, self.ability, "shrine_refresh_hp_modifier", {duration = 50}, false)
+  AddModifier(mod:GetParent(), self.ability, "shrine_refresh_hp_modifier", {duration = 60}, false)
 
   if IsServer() then self:PlayEfxHP(mod) end
 end
@@ -161,7 +161,7 @@ function shrine_modifier:ActiveteMP(mod)
     return
   end
 
-  AddModifier(mod:GetParent(), self.caster, self.ability, "shrine_refresh_mp_modifier", {duration = 60}, false)
+  AddModifier(mod:GetParent(), self.ability, "shrine_refresh_mp_modifier", {duration = 90}, false)
 
   if IsServer() then self:PlayEfxMP(mod) end
 end

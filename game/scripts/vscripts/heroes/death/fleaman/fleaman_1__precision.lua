@@ -28,12 +28,12 @@ LinkLuaModifier("fleaman_1_modifier_precision_status_efx", "heroes/death/fleaman
     self:StartCooldown(0.4)
 
     caster:Purge(false, true, false, false, false)
-    AddModifier(caster, caster, self, "fleaman_1_modifier_precision",  {}, false)
+    AddModifier(caster, self, "fleaman_1_modifier_precision",  {}, false)
 
     Timers:CreateTimer(0.35, function()
       if caster:IsAlive() then
         caster:AttackNoEarlierThan(1, 1)
-        AddModifier(caster, caster, self, "fleaman_1_modifier_gesture",  {duration = 0.6}, false)
+        AddModifier(caster, self, "fleaman_1_modifier_gesture",  {duration = 0.6}, false)
       end
     end)
   end

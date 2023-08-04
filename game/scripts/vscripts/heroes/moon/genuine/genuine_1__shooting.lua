@@ -42,7 +42,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     end
 
     if self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
-      local silence = AddModifier(keys.target, caster, self, "_modifier_silence", {
+      local silence = AddModifier(keys.target, self, "_modifier_silence", {
         duration = self:GetSpecialValueFor("special_silence_duration")
       }, true)
 
@@ -51,7 +51,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
     if RandomFloat(0, 100) < self:GetSpecialValueFor("special_fear_chance")
     and self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
-      local fear = AddModifier(keys.target, caster, self, "_modifier_fear", {
+      local fear = AddModifier(keys.target, self, "_modifier_fear", {
         duration = self:GetSpecialValueFor("special_fear_duration"), special = 1
       }, true)
 
@@ -59,7 +59,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     end
 
     if self:GetSpecialValueFor("special_starfall_combo") > 0 then
-      AddModifier(keys.target, caster, self, "genuine_1_modifier_starfall_stack", {duration = 3}, false)
+      AddModifier(keys.target, self, "genuine_1_modifier_starfall_stack", {duration = 3}, false)
     end
 
     ApplyDamage({

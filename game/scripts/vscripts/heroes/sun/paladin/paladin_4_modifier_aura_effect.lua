@@ -23,15 +23,15 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function paladin_4_modifier_aura_effect:CheckState()
-	local state = {
-		[MODIFIER_STATE_SILENCED] = true
-	}
+-- function paladin_4_modifier_aura_effect:CheckState()
+-- 	local state = {
+-- 		[MODIFIER_STATE_SILENCED] = true
+-- 	}
 
-  if self:GetParent():IsMagicImmune() then state = {} end
+--   if self:GetParent():IsMagicImmune() then state = {} end
 
-	return state
-end
+-- 	return state
+-- end
 
 function paladin_4_modifier_aura_effect:OnIntervalThink()
   if IsServer() then self.parent:EmitSound("Paladin.Magnus.Hit") end

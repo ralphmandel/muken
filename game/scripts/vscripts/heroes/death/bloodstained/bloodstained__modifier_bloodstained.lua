@@ -13,11 +13,11 @@ function bloodstained__modifier_bloodstained:OnCreated(kv)
   if IsServer() then
     self.steal = true
 
-    self.target_mod = AddModifier(self.parent, self.caster, self.ability, "bloodstained__modifier_bloodloss", {
+    self.target_mod = AddModifier(self.parent, self.ability, "bloodstained__modifier_bloodloss", {
       hp_stolen = kv.hp_stolen
     }, false)
 
-    self.caster_mod = AddModifier(self.caster, self.caster, self.ability, "bloodstained__modifier_bloodgain", {
+    self.caster_mod = AddModifier(self.caster, self.ability, "bloodstained__modifier_bloodgain", {
       hp_stolen = 0
     }, false)
 

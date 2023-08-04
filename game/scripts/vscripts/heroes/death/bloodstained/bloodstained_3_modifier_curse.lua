@@ -14,8 +14,8 @@ function bloodstained_3_modifier_curse:OnCreated(kv)
 		self.ability:SetActivated(false)
 		self.ability:EndCooldown()
 
-    AddModifier(self.caster, self.caster, self.ability, self:GetName(), {}, false)
-    -- AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
+    AddModifier(self.caster, self.ability, self:GetName(), {}, false)
+    -- AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
     --   percent = self.ability:GetSpecialValueFor("special_slow")
     -- }, false)
 	end

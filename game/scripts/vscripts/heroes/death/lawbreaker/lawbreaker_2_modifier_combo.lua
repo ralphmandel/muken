@@ -16,7 +16,7 @@ function lawbreaker_2_modifier_combo:OnCreated(kv)
   self.bot_script = self.parent:FindModifierByName("_general_script")
   
   AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-  AddModifier(self.caster, self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
+  AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
     percent = self.ability:GetSpecialValueFor("slow_percent")
   }, false)
   

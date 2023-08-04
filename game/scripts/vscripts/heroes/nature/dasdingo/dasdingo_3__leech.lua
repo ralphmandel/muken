@@ -27,7 +27,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     if self.target:TriggerSpellAbsorb(self) then
       caster:Interrupt()
     else
-      AddModifier(self.target, caster, self, "dasdingo_3_modifier_leech", {duration = self:GetChannelTime()}, false)
+      AddModifier(self.target, self, "dasdingo_3_modifier_leech", {duration = self:GetChannelTime()}, false)
       if IsServer() then self.target:EmitSound("Hero_ShadowShaman.Shackles.Cast") end
     end
   end

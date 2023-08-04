@@ -125,7 +125,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 		for _,unit in pairs(units) do
 			self:PlayEfxHit(unit)
-      AddModifier(unit, caster, self, "bocuse_2_modifier_flambee", {
+      AddModifier(unit, self, "bocuse_2_modifier_flambee", {
         duration = self:GetSpecialValueFor("duration") + 0.1
       }, false)
 		end

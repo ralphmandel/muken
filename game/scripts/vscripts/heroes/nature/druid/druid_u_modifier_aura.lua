@@ -110,7 +110,7 @@ function druid_u_modifier_aura:ConvertTrees()
 			tree:CutDown(self.parent:GetTeamNumber())
 
 			local treant = CreateUnitByName(self.treants[RandomInt(1, 3)], tree:GetOrigin(), true, self.caster, self.caster, self.caster:GetTeamNumber())
-      AddModifier(treant, self.caster, self.ability, "druid_u_modifier_conversion", {duration = tree_duration}, true)
+      AddModifier(treant, self.ability, "druid_u_modifier_conversion", {duration = tree_duration}, true)
 
 			if IsServer() then treant:EmitSound("Hero_Furion.TreantSpawn") end
 		end

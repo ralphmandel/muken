@@ -11,7 +11,7 @@ function dasdingo_3_modifier_leech:OnCreated(kv)
   self.ability = self:GetAbility()
   self.model = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {}, false)
+  AddModifier(self.parent, self.ability, "_modifier_stun", {}, false)
 
   self.ability:SetActivated(false)
   self.ability:EndCooldown()

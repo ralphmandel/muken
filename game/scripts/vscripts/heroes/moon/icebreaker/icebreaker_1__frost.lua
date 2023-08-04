@@ -41,7 +41,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible
 	end
 
   function icebreaker_1__frost:OnSpellStart()
-    AddModifier(self:GetCaster(), self:GetCaster(), self, "icebreaker_1_modifier_hits", {
+    AddModifier(self:GetCaster(), self, "icebreaker_1_modifier_hits", {
       duration = self.ability:GetSpecialValueFor("special_hits_duration")
     }, true)
 	end
@@ -59,7 +59,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible
       })
     end
 
-    AddModifier(target, caster, self, "icebreaker__modifier_hypo", {
+    AddModifier(target, self, "icebreaker__modifier_hypo", {
       stack = self:GetSpecialValueFor("hypo_stack")
     }, false)
 
@@ -71,7 +71,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible
 
     if RandomFloat(0, 100) < self:GetSpecialValueFor("special_mini_freeze_chance")
     and target:HasModifier("icebreaker__modifier_frozen") == false then
-      AddModifier(target, caster, self, "icebreaker__modifier_instant", {
+      AddModifier(target, self, "icebreaker__modifier_instant", {
         duration = self:GetSpecialValueFor("special_mini_freeze")
       }, true)
     end
@@ -109,7 +109,7 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible
 			illu:SetForwardVector(forward)
 			illu:SetForceAttackTarget(target)
 			FindClearSpaceForUnit(illu, original_loc, true)
-      AddModifier(illu, caster, self, "icebreaker__modifier_illusion", {}, false)
+      AddModifier(illu, self, "icebreaker__modifier_illusion", {}, false)
 		end		
   end
 

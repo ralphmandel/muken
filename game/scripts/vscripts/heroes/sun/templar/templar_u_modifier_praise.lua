@@ -10,6 +10,8 @@ function templar_u_modifier_praise:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  AddStatusEfx(self.ability, "templar_u_modifier_praise_status_efx", self.caster, self.parent)
+
   if IsServer() then
     self:PlayEfxStart()
     self:OnIntervalThink()
@@ -20,6 +22,7 @@ function templar_u_modifier_praise:OnRefresh(kv)
 end
 
 function templar_u_modifier_praise:OnRemoved()
+  RemoveStatusEfx(self.ability, "templar_u_modifier_praise_status_efx", self.caster, self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -27,6 +30,7 @@ end
 function templar_u_modifier_praise:OnIntervalThink()
   local allies = {}
   local index = 0
+  local interval = 0.1
 
   for _, hero in pairs(HeroList:GetAllHeroes()) do
     if hero:GetTeamNumber() == self.caster:GetTeamNumber()
@@ -38,12 +42,11 @@ function templar_u_modifier_praise:OnIntervalThink()
   end
 
   if index > 0 then
+    interval = self.ability:GetSpecialValueFor("interval_base")
     local random_ally = allies[RandomInt(1, #allies)]
     random_ally:Heal(CalcHeal(self.caster, self.ability:GetSpecialValueFor("heal")), self.ability)
     if IsServer() then self:StartEfxBeam(random_ally) end
   end
-
-  local interval = self.ability:GetSpecialValueFor("interval_base")
 
   if index > 1 then
     for i = 1, #allies - 1 do
@@ -57,6 +60,14 @@ end
 -- UTILS -----------------------------------------------------------
 
 -- EFFECTS -----------------------------------------------------------
+
+function templar_u_modifier_praise:GetStatusEffectName()
+  return "particles/status_fx/status_effect_shield_rune.vpcf"
+end
+
+function templar_u_modifier_praise:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 
 function templar_u_modifier_praise:PlayEfxStart()  
   local particle = "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_cast_moonfall_gold.vpcf"

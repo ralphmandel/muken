@@ -38,7 +38,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 		local caster = self:GetCaster()
     self.point = self:GetCursorPosition()
     caster:RemoveModifierByName("lawbreaker_2_modifier_combo")
-    AddModifier(caster, caster, self, "lawbreaker_2_modifier_combo", {}, false)
+    AddModifier(caster, self, "lawbreaker_2_modifier_combo", {}, false)
 	end
 
   function lawbreaker_2__combo:OnProjectileHit(target, loc)
@@ -55,7 +55,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     if bEnable then
       interval = self:GetSpecialValueFor("reload")
       if self.reloading == true then interval = self:GetSpecialValueFor("fast_reload") end
-      AddModifier(caster, caster, self, "lawbreaker_2_modifier_reload", {}, false)
+      AddModifier(caster, self, "lawbreaker_2_modifier_reload", {}, false)
     end
 
     if bEnable == false or caster:HasModifier("lawbreaker_2_modifier_combo")

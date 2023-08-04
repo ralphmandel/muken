@@ -8,7 +8,7 @@ function item_med_kit:OnSpellStart()
 
   caster:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
 
-  AddModifier(self.target, caster, self, "item_med_kit_channeling_modifier", {}, false)
+  AddModifier(self.target, self, "item_med_kit_channeling_modifier", {}, false)
 end
 
 function item_med_kit:OnChannelFinish(bInterrupted)
@@ -23,7 +23,7 @@ function item_med_kit:OnChannelFinish(bInterrupted)
   self.target:Purge(false, true, false, true, false)
   self.target:RemoveModifierByName("item_med_kit_modifier")
 
-  AddModifier(self.target, caster, self, "item_med_kit_modifier", {
+  AddModifier(self.target, self, "item_med_kit_modifier", {
     duration = self:GetSpecialValueFor("heal_duration"),
     heal_per_second = self:GetSpecialValueFor("heal_per_second")
   }, true)

@@ -12,7 +12,7 @@ function ancient_3_modifier_walk:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self.ability:SetActivated(false)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_petrified", {special = 1}, false)
+  AddModifier(self.parent, self.ability, "_modifier_petrified", {special = 1}, false)
 
 	if IsServer() then
     self:PlayEfxStart()
@@ -71,7 +71,7 @@ function ancient_3_modifier_walk:ApplyDebuff()
 	)
 
 	for _,enemy in pairs(enemies) do
-    AddModifier(enemy, self.caster, self.ability, "ancient_3_modifier_debuff", {
+    AddModifier(enemy, self.ability, "ancient_3_modifier_debuff", {
       duration = self.ability:GetSpecialValueFor("debuff_duration")
     }, false)
 	end

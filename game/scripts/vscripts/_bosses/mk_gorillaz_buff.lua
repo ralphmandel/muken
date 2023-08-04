@@ -17,7 +17,7 @@ function mk_gorillaz_buff:OnCreated(kv)
 	self.bonus_damage = 0
 
 	AddBonus(self.ability, "AGI", self.parent, 20, 0, nil)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {percent = 100}, false)
+  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {percent = 100}, false)
 
   if IsServer() then
     self.parent:EmitSound("Hero_LoneDruid.BattleCry.Bear")

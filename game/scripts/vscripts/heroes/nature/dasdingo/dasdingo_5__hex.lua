@@ -15,7 +15,7 @@ LinkLuaModifier("_modifier_hex", "_modifiers/_modifier_hex", LUA_MODIFIER_MOTION
 
     if target:TriggerSpellAbsorb(self) then return end
 
-    AddModifier(target, caster, self, "_modifier_hex", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(target, self, "_modifier_hex", {duration = self:GetSpecialValueFor("duration")}, true)
 
     ApplyDamage({
       attacker = caster, victim = target, ability = self,

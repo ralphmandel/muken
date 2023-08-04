@@ -10,7 +10,7 @@ function genuine_3_modifier_travel:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_ban", {}, false)
+  AddModifier(self.parent, self.ability, "_modifier_ban", {}, false)
 
 	if IsServer() then self:PlayEfxStart() end
 end

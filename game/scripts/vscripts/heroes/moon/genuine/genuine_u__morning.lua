@@ -27,7 +27,7 @@ LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff
 
   function genuine_u__morning:OnSpellStart()
     local caster = self:GetCaster()
-    AddModifier(caster, caster, self, "genuine_u_modifier_morning", {duration = self:GetSpecialValueFor("duration") + 0.2}, false)
+    AddModifier(caster, self, "genuine_u_modifier_morning", {duration = self:GetSpecialValueFor("duration") + 0.2}, false)
   end
 
 -- EFFECTS

@@ -145,7 +145,10 @@ end
     return duration
   end
 
-  function AddModifier(target, caster, ability, modifier_name, table, bCalcStatus)
+  function AddModifier(target, ability, modifier_name, table, bCalcStatus)
+    local caster = ability:GetCaster()
+    if modifier_name == "modifier_knockback" then ability = nil end
+
     if table.duration then
       if bCalcStatus then table.duration = CalcStatus(table.duration, caster, target) end
       if table.duration <= 0 then return nil end

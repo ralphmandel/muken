@@ -15,10 +15,10 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.extra_damage = 0
 
   AddStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
-  AddModifier(self.parent, self.caster, self.ability, "bocuse_u_modifier_jump", {duration = 0.5}, false)
+  AddModifier(self.parent, self.ability, "bocuse_u_modifier_jump", {duration = 0.5}, false)
 
   if self.ability:GetSpecialValueFor("special_unslow") == 1 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_unslowable", {}, false)
+    AddModifier(self.parent, self.ability, "_modifier_unslowable", {}, false)
 	end
 
   AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
@@ -73,7 +73,7 @@ function bocuse_u_modifier_mise:DeclareFunctions()
 end
 
 function bocuse_u_modifier_mise:GetModifierIncomingDamage_Percentage(keys)
-	return self:GetAbility():GetSpecialValueFor("special_incoming")
+  return self:GetAbility():GetSpecialValueFor("special_incoming")
 end
 
 function bocuse_u_modifier_mise:GetModifierProcAttack_BonusDamage_Physical()
@@ -84,7 +84,7 @@ function bocuse_u_modifier_mise:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_microstun_chance") then
-    AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.2}, false)
+    AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.2}, false)
 	end
 end
 

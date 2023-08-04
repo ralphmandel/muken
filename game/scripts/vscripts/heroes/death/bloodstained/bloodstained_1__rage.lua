@@ -27,7 +27,7 @@ LinkLuaModifier("bloodstained_1_modifier_call_status_efx", "heroes/death/bloodst
 
   function bloodstained_1__rage:OnSpellStart()
     local caster = self:GetCaster()
-    AddModifier(caster, caster, self, "bloodstained_1_modifier_rage", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(caster, self, "bloodstained_1_modifier_rage", {duration = self:GetSpecialValueFor("duration")}, true)
     
     local enemies = FindUnitsInRadius(
       caster:GetTeamNumber(), caster:GetOrigin(), nil, self:GetAOERadius(),
@@ -37,7 +37,7 @@ LinkLuaModifier("bloodstained_1_modifier_call_status_efx", "heroes/death/bloodst
 
     for _,enemy in pairs(enemies) do
       if enemy:IsHero() or enemy:IsConsideredHero() then
-        AddModifier(enemy, caster, self, "bloodstained_1_modifier_call", {
+        AddModifier(enemy, self, "bloodstained_1_modifier_call", {
           duration = self:GetSpecialValueFor("call_duration")
         }, true)
       end

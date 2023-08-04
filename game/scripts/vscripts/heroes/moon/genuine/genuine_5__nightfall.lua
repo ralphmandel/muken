@@ -90,8 +90,8 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     if data.knockbackProperties.knockback_distance > 0 then
       local properties = data.knockbackProperties
       properties.duration = CalcStatus(properties.duration, caster, target)
-      AddModifier(target, caster, nil, "modifier_knockback", properties, false)
-      AddModifier(target, caster, self, "_modifier_percent_movespeed_debuff", {
+      AddModifier(target, self, "modifier_knockback", properties, false)
+      AddModifier(target, self, "_modifier_percent_movespeed_debuff", {
         duration = properties.duration * 4, percent = 100
       }, false)
     end

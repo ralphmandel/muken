@@ -16,7 +16,7 @@ function icebreaker__modifier_frozen:OnCreated(kv)
   if shivas then
     if shivas:IsTrained() then
       if shivas:GetSpecialValueFor("special_break") == 1 then
-        AddModifier(self.parent, self.caster, self.ability, "_modifier_break", {}, false)
+        AddModifier(self.parent, self.ability, "_modifier_break", {}, false)
       end
     end
   end

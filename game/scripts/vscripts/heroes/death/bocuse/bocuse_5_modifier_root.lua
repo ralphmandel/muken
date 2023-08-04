@@ -11,7 +11,7 @@ function bocuse_5_modifier_root:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("special_agi"), 0, nil)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_root", {duration = self:GetDuration(), effect = 3}, false)
+  AddModifier(self.parent, self.ability, "_modifier_root", {duration = self:GetDuration(), effect = 3}, false)
 end
 
 function bocuse_5_modifier_root:OnRefresh(kv)

@@ -11,7 +11,7 @@ function lawbreaker_3_modifier_grenade:OnCreated(kv)
   self.ability = self:GetAbility()
   
   AddBonus(self.ability, "DEF", self.parent, self.ability:GetSpecialValueFor("def"), 0, nil)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_blind", {
+  AddModifier(self.parent, self.ability, "_modifier_blind", {
     percent = self.ability:GetSpecialValueFor("blind")
   }, false)
 

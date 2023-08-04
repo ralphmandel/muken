@@ -44,7 +44,7 @@ function druid_1_modifier_root:OnIntervalThink()
   )
 
   for _,enemy in pairs(enemies) do
-    AddModifier(enemy, self.caster, self.ability, "druid_1_modifier_root_aura_effect", {
+    AddModifier(enemy, self.ability, "druid_1_modifier_root_aura_effect", {
       duration = self.ability:GetSpecialValueFor("root_duration")
     }, true)
 

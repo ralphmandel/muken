@@ -66,7 +66,7 @@ function bocuse_5_modifier_roux:PullEnemies()
 	)
 
   for _,enemy in pairs(enemies) do
-    AddModifier(enemy, self.caster, self.ability, "_modifier_pull", {
+    AddModifier(enemy, self.ability, "_modifier_pull", {
       duration = 0.5, x = self.parent:GetOrigin().x, y = self.parent:GetOrigin().y,
     }, false)
 	end

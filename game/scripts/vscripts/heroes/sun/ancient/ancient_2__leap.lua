@@ -93,9 +93,9 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
     self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
 
     if self:GetCastRange(nil, nil) > 0 then
-      AddModifier(caster, caster, self, "ancient_2_modifier_jump", {}, false)
+      AddModifier(caster, self, "ancient_2_modifier_jump", {}, false)
     else
-      AddModifier(caster, caster, self, "ancient_2_modifier_leap", {}, false)
+      AddModifier(caster, self, "ancient_2_modifier_leap", {}, false)
     end
   end
 

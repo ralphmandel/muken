@@ -31,7 +31,7 @@ LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrifie
     caster:RemoveModifierByName("ancient_3_modifier_walk")
     caster:RemoveModifierByName("ancient_3_modifier_casting")
     caster:RemoveModifierByName("ancient_2_modifier_leap")
-    AddModifier(caster, caster, self, "ancient_3_modifier_casting", {}, false)
+    AddModifier(caster, self, "ancient_3_modifier_casting", {}, false)
 
     return true
   end
@@ -45,7 +45,7 @@ LinkLuaModifier("_modifier_petrified_status_efx", "_modifiers/_modifier_petrifie
     local caster = self:GetCaster()
 
     caster:RemoveModifierByName("ancient_3_modifier_casting")
-    AddModifier(caster, caster, self, "ancient_3_modifier_walk", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(caster, self, "ancient_3_modifier_walk", {duration = self:GetSpecialValueFor("duration")}, true)
   end
 
 -- EFFECTS

@@ -145,7 +145,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebrea
   
       for _,enemy in pairs(enemies) do
         if IsServer() then enemy:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-        AddModifier(enemy, caster, self, "icebreaker__modifier_hypo", {
+        AddModifier(enemy, self, "icebreaker__modifier_hypo", {
           stack = self:GetSpecialValueFor("special_spread_stack")
         }, false)
       end
@@ -165,7 +165,7 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebrea
       if target then
         if IsValidEntity(target) then
           if target:IsAlive() then
-            AddModifier(target, caster, self, "icebreaker__modifier_hypo", {
+            AddModifier(target, self, "icebreaker__modifier_hypo", {
               stack = break_hypo_stack
             }, false)
           end

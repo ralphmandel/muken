@@ -11,7 +11,7 @@ function hunter_5_modifier_trap:OnCreated(kv)
   self.ability = self:GetAbility()
   self.delay = 2
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {delay = self.delay}, false)
+  AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = self.delay}, false)
 
   self.fow = AddFOWViewer(
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), self:GetDuration(), false
@@ -44,7 +44,7 @@ function hunter_5_modifier_trap:OnIntervalThink()
 
     if self:GetElapsedTime() >= self.delay then
       AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), 3, false)
-      AddModifier(enemy, self.caster, self.ability, "hunter_5_modifier_debuff", {
+      AddModifier(enemy, self.ability, "hunter_5_modifier_debuff", {
         duration = self.ability:GetSpecialValueFor("debuff_duration")
       }, true)      
     end

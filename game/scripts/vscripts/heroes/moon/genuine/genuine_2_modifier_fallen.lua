@@ -47,15 +47,15 @@ function genuine_2_modifier_fallen:ApplyDebuffs()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_truesight", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_break", self.ability)
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_fear", {special = 1}, false)
+  AddModifier(self.parent, self.ability, "_modifier_fear", {special = 1}, false)
 
   local slow = self.ability:GetSpecialValueFor("special_slow")
-  if slow > 0 then AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {percent = slow}, false) end
+  if slow > 0 then AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {percent = slow}, false) end
 
   if self.ability:GetSpecialValueFor("special_invi_break") == 1 then
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_invisible", nil)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_truesight", {}, false)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_break", {}, false)
+    AddModifier(self.parent, self.ability, "_modifier_truesight", {}, false)
+    AddModifier(self.parent, self.ability, "_modifier_break", {}, false)
   end
 
   if IsServer() then

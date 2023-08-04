@@ -32,7 +32,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local target = self:GetCursorTarget()
 
     target:RemoveModifierByName("paladin_1_modifier_link")
-    AddModifier(target, caster, self, "paladin_1_modifier_link", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(target, self, "paladin_1_modifier_link", {duration = self:GetSpecialValueFor("duration")}, true)
   end
 
 -- EFFECTS

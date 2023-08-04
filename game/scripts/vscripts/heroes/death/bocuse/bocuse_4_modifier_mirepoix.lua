@@ -44,7 +44,7 @@ function bocuse_4_modifier_mirepoix:OnRemoved()
   RemoveStatusEfx(self.ability, "bocuse_4_modifier_mirepoix_status_efx", self.caster, self.parent)
 
 	if self.parent:IsAlive() then
-    AddModifier(self.parent, self.caster, self.ability, "bocuse_4_modifier_end", {duration = 2, range = self.range}, false)
+    AddModifier(self.parent, self.ability, "bocuse_4_modifier_end", {duration = 2, range = self.range}, false)
 	else
 		self.parent:SetModelScale(self.init_model_scale)
 	end

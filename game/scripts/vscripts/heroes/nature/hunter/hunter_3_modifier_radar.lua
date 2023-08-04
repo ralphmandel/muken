@@ -67,7 +67,7 @@ function hunter_3_modifier_radar:OnIntervalThink()
   if self.state == RADAR_STATE_REVEAL then
     for _,enemy in pairs(enemies) do
       RemoveAllModifiersByNameAndAbility(enemy, "_modifier_truesight", self.ability)
-      AddModifier(enemy, self.caster, self.ability, "_modifier_truesight", {duration = 1}, false)
+      AddModifier(enemy, self.ability, "_modifier_truesight", {duration = 1}, false)
     end
   end
 

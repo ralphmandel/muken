@@ -34,7 +34,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local init_loss = self:GetSpecialValueFor("special_init_loss")
 
     if self:GetCurrentAbilityCharges() == 1 then
-      AddModifier(caster, caster, self, "bloodstained_4_modifier_tear", {}, false)
+      AddModifier(caster, self, "bloodstained_4_modifier_tear", {}, false)
       self:PlayEfxShake(init_loss)
       self:EndCooldown()
       self:StartCooldown(1)

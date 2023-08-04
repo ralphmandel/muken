@@ -11,7 +11,7 @@ function bocuse_1_modifier_julienne:OnCreated(kv)
   self.ability = self:GetAbility()
 
 	ChangeActivity(self.parent, "")
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_crit_damage", {amount = kv.crit_damage}, false)
+  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {amount = kv.crit_damage}, false)
 
 	if IsServer() then self:OnIntervalThink() end
 end

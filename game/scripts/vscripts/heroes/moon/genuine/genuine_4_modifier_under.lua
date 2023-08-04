@@ -10,7 +10,7 @@ function genuine_4_modifier_under:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  self.invi = AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {delay = 0.5, spell_break = 1}, true)
+  self.invi = AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = 0.5, spell_break = 1}, true)
 
   self.invi:SetEndCallback(function(interrupted)
 		self:Destroy()

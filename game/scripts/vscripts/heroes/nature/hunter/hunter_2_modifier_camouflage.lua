@@ -11,7 +11,7 @@ function hunter_2_modifier_camouflage:OnCreated(kv)
   self.ability = self:GetAbility()
   self.moved = false
 
-  self.invi = AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {
+  self.invi = AddModifier(self.parent, self.ability, "_modifier_invisible", {
     delay = 0, spell_break = 0, attack_break = 0
   }, false)
 

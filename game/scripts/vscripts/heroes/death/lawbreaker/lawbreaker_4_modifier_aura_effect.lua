@@ -13,7 +13,7 @@ function lawbreaker_4_modifier_aura_effect:OnCreated(kv)
 
   self.radius = self.ability:GetAOERadius()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
+  AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
     percent = self.ability:GetSpecialValueFor("slow")
   }, false)
   

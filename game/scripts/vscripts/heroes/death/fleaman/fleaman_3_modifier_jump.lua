@@ -18,7 +18,7 @@ function fleaman_3_modifier_jump:OnCreated( kv )
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
 
-  self.arc = AddModifier(self.parent, self.caster, self.ability, "_modifier_generic_arc", {
+  self.arc = AddModifier(self.parent, self.ability, "_modifier_generic_arc", {
     speed = jump_speed, duration = duration, distance = jump_distance, height = height
   }, false)
 
@@ -77,7 +77,7 @@ function fleaman_3_modifier_jump:OnAttackLanded(keys)
   
   self:PlayEfxHit(keys.target)
 
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_silence", {
+  AddModifier(keys.target, self.ability, "_modifier_silence", {
     duration = self.ability:GetSpecialValueFor("silence_duration"), special = 3
   }, true)
 end

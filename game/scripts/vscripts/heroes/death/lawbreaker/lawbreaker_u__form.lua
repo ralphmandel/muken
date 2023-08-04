@@ -20,7 +20,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 		local caster = self:GetCaster()
     local duration = self:GetSpecialValueFor("duration") + self:GetSpecialValueFor("transform_duration")
 
-    AddModifier(caster, caster, self, "lawbreaker_u_modifier_form", {duration = duration}, true)
+    AddModifier(caster, self, "lawbreaker_u_modifier_form", {duration = duration}, true)
 	end
 
   function lawbreaker_u__form:OnProjectileHit(hTarget, vLocation)

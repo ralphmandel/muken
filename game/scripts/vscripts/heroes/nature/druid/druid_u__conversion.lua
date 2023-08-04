@@ -44,7 +44,7 @@ LinkLuaModifier("_modifier_hex", "_modifiers/_modifier_hex", LUA_MODIFIER_MOTION
     self.point = self:GetCursorPosition()
 
     caster:RemoveModifierByNameAndCaster("druid_u_modifier_channel", caster)
-    AddModifier(caster, caster, self, "druid_u_modifier_channel", {}, false)
+    AddModifier(caster, self, "druid_u_modifier_channel", {}, false)
   end
 
   function druid_u__conversion:OnChannelFinish(bInterrupted)

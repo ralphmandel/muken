@@ -6,6 +6,15 @@ LinkLuaModifier("_modifier_heal_amp", "_modifiers/_modifier_heal_amp", LUA_MODIF
 
 -- INIT
 
+  function templar_1__shield:Spawn()
+    Timers:CreateTimer(0.2, function()
+      if self:IsTrained() == false then
+        self:UpgradeAbility(true)
+        BaseStats(self:GetCaster()):AddManaExtra(self)
+      end
+    end)
+  end
+
   function templar_1__shield:GetAOERadius()
     return self:GetSpecialValueFor("radius")
   end

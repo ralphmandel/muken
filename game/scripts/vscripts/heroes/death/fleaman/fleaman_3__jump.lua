@@ -21,7 +21,7 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
 
     ProjectileManager:ProjectileDodge(caster)
     caster:RemoveModifierByName("flea_3_modifier_jump")
-    AddModifier(caster, caster, self, "fleaman_3_modifier_jump", {}, false)
+    AddModifier(caster, self, "fleaman_3_modifier_jump", {}, false)
   end
 
 -- EFFECTS

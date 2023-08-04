@@ -31,13 +31,13 @@ function hunter_5_modifier_debuff:SetDebuffs(bEnabled)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
 
   if bEnabled == true then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_bleeding", {}, false)
+    AddModifier(self.parent, self.ability, "_modifier_bleeding", {}, false)
 
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_debuff", {
+    AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
       percent = self.ability:GetSpecialValueFor("slow")
     }, false)
   
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_root", {
+    AddModifier(self.parent, self.ability, "_modifier_root", {
       duration = self.ability:GetSpecialValueFor("root_duration")
     }, true)
   end

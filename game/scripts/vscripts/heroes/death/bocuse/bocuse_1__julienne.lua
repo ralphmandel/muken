@@ -53,7 +53,7 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
     ChangeActivity(caster, "trapper")
     caster:FadeGesture(ACT_DOTA_ATTACK)
 
-    AddModifier(caster, caster, self, "bocuse_1_modifier_julienne", {crit_damage = crit_damage}, false)
+    AddModifier(caster, self, "bocuse_1_modifier_julienne", {crit_damage = crit_damage}, false)
   end
 
   function bocuse_1__julienne:PerformSlash(slash_count)
@@ -109,7 +109,7 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
       )
   
       for _,enemy in pairs(enemies) do
-        AddModifier(enemy, caster, self, "_modifier_stun", {
+        AddModifier(enemy, self, "_modifier_stun", {
           duration = self:GetSpecialValueFor("stun_duration")
         }, true)
         
@@ -121,7 +121,7 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
       end
     else
       if target:IsMagicImmune() == false then
-        AddModifier(target, caster, self, "_modifier_stun", {
+        AddModifier(target, self, "_modifier_stun", {
           duration = self:GetSpecialValueFor("stun_duration")
         }, true)
       end

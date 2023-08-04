@@ -15,7 +15,7 @@ function druid_4_modifier_form:OnCreated(kv)
   self.break_duration = self.ability:GetSpecialValueFor("special_break_duration")
   self.luck_stack = 0
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_buff", {
+  AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms_percent")
   }, false)
   
@@ -113,7 +113,7 @@ end
 function druid_4_modifier_form:OnAttackLanded(keys)
   if keys.attacker ~= self.parent then return end
 
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = self.stun_duration}, true)
+  AddModifier(keys.target, self.ability, "_modifier_stun", {duration = self.stun_duration}, true)
 
   if self.break_duration > 0 then
     self.luck_stack = self.luck_stack + 1
@@ -121,7 +121,7 @@ function druid_4_modifier_form:OnAttackLanded(keys)
     AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
     if BaseStats(self.parent).has_crit then
-      AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {duration = self.break_duration}, true)
+      AddModifier(keys.target, self.ability, "_modifier_break", {duration = self.break_duration}, true)
     end
   end
 end
@@ -154,7 +154,7 @@ function druid_4_modifier_form:ApplyFear(fear_duration)
 	)
 
 	for _,enemy in pairs(enemies) do
-    AddModifier(enemy, self.caster, self.ability, "_modifier_fear", {duration = fear_duration}, true)
+    AddModifier(enemy, self.ability, "_modifier_fear", {duration = fear_duration}, true)
 	end
 end
 

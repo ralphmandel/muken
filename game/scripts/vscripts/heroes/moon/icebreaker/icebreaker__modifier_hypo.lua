@@ -81,12 +81,12 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
     end
 
     self.parent:RemoveModifierByNameAndCaster("_modifier_bat_increased", self.caster)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
+    AddModifier(self.parent, self.ability, "_modifier_bat_increased", {
       amount = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_as")
     }, false)
 
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+    AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
       percent = self:GetStackCount() * self.ability:GetSpecialValueFor("hypo_ms")
     }, false)
 
@@ -94,7 +94,7 @@ function icebreaker__modifier_hypo:OnStackCountChanged(old)
   end
 
   if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_hypo_stack") then
-    AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_frozen", {
+    AddModifier(self.parent, self.ability, "icebreaker__modifier_frozen", {
       duration = self.ability:GetSpecialValueFor("frozen_duration")
     }, true)
 	end

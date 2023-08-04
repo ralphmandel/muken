@@ -54,7 +54,7 @@ hunter_1__shot = class({})
 	end
 
   function hunter_1__shot:OnProjectileHit_ExtraData(target, vLocation, extradata)
-    if (not target) or target:IsInvulnerable() or target:IsOutOfGame() or target:TriggerSpellAbsorb( self ) then return end
+    if (not target) or target:IsInvulnerable() or target:TriggerSpellAbsorb(self) then return end
 		local caster = self:GetCaster()
 
     if IsServer() then target:EmitSound("Hero_Sniper.AssassinateDamage") end

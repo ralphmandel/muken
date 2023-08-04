@@ -1,7 +1,7 @@
 templar_2_modifier_barrier = class({})
 
 function templar_2_modifier_barrier:IsHidden() return false end
-function templar_2_modifier_barrier:IsPurgable() return false end
+function templar_2_modifier_barrier:IsPurgable() return true end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -32,15 +32,18 @@ function templar_2_modifier_barrier:DeclareFunctions()
 end
 
 function templar_2_modifier_barrier:GetAbsoluteNoDamagePhysical(keys)
-  return 1
+  if keys.attacker ~= self:GetParent() then return 1 end
+  return 0
 end
 
 function templar_2_modifier_barrier:GetAbsoluteNoDamageMagical(keys)
-  return 1
+  if keys.attacker ~= self:GetParent() then return 1 end
+  return 0
 end
 
 function templar_2_modifier_barrier:GetAbsoluteNoDamagePure(keys)
-  return 1
+  if keys.attacker ~= self:GetParent() then return 1 end
+  return 0
 end
 
 -- UTILS -----------------------------------------------------------

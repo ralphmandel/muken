@@ -17,7 +17,7 @@ LinkLuaModifier("_modifier_movespeed_debuff", "_modifiers/_modifier_movespeed_de
     if self.target:TriggerSpellAbsorb(self) then return end
 
     caster:RemoveModifierByNameAndCaster("bloodstained_3_modifier_curse", caster)
-    AddModifier(self.target, caster, self, "bloodstained_3_modifier_curse", {}, false)
+    AddModifier(self.target, self, "bloodstained_3_modifier_curse", {}, false)
 
     if IsServer() then
       caster:EmitSound("Hero_ShadowDemon.DemonicPurge.Cast")

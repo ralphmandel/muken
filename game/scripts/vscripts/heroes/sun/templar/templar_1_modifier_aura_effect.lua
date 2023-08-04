@@ -10,9 +10,7 @@ function templar_1_modifier_aura_effect:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_heal_amp", {
-    amount = self.ability:GetSpecialValueFor("heal_amp")
-  }, false)
+  AddModifier(self.parent, self.ability, "_modifier_heal_amp", {amount = self.ability:GetSpecialValueFor("heal_amp")}, false)
 
   if IsServer() then
     self:SetStackCount(0)

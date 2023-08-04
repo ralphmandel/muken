@@ -24,9 +24,7 @@ function icebreaker_u_modifier_aura_effect:OnRemoved()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bkb", self.ability)
 
   if self.parent:HasModifier("icebreaker__modifier_hypo") then
-    AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_hypo", {
-      stack = 0
-    }, false)
+    AddModifier(self.parent, self.ability, "icebreaker__modifier_hypo", {stack = 0}, false)
   end
 end
 
@@ -45,7 +43,7 @@ function icebreaker_u_modifier_aura_effect:ApplyBuff()
   AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
 
   if self.ability:GetSpecialValueFor("special_immunity") == 1 and self.parent == self.caster then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_bkb", {}, false)
+    AddModifier(self.parent, self.ability, "_modifier_bkb", {}, false)
   end
 end
 
@@ -55,7 +53,7 @@ function icebreaker_u_modifier_aura_effect:ApplyDebuff()
   local hypo_min_stack = self.ability:GetSpecialValueFor("hypo_min_stack")
 
   if mod == nil then
-    mod = AddModifier(self.parent, self.caster, self.ability, "icebreaker__modifier_hypo", {
+    mod = AddModifier(self.parent, self.ability, "icebreaker__modifier_hypo", {
       stack = hypo_min_stack
     }, false)
   elseif mod:GetStackCount() < hypo_min_stack then

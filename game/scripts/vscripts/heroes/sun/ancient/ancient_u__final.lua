@@ -73,7 +73,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
         enemy:Interrupt()
         local closest_point = self:FindNearestPointFromLine(caster_position, caster_fw, enemy:GetAbsOrigin())
         FindClearSpaceForUnit(enemy, closest_point, false)
-        AddModifier(enemy, caster, self, "_modifier_percent_movespeed_debuff", {duration = 2}, true)
+        AddModifier(enemy, self, "_modifier_percent_movespeed_debuff", {duration = 2}, true)
 
         ApplyDamage({
           victim = enemy, attacker = caster, damage = self.damage,

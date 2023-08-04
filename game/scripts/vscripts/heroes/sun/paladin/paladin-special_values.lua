@@ -268,11 +268,11 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 45 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 6 + (value_level * 0.1) end
+		if value_name == "duration" then return 5 + (value_level * 0.1) end
 	end
 
 	if ability:GetAbilityName() == "paladin_5__smite" then
-		if value_name == "AbilityManaCost" then return 75 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 70 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
     if value_name == "AbilityCharges" then return 3 end

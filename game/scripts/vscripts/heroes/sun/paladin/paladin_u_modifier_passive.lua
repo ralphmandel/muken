@@ -3,6 +3,15 @@ paladin_u_modifier_passive = class({})
 function paladin_u_modifier_passive:IsHidden() return true end
 function paladin_u_modifier_passive:IsPurgable() return false end
 
+-- AURA -----------------------------------------------------------
+
+function paladin_u_modifier_passive:IsAura() return true end
+function paladin_u_modifier_passive:GetModifierAura() return "paladin_u_modifier_aura_effect" end
+function paladin_u_modifier_passive:GetAuraRadius() return -1 end
+function paladin_u_modifier_passive:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
+function paladin_u_modifier_passive:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
+function paladin_u_modifier_passive:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
+
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function paladin_u_modifier_passive:OnCreated(kv)
@@ -21,20 +30,6 @@ function paladin_u_modifier_passive:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
-function paladin_u_modifier_passive:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
-	}
-
-	return funcs
-end
-
-function paladin_u_modifier_passive:GetModifierIncomingDamage_Percentage(keys)
-  if keys.damage_type == DAMAGE_TYPE_PURE then
-    return self:GetAbility():GetSpecialValueFor("holy_reduction")
-  end
-end
 
 -- UTILS -----------------------------------------------------------
 

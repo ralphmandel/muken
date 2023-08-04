@@ -50,7 +50,7 @@ function dasdingo_2_modifier_aura_effect:OnIntervalThink()
   if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("root_chance") then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_root", {
+    AddModifier(self.parent, self.ability, "_modifier_root", {
       duration = self.ability:GetSpecialValueFor("root_duration"),
       effect = 4
     })        

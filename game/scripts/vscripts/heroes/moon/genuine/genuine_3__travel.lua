@@ -135,7 +135,7 @@ LinkLuaModifier("_modifier_ban", "_modifiers/_modifier_ban", LUA_MODIFIER_MOTION
   
       for _,enemy in pairs(enemies) do
         if IsServer() then enemy:EmitSound("Hero_Puck.EtherealJaunt") end
-        AddModifier(enemy, caster, self, "_modifier_silence", {duration = silence_duration}, true)
+        AddModifier(enemy, self, "_modifier_silence", {duration = silence_duration}, true)
       end
 
       caster:RemoveModifierByName("genuine_3_modifier_travel")

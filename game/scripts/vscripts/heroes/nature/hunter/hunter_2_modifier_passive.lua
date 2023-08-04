@@ -79,7 +79,7 @@ function hunter_2_modifier_passive:OnIntervalThink()
 
   if self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
     if self.camo == nil then
-      self.camo = AddModifier(self.parent, self.caster, self.ability, "hunter_2_modifier_camouflage", {}, false)
+      self.camo = AddModifier(self.parent, self.ability, "hunter_2_modifier_camouflage", {}, false)
       self.camo:SetEndCallback(function(interrupted)
         self.camo = nil
         if IsServer() then

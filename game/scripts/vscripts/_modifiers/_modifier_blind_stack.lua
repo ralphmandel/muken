@@ -15,7 +15,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function __stack:OnCreated( kv )
+function _modifier_blind_stack:OnCreated( kv )
 	self.parent = self:GetParent()
 	self:Check()
 end

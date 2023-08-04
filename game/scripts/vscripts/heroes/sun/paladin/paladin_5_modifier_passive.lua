@@ -103,7 +103,7 @@ function paladin_5_modifier_passive:PlayEfxHit(target)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 
   if IsServer() then
-    target:EmitSound("Hero_Omniknight.HammerOfPurity.Target")
+    target:EmitSound("Hero_Omniknight.HammerOfPurity.Crit")
     self.parent:EmitSound("Hero_Centaur.DoubleEdge")
   end
 end

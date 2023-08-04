@@ -11,7 +11,7 @@ function ancient_2_modifier_jump:OnCreated( kv )
 	self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  self.arc = AddModifier(self.parent, self.caster, self.ability, "_modifier_generic_arc", {
+  self.arc = AddModifier(self.parent, self.ability, "_modifier_generic_arc", {
     duration = self.ability.duration, distance = 0, height = self.ability.height, --fix_end = true,
     fix_duration = false, isStun = true, --activity = ACT_DOTA_FLAIL
   }, false)
@@ -28,7 +28,7 @@ function ancient_2_modifier_jump:OnCreated( kv )
       if self.ability.duration >= 0.6 then self.parent:EmitSound("Ability.TossImpact") end
     end
 
-    AddModifier(self.parent, self.caster, self.ability, "ancient_2_modifier_leap", {}, false)
+    AddModifier(self.parent, self.ability, "ancient_2_modifier_leap", {}, false)
 	end)
 
 	if self.ability.distance == 0 then self.ability.distance = 1 end

@@ -22,7 +22,7 @@ LinkLuaModifier("paladin_2_modifier_shield", "heroes/sun/paladin/paladin_2_modif
 	function paladin_2__shield:OnSpellStart()
 		local caster = self:GetCaster()
 
-    AddModifier(caster, caster, self, "paladin_2_modifier_shield", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(caster, self, "paladin_2_modifier_shield", {duration = self:GetSpecialValueFor("duration")}, true)
 	end
 
 -- EFFECTS

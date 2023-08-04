@@ -27,7 +27,7 @@ LinkLuaModifier("icebreaker_u_modifier_status_efx", "heroes/moon/icebreaker/iceb
 
 		shard:CreatureLevelUp(self:GetSpecialValueFor("rank"))
 		shard:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
-    AddModifier(shard, caster, self, "icebreaker_u_modifier_aura", {duration = self:GetSpecialValueFor("duration")}, false)
+    AddModifier(shard, self, "icebreaker_u_modifier_aura", {duration = self:GetSpecialValueFor("duration")}, false)
 	end
 
 -- EFFECTS

@@ -49,7 +49,7 @@ function fleaman_1_modifier_precision:AddMultStack()
     self.parent:EmitSound("Fleaman.Precision")
   end
   
-  AddModifier(self.parent, self.caster, self.ability, "fleaman_1_modifier_precision_stack", {
+  AddModifier(self.parent, self.ability, "fleaman_1_modifier_precision_stack", {
     duration = duration, modifier = tempTable:AddATValue(self)
   }, false)
 end

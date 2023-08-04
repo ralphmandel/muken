@@ -13,7 +13,7 @@ function bloodstained_2_modifier_frenzy:OnCreated(kv)
 	self.parent:SetForceAttackTarget(self.ability.target)
 	
 	AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
+  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms")
   }, false)
 

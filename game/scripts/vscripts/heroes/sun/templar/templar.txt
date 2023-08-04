@@ -36,7 +36,7 @@
 			"radius"    "800"
 			"def_base"  "3"
 			"def_bonus" "3"
-			"heal_amp"  "30"
+			"heal_amp"  "25"
 			"rank"      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -62,7 +62,7 @@
 
     "AbilityValues"
 		{
-			"duration"		"5"
+			"duration"		"4"
 			"cast_range"  "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -112,10 +112,16 @@
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.2"
+		"AbilityCastPoint"       		"0.3"
 
     "AbilityValues"
 		{
+      "proj_speed"  "1000"
+      "hits"        "2"
+      "armor_mult"  "7.5"
+      "interval"    "1"
+      "agi_start"   "-10"
+      "slow_start"  "1 2 3 4 5 6 7 8 9 10 11"      
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

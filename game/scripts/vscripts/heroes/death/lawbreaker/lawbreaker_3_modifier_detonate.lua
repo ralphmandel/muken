@@ -50,11 +50,11 @@ function lawbreaker_3_modifier_detonate:DetonadeGrenade()
 
   for _,enemy in pairs(enemies) do
     if enemy:IsMagicImmune() == false then
-      AddModifier(enemy, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+      AddModifier(enemy, self.ability, "_modifier_percent_movespeed_debuff", {
         duration = 0.5, percent = 100
       }, true)
 
-      AddModifier(enemy, self.caster, self.ability, "lawbreaker_3_modifier_grenade", {
+      AddModifier(enemy, self.ability, "lawbreaker_3_modifier_grenade", {
         duration = self.ability:GetSpecialValueFor("duration")
       }, true)
     end

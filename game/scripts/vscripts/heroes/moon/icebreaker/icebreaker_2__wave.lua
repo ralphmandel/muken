@@ -25,7 +25,7 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
     local direction = (point - caster:GetAbsOrigin()):Normalized()
     self.first_hit = false
 
-    AddModifier(caster, caster, self, "icebreaker_2_modifier_refresh", {}, false)
+    AddModifier(caster, self, "icebreaker_2_modifier_refresh", {}, false)
 
     if IsServer() then caster:EmitSound("Hero_Ancient_Apparition.IceBlast.Target") end
     
@@ -92,7 +92,7 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
       self.knockbackProperties.duration = knockback_duration * stack
       self.knockbackProperties.knockback_duration = CalcStatus(knockback_duration, caster, target) * stack
       self.knockbackProperties.knockback_distance = CalcStatus(knockback_distance, caster, target) * stack
-      AddModifier(target, caster, nil, "modifier_knockback", self.knockbackProperties, true)
+      AddModifier(target, self, "modifier_knockback", self.knockbackProperties, true)
     end
 
     if mana_burn > 0 and target:GetMana() > 0 then
@@ -118,14 +118,14 @@ LinkLuaModifier("_modifier_silence", "_modifiers/_modifier_silence", LUA_MODIFIE
         illu:SetForwardVector(direction)
         illu:SetForceAttackTarget(target)
         FindClearSpaceForUnit(illu, loc, true)
-        AddModifier(illu, caster, self, "icebreaker__modifier_illusion", {}, false)
+        AddModifier(illu, self, "icebreaker__modifier_illusion", {}, false)
       end
     end
 
-    AddModifier(target, caster, self, "icebreaker__modifier_hypo", {stack = stack}, false)
+    AddModifier(target, self, "icebreaker__modifier_hypo", {stack = stack}, false)
 
     if target:HasModifier("icebreaker__modifier_frozen") == false then
-      AddModifier(target, caster, self, "_modifier_silence", {
+      AddModifier(target, self, "_modifier_silence", {
         duration = self:GetSpecialValueFor("special_silence_duration") * stack
       }, true)
     end

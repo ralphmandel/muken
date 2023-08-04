@@ -129,7 +129,7 @@ function bloodstained__modifier_copy:OnStackCountChanged(old)
   if self.target == nil then return end
   if IsValidEntity(self.target) == false then return end
   
-  AddModifier(self.target, self.caster, self.ability, "bloodstained__modifier_bloodstained", {
+  AddModifier(self.target, self.ability, "bloodstained__modifier_bloodstained", {
     hp_stolen = self:GetStackCount()
   }, false)
 end

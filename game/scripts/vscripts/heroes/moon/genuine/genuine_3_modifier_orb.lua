@@ -10,7 +10,7 @@ function genuine_3_modifier_orb:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.caster, self.caster, self.ability, "genuine_3_modifier_travel", {}, false)
+  AddModifier(self.caster, self.ability, "genuine_3_modifier_travel", {}, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_Puck.Illusory_Orb") end
 end

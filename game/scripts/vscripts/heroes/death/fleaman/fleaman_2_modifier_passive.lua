@@ -38,7 +38,7 @@ function fleaman_2_modifier_passive:OnAttackLanded(keys)
 
   if IsServer() then self:IncrementStackCount() end
   
-  AddModifier(self.parent, self.caster, self.ability, "fleaman_2_modifier_speed_stack", {
+  AddModifier(self.parent, self.ability, "fleaman_2_modifier_speed_stack", {
     duration = self.ability:GetSpecialValueFor("stack_duration"), modifier = tempTable:AddATValue(self)
   }, true)
 end
@@ -50,7 +50,7 @@ function fleaman_2_modifier_passive:OnStackCountChanged(old)
   AddBonus(self.ability, "DEX", self.parent, 0, self:GetStackCount() * self.ability:GetSpecialValueFor("dex"), nil)
   
   if self:GetStackCount() > 0 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
+    AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {
       percent = self:GetStackCount() * self.ability:GetSpecialValueFor("ms")
     }, false)
   end

@@ -49,7 +49,7 @@ end
 
 function bocuse_3_modifier_sauce:GetModifierIncomingDamage_Percentage(keys)
   if keys.attacker:GetTeamNumber() == self.caster:GetTeamNumber() then
-	  return self:GetAbility():GetSpecialValueFor("damage_amp_stack") * self:GetStackCount()
+    return self:GetAbility():GetSpecialValueFor("damage_amp_stack") * self:GetStackCount()
   end
 
   return 0
@@ -83,13 +83,13 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
   if slow_stack > 0 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+    AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
       percent = slow_stack * stack_count
     }, false)
   end
 
   if slow_duration > 0 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_percent_movespeed_debuff", {
+    AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
       duration = slow_duration, percent = 100
     }, true)
   end
@@ -100,19 +100,19 @@ function bocuse_3_modifier_sauce:ModifySauce(stack_count)
 		end
 
     if self.ability:GetSpecialValueFor("special_break") == 1 then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_break", {
+      AddModifier(self.parent, self.ability, "_modifier_break", {
         duration = self:GetRemainingTime()
       }, false)
 		end
 
 		if self.ability:GetSpecialValueFor("special_silence") == 1 then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_silence", {
+      AddModifier(self.parent, self.ability, "_modifier_silence", {
         duration = self:GetRemainingTime(), special = 2
       }, false)
 		end
 
     if self.ability:GetSpecialValueFor("special_disarm") == 1 then
-      AddModifier(self.parent, self.caster, self.ability, "_modifier_disarm", {
+      AddModifier(self.parent, self.ability, "_modifier_disarm", {
         duration = self:GetRemainingTime()
       }, false)
 		end

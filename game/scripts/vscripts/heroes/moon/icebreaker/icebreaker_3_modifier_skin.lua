@@ -10,7 +10,7 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_mana_regen", {
+  AddModifier(self.parent, self.ability, "_modifier_mana_regen", {
     amount = self.ability:GetSpecialValueFor("special_mp_regen") * 100
   }, false)
 
@@ -23,7 +23,7 @@ end
 
 function icebreaker_3_modifier_skin:OnRefresh(kv)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_mana_regen", self.ability)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_mana_regen", {
+  AddModifier(self.parent, self.ability, "_modifier_mana_regen", {
     amount = self.ability:GetSpecialValueFor("special_mp_regen")
   }, false)
 
@@ -60,11 +60,11 @@ function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
 	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
 	if RandomFloat(0, 100) >= self.ability:GetSpecialValueFor("chance") then return 0 end
 
-  AddModifier(keys.attacker, self.caster, self.ability, "icebreaker__modifier_hypo", {
+  AddModifier(keys.attacker, self.ability, "icebreaker__modifier_hypo", {
     stack = self.ability:GetSpecialValueFor("hypo_stack")
   }, false)
 
-  AddModifier(keys.attacker, self.caster, self.ability, "icebreaker__modifier_instant", {
+  AddModifier(keys.attacker, self.ability, "icebreaker__modifier_instant", {
     duration = self.ability:GetSpecialValueFor("special_mini_freeze")
   }, true)
   
@@ -88,7 +88,7 @@ function icebreaker_3_modifier_skin:SpreadHypo()
 
   for _,enemy in pairs(enemies) do
     if IsServer() then enemy:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-    AddModifier(enemy, self.caster, self.ability, "icebreaker__modifier_hypo", {
+    AddModifier(enemy, self.ability, "icebreaker__modifier_hypo", {
       stack = self.ability:GetSpecialValueFor("special_spread_stack")
     }, false)
   end

@@ -129,7 +129,9 @@ function templar_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "templar_4__hammer" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "slow_start" then return 1 end
 
 		if caster:FindAbilityByName("templar_4__hammer_rank_11") then
 		end
@@ -237,23 +239,25 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_2__barrier" then
-		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 17 end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 14 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cast_range" then return 500 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "templar_3__circle" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+		if value_name == "AbilityManaCost" then return 280 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 27 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "templar_4__hammer" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 14 end
+		if value_name == "AbilityManaCost" then return 240 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 18 end
+    if value_name == "AbilityCastRange" then return 700 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "slow_start" then return 60 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "templar_5__reborn" then
@@ -261,7 +265,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 75 end
 		if value_name == "AbilityCastRange" then return 300 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "percent" then return 40 + (value_level * 2) end
+		if value_name == "percent" then return 50 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "templar_u__praise" then

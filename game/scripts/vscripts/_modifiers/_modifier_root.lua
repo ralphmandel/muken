@@ -1,30 +1,19 @@
 _modifier_root = class({})
 
---------------------------------------------------------------------------------
-function _modifier_root:IsHidden()
-	return false
-end
+function _modifier_root:IsHidden() return false end
+function _modifier_root:IsPurgable() return true end
+function _modifier_root:GetTexture() return "_modifier_root" end
+function _modifier_root:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
-function _modifier_root:IsPurgable()
-	return true
-end
-
-function _modifier_root:GetTexture()
-	return "_modifier_root"
-end
-
-function _modifier_root:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
 --------------------------------------------------------------------------------
 
 function _modifier_root:OnCreated(kv)
-    self.caster = self:GetCaster()
+  self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.ability = self:GetAbility()
 
 	self.effect = kv.effect or 0
-	self.sound = "Hero_DarkWillow.Bramble.Target.Layer"
+	self.sound = "Druid.Root"
 
 	local path = nil
 	if self.effect == 1 then
@@ -36,6 +25,7 @@ function _modifier_root:OnCreated(kv)
 	elseif self.effect == 4 then
 		path = "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf"
 		--self.sound = "Hero_Treant.Overgrowth.Target"
+		--self.sound = "Hero_DarkWillow.Bramble.Target.Layer"
 	elseif self.effect == 5 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
 		self.sound = "Druid.Root"

@@ -57,7 +57,7 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_autocast_chance") then
     self.ability.autocast = true
-    AddModifier(self.parent, self.caster, self.ability, "bocuse_u_modifier_mise", {
+    AddModifier(self.parent, self.ability, "bocuse_u_modifier_mise", {
       duration = self.ability:GetSpecialValueFor("special_autocast_duration")
     }, true)
 	end

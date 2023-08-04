@@ -19,7 +19,7 @@ function icebreaker_1_modifier_passive:OnRefresh(kv)
   local ms = self.ability:GetSpecialValueFor("special_ms")
   if ms > 0 then
     RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_permanent_movespeed_buff", self.ability)
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_permanent_movespeed_buff", {percent = ms}, false)
+    AddModifier(self.parent, self.ability, "_modifier_permanent_movespeed_buff", {percent = ms}, false)
   end
 end
 
@@ -60,7 +60,7 @@ function icebreaker_1_modifier_passive:OnTakeDamage(keys)
   if keys.attacker ~= self.parent then return end
 
   if keys.damage_flags == 1024 then
-    AddModifier(keys.unit, self.caster, self.ability, "icebreaker__modifier_hypo", {stack = 1}, false)
+    AddModifier(keys.unit, self.ability, "icebreaker__modifier_hypo", {stack = 1}, false)
   end
 end
 
@@ -77,7 +77,7 @@ function icebreaker_1_modifier_passive:OnAttackLanded(keys)
 end
 
 function icebreaker_1_modifier_passive:OnIntervalThink()
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_invisible", {spell_break = 1}, false)
+  AddModifier(self.parent, self.ability, "_modifier_invisible", {spell_break = 1}, false)
 
   if IsServer() then self:StartIntervalThink(-1) end
 end

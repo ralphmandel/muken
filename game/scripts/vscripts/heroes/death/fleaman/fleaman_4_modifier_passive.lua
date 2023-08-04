@@ -38,7 +38,7 @@ function fleaman_4_modifier_passive:OnAttackLanded(keys)
   if self.parent:IsIllusion() then return end
 
 	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
-    AddModifier(keys.target, self.caster, self.ability, "fleaman_4_modifier_strip", {
+    AddModifier(keys.target, self.ability, "fleaman_4_modifier_strip", {
 			duration = self.ability:GetSpecialValueFor("duration")
     }, true)
 	end

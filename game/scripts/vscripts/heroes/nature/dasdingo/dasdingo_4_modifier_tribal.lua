@@ -131,7 +131,7 @@ function dasdingo_4_modifier_tribal:OnAttack(keys)
 end
 
 function dasdingo_4_modifier_tribal:GetModifierBaseAttack_BonusDamage()
-  return BaseStats(self:GetCaster()):GetStatTotal("INT")
+  return BaseStats(self:GetCaster()):GetStatTotal("INT") * 2
 end
 
 function dasdingo_4_modifier_tribal:GetModifierAttackRangeOverride()

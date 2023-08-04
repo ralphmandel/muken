@@ -30,7 +30,7 @@ function bocuse_2_modifier_flambee:OnRemoved()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
 
   if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_stun", {
+    AddModifier(self.parent, self.ability, "_modifier_stun", {
       duration = self.ability:GetSpecialValueFor("special_stun_duration")
     }, true)
   end
@@ -67,7 +67,7 @@ function bocuse_2_modifier_flambee:ApplyBuffs()
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_movespeed_buff", {
+  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {
     percent = self.ability:GetSpecialValueFor("ms")
   }, false)
 
@@ -81,9 +81,7 @@ function bocuse_2_modifier_flambee:ApplyDebuffs()
 	if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
 
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_blind", {
-    percent = self.ability:GetSpecialValueFor("blind")
-  }, false)
+  AddModifier(self.parent, self.ability, "_modifier_blind", {percent = self.ability:GetSpecialValueFor("blind")}, false)
 end
 
 -- EFFECTS -----------------------------------------------------------

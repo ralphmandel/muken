@@ -17,7 +17,7 @@ LinkLuaModifier("paladin_4_modifier_aura_effect", "heroes/sun/paladin/paladin_4_
 
 	function paladin_4__magnus:OnSpellStart()
 		local caster = self:GetCaster()
-    AddModifier(caster, caster, self, "paladin_4_modifier_aura", {duration = self:GetSpecialValueFor("duration")}, true)
+    AddModifier(caster, self, "paladin_4_modifier_aura", {duration = self:GetSpecialValueFor("duration")}, true)
 
     if IsServer() then caster:EmitSound("Hero_ArcWarden.MagneticField.Cast") end
 	end

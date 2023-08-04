@@ -26,7 +26,7 @@ LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/moon/icebreaker/icebreak
     
     self:PlayEfxActive(blast_radius, blast_duration, blast_speed)
 
-    AddModifier(caster, caster, self, "_modifier_percent_movespeed_debuff", {
+    AddModifier(caster, self, "_modifier_percent_movespeed_debuff", {
       duration =  blast_duration, percent = self:GetSpecialValueFor("slow")
     }, false)
 
@@ -60,13 +60,13 @@ LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/moon/icebreaker/icebreak
             if unit:IsIllusion() then
               unit:Kill(self, caster)
             else
-              AddModifier(unit, caster, self, "icebreaker__modifier_hypo", {
+              AddModifier(unit, self, "icebreaker__modifier_hypo", {
                 stack = self:GetSpecialValueFor("hypo_stack")
               }, false)
 
               if unit:HasModifier("icebreaker__modifier_frozen") == false then
                 RemoveAllModifiersByNameAndAbility(unit, "_modifier_fear", self)
-                AddModifier(unit, caster, self, "_modifier_fear", {
+                AddModifier(unit, self, "_modifier_fear", {
                   duration = self:GetSpecialValueFor("special_fear_duration")
                 }, true)
               end

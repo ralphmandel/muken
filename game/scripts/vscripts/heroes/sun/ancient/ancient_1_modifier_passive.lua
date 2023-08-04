@@ -10,7 +10,7 @@ function ancient_1_modifier_passive:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_crit_damage", {
+  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {
     amount = self.ability:GetSpecialValueFor("crit_damage")
   }, false)
 
@@ -22,7 +22,7 @@ end
 
 function ancient_1_modifier_passive:OnRefresh(kv)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
-  AddModifier(self.parent, self.caster, self.ability, "_modifier_crit_damage", {
+  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {
     amount = self.ability:GetSpecialValueFor("crit_damage")
   }, false)
 end
@@ -58,7 +58,7 @@ end
 
 function ancient_1_modifier_passive:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
-  AddModifier(keys.target, self.caster, self.ability, "_modifier_no_block", {}, false)
+  AddModifier(keys.target, self.ability, "_modifier_no_block", {}, false)
 end
 
 function ancient_1_modifier_passive:OnAttackFail(keys)
@@ -82,7 +82,7 @@ function ancient_1_modifier_passive:OnAttacked(keys)
     end
   end
 
-	AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {
+	AddModifier(keys.target, self.ability, "_modifier_stun", {
     duration = self:CalcStunDuration(keys.target, keys.original_damage)
   }, false)
 
@@ -101,7 +101,7 @@ function ancient_1_modifier_passive:ChangeBAT()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
 
   if self.ability:GetSpecialValueFor("special_double_hit") == 0 or self:GetStackCount() > 0 then
-    AddModifier(self.parent, self.caster, self.ability, "_modifier_bat_increased", {
+    AddModifier(self.parent, self.ability, "_modifier_bat_increased", {
       amount = BaseStats(self.parent):GetSpecialValueFor("base_attack_time") * self.ability:GetSpecialValueFor("bat") * 0.01
     }, false)
   end

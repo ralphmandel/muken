@@ -100,8 +100,8 @@ function lawbreaker_u_modifier_form:OnAttacked(keys)
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("break_chance") then
     RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_break", self.ability)
 
-    AddModifier(keys.target, self.caster, self.ability, "_modifier_stun", {duration = 0.2}, true)
-    AddModifier(keys.target, self.caster, self.ability, "_modifier_break", {
+    AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.2}, true)
+    AddModifier(keys.target, self.ability, "_modifier_break", {
       duration = self.ability:GetSpecialValueFor("break_duration")
     }, true)    
   end

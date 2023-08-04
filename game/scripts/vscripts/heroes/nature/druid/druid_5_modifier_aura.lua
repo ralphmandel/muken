@@ -36,7 +36,7 @@ function druid_5_modifier_aura:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self.tree_interval = self.ability:GetSpecialValueFor("tree_interval")
-  AddModifier(self.parent, self.caster, self.ability, "druid_5_modifier_wind_effect", {}, false)
+  AddModifier(self.parent, self.ability, "druid_5_modifier_wind_effect", {}, false)
 
   if IsServer() then
     self:PlayEfxStart()

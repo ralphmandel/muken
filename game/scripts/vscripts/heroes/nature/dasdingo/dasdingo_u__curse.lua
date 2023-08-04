@@ -23,10 +23,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     )
 
     for _,enemy in pairs(enemies) do
-      AddModifier(enemy, caster, self, "dasdingo_u_modifier_curse", {}, false)
+      AddModifier(enemy, self, "dasdingo_u_modifier_curse", {}, false)
 
       -- if enemy:IsMagicImmune() == false then
-      --   AddModifier(enemy, caster, self, "_modifier_fear", {
+      --   AddModifier(enemy, self, "_modifier_fear", {
       --     duration = fear_duration, special = 2, x = point.x, y = point.y, z = point.z
       --   }, true)
       -- end
