@@ -733,7 +733,7 @@
 			"ID"							    "1700"
       "Model"							  "models/props_gameplay/fountain_of_life/fountain_of_life_consumable.vmdl"
 
-      "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+      "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -773,7 +773,7 @@
 			
 			"AbilityValues"
 			{
-        "heal_per_second" "75"
+        "heal_per_second" "100"
         "heal_duration"   "5"
         "max_stack"       "3"
 			}
@@ -792,7 +792,7 @@
 
 			"ItemRequirements"
 			{
-				"01"  "item_tango;item_tango;item_tango;item_tango;item_tango"
+				"01"  "item_tango;item_tango;item_tango"
 			}
 		}
 

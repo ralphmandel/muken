@@ -302,7 +302,7 @@
       "02"
       {
         "var_type"			"FIELD_FLOAT"
-        "health_regen"	"15"
+        "health_regen"	"30"
       }
     }
   }

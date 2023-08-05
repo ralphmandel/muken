@@ -9,7 +9,7 @@ templar_4__hammer.hits = {}
 -- SPELL START
 
 	function templar_4__hammer:OnSpellStart()
-    self.hits[self:CreateProj(self:GetCaster(), self:GetCursorTarget())] = self:GetSpecialValueFor("hits")
+    self.hits[self:CreateProj(self:GetCaster(), self:GetCursorTarget(), DOTA_PROJECTILE_ATTACHMENT_ATTACK_2)] = self:GetSpecialValueFor("hits")
 	end
 
   function templar_4__hammer:OnProjectileHitHandle(target, location, handle)
@@ -28,19 +28,16 @@ templar_4__hammer.hits = {}
         self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
         self:GetAbilityTargetFlags(), 0, false
       )
-  
-      local new = false
-      
+        
       for _,enemy in pairs(enemies) do
         if enemy ~= target and enemy:IsHero() then
-          self:CreateProj(target, enemy)
-          new = true
+          self.hits[self:CreateProj(target, enemy, DOTA_PROJECTILE_ATTACHMENT_HITLOCATION)] = self.hits[handle]
           break
         end
       end
-
-      if new == false then self.hits[handle] = nil end
     end
+
+    self.hits[handle] = nil
 
     AddFOWViewer(caster:GetTeamNumber(), target:GetOrigin(), 150, 1, true)
     AddModifier(target, self, "templar_4_modifier_hammer", {}, false)
@@ -53,9 +50,9 @@ templar_4__hammer.hits = {}
     })
   end
 
-  function templar_4__hammer:CreateProj(source, target)
+  function templar_4__hammer:CreateProj(source, target, attach)
     local caster = self:GetCaster()
-    if IsServer() then caster:EmitSound("Hero_Omniknight.HammerOfPurity.Cast") end
+    if IsServer() then source:EmitSound("Hero_Omniknight.HammerOfPurity.Cast") end
 
     local projectile = ProjectileManager:CreateTrackingProjectile({
       Target = target, Source = source, Ability = self,

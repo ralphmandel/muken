@@ -257,8 +257,8 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 0 end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "AbilityCastRange" then return 150 end
-    if value_name == "AbilityCharges" then return 5 end
-    if value_name == "AbilityChargeRestoreTime" then return 15 end
+    if value_name == "AbilityCharges" then return 3 end
+    if value_name == "AbilityChargeRestoreTime" then return 40 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
 	end

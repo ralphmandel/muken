@@ -99,6 +99,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "templar_3__circle" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 
 		if caster:FindAbilityByName("templar_3__circle_rank_11") then
@@ -249,7 +250,8 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "templar_3__circle" then
 		if value_name == "AbilityManaCost" then return 280 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 27 end
-		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "AbilityCastRange" then return 400 end
+    if value_name == "rank" then return 6 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "templar_4__hammer" then
