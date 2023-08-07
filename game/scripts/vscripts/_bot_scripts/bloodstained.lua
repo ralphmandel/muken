@@ -81,12 +81,21 @@ function bloodstained:TryCast_Tear()
   local ability = self.caster:FindAbilityByName("bloodstained_4__tear")
   if IsAbilityCastable(ability) == false then return false end
 
-  if ability:GetCurrentAbilityCharges() == 1 then
-    if self.state == BOT_STATE_FLEE then
+  if self.state == BOT_STATE_FLEE then
+    if ability:GetCurrentAbilityCharges() == 1 then
       return false
-    end
+    else
+      local mod = self.caster:FindModifierByName("bloodstained_4_modifier_tear")
+      if mod == nil then return false end
+      if self.caster:GetHealthPercent() > 15 and mod:GetElapsedTime() < 20 then return false end
 
-    if self.state == BOT_STATE_AGGRESSIVE then
+      self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+      return true
+    end
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    if ability:GetCurrentAbilityCharges() == 1 then
       if self.caster:GetHealthPercent() < 40 then return false end
 
       local total_targets = 0
@@ -104,15 +113,18 @@ function bloodstained:TryCast_Tear()
       end
   
       if total_targets == 0 then return false end
-    end
-  else
-    local mod = self.caster:FindModifierByName("bloodstained_4_modifier_tear")
-    if mod == nil then return false end
-    if self.caster:GetHealthPercent() > 15 and mod:GetElapsedTime() < 20 then return false end
-  end
 
-  self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-  return true
+      self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+      return true
+    else
+      local mod = self.caster:FindModifierByName("bloodstained_4_modifier_tear")
+      if mod == nil then return false end
+      if self.caster:GetHealthPercent() > 15 and mod:GetElapsedTime() < 20 then return false end
+
+      self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+      return true
+    end
+  end
 end
 
 function bloodstained:TryCast_Seal()

@@ -32,7 +32,7 @@ end
 
 function icebreaker_u_modifier_aura_effect:OnIntervalThink()
   self:ApplyDebuff()
-  if IsServer() then self:StartIntervalThink(0.1) end
+  if IsServer() then self:StartIntervalThink(self.ability:GetSpecialValueFor("stack_interval")) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -41,28 +41,22 @@ function icebreaker_u_modifier_aura_effect:ApplyBuff()
   if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then return end
   AddStatusEfx(self.ability, "icebreaker_u_modifier_status_efx", self.caster, self.parent)
   AddBonus(self.ability, "RES", self.parent, self.ability:GetSpecialValueFor("res"), 0, nil)
-
-  if self.ability:GetSpecialValueFor("special_immunity") == 1 and self.parent == self.caster then
-    AddModifier(self.parent, self.ability, "_modifier_bkb", {}, false)
-  end
 end
 
 function icebreaker_u_modifier_aura_effect:ApplyDebuff()
   if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
   local mod = self.parent:FindModifierByName("icebreaker__modifier_hypo")
-  local hypo_min_stack = self.ability:GetSpecialValueFor("hypo_min_stack")
+  local stack_min = self.ability:GetSpecialValueFor("stack_min")
+  local increment = false
 
-  if mod == nil then
-    mod = AddModifier(self.parent, self.ability, "icebreaker__modifier_hypo", {
-      stack = hypo_min_stack
-    }, false)
-  elseif mod:GetStackCount() < hypo_min_stack then
-    mod:SetStackCount(hypo_min_stack)
+  if mod then
+    if mod:GetStackCount() < stack_min then increment = true end
+  else
+    increment = true
   end
 
-  if mod:GetStackCount() == hypo_min_stack then
-    mod:SetDuration(-1, true)
-    mod.remaining_time = -1
+  if increment == true then
+    AddModifier(self.parent, self.ability, "icebreaker__modifier_hypo", {stack = 1}, false)
   end
 end
 

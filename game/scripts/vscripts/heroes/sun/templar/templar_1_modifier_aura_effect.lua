@@ -23,6 +23,8 @@ function templar_1_modifier_aura_effect:OnRefresh(kv)
 end
 
 function templar_1_modifier_aura_effect:OnRemoved(kv)
+  if IsServer() then self.parent:EmitSound("Hero_Medusa.ManaShield.Off") end
+
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_heal_amp", self.ability)
 	RemoveBonus(self.ability, "DEF", self.parent)
   self.ability:UpdateCount()
@@ -30,19 +32,18 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-
 function templar_1_modifier_aura_effect:OnStackCountChanged(old)
-  local def = self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * self:GetStackCount())
-
 	RemoveBonus(self.ability, "DEF", self.parent)
-  AddBonus(self.ability, "DEF", self.parent, def, 0, nil)
+  AddBonus(self.ability, "DEF", self.parent, self:GetAuraDefense(), 0, nil)
 
-  if self:GetStackCount() > 0 then
-    if IsServer() then self:PlayEfxStart() end
-  end
+  if IsServer() then self:PlayEfxStart() end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function templar_1_modifier_aura_effect:GetAuraDefense()
+  return self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * self:GetStackCount())
+end
 
 -- EFFECTS -----------------------------------------------------------
 
@@ -50,7 +51,7 @@ function templar_1_modifier_aura_effect:PlayEfxStart()
 	local special = 50
 	local string = "particles/dasdingo/dasdingo_aura.vpcf"
   local size = 0
-  local shield_count = self:GetStackCount() + 1
+  local shield_count = self:GetStackCount()
 
   if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then size = 185 end
   if GetHeroName(self.parent:GetUnitName()) == "bloodstained" then size = 210 end

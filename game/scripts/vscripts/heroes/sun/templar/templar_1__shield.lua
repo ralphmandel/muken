@@ -25,11 +25,11 @@ LinkLuaModifier("_modifier_heal_amp", "_modifiers/_modifier_heal_amp", LUA_MODIF
 
 -- SPELL START
 
-  function templar_1__shield:UpdateCount()
+  function templar_1__shield:UpdateCount(bPassivesDisabled)
     if not IsServer() then return end
 
     local caster = self:GetCaster()
-    local hero_count = 0
+    local hero_count = 1
 
     for _, hero in pairs(HeroList:GetAllHeroes()) do
       if hero:GetTeamNumber() == caster:GetTeamNumber()
@@ -37,6 +37,8 @@ LinkLuaModifier("_modifier_heal_amp", "_modifiers/_modifier_heal_amp", LUA_MODIF
         hero_count = hero_count + 1
       end
     end
+
+    if caster:PassivesDisabled() then hero_count = 0 end
 
     for _, hero in pairs(HeroList:GetAllHeroes()) do
       if hero:GetTeamNumber() == caster:GetTeamNumber() then

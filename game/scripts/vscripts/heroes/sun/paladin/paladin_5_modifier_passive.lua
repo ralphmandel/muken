@@ -76,9 +76,7 @@ function paladin_5_modifier_passive:ShouldLaunch(target)
       self.caster:GetTeamNumber()
     )
 
-    if nResult == UF_SUCCESS then
-      self.cast = true
-    end
+    self.cast = (nResult == UF_SUCCESS)
   end
 
 	if self.cast == true and self.parent:IsSilenced() == false and self.ability:IsFullyCastable() then return true end

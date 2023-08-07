@@ -773,7 +773,7 @@
 			
 			"AbilityValues"
 			{
-        "heal_per_second" "100"
+        "heal_per_second" "150"
         "heal_duration"   "5"
         "max_stack"       "3"
 			}

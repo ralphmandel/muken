@@ -181,46 +181,27 @@ _general_script = class({})
       end
 
       if current_action == ACTION_AGRESSIVE_SWAP_TARGET then
-        local new_target = nil
         if target_state == TARGET_STATE_VISIBLE then
-          if self.attack_target:GetHealthPercent() <= LOW_HEALTH_PERCENT then
-            new_target = self.attack_target
-          end
-        end
-
-        if new_target == nil then
-          new_target = self:FindNewTarget(
-            self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_ONLY_HERO,
-            FIND_ANY_ORDER, LOW_HEALTH_PERCENT, ""
-          )
-        end
-
-        -- FIND BLOODY ILLUSIONS
-          local enemies = FindUnitsInRadius(
-            self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
-          )
-    
-          for _,enemy in pairs(enemies) do
-            if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
-            and self:IsOutOfRange(enemy:GetOrigin()) == false then
-              local mod = enemy:FindModifierByName("bloodstained__modifier_copy")
-              if mod then
-                if mod.target then
-                  if IsValidEntity(mod.target) then
-                    if mod.target:GetTeamNumber() == self.team then
-                      new_target = enemy
-                    end
-                  end
-                end
+          local new_target = nil
+          -- LOW HEALTH
+            if self.attack_target:GetHealthPercent() <= LOW_HEALTH_PERCENT then
+              new_target = self.attack_target
+            end
+  
+            if new_target == nil then
+              new_target = self:FindNewTarget(
+                self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_ONLY_HERO,
+                FIND_ANY_ORDER, LOW_HEALTH_PERCENT, ""
+              )
+            end
+  
+          -- FIND BLOODY ILLUSIONS
+            if new_target == nil then
+              if self.attack_target:HasModifier("bloodstained__modifier_copy") then
+                new_target = self.attack_target
               end
             end
-          end
-
-        -- FIND TRIBAL WARDS
-
-          if self.parent:GetHealthPercent() > self.mid_health then
+  
             local enemies = FindUnitsInRadius(
               self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
               DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
@@ -230,17 +211,59 @@ _general_script = class({})
             for _,enemy in pairs(enemies) do
               if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
               and self:IsOutOfRange(enemy:GetOrigin()) == false then
-                local mod = enemy:FindModifierByName("dasdingo_4_modifier_tribal")
-                if mod then new_target = enemy end
+                local mod = enemy:FindModifierByName("bloodstained__modifier_copy")
+                if mod then
+                  if mod.target then
+                    if IsValidEntity(mod.target) then
+                      if mod.target:GetTeamNumber() == self.team then
+                        new_target = enemy
+                      end
+                    end
+                  end
+                end
               end
-            end            
-          end
-
-        if new_target then
-          if new_target ~= self.attack_target then
-            self.agressive_loc = self.current_outpost
-            self.attack_target = new_target            
-          end
+            end
+  
+          -- FLEAMAN STEAL
+            if new_target == nil then
+              if self.parent:HasModifier("fleaman_5_modifier_passive") then
+                local mod_steal = self.attack_target:FindModifierByName("fleaman_5_modifier_steal")
+                if mod_steal then
+                  if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
+                    new_target = self.attack_target
+                  end
+                end
+              else
+                new_target = self.attack_target
+              end
+            end
+  
+            local enemies = FindUnitsInRadius(
+              self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
+              DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+              DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
+            )
+        
+            for _,enemy in pairs(enemies) do
+              if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
+              and self:IsOutOfRange(enemy:GetOrigin()) == false then
+                local mod_steal = enemy:FindModifierByName("fleaman_5_modifier_steal")
+                if mod_steal then
+                  if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
+                    new_target = enemy
+                  end
+                else
+                  new_target = enemy
+                end
+              end
+            end
+  
+          if new_target then
+            if new_target ~= self.attack_target then
+              self.agressive_loc = self.current_outpost
+              self.attack_target = new_target            
+            end
+          end          
         end
       end
 
@@ -289,9 +312,16 @@ _general_script = class({})
             self.agressive_loc = self.current_outpost
 
             self.attack_target = self:FindNewTarget(
-              self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
-              FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
+              self.parent:GetOrigin(), 1000, TARGET_PRIORITY_UNITS,
+              FIND_ANY_ORDER, FULL_HEALTH_PERCENT, "dasdingo_4_modifier_tribal"
             )
+
+            if self.attack_target == nil then
+              self.attack_target = self:FindNewTarget(
+                self.parent:GetOrigin(), self.parent:GetCurrentVisionRange(), TARGET_PRIORITY_HERO,
+                FIND_ANY_ORDER, FULL_HEALTH_PERCENT, ""
+              )              
+            end
       
             for _, hero in pairs(HeroList:GetAllHeroes()) do
               if self.attack_target == nil and hero:GetTeamNumber() == self.team then
@@ -343,45 +373,6 @@ _general_script = class({})
   end
 
   function _general_script:SpecialActions(current_action)
-    if current_action == ACTION_FLEAMAN_STEAL then
-      if self:CheckTargetState(self.attack_target) ~= TARGET_STATE_MISSING and self.parent:HasModifier("fleaman_5_modifier_passive") then
-        local new_target = true
-
-        if self:CheckTargetState(self.attack_target) == TARGET_STATE_VISIBLE then
-          local mod_steal = self.attack_target:FindModifierByName("fleaman_5_modifier_steal")
-          if mod_steal then
-            if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
-              new_target = false
-            end
-          end
-        end
-
-        if new_target == true then
-          self.agressive_loc = self.current_outpost
-
-          local enemies = FindUnitsInRadius(
-            self.team, self.parent:GetOrigin(), nil, self.parent:GetCurrentVisionRange(),
-            DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-            DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false
-          )
-      
-          for _,enemy in pairs(enemies) do
-            if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and self:IsOutOfRange(enemy:GetOrigin()) == false then
-              local mod_steal = enemy:FindModifierByName("fleaman_5_modifier_steal")
-              if mod_steal then
-                if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
-                  self.attack_target = enemy
-                  break
-                end
-              else
-                self.attack_target = enemy
-                break
-              end
-            end
-          end
-        end
-      end
-    end
   end
 
 -- UTIL FUNCTIONS -----------------------------------------------------------
@@ -652,18 +643,7 @@ _general_script = class({})
       return bloodstained
     end
 
-    if GetHeroName(self.parent:GetUnitName()) == "fleaman" then
-      self.AggressiveActions = {
-        [1] = ACTION_AGRESSIVE_CHANGE_TO_FLEE,
-        [2] = ACTION_AGRESSIVE_SWAP_TARGET,
-        [3] = ACTION_AGRESSIVE_ATTACK_TARGET,
-        [4] = ACTION_AGRESSIVE_SEEK_TARGET,
-        [5] = ACTION_FLEAMAN_STEAL,
-        [6] = ACTION_AGRESSIVE_FIND_TARGET,
-      }
-
-      return fleaman
-    end
+    if GetHeroName(self.parent:GetUnitName()) == "fleaman" then return fleaman end
 
     if GetHeroName(self.parent:GetUnitName()) == "ancient" then
       self.low_mana = CUSTOM_ENERGY_PERCENT

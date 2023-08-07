@@ -1,0 +1,155 @@
+"TalentTree_icebreaker"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_riki"
+	{
+		"icebreaker_1__frost" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "icebreaker_1__frost_rank_11" // PATH + TALENT
+				"2"   "icebreaker_1__frost_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_1__frost_rank_21"
+				"2"   "icebreaker_1__frost_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_1__frost_rank_31"
+				"2"   "icebreaker_1__frost_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_1__frost_rank_41"
+				"2"   "icebreaker_1__frost_rank_42"
+			}
+		}
+		"icebreaker_2__wave"
+		{
+			"1"
+			{
+				"1"   "icebreaker_2__wave_rank_11"
+				"2"   "icebreaker_2__wave_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_2__wave_rank_21"
+				"2"   "icebreaker_2__wave_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_2__wave_rank_31"
+				"2"   "icebreaker_2__wave_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_2__wave_rank_41"
+				"2"   "icebreaker_2__wave_rank_42"
+			}
+		}
+		"icebreaker_3__skin"
+		{
+			"1"
+			{
+				"1"   "icebreaker_3__skin_rank_11"
+				"2"   "icebreaker_3__skin_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_3__skin_rank_21"
+				"2"   "icebreaker_3__skin_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_3__skin_rank_31"
+				"2"   "icebreaker_3__skin_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_3__skin_rank_41"
+				"2"   "icebreaker_3__skin_rank_42"
+			}
+		}
+		"icebreaker_4__shivas"
+		{
+			"1"
+			{
+				"1"   "icebreaker_4__shivas_rank_11"
+				"2"   "icebreaker_4__shivas_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_4__shivas_rank_21"
+				"2"   "icebreaker_4__shivas_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_4__shivas_rank_31"
+				"2"   "icebreaker_4__shivas_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_4__shivas_rank_41"
+				"2"   "icebreaker_4__shivas_rank_42"
+			}
+		}
+		"icebreaker_5__blink"
+		{
+			"1"
+			{
+				"1"   "icebreaker_5__blink_rank_11"
+				"2"   "icebreaker_5__blink_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_5__blink_rank_21"
+				"2"   "icebreaker_5__blink_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_5__blink_rank_31"
+				"2"   "icebreaker_5__blink_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_5__blink_rank_41"
+				"2"   "icebreaker_5__blink_rank_42"
+			}
+		}
+		"icebreaker_u__zero"
+		{
+			"1"
+			{
+				"1"   "icebreaker_u__zero_rank_11"
+				"2"   "icebreaker_u__zero_rank_12"
+			}
+			"2"
+			{
+				"1"   "icebreaker_u__zero_rank_21"
+				"2"   "icebreaker_u__zero_rank_22"
+			}
+			"3"
+			{
+				"1"   "icebreaker_u__zero_rank_31"
+				"2"   "icebreaker_u__zero_rank_32"
+			}
+			"4"
+			{
+				"1"   "icebreaker_u__zero_rank_41"
+				"2"   "icebreaker_u__zero_rank_42"
+			}
+		}
+	}	
+}

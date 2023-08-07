@@ -29,7 +29,7 @@ function paladin_u_modifier_aura_effect:DeclareFunctions()
 end
 
 function paladin_u_modifier_aura_effect:GetModifierIncomingDamage_Percentage(keys)
-  if keys.damage_type == DAMAGE_TYPE_PURE then
+  if keys.damage_type == DAMAGE_TYPE_PURE and self:GetCaster():PassivesDisabled() == false then
     return self:GetAbility():GetSpecialValueFor("holy_reduction")
   end
 

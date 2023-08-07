@@ -11,20 +11,13 @@ function icebreaker__modifier_frozen:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  local shivas = self.caster:FindAbilityByName("icebreaker_4__shivas")
-
-  if shivas then
-    if shivas:IsTrained() then
-      if shivas:GetSpecialValueFor("special_break") == 1 then
-        AddModifier(self.parent, self.ability, "_modifier_break", {}, false)
-      end
-    end
-  end
-
-  AddStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
   self.parent:RemoveModifierByName("icebreaker__modifier_hypo")
+  AddStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
 
-  if IsServer() then self:PlayEfxStart() end
+  if IsServer() then
+    self:PlayEfxStart()
+    self:SetStackCount(kv.stack)
+  end
 end
 
 function icebreaker__modifier_frozen:OnRefresh(kv)
@@ -32,7 +25,10 @@ end
 
 function icebreaker__modifier_frozen:OnRemoved()
   RemoveStatusEfx(self.ability, "icebreaker__modifier_frozen_status_efx", self.caster, self.parent)
-  self.parent:RemoveModifierByNameAndCaster("_modifier_break", self.caster)
+
+  if self:GetStackCount() > 0 and self.parent:IsAlive() then
+    AddModifier(self.parent, self.ability, "icebreaker__modifier_hypo", {stack = self:GetStackCount()}, false)
+  end
   
   if IsServer() then self:PlayEfxDestroy() end
 end
@@ -52,23 +48,14 @@ end
 
 function icebreaker__modifier_frozen:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_STATE_CHANGED,
-		MODIFIER_PROPERTY_AVOID_DAMAGE
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
 	}
 
 	return funcs
 end
 
-function icebreaker__modifier_frozen:OnStateChanged(keys)
-	-- if keys.unit ~= self.parent then return end
-	-- if self.parent:IsStunned() == false then self:Destroy() end
-end
-
-function icebreaker__modifier_frozen:GetModifierAvoidDamage(keys)
-	if keys.damage <= 0 then return 0 end
-	self:PlayEfxHit()
-
-	return 1
+function icebreaker__modifier_frozen:GetModifierConstantHealthRegen(keys)
+  return 50
 end
 
 -- UTILS -----------------------------------------------------------

@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "icebreaker_1__frost"
+	"2" "icebreaker_2__wave"
+	"3" "icebreaker_3__skin"
+	"4" "icebreaker_4__shivas"
+	"5" "icebreaker_5__blink"
+	"6" "icebreaker_u__zero"
+}

@@ -1,16 +1,11 @@
 icebreaker_4__shivas = class({})
+LinkLuaModifier("icebreaker__modifier_slow", "heroes/moon/icebreaker/icebreaker__modifier_slow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo", "heroes/moon/icebreaker/icebreaker__modifier_hypo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_hypo_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen", "heroes/moon/icebreaker/icebreaker__modifier_frozen", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_frozen_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_instant", "heroes/moon/icebreaker/icebreaker__modifier_instant", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_illusion", "heroes/moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_bat_increased", "_modifiers/_modifier_bat_increased", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear", "_modifiers/_modifier_fear", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_fear_status_efx", "_modifiers/_modifier_fear_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/moon/icebreaker/icebreaker_4_modifier_shivas", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -60,16 +55,7 @@ LinkLuaModifier("icebreaker_4_modifier_shivas", "heroes/moon/icebreaker/icebreak
             if unit:IsIllusion() then
               unit:Kill(self, caster)
             else
-              AddModifier(unit, self, "icebreaker__modifier_hypo", {
-                stack = self:GetSpecialValueFor("hypo_stack")
-              }, false)
-
-              if unit:HasModifier("icebreaker__modifier_frozen") == false then
-                RemoveAllModifiersByNameAndAbility(unit, "_modifier_fear", self)
-                AddModifier(unit, self, "_modifier_fear", {
-                  duration = self:GetSpecialValueFor("special_fear_duration")
-                }, true)
-              end
+              AddModifier(unit, self, "icebreaker__modifier_hypo", {stack = self:GetSpecialValueFor("stack")}, false)
             end
           end
           self:PlayEfxHit(unit)

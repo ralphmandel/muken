@@ -1,8 +1,11 @@
 templar_5__reborn = class({})
-LinkLuaModifier("templar_5_modifier_reborn", "heroes/sun/templar/templar_5_modifier_reborn", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("templar_5_modifier_passive", "heroes/sun/templar/templar_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
+
+  function templar_5__reborn:GetIntrinsicModifierName()
+    return "templar_5_modifier_passive"
+  end
 
   function templar_5__reborn:CastFilterResultLocation(vLocation)
     local caster = self:GetCaster()
@@ -42,7 +45,12 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
       if ally:IsAlive() == false and ally:IsReincarnating() == false 
       and ally:GetTimeUntilRespawn() > self:GetCastPoint() then
         self.target = ally
-        if IsServer() then self:PlayEfxPre(self.target:GetOrigin()) end
+        
+        if IsServer() then
+          caster:StopSound("Druid.Channel")
+          caster:EmitSound("Druid.Channel")
+        end
+        
         return true
       end
     end
@@ -51,13 +59,12 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
   end
 
   function templar_5__reborn:OnAbilityPhaseInterrupted()
-    local caster = self:GetCaster()
-    if IsServer() then self:StopEfx() end
+    if IsServer() then self:GetCaster():StopSound("Druid.Channel") end
   end
 
   function templar_5__reborn:OnSpellStart()
     if self.target:IsAlive() then
-      if IsServer() then self:StopEfx() end
+      if IsServer() then self:GetCaster():StopSound("Druid.Channel") end
       return
     end
     
@@ -71,37 +78,15 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 
 -- EFFECTS
 
-  function templar_5__reborn:StopEfx()
-    local caster = self:GetCaster()
-
-    if self.efx_pre then
-      ParticleManager:DestroyParticle(self.efx_pre, true)
-      ParticleManager:ReleaseParticleIndex(self.efx_pre)
-      self.efx_pre = nil
-    end
-
-    if IsServer() then caster:StopSound("Druid.Channel") end
-  end
-
-  function templar_5__reborn:PlayEfxPre(loc)
-    self:StopEfx()
-    
-    local caster = self:GetCaster()
-    local particle_pre = "particles/econ/events/ti10/aegis_lvl_1000_ambient_ti10.vpcf"
-    self.efx_pre = ParticleManager:CreateParticle(particle_pre, PATTACH_WORLDORIGIN, nil)
-    ParticleManager:SetParticleControl(self.efx_pre, 0, loc)
-
-    if IsServer() then caster:EmitSound("Druid.Channel") end
-  end
-
-  function templar_5__reborn:PlayEfxStart(loc)
-    self:StopEfx()
-    
+  function templar_5__reborn:PlayEfxStart(loc)    
     local caster = self:GetCaster()
     local particle_reborn = "particles/items_fx/aegis_respawn_timer.vpcf"
     local efx_reborn = ParticleManager:CreateParticle(particle_reborn, PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(efx_reborn, 0, loc)
     ParticleManager:SetParticleControl(efx_reborn, 1, Vector(0, 0, 0))
 
-    if IsServer() then self.target:EmitSound("Aegis.Expire") end
+    if IsServer() then
+      caster:StopSound("Druid.Channel")
+      self.target:EmitSound("Aegis.Expire")
+    end
   end

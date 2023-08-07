@@ -1,28 +1,25 @@
 icebreaker_5__blink = class({})
+LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebreaker_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("icebreaker__modifier_slow", "heroes/moon/icebreaker/icebreaker__modifier_slow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo", "heroes/moon/icebreaker/icebreaker__modifier_hypo", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_hypo_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_hypo_status_efx", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen", "heroes/moon/icebreaker/icebreaker__modifier_frozen", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("icebreaker__modifier_frozen_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_frozen_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_instant", "heroes/moon/icebreaker/icebreaker__modifier_instant", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_instant_status_efx", "heroes/moon/icebreaker/icebreaker__modifier_instant_status_efx", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker__modifier_illusion", "heroes/moon/icebreaker/icebreaker__modifier_illusion", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_bat_increased", "_modifiers/_modifier_bat_increased", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_percent_movespeed_debuff", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebreaker_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
   function icebreaker_5__blink:Spawn()
-    self.kills = 0
-    self.turn = 0
-    self.break_damage = false
-
     Timers:CreateTimer(0.2, function()
       if self:IsTrained() == false then
         self:UpgradeAbility(true)
         BaseStats(self:GetCaster()):AddManaExtra(self)
       end
     end)
+
+    self.kills = 0
+    self.turn = 0
   end
 
   function icebreaker_5__blink:CastFilterResultTarget(hTarget)
@@ -48,16 +45,6 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebrea
 
 	function icebreaker_5__blink:GetCustomCastErrorTarget(hTarget)
 		if self:GetCaster() == hTarget then return "#dota_hud_error_cant_cast_on_self" end
-	end
-
-  function icebreaker_5__blink:GetCastRange(vLocation, hTarget)
-    return self:GetSpecialValueFor("cast_range")
-  end
-
-  function icebreaker_5__blink:GetBehavior()
-		if self:GetSpecialValueFor("special_super_blink") == 1 then return 137472507912 end
-
-    return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	end
 
   function icebreaker_5__blink:GetIntrinsicModifierName()
@@ -128,68 +115,18 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebrea
 
   function icebreaker_5__blink:PerformFrostBreak(target)
     local caster = self:GetCaster()
-    local break_hypo_stack = self:GetSpecialValueFor("special_break_hypo_stack")
-    local spread_radius = self:GetSpecialValueFor("special_spread_radius")
 
     self:PlayEfxBreak(target)
-    self:ReduceShivasCD(target)
     self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
-  
-    if spread_radius > 0 then
-      self:PlayEfxSpread(target)
-      local enemies = FindUnitsInRadius(
-        caster:GetTeamNumber(), target:GetOrigin(), nil, spread_radius,
-        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-        0, 0, false
-      )
-  
-      for _,enemy in pairs(enemies) do
-        if IsServer() then enemy:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
-        AddModifier(enemy, self, "icebreaker__modifier_hypo", {
-          stack = self:GetSpecialValueFor("special_spread_stack")
-        }, false)
-      end
-    end
 
     target:RemoveModifierByName("icebreaker__modifier_frozen")
-
-    self.break_damage = true
 
     ApplyDamage({
       victim = target, attacker = caster, ability = self,
       damage = self:GetSpecialValueFor("damage"),
       damage_type = self:GetAbilityDamageType()
     })
-
-    if break_hypo_stack > 0 then
-      if target then
-        if IsValidEntity(target) then
-          if target:IsAlive() then
-            AddModifier(target, self, "icebreaker__modifier_hypo", {
-              stack = break_hypo_stack
-            }, false)
-          end
-        end
-      end
-    end
   end
-
-  function icebreaker_5__blink:ReduceShivasCD(target)
-		local caster = self:GetCaster()
-		local shivas = caster:FindAbilityByName("icebreaker_4__shivas")
-		if shivas == nil then return end
-		if shivas:IsTrained() == false then return end
-		if shivas:IsCooldownReady() then return end
-		if target:IsHero() == false then return end
-	
-		local cooldown = shivas:GetSpecialValueFor("special_cooldown")
-		local current_cooldown = shivas:GetCooldownTimeRemaining()
-	
-		if cooldown > 0 then
-			shivas:EndCooldown()
-			shivas:StartCooldown(current_cooldown - cooldown)
-		end
-	end
 
 -- EFFECTS
 
@@ -224,10 +161,3 @@ LinkLuaModifier("icebreaker_5_modifier_passive", "heroes/moon/icebreaker/icebrea
 		if IsServer() then target:EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast") end
 		if IsServer() then target:EmitSound("Hero_Icebreaker.Break") end
 	end
-
-  function icebreaker_5__blink:PlayEfxSpread(target)
-    local particle = "particles/econ/items/ancient_apparition/aa_blast_ti_5/ancient_apparition_ice_blast_explode_ti5.vpcf"
-    local effect_cast = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
-    ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
-    ParticleManager:SetParticleControl(effect_cast, 3, target:GetOrigin())
-  end

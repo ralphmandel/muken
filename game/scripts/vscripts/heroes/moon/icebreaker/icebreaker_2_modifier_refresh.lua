@@ -12,12 +12,7 @@ function icebreaker_2_modifier_refresh:OnCreated(kv)
 
 	self.ability:SetActivated(false)
 
-	local auto_charge = self.ability:GetSpecialValueFor("special_auto_charge")
-
-	if IsServer() then
-		self:SetStackCount(self.ability:GetSpecialValueFor("recharge"))
-		if auto_charge > 0 then self:StartIntervalThink(auto_charge) end
-	end
+	if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("recharge")) end
 end
 
 function icebreaker_2_modifier_refresh:OnRefresh(kv)
@@ -42,18 +37,6 @@ function icebreaker_2_modifier_refresh:OnAttackLanded(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.target:HasModifier("icebreaker__modifier_frozen") then return end
 
-	local auto_charge = self.ability:GetSpecialValueFor("special_auto_charge")
-
-	if IsServer() then
-		self:DecrementStackCount()
-		
-		if auto_charge > 0 then
-			self:StartIntervalThink(auto_charge)
-		end
-	end
-end
-
-function icebreaker_2_modifier_refresh:OnIntervalThink()
 	if IsServer() then self:DecrementStackCount() end
 end
 

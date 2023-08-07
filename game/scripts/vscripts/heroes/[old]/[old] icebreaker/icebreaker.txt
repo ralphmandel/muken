@@ -1,0 +1,1788 @@
+// Dota Ability icebreaker
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+  "icebreaker__precache"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+    "AbilityTextureName"    		"icebreaker__precache"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"99"
+		"RequiredLevel"         	 	"-200"
+
+		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+
+	"icebreaker_1__frost"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_1__frost"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_frost"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+      "chance"			    "100"
+      "hypo_stack"	    "1"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_hits"	              "0"
+      "special_hits_duration"       "0"
+      "special_ms"                  "0"
+      "special_invi_delay"          "0"
+      "special_bonus_damage"        "0"
+      "special_mini_freeze"         "0"
+      "special_mini_freeze_chance"  "0"
+      "special_blink_chance"        "0"
+      "special_copy_duration"       "0"
+      "special_copy_incoming"       "0"
+      "special_copy_outgoing"       "0"
+      "special_cleave"              "0"
+		}
+	}
+
+	"icebreaker_2__wave"
+	{  
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_2__wave"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_wave"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"       		"0.2"
+
+		"AbilityValues"
+		{
+      "hypo_stack_min"  "3"
+      "hypo_stack_max"  "6"
+      "recharge"	      "12"
+      "radius"		      "250"
+      "distance"		    "1 2 3 4 5 6 7 8 9 10 11"
+      "speed"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_knockback_distance"	"25"
+      "special_knockback_duration"	"0.2"
+      "special_auto_charge"	        "0"
+      "special_damage"              "0"
+      "special_mana_burn"           "0"
+      "special_copy_duration"       "0"
+      "special_copy_incoming"       "0"
+      "special_copy_outgoing"       "0"
+      "special_copy_chance"         "0"
+      "special_silence_duration"    "0"
+		}
+	}
+
+	"icebreaker_3__skin"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_3__skin"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_skin"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilityValues"
+		{
+      "duration"	      "10"
+      "hp_regen"	      "30"
+      "chance"	        "50"
+      "hypo_stack"	    "1"
+      "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_mp_regen"	    "0"
+      "special_hp_regen"	    "0"
+      "special_block"     	  "0"
+      "special_spread_radius" "0"
+      "special_spread_stack"  "0"
+      "special_mini_freeze"	  "0"
+		}
+	}
+
+	"icebreaker_4__shivas"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_4__shivas"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_shivas"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityValues"
+		{
+      "hypo_stack"	    "10"
+      "slow"	          "50"
+      "blast_speed"	    "350"
+      "blast_radius"	  "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_cooldown"	    "0"
+      "special_break"   	    "0"
+      "special_heal"   	      "0"
+      "special_fear_duration" "0"
+		}
+
+		"AbilitySpecial"
+		{
+      "01"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"hypo_stack"	    "5"
+			}
+      "02"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"slow"	          "50"
+			}
+      "02"
+			{
+				"var_type"	      "FIELD_FLOAT"
+				"blast_speed"	    "350"
+			}
+      "03"
+			{
+				"var_type"        "FIELD_FLOAT"
+				"blast_radius"	  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "10"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_ms"	        "0"
+			}
+      "11"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_as"	        "0"
+			}
+      "12"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"max_hypo_stack"	"0"
+			}
+      "13"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"hypo_duration"	    "0"
+			}
+      "14"
+			{
+				"var_type"		    "FIELD_FLOAT"
+				"frozen_duration"	"0"
+			}
+			"15"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			}
+      "16"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_cooldown"	    "0"
+			}
+      "17"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_break"   	    "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_heal"   	      "0"
+			}
+      "18"
+			{
+				"var_type"		          "FIELD_FLOAT"
+				"special_fear_duration" "0"
+			}
+		}
+	}
+
+	"icebreaker_5__blink"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_5__blink"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"icebreaker_blink"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastAnimation"   		""
+		"AbilityCastPoint"       		"0.2"
+
+		"AbilityValues"
+		{
+      "damage"	        "300"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_break_hypo_stack"	"0"
+      "special_spread_radius"	    "0"
+      "special_spread_stack"	    "0"
+      "special_super_blink"	      "0"
+      "special_hypo_damage"	      "0"
+      "special_break_heal"	      "0"
+		}
+	}
+
+	"icebreaker_u__zero"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/moon/icebreaker/icebreaker_u__zero"
+		"AbilityTextureName"     		"icebreaker_zero"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"8"
+		"LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
+
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+		"AbilityValues"
+		{
+      "hits"	          "10"
+      "ms_limit"	      "125"
+      "radius_day"	    "900"
+      "radius_night"	  "1200"
+      "res"	            "25"
+      "hypo_min_stack"	"3"
+      "duration"	      "1 2 3 4 5 6 7 8 9 10 11"
+      "hypo_ms"	        "0"
+      "hypo_as"	        "0"
+      "max_hypo_stack"	"0"
+      "hypo_duration"	  "0"
+      "hypo_increment"  "0"
+      "frozen_duration"	"0"
+      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "special_meteor_damage"	"0"
+      "special_radius"	      "0"
+      "special_fly_vision"	  "0"
+      "special_immunity"	    "0"
+      "special_res_allies"	  "0"
+		}
+	}
+
+    //RANKS 1
+        "icebreaker_1__frost_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_1__frost_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_frost"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"1"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //RANKS 2
+        "icebreaker_2__wave_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_2__wave_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_wave"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"2"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //RANKS 3
+        "icebreaker_3__skin_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_3__skin_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_skin"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"3"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //RANKS 4
+        "icebreaker_4__shivas_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_4__shivas_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_shivas"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"4"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //RANKS 5
+        "icebreaker_5__blink_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_5__blink_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_blink"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"5"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+    //RANKS U
+        "icebreaker_u__zero_rank_11"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"11"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_12"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"1"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"12"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_21"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"21"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_22"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"2"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"22"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_31"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"31"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_32"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"3"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"32"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+        
+        "icebreaker_u__zero_rank_41"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"41"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+        "icebreaker_u__zero_rank_42"{
+            "BaseClass"						"ability_lua"
+            "ScriptFile"					"heroes/moon/icebreaker/icebreaker-ranks_lua"
+            "AbilityTextureName"    		"icebreaker_zero"
+            "FightRecapLevel"				"1"
+            "MaxLevel"						"4"	
+            
+            "AbilityType"					"ABILITY_TYPE_BASIC"
+            "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "skill"					"6"
+                }
+                "02"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "id"					"42"
+                }
+                "03"
+                {
+                    "var_type"				"FIELD_FLOAT"
+                    "permanent"				"0"
+                }
+            }
+        }
+
+}

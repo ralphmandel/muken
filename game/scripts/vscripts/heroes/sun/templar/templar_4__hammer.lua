@@ -26,7 +26,7 @@ templar_4__hammer.hits = {}
       local enemies = FindUnitsInRadius(
         caster:GetTeamNumber(), location, nil, self:GetCastRange(location, nil),
         self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
-        self:GetAbilityTargetFlags(), 0, false
+        self:GetAbilityTargetFlags(), FIND_CLOSEST, false
       )
         
       for _,enemy in pairs(enemies) do

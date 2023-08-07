@@ -282,10 +282,10 @@ TEAMS = { -- [1] Team, [2] Score, [3] Team Name, [4] number of players, [5] team
 }
 
 TEAM_ORIGIN = {
-  [DOTA_TEAM_CUSTOM_1] = Vector(2730, -2730, 0),
+  [DOTA_TEAM_CUSTOM_1] = Vector(-2730, -2730, 0),
   [DOTA_TEAM_CUSTOM_2] = Vector(2730, 2730, 0),
   [DOTA_TEAM_CUSTOM_3] = Vector(-2730, 2730, 0),
-  [DOTA_TEAM_CUSTOM_4] = Vector(-2730, -2730, 0),
+  [DOTA_TEAM_CUSTOM_4] = Vector(2730, -2730, 0),
 }
 
 OUTPOST_ORIGIN = {

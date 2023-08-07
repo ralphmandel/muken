@@ -50,23 +50,6 @@ function icebreaker_5_modifier_passive:OnAbilityStart(keys)
 	self.ability.turn = 1
 end
 
-function icebreaker_5_modifier_passive:OnTakeDamage(keys)
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
-	if keys.attacker ~= self.parent then return end
-	if keys.inflictor == nil then return end
-	if keys.inflictor ~= self.ability then return end
-  if self.ability.break_damage == false then return end
-
-	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_break_heal") * 0.01
-  self.ability.break_damage = false
-
-	if heal > 0 then
-		self.parent:Heal(heal, self.ability)
-		self:PlayEfxSpellLifesteal(self.parent)
-	end
-end
-
 function icebreaker_5_modifier_passive:OnHeroKilled(keys)
 	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.inflictor ~= self.ability then return end
@@ -111,11 +94,4 @@ function icebreaker_5_modifier_passive:PlayEfxKill()
 	local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
 	ParticleManager:ReleaseParticleIndex(nFXIndex)
-end
-
-function icebreaker_5_modifier_passive:PlayEfxSpellLifesteal(target)
-	local particle = "particles/items3_fx/octarine_core_lifesteal.vpcf"
-	local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
-	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(effect)
 end

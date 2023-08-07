@@ -31,7 +31,7 @@
 
       // INT
         "spell_amp"				  "10"
-        "heal_power"			  "10"
+        "heal_power"			  "5"
         "mana"					    "25"
 
 			// CON

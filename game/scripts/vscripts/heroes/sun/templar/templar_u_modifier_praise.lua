@@ -2,6 +2,7 @@ templar_u_modifier_praise = class({})
 
 function templar_u_modifier_praise:IsHidden() return false end
 function templar_u_modifier_praise:IsPurgable() return false end
+function templar_u_modifier_praise:RemoveOnDeath() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 

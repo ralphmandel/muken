@@ -267,12 +267,12 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
-		if value_name == "AbilityManaCost" then return 575 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 135 end
+		if value_name == "AbilityManaCost" then return 650 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 175 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
-    if value_name == "duration" then return 15 + (value_level * 0.3) end
+    if value_name == "duration" then return 12 + (value_level * 0.3) end
 	end
 
 	return 0

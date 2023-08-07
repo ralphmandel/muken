@@ -18,6 +18,7 @@ function templar_1_modifier_aura:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.passives_desabled = false
 end
 
 function templar_1_modifier_aura:OnRefresh(kv)
@@ -27,6 +28,30 @@ function templar_1_modifier_aura:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function templar_1_modifier_aura:DeclareFunctions()
+	local funcs = {
+    MODIFIER_EVENT_ON_STATE_CHANGED
+	}
+
+	return funcs
+end
+
+function templar_1_modifier_aura:OnStateChanged(keys)
+	if keys.unit ~= self.parent then return end
+
+  if self.passives_desabled == false then
+    if self.parent:PassivesDisabled() then
+      self.passives_desabled = true
+      self.ability:UpdateCount()
+    end
+  else
+    if self.parent:PassivesDisabled() == false then
+      self.passives_desabled = false
+      self.ability:UpdateCount()
+    end
+  end
+end
 
 -- UTILS -----------------------------------------------------------
 

@@ -34,8 +34,8 @@
     "AbilityValues"
 		{
 			"radius"    "800"
-			"def_base"  "3"
-			"def_bonus" "3"
+			"def_base"  "2"
+			"def_bonus" "2"
 			"heal_amp"  "25"
 			"rank"      "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -112,7 +112,7 @@
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NO_INVIS"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
@@ -145,7 +145,7 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_DEAD"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_TAUNT_STATUE"
+		"AbilityCastAnimation"   		"ACT_DOTA_TAUNT"
 		"AbilityCastPoint"       		"4"
 
     "AbilityValues"
