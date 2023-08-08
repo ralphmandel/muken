@@ -63,33 +63,34 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "hunter_u__camouflage" then
+  if ability:GetAbilityName() == "hunter_2__aim" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "lck" then return 1 end
 
-		if caster:FindAbilityByName("hunter_u__camouflage_rank_11") then
+		if caster:FindAbilityByName("hunter_2__aim_rank_11") then
 		end
 
-    if caster:FindAbilityByName("hunter_u__camouflage_rank_12") then
+    if caster:FindAbilityByName("hunter_2__aim_rank_12") then
 		end
 
-		if caster:FindAbilityByName("hunter_u__camouflage_rank_21") then
+		if caster:FindAbilityByName("hunter_2__aim_rank_21") then
 		end
 
-    if caster:FindAbilityByName("hunter_u__camouflage_rank_22") then
+    if caster:FindAbilityByName("hunter_2__aim_rank_22") then
 		end
 
-		if caster:FindAbilityByName("hunter_u__camouflage_rank_31") then
+		if caster:FindAbilityByName("hunter_2__aim_rank_31") then
 		end
 
-    if caster:FindAbilityByName("hunter_u__camouflage_rank_32") then
+    if caster:FindAbilityByName("hunter_2__aim_rank_32") then
 		end
 
-		if caster:FindAbilityByName("hunter_u__camouflage_rank_41") then
+		if caster:FindAbilityByName("hunter_2__aim_rank_41") then
 		end
 
-    if caster:FindAbilityByName("hunter_u__camouflage_rank_42") then
+    if caster:FindAbilityByName("hunter_2__aim_rank_42") then
 		end
 	end
 
@@ -191,33 +192,33 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "hunter_2__aim" then
+  if ability:GetAbilityName() == "hunter_u__camouflage" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
 
-		if caster:FindAbilityByName("hunter_2__aim_rank_11") then
+		if caster:FindAbilityByName("hunter_u__camouflage_rank_11") then
 		end
 
-    if caster:FindAbilityByName("hunter_2__aim_rank_12") then
+    if caster:FindAbilityByName("hunter_u__camouflage_rank_12") then
 		end
 
-		if caster:FindAbilityByName("hunter_2__aim_rank_21") then
+		if caster:FindAbilityByName("hunter_u__camouflage_rank_21") then
 		end
 
-    if caster:FindAbilityByName("hunter_2__aim_rank_22") then
+    if caster:FindAbilityByName("hunter_u__camouflage_rank_22") then
 		end
 
-		if caster:FindAbilityByName("hunter_2__aim_rank_31") then
+		if caster:FindAbilityByName("hunter_u__camouflage_rank_31") then
 		end
 
-    if caster:FindAbilityByName("hunter_2__aim_rank_32") then
+    if caster:FindAbilityByName("hunter_u__camouflage_rank_32") then
 		end
 
-		if caster:FindAbilityByName("hunter_2__aim_rank_41") then
+		if caster:FindAbilityByName("hunter_u__camouflage_rank_41") then
 		end
 
-    if caster:FindAbilityByName("hunter_2__aim_rank_42") then
+    if caster:FindAbilityByName("hunter_u__camouflage_rank_42") then
 		end
 	end
 
@@ -240,10 +241,11 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "cd_mult_tooltip" then return ability:GetCooldown(ability:GetLevel()) * ability:GetSpecialValueFor("cd_mult") end
 	end
 
-	if ability:GetAbilityName() == "hunter_u__camouflage" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+  if ability:GetAbilityName() == "hunter_2__aim" then
+		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 25 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "lck" then return 20 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_3__radar" then
@@ -273,7 +275,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "lifetime" then return 240 + (value_level * 6) end
 	end
 
-	if ability:GetAbilityName() == "hunter_2__aim" then
+  if ability:GetAbilityName() == "hunter_u__camouflage" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 9 + (value_level * 1) end

@@ -484,10 +484,10 @@ end
     BOTS_LOADED = true
     
     local bot_slots = {
-      [DOTA_TEAM_CUSTOM_1] = 2,
-      [DOTA_TEAM_CUSTOM_2] = 2,
-      [DOTA_TEAM_CUSTOM_3] = 2,
-      [DOTA_TEAM_CUSTOM_4] = 2,
+      [DOTA_TEAM_CUSTOM_1] = 3,
+      [DOTA_TEAM_CUSTOM_2] = 3,
+      [DOTA_TEAM_CUSTOM_3] = 3,
+      [DOTA_TEAM_CUSTOM_4] = 0,
     }
 
     local players_hero_list = {}

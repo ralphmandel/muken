@@ -52,21 +52,27 @@
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/nature/hunter/hunter_2__aim"
 		"AbilityTextureName"     		"hunter_aim"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 
     "AbilityValues"
 		{
-      "vision"       "300"
-      "atk_range"    "300"
-      "bonus_damage" "5"
-			"rank"			   "1 2 3 4 5 6 7 8 9 10 11"
+      "duration"            "3"
+      "ms_limit"            "125"
+      "hits"                "12"
+      "knockback_distance"  "50"
+      "knockback_duration"  "0.5"
+      "dex"                 "-10"
+      "def"                 "-10"
+      "res"                 "-10"
+      "agi"                 "20"
+			"lck"			            "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -155,7 +161,7 @@
 	{
 		"BaseClass"              		"ability_lua"
 		"ScriptFile"            		"heroes/nature/hunter/hunter_u__camouflage"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"     		"hunter_camouflage"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
