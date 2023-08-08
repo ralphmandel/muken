@@ -47,31 +47,26 @@
 		}
 	}
 
-	"hunter_2__camouflage"
-	{  
+	"hunter_2__aim"
+	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/nature/hunter/hunter_2__camouflage"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"hunter_camouflage"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_2__aim"
+		"AbilityTextureName"     		"hunter_aim"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
+		"LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
 
     "AbilityValues"
 		{
-      "delay_in"      "1.5"
-      "delay_out"     "0.5"
-      "tree_radius"   "200"
-      "agi"           "25"
-      "hits"          "5"
-      "buff_duration" "3"
-      "reveal_range"  "200"
-			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "vision"       "300"
+      "atk_range"    "300"
+      "bonus_damage" "5"
+			"rank"			   "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -156,26 +151,31 @@
 		}
 	}
 
-	"hunter_u__aim"
+	"hunter_u__camouflage"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/nature/hunter/hunter_u__aim"
-		"AbilityTextureName"     		"hunter_aim"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"ScriptFile"            		"heroes/nature/hunter/hunter_u__camouflage"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"hunter_camouflage"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
-		"LevelsBetweenUpgrades"  		"25"
+    "LevelsBetweenUpgrades"  		"25"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
     "AbilityValues"
 		{
-      "vision"       "300"
-      "atk_range"    "300"
-      "bonus_damage" "5"
-			"rank"			   "1 2 3 4 5 6 7 8 9 10 11"
+      "delay_in"      "2"
+      "delay_out"     "0.5"
+      "tree_radius"   "200"
+      "reveal_range"  "250"
+      "vision_range"  "300"
+      "atk_range"     "500"
+      "bonus_damage"  "5"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -421,10 +421,10 @@
         }
 
     //RANKS 2
-        "hunter_2__camouflage_rank_11"{
+        "hunter_2__aim_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -451,10 +451,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_12"{
+        "hunter_2__aim_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -481,10 +481,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_21"{
+        "hunter_2__aim_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -511,10 +511,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_22"{
+        "hunter_2__aim_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -541,10 +541,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_31"{
+        "hunter_2__aim_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -571,10 +571,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_32"{
+        "hunter_2__aim_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -600,11 +600,11 @@
                 }
             }
         }
-
-        "hunter_2__camouflage_rank_41"{
+        
+        "hunter_2__aim_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -631,10 +631,10 @@
             }
         }
 
-        "hunter_2__camouflage_rank_42"{
+        "hunter_2__aim_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_camouflage"
+            "AbilityTextureName"    		"hunter_aim"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1385,10 +1385,10 @@
         }
 
     //RANKS U
-        "hunter_u__aim_rank_11"{
+        "hunter_u__camouflage_rank_11"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1415,10 +1415,10 @@
             }
         }
 
-        "hunter_u__aim_rank_12"{
+        "hunter_u__camouflage_rank_12"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1445,10 +1445,10 @@
             }
         }
 
-        "hunter_u__aim_rank_21"{
+        "hunter_u__camouflage_rank_21"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1475,10 +1475,10 @@
             }
         }
 
-        "hunter_u__aim_rank_22"{
+        "hunter_u__camouflage_rank_22"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1505,10 +1505,10 @@
             }
         }
 
-        "hunter_u__aim_rank_31"{
+        "hunter_u__camouflage_rank_31"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1535,10 +1535,10 @@
             }
         }
 
-        "hunter_u__aim_rank_32"{
+        "hunter_u__camouflage_rank_32"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1564,11 +1564,11 @@
                 }
             }
         }
-        
-        "hunter_u__aim_rank_41"{
+
+        "hunter_u__camouflage_rank_41"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1595,10 +1595,10 @@
             }
         }
 
-        "hunter_u__aim_rank_42"{
+        "hunter_u__camouflage_rank_42"{
             "BaseClass"						"ability_lua"
             "ScriptFile"					"heroes/nature/hunter/hunter-ranks_lua"
-            "AbilityTextureName"    		"hunter_aim"
+            "AbilityTextureName"    		"hunter_camouflage"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1624,5 +1624,6 @@
                 }
             }
         }
+
 
 }

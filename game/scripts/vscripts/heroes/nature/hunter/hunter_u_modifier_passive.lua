@@ -9,10 +9,12 @@ function hunter_u_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.delay = false
 
-  self.records = {}
+  if IsServer() then self:StartIntervalThink(0.1) end
+end
 
-  --if IsServer() then self:StartIntervalThink(1) end
+function hunter_u_modifier_passive:OnRefresh(kv)
 end
 
 function hunter_u_modifier_passive:OnRemoved()
@@ -20,58 +22,71 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function hunter_u_modifier_passive:CheckState()
+	local state = {
+		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = self:GetParent():PassivesDisabled() == false
+	}
+
+	return state
+end
+
 function hunter_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-    --MODIFIER_EVENT_ON_ORDER,
-    MODIFIER_PROPERTY_BONUS_DAY_VISION,
-    MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
-    MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-    MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-    MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY
+    MODIFIER_EVENT_ON_ATTACK_START
 	}
 
 	return funcs
 end
 
--- function hunter_u_modifier_passive:OnOrder(keys)
--- 	if keys.unit ~= self.parent then return end
-
--- end
-
-function hunter_u_modifier_passive:GetBonusDayVision()
-	return self:GetAbility():GetSpecialValueFor("vision_range")
+function hunter_u_modifier_passive:OnAttackStart(keys)
+  if keys.attacker == self.parent or keys.target == self.parent then return end
+  self.delay = false
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
-function hunter_u_modifier_passive:GetBonusNightVision()
-	return self:GetAbility():GetSpecialValueFor("vision_range")
-end
+function hunter_u_modifier_passive:OnIntervalThink()
+  local has_tree = false
+  local has_enemy = false
+  local interval = 0.1
 
-function hunter_u_modifier_passive:GetModifierAttackRangeBonus()
-  return self:GetAbility():GetSpecialValueFor("atk_range")
-end
+  if self.camo == nil and self.delay == true and self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
+    self.camo = AddModifier(self.parent, self.ability, "hunter_u_modifier_camouflage", {}, false)
+    self.camo:SetEndCallback(function(interrupted)
+      self.camo = nil
+      self.delay = false
+      if IsServer() then self:StartIntervalThink(0.1) end
+    end)
+  end
 
-function hunter_u_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
-	if self.records[keys.record] then
-    return self.records[keys.record] * self.ability:GetSpecialValueFor("bonus_damage") * 0.01
-	end
-end
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
+  if trees then
+    for k, v in pairs(trees) do
+      has_tree = true
+      break
+    end
+  end
 
-function hunter_u_modifier_passive:OnAttack(keys)
-	if keys.attacker ~= self.parent then return end
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("reveal_range"),
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
+  )
 
-  self.records[keys.record] = CalcDistanceBetweenEntityOBB(self.parent, keys.target)
-end
+  for _,enemy in pairs(enemies) do
+    has_enemy = true
+    break
+  end
 
-function hunter_u_modifier_passive:OnAttackRecordDestroy(keys)
-	self.records[keys.record] = nil
+  if has_tree == true and has_enemy == false then
+    self.delay = true
+    interval = self.ability:GetSpecialValueFor("delay_in")
+  else
+    self.delay = false
+  end
+
+  if IsServer() then self:StartIntervalThink(interval) end
 end
 
 -- UTILS -----------------------------------------------------------
-
-function hunter_u_modifier_passive:OnIntervalThink()
-  local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
-  print(loc)
-end
 
 -- EFFECTS -----------------------------------------------------------

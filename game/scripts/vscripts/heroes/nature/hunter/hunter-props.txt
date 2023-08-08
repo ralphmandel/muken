@@ -8,11 +8,11 @@
 
 		//ABILITIES
 			"Ability1"						"hunter_1__shot"
-			"Ability2"						"hunter_2__camouflage"
+			"Ability2"						"hunter_2__aim"
 			"Ability3"						"hunter_3__radar"
 			"Ability4"						"hunter_4__bandage"
 			"Ability5"						"hunter_5__trap"
-			"Ability6"						"hunter_u__aim"
+			"Ability6"						"hunter_u__camouflage"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"

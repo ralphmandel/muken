@@ -36,27 +36,27 @@
 				"2"   "hunter_1__shot_rank_42"
 			}
 		}
-		"hunter_2__camouflage"
+		"hunter_2__aim"
 		{
 			"1"
 			{
-				"1"   "hunter_2__camouflage_rank_11"
-				"2"   "hunter_2__camouflage_rank_12"
+				"1"   "hunter_2__aim_rank_11"
+				"2"   "hunter_2__aim_rank_12"
 			}
 			"2"
 			{
-				"1"   "hunter_2__camouflage_rank_21"
-				"2"   "hunter_2__camouflage_rank_22"
+				"1"   "hunter_2__aim_rank_21"
+				"2"   "hunter_2__aim_rank_22"
 			}
 			"3"
 			{
-				"1"   "hunter_2__camouflage_rank_31"
-				"2"   "hunter_2__camouflage_rank_32"
+				"1"   "hunter_2__aim_rank_31"
+				"2"   "hunter_2__aim_rank_32"
 			}
 			"4"
 			{
-				"1"   "hunter_2__camouflage_rank_41"
-				"2"   "hunter_2__camouflage_rank_42"
+				"1"   "hunter_2__aim_rank_41"
+				"2"   "hunter_2__aim_rank_42"
 			}
 		}
 		"hunter_3__radar"
@@ -128,27 +128,27 @@
 				"2"   "hunter_5__trap_rank_42"
 			}
 		}
-		"hunter_u__aim"
+		"hunter_u__camouflage"
 		{
 			"1"
 			{
-				"1"   "hunter_u__aim_rank_11"
-				"2"   "hunter_u__aim_rank_12"
+				"1"   "hunter_u__camouflage_rank_11"
+				"2"   "hunter_u__camouflage_rank_12"
 			}
 			"2"
 			{
-				"1"   "hunter_u__aim_rank_21"
-				"2"   "hunter_u__aim_rank_22"
+				"1"   "hunter_u__camouflage_rank_21"
+				"2"   "hunter_u__camouflage_rank_22"
 			}
 			"3"
 			{
-				"1"   "hunter_u__aim_rank_31"
-				"2"   "hunter_u__aim_rank_32"
+				"1"   "hunter_u__camouflage_rank_31"
+				"2"   "hunter_u__camouflage_rank_32"
 			}
 			"4"
 			{
-				"1"   "hunter_u__aim_rank_41"
-				"2"   "hunter_u__aim_rank_42"
+				"1"   "hunter_u__camouflage_rank_41"
+				"2"   "hunter_u__camouflage_rank_42"
 			}
 		}
 	}	

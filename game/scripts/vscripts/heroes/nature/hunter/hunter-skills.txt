@@ -1,9 +1,9 @@
 "skills"
 {
 	"1" "hunter_1__shot"
-	"2" "hunter_2__camouflage"
+	"2" "hunter_2__aim"
 	"3" "hunter_3__radar"
 	"4" "hunter_4__bandage"
 	"5" "hunter_5__trap"
-	"6" "hunter_u__aim"
+	"6" "hunter_u__camouflage"
 }

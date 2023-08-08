@@ -7,13 +7,13 @@
 	{
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/sun/paladin/paladin-ranks_lua"
-    "AbilityTextureName"    		"paladin__precache"
-		"FightRecapLevel"				"1"
+    "AbilityTextureName"  "paladin__precache"
+		"FightRecapLevel"			"1"
 		"MaxLevel"						"99"
-		"RequiredLevel"         	 	"-200"
+		"RequiredLevel"       "-200"
 
 		"AbilityType"					"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
 	"paladin_1__link"

@@ -44,7 +44,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
       bDeleteOnHit = false,
       vVelocity = direction * self:GetSpecialValueFor("speed"),
       bProvidesVision = true,
-      iVisionRadius = self:GetSpecialValueFor("radius"),
+      iVisionRadius = self:GetSpecialValueFor("radius") + 50,
       iVisionTeamNumber = caster:GetTeamNumber()
     })
 

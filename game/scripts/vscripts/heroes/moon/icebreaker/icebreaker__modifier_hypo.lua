@@ -15,16 +15,26 @@ function icebreaker__modifier_hypo:OnCreated(kv)
   self:CheckCounterEfx()
 
   if IsServer() then
-    self:SetDuration(self.ability:GetSpecialValueFor("hypo_duration") * kv.stack, true)
+    local duration = CalcStatus(self.ability:GetSpecialValueFor("hypo_duration") * kv.stack, self.caster, self.parent)
+    self:SetDuration(duration, true)
     self:SetStackCount(kv.stack)
+    self.die_time = self:GetDieTime()
+
+    local shard_aura = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
+    if shard_aura then shard_aura:StartIntervalThink(shard_aura:GetAbility():GetSpecialValueFor("stack_interval")) end
   end
 end
 
 function icebreaker__modifier_hypo:OnRefresh(kv)
   if IsServer() then
-    print("kubo - GetDuration:", self:GetDuration(), "| GetLastAppliedTime: ", self:GetLastAppliedTime(), "| GetDieTime: ", self:GetDieTime(), "| GetCreationTime: ", self:GetCreationTime())
-    self:SetDuration(self:GetRemainingTime() + (self.ability:GetSpecialValueFor("hypo_duration") * kv.stack), true)
+    local duration = CalcStatus(self.ability:GetSpecialValueFor("hypo_duration") * kv.stack, self.caster, self.parent)
+    duration = self.die_time - GameRules:GetGameTime() + duration
+    self:SetDuration(duration, true)
     self:SetStackCount(self:GetStackCount() + kv.stack)
+    self.die_time = self:GetDieTime()
+
+    local shard_aura = self.parent:FindModifierByName("icebreaker_u_modifier_aura_effect")
+    if shard_aura then shard_aura:StartIntervalThink(shard_aura:GetAbility():GetSpecialValueFor("stack_interval")) end
   end
 end
 

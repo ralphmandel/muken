@@ -9,9 +9,10 @@ function hunter_2_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-end
 
-function hunter_2_modifier_passive:OnRefresh(kv)
+  self.records = {}
+
+  --if IsServer() then self:StartIntervalThink(1) end
 end
 
 function hunter_2_modifier_passive:OnRemoved()
@@ -19,89 +20,52 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function hunter_2_modifier_passive:CheckState()
-	local state = {
-		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true
-	}
-
-	return state
-end
-
 function hunter_2_modifier_passive:DeclareFunctions()
 	local funcs = {
-    MODIFIER_EVENT_ON_UNIT_MOVED,
-    MODIFIER_EVENT_ON_ATTACK_START
+    MODIFIER_PROPERTY_BONUS_DAY_VISION,
+    MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+    MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+    MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+    MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY
 	}
 
 	return funcs
 end
 
-function hunter_2_modifier_passive:OnUnitMoved(keys)
-  if keys.unit == self.parent then
-    local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-    local has_tree = false    
-    if trees then
-      for k, v in pairs(trees) do
-        has_tree = true
-        break
-      end
-    end
-
-    if has_tree == true then
-      self:StartDelay()
-    else
-      if IsServer() then self:StartIntervalThink(-1) end
-    end
-  else
-    if keys.unit:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-      local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
-      if dist < self.ability:GetSpecialValueFor("reveal_range") then
-        self:StartDelay()
-      end
-    end
-  end
-
-	if keys.unit == self.parent then return end
-  if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-
-  local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
-  if dist < self.ability:GetSpecialValueFor("reveal_range") then
-  end
+function hunter_2_modifier_passive:GetBonusDayVision()
+	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
-function hunter_2_modifier_passive:OnAttackStart(keys)
-  if keys.attacker ~= self.parent and keys.target ~= self.parent then return end
-  if IsServer() then self:StartIntervalThink(-1) end
+function hunter_2_modifier_passive:GetBonusNightVision()
+	return self:GetAbility():GetSpecialValueFor("vision_range")
 end
 
-function hunter_2_modifier_passive:OnIntervalThink()
-  local interval = self.ability:GetSpecialValueFor("delay_in")
+function hunter_2_modifier_passive:GetModifierAttackRangeBonus()
+  return self:GetAbility():GetSpecialValueFor("atk_range")
+end
 
-  if self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
-    if self.camo == nil then
-      self.camo = AddModifier(self.parent, self.ability, "hunter_2_modifier_camouflage", {}, false)
-      self.camo:SetEndCallback(function(interrupted)
-        self.camo = nil
-        if IsServer() then
-          self:StartIntervalThink(self.ability:GetSpecialValueFor("delay_in"))
-        end
-      end)
-    end
+function hunter_2_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
+	if self.records[keys.record] then
+    return self.records[keys.record] * self.ability:GetSpecialValueFor("bonus_damage") * 0.01
+	end
+end
 
-    interval = -1
-  end
+function hunter_2_modifier_passive:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
 
-  if IsServer() then self:StartIntervalThink(interval) end
+  self.records[keys.record] = CalcDistanceBetweenEntityOBB(self.parent, keys.target)
+end
+
+function hunter_2_modifier_passive:OnAttackRecordDestroy(keys)
+	self.records[keys.record] = nil
 end
 
 -- UTILS -----------------------------------------------------------
 
-function hunter_2_modifier_passive:StartDelay()
-  if self.camo == nil then
-    if IsServer() then
-      self:StartIntervalThink(self.ability:GetSpecialValueFor("delay_in"))
-    end
-  end
+function hunter_2_modifier_passive:OnIntervalThink()
+  local loc = "Vector(" .. math.floor(self.parent:GetOrigin().x) .. ", " .. math.floor(self.parent:GetOrigin().y) .. ", 0)"
+  print(loc)
 end
 
 -- EFFECTS -----------------------------------------------------------
