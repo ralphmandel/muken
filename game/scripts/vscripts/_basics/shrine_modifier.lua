@@ -193,6 +193,14 @@ function shrine_modifier:PlayEfxMP(mod)
 end
 
 function shrine_modifier:SetFow(bEnabled)
+  if self.fow then
+    for team, fow in pairs(self.fow) do
+      RemoveFOWViewer(team, fow)
+    end
+  end
+  
+  self.fow = nil
+
   if bEnabled == true then
     self.fow = {
       [DOTA_TEAM_CUSTOM_1] = AddFOWViewer(DOTA_TEAM_CUSTOM_1, self.parent:GetOrigin(), 200, 9999, false),
@@ -200,12 +208,5 @@ function shrine_modifier:SetFow(bEnabled)
       [DOTA_TEAM_CUSTOM_3] = AddFOWViewer(DOTA_TEAM_CUSTOM_3, self.parent:GetOrigin(), 200, 9999, false),
       [DOTA_TEAM_CUSTOM_4] = AddFOWViewer(DOTA_TEAM_CUSTOM_4, self.parent:GetOrigin(), 200, 9999, false)
     }
-  else
-    if self.fow then
-      for team, fow in pairs(self.fow) do
-        RemoveFOWViewer(team, fow)
-      end
-    end
-    self.fow = nil
   end
 end

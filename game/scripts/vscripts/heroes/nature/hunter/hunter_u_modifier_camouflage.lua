@@ -16,7 +16,7 @@ function hunter_u_modifier_camouflage:OnCreated(kv)
     delay = 0, spell_break = 0, attack_break = 0
   }, false)
 
-  if IsServer() then self:PlayEfxCamouflage() end
+  if IsServer() then self:SetEfxCamouflage(true) end
 end
 
 function hunter_u_modifier_camouflage:OnRefresh(kv)
@@ -42,18 +42,23 @@ end
 
 function hunter_u_modifier_camouflage:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
     MODIFIER_PROPERTY_BONUS_DAY_VISION,
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
     MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
     MODIFIER_EVENT_ON_ATTACK,
+    MODIFIER_EVENT_ON_ATTACK_START,
 		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
     MODIFIER_EVENT_ON_STATE_CHANGED,
-    MODIFIER_EVENT_ON_UNIT_MOVED,
-    MODIFIER_EVENT_ON_ATTACK_START
+    MODIFIER_EVENT_ON_UNIT_MOVED
 	}
 
 	return funcs
+end
+
+function hunter_u_modifier_camouflage:GetModifierInvisibilityLevel()
+	return 1
 end
 
 function hunter_u_modifier_camouflage:GetBonusDayVision()
@@ -78,6 +83,11 @@ function hunter_u_modifier_camouflage:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
   self.records[keys.record] = CalcDistanceBetweenEntityOBB(self.parent, keys.target)
+end
+
+function hunter_u_modifier_camouflage:OnAttackStart(keys)
+  if keys.attacker ~= self.parent then return end
+  AddModifier(keys.target, self.ability, "_modifier_no_vision_attacker", {duration = 0.5}, false)
 end
 
 function hunter_u_modifier_camouflage:OnAttackRecordDestroy(keys)
@@ -143,11 +153,13 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function hunter_u_modifier_camouflage:PlayEfxCamouflage()
-	local particle_cast = "particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 2, Vector(125, 0, 0 ))
-  self:AddParticle(effect_cast, false, false, -1, false, false)
-
-  if IsServer() then self.parent:EmitSound("Hunter.Invi") end
+function hunter_u_modifier_camouflage:SetEfxCamouflage(bEnabled)
+  if bEnabled then
+    local particle_cast = "particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+    ParticleManager:SetParticleControl(effect_cast, 2, Vector(125, 0, 0 ))
+    self:AddParticle(effect_cast, false, false, -1, false, false)
+  
+    if IsServer() then self.parent:EmitSound("Hunter.Invi") end
+  end
 end

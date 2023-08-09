@@ -91,6 +91,7 @@ function druid__precache:Precache(context)
 	PrecacheResource("particle", "particles/druid/druid_skill1_channeling.vpcf", context)
 	PrecacheResource("particle", "particles/druid/druid_skill1_convert.vpcf", context)
 
+  PrecacheResource("model", "models/items/pugna/ward/weta_call_of_the_nether_lotus_ward/weta_call_of_the_nether_lotus_ward.vmdl", context)
 	PrecacheResource("model", "models/items/furion/supreme_gardener_neck/supreme_gardener_neck.vmdl", context)
 	PrecacheResource("model", "models/items/furion/fluttering_staff/fluttering_staff.vmdl", context)
 	PrecacheResource("model", "models/items/furion/defender_of_the_jungle_arms/defender_of_the_jungle_arms.vmdl", context)

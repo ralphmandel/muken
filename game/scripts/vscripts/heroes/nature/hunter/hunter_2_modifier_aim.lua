@@ -51,6 +51,7 @@ function hunter_2_modifier_aim:OnAttackLanded(keys)
   if self:GetStackCount() == 0 then return end
 
   if BaseStats(self.parent).has_crit == true then
+    RemoveAllModifiersByNameAndAbility(keys.target, "modifier_knockback", self.ability)
     local modifier = AddModifier(keys.target, self.ability, "modifier_knockback", {
       center_x = self.parent:GetAbsOrigin().x + 1,
       center_y = self.parent:GetAbsOrigin().y + 1,

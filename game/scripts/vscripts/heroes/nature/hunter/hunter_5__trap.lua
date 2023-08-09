@@ -18,9 +18,8 @@ LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible
 	function hunter_5__trap:OnSpellStart()
 		local caster = self:GetCaster()
 
-    CreateModifierThinker(caster, self, "hunter_5_modifier_trap", {
-      duration = self:GetSpecialValueFor("lifetime")
-    }, self:GetCursorPosition(), caster:GetTeamNumber(), false)
+    local trap = CreateUnitByName("hunter_trap", self:GetCursorPosition(), false, nil, nil, caster:GetTeamNumber())
+    AddModifier(trap, self, "hunter_5_modifier_trap", {duration = self:GetSpecialValueFor("lifetime")}, false)
 	end
 
 -- EFFECTS

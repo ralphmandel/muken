@@ -9,7 +9,8 @@ function hunter_u_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.delay = false
+
+  self:StartDelay()
 
   if IsServer() then self:StartIntervalThink(0.1) end
 end
@@ -24,7 +25,7 @@ end
 
 function hunter_u_modifier_passive:CheckState()
 	local state = {
-		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = self:GetParent():PassivesDisabled() == false
+		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = self:GetParent():PassivesDisabled() == false and self:GetAbility():IsCooldownReady()
 	}
 
 	return state
@@ -39,24 +40,28 @@ function hunter_u_modifier_passive:DeclareFunctions()
 end
 
 function hunter_u_modifier_passive:OnAttackStart(keys)
-  if keys.attacker == self.parent or keys.target == self.parent then return end
-  self.delay = false
-  if IsServer() then self:StartIntervalThink(0.1) end
+  if keys.attacker ~= self.parent and keys.target ~= self.parent then return end
+  if self.camo then return end
+
+  self:StartDelay()
 end
 
 function hunter_u_modifier_passive:OnIntervalThink()
-  local has_tree = false
-  local has_enemy = false
-  local interval = 0.1
-
-  if self.camo == nil and self.delay == true and self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
+  if self.camo == nil and self.ability:IsCooldownReady()
+  and self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
     self.camo = AddModifier(self.parent, self.ability, "hunter_u_modifier_camouflage", {}, false)
     self.camo:SetEndCallback(function(interrupted)
       self.camo = nil
-      self.delay = false
+      self:StartDelay()
       if IsServer() then self:StartIntervalThink(0.1) end
     end)
+
+    if IsServer() then self:StartIntervalThink(-1) end
+    return
   end
+
+  local has_tree = false
+  local has_enemy = false
 
   local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
   if trees then
@@ -68,8 +73,8 @@ function hunter_u_modifier_passive:OnIntervalThink()
 
   local enemies = FindUnitsInRadius(
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("reveal_range"),
-    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-    DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, 0, false
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+    DOTA_UNIT_TARGET_FLAG_NONE, 0, false
   )
 
   for _,enemy in pairs(enemies) do
@@ -77,16 +82,18 @@ function hunter_u_modifier_passive:OnIntervalThink()
     break
   end
 
-  if has_tree == true and has_enemy == false then
-    self.delay = true
-    interval = self.ability:GetSpecialValueFor("delay_in")
-  else
-    self.delay = false
+  if has_tree == false or has_enemy == true then
+    self:StartDelay()
   end
 
-  if IsServer() then self:StartIntervalThink(interval) end
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------
+
+function hunter_u_modifier_passive:StartDelay()
+  if self.camo then return end
+  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+end
 
 -- EFFECTS -----------------------------------------------------------

@@ -64,6 +64,7 @@ function dasdingo__precache:Spawn()
 end
 
 function dasdingo__precache:Precache(context)
+  PrecacheResource( "model", "models/items/witchdoctor/wd_ward/monke_monkes_puppet/monke_monkes_puppet.vmdl", context )
   PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_arms/shaman_charmer_of_firesnake_arms.vmdl", context )
   PrecacheResource( "model", "models/items/shadowshaman/ti8_ss_mushroomer_weapon/ti8_ss_mushroomer_weapon.vmdl", context )
   PrecacheResource( "model", "models/items/shadowshaman/shaman_charmer_of_firesnake_off_hand/shaman_charmer_of_firesnake_off_hand.vmdl", context )

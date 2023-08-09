@@ -9,9 +9,14 @@ function hunter_5_modifier_trap:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.delay = 2
+  self.delay = true
 
-  AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = self.delay}, false)
+  self.hits = self.ability:GetSpecialValueFor("hits") * 4
+  self.min_health = self.hits
+
+  Timers:CreateTimer(FrameTime(), function()
+    self.parent:ModifyHealth(self.hits, self.ability, false, 0)
+  end)
 
   self.fow = AddFOWViewer(
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), self:GetDuration(), false
@@ -19,7 +24,7 @@ function hunter_5_modifier_trap:OnCreated(kv)
 
   if IsServer() then
     self:PlayEfxStart()
-    self:StartIntervalThink(0.2)
+    self:StartIntervalThink(self.ability:GetSpecialValueFor("delay"))
 	end
 end
 
@@ -27,11 +32,65 @@ function hunter_5_modifier_trap:OnRefresh(kv)
 end
 
 function hunter_5_modifier_trap:OnRemoved()
+  self.parent:SetModelScale(0)
+  if IsServer() then self.parent:EmitSound("Hero_TemplarAssassin.Trap.Trigger") end
+  if self.fow then RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow) end
+
+  if self.parent:IsAlive() then self.parent:Kill(self.ability, nil) end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function hunter_5_modifier_trap:CheckState()
+	local state = {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+    [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
+		[MODIFIER_STATE_EVADE_DISABLED] = true,
+    [MODIFIER_STATE_NO_TEAM_MOVE_TO] = true
+	}
+
+	return state
+end
+
+function hunter_5_modifier_trap:DeclareFunctions()
+	local funcs = {
+    MODIFIER_PROPERTY_HEALTHBAR_PIPS,
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+		MODIFIER_PROPERTY_MIN_HEALTH,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
+		MODIFIER_EVENT_ON_ATTACKED
+	}
+
+	return funcs
+end
+
+function hunter_5_modifier_trap:GetModifierHealthBarPips(keys)
+	return self:GetParent():GetMaxHealth() / 4
+end
+
+function hunter_5_modifier_trap:GetDisableHealing()
+	return 1
+end
+
+function hunter_5_modifier_trap:GetMinHealth()
+	return self.min_health
+end
+
+function hunter_5_modifier_trap:GetModifierExtraHealthBonus()
+	return self.hits - 1
+end
+
+function hunter_5_modifier_trap:OnAttacked(keys)
+	if keys.target ~= self.parent then return end
+  self.min_health = self.min_health - GetPipHitDamage(keys.attacker)
+end
+
 function hunter_5_modifier_trap:OnIntervalThink()
+  if self.delay == true then
+    AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = 0}, false)
+    self.delay = false
+  end
+
   local enemies = FindUnitsInRadius(
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
     self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
@@ -39,18 +98,12 @@ function hunter_5_modifier_trap:OnIntervalThink()
   )
 
   for _,enemy in pairs(enemies) do
-    if IsServer() then enemy:EmitSound("Hero_TemplarAssassin.Trap.Trigger") end
-    if self.fow then RemoveFOWViewer(self.caster:GetTeamNumber(), self.fow) end
-
-    if self:GetElapsedTime() >= self.delay then
-      AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), 3, false)
-      AddModifier(enemy, self.ability, "hunter_5_modifier_debuff", {
-        duration = self.ability:GetSpecialValueFor("debuff_duration")
-      }, true)      
-    end
+    AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), 3, false)
+    AddModifier(enemy, self.ability, "hunter_5_modifier_debuff", {
+      duration = self.ability:GetSpecialValueFor("debuff_duration")
+    }, true)
 
     self:Destroy()
-    return
   end
 
   if IsServer() then self:StartIntervalThink(FrameTime()) end
