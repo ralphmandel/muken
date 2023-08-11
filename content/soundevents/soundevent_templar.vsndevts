@@ -1,0 +1,60 @@
+"Templar.Circle.Hit"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/templar_circle_hit.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"        { "value" "0.6000" }
+				}
+			}
+		}
+	}
+}
+
+"Hero_Omniknight.TI8_taunt"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/weapons/hero/omniknight/ti8_taunt.vsnd"
+						}
+					}
+
+					"volume"          { "value" "0.2"	}
+					"volume_fade_out"	{ "value"	"0.5" }
+					"stop_at_time" 	  { "value"	"0.2" }
+				}
+			}
+		}
+	}
+}

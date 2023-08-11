@@ -85,7 +85,7 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"

@@ -87,6 +87,7 @@ end
 
 function hunter_5_modifier_trap:OnIntervalThink()
   if self.delay == true then
+    self:PlayEfxHide()
     AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = 0}, false)
     self.delay = false
   end
@@ -120,4 +121,13 @@ function hunter_5_modifier_trap:PlayEfxStart()
   self:AddParticle(particle, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_Techies.RemoteMine.Plant") end
+end
+
+function hunter_5_modifier_trap:PlayEfxHide()
+	local particle_cast = "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin() )
+	self:AddParticle(effect_cast, false, false, -1, false, false)
+
+  if IsServer() then self.parent:EmitSound("Hunter.Invi") end
 end

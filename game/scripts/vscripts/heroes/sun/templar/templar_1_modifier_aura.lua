@@ -19,6 +19,8 @@ function templar_1_modifier_aura:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
   self.passives_desabled = false
+
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 function templar_1_modifier_aura:OnRefresh(kv)
@@ -51,6 +53,16 @@ function templar_1_modifier_aura:OnStateChanged(keys)
       self.ability:UpdateCount()
     end
   end
+end
+
+function templar_1_modifier_aura:OnIntervalThink()
+  if GameRules:IsDaytime() and GameRules:IsTemporaryNight() == false then
+    self.ability:SetCurrentAbilityCharges(CYCLE_DAY)
+  else
+    self.ability:SetCurrentAbilityCharges(CYCLE_NIGHT)
+  end
+
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------

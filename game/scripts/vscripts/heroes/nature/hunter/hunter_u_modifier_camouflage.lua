@@ -9,14 +9,17 @@ function hunter_u_modifier_camouflage:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.moved = false
+  self.delay = false
   self.records = {}
 
   self.invi = AddModifier(self.parent, self.ability, "_modifier_invisible", {
     delay = 0, spell_break = 0, attack_break = 0
   }, false)
 
-  if IsServer() then self:SetEfxCamouflage(true) end
+  if IsServer() then
+    self:SetEfxCamouflage(true)
+    self:StartIntervalThink(0.1)
+  end
 end
 
 function hunter_u_modifier_camouflage:OnRefresh(kv)
@@ -50,8 +53,7 @@ function hunter_u_modifier_camouflage:DeclareFunctions()
     MODIFIER_EVENT_ON_ATTACK,
     MODIFIER_EVENT_ON_ATTACK_START,
 		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
-    MODIFIER_EVENT_ON_STATE_CHANGED,
-    MODIFIER_EVENT_ON_UNIT_MOVED
+    MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
@@ -99,50 +101,42 @@ function hunter_u_modifier_camouflage:OnStateChanged(keys)
   if self.parent:PassivesDisabled() then self:Destroy() end
 end
 
-function hunter_u_modifier_camouflage:OnUnitMoved(keys)
-	if keys.unit == self.parent then
-    local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-    local has_tree = false    
-    if trees then
-      for k, v in pairs(trees) do
-        has_tree = true
-        break
-      end
-    end
+function hunter_u_modifier_camouflage:OnIntervalThink()
+  local has_tree = false
+  local has_enemy = false
+  local interval = 0.1
 
-    if IsServer() then
-      if has_tree == true then
-        self.moved = false
-        self:StartIntervalThink(-1)
-      else
-        if self.moved == false then
-          self.moved = true
-          self:StartIntervalThink(self.ability:GetSpecialValueFor("delay_out"))            
-        end
-      end
+  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
+  if trees then
+    for k, v in pairs(trees) do
+      has_tree = true
+      break
+    end
+  end
+
+  local enemies = FindUnitsInRadius(
+    self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("reveal_range"),
+    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
+    DOTA_UNIT_TARGET_FLAG_NONE, 0, false
+  )
+
+  for _,enemy in pairs(enemies) do
+    has_enemy = true
+    break
+  end
+
+  if has_tree == false or has_enemy == true then
+    if self.delay == true then
+      self:Destroy()
+    else
+      self.delay = true
+      interval = self.ability:GetSpecialValueFor("delay_out")
     end
   else
-    if keys.unit:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-      local dist = CalcDistanceBetweenEntityOBB(keys.unit, self.parent)
-      if dist < self.ability:GetSpecialValueFor("reveal_range") then
-        self:Destroy()
-      end
-    end
+    self.delay = false
   end
-end
 
-function hunter_u_modifier_camouflage:OnIntervalThink()
-  if IsServer() then
-    local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-    if trees then
-      for k, v in pairs(trees) do
-        self:StartIntervalThink(-1)
-        return
-      end
-    end
-
-    self:Destroy()
-  end
+  if IsServer() then self:StartIntervalThink(interval) end
 end
 
 -- UTILS -----------------------------------------------------------

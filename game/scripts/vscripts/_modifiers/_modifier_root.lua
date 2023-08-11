@@ -44,7 +44,7 @@ function _modifier_root:OnCreated(kv)
 end
 
 function _modifier_root:OnRemoved(kv)
-	ParticleManager:DestroyParticle(self.particle, false)
+	if self.particle then ParticleManager:DestroyParticle(self.particle, false) end
 end
 --------------------------------------------------------------------------------
 

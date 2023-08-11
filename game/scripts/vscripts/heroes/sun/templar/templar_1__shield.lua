@@ -3,7 +3,6 @@ LinkLuaModifier("templar_1_modifier_aura", "heroes/sun/templar/templar_1_modifie
 LinkLuaModifier("templar_1_modifier_aura_effect", "heroes/sun/templar/templar_1_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_heal_amp", "_modifiers/_modifier_heal_amp", LUA_MODIFIER_MOTION_NONE)
 
-
 -- INIT
 
   function templar_1__shield:Spawn()
@@ -13,10 +12,16 @@ LinkLuaModifier("_modifier_heal_amp", "_modifiers/_modifier_heal_amp", LUA_MODIF
         BaseStats(self:GetCaster()):AddManaExtra(self)
       end
     end)
+
+    self:SetCurrentAbilityCharges(CYCLE_NIGHT)
   end
 
   function templar_1__shield:GetAOERadius()
-    return self:GetSpecialValueFor("radius")
+    if self:GetCurrentAbilityCharges() == CYCLE_NIGHT then
+      return self:GetSpecialValueFor("radius")
+    end
+
+    return -1
   end
 
   function templar_1__shield:GetIntrinsicModifierName()

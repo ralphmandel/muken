@@ -9,10 +9,16 @@ function templar_1_modifier_aura_effect:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.day_time = self.ability:GetCurrentAbilityCharges() == CYCLE_DAY
 
-  AddModifier(self.parent, self.ability, "_modifier_heal_amp", {amount = self.ability:GetSpecialValueFor("heal_amp")}, false)
+  if self.day_time == true then
+    AddModifier(self.parent, self.ability, "_modifier_heal_amp", {
+      amount = self.ability:GetSpecialValueFor("heal_amp")
+    }, false)
+  end
 
   if IsServer() then
+    self:StartIntervalThink(0.1)
     self:SetStackCount(0)
     self.ability:UpdateCount()
     self.parent:EmitSound("Hero_Pangolier.TailThump.Cast")
@@ -37,6 +43,24 @@ function templar_1_modifier_aura_effect:OnStackCountChanged(old)
   AddBonus(self.ability, "DEF", self.parent, self:GetAuraDefense(), 0, nil)
 
   if IsServer() then self:PlayEfxStart() end
+end
+
+function templar_1_modifier_aura_effect:OnIntervalThink()
+  if self.day_time == true then
+    if self.ability:GetCurrentAbilityCharges() == CYCLE_NIGHT then
+      RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_heal_amp", self.ability)
+      self.day_time = false
+    end
+  else
+    if self.ability:GetCurrentAbilityCharges() == CYCLE_DAY then
+      RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_heal_amp", self.ability)
+      AddModifier(self.parent, self.ability, "_modifier_heal_amp", {
+        amount = self.ability:GetSpecialValueFor("heal_amp")
+      }, false)
+      self.day_time = true
+    end
+  end
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------

@@ -36,9 +36,9 @@ end
 
 -- function genuine_4_modifier_aura:OnIntervalThink()
 --   if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
---     self.ability:SetCurrentAbilityCharges(GENUINE_UNDER_NIGHT)
+--     self.ability:SetCurrentAbilityCharges(CYCLE_NIGHT)
 --   else
---     self.ability:SetCurrentAbilityCharges(GENUINE_UNDER_DAY)
+--     self.ability:SetCurrentAbilityCharges(CYCLE_DAY)
 --   end
 
 --   if IsServer() then self:StartIntervalThink(FrameTime()) end

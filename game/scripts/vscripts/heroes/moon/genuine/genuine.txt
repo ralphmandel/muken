@@ -157,7 +157,7 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -170,7 +170,7 @@
       "tree_width"			  "75"
       "vision_radius"			"600"
       "vision_duration"		"1"
-      "damage"		        "350"
+      "damage"		        "400"
       "cast_point"		    "0.8"
       "cast_rate"		      "0.5"
       "arrow_width"			  "125"

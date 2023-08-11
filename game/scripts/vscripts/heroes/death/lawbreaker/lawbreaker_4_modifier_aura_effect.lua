@@ -12,6 +12,7 @@ function lawbreaker_4_modifier_aura_effect:OnCreated(kv)
   self.ability = self:GetAbility()
 
   self.radius = self.ability:GetAOERadius()
+  self.interval = self.ability:GetSpecialValueFor("interval")
 
   AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
     percent = self.ability:GetSpecialValueFor("slow")
@@ -32,14 +33,13 @@ end
 -- UTILS -----------------------------------------------------------
 
 function lawbreaker_4_modifier_aura_effect:OnIntervalThink()
-  local interval = self.ability:GetSpecialValueFor("interval")
   ApplyDamage({
     victim = self.parent, attacker = self.caster, ability = self.ability,
-    damage = self.ability:GetSpecialValueFor("damage") * interval,
+    damage = self.ability:GetSpecialValueFor("damage") * self.interval,
     damage_type = self.ability:GetAbilityDamageType()
   })
 
-  if IsServer() then self:StartIntervalThink(interval) end
+  if IsServer() then self:StartIntervalThink(self.interval) end
 end
 
 -- EFFECTS -----------------------------------------------------------

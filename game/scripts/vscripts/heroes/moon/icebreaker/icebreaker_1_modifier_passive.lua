@@ -32,7 +32,7 @@ function icebreaker_1_modifier_passive:DeclareFunctions()
 	return funcs
 end
 
-function icebreaker_1_modifier_passive:OnTakeDamage(keys)  
+function icebreaker_1_modifier_passive:OnTakeDamage(keys)
   if keys.attacker == nil then return end
   if keys.attacker:IsBaseNPC() == false then return end
   if keys.attacker ~= self.parent then return end

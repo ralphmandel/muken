@@ -12,23 +12,8 @@ function _modifier_bleeding:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	self.intervals = 0.3
-	self.damage_moving = 100 * self.intervals
-	self.damage_hold = 20 * self.intervals
-
-	self.damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		damage = 0,
-		damage_type = DAMAGE_TYPE_PHYSICAL,
-		damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS,
-		ability = self.ability
-	}
-
-  if BaseStats(self.parent) then BaseStats(self.parent):SetHPRegenState(false) end
-
 	if IsServer() then
-		self:StartIntervalThink(self.intervals)
+		self:StartIntervalThink(0.3)
 		self:PlayEfxStart()
 	end
 end
@@ -38,32 +23,24 @@ function _modifier_bleeding:OnRefresh(kv)
 end
 
 function _modifier_bleeding:OnRemoved()
-  if self.parent:HasModifier("_modifier_bleeding") == false then
-    if BaseStats(self.parent) then BaseStats(self.parent):SetHPRegenState(true) end
-  end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function _modifier_bleeding:OnIntervalThink()
-	if IsServer() then
-    if self.parent:IsMoving() then
-      self.damageTable.damage = self.damage_moving
-    else
-      self.damageTable.damage = self.damage_hold
-    end
+  local damage = 0
+  if self.parent:IsMoving() then damage = 30 else damage = 10 end
 
-		local apply_damage = math.floor(ApplyDamage(self.damageTable))
-		if apply_damage > 0 then
-			if self.parent then
-				if IsValidEntity(self.parent) then
-					self:PopupBleeding(apply_damage)				
-				end
-			end
-		end
+  ApplyDamage({
+		victim = self.parent,
+		attacker = self.caster,
+    ability = self.ability,
+		damage = damage,
+		damage_type = DAMAGE_TYPE_PURE,
+		damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
+	})
 
-		self:StartIntervalThink(self.intervals)
-	end
+  if IsServer() then self:StartIntervalThink(0.3) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -76,13 +53,6 @@ end
 
 function _modifier_bleeding:GetEffectAttachType()
 	return PATTACH_POINT_FOLLOW
-end
-
-function _modifier_bleeding:PopupBleeding(amount)
-  local digits = 1 + #tostring(amount)
-	local pidx = ParticleManager:CreateParticle("particles/bocuse/bocuse_msg.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-  ParticleManager:SetParticleControl(pidx, 3, Vector(0, tonumber(amount), 3))
-  ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
 end
 
 function _modifier_bleeding:PlayEfxStart()

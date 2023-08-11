@@ -100,19 +100,17 @@ function bocuse:TryCast_Roux()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
-    local loc = self.caster:GetOrigin()
-    if loc.z == 0 then return false end
+    if self.caster:GetAbsOrigin().z == 0 then return false end
 
-    self.caster:CastAbilityOnPosition(loc, ability, self.caster:GetPlayerOwnerID())
+    self.caster:CastAbilityOnPosition(self.caster:GetAbsOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    local loc = self.target:GetOrigin()
-    if loc.z == 0 then return false end
+    if self.target:GetAbsOrigin().z == 0 then return false end
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
-    self.caster:CastAbilityOnPosition(loc, ability, self.caster:GetPlayerOwnerID())
+    self.caster:CastAbilityOnPosition(self.target:GetAbsOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end

@@ -147,9 +147,9 @@
 
     "AbilityValues"
 		{
-      "debuff_duration" "10"
+      "debuff_duration" "6"
       "root_duration"   "3"
-      "slow"            "100"
+      "slow"            "150"
       "trap_radius"     "90"
       "vision_radius"   "125"
       "hits"            "2"

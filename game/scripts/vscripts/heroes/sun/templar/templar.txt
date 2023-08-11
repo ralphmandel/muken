@@ -31,6 +31,11 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
+    "precache"
+    {
+      "soundfile" "soundevents/soundevent_templar.vsndevts"
+    }
+
     "AbilityValues"
 		{
 			"radius"    "800"
@@ -81,18 +86,20 @@
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"       		"0.5"
 
     "AbilityValues"
 		{
-      "radius"    "500"
-      "duration"  "10"
+      "duration"  "15"
       "interval"  "1"
+      "damage"    "75"
+      "hp_regen"  "50"
+      "radius"    "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"		  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -121,7 +128,7 @@
 		{
       "proj_speed"  "1500"
       "hits"        "2"
-      "armor_mult"  "7.5"
+      "armor_mult"  "9.5"
       "interval"    "1"
       "agi_start"   "-10"
       "slow_start"  "1 2 3 4 5 6 7 8 9 10 11"      

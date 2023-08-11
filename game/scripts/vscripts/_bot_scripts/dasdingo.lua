@@ -112,12 +112,10 @@ function dasdingo:TryCast_Hex()
       end
     end
 
-    if target then
-      self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
-      return true
-    end
+    if target == nil then return false end
 
-    return false
+    self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
+    return true
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then

@@ -131,7 +131,11 @@ base_stats_mod = class ({})
       end
 
       if keys.damage_type == DAMAGE_TYPE_PURE then
-        self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent)
+        if keys.damage_flags == DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN then
+          self:PopupBleeding(math.floor(keys.damage), self.parent)
+        else
+          self:PopupDamage(math.floor(keys.damage), Vector(255, 225, 175), self.parent)
+        end
       end
 
       if efx ~= nil then
@@ -353,6 +357,15 @@ base_stats_mod = class ({})
       --self:PopupDamage(math.floor(damage), Vector(153, 0, 204), target)
       if IsServer() then target:EmitSound("Crit_Magical") end
     end
+  end
+
+  function base_stats_mod:PopupBleeding(damage, target)
+    if damage <= 0 then return end
+    local digits = 1 + #tostring(damage)
+
+    local pidx = ParticleManager:CreateParticle("particles/bocuse/bocuse_msg.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+    ParticleManager:SetParticleControl(pidx, 3, Vector(0, damage, 3))
+    ParticleManager:SetParticleControl(pidx, 4, Vector(1, digits, 0))
   end
 
   function base_stats_mod:PopupDamage(damage, color, target)

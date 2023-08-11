@@ -5,7 +5,7 @@ LinkLuaModifier("genuine_4_modifier_aura_effect", "heroes/moon/genuine/genuine_4
 -- INIT
 
   function genuine_4__under:Spawn()
-    self:SetCurrentAbilityCharges(GENUINE_UNDER_NIGHT)
+    self:SetCurrentAbilityCharges(CYCLE_NIGHT)
   end
   
   function genuine_4__under:GetIntrinsicModifierName()
