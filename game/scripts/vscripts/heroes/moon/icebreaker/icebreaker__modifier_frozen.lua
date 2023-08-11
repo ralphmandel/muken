@@ -48,7 +48,8 @@ end
 
 function icebreaker__modifier_frozen:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+    MODIFIER_PROPERTY_MIN_HEALTH
 	}
 
 	return funcs
@@ -57,6 +58,10 @@ end
 function icebreaker__modifier_frozen:GetModifierConstantHealthRegen(keys)
   return 50
 end
+
+function icebreaker__modifier_frozen:GetMinHealth(keys)
+  return 1
+end 
 
 -- UTILS -----------------------------------------------------------
 

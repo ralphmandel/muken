@@ -34,4 +34,9 @@ function _1_AGI_modifier_stack:OnRemoved()
 end
 
 function _1_AGI_modifier_stack:OnDestroy()
+  if self.endCallback then self.endCallback(self.interrupted) end
+end
+
+function _1_AGI_modifier_stack:SetEndCallback(func)
+	self.endCallback = func
 end

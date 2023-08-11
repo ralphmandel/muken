@@ -420,11 +420,10 @@
 #base "../vscripts/heroes/death/lawbreaker/lawbreaker.txt"
 
 //SUN
-#base "../vscripts/heroes/sun/bald/bald.txt"
 #base "../vscripts/heroes/sun/paladin/paladin.txt"
 #base "../vscripts/heroes/sun/ancient/ancient.txt"
 #base "../vscripts/heroes/sun/templar/templar.txt"
-#base "../vscripts/heroes/sun/brute/brute.txt"
+#base "../vscripts/heroes/sun/baldur/baldur.txt"
 
 //MOON
 #base "../vscripts/heroes/moon/icebreaker/icebreaker.txt"

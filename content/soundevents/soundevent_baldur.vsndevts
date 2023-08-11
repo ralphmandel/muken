@@ -1,4 +1,4 @@
-"Bald.Dash"
+"Baldur.Dash"
 {
 	"operator_stacks"
 	{
@@ -14,7 +14,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/bald_dash.vsnd"
+							"value0"	"sounds/baldur_dash.vsnd"
 						}
 					}
 
@@ -30,7 +30,7 @@
 	}
 }
 
-"Bald.Dash.Cast"
+"Baldur.Dash.Cast"
 {
 	"operator_stacks"
 	{
@@ -46,7 +46,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/bald_dash_cast.vsnd"
+							"value0"	"sounds/baldur_dash_cast.vsnd"
 						}
 					}
 
@@ -62,7 +62,7 @@
 	}
 }
 
-"Bald.Move"
+"Baldur.Move"
 {
 	"operator_stacks"
 	{
@@ -78,7 +78,7 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/bald_giant_foot.vsnd"
+							"value0"	"sounds/baldur_giant_foot.vsnd"
 						}
 					}
 
@@ -88,6 +88,38 @@
 					}
 					"mixgroup"			{ "value"	"Weapons"	}
 					"volume"        { "value"   "0.80000"	}
+				}
+			}
+		}
+	}
+}
+
+"Baldur.Hit"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/baldur_hit.vsnd"
+						}
+					}
+
+					"memory_type"
+					{
+						"value"			"0"
+					}
+					"mixgroup"			{ "value"	"Weapons"	}
+					"volume"        { "value" "1.0000" }
 				}
 			}
 		}

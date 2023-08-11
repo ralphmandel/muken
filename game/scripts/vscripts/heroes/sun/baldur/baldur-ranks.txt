@@ -1,0 +1,155 @@
+"TalentTree_baldur"
+{
+	"Points"
+	{
+		"min_level" "2"
+		"max_level" "25"
+		"amount"	"1"
+		"special_levels"
+		{
+			"3"	"35"
+		}
+	}
+	
+	"npc_dota_hero_bristleback"
+	{
+		"baldur_1__power" //TAB NAME
+		{ //TAB DATA
+			"1" //NLVL
+			{ //TALENTS
+				"1"   "baldur_1__power_rank_11" // PATH + TALENT
+				"2"   "baldur_1__power_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_1__power_rank_21"
+				"2"   "baldur_1__power_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_1__power_rank_31"
+				"2"   "baldur_1__power_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_1__power_rank_41"
+				"2"   "baldur_1__power_rank_42"
+			}
+		}
+		"baldur_2__dash"
+		{
+			"1"
+			{
+				"1"   "baldur_2__dash_rank_11"
+				"2"   "baldur_2__dash_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_2__dash_rank_21"
+				"2"   "baldur_2__dash_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_2__dash_rank_31"
+				"2"   "baldur_2__dash_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_2__dash_rank_41"
+				"2"   "baldur_2__dash_rank_42"
+			}
+		}
+		"baldur_3__barrier"
+		{
+			"1"
+			{
+				"1"   "baldur_3__barrier_rank_11"
+				"2"   "baldur_3__barrier_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_3__barrier_rank_21"
+				"2"   "baldur_3__barrier_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_3__barrier_rank_31"
+				"2"   "baldur_3__barrier_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_3__barrier_rank_41"
+				"2"   "baldur_3__barrier_rank_42"
+			}
+		}
+		"baldur_4__rear"
+		{
+			"1"
+			{
+				"1"   "baldur_4__rear_rank_11"
+				"2"   "baldur_4__rear_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_4__rear_rank_21"
+				"2"   "baldur_4__rear_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_4__rear_rank_31"
+				"2"   "baldur_4__rear_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_4__rear_rank_41"
+				"2"   "baldur_4__rear_rank_42"
+			}
+		}
+		"baldur_5__fire"
+		{
+			"1"
+			{
+				"1"   "baldur_5__fire_rank_11"
+				"2"   "baldur_5__fire_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_5__fire_rank_21"
+				"2"   "baldur_5__fire_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_5__fire_rank_31"
+				"2"   "baldur_5__fire_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_5__fire_rank_41"
+				"2"   "baldur_5__fire_rank_42"
+			}
+		}
+		"baldur_u__endurance"
+		{
+			"1"
+			{
+				"1"   "baldur_u__endurance_rank_11"
+				"2"   "baldur_u__endurance_rank_12"
+			}
+			"2"
+			{
+				"1"   "baldur_u__endurance_rank_21"
+				"2"   "baldur_u__endurance_rank_22"
+			}
+			"3"
+			{
+				"1"   "baldur_u__endurance_rank_31"
+				"2"   "baldur_u__endurance_rank_32"
+			}
+			"4"
+			{
+				"1"   "baldur_u__endurance_rank_41"
+				"2"   "baldur_u__endurance_rank_42"
+			}
+		}
+	}	
+}

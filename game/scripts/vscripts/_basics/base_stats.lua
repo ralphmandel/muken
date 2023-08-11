@@ -557,7 +557,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				local target = self:GetCaster()
 				local stringFormat = string.format("%s_modifier_stack", string)
 
-				target:AddNewModifier(attacker, ability, stringFormat, {
+				return target:AddNewModifier(attacker, ability, stringFormat, {
 					duration = duration, stacks = bonus_amount, percent = base_amount
 				})
 			end

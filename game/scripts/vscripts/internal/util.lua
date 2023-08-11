@@ -163,7 +163,7 @@ end
     if string ~= "STR" and string ~= "INT" and string ~= "AGI" and string ~= "CON" then stringFormat = "_2_" end
     stringFormat = stringFormat..string
 
-    if BaseStats(target) then BaseStats(target):AddBonusStat(ability:GetCaster(), ability, bonus, base, time, stringFormat) end
+    if BaseStats(target) then return BaseStats(target):AddBonusStat(ability:GetCaster(), ability, bonus, base, time, stringFormat) end
   end
 
   function RemoveBonus(ability, string, target)

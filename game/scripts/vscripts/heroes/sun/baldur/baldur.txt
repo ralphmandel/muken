@@ -1,13 +1,13 @@
-// Dota Ability fleaman
+// Dota Ability baldur
 "DOTAAbilities"
 {
 	"Version"		"1"
 
-  "fleaman__precache"
+  "baldur__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-    "AbilityTextureName"    		"fleaman__precache"
+		"ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+    "AbilityTextureName"    		"baldur__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
 		"RequiredLevel"         	 	"-200"
@@ -16,152 +16,155 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 
-	"fleaman_1__precision"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_1__precision"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"fleaman_precision"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
-
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-
-    "AbilityValues"
-		{
-			"agi"         "5"
-      "duration"		"1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"fleaman_2__speed"
-	{  
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_2__speed"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"fleaman_speed"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-    "AbilityValues"
-		{
-			"ms"              "10"
-			"dex"             "1"
-			"stack_duration"  "5"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"fleaman_3__jump"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_3__jump"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"fleaman_jump"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-
-    "AbilityValues"
-		{
-      "silence_duration"	"2.5"
-      "speed_mult"	      "2"
-      "radius"	          "275"
-      "distance"	        "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"fleaman_4__strip"
+	"baldur_1__power"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_4__strip"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_1__power"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"fleaman_strip"
+		"AbilityTextureName"     		"baldur_power"
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
     "AbilityValues"
 		{
-			"chance"		  "5"
-			"duration"		"5"
-			"def"		      "-20"
-		  "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-		}
-	}
-
-	"fleaman_5__steal"
-	{
-		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_5__steal"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityTextureName"     		"fleaman_steal"
-		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"0"
-    "LevelsBetweenUpgrades"  		"25"
-
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-    "AbilityValues"
-		{
-			"max_stack"		    "6"
-			"stack_duration"  "10"
+			"stack_duration"  "60"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
-	"fleaman_u__smoke"
-	{
+	"baldur_2__dash"
+	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/death/fleaman/fleaman_u__smoke"
-		"AbilityTextureName"     		"fleaman_smoke"
-		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_2__dash"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"baldur_dash"
 		"MaxLevel"               		"1"
-		"RequiredLevel"         	 	"8"
-		"LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"       		"0.3"
 
     "AbilityValues"
 		{
-			"duration"		  "8"
-			"slow"		      "150"
-			"blind"		      "50"
-			"delay"		      "1"
-			"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"baldur_3__barrier"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_3__barrier"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"baldur_barrier"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"   		"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"       		"0.3"
+    "ActiveSpell"               "1"
+
+    "AbilityValues"
+		{
+      "hits"            "4"
+      "stack_duration"  "20"
+      "decay_time"      "5"
+			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"baldur_4__rear"
+	{ 
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_4__rear"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"baldur_rear"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+    "AbilityValues"
+		{
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"baldur_5__fire"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_5__fire"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityTextureName"     		"baldur_fire"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"0"
+    "LevelsBetweenUpgrades"  		"25"
+
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+    "AbilityValues"
+		{
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+		}
+	}
+
+	"baldur_u__endurance"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"            		"heroes/sun/baldur/baldur_u__endurance"
+		"AbilityTextureName"     		"baldur_endurance"
+		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"               		"1"
+		"RequiredLevel"         	 	"8"
+		"LevelsBetweenUpgrades"  		"25"
+
+		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"       		"0.3"
+
+    "AbilityValues"
+		{
+			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
     //RANKS 1
-        "fleaman_1__precision_rank_11"{
+        "baldur_1__power_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -188,10 +191,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_12"{
+        "baldur_1__power_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -218,10 +221,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_21"{
+        "baldur_1__power_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -248,10 +251,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_22"{
+        "baldur_1__power_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -278,10 +281,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_31"{
+        "baldur_1__power_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -308,10 +311,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_32"{
+        "baldur_1__power_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -338,10 +341,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_41"{
+        "baldur_1__power_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -368,10 +371,10 @@
             }
         }
 
-        "fleaman_1__precision_rank_42"{
+        "baldur_1__power_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_precision"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_power"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -399,10 +402,10 @@
         }
 
     //RANKS 2
-        "fleaman_2__speed_rank_11"{
+        "baldur_2__dash_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -429,10 +432,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_12"{
+        "baldur_2__dash_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -459,10 +462,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_21"{
+        "baldur_2__dash_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -489,10 +492,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_22"{
+        "baldur_2__dash_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -519,10 +522,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_31"{
+        "baldur_2__dash_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -549,10 +552,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_32"{
+        "baldur_2__dash_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -579,10 +582,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_41"{
+        "baldur_2__dash_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -609,10 +612,10 @@
             }
         }
 
-        "fleaman_2__speed_rank_42"{
+        "baldur_2__dash_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_speed"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_dash"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -640,10 +643,10 @@
         }
 
     //RANKS 3
-        "fleaman_3__jump_rank_11"{
+        "baldur_3__barrier_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -670,10 +673,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_12"{
+        "baldur_3__barrier_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -700,10 +703,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_21"{
+        "baldur_3__barrier_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -730,10 +733,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_22"{
+        "baldur_3__barrier_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -760,10 +763,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_31"{
+        "baldur_3__barrier_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -790,10 +793,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_32"{
+        "baldur_3__barrier_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -820,10 +823,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_41"{
+        "baldur_3__barrier_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -850,10 +853,10 @@
             }
         }
 
-        "fleaman_3__jump_rank_42"{
+        "baldur_3__barrier_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_jump"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_barrier"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -881,10 +884,10 @@
         }
 
     //RANKS 4
-        "fleaman_4__strip_rank_11"{
+        "baldur_4__rear_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -911,10 +914,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_12"{
+        "baldur_4__rear_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -941,10 +944,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_21"{
+        "baldur_4__rear_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -971,10 +974,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_22"{
+        "baldur_4__rear_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1001,10 +1004,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_31"{
+        "baldur_4__rear_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1031,10 +1034,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_32"{
+        "baldur_4__rear_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1061,10 +1064,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_41"{
+        "baldur_4__rear_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1091,10 +1094,10 @@
             }
         }
 
-        "fleaman_4__strip_rank_42"{
+        "baldur_4__rear_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_strip"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_rear"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1122,10 +1125,10 @@
         }
 
     //RANKS 5
-        "fleaman_5__steal_rank_11"{
+        "baldur_5__fire_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1152,10 +1155,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_12"{
+        "baldur_5__fire_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1182,10 +1185,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_21"{
+        "baldur_5__fire_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1212,10 +1215,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_22"{
+        "baldur_5__fire_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1242,10 +1245,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_31"{
+        "baldur_5__fire_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1272,10 +1275,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_32"{
+        "baldur_5__fire_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1302,10 +1305,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_41"{
+        "baldur_5__fire_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1332,10 +1335,10 @@
             }
         }
 
-        "fleaman_5__steal_rank_42"{
+        "baldur_5__fire_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_steal"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_fire"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1363,10 +1366,10 @@
         }
 
     //RANKS U
-        "fleaman_u__smoke_rank_11"{
+        "baldur_u__endurance_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1393,10 +1396,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_12"{
+        "baldur_u__endurance_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
             
@@ -1423,10 +1426,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_21"{
+        "baldur_u__endurance_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1453,10 +1456,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_22"{
+        "baldur_u__endurance_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
             
@@ -1483,10 +1486,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_31"{
+        "baldur_u__endurance_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1513,10 +1516,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_32"{
+        "baldur_u__endurance_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
             
@@ -1543,10 +1546,10 @@
             }
         }
         
-        "fleaman_u__smoke_rank_41"{
+        "baldur_u__endurance_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             
@@ -1573,10 +1576,10 @@
             }
         }
 
-        "fleaman_u__smoke_rank_42"{
+        "baldur_u__endurance_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/death/fleaman/fleaman-ranks_lua"
-            "AbilityTextureName"    		"fleaman_smoke"
+            "ScriptFile"					"heroes/sun/baldur/baldur-ranks_lua"
+            "AbilityTextureName"    		"baldur_endurance"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
             

@@ -127,7 +127,7 @@ function base_hero_mod:LoadModel()
 					self.model_scale = 1.1
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
-				if self.ability.hero_name == "bald" then
+				if self.ability.hero_name == "baldur" then
 					self.model_scale = 1
 					self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 				end
@@ -148,7 +148,6 @@ end
 
 function base_hero_mod:LoadSounds()
 	self.pre_attack_sound = ""
-  -- check brute and lawbreaker
 	if self.ability.hero_name == "icebreaker" then self.pre_attack_sound = "hero_bloodseeker.PreAttack" end
   if self.ability.hero_name == "paladin" then self.pre_attack_sound = "Hero_Dawnbreaker.PreAttack" end
 	if self.ability.hero_name == "bloodstained" then self.pre_attack_sound = "Hero_Nightstalker.PreAttack" end
@@ -167,9 +166,8 @@ function base_hero_mod:LoadSounds()
 	if self.ability.hero_name == "bocuse" then self.attack_landed_sound = "Hero_Pudge.Attack" end
 	if self.ability.hero_name == "bloodstained" then self.attack_landed_sound = "Hero_Nightstalker.Attack" end
 	if self.ability.hero_name == "fleaman" then self.attack_landed_sound = "Hero_Slark.Attack" end
-	if self.ability.hero_name == "bald" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
+	if self.ability.hero_name == "baldur" then self.attack_landed_sound = "Hero_Bristleback.Attack" end
 	if self.ability.hero_name == "ancient" then self.attack_landed_sound = "Hero_ElderTitan.Attack" end
-	if self.ability.hero_name == "brute" then self.attack_landed_sound = "Hero_Axe.Attack" end
 	if self.ability.hero_name == "hunter" then self.attack_landed_sound = "Hero_Sniper.MKG_impact" end
 	if self.ability.hero_name == "templar" then self.attack_landed_sound = "Hero_Omniknight.Attack" end
 

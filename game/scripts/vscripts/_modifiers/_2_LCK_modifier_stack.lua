@@ -35,3 +35,11 @@ end
 
 function _2_LCK_modifier_stack:OnDestroy()
 end
+
+function _2_LCK_modifier_stack:OnDestroy()
+  if self.endCallback then self.endCallback(self.interrupted) end
+end
+
+function _2_LCK_modifier_stack:SetEndCallback(func)
+	self.endCallback = func
+end

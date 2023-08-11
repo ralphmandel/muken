@@ -1,0 +1,9 @@
+"skills"
+{
+	"1" "baldur_1__power"
+	"2" "baldur_2__dash"
+	"3" "baldur_3__barrier"
+	"4" "baldur_4__rear"
+	"5" "baldur_5__fire"
+	"6" "baldur_u__endurance"
+}

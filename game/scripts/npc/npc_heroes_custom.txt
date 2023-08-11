@@ -71,11 +71,10 @@
 #base "../vscripts/heroes/death/lawbreaker/lawbreaker-props.txt"
 
 //SUN
-#base "../vscripts/heroes/sun/bald/bald-props.txt"
 #base "../vscripts/heroes/sun/paladin/paladin-props.txt"
 #base "../vscripts/heroes/sun/ancient/ancient-props.txt"
 #base "../vscripts/heroes/sun/templar/templar-props.txt"
-#base "../vscripts/heroes/sun/brute/brute-props.txt"
+#base "../vscripts/heroes/sun/baldur/baldur-props.txt"
 
 //MOON
 #base "../vscripts/heroes/moon/icebreaker/icebreaker-props.txt"
