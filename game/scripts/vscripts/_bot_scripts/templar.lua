@@ -61,18 +61,26 @@ function templar:TryCast_Barrier()
   if self.state == BOT_STATE_AGGRESSIVE then
     local target = nil
     local current_percent = 100
+    local num_attackers = 0
 
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() > 0
-      and unit:GetHealthPercent() < current_percent then
-        target = unit
-        current_percent = unit:GetHealthPercent()
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() >= num_attackers then
+        if unit:GetNumAttackers() == num_attackers then
+          if unit:GetHealthPercent() < current_percent then
+            target = unit
+            current_percent = unit:GetHealthPercent()
+          end
+        else
+          target = unit
+          num_attackers =unit:GetNumAttackers()
+          current_percent = unit:GetHealthPercent()
+        end
       end
     end
   
@@ -90,7 +98,7 @@ function templar:TryCast_Hammer()
   if self.state == BOT_STATE_FLEE then
     local target = nil
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       ability:GetAbilityTargetFlags(), FIND_CLOSEST, false
     )

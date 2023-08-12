@@ -56,7 +56,7 @@ function icebreaker:TryCast_Zero()
   
     if targets == 0 then return false end
     
-    local point = self.caster:GetOrigin() + RandomVector(ability:GetCastRange(self.caster:GetOrigin(), self.caster))
+    local point = self.caster:GetOrigin() + RandomVector(ability:GetCastRange(self.caster:GetOrigin(), nil))
     self.caster:CastAbilityOnPosition(point, ability, self.caster:GetPlayerOwnerID())
     return true
   end
@@ -74,7 +74,7 @@ function icebreaker:TryCast_Blink()
     local target = nil
 
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
     )
@@ -152,7 +152,7 @@ function icebreaker:TryCast_Skin()
     local target = nil
 
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
     )

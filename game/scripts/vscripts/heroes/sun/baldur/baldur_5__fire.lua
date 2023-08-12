@@ -24,10 +24,11 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     local point = self:GetCursorPosition()
     if target then point = target:GetOrigin() end
 
-    Timers:CreateTimer(0.5, function()
+    Timers:CreateTimer(0.3, function()
       caster:FadeGesture(ACT_DOTA_VERSUS)
     end)
 
+    local spawn_origin = caster:GetOrigin() + (caster:GetForwardVector():Normalized() * 100)
     local projectile_direction = point - caster:GetOrigin()
     projectile_direction.z = 0
     projectile_direction = projectile_direction:Normalized()
@@ -35,7 +36,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
     ProjectileManager:CreateLinearProjectile({
       Source = caster,
       Ability = self,
-      vSpawnOrigin = caster:GetAbsOrigin(),
+      vSpawnOrigin = spawn_origin,
       bDeleteOnHit = false,
       iUnitTargetTeam = self:GetAbilityTargetTeam(),
       iUnitTargetType = self:GetAbilityTargetType(),
@@ -45,7 +46,7 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
       fDistance = self:GetSpecialValueFor("range"),
       fStartRadius = 150,
       fEndRadius = 250,
-      vVelocity =  projectile_direction * 1050,
+      vVelocity =  projectile_direction * self:GetSpecialValueFor("speed"),
     })
 
     if IsServer() then caster:EmitSound("Hero_DragonKnight.BreathFire") end

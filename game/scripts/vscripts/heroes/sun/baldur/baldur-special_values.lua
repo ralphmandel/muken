@@ -160,7 +160,9 @@ function baldur_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "baldur_5__fire" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "range" then return 1 end
 
 		if caster:FindAbilityByName("baldur_5__fire_rank_11") then
 		end
@@ -258,9 +260,12 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "baldur_5__fire" then
-		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 0 end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 16 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("range") - 150 end
+
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "range" then return 800 + (value_level * 40) end
 	end
 
 	if ability:GetAbilityName() == "baldur_u__endurance" then

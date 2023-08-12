@@ -69,7 +69,7 @@ function dasdingo:TryCast_Tribal()
   
     if targets == 0 then return false end
     
-    local point = self.caster:GetOrigin() + RandomVector(ability:GetCastRange(self.caster:GetOrigin(), self.caster))
+    local point = self.caster:GetOrigin() + RandomVector(ability:GetCastRange(self.caster:GetOrigin(), nil))
     self.caster:CastAbilityOnPosition(point, ability, self.caster:GetPlayerOwnerID())
     return true
   end
@@ -99,7 +99,7 @@ function dasdingo:TryCast_Hex()
   if self.state == BOT_STATE_FLEE then
     local target = nil
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       ability:GetAbilityTargetFlags(), FIND_CLOSEST, false
     )

@@ -28,6 +28,10 @@ function baldur_5_modifier_fire:OnCreated(kv)
 end
 
 function baldur_5_modifier_fire:OnRefresh(kv)
+  if IsServer() then
+    self.parent:StopSound("Dasdingo.Ignite.Loop")
+    self.parent:EmitSound("Dasdingo.Ignite.Loop")
+  end
 end
 
 function baldur_5_modifier_fire:OnRemoved()
@@ -45,11 +49,11 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function dasdingo_3_modifier_ignition:GetEffectName()
+function baldur_5_modifier_fire:GetEffectName()
 	return "particles/econ/items/wraith_king/wraith_king_ti6_bracer/wraith_king_ti6_hellfireblast_debuff.vpcf"
 	--return "particles/dasdingo/dasdingo_fire_debuff.vpcf"
 end
 
-function dasdingo_3_modifier_ignition:GetEffectAttachType()
+function baldur_5_modifier_fire:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end

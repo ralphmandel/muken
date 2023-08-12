@@ -86,7 +86,7 @@ function ancient:TryCast_Petrify()
   local target = nil
 
   local units = FindUnitsInRadius(
-    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 50,
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil) - 50,
     ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
     ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
   )
@@ -117,7 +117,7 @@ function ancient:TryCast_Final()
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    local cast_range = ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 500
+    local cast_range = ability:GetCastRange(self.caster:GetOrigin(), nil) - 500
     if cast_range < 300 then cast_range = 300 end
     if distance_diff > cast_range and self.caster:IsCommandRestricted() == false then
       self.caster:MoveToNPC(self.target)

@@ -77,7 +77,7 @@ function bocuse:TryCast_Flambee()
     local target = self.target
 
     local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), self.caster),
+      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
       ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
       ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
     )

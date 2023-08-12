@@ -50,7 +50,7 @@ function genuine:TryCast_Nightfall()
   
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
     local atk_range = self.caster:Script_GetAttackRange() + 100
-    local cast_range = ability:GetCastRange(self.caster:GetOrigin(), self.caster) - 400
+    local cast_range = ability:GetCastRange(self.caster:GetOrigin(), nil) - 400
     if distance_diff < atk_range then return false end
     if distance_diff > cast_range then return false end
   
