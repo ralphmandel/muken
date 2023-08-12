@@ -45,6 +45,7 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -78,9 +79,12 @@
 
     "AbilityValues"
 		{
-      "hits"            "4"
-      "stack_duration"  "20"
+      "damage_taken"    "175"
+      "stack_duration"  "30"
       "decay_time"      "5"
+      "barrier_loss"    "20"
+      "barrier_stack"   "100"
+      "barrier_min"     "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -95,18 +99,14 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "chance_side"   "8"
+      "chance_back"   "12"
+      "stun_duration" "1.75"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -119,15 +119,16 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_VERSUS"
+		"AbilityCastPoint"       		"0.4"
 
     "AbilityValues"
 		{
@@ -144,19 +145,24 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
+    "ActiveSpell"               "1"
 
-		"AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"       		"0.3"
+		"AbilityCastAnimation"   		"ACT_DOTA_TAUNT"
+		"AbilityCastPoint"       		"1.1"
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "ms_in"         "50"
+      "ms_out"        "150"
+      "hp_regen_in"   "1"
+      "hp_regen_out"  "3"
+      "time_out"      "200"
+      "delay"         "3"
+      "duration"      "30"
+			"con"           "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"		      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 

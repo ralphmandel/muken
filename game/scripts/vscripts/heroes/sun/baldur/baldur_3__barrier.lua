@@ -12,6 +12,12 @@ LinkLuaModifier("baldur_3_modifier_barrier", "heroes/sun/baldur/baldur_3_modifie
 
 	function baldur_3__barrier:OnSpellStart()
 		local caster = self:GetCaster()
+
+    AddModifier(caster, self, "baldur_3_modifier_barrier", {
+      stack = caster:FindModifierByName(self:GetIntrinsicModifierName()):GetStackCount()
+    })
+
+    RemoveBonus(self, "DEF", caster)
 	end
 
 -- EFFECTS

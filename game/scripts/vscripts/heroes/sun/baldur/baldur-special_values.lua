@@ -100,6 +100,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "barrier_min" then return 1 end
 
 		if caster:FindAbilityByName("baldur_3__barrier_rank_11") then
 		end
@@ -190,6 +191,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "con" then return 1 end
 
 		if caster:FindAbilityByName("baldur_u__endurance_rank_11") then
 		end
@@ -244,8 +246,9 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "baldur_3__barrier" then
 		if value_name == "AbilityManaCost" then return 400 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 20 end
+		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "barrier_min" then return 750 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "baldur_4__rear" then
@@ -261,9 +264,10 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "baldur_u__endurance" then
-		if value_name == "AbilityManaCost" then return 100 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 10 end
+		if value_name == "AbilityManaCost" then return 550 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 125 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "con" then return 10 + (value_level * 1) end
 	end
 
 	return 0
