@@ -127,12 +127,18 @@
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
-		"AbilityCastAnimation"   		"ACT_DOTA_VERSUS"
-		"AbilityCastPoint"       		"0.4"
+		"AbilityCastAnimation"   		"ACT"
+		"AbilityCastPoint"       		"0.1"
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "damage"          "125"
+      "damage_burn"     "25"
+      "interval"        "0.5"
+      "str"             "-20"
+      "debuff_duration" "8"
+			"range"			      "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
