@@ -231,8 +231,15 @@ end
     local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
     ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
     ParticleManager:ReleaseParticleIndex(effect_cast)
-  
     if IsServer() then target:EmitSound(sound_cast) end
+
+    if damage > 0 then
+      ApplyDamage({
+        attacker = caster, victim = target,
+        damage = damage, ability = ability,
+        damage_type = ability:GetAbilityDamageType()
+      })
+    end
   end
 
   function CreateStarfall(target, ability)

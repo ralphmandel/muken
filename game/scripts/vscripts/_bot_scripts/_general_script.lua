@@ -12,6 +12,7 @@ _general_script = class({})
   local ancient = require("_bot_scripts/ancient")
   local paladin = require("_bot_scripts/paladin")
   local templar = require("_bot_scripts/templar")
+  local baldur = require("_bot_scripts/baldur")
 
   local ACTION_REST_WAIT_FOR_ALLIES = 100
   local ACTION_REST_CHANGE_TO_AGGRESSIVE = 101
@@ -660,4 +661,5 @@ _general_script = class({})
     if GetHeroName(self.parent:GetUnitName()) == "icebreaker" then return icebreaker end
     if GetHeroName(self.parent:GetUnitName()) == "paladin" then return paladin end
     if GetHeroName(self.parent:GetUnitName()) == "templar" then return templar end
+    if GetHeroName(self.parent:GetUnitName()) == "baldur" then return baldur end
   end

@@ -28,10 +28,10 @@ function baldur_2_modifier_charge:OnRefresh(kv)
 end
 
 function baldur_2_modifier_charge:OnRemoved()
-	self.parent:RemoveModifierByName("bald_2_modifier_gesture")
+	self.parent:RemoveModifierByName("baldur_2_modifier_gesture")
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 
-	if IsServer() then self.parent:StopSound("Bald.Dash.Cast") end
+	if IsServer() then self.parent:StopSound("Baldur.Dash.Cast") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -75,7 +75,7 @@ function baldur_2_modifier_charge:OnIntervalThink()
 	end
 
   if self.time == self.max_charge then
-    if IsServer() then self.parent:EmitSound("Bald.Dash.Cast") end
+    if IsServer() then self.parent:EmitSound("Baldur.Dash.Cast") end
   end
 
   self:PlayEfxTimer()
@@ -84,8 +84,8 @@ function baldur_2_modifier_charge:OnIntervalThink()
 	self.time = self.time - tick
 
 	if IsServer() then
-		self:StartIntervalThink(self.self.gesture_time)
-		self.self.gesture_time = self.self.gesture_time * self.gesture_mult
+		self:StartIntervalThink(self.gesture_time)
+		self.gesture_time = self.gesture_time * self.gesture_mult
 	end
 end
 
@@ -100,11 +100,11 @@ end
 -- EFFECTS -----------------------------------------------------------
 
 function baldur_2_modifier_charge:PlayEfxTimer()
-	local particle_cast = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf"
+	local particle_cast = "particles/bald/bald_dash/bald_dash_timer.vpcf"
 
-	local time = math.floor(self.time)
+  local time = math.floor(self.max_charge - self.time + 0.5)
 	local mid = 1
-	if self.time - time > 0 then mid = 8 end
+	if self.max_charge - self.time - time + 0.5 > 0 then mid = 8 end
 
 	if self.efx_count then ParticleManager:DestroyParticle(self.efx_count, true) end
 	self.efx_count = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)

@@ -55,11 +55,11 @@
 
     "AbilityValues"
 		{
-      "gesture_time"  "0.3875"
+      "gesture_time"  "0.31"//"0.3875"
       "gesture_mult"  "1.03"
       "max_charge"    "7.5"
-      "stun_max"      "3"
-      "damage_max"    "300"
+      "stun_max"      "4"
+      "damage_max"    "400"
       "slow_percent"  "30"
       "cast_range"    "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"

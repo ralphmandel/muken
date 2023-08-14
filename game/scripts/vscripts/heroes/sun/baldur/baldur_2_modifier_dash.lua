@@ -18,7 +18,10 @@ function baldur_2_modifier_dash:OnCreated(kv)
 	local vector = (self.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
 	self.parent:SetForwardVector(vector)
 	self.angle = self.parent:GetForwardVector():Normalized()
-	self.distance = (self.ability:GetCastRange(self.parent:GetOrigin(), self.target) + 200) / self:GetDuration()
+
+  local distance = self.ability:GetCastRange(self.parent:GetOrigin(), self.target) + 200
+	local time = self:GetDuration() / FrameTime()
+	self.distance = distance / time
 
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
@@ -46,16 +49,11 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function baldur_2_modifier_dash:CheckState()
-	local state = {
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
-	}
-	return state
-end
-
 function baldur_2_modifier_dash:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_DISABLE_TURNING
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+    MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_EVENT_ON_ABILITY_START
 	}
 
 	return funcs
@@ -63,6 +61,21 @@ end
 
 function baldur_2_modifier_dash:GetModifierDisableTurning()
 	return 1
+end
+
+function baldur_2_modifier_dash:OnStateChanged(keys)
+  if keys.unit ~= self.parent then return end
+  if self.parent:IsStunned() or self.parent:IsHexed() then
+    self:Destroy()
+  end
+end
+
+function baldur_2_modifier_dash:OnAbilityStart(keys)
+	if keys.unit == self.parent then
+		if keys.ability ~= self.ability then
+      self:Destroy()
+		end
+	end
 end
 
 function baldur_2_modifier_dash:OnIntervalThink()
@@ -82,20 +95,23 @@ function baldur_2_modifier_dash:HorizontalMotion(unit, time)
 		if IsValidEntity(self.target) then
       local enemies = FindUnitsInRadius(
         self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, 95,
-        DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        DOTA_UNIT_TARGET_FLAG_NONE, 0, false
+        self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
+        self.ability:GetAbilityTargetFlags(), 0, false
       )
     
       for _,enemy in pairs(enemies) do
         if self.target ~= enemy then
           if TargetHasModifierByAbility(enemy, "_modifier_stun", self.ability) == false then
-            ApplyBash(enemy, self.ability, self.stun_duration, self.damage, false)
+            ApplyBash(enemy, self.ability, self.stun_duration, 0, false)
           end
         end
       end
 
 			if CalcDistanceBetweenEntityOBB(self.parent, self.target) <= 100 then
-        AddModifier(self.parent, self.ability, "baldur_2_modifier_impact", {duration = 0.3}, false)
+        AddModifier(self.parent, self.ability, "baldur_2_modifier_impact", {
+          duration = 0.3, target = self.target:entindex(),
+          damage = self.damage, stun_duration = self.stun_duration,
+        }, false)
 
         if self.parent:IsCommandRestricted() == false then
           self.parent:MoveToTargetToAttack(self.target)
@@ -119,5 +135,5 @@ function baldur_2_modifier_dash:GetEffectAttachType()
 end
 
 function baldur_2_modifier_dash:PlayEfxStart()
-	if IsServer() then self.parent:EmitSound("Bald.Dash") end
+	if IsServer() then self.parent:EmitSound("Baldur.Dash") end
 end

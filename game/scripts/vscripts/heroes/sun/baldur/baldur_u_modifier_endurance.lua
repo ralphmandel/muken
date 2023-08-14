@@ -42,7 +42,8 @@ end
 function baldur_u_modifier_endurance:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+    MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
@@ -57,6 +58,14 @@ function baldur_u_modifier_endurance:OnTakeDamage(keys)
     self.delay = 0
     self:ChangeTime(BATTLE_IN)
 	end
+
+  if keys.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
+		self:ApplyLifesteal(keys)
+	end
+end
+
+function baldur_u_modifier_endurance:OnAttacked(keys)
+	self:ApplyLifesteal(keys)
 end
 
 function baldur_u_modifier_endurance:OnIntervalThink()
@@ -105,6 +114,16 @@ function baldur_u_modifier_endurance:ChangeTime(battle_state)
   if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(regen * 10, 0, 0)) end
 end
 
+function baldur_u_modifier_endurance:ApplyLifesteal(keys)
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+	if keys.attacker ~= self.parent then return end
+
+	local lifesteal = keys.original_damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
+  keys.attacker:Heal(lifesteal, self.ability)
+  self:PlayEfxLifesteal(keys.attacker)
+end
+
 -- EFFECTS -----------------------------------------------------------
 
 function baldur_u_modifier_endurance:GetStatusEffectName()
@@ -124,4 +143,11 @@ function baldur_u_modifier_endurance:PlayEfxStart()
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_OgreMagi.Bloodlust.Target") end
+end
+
+function baldur_u_modifier_endurance:PlayEfxLifesteal(attacker)
+	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, attacker)
+	ParticleManager:SetParticleControl(effect_cast, 1, attacker:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
 end

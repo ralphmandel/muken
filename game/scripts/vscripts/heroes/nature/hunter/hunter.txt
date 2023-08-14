@@ -64,9 +64,9 @@
 		{
       "duration"            "3"
       "ms_limit"            "125"
-      "hits"                "12"
-      "knockback_distance"  "40"
-      "knockback_duration"  "0.2"
+      "hits"                "10"
+      "knockback_distance"  "50"
+      "knockback_duration"  "0.1"
       "dex"                 "-10"
       "def"                 "-10"
       "res"                 "-10"

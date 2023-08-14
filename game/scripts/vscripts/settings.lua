@@ -138,20 +138,22 @@ BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
   "dasdingo",
-  "paladin", "templar"
+  "paladin", "templar", "baldur"
 }
 
 RANDOM_NAMES = {
   [1] = "Jairo, o Jakiro",
   [2] = "Zubumafu",
   [3] = "Gasp.Z",
-  [4] = "UK",
-  [5] = "Kazunari",
-  [6] = "Serluc",
+  [4] = "Martin Gore",
+  [5] = "Serluc",
+  [6] = "Shirayama",
   [7] = "InStereo4",
-  [8] = "Do Jun",
+  [8] = "UK",
   [9] = "kubo",
-  [10] = "Edomic Wolf"
+  [10] = "Edomic Wolf",
+  [11] = "Kazunari",
+  [12] = "Do Jun"
 }
 
 BOT_STATE_REST = 0

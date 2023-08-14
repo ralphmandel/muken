@@ -74,7 +74,7 @@ function genuine:TryCast_Travel()
 
     if self.caster:GetNumAttackers() > 0 then
       for _, attacker in pairs(HeroList:GetAllHeroes()) do
-				for i = 0, self.caster:GetNumAttackers() -1 do
+				for i = 0, self.caster:GetNumAttackers() - 1 do
 					if attacker:GetPlayerID() == self.caster:GetAttacker(i) then
             local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, attacker)
     

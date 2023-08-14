@@ -22,9 +22,9 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function baldur_2__dash:GetAbilityTextureName()
     if self:GetCurrentAbilityCharges() == BALDUR_CHARGING then
-      return "bald_dash_2"
+      return "baldur_dash_2"
     else
-      return "bald_dash"
+      return "baldur_dash"
     end
   end
 

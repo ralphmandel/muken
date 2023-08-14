@@ -21,7 +21,7 @@
 			// STR
         "base_atk_damage"	  "50"
         "damage_percent"	  "10"
-        "bonus_atk_damage"  "2"
+        "bonus_atk_damage"  "1"
 			
 			// AGI
         "attack_speed"			"10"
