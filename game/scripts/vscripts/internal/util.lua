@@ -207,19 +207,32 @@ end
   end
 
   function ApplyBash(target, ability, stun_duration, damage, bGreater)
+    local caster = ability:GetCaster()
     local stun_mult = 1
-    if bGreater == false then stun_mult = 0.25
+    local sound_cast = "Hero_Spirit_Breaker.GreaterBash.Creep"
+
+    if bGreater == false then
+      stun_mult = 0.25
+      sound_cast = "Hero_Spirit_Breaker.GreaterBash"
+    end
 
     AddModifier(target, ability, "_modifier_stun", {duration = stun_duration * stun_mult}, true)
     AddModifier(target, ability, "modifier_knockback", {
       duration = 0.25,
       knockback_duration = 0.25,
-      knockback_distance = CalcStatus(stun_duration * 50, self.caster, enemy),
-      center_x = self.parent:GetAbsOrigin().x + 1,
-      center_y = self.parent:GetAbsOrigin().y + 1,
-      center_z = self.parent:GetAbsOrigin().z,
-      knockback_height = self.stun_duration * 20,
+      knockback_distance = CalcStatus(stun_duration * 50, caster, target),
+      center_x = caster:GetAbsOrigin().x + 1,
+      center_y = caster:GetAbsOrigin().y + 1,
+      center_z = caster:GetAbsOrigin().z,
+      knockback_height = stun_duration * 20,
     }, false)
+  
+    local particle_cast = "particles/econ/items/spirit_breaker/spirit_breaker_weapon_ti8/spirit_breaker_bash_ti8.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
+    ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+    ParticleManager:ReleaseParticleIndex(effect_cast)
+  
+    if IsServer() then target:EmitSound(sound_cast) end
   end
 
   function CreateStarfall(target, ability)

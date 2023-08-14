@@ -89,6 +89,7 @@ function baldur_2_modifier_dash:HorizontalMotion(unit, time)
       for _,enemy in pairs(enemies) do
         if self.target ~= enemy then
           if TargetHasModifierByAbility(enemy, "_modifier_stun", self.ability) == false then
+            ApplyBash(enemy, self.ability, self.stun_duration, self.damage, false)
           end
         end
       end
@@ -119,16 +120,4 @@ end
 
 function baldur_2_modifier_dash:PlayEfxStart()
 	if IsServer() then self.parent:EmitSound("Bald.Dash") end
-end
-
-function baldur_2_modifier_dash:PlayEfxImpact(target)
-  local sound_cast = "Hero_Spirit_Breaker.GreaterBash.Creep"
-  if target:IsHero() then sound_cast = "Hero_Spirit_Breaker.GreaterBash" end 
-
-  local particle_cast = "particles/econ/items/spirit_breaker/spirit_breaker_weapon_ti8/spirit_breaker_bash_ti8.vpcf"
-  local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_POINT_FOLLOW, target)
-  ParticleManager:SetParticleControlEnt(effect_cast, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
-  ParticleManager:ReleaseParticleIndex(effect_cast)
-
-  if IsServer() then target:EmitSound(sound_cast) end
 end
