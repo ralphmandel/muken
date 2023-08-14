@@ -15,7 +15,9 @@ function baldur_u_modifier_endurance:OnCreated(kv)
   self.delay = 0
 
   AddStatusEfx(self.ability, "baldur_u_modifier_endurance_status_efx", self.caster, self.parent)
-  AddBonus(self.ability, "CON", self.parent, self.ability:GetSpecialValueFor("con"), 0, nil)
+
+  self.ability:SetActivated(false)
+  self.ability:EndCooldown()
 
 	if IsServer() then
     self:SetStackCount(self.ability:GetSpecialValueFor("duration"))
@@ -30,8 +32,9 @@ end
 
 function baldur_u_modifier_endurance:OnRemoved()
   RemoveStatusEfx(self.ability, "baldur_u_modifier_endurance_status_efx", self.caster, self.parent)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff")
-  RemoveBonus(self.ability, "CON", self.parent)
+
+  self.ability:SetActivated(true)
+  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -88,23 +91,17 @@ end
 
 function baldur_u_modifier_endurance:ChangeTime(battle_state)
   local regen = 0
-  local ms = 0
-
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff")
 
   if battle_state == BATTLE_IN then
     regen = self.ability:GetSpecialValueFor("hp_regen_in")
-    ms = self.ability:GetSpecialValueFor("ms_in")
   end
 
   if battle_state == BATTLE_OUT then
     regen = self.ability:GetSpecialValueFor("hp_regen_out")
-    ms = self.ability:GetSpecialValueFor("ms_out")
   end
 
   self.battle_state = battle_state
   self.regen = regen
-  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {percent = ms}, false)
   if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 15, Vector(regen * 10, 0, 0)) end
 end
 

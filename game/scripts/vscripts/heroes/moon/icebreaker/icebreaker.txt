@@ -284,7 +284,7 @@
 
 		"AbilityValues"
 		{
-      "hits"	          "8"
+      "hits"	          "7"
       "ms_limit"	      "150"
       "radius_day"	    "900"
       "radius_night"	  "1200"

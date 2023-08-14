@@ -64,7 +64,7 @@
 			"agi"			          "25"
       "atk_range"			    "150"
       "slow_percent"	    "30"
-      "reload"	          "2"
+      "reload"	          "1.5"
       "fast_reload"	      "0.5"
       "fast_reload_delay" "1"
       "hits_to_recharge"  "3"

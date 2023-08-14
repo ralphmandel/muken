@@ -236,7 +236,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "paladin_1__link" then
-		if value_name == "AbilityManaCost" then return 400 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 550 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
     if value_name == "AbilityCharges" then return 1 end
@@ -248,7 +248,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "paladin_2__shield" then
-		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 20 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -256,7 +256,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "paladin_3__hammer" then
-		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 170 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 15 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 
@@ -265,14 +265,14 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "paladin_4__magnus" then
-		if value_name == "AbilityManaCost" then return 350 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 45 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "duration" then return 5 + (value_level * 0.1) end
 	end
 
 	if ability:GetAbilityName() == "paladin_5__smite" then
-		if value_name == "AbilityManaCost" then return 70 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 60 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
     if value_name == "AbilityCharges" then return 3 end

@@ -6,11 +6,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   genuine_5__nightfall.projectiles = {}
 
-  function genuine_5__nightfall:GetAbilityDamageType()
-    if self:GetSpecialValueFor("special_pure_dmg") == 1 then return DAMAGE_TYPE_PURE end
-    return DAMAGE_TYPE_MAGICAL
-  end
-
   function genuine_5__nightfall:GetCastPoint()
     return self:GetSpecialValueFor("cast_point")
   end
@@ -61,7 +56,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
     self.projectiles[projectile] = {}
     self.projectiles[projectile].damage = self:GetSpecialValueFor("damage")
-    self.projectiles[projectile].reduction = 1 - (self:GetSpecialValueFor("damage_reduction") * 0.01)
     self.projectiles[projectile].knockbackProperties = {
       center_x = caster:GetAbsOrigin().x + 1, center_y = caster:GetAbsOrigin().y + 1, center_z = caster:GetAbsOrigin().z,
       knockback_height = 0, duration = knockback / 2000, knockback_duration = knockback / 2000, knockback_distance = knockback
@@ -109,8 +103,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
         IncreaseMana(caster, self:GetSpecialValueFor("special_mana") * BaseStats(caster):GetHealPower())
       end
     end
-
-    data.damage = damage * data.reduction
   end
 
   function genuine_5__nightfall:OnProjectileThink(location)

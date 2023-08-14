@@ -13,6 +13,7 @@ function baldur_5_modifier_fire:OnCreated(kv)
   local interval = self.ability:GetSpecialValueFor("interval")
 
   AddBonus(self.ability, "STR", self.parent, self.ability:GetSpecialValueFor("str"), 0, nil)
+  AddBonus(self.ability, "INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
 
   self.damageTable = {
     victim = self.parent, attacker = self.caster,
@@ -35,8 +36,10 @@ function baldur_5_modifier_fire:OnRefresh(kv)
 end
 
 function baldur_5_modifier_fire:OnRemoved()
-  if IsServer() then self.parent:StopSound("Dasdingo.Ignite.Loop") end
   RemoveBonus(self.ability, "STR", self.parent)
+  RemoveBonus(self.ability, "INT", self.parent)
+
+  if IsServer() then self.parent:StopSound("Dasdingo.Ignite.Loop") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

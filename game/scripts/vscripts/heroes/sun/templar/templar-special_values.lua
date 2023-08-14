@@ -241,7 +241,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_2__barrier" then
-		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 160 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 14 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -249,7 +249,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_3__circle" then
-		if value_name == "AbilityManaCost" then return 325 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 360 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 35 end
     if value_name == "AbilityCastRange" then return 600 end
     if value_name == "rank" then return 6 + (value_level * 1) end
@@ -257,7 +257,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_4__hammer" then
-		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 18 end
     if value_name == "AbilityCastRange" then return 750 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -273,10 +273,10 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_u__praise" then
-		if value_name == "AbilityManaCost" then return 600 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 120 end
+		if value_name == "AbilityManaCost" then return 775 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 90 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "heal" then return 80 + (value_level * 2) end
+		if value_name == "heal" then return 60 + (value_level * 1) end
 	end
 
 	return 0

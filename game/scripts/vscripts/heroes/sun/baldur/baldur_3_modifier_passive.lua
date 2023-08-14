@@ -30,7 +30,6 @@ end
 
 function baldur_3_modifier_passive:OnTakeDamage(keys)
   if keys.unit ~= self.parent then return end
-  if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
   if self.parent:PassivesDisabled() then return end
   if self.parent:HasModifier("baldur_3_modifier_barrier") then return end
   if not IsServer() then return end
@@ -40,7 +39,7 @@ function baldur_3_modifier_passive:OnTakeDamage(keys)
   if self.damage_taken >= self.ability:GetSpecialValueFor("damage_taken") then
     self:IncrementStackCount()
 
-    local bonus_modifier = AddBonus(self.ability, "DEF", self.parent, 1, 0, self.ability:GetSpecialValueFor("stack_duration"))
+    local bonus_modifier = AddBonus(self.ability, "CON", self.parent, 1, 0, self.ability:GetSpecialValueFor("stack_duration"))
 
     bonus_modifier:SetEndCallback(function(interrupted)
       if IsServer() then self:DecrementStackCount() end

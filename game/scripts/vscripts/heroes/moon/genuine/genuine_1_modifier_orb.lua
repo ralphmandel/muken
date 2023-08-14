@@ -87,7 +87,8 @@ function genuine_1_modifier_orb:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
 
 	if self:ShouldLaunch(keys.target) then
-		self.ability:UseResources(true, false, false, false)
+		self.ability:UseResources(true, false, false, true)
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
 		self.records[keys.record] = true
 
 		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end
@@ -135,8 +136,7 @@ function genuine_1_modifier_orb:ShouldLaunch(target)
 		end
 	end
 
-	if self.cast and self.parent:IsSilenced() == false
-  and self.parent:GetMana() >= self.ability:GetManaCost(self.ability:GetLevel()) then
+	if self.cast and self.parent:IsSilenced() == false and self.ability:IsFullyCastable() then
 		return true
 	end
 

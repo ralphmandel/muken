@@ -183,6 +183,17 @@ end
     end
   end
 
+  function TargetHasModifierByAbility(target, name, ability)
+    local mod = target:FindAllModifiersByName(name)
+    for _,modifier in pairs(mod) do
+      if modifier:GetAbility() == ability or ability == nil then
+        return true
+      end
+    end
+
+    return false
+  end
+
 -- HEROES UTIL
 
   function IsMetamorphosis(ability_name, target)
@@ -193,6 +204,22 @@ end
       end
     end
     return 0
+  end
+
+  function ApplyBash(target, ability, stun_duration, damage, bGreater)
+    local stun_mult = 1
+    if bGreater == false then stun_mult = 0.25
+
+    AddModifier(target, ability, "_modifier_stun", {duration = stun_duration * stun_mult}, true)
+    AddModifier(target, ability, "modifier_knockback", {
+      duration = 0.25,
+      knockback_duration = 0.25,
+      knockback_distance = CalcStatus(stun_duration * 50, self.caster, enemy),
+      center_x = self.parent:GetAbsOrigin().x + 1,
+      center_y = self.parent:GetAbsOrigin().y + 1,
+      center_z = self.parent:GetAbsOrigin().z,
+      knockback_height = self.stun_duration * 20,
+    }, false)
   end
 
   function CreateStarfall(target, ability)

@@ -39,8 +39,10 @@ function genuine_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "atk_range" then return 1 end
+		if value_name == "charges" then return 1 end
 
 		if caster:FindAbilityByName("genuine_1__shooting_rank_11") then
       if value_name == "damage" then return 1 end
@@ -271,7 +273,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "genuine_1__shooting" then
 		if value_name == "AbilityManaCost" then
-      local manacost = 50 * (1 + ((ability_level - 1) * 0.05))
+      local manacost = 30 * (1 + ((ability_level - 1) * 0.05))
       if caster:FindAbilityByName("genuine_1__shooting_rank_21") then
         return manacost * 0.8
       end
@@ -289,8 +291,10 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
+    if value_name == "AbilityCharges" then return ability:GetSpecialValueFor("charges") end
+    if value_name == "AbilityChargeRestoreTime" then return 3 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "atk_range" then return 0 + (value_level * 20) end
+		if value_name == "charges" then return 20 + (value_level * 1) end
 
     if value_name == "damage" then return 70 end
     if value_name == "proj_speed" then return 1200 end
@@ -304,7 +308,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_2__fallen" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "distance" then return 500 + (value_level * 50) end
@@ -340,7 +344,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_5__nightfall" then
-		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("arrow_range") end
     if value_name == "AbilityCharges" then return 2 end
@@ -357,7 +361,7 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "genuine_u__morning" then
-		if value_name == "AbilityManaCost" then return 550 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 950 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 120 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
     if value_name == "duration" then return 15 + (value_level * 0.3) end
