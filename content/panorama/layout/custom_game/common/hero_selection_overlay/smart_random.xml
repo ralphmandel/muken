@@ -1,0 +1,14 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/common/hero_selection_overlay/smart_random.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/hero_selection_overlay/smart_random.vjs_c" />
+	</scripts>
+	<Button class="SmartRandomButton" onactivate="Activate()" onmouseover="OnMouseOver()" onmouseout="OnMouseOut()">
+		<Label text="#smart_random_button" />
+	</Button>
+</root>

@@ -1,0 +1,8 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/pick_locker/pick_locker.vjs_c" />
+	</scripts>
+	<Panel hittest="false" />
+</root>

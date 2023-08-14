@@ -1,0 +1,11 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/common/hero_selection_overlay/patreon_bonus_button.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/hero_selection_overlay/patreon_bonus_button.vjs_c" />
+	</scripts>
+</root>

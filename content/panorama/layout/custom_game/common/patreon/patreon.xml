@@ -1,0 +1,54 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/common/patreon/patreon.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/patreon/patreon.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PatreonPerk">
+			<Panel class="PatreonPerk">
+				<Image id="PatreonPerkImage" src="none" />
+				<Panel id="PatreonPerkRightColumn">
+					<Label id="PatreonPerkTitle" />
+					<Label id="PatreonPerkAccess" />
+					<Panel id="PatreonPerkAdditional">
+						<Label id="PateonPerkDescription" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="PatreonRoot">
+		<Panel id="LocalServerWarningContainer">
+			<Label id="LocalServerWarningLabel" text="#local_lobby_warning" />
+			<Button id="LocalServerWarningButton" onactivate="CloseLocalServerWarning()">
+				<Label id="LocalServerWarningButtonLabel" text="#local_lobby_confirm" />
+			</Button>
+		</Panel>
+		<Panel id="PatreonButtonPanel">
+			<Image id="VOIcon" src="s2r://panorama/layout/custom_game/common/patreon/voicon_png.vtex" onmouseover="ShowVOIconButton()" onmouseout="HideVOIconButton()" />
+			<TextButton id="PatreonButton" onactivate="OpenShop()" text="#patreon_perks" />
+			<Button id="PatreonButtonSmallerImage" onmouseover="ShowClosePatreonButton()" onmouseout="HideClosePatreonButton()">
+				<Image src="s2r://panorama/layout/custom_game/common/patreon/small_button_png.vtex" onactivate="OpenShop()" />
+			</Button>
+			<Button id="CloseVOIconButton" onactivate="CloseVOIconButton();" onmouseover="ShowVOIconButton()" onmouseout="HideVOIconButton()" />
+			<Button id="ClosePatreonButton" onactivate="ClosePatreonButton();" onmouseover="ShowClosePatreonButton()" onmouseout="HideClosePatreonButton()" />
+			<Panel id="NewMethodsAnnouncement" hittest="false">
+				<Image id="NewMethodsAnnouncementImage" src="s2r://panorama/layout/custom_game/common/patreon/new_methods_announcement_png.vtex" />
+				<Panel id="NewMethodsAnnouncementText">
+					<Label html="true" text="#patreon_new_methods_announcement" />
+					<Panel id="NewMethodsAnnouncementImages">
+						<Image onactivate="OpenShop()" src="s2r://panorama/images/custom_game/payment/payment_wechat_png.vtex" />
+						<Image onactivate="OpenShop()" src="s2r://panorama/images/custom_game/payment/payment_alipay_png.vtex" />
+						<Image onactivate="OpenShop()" src="s2r://panorama/images/custom_game/payment/payment_card_png.vtex" />
+					</Panel>
+				</Panel>
+				<Button class="PatreonCloseButtonX" onactivate="hideNewMethodsAnnouncement()" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

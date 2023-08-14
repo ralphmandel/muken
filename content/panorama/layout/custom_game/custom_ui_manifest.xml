@@ -6,6 +6,38 @@
     var NoTalents = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoTalentGlow = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoAghanimsPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
+   
+   
+    function OnTeamNameUpdate() {
+      var TeamName = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("GridCategories");
+      $.Msg(TeamName.GetChildCount());
+      for(var i=0; i <= TeamName.GetChildCount(); i++) {
+        //var CategoryName = TeamName.GetChild(i).FindChildTraverse("HeroCategoryName");
+        $.Msg(i, TeamName.GetChild(i));
+        if (CategoryName.text == "STRENGTH") {
+          CategoryName.text = "DEATH";
+        }
+         if (CategoryName.text == "AGILITY") {
+          CategoryName.text = "NATURE";
+        }
+         if (CategoryName.text == "INTELLIGENCE") {
+          CategoryName.text = "MOON";
+        }
+         if (CategoryName.text == "BALANCED") {
+          CategoryName.text = "SUN";
+        }
+      }
+    }
+
+    (function() {
+    GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
+    })();
+
+
+
+    //.FindChildTraverse("HeroCategory").FindChildTraverse("CategoryIcon").FindChildTraverse("StrengthIcon").FindChildTraverse("HeroCategoryName");
+    //OffTeamName.innerHTML = 'OFFENSIVE ★★★ UTILITY ★★';
+
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
     NoAghanimsPanel.FindChildTraverse("AghsStatusContainer").style.visibility = "collapse";
@@ -65,6 +97,8 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_stats.xml"/>
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_info.xml"/>
     
+    <CustomUIElement type="FlyoutScoreboard"    layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml"/>
+
     <!-- From Overthrow.
 
         <CustomUIElement type="HudTopBar"           layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />

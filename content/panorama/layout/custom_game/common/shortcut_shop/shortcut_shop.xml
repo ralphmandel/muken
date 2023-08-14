@@ -1,0 +1,11 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/shortcut_shop/shortcut_shop.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/common/shortcut_shop/shortcut_shop.vcss_c" />
+	</styles>
+	<Panel class="shortcut_items" hittest="false" />
+</root>

@@ -1,0 +1,23 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/common/fix_custom_game/fix_custom_game.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/fix_custom_game/fix_custom_game.vjs_c" />
+	</scripts>
+	<Panel class="FixCG_Root" hittest="false">
+		<Image id="FixCG_Image" src="s2r://panorama/layout/custom_game/common/fix_custom_game/fix_custom_game_bg_png.vtex" />
+		<Panel id="FixCG_MainText">
+			<Label id="FixCG_Header" hittest="false" text="#fix_game_header" />
+			<Label id="FixCG_Description" hittest="false" text="#fix_game_description" />
+		</Panel>
+		<Button class="FixCG_Button" id="FixCG_More" onactivate="ExternalBrowserGoToURL(&apos;https://fcalife.github.io/fixthelobbies/&apos;)">
+			<Label class="FixCH_ButtonText" text="#fix_game_more" />
+		</Button>
+		<Button class="FixCG_Button" id="FixCG_Dismiss" onactivate="CloseFixGame()">
+			<Label class="FixCH_ButtonText" text="#fix_game_dismiss" />
+		</Button>
+	</Panel>
+</root>

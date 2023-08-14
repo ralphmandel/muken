@@ -1,0 +1,44 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/common/neutral_items/neutral_items.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/neutral_items/neutral_items.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="NewItem">
+			<Panel class="NewItem">
+				<Panel class="Main">
+					<DOTAItemImage id="ItemImage" />
+					<Panel class="Buttons">
+						<TextButton id="ButtonKeep" class="Button" text="#neutral_item_keep" />
+						<TextButton id="ButtonDrop" class="Button" text="#neutral_item_drop" />
+					</Panel>
+				</Panel>
+				<Panel id="Countdown" />
+			</Panel>
+		</snippet>
+		<snippet name="TakeItem">
+			<Panel class="NewItem">
+				<Panel class="Main">
+					<DOTAItemImage id="ItemImage" />
+					<TextButton id="ButtonTake" class="Button" text="#neutral_item_take" />
+				</Panel>
+				<Panel id="CloseButton" />
+				<Panel id="Countdown" />
+			</Panel>
+		</snippet>
+		<snippet name="WhoTakedItem">
+			<Panel class="NewItem" style="flow-children: right;">
+				<Image id="HeroImage" />
+				<Image id="NeutralItemTakedPointer" src="s2r://panorama/images/custom_game/pointer_png.vtex" />
+				<DOTAItemImage id="ItemImage" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="Hud">
+		<Panel id="ItemsContainer" />
+	</Panel>
+</root>

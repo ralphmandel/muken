@@ -1,0 +1,8 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/common/auto_attack_settings/index.vjs_c" />
+	</scripts>
+	<Panel style="visibility:collapse;" hittest="false" />
+</root>

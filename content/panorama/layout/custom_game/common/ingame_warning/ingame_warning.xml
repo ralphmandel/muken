@@ -1,0 +1,10 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/common/ingame_warning/ingame_warning.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/common/ingame_warning/ingame_warning.vjs_c" />
+	</scripts>
+	<Panel class="IngameWarningRoot" hittest="false" />
+</root>
