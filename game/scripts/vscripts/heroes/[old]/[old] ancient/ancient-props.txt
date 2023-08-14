@@ -40,7 +40,7 @@
 			"Ability31"						"_void"
 			"Ability32"						"ancient__precache"
 
-		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributePrimary"				"OLDD"
 		"AttributeBaseStrength"			"0"            // Base strength
 		"AttributeStrengthGain"			"0"            // Strength bonus per level.
 		"AttributeBaseAgility"			"0"            // Base agility

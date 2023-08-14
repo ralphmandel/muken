@@ -40,7 +40,7 @@
 			"Ability31"						"null"		
 			"Ability32"						"null"
 
-		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"			"0"            // Base strength
 		"AttributeStrengthGain"			"0"            // Strength bonus per level.
 		"AttributeBaseAgility"			"0"            // Base agility

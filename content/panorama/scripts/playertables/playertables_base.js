@@ -235,4 +235,25 @@ function DeleteTableKeys(msg)
   GameEvents.Subscribe( "pt_fu", TableFullUpdate);
   GameEvents.Subscribe( "pt_uk", UpdateTable);
   GameEvents.Subscribe( "pt_kd", DeleteTableKeys);
+  GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
 })()
+
+function OnTeamNameUpdate() {
+  var TeamName = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("GridCategories");
+  $.Msg('kubo', TeamName.GetChildCount());
+  for(var i = 0; i <= TeamName.GetChildCount() - 1; i++) {
+    var CategoryName = TeamName.GetChild(i).FindChildTraverse("HeroCategoryName");
+    if (CategoryName.text == "STRENGTH") {
+      CategoryName.text = "DEATH";
+    }
+     if (CategoryName.text == "AGILITY") {
+      CategoryName.text = "NATURE";
+    }
+     if (CategoryName.text == "INTELLIGENCE") {
+      CategoryName.text = "MOON";
+    }
+     if (CategoryName.text == "UNIVERSAL") {
+      CategoryName.text = "SUN";
+    }
+  }
+}

@@ -19,12 +19,14 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
 
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "team_name_from_server", {})
+    Timers:CreateTimer(0.5, function()
+      CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "team_name_from_server", {})
+    end)
   end
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
     if IsInToolsMode() then
-      LoadBots()
+      --LoadBots()
       AddFOWViewer(DOTA_TEAM_CUSTOM_5, Vector(0, 0, 0), 5000, 9999, false)
     else
       LoadBots()
