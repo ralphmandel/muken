@@ -102,8 +102,8 @@
 				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
 				m_flMultFactor = 1.0
 				m_flInput0 = 0.0
-				m_flInput1 = 7.0
-				m_flOutput0 = 7.0
+				m_flInput1 = 5.0
+				m_flOutput0 = 5.0
 				m_flOutput1 = 0.0
 				m_flNotchedRangeMin = 0.0
 				m_flNotchedRangeMax = 1.0

@@ -1,5 +1,5 @@
 var INFO_WINDOW, INFO_CONTAINER = {}, INFO_LAYOUT = {};
-var isWindowOpened = false;
+var isWindowOpened = true;
 
 // LAYOUT CREATION
   function CreateLayout() {

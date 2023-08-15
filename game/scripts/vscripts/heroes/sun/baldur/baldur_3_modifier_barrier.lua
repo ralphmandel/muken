@@ -6,6 +6,8 @@ function baldur_3_modifier_barrier:IsPurgable() return true end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function baldur_3_modifier_barrier:OnCreated(kv)
+  if not IsServer() then return end
+
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
@@ -66,8 +68,6 @@ function baldur_3_modifier_barrier:GetModifierIncomingDamageConstant(keys)
 end
 
 function baldur_3_modifier_barrier:OnIntervalThink()
-  if not IsServer() then return end
-
   local interval = 0.1
 
   self.barrier = self.barrier - (self.ability:GetSpecialValueFor("barrier_loss") * interval)

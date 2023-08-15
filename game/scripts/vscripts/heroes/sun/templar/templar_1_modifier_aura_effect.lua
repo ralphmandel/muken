@@ -92,6 +92,7 @@ function templar_1_modifier_aura_effect:PlayEfxStart()
   if GetHeroName(self.parent:GetUnitName()) == "ancient" then size = 250 end
   if GetHeroName(self.parent:GetUnitName()) == "paladin" then size = 215 end
   if GetHeroName(self.parent:GetUnitName()) == "templar" then size = 235 end
+  if GetHeroName(self.parent:GetUnitName()) == "baldur" then size = 175 end
 
   if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, true) end
 

@@ -57,7 +57,7 @@
 		{
       "gesture_time"  "0.31"//"0.3875"
       "gesture_mult"  "1.03"
-      "max_charge"    "7.5"
+      "max_charge"    "6"
       "stun_max"      "4"
       "damage_max"    "400"
       "slow_percent"  "30"
@@ -139,9 +139,9 @@
       "damage"          "250"
       "damage_burn"     "50"
       "interval"        "0.5"
+      "debuff_duration" "8"
       "str"             "-15"
       "int"             "-15"
-      "debuff_duration" "8"
       "speed"           "1350"
 			"range"			      "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
@@ -168,7 +168,7 @@
 		{
       "hp_regen_in"   "1"
       "hp_regen_out"  "3"
-      "lifesteal"     "30"
+      "lifesteal"     "20"
       "time_out"      "200"
       "delay"         "3"
 			"duration"      "1 2 3 4 5 6 7 8 9 10 11"

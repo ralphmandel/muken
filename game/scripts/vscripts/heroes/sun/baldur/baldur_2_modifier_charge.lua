@@ -55,7 +55,7 @@ end
 
 function baldur_2_modifier_charge:OnStateChanged(keys)
   if keys.unit ~= self.parent then return end
-  if self.parent:IsStunned() or self.parent:IsHexed() then
+  if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsSilenced() then
     self:EndCharge(true)
   end
 end
@@ -92,8 +92,13 @@ end
 -- UTILS -----------------------------------------------------------
 
 function baldur_2_modifier_charge:EndCharge(bInterrupt)
-  self.ability:SetCurrentAbilityCharges(BALDUR_READY)
-  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+  if bInterrupt then
+    self.ability:SetCurrentAbilityCharges(BALDUR_READY_NO_MANACOST)
+  else
+    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
+    self.ability:SetCurrentAbilityCharges(BALDUR_READY)
+  end
+
   self:Destroy()
 end
 

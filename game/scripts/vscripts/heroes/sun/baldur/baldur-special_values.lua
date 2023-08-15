@@ -244,7 +244,8 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "baldur_2__dash" then
 		if value_name == "AbilityManaCost" then
-      if ability:GetCurrentAbilityCharges() == BALDUR_CHARGING then
+      if ability:GetCurrentAbilityCharges() == BALDUR_CHARGING 
+      or ability:GetCurrentAbilityCharges() == BALDUR_READY_NO_MANACOST then
         return 0
       end
 

@@ -12,6 +12,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     self:SetCurrentAbilityCharges(BALDUR_READY)
   end
 
+  function baldur_2__dash:OnOwnerSpawned()
+    self:SetCurrentAbilityCharges(BALDUR_READY)
+  end
+
   function baldur_2__dash:GetBehavior()
     if self:GetCurrentAbilityCharges() == BALDUR_CHARGING then
       return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
@@ -33,7 +37,8 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 	function baldur_2__dash:OnSpellStart()
 		local caster = self:GetCaster()
 
-    if self:GetCurrentAbilityCharges() == BALDUR_READY then
+    if self:GetCurrentAbilityCharges() == BALDUR_READY
+    or self:GetCurrentAbilityCharges() == BALDUR_READY_NO_MANACOST then
       caster:RemoveModifierByName("baldur_2_modifier_dash")
       AddModifier(caster, self, "baldur_2_modifier_charge", {}, false)
       self:EndCooldown()
@@ -58,9 +63,10 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
         }, false)
 
         modifier:EndCharge(false)
+      else
+        self:SetCurrentAbilityCharges(BALDUR_READY)
       end
 
-      self:SetCurrentAbilityCharges(BALDUR_READY)
       return
     end
 	end
