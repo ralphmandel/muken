@@ -21,6 +21,10 @@ function bocuse_5_modifier_root:OnRemoved()
   RemoveBonus(self.ability, "AGI", self.parent)
 end
 
+function bocuse_5_modifier_root:OnDestroy(kv)
+  if self.endCallback then self.endCallback(self.interrupted) end
+end
+
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bocuse_5_modifier_root:DeclareFunctions()
@@ -37,5 +41,9 @@ function bocuse_5_modifier_root:OnStateChanged(keys)
 end
 
 -- UTILS -----------------------------------------------------------
+
+function bocuse_5_modifier_root:SetEndCallback(func)
+	self.endCallback = func
+end
 
 -- EFFECTS -----------------------------------------------------------

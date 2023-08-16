@@ -6,9 +6,13 @@ _general_script = class({})
   local fleaman = require("_bot_scripts/fleaman")
   local bloodstained = require("_bot_scripts/bloodstained")
   local bocuse = require("_bot_scripts/bocuse")
+
   local dasdingo = require("_bot_scripts/dasdingo")
+  local hunter = require("_bot_scripts/hunter")
+
   local genuine = require("_bot_scripts/genuine")
   local icebreaker = require("_bot_scripts/icebreaker")
+  
   local ancient = require("_bot_scripts/ancient")
   local paladin = require("_bot_scripts/paladin")
   local templar = require("_bot_scripts/templar")
@@ -46,6 +50,7 @@ _general_script = class({})
   local MID_HEALTH_PERCENT = 50
   local FULL_HEALTH_PERCENT = 100
   local CUSTOM_HEALTH_PERCENT_BLOODSTAINED = 15
+  local CUSTOM_HEALTH_PERCENT_BALDUR = 20
   local LOW_MANA_PERCENT = 15
   local MID_MANA_PERCENT = 40
   local FULL_MANA_PERCENT = 100
@@ -285,24 +290,26 @@ _general_script = class({})
 
       if current_action == ACTION_AGRESSIVE_SEEK_TARGET then
         if target_state == TARGET_STATE_MISSING then
-          if self.missing_start_time == nil then
-            self.missing_start_time = GameRules:GetGameTime()
-          end
-          if GameRules:GetGameTime() - self.missing_start_time > MISSING_MAX_TIME then
-            self.target_last_loc = nil
-          end
-
-          if self.target_last_loc == nil then
-            self.attack_target = nil
-          else
-            if self:IsOutOfRange(self.target_last_loc) then
-              self.attack_target = nil
+          if self.abilityScript:TrySpell(self.target_last_loc, BOT_STATE_AGGRESSIVE_SEEK_TARGET) == false then
+            if self.missing_start_time == nil then
+              self.missing_start_time = GameRules:GetGameTime()
             end
-            if (self.target_last_loc - self.parent:GetOrigin()):Length2D() > 100 then
-              self.agressive_loc = self.target_last_loc
-              self:MoveBotTo("location", self.agressive_loc)              
-            else
+            if GameRules:GetGameTime() - self.missing_start_time > MISSING_MAX_TIME then
               self.target_last_loc = nil
+            end
+  
+            if self.target_last_loc == nil then
+              self.attack_target = nil
+            else
+              if self:IsOutOfRange(self.target_last_loc) then
+                self.attack_target = nil
+              end
+              if (self.target_last_loc - self.parent:GetOrigin()):Length2D() > 100 then
+                self.agressive_loc = self.target_last_loc
+                self:MoveBotTo("location", self.agressive_loc)              
+              else
+                self.target_last_loc = nil
+              end
             end
           end
         end
@@ -548,7 +555,7 @@ _general_script = class({})
       for index, ability_name in pairs(skills_data) do
         local ability = self.parent:FindAbilityByName(ability_name)
         if ability and tonumber(index) < 6 then
-          if ability:IsTrained() == false then
+          if ability:IsTrained() == false and ability:GetAbilityName() ~= "hunter_4__bandage" then
             i = i + 1
             available_abilities[i] = ability
           end
@@ -645,7 +652,10 @@ _general_script = class({})
       return bloodstained
     end
 
-    if GetHeroName(self.parent:GetUnitName()) == "fleaman" then return fleaman end
+    if GetHeroName(self.parent:GetUnitName()) == "baldur" then
+      self.low_health = CUSTOM_HEALTH_PERCENT_BALDUR
+      return baldur
+    end
 
     if GetHeroName(self.parent:GetUnitName()) == "ancient" then
       self.low_mana = CUSTOM_ENERGY_PERCENT
@@ -656,10 +666,11 @@ _general_script = class({})
 
     if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then return lawbreaker end
     if GetHeroName(self.parent:GetUnitName()) == "bocuse" then return bocuse end
+    if GetHeroName(self.parent:GetUnitName()) == "fleaman" then return fleaman end
     if GetHeroName(self.parent:GetUnitName()) == "dasdingo" then return dasdingo end
+    if GetHeroName(self.parent:GetUnitName()) == "hunter" then return hunter end
     if GetHeroName(self.parent:GetUnitName()) == "genuine" then return genuine end
     if GetHeroName(self.parent:GetUnitName()) == "icebreaker" then return icebreaker end
     if GetHeroName(self.parent:GetUnitName()) == "paladin" then return paladin end
     if GetHeroName(self.parent:GetUnitName()) == "templar" then return templar end
-    if GetHeroName(self.parent:GetUnitName()) == "baldur" then return baldur end
   end

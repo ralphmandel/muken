@@ -137,7 +137,7 @@
 			"SoundSet"					"n_creep_Melee"
 			"GameSoundsFile"		""
 			"Level"						  "0"
-			"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+			"BoundsHullName"            "DOTA_HULL_SIZE_HUGE"
 			"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_NONE"
 			"AttackCapabilities"				"DOTA_UNIT_CAP_NO_ATTACK"
 			"AttackRange"					"0"

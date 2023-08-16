@@ -79,4 +79,5 @@ function hunter__precache:Precache(context)
   PrecacheResource("particle", "particles/units/heroes/hero_bounty_hunter/bounty_hunter_lookout.vpcf", context)
   PrecacheResource("particle", "particles/items2_fx/mask_of_madness.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
+  PrecacheResource("particle", "particles/items3_fx/star_emblem.vpcf", context)
 end

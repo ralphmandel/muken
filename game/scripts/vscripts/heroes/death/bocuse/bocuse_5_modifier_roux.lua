@@ -11,7 +11,7 @@ function bocuse_5_modifier_roux:GetAuraRadius() return self:GetAbility():GetAOER
 function bocuse_5_modifier_roux:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
 function bocuse_5_modifier_roux:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
 function bocuse_5_modifier_roux:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
-function bocuse_5_modifier_roux:GetAuraEntityReject(hEntity) return hEntity:IsRooted() end
+function bocuse_5_modifier_roux:GetAuraEntityReject(hEntity) return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -20,10 +20,6 @@ function bocuse_5_modifier_roux:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.init = true
-
-  if self.ability:GetSpecialValueFor("special_pull") == 1 then
-    self:PullEnemies()
-  end
 
 	if IsServer() then
 		self.parent:EmitSound("Hero_Bocuse.Roux")
@@ -55,22 +51,6 @@ function bocuse_5_modifier_roux:OnIntervalThink()
 end
 
 -- UTILS -----------------------------------------------------------
-
-function bocuse_5_modifier_roux:PullEnemies()
-  if IsServer() then self.parent:EmitSound("Hero_Dark_Seer.Vacuum") end
-
-	local enemies = FindUnitsInRadius(
-		self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius() + 50,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0, 0, false
-	)
-
-  for _,enemy in pairs(enemies) do
-    AddModifier(enemy, self.ability, "_modifier_pull", {
-      duration = 0.5, x = self.parent:GetOrigin().x, y = self.parent:GetOrigin().y,
-    }, false)
-	end
-end
 
 -- EFFECTS -----------------------------------------------------------
 

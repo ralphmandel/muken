@@ -153,80 +153,6 @@
       "slow_as"	          "0"
       "slow_duration"	    "0"
 		}
-
-		"AbilitySpecial"
-		{
-      "01"
-			{
-				"var_type"	      "FIELD_FLOAT"
-				"hypo_stack"	    "5"
-			}
-      "02"
-			{
-				"var_type"	      "FIELD_FLOAT"
-				"slow"	          "50"
-			}
-      "02"
-			{
-				"var_type"	      "FIELD_FLOAT"
-				"blast_speed"	    "350"
-			}
-      "03"
-			{
-				"var_type"        "FIELD_FLOAT"
-				"blast_radius"	  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "10"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_ms"	        "0"
-			}
-      "11"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_as"	        "0"
-			}
-      "12"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"max_hypo_stack"	"0"
-			}
-      "13"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"hypo_duration"	    "0"
-			}
-      "14"
-			{
-				"var_type"		    "FIELD_FLOAT"
-				"frozen_duration"	"0"
-			}
-			"15"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
-			}
-      "16"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_cooldown"	    "0"
-			}
-      "17"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_break"   	    "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_heal"   	      "0"
-			}
-      "18"
-			{
-				"var_type"		          "FIELD_FLOAT"
-				"special_fear_duration" "0"
-			}
-		}
 	}
 
 	"icebreaker_5__blink"
@@ -250,7 +176,7 @@
 
 		"AbilityValues"
 		{
-      "damage"	        "300"
+      "damage"	        "350"
       "cast_range"	    "1 2 3 4 5 6 7 8 9 10 11"
       "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
       "frozen_duration"	"0"

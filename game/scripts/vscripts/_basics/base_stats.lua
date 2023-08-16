@@ -878,6 +878,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local value = self.stat_total["LCK"] * self.critical_chance
 
       local calc = (value * 6) / (1 +  (value * 0.06))
+
       return calc
 		end
 

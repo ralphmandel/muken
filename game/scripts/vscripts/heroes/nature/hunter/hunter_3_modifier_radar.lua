@@ -14,6 +14,7 @@ function hunter_3_modifier_radar:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
   self.radius = self.ability:GetAOERadius()
+  self.bonus_radius = self.ability:GetSpecialValueFor("bonus_radius")
   self.state = RADAR_STATE_SEARCHING
 
   local loc = self.parent:GetOrigin()
@@ -60,7 +61,7 @@ function hunter_3_modifier_radar:OnIntervalThink()
 
     local loc = self.parent:GetOrigin()
     MinimapEvent(self.caster:GetTeamNumber(), self.caster, loc.x, loc.y, DOTA_MINIMAP_EVENT_RADAR_TARGET, 1)
-    AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius, self:GetDuration(), false)
+    AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius + self.bonus_radius, self:GetDuration(), false)
     self.state = RADAR_STATE_REVEAL
   end
 

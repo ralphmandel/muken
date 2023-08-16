@@ -1,6 +1,7 @@
 "use strict";
 
 var isEndScreen = false;
+var score_table = {6: 0, 7: 0, 8: 0, 9: 0};
 
 var newStatsInEndScreen = [
 	{
@@ -374,7 +375,7 @@ function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, te
 		teamsInfo.max_team_players = teamPlayers.length;
 	}
 
-	_ScoreboardUpdater_SetTextSafe(teamPanel, "TeamScore", teamDetails.team_score);
+	_ScoreboardUpdater_SetTextSafe(teamPanel, "TeamScore", score_table[teamId]);
 	_ScoreboardUpdater_SetTextSafe(teamPanel, "TeamName", $.Localize(teamDetails.team_name));
 
 	if (GameUI.CustomUIConfig().team_colors) {
@@ -588,3 +589,12 @@ function ShowChatEndScreen() {
 	endScreenButtons.ToggleClass("chat");
 	endScreen.ToggleClass("chat");
 }
+
+function OnScoreUpdate(event) {
+  score_table = event[1];
+}
+
+(function() {
+  $.Msg("kubo score 1");
+  GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
+})();

@@ -9,7 +9,6 @@ function hunter_5_modifier_trap:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
-  self.delay = true
 
   self.hits = self.ability:GetSpecialValueFor("hits") * 4
   self.min_health = self.hits
@@ -22,9 +21,11 @@ function hunter_5_modifier_trap:OnCreated(kv)
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), self:GetDuration(), false
   )
 
+  AddModifier(self.parent, self.ability, "hunter_5_modifier_trap_invi", {}, false)
+
   if IsServer() then
     self:PlayEfxStart()
-    self:StartIntervalThink(self.ability:GetSpecialValueFor("delay"))
+    self:StartIntervalThink(FrameTime())
 	end
 end
 
@@ -86,12 +87,6 @@ function hunter_5_modifier_trap:OnAttacked(keys)
 end
 
 function hunter_5_modifier_trap:OnIntervalThink()
-  if self.delay == true then
-    self:PlayEfxHide()
-    AddModifier(self.parent, self.ability, "_modifier_invisible", {delay = 0}, false)
-    self.delay = false
-  end
-
   local enemies = FindUnitsInRadius(
     self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
     self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
@@ -100,9 +95,14 @@ function hunter_5_modifier_trap:OnIntervalThink()
 
   for _,enemy in pairs(enemies) do
     AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.ability:GetSpecialValueFor("vision_radius"), 3, false)
+    
     AddModifier(enemy, self.ability, "hunter_5_modifier_debuff", {
       duration = self.ability:GetSpecialValueFor("debuff_duration")
     }, true)
+
+    AddModifier(enemy, self.ability, "_modifier_pull", {
+      duration = 0.1, x = self.parent:GetOrigin().x, y = self.parent:GetOrigin().y
+    }, false)
 
     self:Destroy()
   end
@@ -121,13 +121,4 @@ function hunter_5_modifier_trap:PlayEfxStart()
   self:AddParticle(particle, false, false, -1, false, false)
 
 	if IsServer() then self.parent:EmitSound("Hero_Techies.RemoteMine.Plant") end
-end
-
-function hunter_5_modifier_trap:PlayEfxHide()
-	local particle_cast = "particles/econ/items/gyrocopter/gyro_ti10_immortal_missile/gyro_ti10_immortal_missile_explosion.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin() )
-	self:AddParticle(effect_cast, false, false, -1, false, false)
-
-  if IsServer() then self.parent:EmitSound("Hunter.Invi") end
 end

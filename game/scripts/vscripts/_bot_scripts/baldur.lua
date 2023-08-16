@@ -109,7 +109,9 @@ function baldur:TryCast_Fire()
     end
 
     dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
+    
     if target == nil and dist_diff > min_range and dist_diff < max_range then target = self.target end
+    if target == nil then return false end
     if target:IsHero() == false and target:IsConsideredHero() == false then return false end
 
     self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())

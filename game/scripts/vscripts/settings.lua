@@ -137,7 +137,7 @@ BOTS = {}
 BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
-  "dasdingo",
+  "dasdingo", "hunter",
   "paladin", "templar", "baldur"
 }
 
@@ -156,6 +156,7 @@ RANDOM_NAMES = {
   [12] = "Do Jun"
 }
 
+TEMP_DEL = 0
 BOT_STATE_REST = 0
 BOT_STATE_AGGRESSIVE = 1
 BOT_STATE_FLEE = 2

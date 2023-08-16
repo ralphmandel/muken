@@ -10,6 +10,8 @@ function hunter_5_modifier_debuff:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  AddBonus(self.ability, "DEF", self.parent, 0, self.ability:GetSpecialValueFor("base_def"), nil)
+
   self:SetDebuffs(true)
 end
 
@@ -26,6 +28,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function hunter_5_modifier_debuff:SetDebuffs(bEnabled)
+  RemoveBonus(self.ability, "DEF", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_root", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bleeding", self.ability)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
@@ -33,14 +36,18 @@ function hunter_5_modifier_debuff:SetDebuffs(bEnabled)
   if bEnabled == true then
     AddModifier(self.parent, self.ability, "_modifier_bleeding", {}, false)
 
-    AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
-      percent = self.ability:GetSpecialValueFor("slow")
-    }, false)
-  
     AddModifier(self.parent, self.ability, "_modifier_root", {
-      duration = self.ability:GetSpecialValueFor("root_duration")
+      duration = self.ability:GetSpecialValueFor("root_duration"), effect = 9
     }, true)
   end
 end
 
 -- EFFECTS -----------------------------------------------------------
+
+function hunter_5_modifier_debuff:GetEffectName()
+	return "particles/items3_fx/star_emblem.vpcf"
+end
+
+function hunter_5_modifier_debuff:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

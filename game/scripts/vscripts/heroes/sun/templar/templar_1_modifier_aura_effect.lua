@@ -96,8 +96,6 @@ function templar_1_modifier_aura_effect:PlayEfxStart()
 
   if self.effect_cast then ParticleManager:DestroyParticle(self.effect_cast, true) end
 
-  print("kubo", shield_count, math.floor(100 / shield_count), size)
-
 	self.effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(self.effect_cast, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:SetParticleControl(self.effect_cast, 3, Vector(special, 0, 0))

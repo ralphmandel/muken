@@ -363,18 +363,12 @@ function bocuse_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "bocuse_5__roux" then
-		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
-		
-    if value_name == "AbilityCooldown" then
-      if caster:FindAbilityByName("bocuse_5__roux_rank_22") then
-        return 15
-      end
-      return 20
-    end
+		if value_name == "AbilityManaCost" then return 325 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 30 end
     
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 400 + (value_level * 10) end
+		if value_name == "radius" then return 350 + (value_level * 10) end
 
     if value_name == "slow" then return 125 end
     if value_name == "special_pull" then return 1 end

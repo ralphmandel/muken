@@ -280,22 +280,22 @@
 			"01"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"lifetime"		  "10"
+				"lifetime"		  "15"
 			}
       "02"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"slow"		      "100"
+				"slow"		      "150"
 			}
       "03"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"root_interval" "3"
+				"root_interval" "1.25"
 			}
       "04"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"root_duration" "1"
+				"root_duration" "0.5"
 			}
       "05"
 			{
@@ -315,7 +315,7 @@
       "16"
 			{
 				"var_type"		  "FIELD_FLOAT"
-				"special_pull"  "0" 
+				"special_pull"  "1" 
 			}
       "17"
 			{

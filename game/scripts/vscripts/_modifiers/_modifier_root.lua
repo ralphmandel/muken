@@ -12,35 +12,38 @@ function _modifier_root:OnCreated(kv)
 	self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-	self.effect = kv.effect or 0
-	self.sound = "Druid.Root"
-
+	local effect = kv.effect or 0
+	local sound = "Druid.Root"
 	local path = nil
-	if self.effect == 1 then
+
+	if effect == 1 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
-	elseif self.effect == 2 then
+	elseif effect == 2 then
 		path = "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
-	elseif self.effect == 3 then
+	elseif effect == 3 then
 		path = "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"
-	elseif self.effect == 4 then
+	elseif effect == 4 then
 		path = "particles/econ/items/dark_willow/dark_willow_chakram_immortal/dark_willow_chakram_immortal_bramble_root.vpcf"
-		--self.sound = "Hero_Treant.Overgrowth.Target"
-		--self.sound = "Hero_DarkWillow.Bramble.Target.Layer"
-	elseif self.effect == 5 then
+		--sound = "Hero_Treant.Overgrowth.Target"
+		--sound = "Hero_DarkWillow.Bramble.Target.Layer"
+	elseif effect == 5 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
-		self.sound = "Druid.Root"
-	elseif self.effect == 6 then
+		sound = "Druid.Root"
+	elseif effect == 6 then
 		path = "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
-		self.sound = "Hero_Treant.Overgrowth.Target"
-	elseif self.effect == 7 then
+		sound = "Hero_Treant.Overgrowth.Target"
+	elseif effect == 7 then
 		path = "particles/econ/items/lone_druid/lone_druid_cauldron_retro/lone_druid_bear_entangle_retro_cauldron.vpcf"
-		self.sound = "LoneDruid_SpiritBear.Entangle"
-	elseif self.effect == 8 then
+		sound = "LoneDruid_SpiritBear.Entangle"
+	elseif effect == 8 then
 		path = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_root.vpcf"
-		self.sound = "Hero_Treant.Overgrowth.Target"
+		sound = "Hero_Treant.Overgrowth.Target"
+  elseif effect == 9 then
+    path = "particles/units/heroes/hero_oracle/oracle_fortune_purge.vpcf"
+    sound = nil
 	end
 
-	self:PlayEfxStart(path)
+	self:PlayEfxStart(path, sound)
 end
 
 function _modifier_root:OnRemoved(kv)
@@ -63,10 +66,11 @@ end
 
 --------------------------------------------------------------------------------
 
-function _modifier_root:PlayEfxStart(path)
+function _modifier_root:PlayEfxStart(path, sound)
   if path == nil then return end
 	self.particle = ParticleManager:CreateParticle(path, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetOrigin())
 
-	if IsServer() then self.parent:EmitSound(self.sound) end
+  if sound == nil then return end
+	if IsServer() then self.parent:EmitSound(sound) end
 end

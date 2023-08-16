@@ -11,7 +11,7 @@ LinkLuaModifier("_modifier_pull", "_modifiers/_modifier_pull", LUA_MODIFIER_MOTI
   function bocuse_5__roux:CastFilterResultLocation(vLocation)
     local caster = self:GetCaster()
 
-    if vLocation.z == 0 then return UF_FAIL_CUSTOM end
+    if vLocation.z < 5 then return UF_FAIL_CUSTOM end
 
     return UF_SUCCESS
   end

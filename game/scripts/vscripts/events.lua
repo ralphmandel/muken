@@ -259,6 +259,19 @@ function GameMode:OnTeamKillCredit(keys)
   local message = TEAMS[KillerTeamIndex][3] .. " SCORE: " .. TEAMS[KillerTeamIndex][2]
   GameRules:SendCustomMessage(TEAMS[KillerTeamIndex][5] .. message .."</font>",-1,0)
 
+  local score_table = {
+    [DOTA_TEAM_CUSTOM_1] = TEAMS[1][2],
+    [DOTA_TEAM_CUSTOM_2] = TEAMS[2][2],
+    [DOTA_TEAM_CUSTOM_3] = TEAMS[3][2],
+    [DOTA_TEAM_CUSTOM_4] = TEAMS[4][2]
+  }
+
+  for _,hero in pairs(HeroList:GetAllHeroes()) do
+    CustomGameEventManager:Send_ServerToPlayer(
+      PlayerResource:GetPlayer(hero:GetPlayerID()), "score_state_from_server", {score_table}
+    )
+  end
+
   if TEAMS[KillerTeamIndex][2] >= SCORE_LIMIT then
     local message = TEAMS[KillerTeamIndex][3] .. " VICTORY!"
     GameRules:SetCustomVictoryMessage(message)

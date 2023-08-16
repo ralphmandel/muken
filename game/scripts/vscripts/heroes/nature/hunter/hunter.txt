@@ -62,15 +62,15 @@
 
     "AbilityValues"
 		{
-      "duration"            "3"
       "ms_limit"            "125"
-      "hits"                "10"
-      "knockback_distance"  "50"
+      "knockback_distance"  "75"
       "knockback_duration"  "0.1"
-      "dex"                 "-10"
-      "def"                 "-10"
-      "res"                 "-10"
-      "agi"                 "20"
+      "duration"            "5"
+      "buff_time_update"    "80"
+      "dex"                 "-15"
+      "def"                 "-15"
+      "res"                 "-15"
+      "agi"                 "15"
 			"lck"			            "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}
@@ -94,10 +94,11 @@
 
     "AbilityValues"
 		{
-			"fow_time"	  "15"
-			"search_time"	"5"
-			"radius"			"1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"fow_time"	    "10"
+			"search_time"	  "5"
+			"bonus_radius"  "400"
+			"radius"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
 
@@ -137,7 +138,7 @@
     "ActiveSpell"               "1"
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_PHYSICAL"
-		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -147,9 +148,9 @@
 
     "AbilityValues"
 		{
-      "debuff_duration" "6"
-      "root_duration"   "3"
-      "slow"            "150"
+      "debuff_duration" "8"
+      "root_duration"   "4"
+      "base_def"        "-10"
       "trap_radius"     "90"
       "vision_radius"   "125"
       "hits"            "2"

@@ -1,8 +1,10 @@
 "use strict";
 const MUTE_ALL_BUTTON = $("#MuteAll");
 var g_ScoreboardHandle = null;
+var visible_state = false;
 
 function SetFlyoutScoreboardVisible(bVisible) {
+  visible_state = bVisible;
 	$.GetContextPanel().SetHasClass("flyout_scoreboard_visible", bVisible);
 	if (bVisible) {
 		ScoreboardUpdater_SetScoreboardActive(g_ScoreboardHandle, true);
@@ -26,6 +28,13 @@ function MuteAll() {
 	}
 }
 
+function OnScoreUpdate(event) {
+  if (visible_state == true) {
+    SetFlyoutScoreboardVisible(false);
+    SetFlyoutScoreboardVisible(true);
+  }
+}
+
 (function () {
 	if (ScoreboardUpdater_InitializeScoreboard === null) {
 		$.Msg("WARNING: This file requires shared_scoreboard_updater.js to be included.");
@@ -40,4 +49,5 @@ function MuteAll() {
 	SetFlyoutScoreboardVisible(false);
 
 	$.RegisterEventHandler("DOTACustomUI_SetFlyoutScoreboardVisible", $.GetContextPanel(), SetFlyoutScoreboardVisible);
+  GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
 })();

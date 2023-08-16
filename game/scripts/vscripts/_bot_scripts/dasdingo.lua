@@ -189,7 +189,7 @@ function dasdingo:TryCast_tree()
 
     if self.tree then
       if IsValidEntity(self.tree) then
-        local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.tree)
+        local dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
         
         if self.tree:IsStanding() and dist_diff <= ability:GetAOERadius()
         and self:HasBuffedTreeNear(self.tree:GetOrigin(), ability) == false then

@@ -245,14 +245,14 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "lck" then return 10 + (value_level * 1) end
+		if value_name == "lck" then return 15 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_3__radar" then
 		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 25 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "radius" then return 750 + (value_level * 25) end
+    if value_name == "radius" then return 600 + (value_level * 20) end
 	end
 
 	if ability:GetAbilityName() == "hunter_4__bandage" then

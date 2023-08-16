@@ -585,7 +585,7 @@ end
       local i = number
       while i > 0 do
         local hero = GetIDName(random_list[hero_index])
-        --if bot_team == DOTA_TEAM_CUSTOM_1 then hero = "npc_dota_hero_shadow_shaman" end -- FORCE BOT PICK
+        --if TEMP_DEL == 0 and bot_team == DOTA_TEAM_CUSTOM_1 then TEMP_DEL = 1 hero = "npc_dota_hero_sniper" end -- FORCE BOT PICK
         local new_bot = GameRules:AddBotPlayerWithEntityScript(hero, RANDOM_NAMES[hero_index], bot_team, "", false)
 
         PlayerResource:GetPlayer(new_bot:GetPlayerID()):SetAssignedHeroEntity(new_bot)

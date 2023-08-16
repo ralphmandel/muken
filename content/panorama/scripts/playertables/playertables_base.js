@@ -240,7 +240,6 @@ function DeleteTableKeys(msg)
 
 function OnTeamNameUpdate() {
   var TeamName = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("GridCategories");
-  $.Msg('kubo', TeamName.GetChildCount());
   for(var i = 0; i <= TeamName.GetChildCount() - 1; i++) {
     var CategoryName = TeamName.GetChild(i).FindChildTraverse("HeroCategoryName");
     if (CategoryName.text == "STRENGTH") {
