@@ -60,8 +60,22 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
 		if IsServer() then caster:EmitSound("Hero_DrowRanger.Silence") end
 	end
 
+  function genuine_2__fallen:OnProjectileThinkHandle(iProjectileHandle)
+    local radius = ProjectileManager:GetLinearProjectileRadius(iProjectileHandle)
+    local loc = ProjectileManager:GetLinearProjectileLocation(iProjectileHandle)
+    local trees = GridNav:GetAllTreesAroundPoint(loc, radius, true)
+		local caster = self:GetCaster()
+
+    if trees then
+      for _,tree in pairs(trees) do
+        tree:CutDown(caster:GetTeamNumber())
+      end      
+    end
+  end
+
 	function genuine_2__fallen:OnProjectileHitHandle(hTarget, vLocation, iProjectileHandle)
 		if not hTarget then self.spawn_origin[iProjectileHandle] = nil return end
+
 		local caster = self:GetCaster()
     if hTarget == caster then return end
 

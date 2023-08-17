@@ -17,6 +17,7 @@ function icebreaker:TrySpell(target, state)
     [3] = self.TryCast_Wave,
     [4] = self.TryCast_Skin,
     [5] = self.TryCast_Shivas,
+    [6] = self.TryCast_Frost,
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -213,7 +214,13 @@ function icebreaker:TryCast_Shivas()
   end
 end
 
-function icebreaker:RandomizeValue(ability, value_name)
+function icebreaker:TryCast_Frost()
+  local ability = self.caster:FindAbilityByName("icebreaker_1__frost")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if ability:GetAutoCastState() == false then ability:ToggleAutoCast() end
+  
+  return false
 end
 
 return icebreaker

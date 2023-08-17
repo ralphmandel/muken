@@ -29,8 +29,10 @@ LinkLuaModifier("_modifier_pull", "_modifiers/_modifier_pull", LUA_MODIFIER_MOTI
 
     local trees = GridNav:GetAllTreesAroundPoint(vLocation, self:GetAOERadius(), false)
 
-    for _,tree in pairs(trees) do
-      return UF_FAIL_CUSTOM
+    if trees then
+      for _,tree in pairs(trees) do
+        return UF_FAIL_CUSTOM
+      end      
     end
 
     return UF_SUCCESS

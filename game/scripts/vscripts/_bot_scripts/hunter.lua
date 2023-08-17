@@ -55,8 +55,9 @@ function hunter:TryCast_Trap()
     DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false
   )
 
-  for _,tree in pairs(trees) do return false end
+  if trees then for _,tree in pairs(trees) do return false end end
   for _,unit in pairs(units) do return false end
+  if (loc - Vector(0, 0, 0)):Length2D() > 5000 then return false end
 
   if self.state == BOT_STATE_FLEE then
     self.caster:CastAbilityOnPosition(loc, ability, self.caster:GetPlayerOwnerID())
@@ -105,6 +106,8 @@ function hunter:TryCast_Camouflage()
   if ability == nil then return false end
   if ability:IsTrained() == false then return false end
 
+  if self.caster:HasModifier("hunter_2_modifier_aim") then return false end
+
   if self.state == BOT_STATE_AGGRESSIVE then
     if self.caster:PassivesDisabled() then return false end
     if self.caster:IsCommandRestricted() then return false end
@@ -113,11 +116,7 @@ function hunter:TryCast_Camouflage()
       return false
     end
 
-    local range = self.caster:Script_GetAttackRange()
-    if self.caster:HasModifier("hunter_u_modifier_camouflage") == false then
-      range = range + ability:GetSpecialValueFor("atk_range")
-    end
-
+    local range = self.caster:Script_GetAttackRange() + ability:GetSpecialValueFor("atk_range")
     local direction = (self.caster:GetOrigin() - self.target:GetOrigin()):Normalized()
     local point = self.target:GetAbsOrigin() + direction * 300
     local trees = GridNav:GetAllTreesAroundPoint(point, range - 500, false)
@@ -127,11 +126,11 @@ function hunter:TryCast_Camouflage()
 
     if self.tree then
       if IsValidEntity(self.tree) then
-        dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
-        
-        if self.tree:IsStanding() and dist_diff <= range
-        and self:HasNearbyEnemy(self.tree:GetAbsOrigin()) == false then
-          target_tree = self.tree
+        if self.tree:IsStanding() then
+          dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
+          if dist_diff <= range and self:HasNearbyEnemy(self.tree:GetAbsOrigin()) == false then
+            target_tree = self.tree
+          end          
         end
       end
     end
@@ -140,8 +139,7 @@ function hunter:TryCast_Camouflage()
       for _, tree in pairs(trees) do
         dist_diff = (self.target:GetAbsOrigin() - tree:GetAbsOrigin()):Length2D()
         
-        if self:HasNearbyEnemy(tree:GetAbsOrigin()) == false
-        and dist_diff > distance then
+        if self:HasNearbyEnemy(tree:GetAbsOrigin()) == false and dist_diff > distance then
           distance = dist_diff
           target_tree = tree
         end

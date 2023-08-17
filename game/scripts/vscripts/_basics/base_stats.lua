@@ -40,8 +40,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if caster:IsHero() == false then return end
 
         if caster:GetLevel() % 3 == 0 then
-          self:IncrementSpenderPoints(3, 2)
+          self:IncrementSpenderPoints(2, 0)
         end
+        
+        self:IncrementSpenderPoints(0, 1)
 
 				--for _, stat in pairs(self.stats_primary) do
 					--self:ApplyBonusLevel(stat, self.bonus_level[stat])
@@ -92,6 +94,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				self.stat_total = {}
 				self.stat_percent = {}
 				self.stat_sub_level = {}
+        self.stat_upgraded = {}
 				self.bonus_level = {} -- CONST SPECIAL VALUE
         self.stat_fraction = {["level_up"] = {}, ["plus_up"] = {}}
 
@@ -109,6 +112,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = 0
 					self.stat_percent[stat] = 0
+					self.stat_upgraded[stat] = 0
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
@@ -121,6 +125,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 					self.stat_bonus[stat] = 0
 					self.stat_total[stat] = 0
 					self.stat_percent[stat] = 0
+          self.stat_upgraded[stat] = 0
 					self.stat_sub_level[stat] = 0
 					self.stat_fraction["level_up"][stat] = {}
 					self.stat_fraction["plus_up"][stat] = {}
@@ -443,8 +448,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       for _,primary in pairs(self.stats_primary) do
         if stat == primary then
           self.primary_points = self.primary_points - 1
+          self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          self:IncrementFraction("plus_up", primary, 3, 1)
+          --self:IncrementFraction("plus_up", primary, 3, 1)
           self:CalculateStats(0, 0, primary)
         end
       end
@@ -452,8 +458,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       for _,secondary in pairs(self.stats_secondary) do
         if stat == secondary then
           self.secondary_points = self.secondary_points - 1
+          self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          self:IncrementFraction("plus_up", secondary, 2, 2)
+          --self:IncrementFraction("plus_up", secondary, 2, 2)
           self:CalculateStats(0, 0, secondary)
         end
       end
@@ -491,12 +498,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
         for _, stat in pairs(self.stats_primary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat, self.primary_points) == true
-          stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
+          --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat, self.secondary_points) == true
-          stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
+          --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
@@ -623,8 +630,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     function base_stats:IsHeroCanLevelUpStat(stat, points)
       local caster = self:GetCaster()
       local total_cost = 1
-      local level_cap = 99
-      local level_cap_fraction = 99
+      local level_cap = 50
+
+      if self.stat_upgraded[stat] >= 10 then return false end
+      --local level_cap_fraction = 50
 
       -- for _,stats_secondary in pairs(self.stats_secondary) do
       --   if stats_secondary == stat then
@@ -633,13 +642,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       --   end
       -- end
 
-      for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
-        if index ~= "value" then
-          if self.stat_base[stat_fraction] >= level_cap_fraction then return false end
-          total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_primary, 4)
-          total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_secondary, 3)
-        end
-      end
+      -- for index, stat_fraction in pairs(self.stat_fraction["plus_up"][stat]) do
+      --   if index ~= "value" then
+      --     if self.stat_base[stat_fraction] >= level_cap_fraction then return false end
+      --     total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_primary, 4)
+      --     total_cost = total_cost + self:GetSubCost(stat_fraction, self.stats_secondary, 3)
+      --   end
+      -- end
 
       return (level_cap > self.stat_base[stat]) and (points >= total_cost)
     end

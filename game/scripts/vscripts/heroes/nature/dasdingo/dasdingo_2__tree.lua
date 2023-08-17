@@ -30,12 +30,14 @@ LinkLuaModifier("_modifier_root", "_modifiers/_modifier_root", LUA_MODIFIER_MOTI
   function dasdingo_2__tree:OnSpellStart()
     if self.tree == nil then return end
     if IsValidEntity(self.tree) == false then return end
+    local tree_index = self.tree:entindex()
+    if tree_index == nil then return end
 
     local caster = self:GetCaster()
 
     CreateModifierThinker(caster, self, "dasdingo_2_modifier_aura", {
       duration = self:GetSpecialValueFor("duration"),
-      tree_index = self.tree:entindex()
+      tree_index = tree_index
     }, self.tree:GetAbsOrigin(), caster:GetTeamNumber(), false)
   end
 

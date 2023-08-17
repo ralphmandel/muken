@@ -11,7 +11,9 @@ function genuine_1_modifier_orb:OnCreated(kv)
 	self.ability = self:GetAbility()
 	
 	self.cast = false
-	self.records = {}
+  self.proj_name = false
+  self.pre = {}
+	self.launch = {}
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
@@ -27,12 +29,13 @@ end
 
 function genuine_1_modifier_orb:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROJECTILE_NAME,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
+		MODIFIER_PROPERTY_PROJECTILE_NAME,
+		MODIFIER_EVENT_ON_ATTACK,
+
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
 		MODIFIER_EVENT_ON_ORDER
@@ -41,32 +44,50 @@ function genuine_1_modifier_orb:DeclareFunctions()
 	return funcs
 end
 
-function genuine_1_modifier_orb:GetModifierProjectileName()
-	if not self.ability.GetProjectileName then return end
-
-	if self:ShouldLaunch(self.caster:GetAggroTarget()) then
-		return self.ability:GetProjectileName()
-	end
-end
-
 function genuine_1_modifier_orb:GetModifierAttackRangeBonus(keys)
-	if self:ShouldLaunch(self.caster:GetAggroTarget()) then
-		return self.ability:GetSpecialValueFor("atk_range")
-	end
+  if self:ShouldLaunch(self.parent:GetAggroTarget()) then
+    return self.ability:GetSpecialValueFor("atk_range")
+  end
 
 	return 0
 end
 
 function genuine_1_modifier_orb:GetModifierProjectileSpeedBonus(keys)
-	if self:ShouldLaunch(self.caster:GetAggroTarget()) then
-		return self.ability:GetSpecialValueFor("proj_speed")
+  if self:ShouldLaunch(keys.target) then
+		self.pre[keys.record] = true
+    self.proj_name = true
+    self.cast = false
+    return self.ability:GetSpecialValueFor("proj_speed")
 	end
 
 	return 0
 end
 
+function genuine_1_modifier_orb:GetModifierProjectileName()
+	if not self.ability.GetProjectileName then return end
+
+	if self.proj_name == true then
+    self.proj_name = false
+		return self.ability:GetProjectileName()
+	end
+end
+
+function genuine_1_modifier_orb:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+
+	if self.pre[keys.record] then
+		self.ability:UseResources(true, false, false, true)
+    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
+		self.launch[keys.record] = true
+    self.pre[keys.record] = nil
+    self.proj_name = true
+
+		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end
+	end
+end
+
 function genuine_1_modifier_orb:GetModifierProcAttack_Feedback(keys)
-	if self.records[keys.record] then
+	if self.launch[keys.record] then
 		if self.ability.OnOrbImpact then self.ability:OnOrbImpact(keys) end
 	end
 end
@@ -83,28 +104,14 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 	end
 end
 
-function genuine_1_modifier_orb:OnAttack(keys)
-	if keys.attacker ~= self.parent then return end
-
-	if self:ShouldLaunch(keys.target) then
-		self.ability:UseResources(true, false, false, true)
-    self.ability:SetCurrentAbilityCharges(self.ability:GetCurrentAbilityCharges() - 1)
-		self.records[keys.record] = true
-
-		if self.ability.OnOrbFire then self.ability:OnOrbFire(keys) end
-	end
-
-	self.cast = false
-end
-
 function genuine_1_modifier_orb:OnAttackFail(keys)
-	if self.records[keys.record] then
+	if self.launch[keys.record] then
 		if self.ability.OnOrbFail then self.ability:OnOrbFail(keys) end
 	end
 end
 
 function genuine_1_modifier_orb:OnAttackRecordDestroy(keys)
-	self.records[keys.record] = nil
+	self.launch[keys.record] = nil
 end
 
 function genuine_1_modifier_orb:OnOrder(keys)
