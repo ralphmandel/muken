@@ -110,7 +110,7 @@ base_stats_mod = class ({})
       if keys.inflictor ~= nil then
         if keys.inflictor:GetClassname() == "ability_lua" then
           if keys.inflictor:GetAbilityName() == "shadowmancer_1__weapon" 
-          or keys.inflictor:GetAbilityName() == "osiris_1__poison"
+          or keys.inflictor:GetAbilityName() == "hunter_4__bandage"
           or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
             efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
           end

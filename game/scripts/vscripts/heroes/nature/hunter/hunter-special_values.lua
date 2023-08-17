@@ -132,6 +132,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
     if value_name == "AbilityCharges" then return 1 end
     if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "max_bullets" then return 1 end
 
 		if caster:FindAbilityByName("hunter_4__bandage_rank_11") then
 		end
@@ -245,7 +246,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "lck" then return 15 + (value_level * 1) end
+		if value_name == "lck" then return 20 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_3__radar" then
@@ -263,6 +264,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityChargeRestoreTime" then return 20 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "max_bullets" then return 15 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_5__trap" then

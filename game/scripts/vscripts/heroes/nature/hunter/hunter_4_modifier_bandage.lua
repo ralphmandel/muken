@@ -12,11 +12,17 @@ function hunter_4_modifier_bandage:OnCreated(kv)
   self.proj = {}
 
   self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
+  self.max_bullets = self.ability:GetSpecialValueFor("max_bullets")
+  self.debuff_duration = self.ability:GetSpecialValueFor("debuff_duration")
 
   if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("bullets")) end
 end
 
 function hunter_4_modifier_bandage:OnRefresh(kv)
+  self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
+  self.max_bullets = self.ability:GetSpecialValueFor("max_bullets")
+  self.debuff_duration = self.ability:GetSpecialValueFor("debuff_duration")
+
   if IsServer() then self:SetStackCount(self:GetStackCount() + self.ability:GetSpecialValueFor("bullets")) end
 end
 
@@ -43,8 +49,8 @@ end
 
 function hunter_4_modifier_bandage:OnStackCountChanged(old)
   if IsServer() then
-    if self:GetStackCount() > self.ability:GetSpecialValueFor("max_bullets") then
-      self:SetStackCount("max_bullets")
+    if self:GetStackCount() > self.max_bullets then
+      self:SetStackCount(self.max_bullets)
     end    
   end
 end
@@ -59,11 +65,11 @@ function hunter_4_modifier_bandage:OnAttack(keys)
 end
 
 function hunter_4_modifier_bandage:OnAttackLanded(keys)
-	if self.proj[keys.record] and keys.attacker == self.parent then self:ApplyPoison() end
+	if self.proj[keys.record] and keys.attacker == self.parent then self:ApplyPoison(keys) end
 end
 
 function hunter_4_modifier_bandage:OnAttackFailed(keys)
-	if self.proj[keys.record] and keys.attacker == self.parent then self:ApplyPoison() end
+	if self.proj[keys.record] and keys.attacker == self.parent then self:ApplyPoison(keys) end
 end
 
 function hunter_4_modifier_bandage:OnAttackRecordDestroy(keys)
@@ -73,9 +79,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function hunter_4_modifier_bandage:ApplyPoison(keys)
-  AddModifier(keys.target, self.ability, "hunter_4_modifier_debuff", {
-    duration = self.ability:GetSpecialValueFor("debuff_duration")
-  }, true)
+  AddModifier(keys.target, self.ability, "hunter_4_modifier_debuff", {duration = self.debuff_duration}, true)
 end
 
 -- EFFECTS -----------------------------------------------------------
