@@ -112,6 +112,7 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
     "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
     "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
@@ -122,6 +123,13 @@
 
     "AbilityValues"
 		{
+      "duration"        "10"
+      "health_regen"    "30"
+      "debuff_duration" "3"
+      "damage"          "40"
+      "slow"            "50"
+      "bullets"         "5"
+			"max_bullets"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

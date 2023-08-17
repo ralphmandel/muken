@@ -80,4 +80,6 @@ function hunter__precache:Precache(context)
   PrecacheResource("particle", "particles/items2_fx/mask_of_madness.vpcf", context)
   PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
   PrecacheResource("particle", "particles/items3_fx/star_emblem.vpcf", context)
+  PrecacheResource("particle", "particles/items_fx/healing_tango.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_viper/viper_poison_debuff.vpcf", context)
 end
