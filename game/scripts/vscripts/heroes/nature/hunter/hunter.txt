@@ -39,7 +39,7 @@
 
     "AbilityValues"
 		{
-			"kill_chance"	    "0.4"
+			"kill_chance"	    "0.3"
 			"cd_mult"	        "3"
 			"cd_mult_tooltip"	"0"
 			"damage"			"1 2 3 4 5 6 7 8 9 10 11"
@@ -127,7 +127,7 @@
       "health_regen"    "30"
       "debuff_duration" "4"
       "damage"          "50"
-      "slow"            "20"
+      "slow"            "25"
       "bullets"         "5"
 			"max_bullets"			"1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
