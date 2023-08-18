@@ -48,7 +48,7 @@ function paladin:TryCast_Link()
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and GetAllAttackers(units) and unit ~= self.caster then
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and GetAllAttackers(unit) and unit ~= self.caster then
         target = unit
         break
       end
