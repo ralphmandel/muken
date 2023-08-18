@@ -20,7 +20,15 @@ function GameMode:OnGameRulesStateChange(keys)
 
   if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
     Timers:CreateTimer(0.5, function()
-      CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "team_name_from_server", {})
+      for team = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MIN + 3 do
+        local players_num = PlayerResource:GetPlayerCountForTeam(team)
+        if players_num > 0 then
+          for i = 1, players_num do
+            local id = PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_CUSTOM_1, i)
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "team_name_from_server", {})
+          end        
+        end        
+      end
     end)
   end
 

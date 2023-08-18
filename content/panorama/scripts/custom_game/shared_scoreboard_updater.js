@@ -428,9 +428,9 @@ function _ScoreboardUpdater_ReorderTeam(scoreboardConfig, teamsParent, teamPanel
 // sort / reorder as necessary
 function compareFunc(a, b) {
 	// GameUI.CustomUIConfig().sort_teams_compare_func;
-	if (a.team_score < b.team_score) {
+	if (score_table[a.team_id] < score_table[b.team_id]) {
 		return 1; // [ B, A ]
-	} else if (a.team_score > b.team_score) {
+	} else if (score_table[a.team_id] > score_table[b.team_id]) {
 		return -1; // [ A, B ]
 	} else {
 		return 0;
