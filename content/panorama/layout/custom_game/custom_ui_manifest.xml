@@ -6,13 +6,13 @@
     var NoTalents = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoTalentGlow = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoAghanimsPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
-
-    //.FindChildTraverse("HeroCategory").FindChildTraverse("CategoryIcon").FindChildTraverse("StrengthIcon").FindChildTraverse("HeroCategoryName");
-    //OffTeamName.innerHTML = 'OFFENSIVE ★★★ UTILITY ★★';
+     var NoDotaPlus = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
+    var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildrenWithClassTraverse("HeroCard.BronzeTier");
 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
     NoAghanimsPanel.FindChildTraverse("AghsStatusContainer").style.visibility = "collapse";
+    NoDotaPlus.FindChildTraverse("BottomPanels").style.visibility = "collapse";
     // Uncomment any of the following lines in order to disable that portion of the default UI
 
     //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false );      //Time of day (clock).

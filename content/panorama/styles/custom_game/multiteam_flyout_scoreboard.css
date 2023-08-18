@@ -70,7 +70,7 @@
  }
 
  .local_player_team #PlayersContainer{
-  box-shadow: fill rgba(255, 255, 255, 0.3) 0px 0px 3px 1px;
+  box-shadow: fill rgba(205, 202, 0, 0.4) 0px 0px 3px 1px;
  }
 
  .TeamId{
