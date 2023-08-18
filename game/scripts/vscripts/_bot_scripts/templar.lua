@@ -70,15 +70,18 @@ function templar:TryCast_Barrier()
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and #GetAllAttackers(unit) >= num_attackers then
-        if #GetAllAttackers(unit) == num_attackers then
+      local unit_num = 0
+      if GetAllAttackers(unit) then unit_num = #GetAllAttackers(unit) end
+
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit_num >= num_attackers then
+        if unit_num == num_attackers then
           if unit:GetHealthPercent() < current_percent then
             target = unit
             current_percent = unit:GetHealthPercent()
           end
         else
           target = unit
-          num_attackers = #GetAllAttackers(unit)
+          num_attackers = unit_num
           current_percent = unit:GetHealthPercent()
         end
       end
