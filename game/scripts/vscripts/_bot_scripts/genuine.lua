@@ -72,19 +72,17 @@ function genuine:TryCast_Travel()
     local current_distance = 400
     local target = nil
 
-    if self.caster:GetNumAttackers() > 0 then
-      for _, attacker in pairs(HeroList:GetAllHeroes()) do
-				for i = 0, self.caster:GetNumAttackers() - 1 do
-					if attacker:GetPlayerID() == self.caster:GetAttacker(i) then
-            local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, attacker)
-    
-            if dist_diff < current_distance and self.caster:CanEntityBeSeenByMyTeam(attacker) then
-              target = attacker
-              current_distance = dist_diff
-            end
-					end
-				end
-			end
+    local attackers = GetAllAttackers(self.caster)
+
+    if attackers then
+      for _,attacker in pairs(attackers) do
+        local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, attacker)
+
+        if dist_diff < current_distance and self.caster:CanEntityBeSeenByMyTeam(attacker) then
+          target = attacker
+          current_distance = dist_diff
+        end
+      end
     end
   
     if target == nil then return false end

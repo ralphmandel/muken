@@ -159,7 +159,7 @@ function icebreaker:TryCast_Skin()
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() > 0 then
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and GetAllAttackers(units) then
         target = unit
         break
       end

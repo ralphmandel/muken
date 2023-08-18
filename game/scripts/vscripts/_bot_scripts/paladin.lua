@@ -48,7 +48,7 @@ function paladin:TryCast_Link()
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() > 0 and unit ~= self.caster then
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and GetAllAttackers(units) and unit ~= self.caster then
         target = unit
         break
       end
@@ -71,7 +71,7 @@ function paladin:TryCast_Shield()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    if self.caster:GetNumAttackers() == 0 then return false end
+    if GetAllAttackers(self.caster) == nil then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     return true

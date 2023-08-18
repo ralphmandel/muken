@@ -93,20 +93,17 @@ function baldur:TryCast_Fire()
     local dist_diff = 0
     local min_range = self.caster:Script_GetAttackRange() - 10
     local max_range = ability:GetCastRange(self.caster:GetOrigin(), nil)
+    local attackers = GetAllAttackers(self.caster)
 
-    if self.caster:GetNumAttackers() > 0 then
-      for _, attacker in pairs(HeroList:GetAllHeroes()) do
-				for i = 0, self.caster:GetNumAttackers() - 1 do
-					if attacker:GetPlayerID() == self.caster:GetAttacker(i) then
-            dist_diff = CalcDistanceBetweenEntityOBB(self.caster, attacker)
-    
-            if target == nil and dist_diff > min_range and dist_diff < max_range
-            and self.caster:CanEntityBeSeenByMyTeam(attacker) then
-              target = attacker
-            end
-					end
-				end
-			end
+    if attackers then
+      for _,attacker in pairs(attackers) do
+        dist_diff = CalcDistanceBetweenEntityOBB(self.caster, attacker)
+
+        if target == nil and dist_diff > min_range and dist_diff < max_range
+        and self.caster:CanEntityBeSeenByMyTeam(attacker) then
+          target = attacker
+        end
+      end
     end
 
     dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
@@ -155,7 +152,7 @@ function baldur:TryCast_Endurance()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    if self.caster:GetNumAttackers() == 0 then return false end
+    if GetAllAttackers(self.caster) == nil then return false end
     if self.caster:GetHealthPercent() > 50 then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())

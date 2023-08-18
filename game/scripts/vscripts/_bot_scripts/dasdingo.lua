@@ -146,7 +146,7 @@ function dasdingo:TryCast_Field()
     )
   
     for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit) and unit:GetNumAttackers() > 0 then
+      if self.caster:CanEntityBeSeenByMyTeam(unit) and GetAllAttackers(unit) then
         target = unit
         break
       end

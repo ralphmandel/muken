@@ -612,3 +612,17 @@ end
     return true
   end
 
+  function GetAllAttackers(target)
+    local attackers = nil
+
+    for _, hero in pairs(HeroList:GetAllHeroes()) do
+      if hero:GetTeamNumber() ~= target:GetTeamNumber() then  
+        if hero:IsAttackingEntity(target) then
+          if attackers == nil then attackers = {} end
+          table.insert(attackers, hero)
+        end
+      end
+    end
+
+    return attackers
+  end

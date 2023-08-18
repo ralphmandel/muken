@@ -142,7 +142,7 @@ function ancient:TryCast_Walk()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    if self.caster:GetNumAttackers() == 0 then return false end
+    if GetAllAttackers(self.caster) == nil then return false end
 
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     return true
