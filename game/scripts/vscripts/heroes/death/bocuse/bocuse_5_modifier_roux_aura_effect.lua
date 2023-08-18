@@ -64,7 +64,7 @@ function bocuse_5_modifier_roux_aura_effect:ApplyPull()
 
   if target then
     local loc = target:GetOrigin()
-    local duration = distance / (self.radius * 2)
+    local duration = distance / (self.radius * 1.5)
     AddModifier(self.parent, self.ability, "_modifier_pull", {duration = duration, x = loc.x, y = loc.y}, false)
   end
 end

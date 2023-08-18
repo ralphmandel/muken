@@ -17,7 +17,7 @@ LinkLuaModifier("baldur_3_modifier_barrier", "heroes/sun/baldur/baldur_3_modifie
       stack = caster:FindModifierByName(self:GetIntrinsicModifierName()):GetStackCount()
     })
 
-    RemoveBonus(self, "DEF", caster)
+    RemoveBonus(self, "CON", caster)
 	end
 
 -- EFFECTS
