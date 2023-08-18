@@ -17,7 +17,8 @@ function hunter:TrySpell(target, state)
     [2] = self.TryCast_Trap,
     [3] = self.TryCast_Shot,
     [4] = self.TryCast_Camouflage,
-    [5] = self.TryCast_Aim
+    [5] = self.TryCast_Bandage,
+    [6] = self.TryCast_Aim,
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -109,11 +110,18 @@ function hunter:TryCast_Camouflage()
   if self.caster:HasModifier("hunter_2_modifier_aim") then return false end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    if self.caster:PassivesDisabled() then return false end
-    if self.caster:IsCommandRestricted() then return false end
-    if self.caster:HasModifier("hunter_u_modifier_camouflage") then
+    if self.caster:PassivesDisabled() or self.caster:IsCommandRestricted()
+    or self.caster:HasModifier("hunter_u_modifier_camouflage") then
       self.tree = nil
       return false
+    end
+
+    local bandage_modifier = self.caster:FindModifierByName("hunter_4_modifier_bandage")
+    if bandage_modifier then
+      if bandage_modifier:GetStackCount() > 0 then
+        self.tree = nil
+        return false
+      end
     end
 
     local range = self.caster:Script_GetAttackRange() + ability:GetSpecialValueFor("atk_range")
@@ -126,23 +134,26 @@ function hunter:TryCast_Camouflage()
 
     if self.tree then
       if IsValidEntity(self.tree) then
-        if self.tree:IsStanding() then
-          dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
-          if dist_diff <= range and self:HasNearbyEnemy(self.tree:GetAbsOrigin()) == false then
-            target_tree = self.tree
-          end          
+        dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
+
+        if self.tree:IsStanding() and dist_diff <= range
+        and self:HasNearbyEnemy(self.tree:GetAbsOrigin()) == false then
+          target_tree = self.tree
         end
       end
     end
 
-    if trees and target_tree == nil then
-      for _, tree in pairs(trees) do
-        dist_diff = (self.target:GetAbsOrigin() - tree:GetAbsOrigin()):Length2D()
-        
-        if self:HasNearbyEnemy(tree:GetAbsOrigin()) == false and dist_diff > distance then
-          distance = dist_diff
-          target_tree = tree
-        end
+    if target_tree == nil then
+      self.tree = nil
+      if trees then
+        for _,tree in pairs(trees) do
+          dist_diff = (self.target:GetAbsOrigin() - tree:GetAbsOrigin()):Length2D()
+          
+          if self:HasNearbyEnemy(tree:GetAbsOrigin()) == false and dist_diff > distance then
+            distance = dist_diff
+            target_tree = tree
+          end
+        end        
       end
     end
 
@@ -150,6 +161,101 @@ function hunter:TryCast_Camouflage()
 
     self.tree = target_tree
     self.caster:MoveToPosition(target_tree:GetOrigin())
+    return true
+  end
+end
+
+function hunter:TryCast_Bandage()
+  local ability = self.caster:FindAbilityByName("hunter_4__bandage")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.state == BOT_STATE_FLEE then
+    if self.caster:HasModifier("hunter_4_modifier_bandage") then return false end
+
+    local range = 500
+    local trees = GridNav:GetAllTreesAroundPoint(self.caster:GetOrigin(), range, false)
+    local target_tree = nil
+
+    if self.tree_bandage then
+      if IsValidEntity(self.tree_bandage) then
+        if self.tree_bandage:IsStanding() then
+          local dist_diff = (self.caster:GetAbsOrigin() - self.tree_bandage:GetAbsOrigin()):Length2D()
+          if dist_diff <= range then target_tree = self.tree_bandage end
+        end
+      end
+    end
+
+    if target_tree == nil then
+      self.tree_bandage = nil
+      if trees then
+        for _,tree in pairs(trees) do
+          local dist_diff = (self.caster:GetAbsOrigin() - tree:GetAbsOrigin()):Length2D()
+          
+          if dist_diff < range then
+            range = dist_diff
+            target_tree = tree
+          end
+        end        
+      end
+    end
+
+    if target_tree == nil then return false end
+
+    self.tree_bandage = target_tree
+    self.caster:CastAbilityOnTarget(target_tree, ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    local bandage_modifier = self.caster:FindModifierByName("hunter_4_modifier_bandage")
+    local max_bullets = ability:GetSpecialValueFor("max_bullets")
+    local range = 500
+    local stack = 0
+
+    local trees = GridNav:GetAllTreesAroundPoint(self.caster:GetOrigin(), range, false)
+    local target_tree = nil
+
+    if self.random_values["min_bullets"] == nil then self:RandomizeValue(0, max_bullets, "min_bullets") end
+
+    if bandage_modifier then
+      stack = bandage_modifier:GetStackCount()
+      if stack > self.random_values["min_bullets"] then
+        self.tree_bandage = nil
+        return false
+      end
+    end
+
+    if self.tree_bandage then
+      if IsValidEntity(self.tree_bandage) then
+        if self.tree_bandage:IsStanding() then
+          local dist_diff = (self.caster:GetAbsOrigin() - self.tree_bandage:GetAbsOrigin()):Length2D()
+          if dist_diff <= range then target_tree = self.tree_bandage end
+        end
+      end
+    end
+
+    if target_tree == nil then
+      self.tree_bandage = nil
+      if trees then
+        for _,tree in pairs(trees) do
+          local dist_diff = (self.caster:GetAbsOrigin() - tree:GetAbsOrigin()):Length2D()
+          
+          if dist_diff < range then
+            range = dist_diff
+            target_tree = tree
+          end
+        end        
+      end
+    end
+
+    if target_tree == nil then return false end
+
+    if stack + ability:GetSpecialValueFor("bullets") >= self.random_values["min_bullets"] then
+      self:RandomizeValue(0, max_bullets, "min_bullets")
+    end
+
+    self.tree_bandage = target_tree
+    self.caster:CastAbilityOnTarget(target_tree, ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end
@@ -171,10 +277,19 @@ function hunter:HasNearbyEnemy(loc)
   for _, hero in pairs(HeroList:GetAllHeroes()) do
     if hero:IsAlive() and hero:GetTeamNumber() ~= self.caster:GetTeamNumber() then
       local dist_diff = (hero:GetAbsOrigin() - loc):Length2D()
-      if dist_diff > 400 then return false end
-      return true
+      if dist_diff < 300 then return true end
+
+      if hero:IsAttackingEntity(self.caster) and dist_diff < hero:Script_GetAttackRange() + 50 then
+        return true
+      end
     end
   end
+
+  return false
+end
+
+function hunter:RandomizeValue(min_value, max_value, value_name)
+  self.random_values[value_name] = RandomInt(min_value, max_value)
 end
 
 return hunter

@@ -251,7 +251,7 @@ function lawbreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
 	if ability:GetAbilityName() == "lawbreaker_2__combo" then
 		if value_name == "AbilityManaCost" then
-      return ability:GetCurrentAbilityCharges() * 20 * (1 + ((ability_level - 1) * 0.05))
+      return ability:GetCurrentAbilityCharges() * 15 * (1 + ((ability_level - 1) * 0.05))
     end
 
 		if value_name == "AbilityCooldown" then return 0 end

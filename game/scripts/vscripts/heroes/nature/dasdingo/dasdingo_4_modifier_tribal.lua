@@ -50,6 +50,7 @@ end
 function dasdingo_4_modifier_tribal:CheckState()
 	local state = {
 		[MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
+    [MODIFIER_STATE_MAGIC_IMMUNE] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true,
 		[MODIFIER_STATE_CANNOT_MISS] = true
 	}

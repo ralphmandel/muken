@@ -279,7 +279,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
   if ability:GetAbilityName() == "hunter_u__camouflage" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 3 end
+		if value_name == "AbilityCooldown" then return 2 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
 	end
 

@@ -555,7 +555,7 @@ _general_script = class({})
       for index, ability_name in pairs(skills_data) do
         local ability = self.parent:FindAbilityByName(ability_name)
         if ability and tonumber(index) < 6 then
-          if ability:IsTrained() == false and ability:GetAbilityName() ~= "hunter_4__bandage" then
+          if ability:IsTrained() == false then
             i = i + 1
             available_abilities[i] = ability
           end

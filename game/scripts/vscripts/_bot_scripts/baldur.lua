@@ -46,7 +46,7 @@ function baldur:TryCast_Dash()
 
       if distance_diff < ability:GetSpecialValueFor("cast_range") then
         if modifier then
-          if modifier.time < 1 or distance_diff > ability:GetSpecialValueFor("cast_range") - 75 then
+          if modifier.time < self.time_limit or distance_diff > ability:GetSpecialValueFor("cast_range") - 75 then
             target = self.target
           end
         end
@@ -73,6 +73,7 @@ function baldur:TryCast_Dash()
       local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
       if distance_diff > ability:GetSpecialValueFor("cast_range") - 150 then return false end
 
+      self.time_limit = RandomInt(1, 3)
       self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
       return true
     end

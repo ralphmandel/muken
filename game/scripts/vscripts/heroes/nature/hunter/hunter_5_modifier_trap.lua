@@ -45,6 +45,7 @@ end
 function hunter_5_modifier_trap:CheckState()
 	local state = {
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true,
     [MODIFIER_STATE_CANNOT_BE_MOTION_CONTROLLED] = true,
 		[MODIFIER_STATE_EVADE_DISABLED] = true,
     [MODIFIER_STATE_NO_TEAM_MOVE_TO] = true

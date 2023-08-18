@@ -79,7 +79,8 @@ function fleaman:TryCast_Precision()
   if self.state == BOT_STATE_AGGRESSIVE then
     if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
-    if self.random_values["precision_charges"] == nil then self:RandomizeValue(ability, "precision_charges") end
+    local max_charge = ability:GetMaxAbilityCharges(ability:GetLevel())
+    if self.random_values["precision_charges"] == nil then self:RandomizeValue(1, max_charge, "precision_charges") end
     if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
 
     local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
@@ -88,7 +89,7 @@ function fleaman:TryCast_Precision()
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     
     if ability:GetCurrentAbilityCharges() == 0 then
-      self:RandomizeValue(ability, "precision_charges")
+      self:RandomizeValue(1, max_charge, "precision_charges")
     else
       self.random_values["precision_charges"] = 0
     end
@@ -96,10 +97,8 @@ function fleaman:TryCast_Precision()
   end
 end
 
-function fleaman:RandomizeValue(ability, value_name)
-  if value_name == "precision_charges" then
-    self.random_values[value_name] = RandomInt(1, ability:GetMaxAbilityCharges(ability:GetLevel()))
-  end
+function fleaman:RandomizeValue(min_value, max_value, value_name)
+  self.random_values[value_name] = RandomInt(min_value, max_value)
 end
 
 return fleaman

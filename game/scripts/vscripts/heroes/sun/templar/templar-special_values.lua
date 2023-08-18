@@ -261,7 +261,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 18 end
     if value_name == "AbilityCastRange" then return 750 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "slow_start" then return 60 + (value_level * 2) end
+		if value_name == "slow_start" then return 80 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "templar_5__reborn" then

@@ -27,7 +27,7 @@ function dasdingo_2_modifier_aura:OnCreated(kv)
 	self.ability = self:GetAbility()
 
   self.radius = self.ability:GetAOERadius()
-  self.tree = EntIndexToHScript(kv.tree_index)
+  self.tree = self.ability.tree
 
   if IsServer() then
     self:PlayEfxStart()

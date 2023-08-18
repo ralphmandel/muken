@@ -93,6 +93,7 @@ end
 
 function baldur_2_modifier_charge:EndCharge(bInterrupt)
   if bInterrupt then
+    self.ability:StartCooldown(5)
     self.ability:SetCurrentAbilityCharges(BALDUR_READY_NO_MANACOST)
   else
     self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))

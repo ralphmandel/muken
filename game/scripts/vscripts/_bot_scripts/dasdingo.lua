@@ -185,13 +185,15 @@ function dasdingo:TryCast_tree()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE or self.state == BOT_STATE_AGGRESSIVE_FIND_TARGET then
+    local min_range = ability:GetAOERadius()
+    local trees = GridNav:GetAllTreesAroundPoint(self.caster:GetOrigin(), min_range, false)
     local target = nil
 
     if self.tree then
       if IsValidEntity(self.tree) then
-        local dist_diff = (self.target:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
+        local dist_diff = (self.caster:GetAbsOrigin() - self.tree:GetAbsOrigin()):Length2D()
         
-        if self.tree:IsStanding() and dist_diff <= ability:GetAOERadius()
+        if self.tree:IsStanding() and dist_diff <= min_range
         and self:HasBuffedTreeNear(self.tree:GetOrigin(), ability) == false then
           target = self.tree
         end
@@ -199,11 +201,9 @@ function dasdingo:TryCast_tree()
     end
     
     if target == nil then
-      local trees = GridNav:GetAllTreesAroundPoint(self.caster:GetOrigin(), ability:GetAOERadius(), false)
-      local min_range = ability:GetAOERadius()
-  
+      self.tree = nil
       if trees then
-        for _, tree in pairs(trees) do
+        for _,tree in pairs(trees) do
           if self:HasBuffedTreeNear(tree:GetOrigin(), ability) == false then
             local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, tree)
             if min_range > dist_diff then

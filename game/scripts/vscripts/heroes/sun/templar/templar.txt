@@ -41,7 +41,7 @@
 			"radius"    "800"
 			"def_base"  "2"
 			"def_bonus" "2"
-			"heal_amp"  "25"
+			"heal_amp"  "20"
 			"rank"      "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -95,9 +95,9 @@
 
     "AbilityValues"
 		{
-      "duration"  "15"
+      "duration"  "10"
       "interval"  "1"
-      "damage"    "50"
+      "damage"    "75"
       "hp_regen"  "50"
       "radius"    "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"		  "1 2 3 4 5 6 7 8 9 10 11"
@@ -129,7 +129,7 @@
       "proj_speed"  "1500"
       "hits"        "2"
       "armor_mult"  "10"
-      "interval"    "1"
+      "interval"    "0.8"
       "agi_start"   "-10"
       "slow_start"  "1 2 3 4 5 6 7 8 9 10 11"      
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
