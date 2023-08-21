@@ -264,7 +264,8 @@ function GameMode:_CaptureGameMode()
           if lawbreaker_form and gunslinger then
             if gunslinger:GetCurrentAbilityCharges() == 1 then
               gunslinger:SetCurrentAbilityCharges(0)
-              
+              gunslinger:SetLevel(1)
+
               ProjectileManager:CreateTrackingProjectile({
                 Target = target,
                 Source = source,

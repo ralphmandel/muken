@@ -12,14 +12,14 @@ function lawbreaker_u_modifier_form:OnCreated(kv)
   self.ability = self:GetAbility()
   self.transforming = 1
 
-  self.gunslinger = self.parent:AddAbility("muerta_gunslinger")
-  self.gunslinger:SetCurrentAbilityCharges(0)
-  self.gunslinger:UpgradeAbility(true)
-  self.gunslinger:SetHidden(true)
+  if kv.attacker then self.attacker = EntIndexToHScript(kv.attacker) end
 
   self.ability:SetActivated(false)
+  self.ability:EndCooldown()
 
   if IsServer() then
+    local hp = self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("hp_percent") * 0.01
+    self.parent:ModifyHealth(hp, self.ability, false, 0)
     self:StartIntervalThink(self.ability:GetSpecialValueFor("transform_duration"))
     self:PlayEfxStart()
   end
@@ -30,7 +30,7 @@ end
 
 function lawbreaker_u_modifier_form:OnRemoved()
   self.ability:SetActivated(true)
-  self.parent:RemoveAbility("muerta_gunslinger")
+  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -56,10 +56,9 @@ function lawbreaker_u_modifier_form:DeclareFunctions()
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
-    MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
     MODIFIER_EVENT_ON_ATTACKED,
-    MODIFIER_EVENT_ON_ATTACK_START
+    MODIFIER_EVENT_ON_TAKEDAMAGE
 	}
 
 	return funcs
@@ -85,10 +84,6 @@ function lawbreaker_u_modifier_form:GetModifierProjectileName()
 	return "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf"
 end
 
-function lawbreaker_u_modifier_form:GetModifierAttackRangeBonus()
-  return self:GetAbility():GetSpecialValueFor("atk_range")
-end
-
 function lawbreaker_u_modifier_form:GetAttackSound()
 	return "Hero_Muerta.PierceTheVeil.Attack"
 end
@@ -100,40 +95,51 @@ function lawbreaker_u_modifier_form:OnAttacked(keys)
   if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("break_chance") then
     RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_break", self.ability)
 
-    AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.2}, true)
+    AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.3}, true)
     AddModifier(keys.target, self.ability, "_modifier_break", {
       duration = self.ability:GetSpecialValueFor("break_duration")
     }, true)    
   end
 end
 
-function lawbreaker_u_modifier_form:OnAttackStart(keys)
-	if keys.attacker ~= self.parent then return end
-	if keys.target:GetTeamNumber() == keys.attacker:GetTeamNumber() then return end
+--function lawbreaker_u_modifier_form:OnAttackStart(keys)
+  -- 	if keys.attacker ~= self.parent then return end
+  -- 	if keys.target:GetTeamNumber() == keys.attacker:GetTeamNumber() then return end
 
-  local enemies = FindUnitsInRadius(
-    self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil,
-    self.parent:Script_GetAttackRange(),
-    self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
-    self.ability:GetAbilityTargetFlags(), 0, false
-  )
+  --   local enemies = FindUnitsInRadius(
+  --     self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil,
+  --     self.parent:Script_GetAttackRange(),
+  --     self.ability:GetAbilityTargetTeam(), self.ability:GetAbilityTargetType(),
+  --     self.ability:GetAbilityTargetFlags(), 0, false
+  --   )
 
-  for _,enemy in pairs(enemies) do
-    if enemy ~= keys.target then
-      self.gunslinger:SetCurrentAbilityCharges(1)
-      self.gunslinger:SetLevel(1)
-      return
-    end
-	end
+  --   for _,enemy in pairs(enemies) do
+  --     if enemy ~= keys.target then
+  --       self.gunslinger:SetCurrentAbilityCharges(1)
+  --       self.gunslinger:SetLevel(1)
+  --       return
+  --     end
+  -- 	end
 
-  self.gunslinger:SetCurrentAbilityCharges(0)
-  self.gunslinger:SetLevel(1)
+  --   self.gunslinger:SetCurrentAbilityCharges(0)
+  --   self.gunslinger:SetLevel(1)
+--end
+
+function lawbreaker_u_modifier_form:OnTakeDamage(keys)
+  if keys.unit ~= self.parent then return end
+  self.attacker = keys.attacker
 end
 
 function lawbreaker_u_modifier_form:OnIntervalThink()
+  local drain_percent = self.ability:GetSpecialValueFor("drain_percent") * 0.01
+  local iDesiredHealthValue = self.parent:GetHealth() - (self.parent:GetMaxHealth() * drain_percent * 0.1)
+
+  if iDesiredHealthValue < 0 then self.parent:Kill(self.ability, self.attacker) return end
+
+  self.parent:ModifyHealth(iDesiredHealthValue, self.ability, true, 0)
   self.transforming = 0
 
-  if IsServer() then self:StartIntervalThink(-1) end
+  if IsServer() then self:StartIntervalThink(0.1) end
 end
 
 -- UTILS -----------------------------------------------------------

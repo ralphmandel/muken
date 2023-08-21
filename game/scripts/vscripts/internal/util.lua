@@ -277,6 +277,25 @@ end
 		end)
   end
 
+  function LawbreakerCheckCrit(hero)
+    if hero:PassivesDisabled() then return end
+
+    local modifier = hero:FindModifierByName("lawbreaker_1_modifier_passive")
+    if modifier then
+      if modifier:GetStackCount() >= modifier:GetAbility():GetSpecialValueFor("max_hit") - 1 then
+        local base_crit_damage = BaseStats(hero):GetBaseCriticalDamage() + BaseStats(hero):GetBonusCriticalDamage()
+        BaseStats(hero):SetForceCrit(100, base_crit_damage + modifier:GetAbility():GetSpecialValueFor("crit_dmg"))
+      end      
+    end
+  end
+
+  function LawbreakerCheckMiss(hero)
+    local modifier = hero:FindModifierByName("lawbreaker_1_modifier_passive")
+    if modifier then
+      if IsServer() then modifier:IncrementStackCount() end
+    end
+  end
+
   function UpdateForcedTime()
     local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
   
@@ -585,7 +604,7 @@ end
       local i = number
       while i > 0 do
         local hero = GetIDName(random_list[hero_index])
-        if TEMP_DEL == 0 and bot_team == DOTA_TEAM_CUSTOM_1 then TEMP_DEL = 1 hero = "npc_dota_hero_sniper" end -- FORCE BOT PICK
+        --if TEMP_DEL == 0 and bot_team == DOTA_TEAM_CUSTOM_1 then TEMP_DEL = 1 hero = "npc_dota_hero_sniper" end -- FORCE BOT PICK
         local new_bot = GameRules:AddBotPlayerWithEntityScript(hero, RANDOM_NAMES[hero_index], bot_team, "", false)
 
         PlayerResource:GetPlayer(new_bot:GetPlayerID()):SetAssignedHeroEntity(new_bot)

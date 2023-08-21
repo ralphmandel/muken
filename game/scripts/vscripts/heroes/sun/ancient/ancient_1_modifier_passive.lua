@@ -75,7 +75,7 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 
 	if self.parent:PassivesDisabled() then return end
 
-  if BaseStats(keys.attacker).has_crit then
+  if BaseStats(keys.attacker).has_crit == true then
     self:PlayEfxCrit(keys.attacker, true)
     if keys.target:GetPlayerOwner() then
       self:PlayEfxCrit(keys.target, false)

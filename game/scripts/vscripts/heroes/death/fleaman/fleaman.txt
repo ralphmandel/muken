@@ -148,9 +148,9 @@
 
     "AbilityValues"
 		{
-			"duration"		  "8"
+			"duration"		  "10"
 			"slow"		      "150"
-			"blind"		      "50"
+			"blind"		      "33"
 			"delay"		      "1"
 			"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"

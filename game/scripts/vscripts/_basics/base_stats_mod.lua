@@ -24,7 +24,7 @@ base_stats_mod = class ({})
         self.ability:UpdatePanoramaPoints()
             
         if self.parent:IsHero() == false then
-          --self.ability:IncrementSpenderPoints(0, 0)
+          --self.ability:IncrementSpenderPoints(0)
         end
       end
 
@@ -293,12 +293,15 @@ base_stats_mod = class ({})
 
   function base_stats_mod:GetModifierDodgeProjectile(keys)
     if BaseStats(keys.attacker) == nil then return end
+    
+    LawbreakerCheckCrit(keys.attacker)
 
     local crit = RandomFloat(0, 100) < BaseStats(keys.attacker):GetCriticalChance()
-    BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).has_crit = crit
+    BaseStats(keys.attacker).force_crit_chance = nil
 
     if RandomFloat(0, 100) < BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(0, 100) < self.ability:GetDodgePercent()) then
+      LawbreakerCheckMiss(keys.attacker)
       return 1
     end
 
@@ -310,16 +313,22 @@ base_stats_mod = class ({})
     if keys.target ~= self.parent then return end
     if keys.attacker:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK
     and keys.no_attack_cooldown == false then return end
+    
+    local gunslinger = keys.attacker:FindAbilityByName("muerta_gunslinger")
+    if gunslinger then if gunslinger:GetCurrentAbilityCharges() == 1 then return end end
+
+    LawbreakerCheckCrit(keys.attacker)
 
     local crit = RandomFloat(0, 100) < BaseStats(keys.attacker):GetCriticalChance()
-    BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).has_crit = crit
+    BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).missing = (RandomFloat(0, 100) < BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(0, 100) < self.ability:GetDodgePercent()))
   end
 
   function base_stats_mod:GetModifierMiss_Percentage(keys)
     if self.ability.missing == true then
       self.ability.missing = false
+      LawbreakerCheckMiss(keys.attacker)
       return 100
     end
     return 0

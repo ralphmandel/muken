@@ -44,7 +44,7 @@ function ancient_u_modifier_passive:OnAttacked(keys)
 
   local gain = self.ability:GetSpecialValueFor("energy_gain")
 
-  if BaseStats(keys.attacker).has_crit then
+  if BaseStats(keys.attacker).has_crit == true then
     gain = self.ability:GetSpecialValueFor("energy_gain_crit")
   end
 

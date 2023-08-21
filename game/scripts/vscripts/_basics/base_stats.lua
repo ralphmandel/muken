@@ -40,10 +40,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if caster:IsHero() == false then return end
 
         if caster:GetLevel() % 3 == 0 then
-          self:IncrementSpenderPoints(2, 0)
+          self:IncrementSpenderPoints(2)
+        else
+          self:IncrementSpenderPoints(1)
         end
-        
-        self:IncrementSpenderPoints(0, 1)
 
 				--for _, stat in pairs(self.stats_primary) do
 					--self:ApplyBonusLevel(stat, self.bonus_level[stat])
@@ -86,8 +86,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
 			if IsServer() then
-				self.primary_points = 0
-				self.secondary_points = 0
+        self.total_points = 0
+				-- self.primary_points = 0
+				-- self.secondary_points = 0
 
 				self.stat_base = {}
 				self.stat_bonus = {}
@@ -436,10 +437,11 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 -- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
-		function base_stats:IncrementSpenderPoints(primary_pts, secondary_pts)
+		function base_stats:IncrementSpenderPoints(pts)
 			if IsServer() then
-				self.primary_points = self.primary_points + primary_pts
-				self.secondary_points = self.secondary_points + secondary_pts
+        self.total_points = self.total_points + pts
+				-- self.primary_points = self.primary_points + primary_pts
+				-- self.secondary_points = self.secondary_points + secondary_pts
 				self:UpdatePanoramaPoints("nil")
 			end
 		end
@@ -447,7 +449,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     function base_stats:UpgradeStat(stat)
       for _,primary in pairs(self.stats_primary) do
         if stat == primary then
-          self.primary_points = self.primary_points - 1
+          --self.primary_points = self.primary_points - 1
+          self.total_points = self.total_points - 1
           self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
           --self:IncrementFraction("plus_up", primary, 3, 1)
@@ -457,7 +460,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     
       for _,secondary in pairs(self.stats_secondary) do
         if stat == secondary then
-          self.secondary_points = self.secondary_points - 1
+          --self.secondary_points = self.secondary_points - 1
+          self.total_points = self.total_points - 1
           self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
           --self:IncrementFraction("plus_up", secondary, 2, 2)
@@ -497,18 +501,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         local stats_fraction = {}
 
         for _, stat in pairs(self.stats_primary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.primary_points) == true
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.secondary_points) == true
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
-					primary_points = self.primary_points,
-					secondary_points = self.secondary_points,
+					-- primary_points = self.primary_points,
+					-- secondary_points = self.secondary_points,
+          total_points = self.total_points,
 					stats = stats,
           stats_fraction = stats_fraction,
           upgraded_stat = upgraded_stat
@@ -617,8 +622,9 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 						end
 
 						if levelup > 0 then
-              if group == 1 then self.primary_points = self.primary_points - levelup end
-              if group == 2 then self.secondary_points = self.secondary_points - levelup end
+              -- if group == 1 then self.primary_points = self.primary_points - levelup end
+              -- if group == 2 then self.secondary_points = self.secondary_points - levelup end
+              -- self.total_points = self.total_points - 1
 							self.stat_base[stat_fraction] = self.stat_base[stat_fraction] + levelup
 							self:CalculateStats(0, 0, stat_fraction)
 						end
@@ -882,7 +888,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
   -- LCK
 
     function base_stats:GetCriticalChance()
-      if self.force_crit_chance then return self.force_crit_chance end
+      if self.force_crit_chance ~= nil then return self.force_crit_chance end
       local caster = self:GetCaster()
       local value = self.stat_total["LCK"] * self.critical_chance
 
@@ -898,23 +904,28 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:GetTotalCriticalDamage()
       local caster = self:GetCaster()
-      local result = self.force_crit_damage
+      local total = self.force_crit_damage
 
-      if result == nil then
-        result = self.base_critical_damage + (self.critical_damage * self:GetStatBase("LCK"))
-        result = self:GetBonusCriticalDamage(result)
+      if total == nil then
+        total = self:GetBaseCriticalDamage()
+        total = total + self:GetBonusCriticalDamage()
       end
 
-      return result
+      return total
 		end
 
-    function base_stats:GetBonusCriticalDamage(result)
+    function base_stats:GetBaseCriticalDamage()
+      return self.base_critical_damage + (self.critical_damage * self:GetStatBase("LCK"))
+    end
+
+    function base_stats:GetBonusCriticalDamage()
+      local amount = 0
       local caster = self:GetCaster()
       local crit_damage = caster:FindAllModifiersByName("_modifier_crit_damage")
       for _,modifier in pairs(crit_damage) do
-        result = result + modifier.amount
+        amount = amount + modifier.amount
       end
-      return result
+      return amount
     end
 
 

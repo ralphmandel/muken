@@ -120,7 +120,7 @@ function druid_4_modifier_form:OnAttackLanded(keys)
     RemoveBonus(self.ability, "LCK", self.parent)
     AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("lck") + self.luck_stack, 0, nil)
 
-    if BaseStats(self.parent).has_crit then
+    if BaseStats(self.parent).has_crit == true then
       AddModifier(keys.target, self.ability, "_modifier_break", {duration = self.break_duration}, true)
     end
   end
