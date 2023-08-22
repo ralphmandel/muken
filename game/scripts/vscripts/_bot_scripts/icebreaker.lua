@@ -89,7 +89,11 @@ function icebreaker:TryCast_Blink()
     end
   
     local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    if target == nil and ability:GetCurrentAbilityCharges() > 1 and distance_diff > 300 then target = self.target end
+    
+    if target == nil and ability:GetCurrentAbilityCharges() > 1
+    and distance_diff > self.caster:Script_GetAttackRange() + 100 then
+      target = self.target
+    end
   
     if target == nil then return false end
   

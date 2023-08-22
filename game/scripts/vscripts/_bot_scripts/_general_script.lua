@@ -26,9 +26,11 @@ _general_script = class({})
   local ACTION_AGRESSIVE_ATTACK_TARGET = 202
   local ACTION_AGRESSIVE_SEEK_TARGET = 203
   local ACTION_AGRESSIVE_FIND_TARGET = 204
+  local ACTION_AGRESSIVE_LAWBREAKER_CUSTOM_CHANGE = 205
 
   local ACTION_FLEE_CHANGE_TO_AGGRESSIVE = 300
   local ACTION_FLEE_GO_TO_FOUNTAIN = 301
+  local ACTION_FLEE_LAWBREAKER_CUSTOM_CHANGE = 302
 
   local ACTION_FLEAMAN_STEAL = 400
 
@@ -382,6 +384,22 @@ _general_script = class({})
   end
 
   function _general_script:SpecialActions(current_action)
+    if current_action == ACTION_AGRESSIVE_LAWBREAKER_CUSTOM_CHANGE then
+      if self.parent:HasModifier("lawbreaker_u_modifier_form") == false then
+        local new_shrine = self:GetAvailableShrine(self.low_health, self.low_mana)
+        if new_shrine then self:ChangeState(BOT_STATE_FLEE) end
+      end
+    end
+
+    if current_action == ACTION_FLEE_LAWBREAKER_CUSTOM_CHANGE then
+      if self.parent:HasModifier("lawbreaker_u_modifier_form") == false then
+        if self.parent:GetHealthPercent() >= self.mid_health
+        and self.parent:GetManaPercent() >= self.mid_mana
+        and self.parent:IsAlive() then
+          self:ChangeState(BOT_STATE_AGGRESSIVE)
+        end
+      end
+    end
   end
 
 -- UTIL FUNCTIONS -----------------------------------------------------------
@@ -664,7 +682,23 @@ _general_script = class({})
       return ancient
     end
 
-    if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then return lawbreaker end
+    if GetHeroName(self.parent:GetUnitName()) == "lawbreaker" then
+      self.AggressiveActions = {
+        [1] = ACTION_AGRESSIVE_LAWBREAKER_CUSTOM_CHANGE,
+        [2] = ACTION_AGRESSIVE_SWAP_TARGET,
+        [3] = ACTION_AGRESSIVE_ATTACK_TARGET,
+        [4] = ACTION_AGRESSIVE_SEEK_TARGET,
+        [5] = ACTION_AGRESSIVE_FIND_TARGET,
+      }
+  
+      self.FleeActions = {
+        [1] = ACTION_FLEE_LAWBREAKER_CUSTOM_CHANGE,
+        [2] = ACTION_FLEE_GO_TO_FOUNTAIN,
+      }
+
+      return lawbreaker
+    end
+
     if GetHeroName(self.parent:GetUnitName()) == "bocuse" then return bocuse end
     if GetHeroName(self.parent:GetUnitName()) == "fleaman" then return fleaman end
     if GetHeroName(self.parent:GetUnitName()) == "dasdingo" then return dasdingo end

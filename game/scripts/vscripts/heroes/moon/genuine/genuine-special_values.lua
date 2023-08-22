@@ -292,9 +292,9 @@ function genuine_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 
     if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
     if value_name == "AbilityCharges" then return ability:GetSpecialValueFor("charges") end
-    if value_name == "AbilityChargeRestoreTime" then return 3 end
+    if value_name == "AbilityChargeRestoreTime" then return 2 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "charges" then return 20 + (value_level * 1) end
+		if value_name == "charges" then return 30 + (value_level * 1) end
 
     if value_name == "damage" then return 70 end
     if value_name == "proj_speed" then return 1200 end

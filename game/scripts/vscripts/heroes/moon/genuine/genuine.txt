@@ -35,7 +35,7 @@
 
 		"AbilityValues"
 		{
-      "damage"		              "60"
+      "damage"		              "70"
       "proj_speed"	            "600"
       "atk_range"		            "100"
       "charges"		              "1 2 3 4 5 6 7 8 9 10 11"
@@ -170,7 +170,7 @@
       "tree_width"			  "75"
       "vision_radius"			"600"
       "vision_duration"		"1"
-      "damage"		        "300"
+      "damage"		        "375"
       "cast_point"		    "0.8"
       "cast_rate"		      "0.5"
       "arrow_width"			  "125"
@@ -200,9 +200,9 @@
 
 		"AbilityValues"
 		{
-      "int"		        "15"
-      "agi"		        "15"
-      "ms"		        "150"
+      "rec"		        "20"
+      "agi"		        "10"
+      "ms"		        "100"
       "night_vision"  "200"
       "duration"		  "1 2 3 4 5 6 7 8 9 10 11"
       "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
