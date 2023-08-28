@@ -10,6 +10,11 @@ function lawbreaker_1_modifier_passive:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  self.gunslinger = self.parent:AddAbility("muerta_gunslinger")
+  self.gunslinger:SetCurrentAbilityCharges(0)
+  self.gunslinger:UpgradeAbility(true)
+  self.gunslinger:SetHidden(true)
+
   if IsServer() then self:SetStackCount(0) end
 end
 
@@ -25,31 +30,48 @@ end
 function lawbreaker_1_modifier_passive:DeclareFunctions()
 	local funcs = {
     MODIFIER_PROPERTY_PROJECTILE_NAME,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-    MODIFIER_EVENT_ON_ATTACKED
+    MODIFIER_EVENT_ON_ATTACK_START,
+    MODIFIER_EVENT_ON_ATTACKED,
 	}
 
 	return funcs
 end
 
-function lawbreaker_1_modifier_passive:OnAttacked(keys)
-  if keys.attacker ~= self.parent then return end
-  if self.parent:PassivesDisabled() then return end
-  if IsServer() then self:IncrementStackCount() end
+function lawbreaker_1_modifier_passive:GetModifierProjectileName()
+  if self:GetStackCount() >= self:GetAbility():GetSpecialValueFor("max_hit") - 1 then
+    return "particles/units/heroes/hero_muerta/muerta_base_attack_alt.vpcf"
+  end
+end
 
-  if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") - 1 then
-    BaseStats(self.parent):SetForceCrit(100, BaseStats(self.parent):GetTotalCriticalDamage() + self.ability:GetSpecialValueFor("crit_dmg"))
+function lawbreaker_1_modifier_passive:OnAttackStart(keys)
+  if keys.attacker ~= self.parent then return end
+
+  if self.parent:PassivesDisabled() == false and self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") - 1 then
+    self.gunslinger:SetCurrentAbilityCharges(1)
+  else
+    self.gunslinger:SetCurrentAbilityCharges(0)
   end
 
-  if self:GetStackCount() == 0 then
+  self.gunslinger:SetLevel(1)
+end
+
+function lawbreaker_1_modifier_passive:OnAttacked(keys)
+  if keys.attacker ~= self.parent then return end
+
+  if self.parent:PassivesDisabled() == false and self:GetStackCount() >= self.ability:GetSpecialValueFor("max_hit") - 1 then
     local heal = keys.original_damage * self.ability:GetSpecialValueFor("lifesteal") * 0.01
     self.parent:Heal(heal, self.ability)
     self:PlayEfxLifesteal(keys.attacker)
   end
+
+  if IsServer() then self:IncrementStackCount() end
 end
 
 function lawbreaker_1_modifier_passive:OnStackCountChanged(old)
-  if self:GetStackCount() == self.ability:GetSpecialValueFor("max_hit") then 
+  local double = 1
+  if self.parent:HasModifier("lawbreaker_2_modifier_combo") then double = 0 end
+
+  if self:GetStackCount() >= self.ability:GetSpecialValueFor("max_hit") + double then 
     if IsServer() then self:SetStackCount(0) end
   end
 end

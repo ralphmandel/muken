@@ -68,9 +68,9 @@ function lawbreaker_2_modifier_combo:OnOrder(keys)
 
 	if keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
     Timers:CreateTimer(FrameTime(), function()
-      if self.parent:IsCommandRestricted() == false then
+      --if self.parent:IsCommandRestricted() == false then
         self.parent:MoveToNPC(keys.target)
-      end
+      --end
     end)
 	end
 end

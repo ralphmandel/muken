@@ -34,8 +34,8 @@
     "AbilityValues"
 		{
 			"max_hit"			"5"
-      "crit_dmg"		"150"
-      "lifesteal"		"25"
+      "crit_dmg"		"50"
+      "lifesteal"		"20"
 			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}
@@ -171,7 +171,6 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"8"
 		"LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
 
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -183,13 +182,13 @@
 
 		"AbilityValues"
 		{
-			"duration"			      "20"
+			"drain_percent"			  "4"
 			"transform_duration"  "0.35"
 			"model_scale"         "30"
 			"break_duration"	    "3"
 			"break_chance"	      "50"
-			"vision_range"	      "1 2 3 4 5 6 7 8 9 10 11"
-			"atk_range"	          "1 2 3 4 5 6 7 8 9 10 11"
+			"vision_range"	      "200"
+			"hp_percent"	        "1 2 3 4 5 6 7 8 9 10 11"
 			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
 		}
 	}

@@ -43,7 +43,24 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
 
   function lawbreaker_2__combo:OnProjectileHit(target, loc)
     local caster = self:GetCaster()
+    local gunslinger = caster:FindAbilityByName("muerta_gunslinger")
+    
+    if gunslinger then
+      gunslinger:SetCurrentAbilityCharges(0)
+      gunslinger:SetLevel(1)
+    end
+
     caster:PerformAttack(target, false, false, true, false, false, false, false) -- skipCooldown == true FOR RANGED UNITS
+
+    if caster:HasModifier("lawbreaker_2_modifier_combo") == false then
+      local shot_modifier = caster:FindModifierByName("lawbreaker_1_modifier_passive")
+      if shot_modifier then
+        if shot_modifier:GetStackCount() == shot_modifier:GetAbility():GetSpecialValueFor("max_hit") then
+          if IsServer() then shot_modifier:SetStackCount(0) end
+        end
+      end
+    end
+
     return true
   end
 

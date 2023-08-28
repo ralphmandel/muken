@@ -78,5 +78,4 @@ function lawbreaker__precache:Precache(context)
   PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_screen_effect.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_finish.vpcf", context )
   PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_gunslinger.vpcf", context )
-  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_base_attack_alt.vpcf", context )
 end

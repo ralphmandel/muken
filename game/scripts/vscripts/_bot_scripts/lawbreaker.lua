@@ -61,30 +61,30 @@ function lawbreaker:TryCast_Form()
   if self.caster:HasModifier("lawbreaker_2_modifier_combo") then return true end
   if IsAbilityCastable(ability) == false then return false end
 
-  if self.state == BOT_STATE_FLEE then
-    return false
-  end
+  -- if self.state == BOT_STATE_FLEE then
+  --   return false
+  -- end
 
-  if self.state == BOT_STATE_AGGRESSIVE then
-    local total_targets = 0
-    local enemies = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
-      DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
-      DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
-    )
+  -- if self.state == BOT_STATE_AGGRESSIVE then
+  --   local total_targets = 0
+  --   local enemies = FindUnitsInRadius(
+  --     self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, self.caster:Script_GetAttackRange(),
+  --     DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+  --     DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false
+  --   )
   
-    for _,enemy in pairs(enemies) do
-      if self.caster:CanEntityBeSeenByMyTeam(enemy)
-      and enemy:IsHero() or enemy:IsConsideredHero() then
-        total_targets = total_targets + 1
-      end
-    end
+  --   for _,enemy in pairs(enemies) do
+  --     if self.caster:CanEntityBeSeenByMyTeam(enemy)
+  --     and enemy:IsHero() or enemy:IsConsideredHero() then
+  --       total_targets = total_targets + 1
+  --     end
+  --   end
   
-    if total_targets <= 1 then return false end
+  --   if total_targets <= 1 then return false end
   
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
+  --   self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+  --   return true
+  -- end
 end
 
 function lawbreaker:TryCast_Grenade()
