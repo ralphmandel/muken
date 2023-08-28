@@ -1,6 +1,6 @@
 paladin_1__link = class({})
-LinkLuaModifier("paladin_1_modifier_link", "heroes/sun/paladin/paladin_1_modifier_link", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("paladin_1_modifier_regen", "heroes/sun/paladin/paladin_1_modifier_regen", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("paladin_1_modifier_link_target", "heroes/sun/paladin/paladin_1_modifier_link_target", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("paladin_1_modifier_link_caster", "heroes/sun/paladin/paladin_1_modifier_link_caster", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
@@ -31,8 +31,8 @@ LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTI
 		local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    target:RemoveModifierByName("paladin_1_modifier_link")
-    AddModifier(target, self, "paladin_1_modifier_link", {duration = self:GetSpecialValueFor("duration")}, true)
+    target:RemoveModifierByName("paladin_1_modifier_link_target")
+    AddModifier(target, self, "paladin_1_modifier_link_target", {duration = self:GetSpecialValueFor("duration")}, true)
   end
 
 -- EFFECTS

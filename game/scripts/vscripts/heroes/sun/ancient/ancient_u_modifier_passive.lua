@@ -11,17 +11,12 @@ function ancient_u_modifier_passive:OnCreated(kv)
   self.ability = self:GetAbility()
 
 	if IsServer() then
-    self.ability.kills = 0
-    self:SetStackCount(self.ability.kills)
 		self:OnIntervalThink()
 		self:PlayEfxBuff()
 	end
 end
 
 function ancient_u_modifier_passive:OnRefresh(kv)
-  if IsServer() then
-		self:SetStackCount(self.ability.kills)
-	end
 end
 
 function ancient_u_modifier_passive:OnRemoved()
@@ -31,8 +26,7 @@ end
 
 function ancient_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-    MODIFIER_EVENT_ON_ATTACKED,
-    MODIFIER_EVENT_ON_HERO_KILLED
+    MODIFIER_EVENT_ON_ATTACKED
 	}
 
 	return funcs
@@ -44,30 +38,23 @@ function ancient_u_modifier_passive:OnAttacked(keys)
 
   local gain = self.ability:GetSpecialValueFor("energy_gain")
 
+<<<<<<< Updated upstream
   if BaseStats(keys.attacker).has_crit then
     gain = self.ability:GetSpecialValueFor("energy_gain_crit")
   end
+=======
+  -- if BaseStats(keys.attacker).has_crit == true then
+  -- end
+>>>>>>> Stashed changes
 
   IncreaseMana(self.parent, gain)
-  self.ability:UpdateCON()
-end
-
-function ancient_u_modifier_passive:OnHeroKilled(keys)
-	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
-	if keys.inflictor ~= self.ability then return end
-
-	if IsServer() then
-    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", 1) end
-    self.ability.kills = self.ability.kills + 1
-		self:SetStackCount(self.ability.kills)
-		self:PlayEfxKill()
-	end
+  self.ability:UpdateParticles()
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
   local interval = 1
   ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * interval, false)
-	self.ability:UpdateCON()
+	self.ability:UpdateParticles()
 
 	if IsServer() then self:StartIntervalThink(interval) end
 end
@@ -98,14 +85,4 @@ function ancient_u_modifier_passive:UpdateAmbients()
 		ParticleManager:SetParticleControl(ambient_weapon, 20, Vector(value, 30, 12))
 		ParticleManager:SetParticleControl(ambient_weapon, 21, Vector(value * 0.01, 0, 0))
 	end
-end
-
-function ancient_u_modifier_passive:PlayEfxKill()
-	local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
-
-	local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
-	ParticleManager:ReleaseParticleIndex(nFXIndex)
 end

@@ -110,7 +110,7 @@ base_stats_mod = class ({})
       if keys.inflictor ~= nil then
         if keys.inflictor:GetClassname() == "ability_lua" then
           if keys.inflictor:GetAbilityName() == "shadowmancer_1__weapon" 
-          or keys.inflictor:GetAbilityName() == "hunter_4__bandage"
+          or keys.inflictor:GetAbilityName() == "hunter_2__aim"
           or keys.inflictor:GetAbilityName() == "dasdingo_4__tribal" then
             efx = OVERHEAD_ALERT_BONUS_POISON_DAMAGE
           end
@@ -298,6 +298,8 @@ base_stats_mod = class ({})
     BaseStats(keys.attacker).force_crit_chance = nil
     BaseStats(keys.attacker).has_crit = crit
 
+    if keys.attacker:HasModifier("ancient_1_modifier_passive") then return 0 end
+
     if RandomFloat(0, 100) < BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(0, 100) < self.ability:GetDodgePercent()) then
       return 1
     end
@@ -313,7 +315,16 @@ base_stats_mod = class ({})
 
     local crit = RandomFloat(0, 100) < BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil
+<<<<<<< Updated upstream
     BaseStats(keys.attacker).has_crit = crit
+=======
+
+    if keys.attacker:HasModifier("ancient_1_modifier_passive") then
+      BaseStats(keys.attacker).missing = false
+      return
+    end
+
+>>>>>>> Stashed changes
     BaseStats(keys.attacker).missing = (RandomFloat(0, 100) < BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(0, 100) < self.ability:GetDodgePercent()))
   end
 

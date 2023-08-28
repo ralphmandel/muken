@@ -196,6 +196,18 @@ end
 
 -- HEROES UTIL
 
+  function HasTreeNearby(point, radius)
+    local trees = GridNav:GetAllTreesAroundPoint(point, radius, false)
+    
+    if trees then
+      for k, v in pairs(trees) do
+        return true
+      end
+    end
+
+    return false
+  end
+
   function IsMetamorphosis(ability_name, target)
     local ability = target:FindAbilityByName(ability_name)
     if ability then
@@ -359,6 +371,26 @@ end
 
   function DestroyParticleOnCosmetic(baseNPC, model_name, particle_name, bDestroyImmediately)
     if Cosmetics(baseNPC) then Cosmetics(baseNPC):DestroyAmbient(model_name, particle_name, bDestroyImmediately) end
+  end
+
+  function AddModifierOnAllCosmetics(BaseNPC, ability, modifier_name, table)
+    if Cosmetics(BaseNPC) == nil then return end
+
+    BaseNPC:AddNewModifier(BaseNPC, ability, modifier_name, table)
+
+    for i = 1, #Cosmetics(BaseNPC).cosmetic, 1 do
+      Cosmetics(BaseNPC).cosmetic[i]:AddNewModifier(BaseNPC, ability, modifier_name, table)
+    end
+  end
+
+  function RemoveModifierOnAllCosmetics(BaseNPC, ability, modifier_name)
+    if Cosmetics(BaseNPC) == nil then return end
+
+    RemoveAllModifiersByNameAndAbility(BaseNPC, modifier_name, ability)
+
+    for i = 1, #Cosmetics(BaseNPC).cosmetic, 1 do
+      RemoveAllModifiersByNameAndAbility(Cosmetics(BaseNPC).cosmetic[i], modifier_name, ability)
+    end
   end
 
 -- BASES
@@ -534,7 +566,7 @@ end
       [DOTA_TEAM_CUSTOM_1] = 3,
       [DOTA_TEAM_CUSTOM_2] = 3,
       [DOTA_TEAM_CUSTOM_3] = 3,
-      [DOTA_TEAM_CUSTOM_4] = 0,
+      [DOTA_TEAM_CUSTOM_4] = 3,
     }
 
     local players_hero_list = {}

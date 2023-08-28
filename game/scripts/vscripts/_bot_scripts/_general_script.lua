@@ -233,7 +233,8 @@ _general_script = class({})
   
           -- FLEAMAN STEAL
             if new_target == nil then
-              if self.parent:HasModifier("fleaman_5_modifier_passive") then
+              if self.parent:HasModifier("fleaman_5_modifier_passive") 
+              and self.attack_target:HasModifier("fleaman_4_modifier_strip") == false then
                 local mod_steal = self.attack_target:FindModifierByName("fleaman_5_modifier_steal")
                 if mod_steal then
                   if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
@@ -597,7 +598,7 @@ _general_script = class({})
             if group == "MAIN" then
               local index = 1
               for i, stat in pairs(stats) do
-                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.primary_points) == true then
+                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.total_points) == true then
                   main[index] = stat
                   index = index + 1
                 end
@@ -606,7 +607,7 @@ _general_script = class({})
             if group == "SUB" then
               local index = 1
               for i, stat in pairs(stats) do
-                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.secondary_points) == true then
+                if base_stats:IsHeroCanLevelUpStat(stat, base_stats.total_points) == true then
                   sub[index] = stat
                   index = index + 1
                 end

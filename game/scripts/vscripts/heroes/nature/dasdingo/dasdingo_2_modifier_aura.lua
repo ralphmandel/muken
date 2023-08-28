@@ -10,7 +10,7 @@ function dasdingo_2_modifier_aura:GetModifierAura() return "dasdingo_2_modifier_
 function dasdingo_2_modifier_aura:GetAuraRadius() return self:GetAbility():GetAOERadius() end
 function dasdingo_2_modifier_aura:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_BOTH end
 function dasdingo_2_modifier_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
-function dasdingo_2_modifier_aura:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_NONE end
+function dasdingo_2_modifier_aura:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES end
 function dasdingo_2_modifier_aura:GetAuraEntityReject(hEntity)
   if self:GetCaster():GetTeamNumber() == hEntity:GetTeamNumber() then
     return (hEntity:IsConsideredHero() == false)

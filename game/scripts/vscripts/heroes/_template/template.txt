@@ -6,7 +6,7 @@
   "template__precache"
 	{
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+		"ScriptFile"					"heroes/id_team/template/template-ranks_lua"
     "AbilityTextureName"    		"template__precache"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"99"
@@ -19,7 +19,7 @@
 	"template_1__sk1"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_1__sk1"
+		"ScriptFile"            		"heroes/id_team/template/template_1__sk1"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"template_sk1"
 		"MaxLevel"               		"1"
@@ -37,14 +37,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
 	"template_2__sk2"
 	{  
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_2__sk2"
+		"ScriptFile"            		"heroes/id_team/template/template_2__sk2"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"template_sk2"
 		"MaxLevel"               		"1"
@@ -62,14 +62,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
 	"template_3__sk3"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_3__sk3"
+		"ScriptFile"            		"heroes/id_team/template/template_3__sk3"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"template_sk3"
 		"MaxLevel"               		"1"
@@ -87,14 +87,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
 	"template_4__sk4"
 	{ 
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_4__sk4"
+		"ScriptFile"            		"heroes/id_team/template/template_4__sk4"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"template_sk4"
 		"MaxLevel"               		"1"
@@ -112,14 +112,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
 	"template_5__sk5"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_5__sk5"
+		"ScriptFile"            		"heroes/id_team/template/template_5__sk5"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityTextureName"     		"template_sk5"
 		"MaxLevel"               		"1"
@@ -137,14 +137,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
 	"template_u__sk6"
 	{
 		"BaseClass"              		"ability_lua"
-		"ScriptFile"            		"heroes/team_id_team/template/template_u__sk6"
+		"ScriptFile"            		"heroes/id_team/template/template_u__sk6"
 		"AbilityTextureName"     		"template_sk6"
 		"AbilityType"           	 	"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"               		"1"
@@ -162,14 +162,14 @@
 
     "AbilityValues"
 		{
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
     //RANKS 1
         "template_1__sk1_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -199,7 +199,7 @@
 
         "template_1__sk1_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -229,7 +229,7 @@
 
         "template_1__sk1_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -259,7 +259,7 @@
 
         "template_1__sk1_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -289,7 +289,7 @@
 
         "template_1__sk1_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -319,7 +319,7 @@
 
         "template_1__sk1_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -349,7 +349,7 @@
 
         "template_1__sk1_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -379,7 +379,7 @@
 
         "template_1__sk1_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk1"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -410,7 +410,7 @@
     //RANKS 2
         "template_2__sk2_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -440,7 +440,7 @@
 
         "template_2__sk2_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -470,7 +470,7 @@
 
         "template_2__sk2_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -500,7 +500,7 @@
 
         "template_2__sk2_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -530,7 +530,7 @@
 
         "template_2__sk2_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -560,7 +560,7 @@
 
         "template_2__sk2_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -590,7 +590,7 @@
 
         "template_2__sk2_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -620,7 +620,7 @@
 
         "template_2__sk2_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk2"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -651,7 +651,7 @@
     //RANKS 3
         "template_3__sk3_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -681,7 +681,7 @@
 
         "template_3__sk3_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -711,7 +711,7 @@
 
         "template_3__sk3_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -741,7 +741,7 @@
 
         "template_3__sk3_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -771,7 +771,7 @@
 
         "template_3__sk3_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -801,7 +801,7 @@
 
         "template_3__sk3_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -831,7 +831,7 @@
 
         "template_3__sk3_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -861,7 +861,7 @@
 
         "template_3__sk3_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk3"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -892,7 +892,7 @@
     //RANKS 4
         "template_4__sk4_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -922,7 +922,7 @@
 
         "template_4__sk4_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -952,7 +952,7 @@
 
         "template_4__sk4_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -982,7 +982,7 @@
 
         "template_4__sk4_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1012,7 +1012,7 @@
 
         "template_4__sk4_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1042,7 +1042,7 @@
 
         "template_4__sk4_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1072,7 +1072,7 @@
 
         "template_4__sk4_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1102,7 +1102,7 @@
 
         "template_4__sk4_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk4"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1133,7 +1133,7 @@
     //RANKS 5
         "template_5__sk5_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1163,7 +1163,7 @@
 
         "template_5__sk5_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1193,7 +1193,7 @@
 
         "template_5__sk5_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1223,7 +1223,7 @@
 
         "template_5__sk5_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1253,7 +1253,7 @@
 
         "template_5__sk5_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1283,7 +1283,7 @@
 
         "template_5__sk5_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1313,7 +1313,7 @@
 
         "template_5__sk5_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1343,7 +1343,7 @@
 
         "template_5__sk5_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk5"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1374,7 +1374,7 @@
     //RANKS U
         "template_u__sk6_rank_11"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1404,7 +1404,7 @@
 
         "template_u__sk6_rank_12"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"1"	
@@ -1434,7 +1434,7 @@
 
         "template_u__sk6_rank_21"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1464,7 +1464,7 @@
 
         "template_u__sk6_rank_22"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"2"	
@@ -1494,7 +1494,7 @@
 
         "template_u__sk6_rank_31"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1524,7 +1524,7 @@
 
         "template_u__sk6_rank_32"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"3"	
@@ -1554,7 +1554,7 @@
         
         "template_u__sk6_rank_41"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	
@@ -1584,7 +1584,7 @@
 
         "template_u__sk6_rank_42"{
             "BaseClass"						"ability_lua"
-            "ScriptFile"					"heroes/team_id_team/template/template-ranks_lua"
+            "ScriptFile"					"heroes/id_team/template/template-ranks_lua"
             "AbilityTextureName"    		"template_sk6"
             "FightRecapLevel"				"1"
             "MaxLevel"						"4"	

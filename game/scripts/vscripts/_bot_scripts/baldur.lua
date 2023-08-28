@@ -44,7 +44,8 @@ function baldur:TryCast_Dash()
       local modifier = self.caster:FindModifierByName("baldur_2_modifier_charge")
       local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
 
-      if distance_diff < ability:GetSpecialValueFor("cast_range") then
+      if distance_diff < ability:GetSpecialValueFor("cast_range")
+      and self.target:IsHero() or self.target:IsConsideredHero() then
         if modifier then
           if modifier.time < self.time_limit or distance_diff > ability:GetSpecialValueFor("cast_range") - 75 then
             target = self.target
@@ -69,9 +70,10 @@ function baldur:TryCast_Dash()
 
       self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
       return true
-    else
+    else      
       local distance_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
       if distance_diff > ability:GetSpecialValueFor("cast_range") - 150 then return false end
+      if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
 
       self.time_limit = RandomInt(1, 3)
       self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())

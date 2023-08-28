@@ -13,8 +13,8 @@ function ancient:TrySpell(target, state)
 
   local abilities_actions = {
     [1] = self.TryCast_Leap,
-    [2] = self.TryCast_Petrify,
-    [3] = self.TryCast_Final,
+    [2] = self.TryCast_Roar,
+    [3] = self.TryCast_Fissure,
     [4] = self.TryCast_Walk
   }
 
@@ -31,44 +31,34 @@ end
 
 function ancient:TryCast_Leap()
   local ability = self.caster:FindAbilityByName("ancient_2__leap")
-  if ability == nil then return false end
-  if ability:IsTrained() == false then return false end
-  if ability:GetCaster():IsCommandRestricted() then return false end
-  if ability:GetCaster():IsSilenced() then return false end
+  if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
     return false
   end
 
-  if self.state == BOT_STATE_AGGRESSIVE then
-    local targets = 0
-
-    local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetAOERadius() - 50,
-      ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
-      ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
-    )
-  
-    for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit)
-      and unit:IsHero() or unit:IsConsideredHero() then
-        targets = targets + 1
-      end
-    end
-  
-    if targets == 0 then return false end
+  if self.state == BOT_STATE_AGGRESSIVE then  
+    if self.caster:HasModifier("ancient_2_modifier_jump") then return true end
     if self.caster:HasModifier("ancient_2_modifier_leap") then return true end
-    if IsAbilityCastable(ability) == false then return false end
+
+    local max_charge = ability:GetMaxAbilityCharges(ability:GetLevel())
+    if self.random_values["leap_charges"] == nil then self:RandomizeValue(1, max_charge, "leap_charges") end
+    if ability:GetCurrentAbilityCharges() < self.random_values["leap_charges"] then return false end
   
-    if ability:GetCurrentAbilityCharges() < 3 then return false end
-  
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+
+    if ability:GetCurrentAbilityCharges() == 0 then
+      self:RandomizeValue(1, max_charge, "leap_charges")
+    else
+      self.random_values["leap_charges"] = 0
+    end
+
     return true
   end
 end
 
-function ancient:TryCast_Petrify()
-  local ability = self.caster:FindAbilityByName("ancient_5__petrify")
+function ancient:TryCast_Roar()
+  local ability = self.caster:FindAbilityByName("ancient_3__roar")
   if IsAbilityCastable(ability) == false then return false end
 
   local find_order = nil
@@ -86,7 +76,7 @@ function ancient:TryCast_Petrify()
   local target = nil
 
   local units = FindUnitsInRadius(
-    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil) - 50,
+    self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil) - 100,
     ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
     ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false
   )
@@ -105,8 +95,8 @@ function ancient:TryCast_Petrify()
   return true
 end
 
-function ancient:TryCast_Final()
-  local ability = self.caster:FindAbilityByName("ancient_u__final")
+function ancient:TryCast_Fissure()
+  local ability = self.caster:FindAbilityByName("ancient_u__fissure")
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
@@ -124,17 +114,20 @@ function ancient:TryCast_Final()
       return true
     end
   
-    if self.random_values["final_percent"] == nil then self:RandomizeValue(ability, "final_percent") end
+    if self.random_values["final_percent"] == nil then
+      self:RandomizeValue(ability:GetSpecialValueFor("min_cost"), 90, "final_percent")
+    end
+
     if self.caster:GetManaPercent() < self.random_values["final_percent"] then return false end
   
     self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-    self:RandomizeValue(ability, "final_percent")
+    self:RandomizeValue(ability:GetSpecialValueFor("min_cost"), 90, "final_percent")
     return true
   end
 end
 
 function ancient:TryCast_Walk()
-  local ability = self.caster:FindAbilityByName("ancient_3__walk")
+  local ability = self.caster:FindAbilityByName("ancient_4__walk")
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
@@ -149,10 +142,8 @@ function ancient:TryCast_Walk()
   end
 end
 
-function ancient:RandomizeValue(ability, value_name)
-  if value_name == "final_percent" then
-    self.random_values[value_name] = RandomInt(ability:GetSpecialValueFor("min_cost"), 90)
-  end
+function ancient:RandomizeValue(min_value, max_value, value_name)
+  self.random_values[value_name] = RandomInt(min_value, max_value)
 end
 
 return ancient

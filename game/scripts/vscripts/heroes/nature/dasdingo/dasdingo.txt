@@ -50,11 +50,12 @@
 
 		"AbilityValues"
 		{
-      "interval"	  "0.9"
-      "heal_tick"	  "20"
-      "radius"	    "400"
-      "duration"	  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      //"heal_amp"	  "15"
+      "interval"	  "1"
+      "heal_tick"	  "25"
+      "duration"	  "6"
+      "radius"	    "1 2 3 4 5 6 7"
+      "rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -79,12 +80,12 @@
 
 		"AbilityValues"
 		{
-      "hp_regen"			  "25"
+      //"hp_regen"			  "40"
       "duration"        "300"
-      "root_duration"   "2"
-      "root_chance"     "10"
-      "radius"			    "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "root_duration"   "1"
+      "root_chance"     "20"
+      "radius"			    "1 2 3 4 5 6 7"
+      "rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -109,10 +110,10 @@
 
 		"AbilityValues"
 		{
-      "channel_time"	"4"
+      "channel_time"	"5"
       "drain_percent" "2"
-      "cast_range"	  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "cast_range"	  "1 2 3 4 5 6 7"
+      "rank"			    "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -138,8 +139,8 @@
       "duration"	    "15"
       "bounce"	      "3"
       "bounce_range"  "450"
-      "atk_range"	    "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "atk_range"	    "1 2 3 4 5 6 7"
+      "rank"			    "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -156,7 +157,7 @@
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
@@ -166,9 +167,10 @@
 		"AbilityValues"
 		{
       "cast_range"  "600"
-      "damage"      "100"
-      "duration"	  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "ms_ally"     "500"
+      "ms_enemy"    "200"
+      "duration"	  "1 2 3 4 5 6 7"
+      "rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -199,8 +201,8 @@
       "max_tick"        "6"
       "hp_damage"       "5"
       "radius"			    "500"
-      "damage"          "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "damage"          "1 2 3 4 5 6 7"
+      "rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 

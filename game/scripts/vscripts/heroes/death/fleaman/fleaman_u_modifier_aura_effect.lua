@@ -31,9 +31,9 @@ function fleaman_u_modifier_aura_effect:OnRemoved()
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_blind", self.ability)
 
   if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then
-    AddModifier(self.parent, self.ability, "_modifier_invisible", {
-      delay = 0.5, attack_break = 0
-    }, false)
+    -- AddModifier(self.parent, self.ability, "_modifier_invisible", {
+    --   delay = 0.5, attack_break = 0
+    -- }, false)
 
     AddModifier(self.parent, self.ability, "fleaman_u_modifier_shadow", {
       duration = self.ability:GetSpecialValueFor("delay")

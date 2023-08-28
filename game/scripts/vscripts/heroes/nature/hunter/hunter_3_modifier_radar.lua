@@ -51,7 +51,8 @@ function hunter_3_modifier_radar:OnIntervalThink()
       if self.caster:CanEntityBeSeenByMyTeam(enemy) == false then
         self.state = RADAR_STATE_FOW
         self:SetDuration(self.ability:GetSpecialValueFor("fow_time"), true)
-        break
+        if IsServer() then self:StartIntervalThink(0.1) end
+        return
       end
     end
   end

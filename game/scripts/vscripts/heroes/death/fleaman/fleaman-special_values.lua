@@ -68,6 +68,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "stack_duration" then return 1 end
 
 		if caster:FindAbilityByName("fleaman_2__speed_rank_11") then
 		end
@@ -129,6 +130,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+    if value_name == "duration" then return 1 end
 
 		if caster:FindAbilityByName("fleaman_4__strip_rank_11") then
 		end
@@ -159,6 +161,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+    if value_name == "stack_duration" then return 1 end
 
 		if caster:FindAbilityByName("fleaman_5__steal_rank_11") then
 		end
@@ -229,45 +232,48 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "fleaman_1__precision" then
-		if value_name == "AbilityManaCost" then return 185 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCharges" then return 3 end
     if value_name == "AbilityChargeRestoreTime" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 15 + (value_level * 0.3) end
+		if value_name == "duration" then return 15 + (value_level * 0.5) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_2__speed" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "stack_duration" then return 4.5 + (value_level * 0.25) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_3__jump" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 15 end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 12 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "distance" then return 600 + (value_level * 20) end
+    if value_name == "distance" then return 600 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_4__strip" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "duration" then return 6 + (value_level * 0.25) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_5__steal" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+    if value_name == "stack_duration" then return 10 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_u__smoke" then
-		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 40 end
+		if value_name == "AbilityManaCost" then return 675 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 75 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "radius" then return 600 + (value_level * 15) end
+		if value_name == "radius" then return 550 + (value_level * 25) end
 	end
 
 	return 0

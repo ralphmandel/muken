@@ -198,6 +198,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "holy_reduction" then return 1 end
 
 		if caster:FindAbilityByName("paladin_u__faith_rank_11") then
 		end
@@ -243,16 +244,16 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityChargeRestoreTime" then return 60 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "cast_range" then return 500 + (value_level * 25) end
-		if value_name == "max_range" then return 1000 + (value_level * 25) end
+    if value_name == "cast_range" then return 600 + (value_level * 50) end
+		if value_name == "max_range" then return 900 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "paladin_2__shield" then
 		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 20 end
+		if value_name == "AbilityCooldown" then return 18 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 20 + (value_level * 1) end
+		if value_name == "duration" then return 18 + (value_level * 2) end
 	end
 
 	if ability:GetAbilityName() == "paladin_3__hammer" then
@@ -261,14 +262,14 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 350 + (value_level * 5) end
+		if value_name == "radius" then return 360 + (value_level * 15) end
 	end
 
 	if ability:GetAbilityName() == "paladin_4__magnus" then
 		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 45 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 5 + (value_level * 0.1) end
+		if value_name == "duration" then return 5 + (value_level * 0.25) end
 	end
 
 	if ability:GetAbilityName() == "paladin_5__smite" then
@@ -279,7 +280,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityChargeRestoreTime" then return 5 end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "damage" then return 120 + (value_level * 3) end
+		if value_name == "damage" then return 120 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "paladin_u__faith" then
@@ -287,6 +288,7 @@ function paladin_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityCooldown" then return 0 end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "holy_reduction" then return -24 - (value_level * 2) end
 	end
 
 	return 0

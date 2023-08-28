@@ -24,9 +24,6 @@ function dasdingo_1_modifier_field:OnCreated(kv)
 	self.ability = self:GetAbility()
   self.radius = self.ability:GetAOERadius()
 
-  self.ability:EndCooldown()
-  self.ability:SetActivated(false)
-
   if IsServer() then self:PlayEfxStart() end
 end
 
@@ -34,8 +31,6 @@ function dasdingo_1_modifier_field:OnRefresh(kv)
 end
 
 function dasdingo_1_modifier_field:OnRemoved()
-  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
-  self.ability:SetActivated(true)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

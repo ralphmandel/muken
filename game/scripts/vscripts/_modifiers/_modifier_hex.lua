@@ -24,6 +24,8 @@ function _modifier_hex:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
+  self.speed = kv.speed or 175
+
   if self.parent:IsIllusion() then
     self.parent:Kill(self.ability, self.caster)
     return
@@ -76,7 +78,7 @@ function _modifier_hex:DeclareFunctions()
 end
 
 function _modifier_hex:GetModifierMoveSpeed_Limit()
-	return 175
+	return self.speed
 end
 
 function _modifier_hex:GetModifierModelChange()

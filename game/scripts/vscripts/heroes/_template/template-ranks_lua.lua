@@ -53,7 +53,7 @@ template_u__sk6_rank_41 = class ({})
 template_u__sk6_rank_42 = class ({})
 
 template__precache = class ({})
-LinkLuaModifier("template_special_values", "heroes/team_id_team/template/template-special_values", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("template_special_values", "heroes/id_team/template/template-special_values", LUA_MODIFIER_MOTION_NONE)
 
 function template__precache:GetIntrinsicModifierName()
   return "template_special_values"

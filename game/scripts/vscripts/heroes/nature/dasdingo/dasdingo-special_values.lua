@@ -35,7 +35,7 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "duration" then return 1 end
+		if value_name == "radius" then return 1 end
 
 		if caster:FindAbilityByName("dasdingo_1__field_rank_11") then
 		end
@@ -237,10 +237,10 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "dasdingo_1__field" then
-		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 15 end
+		if value_name == "AbilityManaCost" then return 225 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 12 + (value_level * 0.3) end
+		if value_name == "radius" then return 350 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_2__tree" then
@@ -251,40 +251,40 @@ function dasdingo_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityChargeRestoreTime" then return 60 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "radius" then return 700 + (value_level * 20) end
+		if value_name == "radius" then return 450 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_3__leech" then
-		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 325 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
     if value_name == "AbilityChannelTime" then return caster:FindAbilityByName("dasdingo__bind"):GetLevel() * 0.01 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 400 + (value_level * 20) end
+		if value_name == "cast_range" then return 450 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_4__tribal" then
-		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 24 end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 25 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "atk_range" then return 600 + (value_level * 15) end
+    if value_name == "atk_range" then return 600 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_5__hex" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 18 end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 3 + (value_level * 0.1) end
+		if value_name == "duration" then return 3 + (value_level * 0.15) end
 	end
 
 	if ability:GetAbilityName() == "dasdingo_u__curse" then
-		if value_name == "AbilityManaCost" then return 770 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 90 end
+		if value_name == "AbilityManaCost" then return 700 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 75 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "damage" then return 200 + (value_level * 10) end
+		if value_name == "damage" then return 150 + (value_level * 25) end
 	end
 
 	return 0

@@ -10,11 +10,12 @@ function templar_3_modifier_aura_effect:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  self.interval = self.ability:GetSpecialValueFor("interval")
+  AddModifier(self.parent, self.ability, "_modifier_heal_decay", {
+    amount = self.ability:GetSpecialValueFor("heal_decay")
+  }, false)
   
   if IsServer() then
     self.parent:EmitSound("Hero_AbyssalUnderlord.Pit.TargetHero")
-    self:StartIntervalThink(self.interval)
   end
 end
 
@@ -22,37 +23,21 @@ function templar_3_modifier_aura_effect:OnRefresh(kv)
 end
 
 function templar_3_modifier_aura_effect:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_heal_decay", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function templar_3_modifier_aura_effect:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+    MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE
 	}
 
 	return funcs
 end
 
-function templar_3_modifier_aura_effect:GetModifierConstantHealthRegen(keys)
-  if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then
-    return self:GetAbility():GetSpecialValueFor("hp_regen")
-  end
-
-  return 0
-end
-
-function templar_3_modifier_aura_effect:OnIntervalThink()
-  if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then return end
-
-  if IsServer() then self.parent:EmitSound("Templar.Circle.Hit") end
-
-  ApplyDamage({
-    victim = self.parent, attacker = self.caster,
-    damage = self.ability:GetSpecialValueFor("damage") * self.interval,
-    damage_type = self.ability:GetAbilityDamageType(),
-    ability = self.ability
-  })
+function templar_3_modifier_aura_effect:GetModifierHealthRegenPercentage(keys)
+  return self:GetAbility():GetSpecialValueFor("hp_regen")
 end
 
 -- UTILS -----------------------------------------------------------

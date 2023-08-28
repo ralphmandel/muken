@@ -2,6 +2,7 @@ dasdingo_2__tree = class({})
 LinkLuaModifier("dasdingo_2_modifier_aura", "heroes/nature/dasdingo/dasdingo_2_modifier_aura", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_2_modifier_aura_effect", "heroes/nature/dasdingo/dasdingo_2_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_root", "_modifiers/_modifier_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_truesight", "_modifiers/_modifier_truesight", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

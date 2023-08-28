@@ -2,7 +2,7 @@ genuine_5__nightfall = class({})
 LinkLuaModifier("genuine_5_modifier_passive", "heroes/moon/genuine/genuine_5_modifier_passive", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("genuine_5_modifier_barrier", "heroes/moon/genuine/genuine_5_modifier_barrier", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "_modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invi_level", "_modifiers/_modifier_invi_level", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

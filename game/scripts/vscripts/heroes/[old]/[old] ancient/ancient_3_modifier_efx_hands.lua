@@ -1,25 +1,16 @@
-ancient_3_modifier_efx_hands = class ({})
+ancient_3_modifier_efx_hands = class({})
 
-function ancient_3_modifier_efx_hands:IsHidden()
-    return true
-end
-
-function ancient_3_modifier_efx_hands:IsPurgable()
-    return false
-end
-
-function ancient_3_modifier_efx_hands:IsDebuff()
-	return false
-end
+function ancient_3_modifier_efx_hands:IsHidden() return true end
+function ancient_3_modifier_efx_hands:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function ancient_3_modifier_efx_hands:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
-	self.time = self:GetRemainingTime()
+  self.time = self:GetRemainingTime()
 
 	if IsServer() then
 		self:PlayEfxStart()
@@ -30,7 +21,7 @@ end
 function ancient_3_modifier_efx_hands:OnRefresh(kv)
 end
 
-function ancient_3_modifier_efx_hands:OnRemoved(kv)
+function ancient_3_modifier_efx_hands:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

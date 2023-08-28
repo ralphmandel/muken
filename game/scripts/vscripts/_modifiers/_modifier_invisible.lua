@@ -37,14 +37,7 @@ function _modifier_invisible:OnCreated( kv )
 			self:StartIntervalThink(delay)
 		end
 
-		local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
-		if cosmetics then
-			for i = 1, #cosmetics.cosmetic, 1 do
-				local invi_cosmetic = cosmetics.cosmetic[i]:AddNewModifier(
-					self:GetParent(), self:GetAbility(), "_modifier_invisible_cosmetics", {}
-				)
-			end
-		end
+    AddModifierOnAllCosmetics(self:GetParent(), self:GetAbility(), "_modifier_invi_level", {level = 1})
 	end
 end
 
@@ -53,12 +46,7 @@ function _modifier_invisible:OnRefresh( kv )
 end
 
 function _modifier_invisible:OnDestroy( kv )
-	local cosmetics = self:GetParent():FindAbilityByName("cosmetics")
-	if cosmetics then
-		for i = 1, #cosmetics.cosmetic, 1 do
-      RemoveAllModifiersByNameAndAbility(cosmetics.cosmetic[i], "_modifier_invisible_cosmetics", self:GetAbility())
-		end
-	end
+	RemoveModifierOnAllCosmetics(self:GetParent(), self:GetAbility(), "_modifier_invi_level")
 
   if self.endCallback then
 		self.endCallback(self.interrupted)
@@ -77,16 +65,11 @@ end
 
 function _modifier_invisible:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
 		MODIFIER_EVENT_ON_ATTACK_START,
 		MODIFIER_EVENT_ON_ABILITY_START
 	}
 
 	return funcs
-end
-
-function _modifier_invisible:GetModifierInvisibilityLevel()
-	return 1
 end
 
 function _modifier_invisible:OnAttackStart(keys)

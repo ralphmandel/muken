@@ -245,7 +245,7 @@ function icebreaker_special_values:GetModifierOverrideAbilitySpecialValue(keys)
   if value_name == "max_hypo_stack" then return 10 end
   if value_name == "hypo_duration" then return 3 end
   if value_name == "slow_ms" then return 10 end
-  if value_name == "slow_as" then return 0.1 end
+  if value_name == "slow_as" then return 10 end
   if value_name == "slow_duration" then return 2 end
 
 	if ability:GetAbilityName() == "icebreaker_1__frost" then

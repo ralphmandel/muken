@@ -19,8 +19,8 @@ function dasdingo:TrySpell(target, state)
   local abilities_actions = {
     [1] = self.TryCast_Tribal,
     [2] = self.TryCast_Curse,
-    [3] = self.TryCast_Hex,
-    [4] = self.TryCast_Field,
+    [3] = self.TryCast_Field,
+    [4] = self.TryCast_Hex,
     [5] = self.TryCast_Leech,
     [6] = self.TryCast_tree
   }
@@ -92,41 +92,6 @@ function dasdingo:TryCast_Curse()
   end
 end
 
-function dasdingo:TryCast_Hex()
-  local ability = self.caster:FindAbilityByName("dasdingo_5__hex")
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.state == BOT_STATE_FLEE then
-    local target = nil
-    local units = FindUnitsInRadius(
-      self.caster:GetTeamNumber(), self.caster:GetOrigin(), nil, ability:GetCastRange(self.caster:GetOrigin(), nil),
-      ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(),
-      ability:GetAbilityTargetFlags(), FIND_CLOSEST, false
-    )
-  
-    for _,unit in pairs(units) do
-      if self.caster:CanEntityBeSeenByMyTeam(unit)
-      and unit:IsHero() or unit:IsConsideredHero() then
-        target = unit
-        break
-      end
-    end
-
-    if target == nil then return false end
-
-    self.caster:CastAbilityOnTarget(target, ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-
-  if self.state == BOT_STATE_AGGRESSIVE then
-    if self.target:IsStunned() then return false end
-    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
-
-    self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-end
-
 function dasdingo:TryCast_Field()
   local ability = self.caster:FindAbilityByName("dasdingo_1__field")
   if IsAbilityCastable(ability) == false then return false end
@@ -155,6 +120,24 @@ function dasdingo:TryCast_Field()
     if target == nil then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+end
+
+function dasdingo:TryCast_Hex()
+  local ability = self.caster:FindAbilityByName("dasdingo_5__hex")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.state == BOT_STATE_FLEE then
+    self.caster:CastAbilityOnTarget(self.caster, ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    if self.target:IsStunned() then return false end
+    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+
+    self.caster:CastAbilityOnTarget(self.target, ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end

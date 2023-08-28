@@ -1,33 +1,27 @@
 ancient_u_modifier_passive = class({})
 
-function ancient_u_modifier_passive:IsHidden()
-	return true
-end
-
-function ancient_u_modifier_passive:IsPurgable()
-	return false
-end
-
-function ancient_u_modifier_passive:IsDebuff()
-	return false
-end
+function ancient_u_modifier_passive:IsHidden() return false end
+function ancient_u_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function ancient_u_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-
-	local energy_loss = self.ability:GetSpecialValueFor("energy_loss")
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
 	if IsServer() then
-		self:StartIntervalThink(1 / energy_loss)
+    self.ability.kills = 0
+    self:SetStackCount(self.ability.kills)
+		self:OnIntervalThink()
 		self:PlayEfxBuff()
 	end
 end
 
 function ancient_u_modifier_passive:OnRefresh(kv)
+  if IsServer() then
+		self:SetStackCount(self.ability.kills)
+	end
 end
 
 function ancient_u_modifier_passive:OnRemoved()
@@ -37,44 +31,45 @@ end
 
 function ancient_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_EVENT_ON_DEATH
+    MODIFIER_EVENT_ON_ATTACKED,
+    MODIFIER_EVENT_ON_HERO_KILLED
 	}
 
 	return funcs
 end
 
-function ancient_u_modifier_passive:OnTakeDamage(keys)
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
+function ancient_u_modifier_passive:OnAttacked(keys)
 	if keys.attacker ~= self.parent then return end
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
 	if self.parent:PassivesDisabled() then return end
 
-	self.ability:AddEnergy(keys.inflictor, keys.unit)
+  local gain = self.ability:GetSpecialValueFor("energy_gain")
+
+  if BaseStats(keys.attacker).has_crit == true then
+    gain = self.ability:GetSpecialValueFor("energy_gain_crit")
+  end
+
+  IncreaseMana(self.parent, gain)
+  self.ability:UpdateCON()
 end
 
-function ancient_u_modifier_passive:OnDeath(keys)
+function ancient_u_modifier_passive:OnHeroKilled(keys)
+	if keys.target:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.inflictor ~= self.ability then return end
-	if keys.unit:GetTeamNumber() == self.caster:GetTeamNumber() then return end
-	if keys.unit:IsIllusion() then return end
 
-	-- UP 6.41
-	if self.ability:GetRank(41) then
-		self.ability:AddEnergy(self.ability, keys.unit)
+	if IsServer() then
+    if BaseStats(self.parent) then BaseStats(self.parent):AddBaseStat("INT", 1) end
+    self.ability.kills = self.ability.kills + 1
+		self:SetStackCount(self.ability.kills)
+		self:PlayEfxKill()
 	end
 end
 
 function ancient_u_modifier_passive:OnIntervalThink()
-	self.parent:ReduceMana(1)
-	self.ability:UpdateResistance()
+  local interval = 1
+  ReduceMana(self.parent, self.ability, self.ability:GetSpecialValueFor("energy_loss") * interval, false)
+	self.ability:UpdateCON()
 
-	local ability = self.ability
-	local walk_buff = self.parent:FindModifierByNameAndCaster("ancient_3_modifier_walk", self.caster)
-	if walk_buff then ability = walk_buff:GetAbility() end
-	local energy_loss = ability:GetSpecialValueFor("energy_loss")
-
-	if IsServer() then self:StartIntervalThink(1 / energy_loss) end
+	if IsServer() then self:StartIntervalThink(interval) end
 end
 
 -- UTILS -----------------------------------------------------------
@@ -90,12 +85,11 @@ function ancient_u_modifier_passive:PlayEfxBuff()
 end
 
 function ancient_u_modifier_passive:UpdateAmbients()
-	local cosmetics = self.parent:FindAbilityByName("cosmetics")
-	if cosmetics == nil then return end
-	local ambient_back = cosmetics:GetAmbient("particles/ancient/ancient_back.vpcf")
-	local ambient_weapon = cosmetics:GetAmbient("particles/ancient/ancient_weapon.vpcf")
+	if Cosmetics(self.parent) == nil then return end
+	local ambient_back = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_back.vpcf")
+	local ambient_weapon = Cosmetics(self.parent):GetAmbient("particles/ancient/ancient_weapon.vpcf")
 
-	local value = self.parent:GetMana()
+	local value = self.parent:GetMana() * 0.7
 	if self.ability.casting == true then value = 0 end
 
 	if self.ambient_aura then ParticleManager:SetParticleControl(self.ambient_aura, 1, Vector(value, 0, 0)) end
@@ -104,4 +98,14 @@ function ancient_u_modifier_passive:UpdateAmbients()
 		ParticleManager:SetParticleControl(ambient_weapon, 20, Vector(value, 30, 12))
 		ParticleManager:SetParticleControl(ambient_weapon, 21, Vector(value * 0.01, 0, 0))
 	end
+end
+
+function ancient_u_modifier_passive:PlayEfxKill()
+	local particle_cast = "particles/econ/items/techies/techies_arcana/techies_suicide_kills_arcana.vpcf"
+	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+
+	local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(1, 0, 0))
+	ParticleManager:ReleaseParticleIndex(nFXIndex)
 end

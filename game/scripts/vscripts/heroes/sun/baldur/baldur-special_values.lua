@@ -40,6 +40,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCharges" then return 1 end
 		if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "stack_duration" then return 1 end
 
 		if caster:FindAbilityByName("baldur_1__power_rank_11") then
 		end
@@ -133,6 +134,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "stun_duration" then return 1 end
 
 		if caster:FindAbilityByName("baldur_4__rear_rank_11") then
 		end
@@ -240,6 +242,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityChargeRestoreTime" then return 3 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "stack_duration" then return 60 + (value_level * 2.5) end
 	end
 
 	if ability:GetAbilityName() == "baldur_2__dash" then
@@ -263,20 +266,21 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 450 + (value_level * 15) end
+		if value_name == "cast_range" then return 450 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "baldur_3__barrier" then
 		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "barrier_min" then return 750 + (value_level * 25) end
+		if value_name == "barrier_min" then return 700 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "baldur_4__rear" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
+		if value_name == "stun_duration" then return 1.7 + (value_level * 0.05) end
 	end
 
 	if ability:GetAbilityName() == "baldur_5__fire" then
@@ -285,7 +289,7 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("range") - 150 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "range" then return 800 + (value_level * 40) end
+		if value_name == "range" then return 900 + (value_level * 50) end
 	end
 
 	if ability:GetAbilityName() == "baldur_u__endurance" then

@@ -9,10 +9,10 @@ function hunter_u_modifier_passive:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.has_tree = false
+  self.records = {}
 
-  self:StartDelay()
-
-  if IsServer() then self:StartIntervalThink(0.1) end
+  if IsServer() then self:StartIntervalThink(1) end
 end
 
 function hunter_u_modifier_passive:OnRefresh(kv)
@@ -23,77 +23,58 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function hunter_u_modifier_passive:CheckState()
-	local state = {
-		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = self:GetParent():PassivesDisabled() == false and self:GetAbility():IsCooldownReady()
-	}
-
-	return state
-end
-
 function hunter_u_modifier_passive:DeclareFunctions()
 	local funcs = {
-    MODIFIER_EVENT_ON_ATTACK_START
+    MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+    MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY
 	}
 
 	return funcs
 end
 
-function hunter_u_modifier_passive:OnAttackStart(keys)
-  if keys.attacker ~= self.parent and keys.target ~= self.parent then return end
-  if self.camo then return end
+function hunter_u_modifier_passive:GetModifierProcAttack_BonusDamage_Physical(keys)
+	if self.records[keys.record] then
+    return self.records[keys.record] * self.ability:GetSpecialValueFor("bonus_damage") * 0.01
+	end
+end
 
-  self:StartDelay()
+function hunter_u_modifier_passive:OnAttack(keys)
+	if keys.attacker ~= self.parent then return end
+
+  self.records[keys.record] = CalcDistanceBetweenEntityOBB(self.parent, keys.target)
+end
+
+function hunter_u_modifier_passive:OnAttackRecordDestroy(keys)
+	self.records[keys.record] = nil
 end
 
 function hunter_u_modifier_passive:OnIntervalThink()
-  if self.camo == nil and self.ability:IsCooldownReady()
-  and self.parent:PassivesDisabled() == false and self.parent:IsAlive() then
-    self.camo = AddModifier(self.parent, self.ability, "hunter_u_modifier_camouflage", {}, false)
-    self.camo:SetEndCallback(function(interrupted)
-      self.camo = nil
-      self:StartDelay()
+  if self.parent:HasModifier("hunter_u_modifier_camouflage") then
+    if IsServer() then self:StartIntervalThink(-1) end
+    self.has_tree = false
+    return
+  end
+
+  local has_tree = HasTreeNearby(self.parent:GetOrigin(), 150)
+
+  if self.has_tree == true and has_tree == true
+  and self.parent:PassivesDisabled() == false then    
+    local camo = AddModifier(self.parent, self.ability, "hunter_u_modifier_camouflage", {}, false)
+    camo:SetEndCallback(function(interrupted)
       if IsServer() then self:StartIntervalThink(0.1) end
     end)
 
     if IsServer() then self:StartIntervalThink(-1) end
+    self.has_tree = false
     return
   end
 
-  local has_tree = false
-  local has_enemy = false
+  self.has_tree = has_tree
 
-  local trees = GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetSpecialValueFor("tree_radius"), false)
-  if trees then
-    for k, v in pairs(trees) do
-      has_tree = true
-      break
-    end
-  end
-
-  local enemies = FindUnitsInRadius(
-    self.caster:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetSpecialValueFor("reveal_range"),
-    DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO,
-    DOTA_UNIT_TARGET_FLAG_NONE, 0, false
-  )
-
-  for _,enemy in pairs(enemies) do
-    has_enemy = true
-    break
-  end
-
-  if has_tree == false or has_enemy == true then
-    self:StartDelay()
-  end
-
-  if IsServer() then self:StartIntervalThink(0.1) end
+  if IsServer() then self:StartIntervalThink(1) end
 end
 
 -- UTILS -----------------------------------------------------------
-
-function hunter_u_modifier_passive:StartDelay()
-  if self.camo then return end
-  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
-end
 
 -- EFFECTS -----------------------------------------------------------

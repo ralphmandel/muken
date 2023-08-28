@@ -33,8 +33,8 @@
     "AbilityValues"
 		{
 			"agi"         "5"
-      "duration"		"1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "duration"		"1 2 3 4 5 6 7"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -52,10 +52,10 @@
 
     "AbilityValues"
 		{
-			"ms"              "10"
+			"ms"              "15"
 			"dex"             "1"
-			"stack_duration"  "5"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			"stack_duration"  "1 2 3 4 5 6 7"
+			"rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -77,11 +77,11 @@
 
     "AbilityValues"
 		{
-      "silence_duration"	"2.5"
+      //"silence_duration"	"2.5"
       "speed_mult"	      "2"
       "radius"	          "275"
-      "distance"	        "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			        "1 2 3 4 5 6 7 8 9 10 11"
+      "distance"	        "1 2 3 4 5 6 7"
+			"rank"			        "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -100,9 +100,9 @@
     "AbilityValues"
 		{
 			"chance"		  "5"
-			"duration"		"5"
-			"def"		      "-20"
-		  "rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"def"		      "-15"
+			"duration"		"1 2 3 4 5 6 7"
+		  "rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -121,8 +121,8 @@
     "AbilityValues"
 		{
 			"max_stack"		    "6"
-			"stack_duration"  "10"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			"stack_duration"  "1 2 3 4 5 6 7"
+			"rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -148,12 +148,19 @@
 
     "AbilityValues"
 		{
+<<<<<<< Updated upstream
 			"duration"		  "8"
 			"slow"		      "150"
 			"blind"		      "50"
+=======
+			"duration"		  "15"
+			"slow"		      "125"
+			"blind"		      "30"
+			"hp_regen"		  "50"
+>>>>>>> Stashed changes
 			"delay"		      "1"
-			"radius"		    "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+			"radius"		    "1 2 3 4 5 6 7"
+			"rank"			    "1 2 3 4 5 6 7"
 		}
 	}
 

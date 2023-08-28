@@ -1,263 +1,142 @@
 ancient_1_modifier_passive = class({})
-HITS_TO_DOUBLE_ATTACK = 5
 
-function ancient_1_modifier_passive:IsHidden()
-	return self:GetAbility():GetCurrentAbilityCharges() % 2 ~= 0
-end
-
-function ancient_1_modifier_passive:IsPurgable()
-	return false
-end
-
-function ancient_1_modifier_passive:IsDebuff()
-	return false
-end
+function ancient_1_modifier_passive:IsHidden() return true end
+function ancient_1_modifier_passive:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function ancient_1_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
-	self.hidden = true
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.damage_percent = self.ability:GetSpecialValueFor("damage_percent")
-	self.stun_multiplier = self.ability:GetSpecialValueFor("stun_multiplier")
+  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {
+    amount = self.ability:GetSpecialValueFor("crit_damage")
+  }, false)
 
-	self.base_stats = self.parent:FindAbilityByName("base_stats")
-	if self.base_stats then self.base_stats:SetBaseAttackTime(0) end
+  self:ChangeBAT()
 
-	if IsServer() then self:SetStackCount(HITS_TO_DOUBLE_ATTACK) end
+
+  if IsServer() then self:SetStackCount(self.ability:GetSpecialValueFor("special_double_hit")) end
 end
 
 function ancient_1_modifier_passive:OnRefresh(kv)
-	-- UP 1.41
-	if self.ability:GetRank(41) then
-		self.damage = self.ability:GetSpecialValueFor("damage") + 50
-	end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
+  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {
+    amount = self.ability:GetSpecialValueFor("crit_damage")
+  }, false)
 end
 
 function ancient_1_modifier_passive:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function ancient_1_modifier_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PRE_ATTACK,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ORDER,
-		MODIFIER_EVENT_ON_TAKEDAMAGE
+    MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+    MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_EVENT_ON_STATE_CHANGED,
+    MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
+		MODIFIER_EVENT_ON_ATTACKED,
 	}
 
 	return funcs
 end
 
-function ancient_1_modifier_passive:GetModifierPreAttack(keys)
-	if self.parent:IsIllusion() then return end
-
-	if IsServer() then
-		if self:ShouldLaunch(keys.target) then
-			if self.base_stats then self.base_stats:SetForceCritHit(0) end
-			
-			if self.punch then
-				self.parent:MoveToTargetToAttack(keys.target)
-			else
-				self.parent:Stop()
-				if self.cast then self.parent:MoveToTargetToAttack(keys.target) end
-			end
-
-			self.punch = true
-		else
-			self.punch = false
-		end
-	end
+function ancient_1_modifier_passive:GetModifierBaseDamageOutgoing_Percentage()
+  return self:GetAbility():GetSpecialValueFor("bat")
 end
 
 function ancient_1_modifier_passive:GetModifierAttackSpeedBonus_Constant()
-	if self:GetStackCount() > 0 then return 0 end
-
-	return 400
-end
-
-function ancient_1_modifier_passive:GetModifierProcAttack_BonusDamage_Physical()
-	return self.damage
-end
-
-function ancient_1_modifier_passive:GetModifierBaseDamageOutgoing_Percentage()
-	return self.damage_percent
+  if self:GetAbility():GetSpecialValueFor("special_double_hit") > 0 and self:GetStackCount() == 0 then return 450 end
+  return 0
 end
 
 function ancient_1_modifier_passive:OnAttack(keys)
 	if keys.attacker ~= self.parent then return end
-
-	-- UP 1.21
-	if self.ability:GetRank(21) then
-		self:CheckDoubleHit()
-	else
-		self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
-	end
+  AddModifier(keys.target, self.ability, "_modifier_no_block", {}, false)
 end
 
-function ancient_1_modifier_passive:OnOrder(keys)
-	if keys.unit ~= self.parent then return end
+function ancient_1_modifier_passive:OnAttackFail(keys)
+	if keys.attacker ~= self.parent then return end
+  self:ReduceHit()
 
-	if keys.ability then
-		if keys.ability == self.ability then
-			self.cast = true
-			return
-		end
-	end
-	
-	self.cast = false
+  RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_no_block", self.ability)
 end
 
-function ancient_1_modifier_passive:OnTakeDamage(keys)
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
+function ancient_1_modifier_passive:OnAttacked(keys)
+	if keys.attacker ~= self.parent then return end
 
-	self:ApplyStuns(keys)
+  self:ReduceHit()
 
-	-- UP 1.11
-	if self.ability:GetRank(11) then
-		self:ApplyReflect(keys, 0.5)
-	end
+	if self.parent:PassivesDisabled() then return end
+
+  if BaseStats(keys.attacker).has_crit == true then
+    self:PlayEfxCrit(keys.attacker, true)
+    if keys.target:GetPlayerOwner() then
+      self:PlayEfxCrit(keys.target, false)
+    end
+  end
+
+	AddModifier(keys.target, self.ability, "_modifier_stun", {
+    duration = self:CalcStunDuration(keys.target, keys.original_damage)
+  }, false)
+
+  RemoveAllModifiersByNameAndAbility(keys.target, "_modifier_no_block", self.ability)
 end
 
 function ancient_1_modifier_passive:OnStackCountChanged(old)
-	if self.base_stats then self.base_stats:UpdateBaseAttackTime() end
+  self:ChangeBAT()
 end
 
 -- UTILS -----------------------------------------------------------
 
-function ancient_1_modifier_passive:ApplyStuns(keys)
-	if keys.attacker ~= self.parent then return end
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
-	if self.parent:PassivesDisabled() then return end
+function ancient_1_modifier_passive:ChangeBAT()
+  if BaseStats(self.parent) == nil then return end
 
-	self:CheckCritStrike(keys.unit, keys.damage_category)
-	local stun_duration = keys.damage * self.stun_multiplier * 0.01
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_bat_increased", self.ability)
 
-	if self.punch then
-		self.punch = false
-		self.ability:UseResources(true, false, false, true)
-		if self.base_stats then self.base_stats:SetForceCritHit(-1) end
-		
-		local ult = self.parent:FindAbilityByName("ancient_u__final")
-		if ult then
-			if ult:IsTrained() then
-				ult:UpdateResistance()
-			end
-		end
-		
-		keys.unit:AddNewModifier(self.caster, self.ability, "ancient_1_modifier_punch", {
-            duration = stun_duration * 1.5
-        })
-	end
-
-	if self.ability.pinned then stun_duration = stun_duration * 4 end
-
-	keys.unit:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-		duration = CalcStatus(stun_duration, self.caster, keys.unit)
-	})
+  if self.ability:GetSpecialValueFor("special_double_hit") == 0 or self:GetStackCount() > 0 then
+    AddModifier(self.parent, self.ability, "_modifier_bat_increased", {
+      amount = BaseStats(self.parent):GetSpecialValueFor("base_attack_time") * self.ability:GetSpecialValueFor("bat") * 0.01
+    }, false)
+  end
 end
 
-function ancient_1_modifier_passive:ApplyReflect(keys, stun_multiplier)
-	if keys.unit ~= self.parent then return end
-	if keys.damage_type ~= DAMAGE_TYPE_PHYSICAL then return end
-	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return end
-	if self.parent:PassivesDisabled() then return end
-
-	local base_stats_target = keys.attacker:FindAbilityByName("base_stats")
-	if base_stats_target == nil then return end
-	if base_stats_target.has_crit ~= true then return end
-	if RandomFloat(0, 100) >= 50 then return end
-
-	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then	
-		local total_damage = ApplyDamage({
-			attacker = self.caster, victim = keys.attacker,
-			ability = self.ability, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
-			damage = keys.damage + self.damage, damage_type = keys.damage_type,
-		})
-
-		if keys.attacker then
-			if IsValidEntity(keys.attacker) then
-				local stun_duration = total_damage * stun_multiplier * 0.01
-				self:PlayEfxCrit(keys.attacker, true)
-				self:PlayEfxCrit(self.parent, true)
-		
-				keys.attacker:AddNewModifier(self.caster, self.ability, "_modifier_stun", {
-					duration = CalcStatus(stun_duration, self.caster, keys.attacker)
-				})				
-			end
-		end
-	end
+function ancient_1_modifier_passive:CalcStunDuration(target, damage)
+  return CalcStatusResistance(self.ability:GetSpecialValueFor("stun_duration") * damage * 0.01, target)
 end
 
-function ancient_1_modifier_passive:CheckDoubleHit()
-	if not IsServer() then return end
+function ancient_1_modifier_passive:ReduceHit()
+  local double_hit = self.ability:GetSpecialValueFor("special_double_hit")
 
-	if self.parent:PassivesDisabled() then
-		if self:GetStackCount() > 0 then
-			return
-		else
-			self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
-		end
-	end
-
-	if self:GetStackCount() == 0 then
-		self:SetStackCount(HITS_TO_DOUBLE_ATTACK)
-	else
-		self:DecrementStackCount()
-	end
-end
-
-function ancient_1_modifier_passive:CheckCritStrike(target, damage_category)
-	if self.base_stats == nil then return end
-	
-	self:PlayEfxCrit(target, self.base_stats.has_crit)
-	if damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
-		self:PlayEfxCrit(self.parent, self.base_stats.has_crit)
-	end
-end
-
-function ancient_1_modifier_passive:ShouldLaunch(target)
-	self.autocast = false
-	if self.ability:GetAutoCastState() then
-		local flags = self.ability:GetAbilityTargetFlags()
-
-		local nResult = UnitFilter(
-			target,
-			self.ability:GetAbilityTargetTeam(),
-			self.ability:GetAbilityTargetType(),
-			flags,
-			self.caster:GetTeamNumber()
-		)
-		if nResult == UF_SUCCESS then
-			self.autocast = true
-		end
-	end
-
-	if (self.cast or self.autocast) and self.ability:IsFullyCastable()
-	and self.parent:IsSilenced() == false then
-		return true
-	end
-
-	return false
+  if self.parent:HasModifier("ancient_2_modifier_leap") == false then
+    if IsServer() then
+      if double_hit > 0 then
+        if self:GetStackCount() > 0 then
+          self:DecrementStackCount()
+        else
+          self:SetStackCount(double_hit)
+        end        
+      end
+    end
+  end
 end
 
 -- EFFECTS -----------------------------------------------------------
 
-function ancient_1_modifier_passive:PlayEfxCrit(target, crit)
-	if target:GetPlayerOwner() == nil or crit == false then return end
+function ancient_1_modifier_passive:PlayEfxCrit(target, sound)
 	local particle_screen = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf"
 	local effect_screen = ParticleManager:CreateParticleForPlayer(particle_screen, PATTACH_WORLDORIGIN, nil, target:GetPlayerOwner())
 
-	local effect = ParticleManager:CreateParticle("particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf", PATTACH_ABSORIGIN, target)
+  local particle_shake = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
+	local effect = ParticleManager:CreateParticle(particle_shake, PATTACH_ABSORIGIN, target)
 	ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
 	ParticleManager:SetParticleControl(effect, 1, Vector(500, 0, 0))
+
+  if IsServer() then target:EmitSound("Ancient.Stun.Crit") end
 end

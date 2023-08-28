@@ -1,4 +1,5 @@
 dasdingo_1__field = class({})
+LinkLuaModifier("dasdingo_1_modifier_passive", "heroes/nature/dasdingo/dasdingo_1_modifier_field", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_field", "heroes/nature/dasdingo/dasdingo_1_modifier_field", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("dasdingo_1_modifier_aura_effect", "heroes/nature/dasdingo/dasdingo_1_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
 
@@ -6,6 +7,10 @@ LinkLuaModifier("dasdingo_1_modifier_aura_effect", "heroes/nature/dasdingo/dasdi
 
   function dasdingo_1__field:GetAOERadius()
     return self:GetSpecialValueFor("radius")
+  end
+
+  function dasdingo_1__field:GetIntrinsicModifierName()
+    return "dasdingo_1_modifier_passive"
   end
 
 -- SPELL START

@@ -38,11 +38,11 @@
 
     "AbilityValues"
 		{
-			"radius"    "800"
-			"def_base"  "2"
-			"def_bonus" "2"
+			"def_base"  "3"
+			"def_bonus" "1"
 			"heal_amp"  "20"
-			"rank"      "1 2 3 4 5 6 7 8 9 10 11"
+			"radius"    "1 2 3 4 5 6 7"
+			"rank"      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -68,8 +68,8 @@
     "AbilityValues"
 		{
 			"duration"		"4"
-			"cast_range"  "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+			"cast_range"  "1 2 3 4 5 6 7"
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -86,7 +86,7 @@
 
     "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
@@ -95,12 +95,11 @@
 
     "AbilityValues"
 		{
-      "duration"  "10"
-      "interval"  "1"
-      "damage"    "75"
-      "hp_regen"  "50"
-      "radius"    "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"		  "1 2 3 4 5 6 7 8 9 10 11"
+      "duration"    "12"
+      "heal_decay"  "100"
+      "hp_regen"    "-100"
+      "radius"      "1 2 3 4 5 6 7"
+			"rank"		    "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -131,8 +130,8 @@
       "armor_mult"  "10"
       "interval"    "0.8"
       "agi_start"   "-10"
-      "slow_start"  "1 2 3 4 5 6 7 8 9 10 11"      
-			"rank"			  "1 2 3 4 5 6 7 8 9 10 11"
+      "slow_start"  "1 2 3 4 5 6 7"      
+			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -157,8 +156,11 @@
 
     "AbilityValues"
 		{
-			"percent" "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"    "1 2 3 4 5 6 7 8 9 10 11"
+      "str"             "15"
+      "int"             "15"
+      "stats_duration"  "25"
+			"percent"         "1 2 3 4 5 6 7"
+			"rank"            "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -181,10 +183,10 @@
 		{
 			"interval_base"       "1"
 			"interval_reduction"  "0.7"
-			"duration"            "8"
 			"hp_cap"              "90"
-			"heal"                "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"                "1 2 3 4 5 6 7 8 9 10 11"
+			"heal"                "60"
+			"duration"            "1 2 3 4 5 6 7"
+			"rank"                "1 2 3 4 5 6 7"
 		}
 	}
 

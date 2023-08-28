@@ -1,63 +1,38 @@
 ancient_2_modifier_jump = class({})
 
-function ancient_2_modifier_jump:IsHidden()
-	return true
-end
-
-function ancient_2_modifier_jump:IsPurgable()
-	return false
-end
-
-function ancient_2_modifier_jump:IsDebuff()
-	return false
-end
+function ancient_2_modifier_jump:IsHidden() return true end
+function ancient_2_modifier_jump:IsPurgable() return false end
+function ancient_2_modifier_jump:GetPriority() return MODIFIER_PRIORITY_SUPER_ULTRA end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function ancient_2_modifier_jump:OnCreated( kv )
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.ability = self:GetAbility()
 
-    self.point = self.ability.point
-	local duration = self.ability.duration
-	local height = self.ability.height
-
-	self.arc = self.parent:AddNewModifier(
-		self.caster, self.ability, "_modifier_generic_arc", {
-			duration = duration, distance = 0, height = height, --fix_end = true,
-			fix_duration = false, isStun = true, --activity = ACT_DOTA_FLAIL
-		}
-	)
+  self.arc = AddModifier(self.parent, self.ability, "_modifier_generic_arc", {
+    duration = self.ability.duration, distance = 0, height = self.ability.height, --fix_end = true,
+    fix_duration = false, isStun = true, --activity = ACT_DOTA_FLAIL
+  }, false)
 
 	self.arc:SetEndCallback(function(interrupted)
 		self:Destroy()	
 
-        if IsServer() then
-            self.parent:StopSound("Ancient.Jump")
-            if interrupted then return end
-            if self.duration >= 0.6 then self.parent:EmitSound("Ability.TossImpact") end
-        end
+    if IsServer() then
+      self.parent:StopSound("Ancient.Jump")
+      if interrupted then
+        --self.parent:FindModifierByName(self.ability:GetIntrinsicModifierName()):SetStackCount(0)
+        return
+      end
+      if self.ability.duration >= 0.6 then self.parent:EmitSound("Ability.TossImpact") end
+    end
 
-		-- UP 2.41
-        if self.ability:GetRank(41) then
-            self.ability:PerformCombo()
-		else
-			self.ability:DoImpact()
-		end
+    AddModifier(self.parent, self.ability, "ancient_2_modifier_leap", {}, false)
 	end)
 
-	-- prepare horizontal motion
-	local direction = self.point - self.parent:GetOrigin()
-	local distance = direction:Length2D()
-	direction.z = 0
-	direction = direction:Normalized()
-
-	-- init speed
-	self.distance = distance
-	if self.distance==0 then self.distance = 1 end
-	self.duration = duration
-	self.speed = distance/duration
+	if self.ability.distance == 0 then self.ability.distance = 1 end
+	self.speed = self.ability.distance / self.ability.duration
 	self.accel = 100
 	self.max_speed = 3000
 
@@ -66,9 +41,9 @@ function ancient_2_modifier_jump:OnCreated( kv )
 		self:Destroy()
 	end
 
-    if duration >= 0.4 then
-        self:StartIntervalThink(duration - 0.4)
-    end
+  if self.ability.duration >= 0.4 then
+    self:StartIntervalThink(self.ability.duration - 0.4)
+  end
 end
 
 function ancient_2_modifier_jump:OnRefresh( kv )
@@ -93,33 +68,29 @@ function ancient_2_modifier_jump:CheckState()
 end
 
 function ancient_2_modifier_jump:OnIntervalThink()
-    self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_5)
-    if IsServer() then self.parent:EmitSound("Hero_ElderTitan.PreAttack") end
+  self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 1)
+  if IsServer() then self.parent:EmitSound("Hero_ElderTitan.PreAttack") end
 
-    self:StartIntervalThink(-1)
+  self:StartIntervalThink(-1)
 end
 
 -- MOTIONS -----------------------------------------------------------
 
 function ancient_2_modifier_jump:UpdateHorizontalMotion( me, dt )
-	local target = self.point
-	local parent = self.parent:GetOrigin()
-
 	-- get current states
 	local duration = self:GetElapsedTime()
-	local direction = target-parent
+	local direction = self.ability.point - self.parent:GetOrigin()
 	local distance = direction:Length2D()
 	direction.z = 0
 	direction = direction:Normalized()
 
 	-- change speed if target farther/closer
-	local original_distance = duration/self.duration * self.distance
 	local expected_speed
-	if self:GetElapsedTime()>=self.duration then
+	if self:GetElapsedTime() >= self.ability.duration then
 		expected_speed = self.speed
 	else
-		expected_speed = distance/(self.duration-self:GetElapsedTime())
+		expected_speed = distance / (self.ability.duration - self:GetElapsedTime())
 	end
 
 	-- accel/deccel speed
@@ -130,7 +101,7 @@ function ancient_2_modifier_jump:UpdateHorizontalMotion( me, dt )
 	end
 
 	-- set relative position
-	local pos = parent + direction * self.speed * dt
+	local pos = self.parent:GetOrigin() + direction * self.speed * dt
 	me:SetOrigin( pos )
 end
 

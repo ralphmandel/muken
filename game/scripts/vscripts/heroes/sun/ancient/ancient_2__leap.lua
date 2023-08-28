@@ -8,13 +8,6 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
 
   function ancient_2__leap:Spawn()
     self.aggro_target = nil
-
-    Timers:CreateTimer(0.2, function()
-      if self:IsTrained() == false then
-        self:UpgradeAbility(true)
-        BaseStats(self:GetCaster()):AddManaExtra(self)
-      end
-    end)
   end
 
   function ancient_2__leap:GetIntrinsicModifierName()
@@ -34,7 +27,7 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
   end
 
   function ancient_2__leap:GetCastRange(vLocation, hTarget)
-    return self:GetSpecialValueFor("special_jump_distance")
+    return self:GetSpecialValueFor("jump_distance")
   end
 
 -- SPELL START
@@ -43,7 +36,7 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
     local caster = self:GetCaster()
     self.point = self:GetCursorPosition()
     self.distance = (caster:GetOrigin() - self.point):Length2D()
-    self.duration = self.distance / (((self:GetCastRange(nil, nil) - 100) / (self:GetCurrentAbilityCharges() * 0.7)) * 2.2)
+    self.duration = self.distance / (((self:GetCastRange(nil, nil) - 100) / (self:GetCurrentAbilityCharges() * 0.5)) * 2.2)
     self.height = self.distance * 0.5
     self.interruption = false
 
@@ -89,8 +82,6 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
 
     caster:RemoveModifierByName("ancient_2_modifier_jump")
     caster:RemoveModifierByName("ancient_2_modifier_leap")
-
-    self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
 
     if self:GetCastRange(nil, nil) > 0 then
       AddModifier(caster, self, "ancient_2_modifier_jump", {}, false)

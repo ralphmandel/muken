@@ -13,27 +13,27 @@
 	
 	"npc_dota_hero_elder_titan"
 	{
-		"ancient_1__power" //TAB NAME
+		"ancient_1__smash" //TAB NAME
 		{ //TAB DATA
 			"1" //NLVL
 			{ //TALENTS
-				"1"   "ancient_1__power_rank_11" // PATH + TALENT
-				"2"   "ancient_1__power_rank_12"
+				"1"   "ancient_1__smash_rank_11" // PATH + TALENT
+				"2"   "ancient_1__smash_rank_12"
 			}
 			"2"
 			{
-				"1"   "ancient_1__power_rank_21"
-				"2"   "ancient_1__power_rank_22"
+				"1"   "ancient_1__smash_rank_21"
+				"2"   "ancient_1__smash_rank_22"
 			}
 			"3"
 			{
-				"1"   "ancient_1__power_rank_31"
-				"2"   "ancient_1__power_rank_32"
+				"1"   "ancient_1__smash_rank_31"
+				"2"   "ancient_1__smash_rank_32"
 			}
 			"4"
 			{
-				"1"   "ancient_1__power_rank_41"
-				"2"   "ancient_1__power_rank_42"
+				"1"   "ancient_1__smash_rank_41"
+				"2"   "ancient_1__smash_rank_42"
 			}
 		}
 		"ancient_2__leap"
@@ -59,96 +59,96 @@
 				"2"   "ancient_2__leap_rank_42"
 			}
 		}
-		"ancient_3__walk"
+		"ancient_3__roar"
 		{
 			"1"
 			{
-				"1"   "ancient_3__walk_rank_11"
-				"2"   "ancient_3__walk_rank_12"
+				"1"   "ancient_3__roar_rank_11"
+				"2"   "ancient_3__roar_rank_12"
 			}
 			"2"
 			{
-				"1"   "ancient_3__walk_rank_21"
-				"2"   "ancient_3__walk_rank_22"
+				"1"   "ancient_3__roar_rank_21"
+				"2"   "ancient_3__roar_rank_22"
 			}
 			"3"
 			{
-				"1"   "ancient_3__walk_rank_31"
-				"2"   "ancient_3__walk_rank_32"
+				"1"   "ancient_3__roar_rank_31"
+				"2"   "ancient_3__roar_rank_32"
 			}
 			"4"
 			{
-				"1"   "ancient_3__walk_rank_41"
-				"2"   "ancient_3__walk_rank_42"
+				"1"   "ancient_3__roar_rank_41"
+				"2"   "ancient_3__roar_rank_42"
 			}
 		}
-		"ancient_4__flesh"
+		"ancient_4__walk"
 		{
 			"1"
 			{
-				"1"   "ancient_4__flesh_rank_11"
-				"2"   "ancient_4__flesh_rank_12"
+				"1"   "ancient_4__walk_rank_11"
+				"2"   "ancient_4__walk_rank_12"
 			}
 			"2"
 			{
-				"1"   "ancient_4__flesh_rank_21"
-				"2"   "ancient_4__flesh_rank_22"
+				"1"   "ancient_4__walk_rank_21"
+				"2"   "ancient_4__walk_rank_22"
 			}
 			"3"
 			{
-				"1"   "ancient_4__flesh_rank_31"
-				"2"   "ancient_4__flesh_rank_32"
+				"1"   "ancient_4__walk_rank_31"
+				"2"   "ancient_4__walk_rank_32"
 			}
 			"4"
 			{
-				"1"   "ancient_4__flesh_rank_41"
-				"2"   "ancient_4__flesh_rank_42"
+				"1"   "ancient_4__walk_rank_41"
+				"2"   "ancient_4__walk_rank_42"
 			}
 		}
-		"ancient_5__petrify"
+		"ancient_5__flesh"
 		{
 			"1"
 			{
-				"1"   "ancient_5__petrify_rank_11"
-				"2"   "ancient_5__petrify_rank_12"
+				"1"   "ancient_5__flesh_rank_11"
+				"2"   "ancient_5__flesh_rank_12"
 			}
 			"2"
 			{
-				"1"   "ancient_5__petrify_rank_21"
-				"2"   "ancient_5__petrify_rank_22"
+				"1"   "ancient_5__flesh_rank_21"
+				"2"   "ancient_5__flesh_rank_22"
 			}
 			"3"
 			{
-				"1"   "ancient_5__petrify_rank_31"
-				"2"   "ancient_5__petrify_rank_32"
+				"1"   "ancient_5__flesh_rank_31"
+				"2"   "ancient_5__flesh_rank_32"
 			}
 			"4"
 			{
-				"1"   "ancient_5__petrify_rank_41"
-				"2"   "ancient_5__petrify_rank_42"
+				"1"   "ancient_5__flesh_rank_41"
+				"2"   "ancient_5__flesh_rank_42"
 			}
 		}
-		"ancient_u__final"
+		"ancient_u__fissure"
 		{
 			"1"
 			{
-				"1"   "ancient_u__final_rank_11"
-				"2"   "ancient_u__final_rank_12"
+				"1"   "ancient_u__fissure_rank_11"
+				"2"   "ancient_u__fissure_rank_12"
 			}
 			"2"
 			{
-				"1"   "ancient_u__final_rank_21"
-				"2"   "ancient_u__final_rank_22"
+				"1"   "ancient_u__fissure_rank_21"
+				"2"   "ancient_u__fissure_rank_22"
 			}
 			"3"
 			{
-				"1"   "ancient_u__final_rank_31"
-				"2"   "ancient_u__final_rank_32"
+				"1"   "ancient_u__fissure_rank_31"
+				"2"   "ancient_u__fissure_rank_32"
 			}
 			"4"
 			{
-				"1"   "ancient_u__final_rank_41"
-				"2"   "ancient_u__final_rank_42"
+				"1"   "ancient_u__fissure_rank_41"
+				"2"   "ancient_u__fissure_rank_42"
 			}
 		}
 	}	

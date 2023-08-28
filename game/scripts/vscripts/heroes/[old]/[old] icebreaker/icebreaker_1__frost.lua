@@ -13,7 +13,7 @@ LinkLuaModifier("icebreaker_1_modifier_passive_status_efx", "heroes/moon/icebrea
 LinkLuaModifier("icebreaker_1_modifier_hits", "heroes/moon/icebreaker/icebreaker_1_modifier_hits", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_permanent_movespeed_buff", "_modifiers/_modifier_permanent_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("_modifier_invisible", "_modifiers/_modifier_invisible", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_invisible_cosmetics", "_modifiers/_modifier_invisible_cosmetics", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_invi_level", "_modifiers/_modifier_invi_level", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

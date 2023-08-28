@@ -33,9 +33,14 @@ function GameMode:OnGameRulesStateChange(keys)
   end
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    --AddFOWViewer(DOTA_TEAM_CUSTOM_4, Vector(0, 0, 0), 5000, 9999, false)
     if IsInToolsMode() then
+<<<<<<< Updated upstream
       LoadBots()
       AddFOWViewer(DOTA_TEAM_CUSTOM_4, Vector(0, 0, 0), 5000, 9999, false)
+=======
+      --LoadBots()
+>>>>>>> Stashed changes
     else
       LoadBots()
     end

@@ -28,10 +28,15 @@ end
 
 function fleaman_u_modifier_shadow:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
+end
+
+function fleaman_u_modifier_shadow:GetModifierConstantHealthRegen()
+	return self:GetAbility():GetSpecialValueFor("hp_regen")
 end
 
 function fleaman_u_modifier_shadow:GetActivityTranslationModifiers()

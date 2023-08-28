@@ -117,7 +117,7 @@ CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting th
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_1] = 3
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_2] = 3
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_3] = 3
-CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 1
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 3
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 1
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_5] = 4
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_6] = 4
@@ -137,8 +137,13 @@ BOTS = {}
 BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
+<<<<<<< Updated upstream
   "dasdingo", --"hunter",
   "paladin", "templar", "baldur"
+=======
+  "dasdingo", "hunter",
+  "paladin", "templar", "baldur", "ancient"
+>>>>>>> Stashed changes
 }
 
 RANDOM_NAMES = {

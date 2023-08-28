@@ -36,11 +36,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 		function base_stats:OnHeroLevelUp()
 			if IsServer() then
 				local caster = self:GetCaster()
+        local level = caster:GetLevel()
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
+<<<<<<< Updated upstream
         if caster:GetLevel() % 3 == 0 then
           self:IncrementSpenderPoints(2, 0)
+=======
+        if level % 2 == 0 then
+          if level ~= 8 and level ~= 18 and level ~= 30 then
+            self:IncrementSpenderPoints(4, 1)
+          end
+>>>>>>> Stashed changes
         end
         
         self:IncrementSpenderPoints(0, 1)
@@ -86,8 +94,15 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
 			if IsServer() then
+<<<<<<< Updated upstream
 				self.primary_points = 0
 				self.secondary_points = 0
+=======
+        self.total_points = 0
+        self.max_upgrade = 0
+				-- self.primary_points = 0
+				-- self.secondary_points = 0
+>>>>>>> Stashed changes
 
 				self.stat_base = {}
 				self.stat_bonus = {}
@@ -436,10 +451,19 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 -- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
+<<<<<<< Updated upstream
 		function base_stats:IncrementSpenderPoints(primary_pts, secondary_pts)
 			if IsServer() then
 				self.primary_points = self.primary_points + primary_pts
 				self.secondary_points = self.secondary_points + secondary_pts
+=======
+		function base_stats:IncrementSpenderPoints(pts, max)
+			if IsServer() then
+        self.total_points = self.total_points + pts
+        self.max_upgrade = self.max_upgrade + max
+				-- self.primary_points = self.primary_points + primary_pts
+				-- self.secondary_points = self.secondary_points + secondary_pts
+>>>>>>> Stashed changes
 				self:UpdatePanoramaPoints("nil")
 			end
 		end
@@ -632,7 +656,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
       local total_cost = 1
       local level_cap = 50
 
-      if self.stat_upgraded[stat] >= 10 then return false end
+      if self.stat_upgraded[stat] >= self.max_upgrade then return false end
       --local level_cap_fraction = 50
 
       -- for _,stats_secondary in pairs(self.stats_secondary) do
@@ -787,6 +811,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         total = total + modifier.amount
       end
 
+      local heal_decay = caster:FindAllModifiersByName("_modifier_heal_decay")
+      for _,modifier in pairs(heal_decay) do
+        total = total - modifier.amount
+      end
+
+      if total < -100 then total = -100 end
+      if total > 100 then total = 100 end
+
       return total
     end
 
@@ -807,12 +839,16 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
     function base_stats:GetMissPercent()
       local caster = self:GetCaster()
+
       local blind = caster:FindModifierByName("_modifier_blind_stack")
       if blind then return blind:GetStackCount() end
       return 0
     end
 
     function base_stats:GetDodgePercent()
+      local caster = self:GetCaster()
+      if caster:HasModifier("ancient_4_modifier_passive") then return 0 end
+
       local value = self.stat_total["DEX"] * self.evade
       local calc = (value * 6) / (1 +  (value * 0.06))
       return calc

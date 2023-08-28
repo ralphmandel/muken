@@ -66,8 +66,11 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
   if ability:GetAbilityName() == "hunter_2__aim" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "lck" then return 1 end
+		if value_name == "charges" then return 1 end
 
 		if caster:FindAbilityByName("hunter_2__aim_rank_11") then
 		end
@@ -132,7 +135,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
     if value_name == "AbilityCharges" then return 1 end
     if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "max_bullets" then return 1 end
+		if value_name == "hp_regen" then return 1 end
 
 		if caster:FindAbilityByName("hunter_4__bandage_rank_11") then
 		end
@@ -197,6 +200,7 @@ function hunter_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
+		if value_name == "vision_range" then return 1 end
 
 		if caster:FindAbilityByName("hunter_u__camouflage_rank_11") then
 		end
@@ -235,52 +239,57 @@ function hunter_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "hunter_1__shot" then
-		if value_name == "AbilityManaCost" then return 400 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 20 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "damage" then return 250 + (value_level * 5) end
+		if value_name == "damage" then return 300 + (value_level * 15) end
+
 		if value_name == "cd_mult_tooltip" then return ability:GetCooldown(ability:GetLevel()) * ability:GetSpecialValueFor("cd_mult") end
 	end
 
   if ability:GetAbilityName() == "hunter_2__aim" then
-		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 30 end
+		if value_name == "AbilityManaCost" then return 50 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
+    if value_name == "AbilityCastRange" then return caster:Script_GetAttackRange() end
+    if value_name == "AbilityCharges" then return ability:GetSpecialValueFor("charges") end
+    if value_name == "AbilityChargeRestoreTime" then return 5 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "lck" then return 20 + (value_level * 1) end
+		if value_name == "charges" then return 10 + (value_level * 1) end
 	end
 
 	if ability:GetAbilityName() == "hunter_3__radar" then
-		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 25 end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "radius" then return 600 + (value_level * 20) end
+    if value_name == "radius" then return 500 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "hunter_4__bandage" then
 		if value_name == "AbilityManaCost" then return 0 end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "AbilityCastRange" then return 150 end
-    if value_name == "AbilityCharges" then return 4 end
+    if value_name == "AbilityCharges" then return 3 end
     if value_name == "AbilityChargeRestoreTime" then return 20 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "max_bullets" then return 15 + (value_level * 1) end
+		if value_name == "hp_regen" then return 45 + (value_level * 2.5) end
 	end
 
 	if ability:GetAbilityName() == "hunter_5__trap" then
-		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 250 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return 100 end
-    if value_name == "AbilityCharges" then return 3 end
-    if value_name == "AbilityChargeRestoreTime" then return 40 end
+    if value_name == "AbilityCharges" then return 4 end
+    if value_name == "AbilityChargeRestoreTime" then return 30 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "lifetime" then return 240 + (value_level * 6) end
+		if value_name == "lifetime" then return 240 + (value_level * 10) end
 	end
 
   if ability:GetAbilityName() == "hunter_u__camouflage" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 2 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "vision_range" then return 250 + (value_level * 25) end
 	end
 
 	return 0

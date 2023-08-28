@@ -7,12 +7,12 @@
 		"DisableWearables" "1"
 
 		//ABILITIES
-			"Ability1"						"ancient_1__power"
+			"Ability1"						"ancient_1__smash"
 			"Ability2"						"ancient_2__leap"
-			"Ability3"						"ancient_3__walk"
-			"Ability4"						"ancient_4__flesh"
-			"Ability5"						"ancient_5__petrify"
-			"Ability6"						"ancient_u__final"
+			"Ability3"						"ancient_3__roar"
+			"Ability4"						"ancient_4__walk"
+			"Ability5"						"ancient_5__flesh"
+			"Ability6"						"ancient_u__fissure"
 			"Ability7"						"cosmetics"
 			"Ability8"						"base_hero"
 			"Ability9"						"base_stats"

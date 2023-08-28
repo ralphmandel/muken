@@ -47,8 +47,8 @@ end
 function dasdingo_3_modifier_leech:OnIntervalThink()
   local interval = 0.5
 	local drain_amount = self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("drain_percent") * interval * 0.01
-	self.parent:ModifyHealth(self.parent:GetHealth() - drain_amount, self.ability, true, 0)
-	self.caster:ModifyHealth(self.caster:GetHealth() + drain_amount, self.ability, false, 0)
+	self.parent:ModifyHealth(self.parent:GetHealth() - drain_amount, self.ability, false, 0)
+	--self.caster:ModifyHealth(self.caster:GetHealth() + drain_amount, self.ability, false, 0)
 
 	if IsServer() then self:StartIntervalThink(interval) end
 end

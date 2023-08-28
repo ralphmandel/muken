@@ -93,6 +93,7 @@ function fleaman:TryCast_Precision()
     else
       self.random_values["precision_charges"] = 0
     end
+    
     return true
   end
 end

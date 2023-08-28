@@ -7,7 +7,7 @@ function _modifier_truesight:IsHidden()
 end
 
 function _modifier_truesight:IsPurgable()
-	return true
+	return false
 end
 
 function _modifier_truesight:GetTexture()

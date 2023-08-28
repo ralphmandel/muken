@@ -70,7 +70,16 @@ LinkLuaModifier("templar_5_modifier_passive", "heroes/sun/templar/templar_5_modi
     
     self.target:RespawnHero(false, false)
     self.target:SetHealth(self.target:GetMaxHealth() * self:GetSpecialValueFor("percent") * 0.01)
-    self.target:SetMana(self.target:GetMaxMana() * self:GetSpecialValueFor("percent") * 0.01)
+
+    if self.target:HasModifier("ancient_1_modifier_passive") == false then
+      self.target:SetMana(self.target:GetMaxMana() * self:GetSpecialValueFor("percent") * 0.01)
+    end
+
+    RemoveBonus(self, "STR", self.target)
+    RemoveBonus(self, "INT", self.target)
+    AddBonus(self, "STR", self.target, self:GetSpecialValueFor("str"), 0, self:GetSpecialValueFor("stats_duration"))
+    AddBonus(self, "INT", self.target, self:GetSpecialValueFor("int"), 0, self:GetSpecialValueFor("stats_duration"))
+    
     FindClearSpaceForUnit(self.target, self:GetCursorPosition(), false)
 
     if IsServer() then self:PlayEfxStart(self:GetCursorPosition()) end

@@ -75,11 +75,11 @@ function fleaman_3_modifier_jump:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
   if keys.target:IsMagicImmune() then return end
   
-  self:PlayEfxHit(keys.target)
+  -- AddModifier(keys.target, self.ability, "_modifier_silence", {
+  --   duration = self.ability:GetSpecialValueFor("silence_duration"), special = 3
+  -- }, true)
 
-  AddModifier(keys.target, self.ability, "_modifier_silence", {
-    duration = self.ability:GetSpecialValueFor("silence_duration"), special = 3
-  }, true)
+  self:PlayEfxHit(keys.target)
 end
 
 function fleaman_3_modifier_jump:OnIntervalThink()

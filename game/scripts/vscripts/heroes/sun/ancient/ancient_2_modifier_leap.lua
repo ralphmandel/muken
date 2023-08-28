@@ -96,6 +96,12 @@ end
 
 function ancient_2_modifier_leap:PosHit()
   GridNav:DestroyTreesAroundPoint(self.parent:GetOrigin(), self.ability:GetAOERadius(), false)
+  local flags = DOTA_DAMAGE_FLAG_NONE
+
+  if self.parent:HasModifier("ancient_1_modifier_passive") 
+  and self.parent:PassivesDisabled() == false then
+    flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
+  end
 
   local enemies = FindUnitsInRadius(
 		self.parent:GetTeamNumber(), self.parent:GetOrigin(), nil, self.ability:GetAOERadius(),
@@ -104,7 +110,12 @@ function ancient_2_modifier_leap:PosHit()
 	)
 
 	for _,enemy in pairs(enemies) do
-    self.parent:PerformAttack(enemy, false, true, true, true, false, false, false)
+    ApplyDamage({
+      victim = enemy, attacker = self.parent,
+      damage = self.ability:GetSpecialValueFor("damage"),
+      damage_type = self.ability:GetAbilityDamageType(),
+      ability = self.ability, damage_flags = flags
+    })
 	end
 
   if self.ability:GetCurrentAbilityCharges() > 0 then
@@ -130,6 +141,14 @@ function ancient_2_modifier_leap:PlayEfxHit(radius)
   local particle_cast = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_v2.vpcf"
   local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
   ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
+
+  local particle_screen = "particles/econ/items/earthshaker/earthshaker_arcana/earthshaker_arcana_aftershock_screen.vpcf"
+	local effect_screen = ParticleManager:CreateParticleForPlayer(particle_screen, PATTACH_WORLDORIGIN, nil, self.parent:GetPlayerOwner())
+
+  local particle_shake = "particles/osiris/poison_alt/osiris_poison_splash_shake.vpcf"
+	local effect = ParticleManager:CreateParticle(particle_shake, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(effect, 1, Vector(750, 0, 0))
 
   if IsServer() then self.parent:EmitSound("Hero_ElderTitan.EchoStomp") end
 end

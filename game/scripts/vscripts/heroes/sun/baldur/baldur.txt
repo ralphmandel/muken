@@ -31,8 +31,8 @@
 
     "AbilityValues"
 		{
-			"stack_duration"  "60"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			"stack_duration"  "1 2 3 4 5 6 7"
+			"rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -61,8 +61,8 @@
       "stun_max"      "4"
       "damage_max"    "400"
       "slow_percent"  "30"
-      "cast_range"    "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "cast_range"    "1 2 3 4 5 6 7"
+			"rank"			    "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -87,9 +87,9 @@
       "stack_duration"  "30"
       "decay_time"      "5"
       "barrier_loss"    "20"
-      "barrier_stack"   "75"
-      "barrier_min"     "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+      "barrier_stack"   "70"
+      "barrier_min"     "1 2 3 4 5 6 7"
+			"rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -109,8 +109,8 @@
 		{
       "chance_side"   "10"
       "chance_back"   "15"
-      "stun_duration" "1.75"
-			"rank"			    "1 2 3 4 5 6 7 8 9 10 11"
+      "stun_duration" "1 2 3 4 5 6 7"
+			"rank"			    "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -136,15 +136,15 @@
 
     "AbilityValues"
 		{
-      "damage"          "250"
+      "damage"          "300"
       "damage_burn"     "50"
       "interval"        "0.5"
-      "debuff_duration" "8"
+      "debuff_duration" "7"
       "str"             "-15"
       "int"             "-15"
       "speed"           "1350"
-			"range"			      "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			      "1 2 3 4 5 6 7 8 9 10 11"
+			"range"			      "1 2 3 4 5 6 7"
+			"rank"			      "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -171,8 +171,8 @@
       "lifesteal"     "20"
       "time_out"      "200"
       "delay"         "3"
-			"duration"      "1 2 3 4 5 6 7 8 9 10 11"
-			"rank"		      "1 2 3 4 5 6 7 8 9 10 11"
+			"duration"      "1 2 3 4 5 6 7"
+			"rank"		      "1 2 3 4 5 6 7"
 		}
 	}
 

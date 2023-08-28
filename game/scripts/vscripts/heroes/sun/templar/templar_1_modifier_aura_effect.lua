@@ -66,7 +66,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function templar_1_modifier_aura_effect:GetAuraDefense()
-  return self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * self:GetStackCount())
+  return self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * (self:GetStackCount() - 1))
 end
 
 -- EFFECTS -----------------------------------------------------------
