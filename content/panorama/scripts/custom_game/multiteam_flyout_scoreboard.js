@@ -4,6 +4,7 @@ var g_ScoreboardHandle = null;
 var visible_state = false;
 
 function SetFlyoutScoreboardVisible(bVisible) {
+  visible_state = bVisible;
 	visible_state = bVisible;
 	$.GetContextPanel().SetHasClass("flyout_scoreboard_visible", bVisible);
 	if (bVisible) {
@@ -29,6 +30,10 @@ function MuteAll() {
 }
 
 function OnScoreUpdate(event) {
+  if (visible_state == true) {
+    SetFlyoutScoreboardVisible(false);
+    SetFlyoutScoreboardVisible(true);
+  }
 	if (visible_state == true) {
 		SetFlyoutScoreboardVisible(false);
 		SetFlyoutScoreboardVisible(true);
@@ -39,14 +44,17 @@ function OnScoreUpdate(event) {
 	if (ScoreboardUpdater_InitializeScoreboard === null) {
 		$.Msg("WARNING: This file requires shared_scoreboard_updater.js to be included.");
 	}
+
 	
 	var scoreboardConfig = {
 		teamXmlName: "file://{resources}/layout/custom_game/multiteam_flyout_scoreboard_team.xml",
 		playerXmlName: "file://{resources}/layout/custom_game/multiteam_flyout_scoreboard_player.xml",
 	};
 	g_ScoreboardHandle = ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, $("#TeamsContainer"));
+
 	
 	SetFlyoutScoreboardVisible(false);
+
 	
 	var teamOverlayShadow = $.GetContextPanel().GetParent().GetParent().FindChildTraverse( "TeamsContainer" );
 	for(var i = 0; i <= teamOverlayShadow.GetChildCount() - 1; i++) {
@@ -78,5 +86,5 @@ function OnScoreUpdate(event) {
 	
 	
 	$.RegisterEventHandler("DOTACustomUI_SetFlyoutScoreboardVisible", $.GetContextPanel(), SetFlyoutScoreboardVisible);
-	GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
+  GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
 })();

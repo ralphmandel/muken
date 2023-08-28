@@ -1,4 +1,5 @@
 "use strict";
+var score_table = {6: 0, 7: 0, 8: 0, 9: 0};
 
 
 //=============================================================================
@@ -271,7 +272,7 @@ function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, t
 		teamsInfo.max_team_players = teamPlayers.length;
 	}
 
-	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamScore", teamDetails.team_score )
+	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamScore", score_table[teamId] )
 	_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamName", $.Localize( teamDetails.team_name ) )
 	
 	if ( GameUI.CustomUIConfig().team_colors )
@@ -331,11 +332,11 @@ function _ScoreboardUpdater_ReorderTeam( scoreboardConfig, teamsParent, teamPane
 // sort / reorder as necessary
 function compareFunc( a, b ) // GameUI.CustomUIConfig().sort_teams_compare_func;
 {
-	if ( a.team_score < b.team_score )
+	if ( score_table[a.team_id] < score_table[b.team_id] )
 	{
 		return 1; // [ B, A ]
 	}
-	else if ( a.team_score > b.team_score )
+	else if ( score_table[a.team_id] > score_table[b.team_id] )
 	{
 		return -1; // [ A, B ]
 	}
@@ -500,3 +501,11 @@ function ScoreboardUpdater_GetSortedTeamInfoList( scoreboardHandle )
 	return teamsList;
 }
 
+function OnScoreUpdate(event) {
+  score_table = event[1];
+}
+
+(function() {
+  $.Msg("kubo score 1");
+  GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
+})();
