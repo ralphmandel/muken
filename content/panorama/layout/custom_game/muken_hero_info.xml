@@ -1,64 +1,98 @@
 <root>
-    <styles>
-      <include src="file://{resources}/styles/custom_game/muken_hero_info.css"/>
-    </styles>
-    <scripts>
-      <include src="file://{resources}/scripts/custom_game/muken_stats.js"/>
-    </scripts>
-   <div class="column">
-        <div class="item">
-            <img alt="img_1" src="assassin.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar"> 
-                    <span class="skill-per assassin"> 
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="img_2" src="mage.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar">
-                    <span class="skill-per mage"> 
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="img_3" src="tanker.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar">
-                    <span class="skill-per tanker">
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="img_4" src="escape.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar">
-                    <span class="skill-per escape">
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="img_5" src="suport.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar">
-                    <span class="skill-per suport">
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="img_6" src="disabler.png" class="img_class">
-            <div class="skill-box">
-                <div class="skill-bar">
-                    <span class="skill-per disabler">
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/muken_hero_info.css"/>
+  </styles>
+  <scripts>
+
+  </scripts>
+    <Panel class="column">
+        <Panel class="item">
+          <Image src="file://{resources}/images/custom_game/self_off.png" class="Image_class"/>
+          <Panel class="skill-box">
+            <Panel class="skill-bar"> 
+                <Panel class="skill-per selfoff"> 
+                    <Panel class="marks" id="m1"></Panel>
+                    <Panel class="marks" id="m2"></Panel>
+                    <Panel class="marks" id="m3"></Panel>
+                    <Panel class="marks" id="m4"></Panel>
+                    <Panel class="marks" id="m5"></Panel>
+                </Panel>
+            </Panel>
+          </Panel>
+        </Panel>
+        <Panel class="item">
+            <Image src="file://{resources}/images/custom_game/self_def.png" class="Image_class"/>
+            <Panel class="skill-box">
+                <Panel class="skill-bar">
+                    <Panel class="skill-per selfdef">
+                        <Panel class="marks" id="m1"></Panel>
+                        <Panel class="marks" id="m2"></Panel>
+                        <Panel class="marks" id="m3"></Panel>
+                        <Panel class="marks" id="m4"></Panel>
+                        <Panel class="marks" id="m5"></Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel class="item">
+            <Image src="file://{resources}/images/custom_game/self_escape.png" class="Image_class"/>
+            <Panel class="skill-box">
+                <Panel class="skill-bar">
+                    <Panel class="skill-per selfescape">
+                        <Panel class="marks" id="m1"></Panel>
+                        <Panel class="marks" id="m2"></Panel>
+                        <Panel class="marks" id="m3"></Panel>
+                        <Panel class="marks" id="m4"></Panel>
+                        <Panel class="marks" id="m5"></Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel class="item">
+            <Image src="file://{resources}/images/custom_game/sup_off.png" class="Image_class"/>
+            <Panel class="skill-box">
+                <Panel class="skill-bar">
+                    <Panel class="skill-per supoff">
+                        <Panel class="marks" id="m1"></Panel>
+                        <Panel class="marks" id="m2"></Panel>
+                        <Panel class="marks" id="m3"></Panel>
+                        <Panel class="marks" id="m4"></Panel>
+                        <Panel class="marks" id="m5"></Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel class="item">
+            <Image src="file://{resources}/images/custom_game/sup_def.png" class="Image_class"/>
+            <Panel class="skill-box">
+                <Panel class="skill-bar">
+                    <Panel class="skill-per supdef">
+                        <Panel class="marks" id="m1"></Panel>
+                        <Panel class="marks" id="m2"></Panel>
+                        <Panel class="marks" id="m3"></Panel>
+                        <Panel class="marks" id="m4"></Panel>
+                        <Panel class="marks" id="m5"></Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel class="item">
+            <Image src="file://{resources}/images/custom_game/sup_control.png" class="Image_class"/>
+            <Panel class="skill-box">
+                <Panel class="skill-bar">
+                    <Panel class="skill-per supcontrol">
+                        <Panel class="marks" id="m1"></Panel>
+                        <Panel class="marks" id="m2"></Panel>
+                        <Panel class="marks" id="m3"></Panel>
+                        <Panel class="marks" id="m4"></Panel>
+                        <Panel class="marks" id="m5"></Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Image src="file://{resources}/images/custom_game/skull_color45.png" class="img_collapse"/>
+		<Image src="file://{resources}/images/custom_game/leaf_color45.png" class="img_collapse"/>
+        <Image src="file://{resources}/images/custom_game/moon_color45.png" class="img_collapse"/>
+        <Image src="file://{resources}/images/custom_game/sun_color45.png" class="img_collapse"/>
+    </Panel>
 </root>

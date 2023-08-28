@@ -3,16 +3,36 @@
     <include src="file://{resources}/scripts/playertables/playertables_base.js" />
   </scripts>
   <script>
+    GameUI.CustomUIConfig().team_logo_xml = "file://{resources}/layout/custom_game/muken_team_icon.xml";
+		GameUI.CustomUIConfig().team_logo_large_xml = "file://{resources}/layout/custom_game/muken_team_icon_large.xml";
+    GameUI.CustomUIConfig().multiteam_top_scoreboard =
+		{
+			reorder_team_scores: true,
+			LeftInjectXMLFile: "file://{resources}/layout/custom_game/muken_goal.xml",
+			TeamOverlayXMLFile: "file://{resources}/layout/custom_game/muken_goal_team_overlay.xml"
+		};
+
     var NoTalents = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoTalentGlow = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoAghanimsPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
-     var NoDotaPlus = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
+    var NoDotaPlus = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildrenWithClassTraverse("HeroCard.BronzeTier");
+    var NoFilter = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroGrid");
+    var NoMiniMap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
+    var NoDotaTeams = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("Header");
+    var changeIndex = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("CustomUIRoot");
 
+
+    changeIndex.FindChildTraverse("CustomUIContainer_FlyoutScoreboard").style.zIndex = "-1"; 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
     NoAghanimsPanel.FindChildTraverse("AghsStatusContainer").style.visibility = "collapse";
     NoDotaPlus.FindChildTraverse("BottomPanels").style.visibility = "collapse";
+    NoFilter.FindChildTraverse("Footer").style.visibility = "collapse";
+    NoMiniMap.FindChildTraverse("PreMinimapContainer").style.visibility = "collapse";
+    NoDotaTeams.FindChildTraverse("RadiantTeamPlayers").style.visibility = "collapse";
+    NoDotaTeams.FindChildTraverse("DireTeamPlayers").style.visibility = "collapse";
+
     // Uncomment any of the following lines in order to disable that portion of the default UI
 
     //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false );      //Time of day (clock).
@@ -42,6 +62,13 @@
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_2] = "#3dd296;";
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_3] = "#8c2af4;";
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_4] = "#c7e40d;";
+
+    GameUI.CustomUIConfig().team_icons = {}
+    GameUI.CustomUIConfig().team_icons[DOTATeam_t.DOTA_TEAM_CUSTOM_1] = "file://{resources}/images/custom_game/skull_color45.png";
+		GameUI.CustomUIConfig().team_icons[DOTATeam_t.DOTA_TEAM_CUSTOM_2] = "file://{resources}/images/custom_game/leaf_color45.png";
+		GameUI.CustomUIConfig().team_icons[DOTATeam_t.DOTA_TEAM_CUSTOM_3] = "file://{resources}/images/custom_game/moon_color45.png";
+		GameUI.CustomUIConfig().team_icons[DOTATeam_t.DOTA_TEAM_CUSTOM_4] = "file://{resources}/images/custom_game/sun_color45.png";
+
     //GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_1] = "#3dd296;";
     //GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_2] = "#F3C909;";
     //GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_3] = "#c54da8;";
@@ -68,9 +95,13 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/next_up.xml" />
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_stats.xml"/>
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/muken_info.xml"/>
-   
-    
+    <CustomUIElement type="HudTopBar" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml"/>
+    <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/muken_hero_info.xml"/>
+    <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/ui_econ_set_preview.xml"/>
+    <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay.xml"/>
     <CustomUIElement type="FlyoutScoreboard"    layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml"/>
+    
+   
 
     <!-- From Overthrow.
 

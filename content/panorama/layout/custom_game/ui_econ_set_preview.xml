@@ -1,0 +1,15 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/ui_econ_set_preview.css" />
+		<include src="file://{resources}/styles/custom_game/ui_econ_set_loadout_preview.css" />
+	</styles>
+	<Panel class="PreviewHero">
+			<DOTAScenePanel id="Preview3DItems" antialias="false" particleonly="false" class="SceneLoaded" allowrotation="true" camera="default_camera" unit="npc_dota_hero_muerta" />
+			<EconItemImage id="Preview2DItems" class="Rotating2dPanel" />
+			
+	</Panel>
+		
+	
+</root>

@@ -1,0 +1,22 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/muken_team_icon.css" />
+	</styles>
+	<script>
+		var teamId = $.GetContextPanel().GetAttributeInt( "team_id", -1 );
+		
+		if ( GameUI.CustomUIConfig().team_icons )
+		{
+			var teamIcon = GameUI.CustomUIConfig().team_icons[ teamId ];
+			if ( teamIcon )
+			{
+				$("#TeamIcon").SetImage( teamIcon );
+			}
+		}
+
+	</script>
+	<Panel class="TeamIconLarge">
+		<Image id="TeamIcon" style="wash-color: black;" src="" />
+	</Panel>
+</root>

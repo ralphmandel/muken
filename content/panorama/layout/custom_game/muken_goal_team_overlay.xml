@@ -1,0 +1,20 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/muken_goal.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/muken_goal_team_overlay.js" />
+	</scripts>
+	<Panel class="TeamOverlay">
+		<Panel id="TeamNotices">
+			<Image hittest="false" id="FirstPlaceIndicator" src="file://{images}/custom_game/crown001.png" />
+			<Panel hittest="false" id="VictoryStatusRow">
+				<Label hittest="false" id="PointsToWin" text="999" />
+			</Panel>
+		</Panel>
+		<Panel hittest="false" id="TempStatusRow">
+			<Label hittest="false" id="RecentScore" text="999"/>
+		</Panel>
+	</Panel>
+</root>

@@ -3,18 +3,20 @@
 
  .TeamsRoot{
   flow-children: down;
+  margin-top: 30px;
  }
 
  .FlyoutScoreboardRoot{
   horizontal-align: left;
   vertical-align: top;
-  margin-left: 150px;
+  margin-left: 170px;
   flow-children: right;
   padding: 10px;
 
   transform: translatey(-600px);
   transition-property: transform;
   transition-duration: 0.1s;
+ 
  }
 
  .FlyoutScoreboardRoot.flyout_scoreboard_visible{
@@ -24,8 +26,12 @@
  #TeamsContainer{
   flow-children: down;
   horizontal-align: center;
+  
  }
 
+ #TeamsContainer:active{
+
+ }
  .FlyoutTeam{
   margin-top: 8px;
  }
@@ -70,7 +76,7 @@
  }
 
  .local_player_team #PlayersContainer{
-  box-shadow: fill rgba(205, 202, 0, 0.4) 0px 0px 3px 1px;
+
  }
 
  .TeamId{
@@ -78,7 +84,7 @@
  }
 
  #TeamLogo{
-  vertical-align: top;
+  vertical-align: middle;
   horizontal-align: right;
   height: 30px;
   width: 30px;
@@ -111,12 +117,14 @@
 
  .Legend{
   flow-children: right;
+  margin-bottom: -10px;
+  margin-left: -4px;
  }
 
  .Legend Label{
   text-shadow: 2px 2px 2px black;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
   color: #90999b;
  }
 

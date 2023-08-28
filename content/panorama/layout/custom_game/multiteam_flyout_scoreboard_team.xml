@@ -1,9 +1,9 @@
 <!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
 <root>
 	<styles>
-		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
-		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.css" />
-		<include src="s2r://panorama/styles/custom_game/multiteam_flyout_scoreboard.css" />
+		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/shared_scoreboard_styles.css" />
+		<include src="file://{resources}/styles/custom_game/multiteam_flyout_scoreboard.css" />
 	</styles>
 	<Panel hittest="false" class="FlyoutTeam">
 		<Panel class="FlyoutTeamData">
