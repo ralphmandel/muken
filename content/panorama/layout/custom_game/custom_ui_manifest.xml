@@ -20,10 +20,7 @@
     var NoFilter = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroGrid");
     var NoMiniMap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var NoDotaTeams = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("Header");
-    //var changeIndex = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("CustomUIRoot");
 
-
-    //changeIndex.FindChildTraverse("CustomUIContainer_FlyoutScoreboard").style.zIndex = "-1";
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
     NoAghanimsPanel.FindChildTraverse("AghsStatusContainer").style.visibility = "collapse";
