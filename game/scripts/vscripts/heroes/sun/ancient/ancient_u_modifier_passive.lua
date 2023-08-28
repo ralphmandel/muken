@@ -38,14 +38,8 @@ function ancient_u_modifier_passive:OnAttacked(keys)
 
   local gain = self.ability:GetSpecialValueFor("energy_gain")
 
-<<<<<<< Updated upstream
-  if BaseStats(keys.attacker).has_crit then
-    gain = self.ability:GetSpecialValueFor("energy_gain_crit")
-  end
-=======
   -- if BaseStats(keys.attacker).has_crit == true then
   -- end
->>>>>>> Stashed changes
 
   IncreaseMana(self.parent, gain)
   self.ability:UpdateParticles()

@@ -125,7 +125,7 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_4] = 3
 -- CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_CUSTOM_8] = 4
 
 SCORE_LIMIT = 50
-SCORE_KILL = 3
+SCORE_KILL = 2
 SCORE_DEATH = -1
 XP_BOUNTY_MIN = 20
 XP_BOUNTY_MAX = 30
@@ -137,13 +137,8 @@ BOTS = {}
 BOT_LIST = {
   "fleaman", "lawbreaker", "bloodstained", "bocuse",
   "genuine", "icebreaker",
-<<<<<<< Updated upstream
-  "dasdingo", --"hunter",
-  "paladin", "templar", "baldur"
-=======
   "dasdingo", "hunter",
   "paladin", "templar", "baldur", "ancient"
->>>>>>> Stashed changes
 }
 
 RANDOM_NAMES = {

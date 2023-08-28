@@ -315,16 +315,12 @@ base_stats_mod = class ({})
 
     local crit = RandomFloat(0, 100) < BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil
-<<<<<<< Updated upstream
-    BaseStats(keys.attacker).has_crit = crit
-=======
 
     if keys.attacker:HasModifier("ancient_1_modifier_passive") then
       BaseStats(keys.attacker).missing = false
       return
     end
 
->>>>>>> Stashed changes
     BaseStats(keys.attacker).missing = (RandomFloat(0, 100) < BaseStats(keys.attacker):GetMissPercent() or (crit == false and RandomFloat(0, 100) < self.ability:GetDodgePercent()))
   end
 

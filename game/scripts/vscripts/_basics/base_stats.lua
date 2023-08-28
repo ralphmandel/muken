@@ -40,19 +40,12 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if caster:IsIllusion() then return end
 				if caster:IsHero() == false then return end
 
-<<<<<<< Updated upstream
-        if caster:GetLevel() % 3 == 0 then
-          self:IncrementSpenderPoints(2, 0)
-=======
         if level % 2 == 0 then
           if level ~= 8 and level ~= 18 and level ~= 30 then
             self:IncrementSpenderPoints(4, 1)
           end
->>>>>>> Stashed changes
         end
         
-        self:IncrementSpenderPoints(0, 1)
-
 				--for _, stat in pairs(self.stats_primary) do
 					--self:ApplyBonusLevel(stat, self.bonus_level[stat])
 				--end
@@ -94,15 +87,8 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 	-- LOAD STATS
 		function base_stats:ResetAllStats()
 			if IsServer() then
-<<<<<<< Updated upstream
-				self.primary_points = 0
-				self.secondary_points = 0
-=======
         self.total_points = 0
         self.max_upgrade = 0
-				-- self.primary_points = 0
-				-- self.secondary_points = 0
->>>>>>> Stashed changes
 
 				self.stat_base = {}
 				self.stat_bonus = {}
@@ -235,7 +221,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
           --   if stat_type == "initial" then
           --     self.stat_base[stat] = self.stat_base[stat] + value
           --     self:CalculateStats(0, 0, stat)
-          --     self:IncrementFraction("level_up", stat, value * 3, 0)
+          --     self:IncrementFraction("level_up", stat, value * 3)
           --   elseif stat_type == "bonus_level" then
           --     self.bonus_level[stat] = value
           --   end
@@ -245,7 +231,7 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         for stat, value in pairs(unit_stats) do
           self.stat_base[stat] = self.stat_base[stat] + value
           self:CalculateStats(0, 0, stat)
-          self:IncrementFraction("level_up", stat, value * 3, 0)
+          self:IncrementFraction("level_up", stat, value * 3)
         end
       end
 
@@ -451,19 +437,10 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
 -- ATTRIBUTES POINTS
 	-- ADD SPENDER POINTS AND UPDATE PANORAMA
-<<<<<<< Updated upstream
-		function base_stats:IncrementSpenderPoints(primary_pts, secondary_pts)
-			if IsServer() then
-				self.primary_points = self.primary_points + primary_pts
-				self.secondary_points = self.secondary_points + secondary_pts
-=======
 		function base_stats:IncrementSpenderPoints(pts, max)
 			if IsServer() then
         self.total_points = self.total_points + pts
         self.max_upgrade = self.max_upgrade + max
-				-- self.primary_points = self.primary_points + primary_pts
-				-- self.secondary_points = self.secondary_points + secondary_pts
->>>>>>> Stashed changes
 				self:UpdatePanoramaPoints("nil")
 			end
 		end
@@ -471,20 +448,18 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
     function base_stats:UpgradeStat(stat)
       for _,primary in pairs(self.stats_primary) do
         if stat == primary then
-          self.primary_points = self.primary_points - 1
+          self.total_points = self.total_points - 1
           self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          --self:IncrementFraction("plus_up", primary, 3, 1)
           self:CalculateStats(0, 0, primary)
         end
       end
     
       for _,secondary in pairs(self.stats_secondary) do
         if stat == secondary then
-          self.secondary_points = self.secondary_points - 1
+          self.total_points = self.total_points - 1
           self.stat_upgraded[stat] = self.stat_upgraded[stat] + 1
           self.stat_base[stat] = self.stat_base[stat] + 1
-          --self:IncrementFraction("plus_up", secondary, 2, 2)
           self:CalculateStats(0, 0, secondary)
         end
       end
@@ -521,18 +496,17 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
         local stats_fraction = {}
 
         for _, stat in pairs(self.stats_primary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.primary_points) == true
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
-          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.secondary_points) == true
+          stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 
 				CustomGameEventManager:Send_ServerToPlayer(player, "points_state_from_server", {
-					primary_points = self.primary_points,
-					secondary_points = self.secondary_points,
+					total_points = self.total_points,
 					stats = stats,
           stats_fraction = stats_fraction,
           upgraded_stat = upgraded_stat
@@ -622,14 +596,14 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 				if self.stat_sub_level[stat] >= self.max_level then
 					self.stat_sub_level[stat] = self.stat_sub_level[stat] - self.max_level
 					self.stat_base[stat] = self.stat_base[stat] + 1
-					self:IncrementFraction("level_up", stat, 3, 0)
+					self:IncrementFraction("level_up", stat, 3)
 					self:CalculateStats(0, 0, stat)
 					self:ApplyBonusLevel(stat, 0)
 				end
 			end
 		end
 
-		function base_stats:IncrementFraction(type, stat, value, group)
+		function base_stats:IncrementFraction(type, stat, value)
 			if IsServer() then
 				for index, stat_fraction in pairs(self.stat_fraction[type][stat]) do
 					if index ~= "value" then
@@ -641,8 +615,6 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 						end
 
 						if levelup > 0 then
-              if group == 1 then self.primary_points = self.primary_points - levelup end
-              if group == 2 then self.secondary_points = self.secondary_points - levelup end
 							self.stat_base[stat_fraction] = self.stat_base[stat_fraction] + levelup
 							self:CalculateStats(0, 0, stat_fraction)
 						end

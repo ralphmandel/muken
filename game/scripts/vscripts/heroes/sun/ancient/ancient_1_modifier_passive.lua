@@ -60,13 +60,8 @@ function ancient_1_modifier_passive:OnAttacked(keys)
 
 	if self.parent:PassivesDisabled() then return end
 
-<<<<<<< Updated upstream
-  if BaseStats(keys.attacker).has_crit then
-    self:PlayEfxCrit(keys.attacker, true)
-=======
   if BaseStats(keys.attacker).has_crit == true then
     self:PlayEfxCrit(keys.attacker, keys.original_damage, "Ancient.Stun.Crit")
->>>>>>> Stashed changes
     if keys.target:GetPlayerOwner() then
       self:PlayEfxCrit(keys.target, keys.original_damage, "Ancient.Stun.Crit")
     end
