@@ -276,7 +276,7 @@ function GameMode:OnTeamKillCredit(keys)
 
   for _,hero in pairs(HeroList:GetAllHeroes()) do
     CustomGameEventManager:Send_ServerToPlayer(
-      PlayerResource:GetPlayer(hero:GetPlayerID()), "score_state_from_server", {score_table}
+      PlayerResource:GetPlayer(hero:GetPlayerID()), "score_state_from_server", score_table
     )
   end
 

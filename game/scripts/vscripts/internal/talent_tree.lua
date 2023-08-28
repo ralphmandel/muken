@@ -18,6 +18,7 @@ function TalentTree:InitPanaromaEvents()
   CustomGameEventManager:RegisterListener("talent_tree_reset_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeResetRequest'))
   ListenToGameEvent("player_reconnected", Dynamic_Wrap(TalentTree, "OnPlayerReconnect"), TalentTree)
   CustomGameEventManager:RegisterListener("portrait_unit_update", Dynamic_Wrap(TalentTree, 'OnPortraitUpdate'))
+  CustomGameEventManager:RegisterListener("scoreboard_update", Dynamic_Wrap(TalentTree, 'OnScoreRequest'))
 end
 
 function TalentTree:OnPortraitUpdate(event)
@@ -142,6 +143,23 @@ function TalentTree:OnPlayerReconnect(keys)
 
   --BaseHero(hero):UpdatePanoramaPanels()
   BaseHero(hero):UpdatePanoramaState()
+end
+
+function TalentTree:OnScoreRequest(event)
+  if (not event or not event.PlayerID) then return end
+  
+  local player = PlayerResource:GetPlayer(event.PlayerID)
+  if (not player) then return end
+
+  local score_table = {
+    [DOTA_TEAM_CUSTOM_1] = TEAMS[1][2],
+    [DOTA_TEAM_CUSTOM_2] = TEAMS[2][2],
+    [DOTA_TEAM_CUSTOM_3] = TEAMS[3][2],
+    [DOTA_TEAM_CUSTOM_4] = TEAMS[4][2]
+  }
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "score_state_from_server", score_table)
+
 end
 
 TalentTree:Init()

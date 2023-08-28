@@ -450,6 +450,7 @@ function ScoreboardUpdater_InitializeScoreboard( scoreboardConfig, scoreboardPan
 		// default to true
 		scoreboardConfig.shouldReorder = true;
 	}
+	GameEvents.SendCustomGameEventToServer( "scoreboard_update", {});
 	_ScoreboardUpdater_UpdateAllTeamsAndPlayers( scoreboardConfig, scoreboardPanel );
 	return { "scoreboardConfig": scoreboardConfig, "scoreboardPanel":scoreboardPanel }
 }
@@ -502,7 +503,7 @@ function ScoreboardUpdater_GetSortedTeamInfoList( scoreboardHandle )
 }
 
 function OnScoreUpdate(event) {
-  score_table = event[1];
+  score_table = event;
 }
 
 (function() {

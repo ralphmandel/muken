@@ -89,6 +89,7 @@ function OnScoreUpdate(event) {
 	GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
 
 
-	var changeIndex = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("CustomUIRoot");
+	var changeIndex = $.GetContextPanel().GetParent().GetParent();
 	changeIndex.FindChildTraverse("CustomUIContainer_FlyoutScoreboard").style.zIndex = "-1";
+	$.Msg( changeIndex, 'BLEACH2');
 })();
