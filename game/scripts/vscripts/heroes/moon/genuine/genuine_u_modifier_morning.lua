@@ -15,7 +15,7 @@ function genuine_u_modifier_morning:OnCreated(kv)
 	self.ability:SetActivated(false)
 
   AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
-  AddBonus(self.ability, "INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
+  AddBonus(self.ability, "REC", self.parent, self.ability:GetSpecialValueFor("rec"), 0, nil)
   AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {percent = self.ability:GetSpecialValueFor("ms")}, false)
 
   GameRules:BeginTemporaryNight(self:GetDuration())
@@ -31,7 +31,7 @@ function genuine_u_modifier_morning:OnRemoved()
 	self.ability:SetActivated(true)
 
 	RemoveBonus(self.ability, "AGI", self.parent)
-	RemoveBonus(self.ability, "INT", self.parent)
+	RemoveBonus(self.ability, "REC", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
