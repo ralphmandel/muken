@@ -20,6 +20,10 @@
     var NoFilter = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroGrid");
     var NoMiniMap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var NoDotaTeams = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("Header");
+    var TimeofDay = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("topbar");
+    var HeroPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
+    var Killcountbar = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("stackable_side_panels");
+    var Glyph = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
@@ -29,7 +33,45 @@
     NoMiniMap.FindChildTraverse("PreMinimapContainer").style.visibility = "collapse";
     NoDotaTeams.FindChildTraverse("RadiantTeamPlayers").style.visibility = "collapse";
     NoDotaTeams.FindChildTraverse("DireTeamPlayers").style.visibility = "collapse";
+    Glyph.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
+    Glyph.FindChildTraverse("minimap_block").style.boxShadow = "0px 0px 10px 1px #000000de";
+    // Time Panel:
+    
+    TimeofDay.FindChildTraverse("TimeOfDayBG").style.backgroundImage = "url('file://{images}/custom_game/bg_timer_edited.png')";
+    TimeofDay.FindChildTraverse("TimeOfDayBG").style.height = "65px";
+    TimeofDay.FindChildTraverse("TimeOfDayBG").style.width = "75px";
+   
+    TimeofDay.FindChildTraverse("TimeOfDayBG").style.boxShadow = "0px 0px 5px -5px #000000de";
+    TimeofDay.FindChildTraverse("TimeUntil").style.verticalAlign = "center";
+    TimeofDay.FindChildTraverse("TimeUntil").style.marginLeft = "210px";
+    TimeofDay.FindChildTraverse("TimeUntil").style.marginTop = "-15px";
+    TimeofDay.FindChildTraverse("TimeOfDay").style.height = "55px";
+    TimeofDay.FindChildTraverse("TimeOfDay").FindChildTraverse("DayNightCycle").style.height = "33px";
+    TimeofDay.FindChildTraverse("TimeOfDay").FindChildTraverse("DayNightCycle").style.width = "33px";
 
+    TimeofDay.FindChildTraverse("GameTime").style.fontSize = "16px";
+    TimeofDay.FindChildTraverse("GameTime").style.marginBottom = "0px";
+
+    var Naruto = TimeofDay.FindChildTraverse("TimeOfDay").FindChildTraverse("DayNightCycle").FindChildrenWithClassTraverse("TimeOfDayIcon");
+    TimeofDay.style.position = "-920px 50px 0px";
+    TimeofDay.style.margin = "0px 0px 0px 0px";
+    TimeofDay.style.width = "400px";
+    TimeofDay.style.height = "150px";
+    Naruto.forEach(TimeOfDayIcon => {
+      TimeOfDayIcon.style.width = "33px";
+      TimeOfDayIcon.style.height = "33px";
+      
+    });
+    
+
+    //Hero Bottom Panel
+    HeroPanel.FindChildTraverse("left_flare").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/side_flare_tall_psd.vtex')";
+    HeroPanel.FindChildTraverse("right_flare").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/right_flare_bg_psd.vtex')";
+    HeroPanel.FindChildTraverse("center_bg").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/ability_bg_psd.vtex')";
+    HeroPanel.FindChildTraverse("InventoryBG").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/inventory_bg_psd.vtex')";
+    HeroPanel.FindChildTraverse("inventory_items").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/inventory_bg_psd.vtex')";
+    HeroPanel.FindChildTraverse("stragiint").style.visibility = "collapse";
+    Killcountbar.FindChildTraverse("quickstats").style.visibility = "collapse";
     // Uncomment any of the following lines in order to disable that portion of the default UI
 
     //GameUI.SetDefaultUIEnabled( DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false );      //Time of day (clock).

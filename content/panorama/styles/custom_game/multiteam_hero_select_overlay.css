@@ -107,6 +107,7 @@
      border: 1px solid black;
      width: 120px;
      height: 67px;
+     opacity-mask: url("file://{images}/custom_game/hero_select_mask.png");
  }
 
  #PlayerName{

@@ -179,7 +179,7 @@
 
 #StatsWindowContainer
 {
-  margin-top: 152px;
+  margin-top: 172px;
   horizontal-align: left;
   /* width: fit-children;
   height: fit-children; */
@@ -193,7 +193,7 @@
   horizontal-align: left;
   vertical-align: top;
   margin-bottom: 5px;
-	margin-top: 397px;
+	margin-top: 417px;
 
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 	font-size: 16px;
@@ -258,52 +258,52 @@
 
 .STR_info
 {
-  margin-top: 155px;
+  margin-top: 175px;
 }
 
 .AGI_info
 {
-  margin-top: 179px;
+  margin-top: 199px;
 }
 
 .INT_info
 {
-  margin-top: 203px;
+  margin-top: 223px;
 }
 
 .CON_info
 {
-  margin-top: 227px;
+  margin-top: 247px;
 }
 
 .DEX_info
 {
-  margin-top: 251px;
+  margin-top: 271px;
 }
 
 .DEF_info
 {
-  margin-top: 275px;
+  margin-top: 295px;
 }
 
 .RES_info
 {
-  margin-top: 299px;
+  margin-top: 319px;
 }
 
 .REC_info
 {
-  margin-top: 323px;
+  margin-top: 353px;
 }
 
 .LCK_info
 {
-  margin-top: 347px;
+  margin-top: 367px;
 }
 
 .MND_info
 {
-  margin-top: 371px;
+  margin-top: 391px;
 }
 
 #StatsWindowButton
@@ -311,7 +311,7 @@
     horizontal-align: left;
     vertical-align: top;
     margin-bottom: 5px;
-	margin-top: 112px;
+	margin-top: 132px;
 
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 	font-size: 24px;
