@@ -24,7 +24,7 @@ function GameMode:OnGameRulesStateChange(keys)
         local players_num = PlayerResource:GetPlayerCountForTeam(team)
         if players_num > 0 then
           for i = 1, players_num do
-            local id = PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_CUSTOM_1, i)
+            local id = PlayerResource:GetNthPlayerIDOnTeam(team, i)
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "team_name_from_server", {})
           end        
         end        

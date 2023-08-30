@@ -5,11 +5,11 @@
 		<include src="file://{resources}/styles/custom_game/ui_econ_set_preview.css" />
 		<include src="file://{resources}/styles/custom_game/ui_econ_set_loadout_preview.css" />
 	</styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/ui_econ_set_preview.js"/>
+  </scripts>
 	<Panel class="PreviewHero">
-			<DOTAScenePanel id="Preview3DItems" antialias="false" particleonly="false" class="SceneLoaded" allowrotation="true" camera="default_camera" unit="npc_dota_hero_muerta" />
+			<!-- <DOTAScenePanel id="Preview3DItems" antialias="false" particleonly="false" class="SceneLoaded" allowrotation="true" camera="default_camera" unit="npc_dota_hero_sniper" /> -->
 			<EconItemImage id="Preview2DItems" class="Rotating2dPanel" />
-			
 	</Panel>
-		
-	
 </root>

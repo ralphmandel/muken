@@ -113,3 +113,119 @@
 		}
 	}
 }
+
+"JP.Ancient"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp_ancient.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Hunter"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp_hunter.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Icebreaker"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp_icebreaker.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Bocuse"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp_bocuse.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.00000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}

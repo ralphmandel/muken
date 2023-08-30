@@ -17,11 +17,15 @@ require("internal/talent_tree")
 		if self:GetLevel() == 1 then
 			self:ResetRanksData()
 
-			Timers:CreateTimer(2, function()
-				caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
-				caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
-        caster:AddExperience(55300, 0, false, false)
-			end)
+      for team = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MIN + 3 do
+        if caster:GetTeamNumber() == team then
+          Timers:CreateTimer(team, function()
+            caster:RemoveAbilityByHandle(caster:FindAbilityByName("ability_capture"))
+            caster:RemoveAbilityByHandle(caster:FindAbilityByName("abyssal_underlord_portal_warp"))
+            caster:AddExperience(55300, 0, false, false)
+          end)
+        end
+      end
 		end
 	end
 

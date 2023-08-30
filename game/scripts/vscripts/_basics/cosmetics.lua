@@ -9,15 +9,13 @@ function cosmetics:OnUpgrade()
 	if self:GetCaster():IsIllusion() then
 		self:LoadCosmetics()
 	else
-		if IsInToolsMode() then
-			Timers:CreateTimer(1, function()
-				self:LoadCosmetics()
-			end)
-		else
-			Timers:CreateTimer(10, function()
-				self:LoadCosmetics()
-			end)
-		end
+    for team = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MIN + 3 do
+      if self:GetCaster():GetTeamNumber() == team then
+        Timers:CreateTimer(team, function()
+          self:LoadCosmetics()
+        end)
+      end
+    end
 	end
 end
 
