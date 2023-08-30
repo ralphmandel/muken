@@ -130,10 +130,10 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/jp_ancient.vsnd"
+							"value0"	"sounds/jp/jp_ancient.vsnd"
 						}
 					}
-					"volume"            { "value"   "1.00000"	}
+					"volume"            { "value"   "1.90000"	}
 					"pitch" = 			{ "value"   "1.00000"	}
 					"soundlevel" = 		{ "value"   "75.00000"	}
 					"limiter_on" = 		{ "value"   "0.00000"	}
@@ -159,10 +159,10 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/jp_hunter.vsnd"
+							"value0"	"sounds/jp/jp_hunter.vsnd"
 						}
 					}
-					"volume"            { "value"   "1.00000"	}
+					"volume"            { "value"   "1.90000"	}
 					"pitch" = 			{ "value"   "1.00000"	}
 					"soundlevel" = 		{ "value"   "75.00000"	}
 					"limiter_on" = 		{ "value"   "0.00000"	}
@@ -188,10 +188,10 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/jp_icebreaker.vsnd"
+							"value0"	"sounds/jp/jp_icebreaker.vsnd"
 						}
 					}
-					"volume"            { "value"   "1.00000"	}
+					"volume"            { "value"   "1.90000"	}
 					"pitch" = 			{ "value"   "1.00000"	}
 					"soundlevel" = 		{ "value"   "75.00000"	}
 					"limiter_on" = 		{ "value"   "0.00000"	}
@@ -217,10 +217,242 @@
 					{
 						"value"
 						{
-							"value0"	"sounds/jp_bocuse.vsnd"
+							"value0"	"sounds/jp/jp_bocuse.vsnd"
 						}
 					}
-					"volume"            { "value"   "1.00000"	}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Genuine"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_genuine.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Templar"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_templar.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Dasdingo"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_dasdingo.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Bloodstained"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_bloodstained.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Lawbreaker"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_lawbreaker.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Fleaman"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_fleaman.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Baldur"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_baldur.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
+					"pitch" = 			{ "value"   "1.00000"	}
+					"soundlevel" = 		{ "value"   "75.00000"	}
+					"limiter_on" = 		{ "value"   "0.00000"	}
+				}
+			}
+		}
+	}
+}
+
+"JP.Paladin"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"				"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"	"sounds/jp/jp_paladin.vsnd"
+						}
+					}
+					"volume"            { "value"   "1.90000"	}
 					"pitch" = 			{ "value"   "1.00000"	}
 					"soundlevel" = 		{ "value"   "75.00000"	}
 					"limiter_on" = 		{ "value"   "0.00000"	}
