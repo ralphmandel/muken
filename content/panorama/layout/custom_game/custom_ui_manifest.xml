@@ -16,7 +16,8 @@
     var NoTalentGlow = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
     var NoAghanimsPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
     var NoDotaPlus = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
-    var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildrenWithClassTraverse("HeroCard.BronzeTier");
+    var HeroDescription = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspect");
+    var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
     var NoFilter = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroGrid");
     var NoMiniMap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var NoDotaTeams = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("Header");
@@ -24,6 +25,9 @@
     var HeroPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
     var Killcountbar = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("stackable_side_panels");
     var Glyph = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
+    var Killcam = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("KillCam");
+
+    //FindChildrenWithClassTraverse
 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
     NoTalentGlow.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
@@ -35,6 +39,7 @@
     NoDotaTeams.FindChildTraverse("DireTeamPlayers").style.visibility = "collapse";
     Glyph.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
     Glyph.FindChildTraverse("minimap_block").style.boxShadow = "0px 0px 10px 1px #000000de";
+    HeroDescription.FindChildTraverse("HeroSimpleDescription").style.visibility = "collapse";
     // Time Panel:
     
     TimeofDay.FindChildTraverse("TimeOfDayBG").style.backgroundImage = "url('file://{images}/custom_game/bg_timer_edited.png')";
@@ -52,17 +57,32 @@
     TimeofDay.FindChildTraverse("GameTime").style.fontSize = "16px";
     TimeofDay.FindChildTraverse("GameTime").style.marginBottom = "0px";
 
-    var Naruto = TimeofDay.FindChildTraverse("TimeOfDay").FindChildTraverse("DayNightCycle").FindChildrenWithClassTraverse("TimeOfDayIcon");
+    var TimerAdjust = TimeofDay.FindChildTraverse("TimeOfDay").FindChildTraverse("DayNightCycle").FindChildrenWithClassTraverse("TimeOfDayIcon");
     TimeofDay.style.position = "-920px 50px 0px";
     TimeofDay.style.margin = "0px 0px 0px 0px";
     TimeofDay.style.width = "400px";
     TimeofDay.style.height = "150px";
-    Naruto.forEach(TimeOfDayIcon => {
+    TimerAdjust.forEach(TimeOfDayIcon => {
       TimeOfDayIcon.style.width = "33px";
       TimeOfDayIcon.style.height = "33px";
       
     });
-    
+
+
+    for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
+      var HeroCategoryName = PortraitSize.GetChild(i);
+      var HeroImg = HeroCategoryName.FindChildrenWithClassTraverse("HeroCard");
+      HeroImg.forEach(HeroCard => {
+       HeroCard.style.width = "64px";
+       HeroCard.style.height = "106px";
+      });
+    };
+
+    //.FindChildrenWithClassTraverse("HeroCard")
+
+    if (Killcam) {
+    Killcam.style.marginTop = "438px";
+    };
 
     //Hero Bottom Panel
     HeroPanel.FindChildTraverse("left_flare").style.backgroundImage = "url('s2r://panorama/images/hud/reborn/hud_custom_ti10/side_flare_tall_psd.vtex')";
