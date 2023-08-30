@@ -255,4 +255,13 @@ function OnTeamNameUpdate() {
       CategoryName.text = "SUN";
     }
   }
+  var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
+  for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
+    var HeroCategoryName = PortraitSize.GetChild(i);
+    var HeroImg = HeroCategoryName.FindChildrenWithClassTraverse("HeroCard");
+    HeroImg.forEach(HeroCard => {
+     HeroCard.style.width = "64px";
+     HeroCard.style.height = "106px";
+    });
+  };
 }

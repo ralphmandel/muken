@@ -17,7 +17,6 @@
     var NoAghanimsPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud");
     var NoDotaPlus = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var HeroDescription = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspect");
-    var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
     var NoFilter = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroGrid");
     var NoMiniMap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer");
     var NoDotaTeams = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("Header");
@@ -67,16 +66,6 @@
       TimeOfDayIcon.style.height = "33px";
       
     });
-
-
-    for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
-      var HeroCategoryName = PortraitSize.GetChild(i);
-      var HeroImg = HeroCategoryName.FindChildrenWithClassTraverse("HeroCard");
-      HeroImg.forEach(HeroCard => {
-       HeroCard.style.width = "64px";
-       HeroCard.style.height = "106px";
-      });
-    };
 
     //.FindChildrenWithClassTraverse("HeroCard")
 
