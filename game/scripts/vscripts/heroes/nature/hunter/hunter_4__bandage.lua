@@ -1,5 +1,6 @@
 hunter_4__bandage = class({})
 LinkLuaModifier("hunter_4_modifier_bandage", "heroes/nature/hunter/hunter_4_modifier_bandage", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_movespeed_buff", "_modifiers/_modifier_movespeed_buff", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 
@@ -12,7 +13,6 @@ LinkLuaModifier("hunter_4_modifier_bandage", "heroes/nature/hunter/hunter_4_modi
     tree:CutDownRegrowAfter(180, caster:GetTeamNumber())
 
     caster:Purge(false, true, false, false, false)
-    caster:Heal(CalcHeal(caster, self:GetSpecialValueFor("heal")), self)
     if IsServer() then self:PlayEfxHeal(caster) end
 
     AddModifier(caster, self, "hunter_4_modifier_bandage", {duration = self:GetSpecialValueFor("duration")}, true)

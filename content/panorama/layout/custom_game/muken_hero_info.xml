@@ -3,97 +3,97 @@
     <include src="file://{resources}/styles/custom_game/muken_hero_info.css"/>
   </styles>
   <scripts>
-
+    <include src="file://{resources}/scripts/custom_game/muken_hero_info.js"/>
   </scripts>
-    <Panel class="column">
-        <Panel class="item">
-          <Image src="file://{resources}/images/custom_game/self_off.png" class="Image_class"/>
-          <Panel class="skill-box">
-            <Panel class="skill-bar"> 
-                <Panel class="skill-per selfoff"> 
-                    <Panel class="marks" id="m1"></Panel>
-                    <Panel class="marks" id="m2"></Panel>
-                    <Panel class="marks" id="m3"></Panel>
-                    <Panel class="marks" id="m4"></Panel>
-                    <Panel class="marks" id="m5"></Panel>
-                </Panel>
-            </Panel>
+  <Panel class="column">
+    <Panel class="item" id="item_selfoff" onmouseover="OnOverSelfOff()" onmouseout="OnOutSelfOff()">
+      <Image src="file://{resources}/images/custom_game/self_off.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar"> 
+          <Panel class="skill-per" id="selfoff"> 
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
           </Panel>
         </Panel>
-        <Panel class="item">
-            <Image src="file://{resources}/images/custom_game/self_def.png" class="Image_class"/>
-            <Panel class="skill-box">
-                <Panel class="skill-bar">
-                    <Panel class="skill-per selfdef">
-                        <Panel class="marks" id="m1"></Panel>
-                        <Panel class="marks" id="m2"></Panel>
-                        <Panel class="marks" id="m3"></Panel>
-                        <Panel class="marks" id="m4"></Panel>
-                        <Panel class="marks" id="m5"></Panel>
-                    </Panel>
-                </Panel>
-            </Panel>
-        </Panel>
-        <Panel class="item">
-            <Image src="file://{resources}/images/custom_game/self_escape.png" class="Image_class"/>
-            <Panel class="skill-box">
-                <Panel class="skill-bar">
-                    <Panel class="skill-per selfescape">
-                        <Panel class="marks" id="m1"></Panel>
-                        <Panel class="marks" id="m2"></Panel>
-                        <Panel class="marks" id="m3"></Panel>
-                        <Panel class="marks" id="m4"></Panel>
-                        <Panel class="marks" id="m5"></Panel>
-                    </Panel>
-                </Panel>
-            </Panel>
-        </Panel>
-        <Panel class="item">
-            <Image src="file://{resources}/images/custom_game/sup_off.png" class="Image_class"/>
-            <Panel class="skill-box">
-                <Panel class="skill-bar">
-                    <Panel class="skill-per supoff">
-                        <Panel class="marks" id="m1"></Panel>
-                        <Panel class="marks" id="m2"></Panel>
-                        <Panel class="marks" id="m3"></Panel>
-                        <Panel class="marks" id="m4"></Panel>
-                        <Panel class="marks" id="m5"></Panel>
-                    </Panel>
-                </Panel>
-            </Panel>
-        </Panel>
-        <Panel class="item">
-            <Image src="file://{resources}/images/custom_game/sup_def.png" class="Image_class"/>
-            <Panel class="skill-box">
-                <Panel class="skill-bar">
-                    <Panel class="skill-per supdef">
-                        <Panel class="marks" id="m1"></Panel>
-                        <Panel class="marks" id="m2"></Panel>
-                        <Panel class="marks" id="m3"></Panel>
-                        <Panel class="marks" id="m4"></Panel>
-                        <Panel class="marks" id="m5"></Panel>
-                    </Panel>
-                </Panel>
-            </Panel>
-        </Panel>
-        <Panel class="item">
-            <Image src="file://{resources}/images/custom_game/sup_control.png" class="Image_class"/>
-            <Panel class="skill-box">
-                <Panel class="skill-bar">
-                    <Panel class="skill-per supcontrol">
-                        <Panel class="marks" id="m1"></Panel>
-                        <Panel class="marks" id="m2"></Panel>
-                        <Panel class="marks" id="m3"></Panel>
-                        <Panel class="marks" id="m4"></Panel>
-                        <Panel class="marks" id="m5"></Panel>
-                    </Panel>
-                </Panel>
-            </Panel>
-        </Panel>
-        <Image src="file://{resources}/images/custom_game/skull_color45.png" class="img_collapse"/>
-		<Image src="file://{resources}/images/custom_game/leaf_color45.png" class="img_collapse"/>
-        <Image src="file://{resources}/images/custom_game/moon_color45.png" class="img_collapse"/>
-        <Image src="file://{resources}/images/custom_game/sun_color45.png" class="img_collapse"/>
-        <Image src="file://{images}/custom_game/bg_timer_edited.png" class="img_collapse"/>
+      </Panel>
     </Panel>
+    <Panel class="item" id="item_selfdef" onmouseover="OnOverSelfDef()" onmouseout="OnOutSelfDef()">
+      <Image src="file://{resources}/images/custom_game/self_def.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar">
+          <Panel class="skill-per" id="selfdef">
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
+          </Panel>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel class="item" id="item_selfescape" onmouseover="OnOverSelfEscape()" onmouseout="OnOutSelfEscape()">
+      <Image src="file://{resources}/images/custom_game/self_escape.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar">
+          <Panel class="skill-per" id="selfescape">
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
+          </Panel>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel class="item" id="item_supoff" onmouseover="OnOverSupOff()" onmouseout="OnOutSupOff()">
+      <Image src="file://{resources}/images/custom_game/sup_off.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar">
+          <Panel class="skill-per" id="supoff">
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
+          </Panel>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel class="item" id="item_supdef" onmouseover="OnOverSupDef()" onmouseout="OnOutSupDef()">
+      <Image src="file://{resources}/images/custom_game/sup_def.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar">
+          <Panel class="skill-per" id="supdef">
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
+          </Panel>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel class="item" id="item_supcontrol" onmouseover="OnOverSupControl()" onmouseout="OnOutSupControl()">
+      <Image src="file://{resources}/images/custom_game/sup_control.png" class="Image_class"/>
+      <Panel class="skill-box">
+        <Panel class="skill-bar">
+          <Panel class="skill-per" id="supcontrol">
+            <Panel class="marks" id="m1"></Panel>
+            <Panel class="marks" id="m2"></Panel>
+            <Panel class="marks" id="m3"></Panel>
+            <Panel class="marks" id="m4"></Panel>
+            <Panel class="marks" id="m5"></Panel>
+          </Panel>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Image src="file://{resources}/images/custom_game/skull_color45.png" class="img_collapse"/>
+    <Image src="file://{resources}/images/custom_game/leaf_color45.png" class="img_collapse"/>
+    <Image src="file://{resources}/images/custom_game/moon_color45.png" class="img_collapse"/>
+    <Image src="file://{resources}/images/custom_game/sun_color45.png" class="img_collapse"/>
+    <Image src="file://{images}/custom_game/bg_timer_edited.png" class="img_collapse"/>
+  </Panel>
 </root>

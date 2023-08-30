@@ -188,7 +188,7 @@ function hunter:TryCast_Bandage()
   if IsAbilityCastable(ability) == false then return false end
 
   if self.state == BOT_STATE_FLEE then
-    if self.caster:GetHealthPercent() > 30 then return false end
+    if self.caster:HasModifier("hunter_4_modifier_bandage") then return false end
 
     local range = 500
     local trees = GridNav:GetAllTreesAroundPoint(self.caster:GetOrigin(), range, false)

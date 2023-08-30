@@ -11,6 +11,8 @@ function hunter_4_modifier_bandage:OnCreated(kv)
   self.ability = self:GetAbility()
 
   self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
+
+  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {percent = self.ability:GetSpecialValueFor("ms")}, false)
 end
 
 function hunter_4_modifier_bandage:OnRefresh(kv)
@@ -18,6 +20,7 @@ function hunter_4_modifier_bandage:OnRefresh(kv)
 end
 
 function hunter_4_modifier_bandage:OnRemoved()
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

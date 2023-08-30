@@ -1,0 +1,17 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/muken_hero_info.css"/>
+  </styles>
+  <script>
+    var context = $.GetContextPanel();
+    var id = context.id;
+
+    function OnMouseOver() {
+      context.Data().OnMouseOver(id);
+    }
+
+    function OnMouseOut() {
+      context.Data().OnMouseOut(id);
+    }
+  </script>
+</root>

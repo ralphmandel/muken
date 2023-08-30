@@ -124,7 +124,7 @@
     "AbilityValues"
 		{
       "duration"  "10"
-      "heal"      "200"
+      "ms"        "50"
 			"hp_regen"	"1 2 3 4 5 6 7"
 			"rank"			"1 2 3 4 5 6 7"
 		}

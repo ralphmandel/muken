@@ -17,8 +17,40 @@ function TalentTree:InitPanaromaEvents()
   CustomGameEventManager:RegisterListener("talent_tree_get_state", Dynamic_Wrap(TalentTree, 'OnTalentTreeStateRequest'))
   CustomGameEventManager:RegisterListener("talent_tree_reset_talents", Dynamic_Wrap(TalentTree, 'OnTalentTreeResetRequest'))
   ListenToGameEvent("player_reconnected", Dynamic_Wrap(TalentTree, "OnPlayerReconnect"), TalentTree)
-  CustomGameEventManager:RegisterListener("portrait_unit_update", Dynamic_Wrap(TalentTree, 'OnPortraitUpdate'))
+  
+  CustomGameEventManager:RegisterListener("role_bar_update", Dynamic_Wrap(TalentTree, 'OnRoleBarRequest'))
   CustomGameEventManager:RegisterListener("scoreboard_update", Dynamic_Wrap(TalentTree, 'OnScoreRequest'))
+  CustomGameEventManager:RegisterListener("portrait_unit_update", Dynamic_Wrap(TalentTree, 'OnPortraitUpdate'))
+end
+
+function TalentTree:OnRoleBarRequest(event)
+  if (not event or not event.PlayerID) then return end
+  
+  local player = PlayerResource:GetPlayer(event.PlayerID)
+  if (not player) then return end
+
+  local heroes_stats_data = LoadKeyValues("scripts/kv/heroes_roles_level.kv")
+  for hero, data in pairs(heroes_stats_data) do
+    if hero == GetHeroName("npc_dota_hero_" .. event.id_name) then
+      CustomGameEventManager:Send_ServerToPlayer(player, "role_bar_state_from_server", data)
+    end
+  end
+end
+
+function TalentTree:OnScoreRequest(event)
+  if (not event or not event.PlayerID) then return end
+  
+  local player = PlayerResource:GetPlayer(event.PlayerID)
+  if (not player) then return end
+
+  local score_table = {
+    [DOTA_TEAM_CUSTOM_1] = TEAMS[1][2],
+    [DOTA_TEAM_CUSTOM_2] = TEAMS[2][2],
+    [DOTA_TEAM_CUSTOM_3] = TEAMS[3][2],
+    [DOTA_TEAM_CUSTOM_4] = TEAMS[4][2]
+  }
+
+  CustomGameEventManager:Send_ServerToPlayer(player, "score_state_from_server", score_table)
 end
 
 function TalentTree:OnPortraitUpdate(event)
@@ -143,23 +175,6 @@ function TalentTree:OnPlayerReconnect(keys)
 
   --BaseHero(hero):UpdatePanoramaPanels()
   BaseHero(hero):UpdatePanoramaState()
-end
-
-function TalentTree:OnScoreRequest(event)
-  if (not event or not event.PlayerID) then return end
-  
-  local player = PlayerResource:GetPlayer(event.PlayerID)
-  if (not player) then return end
-
-  local score_table = {
-    [DOTA_TEAM_CUSTOM_1] = TEAMS[1][2],
-    [DOTA_TEAM_CUSTOM_2] = TEAMS[2][2],
-    [DOTA_TEAM_CUSTOM_3] = TEAMS[3][2],
-    [DOTA_TEAM_CUSTOM_4] = TEAMS[4][2]
-  }
-
-  CustomGameEventManager:Send_ServerToPlayer(player, "score_state_from_server", score_table)
-
 end
 
 TalentTree:Init()
