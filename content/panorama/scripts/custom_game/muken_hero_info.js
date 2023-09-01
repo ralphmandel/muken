@@ -1,25 +1,16 @@
 var PANEL_LAYOUT = {}, WINDOWN_LAYOUT = {};
 var transition = false;
+var possible_hero = {}
 
 function OnUpdateHeroSelection() {
-  // WINDOWN_LAYOUT["core_off"].SetHasClass("hero-transition", true);
-  // WINDOWN_LAYOUT["core_def"].SetHasClass("hero-transition", true);
-  // WINDOWN_LAYOUT["core_ctr"].SetHasClass("hero-transition", true);
-  // WINDOWN_LAYOUT["team_off"].SetHasClass("hero-transition", true);
-  // WINDOWN_LAYOUT["team_def"].SetHasClass("hero-transition", true);
-  // WINDOWN_LAYOUT["team_ctr"].SetHasClass("hero-transition", true);
+  var hero = Game.GetLocalPlayerInfo().possible_hero_selection;
 
-  // for (const [name, panel] of Object.entries(WINDOWN_LAYOUT)) {
-  //   WINDOWN_LAYOUT[name].SetHasClass("hero-transition", true);
-  //   PANEL_LAYOUT[name].SetHasClass("hero-transition", true);
+  if (possible_hero[Game.GetLocalPlayerInfo().player_id] != hero) {
+    possible_hero[Game.GetLocalPlayerInfo().player_id] = hero
 
-  //   for(var i = 0; i <= PANEL_LAYOUT[name].GetChildCount() - 1; i++) {
-  //     PANEL_LAYOUT[name].GetChild(i).SetHasClass("hero-transition", true);
-  //   }
-  // }
-
-  Game.EmitSound("General.SelectAction");
-	GameEvents.SendCustomGameEventToServer("role_bar_update", {id_name: Game.GetLocalPlayerInfo().possible_hero_selection});
+    Game.EmitSound("General.SelectAction");
+    GameEvents.SendCustomGameEventToServer("role_bar_update", {id_name: Game.GetLocalPlayerInfo().possible_hero_selection});
+  }
 }
 
 function OnRoleBarUpdate(event) {
@@ -29,12 +20,6 @@ function OnRoleBarUpdate(event) {
   for (const [event_name, event_value] of Object.entries(event)) {
     var percent = (100 / max_level) * parseInt(event_value);
     PANEL_LAYOUT[event_name].style.width = percent.toString() + '%';
-    // PANEL_LAYOUT[event_name].SetHasClass("hero-transition", false);
-    // WINDOWN_LAYOUT[event_name].SetHasClass("hero-transition", false);
-
-    // for(var i = 0; i <= PANEL_LAYOUT[event_name].GetChildCount() - 1; i++) {
-    //   PANEL_LAYOUT[event_name].GetChild(i).SetHasClass("hero-transition", false);
-    // }
   }
 }
 
