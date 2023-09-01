@@ -1,66 +1,4 @@
-@keyframes 'ProgressBar'{0%{transform: translateX(-300px);}100%{transform: translateX(0px);}}
-@keyframes 'ProgressMarks'{0%{transform: translateX(300px); }100%{transform: translateX(0px);}}
 @keyframes 'ProgressOpacity'{0%{opacity: 1;}25%{opacity: 0.5;}50%{opacity: 0.1;}75%{opacity: 0.5;}100%{opacity: 1;}}
-
-
-.skill-box{
-  width: 346px;
-  margin-top: 10px;
-  margin-left: 45px;
-  wash-color: #616d7ea1;
-}
-
-.skill-box .skill-bar{
-  height: 12px;
-  width: 100%;
-  border-radius: 6px;
-  margin-top: 1px;
-  margin-left: 1px;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation-delay: 0.1s;
-}
-
-.skill-bar .skill-per{
-  height: 100%;
-  border-radius: 6px;
-  wash-color: white;
-  /* animation-name: ProgressBar;
-  animation-duration: 0.8s;
-  animation-delay: 0.1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1; */
-}
-
-#selfoff {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
-#selfdef {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
-#selfescape {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
-#supoff {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
-#supdef {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
-#supcontrol {
-  width: 0%;
-  background-color: #ffffff;
-  wash-color: #7a899f;
-}
 
 .column {
   position: 1360px 140px 0.0px;
@@ -69,15 +7,6 @@
   max-width: 346px;
   vertical-align: center;
   /* background-color: gradient( linear, 0% 100%, 0% 0%, from( #171A25dd ), to( #171A25dd ) ); */
-}
-
-Image {
-  max-width: 100%;
-  margin: 0px 0;
-  height: 30px;
-  width: 38px;
-  wash-color: #616d7efb;
-  border-radius: 100px;
 }
 
 .item {
@@ -95,12 +24,74 @@ Image {
   wash-color: #616d7ec4;
 }
 
-.item:hover .Image_class, .item:hover .skill-per {
+.item:hover .Image_class, .item:hover .skill-box {
   animation-name: ProgressOpacity;
   animation-duration: 1s;
   animation-delay: 0.4s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+Image {
+  max-width: 100%;
+  margin: 0px 0;
+  height: 30px;
+  width: 38px;
+  wash-color: #616d7efb;
+  border-radius: 5px;
+}
+
+.skill-box{
+  width: 346px;
+  margin-top: 10px;
+  margin-left: 45px;
+  wash-color: #616d7ea1;
+  height: 15px;
+  flow-children: right;
+}
+
+.marks {
+  width: fill-parent-flow(1);
+  max-width: 50px;
+  height: 15px;
+  margin-left: 2px;
+  transform: skew( -15deg );
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(222, 231, 255, 0.08);
+}  
+
+.marks .unowned{
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(222, 231, 255, 0.08);
+}
+
+.owned{
+  background-color: gradient( linear, 0% 0%, 0% 90%, from( #d7e2eb ), to( #7d898f ) );
+  border: 1px solid rgb(0, 0, 0);
+  z-index: 1;
+  width: fill-parent-flow(1);
+  max-width: 50px;
+  height: 15px;
+  animation-name: Pulse;
+  animation-duration: 1.0s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes 'Pulse'{
+  0%{
+         box-shadow: 0px 0px 16px #73ABFF11;
+         brightness: 1;
+  }
+
+  100%{
+         box-shadow: 0px 0px 16px #73ABFF44;
+         brightness: 3;
+  }
+}
+
+.img_collapse {
+  visibility: collapse;
 }
 
 /* .item:not(:hover) .marks {
@@ -111,34 +102,4 @@ Image {
   animation-iteration-count: 1;
 } */
 
-.marks {
-  border-right: 4px solid#171A25dd;
-  height: 15px;
-  z-index: 1;
-}  
-
-#m1 {
-  margin-top: 0px;
-  margin-left: 49.4px;
-}
-#m2 {
-  margin-top: 0px;
-  margin-left: 98.8px;
-}
-#m3 {
-  margin-top: 0px;
-  margin-left: 148.3px;
-}
-#m4 {
-  margin-top: 0px;
-  margin-left: 197.7px;
-}
-#m5 {
-  margin-top: 0px;
-  margin-left: 247.1px;
-}
-
-.img_collapse {
-  visibility: collapse;
-}
 
