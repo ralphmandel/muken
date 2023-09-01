@@ -8,7 +8,7 @@ var PANEL_LAYOUT = {
   ["supdef"]: {},
   ["supcontrol"]: {}
 };
-var transition = false;
+
 var possible_hero = {};
 
 function OnUpdateHeroSelection() {
@@ -24,7 +24,7 @@ function OnUpdateHeroSelection() {
 
 function OnRoleBarUpdate(event) {
   for (const [event_name, event_value] of Object.entries(event)) {
-    for (var i = 1; i <= 6; i++ ){
+    for (var i = 1; i <= 6; i++){
       var enabled = i <= event_value;
       PANEL_LAYOUT[event_name][i].GetChild(0).SetHasClass("owned", enabled);
     }
@@ -98,7 +98,7 @@ function CreatePanels(id_name) {
   for (const [window, container] of Object.entries(PANEL_LAYOUT)) {
     for (const [index, panel] of Object.entries(container)) {
       panel.SetHasClass("marks", true);
-      // panel.GetChild(0).SetHasClass("owned", true);
+      panel.GetChild(0).SetHasClass("owned", false);
      }
   }
   

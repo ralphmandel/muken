@@ -44,7 +44,7 @@ Image {
 .skill-box{
   width: 346px;
   margin-top: 10px;
-  margin-left: 45px;
+  margin-left: 40px;
   wash-color: #616d7ea1;
   height: 15px;
   flow-children: right;
@@ -52,7 +52,7 @@ Image {
 
 .marks {
   width: fill-parent-flow(1);
-  max-width: 50px;
+  max-width: 45px;
   height: 15px;
   margin-left: 2px;
   transform: skew( -15deg );
@@ -70,7 +70,7 @@ Image {
   border: 1px solid rgb(0, 0, 0);
   z-index: 1;
   width: fill-parent-flow(1);
-  max-width: 50px;
+  max-width: 45px;
   height: 15px;
   animation-name: Pulse;
   animation-duration: 1.0s;
