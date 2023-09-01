@@ -64,7 +64,6 @@
     TimerAdjust.forEach(TimeOfDayIcon => {
       TimeOfDayIcon.style.width = "33px";
       TimeOfDayIcon.style.height = "33px";
-      
     });
 
     //.FindChildrenWithClassTraverse("HeroCard")

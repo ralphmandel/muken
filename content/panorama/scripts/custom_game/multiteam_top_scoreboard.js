@@ -63,7 +63,7 @@ function UpdateScoreboard()
 				teamColor1 = teamColor1.replace( ";", "" );
 				var playerTopbarShadow = GameUI.CustomUIConfig().team_colors[ localTopbarTeamId ];
 				playerTopbarShadow = playerTopbarShadow.replace( ";", "" );
-				var layoutBox = 'fill ' + teamColor1 + ' 0px 0px 5px 1px ;';
+				var layoutBox = 'fill ' + teamColor1 + ' 0px 0px 2px 1px ;';
 				//			$.Msg( gradientText );
 				teamTopBarChild.style.boxShadow = layoutBox;
 				//$.Msg( teamTopbarShadow.style.boxShadow, 'AUDIOON')

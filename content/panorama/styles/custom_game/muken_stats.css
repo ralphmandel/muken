@@ -1,89 +1,89 @@
 .MukenStatsRoot
 {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .WindowOut
 {
-    transform: translatex( -25px );
-    transition-property: transform;
-    transition-duration: 0.2s;
+  transform: translatex( -25px );
+  transition-property: transform;
+  transition-duration: 0.2s;
 }
 
 .WindowIn
 {
-    transform: translatex( 0px );
-    transition-property: transform;
-    transition-duration: 0.2s;
+  transform: translatex( 0px );
+  transition-property: transform;
+  transition-duration: 0.2s;
 }
 
 .PtsOut
 {
-    transform: translatex( -120px );
-    transition-property: transform;
-    transition-duration: 0.2s;
+  transform: translatex( -120px );
+  transition-property: transform;
+  transition-duration: 0.2s;
 }
 
 .PtsIn
 {
-    transform: translatex( 0px );
-    transition-property: transform;
-    transition-duration: 0.2s;
+  transform: translatex( 0px );
+  transition-property: transform;
+  transition-duration: 0.2s;
 }
 
 .NoPoints {
-    border: 0px solid white;
-    width: 18px;
-    height: 18px;
-    margin-bottom: 6px;
-    border-radius: 0%;
+  border: 0px solid white;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 6px;
+  border-radius: 0%;
 }
 
 .PlusBox {
-    border: 2px solid white;
-    width: 18px;
-    height: 18px;
-    margin-bottom: 6px;
-    border-radius: 30%;
+  border: 2px solid white;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 6px;
+  border-radius: 30%;
 }
 
 .PlusBox:hover {
-    background-color: white;
-    transition: 0.2s;
+  background-color: white;
+  transition: 0.2s;
 }
 
 .PlusCrossX, .PlusCrossY {
-    background-color: white;
+  background-color: white;
 }
 
 .PlusCross {
-    background-color: #293843;
+  background-color: #293843;
 }
 
 .PlusCrossX
 {
-    width: 10px;
-    height: 2px;
-    margin-top: 6px;
-    margin-left: 2px;
+  width: 10px;
+  height: 2px;
+  margin-top: 6px;
+  margin-left: 2px;
 }
 
 .PlusCrossY
 {
-    width: 2px;
-    height: 10px;
-    margin-top: 2px;
-    margin-left: 6px;
+  width: 2px;
+  height: 10px;
+  margin-top: 2px;
+  margin-left: 6px;
 }
 
 #StatsColumnContainer
 {
-    /* width: fit-children; */
-    /* height: fit-children; */
-    flow-children: right;
-    margin-top: 5px;
-    margin-left: 30px;
+  /* width: fit-children; */
+  /* height: fit-children; */
+  flow-children: right;
+  margin-top: 5px;
+  margin-left: 30px;
 }
 
 .StatColumn
@@ -133,32 +133,32 @@
 
 .StatRowSelected
 {
-	width: 100%;
-	height: 100%;
-
+  width: 100%;
+  height: 100%;
+  
   background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #aca91196 ), to( #c4c70ab2 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .StatRowSelectedPositive
 {
-	width: 100%;
-	height: 100%;
-
-    background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #11ac5796 ), to( #0ac765b2 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  
+  background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #11ac5796 ), to( #0ac765b2 ) );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .StatRowSelectedNegative
 {
-	width: 100%;
-	height: 100%;
-
+  width: 100%;
+  height: 100%;
+  
   background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #ac111196 ), to( #c70a0ab2 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .PositiveStats
@@ -193,22 +193,22 @@
   horizontal-align: left;
   vertical-align: top;
   margin-bottom: 5px;
-	margin-top: 417px;
-
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 16px;
-	color: white;
+  margin-top: 417px;
+  
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 16px;
+  color: white;
   width: 120px;
-	height: 30px;
-
-	background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+  height: 30px;
+  
+  background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
 }
 
 #PtsTotalContainer Label
 {
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 16px;
-	color: white;
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 16px;
+  color: white;
   margin-top: 2px;
   margin-left: 10px;
   text-align: left;
@@ -221,11 +221,11 @@
   horizontal-align: left;
   vertical-align: top;
   margin-bottom: 0px;
-	/* margin-top: 0px; */
-
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 16px;
-	color: white;
+  /* margin-top: 0px; */
+  
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 16px;
+  color: white;
   width: fit-children;
   height: fit-children;
   background-color: gradient( linear, 100% 0%, 100% 100%, from( #2b3b46cd ), to( #002332cd ) );
@@ -234,13 +234,13 @@
 
 #InfoWindowContainer Label
 {
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 16px;
-	color: white;
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 16px;
+  color: white;
   margin-top: 1px;
   margin-left: 5px;
   margin-right: 5px;
-
+  
   /* text-align: center; */
   vertical-align: middle;
   /* horizontal-align: middle; */
@@ -308,96 +308,104 @@
 
 #StatsWindowButton
 {
-    horizontal-align: left;
-    vertical-align: top;
-    margin-bottom: 5px;
-	margin-top: 132px;
+  horizontal-align: left;
+  vertical-align: top;
+  margin-bottom: 5px;
+  margin-top: 132px;
+  
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 24px;
+  color: white;
+  width: 150px;
+  height: 40px;
+  box-shadow: 0px 0px 20px -2px #000000;
+  border-radius: 6px;
+  background-image: url("file://{images}/custom_game/hero_bar_status.png");
+  
+}
 
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 24px;
-	color: white;
-    width: 150px;
-	height: 40px;
-
-	background-color: gradient( linear, 100% 0%, 0% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
+#StatsWindowButton:active
+{
+  width: 145px;
 }
 
 #StatsWindowButton Label
 {
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	font-size: 24px;
-	color: white;
-    margin-top: 2px;
-    text-align: center;
-    vertical-align: middle;
-    horizontal-align: middle;
+  font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+  font-size: 24px;
+  color: white;
+  margin-top: 2px;
+  text-align: center;
+  vertical-align: middle;
+  horizontal-align: middle;
+
 }
 
 #StatsWindowButton:hover
 {
-    wash-color: #ffffff;
-    background-color: gradient( linear, 0% 0%, 100% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) );
+  wash-color: #b0b0b0;
+  
 }
 
 #StatsWindowButtonActive
 {
-	width: 100%;
-	height: 100%;
-	
-    background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #aca91196 ), to( #c4c70ab2 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  
+  background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #aca91196 ), to( #c4c70ab2 ) );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .Animate
 {
-	animation-name: light;
-	animation-duration: 0.7s;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+  animation-name: light;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .Animate2
 {
-	animation-name: light2;
-	animation-duration: 0.5s;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+  animation-name: light2;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .Animate3
 {
-	animation-name: light2;
-	animation-duration: 0.5s;
-	animation-iteration-count: 1;
-	animation-direction: alternate;
+  animation-name: light2;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
 }
 
 .Hide
 {
-	visibility: collapse;
+  visibility: collapse;
 }
 
 @keyframes 'light'
 {
-	0% 		
-	{ 
-		opacity: 1.2; 
-	}
-	100%	
-	{ 
-		opacity: 0.1; 
-	}
+  0% 		
+  { 
+    opacity: 1.2; 
+  }
+  100%	
+  { 
+    opacity: 0.1; 
+  }
 }
 
 @keyframes 'light2'
 {
-	0% 		
-	{ 
-		opacity: 0.7; 
-	}
-	100%	
-	{ 
-		opacity: 0.0;
-	}
+  0% 		
+  { 
+    opacity: 0.7; 
+  }
+  100%	
+  { 
+    opacity: 0.0;
+  }
 }

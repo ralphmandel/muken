@@ -158,8 +158,6 @@
 }
 
 #TalentTreeWindowButton {
-
-
     horizontal-align: right;
     vertical-align: top;
     margin-bottom: 	5px;
@@ -167,17 +165,21 @@
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 	font-size: 24px;
 	color: white;
-
     width: 200px;
 	height: 50px;
-
-
-
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #0000 ), color-stop( .5, #6060809a ), to( #60608096 ) );
-
 	margin-top: 50px;
+    box-shadow: 0px 0px 15px -3px #000000;
+    border-radius: 8px;
+    background-image: url("file://{images}/custom_game/hero_bar_talent_tree.png");
+    
 
 }
+
+#TalentTreeWindowButton:active
+{
+  width: 195px;
+}
+
 #TalentTreeWindowButton Label
 {
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
@@ -188,10 +190,10 @@
     horizontal-align: middle;
     margin-top: 1px;
 }
+
 #TalentTreeWindowButton:hover
 {
-    wash-color: #ffffff;
-    background-color: gradient( linear, 100% 0%, 0% 0%, from( rgba(0, 0, 0, 0) ), color-stop( .5, #1d586871 ), to( #15718170 ) );
+  wash-color: #b0b0b0;
 }
 
 .Animate

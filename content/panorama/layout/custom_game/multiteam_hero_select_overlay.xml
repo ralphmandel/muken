@@ -8,9 +8,9 @@
 		<include src="file://{resources}/scripts/custom_game/multiteam_hero_select_overlay.js" />
 	</scripts>
 	<Panel class="HeroSelectOverlayRoot">
-		<Panel id="PhaseInstructions">
+		<!-- <Panel id="PhaseInstructions">
 			<Label id="PickPhaseInstructions" text="#DOTA_LoadingPickPhase" />
-		</Panel>
+		</Panel> -->
 		<Panel class="HeroSelectTeamRowsContainer">
 			<Panel id="HeroSelectTeamsContainer" />
 			<Panel id="HeroSelectTeamsContainer2" />

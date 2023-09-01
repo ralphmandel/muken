@@ -13,7 +13,7 @@
 
 .WindowIn
 {
-  padding-top: 17px;
+  padding-top: 20px;
   transform: translatey( 0px );
   transition-property: transform;
   transition-duration: 0.25s;
@@ -121,7 +121,7 @@
   width: 200px;
 	height: 40px;
 
-background-image: url("file://{images}/custom_game/hero_bar_status3.png");
+background-image: url("file://{images}/custom_game/hero_bar_heroname.png");
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
   box-shadow: 0px 0px 20px -3px #000000de;

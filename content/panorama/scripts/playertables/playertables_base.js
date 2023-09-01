@@ -236,6 +236,7 @@ function DeleteTableKeys(msg)
   GameEvents.Subscribe( "pt_uk", UpdateTable);
   GameEvents.Subscribe( "pt_kd", DeleteTableKeys);
   GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
+  GameEvents.Subscribe("dota_player_hero_selection_dirty", OnUpdateHeroSelection1);
 })()
 
 function OnTeamNameUpdate() {
@@ -264,4 +265,32 @@ function OnTeamNameUpdate() {
      HeroCard.style.height = "106px";
     });
   };
+
+}
+
+function OnUpdateHeroSelection1() {
+  var ChangePickIcon = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspectHeader").FindChildTraverse("HeroInspectPrimaryAttributeIcon");
+  var hero = Game.GetLocalPlayerInfo().possible_hero_selection;
+
+
+  $.Msg( 'hero',hero);
+
+  if (hero == "shadow_demon") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
+  if (hero == "pudge") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
+  if (hero == "slark") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
+  if (hero == "muerta") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
+
+
+  if (hero == "shadow_shaman") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/leaf_color45.png')"};
+  if (hero == "sniper") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/leaf_color45.png')"};
+
+  if (hero == "drow_ranger") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/moon_color45.png')"};
+  if (hero == "riki") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/moon_color45.png')"};
+
+
+  if (hero == "elder_titan") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
+  if (hero == "bristleback") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
+  if (hero == "dawnbreaker") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
+  if (hero == "omniknight") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
+
 }
