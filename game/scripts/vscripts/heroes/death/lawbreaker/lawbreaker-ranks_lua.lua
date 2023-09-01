@@ -64,6 +64,12 @@ function lawbreaker__precache:Spawn()
 end
 
 function lawbreaker__precache:Precache(context)
+  PrecacheResource("model", "models/heroes/muerta/muerta_armor.vmdl", context)
+  PrecacheResource("model", "models/heroes/muerta/muerta_back.vmdl", context)
+  PrecacheResource("model", "models/heroes/muerta/muerta_head.vmdl", context)
+  PrecacheResource("model", "models/heroes/muerta/muerta_weapons.vmdl", context)
+
+  PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_weapon_primary_ambient.vpcf", context )
   PrecacheResource( "particle", "particles/lawbreaker/lawbreaker_skill2_bullets.vpcf", context )
   PrecacheResource( "particle", "particles/lawbreaker/shots_count/lawbreaker_shots_overhead.vpcf", context )
   PrecacheResource( "particle", "particles/econ/items/windrunner/windranger_arcana/windranger_arcana_ambient.vpcf", context )

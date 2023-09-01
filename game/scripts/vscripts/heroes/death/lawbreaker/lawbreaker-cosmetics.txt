@@ -1,4 +1,7 @@
 "Cosmetics"
 {
-    
+  "models/heroes/muerta/muerta_armor.vmdl" "nil"
+  "models/heroes/muerta/muerta_back.vmdl" "nil"
+  "models/heroes/muerta/muerta_head.vmdl" "nil"
+  "models/heroes/muerta/muerta_weapons.vmdl" "nil"
 }

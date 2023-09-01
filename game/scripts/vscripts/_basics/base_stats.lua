@@ -497,11 +497,13 @@ LinkLuaModifier("_2_MND_modifier_stack", "_modifiers/_2_MND_modifier_stack", LUA
 
         for _, stat in pairs(self.stats_primary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
+          stats_fraction[stat] = false
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 4
 				end
 
         for _, stat in pairs(self.stats_secondary) do
           stats[stat] = self:IsHeroCanLevelUpStat(stat, self.total_points) == true
+          stats_fraction[stat] = false
           --stats_fraction[stat] = self.stat_fraction["plus_up"][stat]["value"] == 3
 				end
 

@@ -26,8 +26,8 @@ function GameMode:OnGameRulesStateChange(keys)
           for i = 1, players_num do
             local id = PlayerResource:GetNthPlayerIDOnTeam(team, i)
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "team_name_from_server", {})
-          end        
-        end        
+          end
+        end
       end
     end)
   end

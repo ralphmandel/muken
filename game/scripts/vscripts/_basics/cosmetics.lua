@@ -52,6 +52,10 @@ end
     if GetHeroName(caster:GetUnitName()) == "templar" then
       if IsServer() then self:PlayEfxHammer() end
 		end
+
+    if GetHeroName(caster:GetUnitName()) == "lawbreaker" then
+      if IsServer() then self:PlayEfxGuns() end
+		end
 	end
 
 	function cosmetics:ApplyCosmetics(cosmetics_data)
@@ -279,6 +283,15 @@ end
   function cosmetics:PlayEfxHammer()
     local caster = self:GetCaster()
     local string = "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_hammer_ambient.vpcf"
+    local particle = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, caster)
+    ParticleManager:SetParticleControl(particle, 0, caster:GetOrigin())
+    ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
+    --self:AddParticle(particle, false, false, -1, false, false)  
+  end
+
+  function cosmetics:PlayEfxGuns()
+    local caster = self:GetCaster()
+    local string = "particles/units/heroes/hero_muerta/muerta_weapon_primary_ambient.vpcf"
     local particle = ParticleManager:CreateParticle(string, PATTACH_POINT_FOLLOW, caster)
     ParticleManager:SetParticleControl(particle, 0, caster:GetOrigin())
     ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0,0,0), true)
