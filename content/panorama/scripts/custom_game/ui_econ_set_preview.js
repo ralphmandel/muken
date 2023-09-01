@@ -3,8 +3,6 @@ var possible_hero = {}
 
 function OnUpdateHeroSelection() {
   if (Game.GetState() == DOTA_GameState.DOTA_GAMERULES_STATE_HERO_SELECTION) {
-    if (PANEL_MODEL) {PANEL_MODEL.DeleteAsync(0)}
-
     var sound_name = "";
     var hero = Game.GetLocalPlayerInfo().possible_hero_selection;
 
@@ -29,6 +27,7 @@ function OnUpdateHeroSelection() {
     
       Game.EmitSound("JP." + sound_name);
     
+      if (PANEL_MODEL) {PANEL_MODEL.DeleteAsync(0)}
       PANEL_MODEL = $.CreatePanel("DOTAScenePanel", $.GetContextPanel(), "Preview3DItems", {
         class: "PreviewHero",
         antialias: "false",
