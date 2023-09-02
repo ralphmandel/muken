@@ -25,7 +25,8 @@
     var Killcountbar = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("stackable_side_panels");
     var Glyph = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
     var Killcam = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("KillCam");
-
+    var NoStrategyScreen = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("StrategyScreen");
+   
     //FindChildrenWithClassTraverse
 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
@@ -39,6 +40,9 @@
     Glyph.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
     Glyph.FindChildTraverse("minimap_block").style.boxShadow = "0px 0px 10px 1px #000000de";
     HeroDescription.FindChildTraverse("HeroSimpleDescription").style.visibility = "collapse";
+    NoStrategyScreen.FindChildTraverse("RightContainer").style.visibility = "collapse";
+    
+
     // Time Panel:
     
     TimeofDay.FindChildTraverse("TimeOfDayBG").style.backgroundImage = "url('file://{images}/custom_game/bg_timer_edited.png')";

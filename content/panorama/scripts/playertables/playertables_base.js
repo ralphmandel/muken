@@ -272,9 +272,6 @@ function OnUpdateHeroSelection1() {
   var ChangePickIcon = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspectHeader").FindChildTraverse("HeroInspectPrimaryAttributeIcon");
   var hero = Game.GetLocalPlayerInfo().possible_hero_selection;
 
-
-  $.Msg( 'hero',hero);
-
   if (hero == "shadow_demon") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
   if (hero == "pudge") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
   if (hero == "slark") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
@@ -292,5 +289,11 @@ function OnUpdateHeroSelection1() {
   if (hero == "bristleback") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
   if (hero == "dawnbreaker") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
   if (hero == "omniknight") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
+
+  var AghaninIcon = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspect").FindChildTraverse("HeroAbilities");
+  var NoAghaninIcon = AghaninIcon.FindChildrenWithClassTraverse("ScepterDetails");
+  NoAghaninIcon.forEach(AghaninIcon => {
+  AghaninIcon.style.visibility = "collapse";
+  });
 
 }
