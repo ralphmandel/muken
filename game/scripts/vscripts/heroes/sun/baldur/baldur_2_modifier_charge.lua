@@ -55,7 +55,7 @@ end
 
 function baldur_2_modifier_charge:OnStateChanged(keys)
   if keys.unit ~= self.parent then return end
-  if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsSilenced() then
+  if self.parent:IsHexed() then
     self:EndCharge(true)
   end
 end

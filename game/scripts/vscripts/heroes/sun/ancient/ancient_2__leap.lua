@@ -83,6 +83,8 @@ LinkLuaModifier("_modifier_generic_arc", "_modifiers/_modifier_generic_arc", LUA
     caster:RemoveModifierByName("ancient_2_modifier_jump")
     caster:RemoveModifierByName("ancient_2_modifier_leap")
 
+    self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
+
     if self:GetCastRange(nil, nil) > 0 then
       AddModifier(caster, self, "ancient_2_modifier_jump", {}, false)
     else
