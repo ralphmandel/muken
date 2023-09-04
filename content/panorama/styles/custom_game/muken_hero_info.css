@@ -1,5 +1,19 @@
 @keyframes 'ProgressOpacity'{0%{opacity: 1;}25%{opacity: 0.5;}50%{opacity: 0.1;}75%{opacity: 0.5;}100%{opacity: 1;}}
 
+.root {
+  position: 0px 0px 0.0px;
+  height: 1100px;
+  width: 1800px;
+  /* background-color: red; */
+}
+
+#hero_panel {
+  position: 0px 600px 0.0px;
+  height: 750px;
+  width: 750px;
+  horizontal-align: middle;
+}
+
 .column {
   position: 1360px 140px 0.0px;
   flow-children: down;

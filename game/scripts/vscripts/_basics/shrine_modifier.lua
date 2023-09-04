@@ -80,21 +80,21 @@ function shrine_modifier:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "filler_ability" then
     if self.name == "hp_filler" then
       if value_name == "AbilityCooldown" then return 150 end
-      if value_name == "duration" then return 4 end
+      if value_name == "duration" then return 2 end
       if value_name == "mp_heal" then return 0 end
       if value_name == "mp_heal_pct" then return 0 end
       if value_name == "mp_heal_growth" then return 0 end
-      if value_name == "hp_heal" then return 250 end
-      if value_name == "hp_heal_pct" then return 5 end
+      if value_name == "hp_heal" then return 500 end
+      if value_name == "hp_heal_pct" then return 10 end
     end
     if self.name == "mp_filler" then
       if value_name == "AbilityCooldown" then return 150 end
-      if value_name == "duration" then return 4 end
+      if value_name == "duration" then return 2 end
       if value_name == "hp_heal" then return 0 end
       if value_name == "hp_heal_pct" then return 0 end
       if value_name == "hp_heal_growth" then return 0 end
-      if value_name == "mp_heal" then return 50 end
-      if value_name == "mp_heal_pct" then return 5 end
+      if value_name == "mp_heal" then return 100 end
+      if value_name == "mp_heal_pct" then return 10 end
     end
 	end
 
