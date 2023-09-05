@@ -2,6 +2,7 @@ hunter_2_modifier_debuff = class({})
 
 function hunter_2_modifier_debuff:IsHidden() return false end
 function hunter_2_modifier_debuff:IsPurgable() return true end
+function hunter_2_modifier_debuff:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
@@ -11,8 +12,6 @@ function hunter_2_modifier_debuff:OnCreated(kv)
   self.ability = self:GetAbility()
   self.proj = {}
 
-  AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {percent = self.ability:GetSpecialValueFor("slow")}, false)
-
   self.damageTable = {
     victim = self.parent, attacker = self.caster,
     damage = self.ability:GetSpecialValueFor("poison_damage"),
@@ -21,6 +20,10 @@ function hunter_2_modifier_debuff:OnCreated(kv)
   }
 
   if IsServer() then
+    self.slow = AddModifier(self.parent, self.ability, "_modifier_movespeed_debuff", {
+      percent = self.ability:GetSpecialValueFor("slow"), duration = self:GetDuration()
+    }, false)
+
     self.parent:EmitSound("hero_viper.PoisonAttack.Target")
     self:StartIntervalThink(1)
   end
@@ -35,15 +38,21 @@ function hunter_2_modifier_debuff:OnRefresh(kv)
 end
 
 function hunter_2_modifier_debuff:OnRemoved()
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_debuff", self.ability)
+  if IsServer() then self.slow:Destroy() end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function hunter_2_modifier_debuff:OnIntervalThink()
-  ApplyDamage(self.damageTable)
+  local interval = 1
 
-  if IsServer() then self:StartIntervalThink(1) end
+  if self.parent:GetHealthPercent() > 25 then
+    ApplyDamage(self.damageTable)
+  else
+    interval = 0.5
+  end
+
+  if IsServer() then self:StartIntervalThink(interval) end
 end
 
 -- UTILS -----------------------------------------------------------

@@ -43,6 +43,7 @@ end
 
 function hunter_u_modifier_camouflage:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
     MODIFIER_PROPERTY_BONUS_DAY_VISION,
     MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
     MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
@@ -51,6 +52,10 @@ function hunter_u_modifier_camouflage:DeclareFunctions()
 	}
 
 	return funcs
+end
+
+function hunter_u_modifier_camouflage:GetModifierMoveSpeed_Limit()
+	return self:GetAbility():GetSpecialValueFor("limit_speed")
 end
 
 function hunter_u_modifier_camouflage:GetBonusDayVision()

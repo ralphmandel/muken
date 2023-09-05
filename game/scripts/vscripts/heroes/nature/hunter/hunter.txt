@@ -67,11 +67,10 @@
     "AbilityValues"
 		{
       "knockback_duration"  "0.1"
-      "knockback_distance"  "50"
-      "debuff_duration"     "3"
-      "poison_damage"       "50"
-      "slow"                "100"
-			"charges"			        "1 2 3 4 5 6 7"
+      "knockback_distance"  "70"
+      "debuff_duration"     "4"
+      "poison_damage"       "30"
+			"slow"			          "1 2 3 4 5 6 7"
 			"rank"			          "1 2 3 4 5 6 7"
 		}
 	}
@@ -94,10 +93,10 @@
 
     "AbilityValues"
 		{
-			"fow_time"	    "7.5"
-			"search_time"	  "7.5"
-			"bonus_radius"  "250"
-			"radius"			  "1 2 3 4 5 6 7"
+			"search_time"	  "5"
+			"fow_time"	    "20"
+			"radius"        "450"
+			"bonus_radius"  "1 2 3 4 5 6 7"
 			"rank"			    "1 2 3 4 5 6 7"
 		}
 	}
@@ -112,7 +111,6 @@
 		"RequiredLevel"         	 	"0"
     "LevelsBetweenUpgrades"  		"25"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
     "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
     "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
@@ -123,8 +121,8 @@
 
     "AbilityValues"
 		{
-      "duration"  "10"
-      "ms"        "50"
+      "duration"  "5"
+      "ms"        "75"
 			"hp_regen"	"1 2 3 4 5 6 7"
 			"rank"			"1 2 3 4 5 6 7"
 		}
@@ -178,6 +176,7 @@
     "AbilityValues"
 		{
       "delay_out"     "0.5"
+      "limit_speed"   "225"
       "bonus_damage"  "5"
       "atk_range"     "500"
       "vision_range"  "1 2 3 4 5 6 7"

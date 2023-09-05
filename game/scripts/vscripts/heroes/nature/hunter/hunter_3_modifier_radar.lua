@@ -62,7 +62,7 @@ function hunter_3_modifier_radar:OnIntervalThink()
 
     local loc = self.parent:GetOrigin()
     MinimapEvent(self.caster:GetTeamNumber(), self.caster, loc.x, loc.y, DOTA_MINIMAP_EVENT_RADAR_TARGET, 1)
-    AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius + self.bonus_radius, self:GetDuration(), false)
+    AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.bonus_radius, self:GetDuration(), false)
     self.state = RADAR_STATE_REVEAL
   end
 

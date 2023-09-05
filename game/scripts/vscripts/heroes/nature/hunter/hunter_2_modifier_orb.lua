@@ -42,8 +42,10 @@ function hunter_2_modifier_orb:DeclareFunctions()
 end
 
 function hunter_2_modifier_orb:GetModifierAttackRangeBonus(keys)
-  if self:ShouldLaunch(self.parent:GetAggroTarget()) then
-    return 0
+  if IsServer() then
+    if self:ShouldLaunch(self.parent:GetAggroTarget()) then
+      return 0
+    end
   end
 
 	return 0
