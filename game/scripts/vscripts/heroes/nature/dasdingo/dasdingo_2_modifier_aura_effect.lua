@@ -1,6 +1,6 @@
 dasdingo_2_modifier_aura_effect = class({})
 
-function dasdingo_2_modifier_aura_effect:IsHidden() return false end
+function dasdingo_2_modifier_aura_effect:IsHidden() return true end
 function dasdingo_2_modifier_aura_effect:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
