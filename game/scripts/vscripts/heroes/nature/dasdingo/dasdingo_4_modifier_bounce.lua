@@ -10,7 +10,6 @@ function dasdingo_4_modifier_bounce:OnCreated( kv )
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bounces = self.ability:GetSpecialValueFor("bounce")
 	self.bounce = 0
 	self.targets = {}
 	
@@ -76,7 +75,7 @@ function dasdingo_4_modifier_bounce:GetModifierProcAttack_Feedback(keys)
 	self.parent:SetOrigin(keys.target:GetOrigin() + Vector( 0, 0, 100 ))
 	if IsServer() then self.parent:EmitSound("Hero_WitchDoctor_Ward.ProjectileImpact") end
 
-	if self.bounce >= self.bounces then
+	if self.bounce >= self.ability:GetSpecialValueFor("bounce") then
 		self:Destroy()
 	else
 		self:StartIntervalThink(FrameTime())

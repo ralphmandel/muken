@@ -116,11 +116,11 @@ function dasdingo_4_modifier_tribal:GetModifierExtraHealthBonus()
 end
 
 function dasdingo_4_modifier_tribal:GetBonusDayVision()
-	return 600
+	return 750
 end
 
 function dasdingo_4_modifier_tribal:GetBonusNightVision()
-	return 450
+	return 600
 end
 
 function dasdingo_4_modifier_tribal:OnAttack(keys)

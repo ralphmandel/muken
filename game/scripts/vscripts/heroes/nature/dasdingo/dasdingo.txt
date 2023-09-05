@@ -50,7 +50,6 @@
 
 		"AbilityValues"
 		{
-      //"heal_amp"	  "15"
       "interval"	  "1"
       "heal_tick"	  "25"
       "duration"	  "6"
@@ -70,6 +69,7 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
     "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
     "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
     "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
@@ -80,11 +80,11 @@
 
 		"AbilityValues"
 		{
-      //"hp_regen"			  "40"
-      "duration"        "300"
-      "root_duration"   "1"
-      "root_chance"     "20"
-      "radius"			    "1 2 3 4 5 6 7"
+      "radius"          "800"
+      "root_duration"   "2"
+      "root_damage"     "250"
+      "root_interval"   "5"
+      "duration"			  "1 2 3 4 5 6 7"
       "rank"			      "1 2 3 4 5 6 7"
 		}
 	}
@@ -110,8 +110,8 @@
 
 		"AbilityValues"
 		{
-      "channel_time"	"5"
-      "drain_percent" "2"
+      "channel_time"	"4"
+      "mana_drain"	  "5"
       "cast_range"	  "1 2 3 4 5 6 7"
       "rank"			    "1 2 3 4 5 6 7"
 		}
@@ -135,10 +135,10 @@
 		"AbilityValues"
 		{
       "hits"	        "6"
-      "cast_range"	  "300"
-      "duration"	    "15"
-      "bounce"	      "3"
-      "bounce_range"  "450"
+      "cast_range"	  "450"
+      "duration"	    "20"
+      "bounce"	      "2"
+      "bounce_range"  "500"
       "atk_range"	    "1 2 3 4 5 6 7"
       "rank"			    "1 2 3 4 5 6 7"
 		}

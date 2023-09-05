@@ -9,6 +9,8 @@ function dasdingo_3_modifier_leech:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  
+  self.interval = 0.5
   self.model = "models/items/shadowshaman/ss_fall20_immortal_head/ss_fall20_immortal_head.vmdl"
 
   AddModifier(self.parent, self.ability, "_modifier_stun", {}, false)
@@ -17,9 +19,9 @@ function dasdingo_3_modifier_leech:OnCreated(kv)
   self.ability:EndCooldown()
 
 	if IsServer() then
-		self:PlayEfxStart()
-		self:OnIntervalThink()
-	end
+    self:PlayEfxStart()
+    self:StartIntervalThink(self.interval)
+  end
 end
 
 function dasdingo_3_modifier_leech:OnRefresh(kv)
@@ -45,12 +47,13 @@ end
 --------------------------------------------------------------------------------
 
 function dasdingo_3_modifier_leech:OnIntervalThink()
-  local interval = 0.5
-	local drain_amount = self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("drain_percent") * interval * 0.01
-	self.parent:ModifyHealth(self.parent:GetHealth() - drain_amount, self.ability, false, 0)
+	local drain_amount = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_drain") * self.interval * 0.01
+  ReduceMana(self.parent, self.ability, drain_amount, true)
+
+	--self.parent:ModifyHealth(self.parent:GetHealth() - drain_amount, self.ability, false, 0)
 	--self.caster:ModifyHealth(self.caster:GetHealth() + drain_amount, self.ability, false, 0)
 
-	if IsServer() then self:StartIntervalThink(interval) end
+	if IsServer() then self:StartIntervalThink(self.interval) end
 end
 
 --------------------------------------------------------------------------------

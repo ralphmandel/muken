@@ -10,14 +10,27 @@ function dasdingo_2_modifier_aura_effect:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-  if self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-    AddModifier(self.parent, self.ability, "_modifier_truesight", {}, false)
-  end
+  AddModifier(self.parent, self.ability, "_modifier_truesight", {}, false)
 
-  if IsServer() then self:StartIntervalThink(1) end
+  ApplyDamage({
+    attacker = self.caster, victim = self.parent, ability = self.ability,
+    damage = self.ability:GetSpecialValueFor("root_damage") * kv.multiplier,
+    damage_type = self.ability:GetAbilityDamageType()
+  })
+
+  if self.parent:IsMagicImmune() == false then
+    AddModifier(self.parent, self.ability, "_modifier_root", {
+      duration = self.ability:GetSpecialValueFor("root_duration") * kv.multiplier, effect = 8
+    }, true)
+  end
 end
 
 function dasdingo_2_modifier_aura_effect:OnRefresh(kv)
+  if self.parent:IsMagicImmune() == false then
+    AddModifier(self.parent, self.ability, "_modifier_root", {
+      duration = self.ability:GetSpecialValueFor("root_duration") * kv.multiplier, effect = 8
+    }, true)
+  end
 end
 
 function dasdingo_2_modifier_aura_effect:OnRemoved()
@@ -25,43 +38,6 @@ function dasdingo_2_modifier_aura_effect:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
-
--- function dasdingo_2_modifier_aura_effect:CheckState()
--- 	local state = {
--- 		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true
--- 	}
-
---   if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
---     state = {}
---   end
-
--- 	return state
--- end
-
--- function dasdingo_2_modifier_aura_effect:DeclareFunctions()
--- 	local funcs = {
---     MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
--- 	}
-
--- 	return funcs
--- end
-
--- function dasdingo_2_modifier_aura_effect:GetModifierConstantHealthRegen(keys)
---   if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then return 0 end
---   return self:GetAbility():GetSpecialValueFor("hp_regen")
--- end
-
-function dasdingo_2_modifier_aura_effect:OnIntervalThink()
-  if self.parent:GetTeamNumber() == self.caster:GetTeamNumber() then return end
-  if self.parent:IsMagicImmune() then return end
-
-  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("root_chance") then
-    AddModifier(self.parent, self.ability, "_modifier_root", {
-      duration = self.ability:GetSpecialValueFor("root_duration"),
-      effect = 4
-    })
-  end
-end
 
 -- UTILS -----------------------------------------------------------
 

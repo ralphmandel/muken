@@ -37,7 +37,6 @@ function _modifier_root:OnCreated(kv)
 		sound = "LoneDruid_SpiritBear.Entangle"
 	elseif effect == 8 then
 		path = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_root.vpcf"
-		sound = "Hero_Treant.Overgrowth.Target"
   elseif effect == 9 then
     path = "particles/units/heroes/hero_oracle/oracle_fortune_purge.vpcf"
     sound = nil
