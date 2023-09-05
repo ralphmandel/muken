@@ -238,11 +238,11 @@ function baldur_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability:GetAbilityName() == "baldur_1__power" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
-    if value_name == "AbilityCharges" then return 4 end
+    if value_name == "AbilityCharges" then return 5 end
 		if value_name == "AbilityChargeRestoreTime" then return 3 end
 
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "stack_duration" then return 60 + (value_level * 2.5) end
+		if value_name == "stack_duration" then return 45 + (value_level * 2.5) end
 	end
 
 	if ability:GetAbilityName() == "baldur_2__dash" then

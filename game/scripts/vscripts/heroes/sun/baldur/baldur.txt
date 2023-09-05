@@ -139,7 +139,7 @@
       "damage"          "300"
       "damage_burn"     "50"
       "interval"        "0.5"
-      "debuff_duration" "7"
+      "debuff_duration" "8"
       "str"             "-15"
       "int"             "-15"
       "speed"           "1350"
