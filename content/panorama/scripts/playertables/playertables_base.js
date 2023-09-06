@@ -257,43 +257,72 @@ function OnTeamNameUpdate() {
     }
   }
   var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
+  PortraitSize.style.flowChildren = "down";
+  var PanelSize = PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("MainHeroPickScreenContents");
+  PanelSize.style.height = "100%";
+  PanelSize.style.marginLeft = "1px";
+  PanelSize.FindChildTraverse("HeroPickLeftColumn").style.height = "100%";
+  PanelSize.FindChildTraverse("HeroPickLeftColumn").FindChildTraverse("HeroGrid").style.height = "100%";
+
   for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
     var HeroCategoryName = PortraitSize.GetChild(i);
     var HeroImg = HeroCategoryName.FindChildrenWithClassTraverse("HeroCard");
+   
     HeroImg.forEach(HeroCard => {
-     HeroCard.style.width = "64px";
-     HeroCard.style.height = "106px";
+     HeroCard.style.width = "74px";
+     HeroCard.style.height = "98px";
+     HeroCard.style.opacityMask =  "url('file://{images}/custom_game/hero_select_mask_selection.png')";
+     HeroCard.style.transform = "skewX ( -5deg )";
+     HeroCard.style.marginRight = "20px";
     });
+  
   };
-
+ 
 }
 
 function OnUpdateHeroSelection1() {
-  var ChangePickIcon = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspectHeader").FindChildTraverse("HeroInspectPrimaryAttributeIcon");
-  var hero = Game.GetLocalPlayerInfo().possible_hero_selection;
+  var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
+  var HeroCategoryName_death = PortraitSize.GetChild(0);
+  HeroCategoryName_death.style.height = "130px";
+  HeroCategoryName_death.style.margin = "138px 0px 0px 25px";
+  var HeroCategoryName_nature = PortraitSize.GetChild(1);
+  HeroCategoryName_nature.style.height = "130px";
+  HeroCategoryName_nature.style.margin = "55px 0px 0px 25px";
+  var HeroCategoryName_moon = PortraitSize.GetChild(2);
+  HeroCategoryName_moon.style.height = "130px";
+  HeroCategoryName_moon.style.margin = "56px 0px 0px 25px";
+  var HeroCategoryName_sun = PortraitSize.GetChild(3);
+  HeroCategoryName_sun.style.height = "130px";
+  HeroCategoryName_sun.style.margin = "56px 0px 0px 25px";
+  for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
+    var HeroCategoryName = PortraitSize.GetChild(i);
+    var DotaIcon = HeroCategoryName.FindChildrenWithClassTraverse("HeroCategoryControls");
+    DotaIcon.forEach(HeroCategoryControls => {
+      HeroCategoryControls.style.visibility = "collapse";
+    });
+  };
+  
 
-  if (hero == "shadow_demon") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
-  if (hero == "pudge") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
-  if (hero == "slark") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
-  if (hero == "muerta") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/skull_color45.png')"};
+  
+  // var HeroContainer_death = PortraitSize.GetChild(0).FindChildTraverse("HeroListContainer");
+  // HeroContainer_death.style.ignoreParentFlow = "true";
+  // HeroContainer_death.style.position = "15px 138px 0px";
+  // var HeroContainer_nature = PortraitSize.GetChild(1).FindChildTraverse("HeroListContainer");
+  // HeroContainer_nature.style.ignoreParentFlow = "true";
+  // HeroContainer_nature.style.position = "100px 400px 0px";
+  // var HeroContainer_moon = PortraitSize.GetChild(0).FindChildTraverse("HeroListContainer");
+  // HeroContainer_moon.style.ignoreParentFlow = "true";
+  // HeroContainer_moon.style.position = "-55px 138px 0px";
+  // var HeroContainer_sun = PortraitSize.GetChild(0).FindChildTraverse("HeroListContainer");
+  // HeroContainer_sun.style.ignoreParentFlow = "true";
+  // HeroContainer_sun.style.position = "-55px 438px 0px";
+  
 
 
-  if (hero == "shadow_shaman") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/leaf_color45.png')"};
-  if (hero == "sniper") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/leaf_color45.png')"};
-
-  if (hero == "drow_ranger") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/moon_color45.png')"};
-  if (hero == "riki") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/moon_color45.png')"};
-
-
-  if (hero == "elder_titan") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
-  if (hero == "bristleback") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
-  if (hero == "dawnbreaker") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
-  if (hero == "omniknight") {ChangePickIcon.style.backgroundImage = "url('file://{images}/custom_game/sun_color45.png')"};
-
-  var AghaninIcon = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroInspect").FindChildTraverse("HeroAbilities");
-  var NoAghaninIcon = AghaninIcon.FindChildrenWithClassTraverse("ScepterDetails");
-  NoAghaninIcon.forEach(AghaninIcon => {
-  AghaninIcon.style.visibility = "collapse";
-  });
-
+  // var HideHeroInfo = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("HeroPickRightColumn");
+  // HideHeroInfo.style.verticalAlign = "bottom";
+  // var HideHeroContainer = HideHeroInfo.FindChildrenWithClassTraverse("HeroInspectContainer");
+  // HideHeroContainer.forEach(HeroInspectContainer => {
+  //   HeroInspectContainer.style.visibility = "collapse";
+  // });
 }

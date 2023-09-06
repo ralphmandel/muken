@@ -121,7 +121,7 @@ function UpdatePlayer( teamPanel, playerId )
 			teamGradient.style.backgroundColor = gradientText;
 			var playerBoxShadow = GameUI.CustomUIConfig().team_colors[ teamId ];
 			playerBoxShadow = playerBoxShadow.replace( ";", "" );
-			var gradientBox = 'fill ' + teamColor + ' 0px 0px 5px 1px ;';
+			var gradientBox = 'fill ' + teamColor + ' 0px 0px 5px -2px ;';
 			//$.Msg( gradientBox );
 			teamBoxShadow.style.boxShadow = gradientBox;
 		}

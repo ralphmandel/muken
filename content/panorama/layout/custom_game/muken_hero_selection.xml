@@ -1,0 +1,177 @@
+<!-- xml reconstructed by ValveResourceFormat: https://vrf.steamdb.info/ -->
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
+		<include src="s2r://panorama/styles/hero_stat_icons.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/muken_hero_selection.css" />
+	</styles>
+	<scripts>
+        <include src="file://{resources}/scripts/custom_game/muken_hero_selection.js"/>
+    </scripts>
+	<Panel class='RootScreen' hittest="false">
+		<!-- <Panel class="EquippedBackgroundShard" /> -->
+		<Panel id="HeroPageContent" hittest="false">
+			<Panel id="RightColumn" hittest="false">
+				<Panel id="HeroSelect" hittest="false">
+					<Label style="font-size: 50px;" text="SELECT A HERO" />
+				</Panel>
+				<Panel id="Hero_grid" hittest="false">
+					<Panel class="team_container" hittest="false">
+						<Panel id="death" hittest="false">
+							<Panel class="teamIcon" hittest="false">
+								<Image src="file://{images}/custom_game/skull_color45.png" />
+								<Label text="DEATH" />
+							</Panel>
+							<Panel class="HeroesContainer" hittest="false">
+								<Panel class="HeroesIcon" hittest="false"/>
+							</Panel>
+						</Panel>
+					</Panel>
+						<Panel class="team_container" hittest="false">
+						<Panel id="death" hittest="false">
+							<Panel class="teamIcon">
+								<Image src="file://{images}/custom_game/leaf_color45.png" />
+								<Label text="NATURE" />
+							</Panel>
+							<Panel class="HeroesContainer" hittest="false">
+								<Panel class="HeroesIcon" hittest="false"/>
+							</Panel>
+						</Panel>
+					</Panel>
+						<Panel class="team_container" hittest="false">
+						<Panel id="death" hittest="false">
+							<Panel class="teamIcon" hittest="false">
+								<Image src="file://{images}/custom_game/moon_color45.png" />
+								<Label text="MOON" />
+							</Panel>
+							<Panel class="HeroesContainer" hittest="false">
+								<Panel class="HeroesIcon" hittest="false"/>
+							</Panel>
+						</Panel>
+					</Panel>
+						<Panel class="team_container" hittest="false">
+						<Panel id="death" hittest="false">
+							<Panel class="teamIcon" hittest="false">
+								<Image src="file://{images}/custom_game/sun_color45.png" />
+								<Label text="SUN" />
+							</Panel>
+							<Panel class="HeroesContainer" hittest="false">
+								<Panel class="HeroesIcon" hittest="false"/>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="MiddleColumn" hittest="false">
+				<Panel class="BackgroundShadow Short" hittest="false" />
+				<Panel id="SetPanel" hittest="false">
+					<Panel class="SetGroupTitleContainer">
+						<Label class="BrowseSetsLabel LabelLarge LightestGreyText VerticalCenter HorizontalCenter" text="#DOTA_Loadout_BrowseSetsLabel" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<!-- <Panel id="HeroName">
+				<Label class="TitleHeroName" text="{S:selected_hero_name}" />
+			</Panel> -->
+			<!-- <Panel id="LeftColumn" hittest="false">
+				<Panel class="HeroInfo" hittest="false">
+					<Panel id="HeroDescription">
+						<Panel id="PrimaryAttribute" />
+						<Panel class="PrimaryAttributeStandin" />
+						<Panel id="HeroComplexity">
+							<Panel class="HeroComplexityPip" id="HeroComplexityPip1" />
+							<Panel class="HeroComplexityPip" id="HeroComplexityPip2" />
+							<Panel class="HeroComplexityPip" id="HeroComplexityPip3" />
+						</Panel>
+						<Panel class="AttackTypeContainer">
+							<Label class="LabelMedium LightestGreyText Opacity_50" text="#DOTA_HeroGrid_OptionCategory_AttackType" />
+							<Panel id="HeroAttackTypeIcon" />
+						</Panel>
+						<Panel class="HeroRolesContainer">
+							<Label class="LabelMedium LightestGreyText Opacity_50" text="#DOTA_HeroGrid_OptionCategory_Tags" />
+							<Panel id="HeroRoles" />
+						</Panel>
+					</Panel>
+					<Panel class="HeroActions">
+						<Panel id="HeroAbilities" />
+					</Panel>
+				</Panel>
+				<Panel class="SummaryHeroRolesContainer" hittest="false">
+					<DOTAHeroRoles id="HeroRoleDetails1" class="ColumnLayout AboutContentBlock HeroRoleDetails" />
+				</Panel>
+				<Panel id="HeroStatsSummaryContainer">
+					<Panel class="HeroStatsLeftCol" onmouseover="DOTAShowAttributesHelpTooltip()" onmouseout="DOTAHideAttributesHelpTooltip()">
+						<Panel class="AttributeContainer">
+							<Label class="AttributeTitle LabelSmall LightestGreyText Opacity_40" text="#DOTA_HeroStats_Strength_Name" />
+							<Panel class="LeftRightFlow">
+								<Panel class="HeroStatsIcon StrengthIcon" />
+								<Label class="AttributeValue TitleSmall LightestGreyText" text="#DOTA_HeroLoadout_StrengthAttributeShort" />
+							</Panel>
+						</Panel>
+						<Panel class="AttributeContainer">
+							<Label class="AttributeTitle LabelSmall LightestGreyText Opacity_40" text="#DOTA_HeroStats_Agility_Name" />
+							<Panel class="LeftRightFlow">
+								<Panel class="HeroStatsIcon AgilityIcon" />
+								<Label class="AttributeValue TitleSmall LightestGreyText" text="#DOTA_HeroLoadout_AgilityAttributeShort" />
+							</Panel>
+						</Panel>
+						<Panel class="TopBottomFlow">
+							<Label class="AttributeTitle LabelSmall LightestGreyText Opacity_40" text="#DOTA_HeroStats_Intelligence_Name" />
+							<Panel class="LeftRightFlow">
+								<Panel class="HeroStatsIcon IntelligenceIcon" />
+								<Label class="AttributeValue TitleSmall LightestGreyText" text="#DOTA_HeroLoadout_IntelligenceAttributeShort" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="HeroStatsRightCol" hittest="false" onmouseover="DOTAShowDerivedStatsTooltip()" onmouseout="DOTAHideDerivedStatsTooltip()">
+						<Panel class="DerivedStatsContainer">
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_HeroStats_Damage_Name )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon DamageIcon" />
+								<Label class="AttributeNumbers" text="{d:damage_min} - {d:damage_max}" />
+							</Panel>
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_HeroStats_Armor_Name )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon ArmorIcon" />
+								<Label class="AttributeNumbers" text="{s:armor}" />
+							</Panel>
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_HeroStats_MovementSpeed_Name )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon MovementSpeedIcon" />
+								<Label class="AttributeNumbers" text="{d:movement_speed}" />
+							</Panel>
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_DerivedStatsHelp_Tooltip_BaseAttackTime )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon BaseAttackTimeIcon" />
+								<Label class="AttributeNumbers" text="{s:attack_rate}" />
+							</Panel>
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_DerivedStatsHelp_Tooltip_AttackSpeed )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon BaseAttackSpeedIcon" />
+								<Label class="AttributeNumbers" text="{d:base_attack_speed}" />
+							</Panel>
+							<Panel class="DerivedStat" onmouseover="UIShowTextTooltip( #DOTA_DerivedStatsHelp_Tooltip_AttackRange )" onmouseout="UIHideTextTooltip()">
+								<Panel class="HeroStatsIcon AttackRangeIcon" />
+								<Label class="AttributeNumbers" text="{d:attack_range}" />
+							</Panel>
+						</Panel>
+						<Panel class="HealthManaContainer" onmouseover="UIShowCustomLayoutTooltip( HeroHealthManaHelp, file://{resources}/layout/tooltips/tooltip_hero_stats_help_healthmana.xml )" onmouseout="UIHideCustomLayoutTooltip( HeroHealthManaHelp )">
+							<Label class="LabelSmall StatValueLabel" text="#DOTA_HeroStats_MaxHealth_Name" />
+							<Panel class="HeroResourceRow Health">
+								<Label class="MaxResource TitleSmall" text="{d:max_health}" />
+								<Label class="ResourceRegen LabelMedium" text="+{s:health_regen}" />
+							</Panel>
+							<Label class="LabelSmall StatValueLabel" text="#DOTA_HeroStats_MaxMana_Name" />
+							<Panel class="HeroResourceRow Mana">
+								<Label class="MaxResource TitleSmall" text="{d:max_mana}" />
+								<Label class="ResourceRegen LabelMedium" text="+{s:mana_regen}" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ActionButtonsContainer" hittest="false">
+					<Button id="FullscreenButton" class="ButtonPrimary DarkGrey" onmouseover="UIShowTextTooltip( &apos;#DOTAUI_FullscreenHero&apos; )" onmouseout="UIHideTextTooltip()" onactivate="DOTASetCurrentDashboardPageFullscreen( true ); DOTAPageHeroV2FullScreenToggled();">
+						<Image src="s2r://panorama/images/control_icons/24px/full_screen.vsvg" />
+					</Button>
+					<DemoModeButton id="DemoHeroButton" category="#DOTA_HeroLoadout_HeroFilterName" onactivate="DOTAPageHeroV2DemoHero()" />
+				</Panel>
+			</Panel> -->
+		
+		</Panel>
+	</Panel>
+</root>

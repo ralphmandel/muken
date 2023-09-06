@@ -106,6 +106,7 @@
       <Image src="file://{resources}/images/custom_game/moon_color45.png" class="img_collapse"/>
       <Image src="file://{resources}/images/custom_game/sun_color45.png" class="img_collapse"/>
       <Image src="file://{images}/custom_game/bg_timer_edited.png" class="img_collapse"/>
+      <Image src="file://{images}/custom_game/hero_select_mask_selection.png" class="img_collapse"/>
     </Panel>
   </Panel>
 </root>

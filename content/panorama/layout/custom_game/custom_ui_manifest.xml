@@ -26,7 +26,8 @@
     var Glyph = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
     var Killcam = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("KillCam");
     var NoStrategyScreen = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("StrategyScreen");
-   
+    //var NoPickScreen = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents");
+    
     //FindChildrenWithClassTraverse
 
     NoTalents.FindChildTraverse("StatBranch").style.visibility = "collapse";
@@ -41,7 +42,7 @@
     Glyph.FindChildTraverse("minimap_block").style.boxShadow = "0px 0px 10px 1px #000000de";
     HeroDescription.FindChildTraverse("HeroSimpleDescription").style.visibility = "collapse";
     NoStrategyScreen.FindChildTraverse("RightContainer").style.visibility = "collapse";
-    
+    //NoPickScreen.FindChildTraverse("ScreenContainer").style.visibility = "collapse";
 
     // Time Panel:
     
@@ -151,6 +152,7 @@
     <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/ui_econ_set_preview.xml"/>
     <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay.xml"/>
     <CustomUIElement type="FlyoutScoreboard"    layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml"/>
+    <CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/muken_hero_selection.xml"/>
     
    
 
