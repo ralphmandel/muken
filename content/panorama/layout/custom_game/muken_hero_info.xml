@@ -9,9 +9,9 @@
   <Panel class="root" hittest="false">
     <Panel id="hero_panel"></Panel>
     <Panel class="column">
-      <Panel class="item" id="item_core_atk" onmouseover="OnOverCoreAtk()" onmouseout="OnOutCoreAtk()">
+      <Panel class="item" id="item_category_atk" onmouseover="OnOverCategoryAtk()" onmouseout="OnOutCategoryAtk()">
         <Image src="file://{resources}/images/custom_game/self_off.png" class="Image_class"/>
-        <Panel class="skill-box" id="core_atk">
+        <Panel class="skill-box" id="category_atk">
               <Panel id="m1">
                   <Panel></Panel>
               </Panel>
@@ -32,9 +32,9 @@
               </Panel>
         </Panel>
       </Panel>
-      <Panel class="item" id="item_core_def" onmouseover="OnOverCoreDef()" onmouseout="OnOutCoreDef()">
+      <Panel class="item" id="item_category_def" onmouseover="OnOverCategoryDef()" onmouseout="OnOutCategoryDef()">
         <Image src="file://{resources}/images/custom_game/self_def.png" class="Image_class"/>
-          <Panel class="skill-box" id="core_def">
+          <Panel class="skill-box" id="category_def">
                   <Panel id="m1">
                   <Panel></Panel>
               </Panel>
@@ -55,9 +55,9 @@
               </Panel>
         </Panel>
       </Panel>
-      <Panel class="item" id="item_core_ctr" onmouseover="OnOverCoreCtr()" onmouseout="OnOutCoreCtr()">
+      <Panel class="item" id="item_category_esc" onmouseover="OnOverCategoryEsc()" onmouseout="OnOutCategoryEsc()">
         <Image src="file://{resources}/images/custom_game/self_escape.png" class="Image_class"/>
-          <Panel class="skill-box" id="core_ctr">
+          <Panel class="skill-box" id="category_esc">
                   <Panel id="m1">
                   <Panel></Panel>
               </Panel>
@@ -78,56 +78,10 @@
               </Panel>
         </Panel>
       </Panel>
-      <Panel class="item" id="item_team_atk" onmouseover="OnOverTeamAtk()" onmouseout="OnOutTeamAtk()">
-        <Image src="file://{resources}/images/custom_game/sup_off.png" class="Image_class"/>
-          <Panel class="skill-box" id="team_atk">
-                  <Panel id="m1">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m2">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m3">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m4">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m5">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m6">
-                  <Panel></Panel>
-              </Panel>
-        </Panel>
-      </Panel>
-      <Panel class="item" id="item_team_def" onmouseover="OnOverTeamDef()" onmouseout="OnOutTeamDef()">
+      <Panel class="item" id="item_category_ctr" onmouseover="OnOverCategoryCtr()" onmouseout="OnOutCategoryCtr()">
         <Image src="file://{resources}/images/custom_game/sup_def.png" class="Image_class"/>
-          <Panel class="skill-box" id="team_def">
+          <Panel class="skill-box" id="category_ctr">
                   <Panel id="m1">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m2">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m3">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m4">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m5">
-                  <Panel></Panel>
-              </Panel>
-              <Panel id="m6">
-                  <Panel></Panel>
-              </Panel>
-        </Panel>
-      </Panel>
-      <Panel class="item" id="item_team_ctr" onmouseover="OnOverTeamCtr()" onmouseout="OnOutTeamCtr()">
-        <Image src="file://{resources}/images/custom_game/sup_control.png" class="Image_class"/>
-      <Panel class="skill-box" id="team_ctr">
-              <Panel id="m1">
                   <Panel></Panel>
               </Panel>
               <Panel id="m2">

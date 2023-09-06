@@ -1,10 +1,8 @@
 var PANEL_MODEL, PANEL_ROOT, PANEL_HERO, WINDOWN_LAYOUT = {}, PANEL_LAYOUT = {
-  ["core_atk"]: {},
-  ["core_def"]: {},
-  ["core_ctr"]: {},
-  ["team_atk"]: {},
-  ["team_def"]: {},
-  ["team_ctr"]: {}
+  ["category_atk"]: {},
+  ["category_def"]: {},
+  ["category_esc"]: {},
+  ["category_ctr"]: {},
 };
 
 var possible_hero = {};
@@ -63,47 +61,34 @@ function OnRoleBarUpdate(event) {
   }
 }
 
-function OnOverCoreAtk() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["core_off"], "Assassin");
+function OnOverCategoryAtk() {
+  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["category_atk"], "Offensive");
   Game.EmitSound("Config.Move");
 }
-function OnOverCoreDef() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["core_def"], "Tanker");
+function OnOverCategoryDef() {
+  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["category_def"], "Defensive");
   Game.EmitSound("Config.Move");
 }
-function OnOverCoreCtr() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["core_ctr"], "Escape");
+function OnOverCategoryEsc() {
+  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["category_esc"], "Escapist");
   Game.EmitSound("Config.Move");
 }
-function OnOverTeamAtk() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["team_off"], "Offensive Support");
+function OnOverCategoryCtr() {
+  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["category_ctr"], "Disabler");
   Game.EmitSound("Config.Move");
 }
-function OnOverTeamDef() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["team_def"], "Defensive Support");
-  Game.EmitSound("Config.Move");
+
+function OnOutCategoryAtk() {
+  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["category_atk"]);
 }
-function OnOverTeamCtr() {
-  $.DispatchEvent("DOTAShowTextTooltip", WINDOWN_LAYOUT["team_ctr"], "Disabler");
-  Game.EmitSound("Config.Move");
+function OnOutCategoryDef() {
+  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["category_def"]);
 }
-function OnOutCoreAtk() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_off"]);
+function OnOutCategoryEsc() {
+  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["category_esc"]);
 }
-function OnOutCoreDef() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_def"]);
-}
-function OnOutCoreCtr() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_ctr"]);
-}
-function OnOutTeamAtk() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_off"]);
-}
-function OnOutTeamDef() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_def"]);
-}
-function OnOutTeamCtr() {
-  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["core_ctr"]);
+function OnOutCategoryCtr() {
+  $.DispatchEvent("DOTAHideTextTooltip", WINDOWN_LAYOUT["category_ctr"]);
 }
 
 function CreatePanels(id_name) {
@@ -113,12 +98,10 @@ function CreatePanels(id_name) {
 }
 
 (function() {
-  WINDOWN_LAYOUT["core_off"] = $("#item_core_atk");
-  WINDOWN_LAYOUT["core_def"] = $("#item_core_def");
-  WINDOWN_LAYOUT["core_ctr"] = $("#item_core_ctr");
-  WINDOWN_LAYOUT["team_off"] = $("#item_team_atk");
-  WINDOWN_LAYOUT["team_def"] = $("#item_team_def");
-  WINDOWN_LAYOUT["team_ctr"] = $("#item_team_ctr");
+  WINDOWN_LAYOUT["category_atk"] = $("#item_category_atk");
+  WINDOWN_LAYOUT["category_def"] = $("#item_category_def");
+  WINDOWN_LAYOUT["category_esc"] = $("#item_category_esc");
+  WINDOWN_LAYOUT["category_ctr"] = $("#item_category_ctr");
   PANEL_ROOT = $.GetContextPanel();
   PANEL_ROOT.SetHasClass("column", false);
   PANEL_ROOT.GetChild(1).SetHasClass("column", true);
@@ -126,12 +109,10 @@ function CreatePanels(id_name) {
   PANEL_HERO.SetHasClass("root", false);
   PANEL_HERO.SetHasClass("column", false);
   
-  CreatePanels("core_atk");
-  CreatePanels("core_def");
-  CreatePanels("core_ctr");
-  CreatePanels("team_atk");
-  CreatePanels("team_def");
-  CreatePanels("team_ctr");
+  CreatePanels("category_atk");
+  CreatePanels("category_def");
+  CreatePanels("category_esc");
+  CreatePanels("category_ctr");
 
   for (const [window, container] of Object.entries(PANEL_LAYOUT)) {
     for (const [index, panel] of Object.entries(container)) {
