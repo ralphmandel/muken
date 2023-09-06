@@ -37,8 +37,8 @@
 
     "AbilityValues"
 		{
-      "absorption"    "70"
-      "status_resist" "30"
+      "absorption"    "75"
+      "status_resist" "40"
       "duration"      "40"
 			"cast_range"    "1 2 3 4 5 6 7"
 			"max_range"     "1 2 3 4 5 6 7"
@@ -64,7 +64,7 @@
 
     "AbilityValues"
 		{
-      "hits"      "8"
+      "hits"      "10"
       "duration"  "1 2 3 4 5 6 7"
 			"rank"	    "1 2 3 4 5 6 7"
 		}
@@ -92,7 +92,6 @@
 
     "AbilityValues"
 		{
-      "stun_duration" "1"
       "damage"        "100"
       "heal"          "80"
       "min_mult"      "2"
@@ -124,8 +123,8 @@
 		{
       "damage_percent"  "3"
       "interval"        "0.25"
-      "radius"          "400"
-			"duration"	      "1 2 3 4 5 6 7"
+			"duration"	      "4"
+      "radius"          "1 2 3 4 5 6 7"
 			"rank"	          "1 2 3 4 5 6 7"
 		}
 	}
@@ -149,7 +148,7 @@
 
     "AbilityValues"
 		{
-      "heal"    "75"
+      "heal"    "60"
 			"damage"  "1 2 3 4 5 6 7"
 			"rank"		"1 2 3 4 5 6 7"
 		}

@@ -152,7 +152,7 @@
 
     "AbilityValues"
 		{
-      "bonus_regen"     "20"
+      "status_resist"   "30"
       "regen_percent"   "1 2 3 4 5 6 7"
 			"rank"	          "1 2 3 4 5 6 7"
 		}

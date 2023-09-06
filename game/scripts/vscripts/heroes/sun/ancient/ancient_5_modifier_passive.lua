@@ -21,15 +21,15 @@ end
 
 function ancient_5_modifier_passive:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+    MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
 	}
 	
 	return funcs
 end
 
-function ancient_5_modifier_passive:GetModifierConstantHealthRegen()
-	return self:GetAbility():GetSpecialValueFor("bonus_regen")
+function ancient_5_modifier_passive:GetModifierStatusResistanceStacking()
+  return self:GetAbility():GetSpecialValueFor("status_resist")
 end
 
 function ancient_5_modifier_passive:GetModifierHPRegenAmplify_Percentage()

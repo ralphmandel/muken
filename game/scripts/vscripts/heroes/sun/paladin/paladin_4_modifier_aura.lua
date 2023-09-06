@@ -39,7 +39,8 @@ end
 
 function paladin_4_modifier_aura:CheckState()
 	local state = {
-		[MODIFIER_STATE_SILENCED] = true
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_DISARMED] = true,
 	}
 
 	return state

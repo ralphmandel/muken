@@ -12,8 +12,9 @@ function baldur_5_modifier_fire:OnCreated(kv)
 
   local interval = self.ability:GetSpecialValueFor("interval")
 
-  AddBonus(self.ability, "STR", self.parent, self.ability:GetSpecialValueFor("str"), 0, nil)
-  AddBonus(self.ability, "INT", self.parent, self.ability:GetSpecialValueFor("int"), 0, nil)
+  AddModifier(self.parent, self.ability, "_modifier_percent_movespeed_debuff", {
+    percent = self.ability:GetSpecialValueFor("slow")
+  }, false)
 
   self.damageTable = {
     victim = self.parent, attacker = self.caster,
@@ -36,10 +37,8 @@ function baldur_5_modifier_fire:OnRefresh(kv)
 end
 
 function baldur_5_modifier_fire:OnRemoved()
-  RemoveBonus(self.ability, "STR", self.parent)
-  RemoveBonus(self.ability, "INT", self.parent)
-
   if IsServer() then self.parent:StopSound("Dasdingo.Ignite.Loop") end
+  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_percent_movespeed_debuff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------

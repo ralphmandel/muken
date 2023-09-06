@@ -59,8 +59,6 @@ function baldur_4_modifier_passive:GetModifierPhysical_ConstantBlock(keys)
     AddModifier(keys.attacker, self.ability, "_modifier_stun", {
       duration = self.ability:GetSpecialValueFor("stun_duration")
     }, true)
-
-    return keys.damage
   end
 
   return 0
