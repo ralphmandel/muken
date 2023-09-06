@@ -236,7 +236,7 @@ function DeleteTableKeys(msg)
   GameEvents.Subscribe( "pt_uk", UpdateTable);
   GameEvents.Subscribe( "pt_kd", DeleteTableKeys);
   GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
-  GameEvents.Subscribe("dota_player_hero_selection_dirty", OnUpdateHeroSelection1);
+  //GameEvents.Subscribe("dota_player_hero_selection_dirty", OnUpdateHeroSelection1);
 })()
 
 function OnTeamNameUpdate() {
@@ -277,33 +277,32 @@ function OnTeamNameUpdate() {
     });
   
   };
+  var PortraitSize_alternate = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
  
-}
-
-function OnUpdateHeroSelection1() {
-  var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
-  var HeroCategoryName_death = PortraitSize.GetChild(0);
+  var HeroCategoryName_death = PortraitSize_alternate.GetChild(0);
   HeroCategoryName_death.style.height = "130px";
   HeroCategoryName_death.style.margin = "138px 0px 0px 25px";
-  var HeroCategoryName_nature = PortraitSize.GetChild(1);
+  var HeroCategoryName_nature = PortraitSize_alternate.GetChild(1);
   HeroCategoryName_nature.style.height = "130px";
   HeroCategoryName_nature.style.margin = "55px 0px 0px 25px";
-  var HeroCategoryName_moon = PortraitSize.GetChild(2);
+  var HeroCategoryName_moon = PortraitSize_alternate.GetChild(2);
   HeroCategoryName_moon.style.height = "130px";
   HeroCategoryName_moon.style.margin = "56px 0px 0px 25px";
-  var HeroCategoryName_sun = PortraitSize.GetChild(3);
+  var HeroCategoryName_sun = PortraitSize_alternate.GetChild(3);
   HeroCategoryName_sun.style.height = "130px";
   HeroCategoryName_sun.style.margin = "56px 0px 0px 25px";
-  for(var i = 0; i <= PortraitSize.GetChildCount() - 1; i++) {
-    var HeroCategoryName = PortraitSize.GetChild(i);
-    var DotaIcon = HeroCategoryName.FindChildrenWithClassTraverse("HeroCategoryControls");
+  for(var i = 0; i <= PortraitSize_alternate.GetChildCount() - 1; i++) {
+    var HeroCategoryBarName = PortraitSize_alternate.GetChild(i);
+    var DotaIcon = HeroCategoryBarName.FindChildrenWithClassTraverse("HeroCategoryControls");
     DotaIcon.forEach(HeroCategoryControls => {
       HeroCategoryControls.style.visibility = "collapse";
     });
   };
-  
+ 
+}
 
-  
+//function OnUpdateHeroSelection1() {
+
   // var HeroContainer_death = PortraitSize.GetChild(0).FindChildTraverse("HeroListContainer");
   // HeroContainer_death.style.ignoreParentFlow = "true";
   // HeroContainer_death.style.position = "15px 138px 0px";
@@ -325,4 +324,4 @@ function OnUpdateHeroSelection1() {
   // HideHeroContainer.forEach(HeroInspectContainer => {
   //   HeroInspectContainer.style.visibility = "collapse";
   // });
-}
+//}
