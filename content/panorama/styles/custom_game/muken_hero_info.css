@@ -8,9 +8,10 @@
 }
 
 #hero_panel {
-  position: 0px 600px 0.0px;
-  height: 750px;
-  width: 750px;
+  position: 0px 450px 0.0px;
+  margin-left: 300px;
+  height: 1000px;
+  width: 1000px;
   horizontal-align: middle;
 }
 
