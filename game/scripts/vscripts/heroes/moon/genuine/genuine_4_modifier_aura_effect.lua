@@ -21,28 +21,33 @@ end
 
 function genuine_4_modifier_aura_effect:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_AVOID_DAMAGE,
 		MODIFIER_PROPERTY_ABSORB_SPELL
 	}
 	
 	return funcs
 end
 
+function genuine_4_modifier_aura_effect:GetModifierAvoidDamage(keys)
+  return self:IsAvoided()
+end
+
 function genuine_4_modifier_aura_effect:GetAbsorbSpell(keys)
-  local chance = self.ability:GetSpecialValueFor("chance_day")
-  if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
-    chance = self.ability:GetSpecialValueFor("chance_night")
-  end
-
-  if RandomFloat(0, 100) < chance and self.ability:IsCooldownReady() then
-    if IsServer() then self:PlayEfxSpellBlock() end
-    self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
-    return 1
-  end
-
-	return 0
+  return self:IsAvoided()
 end
 
 -- UTILS -----------------------------------------------------------
+
+function genuine_4_modifier_aura_effect:IsAvoided()
+  if GameRules:IsDaytime() and GameRules:IsTemporaryNight() == false then return 0 end
+
+  if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("chance") then
+    if IsServer() then self:PlayEfxSpellBlock() end
+    return 1
+  end
+
+  return 0
+end
 
 -- EFFECTS -----------------------------------------------------------
 

@@ -16,7 +16,6 @@ function genuine_u_modifier_morning:OnCreated(kv)
 
   AddBonus(self.ability, "AGI", self.parent, self.ability:GetSpecialValueFor("agi"), 0, nil)
   AddBonus(self.ability, "REC", self.parent, self.ability:GetSpecialValueFor("rec"), 0, nil)
-  AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {percent = self.ability:GetSpecialValueFor("ms")}, false)
 
   GameRules:BeginTemporaryNight(self:GetDuration())
 
@@ -32,10 +31,17 @@ function genuine_u_modifier_morning:OnRemoved()
 
 	RemoveBonus(self.ability, "AGI", self.parent)
 	RemoveBonus(self.ability, "REC", self.parent)
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function genuine_u_modifier_morning:CheckState()
+	local state = {
+		[MODIFIER_STATE_FORCED_FLYING_VISION] = true
+	}
+
+	return state
+end
 
 -- function genuine_u_modifier_morning:DeclareFunctions()
 -- 	local funcs = {

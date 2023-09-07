@@ -36,32 +36,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
     local caster = self:GetCaster()
     if IsServer() then keys.target:EmitSound("Hero_DrowRanger.Marksmanship.Target") end
 
-    if GameRules:IsDaytime() == false or GameRules:IsTemporaryNight() then
-      local mana_steal = keys.target:GetMaxMana() * self:GetSpecialValueFor("special_mana_steal") * 0.01
-      StealMana(keys.target, caster, self, mana_steal)
-    end
-
-    if self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
-      local silence = AddModifier(keys.target, self, "_modifier_silence", {
-        duration = self:GetSpecialValueFor("special_silence_duration")
-      }, true)
-
-      if silence then self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel())) end
-    end
-
-    if RandomFloat(0, 100) < self:GetSpecialValueFor("special_fear_chance")
-    and self:IsCooldownReady() and keys.target:IsMagicImmune() == false then
-      local fear = AddModifier(keys.target, self, "_modifier_fear", {
-        duration = self:GetSpecialValueFor("special_fear_duration"), special = 1
-      }, true)
-
-      if fear then self:StartCooldown(self:GetEffectiveCooldown(self:GetLevel())) end
-    end
-
-    if self:GetSpecialValueFor("special_starfall_combo") > 0 then
-      AddModifier(keys.target, self, "genuine_1_modifier_starfall_stack", {duration = 3}, false)
-    end
-
     ApplyDamage({
       victim = keys.target, attacker = caster,
       damage = self:GetSpecialValueFor("damage"),

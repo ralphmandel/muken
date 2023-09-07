@@ -52,7 +52,7 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
       iVisionTeamNumber = caster:GetTeamNumber(),
     })
 
-    local knockback = self:GetSpecialValueFor("special_bash_power")
+    local knockback = self:GetSpecialValueFor("knockback")
 
     self.projectiles[projectile] = {}
     self.projectiles[projectile].damage = self:GetSpecialValueFor("damage")
@@ -97,12 +97,6 @@ LinkLuaModifier("_modifier_percent_movespeed_debuff", "_modifiers/_modifier_perc
       ability = self, damage = damage,
       damage_type = self:GetAbilityDamageType()
     })
-
-    if IsValidEntity(target) then
-      if target:IsAlive() == false then
-        IncreaseMana(caster, self:GetSpecialValueFor("special_mana") * BaseStats(caster):GetHealPower())
-      end
-    end
   end
 
   function genuine_5__nightfall:OnProjectileThink(location)

@@ -14,9 +14,13 @@ function _modifier_fear:OnCreated(kv)
 	self.target = self.parent:GetAggroTarget()
   self.special = kv.special or 0
   if kv.x and kv.y and kv.z then self.vec = Vector(kv.x, kv.y, kv.z) end
+  local slow = kv.slow or 0
 
   AddStatusEfx(self.ability, "_modifier_fear_status_efx", self.caster, self.parent)
-  self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = 30})
+
+  if slow > 0 then
+    self.parent:AddNewModifier(self.caster, self.ability, "_modifier_percent_movespeed_debuff", {percent = slow})
+  end
 
 	if IsServer() then
     if self.special == 1 then

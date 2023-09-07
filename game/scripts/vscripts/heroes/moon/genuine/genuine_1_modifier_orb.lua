@@ -1,6 +1,6 @@
 genuine_1_modifier_orb = class ({})
 
-function genuine_1_modifier_orb:IsHidden() return false end
+function genuine_1_modifier_orb:IsHidden() return true end
 function genuine_1_modifier_orb:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
@@ -17,12 +17,9 @@ function genuine_1_modifier_orb:OnCreated(kv)
 end
 
 function genuine_1_modifier_orb:OnRefresh(kv)
-  RemoveBonus(self.ability, "LCK", self.parent)
-  AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
 end
 
 function genuine_1_modifier_orb:OnRemoved(kv)
-  RemoveBonus(self.ability, "LCK", self.parent)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -96,12 +93,10 @@ function genuine_1_modifier_orb:OnTakeDamage(keys)
 	if keys.inflictor ~= self.ability then return end
   if keys.damage_type ~= self.ability:GetAbilityDamageType() then return end
 
-	local heal = keys.original_damage * self.ability:GetSpecialValueFor("special_spell_lifesteal") * 0.01
-
-	if heal > 0 then
-		self.parent:Heal(heal, self.ability)
-		self:PlayEfxSpellLifesteal()
-	end
+	-- if heal > 0 then
+	-- 	self.parent:Heal(heal, self.ability)
+	-- 	self:PlayEfxSpellLifesteal()
+	-- end
 end
 
 function genuine_1_modifier_orb:OnAttackFail(keys)

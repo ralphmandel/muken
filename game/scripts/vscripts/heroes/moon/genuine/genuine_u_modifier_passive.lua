@@ -19,17 +19,16 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function genuine_u_modifier_passive:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
-	}
+-- function genuine_u_modifier_passive:DeclareFunctions()
+-- 	local funcs = {
+-- 		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
+-- 	}
 	
-	return funcs
-end
+-- 	return funcs
+-- end
 
-function genuine_u_modifier_passive:GetBonusNightVision()
-	return self:GetAbility():GetSpecialValueFor("night_vision")
-end
+-- function genuine_u_modifier_passive:GetBonusNightVision()
+-- end
 
 -- UTILS -----------------------------------------------------------
 

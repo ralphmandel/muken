@@ -35,18 +35,11 @@
 
 		"AbilityValues"
 		{
-      "damage"		              "70"
+      "damage"		              "60"
       "proj_speed"	            "600"
       "atk_range"		            "100"
-      "charges"		              "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			              "1 2 3 4 5 6 7 8 9 10 11"
-      "special_lck"	            "0"
-      "special_mana_steal"	    "0"
-      "special_silence_duration""0"
-      "special_fear_chance"	    "0"
-      "special_fear_duration"	  "0"
-      "special_spell_lifesteal"	"0"
-      "special_starfall_combo"  "0"
+      "charges"		              "1 2 3 4 5 6 7"
+      "rank"			              "1 2 3 4 5 6 7"
       "special_starfall_damage"	"0"
       "special_starfall_radius"	"0"
       "special_starfall_delay"	"0"
@@ -75,18 +68,11 @@
 
 		"AbilityValues"
 		{
-      "speed"		            "1000"
+      "fear_duration"       "1.75"
       "radius"		          "250"
-      "fear_duration"       "2"
-      "distance"		        "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			          "1 2 3 4 5 6 7 8 9 10 11"
-      "special_slow"        "0"
-      "special_invi_break"  "0"
-      "special_manaburn"    "0"
-      "special_purge_ally"  "0"
-      "special_wide"        "0"
-      "special_damage"      "0"
-      "special_heal"        "0"
+      "speed"		            "1200"
+      "distance"		        "1 2 3 4 5 6 7"
+      "rank"			          "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -119,8 +105,8 @@
 			"vision_radius"	      "300"
 			"projectile_radius"	  "200"
 			"projectile_speed"	  "400"
-			"projectile_distance"	"1 2 3 4 5 6 7 8 9 10 11"
-			"rank"			          "1 2 3 4 5 6 7 8 9 10 11"
+			"projectile_distance"	"1 2 3 4 5 6 7"
+			"rank"			          "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -141,9 +127,8 @@
 
     "AbilityValues"
 		{
-			"chance_night"  "40"
-			"chance_day"    "20"
-			"rank"	        "1 2 3 4 5 6 7 8 9 10 11"
+			"chance"  "1 2 3 4 5 6 7"
+			"rank"	  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -170,16 +155,14 @@
       "tree_width"			  "75"
       "vision_radius"			"600"
       "vision_duration"		"1"
-      "damage"		        "375"
+      "damage"		        "300"
+      "knockback"		      "500"
       "cast_point"		    "0.8"
       "cast_rate"		      "0.5"
       "arrow_width"			  "125"
-      "arrow_speed"			  "4000"
-      "arrow_range"			  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			        "1 2 3 4 5 6 7 8 9 10 11"
-      "special_mana"	      "0"
-      "special_bash_power"	"0"
-      "special_pure_dmg"	  "0"
+      "arrow_speed"			  "3000"
+      "arrow_range"			  "1 2 3 4 5 6 7"
+      "rank"			        "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -202,11 +185,8 @@
 		{
       "rec"		        "20"
       "agi"		        "10"
-      "ms"		        "100"
-      "night_vision"  "200"
-      "duration"		  "1 2 3 4 5 6 7 8 9 10 11"
-      "rank"			    "1 2 3 4 5 6 7 8 9 10 11"
-      "special_strike_damage"   "0"
+      "duration"		  "1 2 3 4 5 6 7"
+      "rank"			    "1 2 3 4 5 6 7"
       "special_starfall_damage"	"0"
       "special_starfall_radius"	"0"
       "special_starfall_delay"	"0"

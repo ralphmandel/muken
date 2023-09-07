@@ -11,14 +11,6 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
 
   genuine_2__fallen.spawn_origin = {}
 
-  function genuine_2__fallen:GetAbilityTargetTeam()
-    if self:GetSpecialValueFor("special_heal") > 0 or self:GetSpecialValueFor("special_purge_ally") == 1 then
-      return DOTA_UNIT_TARGET_TEAM_BOTH
-    end
-
-    return DOTA_UNIT_TARGET_TEAM_ENEMY
-  end
-
 -- SPELL START
 
 	function genuine_2__fallen:OnSpellStart()
@@ -29,9 +21,7 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
 		direction.z = 0
 		direction = direction:Normalized()
 
-    if self:GetSpecialValueFor("special_wide") == 1 then
-			projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf"
-		end
+    --projectile_name = "particles/econ/items/drow/drow_ti6_gold/drow_ti6_silence_gold_wave_wide.vpcf"
 
 		local projectile = ProjectileManager:CreateLinearProjectile({
 			Source = caster,
@@ -85,16 +75,7 @@ LinkLuaModifier("_modifier_break", "_modifiers/_modifier_break", LUA_MODIFIER_MO
     local min = 0.5 
     local fear_duration = ((self:GetSpecialValueFor("fear_duration") - min) * distance_percent) + min
 
-    if hTarget:GetTeamNumber() == caster:GetTeamNumber() then
-      local purge_ally = self:GetSpecialValueFor("special_purge_ally")
-      if purge_ally == 1 then hTarget:Purge(false, true, false, true, false) end
-
-      local heal = hTarget:GetMaxHealth() * self:GetSpecialValueFor("special_heal") * 0.01
-      if heal > 0 then hTarget:Heal(heal, self) end
-    else
-      ReduceMana(hTarget, self, self:GetSpecialValueFor("special_manaburn"), true)
-      AddModifier(hTarget, self, "genuine_2_modifier_fallen", {duration = fear_duration}, true)
-    end
+    AddModifier(hTarget, self, "genuine_2_modifier_fallen", {duration = fear_duration}, true)
 	end
 
 -- EFFECTS
