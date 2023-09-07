@@ -10,14 +10,10 @@ function icebreaker_3_modifier_skin:OnCreated(kv)
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
 
-  self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
-
 	if IsServer() then self:PlayEfxStart() end
 end
 
 function icebreaker_3_modifier_skin:OnRefresh(kv)
-  self.hp_regen = self.ability:GetSpecialValueFor("hp_regen")
-
 	if IsServer() then self:PlayEfxStart() end
 end
 
@@ -29,15 +25,10 @@ end
 
 function icebreaker_3_modifier_skin:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
 	}
 
 	return funcs
-end
-
-function icebreaker_3_modifier_skin:GetModifierConstantHealthRegen(keys)
-  return self.hp_regen
 end
 
 function icebreaker_3_modifier_skin:GetModifierPhysical_ConstantBlock(keys)
