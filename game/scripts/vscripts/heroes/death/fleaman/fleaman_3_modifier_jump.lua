@@ -75,9 +75,13 @@ function fleaman_3_modifier_jump:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
   if keys.target:IsMagicImmune() then return end
   
-  -- AddModifier(keys.target, self.ability, "_modifier_silence", {
-  --   duration = self.ability:GetSpecialValueFor("silence_duration"), special = 3
-  -- }, true)
+  AddModifier(keys.target, self.ability, "_modifier_silence", {
+    duration = self.ability:GetSpecialValueFor("debuff_duration"), special = 3
+  }, true)
+
+  AddModifier(keys.target, self.ability, "_modifier_root", {
+    duration = self.ability:GetSpecialValueFor("debuff_duration"), effect = 2
+  }, true)
 
   self:PlayEfxHit(keys.target)
 end
@@ -115,10 +119,9 @@ function fleaman_3_modifier_jump:PerformImpact(point)
 		end
 	end
 
-	CreateModifierThinker(
-		self.caster, self.ability, "fleaman_3_modifier_effect", {duration = 2, radius = self.radius},
-		GetGroundPosition(self.parent:GetOrigin(), nil), self.caster:GetTeamNumber(), false
-	)
+	CreateModifierThinker(self.caster, self.ability, "fleaman_3_modifier_effect", {
+    duration = self.ability:GetSpecialValueFor("debuff_duration"), radius = self.radius
+  }, GetGroundPosition(self.parent:GetOrigin(), nil), self.caster:GetTeamNumber(), false)
 
 	self:Destroy()
 end

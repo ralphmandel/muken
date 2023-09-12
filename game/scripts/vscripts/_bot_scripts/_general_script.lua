@@ -233,9 +233,9 @@ _general_script = class({})
   
           -- FLEAMAN STEAL
             if new_target == nil then
-              if self.parent:HasModifier("fleaman_5_modifier_passive") 
+              if self.parent:HasModifier("fleaman_u_modifier_passive") 
               and self.attack_target:HasModifier("fleaman_4_modifier_strip") == false then
-                local mod_steal = self.attack_target:FindModifierByName("fleaman_5_modifier_steal")
+                local mod_steal = self.attack_target:FindModifierByName("fleaman_u_modifier_steal")
                 if mod_steal then
                   if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
                     new_target = self.attack_target
@@ -255,7 +255,7 @@ _general_script = class({})
             for _,enemy in pairs(enemies) do
               if self.parent:CanEntityBeSeenByMyTeam(enemy) == true and new_target == nil
               and self:IsOutOfRange(enemy:GetOrigin()) == false then
-                local mod_steal = enemy:FindModifierByName("fleaman_5_modifier_steal")
+                local mod_steal = enemy:FindModifierByName("fleaman_u_modifier_steal")
                 if mod_steal then
                   if mod_steal:GetStackCount() < mod_steal:GetAbility():GetSpecialValueFor("max_stack") then
                     new_target = enemy

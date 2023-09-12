@@ -92,8 +92,7 @@ base_stats_mod = class ({})
 -- AMP
 
   function base_stats_mod:OnTakeDamage(keys)
-    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK
-    or keys.damage_flags == 1024 then
+    if keys.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or keys.damage_flags == 1024 then
       if keys.attacker == nil then return end
       if keys.attacker:IsBaseNPC() == false then return end
       if keys.attacker ~= self.parent then return end
@@ -315,6 +314,7 @@ base_stats_mod = class ({})
 
     local crit = RandomFloat(0, 100) < BaseStats(keys.attacker):GetCriticalChance()
     BaseStats(keys.attacker).force_crit_chance = nil
+    BaseStats(keys.attacker).has_crit = crit
 
     if keys.attacker:HasModifier("ancient_1_modifier_passive") then
       BaseStats(keys.attacker).missing = false

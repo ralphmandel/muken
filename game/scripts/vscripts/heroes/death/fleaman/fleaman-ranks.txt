@@ -105,50 +105,50 @@
 				"2"   "fleaman_4__strip_rank_42"
 			}
 		}
-		"fleaman_5__steal"
+		"fleaman_5__smoke"
 		{
 			"1"
 			{
-				"1"   "fleaman_5__steal_rank_11"
-				"2"   "fleaman_5__steal_rank_12"
+				"1"   "fleaman_5__smoke_rank_11"
+				"2"   "fleaman_5__smoke_rank_12"
 			}
 			"2"
 			{
-				"1"   "fleaman_5__steal_rank_21"
-				"2"   "fleaman_5__steal_rank_22"
+				"1"   "fleaman_5__smoke_rank_21"
+				"2"   "fleaman_5__smoke_rank_22"
 			}
 			"3"
 			{
-				"1"   "fleaman_5__steal_rank_31"
-				"2"   "fleaman_5__steal_rank_32"
+				"1"   "fleaman_5__smoke_rank_31"
+				"2"   "fleaman_5__smoke_rank_32"
 			}
 			"4"
 			{
-				"1"   "fleaman_5__steal_rank_41"
-				"2"   "fleaman_5__steal_rank_42"
+				"1"   "fleaman_5__smoke_rank_41"
+				"2"   "fleaman_5__smoke_rank_42"
 			}
 		}
-		"fleaman_u__smoke"
+		"fleaman_u__steal"
 		{
 			"1"
 			{
-				"1"   "fleaman_u__smoke_rank_11"
-				"2"   "fleaman_u__smoke_rank_12"
+				"1"   "fleaman_u__steal_rank_11"
+				"2"   "fleaman_u__steal_rank_12"
 			}
 			"2"
 			{
-				"1"   "fleaman_u__smoke_rank_21"
-				"2"   "fleaman_u__smoke_rank_22"
+				"1"   "fleaman_u__steal_rank_21"
+				"2"   "fleaman_u__steal_rank_22"
 			}
 			"3"
 			{
-				"1"   "fleaman_u__smoke_rank_31"
-				"2"   "fleaman_u__smoke_rank_32"
+				"1"   "fleaman_u__steal_rank_31"
+				"2"   "fleaman_u__steal_rank_32"
 			}
 			"4"
 			{
-				"1"   "fleaman_u__smoke_rank_41"
-				"2"   "fleaman_u__smoke_rank_42"
+				"1"   "fleaman_u__steal_rank_41"
+				"2"   "fleaman_u__steal_rank_42"
 			}
 		}
 	}	

@@ -19,7 +19,8 @@ function _modifier_root:OnCreated(kv)
 	if effect == 1 then
 		path = "particles/units/heroes/hero_treant/treant_bramble_root.vpcf"
 	elseif effect == 2 then
-		path = "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
+		path = "particles/econ/items/underlord/underlord_ti8_immortal_weapon/underlord_crimson_ti8_immortal_pitofmalice_stun.vpcf"
+    sound = "Hero_AbyssalUnderlord.Pit.Target"
 	elseif effect == 3 then
 		path = "particles/units/heroes/hero_treant/treant_overgrowth_vines_small.vpcf"
 	elseif effect == 4 then

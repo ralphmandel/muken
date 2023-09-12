@@ -12,9 +12,9 @@ function fleaman:TrySpell(target, state)
   if self.caster:IsCommandRestricted() then return cast end
 
   local abilities_actions = {
-    [1] = self.TryCast_Jump,
-    [2] = self.TryCast_Smoke,
-    [3] = self.TryCast_Precision
+    [1] = self.TryCast_Precision,
+    [2] = self.TryCast_Jump,
+    [3] = self.TryCast_Smoke,
   }
 
   for i = 1, #abilities_actions, 1 do
@@ -26,45 +26,6 @@ function fleaman:TrySpell(target, state)
   if cast == nil then return false end
 
   return cast
-end
-
-function fleaman:TryCast_Jump()
-  local ability = self.caster:FindAbilityByName("fleaman_3__jump")
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.state == BOT_STATE_FLEE then
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-
-  if self.state == BOT_STATE_AGGRESSIVE then
-    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
-
-    local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
-    local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
-    if angle_diff < -5 or angle_diff > 5 then return false end
-  
-    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-end
-
-function fleaman:TryCast_Smoke()
-  local ability = self.caster:FindAbilityByName("fleaman_u__smoke")
-  if IsAbilityCastable(ability) == false then return false end
-
-  if self.state == BOT_STATE_FLEE then
-    self.caster:CastAbilityOnPosition(self.caster:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
-
-  if self.state == BOT_STATE_AGGRESSIVE then
-    if self.caster:GetHealthPercent() >= 50 then return false end
-    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
-  
-    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
-    return true
-  end
 end
 
 function fleaman:TryCast_Precision()
@@ -84,7 +45,7 @@ function fleaman:TryCast_Precision()
     if ability:GetCurrentAbilityCharges() < self.random_values["precision_charges"] then return false end
 
     local dist_diff = CalcDistanceBetweenEntityOBB(self.caster, self.target)
-    if dist_diff > 1500 then return false end
+    if dist_diff > 1200 then return false end
   
     self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
     
@@ -94,6 +55,45 @@ function fleaman:TryCast_Precision()
       self.random_values["precision_charges"] = 0
     end
     
+    return true
+  end
+end
+
+function fleaman:TryCast_Jump()
+  local ability = self.caster:FindAbilityByName("fleaman_3__jump")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.state == BOT_STATE_FLEE then
+    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+    if self.target:IsStunned() or self.target:IsRooted() then return false end
+
+    local angle = VectorToAngles(self.target:GetOrigin() - self.caster:GetOrigin())
+    local angle_diff = AngleDiff(self.caster:GetAngles().y, angle.y)
+    if angle_diff < -5 or angle_diff > 5 then return false end
+  
+    self.caster:CastAbilityNoTarget(ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+end
+
+function fleaman:TryCast_Smoke()
+  local ability = self.caster:FindAbilityByName("fleaman_5__smoke")
+  if IsAbilityCastable(ability) == false then return false end
+
+  if self.state == BOT_STATE_FLEE then
+    self.caster:CastAbilityOnPosition(self.caster:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+    return true
+  end
+
+  if self.state == BOT_STATE_AGGRESSIVE then
+    if self.target:IsHero() == false and self.target:IsConsideredHero() == false then return false end
+  
+    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end

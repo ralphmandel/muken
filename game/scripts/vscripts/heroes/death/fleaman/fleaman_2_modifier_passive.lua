@@ -18,7 +18,6 @@ function fleaman_2_modifier_passive:OnRefresh(kv)
 end
 
 function fleaman_2_modifier_passive:OnRemoved()
-	RemoveBonus(self.ability, "DEX", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
 end
 
@@ -44,10 +43,7 @@ function fleaman_2_modifier_passive:OnAttackLanded(keys)
 end
 
 function fleaman_2_modifier_passive:OnStackCountChanged(old)
-  RemoveBonus(self.ability, "DEX", self.parent)
   RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_movespeed_buff", self.ability)
-
-  AddBonus(self.ability, "DEX", self.parent, self:GetStackCount() * self.ability:GetSpecialValueFor("dex"), 0, nil)
 
   if self:GetStackCount() > 0 then
     AddModifier(self.parent, self.ability, "_modifier_movespeed_buff", {

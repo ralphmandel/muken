@@ -1,24 +1,24 @@
-fleaman_u_modifier_smoke = class({})
+fleaman_5_modifier_smoke = class({})
 
-function fleaman_u_modifier_smoke:IsHidden() return true end
-function fleaman_u_modifier_smoke:IsPurgable() return false end
+function fleaman_5_modifier_smoke:IsHidden() return true end
+function fleaman_5_modifier_smoke:IsPurgable() return false end
 
 -- AURA -----------------------------------------------------------
 
-function fleaman_u_modifier_smoke:IsAura() return true end
-function fleaman_u_modifier_smoke:GetModifierAura() return "fleaman_u_modifier_aura_effect" end
-function fleaman_u_modifier_smoke:GetAuraRadius() return self.radius end
-function fleaman_u_modifier_smoke:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
-function fleaman_u_modifier_smoke:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
-function fleaman_u_modifier_smoke:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
-function fleaman_u_modifier_smoke:GetAuraEntityReject(hEntity)
+function fleaman_5_modifier_smoke:IsAura() return true end
+function fleaman_5_modifier_smoke:GetModifierAura() return "fleaman_5_modifier_aura_effect" end
+function fleaman_5_modifier_smoke:GetAuraRadius() return self.radius end
+function fleaman_5_modifier_smoke:GetAuraSearchTeam() return self:GetAbility():GetAbilityTargetTeam() end
+function fleaman_5_modifier_smoke:GetAuraSearchType() return self:GetAbility():GetAbilityTargetType() end
+function fleaman_5_modifier_smoke:GetAuraSearchFlags() return self:GetAbility():GetAbilityTargetFlags() end
+function fleaman_5_modifier_smoke:GetAuraEntityReject(hEntity)
   if hEntity:GetTeamNumber() == self:GetCaster():GetTeamNumber() and hEntity ~= self:GetCaster() then return true end
   return false
 end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function fleaman_u_modifier_smoke:OnCreated(kv)
+function fleaman_5_modifier_smoke:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
@@ -28,10 +28,10 @@ function fleaman_u_modifier_smoke:OnCreated(kv)
 	if IsServer() then self:PlayEfxStart(self.radius) end
 end
 
-function fleaman_u_modifier_smoke:OnRefresh(kv)
+function fleaman_5_modifier_smoke:OnRefresh(kv)
 end
 
-function fleaman_u_modifier_smoke:OnRemoved()
+function fleaman_5_modifier_smoke:OnRemoved()
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -40,7 +40,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function fleaman_u_modifier_smoke:PlayEfxStart()
+function fleaman_5_modifier_smoke:PlayEfxStart()
 	local string_2 = "particles/fleaman/smoke/fleaman_smoke.vpcf"
 	local particle_2 = ParticleManager:CreateParticle(string_2, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle_2, 0, self.parent:GetOrigin())

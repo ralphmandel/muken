@@ -1,11 +1,11 @@
-fleaman_u_modifier_shadow = class({})
+fleaman_5_modifier_shadow = class({})
 
-function fleaman_u_modifier_shadow:IsHidden() return true end
-function fleaman_u_modifier_shadow:IsPurgable() return false end
+function fleaman_5_modifier_shadow:IsHidden() return true end
+function fleaman_5_modifier_shadow:IsPurgable() return false end
 
 -- CONSTRUCTORS -----------------------------------------------------------
 
-function fleaman_u_modifier_shadow:OnCreated(kv)
+function fleaman_5_modifier_shadow:OnCreated(kv)
 	self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
@@ -16,34 +16,40 @@ function fleaman_u_modifier_shadow:OnCreated(kv)
 	end
 end
 
-function fleaman_u_modifier_shadow:OnRefresh(kv)
+function fleaman_5_modifier_shadow:OnRefresh(kv)
 end
 
-function fleaman_u_modifier_shadow:OnRemoved()
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_invisible", self.ability)
+function fleaman_5_modifier_shadow:OnRemoved()
   if IsServer() then self.parent:StopSound("Fleaman.Shadow.Start") end
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function fleaman_u_modifier_shadow:DeclareFunctions()
+function fleaman_5_modifier_shadow:CheckState()
+	local state = {
+    [MODIFIER_STATE_NO_HEALTH_BAR_FOR_ENEMIES] = true
+	}
+
+	return state
+end
+
+function fleaman_5_modifier_shadow:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+    -- MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 	}
 
 	return funcs
 end
 
-function fleaman_u_modifier_shadow:GetModifierConstantHealthRegen()
-	return self:GetAbility():GetSpecialValueFor("hp_regen")
-end
+-- function fleaman_5_modifier_shadow:GetModifierConstantHealthRegen()
+-- end
 
-function fleaman_u_modifier_shadow:GetActivityTranslationModifiers()
+function fleaman_5_modifier_shadow:GetActivityTranslationModifiers()
 	return "shadow_dance"
 end
 
-function fleaman_u_modifier_shadow:OnIntervalThink()
+function fleaman_5_modifier_shadow:OnIntervalThink()
 	if self.effect_cast then ParticleManager:SetParticleControl(self.effect_cast, 1, self.parent:GetOrigin()) end
 	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
@@ -52,7 +58,7 @@ end
 
 -- EFFECTS -----------------------------------------------------------
 
-function fleaman_u_modifier_shadow:PlayEfxStart()
+function fleaman_5_modifier_shadow:PlayEfxStart()
 	local particle_cast = "particles/units/heroes/hero_slark/slark_shadow_dance.vpcf"
 	local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)
   ParticleManager:SetParticleControlEnt(effect_cast, 1, self.parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(0,0,0), true)

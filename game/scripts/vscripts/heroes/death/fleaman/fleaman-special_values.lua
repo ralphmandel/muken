@@ -98,6 +98,8 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 	if ability:GetAbilityName() == "fleaman_3__jump" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "distance" then return 1 end
 
@@ -130,7 +132,7 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
 		if value_name == "rank" then return 1 end
-    if value_name == "duration" then return 1 end
+    if value_name == "chance" then return 1 end
 
 		if caster:FindAbilityByName("fleaman_4__strip_rank_11") then
 		end
@@ -157,66 +159,66 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 	end
 
-	if ability:GetAbilityName() == "fleaman_5__steal" then
-		if value_name == "AbilityManaCost" then return 1 end
-		if value_name == "AbilityCooldown" then return 1 end
-		if value_name == "rank" then return 1 end
-    if value_name == "stack_duration" then return 1 end
-
-		if caster:FindAbilityByName("fleaman_5__steal_rank_11") then
-		end
-
-    if caster:FindAbilityByName("fleaman_5__steal_rank_12") then
-		end
-
-		if caster:FindAbilityByName("fleaman_5__steal_rank_21") then
-		end
-
-    if caster:FindAbilityByName("fleaman_5__steal_rank_22") then
-		end
-
-		if caster:FindAbilityByName("fleaman_5__steal_rank_31") then
-		end
-
-    if caster:FindAbilityByName("fleaman_5__steal_rank_32") then
-		end
-
-		if caster:FindAbilityByName("fleaman_5__steal_rank_41") then
-		end
-
-    if caster:FindAbilityByName("fleaman_5__steal_rank_42") then
-		end
-	end
-
-	if ability:GetAbilityName() == "fleaman_u__smoke" then
+	if ability:GetAbilityName() == "fleaman_5__smoke" then
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "radius" then return 1 end
 
-		if caster:FindAbilityByName("fleaman_u__smoke_rank_11") then
+		if caster:FindAbilityByName("fleaman_5__smoke_rank_11") then
 		end
 
-    if caster:FindAbilityByName("fleaman_u__smoke_rank_12") then
+    if caster:FindAbilityByName("fleaman_5__smoke_rank_12") then
 		end
 
-		if caster:FindAbilityByName("fleaman_u__smoke_rank_21") then
+		if caster:FindAbilityByName("fleaman_5__smoke_rank_21") then
 		end
 
-    if caster:FindAbilityByName("fleaman_u__smoke_rank_22") then
+    if caster:FindAbilityByName("fleaman_5__smoke_rank_22") then
 		end
 
-		if caster:FindAbilityByName("fleaman_u__smoke_rank_31") then
+		if caster:FindAbilityByName("fleaman_5__smoke_rank_31") then
 		end
 
-    if caster:FindAbilityByName("fleaman_u__smoke_rank_32") then
+    if caster:FindAbilityByName("fleaman_5__smoke_rank_32") then
 		end
 
-		if caster:FindAbilityByName("fleaman_u__smoke_rank_41") then
+		if caster:FindAbilityByName("fleaman_5__smoke_rank_41") then
 		end
 
-    if caster:FindAbilityByName("fleaman_u__smoke_rank_42") then
+    if caster:FindAbilityByName("fleaman_5__smoke_rank_42") then
+		end
+	end
+
+	if ability:GetAbilityName() == "fleaman_u__steal" then
+		if value_name == "AbilityManaCost" then return 1 end
+		if value_name == "AbilityCooldown" then return 1 end
+		if value_name == "rank" then return 1 end
+    if value_name == "stack_duration" then return 1 end
+
+		if caster:FindAbilityByName("fleaman_u__steal_rank_11") then
+		end
+
+    if caster:FindAbilityByName("fleaman_u__steal_rank_12") then
+		end
+
+		if caster:FindAbilityByName("fleaman_u__steal_rank_21") then
+		end
+
+    if caster:FindAbilityByName("fleaman_u__steal_rank_22") then
+		end
+
+		if caster:FindAbilityByName("fleaman_u__steal_rank_31") then
+		end
+
+    if caster:FindAbilityByName("fleaman_u__steal_rank_32") then
+		end
+
+		if caster:FindAbilityByName("fleaman_u__steal_rank_41") then
+		end
+
+    if caster:FindAbilityByName("fleaman_u__steal_rank_42") then
 		end
 	end
 
@@ -232,24 +234,26 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "fleaman_1__precision" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
     if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCharges" then return 3 end
-    if value_name == "AbilityChargeRestoreTime" then return 20 end
+    if value_name == "AbilityChargeRestoreTime" then return 15 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "duration" then return 15 + (value_level * 0.5) end
+		if value_name == "duration" then return 12 + (value_level * 0.5) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_2__speed" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "stack_duration" then return 4.5 + (value_level * 0.25) end
+		if value_name == "stack_duration" then return 6 + (value_level * 0.25) end
 	end
 
 	if ability:GetAbilityName() == "fleaman_3__jump" then
-		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 12 end
+		if value_name == "AbilityManaCost" then return 150 * (1 + ((ability_level - 1) * 0.05)) end
+    if value_name == "AbilityCooldown" then return 0 end
+    if value_name == "AbilityCharges" then return 2 end
+    if value_name == "AbilityChargeRestoreTime" then return 12 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
     if value_name == "distance" then return 600 + (value_level * 25) end
 	end
@@ -258,22 +262,22 @@ function fleaman_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "duration" then return 6 + (value_level * 0.25) end
+    if value_name == "chance" then return 7.5 + (value_level * 0.25) end
 	end
 
-	if ability:GetAbilityName() == "fleaman_5__steal" then
+	if ability:GetAbilityName() == "fleaman_5__smoke" then
+		if value_name == "AbilityManaCost" then return 325 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 30 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
+		if value_name == "rank" then return 9 + (value_level * 1) end
+		if value_name == "radius" then return 500 + (value_level * 25) end
+	end
+
+	if ability:GetAbilityName() == "fleaman_u__steal" then
 		if value_name == "AbilityManaCost" then return 0 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 0 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "stack_duration" then return 10 + (value_level * 1) end
-	end
-
-	if ability:GetAbilityName() == "fleaman_u__smoke" then
-		if value_name == "AbilityManaCost" then return 675 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 75 end
-    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
-		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "radius" then return 550 + (value_level * 25) end
+    if value_name == "stack_duration" then return 30 + math.floor(value_level * 2.5) end
 	end
 
 	return 0
