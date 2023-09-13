@@ -1,0 +1,37 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/game_setup_points.css"/>
+  </styles>
+  <scripts>
+  </scripts>
+    <Panel class="root" hittest="false">
+        <Panel id="PointsContainer" hittest="false">
+            <Label style="font-size: 30px; horizontal-align: center; text-transform: uppercase;letter-spacing: 2px;font-weight: bold; color: #d3d3d3;  margin: 15px 0px 20px 0px;" text="POINTS TO WIN:" />
+            <Panel class="bottom-button-container" id="radioContainer" hittest="false">
+        
+                    <RadioButton class="bottom-radio-button">
+                        <Image src="file://{resources}/images/custom_game/points_death.png" class="img_selected"/>
+                        <Label text="25 POINTS"/>
+                        <Image src="file://{resources}/images/custom_game/points_death.png" class="img_selected"/>
+                    </RadioButton>
+                    <RadioButton class="bottom-radio-button" id="defaultValue">
+                        <Image src="file://{resources}/images/custom_game/points_moon.png" class="img_selected"/>
+                        <Label text="50 POINTS"/>
+                        <Image src="file://{resources}/images/custom_game/points_moon.png" class="img_selected"/>
+                    </RadioButton>
+                    <RadioButton class="bottom-radio-button">
+                        <Image src="file://{resources}/images/custom_game/points_nature.png" class="img_selected"/>
+                        <Label text="75 POINTS"/>
+                        <Image src="file://{resources}/images/custom_game/points_nature.png" class="img_selected"/>
+                    </RadioButton>
+                    <RadioButton class="bottom-radio-button">
+                        <Image src="file://{resources}/images/custom_game/points_sun.png" class="img_selected"/>
+                        <Label text="100 POINTS"/>
+                        <Image src="file://{resources}/images/custom_game/points_sun.png" class="img_selected"/>
+                    </RadioButton>
+   
+            </Panel>
+	    </Panel>
+
+    </Panel>
+</root>

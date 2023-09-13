@@ -1,10 +1,10 @@
 <root>
 	<styles>
 		<include src="file://{resources}/styles/custom_game/dotastyles.css" />
-		<include src="file://{resources}/styles/custom_game/overthrow_scoreboard.css" />
+		<include src="file://{resources}/styles/custom_game/points_notification.css" />
 	</styles>
 	<scripts>
-		<include src="file://{resources}/scripts/custom_game/muken_goal.js" />
+		<include src="file://{resources}/scripts/custom_game/points_notification.js" />
 	</scripts>
 	<Panel class="ScoreboardLeft">
 		<Panel class="VictoryPanel">

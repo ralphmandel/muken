@@ -16,13 +16,14 @@
 	background-position: 50% 50%;
 	background-size: 100% 100%;
 	pre-transform-scale2d: 1.0, 1.0;
+	z-index: 2;
 }
 
 .SeqBg
 {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
-	background-size: 100% 100%;
+	background-size: cover;
 
 }
 
@@ -35,26 +36,11 @@
 
 #seq_muken
 {
-	animation-name: seq_muken_anim;
-	animation-duration: TotalLength;
-	animation-timing-function: TimingFunc;
-	animation-iteration-count: IterationCount;
+
     margin-left: 0px;
 
 }
 
-@keyframes 'seq_muken_anim'
-{
-	0%
-	{	
-		pre-transform-scale2d: 1;
-	}
-
-	100%
-	{
-		pre-transform-scale2d: 1.2;
-	}
-}
 
 #seq_created
 {
@@ -70,7 +56,7 @@
 {
 	0%
 	{
-		transform: translateX( -250px ) translateY( -30px );
+		transform: translateX( -150px ) translateY( -30px );
 	}
 
 	100%

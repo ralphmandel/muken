@@ -40,6 +40,12 @@ function GameMode:OnGameRulesStateChange(keys)
       LoadBots()
     end
   end
+
+  if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+    Timers:CreateTimer(0.5, function()
+      CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "game_points", {})
+    end)
+  end
 end
 
 -- An NPC has spawned somewhere in game.  This includes heroes

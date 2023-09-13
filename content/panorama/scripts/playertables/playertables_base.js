@@ -236,26 +236,75 @@ function DeleteTableKeys(msg)
   GameEvents.Subscribe( "pt_uk", UpdateTable);
   GameEvents.Subscribe( "pt_kd", DeleteTableKeys);
   GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
+  GameEvents.Subscribe("game_points", CreatePointsPanel);
   //GameEvents.Subscribe("dota_player_hero_selection_dirty", OnUpdateHeroSelection1);
+
 })()
 
-function OnTeamNameUpdate() {
-  var TeamName = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("GridCategories");
-  for(var i = 0; i <= TeamName.GetChildCount() - 1; i++) {
-    var CategoryName = TeamName.GetChild(i).FindChildTraverse("HeroCategoryName");
-    if (CategoryName.text == "STRENGTH") {
-      CategoryName.text = "DEATH";
-    }
-     if (CategoryName.text == "AGILITY") {
-      CategoryName.text = "NATURE";
-    }
-     if (CategoryName.text == "INTELLIGENCE") {
-      CategoryName.text = "MOON";
-    }
-     if (CategoryName.text == "UNIVERSAL") {
-      CategoryName.text = "SUN";
-    }
+function CreatePointsPanel(){
+  var TeamSelect = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("TeamSelectContainer").FindChildTraverse("TeamsList");
+  TeamSelect.style.paddingTop = "100px";
+  var TeamSelectPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("CustomUIRoot").FindChildTraverse("CustomUIContainer");
+
+  if ( TeamSelectPanel.FindChildrenWithClassTraverse("player_has_host_privileges") ) {
+
+    if (SelectPoints != null) SelectPoints.DeleteAsync(0);
+    var SelectPoints = $.CreatePanel( "Panel", TeamSelect, "" );
+
+    SelectPoints.BLoadLayout( "file://{resources}/layout/custom_game/game_setup_points.xml", false, false );
+  
+
+    
+    
   }
+  //RadioButton.GetSelectedButton()
+  var defaultCheck = TeamSelect.FindChildTraverse("PointsContainer").FindChildTraverse("defaultValue");
+  defaultCheck.checked = true;
+  $.Msg("99 checkado?",defaultCheck);
+  //$.Msg('3NARNIA', TeamSelect.FindChildTraverse("PointsContainer").FindChildrenWithClassTraverse("bottom-radio-button"));
+
+}
+
+function CreateRunePanel(){
+  var HealthContainer = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("health_mana").FindChildTraverse("HealthManaContainer");
+  var RuneContainer = $.CreatePanel( "Panel", HealthContainer, "" );
+  RuneContainer.BLoadLayout( "file://{resources}/layout/custom_game/panel_runemaster.xml", false, false );
+  
+  
+}
+
+function OnTeamNameUpdate() {
+  // var TeamName = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("GridCategories");
+  // for(var i = 0; i <= TeamName.GetChildCount() - 1; i++) {
+  //   var CategoryName = TeamName.GetChild(i).FindChildTraverse("HeroCategoryName");
+  //   if (CategoryName.text == "STRENGTH") {
+  //     CategoryName.text = "DEATH";
+  //   }
+  //    if (CategoryName.text == "AGILITY") {
+  //     CategoryName.text = "NATURE";
+  //   }
+  //    if (CategoryName.text == "INTELLIGENCE") {
+  //     CategoryName.text = "MOON";
+  //   }
+  //    if (CategoryName.text == "UNIVERSAL") {
+  //     CategoryName.text = "SUN";
+  //   }
+  // }
+  var TeamSelect = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("TeamSelectContainer").FindChildTraverse("TeamsList");
+  $.Msg('DOTA 2 WARCRAFT', TeamSelect.FindChildTraverse("PointsContainer").FindChildrenWithClassTraverse("bottom-radio-button"));
+  var PanelChecked = TeamSelect.FindChildTraverse("PointsContainer").FindChildTraverse("radioContainer");
+  for(var i = 0; i <= PanelChecked.GetChildCount() - 1; i++) {
+    var points_value = 0
+    var radio_checked = PanelChecked.GetChild(i);
+    if (radio_checked.checked == true){
+
+        if (i == 0) {points_value = 25} else if (i == 1) {points_value = 50}else if (i == 2) {points_value = 75} else if (i == 3) {points_value = 100};
+      GameEvents.SendCustomGameEventToServer("game_points", {match_points: points_value});
+      break
+    }
+    
+  }
+
   var PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("HeroPickScreenContents").FindChildTraverse("GridCategories");
   PortraitSize.style.flowChildren = "down";
   var PanelSize = PortraitSize = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame").FindChildTraverse("MainContents").FindChildTraverse("HeroPickScreen").FindChildTraverse("MainHeroPickScreenContents");
@@ -299,6 +348,9 @@ function OnTeamNameUpdate() {
     });
   };
  
+
+
+
 }
 
 //function OnUpdateHeroSelection1() {

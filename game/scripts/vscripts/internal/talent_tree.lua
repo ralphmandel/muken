@@ -21,6 +21,12 @@ function TalentTree:InitPanaromaEvents()
   CustomGameEventManager:RegisterListener("role_bar_update", Dynamic_Wrap(TalentTree, 'OnRoleBarRequest'))
   CustomGameEventManager:RegisterListener("scoreboard_update", Dynamic_Wrap(TalentTree, 'OnScoreRequest'))
   CustomGameEventManager:RegisterListener("portrait_unit_update", Dynamic_Wrap(TalentTree, 'OnPortraitUpdate'))
+  CustomGameEventManager:RegisterListener("game_points", Dynamic_Wrap(TalentTree, 'GamePointsUpdate'))
+  
+end
+
+function TalentTree:GamePointsUpdate(params)
+  SCORE_LIMIT = params.match_points
 end
 
 function TalentTree:OnRoleBarRequest(event)
