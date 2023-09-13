@@ -138,33 +138,9 @@ function templar:TryCast_Circle()
   end
 
   if self.state == BOT_STATE_AGGRESSIVE then
-    local target = nil
-    local number = 1
-    local distance = ability:GetCastRange(self.caster:GetOrigin(), nil)
+    if self.target:HasModifier("templar_3_modifier_aura_effect") then return false end
 
-    for _, main_hero in pairs(HeroList:GetAllHeroes()) do
-      local current_number = 0
-      local has_enemy = false
-
-      if CalcDistanceBetweenEntityOBB(self.caster, main_hero) < distance
-      and main_hero:IsAlive() and self.caster ~= main_hero then
-        for _, sub_hero in pairs(HeroList:GetAllHeroes()) do
-          if sub_hero:IsAlive() and CalcDistanceBetweenEntityOBB(main_hero, sub_hero) < ability:GetAOERadius() then
-            if self.caster:GetTeamNumber() ~= sub_hero:GetTeamNumber() then has_enemy = true end
-            current_number = current_number + 1
-          end
-        end
-      end
-
-      if has_enemy == true and current_number > number then
-        number = current_number
-        target = main_hero
-      end
-    end
-
-    if target == nil then return false end
-
-    self.caster:CastAbilityOnPosition(target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
+    self.caster:CastAbilityOnPosition(self.target:GetOrigin(), ability, self.caster:GetPlayerOwnerID())
     return true
   end
 end
