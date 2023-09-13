@@ -39,14 +39,15 @@ function spike_armor_modifier:OnTakeDamage(keys)
 	if keys.attacker:IsBaseNPC() == false then return end
 	local return_percent = self.ability:GetSpecialValueFor("return_percent") * 0.01
 
-	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
+	if keys.damage_flags ~= 31 then
 		local damageTable = {
 			damage = keys.damage * return_percent,
 			damage_type = keys.damage_type,
 			attacker = self.caster,
 			victim = keys.attacker,
 			ability = self.ability,
-			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+			damage_flags = DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR
+      + DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_REFLECTION
 		}
 
 		if IsServer() then keys.attacker:EmitSound("DOTA_Item.BladeMail.Damage") end

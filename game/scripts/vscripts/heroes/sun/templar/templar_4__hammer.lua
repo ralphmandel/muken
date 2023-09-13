@@ -24,7 +24,7 @@ templar_4__hammer.hits = {}
 
     if self.hits[handle] > 0 then
       local enemies = FindUnitsInRadius(
-        caster:GetTeamNumber(), location, nil, self:GetCastRange(location, nil),
+        caster:GetTeamNumber(), location, nil, self:GetSpecialValueFor("bounce_range"),
         self:GetAbilityTargetTeam(), self:GetAbilityTargetType(),
         self:GetAbilityTargetFlags(), FIND_CLOSEST, false
       )
@@ -44,7 +44,7 @@ templar_4__hammer.hits = {}
 
     ApplyDamage({
       victim = target, attacker = caster,
-      damage = caster:GetPhysicalArmorValue(false) * self:GetSpecialValueFor("armor_mult"),
+      damage = self:GetSpecialValueFor("damage"),
       damage_type = self:GetAbilityDamageType(),
       ability = self
     })

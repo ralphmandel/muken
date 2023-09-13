@@ -1,7 +1,8 @@
 templar_3__circle = class({})
 LinkLuaModifier("templar_3_modifier_circle", "heroes/sun/templar/templar_3_modifier_circle", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("templar_3_modifier_aura_effect", "heroes/sun/templar/templar_3_modifier_aura_effect", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("_modifier_heal_decay", "_modifiers/_modifier_heal_decay", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("templar_3_modifier_combo", "heroes/sun/templar/templar_3_modifier_combo", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("_modifier_stun", "_modifiers/_modifier_stun", LUA_MODIFIER_MOTION_NONE)
 
 -- INIT
 

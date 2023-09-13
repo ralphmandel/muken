@@ -107,7 +107,6 @@
 		"MaxLevel"               		"1"
 		"RequiredLevel"         	 	"0"
 		"LevelsBetweenUpgrades"  		"25"
-    "ActiveSpell"               "1"
 
 		"AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"

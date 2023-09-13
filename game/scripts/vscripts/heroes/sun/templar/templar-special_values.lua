@@ -70,7 +70,7 @@ function templar_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
 		if value_name == "rank" then return 1 end
-		if value_name == "cast_range" then return 1 end
+		if value_name == "duration" then return 1 end
 
 		if caster:FindAbilityByName("templar_2__barrier_rank_11") then
 		end
@@ -101,6 +101,8 @@ function templar_special_values:GetModifierOverrideAbilitySpecial(keys)
 		if value_name == "AbilityManaCost" then return 1 end
 		if value_name == "AbilityCooldown" then return 1 end
     if value_name == "AbilityCastRange" then return 1 end
+    if value_name == "AbilityCharges" then return 1 end
+    if value_name == "AbilityChargeRestoreTime" then return 1 end
 		if value_name == "rank" then return 1 end
 		if value_name == "radius" then return 1 end
 
@@ -243,42 +245,45 @@ function templar_special_values:GetModifierOverrideAbilitySpecialValue(keys)
 	end
 
 	if ability:GetAbilityName() == "templar_2__barrier" then
-		if value_name == "AbilityManaCost" then return 160 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 14 end
+		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 18 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
-		if value_name == "cast_range" then return 450 + (value_level * 50) end
+		if value_name == "duration" then return 4 + (value_level * 0.1) end
 	end
 
 	if ability:GetAbilityName() == "templar_3__circle" then
-		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 24 end
+		if value_name == "AbilityManaCost" then return 300 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 0 end
     if value_name == "AbilityCastRange" then return 600 end
+    if value_name == "AbilityCharges" then return 2 end
+    if value_name == "AbilityChargeRestoreTime" then return 30 end
+
     if value_name == "rank" then return 6 + (value_level * 1) end
-    if value_name == "radius" then return 500 + (value_level * 25) end
+    if value_name == "radius" then return 600 + (value_level * 25) end
 	end
 
 	if ability:GetAbilityName() == "templar_4__hammer" then
-		if value_name == "AbilityManaCost" then return 200 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 18 end
-    if value_name == "AbilityCastRange" then return 750 end
+		if value_name == "AbilityManaCost" then return 175 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 15 end
+    if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("cast_range") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "slow_start" then return 70 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "templar_5__reborn" then
-		if value_name == "AbilityManaCost" then return 725 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 75 end
+		if value_name == "AbilityManaCost" then return 750 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 60 end
 		if value_name == "AbilityCastRange" then return 300 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "percent" then return 50 + (value_level * 5) end
 	end
 
 	if ability:GetAbilityName() == "templar_u__praise" then
-		if value_name == "AbilityManaCost" then return 775 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 90 end
+		if value_name == "AbilityManaCost" then return 950 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 120 end
 		if value_name == "rank" then return 9 + (value_level * 1) end
-		if value_name == "duration" then return 8 + (value_level * 0.25) end
+		if value_name == "duration" then return 8.5 + (value_level * 0.25) end
 	end
 
 	return 0

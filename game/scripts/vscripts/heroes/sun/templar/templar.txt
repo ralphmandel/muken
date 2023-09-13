@@ -38,11 +38,12 @@
 
     "AbilityValues"
 		{
-			"def_base"  "3"
-			"def_bonus" "1"
-			"heal_amp"  "20"
-			"radius"    "1 2 3 4 5 6 7"
-			"rank"      "1 2 3 4 5 6 7"
+			"def_base"      "2"
+			"def_bonus"     "2"
+			"return_damage" "25"
+			"holy_damage"   "10"
+			"radius"        "1 2 3 4 5 6 7"
+			"rank"          "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -67,8 +68,8 @@
 
     "AbilityValues"
 		{
-			"duration"		"4"
-			"cast_range"  "1 2 3 4 5 6 7"
+			"cast_range"  "500"
+			"duration"    "1 2 3 4 5 6 7"
 			"rank"			  "1 2 3 4 5 6 7"
 		}
 	}
@@ -84,22 +85,23 @@
     "LevelsBetweenUpgrades"  		"25"
     "ActiveSpell"               "1"
 
-    "AbilityUnitDamageType"  		"DAMAGE_TYPE_MAGICAL"
+    "AbilityUnitDamageType"  		"DAMAGE_TYPE_PURE"
 		"AbilityBehavior"        		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType" 	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	 	"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		"AbilityCastAnimation"   		"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"       		"0.5"
 
     "AbilityValues"
 		{
-      "duration"    "12"
-      "heal_decay"  "100"
-      "hp_regen"    "-100"
-      "radius"      "1 2 3 4 5 6 7"
-			"rank"		    "1 2 3 4 5 6 7"
+      "duration"  "20"
+      "chance"    "7"
+      "hits"      "7"
+      "damage"    "7"
+      "radius"    "1 2 3 4 5 6 7"
+			"rank"		  "1 2 3 4 5 6 7"
 		}
 	}
 
@@ -126,10 +128,11 @@
     "AbilityValues"
 		{
       "proj_speed"  "1500"
+      "cast_range"  "750"
+      "bounce_range""500"
       "hits"        "2"
-      "armor_mult"  "10"
-      "interval"    "0.8"
-      "agi_start"   "-10"
+      "interval"    "1"
+      "damage"      "100"
       "slow_start"  "1 2 3 4 5 6 7"      
 			"rank"			  "1 2 3 4 5 6 7"
 		}
@@ -156,9 +159,6 @@
 
     "AbilityValues"
 		{
-      "str"             "15"
-      "int"             "15"
-      "stats_duration"  "25"
 			"percent"         "1 2 3 4 5 6 7"
 			"rank"            "1 2 3 4 5 6 7"
 		}
@@ -181,7 +181,7 @@
 
     "AbilityValues"
 		{
-			"interval_base"       "1"
+			"interval_base"       "0.9"
 			"interval_reduction"  "0.7"
 			"hp_cap"              "90"
 			"heal"                "60"

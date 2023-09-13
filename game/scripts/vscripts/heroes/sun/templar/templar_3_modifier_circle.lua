@@ -38,11 +38,11 @@ end
 
 function templar_3_modifier_circle:PlayEfxStart()
 	local particle_cast = "particles/templar/circle/templar_circle_pit.vpcf"
-	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN, self.parent)
+	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 1, 1))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self:GetDuration(), 0, 0))
-	--self:AddParticle(self.effect_cast, false, false, -1, true, false)
+	self:AddParticle(self.effect_cast, false, false, -1, true, false)
 
   if IsServer() then
     self.parent:EmitSound("Hero_AbyssalUnderlord.PitOfMalice.Start")

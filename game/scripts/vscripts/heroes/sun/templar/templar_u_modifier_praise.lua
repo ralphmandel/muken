@@ -43,9 +43,12 @@ function templar_u_modifier_praise:OnIntervalThink()
   end
 
   if index > 0 then
-    interval = self.ability:GetSpecialValueFor("interval_base")
     local random_ally = allies[RandomInt(1, #allies)]
+    random_ally:Purge(false, true, false, true, false)
     random_ally:Heal(CalcHeal(self.caster, self.ability:GetSpecialValueFor("heal")), self.ability)
+
+    interval = self.ability:GetSpecialValueFor("interval_base")
+
     if IsServer() then self:StartEfxBeam(random_ally) end
   end
 

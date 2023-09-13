@@ -33,10 +33,17 @@ end
 
 function templar_1_modifier_aura:DeclareFunctions()
 	local funcs = {
+    MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
     MODIFIER_EVENT_ON_STATE_CHANGED
 	}
 
 	return funcs
+end
+
+function templar_1_modifier_aura:GetModifierTotalDamageOutgoing_Percentage(keys)
+  if keys.damage_type ~= DAMAGE_TYPE_PURE then return 0 end
+
+  return self.parent:GetPhysicalArmorValue(false) * self.ability:GetSpecialValueFor("holy_damage")
 end
 
 function templar_1_modifier_aura:OnStateChanged(keys)

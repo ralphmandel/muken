@@ -52,18 +52,6 @@ function template_x_modifier_example:GetAbsorbSpell(keys)
 end
 
 function template_x_modifier_example:GetModifierIncomingDamage_Percentage(keys)
-	local percent = self.ability:GetSpecialValueFor("percent")
-	self:PlayEfxHit()
-
-	local total = ApplyDamage({
-		damage = keys.original_damage * percent * 0.01,
-		attacker = keys.attacker,
-		victim = self.caster,
-		damage_type = keys.damage_type,
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
-		ability = keys.inflictor
-	})
-	return -percent
 end
 
 -- UTILS -----------------------------------------------------------

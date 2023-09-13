@@ -11,14 +11,14 @@ function templar_1_modifier_aura_effect:OnCreated(kv)
   self.ability = self:GetAbility()
   self.day_time = self.ability:GetCurrentAbilityCharges() == CYCLE_DAY
 
-  if self.day_time == true then
-    AddModifier(self.parent, self.ability, "_modifier_heal_amp", {
-      amount = self.ability:GetSpecialValueFor("heal_amp")
-    }, false)
-  end
+  -- if self.day_time == true then
+  --   AddModifier(self.parent, self.ability, "_modifier_heal_amp", {
+  --     amount = self.ability:GetSpecialValueFor("heal_amp")
+  --   }, false)
+  -- end
 
   if IsServer() then
-    self:StartIntervalThink(0.1)
+    -- self:StartIntervalThink(0.1)
     self:SetStackCount(0)
     self.ability:UpdateCount()
     self.parent:EmitSound("Hero_Pangolier.TailThump.Cast")
@@ -37,6 +37,24 @@ function templar_1_modifier_aura_effect:OnRemoved(kv)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
+
+function templar_1_modifier_aura_effect:OnTakeDamage(keys)
+	if keys.unit ~= self.parent then return end
+	if keys.attacker == nil then return end
+	if keys.attacker:IsBaseNPC() == false then return end
+
+	local return_damage = keys.damage * self.ability:GetSpecialValueFor("return_damage") * 0.01
+
+	if keys.damage_flags ~= 31 then
+		if IsServer() then keys.attacker:EmitSound("DOTA_Item.BladeMail.Damage") end
+    
+		ApplyDamage({
+			damage = return_damage, damage_type = keys.damage_type,
+			attacker = self.caster, victim = keys.attacker, ability = self.ability,
+			damage_flags = 31 --DOTA_DAMAGE_FLAG_REFLECTION
+		})
+	end
+end
 
 function templar_1_modifier_aura_effect:OnStackCountChanged(old)
 	RemoveBonus(self.ability, "DEF", self.parent)
@@ -66,7 +84,7 @@ end
 -- UTILS -----------------------------------------------------------
 
 function templar_1_modifier_aura_effect:GetAuraDefense()
-  return self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * (self:GetStackCount() - 1))
+  return self.ability:GetSpecialValueFor("def_base") + (self.ability:GetSpecialValueFor("def_bonus") * self:GetStackCount())
 end
 
 -- EFFECTS -----------------------------------------------------------

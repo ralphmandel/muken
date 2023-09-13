@@ -21,6 +21,14 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
+function templar_2_modifier_barrier:CheckState()
+	local state = {
+		[MODIFIER_STATE_MAGIC_IMMUNE] = true
+	}
+
+	return state
+end
+
 function templar_2_modifier_barrier:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,

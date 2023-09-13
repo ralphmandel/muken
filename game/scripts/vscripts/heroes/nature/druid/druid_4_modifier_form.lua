@@ -88,25 +88,6 @@ function druid_4_modifier_form:GetModifierModelChange()
 end
 
 function druid_4_modifier_form:OnTakeDamage(keys)
-	if keys.unit ~= self.parent then return end
-	if keys.attacker == nil then return end
-	if keys.attacker:IsBaseNPC() == false then return end
-  local damage_return = self.ability:GetSpecialValueFor("special_damage_return")
-  if damage_return <= 0 then return end
-
-	if keys.damage_flags ~= DOTA_DAMAGE_FLAG_REFLECTION then
-		local damageTable = {
-			damage = keys.damage * damage_return * 0.01,
-			damage_type = keys.damage_type,
-			attacker = self.caster,
-			victim = keys.attacker,
-			ability = self.ability,
-			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
-		}
-
-		if IsServer() then keys.attacker:EmitSound("DOTA_Item.BladeMail.Damage") end
-		ApplyDamage(damageTable)
-	end
 end
 
 

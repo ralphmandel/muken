@@ -231,7 +231,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	if ability_level < 1 then ability_level = 1 end
 
 	if ability:GetAbilityName() == "bloodstained_1__rage" then
-		if value_name == "AbilityManaCost" then return 320 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 275 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return ability:GetSpecialValueFor("cooldown") end
 		if value_name == "rank" then return 6 + (value_level * 1) end
 		if value_name == "cooldown" then return 16 - (value_level * 1) end
@@ -245,7 +245,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_3__curse" then
-		if value_name == "AbilityManaCost" then return 500 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityManaCost" then return 450 * (1 + ((ability_level - 1) * 0.05)) end
 		if value_name == "AbilityCooldown" then return 30 end
     if value_name == "AbilityCastRange" then return 350 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -253,12 +253,7 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__tear" then
-		if value_name == "AbilityManaCost" then
-      if ability:GetCurrentAbilityCharges() == 1 then
-        return 600 * (1 + ((ability_level - 1) * 0.05))
-      end
-      return 0
-    end
+		if value_name == "AbilityManaCost" then return 0 end
     
 		if value_name == "AbilityCooldown" then return 40 end
 		if value_name == "rank" then return 6 + (value_level * 1) end
@@ -273,8 +268,8 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecialValue(keys
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
-		if value_name == "AbilityManaCost" then return 950 * (1 + ((ability_level - 1) * 0.05)) end
-		if value_name == "AbilityCooldown" then return 120 end
+		if value_name == "AbilityManaCost" then return 850 * (1 + ((ability_level - 1) * 0.05)) end
+		if value_name == "AbilityCooldown" then return 100 end
     if value_name == "AbilityCastRange" then return ability:GetSpecialValueFor("radius") - 50 end
 
 		if value_name == "rank" then return 9 + (value_level * 1) end
