@@ -339,16 +339,16 @@ function OnTeamNameUpdate() {
  
   var HeroCategoryName_death = PortraitSize_alternate.GetChild(0);
   HeroCategoryName_death.style.height = "130px";
-  HeroCategoryName_death.style.margin = "138px 0px 0px 25px";
+  HeroCategoryName_death.style.margin = "75px 0px 0px 20px";
   var HeroCategoryName_nature = PortraitSize_alternate.GetChild(1);
   HeroCategoryName_nature.style.height = "130px";
-  HeroCategoryName_nature.style.margin = "55px 0px 0px 25px";
+  HeroCategoryName_nature.style.margin = "38px 0px 0px 20px";
   var HeroCategoryName_moon = PortraitSize_alternate.GetChild(2);
   HeroCategoryName_moon.style.height = "130px";
-  HeroCategoryName_moon.style.margin = "56px 0px 0px 25px";
+  HeroCategoryName_moon.style.margin = "38px 0px 0px 20px";
   var HeroCategoryName_sun = PortraitSize_alternate.GetChild(3);
   HeroCategoryName_sun.style.height = "130px";
-  HeroCategoryName_sun.style.margin = "56px 0px 0px 25px";
+  HeroCategoryName_sun.style.margin = "38px 0px 0px 20px";
   for(var i = 0; i <= PortraitSize_alternate.GetChildCount() - 1; i++) {
     var HeroCategoryBarName = PortraitSize_alternate.GetChild(i);
     var DotaIcon = HeroCategoryBarName.FindChildrenWithClassTraverse("HeroCategoryControls");

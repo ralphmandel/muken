@@ -251,7 +251,7 @@
 #Hero_grid {
     height: 100%;
     width: 100%;
-    padding: 40px;
+    padding-left: 40px;
     flow-children: down ;
 }
 
@@ -272,16 +272,16 @@
 }
 
 .teamIcon Image{
-    width: 35px;
-    height: 35px;
-   
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
 }
 
 .teamIcon Label{
     flow-children: right ;
     width: fill-parent-flow ( 1.0 ) ;
     color: #b1b1b1;
-    font-size: 30px;
+    font-size: 25px;
     vertical-align: middle;
     font-weight: bold;
     padding-left: 10px;
@@ -295,8 +295,8 @@
 .HeroesContainer {
     flow-children: right ;
     margin-left: 20px;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-top: 1px;
     padding-right: 20px;
     border: 1px solid white ;
      border-brush: gradient ( linear, 0% 0%, 30% 100%, from ( #ffffff8a ) , color-stop( .6, #FFFFFF00), to ( #FFFFFF00 ) ) ;

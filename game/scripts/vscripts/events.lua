@@ -39,11 +39,13 @@ function GameMode:OnGameRulesStateChange(keys)
     else
       LoadBots()
     end
+
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "rune_panel_from_server", {})
   end
 
   if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
     Timers:CreateTimer(0.5, function()
-      CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "game_points", {})
+      CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "game_points_from_server", {})
     end)
   end
 end
