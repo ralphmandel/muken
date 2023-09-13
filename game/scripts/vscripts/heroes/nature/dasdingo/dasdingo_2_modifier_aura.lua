@@ -65,7 +65,7 @@ function dasdingo_2_modifier_aura:PlayEfxStart()
   self.fow = AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetOrigin(), self.radius, self:GetDuration(), false)
 
 	local string = "particles/units/heroes/hero_treant/treant_eyesintheforest.vpcf"
-	local effect_cast = ParticleManager:CreateParticle(string, PATTACH_ABSORIGIN, self.parent)
+	local effect_cast = ParticleManager:CreateParticleForTeam(string, PATTACH_ABSORIGIN, self.parent, self.caster:GetTeamNumber())
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
   ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, self.radius, self.radius))
 	self:AddParticle(effect_cast, false, false, -1, false, false)

@@ -56,9 +56,9 @@ end
 
 function dasdingo_2_modifier_passive:PlayEfxRoot(target)
   local particle = "particles/econ/items/treant_protector/treant_ti10_immortal_head/treant_ti10_immortal_overgrowth_cast.vpcf"
-  local effect = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN, target)
+  local effect = ParticleManager:CreateParticle(particle, PATTACH_WORLDORIGIN, nil)
   ParticleManager:SetParticleControl(effect, 0, target:GetOrigin())
   ParticleManager:ReleaseParticleIndex(effect)
 
-  if IsServer() then target:EmitSound("Hero_Treant.LeechSeed.Cast") end
+  if IsServer() then EmitSoundOnLocationWithCaster(target:GetOrigin(), "Hero_Treant.LeechSeed.Cast", target) end
 end

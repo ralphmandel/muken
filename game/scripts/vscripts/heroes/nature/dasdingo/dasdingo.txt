@@ -52,7 +52,7 @@
 		{
       "interval"	  "1"
       "heal_tick"	  "25"
-      "duration"	  "6"
+      "duration"	  "8"
       "radius"	    "1 2 3 4 5 6 7"
       "rank"			  "1 2 3 4 5 6 7"
 		}
@@ -111,7 +111,6 @@
 		"AbilityValues"
 		{
       "channel_time"	"4"
-      "mana_drain"	  "5"
       "cast_range"	  "1 2 3 4 5 6 7"
       "rank"			    "1 2 3 4 5 6 7"
 		}
@@ -166,7 +165,7 @@
 
 		"AbilityValues"
 		{
-      "cast_range"  "600"
+      "cast_range"  "750"
       "ms_ally"     "500"
       "ms_enemy"    "200"
       "duration"	  "1 2 3 4 5 6 7"

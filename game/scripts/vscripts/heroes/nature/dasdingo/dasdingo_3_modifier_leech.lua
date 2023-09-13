@@ -20,7 +20,7 @@ function dasdingo_3_modifier_leech:OnCreated(kv)
 
 	if IsServer() then
     self:PlayEfxStart()
-    self:StartIntervalThink(self.interval)
+    --self:StartIntervalThink(self.interval)
   end
 end
 
@@ -47,8 +47,8 @@ end
 --------------------------------------------------------------------------------
 
 function dasdingo_3_modifier_leech:OnIntervalThink()
-	local drain_amount = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_drain") * self.interval * 0.01
-  ReduceMana(self.parent, self.ability, drain_amount, true)
+	-- local drain_amount = self.parent:GetMaxMana() * self.ability:GetSpecialValueFor("mana_drain") * self.interval * 0.01
+  -- ReduceMana(self.parent, self.ability, drain_amount, true)
 
 	--self.parent:ModifyHealth(self.parent:GetHealth() - drain_amount, self.ability, false, 0)
 	--self.caster:ModifyHealth(self.caster:GetHealth() + drain_amount, self.ability, false, 0)
