@@ -6,24 +6,24 @@
   </scripts>
     <Panel class="root" hittest="false">
         <Panel id="RunesContainer" hittest="false">
-                    <RadioButton class="runes-container" id="defaultValue" checked="checked">
-                        <Label class="RuneName" text="POWER" />
+                    <RadioButton class="runes-container" id="defaultValue" checked="checked" tabindex="auto">
                         <Image src="file://{resources}/images/custom_game/rune_power_small.png" class="img_selected"/>
+                        <Label class="RuneName" text="POWER" />
                     </RadioButton>
 
-                    <RadioButton class="runes-container">
+                    <RadioButton class="runes-container" tabindex="auto">
+                         <Image src="file://{resources}/images/custom_game/rune_light_small.png" class="img_selected"/>
                         <Label class="RuneName" text="LIGHT" />
-                        <Image src="file://{resources}/images/custom_game/rune_light_small.png" class="img_selected"/>
                     </RadioButton>
 
-                    <RadioButton class="runes-container">
-                        <Label class="RuneName" text="ARCANE" />
+                    <RadioButton class="runes-container" tabindex="auto">
                         <Image src="file://{resources}/images/custom_game/rune_arcane_small.png" class="img_selected"/>
+                        <Label class="RuneName" text="ARCANE" />
                     </RadioButton>
 
-                    <RadioButton class="runes-container">
-                        <Label class="RuneName" text="SHADOW" />
+                    <RadioButton class="runes-container" tabindex="auto">
                         <Image src="file://{resources}/images/custom_game/rune_shadow_small.png" class="img_selected"/>
+                        <Label class="RuneName" text="SHADOW" />
                     </RadioButton>
                
 	    </Panel>

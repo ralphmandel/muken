@@ -236,9 +236,11 @@ function DeleteTableKeys(msg)
   GameEvents.Subscribe( "pt_uk", UpdateTable);
   GameEvents.Subscribe( "pt_kd", DeleteTableKeys);
   GameEvents.Subscribe("team_name_from_server", OnTeamNameUpdate);
-  GameEvents.Subscribe("game_points", CreatePointsPanel);
+  GameEvents.Subscribe("game_points_from_server", CreatePointsPanel);
+  GameEvents.Subscribe("rune_panel_from_server", CreateRunePanel);
   //GameEvents.Subscribe("dota_player_hero_selection_dirty", OnUpdateHeroSelection1);
-
+  var BuffPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("BuffContainer");
+  $.Msg("dota6" , BuffPanel.FindChildTraverse("buffs").actualyoffset);
 })()
 
 function CreatePointsPanel(){
@@ -266,9 +268,16 @@ function CreatePointsPanel(){
 }
 
 function CreateRunePanel(){
-  var HealthContainer = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("health_mana").FindChildTraverse("HealthManaContainer");
-  var RuneContainer = $.CreatePanel( "Panel", HealthContainer, "" );
+  var BuffPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("BuffContainer");
+  BuffPanel.style.marginBottom = "30px";
+  var CenterPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
+  CenterPanel.FindChildTraverse("stats_container").style.visibility = "collapse";
+  var RuneContainer = $.CreatePanel( "Panel", CenterPanel, "" );
   RuneContainer.BLoadLayout( "file://{resources}/layout/custom_game/panel_runemaster.xml", false, false );
+  CenterPanel.MoveChildBefore(RuneContainer, CenterPanel.GetChild(24));
+  CenterPanel.FindChildTraverse("defaultValue").checked = true;
+  $.Msg("skillet", BuffPanel.FindChildTraverse("buffs").style.transform == 0);
+
   
   
 }
@@ -299,7 +308,7 @@ function OnTeamNameUpdate() {
     if (radio_checked.checked == true){
 
         if (i == 0) {points_value = 25} else if (i == 1) {points_value = 50}else if (i == 2) {points_value = 75} else if (i == 3) {points_value = 100};
-      GameEvents.SendCustomGameEventToServer("game_points", {match_points: points_value});
+      GameEvents.SendCustomGameEventToServer("game_points_from_server", {match_points: points_value});
       break
     }
     
