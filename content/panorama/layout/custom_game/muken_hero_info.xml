@@ -111,6 +111,8 @@
       <Image src="file://{resources}/images/custom_game/rune_light_75.png" class="img_collapse"/>
       <Image src="file://{resources}/images/custom_game/rune_arcane_75.png" class="img_collapse"/>
       <Image src="file://{resources}/images/custom_game/rune_shadow_75.png" class="img_collapse"/>
+      <Image src="file://{resources}/images/custom_game/talent_locked2.png" class="img_collapse"/>
+      
     </Panel>
   </Panel>
 </root>

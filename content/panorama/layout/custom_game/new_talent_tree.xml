@@ -25,16 +25,18 @@
 
         <Panel class="TalentSpellContainer" id="TalentPanel1" hittest="false">
           <Label text="TIER 3"/>
+          <Panel class="TalentTierBlocked" id="Tier-blocked1"/>
           <Panel class="TalentTier" id="Tier3" hittest="false">
-            <Panel class="TalentSkillOn">
+            <Button class="TalentSkillOn">
               <DOTAAbilityImage id="TalentImage" abilityname="" />
             </Panel>
-            <Panel class="TalentSkillOff">
+            <Button class="TalentSkillOff">
               <DOTAAbilityImage id="TalentImage" abilityname="" />
             </Panel>
           </Panel>
 
           <Label text="TIER 2"/>
+          <Panel class="TalentTierBlocked" id="Tier-blocked2"/>
           <Panel class="TalentTierAvailable" id="Tier2" hittest="false">
             <Panel class="TalentSkill">
               <DOTAAbilityImage id="TalentImage" abilityname="" />
@@ -46,6 +48,7 @@
           </Panel>
           
           <Label text="TIER 1"/>
+          <Panel class="TalentTierBlocked" id="Tier-blocked3"/>
           <Panel class="TalentTier" id="Tier1" hittest="false">
             <Panel class="TalentSkill">
               <DOTAAbilityImage id="TalentImage" abilityname="" />
@@ -57,7 +60,7 @@
           
           <Panel class="talent-skill-label" hittest="false">
             <Label id="skill-name" text="curseness bond"/>
-            <Label id="talent-level" text="TALENT LEVEL"/>
+            <Label id="talent-level" text="RANK UP"/>
           </Panel>
 
         </Panel>
