@@ -223,11 +223,11 @@ require("internal/talent_tree")
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
-		CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {
-			talents = self.talentsData,
-			tabs = self.tabs,
-			rows = self.rows
-		})
+		-- CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_talents_from_server", {
+		-- 	talents = self.talentsData,
+		-- 	tabs = self.tabs,
+		-- 	rows = self.rows
+		-- })
 	end
 
 	function base_hero:UpdatePanoramaState()
@@ -264,10 +264,10 @@ require("internal/talent_tree")
 				end
 			end
 			
-			CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_state_from_server", {
-				talents = json.encode(resultTable),
-				points = self.current_points
-			})
+			-- CustomGameEventManager:Send_ServerToPlayer(player, "talent_tree_get_state_from_server", {
+			-- 	talents = json.encode(resultTable),
+			-- 	points = self.current_points
+			-- })
 		end)
 	end
 
@@ -275,9 +275,9 @@ require("internal/talent_tree")
 		local player = self:GetCaster():GetPlayerOwner()
 		if (not player) then return end
 
-		CustomGameEventManager:Send_ServerToPlayer(player, "next_up_from_server", {
-			points = self.gold_left
-		})
+		-- CustomGameEventManager:Send_ServerToPlayer(player, "next_up_from_server", {
+		-- 	points = self.gold_left
+		-- })
 	end
 
 	function base_hero:AddGold(amount)
