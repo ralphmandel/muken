@@ -1,0 +1,112 @@
+<root>
+    <styles>
+      <include src="file://{resources}/styles/custom_game/new_talent_tree.css"/>
+    </styles>
+    <scripts>
+ 
+    </scripts>
+    <Panel hittest="false" class="TalentTreeRoot">
+
+      <Panel hittest="false" class="TalentButtons">
+        <Button hittest="true" class="talent_button" onactivate='OnTalentSpell1()'/>
+
+        <Button hittest="true" class="talent_button" onactivate='OnTalentSpell2()'/>
+
+        <Button hittest="true" class="talent_button" onactivate='OnTalentSpell3()'/>
+
+        <Button hittest="true" class="talent_button" onactivate='OnTalentSpell4()'/>
+
+        <Button hittest="true" class="talent_button" onactivate='OnTalentSpell5()'/>
+
+      </Panel>
+
+
+      <Panel id="TalentContainer" hittest="false">
+
+        <Panel class="TalentSpellContainer" id="TalentPanel1" hittest="false">
+          <Label text="TIER 3"/>
+          <Panel class="TalentTier" id="Tier3" hittest="false">
+            <Panel class="TalentSkillOn">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+            <Panel class="TalentSkillOff">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+          </Panel>
+
+          <Label text="TIER 2"/>
+          <Panel class="TalentTierAvailable" id="Tier2" hittest="false">
+            <Panel class="TalentSkill">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+            <Panel class="TalentSkill">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+          
+          </Panel>
+          
+          <Label text="TIER 1"/>
+          <Panel class="TalentTier" id="Tier1" hittest="false">
+            <Panel class="TalentSkill">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+            <Panel class="TalentSkill">
+              <DOTAAbilityImage id="TalentImage" abilityname="" />
+            </Panel>
+          </Panel>
+          
+          <Panel class="talent-skill-label" hittest="false">
+            <Label id="skill-name" text="curseness bond"/>
+            <Label id="talent-level" text="TALENT LEVEL"/>
+          </Panel>
+
+        </Panel>
+      </Panel>
+
+
+        
+<!-- 
+        <Panel class="TalentSpellContainer" id="TalentPanel2" hittest="false">
+        <Label text="2"/>
+
+        </Panel>
+
+        <Panel class="TalentSpellContainer" id="TalentPanel3" hittest="false">
+        <Label text="3"/>
+
+        </Panel>
+
+        <Panel class="TalentSpellContainer" id="TalentPanel4" hittest="false">
+        <Label text="4"/>
+
+        </Panel>
+
+        <Panel class="TalentSpellContainer" id="TalentPanel5" hittest="false">
+         <Label text="5"/>
+
+        </Panel> -->
+   
+
+
+
+
+
+
+<!-- 
+      <Panel hittest="false" id="StatsWindowContainer" onactivate=''>
+        <Panel id="StatsColumnContainer"/>
+      </Panel>
+
+      <Panel hittest="false" id="PtsTotalContainer" onactivate=''>
+        <Label text="" />
+      </Panel>
+
+
+      <Panel hittest="false" id="InfoWindowContainer" onactivate=''>
+        <Label text="" />
+      </Panel> -->
+      
+
+      
+    </Panel>
+</root>
