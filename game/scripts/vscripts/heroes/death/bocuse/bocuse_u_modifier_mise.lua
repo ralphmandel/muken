@@ -10,21 +10,17 @@ function bocuse_u_modifier_mise:OnCreated(kv)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
 	self.stop = false
-	self.extra_damage = 0
 
   AddStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
-  AddModifier(self.parent, self.ability, "bocuse_u_modifier_jump", {duration = 0.5}, false)
 
-  if self.ability:GetSpecialValueFor("special_unslow") == 1 then
-    AddModifier(self.parent, self.ability, "_modifier_unslowable", {}, false)
-	end
-
-  AddBonus(self.ability, "LCK", self.parent, self.ability:GetSpecialValueFor("special_lck"), 0, nil)
+  local init_model_scale = self.ability:GetSpecialValueFor("init_model_scale")
+  local model_scale = init_model_scale * (1 + (self.ability:GetSpecialValueFor("atk_range") * self.ability.kills * 0.003125))
+  self.parent:SetModelScale(model_scale)
+  self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 
   self.ability:SetActivated(false)
-  if self.ability.autocast == false then self.ability:EndCooldown() end
+  self.ability:EndCooldown()
 
 	self:CheckAggro()
 	self:StartSlash()
@@ -38,11 +34,11 @@ function bocuse_u_modifier_mise:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_4)
   RemoveStatusEfx(self.ability, "bocuse_u_modifier_mise_status_efx", self.caster, self.parent)
 
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_unslowable", self.ability)
-  RemoveBonus(self.ability, "LCK", self.parent)
+  self.parent:SetModelScale(self.ability:GetSpecialValueFor("init_model_scale"))
+  self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
 
   self.ability:SetActivated(true)
-  if self.ability.autocast == false then self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel())) end
+  self.ability:StartCooldown(self.ability:GetEffectiveCooldown(self.ability:GetLevel()))
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
@@ -61,8 +57,7 @@ end
 
 function bocuse_u_modifier_mise:DeclareFunctions()
 	local funcs = {
-    MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+    MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_DEATH,
@@ -72,20 +67,16 @@ function bocuse_u_modifier_mise:DeclareFunctions()
 	return funcs
 end
 
-function bocuse_u_modifier_mise:GetModifierIncomingDamage_Percentage(keys)
-  return self:GetAbility():GetSpecialValueFor("special_incoming")
-end
-
-function bocuse_u_modifier_mise:GetModifierProcAttack_BonusDamage_Physical()
-	return self.extra_damage
+function bocuse_u_modifier_mise:GetModifierAttackRangeBonus()
+  return self:GetAbility():GetSpecialValueFor("atk_range") * self:GetAbility().kills
 end
 
 function bocuse_u_modifier_mise:OnAttackLanded(keys)
 	if keys.attacker ~= self.parent then return end
 
-	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_microstun_chance") then
-    AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.2}, false)
-	end
+	-- if RandomFloat(0, 100) < chance then
+  --   AddModifier(keys.target, self.ability, "_modifier_stun", {duration = 0.2}, false)
+	-- end
 end
 
 function bocuse_u_modifier_mise:OnOrder(keys)
@@ -115,13 +106,9 @@ function bocuse_u_modifier_mise:OnDeath(keys)
   if keys.unit:GetTeamNumber() == self.parent:GetTeamNumber() then return end
 	if keys.unit:IsHero() == false then return end
 	if keys.unit:IsIllusion() then return end
-	local extra_damage = self.ability:GetSpecialValueFor("special_extra_damage")
 
-	if extra_damage > 0 then
-		self:SetDuration(self:GetDuration(), true)
-		self.extra_damage = self.extra_damage + extra_damage
-		self:PlayEfxStart()
-	end
+  -- self:SetDuration(self:GetDuration(), true)
+  -- self:PlayEfxStart()
 end
 
 function bocuse_u_modifier_mise:OnStateChanged(keys)

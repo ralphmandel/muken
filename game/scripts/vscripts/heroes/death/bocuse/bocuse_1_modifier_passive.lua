@@ -6,9 +6,11 @@ function bocuse_1_modifier_passive:IsPurgable() return false end
 -- CONSTRUCTORS -----------------------------------------------------------
 
 function bocuse_1_modifier_passive:OnCreated(kv)
-    self.caster = self:GetCaster()
-    self.parent = self:GetParent()
-    self.ability = self:GetAbility()
+  self.caster = self:GetCaster()
+  self.parent = self:GetParent()
+  self.ability = self:GetAbility()
+
+  if IsServer() then self:OnIntervalThink() end
 end
 
 function bocuse_1_modifier_passive:OnRefresh(kv)
@@ -19,32 +21,12 @@ end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
-function bocuse_1_modifier_passive:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED
-	}
+function bocuse_1_modifier_passive:OnIntervalThink()
+  local isCutting = self.parent:HasModifier("bocuse_1_modifier_julienne")
+  local hasMinCharges = self.ability:GetCurrentAbilityCharges() >= self.ability:GetSpecialValueFor("min_cut")
+  self.ability:SetActivated(hasMinCharges == true and isCutting == false)
 
-	return funcs
-end
-
-function bocuse_1_modifier_passive:OnAttackLanded(keys)
-	if keys.attacker ~= self.parent then return end
-
-  local bleeding = keys.target:FindModifierByNameAndCaster("_modifier_bleeding", self.caster)
-	local bleeding_duration = CalcStatus(self.ability:GetSpecialValueFor("bleeding_duration"), self.caster, keys.target)
-	local chance = self.ability:GetSpecialValueFor("special_bleeding_chance")
-
-  if self.parent:HasModifier("bocuse_1_modifier_julienne") then chance = 100 end
-
-	if RandomFloat(0, 100) < chance then
-    if bleeding then
-      bleeding:SetDuration(bleeding_duration, true)
-    else
-      AddModifier(keys.target, self.ability, "_modifier_bleeding", {
-        duration = bleeding_duration
-      }, false)
-    end
-	end
+  if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
 
 -- UTILS -----------------------------------------------------------

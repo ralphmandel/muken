@@ -204,7 +204,7 @@ function GameMode:_CaptureGameMode()
     if FORCE_PICKED_HERO ~= nil then
       mode:SetCustomGameForceHero( FORCE_PICKED_HERO )
     end
-    mode:SetFixedRespawnTime(30) 
+    mode:SetFixedRespawnTime(30)
     --mode:SetFountainConstantManaRegen( FOUNTAIN_CONSTANT_MANA_REGEN )
     --mode:SetFountainPercentageHealthRegen( FOUNTAIN_PERCENTAGE_HEALTH_REGEN )
     --mode:SetFountainPercentageManaRegen( FOUNTAIN_PERCENTAGE_MANA_REGEN )

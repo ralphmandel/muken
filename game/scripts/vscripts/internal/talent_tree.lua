@@ -80,7 +80,7 @@ function TalentTree:OnPortraitUpdate(event)
     evasion = BaseStats(entity):GetDodgePercent(),
     crit_chance = BaseStats(entity):GetCriticalChance(),
 
-    bonus_damage = BaseStats(entity):GetBonusAtkDamage(),
+    attack_damage = entity:GetAverageTrueAttackDamage(nil) + BaseStats(entity):GetBonusAtkDamage(),
     movespeed = entity:GetIdealSpeed(),
     block = BaseStats(entity):GetBlockAtkDamage(),
     hp_regen = entity:GetHealthRegen(),
