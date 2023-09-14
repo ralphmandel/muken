@@ -38,25 +38,16 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
   function bocuse_1__julienne:OnSpellStart()
     local caster = self:GetCaster()
 		self.target = self:GetCursorTarget()
-    local frenesi = RandomFloat(0, 100) < self:GetSpecialValueFor("special_frenesi_chance")
-    local crit_damage = self:GetSpecialValueFor("special_crit_damage")
-
-    if frenesi then
-      self.total_slashes = self:GetSpecialValueFor("special_max_cut")
-      self.cut_speed = self:GetSpecialValueFor("special_cut_speed")
-    else
-      self.total_slashes = self:GetSpecialValueFor("max_cut")
-      self.cut_speed = self:GetSpecialValueFor("cut_speed")
-      crit_damage = 0
-    end
+    self.cut_speed = self:GetSpecialValueFor("cut_speed")
 
     ChangeActivity(caster, "trapper")
     caster:FadeGesture(ACT_DOTA_ATTACK)
 
-    AddModifier(caster, self, "bocuse_1_modifier_julienne", {crit_damage = crit_damage}, false)
+    self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() + 1)
+    AddModifier(caster, self, "bocuse_1_modifier_julienne", {}, false)
   end
 
-  function bocuse_1__julienne:PerformSlash(slash_count)
+  function bocuse_1__julienne:PerformSlash(total_hits)
 		if self:CheckRequirements() == nil then return end
 
 		local caster = self:GetCaster()
@@ -69,35 +60,49 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
 
 		Timers:CreateTimer(0.1, function()
 			if self:CheckRequirements() then
-				if slash_count == 1 then self:ApplyStun(self.target) end
-        BaseStats(caster):SetForceCrit(100, nil)
-				caster:PerformAttack(self.target, false, true, true, false, false, false, true)
-				self:PlayEfxCut(self.target)
+        self:PlayEfxCut(self.target)
+        self:SetCurrentAbilityCharges(self:GetCurrentAbilityCharges() - 1)
+
+				if self:GetCurrentAbilityCharges() > 0 then
+          self:PlayEfxBleed(self.target)
+        else
+          self:ApplyStun(self.target, total_hits)
+
+          AddModifier(self.target, self, "_modifier_bleeding", {
+            duration = self:GetSpecialValueFor("bleeding_duration") * total_hits
+          }, true)
+        end
+
+        ApplyDamage({
+          attacker = caster, victim = self.target, ability = self,
+          damage = self:GetSpecialValueFor("damage"),
+          damage_type = self:GetAbilityDamageType()
+        })
 			end
 		end)
   end
 
 	function bocuse_1__julienne:CheckRequirements()
 		local caster = self:GetCaster()
-		if self.target == nil then return end
-		if IsValidEntity(self.target) == false then return end
-		if caster:HasModifier("bocuse_1_modifier_julienne") == false then return end
+    if caster:HasModifier("bocuse_1_modifier_julienne") == false then return end
 
-		local max_range = self:GetCastRange(caster:GetOrigin(), self.target) + self:GetSpecialValueFor("bonus_limit_range")
-		if CalcDistanceBetweenEntityOBB(caster, self.target) > max_range
-		or self.target:IsAlive() == false
-		or self.target:IsInvulnerable()
-		or self.target:IsOutOfGame() then
-			caster:RemoveModifierByName("bocuse_1_modifier_julienne")
-			return
-		end
+    if self.target then
+      if IsValidEntity(self.target) == true then
+        if CalcDistanceBetweenEntityOBB(caster, self.target) < 1000
+        and self.target:IsInvulnerable() == false
+        and self.target:IsOutOfGame() == false
+        and self.target:IsAlive() then
+          return true
+        end
+      end
+    end
 
-		return true
+    caster:RemoveModifierByName("bocuse_1_modifier_julienne")
 	end
 
-  function bocuse_1__julienne:ApplyStun(target)
+  function bocuse_1__julienne:ApplyStun(target, total_hits)
     local caster = self:GetCaster()
-    local stun_radius = self:GetSpecialValueFor("special_stun_radius")
+    local stun_radius = 0
 
     if stun_radius > 0 then
       self:PlayEfxBlast(target, stun_radius)
@@ -110,19 +115,19 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
   
       for _,enemy in pairs(enemies) do
         AddModifier(enemy, self, "_modifier_stun", {
-          duration = self:GetSpecialValueFor("stun_duration")
+          duration = self:GetSpecialValueFor("stun_duration") * total_hits
         }, true)
         
         ApplyDamage({
           attacker = caster, victim = enemy, ability = self,
-          damage = self:GetSpecialValueFor("special_stun_dmg"),
+          damage = 0,
           damage_type = DAMAGE_TYPE_MAGICAL
         })
       end
     else
       if target:IsMagicImmune() == false then
         AddModifier(target, self, "_modifier_stun", {
-          duration = self:GetSpecialValueFor("stun_duration")
+          duration = self:GetSpecialValueFor("stun_duration") * total_hits
         }, true)
       end
     end
@@ -158,6 +163,22 @@ LinkLuaModifier("_modifier_crit_damage", "_modifiers/_modifier_crit_damage", LUA
 
 		if IsServer() then target:EmitSound("Bocuse.Cut") end
 	end
+
+  function bocuse_1__julienne:PlayEfxBleed(target)
+    local particle_cast = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, target)
+    ParticleManager:SetParticleControl(effect_cast, 0, target:GetOrigin())
+    ParticleManager:SetParticleControl(effect_cast, 1, target:GetOrigin())
+    ParticleManager:ReleaseParticleIndex(effect_cast)
+  
+    local particle_cast2 = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+    local effect_cast2 = ParticleManager:CreateParticle(particle_cast2, PATTACH_ABSORIGIN_FOLLOW, target)
+    ParticleManager:SetParticleControl(effect_cast2, 0, target:GetOrigin())
+    ParticleManager:SetParticleControl(effect_cast2, 1, target:GetOrigin())
+    ParticleManager:ReleaseParticleIndex(effect_cast2)
+  
+    if IsServer() then target:EmitSound("Generic.Bleed") end
+  end
 
   function bocuse_1__julienne:PlayEfxBlast(target, radius)
     local string = "particles/econ/items/techies/techies_arcana/techies_remote_mines_detonate_arcana.vpcf"

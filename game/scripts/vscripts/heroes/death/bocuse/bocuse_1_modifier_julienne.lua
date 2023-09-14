@@ -9,9 +9,9 @@ function bocuse_1_modifier_julienne:OnCreated(kv)
   self.caster = self:GetCaster()
   self.parent = self:GetParent()
   self.ability = self:GetAbility()
+  self.total_hits = 1
 
 	ChangeActivity(self.parent, "")
-  AddModifier(self.parent, self.ability, "_modifier_crit_damage", {amount = kv.crit_damage}, false)
 
 	if IsServer() then self:OnIntervalThink() end
 end
@@ -22,18 +22,12 @@ end
 function bocuse_1_modifier_julienne:OnRemoved()
 	self.parent:FadeGesture(ACT_DOTA_ATTACK)
 	ChangeActivity(self.parent, "trapper")
-  RemoveAllModifiersByNameAndAbility(self.parent, "_modifier_crit_damage", self.ability)
 end
 
 -- API FUNCTIONS -----------------------------------------------------------
 
 function bocuse_1_modifier_julienne:CheckState()
 	local state = {[MODIFIER_STATE_DISARMED] = true}
-
-  if self:GetAbility():GetSpecialValueFor("special_invulnerable") == 1 then
-		table.insert(state, MODIFIER_STATE_STUNNED, false)
-		table.insert(state, MODIFIER_STATE_HEXED, false)
-	end
 
 	return state
 end
@@ -78,11 +72,11 @@ function bocuse_1_modifier_julienne:OnOrder(keys)
 end
 
 function bocuse_1_modifier_julienne:OnIntervalThink()
-	if self.ability.total_slashes == 0 then
+	if self.ability:GetCurrentAbilityCharges() == 0 then
 		self:Destroy()
-	else
-		self.ability:PerformSlash(self.ability.total_slashes)
-		self.ability.total_slashes = self.ability.total_slashes - 1
+	else    
+    self.ability:PerformSlash(self.total_hits)
+    self.total_hits = self.total_hits + 1
 	end
 	
 	if IsServer() then self:StartIntervalThink(1.33 / self.ability.cut_speed) end

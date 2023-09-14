@@ -58,8 +58,8 @@
 		"VisionNighttimeRange"      	"900"        // Range of vision at night time.
 
 		//STRENGTH
-			"AttackDamageMax"			"45"
-			"AttackDamageMin"         	"35"
+			"AttackDamageMax" "55"
+			"AttackDamageMin" "45"
 			"ArmorPhysical"           	"0"
 		//AGILITY
 			"BaseAttackSpeed"			"100"

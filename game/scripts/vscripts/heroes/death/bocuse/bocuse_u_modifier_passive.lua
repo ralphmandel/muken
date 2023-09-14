@@ -16,7 +16,6 @@ function bocuse_u_modifier_passive:OnCreated(kv)
 end
 
 function bocuse_u_modifier_passive:OnRefresh(kv)
-	if IsServer() then self:SetStackCount(self.ability.kills) end
 end
 
 function bocuse_u_modifier_passive:OnRemoved(kv)
@@ -41,8 +40,14 @@ function bocuse_u_modifier_passive:OnHeroKilled(keys)
 	if self.parent:IsIllusion() then return end
 	if self.parent:HasModifier("bocuse_u_modifier_mise") == false then return end
 
+  self.ability.kills = self.ability.kills + 1
+
+  local init_model_scale = self.ability:GetSpecialValueFor("init_model_scale")
+  local model_scale = init_model_scale * (1 + (self.ability:GetSpecialValueFor("atk_range") * self.ability.kills * 0.003125))
+  self.parent:SetModelScale(model_scale)
+  self.parent:SetHealthBarOffsetOverride(200 * self.parent:GetModelScale())
+
 	if IsServer() then
-		self.ability.kills = self.ability.kills + 1
 		self:SetStackCount(self.ability.kills)
 		self:PlayEfxKill()
 	end
@@ -54,18 +59,6 @@ function bocuse_u_modifier_passive:OnAttackLanded(keys)
   if self.parent:PassivesDisabled() then return end
 	if self.parent:HasModifier("bocuse_1_modifier_julienne") then return end
 	if self.parent:HasModifier("bocuse_u_modifier_mise") then return end
-
-	if RandomFloat(0, 100) < self.ability:GetSpecialValueFor("special_autocast_chance") then
-    self.ability.autocast = true
-    AddModifier(self.parent, self.ability, "bocuse_u_modifier_mise", {
-      duration = self.ability:GetSpecialValueFor("special_autocast_duration")
-    }, true)
-	end
-end
-
-function bocuse_u_modifier_passive:OnStackCountChanged(old)
-	RemoveBonus(self.ability, "CON", self.parent)
-  AddBonus(self.ability, "CON", self.parent, 0, self:GetStackCount(), nil)
 end
 
 -- EFFECTS -----------------------------------------------------------

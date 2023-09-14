@@ -23,7 +23,7 @@ var isWindowOpened = true;
       CreateRow(tab, column, "crit_chance", '%');
     }
     if (tab == 2) {
-      CreateRow(tab, column, "bonus_damage", '');
+      CreateRow(tab, column, "attack_damage", '');
       CreateRow(tab, column, "movespeed", '');
       CreateRow(tab, column, "block", '');
       CreateRow(tab, column, "hp_regen", '');
