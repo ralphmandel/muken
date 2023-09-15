@@ -1,0 +1,51 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/rank_system.css"/>
+  </styles>
+
+  <!-- <Panel class="TalentTierBlocked" id="Tier-blocked1"/> -->
+
+  <Panel hittest="true" class="RankRootContainer">
+    <Panel hittest="true" class="talent_button"/>
+    <Panel id="TalentContainer" hittest="false">
+      <Panel class="TalentSpellContainer" hittest="false">
+
+        <Label text="TIER 3"/>
+        <Panel class="TalentTier" id="Tier3" hittest="false">
+          <Button class="TalentSkillOn">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Button>
+          <Button class="TalentSkillOff">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Button>
+        </Panel>
+
+        <Label text="TIER 2"/>
+        <Panel class="TalentTierAvailable" id="Tier2" hittest="false">
+          <Panel class="TalentSkill">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Panel>
+          <Panel class="TalentSkill">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Panel>
+        </Panel>
+        
+        <Label text="TIER 1"/>
+        <Panel class="TalentTier" id="Tier1" hittest="false">
+          <Panel class="TalentSkill">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Panel>
+          <Panel class="TalentSkill">
+            <DOTAAbilityImage id="TalentImage" abilityname="" />
+          </Panel>
+        </Panel>
+        
+        <Panel class="talent-skill-label" hittest="false">
+          <Label id="skill-name" text="curseness bond"/>
+          <Label id="talent-level" text="RANK UP"/>
+        </Panel>
+
+      </Panel>
+    </Panel>
+  </Panel>
+</root>

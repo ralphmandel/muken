@@ -1,0 +1,172 @@
+.RankRootContainer {
+  width: 100%;
+  height: 100%;
+  ignore-parent-flow: true;
+}
+
+.TalentButtons {
+  width: 300px;
+  height: 50px;
+  vertical-align: bottom;
+  horizontal-align: middle;
+  margin-bottom: 50px;
+  flow-children: right;
+  margin-left: 0px;
+  
+  position: -37px 16px 0px;
+}
+
+.talent_button {
+  width: 20px;
+  height: 20px;
+  transition-property: background-image;
+  background-image: url("file://{images}/custom_game/talent_button_off.png");
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  transition-duration: .12s;
+  margin-top: 149px;
+  margin-left: 22px;
+
+  width: 20px;
+  height: 20px;
+}
+
+.talent_button:hover {
+  background-image: url("file://{images}/custom_game/talent_button_on.png");
+}
+
+#TalentContainer{
+  width: 400px;
+  height: 350px;
+  vertical-align: bottom;
+  horizontal-align: middle;
+  /* margin-right: 70px;
+  margin-bottom: 95px; */
+}
+
+.TalentSpellContainer {
+  background-image: url("s2r://panorama/images/hud/reborn/hud_custom_ti10/ability_bg_psd.vtex");
+  border-radius: 5px;
+  background-size: cover;
+  width: 130px;
+  height: 300px;
+  flow-children: down;
+}
+
+.TalentSpellContainer Label{
+  font-size: 15px;
+  horizontal-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 1px 4px 3.0 #000000;
+  margin-top: 6px;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+
+}
+
+.talent-skill-label {
+  flow-children: down;
+  horizontal-align: center;
+}
+
+
+.talent-skill-label Label{
+  border-top: 2px;
+  border-bottom: 2px;
+
+  padding-top: 5px;
+  font-size: 12px;
+  horizontal-align: middle;
+  letter-spacing: -1px;
+}
+
+.TalentTier {
+  width: 110px;
+  margin: 1px 2px 0px 2px;
+  flow-children: right;
+  horizontal-align: center;
+}
+
+.TalentTierAvailable {
+  width: 110px;
+  margin: 1px 2px 0px 2px;
+  flow-children: right;
+  horizontal-align: center;
+  animation-name: Available;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transition-property: brightness, opacity;
+}
+
+@keyframes 'Available'{
+  0%{
+    opacity: 0.9;
+    brightness: 1.5;
+  }
+  50%{
+    opacity: 1;
+    brightness: 2.5;
+  }
+  100%{
+    opacity: 0.9;
+    brightness: 1.5;
+  }
+ }
+
+ .TalentTierBlocked{
+  width: 110px;
+  height: 55px;
+  margin: 1px 2px 0px 2px;
+  horizontal-align: center;
+  background-image: url("file://{images}/custom_game/talent_locked2.png");
+  background-position: 50% 50%;
+  background-size: cover;
+  z-index: 10;
+  ignore-parent-flow: true;
+  margin-left: -3px;
+
+ }
+
+ .hide {
+  visibility: collapse;
+ }
+
+ #Tier-blocked2{
+  margin-top: -55px;
+ }
+
+ #Tier-blocked3{
+  margin-top: -104px;
+ }
+
+DOTAAbilityImage {
+  width: 45px;
+  height: 45px;
+  padding: 1px;
+
+}
+
+.TalentSkillOn {
+  horizontal-align: center;
+  border: 2px solid white;
+  border-radius: 3px;
+  border-brush: gradient( linear, -50% 0%, 0% 100%, from( #ffdd00 ), to( #c09301) );
+}
+
+.TalentSkillOff {
+  horizontal-align: center;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  wash-color: #999999;
+}
+
+.TalentSkill {
+  horizontal-align: center;
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  border-brush: gradient( linear, -50% 0%, 0% 100%, from( rgba(208, 195, 135, 0.462) ), to( #432c008a) );
+}

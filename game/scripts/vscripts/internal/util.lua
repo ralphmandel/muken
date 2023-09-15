@@ -1,128 +1,126 @@
-function DebugPrint(...)
-  local spew = Convars:GetInt('barebones_spew') or -1
-  if spew == -1 and BAREBONES_DEBUG_SPEW then
-    spew = 1
+--OTHERS
+
+  function DebugPrint(...)
+    local spew = Convars:GetInt('barebones_spew') or -1
+    if spew == -1 and BAREBONES_DEBUG_SPEW then
+      spew = 1
+    end
+
+    --if spew == 1 then
+      print(...)
+    --end
   end
 
-  --if spew == 1 then
-    print(...)
-  --end
-end
+  function DebugPrintTable(...)
+    local spew = Convars:GetInt('barebones_spew') or -1
+    if spew == -1 and BAREBONES_DEBUG_SPEW then
+      spew = 1
+    end
 
-function DebugPrintTable(...)
-  local spew = Convars:GetInt('barebones_spew') or -1
-  if spew == -1 and BAREBONES_DEBUG_SPEW then
-    spew = 1
+    --if spew == 1 then
+      PrintTable(...)
+    --end
   end
 
-  --if spew == 1 then
-    PrintTable(...)
-  --end
-end
+  function PrintTable(t, indent, done)
+    --print ( string.format ('PrintTable type %s', type(keys)) )
+    if type(t) ~= "table" then return end
 
-function PrintTable(t, indent, done)
-  --print ( string.format ('PrintTable type %s', type(keys)) )
-  if type(t) ~= "table" then return end
+    done = done or {}
+    done[t] = true
+    indent = indent or 0
 
-  done = done or {}
-  done[t] = true
-  indent = indent or 0
+    local l = {}
+    for k, v in pairs(t) do
+      table.insert(l, k)
+    end
 
-  local l = {}
-  for k, v in pairs(t) do
-    table.insert(l, k)
-  end
+    table.sort(l)
+    for k, v in ipairs(l) do
+      -- Ignore FDesc
+      if v ~= 'FDesc' then
+        local value = t[v]
 
-  table.sort(l)
-  for k, v in ipairs(l) do
-    -- Ignore FDesc
-    if v ~= 'FDesc' then
-      local value = t[v]
-
-      if type(value) == "table" and not done[value] then
-        done [value] = true
-        print(string.rep ("\t", indent)..tostring(v)..":")
-        PrintTable (value, indent + 2, done)
-      elseif type(value) == "userdata" and not done[value] then
-        done [value] = true
-        print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
-        PrintTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, done)
-      else
-        if t.FDesc and t.FDesc[v] then
-          print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
-        else
+        if type(value) == "table" and not done[value] then
+          done [value] = true
+          print(string.rep ("\t", indent)..tostring(v)..":")
+          PrintTable (value, indent + 2, done)
+        elseif type(value) == "userdata" and not done[value] then
+          done [value] = true
           print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+          PrintTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, done)
+        else
+          if t.FDesc and t.FDesc[v] then
+            print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
+          else
+            print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+          end
         end
       end
     end
   end
-end
 
--- Colors
-COLOR_NONE = '\x06'
-COLOR_GRAY = '\x06'
-COLOR_GREY = '\x06'
-COLOR_GREEN = '\x0C'
-COLOR_DPURPLE = '\x0D'
-COLOR_SPINK = '\x0E'
-COLOR_DYELLOW = '\x10'
-COLOR_PINK = '\x11'
-COLOR_RED = '\x12'
-COLOR_LGREEN = '\x15'
-COLOR_BLUE = '\x16'
-COLOR_DGREEN = '\x18'
-COLOR_SBLUE = '\x19'
-COLOR_PURPLE = '\x1A'
-COLOR_ORANGE = '\x1B'
-COLOR_LRED = '\x1C'
-COLOR_GOLD = '\x1D'
+  -- Colors
+  COLOR_NONE = '\x06'
+  COLOR_GRAY = '\x06'
+  COLOR_GREY = '\x06'
+  COLOR_GREEN = '\x0C'
+  COLOR_DPURPLE = '\x0D'
+  COLOR_SPINK = '\x0E'
+  COLOR_DYELLOW = '\x10'
+  COLOR_PINK = '\x11'
+  COLOR_RED = '\x12'
+  COLOR_LGREEN = '\x15'
+  COLOR_BLUE = '\x16'
+  COLOR_DGREEN = '\x18'
+  COLOR_SBLUE = '\x19'
+  COLOR_PURPLE = '\x1A'
+  COLOR_ORANGE = '\x1B'
+  COLOR_LRED = '\x1C'
+  COLOR_GOLD = '\x1D'
 
+  function DebugAllCalls()
+      if not GameRules.DebugCalls then
+          print("Starting DebugCalls")
+          GameRules.DebugCalls = true
 
-function DebugAllCalls()
-    if not GameRules.DebugCalls then
-        print("Starting DebugCalls")
-        GameRules.DebugCalls = true
-
-        debug.sethook(function(...)
-            local info = debug.getinfo(2)
-            local src = tostring(info.short_src)
-            local name = tostring(info.name)
-            if name ~= "__index" then
-                print("Call: ".. src .. " -- " .. name .. " -- " .. info.currentline)
-            end
-        end, "c")
-    else
-        print("Stopped DebugCalls")
-        GameRules.DebugCalls = false
-        debug.sethook(nil, "c")
-    end
-end
-
-
-
-
---[[Author: Noya
-  Date: 09.08.2015.
-  Hides all dem hats
-]]
-function HideWearables( unit )
-  unit.hiddenWearables = {} -- Keep every wearable handle in a table to show them later
-    local model = unit:FirstMoveChild()
-    while model ~= nil do
-        if model:GetClassname() == "dota_item_wearable" then
-            model:AddEffects(EF_NODRAW) -- Set model hidden
-            table.insert(unit.hiddenWearables, model)
-        end
-        model = model:NextMovePeer()
-    end
-end
-
-function ShowWearables( unit )
-
-  for i,v in pairs(unit.hiddenWearables) do
-    v:RemoveEffects(EF_NODRAW)
+          debug.sethook(function(...)
+              local info = debug.getinfo(2)
+              local src = tostring(info.short_src)
+              local name = tostring(info.name)
+              if name ~= "__index" then
+                  print("Call: ".. src .. " -- " .. name .. " -- " .. info.currentline)
+              end
+          end, "c")
+      else
+          print("Stopped DebugCalls")
+          GameRules.DebugCalls = false
+          debug.sethook(nil, "c")
+      end
   end
-end
+
+  --[[Author: Noya
+    Date: 09.08.2015.
+    Hides all dem hats
+  ]]
+  function HideWearables( unit )
+    unit.hiddenWearables = {} -- Keep every wearable handle in a table to show them later
+      local model = unit:FirstMoveChild()
+      while model ~= nil do
+          if model:GetClassname() == "dota_item_wearable" then
+              model:AddEffects(EF_NODRAW) -- Set model hidden
+              table.insert(unit.hiddenWearables, model)
+          end
+          model = model:NextMovePeer()
+      end
+  end
+
+  function ShowWearables( unit )
+
+    for i,v in pairs(unit.hiddenWearables) do
+      v:RemoveEffects(EF_NODRAW)
+    end
+  end
 
 -- CALCS
 
@@ -413,6 +411,14 @@ end
 
 -- GETTERS
 
+  function GetTeamIndex(team_number)
+    for i = #TEAMS, 1, -1 do
+      if team_number == TEAMS[i][1] then
+        return i
+      end
+    end
+  end
+
   function GetIDName(hero_name)
 		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 
@@ -421,33 +427,62 @@ end
 		end
 	end
 
-  function GetHeroName(id)
+  function GetHeroName(unit_name)
 		local heroes_name_data = LoadKeyValues("scripts/kv/heroes_name.kv")
 
 		for name, id_name in pairs(heroes_name_data) do
-			if id == id_name then return name end
+			if unit_name == id_name then return name end
 		end
 	end
 
-  function GetHeroTeam(id)
+  function GetHeroTeam(unit_name)
 		local heroes_team_data = LoadKeyValues("scripts/kv/heroes_team.kv")
 
     for team, hero_list in pairs(heroes_team_data) do
       for _, hero_name in pairs(hero_list) do
-        if GetHeroName(id) == hero_name then
+        if GetHeroName(unit_name) == hero_name then
           return team
         end
       end
 		end
 	end
 
-  function GetTeamIndex(team_number)
-    for i = #TEAMS, 1, -1 do
-      if team_number == TEAMS[i][1] then
-        return i
+  function GetHeroInitPts(hero_name)
+		local data = LoadKeyValues("scripts/kv/heroes_init_pts.kv")
+
+		for name, pts in pairs(data) do
+			if hero_name == name then return pts end
+		end
+	end
+
+  function GetAbilitiesList(unit_name)
+    local list = {}
+
+		local skills_data = LoadKeyValues("scripts/vscripts/heroes/".. GetHeroTeam(unit_name).."/"..GetHeroName(unit_name).."/"..GetHeroName(unit_name).."-skills.txt")
+		if skills_data ~= nil then
+			for skill, skill_name in pairs(skills_data) do
+				list[tonumber(skill)] = skill_name
+			end
+		end
+
+    return list
+	end
+
+  function GetRanksList(abilities_list)
+    local list = {}
+
+    for skill = 1, #abilities_list, 1 do
+      list[skill] = {}
+      for tier = 1, 3, 1 do
+        list[skill][tier] = {}
+        for path = 1, 2, 1 do
+          list[skill][tier][path] = abilities_list[skill].."_rank_"..tostring(tier)..tostring(path)
+        end
       end
     end
-  end
+
+    return list
+	end
 
   function GetShrineTarget(hero)
     local bot_script = hero:FindModifierByName("_general_script")
@@ -560,6 +595,12 @@ end
 -- BOTS
 
   function LoadBots()
+    if IsInToolsMode() then
+      if BOTS_ENABLED_TOOLS == false then return end
+    else
+      if BOTS_ENABLED == false then return end
+    end
+
     BOTS_LOADED = true
     
     local bot_slots = {

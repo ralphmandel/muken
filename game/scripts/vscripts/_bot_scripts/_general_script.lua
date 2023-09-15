@@ -548,7 +548,7 @@ _general_script = class({})
     local base_stats = BaseStats(self.parent)
     if base_hero == nil or base_stats == nil then return end
 
-    while base_hero.skill_points > 0 do
+    while base_hero.ability_points > 0 do
       local skills_data = LoadKeyValues("scripts/vscripts/heroes/"..GetHeroTeam(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."/"..GetHeroName(self.parent:GetUnitName()).."-skills.txt")
       local available_abilities = {}
       local i = 0

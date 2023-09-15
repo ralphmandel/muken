@@ -54,12 +54,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 
     if caster:FindAbilityByName("bloodstained_1__rage_rank_32") then
 		end
-
-		if caster:FindAbilityByName("bloodstained_1__rage_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_1__rage_rank_42") then
-		end
 	end
 
   if ability:GetAbilityName() == "bloodstained_2__frenzy" then
@@ -84,12 +78,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bloodstained_2__frenzy_rank_32") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_2__frenzy_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_2__frenzy_rank_42") then
 		end
 	end
 
@@ -117,12 +105,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 
     if caster:FindAbilityByName("bloodstained_3__curse_rank_32") then
 		end
-
-		if caster:FindAbilityByName("bloodstained_3__curse_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_3__curse_rank_42") then
-		end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_4__tear" then
@@ -147,12 +129,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bloodstained_4__tear_rank_32") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_4__tear_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_4__tear_rank_42") then
 		end
 	end
 
@@ -179,12 +155,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 
     if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_32") then
 		end
-
-		if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_5__lifesteal_rank_42") then
-		end
 	end
 
 	if ability:GetAbilityName() == "bloodstained_u__seal" then
@@ -210,12 +180,6 @@ function bloodstained_special_values:GetModifierOverrideAbilitySpecial(keys)
 		end
 
     if caster:FindAbilityByName("bloodstained_u__seal_rank_32") then
-		end
-
-		if caster:FindAbilityByName("bloodstained_u__seal_rank_41") then
-		end
-
-    if caster:FindAbilityByName("bloodstained_u__seal_rank_42") then
 		end
 	end
 

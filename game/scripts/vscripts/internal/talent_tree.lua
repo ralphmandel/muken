@@ -113,7 +113,7 @@ function TalentTree:OnTalentTreeTalentsRequest(event)
 
   if BaseHero(hero) == nil then return end
 
-  BaseHero(hero):UpdatePanoramaPanels()
+  BaseHero(hero):UpdatePanoramaRanks()
 end
 
 function TalentTree:OnTalentTreeLevelUpRequest(event)
@@ -164,7 +164,7 @@ function TalentTree:OnTalentTreeResetRequest(event)
     BaseHero(hero):SetHeroTalentLevel(i, 0)
   end
 
-  BaseHero(hero):AddTalentPointsToHero(pointsToReturn)
+  BaseHero(hero):UpdateRankPoints(pointsToReturn)
 end
 
 function TalentTree:OnPlayerReconnect(keys)
@@ -178,7 +178,7 @@ function TalentTree:OnPlayerReconnect(keys)
 
   if BaseHero(hero) == nil then return end
 
-  --BaseHero(hero):UpdatePanoramaPanels()
+  --BaseHero(hero):UpdatePanoramaRanks()
   BaseHero(hero):UpdatePanoramaState()
 end
 

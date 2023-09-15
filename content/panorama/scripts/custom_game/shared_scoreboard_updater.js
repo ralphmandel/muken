@@ -507,6 +507,5 @@ function OnScoreUpdate(event) {
 }
 
 (function() {
-  $.Msg("kubo score 1");
   GameEvents.Subscribe("score_state_from_server", OnScoreUpdate);
 })();

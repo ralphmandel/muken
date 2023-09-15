@@ -33,14 +33,9 @@ function GameMode:OnGameRulesStateChange(keys)
   end
 
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-    --AddFOWViewer(DOTA_TEAM_CUSTOM_4, Vector(0, 0, 0), 5000, 9999, false)
-    if IsInToolsMode() then
-      LoadBots()
-    else
-      LoadBots()
-    end
-
+    LoadBots()
     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(0), "rune_panel_from_server", {})
+    --AddFOWViewer(DOTA_TEAM_CUSTOM_4, Vector(0, 0, 0), 5000, 9999, false)
   end
 
   if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
